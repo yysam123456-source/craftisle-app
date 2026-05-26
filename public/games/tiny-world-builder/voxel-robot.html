@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voxel Robot - 3-View Reconstruction</title>
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #1a1a2e; }
+    canvas { display: block; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/*
+Analysis inventory (inferred from 3-view robot post)
+
+1. Camera and framing
+   - Perspective camera, 28deg FOV, orbiting the centered voxel model at eye level.
+2. Palette
+   - 10 colors: dark steel #4a5568, light metal #a0aec0, accent blue #3182ce, red #e53e3e,
+     yellow #ecc94b, black #1a202c, white #f7fafc, gray #718096, dark gray #2d3748, base #2c3e50.
+3. Ground / podium
+   - 6x6 floating voxel platform, dark base, subtle grid lines via slight color variation.
+4. Structures
+   - Voxel robot: 1x1 head, 1.5x2 torso, 0.6x1.8 arms/legs, antenna on head, small backpack.
+   - All parts snapped to 0.5 grid for clean voxel alignment.
+5. Nature / details
+   - None (focus on robot). Small panel lines via inset darker boxes.
+6. Farm / details
+   - None. Joint accents and hand/foot blocks.
+7. Sky and atmosphere
+   - Dark night gradient background, soft fog, no clouds.
+8. Animation
+   - Gentle Y rotation (0.2 deg/frame) + subtle idle bob on torso.
+*/
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1a1a2e);
+scene.fog = new THREE.Fog(0x1a1a2e, 15, 40);
+
+const camera = new THREE.PerspectiveCamera(28, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(6, 5, 8);
+camera.lookAt(0, 2, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.target.set(0, 2, 0);
+controls.minDistance = 4;
+controls.maxDistance = 18;
+
+const hemi = new THREE.HemisphereLight(0xccd6ff, 0x2d3748, 0.8);
+scene.add(hemi);
+
+const sun = new THREE.DirectionalLight(0xfff5e6, 1.6);
+sun.position.set(6, 14, 5);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.camera.left = -8;
+sun.shadow.camera.right = 8;
+sun.shadow.camera.top = 10;
+sun.shadow.camera.bottom = -6;
+sun.shadow.camera.near = 0.1;
+sun.shadow.camera.far = 30;
+scene.add(sun);
+
+const M = (color) => new THREE.MeshStandardMaterial({ color, roughness: 0.9, metalness: 0.1 });
+
+const mats = {
+  steel: M(0x4a5568),
+  metal: M(0xa0aec0),
+  accent: M(0x3182ce),
+  red: M(0xe53e3e),
+  yellow: M(0xecc94b),
+  black: M(0x1a202c),
+  white: M(0xf7fafc),
+  gray: M(0x718096),
+  dark: M(0x2d3748),
+  base: M(0x2c3e50),
+};
+
+const root = new THREE.Group();
+scene.add(root);
+
+function box(w, h, d, material, x, y, z, parent = root) {
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material);
+  mesh.position.set(x, y, z);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  parent.add(mesh);
+  return mesh;
+}
+
+// Simple 6x6 voxel platform
+for (let x = -3; x <= 2; x++) {
+  for (let z = -3; z <= 2; z++) {
+    const isEdge = Math.abs(x) === 3 || Math.abs(z) === 3;
+    box(1, 0.4, 1, isEdge ? mats.dark : mats.base, x + 0.5, 0.2, z + 0.5);
+  }
+}
+
+// Voxel robot - head (1x1 cube)
+box(1, 1, 1, mats.metal, 0, 4.5, 0);
+box(0.9, 0.9, 0.9, mats.steel, 0, 4.5, 0); // inset panel
+
+// Antenna
+box(0.15, 0.6, 0.15, mats.black, 0, 5.3, 0);
+box(0.3, 0.15, 0.3, mats.yellow, 0, 5.7, 0);
+
+// Torso (1.4 x 1.8)
+box(1.4, 1.8, 1, mats.accent, 0, 3.2, 0);
+box(1.3, 1.7, 0.9, mats.steel, 0, 3.2, 0); // inset
+
+// Backpack detail
+box(0.8, 1.2, 0.5, mats.dark, 0, 3.4, -0.9);
+
+// Arms (thin voxel stacks)
+box(0.5, 1.4, 0.5, mats.steel, -1.2, 3.5, 0);
+box(0.4, 0.3, 0.4, mats.gray, -1.2, 2.6, 0); // elbow
+box(0.5, 0.8, 0.5, mats.metal, -1.2, 2.1, 0); // forearm
+
+box(0.5, 1.4, 0.5, mats.steel, 1.2, 3.5, 0);
+box(0.4, 0.3, 0.4, mats.gray, 1.2, 2.6, 0);
+box(0.5, 0.8, 0.5, mats.metal, 1.2, 2.1, 0);
+
+// Hands
+box(0.6, 0.4, 0.6, mats.black, -1.2, 1.7, 0);
+box(0.6, 0.4, 0.6, mats.black, 1.2, 1.7, 0);
+
+// Legs
+box(0.6, 1.6, 0.6, mats.dark, -0.5, 1.4, 0);
+box(0.5, 0.4, 0.5, mats.gray, -0.5, 0.6, 0); // knee
+box(0.6, 0.5, 0.6, mats.steel, -0.5, 0.25, 0); // foot
+
+box(0.6, 1.6, 0.6, mats.dark, 0.5, 1.4, 0);
+box(0.5, 0.4, 0.5, mats.gray, 0.5, 0.6, 0);
+box(0.6, 0.5, 0.6, mats.steel, 0.5, 0.25, 0);
+
+// Eye / visor detail (front face)
+box(0.7, 0.25, 0.1, mats.black, 0, 4.7, 0.55);
+
+// Small red accent light
+box(0.2, 0.2, 0.1, mats.red, -0.4, 4.3, 0.55);
+
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const dt = clock.getDelta();
+  root.rotation.y += dt * 0.3; // gentle spin
+  // subtle idle bob
+  root.position.y = Math.sin(Date.now() / 800) * 0.03;
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>

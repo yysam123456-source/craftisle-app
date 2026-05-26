@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiny World Material Lookbook</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%239bc856'/%3E%3Cpath d='M3 10.5 8 5l5 5.5Z' fill='%23f2dfb0'/%3E%3Cpath d='M2.5 10.5 8 4.5l5.5 6Z' fill='none' stroke='%2324211c' stroke-width='1'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f3ea;
+      --ink: #24211c;
+      --muted: #70685e;
+      --line: #d9d0c4;
+      --panel: #fffaf1;
+      --accent: #2f6f8f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 24px 0 40px;
+    }
+
+    header {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 14px;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .viewer {
+      min-height: 420px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(#d9eff8, #f8f1dd 72%);
+      box-shadow: 0 16px 34px rgba(76, 60, 35, 0.10);
+    }
+
+    #world-preview,
+    #plane-preview {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    .card-body {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .sample {
+      height: 96px;
+      border-bottom: 1px solid var(--line);
+      background-size: 120px 120px;
+    }
+
+    .sample.plaster {
+      background:
+        radial-gradient(circle at 20% 28%, rgba(255,255,255,0.28) 0 2px, transparent 3px),
+        radial-gradient(circle at 68% 72%, rgba(80,65,48,0.12) 0 2px, transparent 3px),
+        linear-gradient(135deg, #d8c9ac, #ebdcbd);
+    }
+
+    .sample.white-brick {
+      background:
+        linear-gradient(90deg, rgba(122,79,58,0.30) 2px, transparent 2px),
+        linear-gradient(rgba(122,79,58,0.22) 2px, transparent 2px),
+        linear-gradient(135deg, #eee8dd, #d5cbbc);
+      background-size: 58px 30px, 58px 30px, auto;
+    }
+
+    .sample.red-brick {
+      background:
+        linear-gradient(90deg, rgba(70,34,25,0.35) 2px, transparent 2px),
+        linear-gradient(rgba(70,34,25,0.35) 2px, transparent 2px),
+        linear-gradient(135deg, #a84a3a, #7f3528);
+      background-size: 52px 24px, 52px 24px, auto;
+    }
+
+    .sample.planks {
+      background:
+        linear-gradient(90deg, rgba(53,32,17,0.30) 3px, transparent 3px),
+        linear-gradient(180deg, rgba(255,236,184,0.18), transparent 30%, rgba(45,24,12,0.14)),
+        #b97934;
+      background-size: 42px 100%, auto, auto;
+    }
+
+    .sample.roofing {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,218,144,0.24) 0 18px, transparent 19px),
+        linear-gradient(rgba(69,31,25,0.28) 3px, transparent 3px),
+        #b95531;
+      background-size: 48px 24px, 100% 24px, auto;
+    }
+
+    .sample.stone {
+      background:
+        linear-gradient(90deg, rgba(63, 60, 55, 0.34) 2px, transparent 2px),
+        linear-gradient(rgba(63, 60, 55, 0.28) 2px, transparent 2px),
+        linear-gradient(135deg, #b8b1a5, #817a70);
+      background-size: 64px 32px, 64px 32px, auto;
+    }
+
+    .sample.drag-brick {
+      background:
+        repeating-linear-gradient(0deg, rgba(65, 34, 25, 0.20) 0 2px, transparent 2px 10px),
+        repeating-linear-gradient(90deg, rgba(80, 45, 32, 0.26) 0 2px, transparent 2px 56px),
+        repeating-linear-gradient(0deg, rgba(80, 45, 32, 0.34) 0 2px, transparent 2px 28px),
+        #b46b48;
+      background-size: auto, 56px 28px, 100% 28px, auto;
+    }
+
+    .sample.buff-common {
+      background:
+        linear-gradient(90deg, rgba(130, 102, 72, 0.30) 2px, transparent 2px),
+        linear-gradient(rgba(130, 102, 72, 0.28) 2px, transparent 2px),
+        linear-gradient(135deg, #d7bd8e, #b98f5f);
+      background-size: 54px 28px, 54px 28px, auto;
+    }
+
+    .sample.grey-flemish {
+      background:
+        linear-gradient(90deg, rgba(70, 76, 78, 0.35) 2px, transparent 2px),
+        linear-gradient(rgba(70, 76, 78, 0.30) 2px, transparent 2px),
+        linear-gradient(135deg, #c7c6bd, #8f948f);
+      background-size: 40px 26px, 40px 26px, auto;
+    }
+
+    .sample.herringbone {
+      background:
+        repeating-linear-gradient(45deg, rgba(70, 38, 28, 0.45) 0 3px, transparent 3px 18px),
+        repeating-linear-gradient(-45deg, rgba(70, 38, 28, 0.30) 0 3px, transparent 3px 18px),
+        #a85a3e;
+      background-size: 42px 42px;
+    }
+
+    .sample.external {
+      background-color: #d8c9ac;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .sample.rock-surface {
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,0.22) 0 10px, transparent 11px),
+        radial-gradient(circle at 72% 18%, rgba(45,39,33,0.30) 0 16px, transparent 17px),
+        radial-gradient(circle at 36% 72%, rgba(32,28,23,0.34) 0 24px, transparent 25px),
+        radial-gradient(circle at 82% 78%, rgba(255,238,194,0.18) 0 20px, transparent 21px),
+        linear-gradient(135deg, #7f7668, #4d463d);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: 16px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+
+    .local-assets {
+      display: grid;
+      gap: 12px;
+    }
+
+    .texture-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .texture-row img {
+      width: 100%;
+      aspect-ratio: 1.25;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #e7dfd2;
+    }
+
+    .plane-panel {
+      min-height: 330px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: linear-gradient(#dceff6, #efe5d0);
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fffdfa;
+      color: var(--ink);
+      min-height: 34px;
+      padding: 6px 10px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button.active {
+      border-color: #1d5e83;
+      background: #dff1f8;
+    }
+
+    .notes {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 250, 241, 0.75);
+      padding: 12px;
+    }
+
+    .reference-note {
+      margin-top: 18px;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .grid,
+      .split,
+      .texture-row {
+        grid-template-columns: 1fr;
+      }
+
+      .viewer {
+        min-height: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Tiny World Material Lookbook</h1>
+      <p>External material textures applied to toy-scale Three.js cottages, plus local assets currently present in <code>models/</code>.</p>
+    </header>
+
+    <section class="stage" aria-label="Applied material preview">
+      <div class="viewer">
+        <canvas id="world-preview"></canvas>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Material candidates">
+      <article class="card">
+        <div class="sample plaster"></div>
+        <div class="card-body">
+          <h3>Plaster / Stucco</h3>
+          <p>Good default cottage wall. Subtle enough for the existing low-poly style.</p>
+          <a href="https://polyhaven.com/a/plastered_wall_02" target="_blank" rel="noreferrer">Poly Haven source</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="sample white-brick"></div>
+        <div class="card-body">
+          <h3>White Brick</h3>
+          <p>Readable wall texture without making the house too realistic.</p>
+          <a href="https://polyhaven.com/a/white_bricks" target="_blank" rel="noreferrer">Poly Haven source</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="sample red-brick"></div>
+        <div class="card-body">
+          <h3>Red Brick</h3>
+          <p>Best fit for manor, town, station, and taller wall stacks.</p>
+          <a href="https://ambientcg.com/view?id=Bricks085" target="_blank" rel="noreferrer">ambientCG source</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="sample planks"></div>
+        <div class="card-body">
+          <h3>Painted Planks</h3>
+          <p>Useful for barns, sheds, docks, and farm buildings.</p>
+          <a href="https://ambientcg.com/view?id=Planks021" target="_blank" rel="noreferrer">ambientCG source</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="sample roofing"></div>
+        <div class="card-body">
+          <h3>Roof Tiles</h3>
+          <p>Better as simplified tile stripes than a full PBR roof at this scale.</p>
+          <a href="https://ambientcg.com/view?id=RoofingTiles014A" target="_blank" rel="noreferrer">ambientCG source</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="reference-note" aria-label="Architextures references">
+      <h2>Architextures Brick References</h2>
+      <p>Actual preview textures from the Architextures brick category.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://cdn.architextures.org/textures/20/04/even-drag-brick-stretcher-5e9786b5a0f7d-1200.jpg');"></div>
+          <div class="card-body">
+            <h3>Drag Brick Stretcher</h3>
+            <p>Horizontal scraped texture with simple stretcher bond.</p>
+            <a href="https://architextures.org/textures/204" target="_blank" rel="noreferrer">Architextures source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://cdn.architextures.org/textures/21/07/rusticated-red-brick-stretcher-60e5d5175b26e-1200.jpg');"></div>
+          <div class="card-body">
+            <h3>Rusticated Red Brick</h3>
+            <p>Rough red brick for richer town, wall, and manor variants.</p>
+            <a href="https://architextures.org/textures/1096" target="_blank" rel="noreferrer">Architextures source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://cdn.architextures.org/textures/20/03/finnish-grey-brick-flemish-5e80dba5a2977-1200.jpg');"></div>
+          <div class="card-body">
+            <h3>Grey Flemish</h3>
+            <p>Cool grey brick for towers, civic buildings, or old town blocks.</p>
+            <a href="https://architextures.org/textures/131" target="_blank" rel="noreferrer">Architextures source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://cdn.architextures.org/textures/20/11/pilotage-herringbone-5fa1bc3f1f8a2-1200.jpg');"></div>
+          <div class="card-body">
+            <h3>Herringbone Paver</h3>
+            <p>Better suited to paths, courtyards, plazas, and roof accents.</p>
+            <a href="https://architextures.org/textures/695" target="_blank" rel="noreferrer">Architextures source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://cdn.architextures.org/textures/20/03/finnish-grey-brick-flemish-5e80dba5a2977-1200.jpg'); filter: sepia(0.28) saturate(1.2);"></div>
+          <div class="card-body">
+            <h3>Retinted Masonry</h3>
+            <p>Same real texture style, tinted toward Tiny World palette variants.</p>
+            <a href="https://architextures.org/textures/category/brick" target="_blank" rel="noreferrer">Architextures category</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reference-note" aria-label="Poly Haven brick textures">
+      <h2>Poly Haven Brick Textures</h2>
+      <p>Brick materials from Poly Haven assets, using direct diffuse texture URLs.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_bricks/white_bricks_diff_1k.jpg');"></div>
+          <div class="card-body">
+            <h3>White Bricks</h3>
+            <p>Weathered painted brick with chipped areas and darker underlayers.</p>
+            <a href="https://polyhaven.com/a/white_bricks" target="_blank" rel="noreferrer">Poly Haven source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_sandstone_bricks/white_sandstone_bricks_diff_1k.jpg');"></div>
+          <div class="card-body">
+            <h3>White Sandstone</h3>
+            <p>Chunkier block masonry for towers, ruins, and older walls.</p>
+            <a href="https://polyhaven.com/a/white_sandstone_bricks" target="_blank" rel="noreferrer">Poly Haven source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandstone_brick_wall_01/sandstone_brick_wall_01_diff_1k.jpg');"></div>
+          <div class="card-body">
+            <h3>Red Sandstone Wall</h3>
+            <p>Weathered red sandstone brick for industrial or baked urban walls.</p>
+            <a href="https://polyhaven.com/a/sandstone_brick_wall_01" target="_blank" rel="noreferrer">Poly Haven source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_bricks/white_bricks_diff_1k.jpg'); filter: saturate(0.8) brightness(0.92);"></div>
+          <div class="card-body">
+            <h3>Aged Pale Brick</h3>
+            <p>Same texture toned down for Tiny World cottage walls.</p>
+            <a href="https://polyhaven.com/textures/brick" target="_blank" rel="noreferrer">Poly Haven brick category</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample external" style="background-image: url('https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandstone_brick_wall_01/sandstone_brick_wall_01_diff_1k.jpg'); filter: saturate(1.25) contrast(1.08);"></div>
+          <div class="card-body">
+            <h3>High Contrast Brick</h3>
+            <p>More readable at toy scale for thumbnails and small walls.</p>
+            <a href="https://polyhaven.com/textures/brick" target="_blank" rel="noreferrer">Poly Haven brick category</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reference-note" aria-label="A23D texture sources">
+      <h2>A23D Texture Sources</h2>
+      <p>A23D has a large PBR texture catalog with material categories we can mine for terrain and object surface directions.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="sample rock-surface"></div>
+          <div class="card-body">
+            <h3>Rock Surface</h3>
+            <p>Good candidate for cliff faces, raised terrain sides, rocks, and ruins.</p>
+            <a href="https://www.a23d.co/texture/rocksurface-0615678" target="_blank" rel="noreferrer">A23D source</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample red-brick"></div>
+          <div class="card-body">
+            <h3>Brick Category</h3>
+            <p>Use for city walls, cottages, stations, factories, and chimneys.</p>
+            <a href="https://www.a23d.co/textures" target="_blank" rel="noreferrer">A23D textures</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample stone"></div>
+          <div class="card-body">
+            <h3>Stone / Concrete</h3>
+            <p>Useful for castle paths, plinths, pavements, and bridge supports.</p>
+            <a href="https://www.a23d.co/textures" target="_blank" rel="noreferrer">A23D textures</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample roofing"></div>
+          <div class="card-body">
+            <h3>Roofing</h3>
+            <p>Useful for tile roofs and smaller repeated roof stripe patterns.</p>
+            <a href="https://www.a23d.co/textures" target="_blank" rel="noreferrer">A23D textures</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="sample planks"></div>
+          <div class="card-body">
+            <h3>Wood</h3>
+            <p>Use for barn walls, docks, fences, supports, and sheds.</p>
+            <a href="https://www.a23d.co/textures" target="_blank" rel="noreferrer">A23D textures</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="split" aria-label="Local model assets">
+      <div class="local-assets">
+        <div>
+          <h2>Local Texture Atlases</h2>
+          <p>The repo currently has three plane atlas PNGs. These are already aligned to the stunt plane GLB and are not general wall textures.</p>
+        </div>
+        <div class="texture-row">
+          <img src="models/Polygon_Plane_Texture_01.png" alt="Yellow and blue stunt plane texture atlas">
+          <img src="models/Polygon_Plane_Texture_02.png" alt="Red and white stunt plane texture atlas">
+          <img src="models/Polygon_Plane_Texture_03.png" alt="Blue, green, and white stunt plane texture atlas">
+        </div>
+        <div class="notes">
+          <h3>Models folder notes</h3>
+          <ul>
+            <li><code>models/stunt_plane.glb</code> is a 259 KB GLB with named prop, flap, wheel, glass, and body nodes.</li>
+            <li><code>models/kenney_car-kit</code> and <code>models/kenney_graveyard-kit_5.0</code> have directory shells but no extracted model files.</li>
+            <li>The Kenney all-in-one folder has many zipped packs, including medieval wall and roof OBJ parts, but those are not unpacked into runtime-ready assets.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2>Current Stunt Plane Model</h2>
+        <div class="plane-panel">
+          <canvas id="plane-preview"></canvas>
+        </div>
+        <div class="controls" aria-label="Plane texture variants">
+          <button type="button" class="active" data-plane-texture="0">Yellow</button>
+          <button type="button" data-plane-texture="1">Red</button>
+          <button type="button" data-plane-texture="2">Blue</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="vendor/three/three.r128.min.js"></script>
+  <script src="vendor/three/GLTFLoader.r128.js"></script>
+  <script>
+    const materialDefs = [
+      {
+        name: 'Arch Drag',
+        type: 'white-brick',
+        wall: '#eee5d5',
+        textureUrl: 'https://cdn.architextures.org/textures/20/04/even-drag-brick-stretcher-5e9786b5a0f7d-1200.jpg',
+        repeat: [1.25, 1.15],
+        trim: '#b38a6b',
+        roof: '#3b78b9',
+        x: -4.4,
+      },
+      {
+        name: 'Arch Red',
+        type: 'red-brick',
+        wall: '#a84a3a',
+        textureUrl: 'https://cdn.architextures.org/textures/21/07/rusticated-red-brick-stretcher-60e5d5175b26e-1200.jpg',
+        repeat: [1.2, 1.1],
+        trim: '#eadfca',
+        roof: '#34343d',
+        x: -2.2,
+      },
+      {
+        name: 'Poly White',
+        type: 'white-brick',
+        wall: '#eee5d5',
+        textureUrl: 'https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_bricks/white_bricks_diff_1k.jpg',
+        repeat: [1.4, 1.05],
+        trim: '#b99b6e',
+        roof: '#2a6dd1',
+        x: 0,
+      },
+      {
+        name: 'Poly Stone',
+        type: 'plaster',
+        wall: '#d2c8aa',
+        textureUrl: 'https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/white_sandstone_bricks/white_sandstone_bricks_diff_1k.jpg',
+        repeat: [1.2, 1.1],
+        trim: '#9f805d',
+        roof: '#4a8750',
+        x: 2.2,
+      },
+      {
+        name: 'Roof + Brick',
+        type: 'red-brick',
+        wall: '#b95531',
+        textureUrl: 'https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandstone_brick_wall_01/sandstone_brick_wall_01_diff_1k.jpg',
+        repeat: [1.35, 1.1],
+        trim: '#9f805d',
+        roof: 'tiles',
+        x: 4.4,
+      },
+    ];
+
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.setCrossOrigin('anonymous');
+
+    function makeTexture(type) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+
+      if (type === 'plaster') {
+        ctx.fillStyle = '#e4d2aa';
+        ctx.fillRect(0, 0, 256, 256);
+        for (let i = 0; i < 180; i++) {
+          const shade = 185 + Math.floor(Math.random() * 55);
+          ctx.fillStyle = `rgba(${shade}, ${shade - 18}, ${shade - 42}, 0.12)`;
+          ctx.beginPath();
+          ctx.arc(Math.random() * 256, Math.random() * 256, 1 + Math.random() * 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      if (type === 'white-brick' || type === 'red-brick') {
+        const base = type === 'white-brick' ? '#e8dfd0' : '#a84a3a';
+        const alt = type === 'white-brick' ? '#d7cabb' : '#873629';
+        const mortar = type === 'white-brick' ? '#b99578' : '#56291f';
+        ctx.fillStyle = base;
+        ctx.fillRect(0, 0, 256, 256);
+        for (let y = 0; y < 256; y += 32) {
+          const offset = (y / 32) % 2 ? 34 : 0;
+          for (let x = -offset; x < 256; x += 68) {
+            ctx.fillStyle = Math.random() > 0.5 ? base : alt;
+            ctx.fillRect(x + 2, y + 2, 64, 28);
+          }
+        }
+        ctx.strokeStyle = mortar;
+        ctx.globalAlpha = 0.42;
+        ctx.lineWidth = 3;
+        for (let y = 0; y <= 256; y += 32) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(256, y);
+          ctx.stroke();
+        }
+        for (let y = 0; y < 256; y += 32) {
+          const offset = (y / 32) % 2 ? 34 : 0;
+          for (let x = -offset; x <= 256; x += 68) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, y + 32);
+            ctx.stroke();
+          }
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      if (type === 'planks') {
+        ctx.fillStyle = '#b97934';
+        ctx.fillRect(0, 0, 256, 256);
+        for (let x = 0; x < 256; x += 42) {
+          ctx.fillStyle = x % 84 ? '#c48642' : '#a7652d';
+          ctx.fillRect(x, 0, 39, 256);
+          ctx.fillStyle = 'rgba(63, 36, 18, 0.36)';
+          ctx.fillRect(x + 39, 0, 3, 256);
+          for (let y = 18; y < 256; y += 68) {
+            ctx.fillStyle = 'rgba(80, 45, 20, 0.30)';
+            ctx.fillRect(x + 8, y, 22, 2);
+          }
+        }
+      }
+
+      if (type === 'roof-tiles') {
+        ctx.fillStyle = '#b95531';
+        ctx.fillRect(0, 0, 256, 256);
+        ctx.strokeStyle = 'rgba(78, 34, 25, 0.48)';
+        ctx.lineWidth = 4;
+        for (let y = 0; y < 256; y += 28) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(256, y);
+          ctx.stroke();
+          for (let x = 0; x < 256; x += 42) {
+            ctx.beginPath();
+            ctx.arc(x + ((y / 28) % 2 ? 20 : 0), y, 17, 0, Math.PI);
+            ctx.stroke();
+          }
+        }
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(type === 'planks' ? 1.1 : 1.4, 1.2);
+      texture.encoding = THREE.sRGBEncoding;
+      texture.anisotropy = 4;
+      return texture;
+    }
+
+    function makeMat(type, color) {
+      return new THREE.MeshLambertMaterial({
+        color: color || '#ffffff',
+        map: makeTexture(type),
+      });
+    }
+
+    function makeImageMat(def) {
+      const mat = makeMat(def.type, def.wall);
+      if (!def.textureUrl) return mat;
+      textureLoader.load(def.textureUrl, tex => {
+        tex.wrapS = THREE.RepeatWrapping;
+        tex.wrapT = THREE.RepeatWrapping;
+        const repeat = def.repeat || [1, 1];
+        tex.repeat.set(repeat[0], repeat[1]);
+        tex.encoding = THREE.sRGBEncoding;
+        tex.anisotropy = 4;
+        mat.map = tex;
+        mat.color.set('#ffffff');
+        mat.needsUpdate = true;
+      });
+      return mat;
+    }
+
+    function addBox(group, size, position, material) {
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]), material);
+      mesh.position.set(position[0], position[1], position[2]);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      group.add(mesh);
+      return mesh;
+    }
+
+    function addHouse(scene, def) {
+      const group = new THREE.Group();
+      group.position.x = def.x;
+      const wallMat = makeImageMat(def);
+      const trimMat = new THREE.MeshLambertMaterial({ color: def.trim });
+      const roofMat = def.roof === 'tiles'
+        ? makeMat('roof-tiles', '#ffffff')
+        : new THREE.MeshLambertMaterial({ color: def.roof });
+      const grassMat = new THREE.MeshLambertMaterial({ color: '#9bc856' });
+      const dirtMat = new THREE.MeshLambertMaterial({ color: '#7d4519' });
+      const darkMat = new THREE.MeshLambertMaterial({ color: '#2a251f' });
+      const glassMat = new THREE.MeshLambertMaterial({ color: '#6db8e0' });
+
+      addBox(group, [1.45, 0.16, 1.35], [0, -0.08, 0], dirtMat);
+      addBox(group, [1.32, 0.05, 1.22], [0, 0.03, 0], grassMat);
+      addBox(group, [0.82, 0.68, 0.74], [0, 0.42, 0], wallMat);
+
+      const leftRoof = addBox(group, [0.68, 0.12, 0.96], [-0.23, 0.86, 0], roofMat);
+      leftRoof.rotation.z = 0.55;
+      const rightRoof = addBox(group, [0.68, 0.12, 0.96], [0.23, 0.86, 0], roofMat);
+      rightRoof.rotation.z = -0.55;
+      addBox(group, [0.10, 0.08, 1.02], [0, 1.06, 0], trimMat);
+
+      addBox(group, [0.20, 0.36, 0.035], [0, 0.24, 0.39], darkMat);
+      addBox(group, [0.24, 0.04, 0.04], [0, 0.45, 0.41], trimMat);
+      addBox(group, [0.04, 0.36, 0.04], [-0.12, 0.28, 0.41], trimMat);
+      addBox(group, [0.04, 0.36, 0.04], [0.12, 0.28, 0.41], trimMat);
+
+      for (const x of [-0.26, 0.26]) {
+        addBox(group, [0.17, 0.17, 0.035], [x, 0.58, 0.39], trimMat);
+        addBox(group, [0.12, 0.12, 0.04], [x, 0.58, 0.42], glassMat);
+      }
+
+      const label = makeLabel(def.name);
+      label.position.set(0, 1.42, 0);
+      group.add(label);
+      scene.add(group);
+    }
+
+    function makeLabel(text) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'rgba(255, 250, 241, 0.92)';
+      roundRect(ctx, 8, 10, 240, 42, 10);
+      ctx.fill();
+      ctx.fillStyle = '#24211c';
+      ctx.font = '600 26px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, 128, 31);
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.encoding = THREE.sRGBEncoding;
+      const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide });
+      return new THREE.Mesh(new THREE.PlaneGeometry(1.05, 0.26), mat);
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function setupRenderer(canvas) {
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      return renderer;
+    }
+
+    function resizeRenderer(renderer, camera, canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+      if (canvas.width !== width || canvas.height !== height) {
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+    }
+
+    function initWorldPreview() {
+      const canvas = document.getElementById('world-preview');
+      const renderer = setupRenderer(canvas);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+      camera.position.set(0, 4.0, 7.8);
+      camera.lookAt(0, 0.45, 0);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.76));
+      const hemi = new THREE.HemisphereLight(0xcfefff, 0xa66f3f, 0.55);
+      scene.add(hemi);
+      const sun = new THREE.DirectionalLight(0xffffff, 0.82);
+      sun.position.set(4, 7, 5);
+      sun.castShadow = true;
+      scene.add(sun);
+
+      materialDefs.forEach(def => addHouse(scene, def));
+
+      function frame(time) {
+        resizeRenderer(renderer, camera, canvas);
+        const aspect = Math.max(0.1, canvas.clientWidth / Math.max(1, canvas.clientHeight));
+        camera.position.set(0, aspect < 1.25 ? 5.1 : 4.0, aspect < 1.25 ? 14.4 : 7.8);
+        camera.lookAt(0, 0.45, 0);
+        scene.rotation.y = Math.sin(time * 0.00025) * 0.04;
+        renderer.render(scene, camera);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function initPlanePreview() {
+      const canvas = document.getElementById('plane-preview');
+      const renderer = setupRenderer(canvas);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
+      camera.position.set(2.2, 1.3, 3.0);
+      camera.lookAt(0, 0.1, 0);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+      const sun = new THREE.DirectionalLight(0xffffff, 0.86);
+      sun.position.set(4, 5, 3);
+      scene.add(sun);
+
+      const root = new THREE.Group();
+      scene.add(root);
+
+      const textureLoader = new THREE.TextureLoader();
+      const textures = [
+        'models/Polygon_Plane_Texture_01.png',
+        'models/Polygon_Plane_Texture_02.png',
+        'models/Polygon_Plane_Texture_03.png',
+      ].map(src => {
+        const tex = textureLoader.load(src);
+        tex.flipY = false;
+        tex.encoding = THREE.sRGBEncoding;
+        tex.anisotropy = 4;
+        return tex;
+      });
+      const mats = textures.map(tex => new THREE.MeshLambertMaterial({ map: tex, color: 0xffffff }));
+
+      let model = null;
+      function applyPlaneMaterial(index) {
+        if (!model) return;
+        const mat = mats[index] || mats[0];
+        model.traverse(o => {
+          if (o.isMesh) {
+            o.material = mat;
+            o.castShadow = true;
+            o.receiveShadow = true;
+          }
+        });
+      }
+
+      new THREE.GLTFLoader().load('models/stunt_plane.glb', gltf => {
+        model = gltf.scene;
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        model.position.sub(center);
+        model.scale.setScalar(1.7 / Math.max(size.x, size.z, 0.001));
+        model.rotation.set(-0.12, Math.PI * 0.12, 0);
+        root.add(model);
+        applyPlaneMaterial(0);
+      }, undefined, () => {
+        const fallback = new THREE.Mesh(
+          new THREE.BoxGeometry(1.2, 0.16, 0.18),
+          new THREE.MeshLambertMaterial({ color: '#d24a3a' })
+        );
+        root.add(fallback);
+      });
+
+      document.querySelectorAll('[data-plane-texture]').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('[data-plane-texture]').forEach(b => b.classList.remove('active'));
+          button.classList.add('active');
+          applyPlaneMaterial(Number(button.dataset.planeTexture));
+        });
+      });
+
+      function frame(time) {
+        resizeRenderer(renderer, camera, canvas);
+        root.rotation.y = time * 0.00045;
+        renderer.render(scene, camera);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    initWorldPreview();
+    initPlanePreview();
+  </script>
+</body>
+</html>
