@@ -2,22 +2,10 @@ import { ImageResponse } from "@vercel/og"
 
 import { ogImageSchema } from "@/lib/validations/og"
 
-export const runtime = "nodejs"
-
-const interRegular = fetch(
-  new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url)
-).then((res) => res.arrayBuffer())
-
-const interBold = fetch(
-  new URL("../../../assets/fonts/CalSans-SemiBold.ttf", import.meta.url)
-).then((res) => res.arrayBuffer())
-
+export const runtime = "edge"
 
 export async function GET(req: Request) {
   try {
-    const fontRegular = await interRegular
-    const fontBold = await interBold
-
     const url = new URL(req.url)
     const values = ogImageSchema.parse(Object.fromEntries(url.searchParams))
     const heading =
@@ -29,8 +17,6 @@ export async function GET(req: Request) {
     const paint = mode === "dark" ? "#fff" : "#000"
 
     const fontSize = heading.length > 80 ? "60px" : "80px"
-
-    const githubName = "mickasmt";
 
     return new ImageResponse(
       (
@@ -47,7 +33,6 @@ export async function GET(req: Request) {
           <div
             tw="text-5xl"
             style={{
-              fontFamily: "Cal Sans",
               fontWeight: "normal",
               position: "relative",
               background: "linear-gradient(90deg, #6366f1, #a855f7 80%)",
@@ -55,22 +40,19 @@ export async function GET(req: Request) {
               color: 'transparent'
             }}
           >
-            SaaS Starter
+            Craftisle
           </div>
 
           <div tw="flex flex-col flex-1 py-16">
-            {/* Type : Blog or Doc */}
             <div
               tw="flex text-xl uppercase font-bold tracking-tight"
-              style={{ fontFamily: "Inter", fontWeight: "normal" }}
+              style={{ fontWeight: "normal" }}
             >
               {values.type}
             </div>
-            {/* Title */}
             <div
               tw="flex leading-[1.15] text-[80px] font-bold"
               style={{
-                fontFamily: "Cal Sans",
                 fontWeight: "bold",
                 marginLeft: "-3px",
                 fontSize,
@@ -83,32 +65,27 @@ export async function GET(req: Request) {
           <div tw="flex items-center w-full justify-between">
             <div
               tw="flex items-center text-xl"
-              style={{ fontFamily: "Inter", fontWeight: "normal" }}
+              style={{ fontWeight: "normal" }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt="avatar"
                 width="65"
-                src={`https://github.com/${githubName}.png`}
+                src="https://github.com/yysam123456.png"
                 style={{
                   borderRadius: 128,
                 }}
               />
-
               <div tw="flex flex-col" style={{ marginLeft: "15px" }}>
-                <div
-                  tw="text-[22px]"
-                  style={{ fontFamily: "Cal Sans" }}
-                >
-                  {githubName}
+                <div tw="text-[22px]">
+                  yysam123456
                 </div>
-                <div>Open Source Designer</div>
+                <div>AI Tools Platform</div>
               </div>
             </div>
 
             <div
               tw="flex items-center text-xl"
-              style={{ fontFamily: "Inter", fontWeight: "normal" }}
+              style={{ fontWeight: "normal" }}
             >
               <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
                 <path
@@ -126,7 +103,7 @@ export async function GET(req: Request) {
                   stroke-linejoin="round"
                 />
               </svg>
-              <div tw="flex ml-2">github.com/mickasmt/next-saas-stripe-starter</div>
+              <div tw="flex ml-2">craftisle.com</div>
             </div>
           </div>
         </div>
@@ -134,20 +111,6 @@ export async function GET(req: Request) {
       {
         width: 1200,
         height: 630,
-        fonts: [
-          {
-            name: "Inter",
-            data: fontRegular,
-            weight: 400,
-            style: "normal",
-          },
-          {
-            name: "Cal Sans",
-            data: fontBold,
-            weight: 700,
-            style: "normal",
-          },
-        ],
       }
     )
   } catch (error) {
