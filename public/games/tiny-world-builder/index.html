@@ -164,24 +164,6 @@
   }
   .appbar .btn.icon svg { width: 15px; height: 15px; }
 
-  .token-pill {
-    position: fixed;
-    top: 18px;
-    right: 24px;
-    z-index: 14;
-    font-size: 12px;
-    padding: 4px 10px;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.6);
-    border-radius: 999px;
-    color: #3a3a3a;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    white-space: nowrap;
-  }
-  .token-pill .ticker { font-weight: 600; color: #2a2722; }
-  .token-pill .ca { font-family: ui-monospace, monospace; opacity: 0.75; margin-left: 6px; }
-
   .controls {
     position: fixed;
     top: 50%;
@@ -3559,7 +3541,7 @@
   }
   .tab-bar button.active { background: var(--ink); color: var(--panel); border-color: var(--ink); }
   .save-empty { text-align: center; padding: 30px 10px; color: var(--muted); font-size: 13px; }
-  .toolbar-toggle { display: none; }
+  .toolbar-toggle { display: flex; align-items: center; justify-content: center; width: 40px; height: 44px; border: none; border-radius: 12px; background: rgba(255,255,255,0.55); cursor: pointer; flex-shrink: 0; padding: 0; }
   @media (max-width: 600px) {
     .help { display: none; }
     .controls {
@@ -3604,6 +3586,7 @@
       max-width: calc(100vw - 24px);
       padding: 0 8px;
       gap: 3px;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
     .toolbar-world-slot {
       height: 44px;
@@ -3785,11 +3768,6 @@
       <span id="world-menu-label">My world</span>
       <svg class="brand-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
-  </div>
-
-  <div class="token-pill" title="Solana token">
-    <span class="ticker">$TINYWORLD</span>
-    <span class="ca">CA: 7bK4jRMa3aY85wJMQEQqWsmY9mmrRT32AFWZ23cBpump</span>
   </div>
 
   <!-- View modes popup -->
@@ -17432,6 +17410,8 @@
     toggle.addEventListener('click', e => {
       e.stopPropagation();
       bar.classList.toggle('collapsed');
+      const ic = toggle.querySelector('.toggle-icon');
+      if (ic) ic.textContent = bar.classList.contains('collapsed') ? '▶' : '☰';
     });
     bar.appendChild(toggle);
 
