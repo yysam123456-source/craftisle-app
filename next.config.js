@@ -1,8 +1,19 @@
-const { withContentlayer } = require("next-contentlayer2");
+// Contentlayer disabled: Windows build compatibility issue (configPath: undefined)
+// Re-enable on Vercel (Linux) or WSL
+// const { withContentlayer } = require("next-contentlayer2");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
+  webpack: (config) => {
+    // Mock contentlayer/generated on Windows (Contentlayer2 Windows compat issue)
+    config.resolve.alias["contentlayer/generated"] = require("path").resolve(
+      __dirname,
+      "contentlayer-mock.ts"
+    );
+    return config;
+  },
   // trailingSlash: true, // disabled: causes Vercel 404 on homepage
 
   // Turbopack disabled via CLI flag: --webpack
@@ -41,4 +52,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withContentlayer(nextConfig);
+module.exports = nextConfig; // withContentlayer disabled for Windows build

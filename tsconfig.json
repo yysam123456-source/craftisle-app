@@ -24,7 +24,10 @@
         "./*"
       ],
       "contentlayer/generated": [
-        "./.contentlayer/generated"
+        "./contentlayer-mock"
+      ],
+      "@/.contentlayer/generated": [
+        "./contentlayer-mock"
       ]
     },
     "plugins": [
@@ -40,7 +43,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated",
-    "contentlayer.config.ts",
+    "contentlayer-mock.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
