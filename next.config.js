@@ -3,7 +3,7 @@ const { withContentlayer } = require("next-contentlayer2");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  trailingSlash: true,
+  // trailingSlash: true, // disabled: causes Vercel 404 on homepage
 
   // Turbopack disabled via CLI flag: --webpack
   // (Next.js 16 enables Turbopack by default; --webpack forces webpack)
