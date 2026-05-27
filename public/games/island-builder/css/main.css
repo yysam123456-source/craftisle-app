@@ -259,7 +259,7 @@ html, body {
     width: 60px;
     padding: 10px 6px 8px;
     border: 0;
-    background: transparent;
+    background: rgba(251, 246, 236, 0.45);
     border-radius: var(--radius-sm);
     cursor: pointer;
     display: flex;
@@ -277,12 +277,14 @@ html, body {
     color: var(--cobalt);
 }
 .tool .ti {
-    /* Icons are drawn on a 44×44 logical canvas. We display them at 36px
-       (was 22px) so the glyph reads at a glance, sized to roughly fill
-       the toolbar button without crowding the label below. */
+    /* Icons: either a 44×44 canvas or an emoji span — both centred. */
     width: 36px;
     height: 36px;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    line-height: 1;
 }
 .tool span.label {
     font-size: 11px;
@@ -680,7 +682,7 @@ html, body {
         padding: 8px 4px 6px;
         gap: 3px;
     }
-    .tool .ti { width: 30px; height: 30px; }
+    .tool .ti { width: 30px; height: 30px; font-size: 18px; }
     .tool span.label { font-size: 10px; display: block; }
 
     /* Palette: full-width bottom sheet, taller, larger swatches sized
@@ -745,7 +747,7 @@ html, body {
    palette swatches. */
 @media (max-width: 380px) {
     .tool { width: 46px; padding: 6px 3px; }
-    .tool .ti { width: 28px; height: 28px; }
+    .tool .ti { width: 28px; height: 28px; font-size: 17px; }
     #palette { height: 184px; }
     #palette-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
     .swatch canvas, .swatch img { width: 38px; height: 38px; }
@@ -772,7 +774,7 @@ html, body {
         gap: 3px;
     }
     .tool { width: 44px; padding: 6px 3px; }
-    .tool .ti { width: 26px; height: 26px; }
+    .tool .ti { width: 26px; height: 26px; font-size: 16px; }
     .tool span.label { display: none; }
 
     #palette {

@@ -36,40 +36,49 @@ export class Toolbar {
     }
 
     _build() {
-        this.root.innerHTML = '';
-        // Each icon drawer uses a 44×44 logical coordinate space
-        // (centered at 22, 22). We allocate the backing canvas at
-        // `44 × dpr_factor` so the icon stays crisp on every display
-        // density — including 3× retina iPhones where a flat 44 backing
-        // would have been visibly upsampled.
-        const dpr = (typeof window !== 'undefined' && window.devicePixelRatio) || 1;
-        const dprFactor = Math.max(1, Math.min(3, Math.ceil(dpr)));
-        const backing = 44 * dprFactor;
-        for (const def of TOOL_BUTTONS) {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'tool';
-            btn.dataset.toolId = def.id;
-            const cv = document.createElement('canvas');
-            cv.className = 'ti';
-            cv.width = backing;
-            cv.height = backing;
-            const ctx = cv.getContext('2d');
-            // Pre-scale so drawer logic stays in the 44×44 logical
-            // coordinate space regardless of backing density.
-            if (dprFactor !== 1) ctx.scale(dprFactor, dprFactor);
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = 'high';
-            const drawer = TOOL_ICONS[def.id];
-            if (drawer) drawer(ctx);
-            const label = document.createElement('span');
-            label.className = 'label';
-            label.textContent = def.label;
-            btn.appendChild(cv);
-            btn.appendChild(label);
-            btn.addEventListener('click', () => this._onClick(def.id));
-            this.root.appendChild(btn);
-            this.buttons.set(def.id, btn);
+        // Use existing HTML buttons (emoji icons) so the toolbar is
+        // always visible even if canvas drawing or JS bundling fails.
+        const existing = this.root.querySelectorAll('.tool');
+        if (existing.length) {
+            existing.forEach(btn => {
+                const id = btn.dataset.tool;
+                if (!id) return;
+                // Remove any stale listeners by cloning
+                const fresh = btn.cloneNode(true);
+                btn.parentNode.replaceChild(fresh, btn);
+                fresh.addEventListener('click', () => this._onClick(id));
+                this.buttons.set(id, fresh);
+            });
+        } else {
+            // Fallback: create buttons from scratch (canvas icons)
+            this.root.innerHTML = '';
+            const dpr = (typeof window !== 'undefined' && window.devicePixelRatio) || 1;
+            const dprFactor = Math.max(1, Math.min(3, Math.ceil(dpr)));
+            const backing = 44 * dprFactor;
+            for (const def of TOOL_BUTTONS) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'tool';
+                btn.dataset.tool = def.id;
+                const cv = document.createElement('canvas');
+                cv.className = 'ti';
+                cv.width = backing;
+                cv.height = backing;
+                const ctx = cv.getContext('2d');
+                if (dprFactor !== 1) ctx.scale(dprFactor, dprFactor);
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                const drawer = TOOL_ICONS[def.id];
+                if (drawer) drawer(ctx);
+                const label = document.createElement('span');
+                label.className = 'label';
+                label.textContent = def.label;
+                btn.appendChild(cv);
+                btn.appendChild(label);
+                btn.addEventListener('click', () => this._onClick(def.id));
+                this.root.appendChild(btn);
+                this.buttons.set(def.id, btn);
+            }
         }
         this.update();
     }

@@ -56,12 +56,27 @@
         </header>
 
         <aside id="toolbar">
-            <!-- Save/Load/Share buttons (C-features) -->
-            <button id="btn-save" class="toolbar-btn" title="Save island (S)">💾</button>
-            <button id="btn-load" class="toolbar-btn" title="Load saved island (L)">📂</button>
-            <button id="btn-export" class="toolbar-btn" title="Export as image">📷</button>
-            <button id="btn-share" class="toolbar-btn" title="Share screenshot">🔗</button>
-            <button id="btn-tutorial" class="toolbar-btn" title="Show tutorial">❓</button>
+            <button class="tool" data-tool="place" title="Place (P)">
+                <span class="ti">📍</span><span class="label">Place</span>
+            </button>
+            <button class="tool" data-tool="fill" title="Fill grass (F)">
+                <span class="ti">🪣</span><span class="label">Fill</span>
+            </button>
+            <button class="tool" data-tool="erase" title="Erase (E)">
+                <span class="ti">🧹</span><span class="label">Erase</span>
+            </button>
+            <button class="tool" data-tool="pan" title="Pan camera">
+                <span class="ti">✋</span><span class="label">Pan</span>
+            </button>
+            <button class="tool" data-tool="grid" title="Toggle grid (G)">
+                <span class="ti">⊞</span><span class="label">Grid</span>
+            </button>
+            <button class="tool" data-tool="save" title="Save (S)">
+                <span class="ti">💾</span><span class="label">Save</span>
+            </button>
+            <button class="tool" data-tool="reset" title="Reset world">
+                <span class="ti">🔄</span><span class="label">Reset</span>
+            </button>
         </aside>
 
         <section id="palette">
