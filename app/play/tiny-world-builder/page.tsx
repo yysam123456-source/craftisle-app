@@ -34,12 +34,17 @@ export default function TinyWorldBuilderPage() {
       </div>
 
       {/* Game Iframe */}
-      <div className="h-[calc(100vh-73px)] w-full">
+      <div
+        className="h-[calc(100vh-73px)] w-full"
+        style={{ touchAction: "none", overscrollBehavior: "none" }}
+      >
         <iframe
           src="/games/tiny-world-builder/index.html"
           className="h-full w-full border-0"
           allow="fullscreen"
           title="Tiny World Builder"
+          scrolling="no"
+          style={{ touchAction: "none", overscrollBehavior: "none" }}
         />
       </div>
     </div>

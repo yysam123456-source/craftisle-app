@@ -34,12 +34,17 @@ export default function IslandBuilderPage() {
       </div>
 
       {/* Game Iframe */}
-      <div className="h-[calc(100vh-73px)] w-full">
+      <div
+        className="h-[calc(100vh-73px)] w-full"
+        style={{ touchAction: "none", overscrollBehavior: "none" }}
+      >
         <iframe
           src="/games/island-builder/play.html"
           className="h-full w-full border-0"
           allow="fullscreen"
           title="Mykos Island Builder"
+          scrolling="no"
+          style={{ touchAction: "none", overscrollBehavior: "none" }}
         />
       </div>
     </div>
