@@ -827,6 +827,101 @@ html, body {
     cursor: pointer;
     outline: none;
 }
+.theme-controls {
+    display: none;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 25;
+    gap: 6px;
+    align-items: center;
+    background: rgba(251, 246, 236, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+@media (pointer: coarse) {
+    .mobile-controls {
+        display: flex !important;
+    }
+}
+
+.mobile-controls {
+    display: none;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 25;
+    gap: 6px;
+    align-items: center;
+    background: rgba(251, 246, 236, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.mob-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mob-spacer {
+    width: 8px;
+}
+
+.mob-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(251, 246, 236, 0.95);
+    color: var(--cobalt);
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.05s ease, background 0.15s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 0;
+}
+
+.mob-btn:active {
+    transform: scale(0.92);
+    background: var(--cobalt-light);
+}
+
+/* Phone portrait: lift above bottom palette */
+@media (max-width: 640px) {
+    .mobile-controls {
+        bottom: calc(200px + 12px + env(safe-area-inset-bottom));
+        padding: 6px 10px;
+        gap: 4px;
+    }
+    .mob-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+/* Landscape phone: sit just above safe area */
+@media (max-height: 480px) and (orientation: landscape) {
+    .mobile-controls {
+        bottom: calc(8px + env(safe-area-inset-bottom));
+    }
+}
+
 .theme-select:focus {
     border-color: var(--cobalt);
 }

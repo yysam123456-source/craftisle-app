@@ -114,6 +114,19 @@
         </details>
 
         <div id="toast"></div>
+
+        <!-- Mobile D-pad controls -->
+        <div id="mobile-controls" class="mobile-controls">
+            <button class="mob-btn mob-dir" data-dx="-1" aria-label="Pan left">◀</button>
+            <div class="mob-col">
+                <button class="mob-btn mob-dir" data-dy="-1" aria-label="Pan up">▲</button>
+                <button class="mob-btn mob-dir" data-dy="1"  aria-label="Pan down">▼</button>
+            </div>
+            <button class="mob-btn mob-dir" data-dx="1"  aria-label="Pan right">▶</button>
+            <div class="mob-spacer"></div>
+            <button class="mob-btn mob-zoom" data-zoom="out" aria-label="Zoom out">−</button>
+            <button class="mob-btn mob-zoom" data-zoom="in"  aria-label="Zoom in">+</button>
+        </div>
     </div>
 
     <script type="module" src="js/main.js"></script>
@@ -152,6 +165,44 @@
                 if (!dd.classList.contains('hidden') && !dd.contains(e.target) && e.target !== btn) {
                     dd.classList.add('hidden');
                 }
+            });
+        })();
+
+        // Mobile D-pad controls — wire up after game is ready
+        (function() {
+            const ctrls = document.getElementById('mobile-controls');
+            if (!ctrls) return;
+
+            const PAN_STEP = 48;
+            const ZOOM_FACTOR = 1.18;
+
+            function getGame() { return window.game; }
+
+            ctrls.querySelectorAll('.mob-dir').forEach(function(btn) {
+                function handle(e) {
+                    e.preventDefault();
+                    const g = getGame();
+                    if (!g) return;
+                    const dx = (parseFloat(btn.dataset.dx) || 0) * PAN_STEP;
+                    const dy = (parseFloat(btn.dataset.dy) || 0) * PAN_STEP;
+                    g.camera.pan(dx, dy);
+                }
+                btn.addEventListener('touchstart', handle, { passive: false });
+                btn.addEventListener('mousedown',  handle);
+            });
+
+            ctrls.querySelectorAll('.mob-zoom').forEach(function(btn) {
+                function handle(e) {
+                    e.preventDefault();
+                    const g = getGame();
+                    if (!g) return;
+                    const cx = window.innerWidth / 2;
+                    const cy = window.innerHeight / 2;
+                    const factor = btn.dataset.zoom === 'in' ? ZOOM_FACTOR : 1 / ZOOM_FACTOR;
+                    g.camera.zoomAt(cx, cy, factor);
+                }
+                btn.addEventListener('touchstart', handle, { passive: false });
+                btn.addEventListener('mousedown',  handle);
             });
         })();
 
