@@ -800,6 +800,7 @@
   .toolbar .audio-panel {
     position: static;
     min-width: 132px;
+    flex-shrink: 0;
     box-shadow: none;
     border: none;
     background: transparent;
@@ -954,6 +955,7 @@
     padding: 0;
     border-radius: 12px;
     position: relative;
+    flex-shrink: 0;
   }
   .toolbar .tool-group-btn::before { content: none; }
   .toolbar .tool-group-btn .group-icon,
@@ -3557,6 +3559,7 @@
   }
   .tab-bar button.active { background: var(--ink); color: var(--panel); border-color: var(--ink); }
   .save-empty { text-align: center; padding: 30px 10px; color: var(--muted); font-size: 13px; }
+  .toolbar-toggle { display: none; }
   @media (max-width: 600px) {
     .help { display: none; }
     .controls {
@@ -3621,6 +3624,28 @@
     .tool .swatch { width: 22px; height: 22px; }
     .tool .tool-thumb { width: 28px; height: 28px; }
     .unsaved-banner { bottom: 90px; font-size: 11.5px; padding: 7px 12px 7px 10px; }
+
+    /* Toolbar collapse toggle */
+    .toolbar-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 44px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.55);
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 0;
+    }
+    .toolbar-toggle:active { background: rgba(255,255,255,0.85); }
+    .toolbar-toggle .toggle-icon { font-size: 16px; line-height: 1; }
+    .toolbar.collapsed .tool-group-btn,
+    .toolbar.collapsed .toolbar-divider,
+    .toolbar.collapsed .audio-panel {
+      display: none;
+    }
   }
   @media (hover: none), (pointer: coarse) {
     .help { display: none; }
@@ -17392,9 +17417,24 @@
 
   function buildToolbar() {
     const bar = document.getElementById('toolbar');
+    const wasCollapsed = bar.classList.contains('collapsed');
     bar.innerHTML = '';
     thumbScenes.forEach(t => { try { t.scene.traverse(o => safeDisposeGeometry(o.geometry)); } catch(_) {} });
     thumbScenes.clear();
+
+    // Collapse toggle (mobile)
+    const toggle = document.createElement('button');
+    toggle.className = 'toolbar-toggle';
+    toggle.type = 'button';
+    toggle.title = 'Collapse / expand toolbar';
+    toggle.setAttribute('aria-label', 'Toggle toolbar');
+    toggle.innerHTML = '<span class="toggle-icon">☰</span>';
+    toggle.addEventListener('click', e => {
+      e.stopPropagation();
+      bar.classList.toggle('collapsed');
+    });
+    bar.appendChild(toggle);
+
     const worldBtn = document.getElementById('world-menu-btn');
     if (worldBtn) {
       const slot = document.createElement('div');
@@ -17451,6 +17491,7 @@
 
     const audioPanel = document.getElementById('audio-panel');
     if (audioPanel) bar.appendChild(audioPanel);
+    if (wasCollapsed) bar.classList.add('collapsed');
     updateToolActiveStates();
   }
 

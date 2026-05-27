@@ -292,6 +292,21 @@ html, body {
     letter-spacing: 0.01em;
 }
 
+/* Toolbar collapse toggle — hidden on desktop */
+.toolbar-toggle {
+    display: none;
+    background: var(--cobalt-light);
+    color: var(--cobalt);
+}
+.toolbar-toggle:active {
+    transform: scale(0.92);
+    background: var(--cobalt);
+    color: var(--paper);
+}
+#toolbar.collapsed .tool:not(.toolbar-toggle) {
+    display: none;
+}
+
 /* ── Palette ──────────────────────────────────────────────────── */
 
 #palette {
@@ -665,17 +680,32 @@ html, body {
     .title-text h1 { font-size: 15px; line-height: 1.1; }
     .title-text p  { display: none; }
 
-    /* Toolbar: drop the labels (icons are already self-evident at this
-       size) and tighten everything so it doesn't crowd the canvas.
-       Each tool is still ≥44×44 touch target — Apple/Material guideline
-       minimum — and the icon now visually fills the button instead of
-       hiding in the middle of it. */
+    /* Toolbar with collapse toggle on mobile */
     #toolbar {
         top: calc(10px + env(safe-area-inset-top) + var(--title-card-height) + 8px);
         left: calc(8px + env(safe-area-inset-left));
         padding: 6px 5px;
         gap: 4px;
         border-radius: var(--radius-sm);
+        transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+    #toolbar.collapsed {
+        padding: 5px;
+    }
+    .toolbar-toggle {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 50%;
+    }
+    .toolbar-toggle .ti {
+        width: 22px;
+        height: 22px;
+        font-size: 16px;
+    }
+    #toolbar.collapsed .toolbar-toggle {
+        display: flex;
     }
     .tool {
         width: 64px;

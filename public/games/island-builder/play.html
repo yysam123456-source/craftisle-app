@@ -47,15 +47,21 @@
                         <option value="default">Mediterranean (Default)</option>
                     </select>
                 </div>
+                <a href="#" id="act-export">📷 Export image</a>
+                <a href="#" id="act-share">🔗 Share</a>
+                <a href="#" id="act-load">📂 Load saved</a>
+                <a href="#" id="act-tutorial">❓ Tutorial</a>
                 <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
                 <a href="terms-of-service.html" target="_blank">Terms of Service</a>
                 <a href="cookie-policy.html" target="_blank">Cookie Policy</a>
-                <a href="" target="_blank">🏠 Home</a>
-                <a href="blog/" target="_blank">📝 Blog</a>
+                <a href="/" target="_blank">🏠 Home</a>
             </div>
         </header>
 
         <aside id="toolbar">
+            <button class="tool toolbar-toggle" id="toolbar-toggle" title="Collapse / expand toolbar" aria-label="Toggle toolbar">
+                <span class="ti">☰</span>
+            </button>
             <button class="tool" data-tool="place" title="Place (P)">
                 <span class="ti">📍</span><span class="label">Place</span>
             </button>
@@ -167,6 +173,17 @@
                 if (!dd.classList.contains('hidden') && !dd.contains(e.target) && e.target !== btn) {
                     dd.classList.add('hidden');
                 }
+            });
+        })();
+
+        // Toolbar collapse toggle (mobile)
+        (function() {
+            const toggle = document.getElementById('toolbar-toggle');
+            const toolbar = document.getElementById('toolbar');
+            if (!toggle || !toolbar) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toolbar.classList.toggle('collapsed');
             });
         })();
 

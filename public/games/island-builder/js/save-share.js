@@ -32,16 +32,6 @@
       }
       .toolbar-btn:active { transform: scale(0.95); }
 
-      @media (max-width: 600px) {
-        #toolbar {
-          flex-direction: row !important;
-          top: auto !important;
-          bottom: 12px !important;
-          left: 50% !important;
-          transform: translateX(-50%) !important;
-        }
-      }
-
       @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
       #tutorial-overlay { animation: fadeIn 0.3s ease; }
     `;
@@ -302,17 +292,19 @@
     };
   }
 
-  /* ── 6. Wire up toolbar buttons ───────────────────── */
-  function wireButtons() {
-    $("#btn-save")?.addEventListener("click", saveIsland);
-    $("#btn-load")?.addEventListener("click", () => {
-      if (confirm("Load saved island? Unsaved changes will be lost.")) {
-        loadIsland();
-      }
+  /* ── 6. Wire up action links in info dropdown ────── */
+  function wireActions() {
+    const dd = $("#info-dropdown");
+    if (!dd) return;
+
+    // Bind action links if they exist
+    $("#act-load")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (confirm("Load saved island? Unsaved changes will be lost.")) loadIsland();
     });
-    $("#btn-export")?.addEventListener("click", exportImage);
-    $("#btn-share")?.addEventListener("click", shareIsland);
-    $("#btn-tutorial")?.addEventListener("click", () => showTutorial(true));
+    $("#act-export")?.addEventListener("click", (e) => { e.preventDefault(); exportImage(); });
+    $("#act-share")?.addEventListener("click", (e) => { e.preventDefault(); shareIsland(); });
+    $("#act-tutorial")?.addEventListener("click", (e) => { e.preventDefault(); showTutorial(true); });
 
     // Keyboard shortcuts (skip when typing in inputs)
     document.addEventListener("keydown", (e) => {
@@ -327,7 +319,7 @@
     const check = setInterval(() => {
       if (!window.game) return;
       clearInterval(check);
-      wireButtons();
+      wireActions();
       setTimeout(() => showTutorial(), 800);
       console.log("[save-share] C-features injected ✅");
     }, 300);
