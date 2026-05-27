@@ -2,6 +2,5 @@
   "buildCommand": "npm run build",
   "devCommand": "npm run dev --webpack",
   "installCommand": "npm install",
-  "framework": "nextjs",
-  "clean": true
+  "framework": "nextjs"
 }
