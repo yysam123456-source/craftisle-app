@@ -1,0 +1,17 @@
+{
+  "name": "Default Mediterranean",
+  "id": "default",
+  "author": "Mykonos Island",
+  "version": "1.0.0",
+  "description": "Original Mediterranean village style — white houses, blue domes, cypress trees, sandy beaches.",
+  "preview": "/sprites/default/preview.png",
+  "tags": ["mediterranean", "greek", "island", "starter"],
+  "assetOverrides": {},
+  "cssVars": {
+    "primary": "#1b5ba8",
+    "accent": "#e8c44a",
+    "bg": "#f5f0e8",
+    "water": "#4fc3f7",
+    "sand": "#f5e6c8"
+  }
+}

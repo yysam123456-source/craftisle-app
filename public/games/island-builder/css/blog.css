@@ -1,0 +1,226 @@
+/* Blog Styles — Clean, readable, mobile-first */
+
+:root {
+    --blue: #1b5ba8;
+    --blue-dark: #134680;
+    --white: #fafaf5;
+    --text: #2c3e50;
+    --text-light: #5a6c7d;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Georgia, serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.8;
+}
+
+.blog-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e8e8e8;
+    background: white;
+}
+
+.back-link {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+/* ── Article ── */
+
+.blog-post {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+}
+
+.blog-post h1 {
+    font-size: 2.2rem;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.meta {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+}
+
+.blog-post h2 {
+    font-size: 1.4rem;
+    color: var(--blue);
+    margin: 40px 0 16px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+}
+
+.blog-post h2:first-of-type { border-top: none; padding-top: 0; }
+
+.blog-post p {
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+}
+
+.blog-post strong {
+    color: var(--blue-dark);
+}
+
+/* ── Table ── */
+
+.blog-post table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.95rem;
+}
+
+.blog-post th {
+    background: var(--blue);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.blog-post td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.blog-post tr:nth-child(even) td { background: #f8f9fa; }
+
+/* ── Ad ── */
+
+.ad-container {
+    margin: 24px 0;
+    min-height: 90px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+/* ── CTA Box ── */
+
+.cta-box {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+    color: white;
+    padding: 32px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.cta-box h3 { font-size: 1.3rem; margin-bottom: 8px; }
+.cta-box p { font-size: 1rem; opacity: 0.9; margin-bottom: 20px; }
+
+.cta-button {
+    display: inline-block;
+    background: white;
+    color: var(--blue);
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: transform 0.2s;
+}
+
+.cta-button:hover { transform: translateY(-2px); }
+
+/* ── Related Posts ── */
+
+.related-posts {
+    margin-top: 48px;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.related-posts h3 { margin-bottom: 12px; color: var(--blue-dark); }
+.related-posts a {
+    display: block;
+    color: var(--blue);
+    text-decoration: none;
+    padding: 8px 0;
+    font-weight: 500;
+}
+
+.related-posts a:hover { text-decoration: underline; }
+
+/* ── Blog Index ── */
+
+.blog-index {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+}
+
+.blog-index h1 {
+    font-size: 2rem;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+}
+
+.blog-desc {
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.blog-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.blog-card {
+    display: block;
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s;
+    border-left: 4px solid var(--blue);
+}
+
+.blog-card:hover { transform: translateY(-4px); }
+
+.blog-card h3 { color: var(--blue); margin-bottom: 8px; font-size: 1.15rem; }
+.blog-card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 12px; }
+
+.read-more {
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* ── Footer ── */
+
+footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    border-top: 1px solid #eee;
+}
+
+footer a { color: var(--blue); }
+
+/* ── Responsive ── */
+
+@media (max-width: 600px) {
+    .blog-post h1 { font-size: 1.6rem; }
+    .blog-post { padding: 32px 16px 60px; }
+}

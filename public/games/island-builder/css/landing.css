@@ -1,0 +1,306 @@
+/* Landing Page Styles — Mediterranean Blue & White Theme */
+
+:root {
+    --blue: #1b5ba8;
+    --blue-light: #2e6fbc;
+    --blue-dark: #134680;
+    --white: #fafaf5;
+    --sand: #e8d4a8;
+    --text: #2c3e50;
+    --text-light: #5a6c7d;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ── Hero ── */
+
+.hero {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue), var(--blue-light));
+    color: white;
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30Z' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.hero-sub {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 24px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+.hero-stats span {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+.hero-visual {
+    position: relative;
+    z-index: 1;
+    margin-top: 40px;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 48px);
+    grid-template-rows: repeat(8, 48px);
+    gap: 2px;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+.preview-cell {
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background: white;
+    color: var(--blue);
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(0,0,0,0.3);
+}
+
+/* ── About ── */
+
+.about {
+    padding: 80px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.about h2, .howto h2, .features h2, .blog-teaser h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 48px;
+    color: var(--blue-dark);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.about-card {
+    background: white;
+    padding: 32px 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.about-card:hover { transform: translateY(-4px); }
+
+.about-icon { font-size: 2.5rem; display: block; margin-bottom: 16px; }
+
+.about-card h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--blue); }
+
+.about-card p { font-size: 0.95rem; color: var(--text-light); }
+
+/* ── How To ── */
+
+.howto {
+    padding: 80px 24px;
+    background: #f0f4f8;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+}
+
+.step {
+    background: white;
+    padding: 28px 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--blue);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.step h4 { margin-bottom: 8px; color: var(--blue-dark); }
+.step p { font-size: 0.9rem; color: var(--text-light); }
+
+.cta-center { text-align: center; margin-top: 32px; }
+
+.cta-secondary {
+    display: inline-block;
+    color: var(--blue);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 28px;
+    border: 2px solid var(--blue);
+    border-radius: 50px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.cta-secondary:hover { background: var(--blue); color: white; }
+
+/* ── Features ── */
+
+.features {
+    padding: 80px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+}
+
+.feature {
+    background: white;
+    padding: 14px 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    font-size: 0.95rem;
+}
+
+/* ── Blog Teaser ── */
+
+.blog-teaser {
+    padding: 80px 24px;
+    background: #f0f4f8;
+}
+
+.blog-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 32px;
+}
+
+.blog-card {
+    display: block;
+    background: white;
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s;
+}
+
+.blog-card:hover { transform: translateY(-4px); }
+
+.blog-card h4 { color: var(--blue); margin-bottom: 8px; }
+.blog-card p { font-size: 0.9rem; color: var(--text-light); }
+
+/* ── Footer ── */
+
+footer {
+    background: var(--blue-dark);
+    color: rgba(255,255,255,0.8);
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-links a:hover { text-decoration: underline; }
+
+.footer-copy { font-size: 0.9rem; margin-bottom: 8px; }
+
+.footer-credit { font-size: 0.8rem; opacity: 0.6; }
+.footer-credit a { color: rgba(255,255,255,0.8); }
+
+/* ── Responsive ── */
+
+@media (max-width: 600px) {
+    .hero { padding: 60px 16px 40px; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero-sub { font-size: 1rem; }
+    .hero-stats { gap: 8px; }
+    .hero-stats span { font-size: 0.8rem; padding: 4px 12px; }
+    .about, .howto, .features, .blog-teaser { padding: 48px 16px; }
+}
