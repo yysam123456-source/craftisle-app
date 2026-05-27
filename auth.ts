@@ -14,11 +14,14 @@ declare module "next-auth" {
   }
 }
 
+// Only use PrismaAdapter if DATABASE_URL is available
+const adapter = process.env.DATABASE_URL ? PrismaAdapter(prisma) : undefined;
+
 export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter,
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
@@ -48,6 +51,9 @@ export const {
 
     async jwt({ token }) {
       if (!token.sub) return token;
+
+      // Skip DB lookup if no DATABASE_URL (degraded mode)
+      if (!process.env.DATABASE_URL) return token;
 
       const dbUser = await getUserById(token.sub);
 
