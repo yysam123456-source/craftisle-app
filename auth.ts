@@ -20,7 +20,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     ? { adapter: PrismaAdapter(prisma) }
     : {}),
   callbacks: {
-    async session({ token, session }: any) {
+    async signIn({ user, account, profile }) {
+      if (account?.provider === "google" && user?.email && process.env.DATABASE_URL?.length > 10) {
+        try {
+          const existingUser = await prisma.user.findUnique({
+            where: { email: user.email },
+          })
+          if (!existingUser) {
+            await prisma.user.create({
+              data: {
+                email: user.email,
+                name: user.name,
+                image: user.image,
+                emailVerified: new Date(),
+              },
+            })
+          }
+        } catch (e) {
+          console.error("signIn callback error:", e)
+        }
+      }
+      return true
+    },
+    async session({ token, session }) {
       if (session.user) {
         if (token.sub) session.user.id = token.sub
         if (token.email) session.user.email = token.email
@@ -30,7 +52,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session
     },
-    async jwt({ token }: any) {
+    async jwt({ token }) {
       if (!token.sub) return token
       if (!process.env.DATABASE_URL || process.env.DATABASE_URL.length < 10) return token
       try {
