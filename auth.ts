@@ -21,7 +21,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     : {}),
   callbacks: {
     async signIn({ user, account, profile }) {
-      if (account?.provider === "google" && user?.email && process.env.DATABASE_URL?.length > 10) {
+      if (account?.provider === "google" && user?.email && !!process.env.DATABASE_URL && process.env.DATABASE_URL.length > 10) {
         try {
           const existingUser = await prisma.user.findUnique({
             where: { email: user.email },
