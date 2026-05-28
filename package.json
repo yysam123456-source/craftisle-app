@@ -6,9 +6,9 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "next dev",
     "dev:clean": "taskkill /F /IM node.exe >nul 2>&1 & next dev --webpack",
-    "build": "next build --webpack",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start",

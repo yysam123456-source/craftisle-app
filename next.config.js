@@ -5,9 +5,10 @@ const nextConfig = {
   reactStrictMode: true,
   // trailingSlash: true, // disabled: causes Vercel 404 on homepage
 
-  // Turbopack disabled via CLI flag: --webpack
-  // (Next.js 16 enables Turbopack by default; --webpack forces webpack)
-  // turbopack: {}, // uncomment to re-enable Turbopack
+  // Turbopack config (required for Next.js 16 default)
+  turbopack: {
+    // ContentLayer: use pre-generated .contentlayer files
+  },
 
   images: {
     remotePatterns: [

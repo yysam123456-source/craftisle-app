@@ -87,6 +87,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
           </button>
         </div>
       </form>
+
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
@@ -97,6 +98,8 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
+
+      <button
         type="button"
         className={cn(buttonVariants({ variant: "outline" }))}
         onClick={() => {
@@ -109,7 +112,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
           <Icons.spinner className="mr-2 size-4 animate-spin" />
         ) : (
           <Icons.google className="mr-2 size-4" />
-        )}{" "}
+        )}
         Google
       </button>
     </div>
