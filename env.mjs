@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    NEXTAUTH_URL: z.string().url().optional().or(z.literal("")),
+    NEXTAUTH_URL: z.string().optional(),
     AUTH_SECRET: z.string().min(1).optional().or(z.literal("")),
     GOOGLE_CLIENT_ID: z.string().min(1).optional().or(z.literal("")),
     GOOGLE_CLIENT_SECRET: z.string().min(1).optional().or(z.literal("")),
