@@ -30,7 +30,7 @@ export async function generateUserStripe(priceId: string): Promise<responseActio
     if (subscriptionPlan.isPaid && subscriptionPlan.stripeCustomerId) {
       // User on Paid Plan - Create a portal session to manage subscription.
       const stripeSession = await stripe.billingPortal.sessions.create({
-        customer: subscriptionPlan.stripeCustomerId,
+        customer: subscriptionPlan.stripeCustomerId as string,
         return_url: billingUrl,
       })
 

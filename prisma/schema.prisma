@@ -8,58 +8,63 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model accounts {
+model Account {
   id                String   @id
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  created_at        DateTime @default(now())
-  updated_at        DateTime @default(now())
-  users             users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshToken      String?   @map("refresh_token")
+  accessToken       String?   @map("access_token")
+  expiresAt         Int?       @map("expires_at")
+  tokenType         String?    @map("token_type")
+  scope             String?    @map("scope")
+  idToken           String?    @map("id_token")
+  sessionState      String?    @map("session_state")
+  createdAt         DateTime   @default(now())  @map("created_at")
+  updatedAt         DateTime   @default(now())  @map("updated_at")
+  user              User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
+  @@map("accounts")
 }
 
-model sessions {
+model Session {
   id           String   @id
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  users        users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@map("sessions")
 }
 
-model users {
-  id                        String     @id
+model User {
+  id                        String     @id @default(cuid())
   name                      String?
   email                     String?    @unique
-  emailVerified             DateTime?
+  emailVerified             DateTime?   @map("email_verified")
   image                     String?
-  created_at                DateTime   @default(now())
-  updated_at                DateTime   @default(now())
+  createdAt                 DateTime   @default(now())  @map("created_at")
+  updatedAt                 DateTime   @default(now())  @map("updated_at")
   role                      String     @default("USER")
-  stripe_customer_id        String?    @unique
-  stripe_subscription_id    String?    @unique
-  stripe_price_id           String?
-  stripe_current_period_end DateTime?
-  accounts                  accounts[]
-  sessions                  sessions[]
+  stripeCustomerId          String?    @unique  @map("stripe_customer_id")
+  stripeSubscriptionId      String?    @unique  @map("stripe_subscription_id")
+  stripePriceId             String?              @map("stripe_price_id")
+  stripeCurrentPeriodEnd    DateTime?           @map("stripe_current_period_end")
+  accounts                  Account[]
+  sessions                  Session[]
+
+  @@map("users")
 }
 
-model verification_tokens {
+model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verification_tokens")
 }
