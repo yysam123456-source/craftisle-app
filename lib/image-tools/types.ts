@@ -16,7 +16,20 @@ export interface ProcessResult {
   metadata?: Record<string, unknown>;
 }
 
-export interface ToolDefinition {
+/**
+ * Client-safe subset of ToolDefinition — no functions (server-only).
+ * Passed from server components to client components via props.
+ */
+export interface ToolClientMeta {
+  /** Unique tool id */
+  id: string;
+  /** Accepted input MIME types */
+  acceptTypes: string[];
+  /** Max file size in bytes (Vercel free tier: 4 MB) */
+  maxFileSize: number;
+}
+
+export interface ToolDefinition extends ToolClientMeta {
   /** Unique tool id, matches `tool` param in [tool] routes */
   id: string;
   /** Accepted input MIME types */

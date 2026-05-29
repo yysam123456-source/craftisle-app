@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Zap } from "lucide-react";
-import type { ToolDefinition } from "@/lib/image-tools";
+import type { ToolClientMeta } from "@/lib/image-tools";
 import { ImageUpload } from "./image-upload";
 import { ImageCompare } from "./image-compare";
 import {
@@ -14,7 +14,7 @@ import {
 
 interface ImageToolPageProps {
   toolId: string;
-  definition: ToolDefinition;
+  definition: ToolClientMeta;
 }
 
 export function ImageToolPage({ toolId, definition }: ImageToolPageProps) {

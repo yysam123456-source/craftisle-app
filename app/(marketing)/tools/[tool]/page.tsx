@@ -20,5 +20,12 @@ export default async function ToolPage({
     notFound();
   }
 
-  return <ImageToolPage toolId={tool} definition={definition} />;
+  // Strip server-only fields (processFile) before passing to client component
+  const clientMeta: { id: string; acceptTypes: string[]; maxFileSize: number } = {
+    id: definition.id,
+    acceptTypes: definition.acceptTypes,
+    maxFileSize: definition.maxFileSize,
+  };
+
+  return <ImageToolPage toolId={tool} definition={clientMeta} />;
 }

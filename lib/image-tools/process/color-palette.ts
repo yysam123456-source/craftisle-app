@@ -24,9 +24,9 @@ export async function colorPalette(
   // Simple color quantization: bucket into predefined color ranges
   const colorMap = new Map<string, number>();
   for (let i = 0; i < data.length; i += info.channels) {
-    const r = Math.round(data[i] / 32) * 32;
-    const g = Math.round(data[i + 1] / 32) * 32;
-    const b = Math.round(data[i + 2] / 32) * 32;
+    const r = Math.floor(data[i] / 32) * 32;
+    const g = Math.floor(data[i + 1] / 32) * 32;
+    const b = Math.floor(data[i + 2] / 32) * 32;
     const key = `${r},${g},${b}`;
     colorMap.set(key, (colorMap.get(key) || 0) + 1);
   }
@@ -36,47 +36,21 @@ export async function colorPalette(
     .slice(0, Number(count))
     .map(([key, _count]) => {
       const [r, g, b] = key.split(",").map(Number);
-      return { r, g, b, hex: `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}` };
+      return {
+        r,
+        g,
+        b,
+        hex: `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`,
+      };
     });
 
   return {
-    // Generate a small palette preview image
-    buffer: await createPalettePreview(sorted, info.width || 100),
-    mimeType: "image/png",
-    filename: "palette.png",
+    mimeType: "application/json",
+    filename: "palette.json",
     metadata: {
       palette: sorted,
       originalWidth: metadata.width,
       originalHeight: metadata.height,
     },
   };
-}
-
-async function createPalettePreview(
-  colors: { r: number; g: number; b: number }[],
-  width: number,
-): Promise<Buffer> {
-  const barHeight = 40;
-  const totalHeight = barHeight * colors.length;
-
-  // Create raw RGBA pixel data
-  const channels = 3;
-  const rawData = Buffer.alloc(width * totalHeight * channels);
-
-  for (let row = 0; row < totalHeight; row++) {
-    const colorIndex = Math.floor(row / barHeight);
-    const color = colors[colorIndex] || colors[0];
-    for (let col = 0; col < width; col++) {
-      const offset = (row * width + col) * channels;
-      rawData[offset] = color.r;
-      rawData[offset + 1] = color.g;
-      rawData[offset + 2] = color.b;
-    }
-  }
-
-  return sharp(rawData, {
-    raw: { width, height: totalHeight, channels },
-  })
-    .png()
-    .toBuffer();
 }
