@@ -48,5 +48,10 @@ export default function ToolsPage() {
     }
   }
 
+  // External tools (no local page, link to subdomain)
+  if (!toolDirs.includes("pdf-tools")) {
+    toolDirs.push("pdf-tools");
+  }
+
   return <ToolsClient toolDirs={toolDirs} />;
 }

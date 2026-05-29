@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
 <title>最后的微光 | The Last Glow</title>
 <style>
-/* ====== Board Game Aesthetic ====== */
+/* ====== Board Game Aesthetic — Ocean & Lighthouse Theme ====== */
 :root {
   --parchment: #c9b99a;
   --parchment-dark: #b8a688;
@@ -17,13 +17,18 @@
   --red-token: #8b2e2e;
   --red-light: #a63a3a;
   --gold: #c9a84c;
-  --gold-light: #e0c060;
+  --gold-light: #f0d060;
   --wood: #6b4423;
   --wood-dark: #4a2e15;
-  --sea: #4a6741;
-  --sea-light: #6a8a52;
-  --storm: #5a3a6a;
-  --storm-light: #7a5a8a;
+  --sea: #3a5a6a;
+  --sea-light: #5a8a9a;
+  --sea-foam: #8ab8c8;
+  --storm-purple: #5a3a6a;
+  --storm-purple-light: #7a5a8a;
+  --sky-night: #1a2a3a;
+  --sky-twilight: #2a3a4a;
+  --lantern-glow: #f0b830;
+  --lantern-core: #ffe8a0;
   --cell-size: clamp(28px, 8.5vw, 48px);
   --font-display: 'Georgia', 'Noto Serif SC', 'Source Han Serif SC', serif;
   --font-mono: 'Courier New', 'Noto Sans SC', monospace;
@@ -33,7 +38,7 @@
 
 body {
   font-family: var(--font-display);
-  background: #1a1510;
+  background: #0a0f14;
   color: var(--ink);
   overflow: hidden;
   height: 100dvh;
@@ -46,53 +51,156 @@ body {
   user-select: none;
 }
 
-/* ====== Game Board ====== */
+/* ====== Game Board — Ocean Scene Background ====== */
 #game-board {
   width: min(100vw, 460px);
   height: min(100dvh, 740px);
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(201,169,100,0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 80%, rgba(90,58,106,0.08) 0%, transparent 50%),
-    linear-gradient(180deg, #c9b99a 0%, #c0ad90 30%, #b8a688 60%, #a89878 100%);
+    /* Night sky gradient */
+    linear-gradient(180deg,
+      #0d1520 0%,
+      #152230 8%,
+      #1a2a3a 16%,
+      #1e3040 24%,
+      #223848 32%,
+      /* Storm clouds */
+      #2a3a4a 38%,
+      #3a4050 42%,
+      #4a4550 46%,
+      /* Horizon glow */
+      #5a4a4a 50%,
+      #4a5048 54%,
+      /* Ocean */
+      #2a4a5a 58%,
+      #1e4050 66%,
+      #1a3850 74%,
+      #163048 82%,
+      #122840 90%,
+      #0e2038 100%
+    );
   border: 3px solid var(--wood);
   border-radius: 6px;
   box-shadow:
-    inset 0 0 50px rgba(42,31,21,0.15),
-    0 0 30px rgba(0,0,0,0.4);
+    inset 0 0 60px rgba(0,20,40,0.4),
+    0 0 40px rgba(10,30,60,0.6),
+    0 0 80px rgba(20,50,80,0.2);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
 }
 
+/* Ocean waves — bottom */
 #game-board::before {
   content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  position: absolute; bottom: -10px; left: -10%; right: -10%; height: 80px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 18px,
+      rgba(90,140,170,0.12) 18px,
+      rgba(90,140,170,0.12) 20px
+    ),
+    linear-gradient(180deg,
+      rgba(30,60,80,0.0) 0%,
+      rgba(20,50,70,0.5) 40%,
+      rgba(15,40,60,0.7) 70%,
+      rgba(10,30,50,0.9) 100%
+    );
   pointer-events: none; z-index: 0;
+  animation: waveDrift 8s ease-in-out infinite;
+}
+@keyframes waveDrift {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(3px) translateY(1px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-3px) translateY(-1px); }
+}
+
+/* Foam / sea surface shimmer */
+#game-board::after {
+  content: '';
+  position: absolute; top: 42%; left: 0; right: 0; height: 20%;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(240,208,96,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 50%, rgba(200,180,140,0.04) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+  animation: horizonShimmer 6s ease-in-out infinite;
+}
+@keyframes horizonShimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Storm clouds layer */
+.storm-clouds {
+  position: absolute; top: 0; left: 0; right: 0; height: 35%;
+  pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+.storm-clouds .cloud {
+  position: absolute;
+  background: radial-gradient(ellipse, rgba(90,60,100,0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: cloudDrift linear infinite;
+}
+.storm-clouds .cloud:nth-child(1) { width: 120px; height: 45px; top: 5%; left: -10%; animation-duration: 25s; }
+.storm-clouds .cloud:nth-child(2) { width: 100px; height: 35px; top: 12%; left: 30%; animation-duration: 30s; animation-delay: -8s; }
+.storm-clouds .cloud:nth-child(3) { width: 140px; height: 50px; top: 3%; left: 60%; animation-duration: 35s; animation-delay: -15s; }
+.storm-clouds .cloud:nth-child(4) { width: 90px; height: 30px; top: 18%; left: 80%; animation-duration: 28s; animation-delay: -5s; }
+@keyframes cloudDrift {
+  0% { transform: translateX(-150px); opacity: 0.4; }
+  50% { opacity: 0.7; }
+  100% { transform: translateX(calc(100vw + 150px)); opacity: 0.4; }
+}
+
+/* Distant lightning */
+.storm-clouds .lightning {
+  position: absolute; width: 2px;
+  background: linear-gradient(180deg, rgba(240,208,160,0.8) 0%, rgba(200,160,200,0.4) 100%);
+  animation: lightningFlash 6s ease-in-out infinite;
+  border-radius: 1px;
+}
+.storm-clouds .lightning:nth-child(5) { height: 60px; top: 10%; left: 25%; animation-delay: 0s; }
+.storm-clouds .lightning:nth-child(6) { height: 40px; top: 8%; left: 65%; animation-delay: 3s; }
+@keyframes lightningFlash {
+  0%, 92%, 94%, 96%, 100% { opacity: 0; }
+  93% { opacity: 0.7; }
+  95% { opacity: 0.3; }
 }
 
 /* ====== Top Bar ====== */
 #top-bar {
   display: flex; justify-content: space-around; align-items: flex-end;
-  padding: 5px 3px 4px; border-bottom: 2px solid var(--wood-dark);
-  background: rgba(42,31,21,0.06); position: relative; z-index: 2;
+  padding: 6px 4px 5px; border-bottom: 2px solid var(--wood-dark);
+  background: rgba(10,20,35,0.35);
+  backdrop-filter: blur(2px);
+  position: relative; z-index: 2;
   flex-shrink: 0;
 }
-.res-token { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.res-token { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .res-token .token-icon {
-  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-  font-size: 18px; border-radius: 4px; transition: all 0.2s ease;
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; transition: all 0.25s ease;
+  position: relative;
 }
-.res-token .token-icon.safe { background: rgba(74,103,65,0.15); color: var(--sea); }
-.res-token .token-icon.warning { background: rgba(201,168,76,0.2); color: var(--gold); }
+.res-token .token-icon svg { width: 22px; height: 22px; }
+.res-token .token-icon.safe { background: rgba(58,90,106,0.2); }
+.res-token .token-icon.safe svg { filter: drop-shadow(0 0 3px rgba(90,140,170,0.4)); }
+.res-token .token-icon.warning { background: rgba(201,168,76,0.2); }
+.res-token .token-icon.warning svg { filter: drop-shadow(0 0 3px rgba(240,208,96,0.3)); }
 .res-token .token-icon.danger {
-  background: rgba(139,46,46,0.2); color: var(--red-token);
+  background: rgba(139,46,46,0.25);
   animation: pulse-icon 1.2s ease-in-out infinite;
 }
+.res-token .token-icon.danger svg { filter: drop-shadow(0 0 5px rgba(240,80,60,0.5)); }
 @keyframes pulse-icon { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-.res-token .token-val { font-size: 13px; font-weight: bold; font-family: var(--font-mono); color: var(--ink); line-height: 1; }
-.res-token .token-label { font-size: 8px; color: var(--ink-muted); font-family: var(--font-mono); letter-spacing: 0.5px; }
+.res-token .token-val {
+  font-size: 13px; font-weight: bold; font-family: var(--font-mono);
+  color: #d0c8b0; line-height: 1; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.res-token .token-label { font-size: 8px; color: rgba(180,170,150,0.7); font-family: var(--font-mono); letter-spacing: 0.5px; }
 
 /* ====== Center Area ====== */
 #center-area {
@@ -102,193 +210,264 @@ body {
 
 #lighthouse-art {
   width: 80px; height: 62px; flex-shrink: 0;
-  filter: drop-shadow(0 0 8px rgba(240,208,96,0.35));
+  filter: drop-shadow(0 0 10px rgba(240,184,48,0.4));
   animation: lighthouse-glow 3s ease-in-out infinite; position: relative; z-index: 1;
 }
-@keyframes lighthouse-glow { 0%, 100% { filter: drop-shadow(0 0 6px rgba(240,208,96,0.25)); } 50% { filter: drop-shadow(0 0 14px rgba(240,208,96,0.55)); } }
+@keyframes lighthouse-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(240,184,48,0.35)); }
+  50% { filter: drop-shadow(0 0 18px rgba(240,184,48,0.6)) drop-shadow(0 0 30px rgba(240,184,48,0.15)); }
+}
 #lighthouse-art svg { width: 100%; height: 100%; }
 
+/* Lighthouse beam sweep */
+.lighthouse-beam {
+  position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+  pointer-events: none; z-index: 0;
+  animation: beamSweep 6s ease-in-out infinite;
+}
+.lighthouse-beam::before {
+  content: '';
+  position: absolute; top: -60px; left: -3px;
+  width: 6px; height: 180px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(240,208,96,0.15) 20%,
+    rgba(240,184,48,0.25) 50%,
+    rgba(240,208,96,0.08) 80%,
+    transparent 100%
+  );
+  border-radius: 3px;
+  filter: blur(2px);
+}
+@keyframes beamSweep {
+  0%, 100% { transform: rotate(-15deg); opacity: 0.4; }
+  25% { transform: rotate(15deg); opacity: 0.7; }
+  50% { transform: rotate(15deg); opacity: 0.7; }
+  75% { transform: rotate(-15deg); opacity: 0.4; }
+}
+
 #phase-banner { text-align: center; padding: 3px 6px; flex-shrink: 0; z-index: 1; }
-#phase-text { display: block; font-size: 12px; font-weight: bold; color: var(--ink); font-family: var(--font-display); }
-#phase-hint { display: block; font-size: 9px; color: var(--ink-muted); margin-top: 1px; font-family: var(--font-mono); }
+#phase-text {
+  display: block; font-size: 12px; font-weight: bold;
+  color: #d0c8b0; font-family: var(--font-display);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+#phase-hint { display: block; font-size: 9px; color: rgba(180,170,150,0.6); margin-top: 1px; font-family: var(--font-mono); }
 
 /* ====== Grid ====== */
 #grid-outer { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
 #col-labels { display: flex; gap: 1px; padding: 0 16px 1px 16px; }
-.col-label { width: var(--cell-size); text-align: center; font-size: 8px; color: var(--ink-faint); font-family: var(--font-mono); }
+.col-label { width: var(--cell-size); text-align: center; font-size: 8px; color: rgba(180,170,155,0.5); font-family: var(--font-mono); }
 #grid-with-rows { display: flex; }
 #row-labels { display: flex; flex-direction: column; gap: 1px; justify-content: center; padding-right: 1px; }
-.row-label { width: 14px; height: var(--cell-size); display: flex; align-items: center; justify-content: center; font-size: 8px; color: var(--ink-faint); font-family: var(--font-mono); }
+.row-label { width: 14px; height: var(--cell-size); display: flex; align-items: center; justify-content: center; font-size: 8px; color: rgba(180,170,155,0.5); font-family: var(--font-mono); }
 
-#grid { display: flex; flex-direction: column; gap: 1px; background: rgba(42,31,21,0.12); padding: 1px; border-radius: 3px; border: 1px solid rgba(42,31,21,0.15); }
+#grid { display: flex; flex-direction: column; gap: 1px; background: rgba(10,20,35,0.3); padding: 1px; border-radius: 3px; border: 1px solid rgba(80,100,120,0.2); }
 
 .grid-row { display: flex; gap: 1px; }
 
 .grid-cell {
   width: var(--cell-size); height: var(--cell-size);
-  background: rgba(235,229,208,0.35); border: 1px solid rgba(42,31,21,0.1);
+  background: rgba(180,170,155,0.18); border: 1px solid rgba(80,100,120,0.15);
   border-radius: 2px; cursor: pointer; position: relative;
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.1s ease, border-color 0.1s ease, transform 0.1s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
-.grid-cell:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
+.grid-cell:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); }
+.grid-cell:active { transform: scale(0.94); }
 
-.grid-cell.lighthouse { background: rgba(240,208,96,0.18); border-color: var(--gold); }
+.grid-cell.lighthouse { background: rgba(240,184,48,0.15); border-color: var(--gold-light); }
 .grid-cell.lighthouse::after {
-  content: ''; position: absolute; inset: 2px;
-  background: radial-gradient(circle, rgba(240,208,96,0.25) 0%, transparent 70%);
+  content: '';
+  position: absolute; inset: 2px;
+  background: radial-gradient(circle, rgba(240,208,96,0.18) 0%, transparent 70%);
   border-radius: 1px; pointer-events: none;
 }
 
-.grid-cell.storm-cell { background: rgba(90,58,106,0.22); border-color: var(--storm); animation: storm-pulse 2s ease-in-out infinite; }
-@keyframes storm-pulse { 0%, 100% { background: rgba(90,58,106,0.18); } 50% { background: rgba(90,58,106,0.32); } }
+.grid-cell.storm-cell { background: rgba(90,58,106,0.3); border-color: var(--storm-purple); animation: storm-pulse 2s ease-in-out infinite; }
+@keyframes storm-pulse { 0%, 100% { background: rgba(90,58,106,0.25); } 50% { background: rgba(90,58,106,0.4); } }
 
 .grid-cell.moveable {
-  background: rgba(74,103,65,0.3) !important; border-color: var(--sea) !important;
-  box-shadow: inset 0 0 8px rgba(74,103,65,0.3); cursor: pointer;
+  background: rgba(58,120,100,0.3) !important; border-color: rgba(80,180,140,0.6) !important;
+  box-shadow: inset 0 0 10px rgba(58,120,100,0.3); cursor: pointer;
 }
 .grid-cell.moveable:nth-child(odd) { animation: pulse-cell-odd 1.2s ease-in-out infinite; }
 .grid-cell.moveable:nth-child(even) { animation: pulse-cell-even 1.2s ease-in-out infinite; }
-@keyframes pulse-cell-odd { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-@keyframes pulse-cell-even { 0%, 100% { transform: scale(1.05); } 50% { transform: scale(1); } }
+@keyframes pulse-cell-odd { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+@keyframes pulse-cell-even { 0%, 100% { transform: scale(1.04); } 50% { transform: scale(1); } }
 
 .grid-cell.fightable {
-  background: rgba(139,46,46,0.22) !important; border-color: var(--red-token) !important;
-  box-shadow: inset 0 0 8px rgba(139,46,46,0.25); cursor: pointer;
+  background: rgba(200,60,50,0.25) !important; border-color: rgba(220,80,60,0.6) !important;
+  box-shadow: inset 0 0 10px rgba(200,60,50,0.2); cursor: pointer;
   animation: pulse-cell-odd 1.2s ease-in-out infinite;
 }
 
-.grid-cell.selected-crew { box-shadow: inset 0 0 0 2px var(--gold) !important; }
+.grid-cell.selected-crew { box-shadow: inset 0 0 0 2px var(--gold-light) !important; }
 
 /* Cell pieces */
 .cell-piece { width: calc(var(--cell-size) - 6px); height: calc(var(--cell-size) - 6px); border-radius: 50%; border: 2px solid var(--wood-dark); display: flex; align-items: center; justify-content: center; font-size: 13px; background: var(--parchment-light); box-shadow: 0 1px 3px rgba(0,0,0,0.2); z-index: 2; pointer-events: none; position: relative; }
 .cell-piece.crew-piece { background: var(--parchment-pale); }
-.cell-piece.storm-piece { background: rgba(90,58,106,0.45); border-color: var(--storm); width: calc(var(--cell-size) - 10px); height: calc(var(--cell-size) - 10px); }
-
-.storm-icon { font-size: calc(var(--cell-size) * 0.5); line-height: 1; pointer-events: none; }
+.cell-piece svg { width: 18px; height: 18px; }
+.cell-piece.storm-piece { background: rgba(90,58,106,0.5); border-color: var(--storm-purple-light); width: calc(var(--cell-size) - 10px); height: calc(var(--cell-size) - 10px); }
+.cell-piece.storm-piece .storm-icon { font-size: calc(var(--cell-size) * 0.5); line-height: 1; pointer-events: none; }
 
 /* ====== Side Panel (Number Cards) ====== */
 #side-panel {
-  position: absolute; right: 3px; top: 50%; transform: translateY(-50%);
-  display: flex; flex-direction: column; gap: 2px; z-index: 3;
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 3px; z-index: 3;
 }
 .num-card {
-  width: 28px; height: 24px; border: 2px solid var(--wood-dark); border-radius: 4px;
-  background: var(--parchment-light); display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: bold; color: var(--ink); font-family: var(--font-mono);
-  cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.15); transition: all 0.12s ease; user-select: none; position: relative;
+  width: 30px; height: 26px; border: 2px solid var(--wood-dark); border-radius: 4px;
+  background: linear-gradient(180deg, var(--parchment-light) 0%, var(--parchment) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: bold; color: var(--ink); font-family: var(--font-mono);
+  cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: all 0.15s ease; user-select: none; position: relative;
 }
-.num-card:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.25); }
-.num-card.selected { background: var(--gold); border-color: var(--wood); transform: translateX(-3px); box-shadow: 0 2px 6px rgba(201,168,76,0.4); }
-.num-card.used { opacity: 0.25; pointer-events: none; }
+.num-card:hover { transform: translateY(-2px); box-shadow: 0 3px 8px rgba(0,0,0,0.3); }
+.num-card:active { transform: scale(0.92); }
+.num-card.selected { background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%); border-color: var(--wood); transform: translateX(-4px); box-shadow: 0 2px 10px rgba(240,208,96,0.5); }
+.num-card.used { opacity: 0.2; pointer-events: none; }
 .num-card .card-hint { position: absolute; bottom: -2px; right: 1px; font-size: 6px; color: var(--ink-muted); font-weight: normal; }
 
 /* ====== Bottom Area ====== */
 #bottom-area {
   display: flex; flex-direction: column; gap: 3px;
   padding: 5px 8px 6px; border-top: 2px solid var(--wood-dark);
-  background: rgba(42,31,21,0.06); position: relative; z-index: 2; flex-shrink: 0;
+  background: rgba(10,20,35,0.35);
+  backdrop-filter: blur(2px);
+  position: relative; z-index: 2; flex-shrink: 0;
 }
-#dice-area { display: flex; align-items: center; justify-content: center; gap: 10px; }
+#dice-area { display: flex; align-items: center; justify-content: center; gap: 12px; }
 .die {
-  width: 36px; height: 36px; background: var(--parchment-light); border: 2px solid var(--wood-dark);
-  border-radius: 5px; display: flex; align-items: center; justify-content: center;
-  font-size: 17px; font-weight: bold; color: var(--ink); font-family: var(--font-mono);
-  box-shadow: 0 2px 3px rgba(0,0,0,0.15); transition: transform 0.3s ease;
+  width: 38px; height: 38px; background: linear-gradient(180deg, var(--parchment-light) 0%, var(--parchment) 100%);
+  border: 2px solid var(--wood-dark);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: bold; color: var(--ink); font-family: var(--font-mono);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
 }
 .die.rolling { animation: diceRoll 0.4s ease; }
-@keyframes diceRoll { 0% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(90deg) scale(1.08); } 50% { transform: rotate(180deg) scale(1); } 75% { transform: rotate(270deg) scale(1.08); } 100% { transform: rotate(360deg) scale(1); } }
+@keyframes diceRoll { 0% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(90deg) scale(1.1); } 50% { transform: rotate(180deg) scale(1); } 75% { transform: rotate(270deg) scale(1.1); } 100% { transform: rotate(360deg) scale(1); } }
 
 #roll-btn {
-  padding: 4px 12px; background: var(--wood); color: var(--parchment-light);
-  border: 2px solid var(--ink); border-radius: 4px; font-size: 11px; font-weight: bold;
-  font-family: var(--font-display); cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: all 0.12s ease;
+  padding: 5px 14px; background: linear-gradient(180deg, var(--wood) 0%, var(--wood-dark) 100%);
+  color: var(--parchment-light);
+  border: 2px solid rgba(255,255,255,0.08); border-radius: 5px; font-size: 12px; font-weight: bold;
+  font-family: var(--font-display); cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: all 0.15s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-#roll-btn:hover:not(:disabled) { background: var(--wood-dark); transform: translateY(-1px); }
-#roll-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+#roll-btn:hover:not(:disabled) { background: linear-gradient(180deg, var(--wood-dark) 0%, #3a2210 100%); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+#roll-btn:active:not(:disabled) { transform: scale(0.95); }
+#roll-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-#action-bar { display: flex; justify-content: center; gap: 3px; flex-wrap: wrap; }
+#action-bar { display: flex; justify-content: center; gap: 4px; flex-wrap: wrap; padding: 2px 0; }
 .action-btn {
-  padding: 3px 7px; background: var(--parchment-light); border: 2px solid var(--wood-dark);
-  border-radius: 4px; font-size: 10px; font-weight: bold; color: var(--ink);
-  font-family: var(--font-display); cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.12);
-  transition: all 0.12s ease; display: flex; align-items: center; gap: 2px; white-space: nowrap;
+  padding: 4px 8px; background: linear-gradient(180deg, rgba(180,170,155,0.25) 0%, rgba(160,150,135,0.15) 100%);
+  border: 2px solid rgba(140,130,115,0.3);
+  border-radius: 5px; font-size: 10px; font-weight: bold;
+  color: #c8c0b0;
+  font-family: var(--font-display); cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  transition: all 0.15s ease; display: flex; align-items: center; gap: 3px; white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-.action-btn .btn-icon { width: 14px; height: 14px; vertical-align: middle; }
-.action-btn:hover:not(:disabled) { background: var(--gold-light); transform: translateY(-1px); }
-.action-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.action-btn.active-action { background: var(--gold); border-color: var(--wood); }
+.action-btn .btn-icon-svg { width: 15px; height: 15px; flex-shrink: 0; }
+.action-btn:hover:not(:disabled) { background: rgba(240,208,96,0.2); border-color: rgba(240,208,96,0.4); transform: translateY(-2px); color: #f0d060; }
+.action-btn:active:not(:disabled) { transform: scale(0.93); }
+.action-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.action-btn.active-action { background: rgba(240,208,96,0.25); border-color: var(--gold-light); color: #f0e8c0; box-shadow: 0 0 12px rgba(240,208,96,0.25); }
+
+/* Tooltip on action buttons */
+.action-btn[data-tooltip] { position: relative; }
+.action-btn[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  background: rgba(10,20,30,0.9); color: #d0c8b0;
+  padding: 3px 8px; border-radius: 4px; font-size: 9px; white-space: nowrap;
+  font-family: var(--font-mono); pointer-events: none; z-index: 20;
+  border: 1px solid rgba(240,208,96,0.3);
+}
 
 /* ====== Crew Bar ====== */
-#crew-bar { display: flex; justify-content: center; gap: 5px; }
+#crew-bar { display: flex; justify-content: center; gap: 6px; padding-top: 2px; }
 .crew-token {
-  width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--wood-dark);
-  display: flex; align-items: center; justify-content: center; font-size: 14px;
-  background: var(--parchment-light); box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-  cursor: pointer; transition: all 0.12s ease; position: relative;
+  width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--wood-dark);
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, rgba(200,185,160,0.3) 0%, rgba(160,150,135,0.15) 100%);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer; transition: all 0.15s ease; position: relative;
 }
-.crew-token .crew-icon { width: 20px; height: 20px; }
-.crew-token:hover { transform: translateY(-2px); }
-.crew-token.active { box-shadow: 0 0 0 2px var(--gold), 0 2px 4px rgba(0,0,0,0.2); transform: translateY(-1px); }
+.crew-token .crew-icon-svg { width: 22px; height: 22px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }
+.crew-token:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-color: rgba(240,208,96,0.3); }
+.crew-token:active { transform: scale(0.9); }
+.crew-token.active {
+  box-shadow: 0 0 0 3px var(--gold-light), 0 4px 12px rgba(240,208,96,0.35);
+  transform: translateY(-2px);
+  border-color: var(--gold-light);
+}
 .crew-token.injured { opacity: 0.5; border-color: var(--red-token); animation: shake-crew 0.5s ease-in-out; }
-@keyframes shake-crew { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-2px); } 40% { transform: translateX(2px); } 60% { transform: translateX(-1px); } 80% { transform: translateX(1px); } }
-.crew-token .hp-bar { position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; background: rgba(0,0,0,0.15); border-radius: 2px; overflow: hidden; }
-.crew-token .hp-fill { height: 100%; background: var(--sea); border-radius: 2px; transition: width 0.3s ease; }
-.crew-token .crew-name { position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); font-size: 7px; color: var(--ink-muted); white-space: nowrap; font-family: var(--font-mono); }
+@keyframes shake-crew { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-3px); } 40% { transform: translateX(3px); } 60% { transform: translateX(-2px); } 80% { transform: translateX(2px); } }
+.crew-token .hp-bar { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); width: 24px; height: 4px; background: rgba(0,0,0,0.3); border-radius: 2px; overflow: hidden; }
+.crew-token .hp-fill { height: 100%; background: linear-gradient(90deg, var(--sea) 0%, var(--sea-light) 100%); border-radius: 2px; transition: width 0.3s ease; }
+.crew-token .crew-name { position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); font-size: 7px; color: rgba(180,170,150,0.6); white-space: nowrap; font-family: var(--font-mono); }
 
 /* ====== Log ====== */
-#game-log { max-height: 42px; overflow-y: auto; font-size: 9px; color: var(--ink-muted); text-align: center; line-height: 1.4; padding: 0 3px; scrollbar-width: thin; }
+#game-log { max-height: 44px; overflow-y: auto; font-size: 9px; color: rgba(180,170,150,0.6); text-align: center; line-height: 1.5; padding: 0 4px; scrollbar-width: thin; }
 #game-log .log-entry { padding: 0.5px 0; }
-#game-log .log-dice { color: var(--wood); font-weight: bold; }
-#game-log .log-storm { color: var(--storm); }
+#game-log .log-dice { color: var(--gold); font-weight: bold; }
+#game-log .log-storm { color: var(--storm-purple-light); }
 #game-log .log-damage { color: var(--red-token); font-weight: bold; }
-#game-log .log-heal { color: var(--sea); }
-#game-log .log-win { color: var(--sea-light); font-weight: bold; }
+#game-log .log-heal { color: var(--sea-light); }
+#game-log .log-win { color: var(--sea-foam); font-weight: bold; }
 #game-log .log-lose { color: var(--red-token); font-weight: bold; }
-#game-log .log-info { color: var(--ink-muted); }
+#game-log .log-info { color: rgba(180,170,150,0.5); }
 
 /* ====== Floating resource change ====== */
 .float-text {
-  position: absolute; font-size: 13px; font-weight: bold; font-family: var(--font-mono);
+  position: absolute; font-size: 14px; font-weight: bold; font-family: var(--font-mono);
   pointer-events: none; z-index: 50; animation: floatUp 1.2s ease-out forwards;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
-@keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 50% { opacity: 1; transform: translateY(-18px) scale(1.1); } 100% { opacity: 0; transform: translateY(-38px) scale(0.95); } }
+@keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 50% { opacity: 1; transform: translateY(-18px) scale(1.1); } 100% { opacity: 0; transform: translateY(-40px) scale(0.9); } }
 
 /* ====== Overlays ====== */
 #overlay {
-  position: fixed; inset: 0; background: rgba(26,21,16,0.88);
+  position: fixed; inset: 0; background: rgba(8,12,18,0.92);
   display: none; align-items: center; justify-content: center; z-index: 100;
 }
 #overlay.visible { display: flex; }
 
 .modal-box {
-  background: var(--parchment); border: 3px solid var(--wood); border-radius: 8px;
-  padding: 18px 20px; max-width: 280px; text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5); animation: modalIn 0.3s ease; position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #1a2530 0%, #15202a 100%);
+  border: 2px solid var(--wood); border-radius: 8px;
+  padding: 20px 24px; max-width: 290px; text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6); animation: modalIn 0.35s ease; position: relative; overflow: hidden;
 }
 .modal-box::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 30%, rgba(240,208,96,0.08) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 30%, rgba(240,184,48,0.06) 0%, transparent 60%);
   pointer-events: none;
 }
-@keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes modalIn { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-.modal-box h2 { font-size: 18px; color: var(--ink); margin-bottom: 8px; font-family: var(--font-display); position: relative; }
-.modal-box p { font-size: 12px; color: var(--ink-muted); line-height: 1.7; margin-bottom: 12px; font-family: var(--font-display); position: relative; white-space: pre-line; }
-.modal-box .result-vp { display: block; font-size: 14px; color: var(--gold); font-weight: bold; margin-bottom: 8px; }
+.modal-box h2 { font-size: 20px; color: #d0c8b0; margin-bottom: 8px; font-family: var(--font-display); position: relative; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+.modal-box p { font-size: 13px; color: rgba(180,170,150,0.7); line-height: 1.8; margin-bottom: 14px; font-family: var(--font-display); position: relative; white-space: pre-line; }
+.modal-box .result-vp { display: block; font-size: 16px; color: var(--gold-light); font-weight: bold; margin-bottom: 8px; }
 
 .modal-btn {
-  padding: 6px 18px; background: var(--wood); color: var(--parchment-light);
-  border: 2px solid var(--ink); border-radius: 4px; font-size: 12px; font-weight: bold;
-  font-family: var(--font-display); cursor: pointer; transition: background 0.15s; position: relative;
+  padding: 7px 22px; background: linear-gradient(180deg, var(--wood) 0%, var(--wood-dark) 100%);
+  color: var(--parchment-light);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 5px; font-size: 13px; font-weight: bold;
+  font-family: var(--font-display); cursor: pointer; transition: all 0.15s; position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
-.modal-btn:hover { background: var(--wood-dark); }
+.modal-btn:hover { background: linear-gradient(180deg, var(--wood-dark) 0%, #3a2210 100%); transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
 
-.modal-box.win-modal { border-color: var(--gold); }
+.modal-box.win-modal { border-color: var(--gold-light); }
 .modal-box.win-modal::after {
   content: ''; position: absolute; inset: -50%;
-  background: radial-gradient(circle, rgba(240,208,96,0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(240,208,96,0.05) 0%, transparent 60%);
   animation: win-glow 2s ease-in-out infinite; pointer-events: none;
 }
 @keyframes win-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
@@ -300,7 +479,7 @@ body {
 @keyframes confettiFall { 0% { transform: translateY(0) rotate(0deg); opacity: 0.85; } 100% { transform: translateY(105vh) rotate(720deg); opacity: 0; } }
 
 /* Storm flash */
-.storm-flash { position: fixed; inset: 0; background: rgba(90,58,106,0.3); pointer-events: none; z-index: 99; animation: stormFlash 0.4s ease-out forwards; }
+.storm-flash { position: fixed; inset: 0; background: rgba(90,58,106,0.35); pointer-events: none; z-index: 99; animation: stormFlash 0.4s ease-out forwards; }
 @keyframes stormFlash { 0% { opacity: 1; } 100% { opacity: 0; } }
 
 /* ====== Interactive Tutorial ====== */
@@ -310,31 +489,31 @@ body {
 #tutorial-overlay.active { display: block; pointer-events: none; }
 
 #tutorial-blocker {
-  position: fixed; inset: 0; z-index: 501; background: rgba(26,21,16,0.55);
+  position: fixed; inset: 0; z-index: 501; background: rgba(8,12,18,0.6);
 }
 
 #tutorial-spotlight {
   position: fixed; z-index: 502; display: none;
   border: 3px solid #f0d060; border-radius: 10px;
-  box-shadow: 0 0 0 4px rgba(240,208,96,0.35), 0 0 24px rgba(240,208,96,0.5), inset 0 0 30px rgba(240,208,96,0.08);
+  box-shadow: 0 0 0 4px rgba(240,208,96,0.4), 0 0 28px rgba(240,208,96,0.6), inset 0 0 30px rgba(240,208,96,0.08);
   animation: spotPulse 1.2s ease-in-out infinite; pointer-events: none;
 }
-@keyframes spotPulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(240,208,96,0.35), 0 0 24px rgba(240,208,96,0.5); } 50% { box-shadow: 0 0 0 10px rgba(240,208,96,0.55), 0 0 40px rgba(240,208,96,0.75); } }
+@keyframes spotPulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(240,208,96,0.4), 0 0 28px rgba(240,208,96,0.6); } 50% { box-shadow: 0 0 0 12px rgba(240,208,96,0.6), 0 0 48px rgba(240,208,96,0.85); } }
 
 #tutorial-arrow {
-  position: fixed; z-index: 504; font-size: 36px; pointer-events: none;
+  position: fixed; z-index: 504; font-size: 38px; pointer-events: none;
   animation: arrowBounce 0.9s ease-in-out infinite;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
-  text-shadow: 0 0 8px rgba(240,208,96,0.6);
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+  text-shadow: 0 0 10px rgba(240,208,96,0.7);
 }
-@keyframes arrowBounce { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.15); } }
+@keyframes arrowBounce { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-14px) scale(1.12); } }
 
 #tutorial-bubble {
   position: fixed; z-index: 503;
-  background: linear-gradient(135deg, #c9b99a 0%, #b8a688 100%);
-  border: 2.5px solid #f0d060; border-radius: 10px; padding: 10px 14px;
-  font-size: 12.5px; color: #2a1f15; line-height: 1.7; font-family: var(--font-display);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.45); max-width: 240px; pointer-events: auto;
+  background: linear-gradient(135deg, #1a2530 0%, #15202a 100%);
+  border: 2.5px solid #f0d060; border-radius: 10px; padding: 12px 16px;
+  font-size: 13px; color: #d0c8b0; line-height: 1.7; font-family: var(--font-display);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6); max-width: 250px; pointer-events: auto;
 }
 #tutorial-bubble::after { content: ''; position: absolute; width: 0; height: 0; border: 8px solid transparent; }
 #tutorial-bubble.arrow-top::after { top: -16px; left: 20px; border-bottom-color: #f0d060; border-top: none; }
@@ -343,35 +522,37 @@ body {
 #tutorial-bubble.arrow-right::after { right: -16px; top: 16px; border-left-color: #f0d060; border-right: none; }
 
 #tutorial-bubble .step-badge {
-  display: inline-block; background: #6b4423; color: #f0d060;
-  font-size: 9px; font-weight: bold; padding: 1px 6px; border-radius: 8px;
-  font-family: var(--font-mono); vertical-align: middle; margin-right: 4px;
+  display: inline-block; background: var(--wood); color: #f0d060;
+  font-size: 10px; font-weight: bold; padding: 1px 7px; border-radius: 8px;
+  font-family: var(--font-mono); vertical-align: middle; margin-right: 5px;
 }
 
 #tutorial-hand {
-  position: fixed; z-index: 505; font-size: 30px; pointer-events: none;
+  position: fixed; z-index: 505; font-size: 32px; pointer-events: none;
   animation: handClick 1.2s ease-in-out infinite;
 }
-@keyframes handClick { 0%, 100% { transform: scale(1); } 30% { transform: scale(1.2); } 50% { transform: scale(0.95); } 70% { transform: scale(1.05); } }
+@keyframes handClick { 0%, 100% { transform: scale(1); } 30% { transform: scale(1.15); } 50% { transform: scale(0.9); } 70% { transform: scale(1.05); } }
 
 #tutorial-skip {
-  position: fixed; bottom: 14px; right: 14px; z-index: 510;
-  padding: 5px 12px; background: rgba(42,31,21,0.55); color: #c9b99a;
-  border: 1px solid rgba(90,58,106,0.3); border-radius: 5px; font-size: 10px;
-  cursor: pointer; font-family: var(--font-mono); pointer-events: auto; transition: background 0.15s;
+  position: fixed; bottom: 18px; right: 18px; z-index: 510;
+  padding: 6px 14px; background: rgba(10,20,30,0.7); color: rgba(200,190,170,0.7);
+  border: 1px solid rgba(90,58,106,0.4); border-radius: 6px; font-size: 11px;
+  cursor: pointer; font-family: var(--font-mono); pointer-events: auto; transition: all 0.15s;
 }
-#tutorial-skip:hover { background: rgba(42,31,21,0.8); }
+#tutorial-skip:hover { background: rgba(20,30,40,0.9); color: #d0c8b0; }
 
 /* ====== Responsive ====== */
 @media (max-width: 380px) {
   :root { --cell-size: 26px; }
-  .res-token .token-icon { width: 26px; height: 26px; font-size: 15px; }
-  .num-card { width: 22px; height: 20px; font-size: 11px; }
-  .die { width: 28px; height: 28px; font-size: 13px; }
-  .crew-token { width: 28px; height: 28px; font-size: 12px; }
+  .res-token .token-icon { width: 28px; height: 28px; }
+  .res-token .token-icon svg { width: 18px; height: 18px; }
+  .num-card { width: 24px; height: 22px; font-size: 12px; }
+  .die { width: 30px; height: 30px; font-size: 14px; }
+  .crew-token { width: 30px; height: 30px; }
+  .crew-token .crew-icon-svg { width: 18px; height: 18px; }
   #lighthouse-art { width: 70px; height: 54px; }
-  .action-btn { padding: 2px 5px; font-size: 9px; }
-  #roll-btn { padding: 3px 8px; font-size: 10px; }
+  .action-btn { padding: 3px 6px; font-size: 9px; }
+  #roll-btn { padding: 4px 10px; font-size: 11px; }
 }
 </style>
 </head>
@@ -379,30 +560,53 @@ body {
 
 <div id="game-board">
 
+  <!-- Storm clouds animation layer -->
+  <div class="storm-clouds">
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="lightning"></div>
+    <div class="lightning"></div>
+  </div>
+
+  <!-- Lighthouse beam -->
+  <div class="lighthouse-beam"></div>
+
   <!-- Resources (top bar) -->
   <div id="top-bar">
     <div class="res-token">
-      <div class="token-icon safe" id="icon-light"><img src="assets/icons/star.png" alt="" style="width:18px;height:18px;"></div>
+      <div class="token-icon safe" id="icon-light">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M16 4l-3 8H7l7 5-3 9 5-4 5 4-3-9 7-5h-6l-3-8z" stroke="#f0b830" stroke-width="1.5" fill="rgba(240,184,48,0.2)"/><circle cx="16" cy="16" r="4" fill="#ffe8a0" opacity="0.5"/></svg>
+      </div>
       <div class="token-val" id="val-light">10</div>
       <div class="token-label">光亮</div>
     </div>
     <div class="res-token">
-      <div class="token-icon safe" id="icon-structure"><img src="assets/icons/locked.png" alt="" style="width:16px;height:16px;"></div>
+      <div class="token-icon safe" id="icon-structure">
+        <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="8" width="26" height="18" rx="2" stroke="#7ab8d0" stroke-width="1.5" fill="rgba(120,180,210,0.15)"/><line x1="3" y1="14" x2="29" y2="14" stroke="#7ab8d0" stroke-width="1"/><rect x="6" y="17" width="5" height="5" rx="1" fill="rgba(120,180,210,0.2)"/><rect x="14" y="17" width="5" height="5" rx="1" fill="rgba(120,180,210,0.2)"/><rect x="22" y="17" width="5" height="5" rx="1" fill="rgba(120,180,210,0.2)"/></svg>
+      </div>
       <div class="token-val" id="val-structure">10</div>
       <div class="token-label">结构</div>
     </div>
     <div class="res-token">
-      <div class="token-icon warning" id="icon-storm"><img src="assets/icons/exclamation.png" alt="" style="width:16px;height:16px;"></div>
+      <div class="token-icon warning" id="icon-storm">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M8 18 Q12 8 16 14 Q16 6 22 10 Q28 6 26 16 Q32 20 24 22 L10 22 Q4 22 8 18Z" fill="rgba(180,140,200,0.25)" stroke="#b48cc8" stroke-width="1.5"/><path d="M18 22 L16 28 L14 24 L12 30" stroke="#f0d060" stroke-width="1.2" fill="none"/></svg>
+      </div>
       <div class="token-val" id="val-storm">0</div>
       <div class="token-label">风暴</div>
     </div>
     <div class="res-token">
-      <div class="token-icon safe" id="icon-turn"><img src="assets/icons/arrowRight.png" alt="" style="width:16px;height:16px;"></div>
+      <div class="token-icon safe" id="icon-turn">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M12 4h8v4h-8zM12 24h8v4h-8z" fill="rgba(200,170,120,0.2)" stroke="#c8aa78" stroke-width="1.5"/><line x1="16" y1="12" x2="16" y2="20" stroke="#c8aa78" stroke-width="1.5"/><circle cx="16" cy="16" r="1.5" fill="#c8aa78"/><line x1="10" y1="12" x2="22" y2="12" stroke="#c8aa78" stroke-width="1"/><line x1="10" y1="20" x2="22" y2="20" stroke="#c8aa78" stroke-width="1"/></svg>
+      </div>
       <div class="token-val" id="val-turn">1</div>
       <div class="token-label">回合</div>
     </div>
     <div class="res-token">
-      <div class="token-icon warning" id="icon-vp"><img src="assets/icons/medal1.png" alt="" style="width:16px;height:16px;"></div>
+      <div class="token-icon warning" id="icon-vp">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="#f0d060" stroke-width="1.5" fill="rgba(240,208,96,0.1)"/><path d="M16 6l2 8h7l-5.5 4 2 8-5.5-4-5.5 4 2-8-5.5-4h7z" fill="#f0d060" opacity="0.7"/></svg>
+      </div>
       <div class="token-val" id="val-vp">0</div>
       <div class="token-label">积分</div>
     </div>
@@ -412,37 +616,59 @@ body {
   <div id="center-area">
     <div id="lighthouse-art">
       <svg viewBox="0 0 180 140" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="90" cy="125" rx="75" ry="12" fill="#5a7a52" opacity="0.5"/>
-        <ellipse cx="70" cy="128" rx="40" ry="6" fill="#4a6a42" opacity="0.4"/>
-        <path d="M50 120 Q90 105 130 120 L125 130 Q90 138 55 130 Z" fill="#8b7355"/>
-        <rect x="75" y="55" width="30" height="55" fill="#b8a090" stroke="#5c4a3a" stroke-width="1.5"/>
-        <rect x="72" y="50" width="36" height="8" fill="#a08070" stroke="#5c4a3a" stroke-width="1"/>
-        <rect x="78" y="42" width="24" height="10" fill="#d4c4b0" stroke="#5c4a3a" stroke-width="1"/>
-        <path d="M90 38 L50 15 L62 10 Z" fill="#f0d060" opacity="0.5"/>
-        <path d="M90 38 L130 15 L118 10 Z" fill="#f0d060" opacity="0.35"/>
-        <circle cx="90" cy="35" r="10" fill="#f8e8a0" opacity="0.45"/>
-        <circle cx="90" cy="35" r="5" fill="#fff8d0" opacity="0.7"/>
-        <rect x="82" y="65" width="6" height="8" fill="#4a3a2a" rx="1"/>
-        <rect x="92" y="65" width="6" height="8" fill="#4a3a2a" rx="1"/>
-        <rect x="82" y="82" width="6" height="8" fill="#4a3a2a" rx="1"/>
-        <rect x="92" y="82" width="6" height="8" fill="#4a3a2a" rx="1"/>
-        <rect x="84" y="102" width="12" height="8" fill="#5c3a2a" rx="1"/>
-        <line x1="55" y1="40" x2="55" y2="115" stroke="#6b4423" stroke-width="2"/>
-        <line x1="45" y1="55" x2="65" y2="55" stroke="#5c4a3a" stroke-width="1"/>
-        <line x1="48" y1="75" x2="62" y2="75" stroke="#5c4a3a" stroke-width="1"/>
-        <path d="M35 115 L 75 115 L 70 125 L 40 125 Z" fill="#7a5a3a" stroke="#4a3a2a" stroke-width="1"/>
-        <ellipse cx="145" cy="25" rx="18" ry="10" fill="#6a5a7a" opacity="0.3"/>
-        <ellipse cx="155" cy="30" rx="14" ry="8" fill="#5a4a6a" opacity="0.3"/>
-        <ellipse cx="25" cy="20" rx="15" ry="8" fill="#6a5a7a" opacity="0.2"/>
-        <circle cx="90" cy="35" r="20" fill="#f0d060" opacity="0.08">
-          <animate attributeName="opacity" values="0.05;0.12;0.05" dur="3s" repeatCount="indefinite"/>
+        <!-- Ocean water -->
+        <ellipse cx="90" cy="125" rx="82" ry="14" fill="#1a3850" opacity="0.6"/>
+        <ellipse cx="90" cy="126" rx="60" ry="8" fill="#224860" opacity="0.4"/>
+        <!-- Base island -->
+        <path d="M35 120 Q90 100 145 120 L140 130 Q90 140 40 130 Z" fill="#5a6a4a"/>
+        <path d="M38 122 Q90 105 142 122 L138 130 Q90 138 42 130 Z" fill="#4a5a3a"/>
+        <!-- Lighthouse body -->
+        <rect x="76" y="55" width="28" height="55" fill="url(#lh-body)" stroke="#3a4a3a" stroke-width="1" rx="1"/>
+        <!-- Red stripes -->
+        <rect x="76" y="70" width="28" height="6" fill="#a04040" opacity="0.7"/>
+        <rect x="76" y="85" width="28" height="6" fill="#a04040" opacity="0.7"/>
+        <!-- Lantern room -->
+        <rect x="73" y="42" width="34" height="15" fill="#d4c4b0" stroke="#3a4a3a" stroke-width="1" rx="1"/>
+        <rect x="76" y="44" width="28" height="11" fill="#2a1a10" opacity="0.3" rx="1"/>
+        <!-- Lantern glow -->
+        <circle cx="90" cy="49" r="8" fill="#f8e8a0" opacity="0.5"/>
+        <circle cx="90" cy="49" r="4" fill="#fff8d0" opacity="0.8"/>
+        <!-- Roof -->
+        <path d="M70 43 L90 28 L110 43 Z" fill="#5a4a3a" stroke="#3a2a2a" stroke-width="1"/>
+        <!-- Light beams -->
+        <path d="M90 49 L45 20 L55 14 Z" fill="#f0d060" opacity="0.3"/>
+        <path d="M90 49 L135 20 L125 14 Z" fill="#f0d060" opacity="0.2"/>
+        <!-- Windows -->
+        <rect x="86" y="62" width="4" height="5" fill="#ffe8a0" opacity="0.4" rx="1"/>
+        <rect x="90" y="62" width="4" height="5" fill="#ffe8a0" opacity="0.4" rx="1"/>
+        <rect x="86" y="77" width="4" height="5" fill="#ffe8a0" opacity="0.3" rx="1"/>
+        <rect x="90" y="77" width="4" height="5" fill="#ffe8a0" opacity="0.3" rx="1"/>
+        <!-- Door -->
+        <rect x="85" y="102" width="10" height="8" fill="#3a2a1a" rx="1"/>
+        <!-- Support poles -->
+        <line x1="55" y1="50" x2="55" y2="115" stroke="#4a3a2a" stroke-width="1.5"/>
+        <line x1="125" y1="50" x2="125" y2="115" stroke="#4a3a2a" stroke-width="1.5"/>
+        <!-- Distant storm clouds -->
+        <ellipse cx="155" cy="28" rx="20" ry="10" fill="#4a3a5a" opacity="0.25"/>
+        <ellipse cx="160" cy="32" rx="15" ry="7" fill="#3a2a4a" opacity="0.2"/>
+        <!-- Outer glow animation -->
+        <circle cx="90" cy="49" r="22" fill="#f0d060" opacity="0.06">
+          <animate attributeName="opacity" values="0.04;0.1;0.04" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="20;24;20" dur="3s" repeatCount="indefinite"/>
         </circle>
+        <defs>
+          <linearGradient id="lh-body" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#9a8a70"/>
+            <stop offset="50%" stop-color="#b8a890"/>
+            <stop offset="100%" stop-color="#8a7a60"/>
+          </linearGradient>
+        </defs>
       </svg>
     </div>
 
     <div id="phase-banner">
-      <span id="phase-text">🎲 点击「掷骰子」开始第 1 回合</span>
-      <br><span class="hint" id="phase-hint">提示：每回合掷骰子 → 选数字牌 → 选行动 → 点击网格执行</span>
+      <span id="phase-text">掷骰子开始第 1 回合</span>
+      <br><span class="hint" id="phase-hint">提示：掷骰子 → 选数字牌 → 选行动 → 点击网格执行</span>
     </div>
 
     <div id="grid-outer">
@@ -469,24 +695,54 @@ body {
   <div id="bottom-area">
     <div id="dice-area">
       <div class="die" id="die1">?</div>
-      <button id="roll-btn">🎲 掷骰子</button>
+      <button id="roll-btn">掷骰子</button>
       <div class="die" id="die2">?</div>
     </div>
 
     <div id="action-bar" style="display:none">
-      <button class="action-btn" id="btn-move"><img class="btn-icon" src="assets/icons/arrowRight.png" alt=""> 移动</button>
-      <button class="action-btn" id="btn-repair"><img class="btn-icon" src="assets/icons/locked.png" alt=""> 修复</button>
-      <button class="action-btn" id="btn-light"><img class="btn-icon" src="assets/icons/star.png" alt=""> 添油</button>
-      <button class="action-btn" id="btn-fight"><img class="btn-icon" src="assets/icons/exclamation.png" alt=""> 抗击</button>
-      <button class="action-btn" id="btn-cancel"><img class="btn-icon" src="assets/icons/cross.png" alt=""> 取消</button>
+      <button class="action-btn" id="btn-move" data-tooltip="移动船员 (力量/3=步数)">
+        <svg class="btn-icon-svg" viewBox="0 0 24 24"><path d="M6 20l2-6M6 20l6 2M6 20L4 14M14 18l-2-6M14 18l6-2M14 18l-2-6M14 18l1-5" stroke="#a0c8b0" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        移动
+      </button>
+      <button class="action-btn" id="btn-repair" data-tooltip="修复灯塔结构">
+        <svg class="btn-icon-svg" viewBox="0 0 24 24"><rect x="4" y="3" width="4" height="12" rx="1" fill="rgba(180,160,130,0.3)" stroke="#b8a882" stroke-width="1.2"/><rect x="16" y="5" width="4" height="8" rx="1" fill="rgba(180,160,130,0.3)" stroke="#b8a882" stroke-width="1.2"/><path d="M8 6h10M8 12h10" stroke="#b8a882" stroke-width="1" stroke-dasharray="2,1"/></svg>
+        修复
+      </button>
+      <button class="action-btn" id="btn-light" data-tooltip="为灯塔添加灯油">
+        <svg class="btn-icon-svg" viewBox="0 0 24 24"><path d="M10 3h4v3h-4z" fill="rgba(240,184,48,0.2)" stroke="#f0b830" stroke-width="1.2"/><path d="M9 6h6l1 12H8z" fill="rgba(240,184,48,0.1)" stroke="#f0b830" stroke-width="1.2"/><circle cx="12" cy="5" r="2" fill="#f0d060" opacity="0.5"/><path d="M11 4l1-3 1 3" stroke="#f0b830" stroke-width="0.8" fill="none"/></svg>
+        添油
+      </button>
+      <button class="action-btn" id="btn-fight" data-tooltip="抗击风暴">
+        <svg class="btn-icon-svg" viewBox="0 0 24 24"><path d="M6 4l2 10H4z" fill="rgba(220,100,80,0.2)" stroke="#dc6450" stroke-width="1.2"/><path d="M10 3v12" stroke="#dc6450" stroke-width="1.8" stroke-linecap="round"/><line x1="6" y1="14" x2="14" y2="14" stroke="#dc6450" stroke-width="1.5"/><line x1="3" y1="18" x2="17" y2="18" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round"/></svg>
+        抗击
+      </button>
+      <button class="action-btn" id="btn-cancel" data-tooltip="取消当前行动">
+        <svg class="btn-icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#a09080" stroke-width="1.5" fill="none"/><line x1="8" y1="8" x2="16" y2="16" stroke="#a09080" stroke-width="1.8" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#a09080" stroke-width="1.8" stroke-linecap="round"/></svg>
+        取消
+      </button>
     </div>
 
     <div id="crew-bar">
-      <div class="crew-token active" data-id="0" onclick="selectCrew(0)"><img class="crew-icon" src="assets/icons/arrowUp.png" alt=""><div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">船长</div></div>
-      <div class="crew-token" data-id="1" onclick="selectCrew(1)"><img class="crew-icon" src="assets/icons/arrowDown.png" alt=""><div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">大副</div></div>
-      <div class="crew-token" data-id="2" onclick="selectCrew(2)"><img class="crew-icon" src="assets/icons/arrowLeft.png" alt=""><div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">水手</div></div>
-      <div class="crew-token" data-id="3" onclick="selectCrew(3)"><img class="crew-icon" src="assets/icons/gear.png" alt=""><div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">工程师</div></div>
-      <div class="crew-token" data-id="4" onclick="selectCrew(4)"><img class="crew-icon" src="assets/icons/medal1.png" alt=""><div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">医官</div></div>
+      <div class="crew-token active" data-id="0" onclick="selectCrew(0)">
+        <svg class="crew-icon-svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" stroke="#d0c0a0" stroke-width="1.5" fill="none"/><circle cx="16" cy="11" r="5" fill="rgba(200,180,150,0.3)" stroke="#c8b896" stroke-width="1"/><line x1="16" y1="16" x2="16" y2="30" stroke="#c8b896" stroke-width="1.5"/><line x1="8" y1="22" x2="24" y2="22" stroke="#c8b896" stroke-width="1"/><path d="M10 30l2-5h8l2 5" stroke="#c8b896" stroke-width="1" fill="none"/></svg>
+        <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">船长</div>
+      </div>
+      <div class="crew-token" data-id="1" onclick="selectCrew(1)">
+        <svg class="crew-icon-svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" stroke="#b0c8d8" stroke-width="1.5" fill="none"/><path d="M16 8l4 16H12z" fill="rgba(160,200,180,0.2)" stroke="#a0c8b4" stroke-width="1"/><circle cx="16" cy="18" r="1.5" fill="#a0c8b4"/><line x1="8" y1="22" x2="24" y2="22" stroke="#a0c8b4" stroke-width="0.8"/></svg>
+        <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">大副</div>
+      </div>
+      <div class="crew-token" data-id="2" onclick="selectCrew(2)">
+        <svg class="crew-icon-svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" stroke="#90b0c0" stroke-width="1.5" fill="none"/><path d="M8 20 Q16 6 24 20Z" fill="rgba(140,180,200,0.2)" stroke="#8cb4c8" stroke-width="1"/><line x1="16" y1="20" x2="16" y2="28" stroke="#8cb4c8" stroke-width="1.5"/></svg>
+        <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">水手</div>
+      </div>
+      <div class="crew-token" data-id="3" onclick="selectCrew(3)">
+        <svg class="crew-icon-svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" stroke="#d0b870" stroke-width="1.5" fill="none"/><rect x="11" y="5" width="4" height="14" rx="1" fill="rgba(200,180,120,0.2)" stroke="#c8b478" stroke-width="1"/><circle cx="13" cy="3" r="3" fill="none" stroke="#c8b478" stroke-width="1"/><path d="M18 14l6 2-6 2" stroke="#c8b478" stroke-width="1.2" fill="none"/></svg>
+        <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">工程师</div>
+      </div>
+      <div class="crew-token" data-id="4" onclick="selectCrew(4)">
+        <svg class="crew-icon-svg" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" stroke="#e0a0a0" stroke-width="1.5" fill="none"/><line x1="16" y1="8" x2="16" y2="24" stroke="#e0a0a0" stroke-width="2.5" stroke-linecap="round"/><line x1="10" y1="16" x2="22" y2="16" stroke="#e0a0a0" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="#e0a0a0" opacity="0.4"/></svg>
+        <div class="hp-bar"><div class="hp-fill" style="width:100%"></div></div><div class="crew-name">医官</div>
+      </div>
     </div>
 
     <div id="game-log"></div>
@@ -498,7 +754,7 @@ body {
   <div class="modal-box" id="modal-box">
     <h2 id="modal-title">游戏结束</h2>
     <p id="modal-text"></p>
-    <button class="modal-btn" onclick="resetGame()">🔄 再来一局</button>
+    <button class="modal-btn" onclick="resetGame()">再来一局</button>
   </div>
 </div>
 
@@ -517,26 +773,21 @@ const GRID_SIZE = 8;
 const MAX_TURNS = 15;
 const WIN_VP = 20;
 const CREW_NAMES = ['船长', '大副', '水手', '工程师', '医官'];
-const CREW_ICONS = [
-  'assets/icons/arrowUp.png',
-  'assets/icons/arrowDown.png',
-  'assets/icons/arrowLeft.png',
-  'assets/icons/gear.png',
-  'assets/icons/medal1.png'
-];
+const CREW_ICONS = CREW_NAMES; // SVG icons are inline in HTML, use name as identifier
+
 const LIGHTHOUSE_POS = { x: 3, y: 3 };
 
 // ==================== GAME STATE ====================
 let state = {
   turn: 1,
-  phase: 'idle',           // idle -> rolled -> cardSelected -> acted -> storm -> end
+  phase: 'idle',
   dice: [0, 0],
-  selectedCard: null,      // 0-6
+  selectedCard: null,
   selectedCrew: 0,
-  actionMode: null,        // 'move' | 'fight' | 'repair' | 'light' | null
+  actionMode: null,
   resources: { light: 10, structure: 10, vp: 0 },
   storm: { count: 0, intensity: 1 },
-  grid: [],               // GRID_SIZE x GRID_SIZE: { storm: bool }
+  grid: [],
   crew: [],
   cardsUsed: new Set(),
   log: [],
@@ -651,10 +902,10 @@ function animResourceChange(id, oldVal, newVal) {
   if (!el) return;
   const diff = newVal - oldVal;
   const text = (diff >= 0 ? '+' : '') + diff;
-  const color = diff >= 0 ? '#4a6741' : '#8b2e2e';
+  const color = diff >= 0 ? '#5a9a7a' : '#c85040';
   showFloatText(el, text, color);
   const icon = el.parentElement.querySelector('.token-icon');
-  if (icon) { icon.style.transform = 'scale(1.2)'; setTimeout(() => { icon.style.transform = 'scale(1)'; }, 200); }
+  if (icon) { icon.style.transform = 'scale(1.25)'; setTimeout(() => { icon.style.transform = 'scale(1)'; }, 200); }
 }
 
 // ==================== INIT ====================
@@ -775,7 +1026,7 @@ function renderGrid() {
         cell.classList.add('lighthouse');
         const span = document.createElement('span');
         span.style.fontSize = '14px';
-        span.innerHTML = '🚨';
+        span.innerHTML = '';
         cell.appendChild(span);
       }
 
@@ -783,7 +1034,7 @@ function renderGrid() {
         cell.classList.add('storm-cell');
         const piece = document.createElement('div');
         piece.className = 'cell-piece storm-piece';
-        piece.innerHTML = '<span class="storm-icon">⚡</span>';
+        piece.innerHTML = '<span class="storm-icon"></span>';
         cell.appendChild(piece);
       }
 
@@ -791,13 +1042,14 @@ function renderGrid() {
       if (crewHere) {
         const piece = document.createElement('div');
         piece.className = 'cell-piece crew-piece';
-        const img = document.createElement('img');
-        img.src = crewHere.icon;
-        img.alt = crewHere.name;
-        img.style.width = '18px';
-        img.style.height = '18px';
-        img.style.pointerEvents = 'none';
-        piece.appendChild(img);
+        // Use crew name initial as icon on the grid
+        const nameSpan = document.createElement('span');
+        nameSpan.style.fontSize = '11px';
+        nameSpan.style.fontWeight = 'bold';
+        nameSpan.style.color = '#4a3a2a';
+        nameSpan.style.pointerEvents = 'none';
+        nameSpan.textContent = crewHere.name.charAt(0);
+        piece.appendChild(nameSpan);
         if (crewHere.id === state.selectedCrew) {
           cell.classList.add('selected-crew');
         }
@@ -841,38 +1093,38 @@ function renderPhase() {
   if (state.phase === 'idle') {
     rollBtn.style.display = '';
     rollBtn.disabled = false;
-    rollBtn.textContent = '🎲 掷骰子';
+    rollBtn.textContent = '掷骰子';
     rollBtn.onclick = rollPhase;
     actionBar.style.display = 'none';
-    phaseText.innerHTML = '🎲 点击「掷骰子」开始第 ' + state.turn + ' 回合';
-    phaseHint.textContent = '提示：掷骰子后，从右侧选择一张数字牌决定行动力量';
+    phaseText.innerHTML = '掷骰子开始第 ' + state.turn + ' 回合';
+    phaseHint.textContent = '掷骰子后，从右侧选择一张数字牌决定行动力量';
     clearHighlights();
   } else if (state.phase === 'rolled') {
     rollBtn.style.display = 'none';
     actionBar.style.display = 'flex';
     updateActionButtons();
     if (state.selectedCard === null) {
-      phaseText.innerHTML = '🎲 骰子：' + state.dice[0] + ' + ' + state.dice[1] + ' = <b>' + (state.dice[0] + state.dice[1]) + '</b>';
-      phaseHint.textContent = '💡 从右侧选择一张数字牌，然后点击下方行动按钮';
+      phaseText.innerHTML = '骰子：' + state.dice[0] + ' + ' + state.dice[1] + ' = <b>' + (state.dice[0] + state.dice[1]) + '</b>';
+      phaseHint.textContent = '从右侧选择一张数字牌，然后点击下方行动按钮';
     } else {
       const power = state.selectedCard + state.dice[0] + state.dice[1];
-      phaseText.innerHTML = '💳 已选牌 【' + state.selectedCard + '】｜力量 = ' + power;
-      phaseHint.textContent = '💡 点击行动按钮，然后按提示操作';
+      phaseText.innerHTML = '已选牌 【' + state.selectedCard + '】 | 力量 = ' + power;
+      phaseHint.textContent = '点击行动按钮，然后按提示操作';
     }
     clearHighlights();
   } else if (state.phase === 'acted') {
     rollBtn.style.display = '';
     rollBtn.disabled = false;
-    rollBtn.textContent = '⏭ 结束回合';
+    rollBtn.textContent = '结束回合';
     rollBtn.onclick = endTurn;
     actionBar.style.display = 'none';
-    phaseText.innerHTML = '✅ 行动完成！';
-    phaseHint.textContent = '💡 点击「结束回合」，风暴将会逼近灯塔...';
+    phaseText.innerHTML = '行动完成！';
+    phaseHint.textContent = '点击「结束回合」，风暴将会逼近灯塔...';
     clearHighlights();
   } else {
     rollBtn.style.display = 'none';
     actionBar.style.display = 'none';
-    phaseText.innerHTML = '⛈️ 风暴正在逼近...';
+    phaseText.innerHTML = '风暴正在逼近...';
     phaseHint.textContent = '';
     clearHighlights();
   }
@@ -893,6 +1145,11 @@ function renderLog() {
     return '<div class="' + cls + '">' + entry + '</div>';
   }).join('');
   logDiv.scrollTop = logDiv.scrollHeight;
+}
+
+function log(msg) {
+  if (state && state.log) state.log.push(msg);
+  renderLog();
 }
 
 function updateActionButtons() {
@@ -955,7 +1212,7 @@ function rollPhase() {
     renderDice();
   }, 400);
 
-  log('🎲 骰子：' + state.dice[0] + ' + ' + state.dice[1] + ' = ' + (state.dice[0] + state.dice[1]));
+  log('骰子：' + state.dice[0] + ' + ' + state.dice[1] + ' = ' + (state.dice[0] + state.dice[1]));
   playSound('dice');
 
   state.phase = 'rolled';
@@ -963,15 +1220,13 @@ function rollPhase() {
   state.actionMode = null;
   renderPhase();
 
-  // Tutorial advance
-  tutorialSignal('roll');
+  if (window.tutorialActive) window.tutorialSignal('roll');
 }
 
 function rollDie() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
-// Card click (delegated)
 document.querySelectorAll('.num-card').forEach(card => {
   card.onclick = () => {
     if (state.phase !== 'rolled') return;
@@ -983,17 +1238,16 @@ document.querySelectorAll('.num-card').forEach(card => {
     renderCards();
     updateActionButtons();
     playSound('select');
-    log('💳 选择了数字牌【' + val + '】｜行动力量 = ' + (val + state.dice[0] + state.dice[1]));
+    log('选择了数字牌【' + val + '】| 行动力量 = ' + (val + state.dice[0] + state.dice[1]));
     renderPhase();
 
-    // Tutorial advance
-    tutorialSignal('card');
+    if (window.tutorialActive) window.tutorialSignal('card');
   };
 });
 
 function selectCrew(id) {
   if (state.crew[id].hp <= 0) {
-    log('⚠️ ' + state.crew[id].name + ' 已受伤，无法行动');
+    log(state.crew[id].name + ' 已受伤，无法行动');
     playSound('cancel');
     return;
   }
@@ -1019,7 +1273,7 @@ function doAction(action) {
 
   switch (action) {
     case 'move':
-      log('🚶 ' + crew.name + ' 准备移动（移动力：' + Math.ceil(power / 3) + '）');
+      log(crew.name + ' 准备移动（移动力：' + Math.ceil(power / 3) + '）');
       highlightMovable(crew, power);
       playSound('move');
       break;
@@ -1027,27 +1281,26 @@ function doAction(action) {
       const repair = Math.min(power, 15 - state.resources.structure);
       state.resources.structure += repair;
       state.resources.vp += Math.floor(repair / 3);
-      log('🔧 ' + crew.name + ' 修复了灯塔结构 +' + repair + '（积分 +' + Math.floor(repair / 3) + '）');
+      log(crew.name + ' 修复了灯塔结构 +' + repair + '（积分 +' + Math.floor(repair / 3) + '）');
       playSound('repair');
       finishAction();
       return;
     case 'light':
       const lightAdd = Math.min(power, 15 - state.resources.light);
       state.resources.light += lightAdd;
-      log('🔥 ' + crew.name + ' 为灯塔添加了光亮 +' + lightAdd);
+      log(crew.name + ' 为灯塔添加了光亮 +' + lightAdd);
       playSound('light');
       finishAction();
       return;
     case 'fight':
-      log('⚔️ ' + crew.name + ' 准备抗击风暴（战力：' + power + '）');
+      log(crew.name + ' 准备抗击风暴（战力：' + power + '）');
       highlightFightable();
       playSound('fight');
       break;
   }
 
-  // Tutorial advance for move/fight (waits for cell click)
-  if (action === 'move' || action === 'fight') {
-    tutorialSignal('action');
+  if ((action === 'move' || action === 'fight') && window.tutorialActive) {
+    window.tutorialSignal('action');
   }
 }
 
@@ -1055,7 +1308,7 @@ function cancelAction() {
   state.actionMode = null;
   clearHighlights();
   renderPhase();
-  log('❌ 取消了当前行动，请重新选择');
+  log('取消了当前行动，请重新选择');
   playSound('cancel');
 }
 
@@ -1072,14 +1325,13 @@ function onCellClick(x, y) {
     if (dist > 0 && dist <= maxDist) {
       crew.x = x;
       crew.y = y;
-      log('🚶 ' + crew.name + ' 移动到了（' + (x + 1) + '，' + (y + 1) + '）');
+      log(crew.name + ' 移动到了（' + (x + 1) + '，' + (y + 1) + '）');
       playSound('move');
       finishAction();
 
-      // Tutorial advance
-      tutorialSignal('cell');
+      if (window.tutorialActive) window.tutorialSignal('cell');
     } else {
-      log('⚠️ 距离太远！移动力：' + maxDist + '，目标距离：' + dist);
+      log('距离太远！移动力：' + maxDist + '，目标距离：' + dist);
     }
   } else if (state.actionMode === 'fight') {
     if (gCell.storm) {
@@ -1087,15 +1339,14 @@ function onCellClick(x, y) {
       gCell.storm = false;
       state.storm.count = Math.max(0, state.storm.count - 1);
       state.resources.vp += 2;
-      log('⚔️ ' + crew.name + ' 击退了风暴！+2 积分');
+      log(crew.name + ' 击退了风暴！+2 积分');
       crew.hp = Math.max(0, crew.hp - 1);
-      log('💀 ' + crew.name + ' 受伤！剩余 HP：' + crew.hp);
+      log(crew.name + ' 受伤！剩余 HP：' + crew.hp);
       playSound('hit');
       if (crew.hp <= 1) { renderCrew(); }
       finishAction();
 
-      // Tutorial advance
-      tutorialSignal('cell');
+      if (window.tutorialActive) window.tutorialSignal('cell');
     }
   }
 }
@@ -1108,7 +1359,7 @@ function finishAction() {
 
   if (state.cardsUsed.size >= 7) {
     state.cardsUsed.clear();
-    log('🔄 数字牌已刷新！');
+    log('数字牌已刷新！');
   }
 
   state.phase = 'acted';
@@ -1122,23 +1373,19 @@ function endTurn() {
   state.phase = 'storm';
   renderPhase();
 
-  // Tutorial advance
-  tutorialSignal('endturn');
+  if (window.tutorialActive) window.tutorialSignal('endturn');
 
   setTimeout(() => { doStormPhase(); }, 500);
 }
 
 function doStormPhase() {
-  // Spawn new storms at edges
   const intensity = Math.min(5, 1 + Math.floor(state.turn / 3));
   for (let i = 0; i < intensity; i++) {
     spawnStorm();
   }
 
-  // Move existing storms toward lighthouse
   moveStorms();
 
-  // Storm damage to lighthouse
   const adjStorms = countAdjacentStorms(LIGHTHOUSE_POS.x, LIGHTHOUSE_POS.y);
   if (adjStorms > 0) {
     const dmg = adjStorms * (1 + Math.floor(state.turn / 5));
@@ -1146,7 +1393,7 @@ function doStormPhase() {
     const oldLight = state.resources.light;
     state.resources.structure = Math.max(0, state.resources.structure - dmg);
     state.resources.light = Math.max(0, state.resources.light - Math.ceil(dmg / 2));
-    log('⛈️ 风暴袭击灯塔！结构 ' + oldStruct + '→' + state.resources.structure + '，光亮 ' + oldLight + '→' + state.resources.light);
+    log('风暴袭击灯塔！结构 ' + oldStruct + '→' + state.resources.structure + '，光亮 ' + oldLight + '→' + state.resources.light);
     playSound('storm');
     const flash = document.createElement('div');
     flash.className = 'storm-flash';
@@ -1154,36 +1401,32 @@ function doStormPhase() {
     setTimeout(() => flash.remove(), 400);
   }
 
-  // Light natural decay
   const oldLight = state.resources.light;
   state.resources.light = Math.max(0, state.resources.light - 1);
   if (oldLight > 0 && state.resources.light !== oldLight) {
-    log('🔥 灯塔消耗灯油，光亮 ' + oldLight + '→' + state.resources.light);
+    log('灯塔消耗灯油，光亮 ' + oldLight + '→' + state.resources.light);
   }
 
-  // +1 VP per turn survived
   state.resources.vp += 1;
 
-  // Next turn
   state.turn++;
   state.phase = 'idle';
 
   if (state.turn > MAX_TURNS) {
     if (state.resources.vp >= WIN_VP) {
-      showModal('🏆 胜利！', '守住了！\n' + MAX_TURNS + '回合已过，积分 ' + state.resources.vp + '/' + WIN_VP + '\n灯塔依旧闪耀！', 'win');
+      showModal('胜利！', '守住了！\n' + MAX_TURNS + '回合已过，积分 ' + state.resources.vp + '/' + WIN_VP + '\n灯塔依旧闪耀！', 'win');
     } else {
-      showModal('⛈️ 时间耗尽', MAX_TURNS + '回合已过...\n积分：' + state.resources.vp + '/' + WIN_VP + '\n风暴最终吞噬了一切', 'lose');
+      showModal('时间耗尽', MAX_TURNS + '回合已过...\n积分：' + state.resources.vp + '/' + WIN_VP + '\n风暴最终吞噬了一切', 'lose');
     }
     return;
   }
 
-  log('━━━ 第 ' + state.turn + ' 回合 ━━━');
+  log('=== 第 ' + state.turn + ' 回合 ===');
   renderAll();
   checkGameOver();
 
-  // After first turn tutorial step
-  if (tutorialActive && tutorialStep === 6) {
-    tutorialSignal('storm');
+  if (window.tutorialActive && window.tutorialStep === 6) {
+    window.tutorialSignal('storm');
   }
 }
 
@@ -1237,19 +1480,19 @@ function countAdjacentStorms(x, y) {
 // ==================== GAME OVER ====================
 function checkGameOver() {
   if (state.resources.structure <= 0) {
-    showModal('💀 灯塔倒塌', '船体结构彻底崩溃...\n灯塔在风暴中沉入了大海。', 'lose');
+    showModal('灯塔倒塌', '船体结构彻底崩溃...\n灯塔在风暴中沉入了大海。', 'lose');
     return;
   }
   if (state.resources.light <= 0 && countAdjacentStorms(LIGHTHOUSE_POS.x, LIGHTHOUSE_POS.y) > 0) {
-    showModal('🔥 光芒熄灭', '灯油燃尽，黑暗中的灯塔被风暴撕碎...', 'lose');
+    showModal('光芒熄灭', '灯油燃尽，黑暗中的灯塔被风暴撕碎...', 'lose');
     return;
   }
   if (state.resources.vp >= WIN_VP) {
-    showModal('🏆 胜利！', '积分达标！\n最终积分：' + state.resources.vp + '/' + WIN_VP + '\n灯塔的光芒穿透了风暴！', 'win');
+    showModal('胜利！', '积分达标！\n最终积分：' + state.resources.vp + '/' + WIN_VP + '\n灯塔的光芒穿透了风暴！', 'win');
     return;
   }
   if (state.crew.every(c => c.hp <= 0)) {
-    showModal('💀 全员阵亡', '所有船员都已倒下...\n灯塔失去了最后的守护者。', 'lose');
+    showModal('全员阵亡', '所有船员都已倒下...\n灯塔失去了最后的守护者。', 'lose');
     return;
   }
 }
@@ -1268,21 +1511,21 @@ function showModal(title, text, type) {
 function spawnConfetti() {
   const container = document.createElement('div');
   container.className = 'confetti-container';
-  const colors = ['#c9a84c', '#e0c060', '#4a6741', '#6a8a52', '#f0d060', '#8b7355'];
-  for (let i = 0; i < 40; i++) {
+  const colors = ['#c9a84c', '#f0d060', '#3a7a5a', '#5a9a7a', '#f0b830', '#8ab8c8', '#b48cc8'];
+  for (let i = 0; i < 50; i++) {
     const c = document.createElement('div');
     c.className = 'confetti';
     c.style.left = Math.random() * 100 + '%';
     c.style.background = colors[Math.floor(Math.random() * colors.length)];
-    c.style.animationDuration = (2 + Math.random() * 2) + 's';
+    c.style.animationDuration = (2 + Math.random() * 3) + 's';
     c.style.animationDelay = Math.random() * 1.5 + 's';
-    c.style.width = (4 + Math.random() * 5) + 'px';
-    c.style.height = (8 + Math.random() * 8) + 'px';
+    c.style.width = (4 + Math.random() * 6) + 'px';
+    c.style.height = (8 + Math.random() * 10) + 'px';
     c.style.borderRadius = Math.random() > 0.5 ? '50%' : '1px';
     container.appendChild(c);
   }
   document.body.appendChild(container);
-  setTimeout(() => container.remove(), 4500);
+  setTimeout(() => container.remove(), 5500);
 }
 
 function resetGame() {
@@ -1295,7 +1538,7 @@ function resetGame() {
 const TUTORIAL_STEPS = [
   {
     id: 'welcome',
-    title: '⚡ 最后的微光',
+    title: '最后的微光',
     bubble: '欢迎登上灯塔船！\n\n风暴正在逼近，你是船长，\n需要带领船员守护灯塔。\n\n先带你认识一下战场——',
     arrow: 'top',
     highlight: 'lighthouse',
@@ -1304,8 +1547,8 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 'dice',
-    title: '🎲 第一步：掷骰子',
-    bubble: '每回合先掷骰子。\n\n👆 点击「掷骰子」按钮！',
+    title: '第一步：掷骰子',
+    bubble: '每回合先掷骰子。\n\n点击「掷骰子」按钮！',
     arrow: 'top',
     highlight: 'roll-btn',
     waitFor: 'roll',
@@ -1313,8 +1556,8 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 'cards',
-    title: '💳 第二步：选择数字牌',
-    bubble: '骰子已掷出！\n力量 = 骰子总和 + 数字牌\n\n👆 从右侧选一张数字牌（1~6）',
+    title: '第二步：选择数字牌',
+    bubble: '骰子已掷出！\n力量 = 骰子总和 + 数字牌\n\n从右侧选一张数字牌（1~6）',
     arrow: 'left',
     highlight: 'side-panel',
     waitFor: 'card',
@@ -1322,8 +1565,8 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 'action',
-    title: '⚡ 第三步：选择行动',
-    bubble: '牌已选好！现在决定行动：\n🚶 移动  🔧 修复  🔥 添油  ⚔️ 抗击\n\n👆 点击下方一个行动按钮',
+    title: '第三步：选择行动',
+    bubble: '牌已选好！现在决定行动：\n移动 | 修复 | 添油 | 抗击\n\n点击下方一个行动按钮',
     arrow: 'top',
     highlight: 'action-bar',
     waitFor: 'action',
@@ -1331,8 +1574,8 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 'grid',
-    title: '🗺️ 第四步：在网格上执行',
-    bubble: '行动已选！高亮的格子可以操作。\n\n👆 点击高亮的格子来完成行动',
+    title: '第四步：在网格上执行',
+    bubble: '行动已选！高亮的格子可以操作。\n\n点击高亮的格子来完成行动',
     arrow: 'top',
     highlight: 'grid',
     waitFor: 'cell',
@@ -1340,8 +1583,8 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 'endturn',
-    title: '⏭ 第五步：结束回合',
-    bubble: '行动完成！\n每回合每位船员只能行动一次。\n\n👆 点击「结束回合」，风暴会逼近！',
+    title: '第五步：结束回合',
+    bubble: '行动完成！\n每回合每位船员只能行动一次。\n\n点击「结束回合」，风暴会逼近！',
     arrow: 'top',
     highlight: 'roll-btn',
     waitFor: 'endturn',
@@ -1349,8 +1592,8 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 'storm',
-    title: '⛈️ 风暴机制',
-    bubble: '看到没？风暴向灯塔移动了！\n\n💡 灯塔结构被风暴包围时会受到伤害\n💡 用「抗击」可以击退风暴\n💡 用「修复」可以加固灯塔\n\n接下来你来操作第 2 回合，加油！',
+    title: '风暴机制',
+    bubble: '看到没？风暴向灯塔移动了！\n\n灯塔结构被风暴包围时会受到伤害\n用「抗击」可以击退风暴\n用「修复」可以加固灯塔\n\n接下来你来操作第 2 回合，加油！',
     arrow: 'top',
     highlight: 'top-bar',
     waitFor: null,
@@ -1358,88 +1601,92 @@ const TUTORIAL_STEPS = [
   },
 ];
 
-// Tutorial state — mounted on window for iframe access
 window.tutorialActive = false;
 window.tutorialStep = 0;
 window.tutorialAwait = null;
-let tutorialActive = window.tutorialActive;
-let tutorialStep = window.tutorialStep;
-let tutorialAwait = window.tutorialAwait;
 
-function startTutorial() {
-  console.log('[Tutorial] startTutorial called');
+window.startTutorial = function() {
+  console.log('[Tutorial] startTutorial()');
   var overlay = document.getElementById('tutorial-overlay');
   if (!overlay) { console.error('[Tutorial] overlay not found!'); return; }
   window.tutorialActive = true;
   window.tutorialStep = 0;
   window.tutorialAwait = null;
-  showTutorialStep();
-}
+  window.showTutorialStep();
+};
 
-function showTutorialStep() {
-  const step = TUTORIAL_STEPS[window.tutorialStep];
-  if (!step) { finishTutorial(); return; }
+window.showTutorialStep = function() {
+  var step = TUTORIAL_STEPS[window.tutorialStep];
+  if (!step) { window.finishTutorial(); return; }
+  console.log('[Tutorial] step', window.tutorialStep, step.id, '| waitFor=', step.waitFor);
 
   window.tutorialAwait = step.waitFor;
-  const overlay = document.getElementById('tutorial-overlay');
+  var overlay = document.getElementById('tutorial-overlay');
   overlay.classList.add('active');
   document.getElementById('tutorial-skip').style.display = '';
 
-  showBubble(step);
-  highlightTarget(step.highlight, step.id === 'welcome');
-}
+  window.showBubble(step);
+  setTimeout(function() {
+    window.highlightTarget(step.highlight, step.id === 'welcome');
+  }, 50);
+};
 
-function showBubble(step) {
-  const bubble = document.getElementById('tutorial-bubble');
-  const arrow = document.getElementById('tutorial-arrow');
-  const pos = step.bubblePos;
+window.showBubble = function(step) {
+  var bubble = document.getElementById('tutorial-bubble');
+  var pos = step.bubblePos;
 
-  bubble.className = 'arrow-' + pos.arrowDir;
+  bubble.className = 'arrow-' + (step.arrowDir || 'top');
 
-  let html = '<span class="step-badge">指引 ' + (window.tutorialStep + 1) + '/' + TUTORIAL_STEPS.length + '</span> ';
+  var html = '<span class="step-badge">指引 ' + (window.tutorialStep + 1) + '/' + TUTORIAL_STEPS.length + '</span> ';
   html += '<b>' + step.title + '</b><br><br>';
   html += step.bubble.replace(/\n/g, '<br>');
 
   if (step.waitFor) {
-    html += '<br><br><span style="color:#f0d060;font-size:11px;">👆 请按提示操作，自动进入下一步</span>';
+    html += '<br><br><span style="color:#f0d060;font-size:11px;">请按提示操作，自动进入下一步</span>';
+    bubble.style.pointerEvents = 'none';
   } else {
     html += '<br><br><button style="'
       + 'padding:4px 14px;background:#6b4423;color:#f0d060;border:1.5px solid #f0d060;'
-      + 'border-radius:5px;font-size:11px;cursor:pointer;font-family:var(--font-display);" '
-      + 'onclick="tutorialStepForward()">✅ 知道了，下一步 ➡</button>';
+      + 'border-radius:5px;font-size:11px;cursor:pointer;font-family:var(--font-display);"'
+      + ' onclick="window.tutorialStepForward()">知道了，下一步</button>';
+    bubble.style.pointerEvents = 'auto';
   }
 
   bubble.innerHTML = html;
   bubble.style.left = pos.x;
   bubble.style.top = pos.y;
 
-  positionArrow(step);
-}
+  window.positionArrow(step);
+};
 
-function positionArrow(step) {
-  const arrow = document.getElementById('tutorial-arrow');
-  const spotlight = document.getElementById('tutorial-spotlight');
-  const spRect = spotlight.getBoundingClientRect();
+window.positionArrow = function(step) {
+  var arrow = document.getElementById('tutorial-arrow');
+  var spotlight = document.getElementById('tutorial-spotlight');
+  var spRect = null;
+  try { spRect = spotlight.getBoundingClientRect(); } catch(e) { return; }
+  if (!spRect || spRect.width === 0) {
+    setTimeout(function() { window.positionArrow(step); }, 100);
+    return;
+  }
 
-  if (step.arrow === 'top') {
+  if (step.arrow === 'top' || step.arrowDir === 'top') {
     arrow.style.left = (spRect.left + spRect.width / 2 - 18) + 'px';
     arrow.style.top = (spRect.top - 50) + 'px';
-    arrow.innerHTML = '⬇️';
-  } else if (step.arrow === 'left') {
-    arrow.style.left = (spRect.left - 50) + 'px';
+    arrow.innerHTML = '';
+  } else if (step.arrow === 'left' || step.arrowDir === 'right') {
+    arrow.style.left = (spRect.right + 10) + 'px';
     arrow.style.top = (spRect.top + spRect.height / 2 - 18) + 'px';
-    arrow.innerHTML = '➡️';
+    arrow.innerHTML = '';
   } else {
     arrow.style.left = (spRect.left + spRect.width / 2 - 18) + 'px';
     arrow.style.top = (spRect.bottom + 10) + 'px';
-    arrow.innerHTML = '⬆️';
+    arrow.innerHTML = '';
   }
-}
+};
 
-function highlightTarget(target, animate) {
-  const spotlight = document.getElementById('tutorial-spotlight');
-  let el = null;
-
+window.highlightTarget = function(target, animate) {
+  var spotlight = document.getElementById('tutorial-spotlight');
+  var el = null;
   try {
     if (target === 'lighthouse') {
       el = document.querySelector('.grid-cell.lighthouse');
@@ -1448,10 +1695,8 @@ function highlightTarget(target, animate) {
     } else {
       el = document.getElementById(target);
     }
-
     if (!el) { spotlight.style.display = 'none'; return; }
-
-    const rect = el.getBoundingClientRect();
+    var rect = el.getBoundingClientRect();
     spotlight.style.display = 'block';
     spotlight.style.left = (rect.left - 4) + 'px';
     spotlight.style.top = (rect.top - 4) + 'px';
@@ -1460,35 +1705,41 @@ function highlightTarget(target, animate) {
   } catch(e) {
     spotlight.style.display = 'none';
   }
-}
+};
 
-function tutorialStepForward() {
+window.tutorialStepForward = function() {
+  console.log('[Tutorial] stepForward:', window.tutorialStep, '->', window.tutorialStep + 1);
   window.tutorialStep++;
-  if (window.tutorialStep >= TUTORIAL_STEPS.length) { finishTutorial(); return; }
-  showTutorialStep();
-}
+  if (window.tutorialStep >= TUTORIAL_STEPS.length) { window.finishTutorial(); return; }
+  window.showTutorialStep();
+};
 
-function tutorialSignal(event) {
+window.tutorialSignal = function(event) {
   if (!window.tutorialActive) return;
+  console.log('[Tutorial] signal:', event, '| waiting for:', window.tutorialAwait);
   if (window.tutorialAwait === event) {
-    setTimeout(tutorialStepForward, 700);
+    console.log('[Tutorial] match! advancing...');
+    setTimeout(function() { window.tutorialStepForward(); }, 700);
   }
-}
+};
 
-function skipTutorial() {
-  finishTutorial();
-}
+window.skipTutorial = function() {
+  window.finishTutorial();
+};
 
-function finishTutorial() {
+window.finishTutorial = function() {
+  console.log('[Tutorial] finishTutorial');
   window.tutorialActive = false;
   window.tutorialAwait = null;
-  document.getElementById('tutorial-overlay').classList.remove('active');
-  document.getElementById('tutorial-spotlight').style.display = 'none';
-  document.getElementById('tutorial-arrow').style.display = 'none';
-  document.getElementById('tutorial-bubble').style.display = 'none';
-  document.getElementById('tutorial-skip').style.display = 'none';
+  var overlay = document.getElementById('tutorial-overlay');
+  if (overlay) overlay.classList.remove('active');
+  var els = ['tutorial-spotlight', 'tutorial-arrow', 'tutorial-bubble', 'tutorial-skip'];
+  for (var i = 0; i < els.length; i++) {
+    var el = document.getElementById(els[i]);
+    if (el) el.style.display = 'none';
+  }
   localStorage.setItem('the-last-glimmer-tutorial', 'done');
-}
+};
 
 // ==================== START ====================
 let _booted = false;
@@ -1497,7 +1748,6 @@ function boot() {
   _booted = true;
   console.log('[Boot] boot() start');
   try { initGame(); } catch(e) { console.error('[Boot] initGame error:', e); }
-  // 支持 ?force-tutorial=1 强制开启教程，并清除历史标记
   const params = new URLSearchParams(window.location.search);
   const forceTutorial = params.get('force-tutorial');
   if (forceTutorial) {
@@ -1520,7 +1770,6 @@ if (document.readyState === 'loading') {
   boot();
 }
 
-// fallback: also listen for window.load
 window.addEventListener('load', function() {
   if (!_booted) {
     console.log('[Boot] window.load fallback');
