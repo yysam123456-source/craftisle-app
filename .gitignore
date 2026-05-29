@@ -57,3 +57,4 @@ scripts/
 __pycache__/
 push_all_via_api.py
 push_log.txt
+.env*

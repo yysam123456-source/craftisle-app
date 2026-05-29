@@ -18,6 +18,7 @@ export const CATEGORIES = {
   generator: "Generators",
   text: "Text Tools",
   network: "Network Tools",
+  image: "Image",
   other: "Other",
 } as const;
 
@@ -76,6 +77,18 @@ export const toolMeta: Record<string, ToolMeta> = {
   uuid:              { title: "UUID Generator", desc: "Generate UUID/GUID", icon: "🆔", category: CATEGORIES.generator },
   wheel:             { title: "Spin Wheel", desc: "Random spin wheel tool", icon: "🎡", category: CATEGORIES.other },
   "yaml-formatter":  { title: "YAML Formatter", desc: "YAML code beautifier", icon: "📑", category: CATEGORIES.formatter },
+
+  // Image tools (server-side Sharp processing)
+  "image-resize":          { title: "Image Resizer", desc: "Resize images by width, height, or fit mode", icon: "📐", category: CATEGORIES.image },
+  "image-crop":            { title: "Image Cropper", desc: "Crop images to exact pixel coordinates", icon: "✂️", category: CATEGORIES.image },
+  "image-compress":        { title: "Image Compressor", desc: "Compress images with quality control", icon: "🗜️", category: CATEGORIES.image },
+  "image-convert":         { title: "Image Converter", desc: "Convert between JPEG, PNG, WebP, AVIF, TIFF", icon: "🔄", category: CATEGORIES.image },
+  "image-rotate":          { title: "Image Rotator", desc: "Rotate images by any angle", icon: "↪️", category: CATEGORIES.image },
+  "image-color-palette":   { title: "Color Palette", desc: "Extract dominant colors from any image", icon: "🎨", category: CATEGORIES.image },
+  "image-favicon":         { title: "Favicon Generator", desc: "Generate favicon from any image", icon: "🖼️", category: CATEGORIES.image },
+  "image-strip-metadata":  { title: "Strip Metadata", desc: "Remove EXIF and metadata from images", icon: "🧹", category: CATEGORIES.image },
+  "image-info":            { title: "Image Info", desc: "Read dimensions, format, and metadata", icon: "📋", category: CATEGORIES.image },
+  "image-border":          { title: "Image Border", desc: "Add colored borders to images", icon: "🖼️", category: CATEGORIES.image },
 };
 
 export function getToolMeta(toolName: string): ToolMeta {

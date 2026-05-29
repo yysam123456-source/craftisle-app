@@ -10,10 +10,11 @@ import Link from "next/link";
 import { Wrench } from "lucide-react";
 import { ToolsClient } from "@/components/tools-client";
 import { toolMeta } from "@/lib/tools";
+import { imageToolIds } from "@/lib/image-tools";
 
 export const metadata = {
   title: "Free Online Tools | Craftisle",
-  description: "50+ free online tools, no download required.",
+  description: "60+ free online tools, no download required.",
 };
 
 // Server Component: read tool directories
@@ -38,6 +39,13 @@ export default function ToolsPage() {
       );
   } catch {
     toolDirs = Object.keys(toolMeta);
+  }
+
+  // Merge dynamic image tools (no physical directories)
+  for (const id of imageToolIds) {
+    if (!toolDirs.includes(id)) {
+      toolDirs.push(id);
+    }
   }
 
   return <ToolsClient toolDirs={toolDirs} />;
