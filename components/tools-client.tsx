@@ -180,11 +180,19 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
                       </div>
                     </CardHeader>
                     <CardContent className="mt-auto">
-                      <Link href={`/tools/${dirName}`}>
-                        <Button className="w-full" variant="outline">
-                          Open Tool
-                        </Button>
-                      </Link>
+                      {meta.external && meta.url ? (
+                        <a href={meta.url} target="_blank" rel="noopener noreferrer">
+                          <Button className="w-full" variant="outline">
+                            Open Tool ↗
+                          </Button>
+                        </a>
+                      ) : (
+                        <Link href={`/tools/${dirName}`}>
+                          <Button className="w-full" variant="outline">
+                            Open Tool
+                          </Button>
+                        </Link>
+                      )}
                     </CardContent>
                   </Card>
                 );

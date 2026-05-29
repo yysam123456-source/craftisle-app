@@ -7,6 +7,8 @@ export interface ToolMeta {
   icon: string;
   badge?: string;
   category: string;
+  external?: boolean;
+  url?: string;
 }
 
 // Category constants
@@ -96,6 +98,9 @@ export const toolMeta: Record<string, ToolMeta> = {
   "image-beautify-screenshots":     { title: "Beautify Screenshots", desc: "Add padding, shadow, and borders to screenshots", icon: "✨", category: CATEGORIES.image },
   "find-duplicates":               { title: "Find Duplicates", desc: "Compare images and detect duplicates with perceptual hashing", icon: "🔍", category: CATEGORIES.image },
   "create-gif":                    { title: "Create GIF", desc: "Create animated GIFs from multiple image frames", icon: "🎞️", category: CATEGORIES.image },
+
+  // PDF Tools (external subdomain)
+  "pdf-tools":     { title: "PDF Tools", desc: "Merge, split, compress, convert PDF files online", icon: "📄", badge: "New", category: CATEGORIES.other, external: true, url: "https://pdf.craftisle.com" },
 };
 
 export function getToolMeta(toolName: string): ToolMeta {
