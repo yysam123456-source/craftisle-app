@@ -5,6 +5,9 @@ const nextConfig = {
   reactStrictMode: true,
   // trailingSlash: true, // disabled: causes Vercel 404 on homepage
 
+  // Disable the Next.js Dev Tools panel (bottom-left overlay in dev mode)
+  devIndicators: false,
+
   // Turbopack config (required for Next.js 16 default)
   turbopack: {
     // ContentLayer: use pre-generated .contentlayer files

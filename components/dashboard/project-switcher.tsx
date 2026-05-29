@@ -48,11 +48,10 @@ export default function ProjectSwitcher({
   return (
     <div>
       <Popover open={openPopover} onOpenChange={setOpenPopover}>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <Button
             className="h-8 px-2"
             variant={openPopover ? "secondary" : "ghost"}
-            onClick={() => setOpenPopover(!openPopover)}
           >
             <div className="flex items-center space-x-3 pr-2">
               <div

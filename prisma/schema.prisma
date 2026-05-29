@@ -9,21 +9,19 @@ datasource db {
 }
 
 model Account {
-  id                String   @id
+  id                String   @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refreshToken      String?   @map("refresh_token")
-  accessToken       String?   @map("access_token")
-  expiresAt         Int?       @map("expires_at")
-  tokenType         String?    @map("token_type")
-  scope             String?    @map("scope")
-  idToken           String?    @map("id_token")
-  sessionState      String?    @map("session_state")
-  createdAt         DateTime   @default(now())  @map("created_at")
-  updatedAt         DateTime   @default(now())  @map("updated_at")
-  user              User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?  @db.Text
+  session_state     String?
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -31,7 +29,7 @@ model Account {
 }
 
 model Session {
-  id           String   @id
+  id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime

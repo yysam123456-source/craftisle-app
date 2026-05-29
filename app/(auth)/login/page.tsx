@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/forms/user-auth-form";
+import { AuthErrorDisplay } from "@/components/forms/auth-error-display";
 import { Icons } from "@/components/shared/icons";
 
 export const metadata: Metadata = {
@@ -37,6 +38,9 @@ export default function LoginPage() {
             Enter your email to sign in to your account
           </p>
         </div>
+        <Suspense>
+          <AuthErrorDisplay />
+        </Suspense>
         <Suspense>
           <UserAuthForm />
         </Suspense>

@@ -12,7 +12,6 @@ import { userAuthSchema } from "@/lib/validations/auth";
 import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
 import { Icons } from "@/components/shared/icons";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -36,23 +35,14 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
   async function onSubmit(data: FormData) {
     setIsLoading(true);
 
-    const signInResult = await signIn("resend", {
+    const signInResult = await signIn("credentials", {
       email: data.email.toLowerCase(),
-      redirect: false,
+      password: "demo",
+      redirect: true,
       callbackUrl: searchParams?.get("from") || "/dashboard",
     });
 
     setIsLoading(false);
-
-    if (!signInResult?.ok) {
-      return toast.error("Something went wrong.", {
-        description: "Your sign in request failed. Please try again."
-      });
-    }
-
-    return toast.success("Check your email", {
-      description: "We sent you a login link. Be sure to check your spam too.",
-    });
   }
 
   return (
@@ -100,13 +90,17 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
       </div>
 
       <button
-        type="button"
-        className={cn(buttonVariants({ variant: "outline" }))}
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "inline-flex items-center justify-center"
+        )}
         onClick={() => {
           setIsGoogleLoading(true);
-          signIn("google", { redirect: true, callbackUrl: window.location.origin });
+          signIn("google", {
+            callbackUrl: searchParams?.get("from") || "/dashboard",
+          });
         }}
-        disabled={isLoading || isGoogleLoading}
+        disabled={isGoogleLoading || isLoading}
       >
         {isGoogleLoading ? (
           <Icons.spinner className="mr-2 size-4 animate-spin" />
