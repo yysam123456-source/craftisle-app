@@ -89,6 +89,13 @@ export const toolMeta: Record<string, ToolMeta> = {
   "image-strip-metadata":  { title: "Strip Metadata", desc: "Remove EXIF and metadata from images", icon: "🧹", category: CATEGORIES.image },
   "image-info":            { title: "Image Info", desc: "Read dimensions, format, and metadata", icon: "📋", category: CATEGORIES.image },
   "image-border":          { title: "Image Border", desc: "Add colored borders to images", icon: "🖼️", category: CATEGORIES.image },
+  "image-watermark":                { title: "Watermark", desc: "Add text watermarks to images", icon: "©️", category: CATEGORIES.image },
+  "image-color-adjust":             { title: "Color Adjust", desc: "Adjust brightness, contrast, saturation", icon: "🎚️", category: CATEGORIES.image },
+  "image-passport-photo":           { title: "Passport Photo", desc: "Generate passport and visa photos", icon: "📸", category: CATEGORIES.image },
+  "image-generate-memes":           { title: "Meme Generator", desc: "Add top and bottom text to any image", icon: "😂", category: CATEGORIES.image },
+  "image-beautify-screenshots":     { title: "Beautify Screenshots", desc: "Add padding, shadow, and borders to screenshots", icon: "✨", category: CATEGORIES.image },
+  "find-duplicates":               { title: "Find Duplicates", desc: "Compare images and detect duplicates with perceptual hashing", icon: "🔍", category: CATEGORIES.image },
+  "create-gif":                    { title: "Create GIF", desc: "Create animated GIFs from multiple image frames", icon: "🎞️", category: CATEGORIES.image },
 };
 
 export function getToolMeta(toolName: string): ToolMeta {

@@ -8,6 +8,11 @@ import { ConvertSettings } from "./convert";
 import { RotateSettings } from "./rotate";
 import { BorderSettings } from "./border";
 import { ColorPaletteSettings } from "./color-palette";
+import { WatermarkSettings } from "./watermark";
+import { ColorAdjustSettings } from "./color-adjust";
+import { PassportPhotoSettings } from "./passport-photo";
+import { MemeSettings } from "./meme";
+import { BeautifySettings } from "./beautify";
 import { OneClickSettings } from "./one-click";
 
 export interface SettingsProps {
@@ -24,6 +29,11 @@ export const settingsComponents: Record<string, FC<SettingsProps>> = {
   "image-rotate": RotateSettings,
   "image-color-palette": ColorPaletteSettings,
   "image-border": BorderSettings,
+  "image-watermark": WatermarkSettings,
+  "image-color-adjust": ColorAdjustSettings,
+  "image-passport-photo": PassportPhotoSettings,
+  "image-generate-memes": MemeSettings,
+  "image-beautify-screenshots": BeautifySettings,
   // image-favicon, image-strip-metadata, image-info → OneClickSettings (default)
 };
 

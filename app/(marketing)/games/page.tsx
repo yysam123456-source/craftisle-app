@@ -16,6 +16,15 @@ export const metadata = {
 };
 
 const games = [
+  // TODO: the-last-glimmer — 开发中，暂不挂载（用户要求）
+  // {
+  //   id: "the-last-glimmer",
+  //   title: "最后的微光",
+  //   desc: "A ship, five crew, one lighthouse. Survive the storm.",
+  //   badge: "New",
+  //   badgeVariant: "default" as const,
+  //   gradient: "from-blue-900 to-purple-900",
+  // },
   {
     id: "island-builder",
     title: "Mykos Island Builder",

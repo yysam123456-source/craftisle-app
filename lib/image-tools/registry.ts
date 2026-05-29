@@ -9,6 +9,11 @@ import { favicon } from "./process/favicon";
 import { stripMetadata } from "./process/strip-metadata";
 import { info } from "./process/info";
 import { border } from "./process/border";
+import { watermark } from "./process/watermark";
+import { colorAdjust } from "./process/color-adjust";
+import { passportPhoto } from "./process/passport-photo";
+import { generateMeme } from "./process/generate-memes";
+import { beautifyScreenshots } from "./process/beautify-screenshots";
 
 const IMAGE_MIME_TYPES = [
   "image/png",
@@ -83,6 +88,36 @@ export const toolDefinitions: ToolDefinition[] = [
     maxFileSize: MAX_FILE_SIZE,
     processFile: border,
   },
+  {
+    id: "image-watermark",
+    acceptTypes: IMAGE_MIME_TYPES,
+    maxFileSize: MAX_FILE_SIZE,
+    processFile: watermark,
+  },
+  {
+    id: "image-color-adjust",
+    acceptTypes: IMAGE_MIME_TYPES,
+    maxFileSize: MAX_FILE_SIZE,
+    processFile: colorAdjust,
+  },
+  {
+    id: "image-passport-photo",
+    acceptTypes: IMAGE_MIME_TYPES,
+    maxFileSize: MAX_FILE_SIZE,
+    processFile: passportPhoto,
+  },
+  {
+    id: "image-generate-memes",
+    acceptTypes: IMAGE_MIME_TYPES,
+    maxFileSize: MAX_FILE_SIZE,
+    processFile: generateMeme,
+  },
+  {
+    id: "image-beautify-screenshots",
+    acceptTypes: IMAGE_MIME_TYPES,
+    maxFileSize: MAX_FILE_SIZE,
+    processFile: beautifyScreenshots,
+  },
 ];
 
 /** Look up a tool definition by id */
@@ -91,4 +126,9 @@ export function getToolDefinition(id: string): ToolDefinition | undefined {
 }
 
 /** All registered image tool ids — used by tools/page.tsx for discovery */
-export const imageToolIds = toolDefinitions.map((t) => t.id);
+export const imageToolIds = [
+  ...toolDefinitions.map((t) => t.id),
+  // Multi-file tools with dedicated routes (not ToolDefinition-compatible)
+  "find-duplicates",
+  "create-gif",
+];
