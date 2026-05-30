@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>最后的微光 - Canvas 版本</title>
+    <link rel="stylesheet" href="css/style.css?v=20260529">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="ui-overlay">
+            <div id="resource-bar">
+                <div class="resource">
+                    <span class="icon">🔆</span>
+                    <span class="label">光亮</span>
+                    <span class="value" id="light-value">10</span>
+                </div>
+                <div class="resource">
+                    <span class="icon">🏗️</span>
+                    <span class="label">结构</span>
+                    <span class="value" id="structure-value">10</span>
+                </div>
+                <div class="resource">
+                    <span class="icon">⛈️</span>
+                    <span class="label">风暴</span>
+                    <span class="value" id="storm-value">0</span>
+                </div>
+                <div class="resource">
+                    <span class="icon">🔄</span>
+                    <span class="label">回合</span>
+                    <span class="value" id="turn-value">1</span>
+                </div>
+                <div class="resource">
+                    <span class="icon">⭐</span>
+                    <span class="label">积分</span>
+                    <span class="value" id="score-value">0</span>
+                </div>
+            </div>
+            <div id="action-bar">
+                <button class="action-btn" id="btn-roll">🎲 掷骰子</button>
+                <button class="action-btn" id="btn-move">👣 移动</button>
+                <button class="action-btn" id="btn-repair">🔨 修复</button>
+                <button class="action-btn" id="btn-oil">🪔 添油</button>
+                <button class="action-btn" id="btn-fight">⚔️ 抗击</button>
+                <button class="action-btn" id="btn-end">⏭️ 结束回合</button>
+            </div>
+            <div id="log-panel">
+                <div id="log-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js?v=20260529"></script>
+</body>
+</html>

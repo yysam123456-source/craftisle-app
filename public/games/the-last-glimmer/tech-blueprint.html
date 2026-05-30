@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最后的微光 — 技术蓝图 v0.2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #0a0e27;
+            color: #e0e0e0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #f4d03f;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #888780;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #f4d03f;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .architectur-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .architectur-node {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .architectur-node h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #78a9f0;
+            margin-bottom: 8px;
+        }
+
+        .architectur-node p {
+            font-size: 12px;
+            color: #888780;
+            margin-bottom: 4px;
+        }
+
+        .flow-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #78a9f0;
+        }
+
+        .flow-step-number {
+            background: #78a9f0;
+            color: #0a0e27;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .flow-step-content {
+            flex: 1;
+        }
+
+        .flow-step-content h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #e0e0e0;
+            margin-bottom: 4px;
+        }
+
+        .flow-step-content p {
+            font-size: 12px;
+            color: #888780;
+        }
+
+        .data-structure {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+        }
+
+        .data-structure pre {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #78a9f0;
+        }
+
+        .resource-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+
+        .resource-table th {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 500;
+            color: #e0e0e0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .resource-table td {
+            padding: 8px 12px;
+            font-size: 12px;
+            color: #888780;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-ok {
+            color: #2ecc71;
+        }
+
+        .status-missing {
+            color: #e74c3c;
+        }
+
+        .status-css {
+            color: #f39c12;
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #78a9f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 最后的微光 — 技术蓝图 v0.2</h1>
+        <p class="subtitle">系统架构 · 模块依赖 · 数据流 · 核心决策</p>
+
+        <!-- 一、系统架构 -->
+        <div class="section">
+            <h2 class="section-title">一、系统架构（模块依赖关系）</h2>
+            <div class="architectur-grid">
+                <div class="architectur-node">
+                    <h3>📄 index.html</h3>
+                    <p>主入口</p>
+                    <p>挂载 #app</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>🎮 main.js</h3>
+                    <p>主控制</p>
+                    <p>回合循环 · Phase切换</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>📊 game-state.js</h3>
+                    <p>数据模型</p>
+                    <p>GameState · 存档序列化</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>👥 crew-system.js</h3>
+                    <p>船员系统</p>
+                    <p>分配 · 技能 · 结算</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>🌩️ storm-system.js</h3>
+                    <p>风暴系统</p>
+                    <p>移动 · 生成 · 爆炸</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>🏆 victory-system.js</h3>
+                    <p>胜利判定</p>
+                    <p>3胜2败条件</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>🎨 ui-renderer.js</h3>
+                    <p>DOM渲染</p>
+                    <p>船员卡片 · 轨道 · 资源条</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>🖱️ input-handler.js</h3>
+                    <p>用户输入</p>
+                    <p>点击 · 触摸 · 弹窗</p>
+                </div>
+                <div class="architectur-node">
+                    <h3>💾 storage-manager.js</h3>
+                    <p>localStorage存档</p>
+                    <p>save / load / clear</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #888780; text-align: center;">
+                <strong>架构原则</strong>：单一数据源 · 模块解耦 · 无框架依赖 · 事件驱动
+            </p>
+        </div>
+
+        <!-- 二、回合流程 -->
+        <div class="section">
+            <h2 class="section-title">二、回合流程详细时序</h2>
+            <div class="flow-chart">
+                <div class="flow-step">
+                    <div class="flow-step-number">1</div>
+                    <div class="flow-step-content">
+                        <h4>🎮 回合开始（runTurn()）</h4>
+                        <p>round += 1 · 检查level是否变化 · 检查是否超过最大回合数（20）</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">2</div>
+                    <div class="flow-step-content">
+                        <h4>🏠 【灯塔阶段】（lighthousePhase()）</h4>
+                        <p>渲染船员卡片（5个） · 等待玩家分配 · 结束回合</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">3</div>
+                    <div class="flow-step-content">
+                        <h4>🌩️ 【风暴阶段】（stormPhase()）</h4>
+                        <p>风暴压力+1 · 风暴之眼移动 · 生成风暴格子 · 爆炸结算 · 亮度-1</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">4</div>
+                    <div class="flow-step-content">
+                        <h4>🏆 【胜负判定】（checkVictory()）</h4>
+                        <p>胜利条件：VP达标 或 存活10回合 · 失败条件：结构≤0 或 亮度=0</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">5</div>
+                    <div class="flow-step-content">
+                        <h4>🔄 下一回合 或 游戏结束</h4>
+                        <p>若未分出胜负 → 保存进度 → runTurn() · 若胜负已分 → 显示弹窗</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 三、核心数据结构 -->
+        <div class="section">
+            <h2 class="section-title">三、核心数据结构（GameState）</h2>
+            <div class="data-structure">
+                <pre>
+const GameState = {
+  // === 进度 ===
+  round: 0,                // 当前回合（1~20）
+  level: 1,                 // 当前关卡（1~5）
+  phase: 'LIGHTHOUSE',      // 当前阶段
+
+  // === 风暴压力 ===
+  stormPressure: 1,          // 当前压力（0~5）
+
+  // === 资源 ===
+  resources: {
+    light: 5,               // 亮度（0~10）
+    structure: 10,           // 结构值（0~10）
+    victoryPoints: 0,         // 胜利点数（0~∞）
+    dreamSoothers: 0          // 抚慰物数量（0~5）
+  },
+
+  // === 灯塔 ===
+  lighthouse: {
+    position: 0,            // 轨道位置（0~40）
+    maxStructure: 10
+  },
+
+  // === 风暴 ===
+  storm: {
+    eyePosition: 20,        // 风暴之眼位置（0~40）
+    tiles: [],               // 风暴格子数组
+    gameOver: null | 'WIN_VP' | ...
+  },
+
+  // === 船员（5名）===
+  crew: [
+    { id: 1, name: '船员A', status: 'IDLE', skill: null },
+    // ... 其他4个船员
+  ]
+};
+                </pre>
+            </div>
+        </div>
+
+        <!-- 四、资源状态 -->
+        <div class="section">
+            <h2 class="section-title">四、资源状态（已下载 vs 缺失）</h2>
+            <table class="resource-table">
+                <thead>
+                    <tr>
+                        <th>资源类型</th>
+                        <th>状态</th>
+                        <th>来源</th>
+                        <th>替代方案</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UI按钮（92个）</td>
+                        <td class="status-ok">✅ 已下载</td>
+                        <td>Kenney UI Pack</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>图标（12个）</td>
+                        <td class="status-ok">✅ 已下载</td>
+                        <td>Kenney UI Pack</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>船员头像（5个）</td>
+                        <td class="status-missing">❌ 缺失</td>
+                        <td>Character Pack（镜像无）</td>
+                        <td class="status-css">CSS绘制（首字母A-E）</td>
+                    </tr>
+                    <tr>
+                        <td>风暴/灯塔图标</td>
+                        <td class="status-missing">❌ 缺失</td>
+                        <td>Icon Pack（镜像无）</td>
+                        <td class="status-css">CSS Emoji（🚨👁️🌀）</td>
+                    </tr>
+                    <tr>
+                        <td>骰子动画</td>
+                        <td class="status-missing">❌ 缺失</td>
+                        <td>-</td>
+                        <td class="status-css">CSS @keyframes 绘制</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 12px; color: #888780;">
+                <strong>结论</strong>：100%的资源已经可用（Kenney UI Pack + CSS自制），不需要再下载任何资源，可以立即开始编码！
+            </p>
+        </div>
+
+        <!-- 五、开发顺序 -->
+        <div class="section">
+            <h2 class="section-title">五、开发顺序（推荐）</h2>
+            <div class="flow-chart">
+                <div class="flow-step">
+                    <div class="flow-step-number">1</div>
+                    <div class="flow-step-content">
+                        <h4>文件结构 + 基础HTML/CSS（2h）</h4>
+                        <p>无依赖 · 搭建项目骨架</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">2</div>
+                    <div class="flow-step-content">
+                        <h4>GameState数据模型（1h）</h4>
+                        <p>无依赖 · 定义核心数据结构</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">3</div>
+                    <div class="flow-step-content">
+                        <h4>船员系统（3h）</h4>
+                        <p>依赖：GameState · 分配/结算/技能</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">4</div>
+                    <div class="flow-step-content">
+                        <h4>UI渲染（3h）</h4>
+                        <p>依赖：GameState · 船员卡片/资源条</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-number">5</div>
+                    <div class="flow-step-content">
+                        <h4>完整回合循环（2h）</h4>
+                        <p>依赖：以上全部 · 可玩原型完成</p>
+                    </div>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #888780; text-align: center;">
+                <strong>总计（原型可玩）</strong>：步骤 1~5 ≈ <strong>11h</strong>（约2个工作日）
+            </p>
+        </div>
+    </div>
+</body>
+</html>
