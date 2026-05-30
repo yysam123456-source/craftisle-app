@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getToolMeta, type ToolMeta } from "@/lib/tools";
-import AdSlot from "@/components/ads/AdSlot";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 export async function generateMetadata({
   params,
