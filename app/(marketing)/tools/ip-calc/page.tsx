@@ -17,13 +17,13 @@ export default function IpCalcPage() {
     try {
       const parts = ip.split('.').map(Number);
       if (parts.length !== 4 || parts.some(p => p < 0 || p > 255 || isNaN(p))) {
-        toast.error("无效的 IP 地址");
+        toast.error("Invalid IP address");
         return;
       }
 
       const maskNum = parseInt(mask);
       if (isNaN(maskNum) || maskNum < 0 || maskNum > 32) {
-        toast.error("无效的掩码 (0-32)");
+        toast.error("Invalid mask bits (0-32)");
         return;
       }
 
@@ -57,7 +57,7 @@ export default function IpCalcPage() {
       });
       
     } catch {
-      toast.error("Lap算出错");
+      toast.error("Calculation error");
     }
   };
 
@@ -68,15 +68,15 @@ export default function IpCalcPage() {
           <Network className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">IP 地址Lap算</h1>
-          <p className="text-muted-foreground">子网掩码、网络地址、可用主机范围Lap算</p>
+          <h1 className="text-2xl font-bold tracking-tight">IP 地址Calculate</h1>
+          <p className="text-muted-foreground">Subnet Mask、网络地址、Host RangeCalculate</p>
         </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle className="text-base">网络Config</CardTitle>
+            <CardTitle className="text-base">Network Config</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -84,35 +84,35 @@ export default function IpCalcPage() {
               <Input value={ip} onChange={(e) => setIp(e.target.value)} placeholder="如: 192.168.1.1" />
             </div>
             <div className="space-y-2">
-              <Label>掩码位 (CIDR)</Label>
+              <Label>掩码 (CIDR)</Label>
               <Input value={mask} onChange={(e) => setMask(e.target.value)} placeholder="如: 24" type="number" />
             </div>
             <Button onClick={calculate} className="w-full gap-2 mt-2">
               <Calculator className="h-4 w-4" />
-              立即Lap算
+              Calculate
             </Button>
           </CardContent>
         </Card>
 
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="text-base">Lap算Result</CardTitle>
+            <CardTitle className="text-base">CalculateResult</CardTitle>
           </CardHeader>
           <CardContent>
             {!result ? (
               <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
                  <Search className="h-12 w-12 mb-2 opacity-20" />
-                 <p>EnterConfig并ClickLap算</p>
+                 <p>EnterConfig并ClickCalculate</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
                  <ResultItem label="网络地址" value={result.network} cidr={result.cidr} />
-                 <ResultItem label="广播地址" value={result.broadcast} />
-                 <ResultItem label="子网掩码" value={result.netmask} />
+                 <ResultItem label="Broadcast Address" value={result.broadcast} />
+                 <ResultItem label="Subnet Mask" value={result.netmask} />
                  <ResultItem label="T掩码 (Wildcard)" value={result.wildcard} />
                  <ResultItem label="可用主机Min" value={result.hostMin} />
                  <ResultItem label="可用主机Max" value={result.hostMax} />
-                 <ResultItem label="可用主机数" value={result.hosts.toLocaleString()} />
+                 <ResultItem label="Available Hosts" value={result.hosts.toLocaleString()} />
               </div>
             )}
           </CardContent>

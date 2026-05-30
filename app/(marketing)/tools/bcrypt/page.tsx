@@ -62,8 +62,8 @@ export default function BcryptPage() {
           <Lock className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Bcrypt 哈希Generate与Validate</h1>
-          <p className="text-muted-foreground">Generate安全的 Bcrypt 密码哈希或Validate明文与哈希是否Match</p>
+          <h1 className="text-2xl font-bold tracking-tight">Bcrypt Hash Generator & Validator</h1>
+          <p className="text-muted-foreground">Generate secure Bcrypt password hashes or validate plaintext against hash</p>
         </div>
       </div>
 
@@ -73,22 +73,22 @@ export default function BcryptPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
                 <Hash className="h-5 w-5 text-primary" />
-                Generate哈希
+                Generate Hash
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-                <Label>明文密码</Label>
+                <Label>Plaintext Password</Label>
                 <Input 
                     value={plainText}
                     onChange={(e) => setPlainText(e.target.value)}
-                    placeholder="Enter要Encrypt的文本"
+                    placeholder="Enter text to encrypt"
                 />
             </div>
 
             <div className="space-y-4">
                 <div className="flex justify-between">
-                    <Label>Salt Rounds (Strong度): {saltRounds}</Label>
+                    <Label>Salt Rounds (Strength): {saltRounds}</Label>
                     <span className="text-xs text-muted-foreground">越高越慢</span>
                 </div>
                 <Slider
@@ -101,7 +101,7 @@ export default function BcryptPage() {
             </div>
 
             <Button onClick={handleGenerate} disabled={!plainText} className="w-full">
-                Generate哈希
+                Generate Hash
             </Button>
 
             {hashResult && (
@@ -125,21 +125,21 @@ export default function BcryptPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-emerald-500" />
-                Validate哈希
+                Validate Hash
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-                <Label>明文密码</Label>
+                <Label>Plaintext Password</Label>
                 <Input 
                     value={verifyText}
                     onChange={(e) => setVerifyText(e.target.value)}
-                    placeholder="Enter明文"
+                    placeholder="Enter plaintext"
                 />
             </div>
 
             <div className="space-y-2">
-                <Label>Bcrypt 哈希值</Label>
+                <Label>Bcrypt Hash Value</Label>
                 <Input 
                     value={verifyHash}
                     onChange={(e) => setVerifyHash(e.target.value)}

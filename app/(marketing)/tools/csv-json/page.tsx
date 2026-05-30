@@ -135,8 +135,8 @@ export default function CsvJsonPage() {
           <CardTitle className="text-sm">Usage</CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-muted-foreground space-y-2">
-           <p>1. <strong>CSV &rarr; JSON</strong>: 第一行将被视为标题（Key），后续行为数据内容。</p>
-           <p>2. <strong>JSON &rarr; CSV</strong>: JSON 必须是一对象数组，第一对象的属性名将作为 CSV 的标题。</p>
+           <p>1. <strong>CSV → JSON</strong>: The first row is treated as headers (keys), subsequent rows are data.</p>
+           <p>2. <strong>JSON → CSV</strong>: JSON must be an array of objects. The properties of the first object become CSV column headers.</p>
         </CardContent>
       </Card>
     </div>

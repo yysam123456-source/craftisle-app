@@ -73,7 +73,7 @@ export default function ImageBase64Page() {
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Image转 Base64</CardTitle>
+              <CardTitle className="text-base">Image to Base64</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-8 bg-muted/30 hover:bg-muted/50 transition-colors relative">
@@ -137,7 +137,7 @@ export default function ImageBase64Page() {
             ) : (
               <div className="text-center text-muted-foreground italic space-y-2">
                 <FileImage className="h-12 w-12 mx-auto opacity-10" />
-                <p>等待ImageUpload或 Base64 Input</p>
+                <p>WaitingImageUploador Base64 Input</p>
               </div>
             )}
           </CardContent>

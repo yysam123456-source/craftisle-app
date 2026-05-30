@@ -221,7 +221,7 @@ export default function QRCodeGenerator() {
                         handleConfigChange("includeMargin", checked)
                       }
                     />
-                    <Label htmlFor="includeMargin">显示Border</Label>
+                    <Label htmlFor="includeMargin">Show Border</Label>
                   </div>
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function QRCodeGenerator() {
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-medium flex items-center gap-2">
                 <Eye className="h-4 w-4" />
-                实时Preview
+                Live Preview
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -270,7 +270,7 @@ export default function QRCodeGenerator() {
                 ) : (
                   <div className="text-muted-foreground text-center">
                     <QrCode className="h-12 w-12 mx-auto mb-2 opacity-20" />
-                    <p>请在左侧Input内容后查看Preview</p>
+                    <p>Enter content on the left to preview</p>
                   </div>
                 )}
               </div>
@@ -288,7 +288,7 @@ export default function QRCodeGenerator() {
                   className="w-full h-12 text-lg gap-2"
                 >
                   <Download className="h-5 w-5" />
-                  Download为 PNG
+                  Download as PNG
                 </Button>
               </CardContent>
             </Card>
@@ -306,29 +306,29 @@ export default function QRCodeGenerator() {
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">功能特点</h4>
+              <h4 className="font-semibold text-sm">Features</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Support文本、网址等多种内容</li>
-                <li>CustomQR CodeColor和Background色</li>
-                <li>Support中心图标</li>
-                <li>多种Error Correction可选</li>
+                <li>Supporttext、网址等多种内容</li>
+                <li>Custom QR code colors and background</li>
+                <li>Supports standard image formats</li>
+                <li>Multiple error correction levels</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">使用技巧</h4>
+              <h4 className="font-semibold text-sm">Usage Tips</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Error Correction越高容错性越Strong</li>
-                <li>中心图标建议使用H方形</li>
-                <li>深色QR Code配浅色Background效果更佳</li>
+                <li>Higher error correction = better durability</li>
+                <li>Center logo: square shape recommended</li>
+                <li>Dark QR codes work best on light backgrounds</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">应用场景</h4>
+              <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>网站链接快速分享</li>
-                <li>Contact方式信息传递</li>
-                <li>活动邀请码Generate</li>
-                <li>产品信息展示</li>
+                <li>Contact方式infomation传递</li>
+                <li>Event invitation code generation</li>
+                <li>产品infomation展示</li>
               </ul>
             </div>
           </div>

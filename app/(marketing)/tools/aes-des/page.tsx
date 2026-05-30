@@ -38,16 +38,16 @@ export default function AesDesPage() {
 
         if (mode === "encrypt") {
             result = algo.encrypt(input, key).toString();
-            toast.success("EncryptSuccess");
+            toast.success("Encryption successful");
         } else {
             const bytes = algo.decrypt(input, key);
             result = bytes.toString(CryptoJS.enc.Utf8);
-            if (!result) throw new Error("DecryptFailed（可能是KeyError）");
-            toast.success("DecryptSuccess");
+            if (!result) throw new Error("Decryption failed (wrong key?)");
+            toast.success("Decryption successful");
         }
         setOutput(result);
     } catch (e: any) {
-        toast.error("ProcessFailed: " + e.message);
+        toast.error("Process failed: " + e.message);
         setOutput("");
     }
   };
@@ -80,7 +80,7 @@ export default function AesDesPage() {
             </CardHeader>
             <CardContent className="space-y-4">
                 <div className="space-y-2">
-                    <Label>Input Text (明文或密文)</Label>
+                    <Label>Input Text (Plaintext or Ciphertext)</Label>
                     <Textarea 
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
@@ -108,7 +108,7 @@ export default function AesDesPage() {
                     <Textarea 
                         readOnly
                         value={output}
-                        placeholder="Result将显示在这里..."
+                        placeholder="Results will appear here..."
                         className="min-h-37.5 font-mono bg-muted/30"
                     />
                 </div>
@@ -143,7 +143,7 @@ export default function AesDesPage() {
                         placeholder="Enter encryption/decryption key"
                     />
                     <p className="text-xs text-muted-foreground">
-                        安全性Tip：所有Lap算均在本地浏览器执行，Key不会发送到服务器。
+                        💡 Security Tip: All calculations are performed locally in your browser. Your key is never sent to any server.
                     </p>
                 </div>
             </CardContent>

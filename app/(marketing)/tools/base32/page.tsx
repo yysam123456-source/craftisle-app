@@ -145,8 +145,8 @@ export default function Base32Page() {
         </CardHeader>
         <CardContent>
           <div className="text-sm text-muted-foreground space-y-2">
-            <p>Base32 使用 32 字符的集合（A-Z 和 2-7）来表示二进制数据。它常用于无需区分Case的File系统或人工Input的场景。</p>
-            <p>本Tools遵循 RFC 4648 标准。</p>
+            <p>Base32 使用 32 character的集合（A-Z 和 2-7）来表示二进制数据。它常用于无需区分Case的File系统or人工Input的场景。</p>
+            <p>baseTools遵循 RFC 4648 standardstandard。</p>
           </div>
         </CardContent>
       </Card>

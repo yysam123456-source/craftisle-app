@@ -22,7 +22,7 @@ export const apiCatalog = [
   {
     api: '/api/ip/:ip?',
     example: '/api/ip',
-    name: 'IP 地址查询，参数可为空，默认查询当前请求 IP',
+    name: 'IP lookup (optional IP param, defaults to request IP)',
   },
   {
     api: '/api/svg/:size',
@@ -37,7 +37,7 @@ export const apiCatalog = [
   {
     api: '/api/qrcode/:content',
     example: '/api/qrcode/hello',
-    name: '二维码生成，内容请进行 URL 编码',
+    name: 'QR code generator (URL-encode content)',
   },
   {
     api: '/api/nicebing/:type?',

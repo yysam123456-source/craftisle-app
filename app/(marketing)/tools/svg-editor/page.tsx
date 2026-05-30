@@ -18,7 +18,7 @@ function parseSvg(markup: string) {
   if (typeof DOMParser === "undefined") return "";
   const parser = new DOMParser();
   const doc = parser.parseFromString(markup, "image/svg+xml");
-  return doc.querySelector("parsererror") ? "SVG ParseFailed，请检查标签与属性。" : "";
+  return doc.querySelector("parsererror") ? "SVG parsing failed. Please check tags and attributes." : "";
 }
 
 export default function SvgEditorPage() {

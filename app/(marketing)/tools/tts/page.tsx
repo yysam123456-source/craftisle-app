@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 
 export default function TtsPage() {
-  const [text, setText] = useState("欢迎使用爱拓Tools箱，这是一基于浏览器 Web Speech API 实现的Text转语音Tools。您可以自由调节语速、音调和音量。");
+  const [text, setText] = useState("Welcome to i-TTSToolkit，Text-to-Speech tool powered by browser Web Speech API. Adjust speech rate, pitch, and volume.");
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [selectedVoice, setSelectedVoice] = useState<string>("");
   const [rate, setRate] = useState(1);
@@ -67,7 +67,7 @@ export default function TtsPage() {
     utterance.onend = () => setIsActive(false);
     utterance.onerror = () => {
       setIsActive(false);
-      toast.error("播放出错");
+      toast.error("Playback error");
     };
 
     synth.current.speak(utterance);
@@ -87,7 +87,7 @@ export default function TtsPage() {
           <Volume2 className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Text转语音 (TTS)</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Text-to-Speech (TTS)</h1>
           <p className="text-muted-foreground">Uses browser built-in API, no plugins needed</p>
         </div>
       </div>
@@ -205,8 +205,8 @@ export default function TtsPage() {
             <li>Supports multiple languages, depending on your OS and browser</li>
           </ul>
           <ul className="list-disc pl-4 space-y-1">
-            <li>可调节语速、音调和音量以获得最佳效果</li>
-            <li>推荐使用 Chrome 或 Edge 浏览器以获得最佳体验</li>
+            <li>可调节语速、音调和音量 with 获得最佳效果</li>
+            <li>推荐使用 Chrome or Edge 浏览器 with 获得最佳体验</li>
           </ul>
         </CardContent>
       </Card>

@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Search, X } from "lucide-react";
 import { toolMeta, CATEGORY_LIST } from "@/lib/tools";
+import { imageToolIds } from "@/lib/image-tools/ids";
 import type { ToolMeta } from "@/lib/tools";
 
 export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
@@ -21,21 +22,31 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    return toolDirs.filter((dirName) => {
-      const meta = toolMeta[dirName];
-      if (!meta) return false;
+    const pinned = ["pdf-tools", ...imageToolIds];
+    return toolDirs
+      .filter((dirName) => {
+        const meta = toolMeta[dirName];
+        if (!meta) return false;
 
-      const matchesSearch =
-        !search ||
-        meta.title.toLowerCase().includes(search.toLowerCase()) ||
-        meta.desc.toLowerCase().includes(search.toLowerCase()) ||
-        dirName.toLowerCase().includes(search.toLowerCase());
+        const matchesSearch =
+          !search ||
+          meta.title.toLowerCase().includes(search.toLowerCase()) ||
+          meta.desc.toLowerCase().includes(search.toLowerCase()) ||
+          dirName.toLowerCase().includes(search.toLowerCase());
 
-      const matchesCategory =
-        !activeCategory || meta.category === activeCategory;
+        const matchesCategory =
+          !activeCategory || meta.category === activeCategory;
 
-      return matchesSearch && matchesCategory;
-    });
+        return matchesSearch && matchesCategory;
+      })
+      .sort((a, b) => {
+        const aIdx = pinned.indexOf(a);
+        const bIdx = pinned.indexOf(b);
+        if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+        if (aIdx !== -1) return -1;
+        if (bIdx !== -1) return 1;
+        return a.localeCompare(b);
+      });
   }, [toolDirs, search, activeCategory]);
 
   const categoryCounts: Record<string, number> = {};

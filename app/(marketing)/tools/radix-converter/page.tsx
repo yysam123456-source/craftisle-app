@@ -156,10 +156,10 @@ export default function RadixConverterPage() {
         </CardHeader>
         <CardContent>
           <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-2">
-            <li><strong>Binary:</strong> 基数为2，由Number0和1组成。</li>
-            <li><strong>Octal:</strong> 基数为8，由Number0到7组成。</li>
-            <li><strong>Decimal:</strong> 基数为10，是我们日常生活中最常用的Lap数方式。</li>
-            <li><strong>Hexadecimal:</strong> 基数为16，由0-9和A-F（代表10-15）组成。</li>
+            <li><strong>Binary:</strong> base为2，composed of digits 0 and 1。</li>
+            <li><strong>Octal:</strong> base为8，composed of digits 0 through 7。</li>
+            <li><strong>Decimal:</strong> base为10，is the most commonly usedLap数方式。</li>
+            <li><strong>Hexadecimal:</strong> base为16，of0-9和A-F (representing 10-15)组成。</li>
           </ul>
         </CardContent>
       </Card>

@@ -30,7 +30,7 @@ interface GhostSettings {
 }
 
 /**
- * 通用 Ghost Content API 请求函数
+ * Generic Ghost Content API request helper
  */
 async function ghostFetch(endpoint: string, params: Record<string, string> = {}) {
   if (!GHOST_URL || !GHOST_KEY) {
@@ -50,7 +50,7 @@ async function ghostFetch(endpoint: string, params: Record<string, string> = {})
   });
 
   if (!res.ok) {
-    throw new Error(`Ghost API 错误: ${res.status} ${res.statusText}`);
+    throw new Error(`Ghost API error: ${res.status} ${res.statusText}`);
   }
 
   return res.json();
@@ -74,7 +74,7 @@ export async function getPosts(
     });
     return data?.posts || [];
   } catch (error) {
-    console.error("Ghost CMS 获取文章失败:", error);
+    console.error("Ghost CMS: failed to fetch posts:", error);
     return [];
   }
 }
@@ -95,7 +95,7 @@ export async function getPostBySlug(
     });
     return data?.posts?.[0] || null;
   } catch (error) {
-    console.error(`Ghost CMS 获取文章失败 (slug: ${slug}):`, error);
+    console.error(`Ghost CMS: failed to fetch post (slug: ${slug}):`, error);
     return null;
   }
 }
@@ -110,7 +110,7 @@ export async function getSettings(): Promise<GhostSettings | null> {
     const data = await ghostFetch("settings", {});
     return data?.settings || null;
   } catch (error) {
-    console.error("Ghost CMS 获取设置失败:", error);
+    console.error("Ghost CMS: failed to fetch settings:", error);
     return null;
   }
 }

@@ -37,7 +37,7 @@ export default function UrlEncodePage() {
       setOutput(decoded);
       toast.success("Decoded successfully");
     } catch {
-      toast.error("DecodeFailed，请检查Input是否为有效的 URL EncodeString");
+      toast.error("Decoding failed — please verify input is valid URL-encoded");
     }
   };
 
@@ -80,9 +80,9 @@ export default function UrlEncodePage() {
           <Link className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">URL 编Decode</h1>
+          <h1 className="text-2xl font-bold tracking-tight">URL Encode & Decode</h1>
           <p className="text-muted-foreground">
-            URL 参数Encode与Decode，Process特殊字符
+            URL Encode & Decode — process special characters
           </p>
         </div>
       </div>
@@ -106,7 +106,7 @@ export default function UrlEncodePage() {
           </Button>
           <Button variant="outline" onClick={swapInputOutput} className="gap-2">
             <ArrowLeftRight className="h-4 w-4 rotate-90" />
-            交换
+            
           </Button>
           <Button variant="ghost" onClick={clearAll} className="gap-2">
             <Eraser className="h-4 w-4" />
@@ -119,7 +119,7 @@ export default function UrlEncodePage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-base font-medium">
-              {mode === "encode" ? "Raw文本" : "URL EncodeString"}
+              {mode === "encode" ? "Raw Text" : "URL EncodeString"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -128,8 +128,8 @@ export default function UrlEncodePage() {
               onChange={(e) => setInput(e.target.value)}
               placeholder={
                 mode === "encode"
-                  ? "Enter要Encode的文本，如：你好 世界"
-                  : "Enter要Decode的 URL EncodeString，如：%E4%BD%A0%E5%A5%BD"
+                  ? "EnterEncodetext，： "
+                  : "EnterDecode URL EncodeString，：%E4%BD%A0%E5%A5%BD"
               }
               className="min-h-75 font-mono text-sm resize-none"
             />
@@ -173,15 +173,15 @@ export default function UrlEncodePage() {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>URL Encode用于Process URL 中的特殊字符和非 ASCII 字符</li>
+                <li>URL Encode用于Process URL 的Special Characters和非 ASCII character</li>
                 <li>空格会被Encode为 %20</li>
-                <li>中Text符会被Encode为 UTF-8 Format的百分号Encode</li>
+                <li>Textcharacter会被Encode为 UTF-8 Format的百分symbol(s)Encode</li>
               </ul>
             </div>
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>使用 encodeURIComponent 进行Encode</li>
-                <li>保留字符如 - _ . ! ~ * ' ( ) 不会被Encode</li>
+                <li>保留character如 - _ . ! ~ * ' ( ) 不会被Encode</li>
                 <li>常用于构建 URL 查询参数</li>
               </ul>
             </div>

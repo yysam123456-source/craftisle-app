@@ -76,7 +76,7 @@ export default function RegexPage() {
                    value={pattern} 
                    onChange={(e) => setPattern(e.target.value)}
                    className={cn("pl-6 pr-10 font-mono", error && "border-destructive focus-visible:ring-destructive")}
-                   placeholder="InputH则表达式模式..."
+                   placeholder="Enter regular expression pattern..."
                  />
                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground font-mono">/</div>
                </div>
@@ -104,7 +104,7 @@ export default function RegexPage() {
                  <Textarea 
                    value={text}
                    onChange={(e) => setText(e.target.value)}
-                   placeholder="请在此Input需要Match的文本..."
+                   placeholder="Input text to match..."
                    className="min-h-50 font-mono leading-relaxed"
                  />
               </CardContent>

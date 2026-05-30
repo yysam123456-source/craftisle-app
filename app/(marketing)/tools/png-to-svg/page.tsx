@@ -87,7 +87,7 @@ export default function PngToSvgPage() {
             <CardContent>
               <label className="flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed bg-muted/30 p-8 transition-colors hover:bg-muted/50">
                 <Upload className="mb-4 h-10 w-10 text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">Click选择 PNG File</p>
+                <p className="text-sm text-muted-foreground">ClickedSelect PNG File</p>
                 <p className="mt-1 text-xs text-muted-foreground/60">Only supports .png</p>
                 <input type="file" accept="image/png" onChange={handleFileChange} className="sr-only" />
               </label>
@@ -96,7 +96,7 @@ export default function PngToSvgPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0">
-              <CardTitle className="text-base">SVG 标记</CardTitle>
+              <CardTitle className="text-base">SVG Standard Notes</CardTitle>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={copySvg} disabled={!svgMarkup}><Copy className="mr-2 h-4 w-4" />Copy</Button>
                 <Button variant="outline" size="sm" onClick={() => { setPngDataUrl(""); setSvgMarkup(""); setSourceName(""); setSourceSize(null); }} disabled={!svgMarkup}><Trash2 className="mr-2 h-4 w-4" />Clear</Button>
@@ -122,7 +122,7 @@ export default function PngToSvgPage() {
           {svgMarkup && sourceSize && (
             <Alert>
               <AlertTriangle className="h-4 w-4" />
-              <AlertTitle>Convert信息</AlertTitle>
+              <AlertTitle>Convertinfomation</AlertTitle>
               <AlertDescription>{sourceName} · {sourceSize.width} × {sourceSize.height}</AlertDescription>
             </Alert>
           )}

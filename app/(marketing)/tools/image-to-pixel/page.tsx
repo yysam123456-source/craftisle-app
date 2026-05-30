@@ -145,7 +145,7 @@ export default function ImageToPixelPage() {
                     </Button>
                     <Button variant="outline" onClick={() => setImageSrc(null)} disabled={!imageSrc} className="w-full">
                         <RefreshCw className="h-4 w-4 mr-2" />
-                        重NewUpload
+                        NewUpload
                     </Button>
                 </div>
             </CardContent>

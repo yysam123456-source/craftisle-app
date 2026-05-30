@@ -40,7 +40,7 @@ export default function JsonFormatterPage() {
       setErrorMsg('');
       return parsed;
     } catch (err) {
-      const msg = err instanceof Error ? err.message : '未知Error';
+      const msg = err instanceof Error ? err.message : 'Unknown error';
       setErrorMsg(msg);
       setIsValid(false);
       return null;
@@ -52,7 +52,7 @@ export default function JsonFormatterPage() {
     if (parsed !== null) {
       const formatted = JSON.stringify(parsed, null, 2);
       setOutputJson(formatted);
-      toast.success('FormatSuccess');
+      toast.success('Formatted successfully');
     }
   }, [inputJson, validateJson]);
 
@@ -61,14 +61,14 @@ export default function JsonFormatterPage() {
     if (parsed !== null) {
       const compressed = JSON.stringify(parsed);
       setOutputJson(compressed);
-      toast.success('MinifySuccess');
+      toast.success('Minified successfully');
     }
   }, [inputJson, validateJson]);
 
   const validateOnly = useCallback(() => {
     validateJson(inputJson);
     if (inputJson.trim() && isValid) {
-      toast.success('JSON FormatH确');
+      toast.success('JSON  format');
     }
   }, [inputJson, validateJson, isValid]);
 
@@ -110,7 +110,7 @@ export default function JsonFormatterPage() {
 
   const loadExample = useCallback(() => {
     const example = {
-      name: "爱拓Tools箱",
+      name: "Toolkit",
       version: "1.0.0",
       features: ["JSONFormat", "Minify", "Validate"],
       config: {
@@ -144,7 +144,7 @@ export default function JsonFormatterPage() {
             <Code className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">JSON FormatTools</h1>
+            <h1 className="text-2xl font-bold tracking-tight">JSON Formatter</h1>
             <p className="text-muted-foreground">FormatJSON，使其更易读</p>
           </div>
         </div>
@@ -193,12 +193,12 @@ export default function JsonFormatterPage() {
 
           <Button variant="ghost" onClick={loadExample} className="gap-2">
             <FilePlus className="h-4 w-4" />
-            LoadExample
+            Load example
           </Button>
 
           <Button variant="ghost" onClick={clearAll} className="gap-2 text-destructive hover:text-destructive/90 hover:bg-destructive/10">
             <Eraser className="h-4 w-4" />
-            Clear内容
+            Clear content
           </Button>
         </CardContent>
       </Card>
@@ -224,7 +224,7 @@ export default function JsonFormatterPage() {
             {isValid !== null && (
               <Badge variant={isValid ? "default" : "destructive"} className={isValid ? "bg-emerald-500 hover:bg-emerald-600" : ""}>
                  {isValid ? <Check className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
-                 {isValid ? 'FormatH确' : 'FormatError'}
+                 {isValid ? ' format' : 'FormatError'}
               </Badge>
             )}
           </CardHeader>
@@ -232,7 +232,7 @@ export default function JsonFormatterPage() {
             <Textarea
               value={inputJson}
               onChange={(e) => handleInputChange(e.target.value)}
-              placeholder="EnterJSON数据..."
+              placeholder="Enter or paste JSON data..."
               className="min-h-125 h-full border-0 rounded-none focus-visible:ring-0 resize-none font-mono text-sm leading-relaxed p-4 bg-transparent"
             />
             {errorMsg && (
@@ -242,7 +242,7 @@ export default function JsonFormatterPage() {
             )}
           </CardContent>
           <div className="p-2 border-t bg-muted/30 text-xs text-muted-foreground flex justify-end">
-            字符数: {charCount}
+            character数: {charCount}
           </div>
         </Card>
 
@@ -250,7 +250,7 @@ export default function JsonFormatterPage() {
         <Card className="flex flex-col h-full">
           <CardHeader className="py-3 flex flex-row items-center justify-between">
             <CardTitle className="text-base font-medium flex items-center gap-2">
-              FormatResult
+              Formatted Result
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -267,7 +267,7 @@ export default function JsonFormatterPage() {
             <Textarea
               value={outputJson}
               readOnly
-              placeholder="ProcessResult将显示在这里..."
+              placeholder="ProcessResults will appear here..."
               className="min-h-125 h-full border-0 rounded-none focus-visible:ring-0 resize-none font-mono text-sm leading-relaxed p-4 bg-transparent"
             />
           </CardContent>
@@ -284,7 +284,7 @@ export default function JsonFormatterPage() {
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">Format模式</h4>
+              <h4 className="font-semibold text-sm">Format Mode</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>BeautifyJSON结构，增加缩进</li>
                 <li>提高可读性</li>
@@ -292,24 +292,24 @@ export default function JsonFormatterPage() {
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">Minify模式</h4>
+              <h4 className="font-semibold text-sm">Minify Mode</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>移除所有空白字符</li>
+                <li>移除所有空白character</li>
                 <li>减小File Size</li>
                 <li>适合生产环境</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">Validate模式</h4>
+              <h4 className="font-semibold text-sm">Validate Mode</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>检查JSON语法H确性</li>
-                <li>显示详细统Lap信息</li>
+                <li>检查JSON语法H性</li>
+                <li>显示详细Statsinfomation</li>
                 <li>提供Error诊断</li>
               </ul>
             </div>
           </div>
           <div className="mt-4 p-3 bg-muted rounded-md text-xs text-muted-foreground">
-            💡 Tip：Support复杂的嵌套结构，包括对象、数组、String、Number、布尔值和null值。
+            💡 Tip：Support，、、String、Number、null。
           </div>
         </CardContent>
       </Card>

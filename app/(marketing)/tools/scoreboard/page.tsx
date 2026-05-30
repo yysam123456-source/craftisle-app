@@ -43,7 +43,7 @@ export default function ScoreboardPage() {
           </div>
         </div>
         <div className="flex gap-2">
-           <Button variant="outline" size="sm" onClick={handleSwap}>交换位置</Button>
+           <Button variant="outline" size="sm" onClick={handleSwap}></Button>
            <Button variant="outline" size="sm" onClick={handleReset} className="text-destructive hover:text-destructive">
               <RotateCcw className="h-4 w-4 mr-2" />
               Reset score

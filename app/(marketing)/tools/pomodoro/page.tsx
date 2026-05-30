@@ -81,7 +81,7 @@ export default function PomodoroPage() {
           <Timer className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">番茄钟</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Pomodoro Timer</h1>
           <p className="text-muted-foreground">Focus on work, rest scientifically (Pomodoro Technique)</p>
         </div>
       </div>

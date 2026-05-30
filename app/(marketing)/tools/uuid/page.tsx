@@ -23,7 +23,7 @@ export default function UuidPage() {
   );
 
   const generateUUID = (): string => {
-    // Generate符合 RFC 4122 版本 4 的 UUID
+    // Generatecharacter RFC 4122 base 4  UUID
     const template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";
     return template.replace(/[xy]/g, (c) => {
       const r = (Math.random() * 16) | 0;
@@ -67,7 +67,7 @@ export default function UuidPage() {
     }
     try {
       await navigator.clipboard.writeText(uuids.join("\n"));
-      toast.success("Copied所有 UUID");
+      toast.success("All UUIDs copied");
     } catch {
       toast.error("Copy failed");
     }
@@ -87,7 +87,7 @@ export default function UuidPage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">UUID Generate</h1>
           <p className="text-muted-foreground">
-            Generate符合 RFC 4122 标准的 UUID v4 通用唯一标识符
+            Generatecharacter RFC 4122 standardstandard UUID v4 Universally Unique Identifier (UUID)
           </p>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function UuidPage() {
         <CardContent className="flex flex-wrap items-center gap-4 p-4">
           <div className="flex items-center gap-2">
             <Label htmlFor="count" className="whitespace-nowrap">
-              数量：
+              ：
             </Label>
             <Input
               id="count"
@@ -121,7 +121,7 @@ export default function UuidPage() {
               <SelectContent>
                 <SelectItem value="default">Default（Lowercase）</SelectItem>
                 <SelectItem value="uppercase">Uppercase</SelectItem>
-                <SelectItem value="nohyphen">无连字符</SelectItem>
+                <SelectItem value="nohyphen">无连character</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -190,25 +190,25 @@ export default function UuidPage() {
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">什么是 UUID</h4>
+              <h4 className="font-semibold text-sm">What is UUID?</h4>
               <p className="text-sm text-muted-foreground">
-                UUID（Universally Unique Identifier）是一种 128
-                位的标识符，用于在分布式系统中唯一标识信息。
+                UUID（Universally Unique Identifier） 128
+                standardcharacter，standardinfomation。
               </p>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">UUID v4 特点</h4>
+              <h4 className="font-semibold text-sm">UUID v4 Features</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground">
-                <li>基于Random数Generate</li>
-                <li>122 位有效Random位</li>
-                <li>重复概率极低</li>
+                <li>Based on cryptographically secure RNG</li>
+                <li>122-bit cryptographically secure</li>
+                <li>Extremely low collision probability</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">常见用途</h4>
+              <h4 className="font-semibold text-sm">Common Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground">
                 <li>数据库主键</li>
-                <li>会话标识</li>
+                <li>会话standard</li>
                 <li>分布式系统 ID</li>
               </ul>
             </div>

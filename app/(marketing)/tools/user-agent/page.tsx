@@ -126,7 +126,7 @@ export default function UAPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground leading-relaxed">
-            User-Agent (UA) 是一Include在 HTTP 请求头中的String，它向服务器标识用户所使用的Operating System、浏览器及其版本、渲染引擎等信息。服务器可以根据不同的 UA Back适配的Page内容。
+            The User-Agent header identifies your operating system, browser version, and rendering engine. Servers use this information to adapt content delivery.
           </CardContent>
         </Card>
       </div>

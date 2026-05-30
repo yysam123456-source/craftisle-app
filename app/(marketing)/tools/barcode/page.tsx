@@ -95,7 +95,7 @@ export default function BarcodePage() {
                     <Input 
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
-                        placeholder="例如：123456789"
+                        placeholder="e.g., 123456789"
                     />
                 </div>
 
@@ -161,7 +161,7 @@ export default function BarcodePage() {
       </div>
       
       <div className="bg-muted/50 p-4 rounded-lg text-sm text-muted-foreground">
-          💡 注意：某些Format（如 EAN13）对Input内容的Length和校验位有特殊要求，如果不符合规范可能无法显示。
+          💡 Note: Some formats (e.g., EAN13) have specific requirements for input length and check digits.
       </div>
     </div>
   );

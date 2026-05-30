@@ -155,7 +155,7 @@ export default function RandomStringGenerator() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Random String Generator</h1>
           <p className="text-muted-foreground">
-            Generate安全可靠的RandomString，Support多种字符集Config
+            Generate secure random strings with customizable character sets
           </p>
         </div>
       </div>
@@ -186,7 +186,7 @@ export default function RandomStringGenerator() {
                       }
                       className="pr-8"
                     />
-                    <span className="absolute right-3 top-2.5 text-xs text-muted-foreground">位</span>
+                    <span className="absolute right-3 top-2.5 text-xs text-muted-foreground"></span>
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -264,21 +264,21 @@ export default function RandomStringGenerator() {
                       handleConfigChange("excludeSimilar", checked)
                     }
                   />
-                  <Label htmlFor="excludeSimilar">Exclude相似字符 (0O1lI|)</Label>
+                  <Label htmlFor="excludeSimilar">Exclude似character (0O1lI|)</Label>
                 </div>
               </div>
 
               <Separator />
 
               <div className="space-y-2">
-                <Label htmlFor="customChars">Custom字符集</Label>
+                <Label htmlFor="customChars">Customcharacter集</Label>
                 <Input
                   id="customChars"
                   value={config.customChars}
                   onChange={(e) =>
                     handleConfigChange("customChars", e.target.value)
                   }
-                  placeholder="InputCustom字符集（将覆盖上述选择）"
+                  placeholder="Custom character set (overrides above selections)"
                 />
               </div>
             </CardContent>
@@ -291,21 +291,21 @@ export default function RandomStringGenerator() {
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-medium flex items-center gap-2">
                 <Shield className="h-4 w-4" />
-                安全Strong度
+                Security Level
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="space-y-1">
-                  <div className="text-xs text-muted-foreground">字符集Size</div>
+                  <div className="text-xs text-muted-foreground">character集Size</div>
                   <div className="text-xl font-bold">{getCharacterSet().length}</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-xs text-muted-foreground">安全熵</div>
+                  <div className="text-xs text-muted-foreground">Entropy</div>
                   <div className="text-xl font-bold">{strengthInfo.entropy}</div>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-xs text-muted-foreground">Strong度等级</div>
+                  <div className="text-xs text-muted-foreground">Strength Level</div>
                   <Badge className={strengthInfo.color}>{strengthInfo.strength}</Badge>
                 </div>
               </div>
@@ -314,7 +314,7 @@ export default function RandomStringGenerator() {
 
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-medium">Generate控制</CardTitle>
+              <CardTitle className="text-base font-medium">Generation Controls</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <Button
@@ -398,35 +398,35 @@ export default function RandomStringGenerator() {
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">功能特点</h4>
+              <h4 className="font-semibold text-sm">Features</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Support多种字符集组合Config</li>
-                <li>可Exclude容易混淆的相似字符</li>
-                <li>SupportCustom字符集</li>
-                <li>批量Generate多String</li>
+                <li>Support多种character集组合Config</li>
+                <li>可Exclude容易混淆的似character</li>
+                <li>SupportCustomcharacter集</li>
+                <li>Batch generate multiple strings</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">安全建议</h4>
+              <h4 className="font-semibold text-sm">Security Tips</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>密码Length建议至少12位以上</li>
-                <li>重要账户建议使用16位以上密码</li>
-                <li>Include多种字符Type提高安全性</li>
-                <li>定期更换重要账户密码</li>
+                <li>Password length should be at least 12+ characters</li>
+                <li>Important accounts should use 16+ character passwords</li>
+                <li>Include多种characterType提高安全性</li>
+                <li>Regularly rotate passwords for important accounts</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">应用场景</h4>
+              <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Generate安全密码</li>
-                <li>创建APIKey</li>
-                <li>GenerateValidate码</li>
-                <li>创建Random标识符</li>
+                <li>Generate secure passwords</li>
+                <li>Create API keys</li>
+                <li>Generate verification codes</li>
+                <li>创建Randomstandardcharacter</li>
               </ul>
             </div>
           </div>
           <div className="mt-4 p-3 bg-muted rounded-md text-xs text-muted-foreground">
-            💡 Tip：Generate的String完全在本地浏览器中创建，不会发送到任何服务器。
+            💡 Tip：GenerateStringbase，。
           </div>
         </CardContent>
       </Card>

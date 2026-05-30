@@ -106,7 +106,7 @@ export default function YamlFormatterPage() {
                 Result
                 {isValid === true && (
                     <Badge variant="default" className="bg-emerald-500 hover:bg-emerald-600">
-                         <Check className="h-3 w-3 mr-1" /> FormatH确
+                         <Check className="h-3 w-3 mr-1" /> FormatH
                     </Badge>
                 )}
                 {isValid === false && (

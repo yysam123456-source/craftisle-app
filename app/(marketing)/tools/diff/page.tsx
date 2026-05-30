@@ -166,7 +166,7 @@ export default function DiffPage() {
       
       <Card>
           <CardContent className="p-4 text-sm text-muted-foreground">
-              💡 Tip：您可以直接在左右两侧Edit器中Paste或Input Text进行通过。上方Tools栏可切换语言高亮和对比模式。
+              💡 Tip： with two EditPasteorInput Text。above Toolshighlight。
           </CardContent>
       </Card>
     </div>

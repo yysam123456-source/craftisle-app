@@ -26,7 +26,7 @@ type WheelItem = {
   weight: number;
 };
 
-const DEFAULT_ITEMS = ["今晚吃火锅", "Watch a movie", "Write code", "Sleep early", "Play games", "Bubble tea"].map((label) => createItem(label));
+const DEFAULT_ITEMS = ["Hot pot tonight", "Watch a movie", "Write code", "Sleep early", "Play games", "Bubble tea"].map((label) => createItem(label));
 
 const normalizeAngle = (angle: number) => {
   const fullCircle = Math.PI * 2;
@@ -85,7 +85,7 @@ export default function WheelPage() {
 
   const pointerLabel = useMemo(() => {
     if (isSpinning) return "Drawing...";
-    if (winner) return `抽中：${winner.label}`;
+    if (winner) return `spun ：${winner.label}`;
     return "Click center to start";
   }, [isSpinning, winner]);
 
@@ -234,7 +234,7 @@ export default function WheelPage() {
 
   const spin = () => {
     if (items.length < 2) {
-      toast.error("至少需要两Options");
+      toast.error("At least 2 options required");
       return;
     }
 
@@ -282,7 +282,7 @@ export default function WheelPage() {
     setNewItem("");
 
     if (duplicateCount > 0) {
-      toast.message(`已添加 ${nextItems.length - items.length} 项，跳过 ${duplicateCount} 重复项`);
+      toast.message(`已Add Item ${nextItems.length - items.length} 项，跳过 ${duplicateCount} 复项`);
     }
   };
 
@@ -345,16 +345,16 @@ export default function WheelPage() {
               <div className="flex w-full flex-wrap items-center justify-between gap-3">
                 <div className="space-y-1">
                   <Badge variant={isSpinning ? "default" : "secondary"} className="px-3 py-1 text-xs">
-                    {isSpinning ? "Drawing..." : winner ? "已出Result" : "Waiting"}
+                    {isSpinning ? "Drawing..." : winner ? "Result" : "Waiting"}
                   </Badge>
-                  <p className="text-sm text-muted-foreground">{isSpinning ? "转盘H在减速，请等待Result落点" : "Click中心按钮或转盘Start抽奖"}</p>
+                  <p className="text-sm text-muted-foreground">{isSpinning ? "Wheel is slowing down, waiting for result..." : "Click心按钮or to 盘Spin"}</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                   <span>Options {items.length}</span>
                   <span>·</span>
-                  <span>总权重 {totalWeight}</span>
+                  <span>Total weight: {totalWeight}</span>
                   <span>·</span>
-                  <span>已抽 {spinCount} </span>
+                  <span>Spun {spinCount} times</span>
                 </div>
               </div>
 
@@ -388,14 +388,14 @@ export default function WheelPage() {
               <div className="min-h-[4.5rem] text-center">
                 {winner ? (
                   <div className="animate-in zoom-in duration-300">
-                    <p className="text-sm text-muted-foreground">本轮Result</p>
+                    <p className="text-sm text-muted-foreground">Wheel result</p>
                     <h2 className="mt-2 flex items-center justify-center gap-3 text-3xl font-extrabold text-primary">
                       <Trophy className="h-8 w-8 text-yellow-500" />
                       {winner.label}
                     </h2>
                   </div>
                 ) : (
-                  <p className="pt-6 text-sm text-muted-foreground">还没Start？给转盘一Target，它会帮你做选择。</p>
+                  <p className="pt-6 text-sm text-muted-foreground">Not started? Add options and spin to make a random choice.</p>
                 )}
               </div>
             </CardContent>
@@ -404,18 +404,18 @@ export default function WheelPage() {
           <Card className="h-fit lg:col-span-5">
             <CardHeader>
               <CardTitle className="flex flex-wrap items-center justify-between gap-3">
-                <span>Options列表 ({items.length})</span>
+                <span>Options list ({items.length}) ({items.length})</span>
                 <div className="flex flex-wrap gap-2">
                   <Button variant={weightedMode ? "default" : "outline"} size="sm" onClick={() => setWeightedMode((current) => !current)} disabled={isSpinning}>
                     <Weight className="h-4 w-4" />
-                    权重抽奖
+                    Weighted Random Draw
                   </Button>
                   <Button variant={uniqueMode ? "default" : "outline"} size="sm" onClick={() => setUniqueMode((current) => !current)} disabled={isSpinning}>
-                    去重模式
+                    
                   </Button>
                   <Button variant="outline" size="sm" onClick={() => setItems((current) => [...current].sort(() => Math.random() - 0.5))} disabled={items.length < 2 || isSpinning}>
                     <Shuffle className="h-4 w-4" />
-                    打乱
+                    Shuffle
                   </Button>
                   <Button variant="ghost" size="sm" onClick={() => setIsClearDialogOpen(true)} className="text-destructive hover:text-destructive" disabled={items.length === 0 || isSpinning}>
                     Clear
@@ -430,20 +430,20 @@ export default function WheelPage() {
                     value={newItem}
                     onChange={(e) => setNewItem(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && addItem()}
-                    placeholder="InputOptions，Support逗号批量添加"
+                    placeholder="Enter options, comma-separated or paste multiple lines"
                     disabled={isSpinning}
                   />
-                  <Button onClick={addItem} disabled={isSpinning}>添加</Button>
+                  <Button onClick={addItem} disabled={isSpinning}>Add Item</Button>
                 </div>
-                <p className="text-xs text-muted-foreground">Example：火锅，烧烤，寿司 或换行Paste多项</p>
+                <p className="text-xs text-muted-foreground">Example: Hot pot, BBQ, Sushi or paste multiple items</p>
               </div>
 
               <div className="max-h-100 space-y-2 overflow-y-auto rounded-lg border bg-muted/30 p-2">
                 {items.length === 0 && (
                   <div className="space-y-3 py-8 text-center text-sm text-muted-foreground">
-                    <p>No dataOptions，请先添加内容</p>
+                    <p>No options yet, add items above. Please add items first.</p>
                     <Button variant="outline" size="sm" onClick={resetToDefault}>
-                      恢复ExampleOptions
+                      Reset to Defaults
                     </Button>
                   </div>
                 )}
@@ -464,7 +464,7 @@ export default function WheelPage() {
                     </div>
 
                     <div className={cn("flex items-center gap-2", weightedMode ? "opacity-100" : "opacity-60")}>
-                      <span className="text-xs text-muted-foreground">权重</span>
+                      <span className="text-xs text-muted-foreground"></span>
                       <Input
                         type="number"
                         min={1}
@@ -474,7 +474,7 @@ export default function WheelPage() {
                         disabled={isSpinning || !weightedMode}
                         className="h-8 w-24"
                       />
-                      <span className="text-xs text-muted-foreground">数值越大，抽中概率越高</span>
+                      <span className="text-xs text-muted-foreground">Higher weight = higher probability</span>
                     </div>
                   </div>
                 ))}
@@ -482,7 +482,7 @@ export default function WheelPage() {
 
               <div className="pt-2">
                 <Button onClick={spin} disabled={isSpinning || items.length < 2} className="w-full" size="lg">
-                  {isSpinning ? "Drawing......" : "Start抽奖"}
+                  {isSpinning ? "Drawing......" : "Spin"}
                 </Button>
               </div>
             </CardContent>
@@ -494,7 +494,7 @@ export default function WheelPage() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Clear所有Options？</DialogTitle>
-            <DialogDescription>Clear后Current候Options会All移除，你可以稍后再恢复ExampleOptions。</DialogDescription>
+            <DialogDescription>Clear后Current候Options会All移除，你可 with 稍后再Reset to Defaults。</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsClearDialogOpen(false)}>

@@ -118,19 +118,19 @@ export default function CaseConverterPage() {
                 lower case (Lowercase)
               </Button>
               <Button type="button" disabled={!input} onClick={toTitleCase} variant="secondary" className="flex-1 min-w-35">
-                Title Case (词首Uppercase)
+                Title Case (capitalized words)
               </Button>
               <Button type="button" disabled={!input} onClick={toCamelCase} variant="secondary" className="flex-1 min-w-35">
-                camelCase (小驼峰)
+                camelCase (lower camel case)
               </Button>
               <Button type="button" disabled={!input} onClick={toPascalCase} variant="secondary" className="flex-1 min-w-35">
-                PascalCase (大驼峰)
+                PascalCase (upper camel case)
               </Button>
               <Button type="button" disabled={!input} onClick={toSnakeCase} variant="secondary" className="flex-1 min-w-35">
-                snake_case (蛇形)
+                snake_case (snake case)
               </Button>
               <Button type="button" disabled={!input} onClick={toKebabCase} variant="secondary" className="flex-1 min-w-35">
-                kebab-case (短横线)
+                kebab-case (kebab case)
               </Button>
             </div>
           </CardContent>
@@ -156,7 +156,7 @@ export default function CaseConverterPage() {
             </div>
             <div className="space-y-1">
               <p className="font-semibold text-sm">Kebab Case</p>
-              <p className="text-xs text-muted-foreground">所有字母Lowercase，单词间用连字符连接，如 `hello-world`。</p>
+              <p className="text-xs text-muted-foreground">All lowercase, hyphen-separated, e.g., `hello-world`.</p>
             </div>
           </div>
         </CardContent>

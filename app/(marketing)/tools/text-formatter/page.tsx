@@ -50,7 +50,7 @@ export default function TextFormatterPage() {
 
   const formatText = useCallback(() => {
     if (!inputText.trim()) {
-      toast.warning("Enter需要Format的文本");
+      toast.warning("EnterFormattext");
       return;
     }
 
@@ -106,7 +106,7 @@ export default function TextFormatterPage() {
 
   const quickClean = useCallback(() => {
     if (!inputText.trim()) {
-      toast.warning("Enter需要Format的文本");
+      toast.warning("EnterFormattext");
       return;
     }
 
@@ -248,7 +248,7 @@ export default function TextFormatterPage() {
             <CardContent className="p-4 flex flex-col items-center justify-center text-center space-y-1">
               <div className="text-xs text-muted-foreground flex items-center gap-1">
                 <Scissors className="h-3 w-3" />
-                移除换行
+                Remove newlines
               </div>
               <div className="text-2xl font-bold text-violet-500">{stats.lineBreaksRemoved}</div>
             </CardContent>
@@ -264,7 +264,7 @@ export default function TextFormatterPage() {
               <span>Input Text</span>
               {inputText.trim() && (
                 <Badge variant="secondary">
-                  {stats.originalChars} 字符
+                  {stats.originalChars} character
                 </Badge>
               )}
             </CardTitle>
@@ -273,7 +273,7 @@ export default function TextFormatterPage() {
             <Textarea
               value={inputText}
               onChange={(e) => handleInputChange(e.target.value)}
-              placeholder="请Paste需要Format的文本..."
+              placeholder="Paste text to format..."
               className="min-h-[400px] border-0 rounded-none focus-visible:ring-0 resize-none font-mono text-sm leading-relaxed p-4"
             />
           </CardContent>
@@ -282,11 +282,11 @@ export default function TextFormatterPage() {
         <Card className="flex flex-col">
           <CardHeader className="py-3">
             <CardTitle className="text-base font-medium flex items-center justify-between">
-              <span>FormatResult</span>
+              <span>Formatted Result</span>
               {outputText && (
                 <div className="flex items-center gap-2">
                   <Badge variant="default" className="bg-emerald-500 hover:bg-emerald-600">
-                    {stats.formattedChars} 字符
+                    {stats.formattedChars} character
                   </Badge>
                   <Button
                     variant="ghost"
@@ -304,7 +304,7 @@ export default function TextFormatterPage() {
             <Textarea
               value={outputText}
               readOnly
-              placeholder="After Format的Plain text将显示在这里..."
+              placeholder="Formatted text will appear here..."
               className="min-h-[400px] border-0 rounded-none focus-visible:ring-0 resize-none font-mono text-sm leading-relaxed p-4 bg-transparent"
             />
           </CardContent>
@@ -321,21 +321,21 @@ export default function TextFormatterPage() {
         <CardContent>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">主要功能</h4>
+              <h4 className="font-semibold text-sm">Features</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li><strong>去除Format：</strong>清除文本中的各种Format信息</li>
-                <li><strong>Remove Spaces：</strong>删除Text间的所有空格字符</li>
-                <li><strong>移除换行：</strong>去除文本中的换行符，合并为单行</li>
-                <li><strong>统Lap分析：</strong>显示Process前后的字符数变化</li>
+                <li><strong>Remove formatting:</strong>清除text的各种Formatinfomation</li>
+                <li><strong>Remove Spaces：</strong>删除Text的所有空格character</li>
+                <li><strong>Remove newlines：</strong>去除text的换行character，合并为单行</li>
+                <li><strong>Stats分析：</strong>显示Process前后的character数变化</li>
               </ul>
             </div>
             <div className="space-y-2">
-              <h4 className="font-semibold text-sm">使用场景</h4>
+              <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Process从Word、PDFCopy的文本</li>
+                <li>Process从Word、PDFCopy的text</li>
                 <li>清理网页Copy的带Format Text</li>
-                <li>去除邮件内容中的多余换行</li>
-                <li>整理聊dayRecords或文档片段</li>
+                <li>去除邮件内容的多余换行</li>
+                <li>整理聊dayRecordsortext档片段</li>
               </ul>
             </div>
           </div>

@@ -59,12 +59,14 @@ export default function ToolsPage() {
   return (
     <>
       <ToolsClient toolDirs={toolDirs} />
-      {/* Ad: below tools grid */}
-      <section className="py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
-          <AdSlot slotId="tools-bottom" size="leaderboard" label="Tools Page Bottom" />
-        </div>
-      </section>
+      {/* Ad slot hidden until AdSense is configured */}
+      {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
+        <section className="py-8">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+            <AdSlot slotId="tools-bottom" size="leaderboard" label="Tools Page Bottom" />
+          </div>
+        </section>
+      )}
     </>
   );
 }

@@ -14,6 +14,7 @@ import { colorAdjust } from "./process/color-adjust";
 import { passportPhoto } from "./process/passport-photo";
 import { generateMeme } from "./process/generate-memes";
 import { beautifyScreenshots } from "./process/beautify-screenshots";
+import { imageToolIds } from "./ids";
 
 const IMAGE_MIME_TYPES = [
   "image/png",
@@ -124,11 +125,3 @@ export const toolDefinitions: ToolDefinition[] = [
 export function getToolDefinition(id: string): ToolDefinition | undefined {
   return toolDefinitions.find((t) => t.id === id);
 }
-
-/** All registered image tool ids — used by tools/page.tsx for discovery */
-export const imageToolIds = [
-  ...toolDefinitions.map((t) => t.id),
-  // Multi-file tools with dedicated routes (not ToolDefinition-compatible)
-  "find-duplicates",
-  "create-gif",
-];

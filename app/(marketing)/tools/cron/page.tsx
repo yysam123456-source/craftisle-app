@@ -21,7 +21,7 @@ export default function CronPage() {
       return `每隔 ${step} ${type}${start !== "*" ? ` (从第 ${start} Start)` : ""}`;
     }
     if (part.includes("-")) {
-      return `从 ${part.replace("-", " 到 ")} ${type}`;
+      return `从 ${part.replace("-", " to ")} ${type}`;
     }
     if (part.includes(",")) {
       return `第 ${part} ${type}`;
@@ -36,15 +36,15 @@ export default function CronPage() {
           <Timer className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Cron 表达式Parse</h1>
-          <p className="text-muted-foreground">Parse并Description Cron Lap划任务表达式</p>
+          <h1 className="text-2xl font-bold tracking-tight">Cron Expression Parser</h1>
+          <p className="text-muted-foreground">Parse and explain cron schedule expressions</p>
         </div>
       </div>
 
       <div className="grid gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Input表达式</CardTitle>
+            <CardTitle className="text-base">Input expression</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex gap-4">
@@ -81,11 +81,11 @@ export default function CronPage() {
           <CardContent className="space-y-4">
              <div className="p-4 rounded-lg bg-primary/5 border border-primary/10">
                 <p className="text-lg">
-                   该表达式意味着：
+                   ：
                    <span className="font-bold text-primary ml-2">
                       {parts.length >= 5 
                         ? labels.map((l, i) => decodePart(parts[i], l)).join("，") 
-                        : "Enter完整的 5 位 Cron 表达式"}
+                        : "Enter full 5-field cron expression"}
                    </span>
                 </p>
              </div>
@@ -101,7 +101,7 @@ export default function CronPage() {
                 </div>
                 <div className="space-y-1">
                    <p className="font-bold text-foreground">-</p>
-                   <p>指定数值范围 (从 x 到 y)</p>
+                   <p>指定数值范围 (从 x to y)</p>
                 </div>
                 <div className="space-y-1">
                    <p className="font-bold text-foreground">,</p>

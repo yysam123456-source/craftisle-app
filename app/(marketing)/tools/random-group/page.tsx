@@ -21,12 +21,12 @@ export default function RandomGroupPage() {
       .filter((n) => n !== "");
 
     if (names.length === 0) {
-      toast.error("Enter成员名单");
+      toast.error("Enter member names");
       return;
     }
 
     if (groupCount <= 0) {
-      toast.error("分组数量必须大于 0");
+      toast.error("Group count must be greater than 0");
       return;
     }
 
@@ -40,7 +40,7 @@ export default function RandomGroupPage() {
     });
 
     setGroups(newGroups.filter(g => g.length > 0));
-    toast.success("Random分组完成");
+    toast.success("Random grouping complete");
   };
 
   const copyToClipboard = async (text: string) => {
@@ -66,21 +66,24 @@ ${group.join(", ")}`)
           <Users className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Random分组Tools</h1>
-          <p className="text-muted-foreground">Input成员名单，公平地进行Random分组</p>
+          <h1 className="text-2xl font-bold tracking-tight">Random Group Generator</h1>
+          <p className="text-muted-foreground">Enter member names for fair random grouping</p>
         </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">名单与Config</CardTitle>
+            <CardTitle className="text-base">List & Settings</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label>成员名单 (Support换行或逗号分隔)</Label>
+              <Label>Member list (newline or comma separated)</Label>
               <Textarea
-                placeholder="三&#10;李四&#10;王五&#10;赵六..."
+                placeholder="Alice
+Bob
+Charlie
+Diana..."
                 className="min-h-50 font-mono"
                 value={namesText}
                 onChange={(e) => setNamesText(e.target.value)}
@@ -88,7 +91,7 @@ ${group.join(", ")}`)
             </div>
             
             <div className="space-y-2">
-              <Label>要分成的组数</Label>
+              <Label>Number of groups</Label>
               <div className="flex items-center gap-4">
                 <Input
                   type="number"
@@ -99,7 +102,7 @@ ${group.join(", ")}`)
                 />
                 <Button onClick={handleShuffle} className="flex-1 gap-2">
                   <Shuffle className="h-4 w-4" />
-                  立即Random分组
+                  Group Now
                 </Button>
               </div>
             </div>
@@ -124,7 +127,7 @@ ${group.join(", ")}`)
             {groups.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-muted-foreground py-12 italic">
                 <Shuffle className="h-12 w-12 mb-2 opacity-10" />
-                <p>Click“立即Random分组”查看Result</p>
+                <p>Click“Group Now”查看Result</p>
               </div>
             ) : (
               <div className="grid gap-4">

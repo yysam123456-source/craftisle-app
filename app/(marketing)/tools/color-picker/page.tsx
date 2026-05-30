@@ -75,7 +75,7 @@ export default function ColorPickerPage() {
         </div>
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Color Picker</h1>
-          <p className="text-muted-foreground">HEX、RGB、HSL ColorFormat互转</p>
+          <p className="text-muted-foreground">HEX、RGB、HSL Colorformat to </p>
         </div>
       </div>
 

@@ -81,9 +81,9 @@ export default function Base64Page() {
           <Lock className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Base64 编Decode</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Base64 Encode & Decode</h1>
           <p className="text-muted-foreground">
-            Base64 Encode与DecodeConvertTools，Support中文
+            Base64 Encode & Decode Tool
           </p>
         </div>
       </div>
@@ -104,7 +104,7 @@ export default function Base64Page() {
           </Button>
           <Button variant="outline" onClick={swapInputOutput} className="gap-2">
             <ArrowRightLeft className="h-4 w-4 rotate-90" />
-            交换
+            
           </Button>
           <Button variant="ghost" onClick={clearAll} className="gap-2 text-destructive hover:text-destructive">
             <Eraser className="h-4 w-4" />
@@ -118,7 +118,7 @@ export default function Base64Page() {
           <Card className="h-full flex flex-col">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-medium">
-                {mode === "encode" ? "Raw文本" : "Base64 String"}
+                {mode === "encode" ? "Raw Text" : "Base64 String"}
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-1 min-h-75">
@@ -127,8 +127,8 @@ export default function Base64Page() {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={
                   mode === "encode"
-                    ? "Enter要Encode的文本..."
-                    : "Enter要Decode的 Base64 String..."
+                    ? "Enter text to encode..."
+                    : "Enter Base64 string to decode..."
                 }
                 className="h-full min-h-75 font-mono resize-none"
               />
@@ -175,16 +175,16 @@ export default function Base64Page() {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Base64 是一种基于 64 可打印字符来表示二进制数据的Encode方式</li>
-                <li>常用于在 URL、Cookie 中传输少量二进制数据</li>
-                <li>本ToolsSupport中文Encode和Decode</li>
+                <li>Base64 is an encoding method that represents binary data using 64 printable characters</li>
+                <li>Commonly used for transmitting small binary data in URLs and cookies</li>
+                <li>This tool supports Chinese text encoding and decoding</li>
               </ul>
             </div>
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Encode后的数据比Raw数据大约 33%</li>
-                <li>Base64 不是EncryptAlgorithm，仅是一种Encode方式</li>
-                <li>Click"交换"可将OutputResult作为New的Input</li>
+                <li>Encoded data is approximately 33% larger than raw data</li>
+                <li>Base64 is not encryption — it is only an encoding format</li>
+                <li>Click "Swap" to use output as new input</li>
               </ul>
             </div>
           </div>

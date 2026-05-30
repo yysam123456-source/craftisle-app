@@ -83,7 +83,7 @@ export default function HtmlEscapePage() {
           </Button>
           <Button onClick={unescapeHtml} size="lg" variant="outline" className="flex-1 gap-2">
             <ArrowUpDown className="h-4 w-4" />
-            HTML T转义 (Unescape)
+            HTML Unescape
           </Button>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function HtmlEscapePage() {
         </CardHeader>
         <CardContent>
           <div className="text-sm text-muted-foreground space-y-2">
-            <p>HTML Escape是将 HTML 预留字符Convert为 HTML 实体。例如，将 `&lt;` Convert为 `&amp;lt;`。</p>
+            <p>HTML Escape是将 HTML 预留characterConvert为 HTML 实体。例如，将 `&lt;` Convert为 `&amp;lt;`。</p>
             <p>This is commonly used to safely display code snippets on web pages, preventing the browser from parsing them as actual HTML tags, or to prevent XSS attacks.</p>
             <p className="font-mono bg-muted p-2 rounded-md inline-block">
               &lt; &rarr; &amp;lt;<br />

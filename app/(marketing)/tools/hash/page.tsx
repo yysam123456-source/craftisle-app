@@ -168,7 +168,7 @@ export default function HashPage() {
 
   const calculateHash = async () => {
     if (!input) {
-      toast.warning("Enter要Lap算哈希的内容");
+      toast.warning("Enter text to hash");
       return;
     }
 
@@ -197,9 +197,9 @@ export default function HashPage() {
         sha256: arrayBufferToHex(sha256),
         sha512: arrayBufferToHex(sha512),
       });
-      toast.success("Lap算完成");
+      toast.success("Calculation complete");
     } catch {
-      toast.error("Lap算Failed");
+      toast.error("Calculation failed");
     } finally {
       setLoading(false);
     }
@@ -247,9 +247,9 @@ export default function HashPage() {
           <FileDigit className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Hash Lap算</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Hash Calculate</h1>
           <p className="text-muted-foreground">
-            Lap算文本的 MD5、SHA1、SHA256、SHA512 哈希值
+            Calculate MD5, SHA1, SHA256, SHA512 hash values
           </p>
         </div>
       </div>
@@ -262,7 +262,7 @@ export default function HashPage() {
               <div className="flex gap-2">
                  <Button onClick={calculateHash} disabled={loading || !input} className="gap-2" size="sm">
                   <Zap className="h-4 w-4" />
-                  {loading ? "Lap算中..." : "Lap算哈希"}
+                  {loading ? "Calculating..." : "Calculate Hash"}
                 </Button>
                 <Button variant="ghost" size="icon" onClick={clearAll} className="h-8 w-8 text-destructive">
                   <Eraser className="h-4 w-4" />
@@ -273,7 +273,7 @@ export default function HashPage() {
                <Textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Enter要Lap算哈希值的文本..."
+                placeholder="Enter text to hash..."
                 className="h-full min-h-75 resize-none font-mono"
               />
             </CardContent>
@@ -285,21 +285,21 @@ export default function HashPage() {
              <CardHeader className="pb-3">
               <CardTitle className="text-base font-medium flex items-center gap-2">
                 <Lock className="h-4 w-4" />
-                哈希Result
+                Result
               </CardTitle>
             </CardHeader>
             <CardContent className="flex-1">
               {results ? (
                 <div className="space-y-3">
-                  <HashResultItem label="MD5 (32位)" value={results.md5} />
-                  <HashResultItem label="SHA1 (40位)" value={results.sha1} />
-                  <HashResultItem label="SHA256 (64位)" value={results.sha256} />
-                  <HashResultItem label="SHA512 (128位)" value={results.sha512} />
+                  <HashResultItem label="MD5 (32)" value={results.md5} />
+                  <HashResultItem label="SHA1 (40)" value={results.sha1} />
+                  <HashResultItem label="SHA256 (64)" value={results.sha256} />
+                  <HashResultItem label="SHA512 (128)" value={results.sha512} />
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center h-full min-h-75 text-muted-foreground">
                   <FileDigit className="h-16 w-16 mb-4 opacity-20" />
-                  <p>Input Text后ClickLap算哈希</p>
+                  <p>Input Text后ClickCalculate Hash</p>
                 </div>
               )}
             </CardContent>
@@ -317,16 +317,16 @@ export default function HashPage() {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>MD5 产生 128 位（16 字节）哈希值，已不推荐用于安全场景</li>
-                <li>SHA1 产生 160 位（20 字节）哈希值</li>
-                <li>SHA256 产生 256 位（32 字节）哈希值，安全性较高</li>
+                <li>MD5 produces 128-bit (16-byte) hashes — not recommended for security use</li>
+                <li>SHA1 产生 160 （20 字节）哈希值</li>
+                <li>SHA256 produces 256-bit (32-byte) hashes — high security</li>
               </ul>
             </div>
             <div className="space-y-2">
                <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>SHA512 产生 512 位（64 字节）哈希值，安全性最高</li>
-                <li>哈希函数是单向的，无法从哈希值T推原文</li>
-                <li>相同Input总是产生相同Output</li>
+                <li>SHA512 produces 512-bit (64-byte) hashes — maximum security</li>
+                <li>Hash functions are one-way — you cannot reverse them to get original input</li>
+                <li>Same input always produces the same output</li>
               </ul>
             </div>
           </div>

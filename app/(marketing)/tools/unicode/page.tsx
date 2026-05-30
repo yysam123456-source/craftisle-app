@@ -53,7 +53,7 @@ export default function UnicodePage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Unicode Convert</h1>
           <p className="text-muted-foreground">
-            Unicode Characters \uXXXX Encode之间的相互Convert
+            Bidirectional Unicode Character Conversion
           </p>
         </div>
       </div>
@@ -85,10 +85,10 @@ export default function UnicodePage() {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Button onClick={toUnicode} size="lg" className="flex-1 gap-2">
-            文本 &rarr; Unicode
+            text &rarr; Unicode
           </Button>
           <Button onClick={fromUnicode} size="lg" variant="outline" className="flex-1 gap-2">
-            Unicode &rarr; 文本
+            Unicode &rarr; text
           </Button>
         </div>
       </div>
@@ -102,9 +102,9 @@ export default function UnicodePage() {
         </CardHeader>
         <CardContent>
           <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-2">
-            <li>本ToolsSupport标准的 `\uXXXX` Format Unicode EncodeConvert。</li>
-            <li><strong>文本 &rarr; Unicode:</strong> 将中Text符、符号等Convert为对应的 16 进制 Unicode Encode。</li>
-            <li><strong>Unicode &rarr; 文本:</strong> 将 `\uXXXX` Format的String还原为可读文本。</li>
+            <li>This tool supports standard Unicode escape format (`\uXXXX`).</li>
+            <li><strong>text &rarr; Unicode:</strong> 将Textcharacter、charactersymbol(s)等convert to 16 进制 Unicode Encode。</li>
+            <li><strong>Unicode &rarr; text:</strong> 将 `\uXXXX` Format的Stringrestore to readabletext。</li>
           </ul>
         </CardContent>
       </Card>

@@ -100,7 +100,7 @@ export default function TimestampPage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">TimestampConvert</h1>
           <p className="text-muted-foreground">
-            Unix Timestamp与DateTime互相Convert
+            Unix TimestampDateTimemutualConvert
           </p>
         </div>
       </div>
@@ -247,7 +247,7 @@ export default function TimestampPage() {
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Backend languages (e.g., PHP, Python) typically use second timestamps</li>
                 <li>Click"Use current"可快速填入CurrentTimestamp</li>
-                <li>SupportCopyCurrent实时Timestamp</li>
+                <li>SupportCopyCurrent实Timestamp</li>
               </ul>
             </div>
           </div>

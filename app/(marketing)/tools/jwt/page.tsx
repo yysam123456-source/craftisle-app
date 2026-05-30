@@ -155,7 +155,7 @@ export default function JwtDecoderPage() {
             <div className="space-y-1">
               <p className="font-semibold text-emerald-900 dark:text-emerald-400">Security Tip</p>
               <p className="text-sm text-emerald-800/80 dark:text-emerald-400/80">
-                Decode过程完全在您的浏览器本地进行，Token 不会被发送到任何服务器。请放心使用。
+                Decoding happens entirely in your browser locally. Your token is never sent to any server. Safe to use.
               </p>
             </div>
           </div>

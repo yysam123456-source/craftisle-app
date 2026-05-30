@@ -217,7 +217,7 @@ export default function CoinFlipPage() {
                 />
                 <Button variant="outline" onClick={flipSeries} disabled={flipping} className="flex-1 gap-2">
                   <Hash className="h-4 w-4" />
-                  连续抛
+                  Keep flipping
                 </Button>
               </div>
             </div>
@@ -228,12 +228,12 @@ export default function CoinFlipPage() {
           <Card>
             <CardContent className="space-y-4 p-5">
               <div>
-                <h2 className="font-semibold">翻转统Lap</h2>
-                <p className="text-sm text-muted-foreground">完整Result概览</p>
+                <h2 className="font-semibold">Flip Statistics</h2>
+                <p className="text-sm text-muted-foreground">Full Results Overview</p>
               </div>
               <div className="grid grid-cols-3 gap-3 text-center">
                 <div className="rounded-xl border bg-muted/30 p-3">
-                  <div className="text-xs text-muted-foreground">总数</div>
+                  <div className="text-xs text-muted-foreground">Total</div>
                   <div className="mt-1 text-2xl font-bold">{stats.total}</div>
                 </div>
                 <div className="rounded-xl border bg-amber-50 p-3 dark:bg-amber-950/20">
@@ -251,8 +251,8 @@ export default function CoinFlipPage() {
           <Card>
             <CardContent className="space-y-4 p-5">
               <div>
-                <h2 className="font-semibold">最近Result</h2>
-                <p className="text-sm text-muted-foreground">越New的Result排在越前面</p>
+                <h2 className="font-semibold">Recent Results</h2>
+                <p className="text-sm text-muted-foreground">Most recent results first</p>
               </div>
 
               {history.length > 0 ? (
@@ -276,7 +276,7 @@ export default function CoinFlipPage() {
                 </div>
               ) : (
                 <div className="rounded-xl border border-dashed p-4 text-sm text-muted-foreground">
-                  还没有Records，先抛一看看。
+                  No records yet. Flip to start.
                 </div>
               )}
             </CardContent>
