@@ -39,15 +39,7 @@ export function AdSlot({ slotId, size = 'responsive', className = '', label }: A
   }, [adsenseClient, isDev]);
 
   if (isDev || !adsenseClient) {
-    return (
-      <div
-        className={`flex items-center justify-center border-2 border-dashed border-border/50 rounded-lg bg-muted/30 text-muted-foreground text-xs ${config.className} ${className}`}
-        style={{ maxWidth: '100%' }}
-        data-ad-placeholder={slotId}
-      >
-        <span>Ad: {label || slotId} ({size})</span>
-      </div>
-    );
+    return null; // Hide until AdSense is configured
   }
 
   return (
