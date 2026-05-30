@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Tiny World Builder - 在线游戏",
-  description: "建造你的迷你世界",
-};
+export const metadata: Metadata = constructMetadata({
+  title: "Tiny World Builder | Craftisle",
+  description: "Build your mini world, unleash creativity. Play free online in your browser.",
+});
 
 export default function TinyWorldBuilderLayout({
   children,

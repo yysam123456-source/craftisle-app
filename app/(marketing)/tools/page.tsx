@@ -11,11 +11,14 @@ import { Wrench } from "lucide-react";
 import { ToolsClient } from "@/components/tools-client";
 import { toolMeta } from "@/lib/tools";
 import { imageToolIds } from "@/lib/image-tools";
+import { constructMetadata } from "@/lib/utils";
+import { AdSlot } from "@/components/ads/AdSlot";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = constructMetadata({
   title: "Free Online Tools | Craftisle",
-  description: "60+ free online tools, no download required.",
-};
+  description: "60+ free online tools, no download required. QR codes, JSON formatting, image conversion and more — all in your browser.",
+});
 
 // Server Component: read tool directories
 export default function ToolsPage() {
@@ -53,5 +56,15 @@ export default function ToolsPage() {
     toolDirs.push("pdf-tools");
   }
 
-  return <ToolsClient toolDirs={toolDirs} />;
+  return (
+    <>
+      <ToolsClient toolDirs={toolDirs} />
+      {/* Ad: below tools grid */}
+      <section className="py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+          <AdSlot slotId="tools-bottom" size="leaderboard" label="Tools Page Bottom" />
+        </div>
+      </section>
+    </>
+  );
 }

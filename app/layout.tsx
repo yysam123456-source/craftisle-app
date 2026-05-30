@@ -17,7 +17,16 @@ export const metadata = constructMetadata();
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        {/* Google AdSense - only loads when NEXT_PUBLIC_ADSENSE_CLIENT is set */}
+        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`}
+            crossOrigin="anonymous"
+          />
+        )}
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",

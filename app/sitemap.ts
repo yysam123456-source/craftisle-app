@@ -2,18 +2,22 @@ import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 
-// Static routes
+const baseUrl = "https://craftisle.com";
+const now = new Date();
+
 const staticRoutes = [
-  "/",
-  "/games",
-  "/tools",
-  "/directory",
-  "/blog",
-  "/play/island-builder",
-  "/play/tiny-world-builder",
+  { url: "/", priority: 1.0, changeFreq: "daily" as const },
+  { url: "/games", priority: 0.8, changeFreq: "weekly" as const },
+  { url: "/tools", priority: 0.8, changeFreq: "weekly" as const },
+  { url: "/directory", priority: 0.7, changeFreq: "weekly" as const },
+  { url: "/blog", priority: 0.7, changeFreq: "weekly" as const },
 ];
 
-// Dynamic tool routes - read from filesystem
+const playRoutes = [
+  { url: "/play/island-builder", priority: 0.8, changeFreq: "monthly" as const },
+  { url: "/play/tiny-world-builder", priority: 0.8, changeFreq: "monthly" as const },
+];
+
 function getToolRoutes(): string[] {
   try {
     const toolsPath = path.join(process.cwd(), "app/(marketing)/tools");
@@ -27,25 +31,26 @@ function getToolRoutes(): string[] {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://craftisle.com";
-  const now = new Date();
-
-  // Static pages
-  const staticPages = staticRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
+  const staticPages = staticRoutes.map((r) => ({
+    url: `${baseUrl}${r.url}`,
     lastModified: now,
-    changeFrequency: (route === "/" ? "daily" : "weekly") as "daily" | "weekly",
-    priority: route === "/" ? 1.0 : 0.8,
+    changeFrequency: r.changeFreq,
+    priority: r.priority,
   }));
 
-  // Tool pages
-  const toolRoutes = getToolRoutes();
-  const toolPages = toolRoutes.map((route) => ({
+  const playPages = playRoutes.map((r) => ({
+    url: `${baseUrl}${r.url}`,
+    lastModified: now,
+    changeFrequency: r.changeFreq,
+    priority: r.priority,
+  }));
+
+  const toolPages = getToolRoutes().map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
-  return [...staticPages, ...toolPages];
+  return [...staticPages, ...playPages, ...toolPages];
 }

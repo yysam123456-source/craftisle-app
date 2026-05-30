@@ -19,6 +19,7 @@ import {
   Calculator,
   Play,
 } from "lucide-react";
+import { AdSlot } from "@/components/ads/AdSlot";
 
 export default function IndexPage() {
   return (
@@ -55,6 +56,11 @@ export default function IndexPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Ad: below hero */}
+      <section className="flex justify-center py-6">
+        <AdSlot slotId="homepage-below-hero" size="leaderboard" label="Homepage Below Hero" />
       </section>
 
       {/* Featured Games */}
@@ -127,6 +133,11 @@ export default function IndexPage() {
             </Card>
           </div>
         </div>
+      </section>
+
+      {/* Ad: between games and tools */}
+      <section className="flex justify-center py-6">
+        <AdSlot slotId="homepage-games-to-tools" size="leaderboard" label="Homepage Between Games & Tools" />
       </section>
 
       {/* Tools Preview */}

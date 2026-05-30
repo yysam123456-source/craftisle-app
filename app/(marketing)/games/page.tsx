@@ -9,11 +9,14 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Gamepad2, Play, ArrowRight } from "lucide-react";
+import { constructMetadata } from "@/lib/utils";
+import { AdSlot } from "@/components/ads/AdSlot";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = constructMetadata({
   title: "Games | Craftisle",
-  description: "Free online mini games, play instantly in your browser.",
-};
+  description: "Free online mini games, play instantly in your browser. No download required.",
+});
 
 const games = [
   // TODO: the-last-glimmer — 开发中，暂不挂载（用户要求）
@@ -104,6 +107,13 @@ export default function GamesPage() {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Ad: below games grid */}
+      <section className="py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+          <AdSlot slotId="games-bottom" size="leaderboard" label="Games Page Bottom" />
         </div>
       </section>
     </div>
