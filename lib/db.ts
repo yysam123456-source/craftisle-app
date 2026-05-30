@@ -7,20 +7,19 @@ declare global {
 }
 
 function createPrismaClient(): PrismaClient {
-  if (!process.env.DATABASE_URL) {
-    // Return a client that throws on every operation with a clear message.
-    // This allows the app to start without crashing at module load time.
-    // Actual DB calls will fail with a descriptive error.
+  const url = process.env.DATABASE_URL
+
+  // Detect missing or placeholder DATABASE_URL
+  if (!url || url.length < 20 || url.includes("placeholder") || url.includes("localhost")) {
     if (process.env.NODE_ENV === "production") {
       console.warn(
-        "⚠️  DATABASE_URL is not set. Database features will be unavailable."
+        "⚠️  DATABASE_URL is not configured or uses a placeholder. " +
+        "Database features (auth persistence, user data) will be degraded. " +
+        "Set DATABASE_URL in your Vercel environment variables to enable full functionality."
       )
     }
-    // Still create a real client — Prisma will throw at query time if URL is invalid.
-    // This is better than a proxy because it preserves the full type surface.
     return new PrismaClient({
       datasourceUrl: "postgresql://placeholder@localhost:5432/placeholder",
-      // log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
     })
   }
 

@@ -48,11 +48,14 @@ export default async function BlogPage() {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {posts.length === 0 ? (
-            <div className="py-12 text-center">
-              <p className="text-muted-foreground">
-                Ghost CMS not configured. Please set <code>.env</code> in{" "}
-                <code>GHOST_URL</code> and{" "}
-                <code>GHOST_CONTENT_API_KEY</code>.
+            <div className="py-16 text-center">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                <CalendarDays className="h-8 w-8 text-muted-foreground" />
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Coming Soon</h3>
+              <p className="mx-auto max-w-md text-muted-foreground">
+                We&apos;re preparing great content about game development,
+                tool tutorials, and productivity tips. Check back soon!
               </p>
             </div>
           ) : (
