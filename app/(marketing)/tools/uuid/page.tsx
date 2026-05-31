@@ -14,8 +14,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function UuidPage() {
   const [uuids, setUuids] = useState<string[]>([]);
   const [count, setCount] = useState(1);
@@ -205,6 +205,7 @@ export default function UuidPage() {
                 <li>Extremely low collision probability</li>
               </ul>
             </div>
+      <ToolDetailSections toolId="uuid" />
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Common Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground">
@@ -216,7 +217,6 @@ export default function UuidPage() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="uuid" />
     </div>
   );
 }

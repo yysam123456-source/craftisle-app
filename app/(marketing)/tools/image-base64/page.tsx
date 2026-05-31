@@ -88,6 +88,8 @@ export default function ImageBase64Page() {
                 <p className="text-sm text-muted-foreground">Click or drag image file here</p>
                 <p className="text-xs text-muted-foreground/60 mt-1">Supports JPG, PNG, GIF, WebP, etc.</p>
               </div>
+      <ToolDetailSections toolId="image-base64" />
+
             </CardContent>
           </Card>
 
@@ -144,7 +146,6 @@ export default function ImageBase64Page() {
           </CardContent>
         </Card>
       </div>
-    <ToolDetailSections toolId="image-base64" />
     </div>
   );
 }

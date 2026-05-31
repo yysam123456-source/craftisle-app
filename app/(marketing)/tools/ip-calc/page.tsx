@@ -119,6 +119,7 @@ export default function IpCalcPage() {
           </CardContent>
         </Card>
       </div>
+        <ToolDetailSections toolId="ip-calc" />
     </div>
   );
 }
@@ -131,7 +132,6 @@ function ResultItem({ label, value, cidr }: { label: string; value: string; cidr
         <span className="font-mono text-lg font-semibold">{value}</span>
         {cidr && <span className="text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded">{cidr}</span>}
       </div>
-    <ToolDetailSections toolId="ip-calc" />
     </div>
   );
 }

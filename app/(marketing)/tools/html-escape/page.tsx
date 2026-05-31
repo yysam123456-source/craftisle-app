@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function HtmlEscapePage() {
   const [input, setInput] = useState("");
 
@@ -107,9 +107,9 @@ export default function HtmlEscapePage() {
               " &rarr; &amp;quot;
             </p>
           </div>
+      <ToolDetailSections toolId="html-escape" />
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="html-escape" />
     </div>
   );
 }

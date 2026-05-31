@@ -110,8 +110,8 @@ export default function StopwatchPage() {
             )}
           </CardContent>
         </Card>
+        <ToolDetailSections toolId="stopwatch" />
       </div>
-    <ToolDetailSections toolId="stopwatch" />
     </div>
   );
 }

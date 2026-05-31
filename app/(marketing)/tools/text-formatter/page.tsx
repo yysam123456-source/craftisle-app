@@ -9,8 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function TextFormatterPage() {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
@@ -330,6 +330,7 @@ export default function TextFormatterPage() {
                 <li><strong>Stats Analysis:</strong> Show character count changes before/after processing</li>
               </ul>
             </div>
+      <ToolDetailSections toolId="text-formatter" />
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
@@ -342,7 +343,6 @@ export default function TextFormatterPage() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="text-formatter" />
     </div>
   );
 }

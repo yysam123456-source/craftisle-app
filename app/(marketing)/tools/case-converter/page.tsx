@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function CaseConverterPage() {
   const [input, setInput] = useState("");
 
@@ -151,6 +151,7 @@ export default function CaseConverterPage() {
               <p className="font-semibold text-sm">Camel Case</p>
               <p className="text-xs text-muted-foreground">First word lowercase, subsequent words capitalized, e.g., `helloWorld`。</p>
             </div>
+      <ToolDetailSections toolId="case-converter" />
             <div className="space-y-1">
               <p className="font-semibold text-sm">Snake Case</p>
               <p className="text-xs text-muted-foreground">All letters lowercase, words separated by underscores, e.g., `hello_world`。</p>
@@ -162,7 +163,6 @@ export default function CaseConverterPage() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="case-converter" />
     </div>
   );
 }

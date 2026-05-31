@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/select";
 import { QRCodeCanvas } from "qrcode.react";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 interface QRConfig {
   size: number;
   icon: string;
@@ -323,6 +323,7 @@ export default function QRCodeGenerator() {
                 <li>Dark QR codes work best on light backgrounds</li>
               </ul>
             </div>
+      <ToolDetailSections toolId="qrcode" />
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
@@ -335,7 +336,6 @@ export default function QRCodeGenerator() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="qrcode" />
     </div>
   );
 }

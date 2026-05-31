@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function CronPage() {
   const [expression, setExpression] = useState("*/5 * * * *");
   
@@ -96,6 +96,7 @@ export default function CronPage() {
                    <p className="font-bold text-foreground">*</p>
                    <p>Match all values for this field</p>
                 </div>
+      <ToolDetailSections toolId="cron" />
                 <div className="space-y-1">
                    <p className="font-bold text-foreground">/n</p>
                    <p>Specify step value (every n)</p>
@@ -112,7 +113,6 @@ export default function CronPage() {
           </CardContent>
         </Card>
       </div>
-    <ToolDetailSections toolId="cron" />
     </div>
   );
 }

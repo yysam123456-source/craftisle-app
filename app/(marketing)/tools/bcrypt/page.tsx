@@ -168,7 +168,7 @@ export default function BcryptPage() {
           </CardContent>
         </Card>
       </div>
-    <ToolDetailSections toolId="bcrypt" />
+        <ToolDetailSections toolId="bcrypt" />
     </div>
   );
 }

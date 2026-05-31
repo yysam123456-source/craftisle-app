@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function ColorPickerPage() {
   const [color, setColor] = useState("#4F46E5");
   const [formats, setFormats] = useState({
@@ -135,6 +135,7 @@ export default function ColorPickerPage() {
           </CardContent>
         </Card>
       </div>
+      <ToolDetailSections toolId="color-picker" />
     </div>
   );
 }
@@ -149,7 +150,6 @@ function FormatItem({ label, value, onCopy }: { label: string; value: string; on
              <Copy className="h-4 w-4" />
           </Button>
        </div>
-    <ToolDetailSections toolId="color-picker" />
     </div>
   );
 }

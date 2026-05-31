@@ -7,8 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { ImageIcon, Upload, Download, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function ImageToPixelPage() {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [pixelSize, setPixelSize] = useState(10);
@@ -138,6 +138,7 @@ export default function ImageToPixelPage() {
                         Larger values create stronger pixelation and more abstract appearance。
                     </p>
                 </div>
+      <ToolDetailSections toolId="image-to-pixel" />
 
                 <div className="space-y-2">
                     <Button onClick={handleDownload} disabled={!imageSrc} className="w-full">
@@ -152,7 +153,6 @@ export default function ImageToPixelPage() {
             </CardContent>
         </Card>
       </div>
-    <ToolDetailSections toolId="image-to-pixel" />
     </div>
   );
 }

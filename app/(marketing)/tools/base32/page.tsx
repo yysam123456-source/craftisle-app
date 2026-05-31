@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 // RFC 4648 Base32 alphabet
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 const ALPHABET_MAP = ALPHABET.split('').reduce((map, char, index) => {
   map[char] = index;
@@ -135,6 +135,7 @@ export default function Base32Page() {
             Decode (Decode)
           </Button>
         </div>
+      <ToolDetailSections toolId="base32" />
       </div>
       
        {/* Info Card */}
@@ -151,7 +152,6 @@ export default function Base32Page() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="base32" />
     </div>
   );
 }

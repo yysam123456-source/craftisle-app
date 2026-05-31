@@ -7,8 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function UrlEncodePage() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -179,6 +179,7 @@ export default function UrlEncodePage() {
                 <li>Text characters are encoded as UTF-8 percent-encoded values</li>
               </ul>
             </div>
+      <ToolDetailSections toolId="url-encode" />
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Uses encodeURIComponent for encoding</li>
@@ -189,7 +190,6 @@ export default function UrlEncodePage() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="url-encode" />
     </div>
   );
 }

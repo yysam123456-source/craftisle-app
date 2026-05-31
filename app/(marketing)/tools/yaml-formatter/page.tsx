@@ -9,8 +9,8 @@ import { FileJson, Copy, Check, RotateCcw, ArrowRight, XCircle } from "lucide-re
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
 import { Badge } from "@/components/ui/badge";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function YamlFormatterPage() {
   const { theme } = useTheme();
   const [input, setInput] = useState("");
@@ -137,6 +137,7 @@ export default function YamlFormatterPage() {
           </CardContent>
         </Card>
       </div>
+      <ToolDetailSections toolId="yaml-formatter" />
 
       <div className="flex justify-center gap-4">
         <Button size="lg" onClick={handleValidation} variant="secondary">
@@ -146,7 +147,6 @@ export default function YamlFormatterPage() {
           Format YAML <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
-    <ToolDetailSections toolId="yaml-formatter" />
     </div>
   );
 }

@@ -8,8 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import dayjs from "dayjs";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function TimestampPage() {
   const [timestamp, setTimestamp] = useState("");
   const [dateTime, setDateTime] = useState<string>("");
@@ -244,6 +244,7 @@ export default function TimestampPage() {
                 <li>JavaScript typically uses millisecond timestamps</li>
               </ul>
             </div>
+      <ToolDetailSections toolId="timestamp" />
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Backend languages (e.g., PHP, Python) typically use second timestamps</li>
@@ -254,7 +255,6 @@ export default function TimestampPage() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="timestamp" />
     </div>
   );
 }

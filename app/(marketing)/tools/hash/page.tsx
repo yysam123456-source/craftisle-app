@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+
+
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
-
-
 interface HashResult {
   md5: string;
   sha1: string;
@@ -323,6 +323,7 @@ export default function HashPage() {
                 <li>SHA256 produces 256-bit (32-byte) hashes — high security</li>
               </ul>
             </div>
+      <ToolDetailSections toolId="hash" />
             <div className="space-y-2">
                <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>SHA512 produces 512-bit (64-byte) hashes — maximum security</li>
@@ -333,7 +334,6 @@ export default function HashPage() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="hash" />
     </div>
   );
 }

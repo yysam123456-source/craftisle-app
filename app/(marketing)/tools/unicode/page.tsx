@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function UnicodePage() {
   const [input, setInput] = useState("");
 
@@ -92,6 +92,7 @@ export default function UnicodePage() {
             Unicode &rarr; text
           </Button>
         </div>
+      <ToolDetailSections toolId="unicode" />
       </div>
 
       {/* Info Card */}
@@ -109,7 +110,6 @@ export default function UnicodePage() {
           </ul>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="unicode" />
     </div>
   );
 }

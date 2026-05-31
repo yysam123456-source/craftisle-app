@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Terminal, Copy } from "lucide-react";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import {
   Select,
   SelectContent,
@@ -28,7 +29,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 
 // Register fonts
@@ -135,10 +135,10 @@ export default function AsciiArtPage() {
                         {output || "Generating..."}
                     </pre>
                 </div>
+      <ToolDetailSections toolId="ascii-art" />
             </CardContent>
         </Card>
       </div>
-    <ToolDetailSections toolId="ascii-art" />
     </div>
   );
 }

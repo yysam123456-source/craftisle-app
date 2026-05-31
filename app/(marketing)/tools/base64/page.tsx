@@ -7,9 +7,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+
+
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
-
-
 export default function Base64Page() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -181,6 +181,7 @@ export default function Base64Page() {
                 <li>This tool supports Chinese text encoding and decoding</li>
               </ul>
             </div>
+      <ToolDetailSections toolId="base64" />
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Encoded data is approximately 33% larger than raw data</li>
@@ -191,7 +192,6 @@ export default function Base64Page() {
           </div>
         </CardContent>
       </Card>
-    <ToolDetailSections toolId="base64" />
     </div>
   );
 }

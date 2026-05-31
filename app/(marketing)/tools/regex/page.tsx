@@ -147,6 +147,7 @@ export default function RegexPage() {
               </CardContent>
            </Card>
         </div>
+        <ToolDetailSections toolId="regex" />
       </div>
     </div>
   );
@@ -157,7 +158,6 @@ function FlagToggle({ label, active, onToggle, title }: { label: string; active:
     <div className="flex flex-col items-center gap-1" title={title}>
        <span className="text-[10px] font-bold text-muted-foreground font-mono">{label}</span>
        <Switch checked={active} onCheckedChange={onToggle} />
-    <ToolDetailSections toolId="regex" />
     </div>
   );
 }

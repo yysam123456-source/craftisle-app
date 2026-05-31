@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { FileText, Download, Copy, Eye, Edit3, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
+
+
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
-
-
 const DEFAULT_MARKDOWN = `# Welcome to Markdown Editor
 
 This is a **live preview** editor. You can write your markdown on the left (or top), and see the result instantly.
@@ -131,7 +131,7 @@ export default function MarkdownPage() {
           </CardContent>
         </Card>
       </div>
-    <ToolDetailSections toolId="markdown" />
+      <ToolDetailSections toolId="markdown" />
     </div>
   );
 }

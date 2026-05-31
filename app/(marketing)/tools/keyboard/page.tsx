@@ -91,6 +91,7 @@ export default function KeyboardPage() {
             <p>Although `keyCode` is deprecated in modern web development, `key` and `code` are recommended, but many legacy systems still use it. `key` represents the character itself, while `code` represents the physical key position.</p>
          </CardContent>
       </Card>
+        <ToolDetailSections toolId="keyboard" />
     </div>
   );
 }
@@ -110,7 +111,6 @@ function ModifierTag({ active, label }: { active: boolean; label: string }) {
       active ? "bg-primary border-primary text-primary-foreground scale-110 shadow-lg" : "border-muted text-muted-foreground opacity-30"
     }`}>
       {label}
-    <ToolDetailSections toolId="keyboard" />
     </div>
   );
 }
