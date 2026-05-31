@@ -9,6 +9,7 @@ import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function TtsPage() {
   const [text, setText] = useState("Welcome to i-TTSToolkit，Text-to-Speech tool powered by browser Web Speech API. Adjust speech rate, pitch, and volume.");
@@ -208,8 +209,9 @@ export default function TtsPage() {
             <li>Adjustable speech rate, pitch and volume for best results</li>
             <li>Recommended to use Chrome or Edge browser for best experience</li>
           </ul>
-        </CardContent>
+          </CardContent>
       </Card>
+      <ToolDetailSections toolId="tts" />
     </div>
   );
 }

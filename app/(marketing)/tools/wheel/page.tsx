@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/i-tools/utils";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 const COLORS = ["#f87171", "#fb923c", "#fbbf24", "#a3e635", "#34d399", "#22d3ee", "#818cf8", "#e879f9"];
 
@@ -489,6 +490,7 @@ export default function WheelPage() {
           </Card>
         </div>
       </div>
+      <ToolDetailSections toolId="wheel" />
 
       <Dialog open={isClearDialogOpen} onOpenChange={setIsClearDialogOpen}>
         <DialogContent>

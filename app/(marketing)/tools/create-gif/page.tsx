@@ -1,4 +1,5 @@
 import { CreateGifPage } from "@/components/tools/create-gif-page";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <CreateGifPage />;
+  return (
+    <>
+      <CreateGifPage />
+      <ToolDetailSections toolId="create-gif" />
+    </>
+  );
 }
