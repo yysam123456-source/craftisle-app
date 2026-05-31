@@ -23,7 +23,7 @@ export default function ToolDetailSections({ toolId }: Props) {
     .filter(Boolean) as Array<{ id: string } & ToolMeta>;
 
   return (
-    <div className="space-y-8 mt-8">
+    <div className="space-y-8 mt-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* === Description Section === */}
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">About This Tool</h2>
