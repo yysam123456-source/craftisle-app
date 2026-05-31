@@ -1497,6 +1497,35 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["image-info", "image-compress", "image-strip-metadata"],
   },
 
+  "file-viewer": {
+    title: "File Viewer",
+    desc: "Preview 135+ file formats — PDF, Word, Excel, CAD, 3D, images & more",
+    icon: "👁️",
+    category: CATEGORIES.other,
+    badge: "New",
+    description: "Preview <strong>135+ file formats</strong> directly in your browser — no software installation needed. Supports PDF, Word (DOC/DOCX), Excel (XLS/XLSX), PowerPoint (PPT/PPTX), CAD files (DWG/DXF), 3D models (STL/OBJ/GLTF), images (JPG/PNG/GIF/WEBP/HEIC), archives (ZIP/RAR/7Z), code files, e-books (EPUB), audio/video, fonts, and more.<br/><br/><strong>100% private:</strong> All processing happens locally in your browser. Files are never uploaded to any server. Your data stays on your device.",
+    howToUse: [
+      { heading: "Upload or drag & drop", text: "Drag a file onto the upload zone, or click to browse your computer. You can also paste a direct file URL." },
+      { heading: "Wait for preview", text: "The file is processed locally in your browser and rendered in the preview viewer. No upload — just instant local rendering." },
+      { heading: "Explore the file", text: "Zoom, pan, scroll, and navigate through your file. The viewer supports page navigation for multi-page documents." },
+      { heading: "Open another file", text: "Click 'Close' or drop another file to preview something different. Each preview is independent." },
+    ],
+    useCases: [
+      { title: "Quick document check", text: "Open a Word/Excel/PPT attachment without launching Microsoft Office. Perfect for email attachments and Slack files." },
+      { title: "Design review", text: "Preview CAD files (DWG/DXF) and 3D models (STL/OBJ) from clients without installing AutoCAD or Fusion 360." },
+      { title: "Archive inspection", text: "Peek inside ZIP/RAR archives before extracting. Preview archived images and documents directly." },
+      { title: "Code browsing", text: "Quickly view source code files with syntax awareness. Supports JavaScript, Python, Java, C++, Rust, and more." },
+    ],
+    faq: [
+      { q: "Are my files uploaded to a server?", a: "No. Files are processed entirely in your browser using local Blob URLs. No data ever leaves your device." },
+      { q: "What is the maximum file size?", a: "50 MB. Larger files may cause performance issues in the browser." },
+      { q: "Which file formats are supported?", a: "135+ formats across 11 categories: Documents, Spreadsheets, Presentations, Images, 3D/CAD, Archives, Code, Audio, Video, E-Books, and Fonts. See the full list on the tool page." },
+      { q: "Does it work on mobile?", a: "Yes. The viewer is fully responsive and works on iOS Safari and Android Chrome. Use the floating action button to access file controls." },
+      { q: "Can I edit files?", a: "No. This is a preview-only tool. For PDF editing, check out our dedicated PDF tools." },
+    ],
+    relatedTools: ["pdf-viewer", "markdown", "diff", "csv-json"],
+  },
+
   "create-gif": {
     title: "Create GIF",
     desc: "Create animated GIFs from multiple image frames",

@@ -107,8 +107,10 @@ export default async function ToolPage({ params }: Props) {
     );
   }
 
-  // Non-image tool: no file processing UI
+  // Non-image tool: render ToolDetailLayout with ToolDetailSections
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related} />
+    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related}>
+      <ToolDetailSections toolId={tool} />
+    </ToolDetailLayout>
   );
 }
