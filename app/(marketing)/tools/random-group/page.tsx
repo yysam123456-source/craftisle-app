@@ -54,8 +54,7 @@ export default function RandomGroupPage() {
 
   const formatGroupsText = () => {
     return groups
-      .map((group, index) => `小组 ${index + 1}:
-${group.join(", ")}`)
+      .map((group, index) => `Group ${index + 1}:\n${group.join(", ")}`)
       .join("\n\n");
   };
 
@@ -111,7 +110,7 @@ Diana..."
 
         <Card className="flex flex-col">
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
-            <CardTitle className="text-base">分组Result</CardTitle>
+            <CardTitle className="text-base">Group Result</CardTitle>
             {groups.length > 0 && (
               <Button
                 variant="ghost"
@@ -127,15 +126,15 @@ Diana..."
             {groups.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-muted-foreground py-12 italic">
                 <Shuffle className="h-12 w-12 mb-2 opacity-10" />
-                <p>Click“Group Now”查看Result</p>
+                <p>Click "Group Now" to view results</p>
               </div>
             ) : (
               <div className="grid gap-4">
                 {groups.map((group, index) => (
                   <div key={index} className="p-4 rounded-lg bg-muted/50 border border-muted-foreground/10 space-y-2">
                     <div className="flex items-center justify-between border-b pb-1">
-                      <span className="font-bold text-primary">第 {index + 1} 组</span>
-                      <span className="text-xs text-muted-foreground">{group.length} 人</span>
+                      <span className="font-bold text-primary">Group {index + 1}</span>
+                      <span className="text-xs text-muted-foreground">{group.length} members</span>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {group.map((name, ni) => (

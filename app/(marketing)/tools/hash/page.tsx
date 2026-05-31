@@ -299,7 +299,7 @@ export default function HashPage() {
               ) : (
                 <div className="flex flex-col items-center justify-center h-full min-h-75 text-muted-foreground">
                   <FileDigit className="h-16 w-16 mb-4 opacity-20" />
-                  <p>Input Text后ClickCalculate Hash</p>
+                  <p>Input text then click Calculate Hash</p>
                 </div>
               )}
             </CardContent>
@@ -318,7 +318,7 @@ export default function HashPage() {
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>MD5 produces 128-bit (16-byte) hashes — not recommended for security use</li>
-                <li>SHA1 产生 160 （20 字节）哈希值</li>
+                <li>SHA1 produces 160-bit (20-byte) hash value</li>
                 <li>SHA256 produces 256-bit (32-byte) hashes — high security</li>
               </ul>
             </div>

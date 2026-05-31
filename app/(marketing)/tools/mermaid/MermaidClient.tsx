@@ -9,9 +9,9 @@ import { toast } from 'sonner'
 import { FileCode, Copy, Download, Trash2, Eye, Edit3, AlertTriangle } from 'lucide-react'
 
 const DEFAULT_MERMAID = `flowchart TD
-  A[Start] --> B{是No通过?}
-  B -->|| C[Publish]
-  B -->|No| D[]
+  A[Start] --> B{Validation passed?}
+  B -->|Yes| C[Publish]
+  B -->|No| D[Fix Issues]
   D --> B`
 
 const MERMAID_SCRIPT_ID = 'mermaid-cdn-script'
@@ -45,7 +45,7 @@ const loadMermaidScript = () => {
 
     if (existingScript) {
       existingScript.addEventListener('load', () => resolve(), { once: true })
-      existingScript.addEventListener('error', () => reject(new Error('Mermaid 脚baseloading error')), { once: true })
+      existingScript.addEventListener('error', () => reject(new Error('Mermaid script loading error')), { once: true })
       return
     }
 
@@ -55,7 +55,7 @@ const loadMermaidScript = () => {
     script.async = true
 
     script.addEventListener('load', () => resolve(), { once: true })
-    script.addEventListener('error', () => reject(new Error('Mermaid 脚baseloading error')), { once: true })
+    script.addEventListener('error', () => reject(new Error('Mermaid script loading error')), { once: true })
 
     document.head.appendChild(script)
   })
@@ -167,7 +167,7 @@ export default function MermaidClient() {
             <FileCode className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Mermaid 在线Edit</h1>
+            <h1 className="text-2xl font-bold tracking-tight">Mermaid Online Editor</h1>
             <p className="text-muted-foreground">Client-side rendering, real-time SVG output</p>
           </div>
         </div>

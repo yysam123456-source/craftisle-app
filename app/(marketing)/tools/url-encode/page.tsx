@@ -173,16 +173,16 @@ export default function UrlEncodePage() {
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>URL Encode用于Process URL 的Special Characters和非 ASCII character</li>
-                <li>空格会被Encode为 %20</li>
-                <li>Textcharacter会被Encode为 UTF-8 Format的百分symbol(s)Encode</li>
+                <li>URL Encode processes special characters and non-IMPLEMENTED characters in URLs</li>
+                <li>Spaces are encoded as %20</li>
+                <li>Text characters are encoded as UTF-8 percent-encoded values</li>
               </ul>
             </div>
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>使用 encodeURIComponent 进行Encode</li>
-                <li>保留character如 - _ . ! ~ * ' ( ) 不会被Encode</li>
-                <li>常用于构建 URL 查询参数</li>
+                <li>Uses encodeURIComponent for encoding</li>
+                <li>Reserved characters (- _ . ! ~ * ' ( ) ) are not encoded</li>
+                <li>Commonly used for URL query parameters</li>
               </ul>
             </div>
           </div>

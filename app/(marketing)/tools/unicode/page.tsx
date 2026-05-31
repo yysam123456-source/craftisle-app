@@ -103,8 +103,8 @@ export default function UnicodePage() {
         <CardContent>
           <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-2">
             <li>This tool supports standard Unicode escape format (`\uXXXX`).</li>
-            <li><strong>text &rarr; Unicode:</strong> 将Textcharacter、charactersymbol(s)等convert to 16 进制 Unicode Encode。</li>
-            <li><strong>Unicode &rarr; text:</strong> 将 `\uXXXX` Format的Stringrestore to readabletext。</li>
+            <li><strong>text &rarr; Unicode:</strong> Convert text characters or character symbols to hexadecimal Unicode encoding.</li>
+            <li><strong>Unicode &rarr; text:</strong> Restore strings in `\uXXXX` format to readable text.</li>
           </ul>
         </CardContent>
       </Card>

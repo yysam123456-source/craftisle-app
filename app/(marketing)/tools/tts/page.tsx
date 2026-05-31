@@ -205,8 +205,8 @@ export default function TtsPage() {
             <li>Supports multiple languages, depending on your OS and browser</li>
           </ul>
           <ul className="list-disc pl-4 space-y-1">
-            <li>可调节语速、音调和音量 with 获得最佳效果</li>
-            <li>推荐使用 Chrome or Edge 浏览器 with 获得最佳体验</li>
+            <li>Adjustable speech rate, pitch and volume for best results</li>
+            <li>Recommended to use Chrome or Edge browser for best experience</li>
           </ul>
         </CardContent>
       </Card>

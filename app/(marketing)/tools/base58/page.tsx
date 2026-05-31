@@ -161,8 +161,8 @@ export default function Base58Page() {
         </CardHeader>
         <CardContent>
           <div className="text-sm text-muted-foreground space-y-2">
-            <p>Base58 是种基于text的二进制EncodeFormat。它类似于 Base64，但去除了容易混淆的character（0, O, I, l） with 及非字母Numbercharacter（+, /），使其更适合人工识别和Copy。</p>
-            <p>baseTools使用比特币standardstandard字母表：<code>123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz</code></p>
+            <p>Base58 is a text-based binary encoding format similar to Base64, but removes easily confused characters (0, O, I, l) and non-alphanumeric characters (+, /), making it more suitable for manual identification and copying.</p>
+            <p>Base58 tools use the Bitcoin standard alphabet: <code>123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz</code></p>
           </div>
         </CardContent>
       </Card>

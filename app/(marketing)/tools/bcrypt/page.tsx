@@ -89,7 +89,7 @@ export default function BcryptPage() {
             <div className="space-y-4">
                 <div className="flex justify-between">
                     <Label>Salt Rounds (Strength): {saltRounds}</Label>
-                    <span className="text-xs text-muted-foreground">越高越慢</span>
+                    <span className="text-xs text-muted-foreground">Higher cost = slower</span>
                 </div>
                 <Slider
                     value={[saltRounds]}
@@ -155,7 +155,7 @@ export default function BcryptPage() {
                 <div className={`mt-4 p-4 rounded-md flex items-center justify-center gap-2 font-bold ${isMatch ? 'bg-emerald-500/10 text-emerald-600' : 'bg-destructive/10 text-destructive'}`}>
                     {isMatch ? (
                         <>
-                            <CheckCircle className="h-5 w-5" /> Validate通过：Match
+                            <CheckCircle className="h-5 w-5" /> Validation passed: Match
                         </>
                     ) : (
                         <>

@@ -48,7 +48,7 @@ export default function UuidPage() {
       formatUUID(generateUUID())
     );
     setUuids(newUuids);
-    toast.success(`已Generate ${count}  UUID`);
+    toast.success(`Generated ${count} UUIDs`);
   };
 
   const copyToClipboard = async (text: string) => {
@@ -121,7 +121,7 @@ export default function UuidPage() {
               <SelectContent>
                 <SelectItem value="default">Default（Lowercase）</SelectItem>
                 <SelectItem value="uppercase">Uppercase</SelectItem>
-                <SelectItem value="nohyphen">无连character</SelectItem>
+                <SelectItem value="nohyphen">No hyphens</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -147,7 +147,7 @@ export default function UuidPage() {
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-base font-medium">GenerateResult</CardTitle>
           <span className="text-sm text-muted-foreground">
-            共 {uuids.length} 
+            {uuids.length} UUIDs generated 
           </span>
         </CardHeader>
         <CardContent>
@@ -173,7 +173,7 @@ export default function UuidPage() {
             ) : (
               <div className="flex min-h-50 flex-col items-center justify-center text-muted-foreground">
                 <FileText className="mb-4 h-12 w-12 opacity-20" />
-                <p>ClickGenerate按钮创建 UUID</p>
+                <p>Click Generate button to create UUID</p>
               </div>
             )}
           </div>
@@ -207,9 +207,9 @@ export default function UuidPage() {
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Common Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground">
-                <li>数据库主键</li>
-                <li>会话standard</li>
-                <li>分布式系统 ID</li>
+                <li>Database primary key</li>
+                <li>Session identifiers</li>
+                <li>Distributed system IDs</li>
               </ul>
             </div>
           </div>

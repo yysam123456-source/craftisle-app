@@ -264,14 +264,14 @@ export default function RandomStringGenerator() {
                       handleConfigChange("excludeSimilar", checked)
                     }
                   />
-                  <Label htmlFor="excludeSimilar">Exclude似character (0O1lI|)</Label>
+                  <Label htmlFor="excludeSimilar">Exclude similar characters (0O1lI|)</Label>
                 </div>
               </div>
 
               <Separator />
 
               <div className="space-y-2">
-                <Label htmlFor="customChars">Customcharacter集</Label>
+                <Label htmlFor="customChars">Custom character set</Label>
                 <Input
                   id="customChars"
                   value={config.customChars}
@@ -297,7 +297,7 @@ export default function RandomStringGenerator() {
             <CardContent>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="space-y-1">
-                  <div className="text-xs text-muted-foreground">character集Size</div>
+                  <div className="text-xs text-muted-foreground">Character set size</div>
                   <div className="text-xl font-bold">{getCharacterSet().length}</div>
                 </div>
                 <div className="space-y-1">
@@ -400,9 +400,9 @@ export default function RandomStringGenerator() {
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Features</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Support多种character集组合Config</li>
-                <li>可Exclude容易混淆的似character</li>
-                <li>SupportCustomcharacter集</li>
+                <li>Supports multiple character set combinations</li>
+                <li>Exclude easily confused similar characters</li>
+                <li>Supports custom character sets</li>
                 <li>Batch generate multiple strings</li>
               </ul>
             </div>
@@ -411,7 +411,7 @@ export default function RandomStringGenerator() {
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Password length should be at least 12+ characters</li>
                 <li>Important accounts should use 16+ character passwords</li>
-                <li>Include多种characterType提高安全性</li>
+                <li>Include multiple character types to improve security</li>
                 <li>Regularly rotate passwords for important accounts</li>
               </ul>
             </div>
@@ -421,7 +421,7 @@ export default function RandomStringGenerator() {
                 <li>Generate secure passwords</li>
                 <li>Create API keys</li>
                 <li>Generate verification codes</li>
-                <li>创建Randomstandardcharacter</li>
+                <li>Create random standard characters</li>
               </ul>
             </div>
           </div>

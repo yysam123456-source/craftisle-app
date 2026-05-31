@@ -100,20 +100,22 @@ export function ToolDetailLayout({
       </div>
 
       {/* === Description Section === */}
-      {meta.description && (
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">About This Tool</h2>
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">About This Tool</h2>
+        {meta.description ? (
           <div
             className="prose prose-sm max-w-none text-muted-foreground"
             dangerouslySetInnerHTML={{ __html: meta.description }}
           />
-        </section>
-      )}
+        ) : (
+          <p className="text-sm text-muted-foreground italic">Description coming soon.</p>
+        )}
+      </section>
 
       {/* === How To Use === */}
-      {meta.howToUse && meta.howToUse.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">How to Use</h2>
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">How to Use</h2>
+        {meta.howToUse && meta.howToUse.length > 0 ? (
           <ol className="space-y-4">
             {meta.howToUse.map((step, i) => (
               <li key={i} className="ml-5 list-decimal">
@@ -122,13 +124,15 @@ export function ToolDetailLayout({
               </li>
             ))}
           </ol>
-        </section>
-      )}
+        ) : (
+          <p className="text-sm text-muted-foreground italic">Usage guide coming soon.</p>
+        )}
+      </section>
 
       {/* === Use Cases === */}
-      {meta.useCases && meta.useCases.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Use Cases</h2>
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">Use Cases</h2>
+        {meta.useCases && meta.useCases.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-3">
             {meta.useCases.map((uc, i) => (
               <div key={i} className="rounded-xl border bg-card p-4">
@@ -139,8 +143,10 @@ export function ToolDetailLayout({
               </div>
             ))}
           </div>
-        </section>
-      )}
+        ) : (
+          <p className="text-sm text-muted-foreground italic">Use cases coming soon.</p>
+        )}
+      </section>
 
       {/* === AdSlot 2: below use cases === */}
       <div className="flex justify-center py-4">
@@ -148,9 +154,9 @@ export function ToolDetailLayout({
       </div>
 
       {/* === FAQ Section === */}
-      {meta.faq && meta.faq.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">FAQ</h2>
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">FAQ</h2>
+        {meta.faq && meta.faq.length > 0 ? (
           <div className="space-y-4">
             {meta.faq.map((item, i) => (
               <details
@@ -166,13 +172,15 @@ export function ToolDetailLayout({
               </details>
             ))}
           </div>
-        </section>
-      )}
+        ) : (
+          <p className="text-sm text-muted-foreground italic">FAQ coming soon.</p>
+        )}
+      </section>
 
       {/* === Related Tools === */}
-      {relatedTools && relatedTools.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold">Related Tools</h2>
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">Related Tools</h2>
+        {relatedTools && relatedTools.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-3">
             {relatedTools.map((tool) => (
               <Link
@@ -188,8 +196,10 @@ export function ToolDetailLayout({
               </Link>
             ))}
           </div>
-        </section>
-      )}
+        ) : (
+          <p className="text-sm text-muted-foreground italic">Related tools coming soon.</p>
+        )}
+      </section>
     </div>
   );
 }

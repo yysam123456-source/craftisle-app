@@ -145,7 +145,7 @@ export default function JsonFormatterPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">JSON Formatter</h1>
-            <p className="text-muted-foreground">FormatJSON，使其更易读</p>
+            <p className="text-muted-foreground">Format JSON for better readability</p>
           </div>
         </div>
         <Tabs value={mode} onValueChange={(v) => setMode(v as Mode)} className="w-75">
@@ -213,7 +213,7 @@ export default function JsonFormatterPage() {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => copyToClipboard(inputJson, 'Input内容')}>
+                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => copyToClipboard(inputJson, "Input content")}>
                       <Copy className="h-3 w-3" />
                     </Button>
                   </TooltipTrigger>
@@ -242,7 +242,7 @@ export default function JsonFormatterPage() {
             )}
           </CardContent>
           <div className="p-2 border-t bg-muted/30 text-xs text-muted-foreground flex justify-end">
-            character数: {charCount}
+            Character count: {charCount}
           </div>
         </Card>
 
@@ -286,30 +286,30 @@ export default function JsonFormatterPage() {
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Format Mode</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>BeautifyJSON结构，增加缩进</li>
-                <li>提高可读性</li>
-                <li>便于调试和查看</li>
+                <li>Beautify JSON structure with proper indentation</li>
+                <li>Improve readability</li>
+                <li>Easy to debug and inspect</li>
               </ul>
             </div>
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Minify Mode</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>移除所有空白character</li>
-                <li>减小File Size</li>
-                <li>适合生产环境</li>
+                <li>Remove all whitespace characters</li>
+                <li>Reduce file size</li>
+                <li>Suitable for production</li>
               </ul>
             </div>
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Validate Mode</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>检查JSON语法H性</li>
-                <li>显示详细Statsinfomation</li>
-                <li>提供Error诊断</li>
+                <li>Check JSON syntax validity</li>
+                <li>Show detailed stats information</li>
+                <li>Provide error diagnostics</li>
               </ul>
             </div>
           </div>
           <div className="mt-4 p-3 bg-muted rounded-md text-xs text-muted-foreground">
-            💡 Tip：Support，、、String、Number、null。
+            💡 Tip: Supports Object, Array, String, Number, Boolean, null.
           </div>
         </CardContent>
       </Card>

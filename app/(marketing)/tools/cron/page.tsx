@@ -11,22 +11,22 @@ export default function CronPage() {
   const [expression, setExpression] = useState("*/5 * * * *");
   
   const parts = expression.split(/\s+/);
-  const labels = ["min", "hour", "Date", "月份", "星期"];
+  const labels = ["min", "hour", "day", "month", "weekday"];
   
   const decodePart = (part: string, type: string) => {
     if (!part) return "-";
-    if (part === "*") return `每${type}`;
+    if (part === "*") return `Every ${type}`;
     if (part.includes("/")) {
       const [start, step] = part.split("/");
-      return `每隔 ${step} ${type}${start !== "*" ? ` (从第 ${start} Start)` : ""}`;
+      return `Every ${step} ${type}${start !== "*" ? ` (from ${start})` : ""}`;
     }
     if (part.includes("-")) {
-      return `从 ${part.replace("-", " to ")} ${type}`;
+      return `${part.replace("-", " to ")} ${type}`;
     }
     if (part.includes(",")) {
-      return `第 ${part} ${type}`;
+      return `Values: ${part} ${type}`;
     }
-    return `第 ${part} ${type}`;
+    return `Value: ${part} ${type}`;
   };
 
   return (
@@ -51,7 +51,7 @@ export default function CronPage() {
               <Input 
                 value={expression} 
                 onChange={(e) => setExpression(e.target.value)}
-                placeholder="如: */5 * * * *"
+                placeholder="e.g. */5 * * * *"
                 className="font-mono text-lg"
               />
               <Button onClick={() => toast.success("ParseSuccess")}>Parse</Button>
@@ -93,19 +93,19 @@ export default function CronPage() {
              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-muted-foreground">
                 <div className="space-y-1">
                    <p className="font-bold text-foreground">*</p>
-                   <p>Match该字段的所有值</p>
+                   <p>Match all values for this field</p>
                 </div>
                 <div className="space-y-1">
                    <p className="font-bold text-foreground">/n</p>
-                   <p>指定数值增量 (每隔 n)</p>
+                   <p>Specify step value (every n)</p>
                 </div>
                 <div className="space-y-1">
                    <p className="font-bold text-foreground">-</p>
-                   <p>指定数值范围 (从 x to y)</p>
+                   <p>Specify range (from x to y)</p>
                 </div>
                 <div className="space-y-1">
                    <p className="font-bold text-foreground">,</p>
-                   <p>指定多值</p>
+                   <p>Specify multiple values</p>
                 </div>
              </div>
           </CardContent>

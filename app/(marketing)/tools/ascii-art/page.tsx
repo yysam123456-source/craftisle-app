@@ -83,7 +83,7 @@ export default function AsciiArtPage() {
         </div>
         <div>
           <h1 className="text-2xl font-bold tracking-tight">ASCII Art Generator</h1>
-          <p className="text-muted-foreground">将textconvert to retro的character画风格</p>
+          <p className="text-muted-foreground">Convert text to retro character art style</p>
         </div>
       </div>
 

@@ -282,7 +282,7 @@ export default function WheelPage() {
     setNewItem("");
 
     if (duplicateCount > 0) {
-      toast.message(`已Add Item ${nextItems.length - items.length} 项，跳过 ${duplicateCount} 复项`);
+      toast.message(`Added ${nextItems.length - items.length} items, skipped ${duplicateCount} duplicates`);
     }
   };
 
@@ -347,7 +347,7 @@ export default function WheelPage() {
                   <Badge variant={isSpinning ? "default" : "secondary"} className="px-3 py-1 text-xs">
                     {isSpinning ? "Drawing..." : winner ? "Result" : "Waiting"}
                   </Badge>
-                  <p className="text-sm text-muted-foreground">{isSpinning ? "Wheel is slowing down, waiting for result..." : "Click心按钮or to 盘Spin"}</p>
+                  <p className="text-sm text-muted-foreground">{isSpinning ? "Wheel is slowing down, waiting for result..." : "Click the button to spin the wheel"}</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                   <span>Options {items.length}</span>
@@ -493,8 +493,8 @@ export default function WheelPage() {
       <Dialog open={isClearDialogOpen} onOpenChange={setIsClearDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Clear所有Options？</DialogTitle>
-            <DialogDescription>Clear后Current候Options会All移除，你可 with 稍后再Reset to Defaults。</DialogDescription>
+            <DialogTitle>Clear all options?</DialogTitle>
+            <DialogDescription>After clearing, all current options will be removed. You can reset to defaults later.</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsClearDialogOpen(false)}>

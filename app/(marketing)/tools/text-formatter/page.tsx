@@ -323,19 +323,19 @@ export default function TextFormatterPage() {
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Features</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li><strong>Remove formatting:</strong>清除text的各种Formatinfomation</li>
-                <li><strong>Remove Spaces：</strong>删除Text的所有空格character</li>
-                <li><strong>Remove newlines：</strong>去除text的换行character，合并为单行</li>
-                <li><strong>Stats分析：</strong>显示Process前后的character数变化</li>
+                <li><strong>Remove formatting:</strong> Strip all text formatting</li>
+                <li><strong>Remove Spaces:</strong> Remove all space characters from text</li>
+                <li><strong>Remove newlines:</strong> Remove newlines and merge into a single line</li>
+                <li><strong>Stats Analysis:</strong> Show character count changes before/after processing</li>
               </ul>
             </div>
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Process从Word、PDFCopy的text</li>
-                <li>清理网页Copy的带Format Text</li>
-                <li>去除邮件内容的多余换行</li>
-                <li>整理聊dayRecordsortext档片段</li>
+                <li>Process text copied from Word or PDF</li>
+                <li>Clean formatted text copied from web pages</li>
+                <li>Remove extra line breaks from email content</li>
+                <li>Organize chat records or text snippets</li>
               </ul>
             </div>
           </div>

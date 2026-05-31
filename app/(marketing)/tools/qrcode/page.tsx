@@ -308,7 +308,7 @@ export default function QRCodeGenerator() {
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Features</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Supporttext、网址等多种内容</li>
+                <li>Supports text, URLs and more</li>
                 <li>Custom QR code colors and background</li>
                 <li>Supports standard image formats</li>
                 <li>Multiple error correction levels</li>
@@ -325,10 +325,10 @@ export default function QRCodeGenerator() {
             <div className="space-y-2">
               <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>网站链接快速分享</li>
-                <li>Contact方式infomation传递</li>
+                <li>Quick website link sharing</li>
+                <li>Contact information sharing</li>
                 <li>Event invitation code generation</li>
-                <li>产品infomation展示</li>
+                <li>Product information display</li>
               </ul>
             </div>
           </div>

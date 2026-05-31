@@ -68,8 +68,8 @@ export default function IpCalcPage() {
           <Network className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">IP 地址Calculate</h1>
-          <p className="text-muted-foreground">Subnet Mask、网络地址、Host RangeCalculate</p>
+          <h1 className="text-2xl font-bold tracking-tight">IP Calculator</h1>
+          <p className="text-muted-foreground">Subnet Mask, Network Address & Host Range Calculator</p>
         </div>
       </div>
 
@@ -80,12 +80,12 @@ export default function IpCalcPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label>IP 地址</Label>
-              <Input value={ip} onChange={(e) => setIp(e.target.value)} placeholder="如: 192.168.1.1" />
+              <Label>IP Address</Label>
+              <Input value={ip} onChange={(e) => setIp(e.target.value)} placeholder="e.g. 192.168.1.1" />
             </div>
             <div className="space-y-2">
-              <Label>掩码 (CIDR)</Label>
-              <Input value={mask} onChange={(e) => setMask(e.target.value)} placeholder="如: 24" type="number" />
+              <Label>Mask Bits (CIDR)</Label>
+              <Input value={mask} onChange={(e) => setMask(e.target.value)} placeholder="e.g. 24" type="number" />
             </div>
             <Button onClick={calculate} className="w-full gap-2 mt-2">
               <Calculator className="h-4 w-4" />
@@ -102,16 +102,16 @@ export default function IpCalcPage() {
             {!result ? (
               <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
                  <Search className="h-12 w-12 mb-2 opacity-20" />
-                 <p>EnterConfig并ClickCalculate</p>
+                 <p>Enter config and click Calculate</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
-                 <ResultItem label="网络地址" value={result.network} cidr={result.cidr} />
+                 <ResultItem label="Network Address" value={result.network} cidr={result.cidr} />
                  <ResultItem label="Broadcast Address" value={result.broadcast} />
                  <ResultItem label="Subnet Mask" value={result.netmask} />
-                 <ResultItem label="T掩码 (Wildcard)" value={result.wildcard} />
-                 <ResultItem label="可用主机Min" value={result.hostMin} />
-                 <ResultItem label="可用主机Max" value={result.hostMax} />
+                 <ResultItem label="Wildcard Mask" value={result.wildcard} />
+                 <ResultItem label="Min Host" value={result.hostMin} />
+                 <ResultItem label="Max Host" value={result.hostMax} />
                  <ResultItem label="Available Hosts" value={result.hosts.toLocaleString()} />
               </div>
             )}

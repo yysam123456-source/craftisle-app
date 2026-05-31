@@ -246,8 +246,8 @@ export default function TimestampPage() {
             <div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Backend languages (e.g., PHP, Python) typically use second timestamps</li>
-                <li>Click"Use current"可快速填入CurrentTimestamp</li>
-                <li>SupportCopyCurrent实Timestamp</li>
+                <li>Click "Use current" to quickly fill in current timestamp</li>
+                <li>Supports copying current timestamp</li>
               </ul>
             </div>
           </div>

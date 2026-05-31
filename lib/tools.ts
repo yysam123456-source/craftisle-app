@@ -865,7 +865,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     description: "Calculate IPv4 and IPv6 subnet information: network address, broadcast address, CIDR notation, wildcard mask, and usable host range. Supports CIDR notation (192.168.1.0/24) and subnet mask input. Essential for network engineers, DevOps, and cloud infrastructure planning.",
     howToUse: [
       { heading: "Enter IP and subnet", text: "Type an IPv4 or IPv6 address with CIDR suffix (e.g., 192.168.1.0/24)." },
-      { heading: "View计算结果", text: "Network address, broadcast address, usable host range, total hosts, and subnet mask are displayed." },
+      { heading: "View results", text: "Network address, broadcast address, usable host range, total hosts, and subnet mask are displayed." },
       { heading: "Copy results", text: "Copy individual values or the full subnet report." },
     ],
     useCases: [
