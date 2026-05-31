@@ -31,6 +31,7 @@ export const CATEGORIES = {
   text: "Text Tools",
   network: "Network Tools",
   image: "Image",
+  utility: "Utilities",
   other: "Other",
 } as const;
 
@@ -910,7 +911,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Coin Flip",
     desc: "Random coin flip simulator",
     icon: "🪙",
-    category: CATEGORIES.other,
+    category: CATEGORIES.utility,
     description: "Flip a virtual coin with realistic animation and sound. Uses cryptographic randomness for true 50/50 probability. Perfect for decision making, games, disputes, and probability experiments. Tracks flip history and statistics.",
     howToUse: [
       { heading: "Click Flip", text: "Press the Flip button to toss the coin. Watch the animation." },
@@ -934,7 +935,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Counter",
     desc: "Simple counter tool",
     icon: "🔢",
-    category: CATEGORIES.other,
+    category: CATEGORIES.utility,
     description: "A simple, accessible counter with increment, decrement, reset, and custom step size. Features keyboard shortcuts, session persistence, and a large display. Perfect for counting items, tracking reps at the gym, or any situation where you need a quick tally.",
     howToUse: [
       { heading: "Click + or -", text: "Use the buttons or keyboard arrow keys to increment or decrement." },
@@ -958,7 +959,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Countdown",
     desc: "Custom countdown timer",
     icon: "⏳",
-    category: CATEGORIES.other,
+    category: CATEGORIES.utility,
     description: "Create custom countdown timers for events, deadlines, or Pomodoro sessions. Set hours, minutes, and seconds. Features a visual progress bar, optional alarm sound, and fullscreen mode.",
     howToUse: [
       { heading: "Set the duration", text: "Enter hours, minutes, and seconds for your countdown." },
@@ -982,7 +983,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Stopwatch",
     desc: "Online stopwatch tool",
     icon: "⏱️",
-    category: CATEGORIES.other,
+    category: CATEGORIES.utility,
     description: "A precise stopwatch with start, pause, lap, and reset functions. Features millisecond precision, lap history, and fullscreen mode. Uses performance.now() for high-precision timing. Essential for sports timing, experiments, and productivity tracking.",
     howToUse: [
       { heading: "Click Start", text: "Press Start to begin timing. The display shows HH:MM:SS.mmm." },
@@ -1006,7 +1007,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Pomodoro Timer",
     desc: "Pomodoro technique timer",
     icon: "🍅",
-    category: CATEGORIES.other,
+    category: CATEGORIES.utility,
     description: "Implement the Pomodoro Technique with a customizable timer: 25 minutes focused work, 5 minutes short break, 15 minutes long break after 4 cycles. Tracks completed pomodoros, sends desktop notifications, and works offline. Boost your productivity with structured work intervals.",
     howToUse: [
       { heading: "Start a Pomodoro", text: "Click Start to begin a 25-minute focused work session." },
@@ -1031,7 +1032,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Spin Wheel",
     desc: "Random spin wheel tool",
     icon: "🎡",
-    category: CATEGORIES.other,
+    category: CATEGORIES.utility,
     description: "Create a custom spin wheel with your own labels and colors. Add up to 50 segments. Features realistic spin animation, sound effects, and result history. Perfect for giveaways, random name picking, and decision making.",
     howToUse: [
       { heading: "Add wheel segments", text: "Type labels for each wheel segment. Set colors or use auto-colors." },
@@ -1055,7 +1056,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Scoreboard",
     desc: "Real-time score tracker",
     icon: "📊",
-    category: CATEGORIES.other,
+    category: CATEGORIES.utility,
     description: "Track scores for games, sports, quizzes, and competitions with a real-time scoreboard. Supports multiple players/teams, undo last change, and fullscreen presentation mode. Perfect for trivia nights, classroom games, and friendly competitions.",
     howToUse: [
       { heading: "Add players/teams", text: "Type names for each player or team. Set initial scores (default 0)." },
@@ -1079,7 +1080,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "Keyboard Test",
     desc: "Online keyboard key tester",
     icon: "⌨️",
-    category: CATEGORIES.other,
+    category: CATEGORIES.dev,
     description: "Test all keys on your keyboard in real-time. Detects key presses, shows key codes (key, code, keyCode), and identifies unresponsive or stuck keys. Supports modifier keys detection and displays which keys are being held simultaneously. Essential for troubleshooting keyboard hardware issues.",
     howToUse: [
       { heading: "Focus the test area", text: "Click on the keyboard test area to give it focus." },
@@ -1501,7 +1502,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     title: "File Viewer",
     desc: "Preview 135+ file formats — PDF, Word, Excel, CAD, 3D, images & more",
     icon: "👁️",
-    category: CATEGORIES.other,
+    category: CATEGORIES.dev,
     badge: "New",
     description: "Preview <strong>135+ file formats</strong> directly in your browser — no software installation needed. Supports PDF, Word (DOC/DOCX), Excel (XLS/XLSX), PowerPoint (PPT/PPTX), CAD files (DWG/DXF), 3D models (STL/OBJ/GLTF), images (JPG/PNG/GIF/WEBP/HEIC), archives (ZIP/RAR/7Z), code files, e-books (EPUB), audio/video, fonts, and more.<br/><br/><strong>100% private:</strong> All processing happens locally in your browser. Files are never uploaded to any server. Your data stays on your device.",
     howToUse: [
@@ -1557,7 +1558,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Merge, split, compress, convert PDF files online",
     icon: "📄",
     badge: "New",
-    category: CATEGORIES.other,
+    category: CATEGORIES.converter,
     external: true,
     url: "https://pdf.craftisle.com",
   },

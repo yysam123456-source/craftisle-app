@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { toolMeta, CATEGORIES } from "@/lib/tools";
 import type { ToolMeta } from "@/lib/tools";
+import { ToolActionBar } from "@/components/tools/ToolActionBar";
 
 function getCategorySlug(categoryLabel: string): string {
   return Object.entries(CATEGORIES).find(([, v]) => v === categoryLabel)?.[0] || "other";
@@ -53,6 +54,7 @@ export default function ToolsLayout({
     <>
       {toolId && <ToolBreadcrumb toolId={toolId} />}
       {children}
+      {toolId && <ToolActionBar toolId={toolId} />}
     </>
   );
 }

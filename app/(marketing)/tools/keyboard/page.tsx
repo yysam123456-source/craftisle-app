@@ -36,7 +36,7 @@ export default function KeyboardPage() {
           <Keyboard className="h-6 w-6 text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Keyboard Detector</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Keyboard Test</h1>
           <p className="text-muted-foreground">Real-time detection and display of keyboard key event properties</p>
         </div>
       </div>
