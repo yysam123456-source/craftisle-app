@@ -59,7 +59,7 @@ export default async function ToolPage({ params }: Props) {
   const definition = getToolDefinition(tool);
   const meta = getToolMeta(tool);
 
-  if (!definition || !meta) {
+  if (!meta) {
     notFound();
   }
 
@@ -89,18 +89,26 @@ export default async function ToolPage({ params }: Props) {
     };
   }
 
-  const clientDef = {
-    id: definition.id,
-    acceptTypes: definition.acceptTypes,
-    maxFileSize: definition.maxFileSize,
-  };
-
   const related = buildRelatedTools(meta.relatedTools);
   const categorySlug = getCategorySlug(meta.category);
 
+  // Image tools: render ImageToolPage
+  // Non-image tools: only render ToolDetailLayout (no file processing UI)
+  if (definition) {
+    const clientDef = {
+      id: definition.id,
+      acceptTypes: definition.acceptTypes,
+      maxFileSize: definition.maxFileSize,
+    };
+    return (
+      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related}>
+        <ImageToolPage toolId={tool} definition={clientDef} />
+      </ToolDetailLayout>
+    );
+  }
+
+  // Non-image tool: no file processing UI
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related}>
-      <ImageToolPage toolId={tool} definition={clientDef} />
-    </ToolDetailLayout>
+    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related} />
   );
 }

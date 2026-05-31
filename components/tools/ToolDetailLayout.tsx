@@ -23,7 +23,7 @@ interface ToolDetailLayoutProps {
   toolId: string;
   categorySlug: string;
   meta: ToolMeta;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** JsonLd structured data (inject as <script type="application/ld+json">) */
   jsonLd?: Record<string, unknown>;
   /** Pre-built related tool cards (built server-side) */
