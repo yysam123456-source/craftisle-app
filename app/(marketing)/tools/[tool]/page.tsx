@@ -39,6 +39,7 @@ export async function generateMetadata(
       title: `${meta.title} | Craftisle`,
       description: meta.desc,
     },
+    canonical: url,
   };
 }
 
