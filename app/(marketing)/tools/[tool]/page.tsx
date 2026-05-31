@@ -3,6 +3,7 @@ import type { ToolDefinition } from "@/lib/image-tools/types";
 import { getToolMeta, toolMeta, CATEGORIES, type ToolMeta } from "@/lib/tools";
 import { ImageToolPage } from "@/components/tools/image-tool-page";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 
