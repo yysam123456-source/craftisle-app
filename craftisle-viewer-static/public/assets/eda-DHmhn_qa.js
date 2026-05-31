@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./EdaViewer-En9UTGwx.js","./index-CLEdsJjy.js","./index-BjTZLd3d.css","./EdaViewer-CKf1YQnh.css"])))=>i.map(i=>d[i]);
+import{C as e,S as t,d as n,t as r}from"./index-CLEdsJjy.js";var i=e(()=>r(()=>import(`./EdaViewer-En9UTGwx.js`),__vite__mapDeps([0,1,2,3]),import.meta.url));async function a(e,r,a=`olb`,o){let s=a===`dra`?`dra`:`olb`,c=n({render:()=>t(i,{data:e,type:s,filename:o?.filename||`preview.${s}`},null)});return c.mount(r),c}export{a as default};

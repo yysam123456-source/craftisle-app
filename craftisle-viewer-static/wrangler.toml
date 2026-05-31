@@ -1,0 +1,15 @@
+name = "craftisle-viewer"
+type = "assets"
+# Cloudflare Pages 项目名（需在 Cloudflare Dashboard 里先创建同名 Pages 项目）
+pages_build_output_dir = "public"
+
+[build]
+command = "npm run build"
+publish = "public"
+
+# 生产域名：viewer.craftisle.com
+[env.production]
+name = "craftisle-viewer-prod"
+
+# CORS & 安全头（由 Cloudflare _headers 文件控制，见下面）
+# 此文件主要用于 wrangler pages deploy 时指定构建输出

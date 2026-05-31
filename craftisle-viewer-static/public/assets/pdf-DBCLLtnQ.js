@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./PdfView-DCO4FSJZ.js","./index-CLEdsJjy.js","./index-BjTZLd3d.css","./worker-ref-i3-CbMKs.js","./PdfView-CgX6fUVh.css"])))=>i.map(i=>d[i]);
+import{C as e,S as t,d as n,t as r}from"./index-CLEdsJjy.js";var i=e(()=>r(()=>import(`./PdfView-DCO4FSJZ.js`),__vite__mapDeps([0,1,2,3,4]),import.meta.url));async function a(e,r,a){let o=n({render:()=>t(i,{data:e,exportAdapter:a?.registerExportAdapter},null)});return o.mount(r),o}export{a as default};

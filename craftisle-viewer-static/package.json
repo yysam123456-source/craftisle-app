@@ -1,0 +1,12 @@
+{
+  "name": "craftisle-viewer-static",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "npx serve public -l 8080"
+  },
+  "dependencies": {
+    "@flyfish-group/file-viewer-web": "^1.0.16"
+  }
+}

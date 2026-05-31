@@ -1,0 +1,5 @@
+# craftisle-viewer-static .gitignore
+node_modules/
+public/
+.env
+*.log

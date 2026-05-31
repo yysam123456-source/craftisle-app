@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./ModelViewer-Ce169Tu0.js","./index-CLEdsJjy.js","./index-BjTZLd3d.css","./three.module-CZIqdNh9.js","./ModelViewer-C4ir9AyI.css"])))=>i.map(i=>d[i]);
+import{C as e,S as t,d as n,t as r}from"./index-CLEdsJjy.js";var i=e(()=>r(()=>import(`./ModelViewer-Ce169Tu0.js`),__vite__mapDeps([0,1,2,3,4]),import.meta.url));async function a(e,r,a,o){let s=n({render:()=>t(i,{data:e,type:a||`glb`,sourceUrl:o?.url},null)});return s.mount(r),s}export{a as default};

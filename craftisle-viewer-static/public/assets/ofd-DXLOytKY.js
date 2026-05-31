@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./OfdViewer-ql3a-z-O.js","./index-CLEdsJjy.js","./index-BjTZLd3d.css","./OfdViewer-DZCDN3UD.css"])))=>i.map(i=>d[i]);
+import{C as e,S as t,d as n,t as r}from"./index-CLEdsJjy.js";var i=e(()=>r(()=>import(`./OfdViewer-ql3a-z-O.js`),__vite__mapDeps([0,1,2,3]),import.meta.url));async function a(e,r){let a=n({render:()=>t(i,{data:e},null)});return a.mount(r),a}export{a as default};
