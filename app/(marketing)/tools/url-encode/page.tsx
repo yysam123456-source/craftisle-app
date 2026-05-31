@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function UrlEncodePage() {
   const [input, setInput] = useState("");
@@ -188,6 +189,7 @@ export default function UrlEncodePage() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="url-encode" />
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Shield, Lock, Unlock, Copy } from "lucide-react";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 const ALGORITHMS = [
   { value: "AES", label: "AES" },
@@ -149,6 +150,7 @@ export default function AesDesPage() {
             </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="aes-des" />
     </div>
   );
 }

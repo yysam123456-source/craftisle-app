@@ -14,6 +14,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function UuidPage() {
   const [uuids, setUuids] = useState<string[]>([]);
@@ -215,6 +216,7 @@ export default function UuidPage() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="uuid" />
     </div>
   );
 }

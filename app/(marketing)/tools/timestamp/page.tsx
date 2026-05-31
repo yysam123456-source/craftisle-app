@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import dayjs from "dayjs";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function TimestampPage() {
   const [timestamp, setTimestamp] = useState("");
@@ -253,6 +254,7 @@ export default function TimestampPage() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="timestamp" />
     </div>
   );
 }

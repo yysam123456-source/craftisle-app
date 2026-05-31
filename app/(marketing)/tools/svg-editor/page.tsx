@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { FileCode, Copy, Download, Trash2, Eye, Edit3, AlertTriangle } from "lucide-react";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 const DEFAULT_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180">
   <rect width="320" height="180" rx="24" fill="#0f172a"/>
@@ -86,6 +87,7 @@ export default function SvgEditorPage() {
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="svg-editor" />
     </div>
   );
 }

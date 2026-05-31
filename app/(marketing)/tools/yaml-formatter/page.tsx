@@ -9,6 +9,7 @@ import { FileJson, Copy, Check, RotateCcw, ArrowRight, XCircle } from "lucide-re
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
 import { Badge } from "@/components/ui/badge";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function YamlFormatterPage() {
   const { theme } = useTheme();
@@ -145,6 +146,7 @@ export default function YamlFormatterPage() {
           Format YAML <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
+    <ToolDetailSections toolId="yaml-formatter" />
     </div>
   );
 }

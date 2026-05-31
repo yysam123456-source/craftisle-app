@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function BarcodePage() {
   const [value, setValue] = useState("123456789012");
@@ -163,6 +164,7 @@ export default function BarcodePage() {
       <div className="bg-muted/50 p-4 rounded-lg text-sm text-muted-foreground">
           💡 Note: Some formats (e.g., EAN13) have specific requirements for input length and check digits.
       </div>
+    <ToolDetailSections toolId="barcode" />
     </div>
   );
 }

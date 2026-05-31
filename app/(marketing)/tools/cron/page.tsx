@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function CronPage() {
   const [expression, setExpression] = useState("*/5 * * * *");
@@ -111,6 +112,7 @@ export default function CronPage() {
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="cron" />
     </div>
   );
 }

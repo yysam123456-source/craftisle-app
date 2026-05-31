@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function UAPage() {
   const [ua, setUa] = useState("");
@@ -130,6 +131,7 @@ export default function UAPage() {
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="user-agent" />
     </div>
   );
 }

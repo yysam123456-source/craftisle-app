@@ -1,5 +1,11 @@
 import MermaidClient from './MermaidClient'
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function MermaidPage() {
-  return <MermaidClient />
+  return (
+    <div>
+      <MermaidClient />
+      <ToolDetailSections toolId="mermaid" />
+    </div>
+  )
 }

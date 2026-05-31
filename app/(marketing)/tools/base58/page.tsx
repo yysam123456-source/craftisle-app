@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 // Base58 alphabet (Bitcoin style)
 const ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
@@ -166,6 +167,7 @@ export default function Base58Page() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="base58" />
     </div>
   );
 }

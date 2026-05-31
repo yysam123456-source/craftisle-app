@@ -14,6 +14,7 @@ import {
 import { Diff, RotateCcw, ArrowRightLeft } from "lucide-react";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 const LANGUAGES = [
   { value: "plaintext", label: "Plain text" },
@@ -169,6 +170,7 @@ export default function DiffPage() {
               💡 Tip： with two EditPasteorInput Text。above Toolshighlight。
           </CardContent>
       </Card>
+    <ToolDetailSections toolId="diff" />
     </div>
   );
 }

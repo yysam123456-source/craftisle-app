@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function CaseConverterPage() {
   const [input, setInput] = useState("");
@@ -161,6 +162,7 @@ export default function CaseConverterPage() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="case-converter" />
     </div>
   );
 }

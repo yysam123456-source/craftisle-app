@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 
 export default function Base64Page() {
@@ -190,6 +191,7 @@ export default function Base64Page() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="base64" />
     </div>
   );
 }

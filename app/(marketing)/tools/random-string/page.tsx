@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 interface StringConfig {
   length: number;
@@ -430,6 +431,7 @@ export default function RandomStringGenerator() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="random-string" />
     </div>
   );
 }

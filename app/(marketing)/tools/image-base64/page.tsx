@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function ImageBase64Page() {
   const [imageBase64, setImageBase64] = useState("");
@@ -143,6 +144,7 @@ export default function ImageBase64Page() {
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="image-base64" />
     </div>
   );
 }

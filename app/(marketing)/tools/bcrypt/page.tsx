@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Lock, CheckCircle, XCircle, Copy, Hash } from "lucide-react";
 import { toast } from "sonner";
 import { Slider } from "@/components/ui/slider";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function BcryptPage() {
   const [plainText, setPlainText] = useState("");
@@ -167,6 +168,7 @@ export default function BcryptPage() {
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="bcrypt" />
     </div>
   );
 }

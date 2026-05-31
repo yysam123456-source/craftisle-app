@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Network, Copy } from "lucide-react";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 // --- Helper Functions ---
 
@@ -204,6 +205,7 @@ export default function IpRadixPage() {
             </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="ip-radix" />
     </div>
   );
 }

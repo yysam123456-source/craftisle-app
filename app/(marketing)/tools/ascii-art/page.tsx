@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 
 // Register fonts
@@ -137,6 +138,7 @@ export default function AsciiArtPage() {
             </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="ascii-art" />
     </div>
   );
 }

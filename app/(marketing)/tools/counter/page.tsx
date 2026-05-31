@@ -5,6 +5,7 @@ import { Hash, Plus, Minus, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function CounterPage() {
   const [count, setCount] = useState(0);
@@ -74,6 +75,7 @@ export default function CounterPage() {
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="counter" />
     </div>
   );
 }

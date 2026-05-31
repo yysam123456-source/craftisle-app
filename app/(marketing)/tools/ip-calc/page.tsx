@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function IpCalcPage() {
   const [ip, setIp] = useState("192.168.1.1");
@@ -130,6 +131,7 @@ function ResultItem({ label, value, cidr }: { label: string; value: string; cidr
         <span className="font-mono text-lg font-semibold">{value}</span>
         {cidr && <span className="text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded">{cidr}</span>}
       </div>
+    <ToolDetailSections toolId="ip-calc" />
     </div>
   );
 }

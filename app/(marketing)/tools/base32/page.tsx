@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 // RFC 4648 Base32 alphabet
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
@@ -150,6 +151,7 @@ export default function Base32Page() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="base32" />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/i-tools/utils";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function RegexPage() {
   const [pattern, setPattern] = useState("([a-zA-Z0-9._%-]+)@([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6})");
@@ -156,6 +157,7 @@ function FlagToggle({ label, active, onToggle, title }: { label: string; active:
     <div className="flex flex-col items-center gap-1" title={title}>
        <span className="text-[10px] font-bold text-muted-foreground font-mono">{label}</span>
        <Switch checked={active} onCheckedChange={onToggle} />
+    <ToolDetailSections toolId="regex" />
     </div>
   );
 }

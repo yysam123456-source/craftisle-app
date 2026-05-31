@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Keyboard, Info, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function KeyboardPage() {
   const [lastEvent, setLastEvent] = useState<any>(null);
@@ -109,6 +110,7 @@ function ModifierTag({ active, label }: { active: boolean; label: string }) {
       active ? "bg-primary border-primary text-primary-foreground scale-110 shadow-lg" : "border-muted text-muted-foreground opacity-30"
     }`}>
       {label}
+    <ToolDetailSections toolId="keyboard" />
     </div>
   );
 }

@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/tooltip';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 type Mode = 'format' | 'compress' | 'validate';
 
@@ -313,6 +314,7 @@ export default function JsonFormatterPage() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="json-formatter" />
     </div>
   );
 }

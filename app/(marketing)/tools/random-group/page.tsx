@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function RandomGroupPage() {
   const [namesText, setNamesText] = useState("");
@@ -150,6 +151,7 @@ Diana..."
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="random-group" />
     </div>
   );
 }

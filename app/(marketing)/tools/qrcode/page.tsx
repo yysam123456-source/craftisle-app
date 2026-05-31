@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select";
 import { QRCodeCanvas } from "qrcode.react";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 interface QRConfig {
   size: number;
@@ -334,6 +335,7 @@ export default function QRCodeGenerator() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="qrcode" />
     </div>
   );
 }

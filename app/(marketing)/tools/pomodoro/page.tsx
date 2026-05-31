@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/i-tools/utils";
 
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 type Mode = "WORK" | "SHORT_BREAK" | "LONG_BREAK";
 
@@ -143,6 +144,7 @@ export default function PomodoroPage() {
            </div>
         </Card>
       </div>
+    <ToolDetailSections toolId="pomodoro" />
     </div>
   );
 }

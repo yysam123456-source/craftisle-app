@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function TextFormatterPage() {
   const [inputText, setInputText] = useState("");
@@ -341,6 +342,7 @@ export default function TextFormatterPage() {
           </div>
         </CardContent>
       </Card>
+    <ToolDetailSections toolId="text-formatter" />
     </div>
   );
 }

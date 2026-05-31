@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function HtmlFormatterPage() {
   const { theme } = useTheme();
@@ -150,6 +151,7 @@ export default function HtmlFormatterPage() {
           </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="html-formatter" />
     </div>
   );
 }

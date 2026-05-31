@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function CsvJsonPage() {
   const [input, setInput] = useState("");
@@ -130,15 +131,7 @@ export default function CsvJsonPage() {
         </Card>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-sm">Usage</CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm text-muted-foreground space-y-2">
-           <p>1. <strong>CSV → JSON</strong>: The first row is treated as headers (keys), subsequent rows are data.</p>
-           <p>2. <strong>JSON → CSV</strong>: JSON must be an array of objects. The properties of the first object become CSV column headers.</p>
-        </CardContent>
-      </Card>
+      <ToolDetailSections toolId="csv-json" />
     </div>
   );
 }

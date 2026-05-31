@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { ImageIcon, Upload, Download, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function ImageToPixelPage() {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -151,6 +152,7 @@ export default function ImageToPixelPage() {
             </CardContent>
         </Card>
       </div>
+    <ToolDetailSections toolId="image-to-pixel" />
     </div>
   );
 }
