@@ -48,6 +48,9 @@ next-env.d.ts
 dev-server.log
 dev.log
 server.log
+
+# codegraph (daemon pid, cache)
+.codegraph/
 download_twb.py
 download_twb2.py
 download_twb_assets.py

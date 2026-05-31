@@ -9,6 +9,16 @@ export interface ToolMeta {
   category: string;
   external?: boolean;
   url?: string;
+  /** Full description for DescriptionSection (HTML allowed) */
+  description?: string;
+  /** How-to-use steps for HowToUseSection */
+  howToUse?: { heading: string; text: string }[];
+  /** Use case cards for UseCasesSection */
+  useCases?: { title: string; text: string }[];
+  /** FAQ items for FAQSection */
+  faq?: { q: string; a: string }[];
+  /** Related tool IDs for RelatedToolsSection */
+  relatedTools?: string[];
 }
 
 // Category constants
@@ -32,7 +42,26 @@ export const CATEGORY_LIST = Object.entries(CATEGORIES).map(([key, label]) => ({
 }));
 
 export const toolMeta: Record<string, ToolMeta> = {
-  "aes-des":        { title: "AES/DES Encrypt", desc: "Symmetric encryption tool", icon: "🔒", category: CATEGORIES.encryption },
+  "aes-des":        { title: "AES/DES Encrypt", desc: "Symmetric encryption tool", icon: "🔒", category: CATEGORIES.encryption,
+    description: "Encrypt and decrypt text or files using AES (Advanced Encryption Standard) and DES (Data Encryption Standard) algorithms. Supports multiple key sizes and modes (ECB, CBC). All processing happens in your browser — no data is sent to our servers.",
+    howToUse: [
+      { heading: "Paste or type text", text: "Enter the text you want to encrypt in the input box." },
+      { heading: "Choose algorithm & mode", text: "Select AES or DES, then pick a mode (ECB / CBC). AES supports 128/192/256-bit keys." },
+      { heading: "Set a secret key", text: "Enter a passphrase. For AES-256, use a 32+ character key for maximum security." },
+      { heading: "Encrypt / Decrypt", text: "Click the button. The result appears instantly and can be copied or downloaded." },
+    ],
+    useCases: [
+      { title: "Secure messaging", text: "Encrypt sensitive text before sending over email or chat." },
+      { title: "Password storage", text: "Encrypt passwords locally before storing them in a file." },
+      { title: "Learning & teaching", text: "Experiment with classical encryption algorithms to understand how they work." },
+    ],
+    faq: [
+      { q: "Is AES-256 secure?", a: "Yes. AES-256 is considered military-grade and is widely used by governments and financial institutions worldwide." },
+      { q: "What is the difference between ECB and CBC?", a: "ECB (Electronic Codebook) encrypts identical blocks identically — it leaks patterns. CBC (Cipher Block Chaining) XORs each block with the previous one, making it much more secure." },
+      { q: "Does this tool store my data?", a: "No. All encryption and decryption happens entirely in your browser. Nothing is uploaded to any server." },
+    ],
+    relatedTools: ["base64", "hash", "bcrypt", "jwt"],
+  },
   "ascii-art":      { title: "ASCII Art", desc: "Generate ASCII art text", icon: "🎨", category: CATEGORIES.generator },
   barcode:          { title: "Barcode Generator", desc: "Generate various barcodes", icon: "📳", category: CATEGORIES.generator },
   base32:           { title: "Base32 Encode", desc: "Base32 encoding and decoding", icon: "🔤", category: CATEGORIES.converter },
@@ -54,14 +83,52 @@ export const toolMeta: Record<string, ToolMeta> = {
   "image-to-pixel": { title: "Pixel Art Generator", desc: "Convert images to pixel style", icon: "🟧", category: CATEGORIES.generator },
   "ip-calc":        { title: "IP Calculator", desc: "IP address calculation tool", icon: "🌐", category: CATEGORIES.network },
   "ip-radix":       { title: "IP Radix Converter", desc: "IP address radix conversion", icon: "🔢", category: CATEGORIES.network },
-  "json-formatter":  { title: "JSON Formatter", desc: "JSON beautify and minify", icon: "📋", badge: "Hot", category: CATEGORIES.formatter },
+  "json-formatter":  { title: "JSON Formatter", desc: "JSON beautify and minify", icon: "📋", badge: "Hot", category: CATEGORIES.formatter,
+    description: "Instantly format, validate, and minify JSON data in your browser. Features syntax highlighting, error detection with line numbers, tree view for exploring nested structures, and one-click copy or download. No file uploads — your data never leaves your device.",
+    howToUse: [
+      { heading: "Paste or type JSON", text: "Type or paste JSON into the left editor panel. You can also drag and drop a .json file." },
+      { heading: "Auto-format", text: "The tool auto-detects if the JSON is valid. If valid, it beautifies immediately. If invalid, it highlights the error line." },
+      { heading: "Adjust settings", text: "Set indentation (2 spaces, 4 spaces, or tab) and toggle tree view on/off." },
+      { heading: "Copy or download", text: "Click Copy to copy to clipboard, or Download to save as a .json file." },
+    ],
+    useCases: [
+      { title: "API debugging", text: "Quickly format minified API responses to readable JSON for debugging." },
+      { title: "Config file editing", text: "Beautify package.json, tsconfig.json, or other config files before committing." },
+      { title: "Data exploration", text: "Use tree view to explore complex nested JSON structures from APIs or databases." },
+    ],
+    faq: [
+      { q: "Is there a size limit?", a: "The tool uses your browser's memory. For files over ~10 MB, consider splitting them first. Most JSON responses from APIs are well under this limit." },
+      { q: "Does it validate JSON schema?", a: "It validates syntax (is this valid JSON?), but not schema (does it match a specific structure?). For schema validation, use a dedicated JSON Schema tool." },
+      { q: "Is my data private?", a: "Yes. All formatting happens locally in your browser. Nothing is uploaded to any server." },
+    ],
+    relatedTools: ["csv-json", "yaml-formatter", "sql-formatter"],
+  },
   jwt:               { title: "JWT Decoder", desc: "JSON Web Token decoder", icon: "🔐", category: CATEGORIES.encryption },
   keyboard:           { title: "Keyboard Test", desc: "Online keyboard key tester", icon: "⌨️", category: CATEGORIES.other },
   "lorem-ipsum":    { title: "Lorem Ipsum", desc: "Random text generator", icon: "📃", category: CATEGORIES.generator },
   mermaid:           { title: "Mermaid Chart", desc: "Online flowchart diagrams", icon: "📈", category: CATEGORIES.dev },
   "png-to-svg":     { title: "PNG to SVG", desc: "Image format conversion", icon: "🖼️", category: CATEGORIES.converter },
   pomodoro:          { title: "Pomodoro Timer", desc: "Pomodoro technique timer", icon: "🍅", category: CATEGORIES.other },
-  qrcode:            { title: "QR Code Generator", desc: "Custom styled QR code generator", icon: "🔳", badge: "Hot", category: CATEGORIES.generator },
+  qrcode:            { title: "QR Code Generator", desc: "Custom styled QR code generator", icon: "🔳", badge: "Hot", category: CATEGORIES.generator,
+    description: "Generate high-quality QR codes with custom colors, sizes, and embedded logos. Perfect for linking to websites, Wi-Fi credentials, contact cards (vCard), and more. All generation happens in your browser — no data leaves your device.",
+    howToUse: [
+      { heading: "Enter content", text: "Type or paste the URL, text, Wi-Fi info, or contact details you want to encode." },
+      { heading: "Customize style", text: "Pick foreground/background colors, size (px), margin, and error correction level." },
+      { heading: "Add a logo (optional)", text: "Upload a small logo image to embed at the center of the QR code." },
+      { heading: "Generate & download", text: "Click Generate. Preview the result and download as PNG or SVG." },
+    ],
+    useCases: [
+      { title: "Website links", text: "Print QR codes on business cards, flyers, or posters to drive mobile traffic." },
+      { title: "Wi-Fi sharing", text: "Encode your Wi-Fi SSID and password — guests scan to connect instantly, no typing needed." },
+      { title: "Contact sharing", text: "Generate a vCard QR code and add it to your email signature or resume." },
+    ],
+    faq: [
+      { q: "Is there a scan limit?", a: "No. A QR code is static data — it works forever and can be scanned unlimited times." },
+      { q: "Can I add my company logo?", a: "Yes! Upload a small square logo (PNG or JPG). It will be centered inside the QR code. Make sure error correction is set to Medium or High so the logo doesn't break scanning." },
+      { q: "What size should I use?", a: "For print, 300×300 px or larger is recommended. For screen display, 200×200 px is sufficient. Always test scanning with your target device before mass printing." },
+    ],
+    relatedTools: ["barcode", "base64", "url-encode"],
+  },
   "radix-converter": { title: "Radix Converter", desc: "Multi-base number conversion", icon: "🔢", category: CATEGORIES.converter },
   "random-group":    { title: "Random Group", desc: "Split list into random groups", icon: "🎲", category: CATEGORIES.generator },
   "random-string":   { title: "Random String", desc: "Generate random strings", icon: "🎲", category: CATEGORIES.generator },
