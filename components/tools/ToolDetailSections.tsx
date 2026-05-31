@@ -23,13 +23,13 @@ export default function ToolDetailSections({ toolId }: Props) {
     .filter(Boolean) as Array<{ id: string } & ToolMeta>;
 
   return (
-    <div className="space-y-8 mt-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="space-y-10 mt-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* === Description Section === */}
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">About This Tool</h2>
         {meta.description ? (
           <div
-            className="prose prose-sm max-w-none text-muted-foreground"
+            className="text-sm text-muted-foreground leading-relaxed"
             dangerouslySetInnerHTML={{ __html: meta.description }}
           />
         ) : (
@@ -40,19 +40,18 @@ export default function ToolDetailSections({ toolId }: Props) {
       </section>
 
       {/* === How To Use Section === */}
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">How To Use</h2>
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold">How to Use</h2>
         {(meta.howToUse || []).length > 0 ? (
-          <ol className="space-y-4">
+          <ol className="space-y-5">
             {(meta.howToUse || []).map((step, i) => (
-              <li key={i} className="flex gap-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="font-medium">{step.heading}</h3>
-                  <p className="text-sm text-muted-foreground">{step.text}</p>
-                </div>
+              <li key={i}>
+                <p className="text-sm font-semibold">
+                  {i + 1}. {step.heading}
+                </p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {step.text}
+                </p>
               </li>
             ))}
           </ol>
@@ -64,15 +63,17 @@ export default function ToolDetailSections({ toolId }: Props) {
       </section>
 
       {/* === Use Cases Section === */}
-      <section className="space-y-3">
+      <section className="space-y-4">
         <h2 className="text-xl font-semibold">Use Cases</h2>
         {(meta.useCases || []).length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {(meta.useCases || []).map((uc, i) => (
-              <Card key={i}>
+              <Card key={i} className="border">
                 <CardContent className="p-4">
-                  <h3 className="font-medium mb-1">{uc.title}</h3>
-                  <p className="text-sm text-muted-foreground">{uc.text}</p>
+                  <h3 className="text-sm font-semibold">{uc.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                    {uc.text}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -85,19 +86,21 @@ export default function ToolDetailSections({ toolId }: Props) {
       </section>
 
       {/* === FAQ Section === */}
-      <section className="space-y-3">
+      <section className="space-y-4">
         <h2 className="text-xl font-semibold">FAQ</h2>
         {(meta.faq || []).length > 0 ? (
-          <Accordion type="single" collapsible className="w-full">
+          <div className="space-y-3">
             {(meta.faq || []).map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left">
-                  {item.q}
-                </AccordionTrigger>
-                <AccordionContent>{item.a}</AccordionContent>
-              </AccordionItem>
+              <Card key={i} className="border">
+                <CardContent className="p-4">
+                  <p className="text-sm font-semibold">{item.q}</p>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                    {item.a}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
-          </Accordion>
+          </div>
         ) : (
           <p className="text-sm text-muted-foreground italic">
             FAQ coming soon.
@@ -106,7 +109,7 @@ export default function ToolDetailSections({ toolId }: Props) {
       </section>
 
       {/* === Related Tools Section === */}
-      <section className="space-y-3">
+      <section className="space-y-4">
         <h2 className="text-xl font-semibold">Related Tools</h2>
         {relatedTools.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -116,13 +119,15 @@ export default function ToolDetailSections({ toolId }: Props) {
                 href={`/tools/${rt.id}`}
                 className="group block rounded-lg border p-4 transition-colors hover:bg-muted/50"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{rt.icon}</span>
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl shrink-0">{rt.icon}</span>
                   <div>
-                    <h3 className="font-medium group-hover:text-primary">
+                    <h3 className="text-sm font-semibold group-hover:text-primary">
                       {rt.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground">{rt.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                      {rt.desc}
+                    </p>
                   </div>
                 </div>
               </Link>
