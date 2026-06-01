@@ -1,126 +1,23 @@
-import { getToolDefinition } from "@/lib/image-tools/registry";
-import type { ToolDefinition } from "@/lib/image-tools/types";
-import { getToolMeta, toolMeta, CATEGORIES, type ToolMeta } from "@/lib/tools";
-import { ImageToolPage } from "@/components/tools/image-tool-page";
-import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
-import { notFound } from "next/navigation";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
-interface Props {
+type Props = {
   params: Promise<{ tool: string }>;
-}
+};
 
-function getCategorySlug(categoryLabel: string): string {
-  return Object.entries(CATEGORIES).find(([, v]) => v === categoryLabel)?.[0] || "other";
-}
-
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  try {
-    const { tool } = await params;
-    const meta = getToolMeta(tool);
-    if (!meta) return {};
-
-    const url = `https://craftisle.com/tools/${tool}`;
-    const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
-    const description = String(meta.seoDesc || meta.desc || "Free online tool");
-    const keywords = meta.seoKeywords || ["free online tools", "web tools", meta.title, "Craftisle"];
-
-    return {
-      title,
-      description,
-      keywords,
-      openGraph: {
-        title,
-        description,
-        url,
-        type: "website",
-        locale: "en-US",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description,
-      },
-      alternates: { canonical: url },
-    };
-  } catch (e) {
-    console.error("[generateMetadata] ERROR:", e);
-    return {};
-  }
-}
-
-/** Build related tool cards from an array of tool IDs (server-side) */
-function buildRelatedTools(ids: string[] | undefined) {
-  if (!ids || ids.length === 0) return [];
-  return ids
-    .map((id) => {
-      const m = toolMeta[id];
-      return m ? { id, title: m.title, desc: m.desc, icon: m.icon } : null;
-    })
-    .filter(Boolean) as { id: string; title: string; desc: string; icon: string }[];
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { tool } = await params;
+  return {
+    title: `TEST: ${tool} | Craftisle Free Tools`,
+    description: `Test description for ${tool}`,
+  };
 }
 
 export default async function ToolPage({ params }: Props) {
   const { tool } = await params;
-  const definition = getToolDefinition(tool);
-  const meta = getToolMeta(tool);
-
-  if (!meta) {
-    notFound();
-  }
-
-  // JsonLD structured data
-  const jsonLd: Record<string, unknown> = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: meta.title,
-    description: meta.desc,
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-  };
-
-  if (meta.faq && meta.faq.length > 0) {
-    jsonLd.mainEntity = {
-      "@type": "FAQPage",
-      mainEntity: meta.faq.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    };
-  }
-
-  const related = buildRelatedTools(meta.relatedTools);
-  const categorySlug = getCategorySlug(meta.category);
-
-  // Image tools: render ImageToolPage
-  // Non-image tools: only render ToolDetailLayout (no file processing UI)
-  if (definition) {
-    const clientDef = {
-      id: definition.id,
-      acceptTypes: definition.acceptTypes,
-      maxFileSize: definition.maxFileSize,
-    };
-    return (
-      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related}>
-        <ImageToolPage toolId={tool} definition={clientDef} />
-      </ToolDetailLayout>
-    );
-  }
-
-  // Non-image tool: render ToolDetailLayout with ToolDetailSections
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related}>
-      <ToolDetailSections toolId={tool} />
-    </ToolDetailLayout>
+    <div>
+      <h1>Test Page: {tool}</h1>
+      <a href="/tools">Back to tools</a>
+    </div>
   );
 }
