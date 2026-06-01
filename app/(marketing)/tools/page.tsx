@@ -16,8 +16,8 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Free Online Tools | Craftisle",
-  description: "60+ free online tools, no download required. QR codes, JSON formatting, image conversion and more — all in your browser.",
+  title: "60+ Free Online Tools — No Signup, No Download | Craftisle",
+  description: "Free online tools for developers & creators. QR code generator, JSON/SQL/HTML formatter, Base64 encode/decode, hash tools, regex tester. 100% browser-based, no registration.",
 });
 
 // Server Component: read tool directories

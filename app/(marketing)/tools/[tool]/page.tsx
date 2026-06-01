@@ -24,21 +24,25 @@ export async function generateMetadata(
   if (!meta) return {};
 
   const url = `https://craftisle.com/tools/${tool}`;
+  const title = meta.seoTitle || `${meta.title} | Craftisle Free Tools`;
+  const description = meta.seoDesc || meta.desc;
+  const keywords = meta.seoKeywords || ["free online tools", "web tools", meta.title, "Craftisle"];
+
   return {
-    title: `${meta.title} | Craftisle Free Tools`,
-    description: meta.desc,
-    keywords: ["free online tools", "web tools", meta.title, "Craftisle"],
+    title,
+    description,
+    keywords,
     openGraph: {
-      title: `${meta.title} | Craftisle`,
-      description: meta.desc,
+      title: meta.seoTitle || `${meta.title} | Craftisle`,
+      description,
       url,
       type: "website",
       locale: "en_US",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${meta.title} | Craftisle`,
-      description: meta.desc,
+      title: meta.seoTitle || `${meta.title} | Craftisle`,
+      description,
     },
     alternates: { canonical: url },
   };

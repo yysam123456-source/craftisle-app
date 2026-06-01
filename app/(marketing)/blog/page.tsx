@@ -12,8 +12,8 @@ import { CalendarDays, Clock } from "lucide-react";
 import { getPosts, getSettings } from "@/lib/ghost";
 
 export const metadata = {
-  title: "Blog | Craftisle",
-  description: "Latest gaming news, tool tutorials & practical guides.",
+  title: "Blog — Game Guides & Tool Tutorials | Craftisle",
+  description: "Free tutorials on HTML5 games, tool how-to guides, productivity tips. Learn how to use online tools, game walkthroughs and tips.",
 };
 
 export default async function BlogPage() {

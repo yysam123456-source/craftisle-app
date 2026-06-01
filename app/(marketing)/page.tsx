@@ -22,6 +22,36 @@ import {
   Play,
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Craftisle — Play Free HTML5 Games & Use 60+ Free Online Tools",
+  description: "Play free HTML5 games online — no download required. Use 60+ free online tools including QR generator, JSON formatter, Base64 encoder. Start instantly in your browser.",
+  keywords: [
+    "free HTML5 games",
+    "browser games no download",
+    "free online tools",
+    "QR code generator free",
+    "JSON formatter online",
+    "Base64 encoder",
+    "play survival games online",
+    "free web tools no signup",
+    "Craftisle",
+  ],
+  openGraph: {
+    title: "Craftisle — Free HTML5 Games & Online Tools",
+    description: "Play free HTML5 games online. Use 60+ free online tools. No download, no signup.",
+    url: "https://craftisle.com",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Craftisle — Free HTML5 Games & Online Tools",
+    description: "Play free HTML5 games. Use 60+ free online tools. No download.",
+  },
+  alternates: { canonical: "https://craftisle.com" },
+};
 
 export default function IndexPage() {
   return (

@@ -14,8 +14,8 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Games | Craftisle",
-  description: "Free online mini games, play instantly in your browser. No download required.",
+  title: "Free Online Games — Play HTML5 Games No Download | Craftisle",
+  description: "Play free online games instantly in your browser. No download, no install. Island builder, survival games, puzzle games — all free on Craftisle.",
 });
 
 const games = [

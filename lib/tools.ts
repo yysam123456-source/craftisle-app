@@ -19,6 +19,12 @@ export interface ToolMeta {
   faq?: { q: string; a: string }[];
   /** Related tool IDs for RelatedToolsSection */
   relatedTools?: string[];
+  /** SEO-optimized title (for <title> tag) */
+  seoTitle?: string;
+  /** SEO-optimized description (150-160 chars, for <meta description>) */
+  seoDesc?: string;
+  /** SEO keywords array for <meta keywords> */
+  seoKeywords?: string[];
 }
 
 // Category constants
@@ -49,6 +55,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Symmetric encryption tool",
     icon: "🔒",
     category: CATEGORIES.encryption,
+    seoTitle: "AES/DES Encrypt & Decrypt Free — Online Symmetric Encryption | Craftisle",
+    seoDesc: "Free AES & DES encryption tool online. Encrypt and decrypt text or files in browser. Supports ECB/CBC modes, 128/256-bit keys. No upload, 100% client-side.",
+    seoKeywords: ["AES encryption online free", "DES encrypt decrypt online", "symmetric encryption tool", "AES-256 online tool", "encrypt text online no signup", "Craftisle encryption tool"],
     description: "Encrypt and decrypt text or files using AES (Advanced Encryption Standard) and DES (Data Encryption Standard) algorithms. Supports multiple key sizes and modes (ECB, CBC). All processing happens in your browser — no data is sent to our servers.",
     howToUse: [
       { heading: "Paste or type text", text: "Enter the text you want to encrypt in the input box." },
@@ -74,6 +83,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Bcrypt password hashing",
     icon: "🔑",
     category: CATEGORIES.encryption,
+    seoTitle: "Bcrypt Hash Tool Free — Password Hashing Online | Craftisle",
+    seoDesc: "Free bcrypt password hashing tool online. Securely hash passwords with adjustable cost factor. GPU-resistant, client-side processing. No signup required.",
+    seoKeywords: ["bcrypt hash online free", "password hashing tool", "bcrypt cost factor", "secure password storage", "bcrypt online tool no signup", "Craftisle encryption tool"],
     description: "Hash passwords securely with bcrypt — the gold standard for password storage. Features adjustable cost factor (work factor) to keep up with Moore's law. Never store plain-text passwords again.",
     howToUse: [
       { heading: "Enter a password", text: "Type the password you want to hash in the input box." },
@@ -99,6 +111,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Multiple hash algorithms",
     icon: "#️",
     category: CATEGORIES.encryption,
+    seoTitle: "Hash Generator Free — MD5/SHA256/SHA512 Online | Craftisle",
+    seoDesc: "Free hash generator online. Generate MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160 hashes. File integrity check. 100% client-side, no upload.",
+    seoKeywords: ["hash generator online free", "MD5 online tool", "SHA256 hash online", "file integrity check", "SHA-512 generator free", "Craftisle hash tool"],
     description: "Generate secure hashes using MD5, SHA-1, SHA-256, SHA-384, SHA-512, and more. Essential for file integrity verification, password storage (with salt), and digital signatures. 100% client-side.",
     howToUse: [
       { heading: "Paste or type input", text: "Enter the text or drag a file to hash." },
@@ -123,6 +138,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "JSON Web Token decoder",
     icon: "🔐",
     category: CATEGORIES.encryption,
+    seoTitle: "JWT Decoder Free — Debug JSON Web Tokens | Craftisle",
+    seoDesc: "Free JWT decoder online. Inspect header, payload and signature of JSON Web Tokens. Check expiration. Debug authentication flows in browser.",
+    seoKeywords: ["JWT decoder online free", "decode JWT token", "JWT payload viewer", "JSON web token debugger", "JWT expiration check", "Craftisle JWT tool"],
     description: "Decode and inspect JSON Web Tokens (JWT) in your browser. View header, payload, and signature. Verify token expiration and signature validity. Essential for debugging authentication flows.",
     howToUse: [
       { heading: "Paste a JWT", text: "Copy and paste the JWT string (starts with eyJ...) into the decoder." },
@@ -149,6 +167,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "📋",
     badge: "Hot",
     category: CATEGORIES.formatter,
+    seoTitle: "JSON Formatter & Validator Free Online | Craftisle",
+    seoDesc: "Free JSON formatter and validator online. Beautify, minify, tree view. Validate JSON syntax with line numbers. No upload — 100% browser-based.",
+    seoKeywords: ["JSON formatter online free", "JSON validator online", "format JSON online", "JSON beautifier free", "validate JSON syntax online", "Craftisle JSON tool"],
     description: "Instantly format, validate, and minify JSON data in your browser. Features syntax highlighting, error detection with line numbers, tree view for exploring nested structures, and one-click copy or download. No file uploads — your data never leaves your device.",
     howToUse: [
       { heading: "Paste or type JSON", text: "Type or paste JSON into the left editor panel. You can also drag and drop a .json file." },
@@ -174,6 +195,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "HTML code beautify and minify",
     icon: "🌐",
     category: CATEGORIES.formatter,
+    seoTitle: "HTML Formatter Free — Beautify & Minify Online | Craftisle",
+    seoDesc: "Free HTML formatter online. Beautify or minify HTML code with adjustable indentation. Supports HTML5, JSX, Angular/Vue templates. 100% browser-based.",
+    seoKeywords: ["HTML formatter online free", "HTML beautifier online", "minify HTML online", "HTML formatter no signup", "JSX formatter online", "Craftisle HTML tool"],
     description: "Beautify or minify HTML code with adjustable indentation. Removes extra whitespace, normalizes tags, and makes your HTML readable or production-ready. Supports HTML5, JSX-style tags, and Angular/Vue templates.",
     howToUse: [
       { heading: "Paste HTML code", text: "Type or paste your HTML/JSX code into the input editor." },
@@ -199,6 +223,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "SQL statement beautifier",
     icon: "🗃",
     category: CATEGORIES.formatter,
+    seoTitle: "SQL Formatter Free — Beautify & Format SQL Online | Craftisle",
+    seoDesc: "Free SQL formatter online. Beautify or minify SQL queries with customizable indentation. Supports SELECT, INSERT, JOIN. 100% browser-based.",
+    seoKeywords: ["SQL formatter online free", "format SQL query online", "SQL beautifier free", "SQL minify online", "SQL formatter no signup", "Craftisle SQL tool"],
     description: "Format SQL queries for readability with customizable indentation, keyword casing (upper/lower), and line break rules. Supports SELECT, INSERT, UPDATE, DELETE, JOIN, and complex subqueries. Essential for code reviews and debugging slow queries.",
     howToUse: [
       { heading: "Paste SQL query", text: "Type or paste your SQL statement into the input area." },
@@ -224,6 +251,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "YAML code beautifier",
     icon: "📑",
     category: CATEGORIES.formatter,
+    seoTitle: "YAML Formatter Free — Beautify & Validate YAML Online | Craftisle",
+    seoDesc: "Free YAML formatter online. Beautify or validate YAML files with proper indentation. Supports Kubernetes, GitHub Actions, Docker Compose. 100% browser-based.",
+    seoKeywords: ["YAML formatter online free", "YAML validator online", "format YAML online", "Kubernetes YAML formatter", "GitHub Actions YAML", "Craftisle YAML tool"],
     description: "Beautify or validate YAML files with proper indentation and syntax checking. Essential for Kubernetes manifests, GitHub Actions workflows, Docker Compose files, and any CI/CD configuration. 100% browser-based.",
     howToUse: [
       { heading: "Paste YAML content", text: "Type or paste your YAML into the editor. Drag and drop a .yml or .yaml file." },
@@ -248,6 +278,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "HTML special character escaping",
     icon: "🏷️",
     category: CATEGORIES.formatter,
+    seoTitle: "HTML Escape Free — Escape & Unescape HTML Characters | Craftisle",
+    seoDesc: "Free HTML escape tool online. Escape or unescape HTML special characters (&lt;, &gt;, &amp;). Prevent XSS attacks. 100% browser-based.",
+    seoKeywords: ["HTML escape online free", "escape HTML characters", "unescape HTML entities", "XSS prevention tool", "HTML encoder online", "Craftisle HTML tool"],
     description: "Escape or unescape HTML special characters (<, >, &, \", ') for safe rendering in browsers. Prevents XSS attacks by converting special characters to their HTML entity equivalents. Also handles URL encoding/decoding.",
     howToUse: [
       { heading: "Paste your text", text: "Type or paste text containing HTML special characters." },
@@ -274,6 +307,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🔤",
     badge: "Hot",
     category: CATEGORIES.converter,
+    seoTitle: "Base64 Encode/Decode Free — Online Base64 Tool | Craftisle",
+    seoDesc: "Free Base64 encoder and decoder online. Encode files or text for safe transmission. Supports file upload, drag-and-drop. 100% browser-based, no signup.",
+    seoKeywords: ["Base64 encoder online free", "Base64 decoder online", "encode to Base64 free", "decode Base64 string", "Base64 file upload online", "Craftisle Base64 tool"],
     description: "The classic Base64 encoder and decoder. Encode files or text for safe transmission in JSON, XML, HTML, or email. Decode Base64 strings back to original data. Supports file upload and drag-and-drop.",
     howToUse: [
       { heading: "Encode text or file", text: "Type text or drag a file into the input area to encode to Base64." },
@@ -298,6 +334,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Base32 encoding and decoding",
     icon: "🔤",
     category: CATEGORIES.converter,
+    seoTitle: "Base32 Encode/Decode Free — Online Base32 Tool | Craftisle",
+    seoDesc: "Free Base32 encoder and decoder online. Safe for case-insensitive filesystems and human transcription. 100% browser-based, no upload.",
+    seoKeywords: ["Base32 encoder online free", "Base32 decode online", "Base32 vs Base64", "encode to Base32", "Base32 online tool no signup", "Craftisle converter"],
     description: "Encode or decode any text or binary data to and from Base32 format. Base32 uses only uppercase letters A-Z and digits 2-7, making it safe for case-insensitive filesystems and human transcription.",
     howToUse: [
       { heading: "Paste your data", text: "Enter the text or hex data you want to encode, or Base32 string to decode." },
@@ -322,6 +361,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Base58 encoding and decoding",
     icon: "🔤",
     category: CATEGORIES.converter,
+    seoTitle: "Base58 Encode/Decode Free — Bitcoin Base58 Tool | Craftisle",
+    seoDesc: "Free Base58 encoder and decoder online. Used in Bitcoin addresses and IPFS hashes. Excludes confusing characters (0,O,I,l). 100% browser-based.",
+    seoKeywords: ["Base58 encoder online free", "Base58 decode online", "Bitcoin address encoding", "IPFS hash Base58", "Base58 vs Base64", "Craftisle converter"],
     description: "Encode or decode data using Base58 — the encoding used in Bitcoin addresses and IPFS hashes. Base58 excludes confusing characters (0, O, I, l) to make manual transcription safer.",
     howToUse: [
       { heading: "Enter your data", text: "Paste the text or hex string you want to encode, or Base58 string to decode." },
@@ -346,6 +388,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Multi-base number conversion",
     icon: "🔢",
     category: CATEGORIES.converter,
+    seoTitle: "Radix Converter Free — Binary/Octal/Decimal/Hex | Craftisle",
+    seoDesc: "Free radix converter online. Convert numbers between binary, octal, decimal, hexadecimal and custom bases (2-36). Essential for programmers.",
+    seoKeywords: ["radix converter online free", "binary to decimal converter", "hex to decimal converter", "number base converter", "octal converter online", "Craftisle dev tool"],
     description: "Convert numbers between binary (base-2), octal (base-8), decimal (base-10), hexadecimal (base-16), and any custom base (2-36). Essential for programmers working with low-level data, memory addresses, and bit manipulation.",
     howToUse: [
       { heading: "Enter a number", text: "Type a number in any base (binary, hex, decimal, etc.)." },
@@ -370,6 +415,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Convert between CSV and JSON",
     icon: "📊",
     category: CATEGORIES.converter,
+    seoTitle: "CSV to JSON Converter Free — Online Data Converter | Craftisle",
+    seoDesc: "Free CSV to JSON converter online. Convert CSV data to JSON array and JSON to CSV. Handles nested JSON, custom delimiters. No signup.",
+    seoKeywords: ["CSV to JSON converter free", "JSON to CSV converter online", "convert CSV to JSON", "CSV JSON converter no signup", "data format converter", "Craftisle converter"],
     description: "Convert CSV data to JSON (array of objects) and JSON to CSV. Handles nested JSON, custom delimiters, and auto-detects column types. Essential for data import/export between spreadsheets and APIs.",
     howToUse: [
       { heading: "Paste CSV or JSON", text: "Type or paste CSV data or JSON array into the input area." },
@@ -395,6 +443,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "URL encoding and decoding",
     icon: "🔗",
     category: CATEGORIES.converter,
+    seoTitle: "URL Encode/Decode Free — Percent Encoding Online | Craftisle",
+    seoDesc: "Free URL encode and decode tool online. Convert special characters to percent-encoded format (%20). Essential for API requests, query parameters, redirect URLs.",
+    seoKeywords: ["URL encode online free", "URL decode online", "percent encoding tool", "encode URI component", "URL parameter encoding", "Craftisle URL tool"],
     description: "Encode or decode URL components safely. Converts special characters to percent-encoded format (%20) or back to readable text. Essential for building API requests, handling query parameters, and debugging redirect URLs.",
     howToUse: [
       { heading: "Paste URL or text", text: "Type or paste the URL or text you want to encode/decode." },
@@ -419,6 +470,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Convert images to/from Base64",
     icon: "🖼️",
     category: CATEGORIES.converter,
+    seoTitle: "Image to Base64 Free — Convert Image to Base64 Online | Craftisle",
+    seoDesc: "Free image to Base64 converter online. Convert PNG, JPG, GIF, WebP to Base64 data URIs. Embed images in HTML/CSS. 100% browser-based.",
+    seoKeywords: ["image to Base64 free", "Base64 image converter online", "PNG to Base64", "image data URI generator", "Base64 to image decoder", "Craftisle image tool"],
     description: "Convert images (PNG, JPG, GIF, WebP, SVG) to Base64-encoded strings and back. Useful for embedding images directly in HTML/CSS (data URIs), reducing HTTP requests for small images.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image file, or click to browse." },
@@ -443,6 +497,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Image format conversion",
     icon: "🖼️",
     category: CATEGORIES.converter,
+    seoTitle: "PNG to SVG Converter Free — Raster to Vector Online | Craftisle",
+    seoDesc: "Free PNG to SVG converter online. Convert raster images to scalable vector format using edge detection. Supports JPG input. 100% browser-based.",
+    seoKeywords: ["PNG to SVG converter free", "raster to vector online", "image trace online", "convert JPG to SVG", "SVG converter no signup", "Craftisle image tool"],
     description: "Convert raster images (PNG, JPG) to scalable SVG format using edge detection and path tracing. Also convert SVG to PNG at custom resolutions. Essential for logos, icons, and graphics that need to scale without quality loss.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop a PNG or JPG image. SVG upload is also supported for reverse conversion." },
@@ -467,6 +524,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "IP address radix conversion",
     icon: "🔢",
     category: CATEGORIES.network,
+    seoTitle: "IP Radix Converter Free — Decimal/Hex/Binary/Octal | Craftisle",
+    seoDesc: "Free IP radix converter online. Convert IPv4/IPv6 addresses between decimal, hex, octal, and binary. Useful for networking and security analysis.",
+    seoKeywords: ["IP radix converter online free", "IPv4 to binary", "IPv6 hex converter", "IP address format conversion", "octal IP notation", "Craftisle network tool"],
     description: "Convert IP addresses between decimal, hex, octal, and binary representations. Useful for understanding how IP addresses are stored in memory, analyzing low-level network data, and working with historical systems that use octal IP notation.",
     howToUse: [
       { heading: "Enter an IP address", text: "Type an IPv4 address (e.g., 192.168.1.1) or IPv6 address." },
@@ -492,6 +552,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Cron job expression builder",
     icon: "⏰",
     category: CATEGORIES.dev,
+    seoTitle: "Cron Expression Builder Free — Online Cron Tester | Craftisle",
+    seoDesc: "Free cron expression builder & tester online. Build, validate, preview human-readable description & next run times. Supports 5-7 fields. 100% browser-based.",
+    seoKeywords: ["cron expression builder online", "cron tester free", "cron job scheduler online", "validate cron expression", "cron next run preview", "Craftisle dev tool"],
     description: "Build and validate cron expressions with an interactive editor. Supports standard 5-field cron format plus optional seconds and year fields. Includes human-readable descriptions (in English) and next-run-time preview. Essential for CI/CD scheduling, backup jobs, and task automation.",
     howToUse: [
       { heading: "Build cron expression", text: "Use the interactive builder to set minute, hour, day, month, and weekday fields." },
@@ -516,6 +579,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Test regular expressions online",
     icon: "🔍",
     category: CATEGORIES.dev,
+    seoTitle: "Regex Tester Free Online — Test Regular Expressions | Craftisle",
+    seoDesc: "Free online regex tester. Test regular expressions with real-time matching, flags support (g/i/m). Highlight matches. No registration required.",
+    seoKeywords: ["regex tester online free", "regular expression tester", "regex test online no signup", "regex flags tester", "JavaScript regex tester", "Craftisle regex tool"],
     description: "Test regular expressions against sample text with real-time matching highlights. Supports JavaScript, Python, and PCRE regex flavors. Features match groups display, replace preview, and common pattern library. Essential for form validation, data extraction, and text processing.",
     howToUse: [
       { heading: "Enter a regex pattern", text: "Type your regular expression pattern (e.g., ^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$)." },
@@ -541,6 +607,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Online flowchart diagrams",
     icon: "📈",
     category: CATEGORIES.dev,
+    seoTitle: "Mermaid Chart Free — Online Diagram Maker | Craftisle",
+    seoDesc: "Free Mermaid diagram maker online. Create flowcharts, sequence diagrams, Gantt charts. Live preview, export SVG/PNG. 100% browser-based.",
+    seoKeywords: ["Mermaid diagram online free", "flowchart maker online", "sequence diagram tool", "Gantt chart online", "Mermaid chart export SVG", "Craftisle diagram tool"],
     description: "Create flowcharts, sequence diagrams, Gantt charts, and more using Mermaid syntax. Live preview updates as you type. Export to SVG or PNG. Perfect for documentation, architecture diagrams, and process flows. No account required.",
     howToUse: [
       { heading: "Write Mermaid syntax", text: "Type Mermaid diagram code in the editor (e.g., graph TD; A-->B;)." },
@@ -565,6 +634,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Online SVG editor",
     icon: "✏️",
     category: CATEGORIES.dev,
+    seoTitle: "SVG Editor Free — Online SVG Code Editor | Craftisle",
+    seoDesc: "Free SVG editor online. Edit SVG code with live preview, syntax highlighting, layer management. Export SVG/PNG. 100% browser-based.",
+    seoKeywords: ["SVG editor online free", "SVG code editor", "edit SVG online", "SVG live preview", "SVG to PNG export", "Craftisle SVG tool"],
     description: "Edit SVG files with a code editor and live preview. Supports layer management, element inspection, and export to PNG/SVG. Features syntax highlighting, auto-complete for SVG attributes, and a built-in element picker. 100% browser-based.",
     howToUse: [
       { heading: "Open or paste SVG", text: "Paste SVG code into the code editor, or drag and drop an .svg file." },
@@ -591,6 +663,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🔳",
     badge: "Hot",
     category: CATEGORIES.generator,
+    seoTitle: "QR Code Generator Free — Custom QR Codes Online | Craftisle",
+    seoDesc: "Free QR code generator online. Custom colors, logo upload, high error correction. Download PNG/SVG. No signup required.",
+    seoKeywords: ["QR code generator free", "QR code with logo", "free QR generator online", "QR code SVG download", "custom QR code no signup", "Craftisle QR tool"],
     description: "Generate high-quality QR codes with custom colors, sizes, and embedded logos. Perfect for linking to websites, Wi-Fi credentials, contact cards (vCard), and more. All generation happens in your browser — no data leaves your device.",
     howToUse: [
       { heading: "Enter content", text: "Type or paste the URL, text, Wi-Fi info, or contact details you want to encode." },
@@ -616,6 +691,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Random text generator",
     icon: "📃",
     category: CATEGORIES.generator,
+    seoTitle: "Lorem Ipsum Generator Free — Placeholder Text Online | Craftisle",
+    seoDesc: "Free Lorem Ipsum generator online. Generate placeholder text for design mockups, UI layouts. Custom paragraphs, sentences. 100% browser-based.",
+    seoKeywords: ["Lorem Ipsum generator free", "placeholder text online", "Lorem Ipsum online tool", "dummy text generator", "design mockup text", "Craftisle generator"],
     description: "Generate Lorem Ipsum placeholder text for design mockups, documentation, and UI layouts. Customize paragraph count, sentence length, and starting paragraph. Also supports custom text seed for reproducible output. 100% client-side.",
     howToUse: [
       { heading: "Set parameters", text: "Choose number of paragraphs, sentences per paragraph, and words per sentence." },
@@ -640,6 +718,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Generate random strings",
     icon: "🎲",
     category: CATEGORIES.generator,
+    seoTitle: "Random String Generator Free — Secure Random Strings | Craftisle",
+    seoDesc: "Free random string generator online. Cryptographically secure, customizable length & character set. Generate passwords, API keys, tokens. 100% browser-based.",
+    seoKeywords: ["random string generator free", "secure random string online", "password generator online", "API key generator free", "random string no signup", "Craftisle generator"],
     description: "Generate cryptographically secure random strings for passwords, API keys, tokens, and test data. Customize length, character set (uppercase, lowercase, digits, symbols), and quantity. Uses the browser's Crypto.getRandomValues() API for true randomness.",
     howToUse: [
       { heading: "Set length and count", text: "Choose the string length and how many strings to generate." },
@@ -664,6 +745,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Split list into random groups",
     icon: "🎲",
     category: CATEGORIES.generator,
+    seoTitle: "Random Group Generator Free — Split List Into Groups | Craftisle",
+    seoDesc: "Free random group generator online. Split names or items into random groups. Team assignments, tournament brackets. Fair & reproducible with seed.",
+    seoKeywords: ["random group generator free", "split list into random groups", "team assignment tool", "random group maker online", "tournament bracket generator", "Craftisle generator"],
     description: "Split a list of names or items into random groups of equal (or custom) size. Perfect for team assignments, tournament brackets, classroom activities, and randomly assigning reviewers. Fair, reproducible (with seed), and 100% browser-based.",
     howToUse: [
       { heading: "Enter your list", text: "Paste a list of names or items (one per line or comma-separated)." },
@@ -689,6 +773,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Generate UUID/GUID",
     icon: "🆔",
     category: CATEGORIES.generator,
+    seoTitle: "UUID Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free uuid generator online tool. Generate UUID/GUID 100% browser-based, no signup required.",
+    seoKeywords: ['uuid generator online free', 'free uuid generator tool', 'uuid generator no signup', 'online uuid generator browser', 'Craftisle uuid generator'],
     description: "Generate RFC-4122 compliant UUIDs (v4, random) in bulk. Features multiple output formats (with/without hyphens, uppercase/lowercase), and batch generation (up to 100 at once). Uses cryptographic randomness. Essential for database primary keys, distributed system IDs, and API resource identifiers.",
     howToUse: [
       { heading: "Choose UUID version", text: "Select UUID v4 (random) — the most commonly used version." },
@@ -714,6 +801,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Convert images to pixel style",
     icon: "🟧",
     category: CATEGORIES.generator,
+    seoTitle: "Pixel Art Generator Free — Convert Image to Pixel Art | Craftisle",
+    seoDesc: "Free pixel art generator online. Convert images to retro pixel art style. Customize pixel size, color palette, dithering. Download PNG. 100% browser-based.",
+    seoKeywords: ["pixel art generator free", "convert image to pixel art", "retro pixel art online", "pixel art maker free", "game sprite generator", "Craftisle image tool"],
     description: "Convert any image into pixel art style with customizable pixel size, color palette reduction, and dithering options. Create retro-style graphics, game sprites, and social media avatars. Download as PNG with transparent background support.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -740,6 +830,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Convert between naming conventions",
     icon: "Aa",
     category: CATEGORIES.text,
+    seoTitle: "Case Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free case converter online tool. Convert between naming conventions 100% browser-based, no signup required.",
+    seoKeywords: ['case converter online free', 'free case converter tool', 'case converter no signup', 'online case converter browser', 'Craftisle case converter'],
     description: "Instantly convert text between camelCase, snake_case, PascalCase, kebab-case, CONSTANT_CASE, and more. Essential for developers working across different naming conventions in JavaScript, Python, Rust, and SQL.",
     howToUse: [
       { heading: "Paste your text", text: "Enter or paste the text you want to convert." },
@@ -764,6 +857,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Text processing and formatting",
     icon: "📄",
     category: CATEGORIES.text,
+    seoTitle: "Text Formatter Free — Online Tool | Craftisle",
+    seoDesc: "Free text formatter online tool. Text processing and formatting 100% browser-based, no signup required.",
+    seoKeywords: ['text formatter online free', 'free text formatter tool', 'text formatter no signup', 'online text formatter browser', 'Craftisle text formatter'],
     description: "Format and transform text with 20+ operations: word count, character count, line sorting, deduplication, whitespace cleanup, find-and-replace, and more. Essential for writers, editors, and developers cleaning up text data.",
     howToUse: [
       { heading: "Paste your text", text: "Type or paste the text you want to process." },
@@ -788,6 +884,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Compare two texts for differences",
     icon: "🔄",
     category: CATEGORIES.text,
+    seoTitle: "Text Diff Free — Online Categories.Text Tool | Craftisle",
+    seoDesc: "Free text diff online tool. Compare two texts for differences 100% browser-based, no signup required.",
+    seoKeywords: ['text diff online free', 'free text diff tool', 'text diff no signup', 'online text diff browser', 'Craftisle text diff'],
     description: "Compare two texts side-by-side and highlight differences with color-coding. Supports word-level and character-level diff, inline and side-by-side views, and diff export. Essential for code reviews, document version comparison, and debugging configuration changes.",
     howToUse: [
       { heading: "Paste original text", text: "Type or paste the original text in the left panel." },
@@ -813,6 +912,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Unicode character utilities",
     icon: "🔣",
     category: CATEGORIES.text,
+    seoTitle: "Unicode Tool Free — Online Categories.Text Tool | Craftisle",
+    seoDesc: "Free unicode tool online tool. Unicode character utilities 100% browser-based, no signup required.",
+    seoKeywords: ['unicode tool online free', 'free unicode tool tool', 'unicode tool no signup', 'online unicode tool browser', 'Craftisle unicode tool'],
     description: "Explore, search, and convert Unicode characters. Look up character names, code points, and categories. Convert between Unicode escape formats (\\uXXXX, &#xXXXX;, U+XXXX). Essential for internationalization (i18n) work and debugging mojibake (encoding corruption).",
     howToUse: [
       { heading: "Search or paste a character", text: "Type a character, search by name, or paste a Unicode escape sequence." },
@@ -837,6 +939,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Online TTS conversion",
     icon: "🔊",
     category: CATEGORIES.generator,
+    seoTitle: "Text to Speech Free — Online Tool | Craftisle",
+    seoDesc: "Free text to speech online tool. Online TTS conversion 100% browser-based, no signup required.",
+    seoKeywords: ['text to speech online free', 'free text to speech tool', 'text to speech no signup', 'online text to speech browser', 'Craftisle text to speech'],
     description: "Convert text to natural-sounding speech using the browser's built-in Web Speech API. Supports multiple languages and voices (depending on your OS). Adjust speed, pitch, and volume. Download as WAV. Essential for accessibility testing, content creation, and language learning.",
     howToUse: [
       { heading: "Type or paste text", text: "Enter the text you want to convert to speech (up to ~500 characters for best results)." },
@@ -863,6 +968,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "IP address calculation tool",
     icon: "🌐",
     category: CATEGORIES.network,
+    seoTitle: "IP Calculator Free — Online Tool | Craftisle",
+    seoDesc: "Free ip calculator online tool. IP address calculation tool 100% browser-based, no signup required.",
+    seoKeywords: ['ip calculator online free', 'free ip calculator tool', 'ip calculator no signup', 'online ip calculator browser', 'Craftisle ip calculator'],
     description: "Calculate IPv4 and IPv6 subnet information: network address, broadcast address, CIDR notation, wildcard mask, and usable host range. Supports CIDR notation (192.168.1.0/24) and subnet mask input. Essential for network engineers, DevOps, and cloud infrastructure planning.",
     howToUse: [
       { heading: "Enter IP and subnet", text: "Type an IPv4 or IPv6 address with CIDR suffix (e.g., 192.168.1.0/24)." },
@@ -887,6 +995,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Parse browser UA strings",
     icon: "🤖",
     category: CATEGORIES.network,
+    seoTitle: "User-Agent Parser Free — Online Tool | Craftisle",
+    seoDesc: "Free user-agent parser online tool. Parse browser UA strings 100% browser-based, no signup required.",
+    seoKeywords: ['user-agent parser online free', 'free user-agent parser tool', 'user-agent parser no signup', 'online user-agent parser browser', 'Craftisle user-agent parser'],
     description: "Parse User-Agent strings to detect browser, operating system, device type, and rendering engine. Useful for debugging analytics discrepancies, implementing device-specific logic, and understanding your site's traffic. Also includes a UA string generator for testing.",
     howToUse: [
       { heading: "Paste a User-Agent string", text: "Type or paste a UA string (e.g., from your server logs or browser dev tools)." },
@@ -912,6 +1023,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Random coin flip simulator",
     icon: "🪙",
     category: CATEGORIES.utility,
+    seoTitle: "Coin Flip Free — Online Categories.Utility Tool | Craftisle",
+    seoDesc: "Free coin flip online tool. Random coin flip simulator 100% browser-based, no signup required.",
+    seoKeywords: ['coin flip online free', 'free coin flip tool', 'coin flip no signup', 'online coin flip browser', 'Craftisle coin flip'],
     description: "Flip a virtual coin with realistic animation and sound. Uses cryptographic randomness for true 50/50 probability. Perfect for decision making, games, disputes, and probability experiments. Tracks flip history and statistics.",
     howToUse: [
       { heading: "Click Flip", text: "Press the Flip button to toss the coin. Watch the animation." },
@@ -936,6 +1050,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Simple counter tool",
     icon: "🔢",
     category: CATEGORIES.utility,
+    seoTitle: "Counter Free — Online Categories.Utility Tool | Craftisle",
+    seoDesc: "Free counter online tool. Simple counter tool 100% browser-based, no signup required.",
+    seoKeywords: ['counter online free', 'free counter tool', 'counter no signup', 'online counter browser', 'Craftisle counter'],
     description: "A simple, accessible counter with increment, decrement, reset, and custom step size. Features keyboard shortcuts, session persistence, and a large display. Perfect for counting items, tracking reps at the gym, or any situation where you need a quick tally.",
     howToUse: [
       { heading: "Click + or -", text: "Use the buttons or keyboard arrow keys to increment or decrement." },
@@ -960,6 +1077,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Custom countdown timer",
     icon: "⏳",
     category: CATEGORIES.utility,
+    seoTitle: "Countdown Free — Online Categories.Utility Tool | Craftisle",
+    seoDesc: "Free countdown online tool. Custom countdown timer 100% browser-based, no signup required.",
+    seoKeywords: ['countdown online free', 'free countdown tool', 'countdown no signup', 'online countdown browser', 'Craftisle countdown'],
     description: "Create custom countdown timers for events, deadlines, or Pomodoro sessions. Set hours, minutes, and seconds. Features a visual progress bar, optional alarm sound, and fullscreen mode.",
     howToUse: [
       { heading: "Set the duration", text: "Enter hours, minutes, and seconds for your countdown." },
@@ -984,6 +1104,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Online stopwatch tool",
     icon: "⏱️",
     category: CATEGORIES.utility,
+    seoTitle: "Stopwatch Free — Online Categories.Utility Tool | Craftisle",
+    seoDesc: "Free stopwatch online tool. Online stopwatch tool 100% browser-based, no signup required.",
+    seoKeywords: ['stopwatch online free', 'free stopwatch tool', 'stopwatch no signup', 'online stopwatch browser', 'Craftisle stopwatch'],
     description: "A precise stopwatch with start, pause, lap, and reset functions. Features millisecond precision, lap history, and fullscreen mode. Uses performance.now() for high-precision timing. Essential for sports timing, experiments, and productivity tracking.",
     howToUse: [
       { heading: "Click Start", text: "Press Start to begin timing. The display shows HH:MM:SS.mmm." },
@@ -1008,6 +1131,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Pomodoro technique timer",
     icon: "🍅",
     category: CATEGORIES.utility,
+    seoTitle: "Pomodoro Timer Free — Online Tool | Craftisle",
+    seoDesc: "Free pomodoro timer online tool. Pomodoro technique timer 100% browser-based, no signup required.",
+    seoKeywords: ['pomodoro timer online free', 'free pomodoro timer tool', 'pomodoro timer no signup', 'online pomodoro timer browser', 'Craftisle pomodoro timer'],
     description: "Implement the Pomodoro Technique with a customizable timer: 25 minutes focused work, 5 minutes short break, 15 minutes long break after 4 cycles. Tracks completed pomodoros, sends desktop notifications, and works offline. Boost your productivity with structured work intervals.",
     howToUse: [
       { heading: "Start a Pomodoro", text: "Click Start to begin a 25-minute focused work session." },
@@ -1033,6 +1159,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Random spin wheel tool",
     icon: "🎡",
     category: CATEGORIES.utility,
+    seoTitle: "Spin Wheel Free — Online Categories.Utility Tool | Craftisle",
+    seoDesc: "Free spin wheel online tool. Random spin wheel tool 100% browser-based, no signup required.",
+    seoKeywords: ['spin wheel online free', 'free spin wheel tool', 'spin wheel no signup', 'online spin wheel browser', 'Craftisle spin wheel'],
     description: "Create a custom spin wheel with your own labels and colors. Add up to 50 segments. Features realistic spin animation, sound effects, and result history. Perfect for giveaways, random name picking, and decision making.",
     howToUse: [
       { heading: "Add wheel segments", text: "Type labels for each wheel segment. Set colors or use auto-colors." },
@@ -1057,6 +1186,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Real-time score tracker",
     icon: "📊",
     category: CATEGORIES.utility,
+    seoTitle: "Scoreboard Free — Online Categories.Utility Tool | Craftisle",
+    seoDesc: "Free scoreboard online tool. Real-time score tracker 100% browser-based, no signup required.",
+    seoKeywords: ['scoreboard online free', 'free scoreboard tool', 'scoreboard no signup', 'online scoreboard browser', 'Craftisle scoreboard'],
     description: "Track scores for games, sports, quizzes, and competitions with a real-time scoreboard. Supports multiple players/teams, undo last change, and fullscreen presentation mode. Perfect for trivia nights, classroom games, and friendly competitions.",
     howToUse: [
       { heading: "Add players/teams", text: "Type names for each player or team. Set initial scores (default 0)." },
@@ -1081,6 +1213,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Online keyboard key tester",
     icon: "⌨️",
     category: CATEGORIES.dev,
+    seoTitle: "Keyboard Test Free — Online Categories.Dev Tool | Craftisle",
+    seoDesc: "Free keyboard test online tool. Online keyboard key tester 100% browser-based, no signup required.",
+    seoKeywords: ['keyboard test online free', 'free keyboard test tool', 'keyboard test no signup', 'online keyboard test browser', 'Craftisle keyboard test'],
     description: "Test all keys on your keyboard in real-time. Detects key presses, shows key codes (key, code, keyCode), and identifies unresponsive or stuck keys. Supports modifier keys detection and displays which keys are being held simultaneously. Essential for troubleshooting keyboard hardware issues.",
     howToUse: [
       { heading: "Focus the test area", text: "Click on the keyboard test area to give it focus." },
@@ -1106,6 +1241,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Resize images by width, height, or fit mode",
     icon: "📐",
     category: CATEGORIES.image,
+    seoTitle: "Image Resizer Free — Online Tool | Craftisle",
+    seoDesc: "Free image resizer online tool. Resize images by width, height, or fit mode 100% browser-based, no signup required.",
+    seoKeywords: ['image resizer online free', 'free image resizer tool', 'image resizer no signup', 'online image resizer browser', 'Craftisle image resizer'],
     description: "Resize images to exact dimensions with fit modes (cover, contain, stretch). Supports JPG, PNG, WebP, and AVIF output formats. Maintains aspect ratio or stretches to fit. All processing uses Sharp (server-side) for high-quality resampling.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1131,6 +1269,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Crop images to exact pixel coordinates",
     icon: "✂️",
     category: CATEGORIES.image,
+    seoTitle: "Image Cropper Free — Online Tool | Craftisle",
+    seoDesc: "Free image cropper online tool. Crop images to exact pixel coordinates 100% browser-based, no signup required.",
+    seoKeywords: ['image cropper online free', 'free image cropper tool', 'image cropper no signup', 'online image cropper browser', 'Craftisle image cropper'],
     description: "Crop images to exact pixel coordinates with an interactive crop box. Supports aspect ratio lock (1:1, 4:3, 16:9, freeform) and preset sizes. Server-side processing with Sharp for high-quality output. Essential for profile pictures, social media posts, and print layouts.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1156,6 +1297,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Compress images with quality control",
     icon: "🗜️",
     category: CATEGORIES.image,
+    seoTitle: "Image Compressor Free — Online Tool | Craftisle",
+    seoDesc: "Free image compressor online tool. Compress images with quality control 100% browser-based, no signup required.",
+    seoKeywords: ['image compressor online free', 'free image compressor tool', 'image compressor no signup', 'online image compressor browser', 'Craftisle image compressor'],
     description: "Reduce image file size without noticeable quality loss. Supports JPG (quality slider), PNG (palette reduction), and WebP/AVIF (superior compression). Shows before/after file size and visual comparison. Essential for web performance optimization.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image (JPG, PNG, WebP, AVIF) or click to browse." },
@@ -1181,6 +1325,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Convert between JPEG, PNG, WebP, AVIF, TIFF",
     icon: "🔄",
     category: CATEGORIES.image,
+    seoTitle: "Image Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free image converter online tool. Convert between JPEG, PNG, WebP, AVIF, TIFF 100% browser-based, no signup required.",
+    seoKeywords: ['image converter online free', 'free image converter tool', 'image converter no signup', 'online image converter browser', 'Craftisle image converter'],
     description: "Convert images between JPG, PNG, WebP, AVIF, and TIFF formats. Supports batch conversion, quality settings for lossy formats, and transparency preservation for PNG/WebP. Server-side processing with Sharp for fast, high-quality conversion.",
     howToUse: [
       { heading: "Upload images", text: "Drag and drop one or multiple images. Supports JPG, PNG, WebP, AVIF, TIFF, BMP, GIF." },
@@ -1206,6 +1353,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Rotate images by any angle",
     icon: "↪️",
     category: CATEGORIES.image,
+    seoTitle: "Image Rotator Free — Online Tool | Craftisle",
+    seoDesc: "Free image rotator online tool. Rotate images by any angle 100% browser-based, no signup required.",
+    seoKeywords: ['image rotator online free', 'free image rotator tool', 'image rotator no signup', 'online image rotator browser', 'Craftisle image rotator'],
     description: "Rotate images by exact angle (0-360°) or use preset rotations (90°, 180°, 270°). Supports auto-rotate based on EXIF orientation (fixes sideways photos from cameras and phones). Server-side processing with Sharp.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1231,6 +1381,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Extract dominant colors from any image",
     icon: "🎨",
     category: CATEGORIES.image,
+    seoTitle: "Color Palette Free — Online Tool | Craftisle",
+    seoDesc: "Free color palette online tool. Extract dominant colors from any image 100% browser-based, no signup required.",
+    seoKeywords: ['color palette online free', 'free color palette tool', 'color palette no signup', 'online color palette browser', 'Craftisle color palette'],
     description: "Extract the dominant color palette from any image using K-means clustering. Get HEX, RGB, and HSL values for each color. Visualize the palette and copy values for use in CSS, design tools, or brand guidelines. Essential for brand color extraction and design inspiration.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1256,6 +1409,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Generate favicon from any image",
     icon: "🖼️",
     category: CATEGORIES.image,
+    seoTitle: "Favicon Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free favicon generator online tool. Generate favicon from any image 100% browser-based, no signup required.",
+    seoKeywords: ['favicon generator online free', 'free favicon generator tool', 'favicon generator no signup', 'online favicon generator browser', 'Craftisle favicon generator'],
     description: "Generate favicon.ico files from any image. Auto-resizes to 16×16, 32×32, 48×48, and 64×64 pixels. Supports transparency and produces a multi-size .ico file compatible with all browsers. Also exports individual PNG sizes for Apple touch icons and Android Chrome icons.",
     howToUse: [
       { heading: "Upload an image", text: "Use a square image (PNG with transparency works best). The tool will crop to square if needed." },
@@ -1280,6 +1436,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Remove EXIF and metadata from images",
     icon: "🧹",
     category: CATEGORIES.image,
+    seoTitle: "Strip Metadata Free — Online Tool | Craftisle",
+    seoDesc: "Free strip metadata online tool. Remove EXIF and metadata from images 100% browser-based, no signup required.",
+    seoKeywords: ['strip metadata online free', 'free strip metadata tool', 'strip metadata no signup', 'online strip metadata browser', 'Craftisle strip metadata'],
     description: "Remove all metadata (EXIF, GPS location, camera model, creation date, software info) from images before sharing them online. Protects your privacy by stripping location data and device info. Supports JPG, PNG, WebP, TIFF, and AVIF.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse. JPG, PNG, WebP, TIFF, AVIF are supported." },
@@ -1305,6 +1464,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Read dimensions, format, and metadata",
     icon: "📋",
     category: CATEGORIES.image,
+    seoTitle: "Image Info Free — Online Categories.Image Tool | Craftisle",
+    seoDesc: "Free image info online tool. Read dimensions, format, and metadata 100% browser-based, no signup required.",
+    seoKeywords: ['image info online free', 'free image info tool', 'image info no signup', 'online image info browser', 'Craftisle image info'],
     description: "Read image properties: dimensions (width × height), file format, MIME type, file size, color space, EXIF metadata, and more. Supports JPG, PNG, WebP, AVIF, GIF, SVG, TIFF, BMP. Essential for verifying image assets before using them in production.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1329,6 +1491,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Add colored borders to images",
     icon: "🖼️",
     category: CATEGORIES.image,
+    seoTitle: "Image Border Free — Online Categories.Image Tool | Craftisle",
+    seoDesc: "Free image border online tool. Add colored borders to images 100% browser-based, no signup required.",
+    seoKeywords: ['image border online free', 'free image border tool', 'image border no signup', 'online image border browser', 'Craftisle image border'],
     description: "Add customizable solid-color borders to images. Set border width (px), color (HEX or color picker), and padding between image and border. Supports round corners and shadow effects. Essential for product photos, social media posts, and framed screenshots.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1354,6 +1519,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Add text watermarks to images",
     icon: "©️",
     category: CATEGORIES.image,
+    seoTitle: "Watermark Free — Online Categories.Image Tool | Craftisle",
+    seoDesc: "Free watermark online tool. Add text watermarks to images 100% browser-based, no signup required.",
+    seoKeywords: ['watermark online free', 'free watermark tool', 'watermark no signup', 'online watermark browser', 'Craftisle watermark'],
     description: "Add customizable text watermarks to images for copyright protection. Set text content, font, size, color, opacity, rotation angle, and position. Supports batch watermarking. Essential for photographers, designers, and content creators protecting their work.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1379,6 +1547,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Adjust brightness, contrast, saturation",
     icon: "🎚️",
     category: CATEGORIES.image,
+    seoTitle: "Color Adjust Free — Online Categories.Image Tool | Craftisle",
+    seoDesc: "Free color adjust online tool. Adjust brightness, contrast, saturation 100% browser-based, no signup required.",
+    seoKeywords: ['color adjust online free', 'free color adjust tool', 'color adjust no signup', 'online color adjust browser', 'Craftisle color adjust'],
     description: "Adjust image brightness, contrast, saturation, hue, and sharpness with live preview. Supports auto-enhance (auto contrast + saturation) and preset filters (vintage, sepia, black & white, vivid). Essential for photo touch-ups before posting online.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
@@ -1404,6 +1575,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Generate passport and visa photos",
     icon: "📸",
     category: CATEGORIES.image,
+    seoTitle: "Passport Photo Free — Online Tool | Craftisle",
+    seoDesc: "Free passport photo online tool. Generate passport and visa photos 100% browser-based, no signup required.",
+    seoKeywords: ['passport photo online free', 'free passport photo tool', 'passport photo no signup', 'online passport photo browser', 'Craftisle passport photo'],
     description: "Generate compliant passport and visa photos from a regular photo. Auto-detects face position, crops to correct dimensions, and adjusts background color to meet official requirements (white, light gray, or off-white). Supports US, UK, EU, China, and 50+ other country specifications.",
     howToUse: [
       { heading: "Upload a photo", text: "Use a frontal face photo with neutral expression and plain background." },
@@ -1429,6 +1603,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Add top and bottom text to any image",
     icon: "😂",
     category: CATEGORIES.image,
+    seoTitle: "Meme Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free meme generator online tool. Add top and bottom text to any image 100% browser-based, no signup required.",
+    seoKeywords: ['meme generator online free', 'free meme generator tool', 'meme generator no signup', 'online meme generator browser', 'Craftisle meme generator'],
     description: "Create memes by adding customizable top and bottom text to any image. Choose from classic meme fonts (Impact, Arial), set text size, color, outline, and alignment. Also includes a library of popular meme templates. Download as PNG for social sharing.",
     howToUse: [
       { heading: "Upload an image or choose template", text: "Upload your own image or pick from popular meme templates (Distracted Boyfriend, Drake, etc.)." },
@@ -1453,6 +1630,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Add padding, shadow, and borders to screenshots",
     icon: "✨",
     category: CATEGORIES.image,
+    seoTitle: "Beautify Screenshots Free — Online Tool | Craftisle",
+    seoDesc: "Free beautify screenshots online tool. Add padding, shadow, and borders to screenshots 100% browser-based, no signup required.",
+    seoKeywords: ['beautify screenshots online free', 'free beautify screenshots tool', 'beautify screenshots no signup', 'online beautify screenshots browser', 'Craftisle beautify screenshots'],
     description: "Transform raw screenshots into polished marketing assets. Add padding, rounded corners, drop shadow, browser window frame, and gradient background. Essential for product hunt launches, documentation, and sales decks. Make your app screenshots look professional with one click.",
     howToUse: [
       { heading: "Upload a screenshot", text: "Drag and drop a browser or app screenshot. PNG with transparency works best." },
@@ -1478,6 +1658,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Compare images and detect duplicates with perceptual hashing",
     icon: "🔍",
     category: CATEGORIES.image,
+    seoTitle: "Find Duplicates Free — Online Tool | Craftisle",
+    seoDesc: "Free find duplicates online tool. Compare images and detect duplicates with perceptual hashing 100% browser-based, no signup required.",
+    seoKeywords: ['find duplicates online free', 'free find duplicates tool', 'find duplicates no signup', 'online find duplicates browser', 'Craftisle find duplicates'],
     description: "Detect duplicate or near-duplicate images using perceptual hashing (pHash). Finds images that are visually similar even if they have different file names, formats, or slight color/size variations. Essential for cleaning up photo libraries and removing redundant assets.",
     howToUse: [
       { heading: "Upload images to compare", text: "Drag and drop 2 or more images. Or upload an entire folder of images for batch comparison." },
@@ -1503,6 +1686,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Preview 135+ file formats — PDF, Word, Excel, CAD, 3D, images & more",
     icon: "👁️",
     category: CATEGORIES.dev,
+    seoTitle: "File Viewer Free — Online Categories.Dev Tool | Craftisle",
+    seoDesc: "Free file viewer online tool. Preview 135+ file formats — PDF, Word, Excel, CAD, 3D, images & more 100% browser-based, no signup required.",
+    seoKeywords: ['file viewer online free', 'free file viewer tool', 'file viewer no signup', 'online file viewer browser', 'Craftisle file viewer'],
     badge: "New",
     description: "Preview <strong>135+ file formats</strong> directly in your browser — no software installation needed. Supports PDF, Word (DOC/DOCX), Excel (XLS/XLSX), PowerPoint (PPT/PPTX), CAD files (DWG/DXF), 3D models (STL/OBJ/GLTF), images (JPG/PNG/GIF/WEBP/HEIC), archives (ZIP/RAR/7Z), code files, e-books (EPUB), audio/video, fonts, and more.<br/><br/><strong>100% private:</strong> All processing happens locally in your browser. Files are never uploaded to any server. Your data stays on your device.",
     howToUse: [
@@ -1532,6 +1718,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Create animated GIFs from multiple image frames",
     icon: "🎞️",
     category: CATEGORIES.image,
+    seoTitle: "Create GIF Free — Online Categories.Image Tool | Craftisle",
+    seoDesc: "Free create gif online tool. Create animated GIFs from multiple image frames 100% browser-based, no signup required.",
+    seoKeywords: ['create gif online free', 'free create gif tool', 'create gif no signup', 'online create gif browser', 'Craftisle create gif'],
     description: "Create animated GIFs from multiple image frames. Upload sequential images (frame1.png, frame2.png, ...) or extract frames from a video. Set frame delay (speed), loop count (once or infinite), and optimize for file size. Essential for creating animated demos, loading spinners, and social media animations.",
     howToUse: [
       { heading: "Upload image frames", text: "Drag and drop multiple images in order (they will be animated sequentially)." },
@@ -1559,6 +1748,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "📄",
     badge: "New",
     category: CATEGORIES.converter,
+    seoTitle: "PDF Tools Free — Online Tool | Craftisle",
+    seoDesc: "Free pdf tools online tool. Merge, split, compress, convert PDF files online 100% browser-based, no signup required.",
+    seoKeywords: ['pdf tools online free', 'free pdf tools tool', 'pdf tools no signup', 'online pdf tools browser', 'Craftisle pdf tools'],
     external: true,
     url: "https://pdf.craftisle.com",
   },
