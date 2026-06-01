@@ -20,6 +20,7 @@ import {
   Image,
   Calculator,
   Play,
+  Eye,
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
@@ -167,12 +168,12 @@ export default function IndexPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Card className="transition-shadow hover:shadow-lg">
               <CardHeader>
-                <QrCode className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">QR Code Generator</CardTitle>
-                <CardDescription>Custom styled QR codes</CardDescription>
+                <FileText className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">PDF Tools</CardTitle>
+                <CardDescription>Merge, split, compress, convert PDF files</CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/tools/qrcode">
+                <Link href="https://pdf.craftisle.com" target="_blank" rel="noopener noreferrer">
                   <Button variant="ghost" size="sm" className="w-full">
                     Open Tool
                   </Button>
@@ -181,12 +182,12 @@ export default function IndexPage() {
             </Card>
             <Card className="transition-shadow hover:shadow-lg">
               <CardHeader>
-                <FileText className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">JSON Formatter</CardTitle>
-                <CardDescription>JSON beautify and minify</CardDescription>
+                <Eye className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">File Viewer</CardTitle>
+                <CardDescription>Preview 135+ file formats online</CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/tools/json-formatter">
+                <Link href="/tools/file-viewer">
                   <Button variant="ghost" size="sm" className="w-full">
                     Open Tool
                   </Button>
@@ -363,93 +364,36 @@ export default function IndexPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold tracking-tight">Tool Categories</h2>
-            <p className="mt-2 text-muted-foreground">Explore tools by category</p>
+            <p className="mt-2 text-muted-foreground">Browse all 10 categories</p>
           </div>
-          <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <div className="text-4xl mb-2">🔐</div>
-                <CardTitle className="text-lg">Encryption & Hashing</CardTitle>
-                <CardDescription> AES, DES, Bcrypt, Hash, JWT</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools?category=encryption">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Browse
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <div className="text-4xl mb-2">📝</div>
-                <CardTitle className="text-lg">Formatters</CardTitle>
-                <CardDescription>JSON, HTML, SQL, YAML</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools?category=formatter">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Browse
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <div className="text-4xl mb-2">🔄</div>
-                <CardTitle className="text-lg">Converters</CardTitle>
-                <CardDescription>Base64, CSV/JSON, IP, Radix</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools?category=converter">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Browse
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <div className="text-4xl mb-2">💻</div>
-                <CardTitle className="text-lg">Developer Tools</CardTitle>
-                <CardDescription>Regex, Mermaid, Cron, SVG</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools?category=dev">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Browse
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <div className="text-4xl mb-2">🖼️</div>
-                <CardTitle className="text-lg">Image Tools</CardTitle>
-                <CardDescription>Resize, Compress, Convert, Crop</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools?category=image">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Browse
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <div className="text-4xl mb-2">🎲</div>
-                <CardTitle className="text-lg">Generators</CardTitle>
-                <CardDescription>QR Code, UUID, Lorem Ipsum</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools?category=generator">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Browse
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+          <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              { emoji: "🔐", title: "Encryption & Hashing", desc: "AES, DES, Bcrypt, Hash", slug: "encryption" },
+              { emoji: "📝", title: "Formatters", desc: "JSON, HTML, SQL, YAML", slug: "formatter" },
+              { emoji: "🔄", title: "Converters", desc: "Base64, CSV, IP, Radix", slug: "converter" },
+              { emoji: "💻", title: "Developer Tools", desc: "Regex, File Viewer, Cron", slug: "dev" },
+              { emoji: "🎲", title: "Generators", desc: "QR, UUID, Lorem Ipsum", slug: "generator" },
+              { emoji: "📄", title: "Text Tools", desc: "Diff, Case, Word Count", slug: "text" },
+              { emoji: "🌐", title: "Network Tools", desc: "IP, Subnet, Port Check", slug: "network" },
+              { emoji: "🖼️", title: "Image Tools", desc: "Resize, Compress, Crop", slug: "image" },
+              { emoji: "⚙️", title: "Utilities", desc: "Password, Stopwatch, JSON", slug: "utility" },
+              { emoji: "📦", title: "Other", desc: "Miscellaneous tools", slug: "other" },
+            ].map((cat) => (
+              <Card key={cat.slug} className="transition-shadow hover:shadow-lg">
+                <CardHeader className="pb-2">
+                  <div className="text-3xl mb-1">{cat.emoji}</div>
+                  <CardTitle className="text-base">{cat.title}</CardTitle>
+                  <CardDescription className="text-xs">{cat.desc}</CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <Link href={`/tools?category=${cat.slug}`}>
+                    <Button variant="ghost" size="sm" className="w-full text-xs">
+                      Browse
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

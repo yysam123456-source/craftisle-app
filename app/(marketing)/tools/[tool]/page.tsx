@@ -19,33 +19,38 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const { tool } = await params;
-  const meta = getToolMeta(tool);
-  if (!meta) return {};
+  try {
+    const { tool } = await params;
+    const meta = getToolMeta(tool);
+    if (!meta) return {};
 
-  const url = `https://craftisle.com/tools/${tool}`;
-  const title = meta.seoTitle || `${meta.title} | Craftisle Free Tools`;
-  const description = meta.seoDesc || meta.desc;
-  const keywords = meta.seoKeywords || ["free online tools", "web tools", meta.title, "Craftisle"];
+    const url = `https://craftisle.com/tools/${tool}`;
+    const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
+    const description = String(meta.seoDesc || meta.desc || "Free online tool");
+    const keywords = meta.seoKeywords || ["free online tools", "web tools", meta.title, "Craftisle"];
 
-  return {
-    title,
-    description,
-    keywords,
-    openGraph: {
-      title: meta.seoTitle || `${meta.title} | Craftisle`,
+    return {
+      title,
       description,
-      url,
-      type: "website",
-      locale: "en_US",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: meta.seoTitle || `${meta.title} | Craftisle`,
-      description,
-    },
-    alternates: { canonical: url },
-  };
+      keywords,
+      openGraph: {
+        title,
+        description,
+        url,
+        type: "website",
+        locale: "en-US",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+      },
+      alternates: { canonical: url },
+    };
+  } catch (e) {
+    console.error("[generateMetadata] ERROR:", e);
+    return {};
+  }
 }
 
 /** Build related tool cards from an array of tool IDs (server-side) */

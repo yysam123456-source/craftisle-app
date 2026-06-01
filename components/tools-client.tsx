@@ -22,7 +22,7 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
-    const pinned = ["pdf-tools", ...imageToolIds];
+    const pinned = ["pdf-tools", "file-viewer", ...imageToolIds];
     return toolDirs
       .filter((dirName) => {
         const meta = toolMeta[dirName];
