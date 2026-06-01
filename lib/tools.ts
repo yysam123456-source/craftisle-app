@@ -857,9 +857,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Text processing and formatting",
     icon: "📄",
     category: CATEGORIES.text,
-    seoTitle: "Text Formatter Free — Online Tool | Craftisle",
-    seoDesc: "Free text formatter online tool. Text processing and formatting 100% browser-based, no signup required.",
-    seoKeywords: ['text formatter online free', 'free text formatter tool', 'text formatter no signup', 'online text formatter browser', 'Craftisle text formatter'],
+    seoTitle: "Text Formatter Free — Process & Format Text Online | Craftisle",
+    seoDesc: "Free text formatter online. Word count, sort lines, remove duplicates, whitespace cleanup. 20+ text operations. 100% browser-based, no signup.",
+    seoKeywords: ["text formatter online free", "text processing tool", "text formatting online", "word count tool free", "text cleanup online", "Craftisle text tool"],
     description: "Format and transform text with 20+ operations: word count, character count, line sorting, deduplication, whitespace cleanup, find-and-replace, and more. Essential for writers, editors, and developers cleaning up text data.",
     howToUse: [
       { heading: "Paste your text", text: "Type or paste the text you want to process." },
