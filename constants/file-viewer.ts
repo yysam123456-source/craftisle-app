@@ -9,8 +9,15 @@ export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB
 /** Cloudflare Pages viewer host */
 export const VIEWER_ORIGIN = "https://viewer.craftisle.com";
 
-/** Origin whitelist for postMessage (only accept from craftisle.com) */
-export const ALLOWED_ORIGINS = ["https://craftisle.com", "http://localhost:3000"];
+/** Origin whitelist for postMessage (accept from viewer domains + local dev) */
+export const ALLOWED_ORIGINS = [
+  "https://viewer.craftisle.com",
+  "https://craftisle-viewer.vercel.app",
+  "https://craftisle.com",
+  "http://localhost:3000",
+  "http://localhost:4000",
+  "http://localhost:4001",
+];
 
 /** postMessage timeout (ms) — if viewer doesn't respond within this, show error */
 export const VIEWER_TIMEOUT_MS = 10_000; // TODO: wire into PreviewFrame timeout for stuck iframes
