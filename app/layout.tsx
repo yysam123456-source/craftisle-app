@@ -1,3 +1,4 @@
+import type { Viewport } from "next";
 import "@/styles/globals.css";
 
 import { fontGeist, fontHeading, fontSans, fontUrban } from "@/assets/fonts";
@@ -8,10 +9,10 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@/components/analytics";
 import ModalProvider from "@/components/modals/providers";
+
 interface RootLayoutProps {
   children: React.ReactNode;
 }
-
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
