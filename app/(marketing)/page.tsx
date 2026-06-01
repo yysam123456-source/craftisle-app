@@ -187,11 +187,11 @@ export default function IndexPage() {
                 <CardDescription>Preview 135+ file formats online</CardDescription>
               </CardHeader>
               <CardContent>
-                <Link href="/tools/file-viewer">
+                <a href="https://viewer.craftisle.com" target="_blank" rel="noopener noreferrer">
                   <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
+                    Open Tool ↗
                   </Button>
-                </Link>
+                </a>
               </CardContent>
             </Card>
             <Card className="transition-shadow hover:shadow-lg">
