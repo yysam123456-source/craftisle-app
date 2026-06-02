@@ -19,6 +19,8 @@ export interface ToolMeta {
   faq?: { q: string; a: string }[];
   /** Related tool IDs for RelatedToolsSection */
   relatedTools?: string[];
+  /** Star rating 1-5, used for homepage Top Tools ranking */
+  stars?: number;
   /** SEO-optimized title (for <title> tag) */
   seoTitle?: string;
   /** SEO-optimized description (150-160 chars, for <meta description>) */
@@ -55,6 +57,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Symmetric encryption tool",
     icon: "🔒",
     category: CATEGORIES.encryption,
+    stars: 5,
     seoTitle: "AES/DES Encrypt & Decrypt Free — Online Symmetric Encryption | Craftisle",
     seoDesc: "Free AES & DES encryption tool online. Encrypt and decrypt text or files in browser. Supports ECB/CBC modes, 128/256-bit keys. No upload, 100% client-side.",
     seoKeywords: ["AES encryption online free", "DES encrypt decrypt online", "symmetric encryption tool", "AES-256 online tool", "encrypt text online no signup", "Craftisle encryption tool"],
@@ -83,6 +86,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Bcrypt password hashing",
     icon: "🔑",
     category: CATEGORIES.encryption,
+    stars: 4,
     seoTitle: "Bcrypt Hash Tool Free — Password Hashing Online | Craftisle",
     seoDesc: "Free bcrypt password hashing tool online. Securely hash passwords with adjustable cost factor. GPU-resistant, client-side processing. No signup required.",
     seoKeywords: ["bcrypt hash online free", "password hashing tool", "bcrypt cost factor", "secure password storage", "bcrypt online tool no signup", "Craftisle encryption tool"],
@@ -607,6 +611,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Visual regex editor & AST viewer",
     icon: "🎨",
     category: CATEGORIES.dev,
+    stars: 5,
     seoTitle: "Regex Visualizer Free — Online AST Graph | Craftisle",
     seoDesc: "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JavaScript/Python/PCRE. 100% browser-based.",
     seoKeywords: ["regex visualizer online free", "regex AST graph", "regular expression visual editor", "regex tree view online", "regex visual tester", "Craftisle regex tool"],

@@ -21,6 +21,7 @@ import {
   Calculator,
   Play,
   Eye,
+  Code2,
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
@@ -226,6 +227,20 @@ export default function IndexPage() {
                     Open Tool ↗
                   </Button>
                 </a>
+              </CardContent>
+            </Card>
+            <Card className="transition-shadow hover:shadow-lg">
+              <CardHeader>
+                <Code2 className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">Regex Visualizer</CardTitle>
+                <CardDescription>Visual AST graph editor for regex</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Link href="/tools/regex-vis">
+                  <Button variant="ghost" size="sm" className="w-full">
+                    Open Tool
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
             <Card className="transition-shadow hover:shadow-lg">
