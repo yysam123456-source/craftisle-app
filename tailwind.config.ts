@@ -9,6 +9,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./ui/**/*.{ts,tsx}",
     "./content/**/*.{md,mdx}",
+    "./lib/regex-vis/**/*.{ts,tsx}",
   ],
   future: {
     hoverOnlyWhenSupported: true,
