@@ -602,6 +602,34 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["json-formatter", "sql-formatter", "text-formatter"],
   },
 
+  "regex-vis": {
+    title: "Regex Visualizer",
+    desc: "Visual regex editor & AST viewer",
+    icon: "🎨",
+    category: CATEGORIES.dev,
+    seoTitle: "Regex Visualizer Free — Online AST Graph | Craftisle",
+    seoDesc: "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JavaScript/Python/PCRE. 100% browser-based.",
+    seoKeywords: ["regex visualizer online free", "regex AST graph", "regular expression visual editor", "regex tree view online", "regex visual tester", "Craftisle regex tool"],
+    description: "Visualize regular expressions as an interactive AST (Abstract Syntax Tree) graph. Edit nodes directly on the graph, test against sample text with real-time highlights. Supports JavaScript, Python, and PCRE regex flavors. Perfect for learning regex, debugging complex patterns, and sharing visual explanations.",
+    howToUse: [
+      { heading: "Type a regex", text: "Enter a regular expression pattern in the input box. The AST graph appears instantly." },
+      { heading: "Explore the AST graph", text: "Each node represents a regex construct (group, quantifier, character class). Hover and click nodes to inspect." },
+      { heading: "Edit visually", text: "Select a node and use the edit tab to modify the pattern visually." },
+      { heading: "Test with sample text", text: "Switch to the test tab, enter sample text, and see matches highlighted in real-time." },
+    ],
+    useCases: [
+      { title: "Learning regex", text: "Understand how complex regex patterns are structured by seeing the AST decomposition." },
+      { title: "Debugging complex patterns", text: "Visually identify which part of a regex is matching unexpectedly." },
+      { title: "Teaching & documentation", text: "Generate AST screenshots to include in blog posts, docs, or Stack Overflow answers." },
+    ],
+    faq: [
+      { q: "What is an AST in regex?", a: "AST stands for Abstract Syntax Tree. It is a tree representation of your regex pattern, showing how constructs like groups, quantifiers, and character classes are nested." },
+      { q: "Can I edit the regex visually?", a: "Yes! Select a node in the graph and use the Edit tab to modify that specific construct. The regex updates automatically." },
+      { q: "Which regex flavors are supported?", a: "JavaScript (ECMAScript), Python, and PCRE. Switch flavors using the dropdown in the test tab." },
+    ],
+    relatedTools: ["regex", "json-formatter", "color-picker"],
+  },
+
   "mermaid": {
     title: "Mermaid Chart",
     desc: "Online flowchart diagrams",
