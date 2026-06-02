@@ -22,39 +22,8 @@ export const metadata: Metadata = constructMetadata({
 
 // Server Component: read tool directories
 export default function ToolsPage() {
-  let toolDirs: string[] = [];
-  try {
-    const fs = require("fs");
-    const path = require("path");
-    const toolsPath = path.join(
-      process.cwd(),
-      "app/(marketing)/tools"
-    );
-    toolDirs = fs
-      .readdirSync(toolsPath, { withFileTypes: true })
-      .filter((d: import("fs").Dirent) => d.isDirectory())
-      .map((d: import("fs").Dirent) => d.name)
-      .filter(
-        (name: string) =>
-          !name.startsWith("_") &&
-          !name.startsWith(".") &&
-          name !== "[tool]"
-      );
-  } catch {
-    toolDirs = Object.keys(toolMeta);
-  }
-
-  // Merge dynamic image tools (no physical directories)
-  for (const id of imageToolIds) {
-    if (!toolDirs.includes(id)) {
-      toolDirs.push(id);
-    }
-  }
-
-  // External tools (no local page, link to subdomain)
-  if (!toolDirs.includes("pdf-tools")) {
-    toolDirs.push("pdf-tools");
-  }
+  // Read all tools from toolMeta (no longer depends on physical directories)
+  const toolDirs = Object.keys(toolMeta);
 
   return (
     <>
