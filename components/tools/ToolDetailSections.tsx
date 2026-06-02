@@ -1,20 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  ChevronRight,
-  Heart,
-  Share2,
-  Maximize2,
-} from "lucide-react";
-import { toolMeta, CATEGORIES } from "@/lib/tools";
+import { toolMeta } from "@/lib/tools";
 import type { ToolMeta } from "@/lib/tools";
-
-function getCategorySlug(categoryLabel: string): string {
-  return Object.entries(CATEGORIES).find(([, v]) => v === categoryLabel)?.[0] || "other";
-}
 
 export default function ToolDetailSections({ toolId }: { toolId: string }) {
   const meta = toolMeta[toolId] as ToolMeta | undefined;
@@ -27,44 +15,8 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
     );
   }
 
-  const categorySlug = getCategorySlug(meta.category);
-
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10 mt-10 pb-10">
-      {/* === Tool Header === */}
-      <div className="space-y-3">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-1 text-sm text-muted-foreground">
-          <Link href="/" className="hover:text-foreground">Home</Link>
-          <ChevronRight className="h-3 w-3" />
-          <Link href="/tools" className="hover:text-foreground">Tools</Link>
-          <ChevronRight className="h-3 w-3" />
-          <Link href={`/tools?category=${categorySlug}`} className="hover:text-foreground">
-            {meta.category}
-          </Link>
-          <ChevronRight className="h-3 w-3" />
-          <span className="text-foreground font-medium">{meta.title}</span>
-        </nav>
-
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-2xl">{meta.icon}</span>
-          <h1 className="text-2xl font-bold">{meta.title}</h1>
-          {meta.badge && (
-            <Badge variant="secondary" className="text-xs">{meta.badge}</Badge>
-          )}
-          <Button variant="ghost" size="icon" className="ml-auto" title="Favorite">
-            <Heart className="h-4 w-4" />
-          </Button>
-          <Button variant="ghost" size="icon" title="Share">
-            <Share2 className="h-4 w-4" />
-          </Button>
-          <Button variant="ghost" size="icon" title="Fullscreen">
-            <Maximize2 className="h-4 w-4" />
-          </Button>
-        </div>
-        <p className="text-muted-foreground max-w-2xl">{meta.desc}</p>
-      </div>
-
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10 pb-10">
       {/* === Description Section === */}
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">About This Tool</h2>

@@ -37,17 +37,6 @@ function getCategorySlug(categoryLabel: string): string {
   return entry?.key ?? "utility";
 }
 
-function buildRelatedTools(related: string[]): { id: string; title: string; desc: string; icon: string }[] {
-  if (!related) return [];
-  return related
-    .map((id) => {
-      const m = getToolMeta(id);
-      if (!m) return null;
-      return { id, title: m.title, desc: m.desc, icon: m.icon };
-    })
-    .filter((m): m is { id: string; title: string; desc: string; icon: string } => m != null);
-}
-
 export default async function ToolPage({ params }: ToolPageProps) {
   const { tool } = await params;
   const definition = getToolDefinition(tool);
@@ -82,7 +71,6 @@ export default async function ToolPage({ params }: ToolPageProps) {
     };
   }
 
-  const related = meta.relatedTools ? buildRelatedTools(meta.relatedTools) : [];
   const categorySlug = getCategorySlug(meta.category);
 
   if (definition) {
@@ -92,14 +80,15 @@ export default async function ToolPage({ params }: ToolPageProps) {
       maxFileSize: definition.maxFileSize,
     };
     return (
-      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related} externalUrl={meta.url}>
+      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url}>
         <ImageToolPage toolId={tool} definition={clientDef} />
+        <ToolDetailSections toolId={tool} />
       </ToolDetailLayout>
     );
   }
 
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} relatedTools={related} externalUrl={meta.url}>
+    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url}>
       <ToolDetailSections toolId={tool} />
     </ToolDetailLayout>
   );

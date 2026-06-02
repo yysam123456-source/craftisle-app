@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { AdSlot } from "@/components/ads/AdSlot";
 import {
   ChevronRight,
   Heart,
@@ -13,13 +12,6 @@ import {
 } from "lucide-react";
 import type { ToolMeta } from "@/lib/tools";
 
-interface RelatedToolCard {
-  id: string;
-  title: string;
-  desc: string;
-  icon: string;
-}
-
 interface ToolDetailLayoutProps {
   toolId: string;
   categorySlug: string;
@@ -27,9 +19,7 @@ interface ToolDetailLayoutProps {
   children?: React.ReactNode;
   /** JsonLd structured data (inject as <script type="application/ld+json">) */
   jsonLd?: Record<string, unknown>;
-  /** Pre-built related tool cards (built server-side) */
-  relatedTools?: RelatedToolCard[];
-  /** External URL — when set, show "Open Tool ↗" button in header */
+  /** External URL — when set, show "Open Tool ↗" button below description */
   externalUrl?: string;
 }
 
@@ -39,7 +29,6 @@ export function ToolDetailLayout({
   meta,
   children,
   jsonLd,
-  relatedTools,
   externalUrl,
 }: ToolDetailLayoutProps) {
   return (
@@ -91,126 +80,21 @@ export function ToolDetailLayout({
           <Button variant="ghost" size="icon" title="Fullscreen">
             <Maximize2 className="h-4 w-4" />
           </Button>
-          {externalUrl && (
-            <a href={externalUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="default" size="sm" className="ml-1 gap-1">
-                Open Tool <ExternalLink className="h-3.5 w-3.5" />
-              </Button>
-            </a>
-          )}
         </div>
         <p className="text-muted-foreground max-w-2xl">{meta.desc}</p>
+        {externalUrl && (
+          <div className="pt-2">
+            <a href={externalUrl} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2 text-base px-6">
+                Open Tool <ExternalLink className="h-4 w-4" />
+              </Button>
+            </a>
+          </div>
+        )}
       </div>
 
-      {/* === Tool Operation Area (children) === */}
+      {/* === Content (children) === */}
       <div>{children}</div>
-
-      {/* === AdSlot 1: below tool === */}
-      <div className="flex justify-center py-4">
-        <AdSlot slotId={`tool-${toolId}-below`} size="leaderboard" />
-      </div>
-
-      {/* === Description Section === */}
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">About This Tool</h2>
-        {meta.description ? (
-          <div
-            className="prose prose-sm max-w-none text-muted-foreground"
-            dangerouslySetInnerHTML={{ __html: meta.description }}
-          />
-        ) : (
-          <p className="text-sm text-muted-foreground italic">Description coming soon.</p>
-        )}
-      </section>
-
-      {/* === How To Use === */}
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">How to Use</h2>
-        {meta.howToUse && meta.howToUse.length > 0 ? (
-          <ol className="space-y-4">
-            {meta.howToUse.map((step, i) => (
-              <li key={i} className="ml-5 list-decimal">
-                <strong>{step.heading}</strong>
-                <p className="text-muted-foreground mt-1">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p className="text-sm text-muted-foreground italic">Usage guide coming soon.</p>
-        )}
-      </section>
-
-      {/* === Use Cases === */}
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Use Cases</h2>
-        {meta.useCases && meta.useCases.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-3">
-            {meta.useCases.map((uc, i) => (
-              <div key={i} className="rounded-xl border bg-card p-4">
-                <h3 className="font-semibold">{uc.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {uc.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-sm text-muted-foreground italic">Use cases coming soon.</p>
-        )}
-      </section>
-
-      {/* === AdSlot 2: below use cases === */}
-      <div className="flex justify-center py-4">
-        <AdSlot slotId={`tool-${toolId}-mid`} size="rectangle" />
-      </div>
-
-      {/* === FAQ Section === */}
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">FAQ</h2>
-        {meta.faq && meta.faq.length > 0 ? (
-          <div className="space-y-4">
-            {meta.faq.map((item, i) => (
-              <details
-                key={i}
-                className="rounded-xl border bg-card p-4"
-              >
-                <summary className="cursor-pointer font-semibold">
-                  {item.q}
-                </summary>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {item.a}
-                </p>
-              </details>
-            ))}
-          </div>
-        ) : (
-          <p className="text-sm text-muted-foreground italic">FAQ coming soon.</p>
-        )}
-      </section>
-
-      {/* === Related Tools === */}
-      <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Related Tools</h2>
-        {relatedTools && relatedTools.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-3">
-            {relatedTools.map((tool) => (
-              <Link
-                key={tool.id}
-                href={`/tools/${tool.id}`}
-                className="block rounded-xl border bg-card p-4 hover:shadow-md transition"
-              >
-                <div className="text-lg">{tool.icon}</div>
-                <div className="font-semibold mt-1">{tool.title}</div>
-                <div className="text-xs text-muted-foreground mt-1">
-                  {tool.desc}
-                </div>
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <p className="text-sm text-muted-foreground italic">Related tools coming soon.</p>
-        )}
-      </section>
     </div>
   );
 }
