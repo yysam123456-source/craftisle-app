@@ -4,66 +4,75 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* === Craftisle 品牌配色方案A - 深海科技感 === */
+    --background: 210 40% 98%;          /* #F8FAFC 极浅蓝灰 */
+    --foreground: 215 25% 27%;          /* #1E293B 深蓝灰文字 */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 215 25% 27%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --popover-foreground: 215 25% 27%;
+    
+    /* 主色：深蓝 */
+    --primary: 211 64% 23%;             /* #1E3A5F */
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 98%;
-    --accent-foreground: 0 0% 9%;
+    
+    /* 强调色：青绿 */
+    --secondary: 168 100% 39%;          /* #00C9A7 */
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 20% 65.1%; /* #94A3B8 */
+    --accent: 168 100% 95%;            /* 青绿极浅 */
+    --accent-foreground: 211 64% 23%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 210 20% 89.8%;           /* #E2E8F0 */
+    --input: 210 20% 89.8%;
+    --ring: 168 100% 39%;               /* 聚焦环用青绿 */
     --radius: 0.5rem;
     
-    --chart-1: 271.5 81.3% 55.9%;
-    --chart-2: 270 95% 75%;
-    --chart-3: 270 91% 65%;
-    --chart-4: 269 97% 85%;
-    --chart-5: 269 100% 92%;
-    --graph: #3f3f46;
-    --graph-group: #a1a1aa;
-    --graph-bg: #fafafa;
+    /* Chart色：使用品牌色系 */
+    --chart-1: 211 64% 23%;             /* 深蓝 */
+    --chart-2: 168 100% 39%;            /* 青绿 */
+    --chart-3: 210 40% 56%;             /* 中蓝 */
+    --chart-4: 43 96% 56%;              /* 琥珀（游戏强调） */
+    --chart-5: 262 83% 58%;             /* 紫色（辅助） */
+    
+    --graph: #1E3A5F;
+    --graph-group: #00C9A7;
+    --graph-bg: #F8FAFC;
   }
 
   .dark {
     --graph: #d4d4d8;
     --graph-group: #52525b;
-    --graph-bg: #111111;
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
+    --graph-bg: #0F172A;
+    /* === Craftisle 暗色模式 === */
+    --background: 215 28% 17%;          /* #0F172A 深蓝黑 */
+    --foreground: 210 20% 98%;          /* #F1F5F9 浅蓝白 */
+    --card: 215 25% 12%;              /* #1E293B 深蓝灰卡 */
+    --card-foreground: 210 20% 98%;
+    --popover: 215 28% 17%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 168 100% 39%;            /* #00C9A7 青绿（暗色主色反转） */
     --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 8%;
-    --accent-foreground: 0 0% 98%;
+    --secondary: 211 64% 33%;            /* #1E3A5F 深蓝 */
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 20% 65.1%; /* #94A3B8 */
+    --accent: 211 64% 23%;              /* 深蓝强调背景 */
+    --accent-foreground: 168 100% 75%; /* 青绿文字 */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 215 25% 14%;              /* #1E293B 暗边框 */
+    --input: 215 25% 14%;
+    --ring: 168 100% 39%;                /* 聚焦环用青绿 */
 
-    --chart-1: 271.5 81.3% 55.9%;
-    --chart-2: 270 95% 75%;
-    --chart-3: 270 91% 65%;
-    --chart-4: 269 97% 85%;
-    --chart-5: 269 100% 92%;
+    --chart-1: 168 100% 39%;             /* 青绿 */
+    --chart-2: 211 64% 43%;             /* 亮蓝 */
+    --chart-3: 43 96% 56%;              /* 琥珀 */
+    --chart-4: 262 83% 68%;             /* 紫色 */
+    --chart-5: 210 40% 76%;             /* 浅蓝 */
   }
 }
 

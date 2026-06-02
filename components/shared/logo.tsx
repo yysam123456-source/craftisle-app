@@ -12,14 +12,15 @@ export function Logo({ className, ...props }: SVGProps<SVGSVGElement>) {
       className={className}
       {...props}
     >
-      {/* Craft — 深蓝 */}
+      {/* Craft — 深蓝（浅色模式）/ 青绿（暗色模式） */}
       <text
         x="4"
         y="30"
-        fontFamily="'Space Grotesk', 'Inter', system-ui, sans-serif"
+        fontFamily="'Cal Sans', 'Inter', system-ui, sans-serif"
         fontSize="28"
         fontWeight="700"
         fill="#1E3A5F"
+        className="dark:fill-[#00C9A7]"
         letterSpacing="-0.5"
       >
         Craft
@@ -43,14 +44,15 @@ export function Logo({ className, ...props }: SVGProps<SVGSVGElement>) {
       />
       <circle cx="96" cy="12" r="1.8" fill="#ffffff" opacity="0.7" />
 
-      {/* isle — 青绿 */}
+      {/* isle — 青绿（浅色模式）/ 浅蓝白（暗色模式） */}
       <text
         x="110"
         y="30"
-        fontFamily="'Space Grotesk', 'Inter', system-ui, sans-serif"
+        fontFamily="'Cal Sans', 'Inter', system-ui, sans-serif"
         fontSize="28"
         fontWeight="400"
         fill="#00C9A7"
+        className="dark:fill-[#F1F5F9]"
         letterSpacing="0.5"
       >
         isle
@@ -72,13 +74,15 @@ export function LogoCompact({ className, ...props }: SVGProps<SVGSVGElement>) {
       className={className}
       {...props}
     >
-      <circle cx="16" cy="16" r="15" fill="#1E3A5F" />
+      {/* 深蓝底（暗色模式下切换为青绿） */}
+      <circle cx="16" cy="16" r="15" fill="#1E3A5F" className="dark:fill-[#00C9A7]" />
       <polygon
         points="16,6 24,14 16,26 8,14"
         fill="#00C9A7"
         stroke="#1E3A5F"
         strokeWidth="1.2"
         strokeLinejoin="round"
+        className="dark:stroke-[#00C9A7]"
       />
       <polygon
         points="16,9 22,14 16,23 10,14"

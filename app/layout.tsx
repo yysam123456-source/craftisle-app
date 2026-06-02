@@ -1,7 +1,20 @@
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
 
 import { fontGeist, fontHeading, fontSans, fontUrban } from "@/assets/fonts";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Craftisle — Play Free HTML5 Games & Tools",
+    template: "%s | Craftisle",
+  },
+  description: "Craftisle is your ultimate island for creative tools and free HTML5 games. Play instantly, no downloads required.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+};
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 

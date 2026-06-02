@@ -24,7 +24,6 @@ import {
   MoreVertical,
   Package,
   Plus,
-  Puzzle,
   Search,
   Settings,
   SunMedium,

@@ -22,6 +22,7 @@ import {
 import ProjectSwitcher from "@/components/dashboard/project-switcher";
 import { UpgradeCard } from "@/components/dashboard/upgrade-card";
 import { Icons } from "@/components/shared/icons";
+import { Logo } from "@/components/shared/logo";
 
 interface DashboardSidebarProps {
   links: SidebarNavItem[];
@@ -200,14 +201,8 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
           <ScrollArea className="h-full overflow-y-auto">
             <div className="flex h-screen flex-col">
               <nav className="flex flex-1 flex-col gap-y-8 p-6 text-lg font-medium">
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 text-lg font-semibold"
-                >
-                  <Icons.logo className="size-6" />
-                  <span className="font-urban text-xl font-bold">
-                    {siteConfig.name}
-                  </span>
+                <Link href="#" className="flex items-center">
+                  <Logo className="h-8 w-auto" />
                 </Link>
 
                 <ProjectSwitcher large />

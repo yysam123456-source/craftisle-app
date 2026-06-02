@@ -24,6 +24,7 @@ export const fontUrban = localFont({
   fallback: ["system-ui", "arial"],
 });
 
+// Space Grotesk 替代方案：Cal Sans（几何无衬线，风格接近）
 export const fontHeading = localFont({
   src: "./CalSans-SemiBold.woff2",
   variable: "--font-heading",
