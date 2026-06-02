@@ -54,6 +54,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        graph: "var(--graph)",
+        "graph-group": "var(--graph-group)",
+        "graph-bg": "var(--graph-bg)",
       },
       borderRadius: {
         lg: "var(--radius)",
