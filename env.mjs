@@ -20,6 +20,10 @@ export const env = createEnv({
     NEXT_PUBLIC_STRIPE_PRO_YEARLY_PLAN_ID: z.string().min(1).optional().or(z.literal("")),
     NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID: z.string().min(1).optional().or(z.literal("")),
     NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID: z.string().min(1).optional().or(z.literal("")),
+    // Google AdSense — single switch for all ads across craftisle.com and subdomains
+    // Set to your AdSense client ID (e.g., ca-pub-1234567890123456) to enable ads everywhere
+    // Leave empty or unset to disable all ads project-wide
+    NEXT_PUBLIC_ADSENSE_CLIENT: z.string().optional().or(z.literal("")),
   },
   runtimeEnv: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
@@ -41,5 +45,6 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_STRIPE_BUSINESS_MONTHLY_PLAN_ID,
     NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID:
       process.env.NEXT_PUBLIC_STRIPE_BUSINESS_YEARLY_PLAN_ID,
+    NEXT_PUBLIC_ADSENSE_CLIENT: process.env.NEXT_PUBLIC_ADSENSE_CLIENT,
   },
 });
