@@ -9,6 +9,7 @@ import {
   Heart,
   Share2,
   Maximize2,
+  ExternalLink,
 } from "lucide-react";
 import type { ToolMeta } from "@/lib/tools";
 
@@ -28,6 +29,8 @@ interface ToolDetailLayoutProps {
   jsonLd?: Record<string, unknown>;
   /** Pre-built related tool cards (built server-side) */
   relatedTools?: RelatedToolCard[];
+  /** External URL — when set, show "Open Tool ↗" button in header */
+  externalUrl?: string;
 }
 
 export function ToolDetailLayout({
@@ -37,6 +40,7 @@ export function ToolDetailLayout({
   children,
   jsonLd,
   relatedTools,
+  externalUrl,
 }: ToolDetailLayoutProps) {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-10">
@@ -87,6 +91,13 @@ export function ToolDetailLayout({
           <Button variant="ghost" size="icon" title="Fullscreen">
             <Maximize2 className="h-4 w-4" />
           </Button>
+          {externalUrl && (
+            <a href={externalUrl} target="_blank" rel="noopener noreferrer">
+              <Button variant="default" size="sm" className="ml-1 gap-1">
+                Open Tool <ExternalLink className="h-3.5 w-3.5" />
+              </Button>
+            </a>
+          )}
         </div>
         <p className="text-muted-foreground max-w-2xl">{meta.desc}</p>
       </div>

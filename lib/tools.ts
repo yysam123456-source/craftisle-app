@@ -1686,7 +1686,6 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Preview 135+ file formats — PDF, Word, Excel, CAD, 3D, images & more",
     icon: "👁️",
     category: CATEGORIES.dev,
-    external: true,
     url: "https://viewer.craftisle.com",
     seoTitle: "File Viewer Free — Online Categories.Dev Tool | Craftisle",
     seoDesc: "Free file viewer online tool. Preview 135+ file formats — PDF, Word, Excel, CAD, 3D, images & more 100% browser-based, no signup required.",
