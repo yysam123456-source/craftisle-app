@@ -15,13 +15,16 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
-  return {
+  const metadata: Metadata = {
     title,
     description,
+    keywords: meta.seoKeywords,
     openGraph: { title, description, url, type: "website" as const, locale: "en-US" },
     twitter: { card: "summary_large_image" as const, title, description },
     alternates: { canonical: url },
   };
+
+  return metadata;
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {
