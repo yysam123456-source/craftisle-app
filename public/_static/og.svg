@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8FAFC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E2E8F0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C9A7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00E6BF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="craftGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2D5A8F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" rx="0"/>
+  
+  <!-- 装饰菱形 -->
+  <polygon points="100,100 150,150 100,200 50,150" fill="#00C9A7" opacity="0.08"/>
+  <polygon points="1100,430 1150,480 1100,530 1050,480" fill="#00C9A7" opacity="0.06"/>
+  <polygon points="80,480 120,520 80,560 40,520" fill="#1E3A5F" opacity="0.05"/>
+  
+  <!-- 主Logo -->
+  <g transform="translate(600, 260)">
+    <!-- Craft -->
+    <text x="-220" y="0" font-family="'Space Grotesk', 'Inter', system-ui, sans-serif" font-size="80" font-weight="700" fill="url(#craftGrad)" letter-spacing="-2" text-anchor="middle">Craft</text>
+    
+    <!-- 宝石菱形 i -->
+    <polygon points="-140,-30 -110,0 -140,35 -170,0" fill="url(#gemGrad)" stroke="#F8FAFC" stroke-width="3" stroke-linejoin="round"/>
+    <polygon points="-140,-20 -118,0 -140,25 -162,0" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.5" stroke-linejoin="round"/>
+    <circle cx="-140" cy="-15" r="4" fill="#FFFFFF" opacity="0.7"/>
+    
+    <!-- isle -->
+    <text x="-30" y="0" font-family="'Space Grotesk', 'Inter', system-ui, sans-serif" font-size="80" font-weight="400" fill="#00C9A7" letter-spacing="2" text-anchor="middle">isle</text>
+  </g>
+  
+  <!-- 副标题 -->
+  <text x="600" y="340" font-family="'Inter', system-ui, sans-serif" font-size="28" font-weight="400" fill="#1E3A5F" opacity="0.6" text-anchor="middle" letter-spacing="3">TOOLS · GAMES · ISLAND</text>
+  
+  <!-- 底部装饰线 -->
+  <line x1="500" y1="390" x2="700" y2="390" stroke="#00C9A7" stroke-width="2" opacity="0.3"/>
+  
+  <!-- URL -->
+  <text x="600" y="560" font-family="'Inter', system-ui, sans-serif" font-size="18" font-weight="400" fill="#1E3A5F" opacity="0.35" text-anchor="middle" letter-spacing="2">craftisle.com</text>
+</svg>

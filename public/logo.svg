@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 200" width="680" height="200">
+  <defs>
+    <linearGradient id="gemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C9A7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00E6BF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="craftGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2D5A8F;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1E3A5F" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Craft (深蓝，硬边感) -->
+  <text x="48" y="108" font-family="'Space Grotesk', 'Inter', sans-serif" font-size="72" font-weight="700" fill="url(#craftGrad)" letter-spacing="-1" filter="url(#shadow)">Craft</text>
+  
+  <!-- 分隔点 · -->
+  <circle cx="272" cy="88" r="4" fill="#1E3A5F" opacity="0.25"/>
+  
+  <!-- Isle (青绿，圆角感) -->
+  <text x="290" y="108" font-family="'Space Grotesk', 'Inter', sans-serif" font-size="72" font-weight="400" fill="#00C9A7" letter-spacing="1" filter="url(#shadow)">isle</text>
+  
+  <!-- 优化版 "i" 图标：宝石切割感 -->
+  <g transform="translate(246, 66)">
+    <!-- 外框菱形 -->
+    <polygon points="12,0 24,12 12,24 0,12" fill="url(#gemGrad)" stroke="#F8FAFC" stroke-width="1.5"/>
+    <!-- 内部高光线 -->
+    <polygon points="12,3 21,12 12,21 3,12" fill="none" stroke="#FFFFFF" stroke-width="0.8" opacity="0.5"/>
+    <!-- 顶部高光点 -->
+    <circle cx="12" cy="7" r="2.5" fill="#FFFFFF" opacity="0.7"/>
+    <!-- 底部反光 -->
+    <polygon points="12,16 19,12 12,21" fill="#FFFFFF" opacity="0.12"/>
+  </g>
+</svg>

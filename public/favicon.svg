@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="gemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C9A7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00E6BF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- 背景圆 -->
+  <circle cx="16" cy="16" r="15" fill="#1E3A5F"/>
+  <!-- 宝石菱形图标 -->
+  <polygon points="16,4 26,14 16,28 6,14" fill="url(#gemGrad)" stroke="#1E3A5F" stroke-width="1.5"/>
+  <!-- 内部高光线 -->
+  <polygon points="16,7 23,14 16,24 9,14" fill="none" stroke="#FFFFFF" stroke-width="0.6" opacity="0.5"/>
+  <!-- 顶部高光点 -->
+  <circle cx="16" cy="10" r="1.8" fill="#FFFFFF" opacity="0.7"/>
+</svg>

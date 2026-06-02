@@ -103,7 +103,34 @@ export const Icons = {
   home: Home,
   laptop: Laptop,
   lineChart: LineChart,
-  logo: Puzzle,
+  logo: ({ ...props }: LucideProps) => (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      {...props}
+    >
+      <polygon
+        points="12,3 21,12 12,21 3,12"
+        fill="#00C9A7"
+        stroke="#1E3A5F"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <polygon
+        points="12,6 18,12 12,18 6,12"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="0.8"
+        opacity="0.5"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="8" r="1.8" fill="#ffffff" opacity="0.7" />
+    </svg>
+  ),
   media: Image,
   messages: MessagesSquare,
   moon: Moon,

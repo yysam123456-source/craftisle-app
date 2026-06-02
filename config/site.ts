@@ -8,7 +8,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Free online games, tools, and resources. Play games, use free tools, browse directory, read articles.",
   url: site_url,
-  ogImage: `${site_url}/_static/og.jpg`,
+  ogImage: `${site_url}/opengraph-image.svg`,
   links: {
     twitter: "https://twitter.com/craftisle",
     github: "https://github.com/yysam123456-source/craftisle",
