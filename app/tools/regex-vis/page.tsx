@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { ToolMeta } from "@/lib/tools";
 import RegexVisClient from "./client";
+
+// Force dynamic rendering for useSearchParams
+export const dynamic = "force-dynamic";
 
 // ---------- Static metadata ----------
 export const metadata: Metadata = {
@@ -33,7 +37,9 @@ interface PageProps {
 export default function RegexVisPage({ searchParams }: PageProps) {
   return (
     <ToolDetailLayout toolId="regex-vis" categorySlug="dev" meta={meta} jsonLd={{}}>
-      <RegexVisClient />
+      <Suspense fallback={<div className="flex items-center justify-center h-64"><p>Loading Regex Visualizer...</p></div>}>
+        <RegexVisClient />
+      </Suspense>
       <ToolDetailSections toolId="regex-vis" />
     </ToolDetailLayout>
   );
