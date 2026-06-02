@@ -26,8 +26,8 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Craftisle — Play Free HTML5 Games & Use 60+ Free Online Tools",
-  description: "Play free HTML5 games online — no download required. Use 60+ free online tools including QR generator, JSON formatter, Base64 encoder. Start instantly in your browser.",
+  title: "Craftisle — Play Free HTML5 Games & Use 100+ Free Online Tools",
+  description: "Play free HTML5 games online — no download required. Use 100+ free online tools including QR generator, JSON formatter, Base64 encoder. Start instantly in your browser.",
   keywords: [
     "free HTML5 games",
     "browser games no download",
@@ -41,22 +41,56 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Craftisle — Free HTML5 Games & Online Tools",
-    description: "Play free HTML5 games online. Use 60+ free online tools. No download, no signup.",
+    description: "Play free HTML5 games online. Use 100+ free online tools. No download, no signup.",
     url: "https://craftisle.com",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://craftisle.com/_static/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Craftisle — Free HTML5 Games & Online Tools",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Craftisle — Free HTML5 Games & Online Tools",
-    description: "Play free HTML5 games. Use 60+ free online tools. No download.",
+    description: "Play free HTML5 games. Use 100+ free online tools. No download.",
+    images: ["https://craftisle.com/_static/og.jpg"],
   },
-  alternates: { canonical: "https://craftisle.com" },
+  alternates: {
+    canonical: "https://craftisle.com",
+    languages: {
+      en: "https://craftisle.com",
+      "zh-CN": "https://craftisle.com/zh",
+      "x-default": "https://craftisle.com",
+    },
+  },
 };
 
 export default function IndexPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Craftisle",
+    url: "https://craftisle.com",
+    description: "Play free HTML5 games online. Use 100+ free online tools. No download, no signup.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://craftisle.com/tools?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
-    <div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-background py-20 sm:py-32">
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,10 +103,10 @@ export default function IndexPage() {
               <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                 {" "}Mini Games
               </span>
-              {" "}&& Useful Tools
+              {" "}& Useful Tools
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Play curated mini games, use 50+ free online tools. No download required, no registration, play instantly.
+              Play curated mini games, use 100+ free online tools. No download required, no registration, play instantly.
             </p>
             <div className="mt-10 flex items-center justify-center gap-4">
               <Link href="/games">
@@ -133,7 +167,7 @@ export default function IndexPage() {
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                     <Zap className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle>50+ Tools</CardTitle>
+                  <CardTitle>100+ Tools</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base">
@@ -364,7 +398,7 @@ export default function IndexPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold tracking-tight">Tool Categories</h2>
-            <p className="mt-2 text-muted-foreground">Browse all 10 categories</p>
+            <p className="mt-2 text-muted-foreground">Browse all 9 categories</p>
           </div>
           <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
             {[
@@ -398,5 +432,6 @@ export default function IndexPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
