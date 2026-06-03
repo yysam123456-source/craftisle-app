@@ -1,20 +1,17 @@
 import { getToolMeta, CATEGORY_LIST } from "@/lib/tools";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
-import dynamic from "next/dynamic";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 import HandwritingAnimationTool from "@/components/tools/handwriting-animation";
 
-interface ToolPageProps {
-  params: Promise<{ tool: string }>;
-}
+// Static page — /tools/handwriting-animation (exact match)
+// NOT /tools/[tool] (dynamic catch-all)
 
-export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
-  const { tool } = await params;
-  const meta = getToolMeta(tool);
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = getToolMeta("handwriting-animation");
   if (!meta) return {};
 
-  const url = `https://craftisle.com/tools/${tool}`;
+  const url = `https://craftisle.com/tools/handwriting-animation`;
   const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
@@ -30,21 +27,18 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
 
 function getCategorySlug(categoryLabel: string): string {
   const entry = CATEGORY_LIST.find((c) => c.label === categoryLabel);
-  return entry?.key ?? "utility";
+  return entry?.key ?? "other";
 }
 
-export default async function ToolPage({ params }: ToolPageProps) {
-  const { tool } = await params;
-  const meta = getToolMeta(tool);
-  if (!meta) {
-    // Next.js notFound() — handled by layout
-  }
+export default function ToolPage() {
+  const meta = getToolMeta("handwriting-animation");
+  if (!meta) return null;
 
   const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: meta?.title ?? tool,
-    description: meta?.desc ?? "",
+    name: meta.title,
+    description: meta.desc,
     applicationCategory: "UtilityApplication",
     operatingSystem: "Any",
     offers: {
@@ -54,7 +48,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
     },
   };
 
-  if (meta?.faq && meta.faq.length > 0) {
+  if (meta.faq && meta.faq.length > 0) {
     jsonLd.mainEntity = {
       "@type": "FAQPage",
       mainEntity: meta.faq.map((f) => ({
@@ -65,17 +59,17 @@ export default async function ToolPage({ params }: ToolPageProps) {
     };
   }
 
-  const categorySlug = getCategorySlug(meta?.category ?? "");
+  const categorySlug = getCategorySlug(meta.category);
 
   return (
     <ToolDetailLayout
-      toolId={tool}
+      toolId="handwriting-animation"
       categorySlug={categorySlug}
-      meta={meta!}
+      meta={meta}
       jsonLd={jsonLd}
     >
       <HandwritingAnimationTool />
-      <ToolDetailSections toolId={tool} />
+      <ToolDetailSections toolId="handwriting-animation" />
     </ToolDetailLayout>
   );
 }
