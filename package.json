@@ -8,11 +8,11 @@
   "scripts": {
     "dev": "next dev",
     "dev:clean": "taskkill /F /IM node.exe >nul 2>&1 & next dev --webpack",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start",
-    "postinstall": "prisma generate && node -e \"const fs=require('fs');const p='node_modules/tegaki/package.json';const d=JSON.parse(fs.readFileSync(p,'utf8'));delete d.exports;d.main='./dist/index.mjs';fs.writeFileSync(p,JSON.stringify(d,null,2));console.log('[postinstall] patched tegaki: removed exports, set main')\"",
+    "postinstall": "prisma generate && node -e \"const fs=require('fs');const p='node_modules/tegaki/package.json';const d=JSON.parse(fs.readFileSync(p,'utf8'));d.main='./dist/index.mjs';delete d.exports;fs.writeFileSync(p,JSON.stringify(d,null,2));console.log('[postinstall] patched tegaki: set main, removed exports')\"",
     "kill-node": "taskkill /F /IM node.exe"
   },
   "dependencies": {
@@ -138,6 +138,7 @@
     "eslint-plugin-tailwindcss": "^3.17.4",
     "husky": "^9.1.1",
     "mdast-util-toc": "^7.1.0",
+    "patch-package": "^8.0.1",
     "postcss": "^8.4.39",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",

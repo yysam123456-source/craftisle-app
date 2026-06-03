@@ -22,11 +22,10 @@ interface TegakiRendererProps {
   onTextChange?: (text: string) => void;
 }
 
-// tegaki core files are inlined under lib/tegaki-dist/ to bypass
-// the "exports" field issue in tegaki/package.json that breaks webpack on Vercel.
-// This dynamic import is resolved from source at build time.
+// Use local TypeScript source (lib/tegaki/) to bypass tegaki's "exports" field issue.
+// This is a direct import from project source — Next.js TypeScript compiler handles it natively.
 const TegakiRenderer = dynamic<TegakiRendererProps>(
-  () => import("../../lib/tegaki-dist/react/index.mjs").then((m: any) => ({ default: m.TegakiRenderer })),
+  () => import("../../lib/tegaki/react").then((m: any) => ({ default: m.TegakiRenderer })),
   { ssr: false, loading: () => <p className="text-sm text-muted-foreground">Loading renderer...</p> }
 );
 

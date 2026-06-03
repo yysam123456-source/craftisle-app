@@ -8,9 +8,13 @@ const nextConfig = {
   // Disable the Next.js Dev Tools panel (bottom-left overlay in dev mode)
   devIndicators: false,
 
-  // Turbopack config (required for Next.js 16 default)
+  // Turbopack: use webpack for tegaki compatibility
+  // Set to {} to enable Turbopack (default in Next.js 16),
+  // or set to false to force webpack (not valid — use --webpack flag in build script).
+  // We use "next build --webpack" in package.json build script instead.
   turbopack: {
-    // ContentLayer: use pre-generated .contentlayer files
+    // Empty config = Turbopack enabled (for dev)
+    // For build, package.json build script has --webpack flag
   },
 
   images: {
@@ -35,8 +39,8 @@ const nextConfig = {
     ],
   },
 
-  // Transpile packages that need it (replaces serverComponentsExternalPackages)
-  transpilePackages: ["@prisma/client"],
+  // Transpile ESM packages for webpack
+  transpilePackages: ["@prisma/client", "tegaki"],
 
   // Env vars required for build (Ghost CMS)
   env: {
