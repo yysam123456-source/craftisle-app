@@ -22,9 +22,11 @@ interface TegakiRendererProps {
   onTextChange?: (text: string) => void;
 }
 
-// TegakiRenderer is a client-only React component — load via next/dynamic
+// tegaki core files are inlined under lib/tegaki-dist/ to bypass
+// the "exports" field issue in tegaki/package.json that breaks webpack on Vercel.
+// This dynamic import is resolved from source at build time.
 const TegakiRenderer = dynamic<TegakiRendererProps>(
-  () => import("tegaki/react").then((m: any) => ({ default: m.TegakiRenderer })),
+  () => import("../../lib/tegaki-dist/react/index.mjs").then((m: any) => ({ default: m.TegakiRenderer })),
   { ssr: false, loading: () => <p className="text-sm text-muted-foreground">Loading renderer...</p> }
 );
 

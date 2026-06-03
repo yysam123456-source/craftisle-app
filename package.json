@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate && node -e \"const fs=require('fs');const p='node_modules/tegaki/package.json';const d=JSON.parse(fs.readFileSync(p,'utf8'));delete d.exports;d.main='./dist/index.mjs';fs.writeFileSync(p,JSON.stringify(d,null,2));console.log('[postinstall] patched tegaki: removed exports, set main')\"",
     "kill-node": "taskkill /F /IM node.exe"
   },
   "dependencies": {
