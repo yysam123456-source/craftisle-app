@@ -1,9 +1,10 @@
+import { getToolMeta, CATEGORY_LIST, type ToolMeta } from "@/lib/tools";
 import { getToolDefinition } from "@/lib/image-tools/registry";
 import type { ToolDefinition } from "@/lib/image-tools/types";
-import { getToolMeta, CATEGORY_LIST, type ToolMeta } from "@/lib/tools";
 import { ImageToolPage } from "@/components/tools/image-tool-page";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
+import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
-  const metadata: Metadata = {
+  return {
     title,
     description,
     keywords: meta.seoKeywords,
@@ -28,8 +29,6 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     twitter: { card: "summary_large_image" as const, title, description },
     alternates: { canonical: url },
   };
-
-  return metadata;
 }
 
 function getCategorySlug(categoryLabel: string): string {
@@ -73,6 +72,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   const categorySlug = getCategorySlug(meta.category);
 
+  // Image tools: use ImageToolPage
   if (definition) {
     const clientDef = {
       id: definition.id,
@@ -87,8 +87,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
     );
   }
 
+  // Non-image tools: try ToolLoader first, fallback to ToolDetailSections
   return (
     <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url}>
+      <ToolLoader toolId={tool} />
       <ToolDetailSections toolId={tool} />
     </ToolDetailLayout>
   );
