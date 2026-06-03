@@ -16,7 +16,7 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10 pb-10">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10 pb-10 mt-10">
       {/* === Description Section === */}
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">About This Tool</h2>
