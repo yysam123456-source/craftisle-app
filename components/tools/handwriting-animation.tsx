@@ -49,16 +49,11 @@ const bundleCache = new Map<string, any>();
 async function loadFontBundle(name: string): Promise<any> {
   if (bundleCache.has(name)) return bundleCache.get(name)!;
   const url = FONT_BUNDLE_URLS[name];
-  // Dynamically import the .mjs bundle via fetch + import()
-  // Next.js can't statically analyze this, so we use a direct dynamic import
-  // with a full URL (relative to origin) after fetching the bundle text.
-  const res = await fetch(url);
-  const text = await res.text();
-  // Evaluate the module (it's a JS module exporting `bundle`)
-  const blob = new Blob([text], { type: "application/javascript" });
-  const blobUrl = URL.createObjectURL(blob);
-  const mod = await import(/* webpackIgnore: true */ blobUrl);
-  URL.revokeObjectURL(blobUrl);
+  // Use webpackIgnore so Next.js doesn't try to bundle this at build time.
+  // The module is loaded at runtime from the public/ static path, which lets
+  // import.meta.url resolve correctly inside the bundle (needed for .ttf font
+  // file references).
+  const mod = await import(/* webpackIgnore: true */ url);
   const bundle = mod.bundle ?? mod.default ?? mod;
   bundleCache.set(name, bundle);
   return bundle;
