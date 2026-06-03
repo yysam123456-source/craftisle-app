@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craftisle 出海项目全景图</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a1a1a; font-size: 13px; line-height: 1.5; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 4px; color: #0f172a; }
+  .subtitle { text-align: center; color: #64748b; font-size: 12px; margin-bottom: 24px; }
+  .section { background: #fff; border-radius: 12px; padding: 18px; margin-bottom: 16px; border: 1px solid #e2e8f0; }
+  .section-title { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+
+  .arch-flow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .arch-box { flex: 1; min-width: 130px; border-radius: 10px; padding: 12px 10px; border: 1.5px solid; text-align: center; }
+  .arch-arrow { font-size: 18px; color: #94a3b8; font-weight: 700; }
+
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+
+  .card { border-radius: 8px; padding: 12px; border: 1px solid #e2e8f0; background: #f8fafc; }
+  .card-title { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+  .card-desc { font-size: 11px; color: #475569; line-height: 1.5; }
+
+  .tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 600; margin-right: 4px; }
+  .tag-green { background: #dcfce7; color: #166534; }
+  .tag-yellow { background: #fef9c3; color: #854d0e; }
+  .tag-red { background: #fee2e2; color: #991b1b; }
+  .tag-blue { background: #dbeafe; color: #1e40af; }
+  .tag-purple { background: #f3e8ff; color: #6b21a8; }
+  .tag-gray { background: #f1f5f9; color: #475569; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 7px 10px; background: #f1f5f9; border-bottom: 1.5px solid #cbd5e1; font-weight: 600; color: #334155; }
+  td { padding: 6px 10px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+
+  .list-item { padding: 4px 0; font-size: 12.5px; color: #334155; line-height: 1.6; }
+  .list-item b { color: #0f172a; }
+
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 3px; font-size: 11px; color: #0369a1; }
+
+  .status-box { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+  .status-ok { background: #dcfce7; color: #166534; }
+  .status-warn { background: #fef9c3; color: #854d0e; }
+  .status-todo { background: #f1f5f9; color: #475569; }
+
+  .footer { text-align: center; color: #94a3b8; font-size: 11px; padding: 16px 0 8px; }
+  .divider { height: 1px; background: #e2e8f0; margin: 12px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>🗺️ Craftisle 出海项目全景图</h1>
+  <p class="subtitle">完整架构 · 部署设计 · 功能模块 · 配置清单 · 完成/待办 | 更新：2026-06-03</p>
+
+  <!-- 一、整体架构 -->
+  <div class="section">
+    <div class="section-title">🏗️ 一、整体架构设计</div>
+    <div class="arch-flow">
+      <div class="arch-box" style="border-color:#8b5cf6;background:#f5f3ff;">
+        <div style="font-weight:700;color:#6d28d9;font-size:13px;">Next.js 16</div>
+        <div style="font-size:11px;color:#7c3aed;margin-top:4px;">App Router + TypeScript</div>
+        <div style="font-size:11px;color:#7c3aed;margin-top:2px;">Tailwind CSS</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box" style="border-color:#3b82f6;background:#eff6ff;">
+        <div style="font-weight:700;color:#1d4ed;font-size:13px;">Vercel 部署</div>
+        <div style="font-size:11px;color:#2563eb;margin-top:4px;">Git Push 自动部署</div>
+        <div style="font-size:11px;color:#2563eb;margin-top:2px;">Team: team_cbq3ThBwJUGjQFHerAPnajbT</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box" style="border-color:#10b981;background:#ecfdf5;">
+        <div style="font-weight:700;color:#047857;font-size:13px;">Neon DB</div>
+        <div style="font-size:11px;color:#059669;margin-top:4px;">Prisma ORM + Postgres</div>
+        <div style="font-size:11px;color:#059669;margin-top:2px;">Serverless</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box" style="border-color:#f59e0b;background:#fffbeb;">
+        <div style="font-weight:700;color:#b45309;font-size:13px;">Cloudflare</div>
+        <div style="font-size:11px;color:#d97706;margin-top:4px;">DNS + CDN</div>
+        <div style="font-size:11px;color:#d97706;margin-top:2px;">craftisle.com / pdf.craftisle.com</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#475569;margin-top:2px;">GitHub 仓库：<code>git@github.com:yysam123456-source/craftisle-app.git</code> | SSH 认证 ✅ 正常</div>
+  </div>
+
+  <!-- 二、功能模块 -->
+  <div class="section">
+    <div class="section-title">🎮 二、功能模块详情</div>
+
+    <div class="grid-2" style="margin-bottom:14px;">
+      <div class="card" style="border-color:#8b5cf6;">
+        <div style="font-weight:600;color:#6d28d9;font-size:13px;margin-bottom:8px;">🎮 游戏站（3 Pages）</div>
+        <div class="list-item">• Island Builder <span class="tag tag-purple">Phaser.js</span></div>
+        <div class="list-item">• Tiny World Builder <span class="tag tag-purple">Phaser.js</span></div>
+        <div class="list-item">• The Last Glimmer <span class="tag tag-blue">迭代中</span></div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">路径：<code>app/play/</code> | SEO 优化进行中</div>
+      </div>
+
+      <div class="card" style="border-color:#3b82f6;">
+        <div style="font-weight:600;color:#1d4ed;font-size:13px;margin-bottom:8px;">🛠️ 工具站（58+ Pages）</div>
+        <div class="list-item">• Image Tools 系列 <span class="tag tag-green">✅ SEO 完成</span></div>
+        <div class="list-item">• PDF Tools 系列 <span class="tag tag-green">✅ SEO 完成</span></div>
+        <div class="list-item">• Encryption / Formatters / Converters / Dev Tools ...</div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">纯客户端架构（预算 ≤100元/年）| 路径：<code>app/(marketing)/tools/</code></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:14px;">
+      <div class="card" style="border-color:#f59e0b;">
+        <div style="font-weight:600;color:#b45309;font-size:13px;margin-bottom:8px;">📕 PDF 站点（pdf.craftisle.com）</div>
+        <div class="list-item">• 独立部署于 Cloudflare Pages <span class="tag tag-green">✅ 已部署</span></div>
+        <div class="list-item">• 支持大文件存储与预览</div>
+        <div class="list-item">• File Viewer 集成</div>
+        <div class="list-item">• 技术架构：Next.js + PDF Tools + 纯客户端</div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">Cloudflare DNS 管理 | 上传 Bug ✅ 已修复</div>
+      </div>
+
+      <div class="card" style="border-color:#10b981;">
+        <div style="font-weight:600;color:#047857;font-size:13px;margin-bottom:8px;">📄 File Viewer 模块</div>
+        <div class="list-item">• 集成 <code>flyfish-dev/file-viewer</code> <span class="tag tag-green">✅ 已集成</span></div>
+        <div class="list-item">• 独立 Vue3 App：<code>viewer.craftisle.com</code> <span class="tag tag-blue">Vercel 部署</span></div>
+        <div class="list-item">• 主站集成代码已删除（非功能）→ 独立站点正常运行</div>
+        <div class="list-item">• 支持文件在线预览（PDF / 图片 / 文档）</div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">上传功能 Bug ✅ 已修复 | 品牌文字 ✅ 已改为英文</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card" style="border-color:#ec4899;">
+        <div style="font-weight:600;color:#be185d;font-size:13px;margin-bottom:8px;">👤 用户系统（NextAuth v5）</div>
+        <div class="list-item">• Google OAuth 登录 <span class="tag tag-green">✅ Vercel Dashboard 已配置</span></div>
+        <div class="list-item">• 用户角色管理 <span class="tag tag-yellow">⏳ 角色列表硬编码待优化</span></div>
+        <div class="list-item">• Stripe 订阅集成 <span class="tag tag-gray">结构中</span></div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">Prisma Model：User / Account / Session / VerificationToken</div>
+      </div>
+
+      <div class="card" style="border-color:#3b82f6;">
+        <div style="font-weight:600;color:#1d4ed;font-size:13px;margin-bottom:8px;">📝 Ghost CMS 集成</div>
+        <div class="list-item">• Blog / Content 内容管理 <span class="tag tag-blue">集成中</span></div>
+        <div class="list-item">• Next.js 前端集成 <span class="tag tag-blue">进行中</span></div>
+        <div class="list-item">• 环境变量 <span class="tag tag-yellow">⏳ GHOST_URL / GHOST_KEY 待配置</span></div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">路径：<code>app/(marketing)/blog/</code> | ContentLayer 已配置</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三、部署设计 -->
+  <div class="section">
+    <div class="section-title">🚀 三、部署设计详情</div>
+    <table>
+      <tr><th>配置项</th><th>值 / 说明</th><th>状态</th></tr>
+      <tr><td>Vercel Team ID</td><td><code>team_cbq3ThBwJUGjQFHerAPnajbT</code></td><td><span class="status-box status-ok">✅ 已配置</span></td></tr>
+      <tr><td>Vercel Project ID</td><td><code>prj_9tnccg19lV14aBjq73a4rRNTo8hP</code></td><td><span class="status-box status-ok">✅ 已配置</span></td></tr>
+      <tr><td>部署方式</td><td>Git push → Vercel 自动部署（无需 CLI）</td><td><span class="status-box status-ok">✅ 跑通</span></td></tr>
+      <tr><td>GitHub 仓库</td><td><code>yysam123456-source/craftisle-app</code></td><td><span class="status-box status-ok">✅ SSH 正常</span></td></tr>
+      <tr><td>Vercel Token</td><td><code>~/.workbuddy/memory/vercel-team-token.txt</code></td><td><span class="status-box status-ok">✅ 已保存</span></td></tr>
+      <tr><td>Cloudflare 域名</td><td>craftisle.com / pdf.craftisle.com</td><td><span class="status-box status-ok">✅ 管理中</span></td></tr>
+      <tr><td>PDF 站点部署</td><td>Cloudflare Pages（独立构建）</td><td><span class="status-box status-ok">✅ 已部署</span></td></tr>
+      <tr><td>File Viewer 部署</td><td>Vercel（独立 Vue3 App）</td><td><span class="status-box status-ok">✅ viewer.craftisle.com</span></td></tr>
+      <tr><td>Next.js Config</td><td>Turbopack + ContentLayer + 图片远程模式</td><td><span class="status-box status-ok">✅ 已配置</span></td></tr>
+    </table>
+    <div style="margin-top:10px;font-size:11px;color:#64748b;">⚠️ Vercel Dashboard 环境变量与 <code>.env.local</code> 独立，需分别在 Dashboard 确认已填入真实值。</div>
+  </div>
+
+  <!-- 四、配置项目清单 -->
+  <div class="section">
+    <div class="section-title">⚙️ 四、Vercel 环境变量配置清单</div>
+    <table>
+      <tr><th>变量名</th><th>用途</th><th>状态</th></tr>
+      <tr><td><code>NEXT_PUBLIC_APP_URL</code></td><td>应用公网域名</td><td><span class="status-box status-ok">✅ 真实值</span></td></tr>
+      <tr><td><code>AUTH_SECRET</code></td><td>NextAuth v5 加密密钥</td><td><span class="status-box status-ok">✅ 真实值</span></td></tr>
+      <tr><td><code>GOOGLE_CLIENT_ID</code></td><td>Google OAuth 应用 ID</td><td><span class="status-box status-ok">✅ 真实值</span></td></tr>
+      <tr><td><code>GOOGLE_CLIENT_SECRET</code></td><td>Google OAuth 应用 Secret</td><td><span class="status-box status-ok">✅ 真实值</span></td></tr>
+      <tr><td><code>DATABASE_URL</code></td><td>Neon DB 连接串</td><td><span class="status-box status-ok">✅ 真实值</span></td></tr>
+      <tr><td><code>NEXT_PUBLIC_GHOST_URL</code></td><td>Ghost CMS API 地址</td><td><span class="status-box status-warn">⏳ 待配置</span></td></tr>
+      <tr><td><code>NEXT_PUBLIC_GHOST_KEY</code></td><td>Ghost CMS Content API Key</td><td><span class="status-box status-warn">⏳ 待配置</span></td></tr>
+      <tr><td><code>NEXT_PUBLIC_ADSENSE_CLIENT</code></td><td>Google AdSense Client ID（<b>一键开关</b>）</td><td><span class="status-box status-todo">⏳ 待填入</span></td></tr>
+      <tr><td><code>RESEND_API_KEY</code></td><td>邮件发送（Resend）</td><td><span class="status-box status-todo">⏳ 待配置</span></td></tr>
+      <tr><td><code>STRIPE_API_KEY</code> 等</td><td>Stripe 订阅支付</td><td><span class="status-box status-todo">⏳ 待配置</span></td></tr>
+    </table>
+  </div>
+
+  <!-- 五、广告配置 -->
+  <div class="section">
+    <div class="section-title">📈 五、广告配置设计（一键开启）</div>
+    <div class="grid-2">
+      <div>
+        <div style="font-weight:600;color:#b45309;font-size:13px;margin-bottom:8px;">⚙️ 一键开关原理</div>
+        <div class="list-item">环境变量 <code>NEXT_PUBLIC_ADSENSE_CLIENT</code> 控制全局广告</div>
+        <div class="list-item">留空 = 全站隐藏广告（开发环境自动隐藏）</div>
+        <div class="list-item">填入 AdSense Client ID = 全站所有 <code>&lt;AdSlot&gt;</code> 显示广告</div>
+        <div class="list-item">无需逐页修改代码，只需改一个环境变量</div>
+        <div style="margin-top:8px;font-size:11px;color:#64748b;">组件路径：<code>components/ads/AdSlot.tsx</code></div>
+      </div>
+      <div>
+        <div style="font-weight:600;color:#b45309;font-size:13px;margin-bottom:8px;">📐 广告位尺寸</div>
+        <div class="list-item"><code>leaderboard</code> — 728×90（横幅 Banner）</div>
+        <div class="list-item"><code>rectangle</code> — 336×280（内容插入）</div>
+        <div class="list-item"><code>halfpage</code> — 300×600（侧边栏）</div>
+        <div class="list-item"><code>responsive</code> — 自适应（全宽 90px 高）</div>
+        <div style="margin-top:8px;font-size:11px;color:#64748b;">使用：<code>&lt;AdSlot slotId="123456" size="leaderboard" /&gt;</code></div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:10px;background:#fef9c3;border-radius:8px;font-size:12px;color:#854d0e;">
+      <b>⚡ 一键开启操作步骤：</b><br>
+      1. 登录 <a href="https://www.google.com/adsense" target="_blank" style="color:#854d0e;">Google AdSense</a> 获取 Client ID（格式：<code>ca-pub-xxxxxxxxxxxxxx</code>）<br>
+      2. 在 Vercel Dashboard → Settings → Environment Variables 添加 <code>NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-xxx...</code><br>
+      3. Redeploy（或等自动重新部署）→ 全站广告自动显示 ✅
+    </div>
+  </div>
+
+  <!-- 六、SEO 与运营 -->
+  <div class="section">
+    <div class="section-title">🔍 六、SEO 与运营</div>
+    <div class="grid-2">
+      <div>
+        <div style="font-weight:600;color:#047857;font-size:13px;margin-bottom:8px;">✅ SEO 优化（已完成）</div>
+        <div class="list-item">基于"长尾词挖掘方法脑图"逐页分析</div>
+        <div class="list-item">工具站 58+ 页面已完成优化 ✅</div>
+        <div class="list-item">所有 UI 文本已国际化（中文 → 英文）</div>
+        <div class="list-item">动态 Metadata（<code>app/(marketing)/tools/[tool]/layout.tsx</code>）</div>
+        <div class="list-item">Sitemap（<code>app/sitemap.ts</code>）+ Robots（<code>app/robots.ts</code>）</div>
+        <div class="list-item">工具元数据（<code>lib/tools.ts</code> — ToolMeta 接口含 seoTitle/seoDesc/seoKeywords）</div>
+      </div>
+      <div>
+        <div style="font-weight:600;color:#7c3aed;font-size:13px;margin-bottom:8px;">🤖 AI 内容营销（已接入）</div>
+        <div class="list-item">AiToEarn MCP 已接入 ✅</div>
+        <div class="list-item">自动化内容生成与发布流程已配置</div>
+        <div class="list-item">支持多平台 Relay 中继（无需逐个申请 Key）</div>
+        <div style="font-weight:600;color:#b45309;font-size:13px;margin-top:12px;margin-bottom:8px;">⏳ 待接入</div>
+        <div class="list-item">Google AdSense 广告（一键开关已就绪）</div>
+        <div class="list-item">GA4 数据分析接入</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 七、已完成事项 -->
+  <div class="section">
+    <div class="section-title">✅ 七、已完成事项清单</div>
+    <div class="grid-2">
+      <div>
+        <div class="list-item"><span class="tag tag-green">✅</span> CloakBrowser 安装 + stealth 验证通过</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> gstack 路径修复（.claude → .workbuddy）</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> codegraph 索引建立（302 文件，2762 节点）</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> AiToEarn MCP 接入完成</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> Vercel Team/Project 配置完成</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> GitHub SSH 连接跑通（入站 + 出站）</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> Google OAuth 凭证配置（真实值已填入）</div>
+      </div>
+      <div>
+        <div class="list-item"><span class="tag tag-green">✅</span> Vercel Dashboard 环境变量核实</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> File Viewer 上传功能 Bug 修复</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> 工具站 58+ 页面 SEO 逐页优化完成</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> 每日自动记忆固化 automation（23:00）</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> Aweskill 周检 automation（每周五 09:00）</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> Vercel 404 排查完成</div>
+        <div class="list-item"><span class="tag tag-green">✅</span> Git 历史污染修复</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 八、待办事项 -->
+  <div class="section">
+    <div class="section-title">⏳ 八、待办事项清单</div>
+    <div class="grid-2">
+      <div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> 用户系统角色列表优化（硬编码 → 动态）</div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> Ghost CMS 完整集成（URL + API Key 配置）</div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> 游戏站功能迭代（Mykonos Island / The Last Glimmer）</div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> Google AdSense 广告接入（一键开关已就绪）</div>
+      </div>
+      <div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> GA4 数据分析接入</div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> Cloudflare 安全规则优化</div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> Stripe 订阅支付完整配置</div>
+        <div class="list-item"><span class="tag tag-yellow">⏳</span> Resend 邮件系统配置</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Craftisle 出海项目全景图 | 由 WorkBuddy 生成 | 数据来源：系统记忆 + 项目记忆 + 代码库 | 2026-06-03
+  </div>
+
+</div>
+</body>
+</html>
