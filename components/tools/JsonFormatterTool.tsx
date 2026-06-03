@@ -136,24 +136,6 @@ export default function JsonFormatterTool() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Page Header */}
-      <div className="flex items-center justify-between border-b pb-4">
-        <div className="flex items-center space-x-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-cyan-500 to-blue-600 shadow-lg">
-            <Code className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">JSON Formatter</h1>
-            <p className="text-muted-foreground">Format JSON for better readability</p>
-          </div>
-        </div>
-        <Tabs value={mode} onValueChange={(v) => setMode(v as Mode)} className="w-75">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="format">Format</TabsTrigger>
-            <TabsTrigger value="compress">Minify</TabsTrigger>
-            <TabsTrigger value="validate">Validate</TabsTrigger>
-          </TabsList>
-        </Tabs>
-      </div>
 
       {/* Action Bar */}
       <Card>

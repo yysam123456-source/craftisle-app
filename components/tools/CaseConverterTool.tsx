@@ -66,17 +66,6 @@ export default function CaseConverterTool() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Page Header */}
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-violet-500 to-purple-600 shadow-lg">
-          <CaseSensitive className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Text Case Converter</h1>
-          <p className="text-muted-foreground">
-            Quickly convert between uppercase, lowercase, camelCase, snake_case, etc.
-          </p>
-        </div>
-      </div>
 
       <div className="grid gap-6">
         <Card>

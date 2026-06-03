@@ -109,15 +109,6 @@ export default function CoinFlipTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-amber-500 to-yellow-600 shadow-lg">
-          <CircleDollarSign className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Coin Flip</h1>
-          <p className="text-muted-foreground">Supports single and consecutive flips with complete result history</p>
-        </div>
-      </div>
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
         <Card className="overflow-hidden border-amber-200/60 bg-linear-to-br from-amber-50 via-background to-yellow-50 dark:border-amber-900/40 dark:from-amber-950/20 dark:via-background dark:to-yellow-950/10">

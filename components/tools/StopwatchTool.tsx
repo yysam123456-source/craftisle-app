@@ -39,15 +39,6 @@ export default function StopwatchTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-indigo-600 shadow-lg">
-          <Watch className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Stopwatch</h1>
-          <p className="text-muted-foreground">Precise timing tool with lap function</p>
-        </div>
-      </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card className="flex flex-col items-center justify-center py-12 space-y-8 h-fit">

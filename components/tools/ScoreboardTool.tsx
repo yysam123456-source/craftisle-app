@@ -30,24 +30,6 @@ export default function ScoreboardTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center justify-between border-b pb-4">
-        <div className="flex items-center space-x-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-rose-500 to-blue-600 shadow-lg">
-            <Tally5 className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Scoreboard</h1>
-            <p className="text-muted-foreground">Real-time score recording for red and blue teams</p>
-          </div>
-        </div>
-        <div className="flex gap-2">
-           <Button variant="outline" size="sm" onClick={handleSwap}></Button>
-           <Button variant="outline" size="sm" onClick={handleReset} className="text-destructive hover:text-destructive">
-              <RotateCcw className="h-4 w-4 mr-2" />
-              Reset score
-           </Button>
-        </div>
-      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-4">
         <TeamDisplay 

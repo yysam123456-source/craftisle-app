@@ -71,15 +71,6 @@ export default function CountdownTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-amber-500 to-orange-600 shadow-lg">
-          <Hourglass className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Countdown Timer</h1>
-          <p className="text-muted-foreground">Set and start countdown timer</p>
-        </div>
-      </div>
 
       <div className="max-w-md mx-auto space-y-8">
         <Card className="p-8 flex flex-col items-center space-y-8">

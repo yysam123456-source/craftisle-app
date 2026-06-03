@@ -78,17 +78,6 @@ export default function UuidTool() {
   return (
     <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Page Header */}
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-indigo-500 to-violet-600 shadow-lg">
-          <FileText className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">UUID Generate</h1>
-          <p className="text-muted-foreground">
-            Generatecharacter RFC 4122 standardstandard UUID v4 Universally Unique Identifier (UUID)
-          </p>
-        </div>
-      </div>
 
       {/* Action Bar */}
       <Card>

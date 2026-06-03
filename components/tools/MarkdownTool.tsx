@@ -63,31 +63,6 @@ export default function MarkdownTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 h-[calc(100vh-140px)] flex flex-col">
-      <div className="flex items-center justify-between border-b pb-4 shrink-0">
-        <div className="flex items-center space-x-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-indigo-600 shadow-lg">
-                <FileText className="h-6 w-6 text-white" />
-            </div>
-            <div>
-                <h1 className="text-2xl font-bold tracking-tight">Markdown Editor</h1>
-                <p className="text-muted-foreground">Live preview, GFM support, WYSIWYG</p>
-            </div>
-        </div>
-        <div className="flex gap-2">
-             <Button variant="outline" size="sm" onClick={() => setMarkdown("")}>
-                 <Trash2 className="h-4 w-4 lg:mr-2" />
-                 <span className="hidden lg:inline">Clear</span>
-             </Button>
-             <Button variant="outline" size="sm" onClick={copyToClipboard}>
-                 <Copy className="h-4 w-4 lg:mr-2" />
-                 <span className="hidden lg:inline">Copy</span>
-             </Button>
-             <Button size="sm" onClick={downloadMarkdown}>
-                 <Download className="h-4 w-4 lg:mr-2" />
-                 <span className="hidden lg:inline">Download .md</span>
-             </Button>
-        </div>
-      </div>
 
       <div className="flex-1 min-h-0 grid grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 gap-4 lg:gap-6">
         {/* Editor */}

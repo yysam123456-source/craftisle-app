@@ -46,22 +46,6 @@ export default function SvgEditorTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 h-[calc(100vh-140px)] flex flex-col">
-      <div className="flex items-center justify-between border-b pb-4 shrink-0">
-        <div className="flex items-center space-x-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-emerald-500 to-cyan-600 shadow-lg">
-            <FileCode className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">SVG Online Editor</h1>
-            <p className="text-muted-foreground">Edit SVG source code and preview in real-time</p>
-          </div>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={() => setSvg("")}> <Trash2 className="h-4 w-4 lg:mr-2" /><span className="hidden lg:inline">Clear</span></Button>
-          <Button variant="outline" size="sm" onClick={copySvg}> <Copy className="h-4 w-4 lg:mr-2" /><span className="hidden lg:inline">Copy</span></Button>
-          <Button size="sm" onClick={downloadSvg}> <Download className="h-4 w-4 lg:mr-2" /><span className="hidden lg:inline">Download .svg</span></Button>
-        </div>
-      </div>
 
       {error && (
         <Alert variant="destructive">

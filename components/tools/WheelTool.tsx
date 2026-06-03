@@ -327,16 +327,6 @@ export default function WheelTool() {
   return (
     <>
       <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="flex items-center space-x-4 border-b pb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-rose-400 to-red-500 shadow-lg">
-            <FerrisWheel className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Lucky Wheel</h1>
-            <p className="text-muted-foreground">Supports weighted drawing, deduplication mode, and mobile optimization</p>
-          </div>
-        </div>
-
         <div className="grid gap-6 lg:grid-cols-12">
           <Card className="bg-muted/10 lg:col-span-7">
             <CardContent className="flex flex-col items-center gap-6 p-4 sm:p-8">

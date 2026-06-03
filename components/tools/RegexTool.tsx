@@ -51,15 +51,6 @@ export default function RegexTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-cyan-600 shadow-lg">
-          <Code className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Regex Tester</h1>
-          <p className="text-muted-foreground">Test and debug regex with real-time match preview</p>
-        </div>
-      </div>
 
       <div className="grid gap-6">
         <Card>

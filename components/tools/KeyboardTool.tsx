@@ -28,15 +28,6 @@ export default function KeyboardTool() {
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-zinc-700 to-zinc-900 shadow-lg">
-          <Keyboard className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Keyboard Test</h1>
-          <p className="text-muted-foreground">Real-time detection and display of keyboard key event properties</p>
-        </div>
-      </div>
 
       <div className="flex flex-col items-center justify-center py-12 space-y-8">
         {!lastEvent ? (

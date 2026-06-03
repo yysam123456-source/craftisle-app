@@ -62,17 +62,6 @@ export default function QRCodeGeneratorTool() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Page Header */}
-      <div className="flex items-center space-x-4 border-b pb-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-emerald-500 to-green-600 shadow-lg">
-          <QrCode className="h-6 w-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">QR Code Generator</h1>
-          <p className="text-muted-foreground">
-            Quickly generate custom QR codes with multiple style options
-          </p>
-        </div>
-      </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Left: Configuration */}

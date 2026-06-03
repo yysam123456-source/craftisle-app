@@ -52,53 +52,6 @@ export default function DiffTool() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Header */}
-      <div className="flex items-center justify-between border-b pb-4">
-        <div className="flex items-center space-x-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-slate-500 to-zinc-600 shadow-lg">
-            <Diff className="h-6 w-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">Text Diff</h1>
-            <p className="text-muted-foreground">
-              Compare differences between two texts with syntax highlighting
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          {/* Language Selector */}
-          <Select value={language} onValueChange={setLanguage}>
-            <SelectTrigger className="w-35">
-              <SelectValue placeholder="Select Language" />
-            </SelectTrigger>
-            <SelectContent>
-              {LANGUAGES.map((lang) => (
-                <SelectItem key={lang.value} value={lang.value}>
-                  {lang.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          {/* View Mode Toggle */}
-           <Button
-            variant={renderSideBySide ? "secondary" : "ghost"}
-            size="sm"
-            onClick={() => setRenderSideBySide(true)}
-            className="hidden sm:flex"
-          >
-            Side by Side
-          </Button>
-          <Button
-            variant={!renderSideBySide ? "secondary" : "ghost"}
-            size="sm"
-            onClick={() => setRenderSideBySide(false)}
-             className="hidden sm:flex"
-          >
-            Inline Diff
-          </Button>
-        </div>
-      </div>
 
       {/* Main Editor Area */}
       <Card className="flex-1 h-150 flex flex-col overflow-hidden">
