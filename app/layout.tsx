@@ -10,9 +10,12 @@ export const metadata: Metadata = {
   },
   description: "Craftisle is your ultimate island for creative tools and free HTML5 games. Play instantly, no downloads required.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 import { SessionProvider } from "next-auth/react";
