@@ -3,16 +3,17 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { toolMeta, CATEGORIES } from "@/lib/tools";
+import { getToolMeta, CATEGORY_LIST } from "@/lib/tools";
 import type { ToolMeta } from "@/lib/tools";
 import { ToolActionBar } from "@/components/tools/ToolActionBar";
 
 function getCategorySlug(categoryLabel: string): string {
-  return Object.entries(CATEGORIES).find(([, v]) => v === categoryLabel)?.[0] || "other";
+  const entry = CATEGORY_LIST.find((c) => c.label === categoryLabel);
+  return entry?.key ?? "utility";
 }
 
 function ToolBreadcrumb({ toolId }: { toolId: string }) {
-  const meta = toolMeta[toolId] as ToolMeta | undefined;
+  const meta = getToolMeta(toolId);
   if (!meta) return null;
 
   const categorySlug = getCategorySlug(meta.category);
