@@ -1,12 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  ChevronRight,
-  ExternalLink,
-} from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import type { ToolMeta } from "@/lib/tools";
 
 interface ToolDetailLayoutProps {
@@ -37,26 +33,6 @@ export function ToolDetailLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       )}
-
-      {/* === Breadcrumb === */}
-      <nav className="flex items-center gap-1 text-sm text-muted-foreground">
-        <Link href="/" className="hover:text-foreground">
-          Home
-        </Link>
-        <ChevronRight className="h-3 w-3" />
-        <Link href="/tools" className="hover:text-foreground">
-          Tools
-        </Link>
-        <ChevronRight className="h-3 w-3" />
-        <Link
-          href={`/tools?category=${categorySlug}`}
-          className="hover:text-foreground"
-        >
-          {meta.category}
-        </Link>
-        <ChevronRight className="h-3 w-3" />
-        <span className="text-foreground font-medium">{meta.title}</span>
-      </nav>
 
       {/* === Tool Header === */}
       <div className="space-y-3">
