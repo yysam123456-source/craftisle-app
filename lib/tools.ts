@@ -1805,6 +1805,51 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["image-to-pixel", "image-convert", "image-compress"],
   },
 
+  // ==================== Handwriting Animation ====================
+  "handwriting-animation": {
+    title: "Handwriting Animation Generator",
+    desc: "Convert text into beautiful handwriting animations, free online tool",
+    icon: "✍️",
+    badge: "New",
+    category: CATEGORIES.generator,
+    stars: 5,
+    seoTitle: "Handwriting Animation Generator Free — Online Tool | Craftisle",
+    seoDesc: "Convert any text into beautiful handwriting animations. Free online tool, no sign-up required. 8 built-in fonts, customizable speed and loop.",
+    seoKeywords: [
+      "handwriting animation free",
+      "text to handwriting online",
+      "free animation tool",
+      "handwriting effect generator",
+      "online text animation",
+      "Craftisle handwriting tool",
+    ],
+    description:
+      "<strong>Convert any text into beautiful handwriting animations</strong> — completely free, no sign-up required.<br/><br/>" +
+      "<strong>8 built-in fonts:</strong> Caveat, Italianno, Tangerine, Parisienne, Suez One, Klee One, Amiri, Tilana — each with authentic stroke order animation.<br/><br/>" +
+      "<strong>Custom speed:</strong> Choose slow, normal, or fast animation speed. Loop mode plays continuously; single-play mode runs once.<br/><br/>" +
+      "<strong>100% browser-based:</strong> All rendering happens locally in your browser. No data is uploaded to any server. Your text stays private.",
+    howToUse: [
+      { heading: "Enter your text", text: "Type or paste any text into the text area. Supports all languages and Unicode characters." },
+      { heading: "Choose a font", text: "Select from 8 beautiful handwriting fonts. Each font animates with authentic stroke order." },
+      { heading: "Adjust settings", text: "Set animation speed (slow/normal/fast), font size, and loop mode. Click Replay to preview." },
+      { heading: "Export (optional)", text: "Use your browser's screen recorder (Cmd+Shift+5 on Mac) to capture the animation as a video." },
+    ],
+    useCases: [
+      { title: "Social media content", text: "Create handwriting animation videos for Instagram, TikTok, Twitter, and YouTube Shorts." },
+      { title: "Educational videos", text: "Show proper stroke order for calligraphy or language learning content." },
+      { title: "Personalized greetings", text: "Generate handwriting animations for birthday/holiday cards and send as video messages." },
+      { title: "Product demos", text: "Add a human touch to product videos with handwritten annotation animations." },
+    ],
+    faq: [
+      { q: "Is this tool really free?", a: "Yes. 100% free, no sign-up required, no usage limits. All processing happens in your browser." },
+      { q: "Can I download the animation as a video?", a: "Use your browser's built-in screen recorder (Cmd+Shift+5 on Mac, Win+G on Windows) to capture the animation as a video file." },
+      { q: "Does it support Chinese/Japanese/Korean characters?", a: "Yes. Tegaki supports Unicode and animates CJK characters with proper stroke order using the Amiri and other appropriate fonts." },
+      { q: "Can I use my own font?", a: "Currently 8 built-in fonts are supported. Custom font support requires generating a Tegaki font bundle using the Tegaki Generator tool." },
+      { q: "Is my text sent to a server?", a: "No. All rendering is done 100% in your browser using Canvas API. Your text never leaves your device." },
+    ],
+    relatedTools: ["create-gif", "image-to-pixel", "markdown"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",
