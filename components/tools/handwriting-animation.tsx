@@ -28,18 +28,16 @@ const TegakiRenderer = dynamic<TegakiRendererProps>(
   { ssr: false, loading: () => <p className="text-sm text-muted-foreground">Loading renderer...</p> }
 );
 
-// Font bundle URLs resolved at build time via webpack ?
-// Use /* webpackIgnore: true */ + fetch to load .mjs bundles at runtime.
-// This avoids require() / static import issues with .mjs extension in Next.js.
+// Font bundle URLs — served as static files from public/tegaki-fonts/
 const FONT_BUNDLE_URLS: Record<string, string> = {
-  "Caveat": "/_next/static/chunks/tegaki-fonts/caveat-bundle.mjs",
-  "Italianno": "/_next/static/chunks/tegaki-fonts/italianno-bundle.mjs",
-  "Tangerine": "/_next/static/chunks/tegaki-fonts/tangerine-bundle.mjs",
-  "Parisienne": "/_next/static/chunks/tegaki-fonts/parisienne-bundle.mjs",
-  "Suez One": "/_next/static/chunks/tegaki-fonts/suez-one-bundle.mjs",
-  "Klee One": "/_next/static/chunks/tegaki-fonts/klee-one-bundle.mjs",
-  "Amiri": "/_next/static/chunks/tegaki-fonts/amiri-bundle.mjs",
-  "Tillana": "/_next/static/chunks/tegaki-fonts/tillana-bundle.mjs",
+  "Caveat": "/tegaki-fonts/caveat-bundle.mjs",
+  "Italianno": "/tegaki-fonts/italianno-bundle.mjs",
+  "Tangerine": "/tegaki-fonts/tangerine-bundle.mjs",
+  "Parisienne": "/tegaki-fonts/parisienne-bundle.mjs",
+  "Suez One": "/tegaki-fonts/suez-one-bundle.mjs",
+  "Klee One": "/tegaki-fonts/klee-one-bundle.mjs",
+  "Amiri": "/tegaki-fonts/amiri-bundle.mjs",
+  "Tillana": "/tegaki-fonts/tillana-bundle.mjs",
 };
 
 const FONT_NAMES = Object.keys(FONT_BUNDLE_URLS);
