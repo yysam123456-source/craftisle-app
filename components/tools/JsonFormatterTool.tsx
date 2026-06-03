@@ -15,7 +15,6 @@ import {
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 type Mode = 'format' | 'compress' | 'validate';
 
 export default function JsonFormatterTool() {
@@ -298,8 +297,7 @@ export default function JsonFormatterTool() {
                 <li>Suitable for production</li>
               </ul>
             </div>
-      <ToolDetailSections toolId="json-formatter" />
-            <div className="space-y-2">
+<div className="space-y-2">
               <h4 className="font-semibold text-sm">Validate Mode</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Check JSON syntax validity</li>

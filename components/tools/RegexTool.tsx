@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/i-tools/utils";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function RegexTool() {
   const [pattern, setPattern] = useState("([a-zA-Z0-9._%-]+)@([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6})");
@@ -145,8 +144,7 @@ export default function RegexTool() {
               </CardContent>
            </Card>
         </div>
-        <ToolDetailSections toolId="regex" />
-      </div>
+</div>
     </div>
   );
 }

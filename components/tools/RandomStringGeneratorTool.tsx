@@ -10,7 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 interface StringConfig {
   length: number;
   includeUppercase: boolean;
@@ -414,8 +413,7 @@ export default function RandomStringGeneratorTool() {
                 <li>Regularly rotate passwords for important accounts</li>
               </ul>
             </div>
-      <ToolDetailSections toolId="random-string" />
-            <div className="space-y-2">
+<div className="space-y-2">
               <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Generate secure passwords</li>

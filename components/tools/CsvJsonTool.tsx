@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function CsvJsonTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -128,9 +127,7 @@ export default function CsvJsonTool() {
           </CardContent>
         </Card>
       </div>
-      <ToolDetailSections toolId="csv-json" />
-
-      <Card>
+<Card>
         <CardHeader>
           <CardTitle className="text-sm">Usage</CardTitle>
         </CardHeader>

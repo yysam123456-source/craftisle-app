@@ -8,7 +8,6 @@ import { toast } from "sonner";
 import { useTheme } from "next-themes";
 import { Badge } from "@/components/ui/badge";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function YamlFormatterTool() {
   const { theme } = useTheme();
   const [input, setInput] = useState("");
@@ -135,9 +134,7 @@ export default function YamlFormatterTool() {
           </CardContent>
         </Card>
       </div>
-      <ToolDetailSections toolId="yaml-formatter" />
-
-      <div className="flex justify-center gap-4">
+<div className="flex justify-center gap-4">
         <Button size="lg" onClick={handleValidation} variant="secondary">
           Validate Only
         </Button>

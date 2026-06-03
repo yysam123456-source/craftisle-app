@@ -1,7 +1,6 @@
 import { ArrowRight, Eye, Shield, FileText, Image, Code } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 const FEATURES = [
   {
@@ -139,7 +138,6 @@ export default function FileViewerTool() {
       </section>
 
       {/* SEO / Tool Detail Sections */}
-      <ToolDetailSections toolId="file-viewer" />
-    </div>
+</div>
   );
 }

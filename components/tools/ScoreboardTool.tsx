@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/i-tools/utils";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function ScoreboardTool() {
   const [teamA, setTeamA] = useState({ name: "Red Team", score: 0, color: "bg-rose-500", border: "border-rose-500" });
   const [teamB, setTeamB] = useState({ name: "Blue Team", score: 0, color: "bg-blue-500", border: "border-blue-500" });
@@ -109,9 +108,7 @@ function TeamDisplay({ team, onScoreChange, onNameEdit }: { team: any, onScoreCh
       <div className="text-[14rem] font-black tracking-tighter tabular-nums leading-none select-none drop-shadow-sm">
         {team.score}
       </div>
-      <ToolDetailSections toolId="scoreboard" />
-
-      <div className="flex gap-8">
+<div className="flex gap-8">
         <button 
           className="h-24 w-24 rounded-3xl border-4 border-muted hover:bg-muted transition-colors flex items-center justify-center group"
           onClick={() => onScoreChange(-1)}

@@ -1,5 +1,4 @@
 import { FindDuplicatesPage } from "@/components/tools/find-duplicates-page";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,7 +10,6 @@ export default function Tool() {
   return (
     <>
       <FindDuplicatesPage />
-      <ToolDetailSections toolId="find-duplicates" />
-    </>
+</>
   );
 }

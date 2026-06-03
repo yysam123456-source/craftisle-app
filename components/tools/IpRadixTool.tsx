@@ -9,7 +9,6 @@ import { toast } from "sonner";
 // --- Helper Functions ---
 
 // IPv4 (uses regular numbers, no BigInt needed)
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 const ipv4ToInt = (ip: string): number =>
   ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0);
 
@@ -186,8 +185,7 @@ export default function IpRadixTool() {
                         <Copy className="h-3 w-3" />
                     </Button>
                 </div>
-      <ToolDetailSections toolId="ip-radix" />
-            </CardContent>
+</CardContent>
         </Card>
 
         <Card>

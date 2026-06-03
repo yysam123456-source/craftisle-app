@@ -7,7 +7,6 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import dayjs from "dayjs";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function TimestampTool() {
   const [timestamp, setTimestamp] = useState("");
   const [dateTime, setDateTime] = useState<string>("");
@@ -242,8 +241,7 @@ export default function TimestampTool() {
                 <li>JavaScript typically uses millisecond timestamps</li>
               </ul>
             </div>
-      <ToolDetailSections toolId="timestamp" />
-            <div className="space-y-2">
+<div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Backend languages (e.g., PHP, Python) typically use second timestamps</li>
                 <li>Click "Use current" to quickly fill in current timestamp</li>

@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function ImageBase64Tool() {
   const [imageBase64, setImageBase64] = useState("");
@@ -86,9 +85,7 @@ export default function ImageBase64Tool() {
                 <p className="text-sm text-muted-foreground">Click or drag image file here</p>
                 <p className="text-xs text-muted-foreground/60 mt-1">Supports JPG, PNG, GIF, WebP, etc.</p>
               </div>
-      <ToolDetailSections toolId="image-base64" />
-
-            </CardContent>
+</CardContent>
           </Card>
 
           <Card>

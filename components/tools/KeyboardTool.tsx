@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Keyboard, Info, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function KeyboardTool() {
   const [lastEvent, setLastEvent] = useState<any>(null);
@@ -89,8 +88,7 @@ export default function KeyboardTool() {
             <p>Although `keyCode` is deprecated in modern web development, `key` and `code` are recommended, but many legacy systems still use it. `key` represents the character itself, while `code` represents the physical key position.</p>
          </CardContent>
       </Card>
-        <ToolDetailSections toolId="keyboard" />
-    </div>
+</div>
   );
 }
 

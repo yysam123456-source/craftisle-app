@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 
 // Base58 alphabet (Bitcoin style)
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 const ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
 const ALPHABET_MAP = ALPHABET.split('').reduce((map, char, index) => {
   map[char] = index;
@@ -149,8 +148,7 @@ export default function Base58Tool() {
             Decode (Decode)
           </Button>
         </div>
-      <ToolDetailSections toolId="base58" />
-      </div>
+</div>
       
        {/* Info Card */}
        <Card>

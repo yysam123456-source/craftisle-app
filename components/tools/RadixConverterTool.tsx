@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function RadixConverterTool() {
   const [values, setValues] = useState({
     bin: "",
@@ -145,9 +144,7 @@ export default function RadixConverterTool() {
           </CardContent>
         </Card>
       </div>
-      <ToolDetailSections toolId="radix-converter" />
-
-      {/* Info Card */}
+{/* Info Card */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">

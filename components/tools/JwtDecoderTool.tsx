@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function JwtDecoderTool() {
   const [token, setToken] = useState("");
   const [decoded, setDecoded] = useState<{
@@ -145,9 +144,7 @@ export default function JwtDecoderTool() {
           </CardContent>
         </Card>
       </div>
-      <ToolDetailSections toolId="jwt" />
-
-      {/* Security Note */}
+{/* Security Note */}
       <Card className="border-emerald-200/50 bg-emerald-50/30 dark:bg-emerald-500/5">
         <CardContent className="pt-6">
           <div className="flex items-start gap-3">

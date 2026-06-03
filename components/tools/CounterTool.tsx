@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function CounterTool() {
   const [count, setCount] = useState(0);
   const [step, setStep] = useState(1);
@@ -60,8 +59,7 @@ export default function CounterTool() {
                   className="w-20 text-center h-8"
                 />
               </div>
-      <ToolDetailSections toolId="counter" />
-              <Button 
+<Button 
                 variant="ghost" 
                 size="sm" 
                 onClick={() => setCount(0)}

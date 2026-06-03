@@ -6,7 +6,6 @@ import { Slider } from "@/components/ui/slider";
 import { ImageIcon, Upload, Download, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function ImageToPixelTool() {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [pixelSize, setPixelSize] = useState(10);
@@ -136,9 +135,7 @@ export default function ImageToPixelTool() {
                         Larger values create stronger pixelation and more abstract appearance。
                     </p>
                 </div>
-      <ToolDetailSections toolId="image-to-pixel" />
-
-                <div className="space-y-2">
+<div className="space-y-2">
                     <Button onClick={handleDownload} disabled={!imageSrc} className="w-full">
                         <Download className="h-4 w-4 mr-2" />
                         DownloadResult

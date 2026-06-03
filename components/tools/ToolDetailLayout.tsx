@@ -5,9 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   ChevronRight,
-  Heart,
-  Share2,
-  Maximize2,
   ExternalLink,
 } from "lucide-react";
 import type { ToolMeta } from "@/lib/tools";
@@ -17,7 +14,7 @@ interface ToolDetailLayoutProps {
   categorySlug: string;
   meta: ToolMeta;
   children?: React.ReactNode;
-  /** JsonLd structured data (inject as <script type="application/ld+json">) */
+  /** JsonLD structured data (inject as <script type="application/ld+json">) */
   jsonLd?: Record<string, unknown>;
   /** External URL — when set, show "Open Tool ↗" button below description */
   externalUrl?: string;
@@ -33,7 +30,7 @@ export function ToolDetailLayout({
 }: ToolDetailLayoutProps) {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-10">
-      {/* === JsonLd === */}
+      {/* === JsonLD === */}
       {jsonLd && (
         <script
           type="application/ld+json"
@@ -71,15 +68,6 @@ export function ToolDetailLayout({
               {meta.badge}
             </Badge>
           )}
-          <Button variant="ghost" size="icon" className="ml-auto" title="Favorite">
-            <Heart className="h-4 w-4" />
-          </Button>
-          <Button variant="ghost" size="icon" title="Share">
-            <Share2 className="h-4 w-4" />
-          </Button>
-          <Button variant="ghost" size="icon" title="Fullscreen">
-            <Maximize2 className="h-4 w-4" />
-          </Button>
         </div>
         <p className="text-muted-foreground max-w-2xl">{meta.desc}</p>
         {externalUrl && (

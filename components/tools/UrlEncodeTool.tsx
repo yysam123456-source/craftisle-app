@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function UrlEncodeTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -177,8 +176,7 @@ export default function UrlEncodeTool() {
                 <li>Text characters are encoded as UTF-8 percent-encoded values</li>
               </ul>
             </div>
-      <ToolDetailSections toolId="url-encode" />
-            <div className="space-y-2">
+<div className="space-y-2">
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Uses encodeURIComponent for encoding</li>
                 <li>Reserved characters (- _ . ! ~ * ' ( ) ) are not encoded</li>

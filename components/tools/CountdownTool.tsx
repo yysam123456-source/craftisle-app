@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { cn } from "@/lib/i-tools/utils";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function CountdownTool() {
   const [inputMinutes, setInputMinutes] = useState("5");
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
@@ -138,8 +137,7 @@ export default function CountdownTool() {
                     <RotateCcw className="h-6 w-6" />
                  </Button>
               </div>
-      <ToolDetailSections toolId="countdown" />
-           </div>
+</div>
         </Card>
 
         {finished && (

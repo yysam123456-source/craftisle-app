@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function UnicodeTool() {
   const [input, setInput] = useState("");
 
@@ -90,8 +89,7 @@ export default function UnicodeTool() {
             Unicode &rarr; text
           </Button>
         </div>
-      <ToolDetailSections toolId="unicode" />
-      </div>
+</div>
 
       {/* Info Card */}
       <Card>

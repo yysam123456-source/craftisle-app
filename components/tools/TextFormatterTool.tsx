@@ -8,7 +8,6 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function TextFormatterTool() {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
@@ -328,8 +327,7 @@ export default function TextFormatterTool() {
                 <li><strong>Stats Analysis:</strong> Show character count changes before/after processing</li>
               </ul>
             </div>
-      <ToolDetailSections toolId="text-formatter" />
-            <div className="space-y-2">
+<div className="space-y-2">
               <h4 className="font-semibold text-sm">Use Cases</h4>
               <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
                 <li>Process text copied from Word or PDF</li>

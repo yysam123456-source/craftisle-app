@@ -9,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Shield, Lock, Unlock, Copy } from "lucide-react";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 const ALGORITHMS = [
   { value: "AES", label: "AES" },
   { value: "DES", label: "DES" },
@@ -132,9 +131,7 @@ export default function AesDesTool() {
                         </SelectContent>
                     </Select>
                 </div>
-      <ToolDetailSections toolId="aes-des" />
-
-                <div className="space-y-2">
+<div className="space-y-2">
                     <Label>Key (Passphrase)</Label>
                     <Input 
                         type="text"

@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Watch, Play, Pause, RotateCcw, Timer as TimerIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 export default function StopwatchTool() {
   const [time, setTime] = useState(0);
@@ -108,8 +107,7 @@ export default function StopwatchTool() {
             )}
           </CardContent>
         </Card>
-        <ToolDetailSections toolId="stopwatch" />
-      </div>
+</div>
     </div>
   );
 }

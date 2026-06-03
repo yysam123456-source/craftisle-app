@@ -19,7 +19,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Terminal, Copy } from "lucide-react";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import {
   Select,
   SelectContent,
@@ -133,8 +132,7 @@ export default function AsciiArtTool() {
                         {output || "Generating..."}
                     </pre>
                 </div>
-      <ToolDetailSections toolId="ascii-art" />
-            </CardContent>
+</CardContent>
         </Card>
       </div>
     </div>

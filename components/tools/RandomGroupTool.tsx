@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function RandomGroupTool() {
   const [namesText, setNamesText] = useState("");
   const [groupCount, setGroupCount] = useState(2);
@@ -135,8 +134,7 @@ Diana..."
                       <span className="font-bold text-primary">Group {index + 1}</span>
                       <span className="text-xs text-muted-foreground">{group.length} members</span>
                     </div>
-      <ToolDetailSections toolId="random-group" />
-                    <div className="flex flex-wrap gap-2">
+<div className="flex flex-wrap gap-2">
                       {group.map((name, ni) => (
                         <span key={ni} className="px-2 py-1 bg-background rounded border text-sm">
                           {name}

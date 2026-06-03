@@ -6,7 +6,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { ImagePlus, Upload, Copy, Download, Trash2, FileImage, AlertTriangle } from "lucide-react";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 function makeSvg(width: number, height: number, dataUrl: string) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none">\n  <image href="${dataUrl}" width="${width}" height="${height}" preserveAspectRatio="none" />\n</svg>`;
 }
@@ -126,8 +125,7 @@ export default function PngToSvgTool() {
             </Alert>
           )}
         </div>
-      <ToolDetailSections toolId="png-to-svg" />
-      </div>
+</div>
     </div>
   );
 }

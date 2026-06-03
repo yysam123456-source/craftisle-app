@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function ColorPickerTool() {
   const [color, setColor] = useState("#4F46E5");
   const [formats, setFormats] = useState({
@@ -133,8 +132,7 @@ export default function ColorPickerTool() {
           </CardContent>
         </Card>
       </div>
-      <ToolDetailSections toolId="color-picker" />
-    </div>
+</div>
   );
 }
 

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/i-tools/utils";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 
 type CoinSide = "HEADS" | "TAILS";
 
@@ -282,7 +281,6 @@ export default function CoinFlipTool() {
           </Card>
         </div>
       </div>
-    <ToolDetailSections toolId="coin-flip" />
-    </div>
+</div>
   );
 }

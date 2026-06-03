@@ -6,7 +6,6 @@ import { cn } from "@/lib/i-tools/utils";
 
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 type Mode = "WORK" | "SHORT_BREAK" | "LONG_BREAK";
 
 const CONFIG = {
@@ -140,8 +139,7 @@ export default function PomodoroTool() {
 
               <div className="h-14 w-14" /> {/* Spacer */}
            </div>
-      <ToolDetailSections toolId="pomodoro" />
-        </Card>
+</Card>
       </div>
     </div>
   );

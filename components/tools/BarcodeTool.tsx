@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Barcode as BarcodeIcon, Download, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import {
   Select,
   SelectContent,
@@ -151,9 +150,7 @@ export default function BarcodeTool() {
                     />
                     <Label htmlFor="displayValue" className="cursor-pointer">Show Text</Label>
                 </div>
-      <ToolDetailSections toolId="barcode" />
-
-                <Button variant="outline" onClick={() => setValue("")} className="w-full">
+<Button variant="outline" onClick={() => setValue("")} className="w-full">
                     <RotateCcw className="h-4 w-4 mr-2" /> Reset
                 </Button>
             </CardContent>

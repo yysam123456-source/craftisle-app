@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 const SQL_DIALECTS = [
   { value: "sql", label: "Standard SQL" },
   { value: "mysql", label: "MySQL" },
@@ -144,7 +143,6 @@ export default function SqlFormatterTool() {
           </CardContent>
         </Card>
       </div>
-      <ToolDetailSections toolId="sql-formatter" />
-    </div>
+</div>
   );
 }

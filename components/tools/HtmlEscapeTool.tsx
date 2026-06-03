@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 
-import ToolDetailSections from "@/components/tools/ToolDetailSections";
 export default function HtmlEscapeTool() {
   const [input, setInput] = useState("");
 
@@ -105,8 +104,7 @@ export default function HtmlEscapeTool() {
               " &rarr; &amp;quot;
             </p>
           </div>
-      <ToolDetailSections toolId="html-escape" />
-        </CardContent>
+</CardContent>
       </Card>
     </div>
   );
