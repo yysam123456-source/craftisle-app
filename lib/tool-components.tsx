@@ -37,6 +37,7 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "hash": () => import("@/components/tools/HashTool"),
   "html-escape": () => import("@/components/tools/HtmlEscapeTool"),
   "html-formatter": () => import("@/components/tools/HtmlFormatterTool"),
+  "image-to-pixel": () => import("@/components/tools/ImageToPixelTool"),
   "ip-calc": () => import("@/components/tools/IpCalcTool"),
   "ip-radix": () => import("@/components/tools/IpRadixTool"),
   "json-formatter": () => import("@/components/tools/JsonFormatterTool"),

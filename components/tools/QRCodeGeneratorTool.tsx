@@ -50,9 +50,9 @@ export default function QRCodeGeneratorTool() {
         link.download = "qrcode.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
-        toast.success("QR CodeDownloadSuccess");
+        toast.success("QR code downloaded");
       } catch {
-        toast.error("DownloadFailed");
+        toast.error("Download failed");
       }
     } else {
       toast.error("No QR code found");

@@ -59,6 +59,10 @@ const config = {
         "graph-group": "var(--graph-group)",
         "graph-bg": "var(--graph-bg)",
       },
+      spacing: {
+        "125": "31.25rem",
+        "150": "37.5rem",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -104,7 +104,7 @@ export default function PngToSvgTool() {
               <Button size="sm" onClick={downloadSvg} disabled={!svgMarkup}><Download className="mr-2 h-4 w-4" />Download .svg</Button>
             </CardHeader>
             <CardContent className="flex min-h-[420px] items-center justify-center bg-muted/20 p-6">
-              {previewUrl ? <img src={previewUrl} alt="PNG preview" className="max-h-[600px] max-w-full object-contain" /> : <div className="text-center text-muted-foreground"><FileImage className="mx-auto mb-2 h-12 w-12 opacity-20" /><p>Waiting for PNG upload</p></div>}
+              {previewUrl ? <img src={previewUrl} alt="PNG to SVG converted preview - free online tool" className="max-h-[600px] max-w-full object-contain" /> : <div className="text-center text-muted-foreground"><FileImage className="mx-auto mb-2 h-12 w-12 opacity-20" /><p>Waiting for PNG upload</p></div>}
             </CardContent>
           </Card>
 

@@ -43,7 +43,7 @@ export default function CronTool() {
                 placeholder="e.g. */5 * * * *"
                 className="font-mono text-lg"
               />
-              <Button onClick={() => toast.success("ParseSuccess")}>Parse</Button>
+              <Button onClick={() => toast.success("Parsed successfully")}>Parse</Button>
             </div>
           </CardContent>
         </Card>

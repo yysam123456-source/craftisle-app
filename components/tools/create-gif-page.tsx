@@ -269,7 +269,7 @@ export function CreateGifPage() {
           <div className="flex flex-col items-center gap-4">
             <img
               src={resultUrl}
-              alt="Generated GIF"
+              alt="Generated animated GIF — free online GIF creator tool"
               className="max-h-96 rounded-lg border"
             />
             <div className="flex items-center gap-4 text-xs text-muted-foreground">

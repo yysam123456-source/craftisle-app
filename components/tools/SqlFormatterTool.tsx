@@ -39,9 +39,9 @@ export default function SqlFormatterTool() {
         keywordCase: "upper",
       });
       setOutput(formatted);
-      toast.success("SQL FormatSuccess");
+      toast.success("SQL formatted successfully");
     } catch (e: any) {
-      toast.error("SQL FormatFailed: " + e.message);
+      toast.error("SQL format failed: " + e.message);
     }
   };
 

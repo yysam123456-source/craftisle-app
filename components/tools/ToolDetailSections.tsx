@@ -19,7 +19,7 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10 pb-10 mt-10">
       {/* === Description Section === */}
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">About This Tool</h2>
+        <h2 className="text-xl font-semibold">About {meta.title} — Free Online Tool</h2>
         {meta.description ? (
           <div
             className="prose prose-sm max-w-none text-muted-foreground"
@@ -32,7 +32,7 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
 
       {/* === How To Use === */}
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">How to Use</h2>
+        <h2 className="text-xl font-semibold">How to Use {meta.title} — Step by Step</h2>
         {meta.howToUse && meta.howToUse.length > 0 ? (
           <ol className="space-y-4">
             {meta.howToUse.map((step, i) => (
@@ -49,7 +49,7 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
 
       {/* === Use Cases === */}
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Use Cases</h2>
+        <h2 className="text-xl font-semibold">Use Cases for {meta.title}</h2>
         {meta.useCases && meta.useCases.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-3">
             {meta.useCases.map((uc, i) => (
@@ -66,7 +66,7 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
 
       {/* === FAQ Section === */}
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">FAQ</h2>
+        <h2 className="text-xl font-semibold">FAQ — {meta.title} Free Online Tool</h2>
         {meta.faq && meta.faq.length > 0 ? (
           <div className="space-y-4">
             {meta.faq.map((item, i) => (
@@ -83,7 +83,7 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
 
       {/* === Related Tools === */}
       <section className="space-y-3">
-        <h2 className="text-xl font-semibold">Related Tools</h2>
+        <h2 className="text-xl font-semibold">Related Free Online Tools</h2>
         {meta.relatedTools && meta.relatedTools.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-3">
             {(meta.relatedTools as string[])

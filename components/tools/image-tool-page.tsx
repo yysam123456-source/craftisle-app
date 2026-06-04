@@ -152,6 +152,7 @@ export function ImageToolPage({ toolId, definition }: ImageToolPageProps) {
         onUpload={handleUpload}
         onClear={handleClear}
         file={file}
+        toolName={toolId}
       />
 
       {/* Settings */}

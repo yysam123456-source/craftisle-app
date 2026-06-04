@@ -22,6 +22,8 @@ import {
   Play,
   Eye,
   Code2,
+  PenTool,
+  Pencil,
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
@@ -237,6 +239,48 @@ export default function IndexPage() {
               </CardHeader>
               <CardContent>
                 <Link href="/tools/regex-vis">
+                  <Button variant="ghost" size="sm" className="w-full">
+                    Open Tool
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+            <Card className="transition-shadow hover:shadow-lg">
+              <CardHeader>
+                <PenTool className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">Handwriting Animation</CardTitle>
+                <CardDescription>Generate handwriting animation videos</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Link href="/tools/handwriting-animation">
+                  <Button variant="ghost" size="sm" className="w-full">
+                    Open Tool
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+            <Card className="transition-shadow hover:shadow-lg">
+              <CardHeader>
+                <Pencil className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">HTML Visual Editor</CardTitle>
+                <CardDescription>Edit HTML visually with live preview</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Link href="/tools/html-visual-editor">
+                  <Button variant="ghost" size="sm" className="w-full">
+                    Open Tool
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+            <Card className="transition-shadow hover:shadow-lg">
+              <CardHeader>
+                <Code2 className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">HTML Formatter</CardTitle>
+                <CardDescription>Format and beautify HTML code</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Link href="/tools/html-formatter">
                   <Button variant="ghost" size="sm" className="w-full">
                     Open Tool
                   </Button>

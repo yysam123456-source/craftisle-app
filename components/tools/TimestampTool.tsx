@@ -58,7 +58,7 @@ export default function TimestampTool() {
       return;
     }
     setDateTime(date.format("YYYY-MM-DDTHH:mm:ss"));
-    toast.success("ConvertSuccess");
+    toast.success("Converted successfully");
   };
 
   const dateToTimestamp = () => {
@@ -69,7 +69,7 @@ export default function TimestampTool() {
     const date = dayjs(dateTime);
     const ts = unit === "seconds" ? date.unix() : date.valueOf();
     setTimestamp(ts.toString());
-    toast.success("ConvertSuccess");
+    toast.success("Converted successfully");
   };
 
   const copyToClipboard = async (text: string) => {

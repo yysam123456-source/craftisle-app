@@ -10,6 +10,7 @@ interface ImageUploadProps {
   onUpload: (file: File) => void;
   onClear: () => void;
   file: File | null;
+  toolName?: string;
 }
 
 export function ImageUpload({
@@ -18,6 +19,7 @@ export function ImageUpload({
   onUpload,
   onClear,
   file,
+  toolName,
 }: ImageUploadProps) {
   const [dragOver, setDragOver] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -114,7 +116,7 @@ export function ImageUpload({
             {preview && (
               <img
                 src={preview}
-                alt="Preview"
+                alt={toolName ? `${toolName} preview — free online tool` : "Image preview — free online tool"}
                 className="mx-auto max-h-64 w-auto object-contain"
               />
             )}

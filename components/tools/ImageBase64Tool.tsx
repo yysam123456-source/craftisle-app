@@ -119,7 +119,7 @@ export default function ImageBase64Tool() {
               <div className="relative group max-w-full">
                 <img
                   src={preview}
-                  alt="Preview"
+                  alt="Image to Base64 converted preview — free online tool"
                   className="max-w-full max-h-[600px] rounded-lg shadow-lg object-contain"
                 />
               </div>

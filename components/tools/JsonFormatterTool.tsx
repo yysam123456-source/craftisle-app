@@ -66,7 +66,7 @@ export default function JsonFormatterTool() {
   const validateOnly = useCallback(() => {
     validateJson(inputJson);
     if (inputJson.trim() && isValid) {
-      toast.success('JSON  format');
+      toast.success('Valid JSON');
     }
   }, [inputJson, validateJson, isValid]);
 

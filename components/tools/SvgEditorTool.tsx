@@ -64,7 +64,7 @@ export default function SvgEditorTool() {
         <Card className="flex flex-col min-h-0 border-0 shadow-lg ring-1 ring-border overflow-hidden">
           <CardHeader className="py-2 px-4 border-b bg-muted/30 flex flex-row items-center space-y-0"><CardTitle className="text-sm font-medium flex items-center gap-2"><Eye className="h-4 w-4" />Preview</CardTitle></CardHeader>
           <CardContent className="flex-1 min-h-0 overflow-auto p-6 bg-white dark:bg-zinc-950">
-            {error ? <div className="text-sm text-muted-foreground">Preview paused, fix the error on the right first。</div> : <img src={previewSrc} alt="SVG preview" className="max-h-full max-w-full object-contain" />}
+            {error ? <div className="text-sm text-muted-foreground">Preview paused, fix the error on the right first.</div> : <img src={previewSrc} alt="SVG code preview — free online SVG editor tool" className="max-h-full max-w-full object-contain" />}
           </CardContent>
         </Card>
       </div>

@@ -23,11 +23,11 @@ export default function YamlFormatterTool() {
       setOutput(formatted);
       setIsValid(true);
       setErrorMsg("");
-      toast.success("YAML FormatterSuccess");
+      toast.success("YAML formatted successfully");
     } catch (e: any) {
       setIsValid(false);
       setErrorMsg(e.message);
-      toast.error("YAML ParseFailed");
+      toast.error("YAML parse failed");
     }
   };
 

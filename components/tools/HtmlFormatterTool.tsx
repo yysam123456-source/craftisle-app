@@ -32,9 +32,9 @@ export default function HtmlFormatterTool() {
         indent_inner_html: true,
       });
       setOutput(formatted);
-      toast.success("HTML FormatSuccess");
+      toast.success("HTML formatted successfully");
     } catch {
-      toast.error("HTML FormatFailed");
+      toast.error("HTML format failed");
     }
   };
 

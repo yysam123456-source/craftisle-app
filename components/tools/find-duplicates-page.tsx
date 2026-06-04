@@ -124,7 +124,7 @@ export function FindDuplicatesPage() {
               {slot.preview ? (
                 <img
                   src={slot.preview}
-                  alt="Preview"
+                  alt="Uploaded image preview — free online duplicate finder tool"
                   className="h-full w-full object-cover"
                 />
               ) : (

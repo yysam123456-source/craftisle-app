@@ -36,7 +36,7 @@ export function ImageCompare({
           <div className="overflow-hidden rounded-lg border bg-muted/20">
             <img
               src={original}
-              alt="Original"
+              alt="Original image before processing — free online tool"
               className="mx-auto max-h-48 w-auto object-contain"
             />
           </div>
@@ -48,7 +48,7 @@ export function ImageCompare({
           <div className="overflow-hidden rounded-lg border bg-muted/20">
             <img
               src={resultUrl}
-              alt="Processed"
+              alt="Processed image after tool operation — free online tool"
               className="mx-auto max-h-48 w-auto object-contain"
             />
           </div>

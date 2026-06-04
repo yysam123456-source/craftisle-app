@@ -39,9 +39,9 @@ export default function CsvJsonTool() {
       });
       
       setOutput(JSON.stringify(result, null, 2));
-      toast.success("ConvertSuccess");
+      toast.success("Converted successfully");
     } catch {
-      toast.error("CSV FormatError");
+      toast.error("CSV format error");
     }
   };
 
@@ -61,7 +61,7 @@ export default function CsvJsonTool() {
       ];
       
       setOutput(csvLines.join('\n'));
-      toast.success("ConvertSuccess");
+      toast.success("Converted successfully");
     } catch {
       toast.error("JSON format error or not an array of objects");
     }

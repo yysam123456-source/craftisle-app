@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = constructMetadata({
   title: "60+ Free Online Tools — No Signup, No Download | Craftisle",
-  description: "Free online tools for developers & creators. QR code generator, JSON/SQL/HTML formatter, Base64 encode/decode, hash tools, regex tester. 100% browser-based, no registration.",
+  description: "Free online tools for developers & creators. QR code generator, JSON/SQL/HTML formatter, Base64 encode/decode, hash tools, regex tester, image compress/resize/crop, PDF tools. 100% browser-based, no registration, no upload to server.",
 });
 
 export default function ToolsPage() {
