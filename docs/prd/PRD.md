@@ -49,7 +49,7 @@ Craftisle 是一个面向海外用户的免费在线工具与游戏平台，采�
 |------|------|----------|
 | PDF 工具集 | 独立部署于 Vercel（pdf.craftisle.com）| P1 |
 | 107 个 PDF 工具 | pdf-lib + qpdf.wasm 纯客户端处理 | P1 |
-| 多语言支持 | next-intl 12 语言 | P1 |
+| 多语言支持 | next-intl 14 语言（含 PT/RO）| P1 |
 | File Viewer 集成 | 在线预览 PDF / 图片 / 文档 | P2 |
 
 ### 2.4 用户系统（优先级：低）
@@ -128,7 +128,7 @@ Craftisle 是一个面向海外用户的免费在线工具与游戏平台，采�
 - [ ] Stripe 订阅集成
 - [ ] 用户系统完善（使用记录、收藏等）
 - [x] PDF 站点独立上线（Vercel standalone 模式）✅
-- [x] 多语言支持（12 语言：EN/JA/ZH-TW/ZH/KO/ID/VI/AR/IT/ES/FR/DE）✅
+- [x] 多语言支持（PDF 站 14 语言：EN/JA/KO/ES/FR/DE/ZH-TW/ZH/PT/AR/IT/ID/VI/RO）✅
 
 ### 6.3 v2.0 (6个月内)
 - [ ] AI 工具集成（AI 图片增强、AI PDF 总结等）

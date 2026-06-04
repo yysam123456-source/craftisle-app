@@ -44,7 +44,7 @@
 
 | 技术 | 版本 | 用途 |
 |------|------|------|
-| Next.js | 16.2.6（App Router） | SSR/SSG / ISR |
+| Next.js | 16.2.6（App Router） | SSR/SSG / ISR / 内置 sitemap.ts |
 | React | 18.3.1 | UI 组件库 |
 | TypeScript | 5.5.3 | 类型安全 |
 | Tailwind CSS | 3.4.6 | 样式系统 |
