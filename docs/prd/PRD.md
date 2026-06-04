@@ -1,7 +1,7 @@
 # PRD — Craftisle 产品需求文档
 
 **版本**: v1.0  
-**日期**: 2026-06-03  
+**日期**: 2026-06-04  
 **负责人**: Craftisle Team  
 
 ---
@@ -12,7 +12,7 @@
 Craftisle 是一个面向海外用户的免费在线工具与游戏平台，采用纯客户端架构（无需注册），通过广告（Google AdSense）和订阅（Stripe）变现。
 
 ### 1.2 目标
-- **短期 (MVP)**: 上线 58+ 工具页 + 3 个游戏页，通过 SEO 获取自然流量
+- **短期 (MVP)**: 上线 107+ 工具页（主站）+ 107 PDF 工具页 + 3 个游戏页，通过 SEO 获取自然流量
 - **中期 (v1.0)**: 完善用户系统，接入订阅变现
 - **长期 (v2.0)**: 成为海外知名的免费工具与游戏平台
 
@@ -47,9 +47,10 @@ Craftisle 是一个面向海外用户的免费在线工具与游戏平台，采�
 ### 2.3 PDF 站点（优先级：中）
 | 功能 | 描述 | 优先级 |
 |------|------|----------|
-| PDF 工具集 | 独立部署于 pdf.craftisle.com | P1 |
-| 大文件支持 | 支持大文件存储与预览 | P1 |
-| File Viewer 集成 | 在线预览 PDF / 图片 / 文档 | P1 |
+| PDF 工具集 | 独立部署于 Vercel（pdf.craftisle.com）| P1 |
+| 107 个 PDF 工具 | pdf-lib + qpdf.wasm 纯客户端处理 | P1 |
+| 多语言支持 | next-intl 12 语言 | P1 |
+| File Viewer 集成 | 在线预览 PDF / 图片 / 文档 | P2 |
 
 ### 2.4 用户系统（优先级：低）
 | 功能 | 描述 | 优先级 |
@@ -72,9 +73,10 @@ Craftisle 是一个面向海外用户的免费在线工具与游戏平台，采�
 - **HTTPS**: Cloudflare CDN 强制 HTTPS
 
 ### 3.3 SEO
-- **站点地图**: 自动生成（next-sitemap）
-- **结构化数据**: Schema.org 标记
-- **长尾词**: 每个工具页针对 5-8 个长尾词优化
+- **站点地图**: Next.js 16 内置 `sitemap.ts` 自动生成（主站 + PDF 站独立 sitemap）
+- **结构化数据**: Schema.org 标记（HowTo / FAQPage / SoftwareApplication）
+- **长尾词**: 每个工具页针对 5-8 个长尾词优化（已完成 Image Tools + PDF Tools 系列）
+- **多语言 SEO**: next-intl 12 语言，hreflang 自动生成
 
 ### 3.4 可用性
 - **响应式**: 移动端优先，适配所有设备
@@ -105,28 +107,28 @@ Craftisle 是一个面向海外用户的免费在线工具与游戏平台，采�
 ### 5.2 成本结构
 | 项目 | 月成本 (USD) | 说明 |
 |------|----------------|------|
-| Vercel 部署 | $20 | Pro 计划 |
+| Vercel 部署 | $20×2 | Pro 计划 ×2（主站 + PDF 站）|
 | Neon DB | $0 | Serverless Postgres 免费层 |
-| Cloudflare | $0 | Free 计划 |
+| Cloudflare | $0 | Free 计划（DNS + CDN）|
 | 域名 | $1 | .com 域名 |
-| **总计** | **$21/月** | **≤100元/年** |
+| **总计** | **~$41/月** | **≤300元/年** |
 
 ---
 
 ## 6. 路线图
 
 ### 6.1 MVP (当前)
-- [x] 58+ 工具页上线
-- [x] 3 个游戏页上线
-- [x] SEO 优化完成
+- [x] 107+ 工具页上线（主站）+ 107 PDF 工具页（PDF 站）
+- [x] 3 个游戏页上线（island-builder / tiny-world-builder / the-last-glimmer）
+- [x] SEO 优化完成（Next.js 16 内置 sitemap.ts + 长尾词）
 - [x] Google AdSense 接入
-- [x] Google OAuth 配置完成
+- [x] Google OAuth 配置完成（NextAuth v5）
 
 ### 6.2 v1.0 (3个月内)
 - [ ] Stripe 订阅集成
 - [ ] 用户系统完善（使用记录、收藏等）
-- [ ] PDF 站点独立上线
-- [ ] 多语言支持（ES / FR / DE）
+- [x] PDF 站点独立上线（Vercel standalone 模式）✅
+- [x] 多语言支持（12 语言：EN/JA/ZH-TW/ZH/KO/ID/VI/AR/IT/ES/FR/DE）✅
 
 ### 6.3 v2.0 (6个月内)
 - [ ] AI 工具集成（AI 图片增强、AI PDF 总结等）

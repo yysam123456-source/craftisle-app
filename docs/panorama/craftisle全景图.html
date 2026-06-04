@@ -56,7 +56,7 @@
 <div class="container">
 
   <h1>🗺️ Craftisle 出海项目全景图</h1>
-  <p class="subtitle">完整架构 · 部署设计 · 功能模块 · 配置清单 · 完成/待办 | 更新：2026-06-03</p>
+  <p class="subtitle">完整架构 · 部署设计 · 功能模块 · 配置清单 · 完成/待办 | 更新：2026-06-04</p>
 
   <!-- 一、整体架构 -->
   <div class="section">
@@ -81,8 +81,8 @@
       </div>
       <div class="arch-arrow">→</div>
       <div class="arch-box" style="border-color:#f59e0b;background:#fffbeb;">
-        <div style="font-weight:700;color:#b45309;font-size:13px;">Cloudflare</div>
-        <div style="font-size:11px;color:#d97706;margin-top:4px;">DNS + CDN</div>
+        <div style="font-weight:700;color:#b45309;font-size:13px;">Vercel / Cloudflare</div>
+        <div style="font-size:11px;color:#d97706;margin-top:4px;">DNS + CDN + 静态资源</div>
         <div style="font-size:11px;color:#d97706;margin-top:2px;">craftisle.com / pdf.craftisle.com</div>
       </div>
     </div>
@@ -103,22 +103,22 @@
       </div>
 
       <div class="card" style="border-color:#3b82f6;">
-        <div style="font-weight:600;color:#1d4ed;font-size:13px;margin-bottom:8px;">🛠️ 工具站（58+ Pages）</div>
+        <div style="font-weight:600;color:#1d4ed;font-size:13px;margin-bottom:8px;">🛠️ 工具站（107+ Pages）</div>
         <div class="list-item">• Image Tools 系列 <span class="tag tag-green">✅ SEO 完成</span></div>
         <div class="list-item">• PDF Tools 系列 <span class="tag tag-green">✅ SEO 完成</span></div>
         <div class="list-item">• Encryption / Formatters / Converters / Dev Tools ...</div>
-        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">纯客户端架构（预算 ≤100元/年）| 路径：<code>app/(marketing)/tools/</code></div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">next-intl 12 语言 | 路径：<code>app/(marketing)/tools/</code></div>
       </div>
     </div>
 
     <div class="grid-2" style="margin-bottom:14px;">
       <div class="card" style="border-color:#f59e0b;">
         <div style="font-weight:600;color:#b45309;font-size:13px;margin-bottom:8px;">📕 PDF 站点（pdf.craftisle.com）</div>
-        <div class="list-item">• 独立部署于 Cloudflare Pages <span class="tag tag-green">✅ 已部署</span></div>
-        <div class="list-item">• 支持大文件存储与预览</div>
-        <div class="list-item">• File Viewer 集成</div>
-        <div class="list-item">• 技术架构：Next.js + PDF Tools + 纯客户端</div>
-        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">Cloudflare DNS 管理 | 上传 Bug ✅ 已修复</div>
+        <div class="list-item">• 独立部署于 Vercel（standalone 模式）<span class="tag tag-green">✅ 已部署</span></div>
+        <div class="list-item">• 107 个 PDF 工具（next-intl 12 语言）</div>
+        <div class="list-item">• next.config.js 自动判断 Vercel / export 双模式</div>
+        <div class="list-item">• 技术架构：Next.js 16 App Router + pdf-lib + qpdf.wasm</div>
+        <div class="list-item" style="margin-top:6px;font-size:11px;color:#64748b;">Vercel Team: team_cbq3ThBwJUGjQFHerAPnajbT | GitHub: yysam123456-source/pdfcraft</div>
       </div>
 
       <div class="card" style="border-color:#10b981;">
@@ -161,7 +161,8 @@
       <tr><td>GitHub 仓库</td><td><code>yysam123456-source/craftisle-app</code></td><td><span class="status-box status-ok">✅ SSH 正常</span></td></tr>
       <tr><td>Vercel Token</td><td><code>~/.workbuddy/memory/vercel-team-token.txt</code></td><td><span class="status-box status-ok">✅ 已保存</span></td></tr>
       <tr><td>Cloudflare 域名</td><td>craftisle.com / pdf.craftisle.com</td><td><span class="status-box status-ok">✅ 管理中</span></td></tr>
-      <tr><td>PDF 站点部署</td><td>Cloudflare Pages（独立构建）</td><td><span class="status-box status-ok">✅ 已部署</span></td></tr>
+      <tr><td>PDF 站点部署</td><td>Vercel（standalone 模式，独立仓库）</td><td><span class="status-box status-ok">✅ 已部署</span></td></tr>
+      <tr><td>PDF 站点仓库</td><td><code>yysam123456-source/pdfcraft</code></td><td><span class="status-box status-ok">✅ GitHub</span></td></tr>
       <tr><td>File Viewer 部署</td><td>Vercel（独立 Vue3 App）</td><td><span class="status-box status-ok">✅ viewer.craftisle.com</span></td></tr>
       <tr><td>Next.js Config</td><td>Turbopack + ContentLayer + 图片远程模式</td><td><span class="status-box status-ok">✅ 已配置</span></td></tr>
     </table>
@@ -222,7 +223,7 @@
       <div>
         <div style="font-weight:600;color:#047857;font-size:13px;margin-bottom:8px;">✅ SEO 优化（已完成）</div>
         <div class="list-item">基于"长尾词挖掘方法脑图"逐页分析</div>
-        <div class="list-item">工具站 58+ 页面已完成优化 ✅</div>
+        <div class="list-item">工具站 107+ 页面已完成优化 ✅</div>
         <div class="list-item">所有 UI 文本已国际化（中文 → 英文）</div>
         <div class="list-item">动态 Metadata（<code>app/(marketing)/tools/[tool]/layout.tsx</code>）</div>
         <div class="list-item">Sitemap（<code>app/sitemap.ts</code>）+ Robots（<code>app/robots.ts</code>）</div>

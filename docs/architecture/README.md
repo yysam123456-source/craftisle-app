@@ -1,6 +1,6 @@
 # Craftisle 架构设计文档
 
-> 版本：v1.0 | 更新日期：2026-06-03 | 维护者：操盘手
+> 版本：v1.1 | 更新日期：2026-06-04 | 维护者：操盘手
 
 ---
 
@@ -44,7 +44,7 @@
 
 | 技术 | 版本 | 用途 |
 |------|------|------|
-| Next.js | 16.1.0-canary.19 | App Router，SSR/SSG |
+| Next.js | 16.2.6（App Router） | SSR/SSG / ISR |
 | React | 18.3.1 | UI 组件库 |
 | TypeScript | 5.5.3 | 类型安全 |
 | Tailwind CSS | 3.4.6 | 样式系统 |
@@ -72,8 +72,8 @@
 
 | 技术 | 用途 |
 |------|------|
-| Vercel | 自动部署（Git push 触发） |
-| Cloudflare | DNS 管理 + CDN 加速 |
+| Vercel | 自动部署（Git push 触发）|
+| Cloudflare | DNS 管理 + CDN 加速（craftisle.com + pdf.craftisle.com）|
 | GitHub | 代码仓库（SSH 连接） |
 
 ---

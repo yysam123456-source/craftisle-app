@@ -5,9 +5,9 @@
 ### 1.1 技术架构
 - **框架**: Next.js 16 App Router
 - **元数据**: 基于 `metadata` 导出 + `generateMetadata` 动态生成
-- **站点地图**: `next-sitemap` 自动生成
-- **结构化数据**: Schema.org JSON-LD
-- **多语言**: 英文为主（出海项目）
+- **站点地图**: Next.js 16 内置 `sitemap.ts` 自动生成（主站 + PDF 站独立）
+- **结构化数据**: Schema.org JSON-LD（HowTo / FAQPage / SoftwareApplication）
+- **多语言**: next-intl 12 语言（EN/JA/ZH-TW/ZH/KO/ID/VI/AR/IT/ES/FR/DE）
 
 ### 1.2 目录结构
 ```
