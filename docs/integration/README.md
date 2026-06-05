@@ -1,6 +1,7 @@
 # Craftisle 集成设计文档
 
-> 版本：v1.0 | 更新日期：2026-06-03 | 维护者：操盘手 |
+> 版本：v1.1 | 更新日期：2026-06-05 | 维护者：操盘手
+> ⚠️ **本文档仅适用于主站 (craftisle-app)**，PDF 站 (pdfcraft-fork) 为纯静态导出，无后端集成。
 
 ---
 
@@ -457,21 +458,26 @@ Git Push → Vercel Build → Production Deploy
 
 ### 6.2 自定义域名配置
 
-**当前配置：**
-
-| 域名 | 环境 | 状态 |
-|------|------|------|
-| `craftisle.com` | Production | ✅ 已配置 |
-| `pdf.craftisle.com` | Production（独立项目） | ✅ 已配置 |
-| `viewer.craftisle.com` | Production（独立项目） | ✅ 已配置 |
-
-**DNS 配置（Cloudflare）：**
+**craftisle.com（Vercel 主站）：**
 
 | 记录类型 | 名称 | 值 | 说明 |
 |-----------|------|-----|------|
 | `CNAME` | `www` | `cname.vercel-dns.com` | WWW 重定向 |
 | `A` | `@` | `76.76.21.21` | 根域名 Apex |
-| `CNAME` | `pdf` | `cname.vercel-dns.com` | PDF 站点子域名 |
+
+**pdf.craftisle.com（Cloudflare Pages 主站）：**
+
+| 记录类型 | 名称 | 值 | 说明 |
+|-----------|------|-----|------|
+| `CNAME` | `pdf` | `pdfcraft-5am.pages.dev` | Cloudflare Pages 生产域名 |
+
+> **注意**：pdf.craftisle.com 的 DNS 直接指向 Cloudflare Pages，**不经过 Vercel**。
+> Vercel 部署版本（`.vercel.app`）目前未被 DNS 指向，属于备用环境。
+
+**viewer.craftisle.com（Vercel）：**
+
+| 记录类型 | 名称 | 值 | 说明 |
+|-----------|------|-----|------|
 | `CNAME` | `viewer` | `cname.vercel-dns.com` | File Viewer 子域名 |
 
 ### 6.3 环境变量管理
