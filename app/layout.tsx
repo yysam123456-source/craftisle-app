@@ -1,7 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
-
 import { fontGeist, fontHeading, fontSans, fontUrban } from "@/assets/fonts";
+
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
+
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@/components/analytics";
+import ModalProvider from "@/components/modals/providers";
 
 export const metadata: Metadata = {
   title: {
@@ -17,14 +24,31 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
+  // ── GEO: E-E-A-T 信号 ─────────────────────────────────────────
+  authors: [{ name: "Craftisle Team", url: "https://craftisle.com/about" }],
+  creator: "Craftisle Team",
+  publisher: "Craftisle",
+  metadataBase: new URL("https://craftisle.com"),
+  alternates: {
+    canonical: "https://craftisle.com",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://craftisle.com",
+    siteName: "Craftisle",
+    title: "Craftisle — Play Free HTML5 Games & Tools",
+    description: "Craftisle is your ultimate island for creative tools and free HTML5 games. Play instantly, no downloads required.",
+    images: ["https://craftisle.com/og-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Craftisle — Play Free HTML5 Games & Tools",
+    description: "Craftisle is your ultimate island for creative tools and free HTML5 games.",
+    images: ["https://craftisle.com/og-image.png"],
+    creator: "@craftisle",
+  },
 };
-import { SessionProvider } from "next-auth/react";
-import { ThemeProvider } from "next-themes";
-
-import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/sonner";
-import { Analytics } from "@/components/analytics";
-import ModalProvider from "@/components/modals/providers";
 
 interface RootLayoutProps {
   children: React.ReactNode;

@@ -23,15 +23,24 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
 
   const ogImage = `https://craftisle.com/og-image.png`;
 
+  const toolUrl = `https://craftisle.com/tools/${tool}`;
+
   return {
     title,
     description,
     keywords: meta.seoKeywords,
+    // ── GEO: E-E-A-T 信号 ──────────────────────────────
+    authors: [{ name: "Craftisle Team", url: "https://craftisle.com/about" }],
+    creator: "Craftisle Team",
+    publisher: "Craftisle",
+    metadataBase: new URL(toolUrl),
+    alternates: { canonical: url },
     openGraph: {
+      type: "website",
       title,
       description,
-      url,
-      type: "website",
+      url: toolUrl,
+      siteName: "Craftisle",
       locale: "en_US",
       images: [
         {
@@ -47,8 +56,8 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       title,
       description,
       images: [ogImage],
+      creator: "@craftisle",
     },
-    alternates: { canonical: url },
   };
 }
 
@@ -66,11 +75,13 @@ export default async function ToolPage({ params }: ToolPageProps) {
     notFound();
   }
 
+  const toolUrl = `https://craftisle.com/tools/${tool}`;
   const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": ["SoftwareApplication", "WebApplication"],
     name: meta.title,
     description: meta.desc,
+    url: toolUrl,
     applicationCategory: "UtilityApplication",
     operatingSystem: "Any",
     offers: {
@@ -78,11 +89,22 @@ export default async function ToolPage({ params }: ToolPageProps) {
       price: "0",
       priceCurrency: "USD",
     },
+    author: {
+      "@type": "Organization",
+      name: "Craftisle Team",
+      url: "https://craftisle.com/about",
+    },
     publisher: {
       "@type": "Organization",
       name: "Craftisle",
       url: "https://craftisle.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://craftisle.com/logo.png",
+      },
     },
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
   };
 
   if (meta.faq && meta.faq.length > 0) {

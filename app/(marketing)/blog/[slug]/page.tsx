@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowLeft, CalendarDays, Clock, Tag } from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock, Tag, User } from "lucide-react";
 import { getPostBySlug, getSettings } from "@/lib/ghost";
 
 interface BlogPostPageProps {
@@ -10,20 +10,44 @@ interface BlogPostPageProps {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const [post, settings] = await Promise.all([
+    getPostBySlug(slug),
+    getSettings(),
+  ]);
 
   if (!post) {
     return { title: "Article Not Found | Craftisle" };
   }
 
+  const authorName = post.authors?.[0]?.name ?? "Craftisle Team";
+  const publisherLogo = settings?.logo ?? null;
+
   return {
     title: `${post.title} | Craftisle Blog`,
     description: post.excerpt || undefined,
-    openGraph: post.feature_image
-      ? {
-          images: [post.feature_image],
-        }
-      : undefined,
+    authors: post.authors?.length
+      ? post.authors.map((a: { name: string }) => ({ name: a.name }))
+      : [{ name: "Craftisle Team" }],
+    creator: authorName,
+    publisher: "Craftisle",
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt || undefined,
+      url: `https://craftisle.com/blog/${slug}`,
+      siteName: "Craftisle",
+      locale: "en_US",
+      publishedTime: post.published_at ?? undefined,
+      modifiedTime: post.updated_at ?? undefined,
+      authors: post.authors?.map((a: { name: string }) => a.name) ?? ["Craftisle Team"],
+      images: post.feature_image ? [{ url: post.feature_image }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt || undefined,
+      images: post.feature_image ? [post.feature_image] : [],
+    },
   };
 }
 
@@ -52,6 +76,41 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.excerpt || undefined,
+            "image": post.feature_image ? [post.feature_image] : undefined,
+            "datePublished": post.published_at ?? undefined,
+            "dateModified": post.updated_at ?? post.published_at ?? undefined,
+            "author": (post.authors?.length
+              ? post.authors.map((a: { name: string }) => ({
+                  "@type": "Person",
+                  "name": a.name,
+                }))
+              : { "@type": "Organization", "name": "Craftisle Team", "url": "https://craftisle.com/about" }),
+            "publisher": {
+              "@type": "Organization",
+              "name": "Craftisle",
+              "url": "https://craftisle.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://craftisle.com/logo.png",
+              },
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://craftisle.com/blog/${slug}`,
+            },
+          }),
+        }}
+      />
+
       {/* Post Header */}
       <section className="border-b py-12">
         <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -66,6 +125,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <span className="flex items-center gap-1">
               <CalendarDays className="h-4 w-4" />
               {new Date(post.published_at).toLocaleDateString("en-US")}
+            </span>
+            <span className="flex items-center gap-1">
+              <User className="h-4 w-4" />
+              {post.authors?.[0]?.name ?? "Craftisle Team"}
             </span>
             <span className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
