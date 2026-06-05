@@ -354,7 +354,20 @@ const faqJsonLd = {
 
 ---
 
-## 10. 待办事项
+## 10. 变更日志
+
+### 2026-06-05
+- **PDF站 (pdf.craftisle.com)**: 尝试修复 og:image 指向 localhost:3000 的问题
+  - 在所有 `generateMetadata` 返回值中添加 `metadataBase`
+  - 修复 `seo/index.ts` 漏导出 `generateTermsMetadata`
+  - 修复 `generateBaseMetadata` 缺少 `return` 语句
+  - 修复 `terms/page.tsx` 使用错误的 metadata 生成函数
+  - **结果**: 构建警告仍存在，og:image 问题未解决
+- **PDF站**: 添加 JSON-LD 结构化数据到 about、contact、privacy、terms、faq 页面
+
+---
+
+## 11. 待办事项
 
 ### 10.1 高优先级
 - [ ] 配置 Google Search Console

@@ -372,5 +372,17 @@ import { SunIcon, MoonIcon, MenuIcon } from 'lucide-react'
 
 ---
 
-**更新时间**: 2026-06-03  
+## 12. 变更日志
+
+### 2026-06-05
+- **PDF站 (pdf.craftisle.com)**: FAQ 页面移除 "Still have questions?" CTA 区块
+  - 删除底部 Contact Us 按钮和相关文案
+  - 简化页面结构，去除冗余转化入口
+- **PDF站**: Header Logo 替换为宝石菱形图标
+  - 移除 Lucide `File` 图标
+  - 使用内联 SVG 宝石菱形（白色多边形 + 高光点）
+
+---
+
+**更新时间**: 2026-06-05  
 **维护人**: Craftisle Team
