@@ -1,26 +1,24 @@
 # Craftisle 架构设计文档
 
-> 版本：v1.1 | 更新日期：2026-06-04 | 维护者：操盘手
+> 版本：v1.2 | 更新日期：2026-06-05 | 维护者：操盘手
 
 ---
 
 ## 一、架构总览
 
+Craftisle 项目由**两个独立代码库**组成，分别部署在不同平台：
+
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                     用户层                           │
-│  浏览器 / 移动端 / PWA                              │
-└──────────────────────┬──────────────────────────────┘
-                         │ HTTPS
-┌────────────────────────┴─────────────────────────────┐
-│              Next.js 16 App Router (Vercel)          │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐         │
-│  │ (marketing)│ │  /play/  │ │  /tools/ │         │
-│  │  营销页    │ │  游戏站   │ │  工具站  │         │
-│  └──────────┘ └──────────┘ └──────────┘         │
-│  ┌─────────────────────────────────────────────┐     │
-│  │  Middleware: NextAuth v5 (JWT Session)    │     │
-│  └─────────────────────────────────────────────┘     │
+│  项目 A: craftisle-app (主站)                        │
+│  Next.js 16 (Canary) · Vercel 部署                  │
+│  craftisle.com (主站)                               │
+├─────────────────────────────────────────────────────────┤
+│  app/(marketing)/     # 营销页（工具列表、定价）       │
+│  app/tools/[tool]/    # 工具详情页 (58+ 工具)        │
+│  app/play/[game]/   # 游戏页                        │
+│  app/login/           # 登录页                        │
+│  app/api/auth/        # NextAuth v5                    │
 └──────────────────────┬──────────────────────────────┘
                          │
           ┌──────────────┼──────────────┐
@@ -29,27 +27,45 @@
 │   Neon DB         │ │  Ghost CMS  │ │  Stripe      │
 │   (PostgreSQL)   │ │  (内容管理)  │ │  (订阅支付)  │
 └──────────────────┘ └─────────────┘ └──────────────┘
-          │              │              │
-┌─────────┴────────┐ ┌┴────────────┐ ┌┴─────────────┐
-│  Cloudflare      │ │  Resend     │ │  Google      │
-│  DNS + CDN       │ │  (邮件服务) │ │  OAuth       │
-└──────────────────┘ └─────────────┘ └──────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│  项目 B: pdfcraft-fork (PDF 站)                     │
+│  Next.js 15 (App Router) · Cloudflare Pages 部署    │
+│  pdf.craftisle.com (静态导出)                        │
+├─────────────────────────────────────────────────────────┤
+│  app/[locale]/       # 国际化路由 (next-intl)        │
+│  app/[locale]/tools/[tool]/  # PDF 工具页           │
+│  纯客户端处理 · 无服务器依赖                           │
+└──────────────────────┬──────────────────────────────┘
+                         │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+┌─────────┴────────┐ ┌┴──────────────┐ ┌┴─────────────┐
+│  Cloudflare     │ │               │ │               │
+│  DNS + CDN      │ │               │ │               │
+└──────────────────┘ └──────────────┘ └──────────────┘
 ```
+
+**关键区别：**
+- 主站 (craftisle-app) 有数据库 (Neon DB) 和认证 (NextAuth)
+- PDF 站 (pdfcraft-fork) 纯静态导出，无后端，所有处理在客户端完成
 
 ---
 
 ## 二、技术栈详解
 
-### 2.1 前端框架
+### 2.1 前端框架（主站 craftisle-app）
 
 | 技术 | 版本 | 用途 |
 |------|------|------|
-| Next.js | 16.2.6（App Router） | SSR/SSG / ISR / 内置 sitemap.ts |
+| Next.js | 16.1.0-canary.19（App Router） | SSR/SSG / ISR / 内置 sitemap.ts |
 | React | 18.3.1 | UI 组件库 |
 | TypeScript | 5.5.3 | 类型安全 |
 | Tailwind CSS | 3.4.6 | 样式系统 |
-| next-themes | 0.3.0 | 暗色模式 |
+| next-themes | 0.3.0 | 深色模式 |
 | Radix UI | latest | 无障碍组件库 |
+
+> **PDF 站 (pdfcraft-fork) 技术栈不同**：Next.js 15 + next-intl，静态导出，无数据库依赖。
 
 ### 2.2 数据层
 
@@ -70,11 +86,19 @@
 
 ### 2.4 部署与运维
 
-| 技术 | 用途 |
-|------|------|
-| Vercel | 自动部署（Git push 触发）|
-| Cloudflare | DNS 管理 + CDN 加速（craftisle.com + pdf.craftisle.com）|
-| GitHub | 代码仓库（SSH 连接） |
+| 项目 | 平台 | 分支策略 |
+|------|------|-----------|
+| craftisle-app (主站) | Vercel | `main` → Production |
+| pdfcraft-fork (PDF站) | Cloudflare Pages | `main` → pdf.craftisle.com |
+
+**craftisle-app (Vercel)：**
+- 自动部署：git push → Vercel Build → Production
+- 手动部署：`vercel --prod`（使用 `~/.workbuddy/memory/vercel-team-token.txt`）
+
+**pdfcraft-fork (Cloudflare Pages)：**
+- 静态导出：`output: 'export'`（Next.js 15）
+- 自动部署：GitHub fork → Cloudflare Pages 自动构建
+- 构建命令：`NEXT_PUBLIC_APP_URL=https://pdf.craftisle.com NODE_ENV=production next build`
 
 ---
 
@@ -254,9 +278,31 @@ vercel --prod  →  使用 ~/.workbuddy/memory/vercel-team-token.txt
 git push origin feature/xxx  →  Vercel Preview URL
 ```
 
+### 5.4 Cloudflare Pages 部署（PDF 站）
+
+| 项目 | 仓库 | 平台 | 域名 |
+|------|------|------|------|
+| pdfcraft-fork | yysam123456-source/pdfcraft | Cloudflare Pages | pdf.craftisle.com |
+
+**构建配置：**
+- 构建命令：`NEXT_PUBLIC_APP_URL=https://pdf.craftisle.com NODE_ENV=production next build`
+- 输出目录：`out/`（静态导出）
+- Node.js 版本：`18.x`（Cloudflare Pages 默认）
+
+**DNS 配置：**
+| 记录类型 | 名称 | 值 |
+|-----------|------|-----|
+| `CNAME` | `pdf` | `pdfcraft-5am.pages.dev` |
+
+**与 Vercel 部署的区别：**
+- 无服务器函数（纯静态）
+- `output: 'export'` 模式
+- `next-intl` 国际化（14 语言）
+- 所有处理在客户端完成
+
 ---
 
-## 六、安全架构
+## 七、安全架构
 
 ### 6.1 认证安全
 
@@ -283,7 +329,7 @@ Content-Security-Policy:
 
 ---
 
-## 七、性能优化策略
+## 八、性能优化策略
 
 ### 7.1 构建优化
 
@@ -305,7 +351,7 @@ Content-Security-Policy:
 
 ---
 
-## 八、监控与日志（待实施）
+## 九、监控与日志（待实施）
 
 ### 8.1 错误监控
 
@@ -322,7 +368,7 @@ Content-Security-Policy:
 
 ---
 
-## 九、扩展阅读
+## 十、扩展阅读
 
 - [详细设计文档](./design.md)
 - [集成设计文档](./integration.md)

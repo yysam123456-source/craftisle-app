@@ -1,5 +1,8 @@
 # SEO 优化文档
 
+> **适用项目**: 本文档适用于主站 (craftisle-app)，PDF 站 (pdfcraft-fork) 的 SEO 配置见独立项目 `pdfcraft-fork/src/lib/seo/`。
+> **Next.js 版本**: 主站 16 (canary)，PDF 站 15 (next-intl)。
+
 ## 1. SEO 架构概览
 
 ### 1.1 技术架构
