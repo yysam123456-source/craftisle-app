@@ -14,6 +14,8 @@ interface ToolDetailLayoutProps {
   jsonLd?: Record<string, unknown>;
   /** External URL — when set, show "Open Tool ↗" button below description */
   externalUrl?: string;
+  /** Author name to display below description (optional, defaults to "Craftisle Team") */
+  author?: string;
 }
 
 export function ToolDetailLayout({
@@ -23,6 +25,7 @@ export function ToolDetailLayout({
   children,
   jsonLd,
   externalUrl,
+  author,
 }: ToolDetailLayoutProps) {
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-10">
@@ -46,6 +49,11 @@ export function ToolDetailLayout({
           )}
         </div>
         <p className="text-muted-foreground max-w-2xl">{meta.desc}</p>
+        {author && (
+          <p className="text-sm text-muted-foreground">
+            By {author}
+          </p>
+        )}
         {externalUrl && (
           <div className="pt-2">
             <a href={externalUrl} target="_blank" rel="noopener noreferrer">

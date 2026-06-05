@@ -142,7 +142,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
       maxFileSize: definition.maxFileSize,
     };
     return (
-      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url}>
+      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
         <ImageToolPage toolId={tool} definition={clientDef} />
         <ToolDetailSections toolId={tool} />
       </ToolDetailLayout>
@@ -151,7 +151,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   // Non-image tools: try ToolLoader first, fallback to ToolDetailSections
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url}>
+    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
       <ToolLoader toolId={tool} />
       <ToolDetailSections toolId={tool} />
     </ToolDetailLayout>
