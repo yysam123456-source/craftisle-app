@@ -14,7 +14,7 @@ interface ResourceSearchClientWrapperProps {
 
 export function ResourceSearchClientWrapper({
   categoryId,
-  placeholder = "在当前分类中搜索...",
+  placeholder = "Search in this category...",
   className,
 }: ResourceSearchClientWrapperProps) {
   const [query, setQuery] = useState("");
@@ -23,7 +23,6 @@ export function ResourceSearchClientWrapper({
   const handleSearch = useCallback(() => {
     const trimmed = query.trim();
     if (trimmed) {
-      // 导航到搜索结果页
       router.push(`/resources/search?q=${encodeURIComponent(trimmed)}`);
     }
   }, [query, router]);
@@ -63,12 +62,8 @@ export function ResourceSearchClientWrapper({
             <X className="h-3.5 w-3.5" />
           </Button>
         )}
-        <Button
-          size="sm"
-          className="h-7"
-          onClick={handleSearch}
-        >
-          搜索
+        <Button size="sm" className="h-7" onClick={handleSearch}>
+          Search
         </Button>
       </div>
     </div>

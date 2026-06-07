@@ -12,7 +12,7 @@ interface ResourceSearchClientProps {
 }
 
 export function ResourceSearchClient({
-  placeholder = "搜索资源名称、描述、URL...",
+  placeholder = "Search resources by name, description, or URL...",
   className,
 }: ResourceSearchClientProps) {
   const [query, setQuery] = useState("");
@@ -38,10 +38,6 @@ export function ResourceSearchClient({
     [handleSearch]
   );
 
-  const handleSearchClick = useCallback(() => {
-    handleSearch();
-  }, [handleSearch]);
-
   return (
     <div className={`relative ${className || ""}`}>
       <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
@@ -64,12 +60,8 @@ export function ResourceSearchClient({
             <X className="h-4 w-4" />
           </Button>
         )}
-        <Button
-          size="sm"
-          className="h-9"
-          onClick={handleSearchClick}
-        >
-          搜索
+        <Button size="sm" className="h-9" onClick={handleSearch}>
+          Search
         </Button>
       </div>
     </div>

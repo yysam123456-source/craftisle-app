@@ -6,7 +6,7 @@ import { ResourceCard } from "./resource-card";
 interface Resource {
   id: string;
   category: string;
-  categoryZh: string;
+  categoryName: string;
   categoryIcon: string;
   name: string;
   url: string;
@@ -29,10 +29,10 @@ export function HotResources({ resources }: HotResourcesProps) {
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">
-              🔥 热门资源
+              Hot Resources
             </h2>
             <p className="mt-1 text-muted-foreground">
-              精选高质量工具与资源
+              Curated high-quality tools and resources
             </p>
           </div>
           {resources.length > 12 && (
@@ -40,7 +40,7 @@ export function HotResources({ resources }: HotResourcesProps) {
               onClick={() => setShowAll(!showAll)}
               className="text-sm text-primary hover:underline"
             >
-              {showAll ? "收起" : `查看全部 (${resources.length})`}
+              {showAll ? "Collapse" : `View all (${resources.length})`}
             </button>
           )}
         </div>

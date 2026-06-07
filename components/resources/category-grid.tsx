@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 interface Category {
   id: string;
-  nameZh: string;
+  name: string;
   description: string;
   icon: string;
   count: number;
@@ -47,18 +47,18 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
             >
               <div className="text-white">
                 <div className="text-4xl mb-2">{cat.icon}</div>
-                <div className="text-sm opacity-80">{cat.count} 个资源</div>
+                <div className="text-sm opacity-80">{cat.count} resources</div>
               </div>
               <Badge
                 variant="secondary"
                 className="absolute top-4 right-4 bg-white/20 text-white border-0"
               >
-                查看 →
+                Browse
               </Badge>
             </div>
             <CardHeader>
               <CardTitle className="group-hover:text-primary transition-colors">
-                {cat.nameZh}
+                {cat.name}
               </CardTitle>
               <CardDescription>{cat.description}</CardDescription>
             </CardHeader>

@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 interface Resource {
   id: string;
   category: string;
-  categoryZh: string;
+  categoryName: string;
   categoryIcon: string;
   name: string;
   url: string;
@@ -18,7 +18,7 @@ interface Resource {
 
 interface Category {
   id: string;
-  nameZh: string;
+  name: string;
   description: string;
   icon: string;
   count: number;
@@ -38,7 +38,6 @@ export function ResourcesClient({
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
 
-  // 客户端搜索过滤
   const filtered = useMemo(() => {
     if (!query.trim()) return resources;
     const q = query.toLowerCase();
@@ -46,7 +45,7 @@ export function ResourcesClient({
       (r) =>
         r.name.toLowerCase().includes(q) ||
         r.url.toLowerCase().includes(q) ||
-        r.categoryZh.toLowerCase().includes(q)
+        r.categoryName.toLowerCase().includes(q)
     );
   }, [resources, query]);
 
@@ -60,33 +59,31 @@ export function ResourcesClient({
 
   return (
     <>
-      {/* 搜索框 */}
       <section className="border-b bg-muted/30 py-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl">
             <ResourceSearch
               onSearch={handleSearch}
-              placeholder={`在 ${category.nameZh} 中搜索...`}
+              placeholder={`Search in ${category.name}...`}
               className="w-full"
             />
           </div>
         </div>
       </section>
 
-      {/* 资源列表 */}
       <section className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6 flex items-center justify-between">
             <p className="text-muted-foreground text-sm">
               {query
-                ? `找到 ${filtered.length} 条结果`
-                : `共 ${resources.length} 个资源`}
+                ? `${filtered.length} results found`
+                : `${resources.length} resources`}
             </p>
           </div>
 
           {paged.length === 0 && (
             <div className="py-12 text-center text-muted-foreground">
-              未找到相关资源
+              No resources found
             </div>
           )}
 
@@ -100,7 +97,6 @@ export function ResourcesClient({
             ))}
           </div>
 
-          {/* 分页 */}
           {totalPages > 1 && (
             <div className="mt-12 flex items-center justify-center gap-2">
               <Button
@@ -110,7 +106,7 @@ export function ResourcesClient({
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
               >
                 <ChevronLeft className="h-4 w-4" />
-                上一页
+                Prev
               </Button>
               <span className="mx-4 text-sm text-muted-foreground">
                 {page} / {totalPages}
@@ -123,7 +119,7 @@ export function ResourcesClient({
                   setPage((p) => Math.min(totalPages, p + 1))
                 }
               >
-                下一页
+                Next
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </div>

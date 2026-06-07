@@ -6,7 +6,7 @@ import { ExternalLink } from "lucide-react";
 interface Resource {
   id: string;
   category: string;
-  categoryZh: string;
+  categoryName: string;
   categoryIcon: string;
   name: string;
   url: string;
@@ -16,6 +16,14 @@ interface Resource {
 interface ResourceCardProps {
   resource: Resource;
   showCategory?: boolean;
+}
+
+function getHostname(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url.length > 40 ? url.slice(0, 40) + "..." : url;
+  }
 }
 
 export function ResourceCard({ resource, showCategory = true }: ResourceCardProps) {
@@ -46,7 +54,7 @@ export function ResourceCard({ resource, showCategory = true }: ResourceCardProp
       <CardContent className="pt-0">
         {showCategory && (
           <Badge variant="secondary" className="mb-2 text-xs">
-            {resource.categoryIcon} {resource.categoryZh}
+            {resource.categoryIcon} {resource.categoryName}
           </Badge>
         )}
         {resource.description && (
@@ -55,7 +63,7 @@ export function ResourceCard({ resource, showCategory = true }: ResourceCardProp
           </p>
         )}
         <p className="mt-2 text-xs text-muted-foreground truncate">
-          {new URL(resource.url).hostname.replace(/^www\./, "")}
+          {getHostname(resource.url)}
         </p>
       </CardContent>
     </Card>

@@ -10,14 +10,14 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 export const metadata: Metadata = constructMetadata({
-  title: "资源目录 | Craftisle",
+  title: "Resources | Craftisle",
   description:
-    "15000+ 免费资源导航 — AI工具、学习资源、开发工具、隐私安全。100% 合规资源，无需注册，免费使用。",
+    "15,000+ curated free resources — AI tools, learning resources, dev tools, privacy & security. 100% compliant, no signup required.",
 });
 
 interface Category {
   id: string;
-  nameZh: string;
+  name: string;
   description: string;
   icon: string;
   count: number;
@@ -26,14 +26,13 @@ interface Category {
 interface Resource {
   id: string;
   category: string;
-  categoryZh: string;
+  categoryName: string;
   categoryIcon: string;
   name: string;
   url: string;
   description: string;
 }
 
-// 构建时直接读文件，不依赖 fetch
 function getIndexData(): { categories: Category[] } | null {
   try {
     const filePath = join(process.cwd(), "public", "data", "fmhy-index.json");
@@ -62,6 +61,7 @@ export default async function ResourcesPage() {
 
   const categories: Category[] = indexData?.categories || [];
   const hotResources: Resource[] = hotData?.resources || [];
+  const totalCount = categories.reduce((sum, c) => sum + c.count, 0);
 
   return (
     <>
@@ -70,15 +70,14 @@ export default async function ResourcesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              📂 资源目录
+              Resources
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              免费资源导航
+              Free Resource Directory
             </h1>
             <p className="mt-4 text-lg text-muted-foreground md:text-xl">
-              15000+ 精选合规资源，涵盖 AI 工具、学习资源、开发工具等
+              {totalCount.toLocaleString()}+ curated compliant resources covering AI tools, learning, dev tools, and more
             </p>
-            {/* 搜索框 */}
             <div className="mt-8 max-w-2xl mx-auto">
               <ResourceSearchClient />
             </div>
@@ -86,20 +85,20 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      {/* 热门资源 */}
+      {/* Hot Resources */}
       {hotResources.length > 0 && (
         <HotResources resources={hotResources} />
       )}
 
-      {/* 全部分类 */}
+      {/* All Categories */}
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <h2 className="text-2xl font-bold tracking-tight">
-              📂 全部分类
+              All Categories
             </h2>
             <p className="mt-1 text-muted-foreground">
-              共 {categories.reduce((sum, c) => sum + c.count, 0)} 个资源，{categories.length} 个分类
+              {totalCount.toLocaleString()} resources across {categories.length} categories
             </p>
           </div>
           <CategoryGrid categories={categories} />
@@ -111,10 +110,10 @@ export default async function ResourcesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold">
-              有优质资源推荐？
+              Know a great free resource?
             </h2>
             <p className="mt-4 text-muted-foreground">
-              如果你发现优质的免费资源，欢迎通过 Issues 推荐给我们。
+              If you discover a high-quality free resource, feel free to recommend it via Issues.
             </p>
             <a
               href="https://github.com/yysam123456/yysam123456-source/issues"
@@ -122,7 +121,7 @@ export default async function ResourcesPage() {
               rel="noopener noreferrer"
             >
               <Button size="lg" className="mt-8">
-                推荐资源 <ArrowRight className="ml-2 h-4 w-4" />
+                Recommend <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </a>
           </div>
