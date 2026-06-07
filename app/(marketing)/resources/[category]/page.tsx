@@ -56,6 +56,13 @@ function getCategoryResources(categoryId: string): Resource[] {
   return data?.categories?.[categoryId]?.resources || [];
 }
 
+export async function generateStaticParams() {
+  const indexData = getIndexData();
+  return (
+    indexData?.categories?.map((cat) => ({ category: cat.id })) || []
+  );
+}
+
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
