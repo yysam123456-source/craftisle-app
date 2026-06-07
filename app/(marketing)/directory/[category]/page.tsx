@@ -1,8 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ResourcesClient } from "@/components/resources/resources-client";
 import { ResourceSearchClientWrapper } from "@/components/resources/resource-search-client-wrapper";
-import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
 import { readFileSync } from "fs";
@@ -90,7 +88,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           This resource category does not exist.
         </p>
         <a href="/directory">
-          <Button className="mt-8">Back to Directory</Button>
+          <button className="mt-8">Back to Directory</button>
         </a>
       </section>
     );
@@ -101,7 +99,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <section className="py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* Category Header */}
         <div className="mb-8">
           <Badge variant="secondary" className="mb-4">
             Resources
