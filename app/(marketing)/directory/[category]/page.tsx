@@ -1,7 +1,9 @@
 import { ResourcesClient } from "@/components/resources/resources-client";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
+import { CATEGORY_H2_CONTENT } from "@/lib/category-h2";
 import { readFileSync } from "fs";
 import { join } from "path";
 
@@ -32,10 +34,10 @@ const DATE_MODIFIED = "2026-06-07";
 // Long-tail SEO keywords per category
 const CATEGORY_KEYWORDS: Record<string, string[]> = {
   "Artificial-Intelligence": [
-    "free AI tools",
-    "AI chatbot free",
-    "free image generator",
-    "text generator AI",
+    "free AI tools 2025",
+    "AI chatbot free no signup",
+    "free image generator no signup",
+    "text generator AI free",
     "AI writing assistant free",
     "ChatGPT alternative free",
     "free AI image generator",
@@ -65,7 +67,9 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
     "tracker blocker free",
     "free adblocker download",
     "privacy extensions chrome",
-    "best free privacy tools",
+    "best free adblocker 2025",
+    "free ad blocker no signup",
+    "browser privacy tools",
   ],
   Linux: [
     "free Linux distro",
@@ -249,12 +253,12 @@ export async function generateMetadata({
   ];
 
   return constructMetadata({
-    title: `${cat.name} | Free ${cat.name} Resources | Craftisle`,
-    description: `Discover ${cat.count} free ${cat.name.toLowerCase()} resources. ${cat.description}. All tools are curated, compliant, and free to use — no signup required.`,
+    title: `Best Free ${cat.name} Tools 2025 | No Signup | Craftisle`,
+    description: `Discover ${cat.count} free ${cat.name.toLowerCase()} tools in 2025. ${cat.description}. No signup required. 100% free and open-source resources.`,
     keywords: [
-      cat.name,
-      `free ${cat.name.toLowerCase()}`,
-      `${cat.name.toLowerCase()} tools`,
+      `best free ${cat.name.toLowerCase()}`,
+      `free ${cat.name.toLowerCase()} no signup`,
+      `${cat.name.toLowerCase()} tools 2025`,
       "free resources",
       "free tools",
       "open source",
@@ -283,6 +287,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   const resources = getCategoryResources(category);
+  const h2Content = CATEGORY_H2_CONTENT[category] || null;
 
   // JSON-LD: CollectionPage + BreadcrumbList
   const jsonLd = {
@@ -349,11 +354,38 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </p>
           </div>
 
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold mb-4">About {cat.name} Tools</h2>
+            <p className="text-muted-foreground leading-relaxed">{h2Content?.about}</p>
+          </div>
+
           {/* Resource List */}
           {resources.length > 0 ? (
             <ResourcesClient resources={resources} category={cat} />
           ) : (
             <p className="text-muted-foreground">No resources found in this category.</p>
+          )}
+
+          {/* Related Categories */}
+          {h2Content?.related && h2Content.related.length > 0 && (
+            <div className="mt-16 pt-8 border-t">
+              <h2 className="text-2xl font-bold mb-6">Related Categories</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {h2Content.related.map((relId) => {
+                  const relCat = indexData?.categories?.find((c) => c.id === relId);
+                  return relCat ? (
+                    <Link
+                      key={relId}
+                      href={`/directory/${relId}`}
+                      className="block rounded-lg border p-4 hover:border-primary hover:shadow-sm transition-colors"
+                    >
+                      <div className="font-semibold">{relCat.icon} {relCat.name}</div>
+                      <div className="text-sm text-muted-foreground mt-1">{relCat.count} resources</div>
+                    </Link>
+                  ) : null;
+                })}
+              </div>
+            </div>
           )}
         </div>
       </section>
