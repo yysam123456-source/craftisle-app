@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock, Tag, User } from "lucide-react";
 import { getPostBySlug, getSettings } from "@/lib/ghost";
+import { normalizeHeadings } from "@/lib/content-processor";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -173,7 +174,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <article
             className="prose prose-gray max-w-none dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: post.html || "" }}
+            dangerouslySetInnerHTML={{
+              __html: normalizeHeadings(post.html || ""),
+            }}
           />
         </div>
       </section>
@@ -192,6 +195,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Browse Tools →
               </Button>
             </Link>
+          </div>
+          {/* Author info in footer */}
+          <div className="mt-6 pt-6 border-t text-sm text-muted-foreground flex items-center gap-2">
+            <User className="h-4 w-4" />
+            <span>
+              By {post.authors?.[0]?.name ?? "Craftisle Team"}
+            </span>
+            <span className="mx-2">·</span>
+            <CalendarDays className="h-4 w-4" />
+            <span>
+              {new Date(post.published_at).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
           </div>
         </div>
       </section>

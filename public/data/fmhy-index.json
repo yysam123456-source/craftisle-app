@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-06-07T15:59:25.410472",
+  "totalResources": 15207,
+  "categories": [
+    {
+      "id": "Artificial-Intelligence",
+      "nameZh": "AI 工具",
+      "description": "AI 聊天机器人、文本生成、图像生成、AI 工具集",
+      "icon": "🤖",
+      "count": 645
+    },
+    {
+      "id": "Educational",
+      "nameZh": "学习资源",
+      "description": "在线课程、教程、文档、学习计划",
+      "icon": "📚",
+      "count": 2120
+    },
+    {
+      "id": "Adblock",
+      "nameZh": "隐私安全",
+      "description": "广告拦截、隐私保护、VPN、杀毒工具",
+      "icon": "🛡️",
+      "count": 662
+    },
+    {
+      "id": "Linux",
+      "nameZh": "Linux 工具",
+      "description": "Linux 发行版、软件包、系统工具",
+      "icon": "🐧",
+      "count": 1105
+    },
+    {
+      "id": "Misc",
+      "nameZh": "实用工具",
+      "description": "各类实用工具与资源",
+      "icon": "🧰",
+      "count": 1964
+    },
+    {
+      "id": "Reading",
+      "nameZh": "阅读资源",
+      "description": "电子书、漫画、杂志、报纸",
+      "icon": "📖",
+      "count": 988
+    },
+    {
+      "id": "Mobile",
+      "nameZh": "移动工具",
+      "description": "Android/iOS 工具、应用、资源",
+      "icon": "📱",
+      "count": 1626
+    },
+    {
+      "id": "Downloading",
+      "nameZh": "下载工具",
+      "description": "下载管理器、下载加速工具",
+      "icon": "⬇️",
+      "count": 199
+    },
+    {
+      "id": "Storage",
+      "nameZh": "云存储",
+      "description": "云存储、文件同步、备份工具",
+      "icon": "☁️",
+      "count": 655
+    },
+    {
+      "id": "Gaming",
+      "nameZh": "游戏工具",
+      "description": "游戏工具、模组、资源（合规类）",
+      "icon": "🎮",
+      "count": 1349
+    },
+    {
+      "id": "Music",
+      "nameZh": "音乐资源",
+      "description": "音乐流媒体、下载工具（合规类）",
+      "icon": "🎵",
+      "count": 1141
+    },
+    {
+      "id": "Streaming",
+      "nameZh": "视频工具",
+      "description": "视频下载、处理工具（合规类）",
+      "icon": "📺",
+      "count": 1246
+    },
+    {
+      "id": "Torrenting",
+      "nameZh": "文件分享",
+      "description": "BT 工具、文件分享工具（合规类）",
+      "icon": "📦",
+      "count": 96
+    },
+    {
+      "id": "Non-Eng",
+      "nameZh": "非英语资源",
+      "description": "各国语言资源站",
+      "icon": "🌐",
+      "count": 1411
+    }
+  ]
+}

@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 import { getToolMeta, CATEGORY_LIST } from "@/lib/tools";
 import type { ToolMeta } from "@/lib/tools";
 import { ToolActionBar } from "@/components/tools/ToolActionBar";
+import { NavBar } from "@/components/layout/navbar";
+import { NavMobile } from "@/components/layout/mobile-nav";
+import { SiteFooter } from "@/components/layout/site-footer";
 
 function getCategorySlug(categoryLabel: string): string {
   const entry = CATEGORY_LIST.find((c) => c.label === categoryLabel);
@@ -52,10 +55,15 @@ export default function ToolsLayout({
   const toolId = match?.[1] || null;
 
   return (
-    <>
-      {toolId && <ToolBreadcrumb toolId={toolId} />}
-      {children}
+    <div className="flex min-h-screen flex-col">
+      <NavMobile />
+      <NavBar scroll={true} />
+      <main className="flex-1">
+        {toolId && <ToolBreadcrumb toolId={toolId} />}
+        {children}
+      </main>
+      <SiteFooter />
       {toolId && <ToolActionBar toolId={toolId} />}
-    </>
+    </div>
   );
 }

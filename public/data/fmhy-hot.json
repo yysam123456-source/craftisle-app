@@ -1,0 +1,456 @@
+{
+  "generatedAt": "2026-06-07T15:59:25.452284",
+  "count": 3723,
+  "resources": [
+    {
+      "id": "Artificial-Intelligence-2",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/QwenLM",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-5",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/deepseek-ai",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-6",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Add Features",
+      "url": "https://github.com/Nagi-ovo/gemini-voyager",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-11",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Limits",
+      "url": "https://support.google.com/gemini/answer/16275805",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-14",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/MoonshotAI",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-22",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Claude",
+      "url": "https://claude.ai/",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-23",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Resources",
+      "url": "https://awesomeclaude.ai/",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-24",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Learning",
+      "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-25",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "2",
+      "url": "https://github.com/BehiSecc/awesome-claude-skills",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-26",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Usage Tracker",
+      "url": "https://github.com/lugia19/Claude-Usage-Extension",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-29",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/MiniMax-AI/",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-44",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "⁠Hy3-preview",
+      "url": "https://huggingface.co/spaces/tencent/Hy3-preview",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-53",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "OpenAI Bridge",
+      "url": "https://github.com/CloudWaddie/LMArenaBridge",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-73",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Awesome AI Web Search",
+      "url": "https://github.com/felladrin/awesome-ai-web-search",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-74",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "2",
+      "url": "https://huggingface.co/spaces/Felladrin/awesome-ai-web-search",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-81",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/google/generative-ai-docs/tree/main/demos/palm/web/textfx",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-93",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Vane",
+      "url": "https://github.com/ItzCrazyKns/Vane",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-101",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/elicit",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-104",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/zylon-ai/private-gpt",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-107",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/onyx-dot-app/onyx",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-110",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/arc53/DocsGPT",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-114",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/hyperspaceai",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-115",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "SillyTavern",
+      "url": "https://docs.sillytavern.app/",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-118",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/SillyTavern/SillyTavern",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-121",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/open-webui/open-webui",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-124",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/menloresearch/jan",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-127",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/lmstudio-ai",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-128",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "oobabooga",
+      "url": "https://github.com/oobabooga/textgen",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-129",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Colab",
+      "url": "https://colab.research.google.com/github/pcrii/Philo-Colab-Collection/blob/main/4bit_TextGen_Gdrive.ipynb",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-131",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GPT4Free",
+      "url": "https://github.com/xtekky/gpt4free",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-138",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Mobile",
+      "url": "https://github.com/CherryHQ/cherry-studio-app",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-140",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/CherryHQ/cherry-studio",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-142",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/chatboxai/chatbox",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-144",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/lobehub/lobe-chat",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-147",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/lencx/Noi",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-150",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/danny-avila/LibreChat",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-152",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/ParisNeo/lollms-webui",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-155",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/Mintplex-Labs/anything-llm",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-158",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/nomic-ai/gpt4all",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-159",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "tgpt",
+      "url": "https://github.com/aandrew-me/tgpt",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-160",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "⁠ch.at",
+      "url": "https://github.com/Deep-ai-inc/ch.at",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-161",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Awesome Local LLM",
+      "url": "https://github.com/rafska/awesome-local-llm/",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-163",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/ggml-org/llama.cpp",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-164",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "KoboldCpp",
+      "url": "https://github.com/LostRuins/koboldcpp",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-165",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "ROCm",
+      "url": "https://github.com/YellowRoseCx/koboldcpp-rocm",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-166",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Colab",
+      "url": "https://colab.research.google.com/github/LostRuins/koboldcpp/blob/concedo/colab.ipynb",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-168",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "Colab",
+      "url": "https://colab.research.google.com/github/AlpinDale/misc-scripts/blob/main/Aphrodite.ipynb",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-169",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/PygmalionAI/aphrodite-engine",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-172",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/bigscience-workshop/petals",
+      "description": ""
+    },
+    {
+      "id": "Artificial-Intelligence-175",
+      "category": "Artificial-Intelligence",
+      "categoryZh": "AI 工具",
+      "categoryIcon": "🤖",
+      "name": "GitHub",
+      "url": "https://github.com/leon-ai/leon",
+      "description": ""
+    }
+  ]
+}
