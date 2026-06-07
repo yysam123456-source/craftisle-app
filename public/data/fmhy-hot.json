@@ -1,429 +1,426 @@
 {
-  "generatedAt": "2026-06-07T15:59:25.410938",
-  "count": 47,
+  "generated_at": "2026-06-07",
+  "total_count": 70,
   "resources": [
     {
-      "id": "hot-0",
+      "name": "FakeYou",
+      "url": "https://fakeyou.com/",
       "category": "Artificial-Intelligence",
-      "categoryName": "AI Tools",
-      "categoryIcon": "🤖",
-      "name": "ChatGPT",
-      "url": "https://chat.openai.com",
-      "description": "OpenAI's conversational AI assistant"
+      "description": ""
     },
     {
-      "id": "hot-1",
+      "name": "GitHub",
+      "url": "https://github.com/elicit",
       "category": "Artificial-Intelligence",
-      "categoryName": "AI Tools",
-      "categoryIcon": "🤖",
-      "name": "Claude",
-      "url": "https://claude.ai",
-      "description": "Anthropic's AI assistant with long context"
+      "description": ""
     },
     {
-      "id": "hot-2",
+      "name": "Perplexity",
+      "url": "https://www.perplexity.ai/",
       "category": "Artificial-Intelligence",
-      "categoryName": "AI Tools",
-      "categoryIcon": "🤖",
-      "name": "GitHub Copilot",
-      "url": "https://github.com/features/copilot",
-      "description": "AI pair programmer powered by OpenAI"
+      "description": ""
     },
     {
-      "id": "hot-3",
+      "name": "⁠Together.ai",
+      "url": "https://chat.together.ai/",
       "category": "Artificial-Intelligence",
-      "categoryName": "AI Tools",
-      "categoryIcon": "🤖",
-      "name": "Hugging Face",
-      "url": "https://huggingface.co",
-      "description": "Open-source AI model hub and community"
+      "description": ""
     },
     {
-      "id": "hot-4",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "VS Code",
-      "url": "https://code.visualstudio.com",
-      "description": "Microsoft's lightweight but powerful code editor"
+      "name": "Qwen",
+      "url": "https://chat.qwen.ai/",
+      "category": "Artificial-Intelligence",
+      "description": ""
     },
     {
-      "id": "hot-5",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Docker",
-      "url": "https://www.docker.com",
-      "description": "Containerization platform for developers"
-    },
-    {
-      "id": "hot-6",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Figma",
-      "url": "https://www.figma.com",
-      "description": "Collaborative interface design tool"
-    },
-    {
-      "id": "hot-7",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Vercel",
-      "url": "https://vercel.com",
-      "description": "Platform for frontend frameworks and static sites"
-    },
-    {
-      "id": "hot-8",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Supabase",
-      "url": "https://supabase.com",
-      "description": "Open-source Firebase alternative with PostgreSQL"
-    },
-    {
-      "id": "hot-9",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Notion",
-      "url": "https://www.notion.so",
-      "description": "All-in-one workspace for notes, docs, and databases"
-    },
-    {
-      "id": "hot-10",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Tailwind CSS",
-      "url": "https://tailwindcss.com",
-      "description": "Utility-first CSS framework for rapid UI development"
-    },
-    {
-      "id": "hot-11",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Next.js",
-      "url": "https://nextjs.org",
-      "description": "React framework for production-grade applications"
-    },
-    {
-      "id": "hot-12",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Cloudflare",
-      "url": "https://www.cloudflare.com",
-      "description": "CDN, DDoS protection, and edge computing platform"
-    },
-    {
-      "id": "hot-13",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Stripe",
-      "url": "https://stripe.com",
-      "description": "Payment processing platform for internet businesses"
-    },
-    {
-      "id": "hot-14",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Linear",
-      "url": "https://linear.app",
-      "description": "Streamlined issue tracking for software teams"
-    },
-    {
-      "id": "hot-15",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Raycast",
-      "url": "https://www.raycast.com",
-      "description": "Blazingly fast, totally extendable launcher for macOS"
-    },
-    {
-      "id": "hot-16",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Obsidian",
-      "url": "https://obsidian.md",
-      "description": "Powerful knowledge base that works on local Markdown files"
-    },
-    {
-      "id": "hot-17",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Postman",
-      "url": "https://www.postman.com",
-      "description": "API platform for building and using APIs"
-    },
-    {
-      "id": "hot-18",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "GitLab",
-      "url": "https://gitlab.com",
-      "description": "DevOps platform with Git repository management"
-    },
-    {
-      "id": "hot-19",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Netlify",
-      "url": "https://www.netlify.com",
-      "description": "Platform for modern web projects with CI/CD"
-    },
-    {
-      "id": "hot-20",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Replit",
-      "url": "https://replit.com",
-      "description": "Online IDE for coding in 50+ languages"
-    },
-    {
-      "id": "hot-21",
-      "category": "Educational",
-      "categoryName": "Education",
-      "categoryIcon": "🎓",
-      "name": "Khan Academy",
-      "url": "https://www.khanacademy.org",
-      "description": "Free world-class education for anyone, anywhere"
-    },
-    {
-      "id": "hot-22",
-      "category": "Educational",
-      "categoryName": "Education",
-      "categoryIcon": "🎓",
-      "name": "Coursera",
-      "url": "https://www.coursera.org",
-      "description": "Online courses from top universities and companies"
-    },
-    {
-      "id": "hot-23",
-      "category": "Educational",
-      "categoryName": "Education",
-      "categoryIcon": "🎓",
-      "name": "MDN Web Docs",
-      "url": "https://developer.mozilla.org",
-      "description": "Resources for developers, by developers"
-    },
-    {
-      "id": "hot-24",
-      "category": "Educational",
-      "categoryName": "Education",
-      "categoryIcon": "🎓",
-      "name": "freeCodeCamp",
-      "url": "https://www.freecodecamp.org",
-      "description": "Learn to code for free with certifications"
-    },
-    {
-      "id": "hot-25",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Canva",
-      "url": "https://www.canva.com",
-      "description": "Free graphic design tool with templates"
-    },
-    {
-      "id": "hot-26",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Zapier",
-      "url": "https://zapier.com",
-      "description": "Automate workflows by connecting your apps"
-    },
-    {
-      "id": "hot-27",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Slack",
-      "url": "https://slack.com",
-      "description": "Team communication and collaboration platform"
-    },
-    {
-      "id": "hot-28",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Discord",
-      "url": "https://discord.com",
-      "description": "Voice, video, and text communication platform"
-    },
-    {
-      "id": "hot-29",
-      "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Zoom",
-      "url": "https://zoom.us",
-      "description": "Video conferencing and online meeting platform"
-    },
-    {
-      "id": "hot-30",
-      "category": "Storage",
-      "categoryName": "Storage",
-      "categoryIcon": "☁️",
-      "name": "Google Drive",
-      "url": "https://drive.google.com",
-      "description": "Cloud storage and file synchronization"
-    },
-    {
-      "id": "hot-31",
-      "category": "Storage",
-      "categoryName": "Storage",
-      "categoryIcon": "☁️",
-      "name": "Dropbox",
-      "url": "https://www.dropbox.com",
-      "description": "Cloud file storage and sharing platform"
-    },
-    {
-      "id": "hot-32",
-      "category": "Storage",
-      "categoryName": "Storage",
-      "categoryIcon": "☁️",
-      "name": "pCloud",
-      "url": "https://www.pcloud.com",
-      "description": "Secure cloud storage with lifetime plans"
-    },
-    {
-      "id": "hot-33",
-      "category": "Storage",
-      "categoryName": "Storage",
-      "categoryIcon": "☁️",
-      "name": "Proton Drive",
-      "url": "https://proton.me/drive",
-      "description": "End-to-end encrypted cloud storage"
-    },
-    {
-      "id": "hot-34",
-      "category": "Adblock",
-      "categoryName": "Ad Blocking",
-      "categoryIcon": "🛡️",
       "name": "uBlock Origin",
-      "url": "https://ublockorigin.com",
-      "description": "Efficient ad blocker for browsers"
-    },
-    {
-      "id": "hot-35",
+      "url": "https://github.com/gorhill/uBlock",
       "category": "Adblock",
-      "categoryName": "Ad Blocking",
-      "categoryIcon": "🛡️",
-      "name": "Privacy Badger",
-      "url": "https://privacybadger.org",
-      "description": "EFF's tracker-blocking browser extension"
+      "description": ""
     },
     {
-      "id": "hot-36",
+      "name": "ClearURLs",
+      "url": "https://docs.clearurls.xyz",
+      "category": "Adblock",
+      "description": ""
+    },
+    {
+      "name": "avoid breakage",
+      "url": "https://x.com/gorhill/status/1033706103782170625",
+      "category": "Adblock",
+      "description": ""
+    },
+    {
+      "name": "AdGuard",
+      "url": "https://github.com/AdguardTeam/AdguardBrowserExtension",
+      "category": "Adblock",
+      "description": ""
+    },
+    {
+      "name": "uBO Lite",
+      "url": "https://github.com/uBlockOrigin/uBOL-home",
+      "category": "Adblock",
+      "description": ""
+    },
+    {
+      "name": "Nix",
+      "url": "https://nixos.org/",
       "category": "Linux",
-      "categoryName": "Linux",
-      "categoryIcon": "🐧",
-      "name": "Ubuntu",
-      "url": "https://ubuntu.com",
-      "description": "Popular open-source Linux distribution"
+      "description": ""
     },
     {
-      "id": "hot-37",
+      "name": "Flatpak",
+      "url": "https://flatpak.org/",
       "category": "Linux",
-      "categoryName": "Linux",
-      "categoryIcon": "🐧",
-      "name": "Arch Linux",
-      "url": "https://archlinux.org",
-      "description": "Lightweight and flexible Linux distribution"
+      "description": ""
     },
     {
-      "id": "hot-38",
+      "name": "SnapCraft",
+      "url": "https://snapcraft.io/store",
+      "category": "Linux",
+      "description": ""
+    },
+    {
+      "name": "AppImageLauncher",
+      "url": "https://github.com/TheAssassin/AppImageLauncher",
+      "category": "Linux",
+      "description": ""
+    },
+    {
+      "name": "DistroWatch",
+      "url": "https://distrowatch.com/dwres.php?resource=popularity",
+      "category": "Linux",
+      "description": ""
+    },
+    {
+      "name": "Khan Academy",
+      "url": "https://www.khanacademy.org/",
+      "category": "Educational",
+      "description": ""
+    },
+    {
+      "name": "edX",
+      "url": "https://www.edx.org/",
+      "category": "Educational",
+      "description": ""
+    },
+    {
+      "name": "Official YT Documentary Channels",
+      "url": "https://github.com/superlincoln953/Free-Official-Youtube-Content?tab=readme-ov-file#Documentaries",
+      "category": "Educational",
+      "description": ""
+    },
+    {
+      "name": "IHaveNoTV",
+      "url": "https://ihavenotv.com",
+      "category": "Educational",
+      "description": ""
+    },
+    {
+      "name": "DocumentaryArea",
+      "url": "https://www.documentaryarea.com/",
+      "category": "Educational",
+      "description": ""
+    },
+    {
+      "name": "Project Gutenberg",
+      "url": "https://www.gutenberg.org/",
+      "category": "Reading",
+      "description": ""
+    },
+    {
+      "name": "Standard EBooks",
+      "url": "https://standardebooks.org/",
+      "category": "Reading",
+      "description": ""
+    },
+    {
+      "name": "Foliate",
+      "url": "https://johnfactotum.github.io/foliate/",
+      "category": "Reading",
+      "description": ""
+    },
+    {
+      "name": "Calibre",
+      "url": "https://calibre-ebook.com/",
+      "category": "Reading",
+      "description": ""
+    },
+    {
+      "name": "KOReader",
+      "url": "https://koreader.rocks/",
+      "category": "Reading",
+      "description": ""
+    },
+    {
+      "name": "Awesome List Index",
+      "url": "https://github.com/sindresorhus/awesome",
       "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "LibreOffice",
-      "url": "https://www.libreoffice.org",
-      "description": "Free and open-source office suite"
+      "description": ""
     },
     {
-      "id": "hot-39",
+      "name": "GitHub Topics",
+      "url": "https://github.com/topics/awesome",
       "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "GIMP",
-      "url": "https://www.gimp.org",
-      "description": "GNU Image Manipulation Program"
+      "description": ""
     },
     {
-      "id": "hot-40",
+      "name": "2",
+      "url": "https://github.com/topics/awesome-list",
       "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Blender",
-      "url": "https://www.blender.org",
-      "description": "Open-source 3D creation suite"
+      "description": ""
     },
     {
-      "id": "hot-41",
+      "name": "Lists",
+      "url": "https://github.com/jnv/lists",
       "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "VLC",
-      "url": "https://www.videolan.org/vlc",
-      "description": "Cross-platform multimedia player"
+      "description": ""
     },
     {
-      "id": "hot-42",
-      "category": "Adblock",
-      "categoryName": "Ad Blocking",
-      "categoryIcon": "🛡️",
-      "name": "Brave Browser",
-      "url": "https://brave.com",
-      "description": "Privacy-focused browser with built-in ad blocking"
-    },
-    {
-      "id": "hot-43",
+      "name": "Awesome Search",
+      "url": "https://awesomelists.top/",
       "category": "Misc",
-      "categoryName": "Miscellaneous",
-      "categoryIcon": "📦",
-      "name": "Firefox",
-      "url": "https://www.mozilla.org/firefox",
-      "description": "Open-source web browser from Mozilla"
+      "description": ""
     },
     {
-      "id": "hot-44",
-      "category": "Adblock",
-      "categoryName": "Ad Blocking",
-      "categoryIcon": "🛡️",
-      "name": "Tor Browser",
-      "url": "https://www.torproject.org",
-      "description": "Anonymous web browsing via Tor network"
+      "name": "Awesome F-Droid",
+      "url": "https://fdroid.tabler.dev/",
+      "category": "Mobile",
+      "description": ""
     },
     {
-      "id": "hot-45",
-      "category": "Adblock",
-      "categoryName": "Ad Blocking",
-      "categoryIcon": "🛡️",
-      "name": "Bitwarden",
-      "url": "https://bitwarden.com",
-      "description": "Open-source password manager"
+      "name": "Obtainium",
+      "url": "https://obtainium.imranr.dev/",
+      "category": "Mobile",
+      "description": ""
     },
     {
-      "id": "hot-46",
-      "category": "Adblock",
-      "categoryName": "Ad Blocking",
-      "categoryIcon": "🛡️",
-      "name": "Proton VPN",
-      "url": "https://protonvpn.com",
-      "description": "Secure and private VPN service"
+      "name": "Droid-ify",
+      "url": "https://droidify.app/",
+      "category": "Mobile",
+      "description": ""
+    },
+    {
+      "name": "F-Droid",
+      "url": "https://f-droid.org/",
+      "category": "Mobile",
+      "description": ""
+    },
+    {
+      "name": "GrapheneOS Apps",
+      "url": "https://github.com/GrapheneOS/AppStore",
+      "category": "Mobile",
+      "description": ""
+    },
+    {
+      "name": "VirusTotal",
+      "url": "https://www.virustotal.com/gui/",
+      "category": "Downloading",
+      "description": ""
+    },
+    {
+      "name": "Triage",
+      "url": "https://tria.ge/",
+      "category": "Downloading",
+      "description": ""
+    },
+    {
+      "name": "Adobe Alternatives",
+      "url": "https://github.com/KenneyNL/Adobe-Alternatives",
+      "category": "Downloading",
+      "description": ""
+    },
+    {
+      "name": "Satvrn",
+      "url": "https://rentry.co/FMHYB64#satvrn",
+      "category": "Downloading",
+      "description": ""
+    },
+    {
+      "name": "Virgil Software Search",
+      "url": "https://virgil.samidy.com/Software/",
+      "category": "Downloading",
+      "description": ""
+    },
+    {
+      "name": "Mockoops",
+      "url": "https://mockoops.mohitya.dev/",
+      "category": "Storage",
+      "description": ""
+    },
+    {
+      "name": "Really Good Emails",
+      "url": "https://reallygoodemails.com/",
+      "category": "Storage",
+      "description": ""
+    },
+    {
+      "name": "PostSpark",
+      "url": "https://postspark.app/",
+      "category": "Storage",
+      "description": ""
+    },
+    {
+      "name": "Previewed",
+      "url": "https://previewed.app/",
+      "category": "Storage",
+      "description": ""
+    },
+    {
+      "name": "Mockup World",
+      "url": "https://www.mockupworld.co/",
+      "category": "Storage",
+      "description": ""
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/dZWwhUy",
+      "category": "Gaming",
+      "description": ""
+    },
+    {
+      "name": "CS.RIN Mega",
+      "url": "https://cs.rin.ru/forum/viewtopic.php?f=10&t=95461",
+      "category": "Gaming",
+      "description": ""
+    },
+    {
+      "name": "privateersclub",
+      "url": "https://megathread.pages.dev/",
+      "category": "Gaming",
+      "description": ""
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/jz8dUnnD6Q",
+      "category": "Gaming",
+      "description": ""
+    },
+    {
+      "name": "Wotaku",
+      "url": "https://wotaku.wiki/games",
+      "category": "Gaming",
+      "description": ""
+    },
+    {
+      "name": "Pear Desktop",
+      "url": "https://github.com/pear-devs/pear-desktop",
+      "category": "Music",
+      "description": ""
+    },
+    {
+      "name": "Moosync",
+      "url": "https://moosync.app/",
+      "category": "Music",
+      "description": ""
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/HsbqbRune3",
+      "category": "Music",
+      "description": ""
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Moosync/Moosync",
+      "category": "Music",
+      "description": ""
+    },
+    {
+      "name": "Audion",
+      "url": "https://audionplayer.com/",
+      "category": "Music",
+      "description": ""
+    },
+    {
+      "name": "3",
+      "url": "https://streamwatch.youplex.site/",
+      "category": "Streaming",
+      "description": ""
+    },
+    {
+      "name": "2",
+      "url": "https://fmhy-grading.pages.dev/",
+      "category": "Streaming",
+      "description": ""
+    },
+    {
+      "name": "Cineby",
+      "url": "https://cineby.at/",
+      "category": "Streaming",
+      "description": ""
+    },
+    {
+      "name": "Cineplay",
+      "url": "https://www.cineplay.to/",
+      "category": "Streaming",
+      "description": ""
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.gg/C2zGTdUbHE",
+      "category": "Streaming",
+      "description": ""
+    },
+    {
+      "name": "Config",
+      "url": "https://github.com/ratanakvlun/deluge-ltconfig/releases",
+      "category": "Torrenting",
+      "description": ""
+    },
+    {
+      "name": "Fragments",
+      "url": "https://apps.gnome.org/Fragments/",
+      "category": "Torrenting",
+      "description": ""
+    },
+    {
+      "name": "m0nkrus",
+      "url": "https://rentry.co/FMHYB64#m0nkrus",
+      "category": "Torrenting",
+      "description": ""
+    },
+    {
+      "name": "Block Telemetry",
+      "url": "https://rentry.co/FMHYB64#a-dove-is-dumb",
+      "category": "Torrenting",
+      "description": ""
+    },
+    {
+      "name": "Quick Guide",
+      "url": "https://rentry.co/FMHYB64#quick-guide",
+      "category": "Torrenting",
+      "description": ""
+    },
+    {
+      "name": "AdslGate",
+      "url": "https://www.adslgate.com/",
+      "category": "Non-Eng",
+      "description": ""
+    },
+    {
+      "name": "ZeroTaxJobs",
+      "url": "https://zerotaxjobs.com/",
+      "category": "Non-Eng",
+      "description": ""
+    },
+    {
+      "name": "arabic-reddit-extension",
+      "url": "https://github.com/andronasef/arabic-reddit-extension",
+      "category": "Non-Eng",
+      "description": ""
+    },
+    {
+      "name": "⁠Bahy Films",
+      "url": "https://eg.bahyfilms.com/",
+      "category": "Non-Eng",
+      "description": ""
+    },
+    {
+      "name": "2",
+      "url": "https://egy.bahy-films.info/",
+      "category": "Non-Eng",
+      "description": ""
     }
   ]
 }
