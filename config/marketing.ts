@@ -14,6 +14,7 @@ export const marketingConfig: MarketingConfig = {
       title: "Resources",
       href: "/resources",
     },
+    {
       title: "Directory",
       href: "/directory",
     },
