@@ -59,7 +59,7 @@ export default function SearchResultsPage() {
   }, [allResources, query]);
 
   const handleSearch = useCallback((q: string) => {
-    router.push(`/resources/search?q=${encodeURIComponent(q)}`);
+    router.push(`/directory/search?q=${encodeURIComponent(q)}`);
   }, [router]);
 
   return (

@@ -6,99 +6,99 @@
       "id": "Artificial-Intelligence",
       "name": "AI Tools",
       "description": "Chatbots, text generation, image generation, and AI tool collections",
-      "icon": "🤖",
+      "icon": "\ud83e\udd16",
       "count": 500
     },
     {
       "id": "Educational",
       "name": "Education",
       "description": "Online courses, tutorials, learning platforms, and educational resources",
-      "icon": "🎓",
-      "count": 500
+      "icon": "\ud83c\udf93",
+      "count": 498
     },
     {
       "id": "Adblock",
       "name": "Ad Blocking",
       "description": "Ad blockers, privacy extensions, and anti-tracking tools",
-      "icon": "🛡️",
+      "icon": "\ud83d\udee1\ufe0f",
       "count": 500
     },
     {
       "id": "Linux",
       "name": "Linux",
       "description": "Linux distributions, terminals, and system tools",
-      "icon": "🐧",
-      "count": 500
+      "icon": "\ud83d\udc27",
+      "count": 493
     },
     {
       "id": "Misc",
       "name": "Miscellaneous",
       "description": "Useful tools and resources that don't fit other categories",
-      "icon": "📦",
-      "count": 500
+      "icon": "\ud83d\udce6",
+      "count": 484
     },
     {
       "id": "Reading",
       "name": "Reading",
       "description": "E-books, articles, documentation, and reading platforms",
-      "icon": "📚",
-      "count": 500
+      "icon": "\ud83d\udcda",
+      "count": 490
     },
     {
       "id": "Mobile",
       "name": "Mobile",
       "description": "Mobile apps, tools, and utilities for smartphones",
-      "icon": "📱",
-      "count": 500
+      "icon": "\ud83d\udcf1",
+      "count": 499
     },
     {
       "id": "Storage",
       "name": "Storage",
       "description": "Cloud storage, file hosting, and backup solutions",
-      "icon": "☁️",
-      "count": 500
+      "icon": "\u2601\ufe0f",
+      "count": 488
     },
     {
       "id": "Gaming",
       "name": "Gaming",
       "description": "Game engines, game development tools, and gaming resources",
-      "icon": "🎮",
-      "count": 500
+      "icon": "\ud83c\udfae",
+      "count": 490
     },
     {
       "id": "Music",
       "name": "Music",
       "description": "Music tools, audio editors, and music streaming resources",
-      "icon": "🎵",
-      "count": 500
+      "icon": "\ud83c\udfb5",
+      "count": 486
     },
     {
       "id": "Streaming",
       "name": "Streaming",
       "description": "Video streaming tools, media players, and broadcasting resources",
-      "icon": "📺",
-      "count": 500
+      "icon": "\ud83d\udcfa",
+      "count": 471
     },
     {
       "id": "Non-Eng",
       "name": "Non-English",
       "description": "Resources and tools for non-English language content",
-      "icon": "🌐",
-      "count": 500
+      "icon": "\ud83c\udf10",
+      "count": 499
     },
     {
       "id": "Downloading",
       "name": "Downloading",
       "description": "Download managers, torrent clients, and file transfer tools",
-      "icon": "⬇️",
-      "count": 199
+      "icon": "\u2b07\ufe0f",
+      "count": 198
     },
     {
       "id": "Torrenting",
       "name": "Torrenting",
       "description": "Torrent clients, trackers, and P2P file sharing tools",
-      "icon": "🔽",
-      "count": 96
+      "icon": "\ud83d\udd3d",
+      "count": 91
     }
   ]
 }

@@ -10,19 +10,25 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Free Resource Directory | AI Tools, Dev Tools, Learning Resources",
+  title: "Free Resource Directory | 6,000+ Curated Free Tools & Software | Craftisle",
   description:
-    "6,000+ curated free resources for developers and creators. AI tools, learning platforms, dev tools, privacy & security, cloud storage, and more. 100% compliant, no signup required.",
+    "Discover 6,000+ curated free resources for developers, creators, and learners. Free AI tools, online courses, privacy software, cloud storage, game dev tools, music production, and more. 100% compliant, open-source, no signup required.",
   keywords: [
-    "free resources",
-    "AI tools",
-    "developer tools",
-    "learning resources",
-    "open source",
-    "free software",
-    "privacy tools",
-    "cloud storage",
-    "productivity tools",
+    "free resource directory",
+    "free tools directory",
+    "free software list",
+    "open source tools directory",
+    "best free online tools",
+    "free AI tools directory",
+    "free developer tools",
+    "free learning resources",
+    "free privacy tools",
+    "free cloud storage tools",
+    "free game development tools",
+    "free music production software",
+    "free utilities collection",
+    "curated free software",
+    "no signup free tools",
   ],
 });
 
