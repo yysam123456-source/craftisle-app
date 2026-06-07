@@ -23,7 +23,7 @@ export function ResourceSearchClientWrapper({
   const handleSearch = useCallback(() => {
     const trimmed = query.trim();
     if (trimmed) {
-      router.push(`/resources/search?q=${encodeURIComponent(trimmed)}`);
+      router.push(`/directory/search?q=${encodeURIComponent(trimmed)}`);
     }
   }, [query, router]);
 

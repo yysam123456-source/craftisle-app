@@ -38,7 +38,7 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
       {categories.map((cat, i) => (
         <Link
           key={cat.id}
-          href={`/resources/${cat.id}`}
+          href={`/directory/${cat.id}`}
           className="group block"
         >
           <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">

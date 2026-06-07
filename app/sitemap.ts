@@ -1,8 +1,22 @@
 import { MetadataRoute } from "next";
 import { toolMeta } from "@/lib/tools";
+import { readFileSync } from "fs";
+import { join } from "path";
 
 const baseUrl = "https://craftisle.com";
 const now = new Date();
+
+// 读取资源分类数据
+function getResourceCategories() {
+  try {
+    const filePath = join(process.cwd(), "public", "data", "fmhy-index.json");
+    const raw = readFileSync(filePath, "utf-8");
+    const data = JSON.parse(raw);
+    return data.categories || [];
+  } catch {
+    return [];
+  }
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
@@ -10,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/games`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/tools`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory`, priority: 0.7, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/directory/search`, priority: 0.6, changeFreq: "weekly" as const },
     { url: `${baseUrl}/blog`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/privacy`, priority: 0.4, changeFreq: "monthly" as const },
     { url: `${baseUrl}/terms`, priority: 0.4, changeFreq: "monthly" as const },
@@ -18,6 +33,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: r.changeFreq,
     priority: r.priority,
+  }));
+
+  // 资源分类页面
+  const resourceCategories = getResourceCategories();
+  const categoryPages = resourceCategories.map((cat: any) => ({
+    url: `${baseUrl}/directory/${cat.id}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
   }));
 
   const playPages = [
@@ -51,5 +75,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...playPages, ...otherPages, ...toolPages];
+  return [...staticPages, ...categoryPages, ...playPages, ...otherPages, ...toolPages];
 }

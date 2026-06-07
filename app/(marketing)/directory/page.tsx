@@ -1,124 +1,161 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { Gamepad2, Wrench, Image, BookOpen, ArrowRight } from "lucide-react";
+import { CategoryGrid } from "@/components/resources/category-grid";
+import { HotResources } from "@/components/resources/hot-resources";
+import { ResourceSearchClient } from "@/components/resources/resource-search-client";
+import { ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
+import { readFileSync } from "fs";
+import { join } from "path";
 
-const directories = [
-  {
-    title: "Games Directory",
-    desc: "Curated mini games, reviews & guides",
-    icon: <Gamepad2 className="h-8 w-8" />,
-    href: "/directory/games",
-    count: "12 Games",
-    badge: "Hot",
-    color: "from-green-400 to-blue-500",
-  },
-  {
-    title: "Tools Directory",
-    desc: "Practical tools, comparisons & tutorials",
-    icon: <Wrench className="h-8 w-8" />,
-    href: "/directory/tools",
-    count: "8 Tools",
-    badge: null,
-    color: "from-blue-400 to-purple-500",
-  },
-  {
-    title: "Assets Directory",
-    desc: "Free images, sounds, icons & fonts",
-    icon: <Image className="h-8 w-8" />,
-    href: "/directory/assets",
-    count: "20+ Resources",
-    badge: "New",
-    color: "from-pink-400 to-red-500",
-  },
-  {
-    title: "Articles Directory",
-    desc: "Game guides, dev logs & industry news",
-    icon: <BookOpen className="h-8 w-8" />,
-    href: "/directory/articles",
-    count: "15+ Articles",
-    badge: null,
-    color: "from-yellow-400 to-orange-500",
-  },
-];
+export const metadata: Metadata = constructMetadata({
+  title: "Free Resource Directory | AI Tools, Dev Tools, Learning Resources",
+  description:
+    "6,000+ curated free resources for developers and creators. AI tools, learning platforms, dev tools, privacy & security, cloud storage, and more. 100% compliant, no signup required.",
+  keywords: [
+    "free resources",
+    "AI tools",
+    "developer tools",
+    "learning resources",
+    "open source",
+    "free software",
+    "privacy tools",
+    "cloud storage",
+    "productivity tools",
+  ],
+});
 
-export default function DirectoryPage() {
+interface Category {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  count: number;
+}
+
+interface Resource {
+  id: string;
+  category: string;
+  categoryName: string;
+  categoryIcon: string;
+  name: string;
+  url: string;
+  description: string;
+}
+
+function getIndexData(): { categories: Category[] } | null {
+  try {
+    const filePath = join(process.cwd(), "public", "data", "fmhy-index.json");
+    const raw = readFileSync(filePath, "utf-8");
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error("Failed to load index data:", err);
+    return null;
+  }
+}
+
+function getHotData(): { resources: Resource[] } | null {
+  try {
+    const filePath = join(process.cwd(), "public", "data", "fmhy-hot.json");
+    const raw = readFileSync(filePath, "utf-8");
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error("Failed to load hot data:", err);
+    return null;
+  }
+}
+
+export default async function ResourcesPage() {
+  const indexData = getIndexData();
+  const hotData = getHotData();
+
+  const categories: Category[] = indexData?.categories || [];
+  const hotResources: Resource[] = hotData?.resources || [];
+  const totalCount = categories.reduce((sum, c) => sum + c.count, 0);
+
+  // Structured data for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Free Resource Directory",
+    "description": "6,000+ curated free resources for developers and creators",
+    "url": "https://craftisle.app/directory",
+    "numberOfItems": totalCount,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Craftisle",
+      "url": "https://craftisle.app"
+    }
+  };
+
   return (
     <>
-      {/* Page Header */}
-      <section className="border-b bg-muted/30 py-12">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      
+      {/* Hero Section */}
+      <section className="border-b bg-muted/30 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              📂 Resources
+              Resources
             </Badge>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Resource Directory
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+              Free Resource Directory
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Curated games, tools & assets to help you find what you need.
+            <p className="mt-4 text-lg text-muted-foreground md:text-xl">
+              {totalCount.toLocaleString()}+ curated compliant resources covering AI tools, learning, dev tools, and more
             </p>
+            <div className="mt-8 max-w-2xl mx-auto">
+              <ResourceSearchClient />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Directory Grid */}
+      {/* Hot Resources */}
+      {hotResources.length > 0 && (
+        <HotResources resources={hotResources} />
+      )}
+
+      {/* All Categories */}
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 sm:grid-cols-2">
-            {directories.map((dir) => (
-              <Card
-                key={dir.href}
-                className="overflow-hidden transition-shadow hover:shadow-lg"
-              >
-                <div className={`aspect-[3/1] bg-gradient-to-r ${dir.color} relative flex items-center justify-center p-8`}>
-                  <div className="text-white">
-                    <div className="mb-2">{dir.icon}</div>
-                    <div className="text-sm opacity-80">{dir.count}</div>
-                  </div>
-                  {dir.badge && (
-                    <Badge className="absolute top-4 right-4" variant="secondary">
-                      {dir.badge}
-                    </Badge>
-                  )}
-                </div>
-                <CardHeader>
-                  <CardTitle>{dir.title}</CardTitle>
-                  <CardDescription>{dir.desc}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Link href={dir.href}>
-                    <Button className="w-full" variant="outline">
-                      Browse <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold tracking-tight">
+              All Categories
+            </h2>
+            <p className="mt-1 text-muted-foreground">
+              {totalCount.toLocaleString()} resources across {categories.length} categories
+            </p>
           </div>
+          <CategoryGrid categories={categories} />
         </div>
       </section>
 
-      {/* Submit CTA */}
+      {/* Footer CTA */}
       <section className="border-t bg-muted/30 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold">Want your resource featured?</h2>
+            <h2 className="text-2xl font-bold">
+              Know a great free resource?
+            </h2>
             <p className="mt-4 text-muted-foreground">
-              Developers & tool creators can submit their work for review and inclusion.
+              If you discover a high-quality free resource, feel free to recommend it via Issues.
             </p>
-            <Link href="/submit">
+            <a
+              href="https://github.com/yysam123456/yysam123456-source/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button size="lg" className="mt-8">
-                Submit Resource <ArrowRight className="ml-2 h-4 w-4" />
+                Recommend <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

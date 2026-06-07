@@ -16,30 +16,34 @@ export function constructMetadata({
   image = siteConfig.ogImage,
   icons = "/favicon.ico",
   noIndex = false,
+  keywords: customKeywords,
 }: {
   title?: string;
   description?: string;
   image?: string;
   icons?: string;
   noIndex?: boolean;
+  keywords?: string[];
 } = {}): Metadata {
+  const defaultKeywords = [
+    "free online games",
+    "online tools",
+    "web games",
+    "developer tools",
+    "Craftisle",
+    "free utilities",
+    "browser games",
+    "productivity tools",
+    "QR code generator",
+    "JSON formatter",
+    "Base64 encoder",
+    "regex tester",
+  ];
+  
   return {
     title,
     description,
-    keywords: [
-      "free online games",
-      "online tools",
-      "web games",
-      "developer tools",
-      "Craftisle",
-      "free utilities",
-      "browser games",
-      "productivity tools",
-      "QR code generator",
-      "JSON formatter",
-      "Base64 encoder",
-      "regex tester",
-    ],
+    keywords: customKeywords || defaultKeywords,
     authors: [
       {
         name: "Craftisle",
