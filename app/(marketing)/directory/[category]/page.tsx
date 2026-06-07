@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CategoryGrid } from "@/components/resources/category-grid";
-import { HotResources } from "@/components/resources/hot-resources";
 import { ResourcesClient } from "@/components/resources/resources-client";
 import { ResourceSearchClientWrapper } from "@/components/resources/resource-search-client-wrapper";
 import { ArrowRight } from "lucide-react";
@@ -47,10 +45,6 @@ function getIndexData(): { categories: Category[] } | null {
   return loadJson("fmhy-index.json");
 }
 
-function getHotData(): { resources: Resource[] } | null {
-  return loadJson("fmhy-hot.json");
-}
-
 function getCategoryResources(categoryId: string): Resource[] {
   const data = loadJson<{ categories: Record<string, { resources: Resource[] }> }>("fmhy-resources.json");
   return data?.categories?.[categoryId]?.resources || [];
@@ -86,106 +80,55 @@ export async function generateMetadata({
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params;
   const indexData = getIndexData();
-  const hotData = getHotData();
+  const cat = indexData?.categories?.find((c) => c.id === category);
 
-  const categories: Category[] = indexData?.categories || [];
-  const hotResources: Resource[] = hotData?.resources || [];
-  const categoryInfo = categories.find((c) => c.id === category);
-  const resources = getCategoryResources(category);
-
-  if (!categoryInfo) {
+  if (!cat) {
     return (
       <section className="py-24 text-center">
         <h1 className="text-3xl font-bold">Category Not Found</h1>
         <p className="mt-4 text-muted-foreground">
           This resource category does not exist.
         </p>
-        <a href="/resources">
-          <Button className="mt-8">Back to Resources</Button>
+        <a href="/directory">
+          <Button className="mt-8">Back to Directory</Button>
         </a>
       </section>
     );
   }
 
+  const resources = getCategoryResources(category);
+
   return (
-    <>
-      {/* Hero */}
-      <section className="border-b bg-muted/30 py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
-            <Badge variant="secondary" className="mb-4">
-              Resources
-            </Badge>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              {categoryInfo.icon} {categoryInfo.name}
-            </h1>
-            <p className="mt-2 text-muted-foreground">
-              {categoryInfo.description}
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {categoryInfo.count} resources
-            </p>
-            <div className="mt-6 max-w-xl">
-              <ResourceSearchClientWrapper />
-            </div>
-          </div>
+    <section className="py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-8">
+          <Badge variant="secondary" className="mb-4">
+            Resources
+          </Badge>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            {cat.icon} {cat.name}
+          </h1>
+          <p className="mt-2 text-muted-foreground">
+            {cat.description}
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {resources.length} resources
+          </p>
         </div>
-      </section>
 
-      {/* Hot Resources */}
-      {hotResources.length > 0 && (
-        <section className="py-12">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="mb-6 text-2xl font-bold tracking-tight">
-              Hot Resources
-            </h2>
-            <HotResources resources={hotResources.slice(0, 12)} />
-          </div>
-        </section>
-      )}
-
-      {/* All Categories */}
-      <section className="border-t py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight">
-            All Categories
-          </h2>
-          <CategoryGrid categories={categories} />
+        {/* Search within category */}
+        <div className="mb-8 max-w-xl">
+          <ResourceSearchClientWrapper />
         </div>
-      </section>
 
-      {/* Category Resource List */}
-      <section className="border-t py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight">
-            {categoryInfo.icon} {categoryInfo.name} — All Resources
-          </h2>
-          <ResourcesClient resources={resources} category={categoryInfo} />
-        </div>
-      </section>
-
-      {/* Footer CTA */}
-      <section className="border-t bg-muted/30 py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold">
-              Know a great free resource?
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              If you discover a high-quality free resource, feel free to recommend it via Issues.
-            </p>
-            <a
-              href="https://github.com/yysam123456/yysam123456-source/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" className="mt-8">
-                Recommend <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+        {/* Resource List */}
+        {resources.length > 0 ? (
+          <ResourcesClient resources={resources} category={cat} />
+        ) : (
+          <p className="text-muted-foreground">No resources found in this category.</p>
+        )}
+      </div>
+    </section>
   );
 }
