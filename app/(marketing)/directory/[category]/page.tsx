@@ -1,5 +1,4 @@
 import { ResourcesClient } from "@/components/resources/resources-client";
-import { ResourceSearchClientWrapper } from "@/components/resources/resource-search-client-wrapper";
 import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
@@ -113,11 +112,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <p className="mt-1 text-sm text-muted-foreground">
             {resources.length} resources
           </p>
-        </div>
-
-        {/* Search within category */}
-        <div className="mb-8 max-w-xl">
-          <ResourceSearchClientWrapper />
         </div>
 
         {/* Resource List */}

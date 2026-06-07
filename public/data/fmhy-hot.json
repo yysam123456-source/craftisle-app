@@ -6,421 +6,421 @@
       "name": "FakeYou",
       "url": "https://fakeyou.com/",
       "category": "Artificial-Intelligence",
-      "description": ""
+      "description": "Deep fake text-to-speech tool that lets you clone voices and generate speech in the style of famous characters, celebrities, or your own voice. Useful for content creation, voiceovers, and entertainment projects."
     },
     {
       "name": "GitHub",
       "url": "https://github.com/elicit",
       "category": "Artificial-Intelligence",
-      "description": ""
+      "description": "An AI-powered tool that helps with open-source development and code collaboration. Useful for automating tasks, generating content, or enhancing productivity with machine learning. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Perplexity",
       "url": "https://www.perplexity.ai/",
       "category": "Artificial-Intelligence",
-      "description": ""
+      "description": "AI-powered search engine that provides direct answers with cited sources. Combines the power of large language models with real-time web search to give accurate, up-to-date information with verifiable references."
     },
     {
       "name": "⁠Together.ai",
       "url": "https://chat.together.ai/",
       "category": "Artificial-Intelligence",
-      "description": ""
+      "description": "Cloud platform for running and fine-tuning open-source large language models. Offers API access to models like Llama, Mixtral, and more at competitive pricing for developers building AI applications."
     },
     {
       "name": "Qwen",
       "url": "https://chat.qwen.ai/",
       "category": "Artificial-Intelligence",
-      "description": ""
+      "description": "Alibaba's open-source large language model series, available as a chat interface. Supports multilingual conversations, code generation, and reasoning tasks with strong performance on benchmarks."
     },
     {
       "name": "uBlock Origin",
       "url": "https://github.com/gorhill/uBlock",
       "category": "Adblock",
-      "description": ""
+      "description": "Lightweight and efficient ad blocker that blocks ads, trackers, and malware sites. Uses minimal memory compared to other blockers and supports custom filter lists for advanced users."
     },
     {
       "name": "ClearURLs",
       "url": "https://docs.clearurls.xyz",
       "category": "Adblock",
-      "description": ""
+      "description": "Extension that removes tracking elements from URLs before you visit them. Strips UTM parameters, tracking IDs, and referral codes to protect your privacy while browsing."
     },
     {
       "name": "avoid breakage",
       "url": "https://x.com/gorhill/status/1033706103782170625",
       "category": "Adblock",
-      "description": ""
+      "description": "A privacy and security tool designed to blocking unwanted content and protecting online privacy. Helps protect your data and browsing habits from trackers, advertisers, and malicious actors."
     },
     {
       "name": "AdGuard",
       "url": "https://github.com/AdguardTeam/AdguardBrowserExtension",
       "category": "Adblock",
-      "description": ""
+      "description": "A privacy and security tool designed to open-source development and code collaboration. Helps protect your data and browsing habits from trackers, advertisers, and malicious actors. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "uBO Lite",
       "url": "https://github.com/uBlockOrigin/uBOL-home",
       "category": "Adblock",
-      "description": ""
+      "description": "A privacy and security tool designed to open-source development and code collaboration. Helps protect your data and browsing habits from trackers, advertisers, and malicious actors. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Nix",
       "url": "https://nixos.org/",
       "category": "Linux",
-      "description": ""
+      "description": "A Linux-related resource for Linux system management and open-source software. Essential for system administrators, developers, and power users working with open-source operating systems."
     },
     {
       "name": "Flatpak",
       "url": "https://flatpak.org/",
       "category": "Linux",
-      "description": ""
+      "description": "Universal app packaging format for Linux that works across distributions. Applications run in a sandboxed environment with controlled permissions for better security."
     },
     {
       "name": "SnapCraft",
       "url": "https://snapcraft.io/store",
       "category": "Linux",
-      "description": ""
+      "description": "A Linux-related resource for Linux system management and open-source software. Essential for system administrators, developers, and power users working with open-source operating systems."
     },
     {
       "name": "AppImageLauncher",
       "url": "https://github.com/TheAssassin/AppImageLauncher",
       "category": "Linux",
-      "description": ""
+      "description": "Portable app format for Linux that lets you run applications without installation. Just download, make executable, and run - no root permissions or package manager required."
     },
     {
       "name": "DistroWatch",
       "url": "https://distrowatch.com/dwres.php?resource=popularity",
       "category": "Linux",
-      "description": ""
+      "description": "Comprehensive database of Linux distributions and BSD variants. Tracks release announcements, package updates, and popularity rankings to help users find the right distro."
     },
     {
       "name": "Khan Academy",
       "url": "https://www.khanacademy.org/",
       "category": "Educational",
-      "description": ""
+      "description": "Free online learning platform offering courses in math, science, computing, history, and more. Features interactive exercises, instructional videos, and a personalized learning dashboard for all ages."
     },
     {
       "name": "edX",
       "url": "https://www.edx.org/",
       "category": "Educational",
-      "description": ""
+      "description": "Non-profit online course provider founded by Harvard and MIT. Hosts university-level courses from institutions worldwide with options for free audit or paid verified certificates."
     },
     {
       "name": "Official YT Documentary Channels",
       "url": "https://github.com/superlincoln953/Free-Official-Youtube-Content?tab=readme-ov-file#Documentaries",
       "category": "Educational",
-      "description": ""
+      "description": "An educational resource for open-source development and code collaboration. Great for self-learners, students, and professionals looking to expand their knowledge and skills. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "IHaveNoTV",
       "url": "https://ihavenotv.com",
       "category": "Educational",
-      "description": ""
+      "description": "An educational resource for learning new skills and expanding knowledge. Great for self-learners, students, and professionals looking to expand their knowledge and skills."
     },
     {
       "name": "DocumentaryArea",
       "url": "https://www.documentaryarea.com/",
       "category": "Educational",
-      "description": ""
+      "description": "An educational resource for learning new skills and expanding knowledge. Great for self-learners, students, and professionals looking to expand their knowledge and skills."
     },
     {
       "name": "Project Gutenberg",
       "url": "https://www.gutenberg.org/",
       "category": "Reading",
-      "description": ""
+      "description": "Oldest digital library offering over 70,000 free eBooks. Focuses on older literary works for which US copyright has expired, available in multiple formats including EPUB and Kindle."
     },
     {
       "name": "Standard EBooks",
       "url": "https://standardebooks.org/",
       "category": "Reading",
-      "description": ""
+      "description": "Volunteer-driven project producing high-quality, carefully formatted editions of public domain books. Uses modern typography standards and produces professional-grade EPUB files."
     },
     {
       "name": "Foliate",
       "url": "https://johnfactotum.github.io/foliate/",
       "category": "Reading",
-      "description": ""
+      "description": "Modern e-book reader application for Linux with support for EPUB, MOBI, AZW, and FB2. Features customizable themes, annotations, and dictionary lookup in a clean interface."
     },
     {
       "name": "Calibre",
       "url": "https://calibre-ebook.com/",
       "category": "Reading",
-      "description": ""
+      "description": "Powerful open-source e-book management tool. Organizes, converts, and syncs e-books across devices while supporting virtually every e-book format including EPUB, MOBI, and PDF."
     },
     {
       "name": "KOReader",
       "url": "https://koreader.rocks/",
       "category": "Reading",
-      "description": ""
+      "description": "Open-source document viewer for e-ink devices. Supports EPUB, PDF, DjVu, and more with reflowable text, annotations, and dictionary lookup optimized for e-reader hardware."
     },
     {
       "name": "Awesome List Index",
       "url": "https://github.com/sindresorhus/awesome",
       "category": "Misc",
-      "description": ""
+      "description": "A useful utility tool for open-source development and code collaboration. Simplifies everyday tasks and improves workflow efficiency for developers and power users. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "GitHub Topics",
       "url": "https://github.com/topics/awesome",
       "category": "Misc",
-      "description": ""
+      "description": "A useful utility tool for open-source development and code collaboration. Simplifies everyday tasks and improves workflow efficiency for developers and power users. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "2",
       "url": "https://github.com/topics/awesome-list",
       "category": "Misc",
-      "description": ""
+      "description": "A useful utility tool for open-source development and code collaboration. Simplifies everyday tasks and improves workflow efficiency for developers and power users. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Lists",
       "url": "https://github.com/jnv/lists",
       "category": "Misc",
-      "description": ""
+      "description": "A useful utility tool for open-source development and code collaboration. Simplifies everyday tasks and improves workflow efficiency for developers and power users. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Awesome Search",
       "url": "https://awesomelists.top/",
       "category": "Misc",
-      "description": ""
+      "description": "A useful utility tool for curated lists of the best resources and tools in a category. Simplifies everyday tasks and improves workflow efficiency for developers and power users."
     },
     {
       "name": "Awesome F-Droid",
       "url": "https://fdroid.tabler.dev/",
       "category": "Mobile",
-      "description": ""
+      "description": "Installable catalog of free and open-source Android apps. An alternative to Google Play Store that respects your privacy with reproducible builds and no tracking."
     },
     {
       "name": "Obtainium",
       "url": "https://obtainium.imranr.dev/",
       "category": "Mobile",
-      "description": ""
+      "description": "App that lets you install and update open-source apps directly from their source repositories. Track GitHub, GitLab, and F-Droid releases with automatic update notifications."
     },
     {
       "name": "Droid-ify",
       "url": "https://droidify.app/",
       "category": "Mobile",
-      "description": ""
+      "description": "Material Design F-Droid client with a modern interface. Browse, install, and update open-source Android apps with support for multiple repositories."
     },
     {
       "name": "F-Droid",
       "url": "https://f-droid.org/",
       "category": "Mobile",
-      "description": ""
+      "description": "Installable catalog of free and open-source Android apps. An alternative to Google Play Store that respects your privacy with reproducible builds and no tracking."
     },
     {
       "name": "GrapheneOS Apps",
       "url": "https://github.com/GrapheneOS/AppStore",
       "category": "Mobile",
-      "description": ""
+      "description": "Privacy and security-focused mobile operating system based on Android. Hardened memory allocator, verified boot, and sandboxed Google Play services for Pixel devices."
     },
     {
       "name": "VirusTotal",
       "url": "https://www.virustotal.com/gui/",
       "category": "Downloading",
-      "description": ""
+      "description": "A download management tool for efficiently retrieving files from the internet. Optimizes file transfers with features like resuming, scheduling, and multi-connection downloading."
     },
     {
       "name": "Triage",
       "url": "https://tria.ge/",
       "category": "Downloading",
-      "description": ""
+      "description": "A download management tool for efficiently retrieving files from the internet. Optimizes file transfers with features like resuming, scheduling, and multi-connection downloading."
     },
     {
       "name": "Adobe Alternatives",
       "url": "https://github.com/KenneyNL/Adobe-Alternatives",
       "category": "Downloading",
-      "description": ""
+      "description": "A download management tool for open-source development and code collaboration. Optimizes file transfers with features like resuming, scheduling, and multi-connection downloading. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Satvrn",
       "url": "https://rentry.co/FMHYB64#satvrn",
       "category": "Downloading",
-      "description": ""
+      "description": "A download management tool for efficiently retrieving files from the internet. Optimizes file transfers with features like resuming, scheduling, and multi-connection downloading."
     },
     {
       "name": "Virgil Software Search",
       "url": "https://virgil.samidy.com/Software/",
       "category": "Downloading",
-      "description": ""
+      "description": "A download management tool for tool for finding and discovering information. Optimizes file transfers with features like resuming, scheduling, and multi-connection downloading."
     },
     {
       "name": "Mockoops",
       "url": "https://mockoops.mohitya.dev/",
       "category": "Storage",
-      "description": ""
+      "description": "A data storage and backup solution for managing, backing up, and securing data. Protects your files with encryption, deduplication, and reliable cloud or local storage options."
     },
     {
       "name": "Really Good Emails",
       "url": "https://reallygoodemails.com/",
       "category": "Storage",
-      "description": ""
+      "description": "A data storage and backup solution for managing, backing up, and securing data. Protects your files with encryption, deduplication, and reliable cloud or local storage options."
     },
     {
       "name": "PostSpark",
       "url": "https://postspark.app/",
       "category": "Storage",
-      "description": ""
+      "description": "A data storage and backup solution for managing, backing up, and securing data. Protects your files with encryption, deduplication, and reliable cloud or local storage options."
     },
     {
       "name": "Previewed",
       "url": "https://previewed.app/",
       "category": "Storage",
-      "description": ""
+      "description": "A data storage and backup solution for managing, backing up, and securing data. Protects your files with encryption, deduplication, and reliable cloud or local storage options."
     },
     {
       "name": "Mockup World",
       "url": "https://www.mockupworld.co/",
       "category": "Storage",
-      "description": ""
+      "description": "A data storage and backup solution for managing, backing up, and securing data. Protects your files with encryption, deduplication, and reliable cloud or local storage options."
     },
     {
       "name": "Discord",
       "url": "https://discord.gg/dZWwhUy",
       "category": "Gaming",
-      "description": ""
+      "description": "A gaming tool for enhancing the gaming experience on Linux. Enhances your gaming experience on Linux with compatibility layers, performance overlays, and game management features."
     },
     {
       "name": "CS.RIN Mega",
       "url": "https://cs.rin.ru/forum/viewtopic.php?f=10&t=95461",
       "category": "Gaming",
-      "description": ""
+      "description": "A gaming tool for enhancing the gaming experience on Linux. Enhances your gaming experience on Linux with compatibility layers, performance overlays, and game management features."
     },
     {
       "name": "privateersclub",
       "url": "https://megathread.pages.dev/",
       "category": "Gaming",
-      "description": ""
+      "description": "A gaming tool for enhancing the gaming experience on Linux. Enhances your gaming experience on Linux with compatibility layers, performance overlays, and game management features."
     },
     {
       "name": "Discord",
       "url": "https://discord.gg/jz8dUnnD6Q",
       "category": "Gaming",
-      "description": ""
+      "description": "A gaming tool for enhancing the gaming experience on Linux. Enhances your gaming experience on Linux with compatibility layers, performance overlays, and game management features."
     },
     {
       "name": "Wotaku",
       "url": "https://wotaku.wiki/games",
       "category": "Gaming",
-      "description": ""
+      "description": "A gaming tool for enhancing the gaming experience on Linux. Enhances your gaming experience on Linux with compatibility layers, performance overlays, and game management features."
     },
     {
       "name": "Pear Desktop",
       "url": "https://github.com/pear-devs/pear-desktop",
       "category": "Music",
-      "description": ""
+      "description": "A music tool for open-source development and code collaboration. Manage, stream, and organize your audio collection with open-source software that respects your privacy. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Moosync",
       "url": "https://moosync.app/",
       "category": "Music",
-      "description": ""
+      "description": "A music tool for tool for keeping files consistent across devices. Manage, stream, and organize your audio collection with open-source software that respects your privacy."
     },
     {
       "name": "Discord",
       "url": "https://discord.gg/HsbqbRune3",
       "category": "Music",
-      "description": ""
+      "description": "A music tool for enjoying and organizing audio content. Manage, stream, and organize your audio collection with open-source software that respects your privacy."
     },
     {
       "name": "GitHub",
       "url": "https://github.com/Moosync/Moosync",
       "category": "Music",
-      "description": ""
+      "description": "A music tool for open-source development and code collaboration. Manage, stream, and organize your audio collection with open-source software that respects your privacy. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Audion",
       "url": "https://audionplayer.com/",
       "category": "Music",
-      "description": ""
+      "description": "A music tool for enjoying and organizing audio content. Manage, stream, and organize your audio collection with open-source software that respects your privacy."
     },
     {
       "name": "3",
       "url": "https://streamwatch.youplex.site/",
       "category": "Streaming",
-      "description": ""
+      "description": "A media streaming solution for streaming personal media collections to devices. Stream your personal media collection to any device with a self-hosted, privacy-respecting platform."
     },
     {
       "name": "2",
       "url": "https://fmhy-grading.pages.dev/",
       "category": "Streaming",
-      "description": ""
+      "description": "A media streaming solution for streaming personal media collections to devices. Stream your personal media collection to any device with a self-hosted, privacy-respecting platform."
     },
     {
       "name": "Cineby",
       "url": "https://cineby.at/",
       "category": "Streaming",
-      "description": ""
+      "description": "A media streaming solution for streaming personal media collections to devices. Stream your personal media collection to any device with a self-hosted, privacy-respecting platform."
     },
     {
       "name": "Cineplay",
       "url": "https://www.cineplay.to/",
       "category": "Streaming",
-      "description": ""
+      "description": "A media streaming solution for streaming personal media collections to devices. Stream your personal media collection to any device with a self-hosted, privacy-respecting platform."
     },
     {
       "name": "Discord",
       "url": "https://discord.gg/C2zGTdUbHE",
       "category": "Streaming",
-      "description": ""
+      "description": "A media streaming solution for streaming personal media collections to devices. Stream your personal media collection to any device with a self-hosted, privacy-respecting platform."
     },
     {
       "name": "Config",
       "url": "https://github.com/ratanakvlun/deluge-ltconfig/releases",
       "category": "Torrenting",
-      "description": ""
+      "description": "A BitTorrent client or tool for open-source development and code collaboration. Efficient peer-to-peer file sharing with features for managing downloads, bandwidth, and remote access. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "Fragments",
       "url": "https://apps.gnome.org/Fragments/",
       "category": "Torrenting",
-      "description": ""
+      "description": "Easy-to-use BitTorrent client built for GNOME and GTK. Modern interface with essential features in a clean, beginner-friendly package for Linux desktop users."
     },
     {
       "name": "m0nkrus",
       "url": "https://rentry.co/FMHYB64#m0nkrus",
       "category": "Torrenting",
-      "description": ""
+      "description": "A BitTorrent client or tool for peer-to-peer file sharing and distribution. Efficient peer-to-peer file sharing with features for managing downloads, bandwidth, and remote access."
     },
     {
       "name": "Block Telemetry",
       "url": "https://rentry.co/FMHYB64#a-dove-is-dumb",
       "category": "Torrenting",
-      "description": ""
+      "description": "A BitTorrent client or tool for peer-to-peer file sharing and distribution. Efficient peer-to-peer file sharing with features for managing downloads, bandwidth, and remote access."
     },
     {
       "name": "Quick Guide",
       "url": "https://rentry.co/FMHYB64#quick-guide",
       "category": "Torrenting",
-      "description": ""
+      "description": "A BitTorrent client or tool for comprehensive how-to documentation and best practices. Efficient peer-to-peer file sharing with features for managing downloads, bandwidth, and remote access."
     },
     {
       "name": "AdslGate",
       "url": "https://www.adslgate.com/",
       "category": "Non-Eng",
-      "description": ""
+      "description": "A multilingual or translation tool for multilingual communication and content access. Breaks down language barriers with AI or dictionary-based translation supporting multiple languages."
     },
     {
       "name": "ZeroTaxJobs",
       "url": "https://zerotaxjobs.com/",
       "category": "Non-Eng",
-      "description": ""
+      "description": "A multilingual or translation tool for multilingual communication and content access. Breaks down language barriers with AI or dictionary-based translation supporting multiple languages."
     },
     {
       "name": "arabic-reddit-extension",
       "url": "https://github.com/andronasef/arabic-reddit-extension",
       "category": "Non-Eng",
-      "description": ""
+      "description": "A multilingual or translation tool for open-source development and code collaboration. Breaks down language barriers with AI or dictionary-based translation supporting multiple languages. Open-source project with publicly available source code for transparency and community contributions."
     },
     {
       "name": "⁠Bahy Films",
       "url": "https://eg.bahyfilms.com/",
       "category": "Non-Eng",
-      "description": ""
+      "description": "A multilingual or translation tool for multilingual communication and content access. Breaks down language barriers with AI or dictionary-based translation supporting multiple languages."
     },
     {
       "name": "2",
       "url": "https://egy.bahy-films.info/",
       "category": "Non-Eng",
-      "description": ""
+      "description": "A multilingual or translation tool for multilingual communication and content access. Breaks down language barriers with AI or dictionary-based translation supporting multiple languages."
     }
   ]
 }
