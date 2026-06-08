@@ -88,6 +88,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <ModalProvider>{children}</ModalProvider>
             <Analytics />
             <Toaster richColors closeButton />
+            {/* Monetag Vignette Banner — controlled by ADVER_ENABLE */}
+            {process.env.NEXT_PUBLIC_ADVER_ENABLE === 'true' && (
+              <Script
+                  id="monetag-vignette"
+                  src="/monetag-vignette.js"
+                  strategy="afterInteractive"
+                />
+            )}
           </ThemeProvider>
         </SessionProvider>
       </body>
