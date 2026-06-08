@@ -12,14 +12,19 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { Search, X } from "lucide-react";
+import { Search, X, Star } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { toolMeta, CATEGORY_LIST } from "@/lib/tools";
 import { imageToolIds } from "@/lib/image-tools/ids";
 import type { ToolMeta } from "@/lib/tools";
+import { useFavorites } from "@/hooks/use-favorites";
+import { StarButton } from "@/components/star-button";
 
 export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const { favorites, toggle, isFavorited } = useFavorites();
 
   const filtered = useMemo(() => {
     const pinned = ["pdf-tools", "file-viewer", ...imageToolIds];
@@ -37,9 +42,17 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
         const matchesCategory =
           !activeCategory || meta.category === activeCategory;
 
-        return matchesSearch && matchesCategory;
+        const matchesFavorite = !showFavoritesOnly || isFavorited(dirName);
+
+        return matchesSearch && matchesCategory && matchesFavorite;
       })
       .sort((a, b) => {
+        // Favorited items always on top
+        const aFav = isFavorited(a);
+        const bFav = isFavorited(b);
+        if (aFav && !bFav) return -1;
+        if (!aFav && bFav) return 1;
+
         const aIdx = pinned.indexOf(a);
         const bIdx = pinned.indexOf(b);
         if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
@@ -47,7 +60,7 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
         if (bIdx !== -1) return 1;
         return a.localeCompare(b);
       });
-  }, [toolDirs, search, activeCategory]);
+  }, [toolDirs, search, activeCategory, showFavoritesOnly, isFavorited]);
 
   const categoryCounts: Record<string, number> = {};
   for (const dirName of toolDirs) {
@@ -103,12 +116,38 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
             {/* Category filter */}
             <div className="flex flex-wrap gap-2">
               <Button
-                variant={activeCategory === null ? "default" : "outline"}
+                variant={
+                  activeCategory === null && !showFavoritesOnly
+                    ? "default"
+                    : "outline"
+                }
                 size="sm"
-                onClick={() => setActiveCategory(null)}
+                onClick={() => {
+                  setActiveCategory(null);
+                  setShowFavoritesOnly(false);
+                }}
                 className="rounded-full"
               >
                 All ({toolDirs.length})
+              </Button>
+              <Button
+                variant={showFavoritesOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => {
+                  setShowFavoritesOnly(!showFavoritesOnly);
+                  setActiveCategory(null);
+                }}
+                className="rounded-full"
+              >
+                <Star
+                  className={cn(
+                    "mr-1 h-3.5 w-3.5",
+                    showFavoritesOnly
+                      ? "fill-current"
+                      : "fill-transparent"
+                  )}
+                />
+                Favorites ({favorites.size})
               </Button>
               {CATEGORY_LIST.map(({ key, label }) => {
                 const count = categoryCounts[label] || 0;
@@ -118,11 +157,12 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
                     key={key}
                     variant={activeCategory === label ? "default" : "outline"}
                     size="sm"
-                    onClick={() =>
+                    onClick={() => {
                       setActiveCategory(
                         activeCategory === label ? null : label
-                      )
-                    }
+                      );
+                      setShowFavoritesOnly(false);
+                    }}
                     className="rounded-full"
                   >
                     {label} ({count})
@@ -176,9 +216,15 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
                         <div className="rounded-lg bg-primary/10 p-3 text-2xl">
                           {meta.icon}
                         </div>
-                        {meta.badge && (
-                          <Badge variant="default">{meta.badge}</Badge>
-                        )}
+                        <div className="flex items-center gap-1">
+                          {meta.badge && (
+                            <Badge variant="default">{meta.badge}</Badge>
+                          )}
+                          <StarButton
+                            isActive={isFavorited(dirName)}
+                            onClick={() => toggle(dirName)}
+                          />
+                        </div>
                       </div>
                       <CardTitle className="mt-4 text-base">
                         {meta.title}

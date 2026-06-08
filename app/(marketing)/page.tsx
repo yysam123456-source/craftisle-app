@@ -24,6 +24,7 @@ import {
   Code2,
   PenTool,
   Pencil,
+  FileEdit,
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
@@ -203,6 +204,21 @@ export default function IndexPage() {
             </Link>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <Card className="transition-shadow hover:shadow-lg">
+              <CardHeader>
+                <FileEdit className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">Resume Builder</CardTitle>
+                <CardDescription>Create professional resumes with AI</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Link href="https://resume.craftisle.com" target="_blank" rel="noopener noreferrer">
+                  <Button variant="ghost" size="sm" className="w-full">
+                    Open Tool ↗
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          
             <Card className="transition-shadow hover:shadow-lg">
               <CardHeader>
                 <FileText className="h-8 w-8 text-primary" />

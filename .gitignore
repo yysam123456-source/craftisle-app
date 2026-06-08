@@ -63,3 +63,7 @@ __pycache__/
 push_all_via_api.py
 push_log.txt
 .env*
+
+# MemPalace per-project files (issue #185)
+mempalace.yaml
+entities.json
