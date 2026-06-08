@@ -58,6 +58,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Monetag site verification */}
+        <meta name="monetag" content="95c89403a193eef38bbc05e97d7c067c" />
         {/* Google AdSense - only loads when NEXT_PUBLIC_ADSENSE_CLIENT is set */}
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
           <script
