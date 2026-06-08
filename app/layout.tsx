@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Script } from "next/script";
 import "@/styles/globals.css";
 import { fontGeist, fontHeading, fontSans, fontUrban } from "@/assets/fonts";
 
