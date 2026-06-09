@@ -1,0 +1,118 @@
+---
+title: Privacy & Security at Craftisle — How We Protect Your Data
+description: Understand Craftisle's privacy-first architecture. All tools run client-side with zero data collection. No accounts, no tracking, no server uploads. How we keep your data truly private.
+image: /_static/blog/blog-post-11.png
+date: "2026-06-09"
+authors:
+  - craftisle
+categories:
+  - news
+---
+
+Privacy isn't a feature at Craftisle — it's the foundation. Every design decision starts with one question: "Can we do this without touching the user's data?" The answer is almost always yes.
+
+## The Architecture of Privacy
+
+### Client-Side Processing
+
+The vast majority of Craftisle tools process data entirely in your browser:
+
+- **Image tools** — Canvas API and Web Workers handle all pixel manipulation locally
+- **PDF tools** — pdf-lib and qpdf.wasm compile to WebAssembly and run in-browser
+- **Encryption tools** — AES, bcrypt, and hashing use the Web Crypto API
+- **Formatters & converters** — Plain JavaScript string and data transformations
+- **File viewer** — Local file rendering via FlyFish engine (no upload)
+- **Resume builder** — All data stored in localStorage only
+
+### What "Client-Side" Actually Means
+
+When we say "client-side," we mean:
+1. Your file is read by your browser using the FileReader API
+2. Processing happens in JavaScript/WebAssembly in your browser's memory
+3. The result is written back to your downloads folder
+4. **At no point does your data leave your device**
+
+### Server-Side Exceptions (Minimal & Documented)
+
+A few tools require brief server processing for functionality that can't be done client-side:
+
+| Tool | What's sent | Why | Retention |
+|------|-------------|-----|-----------|
+| Image Resizer | Image file | Sharp (server-side library) produces higher quality than Canvas | Deleted after processing |
+| QR Code Generator | URL/Text to encode | QR code generation library runs server-side | Not stored |
+| OCR PDF | PDF file | Tesseract.js can be too slow client-side for large documents | Deleted after OCR |
+
+All server-processed files are:
+- Transmitted over HTTPS only
+- Processed in memory (not written to disk)
+- Deleted immediately after processing completes
+- Never shared with third parties
+
+## Data We Don't Collect
+
+Craftisle is built to function with **zero personal data collection**:
+
+- ❌ No user accounts — no email, no password, no profile data
+- ❌ No analytics on tool usage — we don't know which tools you use
+- ❌ No file content logging — we can't see your documents
+- ❌ No IP address logging for tool usage
+- ❌ No cookies for tracking (only essential functional cookies)
+- ❌ No third-party trackers, pixels, or fingerprinting scripts
+
+### What We Do Collect (Minimal & Transparent)
+
+The only data we collect is anonymous, aggregated page view counts — and only for the marketing pages (homepage, blog). We use a privacy-focused analytics tool that:
+- Does not use cookies
+- Does not track individual users
+- Does not collect IP addresses (truncated before storage)
+- Provides only aggregate counts (e.g., "500 visitors to /blog today")
+
+## Monetag Ads & Privacy
+
+To keep Craftisle free, we display non-intrusive advertisements via Monetag on some pages. Our ad policy:
+- Ads are controlled by an environment variable (`NEXT_PUBLIC_MONETAG_ENABLED`) — easily toggleable
+- No personal data is shared with advertisers
+- We only use contextual ads (based on page content, not user profiles)
+- No ad tracking cookies without explicit consent (where required by law)
+
+## Security Best Practices
+
+### For the Platform
+- **CSP (Content Security Policy)** — Strict headers prevent XSS and code injection
+- **HTTPS only** — All traffic encrypted with modern TLS (minimum TLS 1.2)
+- **Subresource Integrity** — Third-party scripts verified with SRI hashes
+- **Regular dependency audits** — Automated vulnerability scanning via Dependabot
+- **No external CDN for core assets** — Self-hosted to avoid supply chain attacks
+
+### For Users
+We recommend these practices when using Craftisle (or any online tool):
+1. **Verify HTTPS** — Always check for the lock icon in your browser
+2. **Use incognito mode** — For extra-sensitive documents
+3. **Clear localStorage** — If you use the Resume Builder, clear data when done on shared computers
+4. **Check file permissions** — Downloaded files inherit your OS permissions
+
+## Legal Pages
+
+We maintain comprehensive legal documentation:
+- **[Privacy Policy](/privacy)** — Detailed data handling practices
+- **[Terms of Service](/terms)** — Usage terms and conditions
+- **[Cookie Policy](/cookie-policy)** — How and why we use cookies
+- **[Disclaimer](/disclaimer)** — Limitations of liability and tool accuracy
+
+## Open Source Commitment
+
+Craftisle's source code is publicly available on GitHub. You can:
+- **Audit our privacy claims** — Every line of code is visible
+- **Self-host** — Run your own instance if you prefer
+- **Contribute** — Help us improve privacy and security
+
+## Our Promise
+
+We built Craftisle because we believe tools should be free, private, and accessible to everyone. We will never:
+- Sell or share your data (we don't have it)
+- Add mandatory accounts or signup walls
+- Introduce tracking or analytics on tool pages
+- Store your files on our servers
+- Change our privacy model without transparent communication
+
+If you have questions about privacy or security, contact us at [craftisle.com/contact](/contact).

@@ -1,3 +1,4 @@
+import { allPosts } from "contentlayer/generated";
 import {
   Card,
   CardContent,
@@ -23,6 +24,8 @@ import {
   Globe,
   Timer,
   Sparkles,
+  CalendarDays,
+  Clock,
 } from "lucide-react";
 import { CATEGORIES, CATEGORY_LIST } from "@/lib/tools";
 
@@ -278,6 +281,78 @@ export default function BlogPage() {
                 </CardHeader>
               </Card>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Articles */}
+      <section className="py-16 border-t">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <Badge variant="outline" className="mb-3">Articles</Badge>
+            <h2 className="text-3xl font-bold tracking-tight">
+              Latest Articles
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+              In-depth guides, tool tutorials, and ecosystem updates — all written by the Craftisle team.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {allPosts
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+              .map((post) => {
+                const wordCount = post.body.raw.split(/\s+/).length;
+                const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+                return (
+                  <Link key={post.slugAsParams} href={`/blog/${post.slugAsParams}`}>
+                    <Card className="h-full group transition-all hover:border-primary/50 hover:shadow-md overflow-hidden">
+                      {post.image && (
+                        <div className="aspect-[16/9] overflow-hidden">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
+                      <CardHeader>
+                        <div className="mb-2 flex items-center gap-4 text-xs text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <CalendarDays className="h-3 w-3" />
+                            {new Date(post.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            })}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            {readingTime} min read
+                          </span>
+                        </div>
+                        <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors">
+                          {post.title}
+                        </CardTitle>
+                        <CardDescription className="line-clamp-2">
+                          {post.description}
+                        </CardDescription>
+                      </CardHeader>
+                      {post.categories && post.categories.length > 0 && (
+                        <CardContent className="pt-0">
+                          <div className="flex flex-wrap gap-1.5">
+                            {post.categories.map((cat) => (
+                              <Badge key={cat} variant="secondary" className="text-xs">
+                                {cat}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      )}
+                    </Card>
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </section>

@@ -1,0 +1,105 @@
+---
+title: Utility Tools on Craftisle — Pomodoro Timer, Stopwatch, Countdown & More
+description: 7 free utility tools for productivity and decision making. Pomodoro timer, precise stopwatch, event countdown, coin flip, wheel spinner, scoreboard, and counter. All free, no signup.
+image: /_static/blog/blog-post-7.png
+date: "2026-06-09"
+authors:
+  - craftisle
+categories:
+  - education
+---
+
+Craftisle's utility tools are designed for everyday productivity — timers, counters, and decision-making helpers that you can reach for in seconds. Every tool works offline after initial page load.
+
+## All 7 Utility Tools
+
+### 1. Pomodoro Timer
+
+A full Pomodoro Technique implementation with customizable intervals:
+
+- **Default cycle:** 25 min work → 5 min short break → repeat 4× → 15 min long break
+- **Customizable durations** — Adjust work, short break, and long break lengths
+- **Session tracking** — Count completed pomodoros per day
+- **Desktop notifications** — Alert even when the tab is in the background
+- **Audio alerts** — Distinct sounds for work start, break start, and cycle complete
+
+**The science:** The Pomodoro Technique leverages your brain's ultradian rhythm by breaking work into manageable 25-minute chunks. After 4 cycles (about 2 hours), a longer break prevents mental fatigue.
+
+### 2. Stopwatch
+
+A high-precision stopwatch using `performance.now()` for microsecond accuracy:
+
+- **Millisecond display** — HH:MM:SS.mmm format
+- **Lap timing** — Record up to 99 split times without stopping
+- **Background timing** — Keeps running even when you switch tabs (Web Worker API)
+- **Fullscreen mode** — Large display for presentations or sports timing
+
+**Use cases:** Athletic timing, productivity measurement, science experiments, cooking competitions.
+
+### 3. Countdown Timer
+
+Set custom countdowns for events, deadlines, or timed activities:
+
+- **Flexible input** — Set hours, minutes, and seconds independently
+- **Visual progress bar** — See remaining time at a glance
+- **Alarm with tab flash** — Impossible to miss when time is up
+- **Preset durations** — Quick-set buttons for 1, 3, 5, 10, 15, 25, 30, 60 minutes
+
+### 4. Coin Flip
+
+A virtual coin toss using cryptographic randomness (`Crypto.getRandomValues()`):
+
+- **True 50/50 probability** — No pseudo-random bias
+- **Realistic animation** — Coin spin with satisfying visual feedback
+- **Statistics tracking** — Heads/tails count and percentage over time
+- **Sound effect** — Optional coin flip audio
+
+### 5. Wheel Spinner
+
+A customizable prize wheel for random selections:
+
+- **Add custom entries** — Name your own wheel segments
+- **Remove/Edit entries** — Modify the wheel on the fly
+- **Smooth spin animation** — With easing for dramatic reveals
+- **History tracking** — See previous spin results
+
+**Perfect for:** Classroom activities, giveaway drawings, team assignment randomization, decision making with more than 2 options.
+
+### 6. Scoreboard
+
+A digital score counter for games and competitions:
+
+- **Multiple players/teams** — Add as many as you need
+- **Increment/Decrement** — Adjust scores easily
+- **Custom labels** — Name your players or teams
+- **Reset all** — Quick reset for new games
+
+### 7. Counter
+
+A simple tally counter with persistent storage:
+
+- **Increment/Decrement** — Click buttons or use arrow keys
+- **Custom step size** — Count by 1, 5, 10, or any number
+- **Session persistence** — Counter value saved in localStorage
+- **Large display** — Easy to read from a distance
+
+**Use cases:** Gym rep tracking, inventory counting, event attendance, knitting row counting.
+
+## Productivity Stack
+
+Combine these tools for a complete productivity workflow:
+
+1. **Start a Pomodoro** (25 min focus session)
+2. **Use the Stopwatch** to track how long specific tasks take
+3. **Set a Countdown** for meeting timeboxes
+4. **Track completed Pomodoros** with the Counter
+5. **Use Coin Flip or Wheel** for break-time decisions
+
+## Offline-Ready
+
+All utility tools use client-side timers (`setInterval`/`requestAnimationFrame`/Web Workers) and local storage. They continue working without internet after the initial page load, making them reliable even in:
+- Airplane mode
+- Unstable connections
+- Secure environments without internet access
+
+Start using all utilities at [craftisle.com/tools?category=utility](/tools?category=utility).
