@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { toolMeta } from "@/lib/tools";
 import { getAllCategories, getAllResources } from "@/lib/fmhy-data";
 import { ALTERNATIVES_MAP } from "@/lib/alternatives";
+import { DOMAINS } from "@/lib/unified-categories";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 
@@ -28,11 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/directory/search`, priority: 0.6, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/favorites`, priority: 0.5, changeFreq: "weekly" as const },
     { url: `${baseUrl}/blog`, priority: 0.7, changeFreq: "weekly" as const },
-    { url: `${baseUrl}/blog/category/news`, priority: 0.6, changeFreq: "weekly" as const },
-    { url: `${baseUrl}/blog/category/education`, priority: 0.6, changeFreq: "weekly" as const },
-    { url: `${baseUrl}/blog/review`, priority: 0.7, changeFreq: "weekly" as const },
-    { url: `${baseUrl}/blog/tools`, priority: 0.7, changeFreq: "weekly" as const },
-    { url: `${baseUrl}/blog/how-to`, priority: 0.7, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/guides`, priority: 0.7, changeFreq: "monthly" as const },
     { url: `${baseUrl}/privacy`, priority: 0.4, changeFreq: "monthly" as const },
     { url: `${baseUrl}/terms`, priority: 0.4, changeFreq: "monthly" as const },
     { url: `${baseUrl}/cookie-policy`, priority: 0.4, changeFreq: "monthly" as const },
@@ -107,9 +104,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: r.priority,
   }));
 
+  // 12个领域中转页
+  const domainPages = DOMAINS.map((d) => ({
+    url: `${baseUrl}/directory/domain/${d.id}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   const otherPages = [
-    { url: `${baseUrl}/guides`, priority: 0.7, changeFreq: "monthly" as const },
-    { url: `${baseUrl}/blog/how-to`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/compare`, priority: 0.6, changeFreq: "monthly" as const },
   ].map((r) => ({
     url: r.url,
@@ -128,6 +131,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...categoryPages,
+    ...domainPages,
     ...resourceDetailPages,
     ...alternativePages,
     ...reviewPages,

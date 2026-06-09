@@ -1,8 +1,9 @@
 /**
  * category-domains.ts
- * 将 14 个 FMHY 原始分类归并为 4 个领域分组，方便用户导航。
+ * Groups all 216 categories from 4 data sources into 12 unified domains.
  */
 import type { Category } from "./fmhy-data";
+import { DOMAINS, getDomainForCategoryId } from "./unified-categories";
 
 export interface DomainGroup {
   id: string;
@@ -14,63 +15,42 @@ export interface DomainGroup {
 }
 
 /**
- * Domain groupings for FMHY categories.
- *
- *   1. 🧠 AI & Learning   → AI Tools, Education, Reading
- *   2. 🛡️ Privacy & OS    → Ad Blocking, Linux, Storage
- *   3. 🎮 Media & Fun     → Gaming, Music, Streaming, Mobile
- *   4. 🔧 Downloads & More → Downloading, Torrenting, Non-English, Misc
- */
-const DOMAIN_DEFINITIONS: Omit<DomainGroup, "totalResources">[] = [
-  {
-    id: "ai-learning",
-    name: "AI & Learning",
-    icon: "🧠",
-    description: "AI tools, educational platforms, and reading resources — everything you need to learn and create.",
-    categoryIds: ["Artificial-Intelligence", "Educational", "Reading"],
-  },
-  {
-    id: "privacy-os",
-    name: "Privacy & Open Source",
-    icon: "🛡️",
-    description: "Ad blockers, Linux tools, and cloud storage — take control of your digital life.",
-    categoryIds: ["Adblock", "Linux", "Storage"],
-  },
-  {
-    id: "media-fun",
-    name: "Media & Entertainment",
-    icon: "🎮",
-    description: "Gaming, music, streaming, and mobile apps — the best free entertainment tools.",
-    categoryIds: ["Gaming", "Music", "Streaming", "Mobile"],
-  },
-  {
-    id: "downloads-more",
-    name: "Downloads & More",
-    icon: "🔧",
-    description: "Download tools, torrent clients, international resources, and miscellaneous utilities.",
-    categoryIds: ["Downloading", "Torrenting", "Non-Eng", "Misc"],
-  },
-];
-
-/**
- * Build domain groups from category data (computes totalResources per group).
+ * Build domain groups from ALL categories (not just FMHY).
+ * Each category is assigned to a domain via CATEGORY_DOMAIN_MAP.
  */
 export function getDomainGroups(categories: Category[]): DomainGroup[] {
-  return DOMAIN_DEFINITIONS.map((def) => {
-    const totalResources = def.categoryIds.reduce((sum, catId) => {
-      const cat = categories.find((c) => c.id === catId);
-      return sum + (cat?.count || 0);
-    }, 0);
-    return { ...def, totalResources };
-  });
+  // Build category lookup for resource counts
+  const catMap = new Map<string, Category>();
+  for (const cat of categories) {
+    catMap.set(cat.id, cat);
+  }
+
+  return DOMAINS.map((domain) => {
+    const domainCategories = categories.filter(
+      (c) => getDomainForCategoryId(c.id) === domain.id,
+    );
+    const categoryIds = domainCategories.map((c) => c.id);
+    const totalResources = domainCategories.reduce(
+      (sum, c) => sum + (c.count || 0),
+      0,
+    );
+
+    return {
+      id: domain.id,
+      name: domain.name,
+      icon: domain.icon,
+      description: domain.description,
+      categoryIds,
+      totalResources,
+    };
+  }).filter((g) => g.categoryIds.length > 0);
 }
 
 /**
  * Get a human-readable domain name for a category ID.
  */
 export function getDomainForCategory(categoryId: string): string | null {
-  for (const def of DOMAIN_DEFINITIONS) {
-    if (def.categoryIds.includes(categoryId)) return def.name;
-  }
-  return null;
+  const did = getDomainForCategoryId(categoryId);
+  const domain = DOMAINS.find((d) => d.id === did);
+  return domain?.name || null;
 }

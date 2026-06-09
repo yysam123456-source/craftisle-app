@@ -4,16 +4,17 @@ import { DomainCategoryGrid } from "@/components/resources/domain-category-grid"
 import { getDomainGroups } from "@/lib/category-domains";
 import { HotResources } from "@/components/resources/hot-resources";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
-import { ArrowRight, Star, TrendingUp } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
 import { getAllCategories, getHotResources, getSources, getStats } from "@/lib/fmhy-data";
+import { DOMAINS, getDomainForCategoryId } from "@/lib/unified-categories";
 
 export const metadata: Metadata = constructMetadata({
   title: "Free Resource Directory | 10,000+ Curated Free Tools, APIs & Software | Craftisle",
   description:
-    "Discover 10,000+ curated free resources for developers, creators, and learners. Free AI tools, public APIs, self-hosted software, dev tools, online courses, privacy software, and more. 100% free, open-source, no signup required.",
+    "Discover 10,000+ curated free resources for developers, creators, and learners across 12 domains and 200+ categories. Free AI tools, public APIs, self-hosted software, dev tools, and more. 100% free, no signup required.",
   keywords: [
     "free resource directory",
     "free tools directory",
@@ -26,7 +27,6 @@ export const metadata: Metadata = constructMetadata({
     "free public APIs directory",
     "free self-hosted software",
     "free privacy tools",
-    "free cloud storage tools",
     "curated free software",
     "no signup free tools",
   ],
@@ -94,7 +94,7 @@ export default async function ResourcesPage() {
     "@context": "https://schema.org",
     "@type": ["CollectionPage", "FAQPage"],
     "name": "Free Resource Directory",
-    "description": `6,000+ curated free resources for developers and creators. Covers AI tools, learning platforms, dev tools, privacy & security, cloud storage, and more.`,
+    "description": `10,000+ curated free resources for developers and creators across 12 domains. Covers AI tools, learning platforms, dev tools, privacy & security, cloud storage, and more.`,
     "url": "https://craftisle.app/directory",
     "datePublished": DATE_PUBLISHED,
     "dateModified": DATE_MODIFIED,
@@ -160,7 +160,7 @@ export default async function ResourcesPage() {
           "name": "How are resources categorized?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Resources are organized into 14 categories: AI Tools, Education, Ad Blocking, Linux, Miscellaneous, Reading, Mobile, Storage, Gaming, Music, Streaming, Non-English, Downloading, and Torrenting. Each category contains hundreds of carefully selected tools.",
+            "text": "Resources are organized into 12 domains and 200+ categories: Development, AI & ML, DevOps, Security & Privacy, Design & Frontend, Data & Analytics, Productivity, Cloud & Infrastructure, Media & Entertainment, Communication, Learning & Education, and More. Each category contains carefully selected tools.",
           },
         },
         {
@@ -202,8 +202,22 @@ export default async function ResourcesPage() {
               Free Resource Directory
             </h1>
             <p className="mt-4 text-lg text-muted-foreground md:text-xl">
-              {totalCount.toLocaleString()}+ curated free resources across 4 sources — FMHY, Free for Dev, Public APIs, and Self-Hosted software
+              {totalCount.toLocaleString()}+ curated free resources across 12 domains and {categories.length} categories — FMHY, Free for Dev, Public APIs, and Self-Hosted software
             </p>
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              {DOMAINS.slice(0, 6).map((d) => (
+                <Link key={d.id} href={`/directory/domain/${d.id}`}>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10 text-xs">
+                    {d.icon} {d.name}
+                  </Badge>
+                </Link>
+              ))}
+              <Link href="#categories">
+                <Badge variant="outline" className="cursor-pointer hover:bg-primary/10 text-xs">
+                  +6 more
+                </Badge>
+              </Link>
+            </div>
             <div className="mt-8 max-w-2xl mx-auto">
               <ResourceSearchClient />
             </div>
@@ -248,15 +262,14 @@ export default async function ResourcesPage() {
               const catCount = data?.categories.length || 0;
               if (catCount === 0 && src.id !== "fmhy") return null;
               return (
-                <a
+                <div
                   key={src.id}
-                  href={`#source-${src.id}`}
-                  className="group rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md"
+                  className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-2xl">{src.icon}</span>
                     <div>
-                      <h3 className="font-semibold group-hover:text-primary transition-colors">
+                      <h3 className="font-semibold">
                         {src.name}
                       </h3>
                       <p className="text-xs text-muted-foreground">
@@ -268,7 +281,7 @@ export default async function ResourcesPage() {
                     <span>{src.resourceCount.toLocaleString()} resources</span>
                     <span>{catCount} categories</span>
                   </div>
-                </a>
+                </div>
               );
             })}
           </div>
@@ -280,10 +293,10 @@ export default async function ResourcesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <h2 className="text-2xl font-bold tracking-tight">
-              All Categories
+              All Categories — 12 Domains
             </h2>
             <p className="mt-1 text-muted-foreground">
-              {totalCount.toLocaleString()} resources across {categories.length} categories
+              {totalCount.toLocaleString()} resources across {categories.length} categories in 12 domains
             </p>
           </div>
           <DomainCategoryGrid
@@ -315,7 +328,7 @@ export default async function ResourcesPage() {
             <div className="rounded-lg border bg-card p-6">
               <h3 className="font-semibold text-base">How are resources categorized?</h3>
               <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
-                Resources are organized into 14 categories: AI Tools, Education, Ad Blocking, Linux, Miscellaneous, Reading, Mobile, Storage, Gaming, Music, Streaming, Non-English, Downloading, and Torrenting. Each category contains hundreds of carefully selected tools.
+                Resources are organized into 12 domains (Development, AI & ML, DevOps, Security, Design, Data, Productivity, Cloud, Media, Communication, Learning, and More) and 200+ specific categories. Each resource is tagged by source (FMHY, Free for Dev, Public APIs, Self-Hosted) for easy filtering.
               </p>
             </div>
             <div className="rounded-lg border bg-card p-6">
