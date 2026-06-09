@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,22 +9,27 @@ import { Search, X } from "lucide-react";
 interface ResourceSearchClientProps {
   placeholder?: string;
   className?: string;
+  /** 外部传入的搜索词（可选，用于搜索结果页同步 URL 参数） */
   value?: string;
+  /** 搜索回调（可选，提供时用此回调代替直接 router.push） */
   onSearch?: (query: string) => void;
 }
 
 export function ResourceSearchClient({
   placeholder = "Search resources by name, description, or URL...",
   className,
-  value: controlledValue,
+  value,
   onSearch,
 }: ResourceSearchClientProps) {
-  const isControlled = controlledValue !== undefined;
-  const [internalQuery, setInternalQuery] = useState("");
-  const query = isControlled ? controlledValue : internalQuery;
-  const setQuery = isControlled ? undefined : setInternalQuery;
-
+  const [query, setQuery] = useState(value || "");
   const router = useRouter();
+
+  // 当外部 value 变化时（如 URL 参数变化），同步到内部 state
+  useEffect(() => {
+    if (value !== undefined) {
+      setQuery(value);
+    }
+  }, [value]);
 
   const doSearch = useCallback(
     (q: string) => {
@@ -44,8 +49,8 @@ export function ResourceSearchClient({
   }, [query, doSearch]);
 
   const handleClear = useCallback(() => {
-    if (setQuery) setQuery("");
-  }, [setQuery]);
+    setQuery("");
+  }, []);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -63,9 +68,7 @@ export function ResourceSearchClient({
         type="text"
         placeholder={placeholder}
         value={query}
-        onChange={(e) => {
-          if (setQuery) setQuery(e.target.value);
-        }}
+        onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
         className="h-14 pl-12 pr-20 text-base rounded-xl border-2 focus-visible:border-primary"
       />
