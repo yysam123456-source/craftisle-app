@@ -15,6 +15,19 @@ interface Resource {
   url: string;
   description: string;
   source?: string;
+  /** Public APIs 特有 */
+  auth?: string;
+  https?: boolean;
+  cors?: boolean;
+  /** Free-for-dev 特有 */
+  freeTier?: string;
+  /** Self-hosted 特有 */
+  isOpenSource?: boolean;
+  license?: string;
+  language?: string;
+  /** 通用 */
+  tags?: string[];
+  isFree?: boolean;
 }
 
 interface ResourceCardProps {
@@ -38,6 +51,87 @@ function getFaviconUrl(url: string): string {
   } catch {
     return "";
   }
+}
+
+function buildRichDescription(resource: Resource): string {
+  const parts: string[] = [];
+
+  // 基础描述
+  if (resource.description && resource.description.trim().length > 5) {
+    parts.push(resource.description.trim());
+  }
+
+  // 根据数据源补充信息
+  if (resource.source === "public-apis") {
+    const apiInfo: string[] = [];
+    if (resource.auth && resource.auth !== "No") {
+      apiInfo.push(`Authentication: ${resource.auth}`);
+    } else if (resource.auth === "No") {
+      apiInfo.push("No authentication required");
+    }
+    if (resource.https !== undefined) {
+      apiInfo.push(resource.https ? "HTTPS supported" : "HTTP only");
+    }
+    if (resource.cors !== undefined) {
+      apiInfo.push(resource.cors ? "CORS enabled" : "CORS not supported");
+    }
+    if (apiInfo.length > 0) {
+      parts.push(apiInfo.join(" · "));
+    }
+  }
+
+  if (resource.source === "free-for-dev" && resource.freeTier && resource.freeTier.trim()) {
+    const tier = resource.freeTier.trim();
+    if (tier.length > 10) {
+      parts.push(`Free tier: ${tier.slice(0, 180)}${tier.length > 180 ? "..." : ""}`);
+    }
+  }
+
+  if (resource.source === "awesome-selfhosted") {
+    const selfInfo: string[] = [];
+    if (resource.isOpenSource) selfInfo.push("Open Source");
+    if (resource.license) selfInfo.push(`License: ${resource.license}`);
+    if (resource.language) selfInfo.push(`Built with ${resource.language}`);
+    if (selfInfo.length > 0) {
+      parts.push(selfInfo.join(" · "));
+    }
+  }
+
+  if (parts.length === 0 && resource.tags && resource.tags.length > 0) {
+    parts.push(resource.tags.join(" · "));
+  }
+
+  return parts.join(" ");
+}
+
+function getFeatureBadges(resource: Resource): { label: string; variant: "default" | "secondary" | "outline" | "destructive" }[] {
+  const badges: { label: string; variant: "default" | "secondary" | "outline" | "destructive" }[] = [];
+
+  if (resource.isFree) {
+    badges.push({ label: "Free", variant: "default" });
+  }
+
+  if (resource.source === "public-apis") {
+    if (resource.auth === "No") {
+      badges.push({ label: "No Auth", variant: "secondary" });
+    } else if (resource.auth) {
+      badges.push({ label: `Auth: ${resource.auth.replace(/`/g, "")}`, variant: "outline" });
+    }
+    if (resource.https) badges.push({ label: "HTTPS", variant: "secondary" });
+    if (resource.cors) badges.push({ label: "CORS", variant: "secondary" });
+  }
+
+  if (resource.source === "free-for-dev" && resource.freeTier && resource.freeTier.trim().length > 5) {
+    badges.push({ label: "Free Tier", variant: "default" });
+  }
+
+  if (resource.source === "awesome-selfhosted") {
+    if (resource.isOpenSource) badges.push({ label: "Open Source", variant: "default" });
+    if (resource.license) badges.push({ label: resource.license, variant: "outline" });
+    if (resource.language) badges.push({ label: resource.language, variant: "outline" });
+  }
+
+  return badges;
 }
 
 export function ResourceCard({ resource, showCategory = true, variant = "default" }: ResourceCardProps) {
@@ -121,16 +215,30 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
       </CardHeader>
 
       <CardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"}`}>
-        {/* Description */}
-        {resource.description && (
+        {/* Rich Description */}
+        {(resource.description || resource.source) && (
           <p
             className={`text-muted-foreground leading-relaxed ${
               isLarge ? "text-sm line-clamp-4" : "text-sm line-clamp-3"
             }`}
           >
-            {resource.description}
+            {buildRichDescription(resource)}
           </p>
         )}
+
+        {/* Feature Badges */}
+        {(() => {
+          const badges = getFeatureBadges(resource);
+          return badges.length > 0 ? (
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {badges.map((b, i) => (
+                <Badge key={i} variant={b.variant} className="text-[10px] px-1.5 py-0 h-5">
+                  {b.label}
+                </Badge>
+              ))}
+            </div>
+          ) : null;
+        })()}
 
         {/* Footer: URL + Visit button */}
         <div className="mt-4 flex items-center justify-between gap-2">
