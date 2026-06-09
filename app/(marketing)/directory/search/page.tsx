@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ResourceCard } from "@/components/resources/resource-card";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
@@ -25,9 +25,13 @@ interface CategoryMeta {
 
 // Source display config
 const sourceLabels: Record<string, string> = { fmhy: "FMHY", "free-for-dev": "Free for Dev", "public-apis": "Public APIs", "awesome-selfhosted": "Self-Hosted" };
-const sourceIcons: Record<string, string> = { fmhy: "📚", "free-for-dev": "🛠️", "public-apis": "🔌", "awesome-selfhosted": "🏠" };
+const sourceIcons: Record<string, string> = { fmhy: "📚", "free-for-dev": "🔧", "public-apis": "🔌", "awesome-selfhosted": "🏠" };
 
-export default function SearchResultsPage() {
+/**
+ * Inner component that uses useSearchParams().
+ * Wrapped in <Suspense> by the parent to satisfy Next.js 15 requirements.
+ */
+function SearchResultsContent() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [allResources, setAllResources] = useState<Resource[]>([]);
@@ -39,7 +43,6 @@ export default function SearchResultsPage() {
   useEffect(() => {
     const q = searchParams.get("q") || "";
     setQuery(q);
-    // Reset source filter when query changes
     setSourceFilter(null);
   }, [searchParams]);
 
@@ -61,6 +64,9 @@ export default function SearchResultsPage() {
               for (const [catId, catData] of Object.entries(data.categories) as [string, any][]) {
                 for (const r of (catData.resources || [])) {
                   allRes.push({ ...r, source: src });
+                }
+                if (catData.name) {
+                  allCats.push({ id: catId, name: catData.name, icon: catData.icon });
                 }
               }
             }
@@ -223,5 +229,21 @@ export default function SearchResultsPage() {
         </div>
       </section>
     </>
+  );
+}
+
+/**
+ * Search page — wraps SearchResultsContent in <Suspense>
+ * to satisfy Next.js 15 useSearchParams() requirement.
+ */
+export default function SearchResultsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="text-muted-foreground">Loading search...</div>
+      </div>
+    }>
+      <SearchResultsContent />
+    </Suspense>
   );
 }
