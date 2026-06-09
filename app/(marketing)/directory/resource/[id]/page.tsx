@@ -59,10 +59,16 @@ export async function generateMetadata({
       ].filter(Boolean)
     : undefined;
 
+  // Selective noindex: low-quality pages (no review + short/empty description)
+  const isLowQuality =
+    !review &&
+    (!resource.description || resource.description.trim().length < 80);
+
   return {
     title,
     description,
     keywords,
+    ...(isLowQuality ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: canonicalUrl,
     },
