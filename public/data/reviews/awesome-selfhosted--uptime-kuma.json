@@ -1,0 +1,35 @@
+{
+  "resourceId": "awesome-selfhosted--uptime-kuma",
+  "resourceName": "Uptime Kuma",
+  "resourceUrl": "https://github.com/louislam/uptime-kuma",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Uptime Kuma is a self-hosted monitoring tool that checks whether your websites and services are online and responsive. It supports HTTP(s), TCP, Ping, DNS, Docker container, and Push monitors, with configurable check intervals. When a service goes down, Uptime Kuma notifies you through 90+ notification channels including Telegram, Discord, Slack, Email, Webhook, and SMS. The dashboard shows real-time status with uptime percentages, response time graphs, and certificate expiration dates. Uptime Kuma can also create public status pages to share service health with your users. It runs as a single Docker container with SQLite storage, making setup trivial. With its modern UI, extensive notification options, and zero-cost self-hosting, Uptime Kuma has quickly become the most popular open-source alternative to commercial services like UptimeRobot, Pingdom, and Statuspage.",
+    "pros": [
+      "Multiple monitor types: HTTP(s), TCP, Ping, DNS, Docker, Push (cron job monitoring)",
+      "90+ notification channels: Telegram, Discord, Slack, Email, Webhook, SMS, and more",
+      "Public status pages to share service health with users",
+      "SSL certificate expiration monitoring and alerts",
+      "Single Docker container deployment with SQLite — no complex setup"
+    ],
+    "cons": [
+      "No built-in high availability — monitoring stops if the host goes down",
+      "No native mobile app; uses web UI only"
+    ],
+    "bestUseCases": [
+      "Monitoring your websites, APIs, and services 24/7",
+      "Replacing UptimeRobot or Pingdom with a self-hosted solution",
+      "Creating public status pages for SaaS products"
+    ],
+    "similarAlternatives": [
+      "UptimeRobot",
+      "Better Uptime",
+      "Statping",
+      "Gatus",
+      "Vigil"
+    ],
+    "category": "Monitoring & Status"
+  }
+}

@@ -9,7 +9,18 @@ import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@/components/analytics";
+import CookieConsent from "@/components/cookie-consent";
 import ModalProvider from "@/components/modals/providers";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: {
@@ -59,6 +70,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preconnect critical domains for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://api.craftisle.com" />
+        {/* Google Search Console site verification — replace with your actual verification code */}
+        {process.env.NEXT_PUBLIC_GSC_VERIFICATION && (
+          <meta name="google-site-verification" content={process.env.NEXT_PUBLIC_GSC_VERIFICATION} />
+        )}
         {/* Monetag site verification */}
         <meta name="monetag" content="95c89403a193eef38bbc05e97d7c067c" />
         {/* Google AdSense - only loads when NEXT_PUBLIC_ADSENSE_CLIENT is set */}
@@ -99,6 +121,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             )}
           </ThemeProvider>
         </SessionProvider>
+        <CookieConsent />
       </body>
     </html>
   );

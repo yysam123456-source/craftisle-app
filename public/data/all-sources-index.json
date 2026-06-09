@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-06-09T01:56:54.631Z",
+  "totalResources": 3942,
+  "totalCategories": 202,
+  "sources": [
+    {
+      "id": "free-for-dev",
+      "name": "Free for Dev",
+      "type": "dev-tools",
+      "icon": "🛠️",
+      "resourceCount": 1232,
+      "categoryCount": 57
+    },
+    {
+      "id": "public-apis",
+      "name": "Public APIs",
+      "type": "apis",
+      "icon": "🔌",
+      "resourceCount": 1534,
+      "categoryCount": 51
+    },
+    {
+      "id": "awesome-selfhosted",
+      "name": "Awesome Self-Hosted",
+      "type": "selfhosted",
+      "icon": "🏠",
+      "resourceCount": 1176,
+      "categoryCount": 94
+    }
+  ]
+}

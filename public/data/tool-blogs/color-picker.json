@@ -1,0 +1,38 @@
+{
+  "slug": "color-picker",
+  "title": "Online Color Picker & Converter — Hex, RGB, HSL Made Easy",
+  "toolName": "Color Picker",
+  "toolUrl": "/tools/color-picker",
+  "category": "Design Tools",
+  "date": "2026-06-08",
+  "readTime": 4,
+  "tags": [
+    "color picker",
+    "hex",
+    "rgb",
+    "hsl",
+    "design tools"
+  ],
+  "content": {
+    "intro": "Every designer and frontend developer needs a reliable color picker. Craftisle's free tool combines an interactive color wheel, format conversion, palette generation, and accessibility checks — all in one place.",
+    "sections": [
+      {
+        "heading": "Color Formats Decoded",
+        "body": "HEX: #FF6B35 — the web standard, easy to copy-paste. RGB: rgb(255, 107, 53) — used in CSS and design tools. HSL: hsl(16, 100%, 60%) — most intuitive for humans (Hue/Saturation/Lightness). Our converter instantly translates between all three."
+      },
+      {
+        "heading": "Creating Color Palettes",
+        "body": "Complementary: colors opposite on the wheel (high contrast). Analogous: adjacent colors (harmonious). Triadic: three equally spaced colors (vibrant). Monochromatic: variations of one hue (elegant). Our palette generator creates all of these from a single base color."
+      },
+      {
+        "heading": "Color Accessibility (WCAG)",
+        "body": "WCAG 2.1 AA requires a contrast ratio of at least 4.5:1 for normal text and 3:1 for large text. Our picker shows the contrast ratio in real-time and flags non-compliant combinations. About 8% of men have some form of color blindness — avoid relying solely on red/green distinctions."
+      },
+      {
+        "heading": "How to Use the Color Picker",
+        "body": "Pick from the wheel, enter a hex code, or use the eyedropper. Adjust hue, saturation, and lightness with sliders. Copy any format: HEX, RGB, HSL, or CSS variable. Generate a palette with one click. Check contrast against a text background."
+      }
+    ],
+    "conclusion": "Color is one of the most powerful tools in design. Whether you're matching brand colors, building a design system, or just need a hex code, Craftisle's Color Picker makes it fast and enjoyable."
+  }
+}

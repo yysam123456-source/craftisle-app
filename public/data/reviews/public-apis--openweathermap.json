@@ -1,0 +1,33 @@
+{
+  "resourceId": "public-apis--openweathermap",
+  "resourceName": "OpenWeatherMap",
+  "resourceUrl": "https://openweathermap.org/api",
+  "source": "public-apis",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "OpenWeatherMap provides comprehensive weather data APIs including current weather, forecasts, historical data, and weather maps. The free tier offers 1,000 API calls per day with access to current weather data, 5-day forecasts, UV index, air pollution data, and geocoding. This is sufficient for hobby projects, personal dashboards, and small applications. The API returns data in JSON, XML, or HTML formats with support for multiple languages. OpenWeatherMap's One Call API 3.0 (paid) provides minute-by-minute forecasts and weather alerts, but the free tier covers the most common use cases. The extensive coverage spans 200,000+ cities worldwide, making it one of the most widely used weather APIs for web and mobile applications.",
+    "pros": [
+      "1,000 free API calls per day — enough for most hobby/small projects",
+      "Covers 200,000+ cities globally with multi-language support",
+      "Includes UV index, air pollution, and geocoding in free tier",
+      "Multiple output formats: JSON, XML, HTML"
+    ],
+    "cons": [
+      "Requires API key and attribution on free tier",
+      "No minute-by-minute forecast or weather alerts on free plan"
+    ],
+    "bestUseCases": [
+      "Weather widgets for personal websites and dashboards",
+      "Travel planning apps needing forecast data",
+      "IoT projects requiring environmental data"
+    ],
+    "similarAlternatives": [
+      "WeatherAPI",
+      "Weatherstack",
+      "AccuWeather API",
+      "Visual Crossing"
+    ],
+    "category": "Weather APIs"
+  }
+}

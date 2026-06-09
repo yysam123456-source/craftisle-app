@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--railway",
+  "resourceName": "Railway",
+  "resourceUrl": "https://railway.app",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Railway is an infrastructure platform that makes deploying applications as simple as connecting a GitHub repository. Unlike traditional PaaS providers that charge per service, Railway charges based on resource usage (vCPU, RAM) with a $5 monthly credit on the free tier. This means you can run a small app for free indefinitely if it stays within the credit. Railway supports any language and framework through Docker or Nixpacks (automatic build detection), and provides built-in PostgreSQL, Redis, and MySQL databases. The platform's 'Templates' feature offers one-click deployment for hundreds of popular open-source applications. With automatic HTTPS, environment variable management, and a clean CLI, Railway provides a developer experience that abstracts away infrastructure complexity while still giving you access to full container environments when needed.",
+    "pros": [
+      "$5 monthly credit enables running small apps completely free",
+      "Nixpacks automatically detects and builds any language/framework",
+      "Built-in Postgres, Redis, MySQL with automatic backups",
+      "One-click deploy from 300+ community templates",
+      "Usage-based pricing — pay only for what you use"
+    ],
+    "cons": [
+      "$5 credit shared across all services; complex apps may exceed it",
+      "No built-in CDN or edge functions — need to combine with other services"
+    ],
+    "bestUseCases": [
+      "Deploying backend services, APIs, and full-stack apps",
+      "Running databases alongside applications in one platform",
+      "Quick prototyping with pre-built templates"
+    ],
+    "similarAlternatives": [
+      "Render",
+      "Fly.io",
+      "Heroku",
+      "Koyeb"
+    ],
+    "category": "Platform-as-a-Service (PaaS)"
+  }
+}

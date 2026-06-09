@@ -1,0 +1,33 @@
+{
+  "resourceId": "public-apis--unsplash",
+  "resourceName": "Unsplash",
+  "resourceUrl": "https://unsplash.com/developers",
+  "source": "public-apis",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Unsplash provides a massive library of high-resolution, royalty-free photos through its API. All images are licensed under the Unsplash License, which allows free use for commercial and non-commercial purposes without attribution (though attribution is appreciated). The free tier allows 50 requests per hour, which is sufficient for most applications that cache results. The API supports search, collections, user profiles, and topic-based browsing. Each photo comes with metadata including photographer information, download links, dimensions, and color data. Unsplash's curated collections and high-quality photography make it the go-to image source for websites, apps, presentations, and marketing materials. The API's simplicity and quality have made it one of the most integrated image APIs in the developer ecosystem.",
+    "pros": [
+      "High-resolution, professional-quality photos — all royalty-free",
+      "Commercial use allowed without mandatory attribution",
+      "Rich metadata: photographer info, colors, dimensions, download tracking",
+      "Topic and collection browsing for curated image discovery"
+    ],
+    "cons": [
+      "50 requests/hour rate limit requires client-side caching",
+      "Cannot hotlink images — must use download URLs from API"
+    ],
+    "bestUseCases": [
+      "Dynamic hero images and backgrounds for web applications",
+      "Content management systems needing stock photography integration",
+      "Design tools and image placeholder services"
+    ],
+    "similarAlternatives": [
+      "Pexels API",
+      "Pixabay API",
+      "Lorem Picsum",
+      "Placeholder.com"
+    ],
+    "category": "Image & Photo APIs"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "diff-checker",
+  "title": "Online Diff Checker — Compare Text & Code Side by Side",
+  "toolName": "Diff Checker",
+  "toolUrl": "/tools/diff-checker",
+  "category": "Developer Tools",
+  "date": "2026-06-08",
+  "readTime": 4,
+  "tags": [
+    "diff",
+    "compare text",
+    "code review",
+    "developer tools"
+  ],
+  "content": {
+    "intro": "Whether you're reviewing code changes, comparing document versions, or checking configuration differences, a diff checker is essential. Craftisle's free online Diff Checker shows additions, deletions, and changes side by side with color-coded highlighting.",
+    "sections": [
+      {
+        "heading": "How Diff Comparison Works",
+        "body": "A diff algorithm compares two texts line by line and identifies: added lines (green), removed lines (red), and modified lines (yellow). The algorithm uses the Longest Common Subsequence (LCS) approach to find the minimal set of changes between two versions."
+      },
+      {
+        "heading": "Real-World Use Cases",
+        "body": "Code review: compare your branch against main to see all changes before creating a PR. Configuration debugging: diff working vs broken config to find the problematic line. Plagiarism check: compare two essays or assignments to spot similarities. Document versioning: see what changed between contract revisions."
+      },
+      {
+        "heading": "How to Use the Diff Checker",
+        "body": "Paste your original text in the left panel and modified text in the right panel. The tool instantly highlights differences. Use 'Swap' to reverse the comparison direction. 'Copy Left' and 'Copy Right' make it easy to copy either version."
+      },
+      {
+        "heading": "Advanced: Inline vs Side-by-Side",
+        "body": "Side-by-side view is best for: document comparisons, config diffs, and general review. Inline view is better for: code with long lines, single-file changes, and mobile viewing. Our tool defaults to side-by-side but lets you switch with one click."
+      }
+    ],
+    "conclusion": "A diff checker is one of those tools you don't think about until you absolutely need it — and then you can't work without it. Keep it bookmarked for code reviews, document comparisons, and debugging."
+  }
+}

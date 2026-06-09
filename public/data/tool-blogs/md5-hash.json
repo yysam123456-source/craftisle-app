@@ -1,0 +1,37 @@
+{
+  "slug": "md5-hash",
+  "title": "MD5 Hash Generator — How to Generate and Verify MD5 Checksums",
+  "toolName": "MD5 Generator",
+  "toolUrl": "/tools/md5",
+  "category": "Developer Tools",
+  "date": "2026-06-08",
+  "readTime": 5,
+  "tags": [
+    "md5",
+    "hash",
+    "checksum",
+    "file integrity"
+  ],
+  "content": {
+    "intro": "MD5 produces a 128-bit (32-character hexadecimal) hash from any input. While cryptographically broken for security purposes, it remains widely used for file integrity verification, checksums, and non-security hashing. Craftisle's MD5 Generator makes it instant.",
+    "sections": [
+      {
+        "heading": "How MD5 Works",
+        "body": "MD5 processes input in 512-bit blocks through four rounds of bitwise operations, producing a fixed 128-bit output. The same input always produces the same hash. A single bit change in the input produces a completely different hash (avalanche effect)."
+      },
+      {
+        "heading": "When MD5 is Still Useful",
+        "body": "File integrity checks: verify downloads haven't been corrupted. Duplicate detection: identify duplicate files by comparing hashes. Cache keys: generate unique keys from content. Non-security uses where collision resistance isn't required."
+      },
+      {
+        "heading": "When to Use SHA-256 Instead",
+        "body": "Password storage: MD5 is too fast — attackers can try billions of hashes per second. Digital signatures: MD5 collisions have been demonstrated. Certificate validation: always use SHA-256 or stronger. For any security-critical use, reach for SHA-256, SHA-3, or bcrypt."
+      },
+      {
+        "heading": "How to Use the MD5 Generator",
+        "body": "String mode: type or paste text, get the MD5 hash instantly. File mode: upload any file, get its MD5 checksum — useful for verifying downloaded ISOs, packages, or archives. Batch mode: hash multiple strings at once for bulk checksum generation."
+      }
+    ],
+    "conclusion": "MD5 is the Swiss Army knife of hashing — not the strongest tool, but incredibly useful for the right jobs. Use it for checksums and non-security hashing; for passwords and security, always choose stronger alternatives."
+  }
+}

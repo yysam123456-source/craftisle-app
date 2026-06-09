@@ -1,0 +1,33 @@
+{
+  "resourceId": "awesome-selfhosted--pi-hole",
+  "resourceName": "Pi-hole",
+  "resourceUrl": "https://pi-hole.net",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Pi-hole is a network-wide ad blocker that works as a DNS sinkhole. Instead of blocking ads in your browser with an extension, Pi-hole blocks ad and tracker domains at the network level — protecting every device on your network, including smart TVs, IoT devices, and mobile apps that browser extensions can't touch. It runs on a Raspberry Pi or any Linux machine and acts as your network's DNS server. When a device requests a known ad/tracker domain, Pi-hole returns a blank page instead of the ad content. The web admin panel provides detailed statistics, query logs, and blocklist management. Pi-hole also speeds up browsing by reducing downloaded content and can block malicious domains to improve security. With a large community and regularly updated blocklists, Pi-hole has become the gold standard for DIY network-level content filtering.",
+    "pros": [
+      "Network-wide ad blocking covers all devices: smart TVs, phones, IoT devices",
+      "Detailed statistics dashboard showing queries, blocked domains, and client activity",
+      "Reduces bandwidth usage by blocking ad content before it downloads",
+      "Blocks malware and tracking domains for improved security and privacy",
+      "Runs on Raspberry Pi — extremely low power consumption (~$5/year electricity)"
+    ],
+    "cons": [
+      "Requires always-on device on your network (Raspberry Pi or similar)",
+      "Some apps detect DNS-based blocking and may not function correctly"
+    ],
+    "bestUseCases": [
+      "Home network ad blocking for all devices",
+      "Improving browsing speed by blocking ad/tracker requests at DNS level",
+      "Parental controls: block adult content domains network-wide"
+    ],
+    "similarAlternatives": [
+      "AdGuard Home",
+      "Blocky",
+      "Technitium DNS Server"
+    ],
+    "category": "Network & DNS Tools"
+  }
+}

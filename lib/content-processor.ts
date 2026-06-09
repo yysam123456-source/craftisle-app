@@ -97,3 +97,23 @@ export function fixHeadingSkips(html: string): string {
 
   return result;
 }
+
+/**
+ * Basic HTML sanitization for third-party content (e.g. Ghost CMS).
+ * Strips <script> tags and inline event handlers (onerror, onclick, etc.)
+ * to prevent XSS when rendering with dangerouslySetInnerHTML.
+ *
+ * @param html - Raw HTML string from external source
+ * @returns Sanitized HTML safe for dangerouslySetInnerHTML
+ */
+export function sanitizeHtml(html: string): string {
+  if (!html) return html;
+
+  return html
+    // Remove <script>...</script> blocks (including their contents)
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    // Remove inline event handlers: onerror=, onclick=, onload=, etc.
+    .replace(/\s+on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
+    // Remove javascript: URLs in href
+    .replace(/href\s*=\s*(?:"|')javascript:/gi, 'href="#"');
+}

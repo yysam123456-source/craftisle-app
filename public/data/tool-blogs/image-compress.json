@@ -1,0 +1,36 @@
+{
+  "slug": "image-compress",
+  "title": "Free Online Image Compressor — How to Reduce Image Size Without Losing Quality",
+  "toolName": "Image Compressor",
+  "toolUrl": "/tools/image-compress",
+  "category": "Image Tools",
+  "date": "2026-06-08",
+  "readTime": 5,
+  "tags": ["image compression", "optimize images", "reduce file size", "web performance"],
+  "content": {
+    "intro": "Large images are the #1 cause of slow websites. According to HTTP Archive, images make up over 50% of the average web page's total weight. Compressing them is the single most effective optimization you can make — and with Craftisle's free Image Compressor, it takes just seconds.",
+    "sections": [
+      {
+        "heading": "Why Image Compression Matters",
+        "body": "Uncompressed images can easily reach 5-10 MB each. Multiply that by 10 images on a page, and you have a 50 MB page that takes 10+ seconds to load on mobile. Google's Core Web Vitals penalize slow pages in search rankings. Compressing your images to under 200 KB each can reduce page weight by 90% with no visible quality loss."
+      },
+      {
+        "heading": "Lossy vs Lossless Compression",
+        "body": "Lossy compression (JPEG, WebP) removes some image data to achieve smaller file sizes — ideal for photos and complex images. Lossless compression (PNG, SVG) preserves every pixel — best for logos, icons, and screenshots. Our tool supports both: use the quality slider for lossy, or enable lossless mode for PNG optimization."
+      },
+      {
+        "heading": "How to Use the Craftisle Image Compressor",
+        "body": "1. Drag and drop your image, or click to browse. 2. Adjust the quality slider (80% is a good starting point). 3. Toggle between JPG, PNG, and WebP output formats. 4. Click Compress — your optimized image downloads instantly. That's it. No upload to servers, no signup, no watermarks."
+      },
+      {
+        "heading": "Best Practices for Web Images",
+        "body": "Use WebP format whenever possible — it's 25-34% smaller than JPEG at equivalent quality. Set your quality between 70-85%: you won't notice the difference, but your visitors will notice the faster load time. Resize images to their display dimensions before uploading — don't serve a 4000px image in a 400px container. Always include alt text for accessibility and SEO."
+      },
+      {
+        "heading": "When NOT to Compress",
+        "body": "Don't compress medical images, legal documents, or archival photos where every pixel matters. For print production, use the original high-resolution files. For e-commerce product photos, find a balance — showcase products with crisp images but don't sacrifice page speed."
+      }
+    ],
+    "conclusion": "Image compression is a one-time investment that pays off in faster load times, better SEO rankings, and happier visitors. Try Craftisle's Image Compressor — it's free, private (everything stays in your browser), and takes less than 5 seconds."
+  }
+}

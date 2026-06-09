@@ -1,0 +1,37 @@
+{
+  "slug": "unit-converter",
+  "title": "Universal Unit Converter — Convert Length, Weight, Temperature & More",
+  "toolName": "Unit Converter",
+  "toolUrl": "/tools/unit-converter",
+  "category": "Utility Tools",
+  "date": "2026-06-08",
+  "readTime": 4,
+  "tags": [
+    "unit converter",
+    "convert units",
+    "metric",
+    "imperial"
+  ],
+  "content": {
+    "intro": "Need to convert miles to kilometers, Fahrenheit to Celsius, or pounds to kilograms? Craftisle's free Universal Unit Converter handles 200+ units across 15 categories — no math required.",
+    "sections": [
+      {
+        "heading": "All Supported Categories",
+        "body": "Length (meters, feet, inches, miles, km, cm, mm, yards, nautical miles). Weight (kg, lbs, oz, g, tons, stones). Temperature (Celsius, Fahrenheit, Kelvin). Volume (liters, gallons, cups, ml, fl oz, pints, quarts). Area (m², ft², acres, hectares). Speed (mph, km/h, m/s, knots). Time (seconds, minutes, hours, days, weeks, years). And more: pressure, energy, power, data storage, angle, frequency, force."
+      },
+      {
+        "heading": "Real-Time Conversion",
+        "body": "Type in any field and all other units update instantly. No 'Convert' button needed — the result appears as you type. Copy any converted value to clipboard with one click. Swap source and target units with a single button."
+      },
+      {
+        "heading": "Common Conversion Scenarios",
+        "body": "Cooking: convert cups to ml, ounces to grams, Fahrenheit to Celsius. Travel: convert miles to km, gallons to liters, pounds to kg. Fitness: convert kg to lbs, km to miles, meters to feet. DIY: convert inches to cm, feet to meters, square feet to m²."
+      },
+      {
+        "heading": "Precision and Rounding",
+        "body": "Adjust decimal places from 0 to 10. Scientific notation available for very large or very small values. The tool uses IEEE 754 double-precision floating point — accurate enough for all practical applications except high-precision scientific work."
+      }
+    ],
+    "conclusion": "Unit conversion shouldn't require a calculator or a Google search. Craftisle's Universal Converter is fast, comprehensive, and works offline — bookmark it for daily use."
+  }
+}

@@ -45,5 +45,5 @@ export function useFavorites() {
     [favorites]
   );
 
-  return { favorites, toggle, isFavorited, isReady };
+  return { favorites, toggle, isFavorited, isReady, isLoaded: isReady };
 }

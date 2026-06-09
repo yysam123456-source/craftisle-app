@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--render",
+  "resourceName": "Render",
+  "resourceUrl": "https://render.com",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Render is a unified cloud platform for hosting web services, static sites, background workers, databases, and cron jobs. Its free tier includes static site hosting with 100 GB bandwidth, web services with 750 hours of runtime per month (enough for a single always-on service), and a free PostgreSQL database (90-day limit). Render's 'Blueprint' feature enables Infrastructure-as-Code using a render.yaml file, making it easy to define and replicate your entire stack. Unlike many competitors, Render provides native support for Docker containers, private networking between services, and persistent disks. The platform's GitHub integration automatically deploys on push, and preview environments are created for every PR. Render's simplicity and generous free tier make it an excellent Heroku alternative.",
+    "pros": [
+      "750 hours of free web service runtime per month",
+      "Native Docker support with persistent disks",
+      "Infrastructure-as-Code via render.yaml Blueprint",
+      "Free PostgreSQL (90 days) and Redis for prototyping",
+      "Private networking between services for secure communication"
+    ],
+    "cons": [
+      "Free web service sleeps after 15 minutes of inactivity; cold starts can be slow",
+      "Free PostgreSQL expires after 90 days — not for long-term free use"
+    ],
+    "bestUseCases": [
+      "Hosting full-stack web apps with databases",
+      "Replacing Heroku for Docker-based deployments",
+      "Background workers and cron jobs with private networking"
+    ],
+    "similarAlternatives": [
+      "Railway",
+      "Fly.io",
+      "Heroku",
+      "Koyeb"
+    ],
+    "category": "Platform-as-a-Service (PaaS)"
+  }
+}

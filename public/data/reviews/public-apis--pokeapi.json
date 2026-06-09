@@ -1,0 +1,33 @@
+{
+  "resourceId": "public-apis--pokeapi",
+  "resourceName": "PokéAPI",
+  "resourceUrl": "https://pokeapi.co",
+  "source": "public-apis",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "PokéAPI is a RESTful API serving comprehensive Pokémon data — every Pokémon, move, ability, type, item, and game location across all generations. The API is completely free, requires no authentication, and supports both REST and GraphQL endpoints. It's one of the most popular free APIs for learning and prototyping, often used in coding tutorials, bootcamps, and hackathons. The API is well-documented with detailed schemas, pagination support, and CORS enabled for browser-based requests. With 1000+ Pokémon and thousands of related data points, PokéAPI provides rich relational data that mirrors real-world API design patterns. It's an excellent API for practicing frontend development, testing state management libraries, or building fun side projects without worrying about API keys or rate limits.",
+    "pros": [
+      "Completely free with no authentication or API key required",
+      "Both REST and GraphQL endpoints available",
+      "Comprehensive data: 1000+ Pokémon, moves, abilities, types, items",
+      "CORS enabled for direct browser access",
+      "Excellent for learning API integration — well-documented and beginner-friendly"
+    ],
+    "cons": [
+      "Rate limited (100 requests/minute); heavy usage may be throttled",
+      "Data may not be immediately updated for newest Pokémon games"
+    ],
+    "bestUseCases": [
+      "Learning REST/GraphQL API integration in coding tutorials",
+      "Building Pokédex apps, team builders, or Pokémon trivia games",
+      "Prototyping frontend applications with realistic relational data"
+    ],
+    "similarAlternatives": [
+      "SWAPI (Star Wars API)",
+      "Rick and Morty API",
+      "Digimon API"
+    ],
+    "category": "Games & Entertainment APIs"
+  }
+}

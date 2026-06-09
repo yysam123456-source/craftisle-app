@@ -1,0 +1,36 @@
+{
+  "slug": "base64-encode",
+  "title": "Base64 Encoder & Decoder — The Complete Guide to Base64 Encoding",
+  "toolName": "Base64 Encoder",
+  "toolUrl": "/tools/base64",
+  "category": "Developer Tools",
+  "date": "2026-06-08",
+  "readTime": 6,
+  "tags": ["base64", "encoding", "developer tools", "data URI"],
+  "content": {
+    "intro": "Base64 encoding converts binary data into ASCII text. It's the bridge between raw bytes and text-based systems — used everywhere from email attachments to data URIs, API authentication, and inline images. Craftisle's free Base64 Encoder makes it effortless.",
+    "sections": [
+      {
+        "heading": "What is Base64 Encoding?",
+        "body": "Base64 represents binary data using 64 printable ASCII characters (A-Z, a-z, 0-9, +, /). Every 3 bytes of input become 4 Base64 characters. This is why Base64-encoded data is about 33% larger than the original — the trade-off for being text-safe and universally compatible."
+      },
+      {
+        "heading": "When to Use Base64 (and When Not To)",
+        "body": "Use Base64 for: embedding small images in CSS/HTML as data URIs, encoding credentials for HTTP Basic Auth, attaching binary files to JSON payloads, and storing small blobs in databases. Don't use Base64 for: large files (the 33% size increase adds up), real-time streaming, or when binary formats like Protocol Buffers are available."
+      },
+      {
+        "heading": "Data URIs: The Hidden Power of Base64",
+        "body": "A data URI looks like: data:image/png;base64,iVBORw0KGgo... It embeds an image directly in HTML or CSS, eliminating a separate HTTP request. This speeds up small icon loading but increases the HTML size. Best for: icons under 2 KB, email signature images, and single-page apps. Avoid for: photos over 10 KB or images used on multiple pages (browser can't cache a data URI)."
+      },
+      {
+        "heading": "How to Use Craftisle's Base64 Tool",
+        "body": "Encode mode: paste text or upload a file, click Encode, copy the Base64 output. Decode mode: paste Base64 text, click Decode, see the original content or download the decoded file. The tool auto-detects whether your input is already Base64-encoded and suggests the right operation."
+      },
+      {
+        "heading": "Base64 vs Other Encoding Schemes",
+        "body": "Base64 is not encryption — anyone can decode it. For security, use actual encryption like AES. Base64 vs Hex: Hex uses 2 characters per byte (50% overhead), Base64 uses 1.33 (33% overhead) — Base64 is more compact. Base64 vs Base64URL: Base64URL replaces + with - and / with _, making it safe for URLs and filenames."
+      }
+    ],
+    "conclusion": "Base64 is a simple but powerful tool every developer should understand. Whether you're embedding images, sending binary data over text protocols, or debugging API responses, Craftisle's free encoder/decoder has you covered."
+  }
+}

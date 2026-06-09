@@ -4,26 +4,21 @@ export const BLOG_CATEGORIES: {
   description: string;
 }[] = [
   {
-    title: "News",
+    title: "Tools",
     slug: "news",
-    description: "Updates and announcements from Next SaaS Starter.",
+    description: "Discover our full suite of free online tools — from image editors to PDF processors.",
   },
   {
-    title: "Education",
+    title: "Guides",
     slug: "education",
-    description: "Educational content about SaaS management.",
+    description: "Step-by-step tutorials and how-to guides for every Craftisle tool.",
   },
 ];
 
 export const BLOG_AUTHORS = {
-  mickasmt: {
-    name: "mickasmt",
+  craftisle: {
+    name: "Craftisle Team",
     image: "/_static/avatars/mickasmt.png",
-    twitter: "miickasmt",
-  },
-  shadcn: {
-    name: "shadcn",
-    image: "/_static/avatars/shadcn.jpeg",
-    twitter: "shadcn",
+    twitter: "craftisle",
   },
 };

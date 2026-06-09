@@ -1,0 +1,34 @@
+{
+  "resourceId": "public-apis--jsonplaceholder",
+  "resourceName": "JSONPlaceholder",
+  "resourceUrl": "https://jsonplaceholder.typicode.com",
+  "source": "public-apis",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "JSONPlaceholder is a free fake REST API for testing and prototyping. It provides common resources like posts, comments, users, todos, albums, and photos with realistic relationships (posts belong to users, comments belong to posts, etc.). The API supports all standard HTTP methods — GET, POST, PUT, PATCH, DELETE — allowing developers to test full CRUD operations against a real server without setting up a backend. All data is served over HTTPS with JSON responses, and the entire service is powered by JSON Server, which can be run locally for offline development. JSONPlaceholder is universally recommended in frontend tutorials, coding bootcamps, and documentation as the go-to mock API. Its predictable structure and zero-authentication approach make it perfect for learning HTTP client libraries, testing state management, and prototyping before a real backend exists.",
+    "pros": [
+      "Fully functional fake REST API supporting all HTTP methods",
+      "Realistic resource relationships: users → posts → comments",
+      "No authentication, no rate limits, CORS enabled",
+      "Can be self-hosted locally using JSON Server for offline development",
+      "Perfect for tutorials, bootcamps, and frontend prototyping"
+    ],
+    "cons": [
+      "Data is static and resets periodically — not for production use",
+      "Limited resource types (6 resources); cannot customize schema without self-hosting"
+    ],
+    "bestUseCases": [
+      "Learning HTTP clients (fetch, axios, React Query, SWR)",
+      "Prototyping frontend applications before backend is ready",
+      "Writing and testing CRUD operations in coding tutorials"
+    ],
+    "similarAlternatives": [
+      "Reqres",
+      "DummyJSON",
+      "Fake Store API",
+      "MockAPI.io"
+    ],
+    "category": "Development & Testing APIs"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--github",
+  "resourceName": "GitHub",
+  "resourceUrl": "https://github.com",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "GitHub is the world's largest code hosting platform with over 100 million developers. Its free tier now includes unlimited public and private repositories with unlimited collaborators, 2000 CI/CD minutes per month (GitHub Actions), 500 MB package storage, and GitHub Codespaces (cloud development environments) with 120 core-hours per month. GitHub Copilot, the AI pair programmer, is available with limited free usage. GitHub Pages provides free static site hosting from any repository. With built-in project management (Issues, Projects, Wikis), code review tools, and security scanning (Dependabot, CodeQL), GitHub offers a complete development platform at zero cost. The free tier is sufficient for individual developers, open-source projects, and small teams.",
+    "pros": [
+      "Unlimited public and private repositories with unlimited collaborators",
+      "2000 GitHub Actions CI/CD minutes per month on free tier",
+      "GitHub Codespaces: 120 core-hours of cloud dev environments monthly",
+      "Built-in security scanning: Dependabot alerts, CodeQL analysis, secret scanning",
+      "GitHub Pages for free static site hosting directly from repositories"
+    ],
+    "cons": [
+      "Large binary files require Git LFS which has limited free storage (1 GB)",
+      "Actions minutes shared across all repos; can be exhausted by a single active project"
+    ],
+    "bestUseCases": [
+      "Open source project hosting with CI/CD and community management",
+      "Personal and team code collaboration with PR reviews",
+      "Portfolio hosting via GitHub Pages"
+    ],
+    "similarAlternatives": [
+      "GitLab",
+      "Bitbucket",
+      "Codeberg",
+      "SourceHut"
+    ],
+    "category": "Source Code Repositories"
+  }
+}

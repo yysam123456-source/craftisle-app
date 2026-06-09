@@ -1,0 +1,35 @@
+{
+  "resourceId": "free-for-dev--supabase",
+  "resourceName": "Supabase",
+  "resourceUrl": "https://supabase.com",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Supabase is an open-source Firebase alternative that provides a full Postgres database, authentication, real-time subscriptions, storage, and edge functions. The free tier includes 500 MB database, 50,000 monthly active users, 1 GB file storage, 2 GB bandwidth, and 500K edge function invocations. Supabase's standout feature is real-time subscriptions — database changes are streamed to clients instantly via WebSockets. Row Level Security (RLS) provides fine-grained access control directly at the database level. The auto-generated RESTful and GraphQL APIs eliminate the need for a traditional backend. With a generous free tier, self-hosting option, and growing ecosystem, Supabase has become the default backend for many modern web applications, especially those built with Next.js, SvelteKit, or React Native.",
+    "pros": [
+      "Full Postgres database with real-time subscriptions via WebSockets",
+      "Auto-generated REST and GraphQL APIs — no backend coding needed",
+      "Row Level Security (RLS) for fine-grained access control",
+      "50,000 monthly active users on free tier — enough for early-stage products",
+      "Open source with self-hosting option to avoid vendor lock-in"
+    ],
+    "cons": [
+      "500 MB database size may require cleanup for data-heavy applications",
+      "Free projects pause after 1 week of inactivity; need to upgrade for always-on"
+    ],
+    "bestUseCases": [
+      "Building MVPs and early-stage SaaS products",
+      "Real-time collaborative applications (chat, whiteboards, live dashboards)",
+      "Mobile app backends with authentication and file storage"
+    ],
+    "similarAlternatives": [
+      "Firebase",
+      "Neon",
+      "PlanetScale",
+      "Appwrite",
+      "PocketBase"
+    ],
+    "category": "Backend-as-a-Service (BaaS)"
+  }
+}

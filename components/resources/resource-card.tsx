@@ -1,16 +1,20 @@
+"use client"
+
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Globe } from "lucide-react";
+import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
 
 interface Resource {
   id: string;
   category: string;
-  categoryName: string;
-  categoryIcon: string;
+  categoryName?: string;
+  categoryIcon?: string;
   name: string;
   url: string;
   description: string;
+  source?: string;
 }
 
 interface ResourceCardProps {
@@ -58,6 +62,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
               <img
                 src={faviconUrl}
                 alt=""
+                loading="lazy"
                 className="w-full h-full object-contain p-1"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
@@ -82,23 +87,27 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
                   isLarge ? "text-lg" : "text-base"
                 }`}
               >
+                <Link
+                  href={`/directory/resource/${resource.id}`}
+                  className="hover:text-primary hover:underline decoration-primary/50 underline-offset-2 transition-colors"
+                >
+                  {resource.name}
+                </Link>
+              </CardTitle>
+              <div className="flex items-center flex-shrink-0 gap-0.5 mt-0.5">
+                {/* Star button */}
+                <StarButtonWrapper resourceId={resource.id} />
+                {/* External link */}
                 <a
                   href={resource.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-primary hover:underline decoration-primary/50 underline-offset-2 transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  {resource.name}
+                  <ExternalLink className={`${isLarge ? "h-4 w-4" : "h-3.5 w-3.5"}`} />
                 </a>
-              </CardTitle>
-              <a
-                href={resource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-shrink-0 mt-0.5 text-muted-foreground hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
-              >
-                <ExternalLink className={`${isLarge ? "h-4 w-4" : "h-3.5 w-3.5"}`} />
-              </a>
+              </div>
             </div>
 
             {/* Category Badge */}

@@ -1,0 +1,37 @@
+{
+  "slug": "text-counter",
+  "title": "Word Counter & Character Counter — Count Everything in Your Text",
+  "toolName": "Text Counter",
+  "toolUrl": "/tools/text-counter",
+  "category": "Writing Tools",
+  "date": "2026-06-08",
+  "readTime": 3,
+  "tags": [
+    "word counter",
+    "character count",
+    "writing tools",
+    "seo"
+  ],
+  "content": {
+    "intro": "Word count is the starting point for every piece of writing. Craftisle's free Text Counter goes beyond simple counting — it tracks characters, sentences, paragraphs, reading time, keyword density, and more, all in real-time.",
+    "sections": [
+      {
+        "heading": "Everything We Count",
+        "body": "Words: the total number of words. Characters (with spaces): includes all characters. Characters (without spaces): excludes whitespace. Sentences: counted by end punctuation (!.?). Paragraphs: counted by line breaks. Reading time: estimated at 238 words per minute (average adult). Speaking time: estimated at 130 words per minute. Pages: estimated at 500 words per page (single-spaced)."
+      },
+      {
+        "heading": "SEO Writing with Word Count",
+        "body": "Google prefers comprehensive content — most top-ranking pages are 1,500-2,500 words. But quality > quantity. Use our counter to hit minimums (300 words to avoid 'thin content' flags) and check if your content is competitive in length for its topic."
+      },
+      {
+        "heading": "Social Media Character Limits",
+        "body": "Twitter/X: 280 characters. LinkedIn: 3,000 characters for posts, 700 for company page updates. Instagram captions: 2,200 characters (truncated after 125). Meta descriptions: 155-160 characters. Our counter helps you stay within limits."
+      },
+      {
+        "heading": "How to Use the Text Counter",
+        "body": "Paste or type your text. All counts update in real-time. Keyword density shows the most-used words and their frequency. Char/word/line stats appear in a compact sidebar. No signup, no limits — just paste and count."
+      }
+    ],
+    "conclusion": "Whether you're writing a tweet, a blog post, or a thesis, word count matters. Craftisle's free Text Counter gives you all the metrics you need in one clean, real-time interface."
+  }
+}

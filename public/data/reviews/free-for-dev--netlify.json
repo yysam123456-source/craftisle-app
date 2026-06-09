@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--netlify",
+  "resourceName": "Netlify",
+  "resourceUrl": "https://www.netlify.com",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Netlify pioneered the modern Jamstack deployment workflow, offering a powerful platform for deploying static sites and serverless functions. Its free tier includes 100 GB bandwidth, 300 build minutes per month, and 125K serverless function invocations. Netlify's standout features include deploy previews for every PR, split testing (A/B testing without third-party tools), form handling without a backend, and Identity for user authentication. The Netlify CLI provides a local development experience that mirrors production, and Netlify Dev lets you run the entire platform locally. With support for all major static site generators and Git providers, Netlify remains one of the most developer-friendly deployment platforms available at zero cost.",
+    "pros": [
+      "Built-in form handling — capture form submissions without any backend code",
+      "Split testing / A/B testing built into the platform",
+      "Netlify Dev runs the entire platform locally including serverless functions",
+      "100 GB bandwidth on free tier, generous for most projects",
+      "Identity service for authentication without third-party auth providers"
+    ],
+    "cons": [
+      "300 build minutes per month can be limiting for active projects with many deploys",
+      "Limited to static sites + serverless functions; no persistent backend or database"
+    ],
+    "bestUseCases": [
+      "Static websites and Jamstack applications",
+      "Marketing landing pages and documentation sites",
+      "Projects needing built-in form handling or A/B testing"
+    ],
+    "similarAlternatives": [
+      "Vercel",
+      "Cloudflare Pages",
+      "GitHub Pages",
+      "Render"
+    ],
+    "category": "Static Site & Frontend Hosting"
+  }
+}

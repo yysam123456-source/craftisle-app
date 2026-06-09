@@ -6,9 +6,9 @@ import { ArrowRight } from "lucide-react";
 interface Category {
   id: string;
   name: string;
-  description: string;
-  icon: string;
-  count: number;
+  description?: string;
+  icon?: string;
+  count?: number;
 }
 
 interface CategoryGridProps {
@@ -47,7 +47,7 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
             >
               <div className="text-white">
                 <div className="text-4xl mb-2">{cat.icon}</div>
-                <div className="text-sm opacity-80">{cat.count} resources</div>
+                <div className="text-sm opacity-80">{cat.count || 0} resources</div>
               </div>
               <Badge
                 variant="secondary"

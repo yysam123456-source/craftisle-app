@@ -1,0 +1,37 @@
+{
+  "slug": "url-encoder",
+  "title": "URL Encoder & Decoder — Handle Special Characters in URLs Correctly",
+  "toolName": "URL Encoder",
+  "toolUrl": "/tools/url-encoder",
+  "category": "Developer Tools",
+  "date": "2026-06-08",
+  "readTime": 5,
+  "tags": [
+    "url encoding",
+    "percent encoding",
+    "developer tools",
+    "web development"
+  ],
+  "content": {
+    "intro": "URLs can only contain a limited set of ASCII characters. Special characters, spaces, and non-Latin scripts must be percent-encoded. Craftisle's free URL Encoder handles all of this automatically — paste your text, get a safe URL.",
+    "sections": [
+      {
+        "heading": "What is Percent Encoding?",
+        "body": "Percent encoding (URL encoding) replaces unsafe ASCII characters with a % followed by two hexadecimal digits. For example, space becomes %20, @ becomes %40, and Chinese characters like 你好 become %E4%BD%A0%E5%A5%BD. RFC 3986 defines which characters must be encoded."
+      },
+      {
+        "heading": "Reserved vs Unreserved Characters",
+        "body": "Reserved characters have special meaning in URLs: : / ? # [ ] @ ! $ & ' ( ) * + , ; = . These should be encoded when used as data, not as URL structure. Unreserved characters (A-Z, a-z, 0-9, -, _, ., ~) are always safe."
+      },
+      {
+        "heading": "encodeURI vs encodeURIComponent",
+        "body": "JavaScript's encodeURI() preserves URL structure characters (? & #). encodeURIComponent() encodes everything — use it for query parameter values. Example: encodeURIComponent('name=John&age=30') → 'name%3DJohn%26age%3D30'."
+      },
+      {
+        "heading": "Common URL Encoding Mistakes",
+        "body": "Double encoding: encoding an already-encoded string produces garbled URLs like %2520 instead of %20. Missing encoding: unencoded spaces break URLs. Wrong function: using encodeURI for query parameters can leave dangerous characters unencoded."
+      }
+    ],
+    "conclusion": "URL encoding is fundamental to web development. Whether you're building query strings, form submissions, or API calls, Craftisle's encoder ensures your URLs are always valid and safe."
+  }
+}

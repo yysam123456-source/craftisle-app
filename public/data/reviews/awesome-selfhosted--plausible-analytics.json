@@ -1,0 +1,35 @@
+{
+  "resourceId": "awesome-selfhosted--plausible-analytics",
+  "resourceName": "Plausible Analytics",
+  "resourceUrl": "https://plausible.io",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Plausible Analytics is a lightweight, privacy-friendly web analytics tool that serves as an ethical alternative to Google Analytics. The script weighs under 1 KB — 45x smaller than Google Analytics — resulting in faster page loads. Plausible is fully GDPR, CCPA, and PECR compliant out of the box: it doesn't use cookies, doesn't collect personal data, and doesn't track users across sites. The dashboard is clean and intuitive, showing essential metrics: unique visitors, page views, bounce rate, visit duration, top pages, referral sources, countries, devices, and custom events. All data is aggregated — no individual user profiling. The self-hosted version is free and open-source (AGPL), while the cloud version starts at €9/month. For site owners who value user privacy and want simple, actionable analytics without the bloat of Google Analytics, Plausible is the clear winner.",
+    "pros": [
+      "Under 1 KB script — 45x smaller than Google Analytics, faster page loads",
+      "GDPR, CCPA, PECR compliant by default: no cookies, no personal data collection",
+      "Clean dashboard with only essential metrics — no analysis paralysis",
+      "Self-hosted version is free and open-source (AGPL-3.0)",
+      "Custom event tracking for goals, clicks, and conversions"
+    ],
+    "cons": [
+      "Limited compared to GA4: no funnel analysis, no audience segmentation, no attribution modeling",
+      "Requires running a server for self-hosted; cloud version starts at €9/month"
+    ],
+    "bestUseCases": [
+      "Privacy-focused websites that want analytics without tracking users",
+      "Simple traffic monitoring for blogs, portfolios, and small business sites",
+      "GDPR-compliant analytics for EU-based websites"
+    ],
+    "similarAlternatives": [
+      "Umami",
+      "Matomo",
+      "GoatCounter",
+      "Fathom Analytics",
+      "Simple Analytics"
+    ],
+    "category": "Analytics"
+  }
+}

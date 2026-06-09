@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--fly-io",
+  "resourceName": "Fly.io",
+  "resourceUrl": "https://fly.io",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Fly.io is a platform for running full-stack applications close to users, deploying Docker containers to servers in 35+ regions worldwide. Their free tier includes up to 3 shared-cpu VMs with 256 MB RAM each, 3 GB persistent volume, and 160 GB outbound data transfer. Fly.io's key differentiator is its global distribution — your app runs in multiple regions simultaneously, with automatic routing to the nearest healthy instance. This makes it ideal for latency-sensitive applications. Fly.io supports any language or framework through Docker, provides built-in Anycast networking, WireGuard-based private networking, and automatic SSL via Let's Encrypt. The platform's `flyctl` CLI provides a polished developer experience with commands for launching, scaling, and monitoring applications.",
+    "pros": [
+      "3 free VMs (256 MB each) across 35+ global regions",
+      "Automatic geographic routing to nearest healthy instance",
+      "WireGuard-based private networking between app instances",
+      "3 GB persistent volume for stateful applications",
+      "Automatic SSL certificates via Let's Encrypt"
+    ],
+    "cons": [
+      "256 MB RAM per VM; many frameworks (Node, Rails) need more for production",
+      "Requires Docker knowledge; no automatic build detection"
+    ],
+    "bestUseCases": [
+      "Latency-critical global applications needing multi-region deployment",
+      "Running lightweight Go, Rust, or Elixir services close to users",
+      "Edge computing and geographically distributed workloads"
+    ],
+    "similarAlternatives": [
+      "Railway",
+      "Render",
+      "Koyeb",
+      "Hetzner Cloud"
+    ],
+    "category": "Platform-as-a-Service (PaaS)"
+  }
+}

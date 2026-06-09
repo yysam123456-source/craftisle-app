@@ -324,7 +324,7 @@ export default function HtmlVisualEditorTool() {
               <iframe
                 ref={iframeRef}
                 title="HTML Visual Editor"
-                sandbox="allow-scripts allow-same-origin allow-downloads"
+                sandbox="allow-scripts allow-downloads"
                 className="w-full min-h-[600px]"
                 srcDoc={iframeSrcdoc}
                 onLoad={handleIframeLoad}

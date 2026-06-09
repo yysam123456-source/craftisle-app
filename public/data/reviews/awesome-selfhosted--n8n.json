@@ -1,0 +1,35 @@
+{
+  "resourceId": "awesome-selfhosted--n8n",
+  "resourceName": "n8n",
+  "resourceUrl": "https://n8n.io",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "n8n is a powerful open-source workflow automation tool that connects your apps and services through a visual node editor. Think Zapier or Make (Integromat), but self-hosted and with unlimited workflows on the free tier. n8n supports 400+ integrations including Slack, GitHub, Google Sheets, OpenAI, Airtable, databases, and any REST API. The visual workflow builder makes it easy to create complex automations with conditions, loops, error handling, and code nodes (JavaScript/Python). n8n can be deployed via Docker and stores all data locally, ensuring complete control over your automation data. The fair-code license allows free use with source code access. With webhook triggers, scheduled execution, and the ability to chain hundreds of nodes, n8n can handle everything from simple notifications to complex data pipelines. It's the go-to choice for teams that need powerful automation without vendor lock-in or per-task pricing.",
+    "pros": [
+      "400+ integrations with major apps and services",
+      "Visual node editor with conditions, loops, error handling, and code nodes",
+      "Self-hosted — unlimited workflows and executions on free tier",
+      "JavaScript and Python code nodes for custom logic within workflows",
+      "Community node repository for community-built integrations"
+    ],
+    "cons": [
+      "Self-hosting requires Docker knowledge and server maintenance",
+      "Some advanced features (branch merging, sub-workflows) are more complex than Zapier"
+    ],
+    "bestUseCases": [
+      "Replacing Zapier, Make, or IFTTT with a self-hosted alternative",
+      "Automating internal business processes across multiple SaaS tools",
+      "Data pipelines: ETL, webhooks, API orchestration"
+    ],
+    "similarAlternatives": [
+      "Zapier",
+      "Make (Integromat)",
+      "Node-RED",
+      "Huginn",
+      "Activepieces"
+    ],
+    "category": "Automation"
+  }
+}

@@ -80,14 +80,13 @@ export function UserRoleForm({ user }: UserNameFormProps) {
                 <FormItem className="w-full space-y-0">
                   <FormLabel className="sr-only">Role</FormLabel>
                   <Select
-                    // TODO:(FIX) Option value not update. Use useState for the moment
                     onValueChange={(value: string) => {
                       setUpdated(user.role !== value);
                       setRole(value);
-                      // field.onChange;
+                      field.onChange(value);
                     }}
                     name={field.name}
-                    defaultValue={user.role}
+                    value={role}
                   >
                     <FormControl>
                       <SelectTrigger className="w-full">

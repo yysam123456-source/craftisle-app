@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock, Tag, User } from "lucide-react";
 import { getPostBySlug, getSettings } from "@/lib/ghost";
-import { normalizeHeadings } from "@/lib/content-processor";
+import { normalizeHeadings, sanitizeHtml } from "@/lib/content-processor";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -175,7 +175,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <article
             className="prose prose-gray max-w-none dark:prose-invert"
             dangerouslySetInnerHTML={{
-              __html: normalizeHeadings(post.html || ""),
+              __html: sanitizeHtml(normalizeHeadings(post.html || "")),
             }}
           />
         </div>

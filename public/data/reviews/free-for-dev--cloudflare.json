@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--cloudflare",
+  "resourceName": "Cloudflare",
+  "resourceUrl": "https://www.cloudflare.com",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Cloudflare's free tier is arguably the most generous in the industry, offering DDoS protection, global CDN, SSL/TLS encryption, DNS management, and Workers (serverless edge functions) at no cost. Cloudflare Pages competes directly with Vercel and Netlify for static site hosting, while Workers provides 100,000 requests per day for serverless compute at the edge. Additional free services include Turnstile (CAPTCHA alternative), R2 object storage (10 GB), D1 database (5 GB), and KV storage. Cloudflare's massive global network (330+ cities) ensures low latency worldwide, and their security features protect against common web threats. The platform's comprehensive free offering makes it suitable for everything from personal blogs to production applications.",
+    "pros": [
+      "Best-in-class DDoS protection and WAF included in free tier",
+      "Workers: 100K requests/day at the edge across 330+ cities",
+      "R2 object storage: 10 GB free with zero egress fees",
+      "D1 database and KV storage included for full-stack apps",
+      "Turnstile as a free, privacy-friendly CAPTCHA alternative"
+    ],
+    "cons": [
+      "Workers have CPU time limits (10ms for free plan); complex computations need optimization",
+      "Ecosystem lock-in risk — Workers, D1, R2, KV are Cloudflare-specific APIs"
+    ],
+    "bestUseCases": [
+      "CDN, DNS, and DDoS protection for any website",
+      "Full-stack applications using Workers + D1 + R2",
+      "Replacing traditional server infrastructure with edge computing"
+    ],
+    "similarAlternatives": [
+      "Vercel",
+      "Netlify",
+      "Fastly",
+      "AWS CloudFront"
+    ],
+    "category": "CDN, DNS & Edge Computing"
+  }
+}

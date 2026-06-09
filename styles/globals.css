@@ -99,6 +99,25 @@
   }
 }
 
+/* ── Mobile Optimization ──────────────────────────── */
+/* Minimum touch targets (44px) for interactive elements */
+@media (max-width: 768px) {
+  a, button, [role="button"], input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Keep inline links compact */
+  a:not([class*="px-"]):not([class*="py-"]):not(nav a):not(.card a) {
+    min-height: unset;
+    min-width: unset;
+  }
+
+  html {
+    font-size: 16px; /* Base: 16px prevents iOS zoom on input focus */
+  }
+}
+
 .text-gradient_indigo-purple {
   background: linear-gradient(90deg, #6366f1 0%, rgb(168 85 247 / 0.8) 100%);
   -webkit-background-clip: text;

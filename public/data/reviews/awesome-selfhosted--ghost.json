@@ -1,0 +1,34 @@
+{
+  "resourceId": "awesome-selfhosted--ghost",
+  "resourceName": "Ghost",
+  "resourceUrl": "https://ghost.org",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Ghost is a powerful open-source publishing platform focused on professional blogging, newsletters, and membership management. Unlike WordPress, Ghost was built specifically for content creators with a clean, modern editor, built-in SEO, and membership/subscription features out of the box. The self-hosted version is completely free and includes all features: rich editor with dynamic cards, native email newsletter delivery, member management with tiers, Stripe integration for paid subscriptions, and a REST API for headless CMS use cases. Ghost's editor supports markdown, rich media embeds, and a distraction-free writing experience. The platform generates clean, fast-loading pages optimized for Core Web Vitals. With its modern architecture (Node.js + SQLite/MySQL), Ghost is lightweight and performs well even on modest VPS instances. It's ideal for individuals and small teams who want a professional publishing platform without the complexity of WordPress.",
+    "pros": [
+      "Purpose-built for professional blogging with a beautiful, distraction-free editor",
+      "Built-in membership, subscriptions, and email newsletters — no plugins needed",
+      "Native Stripe integration for paid subscriptions",
+      "Clean, fast HTML output optimized for Core Web Vitals and SEO",
+      "REST API enables headless CMS usage with any frontend framework"
+    ],
+    "cons": [
+      "Smaller theme and plugin ecosystem compared to WordPress",
+      "Node.js requirement means not all shared hosting supports it"
+    ],
+    "bestUseCases": [
+      "Professional blogs and online publications",
+      "Membership-based content sites with paid subscriptions",
+      "Newsletter-first publications needing integrated delivery"
+    ],
+    "similarAlternatives": [
+      "WordPress",
+      "Hugo",
+      "Strapi",
+      "Payload CMS"
+    ],
+    "category": "Blogging Platforms"
+  }
+}

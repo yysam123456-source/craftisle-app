@@ -1,0 +1,33 @@
+{
+  "resourceId": "public-apis--rest-countries",
+  "resourceName": "REST Countries",
+  "resourceUrl": "https://restcountries.com",
+  "source": "public-apis",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "REST Countries provides comprehensive data about all countries in the world through a simple REST API — no authentication required. Each country's data includes name, capital, population, area, currencies, languages, flags (PNG/SVG), bordering countries, timezones, and more. The API supports filtering by region, currency, language, or name, making it versatile for building geography-related applications. Version 3.1 added independent country filtering, demonym data, and improved translations. The API is free, fast, and widely used in frontend development tutorials and challenges (such as the Frontend Mentor 'REST Countries API' challenge). With its straightforward schema and CORS support, REST Countries is ideal for learning API integration, building country selectors, or creating geographic data visualizations.",
+    "pros": [
+      "No authentication required — completely open API",
+      "Comprehensive per-country data: flag, currency, languages, borders, timezones",
+      "Filter by region, currency, language, or name",
+      "SVG and PNG flags included in response",
+      "Widely used in frontend tutorials and challenges — great learning resource"
+    ],
+    "cons": [
+      "Data updates depend on community contributions; may lag behind geopolitical changes",
+      "Limited to basic country data — no real-time statistics or economic indicators"
+    ],
+    "bestUseCases": [
+      "Country selector components with flags in web forms",
+      "Geography quiz apps and educational tools",
+      "Data visualization projects showing global statistics"
+    ],
+    "similarAlternatives": [
+      "CountryAPI",
+      "Geonames",
+      "CountriesNow API"
+    ],
+    "category": "Geography & Location APIs"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "uuid-generator",
+  "title": "UUID Generator — Generate Unique Identifiers Online",
+  "toolName": "UUID Generator",
+  "toolUrl": "/tools/uuid",
+  "category": "Developer Tools",
+  "date": "2026-06-08",
+  "readTime": 4,
+  "tags": [
+    "uuid",
+    "unique identifier",
+    "guid",
+    "developer tools"
+  ],
+  "content": {
+    "intro": "UUIDs (Universally Unique Identifiers) are 128-bit numbers that are practically guaranteed to be unique across space and time. They're essential for distributed systems, database primary keys, and API resource identifiers. Craftisle's UUID Generator creates them instantly — no coding required.",
+    "sections": [
+      {
+        "heading": "UUID Versions Explained",
+        "body": "v1: time-based + MAC address (can leak hardware info). v4: random (most common — 122 random bits, collision probability is astronomically low). v7: time-ordered (new in RFC 9562, best for database indexes). Each version serves different use cases."
+      },
+      {
+        "heading": "UUID vs Auto-Increment IDs",
+        "body": "Auto-increment (1, 2, 3...) is simple but has problems: it leaks row counts, makes merging databases hard, and can't be generated offline. UUIDs solve all three — they're globally unique, can be generated anywhere, and don't reveal ordering or count."
+      },
+      {
+        "heading": "When to Use UUID v7",
+        "body": "v7 is time-sorted (first 48 bits are a Unix timestamp), making it ideal for database primary keys. Unlike v4 (fully random), v7 UUIDs are sequential, so B-tree indexes perform much better. PostgreSQL, MySQL 8.0+, and SQLite all support UUID v7 natively or via extensions."
+      },
+      {
+        "heading": "How to Use the UUID Generator",
+        "body": "Select your UUID version (v1, v4, v7). Choose format: standard (550e8400-e29b-41d4-a716-446655440000), uppercase (550E8400-...), or no dashes (550e8400e29b41d4...). Click Generate — copy one or bulk generate up to 100 at once."
+      }
+    ],
+    "conclusion": "UUIDs are the backbone of modern distributed systems. Whether you're designing a new API, setting up a database, or need unique IDs for a project, Craftisle's free generator handles it."
+  }
+}

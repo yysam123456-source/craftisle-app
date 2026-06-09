@@ -1,0 +1,34 @@
+{
+  "resourceId": "awesome-selfhosted--stirling-pdf",
+  "resourceName": "Stirling-PDF",
+  "resourceUrl": "https://github.com/Stirling-Tools/Stirling-PDF",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Stirling-PDF is a comprehensive, self-hosted PDF manipulation tool that provides 50+ operations in a clean web interface. You can merge, split, rotate, compress, convert (PDF to/from images, Word, PowerPoint, Excel, HTML), OCR, add/remove passwords, add watermarks, sign, and much more — all without uploading files to any third-party service. It runs as a Docker container and processes all files locally, ensuring document privacy. The tool supports batch operations, drag-and-drop file uploads, and a pipeline feature that chains multiple operations. Stirling-PDF supports 30+ languages and has a responsive design that works on desktop and mobile. It's an excellent alternative to Adobe Acrobat, SmallPDF, and iLovePDF for users who handle sensitive documents and want to keep them local. The active development community continuously adds new features and PDF operation types.",
+    "pros": [
+      "50+ PDF operations: merge, split, compress, OCR, convert, sign, and more",
+      "All processing is local — no files uploaded to external servers",
+      "Pipeline feature chains multiple operations into one workflow",
+      "30+ language support with responsive mobile-friendly UI",
+      "Docker deployment with simple docker-compose setup"
+    ],
+    "cons": [
+      "OCR requires heavyweight dependencies and more RAM",
+      "Some advanced PDF features (digital signatures with certificates) not yet supported"
+    ],
+    "bestUseCases": [
+      "Replacing Adobe Acrobat for common PDF tasks",
+      "Processing sensitive documents that shouldn't leave your network",
+      "Office environments needing a central PDF tool accessible to all staff"
+    ],
+    "similarAlternatives": [
+      "PDF24",
+      "LibreOffice Draw",
+      "PDFsam",
+      "ilovepdf (cloud)"
+    ],
+    "category": "Document Management"
+  }
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "slug": "image-compress",
+    "title": "Free Online Image Compressor — How to Reduce Image Size Without Losing Quality",
+    "toolName": "Image Compressor",
+    "toolUrl": "/tools/image-compress",
+    "category": "Image Tools",
+    "excerpt": "Learn how to compress JPG, PNG, and WebP images online for free. Reduce file sizes by up to 90% while keeping visual quality — perfect for websites, email, and social media.",
+    "date": "2026-06-08",
+    "readTime": 5,
+    "tags": ["image compression", "optimize images", "reduce file size", "web performance"]
+  },
+  {
+    "slug": "base64-encode",
+    "title": "Base64 Encoder & Decoder — The Complete Guide to Base64 Encoding",
+    "toolName": "Base64 Encoder",
+    "toolUrl": "/tools/base64",
+    "category": "Developer Tools",
+    "excerpt": "Everything you need to know about Base64 encoding: what it is, when to use it, and how our free online encoder makes it simple. Convert text, images, and files in seconds.",
+    "date": "2026-06-08",
+    "readTime": 6,
+    "tags": ["base64", "encoding", "developer tools", "data URI"]
+  },
+  {
+    "slug": "json-formatter",
+    "title": "JSON Formatter & Validator — Make Your JSON Readable in One Click",
+    "toolName": "JSON Formatter",
+    "toolUrl": "/tools/json-formatter",
+    "category": "Developer Tools",
+    "excerpt": "Tired of unreadable JSON? Our free online JSON formatter beautifies, validates, and minifies JSON instantly. Includes tree view, error highlighting, and copy-to-clipboard.",
+    "date": "2026-06-08",
+    "readTime": 5,
+    "tags": ["json", "formatter", "validator", "developer tools"]
+  },
+  {
+    "slug": "diff-checker",
+    "title": "Online Diff Checker — Compare Text & Code Side by Side",
+    "toolName": "Diff Checker",
+    "toolUrl": "/tools/diff-checker",
+    "category": "Developer Tools",
+    "excerpt": "Compare two text files or code snippets instantly with our free online diff tool. Highlight additions, deletions, and changes — perfect for code review and document comparison.",
+    "date": "2026-06-08",
+    "readTime": 4,
+    "tags": ["diff", "compare text", "code review", "developer tools"]
+  },
+  {
+    "slug": "url-encoder",
+    "title": "URL Encoder & Decoder — Handle Special Characters in URLs Correctly",
+    "toolName": "URL Encoder",
+    "toolUrl": "/tools/url-encoder",
+    "category": "Developer Tools",
+    "excerpt": "Master URL encoding with our free online tool. Learn when and why to encode URLs, how percent-encoding works, and common pitfalls to avoid.",
+    "date": "2026-06-08",
+    "readTime": 5,
+    "tags": ["url encoding", "percent encoding", "developer tools", "web development"]
+  },
+  {
+    "slug": "md5-hash",
+    "title": "MD5 Hash Generator — How to Generate and Verify MD5 Checksums",
+    "toolName": "MD5 Generator",
+    "toolUrl": "/tools/md5",
+    "category": "Developer Tools",
+    "excerpt": "Generate MD5 hashes for any string or file instantly. Learn what MD5 is, when it's still useful (file integrity checks), and when to use stronger alternatives like SHA-256.",
+    "date": "2026-06-08",
+    "readTime": 5,
+    "tags": ["md5", "hash", "checksum", "file integrity"]
+  },
+  {
+    "slug": "uuid-generator",
+    "title": "UUID Generator — Generate Unique Identifiers Online",
+    "toolName": "UUID Generator",
+    "toolUrl": "/tools/uuid",
+    "category": "Developer Tools",
+    "excerpt": "Generate UUID v4, v1, and v7 identifiers instantly. Learn the differences between UUID versions and best practices for using unique IDs in databases, APIs, and distributed systems.",
+    "date": "2026-06-08",
+    "readTime": 4,
+    "tags": ["uuid", "unique identifier", "guid", "developer tools"]
+  },
+  {
+    "slug": "qrcode-generator",
+    "title": "QR Code Generator — Create Custom QR Codes for Free",
+    "toolName": "QR Code Generator",
+    "toolUrl": "/tools/qrcode",
+    "category": "Utility Tools",
+    "excerpt": "Generate high-quality QR codes for URLs, text, Wi-Fi credentials, and more. Customize colors, add logos, and download as PNG or SVG — all free, no signup required.",
+    "date": "2026-06-08",
+    "readTime": 5,
+    "tags": ["qr code", "generator", "custom qr", "barcode"]
+  },
+  {
+    "slug": "color-picker",
+    "title": "Online Color Picker & Converter — Hex, RGB, HSL Made Easy",
+    "toolName": "Color Picker",
+    "toolUrl": "/tools/color-picker",
+    "category": "Design Tools",
+    "excerpt": "Pick colors from an interactive wheel, convert between Hex/RGB/HSL formats, and generate harmonious color palettes. Essential tool for designers and frontend developers.",
+    "date": "2026-06-08",
+    "readTime": 4,
+    "tags": ["color picker", "hex", "rgb", "hsl", "design tools"]
+  },
+  {
+    "slug": "pdf-merge",
+    "title": "Free PDF Merger — Combine PDF Files Online Without Watermarks",
+    "toolName": "PDF Merger",
+    "toolUrl": "/tools/pdf-merge",
+    "category": "PDF Tools",
+    "excerpt": "Merge multiple PDF files into one document online for free. No watermarks, no file size limits, and your files are processed locally in your browser for maximum privacy.",
+    "date": "2026-06-08",
+    "readTime": 5,
+    "tags": ["pdf merge", "combine pdf", "pdf tools", "document tools"]
+  },
+  {
+    "slug": "unit-converter",
+    "title": "Universal Unit Converter — Convert Length, Weight, Temperature & More",
+    "toolName": "Unit Converter",
+    "toolUrl": "/tools/unit-converter",
+    "category": "Utility Tools",
+    "excerpt": "Convert between hundreds of units across 15+ categories: length, weight, temperature, volume, area, speed, time, and more. Free, fast, and works offline.",
+    "date": "2026-06-08",
+    "readTime": 4,
+    "tags": ["unit converter", "convert units", "metric", "imperial"]
+  },
+  {
+    "slug": "text-counter",
+    "title": "Word Counter & Character Counter — Count Everything in Your Text",
+    "toolName": "Text Counter",
+    "toolUrl": "/tools/text-counter",
+    "category": "Writing Tools",
+    "excerpt": "Count words, characters (with and without spaces), sentences, paragraphs, and reading time. Essential for writers, students, SEO specialists, and social media managers.",
+    "date": "2026-06-08",
+    "readTime": 3,
+    "tags": ["word counter", "character count", "writing tools", "seo"]
+  }
+]

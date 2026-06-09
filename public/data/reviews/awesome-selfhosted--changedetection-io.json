@@ -1,0 +1,34 @@
+{
+  "resourceId": "awesome-selfhosted--changedetection-io",
+  "resourceName": "changedetection.io",
+  "resourceUrl": "https://github.com/dgtlmoon/changedetection.io",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "changedetection.io is a self-hosted web page change detection and monitoring tool. It watches any webpage and notifies you when content changes — useful for tracking price drops, restock alerts, government document updates, job postings, competitor website changes, and more. The tool can handle JavaScript-rendered pages (via Playwright browser), extract specific elements with CSS/XPath/JSON selectors, and send notifications through 40+ channels. The visual selector tool lets you click on page elements to create monitoring rules without writing selectors manually. It supports authentication for pages behind logins, proxy rotation, and custom request headers. The web interface shows a visual diff of changes with highlights. Deployed as a Docker container, it can monitor thousands of pages with configurable check intervals. For anyone who manually refreshes pages waiting for updates, changedetection.io automates that entirely.",
+    "pros": [
+      "Visual diff shows exactly what changed on a webpage",
+      "JavaScript rendering via Playwright browser for dynamic pages",
+      "Visual element selector — click to pick elements, no CSS/XPath knowledge needed",
+      "40+ notification channels: email, Discord, Telegram, Slack, webhooks",
+      "Price drop and restock monitoring via dedicated notification templates"
+    ],
+    "cons": [
+      "Playwright-based checks consume more CPU/RAM than simple HTTP checks",
+      "No built-in scheduling per-watch; all watches share the global interval"
+    ],
+    "bestUseCases": [
+      "Price tracking and deal alerts for e-commerce products",
+      "Monitoring government or regulatory pages for policy changes",
+      "Job listing and apartment listing alerts"
+    ],
+    "similarAlternatives": [
+      "Visualping",
+      "Distill Web Monitor",
+      "Huginn",
+      "Sken.io"
+    ],
+    "category": "Monitoring & Automation"
+  }
+}

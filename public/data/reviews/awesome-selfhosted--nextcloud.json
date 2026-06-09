@@ -1,0 +1,34 @@
+{
+  "resourceId": "awesome-selfhosted--nextcloud",
+  "resourceName": "Nextcloud",
+  "resourceUrl": "https://nextcloud.com",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Nextcloud is the leading open-source self-hosted collaboration platform, offering file sync and sharing, calendar, contacts, mail, video conferencing (Nextcloud Talk), and office document editing (Nextcloud Office/Collabora). It's the spiritual successor to ownCloud with a more active community and enterprise focus. Nextcloud can be installed on a Raspberry Pi, VPS, or dedicated server, giving you complete control over your data. The app ecosystem (200+ apps) extends functionality with password management (Passwords), project management (Deck), notes, music streaming, and more. End-to-end encryption is available for sensitive files. Nextcloud Hub, the bundled offering, provides a Google Workspace / Microsoft 365 alternative that you host yourself. With mobile apps for iOS and Android, desktop clients for Windows/macOS/Linux, and WebDAV support, Nextcloud provides seamless file access across all your devices.",
+    "pros": [
+      "Complete Google Workspace alternative: files, calendar, contacts, mail, video calls",
+      "200+ apps in the ecosystem for extensibility",
+      "End-to-end encryption option for sensitive files",
+      "Mobile and desktop apps for all major platforms",
+      "Active community with regular security updates"
+    ],
+    "cons": [
+      "Requires server maintenance and regular updates",
+      "Performance depends on server resources; large instances need proper tuning"
+    ],
+    "bestUseCases": [
+      "Self-hosted cloud storage replacing Google Drive, Dropbox, or OneDrive",
+      "Team collaboration with file sharing, calendar, and video conferencing",
+      "Privacy-focused individuals and organizations wanting full data control"
+    ],
+    "similarAlternatives": [
+      "ownCloud",
+      "Seafile",
+      "Syncthing",
+      "FileRun"
+    ],
+    "category": "File Sharing & Synchronization"
+  }
+}

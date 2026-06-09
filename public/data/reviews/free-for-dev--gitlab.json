@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--gitlab",
+  "resourceName": "GitLab",
+  "resourceUrl": "https://gitlab.com",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "GitLab is a complete DevOps platform delivered as a single application, covering the entire software development lifecycle from planning to monitoring. Its free tier includes unlimited public and private repositories, 400 CI/CD minutes per month, 5 GB storage, and GitLab Pages for static site hosting. GitLab's integrated approach means you get issue tracking, merge requests with code review, CI/CD pipelines, container registry, package registry, and security scanning all within one platform — no need to integrate multiple tools. The built-in Auto DevOps feature automatically configures CI/CD for your project with zero configuration. GitLab also offers a self-hosted Community Edition (CE) for teams that need full control over their infrastructure, making it popular in enterprise environments with compliance requirements.",
+    "pros": [
+      "Complete DevOps lifecycle in one platform: plan, develop, test, deploy, monitor",
+      "Built-in container registry and package registry (npm, Maven, etc.)",
+      "Auto DevOps automatically configures CI/CD with zero config",
+      "Self-hosted CE option for full infrastructure control",
+      "Integrated security scanning: SAST, DAST, dependency scanning, container scanning"
+    ],
+    "cons": [
+      "400 CI/CD minutes per month is significantly less than GitHub's 2000",
+      "UI complexity can be overwhelming compared to GitHub's simpler interface"
+    ],
+    "bestUseCases": [
+      "Enterprise teams needing integrated DevOps from planning to monitoring",
+      "Self-hosted Git for organizations with compliance requirements",
+      "Projects requiring built-in container and package registries"
+    ],
+    "similarAlternatives": [
+      "GitHub",
+      "Bitbucket",
+      "Gitea",
+      "Codeberg"
+    ],
+    "category": "Source Code Repositories"
+  }
+}

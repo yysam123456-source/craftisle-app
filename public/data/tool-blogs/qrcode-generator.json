@@ -1,0 +1,37 @@
+{
+  "slug": "qrcode-generator",
+  "title": "QR Code Generator — Create Custom QR Codes for Free",
+  "toolName": "QR Code Generator",
+  "toolUrl": "/tools/qrcode",
+  "category": "Utility Tools",
+  "date": "2026-06-08",
+  "readTime": 5,
+  "tags": [
+    "qr code",
+    "generator",
+    "custom qr",
+    "barcode"
+  ],
+  "content": {
+    "intro": "QR codes bridge the physical and digital worlds — scan with any smartphone camera to open a URL, connect to Wi-Fi, or view contact info. Craftisle's free QR Code Generator lets you create beautiful, branded QR codes in seconds.",
+    "sections": [
+      {
+        "heading": "What Can QR Codes Store?",
+        "body": "URLs: link to your website, social media, or app download. Text: any message up to 4,296 alphanumeric characters. Wi-Fi credentials: scan to connect without typing the password. vCard: share contact info with one scan. Email: pre-fill subject and body. Phone: initiate a call."
+      },
+      {
+        "heading": "QR Code Design Customization",
+        "body": "Colors: change the foreground and background to match your brand. Logo: embed a logo in the center — our tool handles error correction so the code still scans. Shape: rounded dots, square modules, or custom patterns. Border: add or remove the quiet zone margin."
+      },
+      {
+        "heading": "Error Correction Levels",
+        "body": "L (7%): smallest QR, least damage resistance. M (15%): default, good for clean printing. Q (25%): recommended when adding a logo. H (30%): maximum error correction for damaged or dirty codes. Higher correction = denser QR code."
+      },
+      {
+        "heading": "QR Code Best Practices",
+        "body": "Always test your QR code with multiple devices before printing. Ensure sufficient contrast between foreground and background. Don't invert colors (dark background/light foreground) — many scanners can't read inverted QR codes. Minimum size: 2 x 2 cm for close scanning, larger for billboards."
+      }
+    ],
+    "conclusion": "QR codes are everywhere — restaurant menus, product packaging, event tickets, payment systems. With Craftisle's generator, you can create professional QR codes in any color, with your logo, for any purpose. Free, no signup, instant download."
+  }
+}

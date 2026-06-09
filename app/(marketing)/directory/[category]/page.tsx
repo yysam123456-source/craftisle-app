@@ -18,8 +18,8 @@ interface Category {
 interface Resource {
   id: string;
   category: string;
-  categoryName: string;
-  categoryIcon: string;
+  categoryName?: string;
+  categoryIcon?: string;
   name: string;
   url: string;
   description: string;

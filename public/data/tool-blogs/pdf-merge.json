@@ -1,0 +1,37 @@
+{
+  "slug": "pdf-merge",
+  "title": "Free PDF Merger — Combine PDF Files Online Without Watermarks",
+  "toolName": "PDF Merger",
+  "toolUrl": "/tools/pdf-merge",
+  "category": "PDF Tools",
+  "date": "2026-06-08",
+  "readTime": 5,
+  "tags": [
+    "pdf merge",
+    "combine pdf",
+    "pdf tools",
+    "document tools"
+  ],
+  "content": {
+    "intro": "Combining multiple PDFs shouldn't require expensive software. Craftisle's free PDF Merger lets you drag, drop, reorder, and merge PDFs in your browser — no upload to servers, no watermarks, no file size limits.",
+    "sections": [
+      {
+        "heading": "Why Local Processing Matters",
+        "body": "Most online PDF mergers upload your files to a server — a privacy risk for sensitive documents. Our tool uses PDF.js + browser APIs to process everything locally. Your files never leave your computer. This also means it works offline and is faster than server-based alternatives."
+      },
+      {
+        "heading": "How to Merge PDFs",
+        "body": "1. Drag and drop your PDF files, or click to browse. 2. Drag to reorder pages within and across files. 3. Optionally select specific pages to include (e.g., pages 1-3, 5, 7-10). 4. Click Merge. 5. Download your combined PDF. Average merge time: under 3 seconds for typical documents."
+      },
+      {
+        "heading": "Supported Features",
+        "body": "Merge unlimited files (tested up to 50 files, 500+ pages). Preserve original quality and formatting. Maintain bookmarks and internal links. Handle different page sizes (A4, Letter, Legal) within one document. Optional page rotation and deletion before merging."
+      },
+      {
+        "heading": "Common Use Cases",
+        "body": "Combine monthly reports into a quarterly document. Merge scanned pages into one searchable PDF. Assemble a portfolio from multiple project files. Consolidate invoices for accounting. Create a reading packet from separate articles or chapters."
+      }
+    ],
+    "conclusion": "PDF merging shouldn't cost money or compromise privacy. Craftisle's Merger is free, fast, and secure — everything stays in your browser. Bookmark it for your next document assembly task."
+  }
+}

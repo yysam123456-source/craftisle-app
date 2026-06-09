@@ -1,0 +1,34 @@
+{
+  "resourceId": "free-for-dev--neon",
+  "resourceName": "Neon",
+  "resourceUrl": "https://neon.tech",
+  "source": "free-for-dev",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Neon is a serverless Postgres database platform with a unique architecture: it separates storage and compute, enabling instant database branching, point-in-time recovery, and auto-scaling. The free tier includes 0.5 GB storage, 1 compute unit (1 vCPU, 4 GB RAM), and 1 branch. Neon's killer feature is database branching — you can create an isolated copy of your production database in seconds for development, testing, or preview environments. Branches share storage with the parent, so they don't duplicate data. This makes Neon ideal for modern development workflows where each PR or feature needs its own database environment. The built-in connection pooling and serverless driver optimize connection handling for serverless and edge environments, reducing cold starts common with traditional Postgres connections.",
+    "pros": [
+      "Instant database branching — create isolated copies for dev/test in seconds",
+      "Point-in-time recovery for any moment in the past 7 days",
+      "Separation of storage and compute enables auto-scaling to zero",
+      "Serverless driver with built-in connection pooling for edge/serverless",
+      "Full Postgres compatibility with all extensions supported"
+    ],
+    "cons": [
+      "0.5 GB storage on free tier is limited for data-intensive applications",
+      "Single branch on free tier; multiple branches require upgrade"
+    ],
+    "bestUseCases": [
+      "Serverless and edge applications needing low-latency Postgres",
+      "Preview deployments where each PR needs its own database copy",
+      "Development workflows requiring frequent database branching and resetting"
+    ],
+    "similarAlternatives": [
+      "Supabase",
+      "PlanetScale",
+      "CockroachDB Serverless",
+      "Xata"
+    ],
+    "category": "Database-as-a-Service"
+  }
+}

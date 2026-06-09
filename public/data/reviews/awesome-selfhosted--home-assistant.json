@@ -1,0 +1,34 @@
+{
+  "resourceId": "awesome-selfhosted--home-assistant",
+  "resourceName": "Home Assistant",
+  "resourceUrl": "https://www.home-assistant.io",
+  "source": "awesome-selfhosted",
+  "generatedAt": "2026-06-09T02:15:00.000Z",
+  "version": 1,
+  "content": {
+    "overview": "Home Assistant is the most popular open-source home automation platform, connecting and controlling thousands of smart devices from a single, privacy-focused interface. Unlike commercial smart home hubs, Home Assistant runs locally on your hardware — no cloud dependency, no data leaving your network. It supports 2,000+ integrations covering lights, switches, sensors, cameras, media players, thermostats, door locks, and more from hundreds of manufacturers. The intuitive automation editor lets you create complex routines with a visual interface or YAML. Home Assistant's dashboard (Lovelace) is fully customizable with cards showing sensor data, camera feeds, weather, and controls. Voice control is supported via local processing (Assist) or cloud services. The companion apps for iOS and Android provide location tracking for presence-based automations. Home Assistant Yellow and Green offer official hardware for plug-and-play setup.",
+    "pros": [
+      "2,000+ integrations covering virtually every smart device brand",
+      "100% local processing — no cloud dependency, complete privacy",
+      "Powerful automation engine with visual editor and YAML",
+      "Companion apps with location tracking for presence-based automations",
+      "Active community with monthly releases and extensive documentation"
+    ],
+    "cons": [
+      "Steep learning curve — initial setup can be overwhelming for non-technical users",
+      "Some integrations require cloud accounts despite local processing goal"
+    ],
+    "bestUseCases": [
+      "Centralized smart home control replacing multiple manufacturer apps",
+      "Privacy-focused home automation without data leaving your network",
+      "Complex automation: presence detection, energy management, security monitoring"
+    ],
+    "similarAlternatives": [
+      "openHAB",
+      "Domoticz",
+      "Hubitat",
+      "SmartThings"
+    ],
+    "category": "Home Automation"
+  }
+}
