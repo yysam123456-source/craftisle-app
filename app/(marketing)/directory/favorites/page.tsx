@@ -4,9 +4,9 @@ import { FavoritesClient } from "@/components/resources/favorites-client";
 export const metadata: Metadata = {
   title: "My Favorite Resources | Craftisle Directory",
   description: "Your saved and bookmarked free tools and resources from the Craftisle directory.",
-  alternates: {
-    canonical: "https://craftisle.com/directory/favorites",
-  },
+    alternates: {
+      canonical: "https://craftisle.app/directory/favorites",
+    },
   robots: {
     index: false, // 收藏页是个人化的，不适合被索引
     follow: true,

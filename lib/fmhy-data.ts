@@ -139,11 +139,23 @@ function loadSourceCategories(source: string): Category[] {
     const filePath = join(process.cwd(), "public", "data", `${source}-resources.json`);
     const raw = readFileSync(filePath, "utf-8");
     const data = JSON.parse(raw);
-    return (data.categories || []).map((c: any) => ({
+    const categories: Category[] = (data.categories || []).map((c: any) => ({
       ...c,
       source,
       slug: c.slug || c.id,
     }));
+
+    // Compute count from actual resources (non-FMHY JSONs don't have count field)
+    const resources = loadSourceResources(source);
+    const countMap = new Map<string, number>();
+    for (const r of resources) {
+      countMap.set(r.category, (countMap.get(r.category) || 0) + 1);
+    }
+    for (const cat of categories) {
+      cat.count = countMap.get(cat.id) || 0;
+    }
+
+    return categories;
   } catch {
     return [];
   }

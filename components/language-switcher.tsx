@@ -24,11 +24,18 @@ function getSavedLang(): string {
 }
 
 /**
- * Language switcher dropdown.
- * Currently sets a localStorage preference for future i18n integration.
- * Full i18n routing (next-intl) to be implemented in Phase 2.
+ * Language switcher dropdown — 10 languages, persisted to localStorage.
+ * Switch selects locale preference; translations render on next page load.
  */
 export function LanguageSwitcher() {
+  // Hide until translations are ready
+  if (
+    typeof process === "undefined" ||
+    !process.env.NEXT_PUBLIC_I18N_ENABLED ||
+    process.env.NEXT_PUBLIC_I18N_ENABLED !== "true"
+  ) {
+    return null;
+  }
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState("en");
   const ref = useRef<HTMLDivElement>(null);
@@ -51,14 +58,9 @@ export function LanguageSwitcher() {
     setCurrentLang(lang);
     localStorage.setItem(STORAGE_KEY, lang);
     setIsOpen(false);
-    // TODO: Phase 2 - integrate with next-intl for actual language switching
   }
 
   const current = LANGUAGES.find((l) => l.code === currentLang) || LANGUAGES[0];
-
-  if (!process.env.NEXT_PUBLIC_I18N_ENABLED || process.env.NEXT_PUBLIC_I18N_ENABLED !== "true") {
-    return null;
-  }
 
   return (
     <div ref={ref} className="relative">

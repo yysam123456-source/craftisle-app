@@ -46,7 +46,6 @@ export function BlogHeaderLayout() {
                 active={category.slug === slug}
               />
             ))}
-            <CategoryLink title="Guides" href="/guides" active={false} />
           </ul>
         </nav>
       </MaxWidthWrapper>
@@ -71,7 +70,7 @@ export function BlogHeaderLayout() {
                 href="/blog"
                 active={!slug}
                 clickAction={closeDrawer}
-                mobile
+                isMobile={true}
               />
               {BLOG_CATEGORIES.map((category) => (
                 <CategoryLink
@@ -80,15 +79,9 @@ export function BlogHeaderLayout() {
                   href={`/blog/category/${category.slug}`}
                   active={category.slug === slug}
                   clickAction={closeDrawer}
-                  mobile
+                  isMobile={true}
                 />
               ))}
-              <CategoryLink
-                title="Guides"
-                href="/guides"
-                active={false}
-                mobile
-              />
             </ul>
           </Drawer.Content>
           <Drawer.Overlay />
@@ -102,18 +95,18 @@ const CategoryLink = ({
   title,
   href,
   active,
-  mobile = false,
+  isMobile = false,
   clickAction,
 }: {
   title: string;
   href: string;
   active: boolean;
-  mobile?: boolean;
+  isMobile?: boolean;
   clickAction?: () => void;
 }) => {
   return (
     <Link href={href} onClick={clickAction}>
-      {mobile ? (
+      {isMobile ? (
         <li className="rounded-lg text-foreground hover:bg-muted">
           <div className="flex items-center justify-between px-3 py-2 text-sm">
             <span>{title}</span>
