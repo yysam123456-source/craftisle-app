@@ -9,25 +9,43 @@ import { Search, X } from "lucide-react";
 interface ResourceSearchClientProps {
   placeholder?: string;
   className?: string;
+  value?: string;
+  onSearch?: (query: string) => void;
 }
 
 export function ResourceSearchClient({
   placeholder = "Search resources by name, description, or URL...",
   className,
+  value: controlledValue,
+  onSearch,
 }: ResourceSearchClientProps) {
-  const [query, setQuery] = useState("");
+  const isControlled = controlledValue !== undefined;
+  const [internalQuery, setInternalQuery] = useState("");
+  const query = isControlled ? controlledValue : internalQuery;
+  const setQuery = isControlled ? undefined : setInternalQuery;
+
   const router = useRouter();
 
+  const doSearch = useCallback(
+    (q: string) => {
+      const trimmed = q.trim();
+      if (!trimmed) return;
+      if (onSearch) {
+        onSearch(trimmed);
+      } else {
+        router.push(`/directory/search?q=${encodeURIComponent(trimmed)}`);
+      }
+    },
+    [onSearch, router]
+  );
+
   const handleSearch = useCallback(() => {
-    const trimmed = query.trim();
-    if (trimmed) {
-      router.push(`/directory/search?q=${encodeURIComponent(trimmed)}`);
-    }
-  }, [query, router]);
+    doSearch(query);
+  }, [query, doSearch]);
 
   const handleClear = useCallback(() => {
-    setQuery("");
-  }, []);
+    if (setQuery) setQuery("");
+  }, [setQuery]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -45,7 +63,9 @@ export function ResourceSearchClient({
         type="text"
         placeholder={placeholder}
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => {
+          if (setQuery) setQuery(e.target.value);
+        }}
         onKeyDown={handleKeyDown}
         className="h-14 pl-12 pr-20 text-base rounded-xl border-2 focus-visible:border-primary"
       />

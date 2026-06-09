@@ -1,6 +1,6 @@
 ---
-title: Privacy & Security at Craftisle — How We Protect Your Data
-description: Craftisle's privacy-first architecture explained. All tools run client-side via Web Crypto API, Canvas API, and WebAssembly. No file uploads, no server storage, no data collection.
+title: "How Craftisle Protects Your Data: Client-Side Processing, No File Upload"
+description: "Craftisle privacy-first architecture: all tools run in browser (Web Crypto API, Canvas API, WebAssembly). No file upload to servers, no data collection, no cookies."
 image: /_static/blog/blog-post-11.png
 date: "2026-06-09"
 authors:
@@ -60,6 +60,17 @@ The site is hosted on Vercel. CDN assets are served through Vercel's edge networ
 
 No other third parties process Craftisle user data.
 
+## FAQ: Privacy & Client-Side Processing
+
+### How to process PDFs without uploading to server?
+Use pdfcraft — all 67 PDF tools run in-browser via WebAssembly. Files never leave your machine. No server receives your file.
+
+### Is Craftisle safe for sensitive documents?
+Yes — all tools are client-side. No file upload, no server storage, no analytics tied to individual users. Open DevTools Network tab, use a tool, confirm: zero outbound data.
+
+### How to remove EXIF GPS data from photos free?
+Use Strip Metadata tool — removes EXIF, GPS coordinates, camera model. Batch mode available. Run before posting photos to public forums.
+
 ---
 
-Read the full [Privacy Policy](/privacy) and [Terms of Service](/terms). Try any tool at [craftisle.com/tools](/tools) — open DevTools Network tab, use a tool, confirm: zero outbound data.
+Read the full [Privacy Policy](/privacy) and [Terms of Service](/terms). Try any tool at [craftisle.com/tools](/tools) — confirm zero outbound data.

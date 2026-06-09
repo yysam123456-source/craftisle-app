@@ -56,13 +56,46 @@ export async function generateMetadata({
   const displayName = cat.name || formatCategoryName(cat.id);
   const count = cat.count || 0;
 
+  const year = new Date().getFullYear();
+  const longTailKeywords: Record<string, string[]> = {
+    "Artificial-Intelligence": [
+      `best free AI tools ${year}`,
+      "free ChatGPT alternative no signup",
+      "free AI image generator online",
+      "best free machine learning tools",
+      "Hugging Face alternative free",
+    ],
+    "Educational": [
+      `best free learning platforms ${year}`,
+      "free coding courses no signup",
+      "Codecademy alternative free",
+      "best free certification courses",
+      "free programming tutorials",
+    ],
+    "Adblock": [
+      `best free ad blockers ${year}`,
+      "uBlock Origin alternative free",
+      "free privacy extensions no tracking",
+      "best free anti-tracking tools",
+      "AdBlock alternative free",
+    ],
+    "Linux": [
+      `best free Linux distros ${year}`,
+      "Ubuntu alternative free",
+      "best free Linux tools no signup",
+      "free open source operating systems",
+      "best free terminal tools",
+    ],
+  };
+
   return constructMetadata({
-    title: `Best Free ${displayName} Resources ${new Date().getFullYear()} | Craftisle`,
-    description: `Discover ${count} free ${displayName.toLowerCase()} tools and resources. ${cat.description || "100% free, no signup required."}`,
-    keywords: [
-      `free ${displayName.toLowerCase()}`,
-      `best ${displayName.toLowerCase()} resources`,
-      `${displayName.toLowerCase()} tools free`,
+    title: `Best Free ${displayName} Resources ${year} (No Signup) | Craftisle`,
+    description: `Discover ${count}+ free ${displayName.toLowerCase()} tools and resources. 100% free, no signup. Best alternative to paid ${displayName.toLowerCase()} software.`,
+    keywords: longTailKeywords[category] || [
+      `best free ${displayName.toLowerCase()} tools ${year}`,
+      `free ${displayName.toLowerCase()} resources no signup`,
+      `${displayName.toLowerCase()} tools free alternative`,
+      `best free ${displayName.toLowerCase()} software`,
       "free resources",
       "free tools",
       "open source",
@@ -212,6 +245,23 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               </Link>
             </div>
           )}
+
+          {/* FAQ */}
+          {h2Content?.faq && h2Content.faq.length > 0 ? (
+            <div className="mt-16 pt-8 border-t">
+              <h2 className="text-2xl font-bold mb-6">
+                FAQ: {displayName} Resources
+              </h2>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {h2Content.faq.map((item: { question: string; answer: string }, i: number) => (
+                  <div key={i}>
+                    <h3 className="font-semibold mb-2">{item.question}</h3>
+                    <p className="text-sm text-muted-foreground">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {/* Related Categories */}
           {h2Content?.related && h2Content.related.length > 0 ? (

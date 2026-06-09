@@ -3,6 +3,8 @@ import { toolMeta } from "@/lib/tools";
 import { getAllCategories, getAllResources } from "@/lib/fmhy-data";
 import { ALTERNATIVES_MAP } from "@/lib/alternatives";
 import { DOMAINS } from "@/lib/unified-categories";
+import { BLOG_CATEGORIES } from "@/config/blog";
+import { allPosts, allGuides } from "contentlayer/generated";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 
@@ -54,7 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // ★ 新增：资源详情页（每个资源一个独立 URL）
   const allResources = getAllResources();
-  const resourceDetailPages = allResources.slice(0, 5000).map((r) => ({
+  const resourceDetailPages = allResources.map((r) => ({
     url: `${baseUrl}/directory/resource/${r.id}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
@@ -64,6 +66,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ★ 新增：替代品页面
   const alternativePages = Object.keys(ALTERNATIVES_MAP).map((tool) => ({
     url: `${baseUrl}/directory/alternatives/${encodeURIComponent(tool.toLowerCase().replace(/\s+/g, "-"))}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  // ★ 新增：MDX 博客文章
+  const mdxBlogPages = allPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slugAsParams}`,
+    lastModified: post.date ? new Date(post.date) : now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  // ★ 新增：博客分类页
+  const blogCategoryPages = BLOG_CATEGORIES.map((cat) => ({
+    url: `${baseUrl}/blog/category/${cat.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
+  // ★ 新增：Guides 页面
+  const guidePages = allGuides.map((guide) => ({
+    url: `${baseUrl}/guides/${guide.slugAsParams}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
@@ -134,6 +160,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...domainPages,
     ...resourceDetailPages,
     ...alternativePages,
+    ...mdxBlogPages,
+    ...blogCategoryPages,
+    ...guidePages,
     ...reviewPages,
     ...toolBlogPages,
     ...playPages,

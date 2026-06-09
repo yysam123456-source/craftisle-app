@@ -28,16 +28,95 @@ export async function generateMetadata({
   const domainCats = allCats.filter((c) => getDomainForCategoryId(c.id) === slug);
   const totalResources = domainCats.reduce((sum, c) => sum + (c.count || 0), 0);
 
+  const domainKeywords: Record<string, string[]> = {
+    "ai-ml": [
+      "best free AI tools 2026",
+      "free machine learning tools no signup",
+      "ChatGPT alternative free",
+      "free AI image generator",
+      "Midjourney alternative free",
+    ],
+    devops: [
+      "best free DevOps tools 2026",
+      "free CI/CD tools no credit card",
+      "Kubernetes alternative free",
+      "free Docker alternative",
+      "best free cloud monitoring tools",
+    ],
+    "dev-programming": [
+      "best free developer tools 2026",
+      "free coding tools no signup",
+      "Visual Studio Code alternative free",
+      "best free API testing tools",
+      "Postman alternative free",
+    ],
+    "design-media": [
+      "best free design tools 2026",
+      "free image editor no signup",
+      "Photoshop alternative free",
+      "best free video editor no watermark",
+      "Figma alternative free",
+    ],
+    security: [
+      "best free security tools 2026",
+      "free VPN no signup",
+      "NordVPN alternative free",
+      "best free password manager",
+      "free antivirus alternative",
+    ],
+    "edu-learning": [
+      "best free learning platforms 2026",
+      "free coding courses no signup",
+      "Codecademy alternative free",
+      "best free certification courses",
+      "free programming tutorials",
+    ],
+    "comm-social": [
+      "best free communication tools 2026",
+      "free team chat no signup",
+      "Slack alternative free",
+      "best free video conferencing",
+      "Zoom alternative free",
+    ],
+    "prod-office": [
+      "best free productivity tools 2026",
+      "free project management no signup",
+      "Trello alternative free",
+      "best free note taking app",
+      "Notion alternative free",
+    ],
+    cloud: [
+      "best free cloud platform 2026",
+      "free AWS alternative no credit card",
+      "DigitalOcean alternative free",
+      "best free VPS hosting",
+      "free S3 storage alternative",
+    ],
+    media: [
+      "best free media tools 2026",
+      "free video player no ads",
+      "VLC alternative free",
+      "best free streaming tools",
+      "Spotify alternative free",
+    ],
+    misc: [
+      "best free online tools 2026",
+      "free utility tools no signup",
+      "best free browser-based tools",
+      "free alternative to paid software",
+    ],
+  };
+
   return constructMetadata({
-    title: `${domain.name} Resources | Free ${domain.name} Tools & Software | Craftisle`,
-    description: `Browse ${domainCats.length} categories and ${totalResources} free ${domain.name.toLowerCase()} tools, APIs, and software. ${domain.description}`,
+    title: `Best Free ${domain.name} Tools & Resources 2026 | Craftisle`,
+    description: `Browse ${totalResources}+ free ${domain.name.toLowerCase()} tools, APIs, and software. 100% free, no signup. Best alternative to paid ${domain.name} tools.`,
     image: `/og/domain-${slug}.png`,
-    keywords: [
-      `free ${domain.name.toLowerCase()} tools`,
-      `best ${domain.name.toLowerCase()} resources`,
-      `${domain.name.toLowerCase()} software`,
-      "free developer resources",
-      "open source tools",
+    keywords: domainKeywords[slug] || [
+      `best free ${domain.name.toLowerCase()} tools 2026`,
+      `free ${domain.name.toLowerCase()} resources`,
+      `${domain.name.toLowerCase()} software free no signup`,
+      `free alternative to paid ${domain.name.toLowerCase()} tools`,
+      "free developer tools",
     ],
   });
 }
@@ -146,6 +225,44 @@ export default async function DomainPage({ params }: DomainPageProps) {
               </Link>
             ))}
           </div>
+
+          {/* FAQ */}
+          <section className="py-12 border-t">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl font-bold mb-6">
+                FAQ: {domain.name} Resources
+              </h2>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div>
+                  <h3 className="font-semibold mb-2">
+                    What are the best free {domain.name.toLowerCase()} tools in 2026?
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Browse our curated list of {totalResources}+ free {domain.name.toLowerCase()} tools and resources.
+                    All are free to use, no signup required.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">
+                    How to find free {domain.name.toLowerCase()} alternatives to paid software?
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Use our directory to discover free alternatives to paid {domain.name.toLowerCase()} software.
+                    Each resource is tagged with its source (FMHY, free-for-dev, self-hosted, public-APIs).
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">
+                    Are these {domain.name.toLowerCase()} tools really free?
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Yes — all tools listed are free (with optional paid tiers). We verify each entry before adding it to the directory.
+                    No credit card required for any listed tool.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* Back link */}
           <div className="mt-12 text-center">
