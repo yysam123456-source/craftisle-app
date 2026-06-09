@@ -68,7 +68,7 @@ function DeleteAccountModal({
           active subscription!
         </p>
 
-        {/* TODO: Use getUserSubscriptionPlan(session.user.id) to display the user's subscription if he have a paid plan */}
+        {/* Phase 2: Display subscription plan via getUserSubscriptionPlan(session.user.id) if user has a paid plan */}
       </div>
 
       <form

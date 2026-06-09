@@ -31,6 +31,7 @@ export async function generateMetadata({
   return constructMetadata({
     title: `${domain.name} Resources | Free ${domain.name} Tools & Software | Craftisle`,
     description: `Browse ${domainCats.length} categories and ${totalResources} free ${domain.name.toLowerCase()} tools, APIs, and software. ${domain.description}`,
+    image: `/og/domain-${slug}.png`,
     keywords: [
       `free ${domain.name.toLowerCase()} tools`,
       `best ${domain.name.toLowerCase()} resources`,

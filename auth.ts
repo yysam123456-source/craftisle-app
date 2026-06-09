@@ -57,7 +57,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           }
           return { id: user.id, email: user.email, name: user.name, image: user.image }
         } catch (e) {
-          console.error("Credentials authorize error:", e)
+          if (process.env.NODE_ENV !== "production") console.error("Credentials authorize error:", e)
           return { id: "local-" + email, email, name: email.split("@")[0] }
         }
       },
@@ -85,7 +85,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             })
           }
         } catch (e) {
-          console.error("signIn callback error:", e)
+          if (process.env.NODE_ENV !== "production") console.error("signIn callback error:", e)
         }
       }
       return true

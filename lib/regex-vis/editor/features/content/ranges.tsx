@@ -37,7 +37,8 @@ const singleValueSchema = z.string().superRefine((input, ctx) => {
 })
 const rangeRefine = ({ start, end }: Range) => {
   try {
-    // TODO find a better way to validate the range
+    // Validate range by constructing a RegExp — if it throws, the characters
+    // cannot form a valid character class range.
     // eslint-disable-next-line no-new
     new RegExp(`[${start}-${end}]`)
   // eslint-disable-next-line unused-imports/no-unused-vars

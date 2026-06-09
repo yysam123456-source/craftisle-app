@@ -16,9 +16,9 @@ interface AdSlotProps {
 }
 
 const sizeConfig: Record<AdSlotSize, { width: number | string; height: number | string; className: string }> = {
-  leaderboard:  { width: 728,  height: 90,  className: 'max-w-[728px] h-[90px]' },
-  rectangle:    { width: 336,  height: 280, className: 'w-[336px] h-[280px]' },
-  halfpage:     { width: 300,  height: 600, className: 'w-[300px] h-[600px]' },
+  leaderboard:  { width: 728,  height: 90,  className: 'max-w-[728px] w-full h-[90px]' },
+  rectangle:    { width: 336,  height: 280, className: 'max-w-[336px] w-full h-auto aspect-[336/280]' },
+  halfpage:     { width: 300,  height: 600, className: 'max-w-[300px] w-full h-auto aspect-[300/600]' },
   responsive:   { width: '100%', height: 90, className: 'w-full min-h-[90px]' },
 };
 

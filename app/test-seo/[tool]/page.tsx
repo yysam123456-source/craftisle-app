@@ -7,7 +7,10 @@ interface TestSeoPageProps {
 
 export async function generateMetadata({ params }: TestSeoPageProps): Promise<Metadata> {
   const { tool } = await params;
-  console.log("[TEST-SEO] generateMetadata called for:", tool);
+  if (process.env.NODE_ENV !== "production") {
+    // eslint-disable-next-line no-console
+    console.log("[TEST-SEO] generateMetadata called for:", tool);
+  }
   return {
     title: `Test SEO - ${tool}`,
     description: `Test SEO page for ${tool}`,
@@ -16,7 +19,10 @@ export async function generateMetadata({ params }: TestSeoPageProps): Promise<Me
 
 export default async function TestSeoPage({ params }: TestSeoPageProps) {
   const { tool } = await params;
-  console.log("[TEST-SEO] Page rendered for:", tool);
+  if (process.env.NODE_ENV !== "production") {
+    // eslint-disable-next-line no-console
+    console.log("[TEST-SEO] Page rendered for:", tool);
+  }
 
   if (tool === "notfound") {
     notFound();

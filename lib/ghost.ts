@@ -34,7 +34,7 @@ interface GhostSettings {
  */
 async function ghostFetch(endpoint: string, params: Record<string, string> = {}) {
   if (!GHOST_URL || !GHOST_KEY) {
-    console.warn("Ghost CMS 未配置");
+    if (process.env.NODE_ENV !== "production") console.warn("Ghost CMS 未配置");
     return null;
   }
 
@@ -74,7 +74,7 @@ export async function getPosts(
     });
     return data?.posts || [];
   } catch (error) {
-    console.error("Ghost CMS: failed to fetch posts:", error);
+    if (process.env.NODE_ENV !== "production") console.error("Ghost CMS: failed to fetch posts:", error);
     return [];
   }
 }
@@ -95,7 +95,7 @@ export async function getPostBySlug(
     });
     return data?.posts?.[0] || null;
   } catch (error) {
-    console.error(`Ghost CMS: failed to fetch post (slug: ${slug}):`, error);
+    if (process.env.NODE_ENV !== "production") console.error(`Ghost CMS: failed to fetch post (slug: ${slug}):`, error);
     return null;
   }
 }
@@ -110,7 +110,7 @@ export async function getSettings(): Promise<GhostSettings | null> {
     const data = await ghostFetch("settings", {});
     return data?.settings || null;
   } catch (error) {
-    console.error("Ghost CMS: failed to fetch settings:", error);
+    if (process.env.NODE_ENV !== "production") console.error("Ghost CMS: failed to fetch settings:", error);
     return null;
   }
 }

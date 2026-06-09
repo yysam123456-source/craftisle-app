@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Mdx } from "@/components/content/mdx-components";
+import { GiscusComments } from "@/components/giscus-comments";
 import { Badge } from "@/components/ui/badge";
 import { BLOG_AUTHORS } from "@/config/blog";
 import { constructMetadata } from "@/lib/utils";
@@ -34,6 +35,7 @@ export async function generateMetadata({
   return constructMetadata({
     title: `${post.title} | Craftisle Blog`,
     description: post.description,
+    image: post.image ? `https://craftisle.com${post.image}` : undefined,
   });
 }
 
@@ -152,6 +154,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <article className="prose prose-gray max-w-none dark:prose-invert">
             <Mdx code={post.body.code} />
           </article>
+        </div>
+      </section>
+
+      {/* Comments */}
+      <section className="border-t">
+        <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <GiscusComments />
         </div>
       </section>
 

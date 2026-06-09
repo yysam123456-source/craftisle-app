@@ -5,7 +5,7 @@ function Legend() {
   const { t } = useTranslation()
   return (
     <div className="divide-y *:py-4 first:*:pt-0 last:*:pb-0">
-      {/* TODO move the tip to the graph */}
+      {/* Tip overlay on graph area — pending graph interaction feature */}
       {/* <div className="tip">
           <ArrowLeftCircle size={14} />
           {t('You can select nodes by dragging or clicking')}

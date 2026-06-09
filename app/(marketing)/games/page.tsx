@@ -19,7 +19,7 @@ export const metadata: Metadata = constructMetadata({
 });
 
 const games = [
-  // TODO: the-last-glimmer — 开发中，暂不挂载（用户要求）
+  // the-last-glimmer — 开发中，暂不挂载（用户要求）
   // {
   //   id: "the-last-glimmer",
   //   title: "最后的微光",

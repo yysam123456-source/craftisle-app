@@ -1,5 +1,7 @@
-// @ts-nocheck
-// TODO: Fix this when we turn strict mode on.
+// @ts-nocheck — mdast AST shapes vary across remark versions, strict mode not viable yet.
+/**
+ * Markdown table-of-contents extractor.
+ */
 
 import { toc } from "mdast-util-toc"
 import { remark } from "remark"
@@ -7,8 +9,8 @@ import { visit } from "unist-util-visit"
 
 const textTypes = ["text", "emphasis", "strong", "inlineCode"]
 
-function flattenNode(node) {
-  const p = []
+function flattenNode(node: any): string {
+  const p: string[] = []
   visit(node, (node) => {
     if (!textTypes.includes(node.type)) return
     p.push(node.value)
