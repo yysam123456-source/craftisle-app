@@ -7,9 +7,9 @@ import { DocsPageHeader } from "@/components/docs/page-header";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 export const metadata = {
-  title: "Guides",
+  title: "Craftisle Guides",
   description:
-    "This section includes end-to-end guides for developing Next.js 13 apps.",
+    "Practical guides for using Craftisle's free online tools — image editing, PDF processing, file conversion, and more.",
 };
 
 export default function GuidesPage() {
@@ -23,7 +23,7 @@ export default function GuidesPage() {
     <MaxWidthWrapper className="py-6 lg:py-10">
       <DocsPageHeader
         heading="Guides"
-        text="This section includes end-to-end guides for developing Next.js 13 apps."
+        text="Step-by-step guides to help you get the most out of Craftisle tools."
       />
       {guides?.length ? (
         <div className="mt-5 grid gap-4 md:grid-cols-2 md:gap-6">

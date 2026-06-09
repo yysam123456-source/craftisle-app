@@ -1,0 +1,75 @@
+---
+title: PDF & File Workflow Guide
+description: "Real-world workflows: compress PDF for email, convert Excel to CSV, merge scanned documents into one file."
+date: 2026-06-03
+---
+
+You get sent a 45MB PDF that needs to be under 10MB for email. You need to extract pages 3-7 and convert them to PNGs. You have 10 invoices in TIFF format that should be one PDF.
+
+These aren't edge cases — they're Tuesday.
+
+Here's how to handle them with Craftisle and pdfcraft.
+
+## Workflow 1: Shrink a PDF for email
+
+**Problem**: Client sends a 30MB PDF. Gmail rejects attachments over 25MB.
+
+**Solution**:
+1. Open [pdfcraft.app](https://pdfcraft.app), drop the file into the Compress tool.
+2. Choose compression level: "Medium" keeps text readable; "High" is fine for images-only PDFs.
+3. Download. A 30MB scanned PDF typically compresses to 4-8MB at Medium.
+
+If that's still too large, use [PDF Split](/tools/pdf-split) to break it into 5MB chunks and send them in separate emails.
+
+## Workflow 2: Extract pages as images
+
+**Problem**: You need slides 11 through 15 from a presentation PDF, as PNG files for a web page.
+
+**Solution**:
+1. In pdfcraft, use "Extract Pages" — select range 11-15.
+2. Switch to [viewer.craftisle.com](https://viewer.craftisle.com), open the extracted PDF.
+3. Export each page as PNG.
+
+Total time: under 30 seconds. No Adobe Acrobat required.
+
+## Workflow 3: Convert Excel to CSV for data import
+
+**Problem**: A marketing tool only accepts CSV imports, but your data lives in an .xlsx file with merged cells and formulas.
+
+**Solution**:
+1. Open the .xlsx in [viewer.craftisle.com](https://viewer.craftisle.com).
+2. Preview to make sure merged cells rendered correctly. If not, unmerge them in Excel first.
+3. Export as CSV from the viewer.
+
+**Caveat**: Formulas export as values only. If you need live formulas, export from Excel directly.
+
+## Workflow 4: Merge TIFF scans into one PDF
+
+**Problem**: You scanned 10 pages as individual TIFF files. You need one PDF.
+
+**Solution**:
+1. Convert each TIFF to PDF using [Image Converter](/tools/image-converter-to-pdf) (batch mode coming soon — for now, one at a time).
+2. Use pdfcraft's Merge tool to combine all PDFs.
+3. OCR the result if needed (pdfcraft's OCR uses Tesseract.js).
+
+Expect 2-3 minutes for 10 pages, depending on scan resolution.
+
+## Tools you'll use most
+
+| Tool | What it does | File limit |
+|------|-------------|-----------|
+| PDF Compress | Shrink file size | ~100MB input |
+| PDF Split | Extract or split | No page limit |
+| PDF Merge | Combine multiple PDFs | 20 files max |
+| Image → PDF | Convert images to PDF | 50MB per image |
+| PDF → Image | Rasterize PDF pages | 100 pages max |
+
+All processing happens in your browser. Your files are never uploaded anywhere.
+
+## What pdfcraft can't do (yet)
+
+- **Edit PDF text inline** — You can annotate and add text, but not edit existing content like Acrobat.
+- **Digital signatures with certificates** — We support drawn/typed signatures, not PKI-based digital sigs.
+- **Form filling with JavaScript** — Static forms yes, dynamic form logic no.
+
+For these tasks, you'll still need Acrobat or a desktop alternative.

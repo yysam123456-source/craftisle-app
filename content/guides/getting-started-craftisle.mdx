@@ -1,0 +1,54 @@
+---
+title: Getting Started with Craftisle Tools
+description: A quick walkthrough of Craftisle's tool categories, how tools work in your browser, and what you can do without signing up.
+date: 2026-06-01
+featured: true
+---
+
+You need to resize a PNG, extract a ZIP, or format some JSON — and you don't want to install anything. That's the scenario Craftisle was built for.
+
+Here's what you can do right now, with no account.
+
+## The 10 tool categories
+
+Craftisle organizes 62 tools into these groups:
+
+- **Image** — Resize, crop, convert, compress, remove backgrounds. PNG → WebP takes under 2 seconds for a 1MB file.
+- **Encryption & Hashing** — AES encrypt/decrypt, MD5, SHA-256, bcrypt hash. All processing happens in your browser via Web Crypto API.
+- **Formatters** — JSON, HTML, CSS, SQL, XML. Paste messy code, get linted output.
+- **Converters** — Units, timezones, color formats, number bases. Practical, not flashy.
+- **Text** — Case converter, diff checker, Base64 encode/decode, lorem ipsum generator.
+- **Network** — IP lookup, user-agent parser, subnet calculator.
+- **Utilities** — Pomodoro timer, stopwatch, coin flip, color wheel spinner.
+- **Generators** — QR codes, UUIDs, password strings, random numbers.
+- **Developer Tools** — JWT decoder, regex visualizer, cron parser. Built for people who type `localhost:3000` daily.
+- **Other** — Markdown preview, HTML visual editor, handwriting animation.
+
+Each tool is a single-page app. No multi-step wizard, no 3-page onboarding. Pick a tool, use it, leave.
+
+## No data leaves your browser
+
+Craftisle runs tools client-side. Your file uploads, passwords, and API keys never hit a server. The trade-off: large files (100MB+) may be slow or hit browser memory limits. Most tools cap out around 50MB comfortably in Chrome.
+
+## What you get without signing up
+
+Free tier includes all 62 tools, unlimited use, no ads in the tool workspace. Signing up adds history, favorites, and custom tool presets — but it's optional.
+
+## Three external products worth knowing about
+
+Craftisle also runs three standalone products:
+
+- **[pdfcraft.app](https://pdfcraft.app)** — 67 PDF-specific tools. Merge, split, compress, OCR, sign. Built on pdf-lib + PDF.js.
+- **[viewer.craftisle.com](https://viewer.craftisle.com)** — Opens 100+ file formats in-browser. PSD, AI, EPS, DWG, RAW photos — all render without the native app.
+- **[resume.craftisle.com](https://resume.craftisle.com)** — ATS-friendly resume builder. Pre-built templates, JSON export, no watermarks.
+
+## What's missing
+
+A few things we're working on:
+- **Batch processing** — Currently one file at a time. Batch resize/convert is in development.
+- **Mobile layout** — Most tools work on phone browsers but the UI wasn't designed for small screens.
+- **Offline mode** — Needs a service worker. Planned for Q3 2026.
+
+---
+
+Try [Image Converter](/tools/image-converter) or [JSON Formatter](/tools/json-formatter) — they're the two most-used tools on the platform.

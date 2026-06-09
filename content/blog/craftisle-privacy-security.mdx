@@ -1,6 +1,6 @@
 ---
 title: Privacy & Security at Craftisle — How We Protect Your Data
-description: Understand Craftisle's privacy-first architecture. All tools run client-side with zero data collection. No accounts, no tracking, no server uploads. How we keep your data truly private.
+description: Craftisle's privacy-first architecture explained. All tools run client-side via Web Crypto API, Canvas API, and WebAssembly. No file uploads, no server storage, no data collection.
 image: /_static/blog/blog-post-11.png
 date: "2026-06-09"
 authors:
@@ -9,110 +9,57 @@ categories:
   - news
 ---
 
-Privacy isn't a feature at Craftisle — it's the foundation. Every design decision starts with one question: "Can we do this without touching the user's data?" The answer is almost always yes.
+"Where do my files go when I use your tools?"
 
-## The Architecture of Privacy
+Nowhere. That's the answer, and here's why it's true.
 
-### Client-Side Processing
+## The architecture
 
-The vast majority of Craftisle tools process data entirely in your browser:
+Every functional tool on Craftisle follows the same pattern:
 
-- **Image tools** — Canvas API and Web Workers handle all pixel manipulation locally
-- **PDF tools** — pdf-lib and qpdf.wasm compile to WebAssembly and run in-browser
-- **Encryption tools** — AES, bcrypt, and hashing use the Web Crypto API
-- **Formatters & converters** — Plain JavaScript string and data transformations
-- **File viewer** — Local file rendering via FlyFish engine (no upload)
-- **Resume builder** — All data stored in localStorage only
+```
+User drops file → File loaded as ArrayBuffer → Processed in browser → Download result
+```
 
-### What "Client-Side" Actually Means
+There is no server that receives your file. No middleware that reads it. No S3 bucket it gets stored in. The tool page loads static assets from a CDN, then everything that happens to your data happens in your browser tab.
 
-When we say "client-side," we mean:
-1. Your file is read by your browser using the FileReader API
-2. Processing happens in JavaScript/WebAssembly in your browser's memory
-3. The result is written back to your downloads folder
-4. **At no point does your data leave your device**
+## What technology makes this possible
 
-### Server-Side Exceptions (Minimal & Documented)
+- **Web Crypto API** — AES-GCM, SHA-256, PBKDF2. Browser-native crypto. No custom crypto library, no third-party crypto server.
+- **Canvas API** — image resize, crop, format conversion. Same API photo editors use.
+- **WebAssembly** — pdf-lib and qpdf.wasm for PDF processing. C++ compiled to WASM, running in a browser sandbox.
+- **localStorage** — resume builder data, favorites, settings. No server-side user database.
 
-A few tools require brief server processing for functionality that can't be done client-side:
+## What we do collect
 
-| Tool | What's sent | Why | Retention |
-|------|-------------|-----|-----------|
-| Image Resizer | Image file | Sharp (server-side library) produces higher quality than Canvas | Deleted after processing |
-| QR Code Generator | URL/Text to encode | QR code generation library runs server-side | Not stored |
-| OCR PDF | PDF file | Tesseract.js can be too slow client-side for large documents | Deleted after OCR |
+Not much:
 
-All server-processed files are:
-- Transmitted over HTTPS only
-- Processed in memory (not written to disk)
-- Deleted immediately after processing completes
-- Never shared with third parties
+- **Page views** — anonymous, via a self-hosted analytics instance (Plausible). No cookies, no fingerprinting, no cross-site tracking.
+- **Error logs** — client-side errors reported to the browser console only. No remote error collection. If something breaks, we rely on GitHub Issues.
 
-## Data We Don't Collect
+No email collection, no newsletter tracking, no ad retargeting. If you're not signed in, you're an anonymous visitor.
 
-Craftisle is built to function with **zero personal data collection**:
+## What we don't do
 
-- ❌ No user accounts — no email, no password, no profile data
-- ❌ No analytics on tool usage — we don't know which tools you use
-- ❌ No file content logging — we can't see your documents
-- ❌ No IP address logging for tool usage
-- ❌ No cookies for tracking (only essential functional cookies)
-- ❌ No third-party trackers, pixels, or fingerprinting scripts
+- No file upload to any server (functional tools).
+- No cloud storage of user data.
+- No analytics tied to individual users.
+- No third-party scripts in the tool workspace (the `/tools` routes have minimal external JS).
 
-### What We Do Collect (Minimal & Transparent)
+## The limits of client-side privacy
 
-The only data we collect is anonymous, aggregated page view counts — and only for the marketing pages (homepage, blog). We use a privacy-focused analytics tool that:
-- Does not use cookies
-- Does not track individual users
-- Does not collect IP addresses (truncated before storage)
-- Provides only aggregate counts (e.g., "500 visitors to /blog today")
+Client-side processing is private by default, but it has trade-offs:
 
-## Monetag Ads & Privacy
+- **Performance ceiling.** Your browser, not a server farm, does the heavy lifting. Large files slow down.
+- **No collaboration.** Real-time co-editing requires a server. Craftisle doesn't do it.
+- **Memory limits.** Chrome tabs have ~2-4GB of usable memory on a typical machine. A 500MB file won't load.
 
-To keep Craftisle free, we display non-intrusive advertisements via Monetag on some pages. Our ad policy:
-- Ads are controlled by an environment variable (`NEXT_PUBLIC_MONETAG_ENABLED`) — easily toggleable
-- No personal data is shared with advertisers
-- We only use contextual ads (based on page content, not user profiles)
-- No ad tracking cookies without explicit consent (where required by law)
+## Third-party subprocessors
 
-## Security Best Practices
+The site is hosted on Vercel. CDN assets are served through Vercel's edge network. Payments (if enabled for premium features in the future) would go through Stripe.
 
-### For the Platform
-- **CSP (Content Security Policy)** — Strict headers prevent XSS and code injection
-- **HTTPS only** — All traffic encrypted with modern TLS (minimum TLS 1.2)
-- **Subresource Integrity** — Third-party scripts verified with SRI hashes
-- **Regular dependency audits** — Automated vulnerability scanning via Dependabot
-- **No external CDN for core assets** — Self-hosted to avoid supply chain attacks
+No other third parties process Craftisle user data.
 
-### For Users
-We recommend these practices when using Craftisle (or any online tool):
-1. **Verify HTTPS** — Always check for the lock icon in your browser
-2. **Use incognito mode** — For extra-sensitive documents
-3. **Clear localStorage** — If you use the Resume Builder, clear data when done on shared computers
-4. **Check file permissions** — Downloaded files inherit your OS permissions
+---
 
-## Legal Pages
-
-We maintain comprehensive legal documentation:
-- **[Privacy Policy](/privacy)** — Detailed data handling practices
-- **[Terms of Service](/terms)** — Usage terms and conditions
-- **[Cookie Policy](/cookie-policy)** — How and why we use cookies
-- **[Disclaimer](/disclaimer)** — Limitations of liability and tool accuracy
-
-## Open Source Commitment
-
-Craftisle's source code is publicly available on GitHub. You can:
-- **Audit our privacy claims** — Every line of code is visible
-- **Self-host** — Run your own instance if you prefer
-- **Contribute** — Help us improve privacy and security
-
-## Our Promise
-
-We built Craftisle because we believe tools should be free, private, and accessible to everyone. We will never:
-- Sell or share your data (we don't have it)
-- Add mandatory accounts or signup walls
-- Introduce tracking or analytics on tool pages
-- Store your files on our servers
-- Change our privacy model without transparent communication
-
-If you have questions about privacy or security, contact us at [craftisle.com/contact](/contact).
+Read the full [Privacy Policy](/privacy) and [Terms of Service](/terms). Try any tool at [craftisle.com/tools](/tools) — open DevTools Network tab, use a tool, confirm: zero outbound data.

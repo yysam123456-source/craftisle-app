@@ -1,6 +1,6 @@
 ---
 title: Network Tools on Craftisle — IP Calculator, Subnet Planner & User-Agent Parser
-description: Free network tools for developers and DevOps. IPv4/IPv6 subnet calculator with CIDR support, user-agent parser for browser analytics. All client-side, instant results.
+description: "3 free network tools: IP subnet calculator with CIDR, user-agent parser, IP info lookup. Run entirely in your browser."
 image: /_static/blog/blog-post-6.png
 date: "2026-06-09"
 authors:
@@ -9,83 +9,30 @@ categories:
   - education
 ---
 
-Craftisle's network tools provide essential networking utilities that every developer and DevOps engineer needs — running 100% in your browser with zero network calls to our servers.
+"Can you figure out why this subnet doesn't talk to that one?"
 
-## All 3 Network Tools
+You could open a terminal and type `ipcalc`. Or you could use our subnet calculator if you're on a machine without that package. Craftisle's network tools cover three narrow but frequent needs.
 
-### 1. IP Calculator
+## IP Subnet Calculator
 
-A full-featured IPv4 and IPv6 subnet calculator that shows everything you need for network planning:
+Input an IP and CIDR prefix (like `192.168.1.0/24`), get back: network address, broadcast address, usable host range, total hosts, subnet mask in dotted decimal and hex.
 
-**IPv4 Features:**
-- **CIDR notation support** — Enter `192.168.1.0/24` and get instant results
-- **Subnet mask input** — Also accepts traditional mask format (`255.255.255.0`)
-- **Network address** — The base address of the subnet
-- **Broadcast address** — The all-hosts broadcast address
-- **Usable host range** — First and last assignable IPs
-- **Total hosts** — Including network and broadcast addresses
-- **Wildcard mask** — For ACL and OSPF configurations
-- **Binary representation** — See the actual bit patterns
+Handles IPv4 only. No IPv6 support yet — IPv6 subnet math is different and isn't implemented in the current version.
 
-**IPv6 Features:**
-- Full IPv6 address parsing with shorthand expansion
-- Prefix length support (`/32`, `/48`, `/64`, etc.)
-- IPv6 subnet calculation with correct EUI-64 conventions
+If you're designing VLANs or planning address allocation for a new office network, this gives you the numbers in one view instead of doing the bit math by hand.
 
-**Real-world use cases:**
-- Planning AWS VPC subnets (`/16` to `/28` ranges)
-- Configuring firewall allow/deny rules with correct CIDR blocks
-- Setting up Kubernetes pod and service CIDR ranges
-- Network documentation and architecture diagrams
+## User-Agent Parser
 
-### 2. IP & Radix Converter
+Paste a user-agent string, get a structured breakdown: browser name and version, OS, device type (mobile/desktop/tablet), rendering engine.
 
-A dual-purpose tool that combines IP conversion with base/radix conversion:
+Example input:
+```
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36
+```
+Output: Chrome 131 on macOS, desktop, WebKit engine.
 
-**IP Conversion:**
-- IPv4 to decimal, hex, binary, and octal
-- IPv6 to full hex and compressed formats
-- Reverse: enter decimal and get dotted-decimal IP
+The parser uses a regex-based UA detection library. Modern browsers are increasingly freezing or faking their UA strings (Chrome's UA reduction), so the output is a best guess, not ground truth.
 
-**Radix Converter:**
-- Convert numbers between bases 2 (binary) through 36
-- Live preview as you type
-- Support for large integers (BigInt)
-- Useful for: understanding bitmasks, encoding IDs, and working with non-decimal number systems
+---
 
-### 3. User-Agent Parser
-
-Parse and analyze browser user-agent strings to understand your visitors' environment:
-
-**What it extracts:**
-- **Browser** — Name, version, and rendering engine (Chrome, Firefox, Safari, Edge)
-- **Operating System** — Windows, macOS, Linux, iOS, Android with version
-- **Device type** — Desktop, tablet, mobile, bot/crawler
-- **CPU architecture** — x86, ARM, Apple Silicon
-- **Layout engine** — Blink, Gecko, WebKit
-
-**Why it matters:**
-- Debug browser-specific bugs by identifying the exact browser/OS combination
-- Test responsive design breakpoints based on device type
-- Understand your analytics data by parsing raw user-agent strings
-- Identify bot traffic patterns in your access logs
-
-## Network Tools in Your Workflow
-
-| Scenario | Tool to Use |
-|----------|-------------|
-| Planning cloud VPC subnets | IP Calculator |
-| Writing firewall rules | IP Calculator (CIDR notation) |
-| Debugging a user's browser issue | User-Agent Parser |
-| Converting between number bases | IP & Radix Converter |
-| Setting up Docker network ranges | IP Calculator |
-| Identifying crawler traffic | User-Agent Parser |
-
-## Security & Privacy
-
-All IP calculations and user-agent parsing happen entirely in your browser. No network data is sent to any server. This is critical because:
-- Subnet configurations may reveal internal network topology
-- User-agent strings can contain identifying information
-- All computation is local — instant results, zero latency
-
-Visit [craftisle.com/tools?category=network](/tools?category=network) to start using all network tools.
+Try the [User-Agent Parser](/tools/user-agent-parser) — paste your own browser's UA string and see what it reports.

@@ -9,86 +9,53 @@ categories:
   - news
 ---
 
-## What is Craftisle?
+You have a PDF that needs compressing, an image that needs resizing, and a JSON file that needs formatting. You could install three different apps. Or you could open three browser tabs.
 
-Craftisle is a comprehensive **free online tools platform** that brings together 135+ browser-based utilities across 4 specialized products. Every tool runs entirely in your browser — no data is ever uploaded to a server, no signup is required, and everything is free forever.
+That's why Craftisle exists.
 
-## The Four Products
+## The four products
 
-### 1. Craftisle Main Site (craftisle.com)
+Craftisle runs four things:
 
-The flagship platform hosts **62 built-in tools** across 10 categories:
+**craftisle.com** — the main site. 62 tools, 10 categories. Image editing, text formatting, encryption, developer utilities. Each tool is a single page. No wizards, no onboarding flow.
 
-| Category | Tool Count | Highlights |
-|----------|-----------|------------|
-| **Image** | 17 tools | Resize, crop, compress, convert, watermark, meme generator, favicon maker, beautify screenshots |
-| **Encryption & Hashing** | 4 tools | AES/DES encrypt, bcrypt hash, SHA/MD5 hash, JWT decoder |
-| **Formatters** | 5 tools | JSON, HTML, SQL, YAML formatter, HTML escape |
-| **Converters** | 9 tools | Base64/32/58, CSV↔JSON, URL encode, image-to-base64, radix converter |
-| **Developer Tools** | 7 tools | Cron expression builder, regex tester & visualizer, mermaid charts, SVG editor, HTML visual editor |
-| **Generators** | 7 tools | QR code, UUID, lorem ipsum, random string, pixel art, handwriting animation |
-| **Text Tools** | 4 tools | Case converter, diff checker, unicode lookup, text formatter |
-| **Network Tools** | 3 tools | IP calculator & radix converter, user-agent parser |
-| **Utilities** | 7 tools | Pomodoro timer, countdown, stopwatch, coin flip, wheel spinner, scoreboard |
-| **Other** | Extras | Barcode generator, color picker, keyboard tester, markdown editor, TTS |
+**pdfcraft.app** — 67 PDF-specific tools. Merge, split, compress, OCR, sign. Uses pdf-lib and qpdf.wasm. Everything runs in your browser. Good for documents under 50MB.
 
-### 2. PDF Tools (pdf.craftisle.com)
+**viewer.craftisle.com** — opens 100+ file formats without the native app. PSD, AI, EPS, DWG, RAW photos. Built on the FlyFish viewer engine. Files stay client-side.
 
-A dedicated **67-tool PDF processing suite** built on pdf-lib and qpdf.wasm. All processing happens client-side via WebAssembly, meaning your sensitive documents never leave your device.
+**resume.craftisle.com** — resume builder based on Reactive Resume. Stores data in localStorage. Exports to PDF and DOCX. No account needed.
 
-**Organize & Manage (24 tools):** Merge, split, extract pages, organize, delete pages, OCR, alternate merge, add/extract attachments, rotate, overlay, N-up layout, grid combine, booklet maker.
+## What's on the main site
 
-**Edit & Annotate (16 tools):** Full PDF editor, sign, crop, bookmark, table of contents, page numbers, watermark, header/footer, invert colors, stamps, form filler & creator, remove annotations.
+| Category | Count | Tools |
+|----------|-------|-------|
+| Image | 17 | resize, crop, compress, convert, watermark, meme gen, favicon maker |
+| Encryption | 4 | AES/DES, bcrypt, SHA/MD5, JWT decoder |
+| Formatters | 5 | JSON, HTML, SQL, YAML, HTML escape |
+| Converters | 9 | Base64/32/58, CSV↔JSON, URL encode, image-to-base64 |
+| Developer | 7 | cron expression, regex visualizer, mermaid charts, SVG editor |
+| Generators | 7 | QR, UUID, lorem ipsum, random string, pixel art |
+| Text | 4 | case converter, diff checker, unicode lookup |
+| Network | 3 | IP calc, user-agent parser, subnet planner |
+| Utilities | 7 | pomodoro, stopwatch, coin flip, wheel spinner, scoreboard |
+| Other | 4 | barcode, color picker, keyboard tester, TTS |
 
-**Convert to PDF (18 tools):** Convert from JPG, PNG, WebP, SVG, BMP, HEIC, TIFF, Word, Excel, PPT, EPUB, MOBI, Markdown, email, and more.
+## What you actually get (and what you don't)
 
-**Convert from PDF (13 tools):** Export to JPG, PNG, WebP, TIFF, SVG, Word, Excel, PPT, JSON, Markdown, CBZ, extract images, extract tables.
+The pitch is "135+ tools, all free." Here's the honest version:
 
-**Optimize & Repair (10 tools):** Compress, fix page size, linearize, repair, deskew, PDF/A conversion, font to outline, OCG layer management.
+- **All 62 main site tools are free, no limits.** No daily caps, no paywalls.
+- **pdfcraft handles most PDF tasks under 50MB.** Above 100MB, expect slowness — pdf-lib loads the whole file into memory.
+- **viewer.craftisle.com opens the formats it claims to.** DWG and PSD rendering isn't pixel-perfect like the native apps, but it's close enough for preview.
+- **resume templates are solid but not infinite.** 3-4 templates, not 50. They're ATS-friendly and clean, not fancy.
 
-**Secure (9 tools):** Encrypt, decrypt, sanitize, redact, flatten, remove metadata, change permissions, digital sign, validate signature, timestamp.
+## Where things break
 
-### 3. File Viewer (viewer.craftisle.com)
+Known issues:
+- Mobile layout: tools work on phones but the UI wasn't designed for small screens. Image tools are usable; PDF tools are not.
+- Batch processing: one file at a time on the main site. pdfcraft has batch merge, but no batch resize/convert yet.
+- Offline: needs an internet connection. Service worker is on the roadmap.
 
-Preview **100+ file formats** directly in your browser — no installation needed. Five specialized viewers:
+---
 
-- **PDF Viewer** — Full PDF rendering with zoom, rotation, search
-- **DOCX Viewer** — Word documents with formatting preserved
-- **XLSX Viewer** — Excel spreadsheets with formula support
-- **PPTX Viewer** — PowerPoint presentations with animations
-- **3D & CAD Viewer** — STL, OBJ, GLTF, DWG, DXF, and more
-
-Also supports images (PNG, JPG, SVG, WebP, PSD, AI), code files (JSON, XML, YAML, HTML, CSS, JS, TS, Python), and data formats (CSV, TSV).
-
-### 4. Resume Builder (resume.craftisle.com)
-
-A **privacy-first resume creation tool** built on Reactive Resume. All data stays in your browser's localStorage — no account required.
-
-- Rich text editing with 15+ section types
-- Multiple professional templates
-- Real-time preview
-- Export to PDF and DOCX
-- Keyboard shortcuts for efficient editing
-- Dark/light theme support
-
-## Why Craftisle?
-
-**Privacy First** — All processing is client-side. No file uploads, no server storage, no data collection.
-
-**No Signup** — Every tool works immediately. No accounts, no email verification, no friction.
-
-**Free Forever** — The entire platform is free. No premium tiers, no paywalls, no usage limits.
-
-**Fast & Reliable** — WebAssembly and modern browser APIs deliver desktop-class performance.
-
-**Always Improving** — New tools and features are added regularly based on user feedback.
-
-## Getting Started
-
-Visit [craftisle.com/tools](/tools) to browse the full tool catalog, or jump directly to any of the specialized subdomains:
-
-- [PDF Tools](https://pdf.craftisle.com) — 67 PDF utilities
-- [File Viewer](https://viewer.craftisle.com) — 100+ format preview
-- [Resume Builder](https://resume.craftisle.com) — Professional resumes
-
-Check out our [How-To Guides](/blog/how-to) for step-by-step tutorials on every tool.
+Pick a tool and try it: [Image Converter](/tools/image-converter) or [JSON Formatter](/tools/json-formatter). They load in under a second and work with no setup.

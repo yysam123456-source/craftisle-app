@@ -1,6 +1,6 @@
 ---
 title: Text Tools on Craftisle — Case Converter, Diff Checker, Unicode & More
-description: Master Craftisle's 4 text tools. Case converter for all naming conventions, side-by-side diff checker, Unicode inspector, and multi-function text formatter. All free, browser-based.
+description: "4 free text tools: case converter, diff checker, base64 encoder, lorem ipsum. All browser-based, no uploads."
 image: /_static/blog/blog-post-5.png
 date: "2026-06-09"
 authors:
@@ -9,86 +9,38 @@ categories:
   - education
 ---
 
-Craftisle's text tools are designed for developers and writers who need quick, reliable text manipulation without installing software. Every tool runs entirely in your browser — no data leaves your device.
+"Can you make all these titles Sentence Case? There are 200 of them."
 
-## All 4 Text Tools
+That's the kind of request that makes you google "bulk case converter" at 5 PM on a Friday. Craftisle's text tools exist for exactly those moments.
 
-### 1. Case Converter
+## The four tools
 
-Instantly convert text between **all major naming conventions**. Paste once, get all formats simultaneously:
+### Case Converter
 
-| Format | Example | Common Use |
-|--------|---------|-----------|
-| **camelCase** | `myVariableName` | JavaScript, Java, Go |
-| **PascalCase** | `MyClassName` | C#, TypeScript classes, React components |
-| **snake_case** | `my_variable_name` | Python, Ruby, Rust, SQL column names |
-| **CONSTANT_CASE** | `MY_CONSTANT` | Environment variables, C/C++ constants |
-| **kebab-case** | `my-variable-name` | CSS classes, URLs, CLI flags |
-| **dot.case** | `my.variable.name` | Configuration keys, Java packages |
+Handles: upper case, lower case, sentence case, title case, alternating case. Paste text, click, copy.
 
-**Why you need it:** Moving code between Python (snake_case) and JavaScript (camelCase) is a daily friction for full-stack developers. One paste, one click — all conventions at once.
+The title case conversion follows common title capitalization rules (articles and short prepositions stay lowercased). Don't expect it to handle edge cases like hyphenated words or brand names with intentional odd casing.
 
-### 2. Text Formatter
+Real use: "I need 47 product descriptions in sentence case before the newsletter goes out."
 
-A Swiss Army knife for text with **20+ operations** in a single tool:
+### Diff Checker
 
-- **Word & character count** — Quick statistics for writers and content editors
-- **Sort lines** — Alphabetical, reverse, or by length
-- **Remove duplicates** — Deduplicate email lists, URLs, product SKUs
-- **Trim whitespace** — Remove leading/trailing spaces, normalize line endings
-- **Find and replace** — Full regex support for power users
-- **Add prefixes/suffixes** — Batch-prepend or append text to every line
-- **Number lines** — Add sequential line numbers for code snippets
-- **Wrap text** — Reflow long paragraphs to a specified width
+Side-by-side comparison. Paste two versions, differences are highlighted line-by-line. Green for additions, red for removals.
 
-**Pro tip:** Use the regex find-and-replace to convert between log formats, clean CSV exports, or normalize API responses in seconds.
+Good for: comparing config files, spotting the one changed line in a deployment YAML, checking what your coworker actually changed in the shared document.
 
-### 3. Text Diff
+Not good for: binary data, large files (>1MB text will lag), structured formats that should use dedicated diff tools (use git diff for code).
 
-Compare two texts side-by-side with **color-coded differences** using Myers' diff algorithm — the same one Git uses:
+### Base64 Encoder/Decoder
 
-- **Side-by-side view** — See original and modified text in parallel panels
-- **Inline view** — Differences highlighted within a single unified view
-- **Word-level diff** — Highlight changed words, not just entire lines
-- **Character-level diff** — For fine-grained comparison of short strings
-- **Ignorable whitespace** — Toggle to focus on meaningful changes only
-- **Export diff** — Download as a unified diff patch file
+Text and file encoding. Encode a string or a small file to Base64, decode back. Supports the standard Base64 alphabet with padding.
 
-**Use cases:**
-- Compare configuration files between staging and production
-- Review code changes before committing
-- Spot differences between contract versions or legal documents
-- Debug why an API response changed between deployments
+Common uses: embedding small images in HTML/CSS as data URIs, encoding credentials for basic auth headers, decoding Base64-encoded data from API responses.
 
-### 4. Unicode Inspector
+### Lorem Ipsum Generator
 
-Explore, search, and convert Unicode characters with full metadata:
+Generate placeholder text by paragraph count. Uses the classic Cicero-derived Lorem Ipsum. Not much to say — it does what you expect.
 
-- **Character lookup** — Search by name, code point, or paste any character
-- **Code point details** — View UTF-8 bytes, UTF-16 bytes, category, block, and script
-- **Format conversion** — Convert between `\uXXXX`, `&#xXXXX;`, `U+XXXX`, and raw characters
-- **Bidirectional info** — Check if a character is LTR, RTL, or neutral (critical for Arabic/Hebrew layouts)
-- **Emoji support** — Full emoji sequence parsing including skin tones, flags, and ZWJ sequences
+---
 
-**Real-world debugging:** When your app shows `□` instead of a character, paste it into the Unicode inspector to see exactly which code point is missing from your font. This tool has saved countless hours debugging CJK, emoji, and RTL text rendering issues.
-
-## Text Tools vs Other Categories
-
-| Need | Best Tool |
-|------|-----------|
-| Convert naming conventions | Case Converter |
-| Clean and format bulk text | Text Formatter |
-| Compare two versions | Text Diff |
-| Debug encoding issues | Unicode Inspector |
-| Format JSON/YAML/SQL | Formatters (separate category) |
-| Encrypt text | AES/DES Encrypt |
-
-## Privacy Guarantee
-
-All text processing runs entirely in your browser. Your text data never touches a Craftisle server — even during diff comparison, format conversion, or Unicode inspection. This makes these tools safe for:
-- Proprietary source code
-- Confidential documents and contracts
-- PII (Personally Identifiable Information)
-- API keys and credentials
-
-Start using all text tools at [craftisle.com/tools?category=text](/tools?category=text).
+The diff checker and case converter get the most use. Try the [Diff Checker](/tools/diff-checker) — paste two versions of something, see what changed.

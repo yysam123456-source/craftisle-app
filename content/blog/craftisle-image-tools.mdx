@@ -9,86 +9,63 @@ categories:
   - education
 ---
 
-Craftisle's image tool suite is one of the most comprehensive collections of **free online image editors** available. Every tool runs entirely in your browser using WebAssembly and modern Canvas APIs — no files are ever uploaded to a server.
+Someone on Reddit asked: "Is there a free image resizer that doesn't make me upload my photos to some sketchy server?" That's the question half our image tools answer.
 
-## All 17 Image Tools
+Here's what each tool actually does, and what it doesn't.
 
-### 1. Image Resizer
-Resize images by exact dimensions or percentage. Supports width, height, and fit modes (cover, contain, fill). Perfect for preparing images for web, social media, or print.
+## The tools
 
-### 2. Image Cropper
-Interactive crop tool with precise pixel-level control. Drag to select your crop area and export in any format. Built on react-image-crop for smooth interactions.
+**Image Resizer** — enter width/height in pixels or pick a percentage. Supports cover/contain/fill modes. Good for social media prep. Bad for upscaling (Canvas API blurs at 2x+).
 
-### 3. Image Compressor
-Reduce file size while maintaining quality. Adjustable compression levels with real-time preview. Supports JPEG, PNG, WebP, and AVIF output formats.
+**Image Cropper** — drag a rectangle, export. Uses react-image-crop. Precise to the pixel.
 
-### 4. Image Converter
-Convert between image formats instantly. Supported formats: **JPEG, PNG, WebP, AVIF, TIFF, BMP**. Batch conversion support with quality control.
+**Image Compressor** — adjust quality slider, preview in real time. Outputs JPEG/PNG/WebP/AVIF. A 5MB JPEG typically drops to 300-800KB at quality 70. Don't go below 50 — artifacts become visible.
 
-### 5. Image Rotator
-Rotate images by any angle — not just 90° increments. Flip horizontally or vertically. Real-time preview before export.
+**Image Converter** — converts between JPEG, PNG, WebP, AVIF, TIFF, BMP. One file at a time. PNG → WebP usually cuts file size by 60-80%.
 
-### 6. Color Palette Extractor
-Extract the dominant color palette from any image. Returns hex codes and color distribution data. Great for brand color extraction and design inspiration.
+**Image Rotator** — any angle rotation, horizontal/vertical flip. Quick, no frills.
 
-### 7. Favicon Generator
-Generate favicon sets from any image. Creates multiple sizes (16×16, 32×32, 48×48, 64×64, 128×128, 256×256) plus Apple touch icons. Perfect for websites and PWA manifest.
+**Color Palette Extractor** — drop an image, get hex codes for the top 5-10 colors. Useful for matching brand colors from a screenshot. Not useful for precise color analysis — it averages clusters.
 
-### 8. Strip Metadata
-Remove EXIF, GPS, camera info, and other metadata from images. Essential for privacy before sharing photos online. Batch processing supported.
+**Favicon Generator** — generates 16×16 through 256×256 PNGs plus Apple touch icons from one image. Ready for your `<link rel="icon">` tag.
 
-### 9. Image Info
-View detailed image properties — dimensions, format, file size, color depth, metadata, and EXIF data. Quick inspection without opening an image editor.
+**Strip Metadata** — removes EXIF, GPS, camera model, date taken. Batch mode available. Before posting photos to public forums, run them through this. GPS coordinates in EXIF have doxed people.
 
-### 10. Image Border
-Add customizable borders to images. Control border width, color, and style. Perfect for framing photos or creating consistent image styling.
+**Image Info** — shows dimensions, format, file size, color depth, all EXIF data. Quick inspection, no editing.
 
-### 11. Watermark
-Add text watermarks to protect your images. Customize font, size, color, opacity, and position. Ideal for photographers and content creators.
+**Image Border** — adds borders with configurable width, color, style. Simple and predictable.
 
-### 12. Color Adjust
-Fine-tune brightness, contrast, saturation, and hue. Real-time preview with sliders for each parameter. Non-destructive editing.
+**Watermark** — text overlays with font/size/color/opacity/position controls. Image-based watermarks coming later.
 
-### 13. Passport Photo Generator
-Create passport and visa photos that meet official requirements. Automatic face detection, background removal, and size compliance for multiple countries.
+**Color Adjust** — brightness, contrast, saturation, hue sliders. Non-destructive (works on a copy). Not a full photo editor — no curves, no levels, no masks.
 
-### 14. Meme Generator
-Create custom memes with top and bottom text. Classic meme formatting with font controls. Add your own images or use templates.
+**Passport Photo Generator** — auto face detection, background removal, size presets for multiple countries. Works best with front-facing, well-lit photos against plain backgrounds. Won't handle group photos or side profiles well.
 
-### 15. Beautify Screenshots
-Transform plain screenshots into polished marketing images. Add shadows, rounded corners, backgrounds, and padding. Perfect for documentation and social media.
+**Meme Generator** — top/bottom text, Impact-style font. Upload your own image or pick from templates. Does exactly what you expect.
 
-### 16. Find Duplicates
-Detect duplicate or near-duplicate images using perceptual hashing (pHash). Compare image content regardless of resolution or minor edits. Batch scan entire folders.
+**Beautify Screenshots** — adds shadows, rounded corners, backgrounds, padding to screenshots. Turns a raw screenshot into a shareable social media image in 3 clicks. One of our most-used tools.
 
-### 17. Create GIF
-Combine multiple images into animated GIFs. Control frame delay, loop count, and output quality. Create simple animations without specialized software.
+**Find Duplicates** — uses perceptual hashing (pHash) to find near-duplicate images. Scans a folder, returns groups of similar images. Won't catch heavily edited images — cropping or filters reduce hash match below threshold.
 
-## Image Tools vs PDF Tools
+**Create GIF** — combine multiple images into an animated GIF. Set frame delay and loop count. Simple frame sequencing — no transitions, no effects, no video import.
 
-While Craftisle Image Tools handle raster and vector image operations, for document-level image tasks you may want to use our [PDF Tools](https://pdf.craftisle.com):
+## What these tools share
 
-| Need | Use |
-|------|-----|
-| Edit a single image | Image Tools |
-| Convert images to PDF | PDF Tools → JPG/PNG to PDF |
-| Extract images from PDF | PDF Tools → Extract Images |
-| Watermark PDF pages | PDF Tools → Add Watermark |
-| Compress scanned documents | PDF Tools → Compress PDF |
+All 17 use the Canvas API in your browser. File size is limited by available memory — Chrome typically handles images under 50MB smoothly. Safari has tighter Canvas memory limits on iOS.
 
-## Tips for Best Results
+## Image tools vs pdfcraft
 
-1. **Use WebP for web** — WebP offers 25-35% smaller files than JPEG at the same quality
-2. **Strip metadata before sharing** — Remove GPS coordinates and camera info for privacy
-3. **Compress before uploading** — Reduce file size before uploading to websites or social media
-4. **Convert to AVIF for next-gen web** — AVIF provides even better compression than WebP
-5. **Use perceptual hashing for dedup** — Find duplicates even when images have been resized or lightly edited
+If your task involves documents rather than standalone images, pdfcraft is the better fit:
 
-## All Tools Work Offline
+| Task | Right tool |
+|------|-----------|
+| Resize a single photo | Image Resizer |
+| Convert 20 JPGs to one PDF | pdfcraft Merge |
+| Extract images from a PDF | pdfcraft Extract Images |
+| Watermark PDF pages | pdfcraft Watermark |
+| Find duplicate photos | Find Duplicates |
+| Compress a scanned document | pdfcraft Compress |
 
-Since all processing happens in your browser, Craftisle Image Tools continue to work even without an internet connection after the initial page load. This makes them ideal for:
-- Working on sensitive documents
-- Editing images while traveling
-- Processing files in secure environments
+---
 
-Visit [craftisle.com/tools?category=image](/tools?category=image) to start using all image tools now.
+Start with [Image Converter](/tools/image-converter) — it's the most-used image tool. Drop a PNG, pick WebP as output, see the size difference.

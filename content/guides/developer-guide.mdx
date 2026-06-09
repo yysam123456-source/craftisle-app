@@ -1,0 +1,87 @@
+---
+title: Developer's Guide to Craftisle
+description: "How Craftisle tools work under the hood: Web Crypto API, Web Workers, WASM, and privacy-first architecture."
+date: 2026-06-05
+---
+
+Craftisle is a browser-first toolkit. Every tool runs client-side. If you're building something similar or just curious about the architecture, this guide covers the technical decisions behind it.
+
+## Stack overview
+
+- **Framework**: Next.js 16 with App Router (SSG for tool pages, ISR for dynamic content)
+- **UI**: Tailwind CSS + shadcn/ui (Radix primitives)
+- **State**: React hooks + local state. No Redux, no Zustand — each tool is self-contained.
+- **Build**: ContentLayer for MDX, webpack for bundling
+
+## Privacy architecture: why no server processing
+
+Every functional tool on Craftisle follows this pattern:
+
+```
+User drops file → File loaded into ArrayBuffer → Processed in browser → Download result
+```
+
+The key constraint: **user data never leaves the browser**. This means:
+
+- **Encryption tools** use `window.crypto.subtle` (Web Crypto API). AES-GCM, SHA-256, PBKDF2 — all standard Web Crypto.
+- **Image tools** use Canvas API for resize/crop/format conversion. No server-side ImageMagick.
+- **PDF tools** (pdfcraft) use pdf-lib for manipulation and PDF.js for rendering. 67 tools, all WASM/JS.
+- **File viewer** (viewer.craftisle.com) renders PSD, AI, EPS, DWG directly in WebGL/Canvas. No server-side preview generation.
+
+The trade-off: performance is limited by what the browser can do. A 500MB video won't load. A 200-page PDF with OCR will spike memory. For most files under 50MB, it works fine.
+
+## How to add a new tool
+
+If you're contributing, here's the pattern:
+
+1. Create the tool component in `components/tools/`
+2. Add its metadata to `lib/tools.ts`:
+   ```ts
+   "tool-slug": {
+     title: "Tool Name",
+     description: "What it does in one line",
+     category: "image" | "formatters" | "converters" | ...,
+     icon: LucideIconName,
+     tech: ["Web Crypto API", "Canvas"],
+   }
+   ```
+3. If it needs a dedicated page, add `app/tools/[tool]/page.tsx`
+4. SEO metadata is auto-generated from `generateMetadata` in the layout
+
+Tools with simple state (text input → text output) don't need dedicated pages — they render inline via the `/tools` route.
+
+## Performance decisions
+
+| Decision | Why |
+|----------|-----|
+| No server components for tools | Tools need interactivity (file drag-drop, live preview). Server components add hydration mismatch risk. |
+| Canvas over WebGL for images | Canvas API handles 95% of image operations. WebGL only for shader effects and 3D games. |
+| pdf-lib over server-side Ghostscript | Keeps processing client-side. pdf-lib is 400KB gzipped but avoids a server dependency. |
+| No IndexedDB for tool state | Tools are stateless. Your settings reset on refresh. Deliberate choice to keep things predictable. |
+
+## The resource directory
+
+The `/directory` page indexes 10,000+ open-source tools, APIs, and developer resources sourced from FMHY, free-for-dev, awesome-selfhosted, and public-apis repositories. It's static-generated — 3,000+ pages pre-rendered at build time.
+
+The directory pages are ISR with a 6-hour revalidation. Category indices and resource detail pages are SSG.
+
+## On WASM and Web Workers
+
+pdfcraft uses pdf-lib (pure JS) for most operations. The OCR tool loads Tesseract.js which is a WASM port of Tesseract OCR. It's ~8MB on first load but cached after that.
+
+We don't use Web Workers for tool processing yet. The UI freezes for about 200-500ms during heavy operations (OCR, large PDF rendering). Adding workers is tracked in the backlog.
+
+## Local development
+
+```bash
+git clone https://github.com/yysam123456-source/craftisle-app.git
+cd craftisle-app
+npm install
+npm run dev
+```
+
+The dev server starts on `localhost:3000`. ContentLayer rebuilds MDX on file changes. Tools are at `/tools`, blog at `/blog`, directory at `/directory`.
+
+---
+
+For bug reports or feature requests, use [GitHub Issues](https://github.com/yysam123456-source/craftisle-app/issues).

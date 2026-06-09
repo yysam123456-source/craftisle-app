@@ -9,117 +9,63 @@ categories:
   - education
 ---
 
-Every developer needs a toolkit of reliable utilities they can reach for without friction. Craftisle's developer tools provide exactly that — **28 free, browser-based tools** covering encryption, formatting, conversion, testing, and generation. No installs, no accounts, no limits.
+I use the JSON Formatter at least 10 times a day. Paste messy API response, click beautify, copy the readable version. Two seconds. No terminal, no npm package, no IDE plugin to install.
 
-## Encryption & Hashing (4 tools)
+That's the pattern for all 28 developer tools on Craftisle: they solve a single specific problem, no clicks wasted.
 
-### AES/DES Encrypt
-Full symmetric encryption with support for AES and DES algorithms. Choose between ECB and CBC modes with 128/192/256-bit keys. Encrypt and decrypt text or files entirely in your browser.
+## Encryption & Hashing
 
-**Use case:** Encrypt configuration values, API keys, or sensitive data before storage.
+**AES Encrypt/Decrypt** — AES-128/192/256 with ECB or CBC mode. Uses Web Crypto API. Key stays in your browser. Good for encrypting config values before storing them in a repo. Not good for encrypting files over 10MB (memory limit).
 
-### Bcrypt Hash
-Industry-standard password hashing with adjustable cost factor. Generate bcrypt hashes for authentication systems. Verify passwords against existing hashes.
+**Bcrypt Hash** — adjustable cost factor, verify against existing hashes. "I need to test my auth flow with a real bcrypt hash" — this tool answers that.
 
-**Use case:** Hash passwords during development or generate test data for auth systems.
+**Hash Tool** — MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160. Drag-drop file hashing. A quick integrity check for downloaded files.
 
-### Hash Tool
-Compute MD5, SHA-1, SHA-256, SHA-512, and RIPEMD-160 hashes. File hashing with drag-and-drop support. Verify file integrity or generate checksums.
+**JWT Decoder** — paste a token, see header/payload/signature. "This token doesn't decode in jwt.io — let me try locally." The decoding happens client-side, so tokens with sensitive claims stay off third-party servers.
 
-**Use case:** Verify downloaded file integrity or generate content hashes.
+## Formatters
 
-### JWT Decoder
-Decode JSON Web Tokens to inspect header, payload, and signature. View claims, expiration, and issuer information. Validate token structure.
+**JSON Formatter** — beautify, minify, validate. Collapsible tree view for large objects. Handles JSON up to about 5MB before the UI chugs. This is our most-used tool by a wide margin.
 
-**Use case:** Debug authentication issues or inspect API tokens during development.
+**HTML/SQL/YAML Formatter** — each handles indentation and syntax highlighting. SQL formatter respects nested queries and CTEs. YAML formatter catches indent errors in Kubernetes manifests and Docker Compose files before you deploy.
 
-## Formatters (5 tools)
+**HTML Escape** — converts `<` to `&lt;` and back. Prevents XSS when embedding user content in HTML. Simple but breaks often enough to justify a dedicated tool.
 
-### JSON Formatter
-Beautify, minify, and validate JSON with tree view navigation. Collapsible nodes for large objects. Copy formatted output with one click. **Most popular tool on Craftisle.**
+## Converters
 
-### HTML Formatter
-Format HTML code with proper indentation. Supports JSX syntax. Minify option for production optimization.
+- **Base64/32/58** — text and file encoding. Base58 is Bitcoin-style, no ambiguous characters (0/O, I/l).
+- **CSV ↔ JSON** — custom delimiters. Good for 10K-row files; 100K+ rows will slow the UI.
+- **URL Encode/Decode** — percent-encoding. Handy for debugging query parameters.
+- **Image to Base64** — embed images as data URIs in HTML/CSS.
+- **Radix Converter** — bases 2-36 with live preview.
 
-### SQL Formatter
-Format SQL queries with configurable keyword casing (UPPER/lower). Handles nested queries, CTEs, and complex joins.
+## Developer Tools
 
-### YAML Formatter
-Validate and format YAML. Perfect for Kubernetes manifests, GitHub Actions workflows, and Docker Compose files.
+**Cron Expression Builder** — interactive editor, shows next 5 run times. "Did I just set this job to run every minute or every month?" — the preview catches those mistakes.
 
-### HTML Escape
-Escape and unescape HTML special characters. Essential for preventing XSS vulnerabilities and encoding user-generated content.
+**Regex Tester & Visualizer** — real-time match highlighting, captured groups, and an AST diagram view. The visualizer is rated 5 stars for a reason: seeing a regex as a tree makes debugging patterns much faster than staring at `/^(?:\d{3}|\(\d{3}\))([-/.])\d{3}\1\d{4}$/`.
 
-## Converters (9 tools)
+**Mermaid Chart Editor** — flowcharts, sequence diagrams, Gantt, class diagrams. Live preview, PNG/SVG export. Uses mermaid.js.
 
-| Tool | Description |
-|------|-------------|
-| **Base64 Encode/Decode** | Text and file encoding with instant preview |
-| **Base32 Encode** | Base32 encoding for legacy systems |
-| **Base58 Encode** | Bitcoin/IPFS-style encoding without ambiguous characters |
-| **Radix Converter** | Convert between bases 2-36 with live preview |
-| **CSV ↔ JSON** | Bidirectional conversion with custom delimiters |
-| **URL Encode/Decode** | Percent-encoding for URLs and query parameters |
-| **Image to Base64** | Embed images as data URIs for HTML/CSS |
-| **PNG to SVG** | Raster to vector conversion via edge detection |
-| **PDF Tools** | External link to [pdf.craftisle.com](https://pdf.craftisle.com) |
+**SVG Editor** — write SVG code, see it render. Good for quick inline graphics.
 
-## Developer Tools (7 tools)
+**HTML Visual Editor** — WYSIWYG HTML editing. Sandboxed iframe preview (no `allow-same-origin` for security).
 
-### Cron Expression Builder
-Interactive cron expression editor with human-readable preview. See exactly when your cron job will run next. Supports standard 5-field cron syntax.
+## Generators
 
-### Regex Tester
-Real-time regular expression testing with match highlighting. View captured groups, match positions, and test against sample text.
+- **QR Code Generator** — logo support, color options, size control.
+- **UUID v4 Generator** — RFC-4122 compliant, batch mode.
+- **Lorem Ipsum** — configurable paragraph count.
+- **Random String** — uses Crypto.getRandomValues() for cryptographic randomness. Good for API keys and passwords.
+- **Pixel Art** — raster → pixel style conversion.
+- **Handwriting Animation** — text → animated SVG handwriting. Rated 5 stars.
 
-### Regex Visualizer
-**5-star rated tool.** Visualize regex patterns as interactive AST diagrams. Understand complex regex by seeing the parse tree and character classes visually.
+## What to expect
 
-### Mermaid Chart Editor
-Create flowcharts, sequence diagrams, Gantt charts, class diagrams, and more using Mermaid syntax. Live preview with PNG/SVG export.
+All 28 tools are client-side. Encryption/hashing uses Web Crypto API. File size limit is whatever your browser can hold in memory — Chrome handles ~50MB comfortably, Safari less on iOS.
 
-### SVG Editor
-Write SVG code with real-time preview. Edit paths, shapes, and attributes with instant visual feedback.
+No tool here handles files in batch. One operation at a time. For batch processing, pdfcraft (the PDF subdomain) is the better option.
 
-### HTML Visual Editor
-WYSIWYG HTML editor with live preview. Edit HTML and see the rendered output simultaneously.
+---
 
-### File Viewer
-External link to [viewer.craftisle.com](https://viewer.craftisle.com) — preview 100+ file formats online.
-
-## Generators (7 tools)
-
-| Tool | Rating | Description |
-|------|--------|-------------|
-| **QR Code Generator** | ⭐5 | Customizable QR codes with logo support, color, and size options |
-| **UUID Generator** | — | RFC-4122 compliant UUID v4 batch generation |
-| **Lorem Ipsum** | — | Placeholder text generation with configurable paragraphs |
-| **Random String** | — | Cryptographically secure random strings for passwords/API keys |
-| **Random Group** | — | List randomization with seed-based reproducibility |
-| **Pixel Art Generator** | — | Convert images to pixel art style |
-| **Handwriting Animation** | ⭐5 | Convert text to animated handwriting SVG |
-
-## Pro Tips
-
-1. **Bookmark `/tools/json-formatter`** — It's the fastest JSON formatter you'll find. No page loads, no ads.
-2. **Use Regex Visualizer for complex patterns** — Seeing the AST makes debugging regex 10× faster.
-3. **QR Code Generator handles logos** — Add your brand logo to QR codes for better scan rates.
-4. **Cron Builder shows "next run"** — Verify your cron schedule before deploying to production.
-5. **All encryption is client-side** — Your keys and data never leave your browser.
-
-## Integration with PDF Tools
-
-For document-level operations, switch to our [PDF Tools](https://pdf.craftisle.com):
-- Base64 encode PDF attachments → Image to Base64, then embed
-- Generate QR codes for PDF document links → QR Code Generator
-- Validate JSON configuration files for PDF processing → JSON Formatter
-
-## Privacy & Security
-
-Every encryption, hashing, and formatting operation runs entirely in your browser. No data is transmitted to any server. This means:
-
-- Encrypted data is only visible to you
-- Hashed passwords are computed locally
-- Sensitive configuration files stay on your machine
-
-Start using all tools at [craftisle.com/tools](/tools).
+Bookmark `/tools/json-formatter`. If you handle JSON daily, it'll save you 5 minutes per session. Try it with a messy API response right now.
