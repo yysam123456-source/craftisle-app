@@ -250,31 +250,16 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      {/* New Features — Submit / Compare / Best Tools / Badge */}
+      {/* More Ways to Explore — 只保留 Compare + Best Tools */}
       <section className="py-12 border-b bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="text-2xl font-bold tracking-tight">More Ways to Explore</h2>
-            <p className="mt-1 text-muted-foreground">Submit resources, compare tools, and discover the best free software</p>
+            <p className="mt-1 text-muted-foreground">Compare tools and discover the best free software</p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Submit Resource */}
-            <Link href="/directory/submit" className="group">
-              <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="rounded-lg bg-primary/10 p-2 text-primary">
-                    <PlusCircle className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-semibold">Submit Resource</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Know a great free or open-source tool? Submit it to Craftisle and get discovered by thousands of developers.
-                </p>
-              </div>
-            </Link>
-
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 max-w-3xl mx-auto">
             {/* Compare Tools */}
-            <Link href="/directory/alternatives/notion" className="group">
+            <Link href="/directory/compare" className="group">
               <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="rounded-lg bg-blue-500/10 p-2 text-blue-600">
@@ -289,7 +274,7 @@ export default async function ResourcesPage() {
             </Link>
 
             {/* Best Tools 2026 */}
-            <Link href="/directory/best/ai-tools-2026" className="group">
+            <Link href="/directory/best/ai-tools" className="group">
               <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="rounded-lg bg-green-500/10 p-2 text-green-600">
@@ -299,21 +284,6 @@ export default async function ResourcesPage() {
                 </div>
                 <p className="text-sm text-muted-foreground">
                   Curated lists of the best free tools in every category. Updated for 2026.
-                </p>
-              </div>
-            </Link>
-
-            {/* Get Badge */}
-            <Link href="/directory/badge" className="group">
-              <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="rounded-lg bg-purple-500/10 p-2 text-purple-600">
-                    <Badge className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-semibold">Get Featured Badge</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Show off that your project is listed on Craftisle. Copy & paste the badge into your README.
                 </p>
               </div>
             </Link>

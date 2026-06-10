@@ -22,7 +22,7 @@ export default function DirectoryLayout({ children }: DirectoryLayoutProps) {
         <AdSlot slot="footer-directory" format="rectangle" />
       </div>
 
-      {/* 浮动"提交资源"按钮 */}
+      {/* 浮动"提交资源"按钮 —— 已隐藏，需要时取消注释
       <a
         href="/directory/submit"
         className={cn(
@@ -40,6 +40,7 @@ export default function DirectoryLayout({ children }: DirectoryLayoutProps) {
         <PlusCircle className="w-5 h-5" />
         <span className="hidden sm:inline">Submit Resource</span>
       </a>
+      */}
     </div>
   );
 }

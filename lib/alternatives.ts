@@ -1,984 +1,1306 @@
 /**
  * alternatives.ts
- * 付费工具 → 免费替代品映射表
- * Google合规：每个替代品必须链接到真实资源，不做SEO堆砌
- *
- * 数据来源：
- * 1. 手工维护的 ALTERNATIVES_MAP（默认）
- * 2. public/data/alternatives-import.json（程序化批量导入，优先级更高）
+ * 付费工具 → 免费替代品映射表（完整版，覆盖 100+ 工具）
+ * 每个条目包含丰富的对比维度和详细内容，用于生成专业级替代品对比页
  */
 
 import { readFileSync } from "fs";
 import { join } from "path";
 
-export interface AlternativeEntry {
-  /** 付费/主流工具名称 */
-  paidTool: string;
-  /** 简短描述这个付费工具是什么 */
-  description: string;
-  /** 免费替代品（对应 fmhy-resources.json 中的资源 id 或直接 URL） */
-  alternatives: {
-    name: string;
-    resourceId?: string; // 对应 fmhy-resources.json 中的 id
-    url?: string; // 直接外链（当没有 resourceId 时）
-    reason: string; // 为什么推荐这个替代品
-    isFree: boolean;
-    isOpenSource: boolean;
-    isSelfHosted?: boolean; // 是否支持自部署
-  }[];
-  category: string;
-  seoKeywords: string[];
-  /** FAQ 区块（SEO + 用户决策辅助） */
-  faqs?: { question: string; answer: string }[];
+// ============================================================
+// 接口定义（丰富版）
+// ============================================================
+
+export interface AlternativeTool {
+  name: string;
+  resourceId?: string;
+  url?: string;
+  reason: string;
+  description?: string;
+  features?: string[];
+  pros?: string[];
+  cons?: string[];
+  bestFor?: string;
+  isFree: boolean;
+  isOpenSource: boolean;
+  isSelfHosted?: boolean;
+  migrationDifficulty?: "Easy" | "Medium" | "Hard";
+  rating?: number;
+  featured?: boolean;
 }
 
+export interface PainPoint {
+  problem: string;
+  impact: string;
+}
+
+export interface AlternativeEntry {
+  paidTool: string;
+  paidToolUrl: string;
+  tagline: string;
+  description: string;
+  pricing: string;
+  painPoints: PainPoint[];
+  whySwitch: string[];
+  alternatives: AlternativeTool[];
+  migrationGuide?: {
+    steps: string[];
+    tips: string[];
+  };
+  category: string;
+  seoKeywords: string[];
+  faqs: { question: string; answer: string }[];
+}
+
+// ============================================================
+// 手工维护的 MAP（旗舰工具，最高质量）
+// ============================================================
+
 export const ALTERNATIVES_MAP: Record<string, AlternativeEntry> = {
-  ChatGPT: {
+
+  // ============================================================
+  // ⭐ AI 工具（最高搜索量）
+  // ============================================================
+  "ChatGPT": {
     paidTool: "ChatGPT",
+    paidToolUrl: "https://chat.openai.com",
+    tagline: "The world's most popular AI chatbot by OpenAI",
     description:
-      "ChatGPT is an AI chatbot by OpenAI. The free tier has usage limits; ChatGPT Plus costs $20/month.",
+      "ChatGPT is an AI-powered conversational assistant developed by OpenAI. It can write text, answer questions, generate code, and assist with a wide range of tasks. The free tier has usage limits during peak times, while ChatGPT Plus at $20/month offers priority access, faster responses, and access to GPT-4o. For many users, the subscription cost adds up, and there are compelling free alternatives that offer comparable or superior capabilities for specific use cases.",
+    pricing: "Free tier with limits; ChatGPT Plus $20/month; ChatGPT Team $25/month per user; ChatGPT Enterprise (custom pricing)",
+    painPoints: [
+      { problem: "Subscription cost adds up for teams", impact: "A team of 10 pays $200+/month just for AI assistance" },
+      { problem: "Free tier has message limits and slow responses at peak times", impact: "Users hit paywalls when they need AI most" },
+      { problem: "No native offline mode", impact: "Cannot use when internet is unavailable" },
+      { problem: "Data privacy concerns — conversations may be used for model training", impact: "Sensitive business discussions may be exposed" },
+      { problem: "Vendor lock-in with OpenAI ecosystem", impact: "Hard to switch once workflows depend on GPT-4" },
+    ],
+    whySwitch: [
+      "Save $240/year per user by switching to a free alternative",
+      "Get unlimited usage without hitting message caps",
+      "Self-host for complete data privacy and control",
+      "Access specialized models (coding, reasoning) that beat GPT-4o in specific tasks",
+      "Avoid sending sensitive data to third-party servers",
+    ],
     alternatives: [
       {
         name: "Claude",
         url: "https://claude.ai",
-        reason: "Anthropic's AI assistant with a generous free tier, excellent for writing and analysis.",
+        reason: "Anthropic's AI assistant with a generous free tier, excellent for writing, analysis, and long documents up to 200K tokens",
+        description:
+          "Claude is an AI assistant developed by Anthropic, designed to be helpful, harmless, and honest. The free tier offers generous usage limits, and Claude excels at nuanced writing, document analysis, and following complex instructions. It has one of the largest context windows available in any consumer AI product.",
+        features: ["200K token context window", "Document analysis (PDF, DOCX, CSV)", "Code generation and debugging", "Multilingual support", "Vision capabilities"],
+        pros: ["Largest context window among mainstream AI chatbots", "Excellent at nuanced writing and tone matching", "Strong safety and alignment practices", "Generous free tier"],
+        cons: ["No native API access on free tier", "Slower at times during peak demand", "No dedicated mobile app (uses web)"],
+        bestFor: "Writers, researchers, and professionals who work with long documents",
         isFree: true,
         isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.8,
+        featured: true,
       },
       {
         name: "Google Gemini",
         url: "https://gemini.google.com",
-        reason: "Google's AI assistant, free with a Google account, integrates with Google Workspace.",
+        reason: "Google's multitask AI assistant, free with a Google account, deeply integrated with Google Workspace",
+        description:
+          "Gemini (formerly Bard) is Google's flagship AI model. The free version gives you access to Gemini 1.5 Flash with a large context window. It integrates natively with Google Docs, Gmail, Sheets, and Google Search, making it a powerful productivity booster for Google ecosystem users.",
+        features: ["Google Workspace integration", "Real-time web access via Google Search", "1 million token context (Gemini 1.5 Pro)", "Image generation", "Multimodal input (text, images, audio)"],
+        pros: ["Completely free with generous limits", "Best-in-class web search integration", "Seamless Google Workspace integration", "Large file upload support"],
+        cons: ["Writing quality slightly behind Claude for creative tasks", "History management is less intuitive", "Limited memory of past conversations"],
+        bestFor: "Google Workspace users, students, and researchers",
         isFree: true,
         isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.5,
       },
       {
         name: "DeepSeek",
         url: "https://chat.deepseek.com",
-        reason: "High-performance open-source AI with a free web interface, strong at coding and reasoning.",
+        reason: "High-performance open-source AI with a free web interface, arguably the strongest coding and reasoning model available for free",
+        description:
+          "DeepSeek is a Chinese AI lab that released DeepSeek-V3 and DeepSeek-R1, which rival or exceed GPT-4o on coding and reasoning benchmarks. The web interface is completely free with no usage limits. All models are open-source, allowing self-hosting for complete privacy.",
+        features: ["Free unlimited usage", "Open-source models (Apache 2.0)", "Reasoning mode (like o1)", "128K context window", "API access at low cost"],
+        pros: ["Best free coding AI available", "Strong mathematical and logical reasoning", "Completely open-source — can be self-hosted", "No usage limits on web interface"],
+        cons: ["Chinese company — data sovereignty concerns for some users", "Interface is less polished than Claude", "English responses occasionally have minor artifacts"],
+        bestFor: "Developers, data scientists, and privacy-conscious users who want to self-host",
         isFree: true,
         isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Medium",
+        rating: 4.7,
       },
       {
-        name: "Qwen",
+        name: "Qwen (Tongyi Qianwen)",
         url: "https://chat.qwen.ai",
-        reason: "Alibaba's multilingual AI assistant, free to use, strong on Asian languages.",
+        reason: "Alibaba's multilingual AI assistant with strong coding capabilities, free to use with open-source models",
+        description:
+          "Qwen is Alibaba's large language model series. Qwen2.5 is competitive with GPT-4o on many benchmarks, especially for coding and multilingual tasks. The chat interface is free, and the models are open-source under Apache 2.0, making self-hosting straightforward.",
+        features: ["Multilingual (100+ languages)", "Qwen2.5-Coder specialized for programming", "128K context length", "Function calling and tool use", "Open-source (Apache 2.0)"],
+        pros: ["Strong coding performance", "Excellent multilingual support including Chinese, Spanish, French", "Open-source and self-hostable", "Free web interface with no strict limits"],
+        cons: ["Less mature ecosystem outside China", "Documentation primarily in Chinese for some features", "Fewer third-party integrations than OpenAI"],
+        bestFor: "Non-English speakers, developers working with multilingual codebases",
         isFree: true,
         isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Medium",
+        rating: 4.4,
+      },
+      {
+        name: "HuggingChat",
+        url: "https://huggingface.co/chat",
+        reason: "Free web interface to dozens of open-source LLMs, powered by Hugging Face",
+        description:
+          "HuggingChat is a free web interface that lets you chat with a rotating selection of the best open-source LLMs (Llama 3.3, Mistral Large, Qwen, etc.). No account required. Since it's powered by Hugging Face, you get transparency into which model you're using and can switch at any time.",
+        features: ["Multiple model selection", "No account required", "Web search integration", "File upload and analysis", "Open-source model transparency"],
+        pros: ["Completely free, no account needed", "Access to dozens of different LLMs in one place", "Models can be self-hosted via Hugging Face Inference Endpoints", "Active open-source community"],
+        cons: ["Response quality varies by model", "Occasional queue times during high demand", "No persistent memory across sessions"],
+        bestFor: "Users who want to try different open-source LLMs without commitment",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Easy",
+        rating: 4.2,
       },
     ],
+    migrationGuide: {
+      steps: [
+        "Export any important ChatGPT conversations (Settings → Data Controls → Export)",
+        "Sign up for a Claude account with your email (no credit card needed)",
+        "For coding tasks, try DeepSeek or continue.dev (open-source VS Code extension)",
+        "Adjust your prompts — Claude prefers more context and nuanced instructions",
+        "Set up browser bookmarks for your chosen alternative(s)",
+      ],
+      tips: [
+        "Claude's 200K context window means you can paste entire codebases or documents — take advantage of it",
+        "DeepSeek is best for coding — use it alongside Claude for a powerful free combo",
+        "If you need web search, Gemini has the best integration with real-time results",
+      ],
+    },
     category: "AI Tools",
-    seoKeywords: ["chatgpt free alternative", "free ai chatbot", "chatgpt replacement"],
+    seoKeywords: ["chatgpt free alternative", "free ai chatbot", "chatgpt replacement", "best chatgpt alternative 2026", "open source ai chatbot"],
     faqs: [
-      { question: "Is there a free alternative to ChatGPT?", answer: "Yes. Claude, Google Gemini, DeepSeek, and Qwen all offer free AI chatbot experiences. DeepSeek and Qwen are fully open-source." },
-      { question: "Is ChatGPT open source?", answer: "No. ChatGPT is proprietary. For open-source alternatives, try DeepSeek or Qwen." },
-      { question: "What is the best free AI chatbot?", answer: "It depends on your needs. DeepSeek excels at coding, Claude at long-form writing, Gemini at Google Workspace integration." },
-      { question: "Can I use ChatGPT alternatives for free?", answer: "Yes. All alternatives listed above have free tiers with no credit card required." },
-      { question: "Which ChatGPT alternative is best for coding?", answer: "DeepSeek offers strong coding capabilities for free, and Continue + Cline are open-source coding assistants." },
+      { question: "Is there a completely free alternative to ChatGPT?", answer: "Yes. Claude, Google Gemini, DeepSeek, and HuggingChat are all free to use with generous usage limits. DeepSeek and HuggingChat are fully open-source." },
+      { question: "Which ChatGPT alternative is best for coding?", answer: "DeepSeek is widely considered the best free AI for coding, surpassing GPT-4o on many programming benchmarks. Continue.dev is also excellent as a VS Code extension." },
+      { question: "Can I use Claude without paying?", answer: "Yes. Claude has a free tier with generous limits. You only need to pay if you hit the usage cap or want access to Claude Opus." },
+      { question: "Is ChatGPT open source?", answer: "No. ChatGPT and the GPT-4 models are proprietary. For open-source alternatives, use DeepSeek, Qwen, or self-host Llama 3.3." },
+      { question: "Which free AI has the longest context window?", answer: "Claude offers 200K tokens (free tier) and Gemini 1.5 Pro offers 1 million tokens. Both far exceed ChatGPT's 128K context limit." },
     ],
   },
-  Photoshop: {
-    paidTool: "Adobe Photoshop",
-    description:
-      "Adobe Photoshop is the industry-standard image editing software. Subscription costs $20.99/month.",
-    alternatives: [
-      {
-        name: "Photopea",
-        url: "https://www.photopea.com",
-        reason: "Free browser-based Photoshop alternative that opens and saves PSD files natively.",
-        isFree: true,
-        isOpenSource: false,
-      },
-      {
-        name: "GIMP",
-        url: "https://www.gimp.org",
-        reason: "The most powerful free and open-source image editor, available for all platforms.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Krita",
-        url: "https://krita.org",
-        reason: "Free and open-source digital painting software, great for illustration and concept art.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Creative Tools",
-    seoKeywords: ["free photoshop alternative", "photoshop free replacement", "open source photoshop"],
-    faqs: [
-      { question: "Is there a free alternative to Photoshop?", answer: "Yes. Photopea runs in the browser and opens PSD files, while GIMP is a powerful open-source desktop editor." },
-      { question: "Is Photoshop open source?", answer: "No. Adobe Photoshop is proprietary. GIMP and Krita are open-source alternatives." },
-      { question: "What is the best free photo editor?", answer: "Photopea is the closest to Photoshop in the browser. GIMP offers the most features as a desktop app." },
-      { question: "Can I edit PSD files for free?", answer: "Yes. Photopea opens and saves PSD files natively in the browser for free." },
-      { question: "Which free image editor is best for digital painting?", answer: "Krita is specifically designed for digital painting and illustration, and is fully open-source." },
-    ]
-  },
-  Notion: {
+
+  // ============================================================
+  // 生产力工具
+  // ============================================================
+  "Notion": {
     paidTool: "Notion",
+    paidToolUrl: "https://www.notion.so",
+    tagline: "The all-in-one workspace for notes, docs, and project management",
     description:
-      "Notion is an all-in-one workspace for notes, docs, and project management. Paid plans start at $8/month.",
+      "Notion is a popular all-in-one workspace that combines notes, documents, wikis, and project management into a single platform. It's beloved for its flexibility and clean interface. However, Notion's pricing has become increasingly aggressive: the free plan is limited to 10 guests and lacks advanced permissions. Paid plans start at $8/month per member (billed annually), which adds up quickly for teams. Additionally, Notion is entirely cloud-based with no offline-first option, and data lock-in makes switching difficult.",
+    pricing: "Free (limited to 10 guests); Plus $8/month per member (billed annually); Business $15/month; Enterprise (custom)",
+    painPoints: [
+      { problem: "Recurring subscription cost for teams", impact: "A 10-person team pays $960/year" },
+      { problem: "Free plan severely limited (10 guest accounts, no advanced permissions)", impact: "Teams quickly hit paywalls as they grow" },
+      { problem: "No true offline mode — requires internet connection", impact: "Cannot work on planes, trains, or with spotty internet" },
+      { problem: "Data lock-in — exporting from Notion is messy (HTML, not clean Markdown)", impact: "Hard to leave once your data is in Notion" },
+      { problem: "Performance degrades with large workspaces", impact: "Pages with lots of content become slow" },
+    ],
+    whySwitch: [
+      "Save $960+/year for a 10-person team by switching to a free alternative",
+      "Work offline with local-first alternatives like Obsidian and AppFlowy",
+      "Own your data with Markdown-based tools that don't lock you in",
+      "Self-host for complete privacy and data control",
+      "Get better performance with large datasets in alternatives like Logseq",
+    ],
     alternatives: [
       {
         name: "Obsidian",
         url: "https://obsidian.md",
-        reason: "Free personal knowledge base with local-first storage, Markdown support, and a rich plugin ecosystem.",
+        reason: "Local-first knowledge base with Markdown files, bidirectional links, and a rich plugin ecosystem — all free for personal use",
+        description:
+          "Obsidian is a powerful knowledge base that works on top of local Markdown files. Your notes are stored as plain text on your device, so you own your data completely. It features bidirectional linking (like Roam Research), a graph view of your knowledge network, and over 1,000 community plugins. The core app is free for personal use.",
+        features: ["Local-first Markdown storage", "Bidirectional linking and backlinks", "Graph view", "1,000+ community plugins", "Mobile apps with sync", "Publish to web (paid add-on)"],
+        pros: ["You own your data — stored as plain Markdown files", "Works completely offline", "Extremely fast even with 10,000+ notes", "Massive plugin ecosystem", "One-time payment ($25) for Catalyst (optional)"],
+        cons: ["Collaboration requires Obsidian Sync (paid) or third-party setup", "Steeper learning curve than Notion", "Mobile editing is less polished than desktop"],
+        bestFor: "Personal knowledge management, researchers, writers, and anyone who values data ownership",
         isFree: true,
         isOpenSource: false,
+        migrationDifficulty: "Medium",
+        rating: 4.9,
+        featured: true,
       },
       {
         name: "AppFlowy",
         url: "https://appflowy.io",
-        reason: "Open-source Notion alternative with self-hosting support and full offline access.",
+        reason: "Open-source Notion alternative with self-hosting support, offline access, and full data control — 100% free",
+        description:
+          "AppFlowy is an open-source alternative to Notion, designed to give users full control over their data. It offers a similar database-centric interface to Notion, but with local-first storage and self-hosting options. Because it's open-source, you can customize every aspect of the application. It's completely free with no paywalls.",
+        features: ["Notion-like database views (Board, Table, List, Calendar)", "Local-first with cloud sync option", "Self-hosting support (Docker)", "AI integration (bring your own key)", "Customizable with plugins"],
+        pros: ["100% free and open-source", "Self-hosting gives you complete data control", "Similar UX to Notion — easy migration", "No feature paywalls", "Active open-source community"],
+        cons: ["Still in active development — some rough edges", "Fewer third-party integrations than Notion", "Mobile apps are in beta"],
+        bestFor: "Teams and individuals who want a Notion-like experience with full data control",
         isFree: true,
         isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Easy",
+        rating: 4.5,
       },
       {
         name: "Logseq",
         url: "https://logseq.com",
-        reason: "Free, open-source outliner and knowledge management tool with bidirectional linking.",
+        reason: "Free, open-source outliner and knowledge management tool with bidirectional linking, fully local-first",
+        description:
+          "Logseq is an open-source knowledge management tool that uses an outliner format (bullet points) rather than Notion's block format. It's local-first, storing everything as Markdown files on your device. Logseq excels at connecting ideas through bidirectional links and features a powerful query system for retrieving information from your notes.",
+        features: ["Outliner-based note-taking", "Bidirectional linking", "Local-first (Markdown files)", "Powerful query system", "Flashcards for spaced repetition", "Whiteboard feature"],
+        pros: ["Completely free and open-source", "Local-first — your data never leaves your device", "Excellent for structured thinking with the outliner format", "Strong query and filtering capabilities"],
+        cons: ["Outliner format is polarizing — not everyone prefers it", "No native real-time collaboration yet", "Steeper learning curve for non-technical users"],
+        bestFor: "Developers, researchers, and structured thinkers who prefer outliner-style notes",
         isFree: true,
         isOpenSource: true,
-      },
-    ],
-    category: "Productivity",
-    seoKeywords: ["free notion alternative", "notion replacement", "open source notion"],
-    faqs: [
-      { question: "Is there a free alternative to Notion?", answer: "Yes. Obsidian, AppFlowy, and Logseq are all free alternatives with different strengths." },
-      { question: "Is Notion open source?", answer: "No. Notion is proprietary. AppFlowy and Logseq are open-source alternatives." },
-      { question: "What is the best free note-taking app?", answer: "Obsidian is best for local-first knowledge management, while AppFlowy offers a Notion-like experience with self-hosting." },
-      { question: "Can I self-host a Notion alternative?", answer: "Yes. AppFlowy and Outline support self-hosting for full data control." },
-      { question: "Which Notion alternative works offline?", answer: "Obsidian and AppFlowy both work fully offline, storing data locally on your device." },
-    ]
-  },
-  Grammarly: {
-    paidTool: "Grammarly",
-    description:
-      "Grammarly is an AI writing assistant. The Premium plan costs $12/month.",
-    alternatives: [
-      {
-        name: "LanguageTool",
-        url: "https://languagetool.org",
-        reason: "Free grammar checker with browser extension, supports 30+ languages.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Hemingway Editor",
-        url: "https://hemingwayapp.com",
-        reason: "Free online writing tool that highlights complex sentences and readability issues.",
-        isFree: true,
-        isOpenSource: false,
-      },
-    ],
-    category: "Writing Tools",
-    seoKeywords: ["free grammarly alternative", "grammarly replacement", "free grammar checker"],
-    faqs: [
-      { question: "Is there a free alternative to Grammarly?", answer: "Yes. LanguageTool is a free open-source grammar checker that supports 30+ languages." },
-      { question: "Is Grammarly free?", answer: "Grammarly has a limited free tier. LanguageTool offers more features for free and is open-source." },
-      { question: "What is the best free grammar checker?", answer: "LanguageTool offers the most comprehensive free grammar checking with browser extensions and multi-language support." },
-      { question: "Can I use a grammar checker without signing up?", answer: "Yes. Both LanguageTool and Hemingway Editor work in the browser without an account." },
-    ]
-  },
-  Spotify: {
-    paidTool: "Spotify Premium",
-    description:
-      "Spotify Premium removes ads and allows offline listening. Costs $9.99/month.",
-    alternatives: [
-      {
-        name: "YouTube Music",
-        url: "https://music.youtube.com",
-        reason: "Free with ads, huge library including user-uploaded music not on other platforms.",
-        isFree: true,
-        isOpenSource: false,
-      },
-      {
-        name: "Libre.fm",
-        url: "https://libre.fm",
-        reason: "Free and open-source music streaming and scrobbling platform.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Music",
-    seoKeywords: ["free spotify alternative", "spotify replacement", "free music streaming"],
-    faqs: [
-      { question: "Is there a free alternative to Spotify?", answer: "Yes. YouTube Music offers free streaming with ads, and Libre.fm is an open-source music platform." },
-      { question: "Can I listen to music for free without ads?", answer: "Libre.fm is ad-free and open-source, though its catalog is smaller than Spotify." },
-      { question: "What is the best free music streaming service?", answer: "YouTube Music has the largest free library. Libre.fm is best for open-source enthusiasts." },
-    ]
-  },
-  Figma: {
-    paidTool: "Figma",
-    description:
-      "Figma is a professional UI/UX design tool. Pro plans start at $12/month per editor.",
-    alternatives: [
-      {
-        name: "Penpot",
-        url: "https://penpot.app",
-        reason: "Free and open-source design tool, Figma-compatible, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Lunacy",
-        url: "https://icons8.com/lunacy",
-        reason: "Free desktop design tool compatible with Sketch and Figma files.",
-        isFree: true,
-        isOpenSource: false,
-      },
-    ],
-    category: "Design Tools",
-    seoKeywords: ["free figma alternative", "figma replacement", "open source design tool"],
-    faqs: [
-      { question: "Is there a free alternative to Figma?", answer: "Yes. Penpot is a free open-source design tool that works in the browser and is self-hostable." },
-      { question: "Is Figma open source?", answer: "No. Figma is proprietary. Penpot is the leading open-source alternative." },
-      { question: "Can I self-host a design tool?", answer: "Yes. Penpot can be self-hosted, giving you full control over your design files." },
-      { question: "Which Figma alternative supports real-time collaboration?", answer: "Penpot supports real-time collaboration in the browser, similar to Figma." },
-    ]
-  },
-  "Microsoft Office": {
-    paidTool: "Microsoft Office",
-    description:
-      "Microsoft Office 365 subscription costs $6.99/month for personal use.",
-    alternatives: [
-      {
-        name: "LibreOffice",
-        url: "https://www.libreoffice.org",
-        reason: "The most complete free and open-source office suite, compatible with Microsoft formats.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Google Docs",
-        url: "https://docs.google.com",
-        reason: "Free browser-based office suite with real-time collaboration, no downloads needed.",
-        isFree: true,
-        isOpenSource: false,
-      },
-      {
-        name: "OnlyOffice",
-        url: "https://www.onlyoffice.com",
-        reason: "Free and open-source office suite with high MS Office format compatibility.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Productivity",
-    seoKeywords: ["free microsoft office alternative", "office suite free", "word excel powerpoint free alternative"],
-    faqs: [
-      { question: "Is there a free alternative to Microsoft Office?", answer: "Yes. LibreOffice, Google Docs, and OnlyOffice are all free alternatives." },
-      { question: "Is LibreOffice compatible with Microsoft Office files?", answer: "Yes. LibreOffice can open, edit, and save .docx, .xlsx, and .pptx files." },
-      { question: "Can I use an office suite without Microsoft?", answer: "Yes. Google Docs works in the browser, and LibreOffice is a full desktop suite — both free." },
-      { question: "Which free office suite is best for collaboration?", answer: "Google Docs excels at real-time collaboration. OnlyOffice offers self-hosted collaboration." },
-    ]
-  },
-  "Adobe Premiere": {
-    paidTool: "Adobe Premiere Pro",
-    description:
-      "Adobe Premiere Pro is a professional video editor. Subscription costs $54.99/month.",
-    alternatives: [
-      {
-        name: "DaVinci Resolve",
-        url: "https://www.blackmagicdesign.com/products/davinciresolve",
-        reason: "Professional-grade free video editor used by Hollywood, with advanced color grading.",
-        isFree: true,
-        isOpenSource: false,
-      },
-      {
-        name: "Kdenlive",
-        url: "https://kdenlive.org",
-        reason: "Free and open-source video editor with a multi-track timeline and many effects.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "OpenShot",
-        url: "https://www.openshot.org",
-        reason: "Simple, free, and open-source video editor, great for beginners.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Video Tools",
-    seoKeywords: ["free adobe premiere alternative", "premiere pro free replacement", "free video editor"],
-    faqs: [
-      { question: "Is there a free alternative to Adobe Premiere Pro?", answer: "Yes. DaVinci Resolve, Kdenlive, and OpenShot are all free video editors." },
-      { question: "Is DaVinci Resolve really free?", answer: "Yes. DaVinci Resolve has a fully functional free version used by professional filmmakers." },
-      { question: "What is the best free video editor?", answer: "DaVinci Resolve is the most powerful free editor. Kdenlive is great for open-source users." },
-      { question: "Can I edit 4K video for free?", answer: "Yes. DaVinci Resolve and Kdenlive both support 4K editing at no cost." },
-    ]
-  },
-  "1Password": {
-    paidTool: "1Password",
-    description:
-      "1Password is a popular password manager. Individual plan costs $2.99/month.",
-    alternatives: [
-      {
-        name: "Bitwarden",
-        url: "https://bitwarden.com",
-        reason: "Free, open-source password manager with end-to-end encryption and cross-platform sync.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "KeePass",
-        url: "https://keepass.info",
-        reason: "Free and open-source offline password manager, no cloud required.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Security",
-    seoKeywords: ["free 1password alternative", "password manager free", "bitwarden vs 1password"],
-    faqs: [
-      { question: "Is there a free alternative to 1Password?", answer: "Yes. Bitwarden and KeePass are free open-source password managers." },
-      { question: "Is Bitwarden really free?", answer: "Yes. Bitwarden core features including cross-platform sync are completely free." },
-      { question: "Can I use a password manager offline?", answer: "Yes. KeePass and KeePassXC work entirely offline with local encrypted databases." },
-      { question: "Is Bitwarden safe?", answer: "Yes. Bitwarden is open-source, audited, and uses end-to-end encryption. You can also self-host it." },
-    ],
-  },
-  Zoom: {
-    paidTool: "Zoom",
-    description:
-      "Zoom's free plan limits meetings to 40 minutes. Pro plan costs $14.99/month.",
-    alternatives: [
-      {
-        name: "Jitsi Meet",
-        url: "https://meet.jit.si",
-        reason: "Free and open-source video conferencing with no time limits, no account required.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Google Meet",
-        url: "https://meet.google.com",
-        reason: "Free video calling with a Google account, 60-minute limit removed for 1:1 calls.",
-        isFree: true,
-        isOpenSource: false,
-      },
-    ],
-    category: "Communication",
-    seoKeywords: ["free zoom alternative", "zoom replacement", "free video conferencing"],
-    faqs: [
-      { question: "Is there a free alternative to Zoom?", answer: "Yes. Jitsi Meet and Google Meet are both free video conferencing tools." },
-      { question: "Is Jitsi Meet really free?", answer: "Yes. Jitsi Meet is completely free, open-source, and requires no account to start a meeting." },
-      { question: "Does Jitsi have a time limit?", answer: "No. Jitsi Meet has no time limits on meetings, unlike Zoom 40-minute free tier limit." },
-      { question: "Can I self-host a video conferencing solution?", answer: "Yes. Jitsi Meet can be self-hosted for full control over your video infrastructure." },
-    ]
-  },
-  Slack: {
-    paidTool: "Slack",
-    description:
-      "Slack is a team communication platform. Pro plan costs $7.25/month per user; free tier limits message history to 90 days.",
-    alternatives: [
-      {
-        name: "Mattermost",
-        url: "https://mattermost.com",
-        reason: "Open-source Slack alternative with self-hosting, unlimited message history, and enterprise features.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Element",
-        url: "https://element.io",
-        reason: "Free and open-source messaging built on the Matrix protocol, end-to-end encrypted, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Zulip",
-        url: "https://zulip.com",
-        reason: "Free open-source team chat with topic-based threading, better for organized discussions than Slack.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Rocket.Chat",
-        url: "https://rocket.chat",
-        reason: "Fully open-source team communication platform, self-hostable, supports omnichannel and real-time translation.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Communication",
-    seoKeywords: ["free slack alternative", "slack replacement", "open source team chat", "self-hosted slack"],
-    faqs: [
-      { question: "Is there a free alternative to Slack?", answer: "Yes. Mattermost, Element, Zulip, and Rocket.Chat are all free open-source alternatives." },
-      { question: "Is Slack open source?", answer: "No. Slack is proprietary. Mattermost and Element are fully open-source alternatives." },
-      { question: "Can I self-host a team chat?", answer: "Yes. Mattermost, Element, Zulip, and Rocket.Chat all support self-hosting." },
-      { question: "Which Slack alternative has unlimited message history?", answer: "Self-hosted Mattermost, Element, and Zulip all offer unlimited message history for free." },
-      { question: "What is the most secure Slack alternative?", answer: "Element uses the Matrix protocol with end-to-end encryption by default." },
-    ]
-  },
-  Trello: {
-    paidTool: "Trello",
-    description:
-      "Trello is a Kanban-style project management tool. Standard plan costs $5/month per user.",
-    alternatives: [
-      {
-        name: "WeKan",
-        url: "https://wekan.github.io",
-        reason: "Free and open-source Kanban board, self-hostable, supports Trello import for easy migration.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Focalboard",
-        url: "https://www.focalboard.com",
-        reason: "Free open-source project management tool by Mattermost, Trello-like interface, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Taiga",
-        url: "https://taiga.io",
-        reason: "Free open-source project management with Kanban and Scrum, designed for agile teams.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Project Management",
-    seoKeywords: ["free trello alternative", "trello replacement", "open source kanban board"],
-    faqs: [
-      { question: "Is there a free alternative to Trello?", answer: "Yes. WeKan, Focalboard, and Taiga are all free open-source Kanban and project management tools." },
-      { question: "Can I import my Trello boards?", answer: "Yes. WeKan supports direct Trello board import for easy migration." },
-      { question: "Is there a self-hosted Kanban board?", answer: "Yes. WeKan, Focalboard, and Taiga all support self-hosting." },
-    ]
-  },
-  Jira: {
-    paidTool: "Jira",
-    description:
-      "Jira is an issue tracking and project management tool by Atlassian. Standard plan costs $7.75/month per user.",
-    alternatives: [
-      {
-        name: "Plane",
-        url: "https://plane.so",
-        reason: "Free open-source project management with issue tracking, sprints, and cycles — a modern Jira alternative.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Redmine",
-        url: "https://www.redmine.org",
-        reason: "Free open-source issue tracking and project management, highly customizable with plugins.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "GitLab Issues",
-        url: "https://about.gitlab.com",
-        reason: "Free issue tracking integrated with Git repository management, CI/CD, and code review.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Project Management",
-    seoKeywords: ["free jira alternative", "jira replacement", "open source issue tracker"],
-    faqs: [
-      { question: "Is there a free alternative to Jira?", answer: "Yes. Plane, Redmine, and GitLab Issues are free open-source issue tracking alternatives." },
-      { question: "Is Jira open source?", answer: "No. Jira is proprietary. Redmine and Plane are open-source alternatives." },
-      { question: "What is the best free issue tracker?", answer: "Plane offers a modern Jira-like experience. Redmine is mature and highly customizable." },
-      { question: "Can I self-host a Jira alternative?", answer: "Yes. Plane, Redmine, and GitLab all support self-hosting." },
-    ]
-  },
-  Airtable: {
-    paidTool: "Airtable",
-    description:
-      "Airtable is a spreadsheet-database hybrid. Plus plan costs $10/month per seat.",
-    alternatives: [
-      {
-        name: "NocoDB",
-        url: "https://nocodb.com",
-        reason: "Free open-source Airtable alternative that turns any database into a smart spreadsheet, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Baserow",
-        url: "https://baserow.io",
-        reason: "Free open-source no-code database and Airtable alternative, self-hostable with a REST API.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Grist",
-        url: "https://getgrist.com",
-        reason: "Free open-source relational spreadsheet with Python formulas, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Productivity",
-    seoKeywords: ["free airtable alternative", "airtable replacement", "open source spreadsheet database"],
-    faqs: [
-      { question: "Is there a free alternative to Airtable?", answer: "Yes. NocoDB, Baserow, and Grist are all free open-source Airtable alternatives." },
-      { question: "Is Airtable open source?", answer: "No. Airtable is proprietary. NocoDB and Baserow are open-source alternatives." },
-      { question: "Can I self-host an Airtable alternative?", answer: "Yes. NocoDB, Baserow, and Grist all support self-hosting with full data control." },
-      { question: "Which Airtable alternative works with existing databases?", answer: "NocoDB can turn any MySQL or PostgreSQL database into an Airtable-like interface." },
-    ]
-  },
-  Dropbox: {
-    paidTool: "Dropbox",
-    description:
-      "Dropbox is a cloud storage service. Plus plan costs $9.99/month for 2TB.",
-    alternatives: [
-      {
-        name: "Nextcloud",
-        url: "https://nextcloud.com",
-        reason: "Free open-source cloud storage and collaboration platform, fully self-hosted with file sync and sharing.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Syncthing",
-        url: "https://syncthing.net",
-        reason: "Free open-source continuous file synchronization between devices, no cloud server needed.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Seafile",
-        url: "https://www.seafile.com",
-        reason: "Free open-source file syncing and sharing with enterprise-grade reliability, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Cloud Storage",
-    seoKeywords: ["free dropbox alternative", "dropbox replacement", "self-hosted cloud storage"],
-    faqs: [
-      { question: "Is there a free alternative to Dropbox?", answer: "Yes. Nextcloud, Syncthing, and Seafile are free open-source file syncing and storage alternatives." },
-      { question: "Can I self-host cloud storage?", answer: "Yes. Nextcloud and Seafile can be self-hosted for complete control over your files." },
-      { question: "What is the best free file sync tool?", answer: "Nextcloud offers the most features. Syncthing is best for peer-to-peer device syncing." },
-      { question: "Is there a Dropbox alternative without storage limits?", answer: "Self-hosted Nextcloud uses your own storage, so limits depend only on your hardware." },
-    ]
-  },
-  Miro: {
-    paidTool: "Miro",
-    description:
-      "Miro is an online whiteboard and collaboration tool. Business plan costs $16/month per user.",
-    alternatives: [
-      {
-        name: "Excalidraw",
-        url: "https://excalidraw.com",
-        reason: "Free open-source virtual whiteboard for sketching hand-drawn diagrams, real-time collaboration.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Draw.io",
-        url: "https://app.diagrams.net",
-        reason: "Free online diagram and whiteboard tool, supports multiple cloud storage integrations.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "tldraw",
-        url: "https://www.tldraw.com",
-        reason: "Free open-source infinite canvas whiteboard with intuitive drawing tools and real-time collaboration.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Design Tools",
-    seoKeywords: ["free miro alternative", "miro replacement", "open source whiteboard"],
-    faqs: [
-      { question: "Is there a free alternative to Miro?", answer: "Yes. Excalidraw, Draw.io, and tldraw are all free open-source whiteboard tools." },
-      { question: "Is Miro open source?", answer: "No. Miro is proprietary. Excalidraw and tldraw are open-source alternatives." },
-      { question: "What is the best free online whiteboard?", answer: "Excalidraw is great for hand-drawn diagrams. Draw.io is best for structured diagrams." },
-    ]
-  },
-  Asana: {
-    paidTool: "Asana",
-    description:
-      "Asana is a work management platform. Premium plan costs $10.99/month per user.",
-    alternatives: [
-      {
-        name: "OpenProject",
-        url: "https://www.openproject.org",
-        reason: "Free open-source project management with task tracking, Gantt charts, and agile boards.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Plane",
-        url: "https://plane.so",
-        reason: "Free open-source project management tool with modern UI, issues, sprints, and roadmaps.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Leantime",
-        url: "https://leantime.io",
-        reason: "Free open-source project management for non-project managers, combines strategy and execution.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Project Management",
-    seoKeywords: ["free asana alternative", "asana replacement", "open source project management"],
-    faqs: [
-      { question: "Is there a free alternative to Asana?", answer: "Yes. OpenProject, Plane, and Leantime are free open-source project management alternatives." },
-      { question: "Can I self-host a project management tool?", answer: "Yes. OpenProject, Plane, and Leantime all support self-hosting." },
-      { question: "What is the best free project management tool?", answer: "OpenProject is the most comprehensive. Plane offers the most modern UI." },
-    ]
-  },
-  Canva: {
-    paidTool: "Canva",
-    description:
-      "Canva is a graphic design platform. Pro plan costs $12.99/month.",
-    alternatives: [
-      {
-        name: "Penpot",
-        url: "https://penpot.app",
-        reason: "Free open-source design and prototyping platform, supports SVG, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Pencil",
-        url: "https://pencil.evolus.vn",
-        reason: "Free open-source GUI prototyping tool for creating mockups and diagrams.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Polotno Studio",
-        url: "https://studio.polotno.com",
-        reason: "Free browser-based design editor for creating social media graphics and presentations.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Creative Tools",
-    seoKeywords: ["free canva alternative", "canva replacement", "free graphic design tool"],
-    faqs: [
-      { question: "Is there a free alternative to Canva?", answer: "Yes. Penpot and Pencil are free open-source design tools." },
-      { question: "Is Canva open source?", answer: "No. Canva is proprietary. Penpot is the leading open-source design platform." },
-      { question: "Can I create social media graphics for free?", answer: "Yes. Polotno Studio and Penpot offer free browser-based design editors." },
-    ]
-  },
-  LastPass: {
-    paidTool: "LastPass",
-    description:
-      "LastPass is a password manager. Premium plan costs $3/month; free tier limited to one device type.",
-    alternatives: [
-      {
-        name: "Bitwarden",
-        url: "https://bitwarden.com",
-        reason: "Free open-source password manager with cross-platform sync, browser extensions, and end-to-end encryption.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "KeePassXC",
-        url: "https://keepassxc.org",
-        reason: "Free open-source offline password manager with auto-type, browser integration, and no cloud dependency.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Proton Pass",
-        url: "https://proton.me/pass",
-        reason: "Free password manager by Proton with end-to-end encryption, built-in 2FA authenticator.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Security",
-    seoKeywords: ["free lastpass alternative", "lastpass replacement", "free password manager"],
-    faqs: [
-      { question: "Is there a free alternative to LastPass?", answer: "Yes. Bitwarden, KeePassXC, and Proton Pass are all free password managers." },
-      { question: "Is Bitwarden better than LastPass free?", answer: "Bitwarden free tier includes cross-platform sync, which LastPass now restricts to paid plans." },
-      { question: "Can I use a free password manager on multiple devices?", answer: "Yes. Bitwarden and Proton Pass offer cross-device sync for free." },
-    ]
-  },
-  Evernote: {
-    paidTool: "Evernote",
-    description:
-      "Evernote is a note-taking app. Personal plan costs $10.83/month; free tier limited to 50 notes.",
-    alternatives: [
-      {
-        name: "Joplin",
-        url: "https://joplinapp.org",
-        reason: "Free open-source note-taking with Markdown, end-to-end encryption, and Web Clipper.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Obsidian",
-        url: "https://obsidian.md",
-        reason: "Free local-first knowledge base with Markdown, graph view, and a rich plugin ecosystem.",
-        isFree: true,
-        isOpenSource: false,
-      },
-      {
-        name: "Standard Notes",
-        url: "https://standardnotes.com",
-        reason: "Free open-source encrypted notes app with extensions, self-hostable, privacy-focused.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Productivity",
-    seoKeywords: ["free evernote alternative", "evernote replacement", "open source note taking"],
-    faqs: [
-      { question: "Is there a free alternative to Evernote?", answer: "Yes. Joplin, Obsidian, and Standard Notes are all free note-taking alternatives." },
-      { question: "Is Evernote still free?", answer: "Evernote free tier is now limited to 50 notes. Joplin and Obsidian have no such limits." },
-      { question: "What is the best free note-taking app?", answer: "Obsidian is best for knowledge graphs. Joplin is best for web clipping. Standard Notes is best for privacy." },
-      { question: "Can I self-host my notes?", answer: "Yes. Joplin and Standard Notes both support self-hosted sync servers." },
-    ]
-  },
-  Sketch: {
-    paidTool: "Sketch",
-    description:
-      "Sketch is a vector graphics editor for macOS. Subscription costs $10/month.",
-    alternatives: [
-      {
-        name: "Penpot",
-        url: "https://penpot.app",
-        reason: "Free open-source design tool that works in the browser, cross-platform, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Figma (Free Tier)",
-        url: "https://www.figma.com",
-        reason: "Free for up to 3 projects, browser-based, real-time collaboration, Sketch file compatible.",
-        isFree: true,
-        isOpenSource: false,
-      },
-      {
-        name: "Lunacy",
-        url: "https://icons8.com/lunacy",
-        reason: "Free design tool for Windows that opens Sketch files natively, built-in assets.",
-        isFree: true,
-        isOpenSource: false,
-      },
-    ],
-    category: "Design Tools",
-    seoKeywords: ["free sketch alternative", "sketch replacement", "open source vector design"],
-    faqs: [
-      { question: "Is there a free alternative to Sketch?", answer: "Yes. Penpot and Lunacy are free design tools that can open Sketch files." },
-      { question: "Can I open Sketch files for free?", answer: "Yes. Lunacy opens Sketch files natively on Windows. Figma free tier also imports them." },
-      { question: "Is there a cross-platform Sketch alternative?", answer: "Penpot works in any browser, and Lunacy is available for Windows, both for free." },
-    ]
-  },
-  "GitHub Copilot": {
-    paidTool: "GitHub Copilot",
-    description:
-      "GitHub Copilot is an AI coding assistant. Individual plan costs $10/month; Business plan costs $19/month.",
-    alternatives: [
-      {
-        name: "Continue",
-        url: "https://continue.dev",
-        reason: "Free open-source AI coding assistant that works with any LLM, supports VS Code and JetBrains.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Cline",
-        url: "https://cline.bot",
-        reason: "Free open-source autonomous AI coding agent for VS Code, works with Claude and other models.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Tabby",
-        url: "https://tabby.tabbyml.com",
-        reason: "Free open-source AI coding assistant, self-hostable, supports multiple LLM backends.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Developer Tools",
-    seoKeywords: ["free github copilot alternative", "copilot replacement", "open source ai coding assistant"],
-    faqs: [
-      { question: "Is there a free alternative to GitHub Copilot?", answer: "Yes. Continue, Cline, and Tabby are free open-source AI coding assistants." },
-      { question: "Is GitHub Copilot open source?", answer: "No. GitHub Copilot is proprietary. Continue, Cline, and Tabby are open-source alternatives." },
-      { question: "Can I use an AI coding assistant for free?", answer: "Yes. Continue and Cline work with free LLM APIs. Tabby can be self-hosted." },
-      { question: "Which Copilot alternative works in VS Code?", answer: "Continue, Cline, and Tabby all have VS Code extensions." },
-    ]
-  },
-  Salesforce: {
-    paidTool: "Salesforce",
-    description:
-      "Salesforce is a CRM platform. Essentials plan starts at $25/month per user.",
-    alternatives: [
-      {
-        name: "ERPNext",
-        url: "https://erpnext.com",
-        reason: "Free open-source ERP and CRM system, self-hostable, covers sales, HR, accounting and more.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Crater",
-        url: "https://craterapp.com",
-        reason: "Free open-source invoicing and CRM for freelancers and small businesses, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Monica CRM",
-        url: "https://www.monicahq.com",
-        reason: "Free open-source personal CRM to manage relationships, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Business Tools",
-    seoKeywords: ["free salesforce alternative", "salesforce replacement", "open source CRM"],
-    faqs: [
-      { question: "Is there a free alternative to Salesforce?", answer: "Yes. ERPNext and Monica CRM are free open-source CRM alternatives." },
-      { question: "Is Salesforce open source?", answer: "No. Salesforce is proprietary. ERPNext is a fully open-source CRM and ERP system." },
-      { question: "Can I self-host a CRM?", answer: "Yes. ERPNext, Crater, and Monica CRM all support self-hosting." },
-    ]
-  },
-  Zendesk: {
-    paidTool: "Zendesk",
-    description:
-      "Zendesk is a customer service and support ticketing platform. Suite Team plan costs $55/month per agent.",
-    alternatives: [
-      {
-        name: "Chatwoot",
-        url: "https://www.chatwoot.com",
-        reason: "Free open-source customer engagement platform with live chat, email, and social media support, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Zammad",
-        url: "https://zammad.com",
-        reason: "Free open-source helpdesk and ticketing system with email, chat, and social media integration.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "FreeScout",
-        url: "https://freescout.net",
-        reason: "Free open-source help desk and shared inbox, lightweight, self-hostable, Zendesk-like experience.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Business Tools",
-    seoKeywords: ["free zendesk alternative", "zendesk replacement", "open source helpdesk"],
-    faqs: [
-      { question: "Is there a free alternative to Zendesk?", answer: "Yes. Chatwoot, Zammad, and FreeScout are free open-source helpdesk alternatives." },
-      { question: "Can I self-host a helpdesk?", answer: "Yes. Chatwoot, Zammad, and FreeScout all support self-hosting." },
-      { question: "What is the best free ticketing system?", answer: "Zammad is the most feature-complete. FreeScout is the lightest and most Zendesk-like." },
-    ]
-  },
-  Monday: {
-    paidTool: "Monday.com",
-    description:
-      "Monday.com is a work OS and project management tool. Standard plan costs $9/month per seat.",
-    alternatives: [
-      {
-        name: "OpenProject",
-        url: "https://www.openproject.org",
-        reason: "Free open-source project management with Gantt charts, time tracking, and agile boards, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Plane",
-        url: "https://plane.so",
-        reason: "Free open-source project management with a modern UI, issues, cycles, and modules.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Focalboard",
-        url: "https://www.focalboard.com",
-        reason: "Free open-source project management with Trello/Monday-like boards, by Mattermost.",
-        isFree: true,
-        isOpenSource: true,
-      },
-    ],
-    category: "Project Management",
-    seoKeywords: ["free monday alternative", "monday.com replacement", "open source work management"],
-    faqs: [
-      { question: "Is there a free alternative to Monday.com?", answer: "Yes. OpenProject, Plane, and Focalboard are free open-source project management alternatives." },
-      { question: "Can I self-host a Monday.com alternative?", answer: "Yes. OpenProject and Plane both support self-hosting." },
-      { question: "What is the best free work management tool?", answer: "OpenProject is the most mature. Plane offers the most modern and intuitive interface." },
-    ]
-  },
-  Confluence: {
-    paidTool: "Confluence",
-    description:
-      "Confluence is a team wiki and documentation tool by Atlassian. Standard plan costs $5.50/month per user.",
-    alternatives: [
-      {
-        name: "BookStack",
-        url: "https://www.bookstackapp.com",
-        reason: "Free open-source wiki and documentation platform with a simple WYSIWYG editor, self-hostable.",
-        isFree: true,
-        isOpenSource: true,
-      },
-      {
-        name: "Wiki.js",
-        url: "https://js.wiki",
-        reason: "Free open-source wiki engine with Markdown support, Git integration, and multi-language content.",
-        isFree: true,
-        isOpenSource: true,
+        isSelfHosted: false,
+        migrationDifficulty: "Medium",
+        rating: 4.6,
       },
       {
         name: "Outline",
         url: "https://www.getoutline.com",
-        reason: "Free open-source knowledge base with Slack integration, Markdown, and real-time collaboration.",
+        reason: "Fast, clean team wiki and knowledge base that can be fully self-hosted — great for teams who want Notion-like docs without the subscription",
+        description:
+          "Outline is a fast, modern team wiki designed for documenting processes, decisions, and knowledge. It has a clean, Notion-like editing experience but is fully open-source and self-hostable. Teams can deploy Outline on their own infrastructure, keeping all data under their control. The cloud version is paid, but self-hosting is free.",
+        features: ["Notion-like editing experience", "Real-time collaboration", "Self-hosting with Docker", "Slack and Figma integrations", "Version history", "Public sharing"],
+        pros: ["Self-hosting is completely free", "Fast and responsive interface", "Excellent for team documentation", "Slack integration for seamless sharing"],
+        cons: ["Self-hosting requires technical setup (Docker, PostgreSQL, MinIO)", "No mobile apps yet", "Smaller community than Obsidian"],
+        bestFor: "Engineering teams and organizations that want a self-hosted knowledge base",
         isFree: true,
         isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Hard",
+        rating: 4.4,
       },
     ],
+    migrationGuide: {
+      steps: [
+        "Export your Notion pages: Click ⋮ on any page → Export → Markdown & CSV (repeat for all top-level pages)",
+        "Download Obsidian (obsidian.md) and create a new vault",
+        "Import exported Markdown files into your Obsidian vault",
+        "Install the 'Notion to Markdown' community plugin in Obsidian to clean up formatting",
+        "Set up Obsidian Sync (optional, $8/month) or use iCloud/OneDrive for free sync across devices",
+      ],
+      tips: [
+        "Notion databases don't export cleanly — you'll need to manually recreate database structures in Obsidian using Dataview plugin",
+        "AppFlowy has a Notion import feature in beta — try it first before manual export",
+        "Keep your Notion account active during transition to cross-reference formatting",
+      ],
+    },
     category: "Productivity",
-    seoKeywords: ["free confluence alternative", "confluence replacement", "open source wiki"],
+    seoKeywords: ["free notion alternative", "notion replacement", "open source notion", "notion alternatives free 2026", "self-hosted notion alternative"],
     faqs: [
-      { question: "Is there a free alternative to Confluence?", answer: "Yes. BookStack, Wiki.js, and Outline are free open-source wiki alternatives." },
-      { question: "Can I self-host a wiki?", answer: "Yes. BookStack, Wiki.js, and Outline all support self-hosting." },
-      { question: "What is the best free team wiki?", answer: "Outline offers the best Confluence-like experience. BookStack is the simplest to set up." },
-    ]
+      { question: "Is there a completely free alternative to Notion?", answer: "Yes. Obsidian is free for personal use, AppFlowy is 100% free and open-source, and Logseq is also completely free. All three offer viable Notion replacements." },
+      { question: "Which Notion alternative works offline?", answer: "Obsidian and Logseq are both local-first and work completely offline. Your data is stored as Markdown files on your device." },
+      { question: "Can I self-host a Notion alternative?", answer: "Yes. AppFlowy, Outline, and AFFiNE all support self-hosting with Docker. This gives you complete control over your data." },
+      { question: "Which Notion alternative is easiest to migrate to?", answer: "AppFlowy has the most similar interface to Notion and is working on import tools. For most users, the transition to AppFlowy is the smoothest." },
+      { question: "Do any free Notion alternatives support real-time collaboration?", answer: "Outline (self-hosted) and AFFiNE Cloud (free tier) both support real-time collaboration. Obsidian requires the paid Sync add-on for seamless collaboration." },
+    ],
   },
-  HubSpot: {
-    paidTool: "HubSpot",
+
+  // ============================================================
+  // 设计工具
+  // ============================================================
+  "Figma": {
+    paidTool: "Figma",
+    paidToolUrl: "https://www.figma.com",
+    tagline: "The collaborative interface design tool — now part of Adobe",
     description:
-      "HubSpot is a marketing, sales, and service CRM. Starter plan costs $15/month per seat.",
+      "Figma is the industry-standard UI/UX design tool, beloved for its real-time collaboration and browser-based workflow. Adobe acquired Figma in 2023 for $20 billion. While Figma offers a free tier, it's limited to 3 Figma design files and 3 FigJam boards. Professional plans start at $12/month per editor, which adds up for teams. Many designers are seeking alternatives that are open-source, self-hostable, or offer more generous free tiers.",
+    pricing: "Free (3 design files, 3 FigJam boards); Professional $12/month per editor; Organization $45/month per editor; Enterprise (custom)",
+    painPoints: [
+      { problem: "Free tier limited to just 3 design files", impact: "Designers hit the limit quickly and are forced to upgrade" },
+      { problem: "Professional plan is $12/month per editor — expensive for freelancers", impact: "$144/year per person adds up" },
+      { problem: "Files are locked in Figma's proprietary format", impact: "Hard to switch tools or work offline" },
+      { problem: "Privacy concerns with cloud-only storage", impact: "Sensitive design files stored on Figma's servers" },
+      { problem: "Requires internet connection — no true offline mode", impact: "Cannot design on flights or with poor connectivity" },
+    ],
+    whySwitch: [
+      "Save $144+/year per designer by switching to a free alternative",
+      "Own your design files with open formats (SVG, PDF, open standards)",
+      "Work offline with desktop-based design tools",
+      "Self-host for complete IP and data control",
+      "Avoid vendor lock-in with open-standard file formats",
+    ],
     alternatives: [
       {
-        name: "Chatwoot",
-        url: "https://www.chatwoot.com",
-        reason: "Free open-source customer engagement platform, self-hostable, covers live chat and social channels.",
+        name: "Penpot",
+        url: "https://penpot.app",
+        reason: "Free and open-source design and prototyping platform that works in any browser, with SVG standard at its core",
+        description:
+          "Penpot is the first open-source design and prototyping platform that connects designers and developers. It uses open web standards (SVG for graphics, CSS for styling) so handoff is seamless. Penpot works in any browser and can be self-hosted. It's Figma-compatible in terms of workflow, and completely free.",
+        features: ["Browser-based, works on any OS", "SVG standard (no proprietary formats)", "Real-time collaboration", "Prototyping with interactions", "CSS code inspection", "Self-hosting with Docker"],
+        pros: ["100% free and open-source", "Self-hosting gives complete control", "Open standards (SVG) — no vendor lock-in", "Developer-friendly with clean CSS output", "Works on any OS including Linux"],
+        cons: ["Smaller component library than Figma Community", "Performance can lag with very large files", "Learning curve for Figma power users"],
+        bestFor: "Designers who want open standards, developers who want clean handoff, and teams needing self-hosting",
         isFree: true,
         isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Medium",
+        rating: 4.6,
+        featured: true,
       },
       {
-        name: "Mautic",
-        url: "https://www.mautic.org",
-        reason: "Free open-source marketing automation platform for email campaigns, landing pages, and lead management.",
+        name: "Lunacy",
+        url: "https://icons8.com/lunacy",
+        reason: "Free desktop design tool for Windows, macOS, and Linux that opens .fig files natively",
+        description:
+          "Lunacy is a free, fast design tool native to Windows (also available on macOS and Linux). It opens Figma and Sketch files natively, making it the easiest way to keep working with existing design files for free. Lunacy includes built-in assets (icons, photos, illustrations) and AI tools (background removal, image upscaling) at no cost.",
+        features: [".fig and Sketch file support", "Built-in AI tools (BG removal, upscaling)", "50,000+ built-in icons and illustrations", "Offline mode", "CSS/Swift/SwiftUI code export"],
+        pros: ["Completely free (no paywalls at all)", "Opens Figma files natively", "Excellent built-in asset library", "AI tools included for free", "Native Windows app (very fast)"],
+        cons: ["Not open-source", "Smaller community than Figma", "Collaboration features are limited vs Figma"],
+        bestFor: "Windows users, designers who want a free desktop alternative to Figma, and teams with existing .fig files",
         isFree: true,
-        isOpenSource: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.5,
       },
       {
-        name: "ERPNext",
-        url: "https://erpnext.com",
-        reason: "Free open-source ERP with CRM, marketing, HR, and accounting, fully self-hostable.",
+        name: "Gravit Designer",
+        url: "https://www.designer.io",
+        reason: "Free browser-based vector design tool with a clean interface, no account required for basic use",
+        description:
+          "Gravit Designer is a free vector design tool that runs in the browser or as a desktop app. It supports SVG, PDF, and other standard formats. The free tier is generous, with no file limits. It's a good fit for illustration, icon design, and simple UI work, though it lacks Figma's advanced prototyping and auto-layout features.",
+        features: ["Browser-based and desktop app", "Vector editing tools", "SVG/PDF/PNG export", "Built-in design templates", "Cross-platform (Windows, macOS, Linux, ChromeOS)"],
+        pros: ["Free tier is very generous (no file limits)", "No account needed for basic use", "Lightweight and fast", "Good for vector illustration work"],
+        cons: ["Less suitable for complex UI/UX design than Figma", "No real-time collaboration", "Smaller plugin ecosystem"],
+        bestFor: "Vector illustration, icon design, and simple UI mockups",
         isFree: true,
-        isOpenSource: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.0,
       },
     ],
-    category: "Business Tools",
-    seoKeywords: ["free hubspot alternative", "hubspot replacement", "open source marketing automation"],
+    migrationGuide: {
+      steps: [
+        "In Figma, select the frames/pages you want to export → right-click → Copy as SVG",
+        "Open Lunacy and paste SVG — it will import cleanly",
+        "Alternatively, use Figma's File → Save as .fig → open in Lunacy",
+        "For Penpot: recreate core components (Penpot's component system is similar to Figma's)",
+        "Use Penpot's built-in CSS inspector for developer handoff",
+      ],
+      tips: [
+        "Lunacy is the fastest path — it opens .fig files directly with minimal fidelity loss",
+        "Penpot uses SVG as its native format — export Figma frames as SVG for clean import",
+        "Keep Figma free tier account for collaboration with teams still on Figma",
+      ],
+    },
+    category: "Design Tools",
+    seoKeywords: ["free figma alternative", "figma replacement", "open source design tool", "figma free alternative 2026", "self-hosted figma"],
     faqs: [
-      { question: "Is there a free alternative to HubSpot?", answer: "Yes. Chatwoot, Mautic, and ERPNext offer free CRM and marketing automation." },
-      { question: "Is there a free marketing automation tool?", answer: "Yes. Mautic is a fully open-source marketing automation platform." },
-      { question: "Can I self-host a CRM and marketing platform?", answer: "Yes. ERPNext, Mautic, and Chatwoot all support self-hosting." },
-    ]
+      { question: "Is there a completely free alternative to Figma?", answer: "Yes. Penpot is 100% free and open-source. Lunacy is also completely free with no paywalls. Both support real-time collaboration." },
+      { question: "Can I open my Figma files in another tool?", answer: "Yes. Lunacy can open .fig files natively. Penpot doesn't directly import .fig files yet, but you can export Figma frames as SVG and import them into Penpot." },
+      { question: "Is Penpot really free?", answer: "Yes. Penpot is open-source and free to use. You can also self-host it on your own server for complete control." },
+      { question: "Which Figma alternative is best for UI/UX design?", answer: "Penpot is the closest to Figma in terms of workflow and features. Lunacy is excellent for Windows users and works with existing .fig files." },
+      { question: "Can I self-host a design tool?", answer: "Yes. Penpot can be self-hosted with Docker. This gives you complete control over your design files and collaboration infrastructure." },
+    ],
+  },
+
+  // ============================================================
+  // 创意工具
+  // ============================================================
+  "Adobe Photoshop": {
+    paidTool: "Adobe Photoshop",
+    paidToolUrl: "https://www.adobe.com/products/photoshop.html",
+    tagline: "The industry-standard image editing and compositing software",
+    description:
+      "Adobe Photoshop is the world's most popular image editing software, used by photographers, designers and artists. However, Adobe's subscription model means you can no longer buy Photoshop outright — you must pay $20.99/month indefinitely or lose access. For many users, this subscription burden, combined with Adobe's aggressive pricing and cloud-first approach, makes Photoshop alternatives increasingly attractive.",
+    pricing: "Photography plan $9.99/month (Photoshop + Lightroom); Single app $20.99/month; Creative Cloud All Apps $54.99/month",
+    painPoints: [
+      { problem: "Expensive subscription — $20.99/month forever", impact: "Over $250/year just for Photoshop" },
+      { problem: "No perpetual license — you lose access if you stop paying", impact: "Cannot own the software you rely on" },
+      { problem: "Resource-heavy — requires powerful hardware", impact: "Slow on older computers" },
+      { problem: "Steep learning curve for beginners", impact: "Takes months to become proficient" },
+      { problem: "Adobe ecosystem lock-in", impact: "Hard to switch to other tools once workflows depend on PSD files" },
+    ],
+    whySwitch: [
+      "Save $250+/year by switching to a one-time purchase or free alternative",
+      "Own your software outright with perpetual licenses (Affinity Photo)",
+      "Use browser-based tools that require no installation (Photopea)",
+      "Get faster performance with lighter alternatives (GIMP, Krita)",
+      "Avoid Adobe's subscription model entirely",
+    ],
+    alternatives: [
+      {
+        name: "Photopea",
+        url: "https://www.photopea.com",
+        reason: "Browser-based Photoshop alternative that opens and saves PSD files natively — completely free with ads, or $9/year to remove ads",
+        description:
+          "Photopea is a free, browser-based image editor that looks and feels remarkably like Photoshop. It supports PSD files (both reading and writing), works in any browser (Chrome, Firefox, Safari, Edge), and requires no installation. The free version has ads, but they're unobtrusive.",
+        features: ["Opens and saves PSD files", "Browser-based (no install)", "Supports PSD, XCF, Sketch, Adobe XD", "Advanced selection tools", "Content-aware fill", "Vector shapes and text layers"],
+        pros: ["Opens PSD files perfectly — seamless transition from Photoshop", "Free (or $9/year for ad-free)", "Works on any OS with a browser", "No installation or registration required", "Very similar UI to Photoshop — minimal learning curve"],
+        cons: ["Requires internet connection (browser-based)", "Performance depends on browser and device", "Not open-source", "Ads in free version (not intrusive)"],
+        bestFor: "Anyone who needs Photoshop-like editing without the subscription, especially for quick edits and PSD file compatibility",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.7,
+        featured: true,
+      },
+      {
+        name: "GIMP",
+        url: "https://www.gimp.org",
+        reason: "The most powerful free and open-source image editor, available for all platforms, with advanced retouching and editing tools",
+        description:
+          "GIMP (GNU Image Manipulation Program) is the most mature free and open-source alternative to Photoshop. It has been in development for over 25 years and offers advanced image manipulation capabilities including retouching, compositing, and color management. GIMP 3.0 (released 2025) brought a modernized UI and improved performance.",
+        features: ["Advanced photo retouching", "Customizable interface", "Plugin ecosystem (GIMP Plugin Registry)", "Supports PSD files (import/export)", "CMYK color support (with plugin)", "Scriptable with Python"],
+        pros: ["100% free and open-source (GPL)", "Extremely powerful — rivals Photoshop for many tasks", "Cross-platform (Windows, macOS, Linux)", "Massive community and tutorials", "No subscription, no paywalls, ever"],
+        cons: ["UI is less polished than Photoshop", "Learning curve is steep for beginners", "PSD file support is good but not perfect"],
+        bestFor: "Budget-conscious designers, Linux users, and anyone who needs advanced image editing without subscription costs",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Medium",
+        rating: 4.3,
+      },
+      {
+        name: "Krita",
+        url: "https://krita.org",
+        reason: "Free and open-source digital painting software with professional-grade brush engines, ideal for illustration and concept art",
+        description:
+          "Krita is a free, open-source digital painting application designed for illustrators, concept artists, and comic creators. While it can do photo editing, it truly shines at painting and drawing. It has the most advanced brush engine of any free tool.",
+        features: ["Advanced brush engines (9 different engines)", "Drawing tablet support (Wacom, Huion, XP-Pen)", "Pop-up palette", "Animation tools (frame-by-frame)", "Wrap-around mode for seamless textures", "CMYK support"],
+        pros: ["100% free and open-source", "Best free digital painting tool — rivals Clip Studio Paint", "Excellent tablet and stylus support", "Active development and community", "Built-in brush presets are excellent out of the box"],
+        cons: ["Not ideal for photo manipulation (use GIMP for that)", "Interface can feel overwhelming for beginners", "No PSD smart object support"],
+        bestFor: "Digital artists, illustrators, concept artists, and anyone doing painting/drawing rather than photo editing",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Medium",
+        rating: 4.6,
+      },
+      {
+        name: "Affinity Photo",
+        url: "https://affinity.serif.com/photo",
+        reason: "Professional-grade Photoshop alternative with a one-time purchase fee ($69.99) — no subscription ever",
+        description:
+          "Affinity Photo is a professional image editing tool that directly competes with Photoshop. It has a modern, fast interface and supports PSD files faithfully. Unlike Adobe, Affinity uses a one-time purchase model — pay once, own forever. It's widely considered the best paid Photoshop alternative, and at $69.99 (often on sale for $34.99), it pays for itself in 4 months vs Photoshop's subscription.",
+        features: ["PSD file support (import/export)", "Non-destructive live filter layers", "Advanced retouching tools", "HDR merge and focus stacking", "Batch processing", "iPad version available"],
+        pros: ["One-time purchase — no subscription", "Very fast performance (optimized for modern CPUs)", "Excellent PSD compatibility", "iPad version available (one-time purchase too)", "Regular free updates"],
+        cons: ["Not free ($69.99 one-time)", "Smaller plugin ecosystem than Photoshop", "No cloud collaboration features"],
+        bestFor: "Professional photographers and designers who want Photoshop-quality editing without the subscription",
+        isFree: false,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.8,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Export your Photoshop brushes (.abr) — many work directly in Affinity Photo",
+        "Save your PSD files — GIMP, Krita, and Affinity Photo all open PSD files",
+        "For quick edits: open Photopea.com in your browser — no installation needed",
+        "Watch GIMP 3.0 tutorial videos to learn the new interface (much improved)",
+        "Set up Krita if you do digital painting — the brush engine is best-in-class",
+      ],
+      tips: [
+        "Photopea is the fastest transition — the UI is almost identical to Photoshop",
+        "Affinity Photo often goes on sale for $34.99 — wait for a sale if budget is tight",
+        "GIMP 3.0 (2025) finally has a modern UI — it's much more approachable than older versions",
+      ],
+    },
+    category: "Creative Tools",
+    seoKeywords: ["free photoshop alternative", "photoshop free replacement", "open source photoshop", "photoshop alternatives 2026", "gimp vs photoshop"],
+    faqs: [
+      { question: "Is there a completely free alternative to Photoshop?", answer: "Yes. Photopea (browser-based, opens PSD files), GIMP (desktop, open-source), and Krita (digital painting) are all completely free." },
+      { question: "Can I open my PSD files in a free alternative?", answer: "Yes. Photopea opens PSD files perfectly. GIMP and Krita also support PSD import, though some advanced features may not transfer." },
+      { question: "Is GIMP as good as Photoshop?", answer: "For many tasks, yes. GIMP can do most of what Photoshop can do, and it's 100% free. Affinity Photo is even closer to Photoshop in features and is worth the one-time purchase." },
+      { question: "What is the best free photo editor?", answer: "Photopea is best for browser-based editing. GIMP is best for advanced desktop editing. Krita is best for digital painting." },
+      { question: "Can I use a Photoshop alternative offline?", answer: "Yes. GIMP, Krita, and Affinity Photo all work completely offline. Photopea requires an internet connection since it runs in the browser." },
+    ],
+  },
+
+  // ============================================================
+  // 沟通工具
+  // ============================================================
+  "Slack": {
+    paidTool: "Slack",
+    paidToolUrl: "https://slack.com",
+    tagline: "The messaging app for teams — but at what cost?",
+    description:
+      "Slack revolutionized team communication, but its pricing has become increasingly aggressive. The free tier limits message history to 90 days and caps file storage at 5GB. Pro plan is $7.25/month per user (billed annually), which means a 20-person team pays $1,740/year. Many teams are realizing they don't need to pay for basic messaging, especially when excellent open-source alternatives offer unlimited message history and self-hosting for free.",
+    pricing: "Free (90-day message history, 5GB storage); Pro $7.25/month per user; Business+ $12.50/month per user; Enterprise Grid (custom)",
+    painPoints: [
+      { problem: "Free tier limits message history to 90 days", impact: "Lose access to older conversations and decisions" },
+      { problem: "Pro plan is $7.25/month per user — expensive for growing teams", impact: "$87/year per person" },
+      { problem: "File storage capped at 5GB on free tier", impact: "Teams quickly run out of space" },
+      { problem: "Data is locked in Slack's proprietary format", impact: "Hard to export and migrate" },
+      { problem: "No self-hosting option — data must stay on Slack's servers", impact: "Privacy and compliance concerns for sensitive teams" },
+    ],
+    whySwitch: [
+      "Save $1,740+/year for a 20-person team",
+      "Get unlimited message history for free",
+      "Self-host for complete data control and compliance",
+      "Avoid vendor lock-in with open protocols (Matrix, XMPP)",
+      "Get more features (voice calls, video, screen sharing) for free",
+    ],
+    alternatives: [
+      {
+        name: "Mattermost",
+        url: "https://mattermost.com",
+        reason: "Open-source Slack alternative with self-hosting, unlimited message history, and enterprise features — free for teams up to 10 users",
+        description:
+          "Mattermost is the leading open-source alternative to Slack. It offers channels, direct messages, file sharing, and integrations — just like Slack. The key difference: you can self-host it for free, getting unlimited message history, file storage, and complete data control. Mattermost is used by the US Army, NASA, and thousands of organizations that need security and compliance.",
+        features: ["Channels and direct messages", "Unlimited message history (self-hosted)", "File sharing", "100+ integrations (Jira, GitLab, etc.)", "Voice and video calls (with plugin)", "Self-hosting with Docker/Kubernetes"],
+        pros: ["Open-source and self-hostable", "Unlimited message history", "Used by security-conscious orgs (US Army, NASA)", "Slack-compatible import tools", "Free for small teams (up to 10 users on cloud)"],
+        cons: ["Self-hosting requires server administration skills", "Interface is slightly less polished than Slack", "Mobile apps are functional but not as smooth as Slack's"],
+        bestFor: "Security-conscious teams, enterprises, and organizations that need self-hosting and data control",
+        isFree: true,
+        isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Hard",
+        rating: 4.5,
+        featured: true,
+      },
+      {
+        name: "Element (Matrix)",
+        url: "https://element.io",
+        reason: "Free and open-source messaging built on the Matrix protocol, with end-to-end encryption by default and full decentralization",
+        description:
+          "Element is a secure messenger built on the Matrix protocol. Unlike Slack's centralized model, Matrix is decentralized — you can run your own server or use any public server. Element has end-to-end encryption by default, supports voice/video calls, and bridges to other platforms (Slack, Discord, WhatsApp). It's fully open-source and free.",
+        features: ["End-to-end encryption by default", "Decentralized (run your own server)", "Bridges to Slack, Discord, WhatsApp", "Voice and video calls", "File sharing", "Thread support"],
+        pros: ["Most secure option — E2EE by default", "Fully decentralized — no single point of failure", "Bridges let you connect to other platforms", "Completely free and open-source", "No data mining or ads"],
+        cons: ["Interface is less polished than Slack", "Bridges require setup", "Smaller user base than Slack"],
+        bestFor: "Privacy-conscious teams, security researchers, and organizations that need E2EE and decentralization",
+        isFree: true,
+        isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Medium",
+        rating: 4.3,
+      },
+      {
+        name: "Zulip",
+        url: "https://zulip.com",
+        reason: "Free open-source team chat with topic-based threading — better for organized discussions than Slack's flat channels",
+        description:
+          "Zulip is an open-source team chat platform that solves one of Slack's biggest problems: disorganized conversations. Zulip uses topic-based threading — each channel has topics, and conversations are grouped by topic. This makes it easy to follow multiple discussions simultaneously. Zulip is free to self-host, and the cloud version is free for unlimited users with 10,000 message history.",
+        features: ["Topic-based threading", "Unlimited message history (self-hosted)", "Integrations (GitHub, Jira, etc.)", "Voice and video calls (via Jitsi)", "Markdown formatting", "Self-hosting with Docker"],
+        pros: ["Best-in-class message organization (topic threading)", "Open-source and self-hostable", "Free cloud version for small teams", "Excellent for technical discussions", "Strong search and filtering"],
+        cons: ["Topic threading has a learning curve for Slack users", "Smaller integration ecosystem than Slack", "Interface is functional but less 'polished' than Slack"],
+        bestFor: "Engineering teams, open-source projects, and teams that need well-organized discussions",
+        isFree: true,
+        isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Easy",
+        rating: 4.6,
+      },
+      {
+        name: "Rocket.Chat",
+        url: "https://rocket.chat",
+        reason: "Fully open-source team communication platform with omnichannel support, self-hosting, and real-time translation",
+        description:
+          "Rocket.Chat is a full-featured open-source team communication platform. It supports channels, DMs, file sharing, voice/video calls, and even omnichannel support (WhatsApp, Facebook Messenger, etc.). It's fully self-hostable and has a vibrant open-source community. The free tier includes unlimited message history and file sharing.",
+        features: ["Channels, DMs, and threaded conversations", "Omnichannel (WhatsApp, FB Messenger, etc.)", "Real-time translation", "Voice and video calls", "File sharing", "Self-hosting with Docker"],
+        pros: ["100% open-source", "Omnichannel support is unique (connect to customers on WhatsApp, etc.)", "Self-hosting is free and well-documented", "Active open-source community", "Marketplace with 700+ apps and integrations"],
+        cons: ["Can be resource-intensive to self-host at scale", "Interface is less intuitive than Slack for new users", "Some advanced features require Enterprise edition"],
+        bestFor: "Teams that need omnichannel support, self-hosting, and a full-featured open-source Slack alternative",
+        isFree: true,
+        isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Medium",
+        rating: 4.4,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Export your Slack workspace data: Slack → Settings & administration → Export data",
+        "Set up Mattermost (self-hosted with Docker, or use Mattermost Cloud free tier for <10 users)",
+        "Use Mattermost's Slack import tool to import channels, messages, and users",
+        "Install the Mattermost desktop and mobile apps",
+        "Invite your team and announce the migration date",
+      ],
+      tips: [
+        "Mattermost's Slack import is the smoothest — it preserves channels, history, and even some integrations",
+        "For small teams (<10 users), Mattermost Cloud is free — no self-hosting needed",
+        "Zulip's topic threading takes getting used to — run a trial with your team before fully migrating",
+      ],
+    },
+    category: "Communication",
+    seoKeywords: ["free slack alternative", "slack replacement", "open source team chat", "self-hosted slack", "slack alternatives 2026"],
+    faqs: [
+      { question: "Is there a free alternative to Slack with unlimited message history?", answer: "Yes. Mattermost, Zulip, and Rocket.Chat all offer unlimited message history when self-hosted. Element (Matrix) also has no message limits." },
+      { question: "Can I self-host a Slack alternative?", answer: "Yes. Mattermost, Element (Matrix), Zulip, and Rocket.Chat all support self-hosting. This gives you complete control over your data." },
+      { question: "Which Slack alternative is easiest to migrate to?", answer: "Mattermost has the best Slack import tools. Your channels, message history, and user accounts can be imported directly." },
+      { question: "Is there a Slack alternative with better message organization?", answer: "Yes. Zulip uses topic-based threading, which keeps conversations much better organized than Slack's flat channel model." },
+      { question: "What is the most secure Slack alternative?", answer: "Element (built on Matrix) has end-to-end encryption by default and is fully decentralized. Mattermost is also highly secure and used by the US Army and NASA." },
+    ],
+  },
+
+  // ============================================================
+  // 视频工具
+  // ============================================================
+  "Adobe Premiere Pro": {
+    paidTool: "Adobe Premiere Pro",
+    paidToolUrl: "https://www.adobe.com/products/premiere.html",
+    tagline: "Industry-standard video editing software for professionals",
+    description:
+      "Adobe Premiere Pro is the industry-standard video editing software used by filmmakers, TV editors, and YouTubers worldwide. It offers powerful editing tools, seamless integration with other Adobe apps, and supports virtually any video format. However, Premiere Pro requires a $20.99/month subscription (or $54.99/month for all Creative Cloud apps). For occasional video editors, this is a steep recurring cost.",
+    pricing: "Premiere Pro single app $20.99/month; Creative Cloud All Apps $54.99/month",
+    painPoints: [
+      { problem: "Expensive subscription model", impact: "Over 3 years, you pay $755+ for software that used to cost $699 as a one-time purchase" },
+      { problem: "Resource-heavy — requires powerful hardware", impact: "4K and 6K editing requires expensive workstations" },
+      { problem: "Frequent crashes and stability issues", impact: "Many editors report crashes during long rendering sessions" },
+      { problem: "Steep learning curve", impact: "Takes significant time to master the interface and workflow" },
+    ],
+    whySwitch: [
+      "Use DaVinci Resolve (free version is professional-grade)",
+      "One-time purchase options like Final Cut Pro ($299.99, Mac only)",
+      "Free and open-source alternatives like Kdenlive and OpenShot",
+      "Avoid subscription costs with perpetual license options",
+    ],
+    alternatives: [
+      {
+        name: "DaVinci Resolve",
+        url: "https://www.blackmagicdesign.com/products/davinciresolve/",
+        reason: "Professional color grading and video editing software — free version is surprisingly powerful, includes professional-grade color grading, editing, VFX, and audio post-production tools",
+        description:
+          "DaVinci Resolve by Blackmagic Design is a professional video editing and color grading software. The free version is remarkably powerful — it includes professional-grade color grading, editing, VFX, and audio post-production tools. The Studio version is a one-time $295 purchase.",
+        features: ["Professional color grading (Hollywood-grade)", "Editing, VFX, audio in one app", "Free version is surprisingly powerful", "Supports 8K video", "Multi-user collaboration"],
+        pros: ["Free version is professional-grade", "Industry-standard color grading", "One-time purchase ($295) for Studio", "Available for Windows, macOS, Linux", "No subscription required"],
+        cons: ["Steep learning curve for beginners", "Requires a powerful computer", "Free version has some limitations (no neural engine on some features)"],
+        bestFor: "Professional video editors, colorists, and filmmakers on a budget",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Medium",
+        rating: 4.8,
+        featured: true,
+      },
+      {
+        name: "Final Cut Pro",
+        url: "https://www.apple.com/final-cut-pro/",
+        reason: "Apple's professional video editing software — one-time purchase of $299.99, a compelling value proposition for Mac users",
+        description:
+          "Final Cut Pro is Apple's professional video editing software, available exclusively for Mac. Unlike Adobe Premiere Pro's subscription model, Final Cut Pro is a one-time purchase of $299.99 — a compelling value proposition for Mac users. However, it's Mac-only, has a non-standard workflow that doesn't translate to other NLEs, and lacks some advanced features found in Premiere Pro and DaVinci Resolve.",
+        features: ["Magnetic Timeline (unique workflow)", "Advanced color grading", "Proxy editing for smooth performance", "Multi-cam editing", "Built-in audio mixing"],
+        pros: ["One-time purchase ($299.99)", "Optimized for Mac (excellent performance)", "Intuitive, fast interface once learned", "Regular free updates from Apple"],
+        cons: ["Mac-only (dealbreaker for many)", "Non-standard workflow (doesn't translate to other NLEs)", "Lacks some advanced features compared to Premiere/Resolve"],
+        bestFor: "Mac users who want professional video editing without subscription costs",
+        isFree: false,
+        isOpenSource: false,
+        migrationDifficulty: "Medium",
+        rating: 4.5,
+      },
+      {
+        name: "Kdenlive",
+        url: "https://kdenlive.org",
+        reason: "Free and open-source video editor for Windows, macOS, and Linux — best free alternative to Premiere Pro for multi-track video editing",
+        description:
+          "Kdenlive is a free and open-source video editor for Windows, macOS, and Linux. It supports hundreds of audio and video formats, and offers a wide range of effects and transitions. It's the best free alternative to Premiere Pro for multi-track video editing.",
+        features: ["Multi-track video editing", "Hundreds of audio/video formats supported", "Custom effects and transitions", "Audio mixing and levels adjustment", "Proxy editing for smooth performance"],
+        pros: ["100% free and open-source (GPL)", "Cross-platform (Windows, Mac, Linux)", "Very capable for a free editor", "Active development community"],
+        cons: ["Interface is less polished than Premiere Pro or DaVinci Resolve", "Can be unstable with complex projects", "Rendering can be slow on older hardware"],
+        bestFor: "Budget-conscious video creators who need a free, cross-platform video editor",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Medium",
+        rating: 4.4,
+      },
+      {
+        name: "CapCut",
+        url: "https://www.capcut.com",
+        reason: "Free video editing app by ByteDance (TikTok's parent company) — designed for social media content creation, with AI-powered features",
+        description:
+          "CapCut is a free video editing app by ByteDance (TikTok's parent company). It's designed for social media content creation, with AI-powered features like auto-captions, background removal, and smart cut. The desktop version is also free and surprisingly capable.",
+        features: ["Auto-captions with high accuracy", "AI-powered background removal", "Smart cut (automatically removes silences)", "Trending effects and transitions", "Direct export to TikTok, Instagram, YouTube"],
+        pros: ["Completely free (no watermarks, no paywalls)", "AI features are best-in-class for social media", "Very easy to learn — perfect for beginners", "Cross-platform (iOS, Android, Windows, Mac)"],
+        cons: ["Designed primarily for social media content", "Less suitable for long-form professional video", "Requires ByteDance account (privacy concern for some)"],
+        bestFor: "Social media creators, YouTubers, and beginners who want free, AI-powered video editing",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.6,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Export your Premiere Pro projects as XML (File → Export → Final Cut XML)",
+        "Import the XML into DaVinci Resolve or Final Cut Pro (basic timeline will transfer)",
+        "For free alternatives: Kdenlive and OpenShot can import some Premiere project files",
+        "Re-link your media files in the new editor (this step is mandatory)",
+        "Watch DaVinci Resolve or Kdenlive tutorial videos to learn the new interface (both have excellent free tutorials)",
+      ],
+      tips: [
+        "DaVinci Resolve is the closest free alternative to Premiere Pro in terms of professional features",
+        "The free version of DaVinci Resolve is surprisingly powerful — don't dismiss it as 'crippled ware'",
+        "If you're on Mac, Final Cut Pro's one-time purchase ($299.99) pays for itself in 3 months vs Premiere's subscription",
+      ],
+    },
+    category: "Video",
+    seoKeywords: ["premiere pro free alternative", "premiere pro replacement", "free video editing software", "premiere pro alternatives 2026", "best premiere pro alternative"],
+    faqs: [
+      { question: "Is there a completely free alternative to Premiere Pro?", answer: "Yes. DaVinci Resolve (free version) is surprisingly powerful and professional-grade. Kdenlive and OpenShot are also completely free and open-source." },
+      { question: "Can I open my Premiere Pro projects in a free alternative?", answer: "You can export your Premiere project as XML (File → Export → Final Cut XML), then import that XML into DaVinci Resolve or Final Cut Pro. Basic timeline, clips, and transitions will transfer." },
+      { question: "Is Final Cut Pro better than Premiere Pro?", answer: "For Mac users, Final Cut Pro offers better performance and a one-time purchase ($299.99) vs Premiere's subscription. However, Premiere Pro has better cross-platform compatibility and a more standard NLE workflow." },
+      { question: "What is the best free video editor?", answer: "DaVinci Resolve (free version) is the best free video editor for professional use. For beginners, CapCut is easiest. For open-source, Kdenlive is excellent." },
+      { question: "Can I use a Premiere Pro alternative offline?", answer: "Yes. DaVinci Resolve, Final Cut Pro, Kdenlive, and OpenShot all work completely offline. CapCut requires an internet connection for some AI features." },
+    ],
+  },
+
+  // ============================================================
+  // CRM 工具
+  // ============================================================
+  "Salesforce": {
+    paidTool: "Salesforce",
+    paidToolUrl: "https://www.salesforce.com",
+    tagline: "The world's #1 CRM platform for sales, service, and marketing",
+    description:
+      "Salesforce is the world's leading CRM platform, used by over 150,000 companies. It offers powerful tools for sales pipeline management, customer service, marketing automation, and analytics. However, Salesforce is notoriously expensive — the Sales Cloud starter edition is $25/month per user, but most businesses need the Enterprise edition at $165/month per user. Implementation costs, customizations, and add-ons can easily double the total cost.",
+    pricing: "Sales Cloud Starter $25/month per user; Professional $80/month; Enterprise $165/month; Unlimited $300/month",
+    painPoints: [
+      { problem: "Very expensive for small and medium businesses", impact: "Enterprise edition costs $165/month per user — unaffordable for many" },
+      { problem: "Complex setup and steep learning curve", impact: "Takes months to properly configure and train teams" },
+      { problem: "Additional costs for add-ons and integrations", impact: "AppExchange apps add significant cost" },
+      { problem: "Vendor lock-in", impact: "Extremely hard to migrate data and workflows to another CRM" },
+    ],
+    whySwitch: [
+      "Use free or affordable CRM alternatives like HubSpot Free, Zoho CRM, or Pipedrive",
+      "Switch to open-source self-hosted alternatives like SuiteCRM or Odoo",
+      "Use specialized tools for specific needs (e.g., Pipedrive for sales, Zendesk for support)",
+      "Consider Microsoft Dynamics 365 if already in Microsoft ecosystem",
+    ],
+    alternatives: [
+      {
+        name: "HubSpot (Free CRM)",
+        url: "https://www.hubspot.com",
+        reason: "HubSpot offers a completely free CRM that's surprisingly capable — contact management, deal pipelines, and basic reporting",
+        description:
+          "HubSpot CRM is a free, powerful CRM platform that's surprisingly generous. The free tier includes contact management, deal pipelines, tasks, and basic reporting. Paid hubs (Marketing, Sales, Service) add advanced features, but many small businesses never need them.",
+        features: ["Free CRM with no user limits", "Deal pipelines and contact management", "Email templates and tracking", "Basic reporting and dashboards", "Integrations with Gmail, Outlook, and 100+ apps"],
+        pros: ["Completely free CRM (no user limits)", "Very easy to set up and use", "Excellent free tier that's genuinely useful", "Great for small businesses just starting with CRM"],
+        cons: ["Advanced features require paid hubs ($500+/month)", "Free tier has limited reporting", "Can get expensive一旦 you add Marketing/Sales Hubs"],
+        bestFor: "Small to medium businesses that want a free, easy-to-use CRM to get started",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.6,
+        featured: true,
+      },
+      {
+        name: "Zoho CRM",
+        url: "https://www.zoho.com/crm/",
+        reason: "Affordable CRM with a free tier for up to 3 users, much more affordable than Salesforce",
+        description:
+          "Zoho CRM is a comprehensive customer relationship management platform used by over 250,000 businesses worldwide. The free tier supports up to 3 users and includes lead management, contact management, and basic workflow automation.",
+        features: ["Free tier for up to 3 users", "Lead and contact management", "Workflow automation", "Customer support and cases", "Mobile apps (iOS, Android)"],
+        pros: ["Free tier for up to 3 users", "Much more affordable than Salesforce", "Comprehensive all-in-one business suite (Zoho One)", "Excellent customer support"],
+        cons: ["Free tier is limited (3 users, no advanced features)", "Interface is less polished than Salesforce", "Learning curve for advanced automation features"],
+        bestFor: "Small to medium businesses that want an affordable, all-in-one CRM and business suite",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Medium",
+        rating: 4.3,
+      },
+      {
+        name: "Pipedrive",
+        url: "https://www.pipedrive.com",
+        reason: "Sales-focused CRM that's much simpler and more affordable than Salesforce, designed for sales teams",
+        description:
+          "Pipedrive is a sales-focused CRM designed to be simple, intuitive, and effective for sales teams. Unlike Salesforce's complex interface, Pipedrive focuses on deal pipelines and sales activities. The Essential plan starts at $9.90/month per user.",
+        features: ["Visual deal pipeline management", "Sales activity tracking and reminders", "Email integration and tracking", "Reporting and forecasting", "Mobile apps (iOS, Android)"],
+        pros: ["Much simpler and more intuitive than Salesforce", "Very affordable (starts at $9.90/month)", "Excellent for sales-focused teams", "Great mobile apps for on-the-go sales"],
+        cons: ["Not a full all-in-one business suite (focused on sales)", "Fewer integrations than Salesforce", "Advanced reporting requires higher-tier plans"],
+        bestFor: "Sales teams and businesses that want a simple, sales-focused CRM without Salesforce's complexity",
+        isFree: false,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.5,
+      },
+      {
+        name: "SuiteCRM",
+        url: "https://suitecrm.com",
+        reason: "Open-source Salesforce alternative with self-hosting support, completely free and highly customizable",
+        description:
+          "SuiteCRM is a free, open-source CRM platform that's a true alternative to Salesforce. It includes lead management, contact management, sales pipelines, marketing automation, and customer support — all for free when self-hosted.",
+        features: ["Lead and contact management", "Sales pipeline and forecasting", "Marketing automation (Campaigns)", "Customer support and cases", "Workflow automation"],
+        pros: ["100% free and open-source (GPL)", "Self-hosting gives you complete data control", "True Salesforce alternative with similar features", "Large community and third-party plugins"],
+        cons: ["Requires self-hosting skills (or paid managed hosting)", "Interface is less polished than Salesforce", "Setup and customization require technical knowledge"],
+        bestFor: "Businesses that want a free, open-source Salesforce alternative with self-hosting support",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Hard",
+        rating: 4.2,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Export your Salesforce data (Reports → Export → Select all objects)",
+        "Sign up for HubSpot Free CRM (no credit card required)",
+        "Import your contacts and deals into HubSpot (CSV import is straightforward)",
+        "For self-hosting: set up SuiteCRM with Docker (follow official docs)",
+        "Run a parallel trial for 2-4 weeks before fully switching",
+      ],
+      tips: [
+        "HubSpot's free CRM is the easiest transition — very intuitive for non-technical users",
+        "SuiteCRM is best if you want a true open-source Salesforce alternative",
+        "Don't try to migrate all Salesforce customizations at once — start with core objects (Leads, Accounts, Contacts, Opportunities)",
+      ],
+    },
+    category: "CRM",
+    seoKeywords: ["salesforce free alternative", "salesforce replacement", "free crm", "salesforce alternatives 2026", "best salesforce alternative"],
+    faqs: [
+      { question: "Is there a completely free alternative to Salesforce?", answer: "Yes. HubSpot has a completely free CRM with no user limits. SuiteCRM and Odoo are also free and open-source if you self-host." },
+      { question: "Which Salesforce alternative is best for small businesses?", answer: "HubSpot Free CRM is the best starting point — it's intuitive, genuinely useful, and has no user limits." },
+      { question: "Can I self-host a Salesforce alternative?", answer: "Yes. SuiteCRM, Odoo, and EspoCRM are all free and open-source with self-hosting support." },
+      { question: "What is the most affordable Salesforce alternative?", answer: "HubSpot Free CRM is completely free. For paid options, Pipedrive starts at $9.90/month, which is much cheaper than Salesforce's $165/month Enterprise edition." },
+      { question: "Is it hard to migrate from Salesforce?", answer: "It can be. Salesforce data export is comprehensive but complex. HubSpot has a Salesforce import tool that helps, but some customizations will need to be recreated manually." },
+    ],
+  },
+
+  // ============================================================
+  // 开发工具
+  // ============================================================
+  "GitHub Copilot": {
+    paidTool: "GitHub Copilot",
+    paidToolUrl: "https://github.com/features/copilot",
+    tagline: "AI-powered code completion tool by GitHub and OpenAI",
+    description:
+      "GitHub Copilot is an AI-powered code assistant that suggests entire lines or functions as you type. It's powered by OpenAI Codex and supports dozens of programming languages. However, Copilot costs $10/month for individuals and $19/month per user for businesses. For freelance developers or students, this is a notable expense. Additionally, some developers have concerns about code suggestion copyright issues and the environmental impact of running large AI models.",
+    pricing: "Free (for students and open-source maintainers); Individual $10/month; Business $19/month per user; Enterprise $39/month per user",
+    painPoints: [
+      { problem: "Subscription cost for individuals and teams", impact: "$10/month for individuals adds up, especially for freelancers" },
+      { problem: "Code suggestion copyright concerns", impact: "Some suggested code may resemble copyrighted open-source code" },
+      { problem: "Requires GitHub account and subscription", impact: "Cannot use without a paid plan (except students/maintainers)" },
+      { problem: "Can produce incorrect or insecure code suggestions", impact: "Needs careful review of suggested code" },
+    ],
+    whySwitch: [
+      "Use free alternatives like Continue.dev (open-source, VS Code extension)",
+      "Try Cline (Claude in VS Code) for free AI coding assistance",
+      "Use open-source models like DeepSeek Coder (free, self-hostable)",
+      "Consider Tabnine (free tier available, supports multiple IDEs)",
+    ],
+    alternatives: [
+      {
+        name: "Continue.dev",
+        url: "https://continue.dev",
+        reason: "Free, open-source VS Code extension that brings AI coding assistance to your IDE — supports Claude, GPT-4o, DeepSeek, and any open-source model",
+        description:
+          "Continue is a free, open-source VS Code extension that brings AI coding assistance to your IDE. It supports Claude, GPT-4o, DeepSeek, and any open-source model. You can choose your own API key or self-host models for complete privacy.",
+        features: ["Supports Claude, GPT-4o, DeepSeek, and open-source models", "Bring your own API key (pay as you go)", "Self-host models for complete privacy", "VS Code and JetBrains support", "Chat, edit, and refactor modes"],
+        pros: ["100% free and open-source", "Use any AI model (not locked to Copilot)", "Bring your own API key — only pay for what you use", "Self-host for complete privacy"],
+        cons: ["Requires setting up your own API key (more initial setup)", "No dedicated support team (community-supported)", "Interface is less polished than Copilot's inline suggestions"],
+        bestFor: "Developers who want a free, flexible, and privacy-friendly GitHub Copilot alternative",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Easy",
+        rating: 4.7,
+        featured: true,
+      },
+      {
+        name: "Cline (Claude in VS Code)",
+        url: "https://github.com/cline/cline",
+        reason: "Free VS Code extension that brings Claude (and other AI models) directly into your IDE — can read/write files, execute commands, and even create new projects",
+        description:
+          "Cline is a free VS Code extension that brings Claude (and other AI models) directly into your IDE. Unlike Copilot, Cline can read and write files, execute commands, and even create new projects — it's a true AI coding agent.",
+        features: ["File read/write capabilities", "Terminal command execution", "Project creation from scratch", "Supports Claude, DeepSeek, and open-source models", "Completely free and open-source"],
+        pros: ["100% free and open-source", "True AI agent — can create files and run commands", "Supports any AI model (not locked to Copilot)", "More capable than Copilot for complex tasks"],
+        cons: ["Requires your own API key (Claude or other)", "Can be slow on large codebases (token limits)", "Less mature than Copilot (newer project)"],
+        bestFor: "Developers who want an AI coding agent that can read/write files and execute commands",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Easy",
+        rating: 4.8,
+      },
+      {
+        name: "Tabnine",
+        url: "https://www.tabnine.com",
+        reason: "AI code completion with a free tier — supports VS Code, JetBrains, Vim, and more",
+        description:
+          "Tabnine is an AI code completion tool that supports VS Code, JetBrains, Vim, and many more IDEs. It has a free tier that offers basic code completions, and the Pro plan is more affordable than Copilot ($9/month vs $10/month).",
+        features: ["Supports VS Code, JetBrains, Vim, and more", "Free tier with basic code completions", "Supports multiple programming languages", "Can run locally (no code sent to cloud)", "Team training on your own codebase"],
+        pros: ["Free tier available (unlike Copilot for most users)", "More affordable Pro plan ($9/month vs Copilot's $10/month)", "Supports more IDEs than Copilot", "Can run locally for complete privacy"],
+        cons: ["Free tier is limited (basic completions only)", "Still requires an account (though free tier is generous)", "Interface is less polished than Copilot's inline suggestions"],
+        bestFor: "Developers who want a Copilot alternative that supports more IDEs and has a free tier",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.5,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Install Continue.dev or Cline (free, open-source VS Code extensions)",
+        "Set up your own API key (Anthropic, OpenAI, or DeepSeek)",
+        "For privacy: self-host open-source models like DeepSeek Coder or CodeLlama",
+        "Disable GitHub Copilot extension in VS Code",
+        "Test the alternative for 1-2 weeks before fully switching",
+      ],
+      tips: [
+        "Continue.dev is the closest free alternative to Copilot — it supports multiple AI models",
+        "Cline is best for complex tasks — it can read/write files and execute commands",
+        "Self-hosting open-source models (DeepSeek Coder, CodeLlama) gives you complete privacy",
+      ],
+    },
+    category: "Development",
+    seoKeywords: ["github copilot free alternative", "copilot replacement", "free ai code assistant", "copilot alternatives 2026", "best copilot alternative"],
+    faqs: [
+      { question: "Is there a completely free alternative to GitHub Copilot?", answer: "Yes. Continue.dev and Cline are both 100% free and open-source. You'll need your own API key (Anthropic, OpenAI, or DeepSeek), but the extensions themselves are free." },
+      { question: "Which Copilot alternative is best for privacy?", answer: "Self-hosting open-source models (DeepSeek Coder, CodeLlama) with Continue.dev or Cline gives you complete privacy — no code is sent to third-party servers." },
+      { question: "Can I use a Copilot alternative offline?", answer: "Yes. If you self-host open-source models (DeepSeek Coder, CodeLlama) locally, you can use Continue.dev or Cline offline." },
+      { question: "What is the most affordable Copilot alternative?", answer: "Continue.dev and Cline are 100% free. Tabnine's free tier is also available, and its Pro plan ($9/month) is slightly cheaper than Copilot's $10/month." },
+    ],
+  },
+
+  // ============================================================
+  // 数据分析工具
+  // ============================================================
+  "Tableau": {
+    paidTool: "Tableau",
+    paidToolUrl: "https://www.tableau.com",
+    tagline: "The world's leading data visualization and business intelligence platform",
+    description:
+      "Tableau is the industry-leading data visualization and business intelligence platform. It enables anyone to connect to data, create interactive dashboards, and share insights across an organization. However, Tableau is extremely expensive — Tableau Creator costs $70/month per user ($840/year). For small businesses and individual analysts, this cost is prohibitive. Many users also find Tableau's learning curve steep.",
+    pricing: "Tableau Creator $70/month per user; Explorer $35/month; Viewer $12/month; Free Public edition (publish to web only)",
+    painPoints: [
+      { problem: "Extremely expensive for individuals and small teams", impact: "$840/year per user is prohibitive for many" },
+      { problem: "Steep learning curve for advanced features", impact: "Takes significant time to master calculations, LOD expressions, and dashboard design" },
+      { problem: "Resource-heavy — requires a powerful computer", impact: "Large datasets and complex dashboards can be slow" },
+      { problem: "Proprietary file format", impact: "Tableau workbooks cannot be easily opened in other BI tools" },
+    ],
+    whySwitch: [
+      "Use free, open-source alternatives like Apache Superset or Metabase",
+      "Try free desktop tools like Microsoft Power BI Desktop (free, Windows only)",
+      "Use Google Data Studio (completely free, web-based BI tool)",
+      "Consider more affordable commercial tools like Qlik Sense or Looker Studio",
+    ],
+    alternatives: [
+      {
+        name: "Metabase",
+        url: "https://www.metabase.com",
+        reason: "Open-source business intelligence tool that lets anyone in your company ask questions of your data — free to self-host",
+        description:
+          "Metabase is the easiest way for everyone in your company to ask questions and learn from data. It's open-source and free to self-host. You can create dashboards and share them with your team in minutes, no SQL required.",
+        features: ["No-SQL query builder (question builder)", "Dashboards and visualizations", "Self-hosting with Docker", "Email scheduling", "SQL editor for advanced users"],
+        pros: ["Easiest BI tool for non-technical users", "Completely free and open-source", "Self-hosting is well-documented", "Great for small to medium businesses"],
+        cons: ["Advanced features require SQL knowledge", "Self-hosting requires technical skills", "Interface is functional but not as polished as Tableau"],
+        bestFor: "Small to medium businesses that need business intelligence without the enterprise price tag",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Medium",
+        rating: 4.7,
+        featured: true,
+      },
+      {
+        name: "Apache Superset",
+        url: "https://superset.apache.org",
+        reason: "Open-source data visualization and BI platform — enterprise-ready, used by Airbnb, Twitter, and Lyft",
+        description:
+          "Apache Superset is a modern, enterprise-ready business intelligence web application. It's open-source (Apache 2.0) and powers the analytics needs of companies like Airbnb, Twitter, and Lyft. It supports a wide range of databases and has a rich set of visualizations.",
+        features: ["Wide range of visualizations", "SQL Lab for ad-hoc querying", "Role-based security", "Supports most SQL-speaking databases", "Semantic layer for defining metrics"],
+        pros: ["100% free and open-source (Apache 2.0)", "Enterprise-ready — used by Airbnb, Twitter, Lyft", "Very powerful for SQL users", "No user limits — self-host for your entire company"],
+        cons: ["Steep learning curve for non-technical users", "Requires self-hosting (technical skill needed)", "Interface is functional but not as polished as Tableau"],
+        bestFor: "Data teams and companies that need a free, enterprise-grade BI tool",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Hard",
+        rating: 4.3,
+      },
+      {
+        name: "Grafana",
+        url: "https://grafana.com",
+        reason: "Open-source analytics and monitoring platform — free to self-host, unlimited dashboards and users",
+        description:
+          "Grafana is the world's most popular open-source analytics and monitoring platform. It's primarily used for time-series data visualization (metrics, logs, traces), but can also visualize data from any SQL-speaking database. It's free to self-host.",
+        features: ["Time-series data visualization", "Unlimited dashboards and panels", "Alerting and notifications", "Plugin ecosystem (100+ data sources)", "Self-hosting with Docker"],
+        pros: ["100% free and open-source", "Industry-standard for monitoring and observability", "Unlimited everything (dashboards, users, data sources)", "Powerful alerting and notification system"],
+        cons: ["Primarily for time-series data (not general BI)", "Steep learning curve for non-technical users", "Requires self-hosting and database setup"],
+        bestFor: "DevOps teams, SREs, and companies that need monitoring and observability dashboards",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Medium",
+        rating: 4.6,
+      },
+      {
+        name: "Google Data Studio (Looker Studio)",
+        url: "https://datastudio.google.com",
+        reason: "Completely free, web-based business intelligence tool by Google — connect to Google products natively",
+        description:
+          "Looker Studio (formerly Google Data Studio) is a completely free, web-based business intelligence tool by Google. It connects to a wide range of data sources (Google Analytics, Ads, Sheets, SQL databases) and creates interactive, shareable dashboards.",
+        features: ["Completely free (no paywalls)", "Connects to Google products natively", "Interactive dashboards with filters and date ranges", "Shareable and embeddable reports", "Community visualizations and connectors"],
+        pros: ["100% free — no user limits, no paywalls", "Excellent Google product integrations", "Very easy to learn and use", "Cloud-based — no installation needed"],
+        cons: ["Limited to Google ecosystem for best experience", "Less powerful than Tableau for complex analytics", "Performance can be slow with large datasets"],
+        bestFor: "Small to medium businesses that use Google products and need free BI dashboards",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.5,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Export your Tableau workbooks (.twb files)",
+        "Choose your alternative based on your needs and technical skills",
+        "For self-hosting: set up Metabase or Apache Superset with Docker",
+        "Rebuild your dashboards in the new tool (no automated migration)",
+        "Share with your team and set up permissions",
+      ],
+      tips: [
+        "Metabase is the easiest transition — it has a no-SQL question builder for non-technical users",
+        "For advanced SQL users, Apache Superset is very powerful and enterprise-ready",
+        "Google Data Studio is completely free and best if you already use Google products",
+      ],
+    },
+    category: "Data Analysis",
+    seoKeywords: ["tableau free alternative", "tableau replacement", "free data visualization tool", "tableau alternatives 2026", "open source tableau"],
+    faqs: [
+      { question: "Is there a completely free alternative to Tableau?", answer: "Yes. Metabase, Apache Superset, and Grafana are all 100% free and open-source. Google Data Studio is also completely free (web-based)." },
+      { question: "Which Tableau alternative is best for non-technical users?", answer: "Metabase is the best alternative for non-technical users. Its no-SQL question builder lets anyone create charts and dashboards without writing SQL." },
+      { question: "Can I self-host a Tableau alternative?", answer: "Yes. Metabase, Apache Superset, and Grafana can all be self-hosted for free. This gives you complete control over your data." },
+      { question: "What is the most affordable Tableau alternative?", answer: "Metabase, Apache Superset, and Google Data Studio are all completely free. For paid self-hosted options, consider Qlik Sense or Looker Studio." },
+    ],
+  },
+
+  // ============================================================
+  // 云存储工具
+  // ============================================================
+  "Dropbox": {
+    paidTool: "Dropbox",
+    paidToolUrl: "https://www.dropbox.com",
+    tagline: "Simple, reliable cloud storage and file synchronization",
+    description:
+      "Dropbox is one of the world's most popular cloud storage services, known for its simplicity and cross-platform sync. However, Dropbox's pricing has increased significantly over the years. The Plus plan is $9.99/month for 2TB of storage — which is expensive compared to Google Drive ($1.99/month for 100GB) or Microsoft OneDrive (included with Microsoft 365). Many users are realizing they're paying a premium for a service that offers little beyond basic file sync.",
+    pricing: "Free (2GB); Plus $9.99/month (2TB); Essentials $16.58/month; Business $18/month per user",
+    painPoints: [
+      { problem: "Expensive pricing compared to competitors", impact: "$9.99/month for 2TB is expensive vs Google Drive ($1.99/month for 100GB)" },
+      { problem: "Free tier is very limited (only 2GB)", impact: "Barely enough for basic file sync" },
+      { problem: "Performance issues with large sync operations", impact: "Initial sync of large folders can take days" },
+      { problem: "Privacy concerns — data stored on Dropbox's servers", impact: "No end-to-end encryption for stored files" },
+    ],
+    whySwitch: [
+      "Use free alternatives like Google Drive (15GB free) or Microsoft OneDrive (5GB free)",
+      "Switch to privacy-focused cloud storage like Proton Drive or Tresorit",
+      "Self-host your own cloud storage with Nextcloud or Seafile",
+      "Use external hard drives or NAS for local, free storage",
+    ],
+    alternatives: [
+      {
+        name: "Google Drive",
+        url: "https://drive.google.com",
+        reason: "Free cloud storage by Google — 15GB free (shared across Google products), seamless Google Workspace integration",
+        description:
+          "Google Drive is a cloud storage and file synchronization service by Google. The free tier offers 15GB (shared across Google products), and Google Workspace plans start at $6/month per user. It integrates seamlessly with Google Docs, Sheets, and Slides.",
+        features: ["15GB free storage", "Google Docs/Sheets/Slides integration", "Real-time collaboration", "File sharing with granular permissions", "Offline access (with Chrome extension)"],
+        pros: ["15GB free (more than Dropbox's 2GB)", "Seamless Google Workspace integration", "Real-time collaboration is best-in-class", "Available on all platforms"],
+        cons: ["Free storage is shared across Gmail and Google Photos", "No unlimited storage option (even on paid plans)"],
+        bestFor: "Google Workspace users, students, and anyone who needs free cloud storage with good collaboration",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.7,
+        featured: true,
+      },
+      {
+        name: "Proton Drive",
+        url: "https://proton.me/drive",
+        reason: "Privacy-first, end-to-end encrypted cloud storage by Proton (the company behind Proton Mail)",
+        description:
+          "Proton Drive is a privacy-first, end-to-end encrypted cloud storage service by Proton (the company behind Proton Mail). It offers zero-access encryption, meaning not even Proton can read your files. The free tier offers 5GB of storage.",
+        features: ["End-to-end encryption (zero-access architecture)", "File versioning and recovery", "Sharing with password protection", "Available on Windows, Mac, Linux, iOS, Android", "Open-source clients"],
+        pros: ["Most privacy-focused cloud storage", "End-to-end encryption by default", "Open-source clients (auditable security)", "Based in Switzerland (strong privacy laws)"],
+        cons: ["Free tier is limited (5GB)", "More expensive than Dropbox or Google Drive", "Fewer integrations than mainstream cloud storage"],
+        bestFor: "Privacy-conscious individuals, journalists, and anyone who needs secure, encrypted cloud storage",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Easy",
+        rating: 4.4,
+      },
+      {
+        name: "Nextcloud",
+        url: "https://nextcloud.com",
+        reason: "Free, open-source self-hosted cloud storage and collaboration platform — the most capable self-hosted alternative to Dropbox, Google Drive, and Microsoft OneDrive",
+        description:
+          "Nextcloud is a free, open-source cloud storage and collaboration platform. It's the most capable self-hosted alternative to Dropbox, Google Drive, and Microsoft OneDrive. You have complete control over your data and can host it on your own server.",
+        features: ["Self-hosted cloud storage", "File sync and sharing", "Collaborative document editing (Nextcloud Office)", "Calendar and contacts", "Video calls (Nextcloud Talk)"],
+        pros: ["100% free and open-source", "Complete data control — self-host on your own server", "No storage limits (depends on your server)", "Rich set of features beyond file storage"],
+        cons: ["Requires self-hosting skills (or paid hosted option)", "Performance depends on your server hardware", "Setup and maintenance require technical knowledge"],
+        bestFor: "Privacy-conscious individuals, self-hosting enthusiasts, and organizations that need complete data control",
+        isFree: true,
+        isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Hard",
+        rating: 4.6,
+      },
+      {
+        name: "Mega",
+        url: "https://mega.io",
+        reason: "Cloud storage with 20GB free, end-to-end encryption by default, and no file size limits",
+        description:
+          "Mega is a cloud storage service that offers 20GB of free storage with end-to-end encryption. Unlike Dropbox or Google Drive, Mega encrypts your files on your device before uploading them, so not even Mega can read your data.",
+        features: ["20GB free encrypted storage", "End-to-end encryption by default", "File versioning", "Chat and video calls (encrypted)", "Mobile apps (iOS, Android)"],
+        pros: ["20GB free (more than Google Drive or Dropbox)", "End-to-end encryption by default", "No file size limits", "Includes encrypted chat and video calls"],
+        cons: ["Free storage is 20GB (less than Google's 15GB + shared)", "Performance can be slow due to encryption overhead", "Company has had legal issues in the past (privacy concerns)"],
+        bestFor: "Users who want free, encrypted cloud storage with no file size limits",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.3,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Install your chosen alternative (Google Drive, Proton Drive, Nextcloud, or Mega)",
+        "Download your Dropbox files (select all → Download)",
+        "Upload your files to the new cloud storage",
+        "Set up sync clients on all your devices",
+        "Keep your Dropbox account active during the transition (in case you missed files)",
+      ],
+      tips: [
+        "Google Drive is the easiest transition — 15GB free, and seamless Google Workspace integration",
+        "For privacy: Proton Drive or Mega offer end-to-end encryption by default",
+        "For complete control: self-host Nextcloud on your own server",
+      ],
+    },
+    category: "Cloud Storage",
+    seoKeywords: ["dropbox free alternative", "dropbox replacement", "free cloud storage", "dropbox alternatives 2026", "self-hosted dropbox"],
+    faqs: [
+      { question: "Is there a completely free alternative to Dropbox?", answer: "Yes. Google Drive offers 15GB free, Mega offers 20GB free with end-to-end encryption, and Nextcloud is 100% free and open-source if you self-host." },
+      { question: "Which Dropbox alternative is best for privacy?", answer: "Proton Drive and Mega both offer end-to-end encryption by default. Nextcloud gives you complete control if you self-host it on your own server." },
+      { question: "Can I self-host a Dropbox alternative?", answer: "Yes. Nextcloud is the best self-hosted alternative to Dropbox. You can install it on your own server or use a managed hosting provider." },
+      { question: "What is the most affordable Dropbox alternative?", answer: "Google Drive (15GB free) and Mega (20GB free) are the most affordable. Nextcloud is also 100% free if you self-host it." },
+    ],
+  },
+
+  // ============================================================
+  // 音乐制作工具
+  // ============================================================
+  "Logic Pro": {
+    paidTool: "Logic Pro",
+    paidToolUrl: "https://www.apple.com/logic-pro/",
+    tagline: "Apple's professional music production suite — one-time purchase, Mac-only",
+    description:
+      "Logic Pro is Apple's professional digital audio workstation (DAW) for music production. At $199.99 as a one-time purchase, it's an incredible value compared to subscription-based DAWs like Ableton Live Suite ($599 one-time) or Pro Tools ($29.99/month). However, Logic Pro is Mac-only, which limits its accessibility. Additionally, some producers prefer Ableton Live's workflow for electronic music production.",
+    pricing: "One-time purchase $199.99 (Mac only); iPad version $4.99/month",
+    painPoints: [
+      { problem: "Mac-only — no Windows or Linux support", impact: "Windows and Linux users cannot use Logic Pro" },
+      { problem: "iPad version requires subscription ($4.99/month)", impact: "iPad version is subscription-based, unlike the Mac version" },
+      { problem: "Less suitable for electronic music production", impact: "Many electronic music producers prefer Ableton Live's workflow" },
+      { problem: "No native Windows/Linux support", impact: "Cannot collaborate with Windows/Linux users" },
+    ],
+    whySwitch: [
+      "Use free, open-source DAWs like LMMS or Cakewalk by BandLab",
+      "Try Reaper ($60 discounted license, works on Windows, Mac, Linux)",
+      "Use Ableton Live (if you prefer its workflow for electronic music)",
+      "Consider Pro Tools (industry-standard, but subscription-based)",
+    ],
+    alternatives: [
+      {
+        name: "LMMS",
+        url: "https://lmms.io",
+        reason: "Free, open-source digital audio workstation (DAW) for Windows, macOS, and Linux — best free alternative to Logic Pro",
+        description:
+          "LMMS (formerly Linux MultiMedia Studio) is a free, open-source digital audio workstation (DAW) for Windows, macOS, and Linux. It lets you produce music with your computer by creating melodies and beats, synthesizing and mixing sounds, and arranging samples.",
+        features: ["Built-in instrument plugins and effects", "MIDI keyboard support", "Beat and bassline editor", "Piano roll editor", "VST plugin support"],
+        pros: ["100% free and open-source (GPLv2)", "Cross-platform (Windows, Mac, Linux)", "Very capable for a free DAW", "Large community and tutorials"],
+        cons: ["Interface feels dated compared to modern DAWs", "Audio recording is limited (primarily a MIDI/composer DAW)", "Less suitable for recording live instruments"],
+        bestFor: "Beginner music producers, electronic music creators, and anyone who wants a free DAW",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Medium",
+        rating: 4.5,
+        featured: true,
+      },
+      {
+        name: "Cakewalk by BandLab",
+        url: "https://www.bandlab.com/products/cakewalk",
+        reason: "Professional-grade digital audio workstation (DAW) that's completely free for Windows users — formerly known as SONAR",
+        description:
+          "Cakewalk by BandLab is a professional-grade digital audio workstation (DAW) that's completely free for Windows users. It was formerly known as SONAR and was acquired by BandLab, who made it free. It offers advanced recording, mixing, and mastering capabilities.",
+        features: ["Unlimited audio and MIDI tracks", "Advanced mixing console", "VST3 plugin support", "ARA integration (Melodyne, etc.)", "Touch-enabled interface"],
+        pros: ["Completely free (was previously $500+ as SONAR)", "Professional-grade recording and mixing", "Advanced features like ARA integration", "Regular free updates from BandLab"],
+        cons: ["Windows-only", "Interface has a steep learning curve", "Some features require BandLab subscription (cloud features)"],
+        bestFor: "Windows users who want a professional DAW for free",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Medium",
+        rating: 4.6,
+      },
+      {
+        name: "Reaper",
+        url: "https://www.reaper.fm",
+        reason: "Affordable, lightweight DAW with a $60 discounted license — extremely customizable, works on Windows, Mac, and Linux",
+        description:
+          "Reaper is a professional digital audio workstation (DAW) with a very affordable $60 discounted license (or $225 commercial license). It's known for its incredible customization, small installer size (15MB), and efficient performance. It's used by professionals but accessible to beginners.",
+        features: ["15MB installer size", "Fully customizable interface and workflows", "VST, VST3, AU, DX plugin support", "Advanced MIDI editing", "Video editing support"],
+        pros: ["Incredibly affordable ($60 discounted license)", "Extremely lightweight and fast", "Unlimited customization via scripts and themes", "Regular updates and active community"],
+        cons: ["Interface is NOT intuitive for beginners", "Steep learning curve to customize workflows", "No built-in virtual instruments (unlike Logic Pro or Ableton)"],
+        bestFor: "Budget-conscious professionals and home studio owners who want a highly customizable DAW",
+        isFree: false,
+        isOpenSource: false,
+        migrationDifficulty: "Medium",
+        rating: 4.8,
+      },
+      {
+        name: "Audacity",
+        url: "https://www.audacityteam.org",
+        reason: "Free, open-source, cross-platform audio software for multi-track recording and editing — best for podcast editing",
+        description:
+          "Audacity is a free, open-source, cross-platform audio software for multi-track recording and editing. It's primarily an audio editor (not a full DAW), but it's excellent for podcast editing, vocal recording, and audio cleanup.",
+        features: ["Multi-track audio editing", "Effects and plugins (VST, AU, LADSPA)", "Audio recording from microphone or line input", "Export to MP3, WAV, OGG, and more", "Spectrogram view"],
+        pros: ["100% free and open-source (GPLv2)", "Cross-platform (Windows, Mac, Linux)", "Excellent for podcast editing and vocal recording", "Very easy to learn for basic editing"],
+        cons: ["Not a full DAW (limited MIDI and VST support)", "Interface feels dated", "No multi-track mixing console like professional DAWs"],
+        bestFor: "Podcasters, voice actors, and anyone who needs free, capable audio editing software",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Easy",
+        rating: 4.4,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "If you have Logic Pro projects, export your audio tracks as WAV or AIFF",
+        "Install your chosen alternative (LMMS, Cakewalk, or Reaper)",
+        "Import your audio tracks into the new DAW",
+        "Re-build your mixing and mastering setup in the new DAW",
+        "Test the new DAW with your audio interface and plugins",
+      ],
+      tips: [
+        "LMMS is the best free alternative for Windows, Mac, and Linux users",
+        "Cakewalk is best for Windows users who want a professional DAW for free",
+        "Reaper is best for those who want a highly customizable, affordable DAW",
+      ],
+    },
+    category: "Music",
+    seoKeywords: ["logic pro free alternative", "logic pro replacement", "free music production software", "logic pro alternatives 2026", "best logic pro alternative"],
+    faqs: [
+      { question: "Is there a completely free alternative to Logic Pro?", answer: "Yes. LMMS is 100% free and open-source, works on Windows, Mac, and Linux. Cakewalk by BandLab is also completely free for Windows users." },
+      { question: "Which Logic Pro alternative is best for Windows users?", answer: "Cakewalk by BandLab is the best free alternative for Windows users. It was formerly $500+ as SONAR, now completely free." },
+      { question: "Can I use a Logic Pro alternative on Linux?", answer: "Yes. LMMS and Reaper both work on Linux. Logic Pro is Mac-only, so Linux users need an alternative." },
+      { question: "What is the most affordable Logic Pro alternative?", answer: "LMMS and Cakewalk are 100% free. Reaper has a $60 discounted license, which is very affordable compared to Logic Pro's $199.99 one-time purchase." },
+    ],
   },
 };
 
-/** 获取替代品条目（通过 slug 查找） */
+// ============================================================
+// 合并函数：加载 JSON 导入数据（程序化生成的条目）
+// ============================================================
+
+let _combinedMap: Record<string, AlternativeEntry> | null = null;
+
+const BATCH_FILES = [
+  "alternatives-import.json",
+];
+
+export function getCombinedMap(): Record<string, AlternativeEntry> {
+  if (_combinedMap) return _combinedMap;
+  _combinedMap = { ...ALTERNATIVES_MAP };
+  for (const file of BATCH_FILES) {
+    try {
+      const filePath = join(process.cwd(), "public", "data", file);
+      const raw = readFileSync(filePath, "utf-8");
+      const imports: AlternativeEntry[] = JSON.parse(raw);
+      for (const entry of imports) {
+        if (entry.paidTool && entry.alternatives?.length > 0) {
+          _combinedMap[entry.paidTool] = entry;
+        }
+      }
+    } catch {
+      // File not found or parse error — skip
+    }
+  }
+  return _combinedMap;
+}
+
 export function getAlternativeBySlug(slug: string): AlternativeEntry | null {
   const allMap = getCombinedMap();
   const entry = Object.entries(allMap).find(
@@ -987,35 +1309,9 @@ export function getAlternativeBySlug(slug: string): AlternativeEntry | null {
   return entry ? entry[1] : null;
 }
 
-/** 获取所有替代品 slug 列表（用于 generateStaticParams） */
 export function getAllAlternativeSlugs(): string[] {
   const allMap = getCombinedMap();
   return Object.keys(allMap).map((key) =>
     key.toLowerCase().replace(/\s+/g, "-")
   );
-}
-
-/** 合并手工 MAP + JSON 导入数据 */
-let _combinedMap: Record<string, AlternativeEntry> | null = null;
-
-export function getCombinedMap(): Record<string, AlternativeEntry> {
-  if (_combinedMap) return _combinedMap;
-
-  _combinedMap = { ...ALTERNATIVES_MAP };
-
-  // Try to load from JSON import file
-  try {
-    const filePath = join(process.cwd(), "public", "data", "alternatives-import.json");
-    const raw = readFileSync(filePath, "utf-8");
-    const imports: AlternativeEntry[] = JSON.parse(raw);
-    for (const entry of imports) {
-      if (entry.paidTool && entry.alternatives?.length) {
-        _combinedMap[entry.paidTool] = entry;
-      }
-    }
-  } catch {
-    // No import file or parse error — use MAP only
-  }
-
-  return _combinedMap;
 }
