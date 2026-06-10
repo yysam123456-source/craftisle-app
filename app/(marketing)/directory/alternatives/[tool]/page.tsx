@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ExternalLink, ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
+import { ExternalLink, ArrowLeft, CheckCircle2, XCircle, HelpCircle } from "lucide-react";
 import {
   ALTERNATIVES_MAP,
   getAlternativeBySlug,
@@ -88,12 +88,34 @@ export default async function AlternativesPage({
     },
   };
 
+  // Structured Data: FAQPage
+  const faqJsonLd = entry.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: entry.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
 
       <div className="min-h-screen">
         {/* Breadcrumb */}
@@ -215,6 +237,97 @@ export default async function AlternativesPage({
             </div>
           </div>
         </section>
+
+        {/* Comparison Table */}
+        <section className="py-12 border-t">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl font-bold mb-6">
+                {entry.paidTool} vs Free Alternatives — Quick Comparison
+              </h2>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b bg-muted/50">
+                      <th className="text-left py-3 px-4 font-semibold">Tool</th>
+                      <th className="text-center py-3 px-4 font-semibold">Price</th>
+                      <th className="text-center py-3 px-4 font-semibold">Open Source</th>
+                      <th className="text-center py-3 px-4 font-semibold">Self-Hosted</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b bg-muted/20">
+                      <td className="py-3 px-4 font-medium">{entry.paidTool}</td>
+                      <td className="py-3 px-4 text-center">
+                        <Badge variant="secondary" className="text-xs">Paid</Badge>
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        <XCircle className="h-4 w-4 text-red-500 mx-auto" />
+                      </td>
+                      <td className="py-3 px-4 text-center">
+                        <XCircle className="h-4 w-4 text-red-500 mx-auto" />
+                      </td>
+                    </tr>
+                    {entry.alternatives.map((alt) => (
+                      <tr key={alt.name} className="border-b hover:bg-muted/10 transition-colors">
+                        <td className="py-3 px-4 font-medium">{alt.name}</td>
+                        <td className="py-3 px-4 text-center">
+                          <Badge variant="default" className="text-xs bg-green-600">Free</Badge>
+                        </td>
+                        <td className="py-3 px-4 text-center">
+                          {alt.isOpenSource ? (
+                            <CheckCircle2 className="h-4 w-4 text-green-500 mx-auto" />
+                          ) : (
+                            <XCircle className="h-4 w-4 text-red-500 mx-auto" />
+                          )}
+                        </td>
+                        <td className="py-3 px-4 text-center">
+                          {alt.isOpenSource ? (
+                            <CheckCircle2 className="h-4 w-4 text-green-500 mx-auto" />
+                          ) : (
+                            <span className="text-muted-foreground text-xs">—</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        {entry.faqs && entry.faqs.length > 0 && (
+          <section className="py-12 border-t bg-muted/10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto">
+                <div className="flex items-center gap-2 mb-8">
+                  <HelpCircle className="h-5 w-5 text-primary" />
+                  <h2 className="text-2xl font-bold">
+                    Frequently Asked Questions
+                  </h2>
+                </div>
+                <div className="space-y-4">
+                  {entry.faqs.map((faq, i) => (
+                    <Card key={i} className="hover:shadow-sm transition-shadow">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-base font-semibold">
+                          {faq.question}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* More Alternatives */}
         <section className="border-t bg-muted/20 py-12">

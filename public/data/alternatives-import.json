@@ -1,0 +1,139 @@
+[
+  {
+    "paidTool": "Slack",
+    "description": "Slack is a team communication platform. Pro plan costs $7.25/month per user; free tier limits message history to 90 days.",
+    "alternatives": [
+      {
+        "name": "Mattermost",
+        "url": "https://mattermost.com",
+        "reason": "Open-source Slack alternative with self-hosting, unlimited message history, and enterprise features.",
+        "isFree": true,
+        "isOpenSource": true
+      },
+      {
+        "name": "Element",
+        "url": "https://element.io",
+        "reason": "Free and open-source messaging built on the Matrix protocol, end-to-end encrypted, self-hostable.",
+        "isFree": true,
+        "isOpenSource": true
+      },
+      {
+        "name": "Zulip",
+        "url": "https://zulip.com",
+        "reason": "Free open-source team chat with topic-based threading, better for organized discussions than Slack.",
+        "isFree": true,
+        "isOpenSource": true
+      },
+      {
+        "name": "Rocket.Chat",
+        "url": "https://rocket.chat",
+        "reason": "Fully open-source team communication platform, self-hostable, supports omnichannel and real-time translation.",
+        "isFree": true,
+        "isOpenSource": true
+      }
+    ],
+    "category": "Communication",
+    "seoKeywords": [
+      "free slack alternative",
+      "slack replacement",
+      "open source team chat",
+      "self-hosted slack"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a free alternative to Slack?",
+        "answer": "Yes. Mattermost, Element, Zulip, and Rocket.Chat are all free open-source alternatives."
+      },
+      {
+        "question": "Is Slack open source?",
+        "answer": "No. Slack is proprietary. Mattermost and Element are fully open-source alternatives."
+      },
+      {
+        "question": "Can I self-host a team chat?",
+        "answer": "Yes. Mattermost, Element, Zulip, and Rocket.Chat all support self-hosting."
+      },
+      {
+        "question": "Which Slack alternative has unlimited message history?",
+        "answer": "Self-hosted Mattermost, Element, and Zulip all offer unlimited message history for free."
+      },
+      {
+        "question": "What is the most secure Slack alternative?",
+        "answer": "Element uses the Matrix protocol with end-to-end encryption by default."
+      }
+    ]
+  },
+  {
+    "paidTool": "Trello",
+    "description": "Trello is a Kanban-style project management tool. Standard plan costs $5/month per user.",
+    "alternatives": [
+      {
+        "name": "WeKan",
+        "url": "https://wekan.github.io",
+        "reason": "Free and open-source Kanban board, self-hostable, supports Trello import for easy migration.",
+        "isFree": true,
+        "isOpenSource": true
+      },
+      {
+        "name": "Focalboard",
+        "url": "https://www.focalboard.com",
+        "reason": "Free open-source project management tool by Mattermost, Trello-like interface, self-hostable.",
+        "isFree": true,
+        "isOpenSource": true
+      },
+      {
+        "name": "Taiga",
+        "url": "https://taiga.io",
+        "reason": "Free open-source project management with Kanban and Scrum, designed for agile teams.",
+        "isFree": true,
+        "isOpenSource": true
+      }
+    ],
+    "category": "Project Management",
+    "seoKeywords": [
+      "free trello alternative",
+      "trello replacement",
+      "open source kanban board"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a free alternative to Trello?",
+        "answer": "Yes. WeKan, Focalboard, and Taiga are all free open-source Kanban and project management tools."
+      },
+      {
+        "question": "Can I import my Trello boards?",
+        "answer": "Yes. WeKan supports direct Trello board import for easy migration."
+      },
+      {
+        "question": "Is there a self-hosted Kanban board?",
+        "answer": "Yes. WeKan, Focalboard, and Taiga all support self-hosting."
+      }
+    ]
+  },
+  {
+    "paidTool": "Intercom",
+    "description": "Intercom is a customer messaging platform. Starter plan costs /month.",
+    "alternatives": [
+      {
+        "name": "Chatwoot",
+        "url": "https://www.chatwoot.com",
+        "reason": "Free open-source customer engagement platform",
+        "isFree": true,
+        "isOpenSource": true
+      },
+      {
+        "name": "Papercups",
+        "url": "https://papercups.io",
+        "reason": "Free open-source live chat widget",
+        "isFree": true,
+        "isOpenSource": true
+      }
+    ],
+    "category": "Business Tools",
+    "seoKeywords": [
+      "free intercom alternative",
+      "intercom replacement",
+      "open source live chat"
+    ],
+    "faqs": []
+  }
+]

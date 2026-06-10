@@ -10,12 +10,15 @@ import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, Th
 import { ResourceCard } from "@/components/resources/resource-card";
 import { GiscusComments } from "@/components/giscus-comments";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
+import StarRating from "@/components/resources/star-rating";
+import AdSlot from "@/components/ads/ad-slot";
 import {
   getAllResources,
   getResourceById,
   getRelatedResources,
   type Resource,
 } from "@/lib/fmhy-data";
+import { Share2, Twitter, MessageSquare } from "lucide-react";
 
 const baseUrl = "https://craftisle.com";
 
@@ -283,6 +286,8 @@ export default async function ResourceDetailPage({
                         {resource.name}
                       </h1>
                       <p className="mt-1 text-muted-foreground text-sm">{hostname}</p>
+                      {/* 用户评分 */}
+                      <StarRating resourceId={resource.id} size="sm" />
                     </div>
                     {/* Star button (client component) */}
                     <StarButtonWrapper resourceId={resource.id} />
@@ -313,6 +318,11 @@ export default async function ResourceDetailPage({
                 </p>
               </div>
 
+              {/* 内容中广告位 */}
+              <div className="my-8 flex justify-center">
+                <AdSlot slot="in-content-resource" format="rectangle" />
+              </div>
+
               {/* AI Review Section */}
               {(() => {
                 const review = loadReview(resource.id) || loadReview(resource.name);
@@ -338,6 +348,38 @@ export default async function ResourceDetailPage({
                     More {resource.categoryName} Tools
                   </Button>
                 </Link>
+              </div>
+
+              {/* 分享按钮 */}
+              <div className="mt-4 flex items-center gap-3">
+                <span className="text-sm text-muted-foreground">Share:</span>
+                <a
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${baseUrl}/directory/resource/${resource.id}`)}&text=${encodeURIComponent(`Check out ${resource.name} — a free ${resource.categoryName} tool via @Craftisle`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors text-sm"
+                  title="Share on Twitter / X"
+                >
+                  <Twitter className="h-4 w-4" />
+                </a>
+                <a
+                  href={`https://reddit.com/submit?url=${encodeURIComponent(`${baseUrl}/directory/resource/${resource.id}`)}&title=${encodeURIComponent(`${resource.name} — free ${resource.categoryName} tool`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-muted-foreground hover:text-orange-500 transition-colors text-sm"
+                  title="Share on Reddit"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                </a>
+                <a
+                  href={`https://news.ycombinator.com/submitlink?u=${encodeURIComponent(`${baseUrl}/directory/resource/${resource.id}`)}&t=${encodeURIComponent(resource.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-muted-foreground hover:text-orange-600 transition-colors text-sm"
+                  title="Share on Hacker News"
+                >
+                  <Share2 className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </div>
@@ -392,11 +434,91 @@ export default async function ResourceDetailPage({
                   </CardContent>
                 </Card>
               </div>
+
+              {/* GitHub / Tech Stack Info Cards (only shown when data exists) */}
+              {(resource.githubStars !== undefined || resource.githubLicense || resource.isSelfHosted || resource.techStack?.length) && (
+                <div className="grid gap-4 sm:grid-cols-3 mt-4">
+                  {resource.githubStars !== undefined && resource.githubStars !== null && (
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                          GitHub Stars
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <span className="font-medium">
+                          ⭐ {resource.githubStars >= 1000
+                            ? (resource.githubStars / 1000).toFixed(1) + "k"
+                            : resource.githubStars}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  )}
+                  {resource.githubLicense && (
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                          License
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Badge variant="outline" className="text-xs font-mono">
+                          {resource.githubLicense}
+                        </Badge>
+                      </CardContent>
+                    </Card>
+                  )}
+                  {resource.isSelfHosted && (
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                          Self-Hosted
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <span className="font-medium text-green-600">✓ Available</span>
+                      </CardContent>
+                    </Card>
+                  )}
+                  {resource.githubLastUpdated && (
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                          Last Updated
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <span className="font-medium">
+                          {new Date(resource.githubLastUpdated).toLocaleDateString("en-US", {
+                            year: "numeric", month: "short", day: "numeric"
+                          })}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  )}
+                  {resource.techStack && resource.techStack.length > 0 && (
+                    <Card className="sm:col-span-3">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                          Tech Stack
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex flex-wrap gap-2">
+                          {resource.techStack.map((tech) => (
+                            <Badge key={tech} variant="secondary" className="text-xs">
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </section>
-
-        {/* Related Resources */}
         {related.length > 0 && (
           <section className="py-12">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

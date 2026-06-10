@@ -31,6 +31,12 @@ export interface Resource {
   isOpenSource?: boolean;
   license?: string;
   language?: string;
+  /** GitHub enrichment（P0-2b 脚本补充） */
+  githubStars?: number;
+  githubLastUpdated?: string;
+  githubLicense?: string;
+  isSelfHosted?: boolean;
+  techStack?: string[];
   /** 通用 */
   tags?: string[];
   isFree?: boolean;

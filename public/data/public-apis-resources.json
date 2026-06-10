@@ -509,7 +509,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 534,
+      "githubLastUpdated": "2025-06-04T07:15:44Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--movebank",
@@ -524,7 +527,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 185,
+      "githubLastUpdated": "2026-01-02T14:12:14Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--petfinder",
@@ -734,7 +740,10 @@
       "isFree": true,
       "auth": "`OAuth`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 1297,
+      "githubLastUpdated": "2026-03-18T02:08:14Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--animechan",
@@ -749,7 +758,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 1419,
+      "githubLastUpdated": "2025-07-21T18:06:03Z",
+      "githubLicense": "MPL-2.0"
     },
     {
       "id": "public-apis--animefacts",
@@ -1319,7 +1331,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 214,
+      "githubLastUpdated": "2025-09-27T14:17:02Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--europeana",
@@ -1349,7 +1364,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": false,
-      "cors": false
+      "cors": false,
+      "githubStars": 411,
+      "githubLastUpdated": "2026-05-28T18:41:40Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--icon-horse",
@@ -1934,7 +1952,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 796,
+      "githubLastUpdated": "2024-09-25T19:38:12Z",
+      "githubLicense": "NOASSERTION"
     },
     {
       "id": "public-apis--ganjoor",
@@ -2054,7 +2075,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 636,
+      "githubLastUpdated": "2024-02-22T03:09:33Z",
+      "githubLicense": "GPL-2.0"
     },
     {
       "id": "public-apis--quran",
@@ -2099,7 +2123,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 1106,
+      "githubLastUpdated": "2026-03-15T17:50:02Z",
+      "githubLicense": "Unlicense"
     },
     {
       "id": "public-apis--rig-veda",
@@ -2789,7 +2816,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 20,
+      "githubLastUpdated": "2020-04-25T15:40:05Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--public-holidays",
@@ -2819,7 +2849,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 28,
+      "githubLastUpdated": "2021-03-31T13:02:43Z",
+      "githubLicense": "LGPL-3.0"
     },
     {
       "id": "public-apis--the-calendar",
@@ -2939,7 +2972,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 0,
+      "githubLastUpdated": "2026-05-02T11:48:04Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--gofile",
@@ -3299,7 +3335,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 4809,
+      "githubLastUpdated": "2026-06-10T09:14:58Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--bitcambio",
@@ -3809,7 +3848,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 851,
+      "githubLastUpdated": "2023-10-17T11:34:27Z",
+      "githubLicense": "Apache-2.0"
     },
     {
       "id": "public-apis--exmo",
@@ -3914,7 +3956,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 168,
+      "githubLastUpdated": "2026-05-29T09:10:47Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--infura-ethereum",
@@ -4304,7 +4349,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 89,
+      "githubLastUpdated": "2025-07-29T11:48:27Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--currencyfreaks",
@@ -4889,7 +4937,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 16,
+      "githubLastUpdated": "2021-06-26T11:18:20Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--cloudflare-trace",
@@ -4904,7 +4955,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 187,
+      "githubLastUpdated": "2024-08-20T20:18:33Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--codex",
@@ -4949,7 +5003,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 53,
+      "githubLastUpdated": "2022-12-11T11:07:55Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--countapi",
@@ -5609,7 +5666,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 242,
+      "githubLastUpdated": "2026-06-09T18:25:04Z",
+      "githubLicense": "OSL-3.0"
     },
     {
       "id": "public-apis--json-2-jsonp",
@@ -5699,7 +5759,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 5,
+      "githubLastUpdated": "2022-12-08T02:08:09Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--logs-to",
@@ -5864,7 +5927,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 491,
+      "githubLastUpdated": "2024-06-02T19:19:54Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--onesignal",
@@ -6344,7 +6410,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 656,
+      "githubLastUpdated": "2023-05-05T02:32:23Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--sonarqube",
@@ -6494,7 +6563,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 1263,
+      "githubLastUpdated": "2026-05-20T00:53:21Z",
+      "githubLicense": "BSL-1.0"
     },
     {
       "id": "public-apis--webscraping-ai",
@@ -7574,7 +7646,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 347,
+      "githubLastUpdated": "2023-04-13T10:06:15Z",
+      "githubLicense": "BSD-3-Clause"
     },
     {
       "id": "public-apis--excuser",
@@ -7694,7 +7769,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 28,
+      "githubLastUpdated": "2022-12-11T10:00:17Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--potterdb",
@@ -7769,7 +7847,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 78,
+      "githubLastUpdated": "2024-02-28T02:58:19Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--breezometer-pollen",
@@ -8639,7 +8720,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": false,
-      "cors": false
+      "cors": false,
+      "githubStars": 114,
+      "githubLastUpdated": "2022-02-24T14:51:54Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--sec-edgar-data",
@@ -8924,7 +9008,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 122,
+      "githubLastUpdated": "2026-05-27T14:23:03Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--fruityvice",
@@ -9089,7 +9176,10 @@
       "isFree": true,
       "auth": "No",
       "https": false,
-      "cors": false
+      "cors": false,
+      "githubStars": 132,
+      "githubLastUpdated": "2025-08-19T12:59:04Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--tasty",
@@ -9119,7 +9209,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 54,
+      "githubLastUpdated": "2026-06-09T21:13:45Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--thecocktaildb",
@@ -9269,7 +9362,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 5,
+      "githubLastUpdated": "2023-08-09T09:03:40Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--barter-vg",
@@ -9284,7 +9380,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 20,
+      "githubLastUpdated": "2023-02-08T18:07:55Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--battle-net",
@@ -9779,7 +9878,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 127,
+      "githubLastUpdated": "2025-03-23T15:36:56Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--genshin-impact",
@@ -9824,7 +9926,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 189,
+      "githubLastUpdated": "2026-06-09T17:13:21Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--guild-wars-2",
@@ -9854,7 +9959,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 232,
+      "githubLastUpdated": "2023-01-25T19:07:40Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--halo",
@@ -9944,7 +10052,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 210,
+      "githubLastUpdated": "2026-06-01T01:40:01Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--hytale",
@@ -10229,7 +10340,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 189,
+      "githubLastUpdated": "2026-05-28T02:59:53Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--pok-mon-tcg",
@@ -10289,7 +10403,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 2,
+      "githubLastUpdated": "2022-07-24T09:53:20Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--quizapi-io",
@@ -10409,7 +10526,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 66,
+      "githubLastUpdated": "2021-08-27T01:04:45Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--scryfall",
@@ -10604,7 +10724,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 225,
+      "githubLastUpdated": "2026-06-07T05:22:25Z",
+      "githubLicense": "GPL-3.0"
     },
     {
       "id": "public-apis--xkcd",
@@ -10694,7 +10817,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 35,
+      "githubLastUpdated": "2022-10-19T09:05:08Z",
+      "githubLicense": "Unlicense"
     },
     {
       "id": "public-apis--apogeoapi",
@@ -10844,7 +10970,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 127,
+      "githubLastUpdated": "2024-12-10T00:14:43Z",
+      "githubLicense": "GPL-3.0"
     },
     {
       "id": "public-apis--cep-la",
@@ -11159,7 +11288,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 81,
+      "githubLastUpdated": "2023-01-06T03:38:51Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--hackmyip",
@@ -11549,7 +11681,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 99,
+      "githubLastUpdated": "2024-05-02T16:32:10Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--nominatim",
@@ -11819,7 +11954,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 5,
+      "githubLastUpdated": "2022-06-13T10:01:52Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--spotsense",
@@ -13574,7 +13712,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 1351,
+      "githubLastUpdated": "2023-03-27T22:09:13Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--covid-19-philippines",
@@ -13589,7 +13730,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 31,
+      "githubLastUpdated": "2021-04-08T14:47:12Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--covid-19-tracker-canada",
@@ -14129,7 +14273,10 @@
       "isFree": true,
       "auth": "No",
       "https": false,
-      "cors": false
+      "cors": false,
+      "githubStars": 212,
+      "githubLastUpdated": "2018-07-24T16:40:52Z",
+      "githubLicense": "NOASSERTION"
     },
     {
       "id": "public-apis--reed",
@@ -14774,7 +14921,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 149,
+      "githubLastUpdated": "2020-10-01T00:57:27Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--genius",
@@ -14849,7 +14999,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 444,
+      "githubLastUpdated": "2024-08-08T19:57:20Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--kkbox",
@@ -15149,7 +15302,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 233,
+      "githubLastUpdated": "2026-05-12T09:46:30Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--mediastack",
@@ -15224,7 +15380,10 @@
       "isFree": true,
       "auth": "`OAuth`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 399,
+      "githubLastUpdated": "2026-02-10T06:30:03Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--florida-man",
@@ -15239,7 +15398,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 3,
+      "githubLastUpdated": "2026-05-04T15:33:44Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--gnews",
@@ -15284,7 +15446,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 280,
+      "githubLastUpdated": "2023-09-28T06:20:28Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--marketaux",
@@ -15419,7 +15584,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 199,
+      "githubLastUpdated": "2016-10-04T13:27:51Z",
+      "githubLicense": "NOASSERTION"
     },
     {
       "id": "public-apis--thenews",
@@ -15689,7 +15857,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 8,
+      "githubLastUpdated": "2021-12-29T13:42:09Z",
+      "githubLicense": "GPL-3.0"
     },
     {
       "id": "public-apis--microlink-io",
@@ -15959,7 +16130,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 1615,
+      "githubLastUpdated": "2026-05-28T20:07:31Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--university-of-oslo",
@@ -16184,7 +16358,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 79616,
+      "githubLastUpdated": "2026-05-31T01:16:17Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--metabase",
@@ -16349,7 +16526,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 192,
+      "githubLastUpdated": "2025-05-14T13:14:36Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--favqs-com",
@@ -16469,7 +16649,10 @@
       "isFree": true,
       "auth": "`OAuth`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 2331,
+      "githubLastUpdated": "2023-03-02T22:00:44Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--personality-fyi",
@@ -16499,7 +16682,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 497,
+      "githubLastUpdated": "2026-01-01T13:35:52Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--quotable-quotes",
@@ -16514,7 +16700,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 2085,
+      "githubLastUpdated": "2024-01-14T17:33:47Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--quote-garden",
@@ -16574,7 +16763,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 117,
+      "githubLastUpdated": "2024-01-01T05:57:00Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--they-said-so-quotes",
@@ -16694,7 +16886,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 175,
+      "githubLastUpdated": "2024-05-16T03:23:46Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--phone-validation",
@@ -17054,7 +17249,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 8931,
+      "githubLastUpdated": "2026-06-01T00:13:38Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--remove-bg",
@@ -17324,7 +17522,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 30,
+      "githubLastUpdated": "2026-01-26T16:37:36Z",
+      "githubLicense": "GPL-3.0"
     },
     {
       "id": "public-apis--inspirehep-net",
@@ -17339,7 +17540,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 56,
+      "githubLastUpdated": "2025-07-14T11:16:24Z",
+      "githubLicense": "CC-BY-SA-4.0"
     },
     {
       "id": "public-apis--iseven-humor",
@@ -17594,7 +17798,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 6,
+      "githubLastUpdated": "2022-03-10T17:07:18Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--share",
@@ -17624,7 +17831,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 10880,
+      "githubLastUpdated": "2024-08-17T01:38:13Z",
+      "githubLicense": "Apache-2.0"
     },
     {
       "id": "public-apis--sunrise-and-sunset",
@@ -17654,7 +17864,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 2,
+      "githubLastUpdated": "2025-12-08T19:21:08Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--tle",
@@ -17744,7 +17957,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 87,
+      "githubLastUpdated": "2023-03-22T12:37:09Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--binaryedge",
@@ -17789,7 +18005,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 1421,
+      "githubLastUpdated": "2026-05-28T02:35:55Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--bugcrowd",
@@ -17924,7 +18143,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 13,
+      "githubLastUpdated": "2021-06-30T18:38:20Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--filterlists",
@@ -18074,7 +18296,10 @@
       "isFree": true,
       "auth": "`apiKey`",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 530,
+      "githubLastUpdated": "2026-05-31T02:51:26Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--iplogs",
@@ -18134,7 +18359,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 1852,
+      "githubLastUpdated": "2024-10-22T09:18:12Z",
+      "githubLicense": "MPL-2.0"
     },
     {
       "id": "public-apis--mozilla-tls-scanner",
@@ -18149,7 +18377,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 545,
+      "githubLastUpdated": "2025-09-23T14:33:32Z",
+      "githubLicense": "MPL-2.0"
     },
     {
       "id": "public-apis--national-vulnerability-database",
@@ -18179,7 +18410,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 38,
+      "githubLastUpdated": "2023-05-22T05:51:39Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--phishstats",
@@ -18569,7 +18803,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 1101,
+      "githubLastUpdated": "2023-02-25T19:23:21Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--ayrshare",
@@ -18794,7 +19031,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 13101,
+      "githubLastUpdated": "2025-01-01T07:55:30Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--hashnode",
@@ -18854,7 +19094,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 1401,
+      "githubLastUpdated": "2026-06-04T04:01:32Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--line",
@@ -19394,7 +19637,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 121,
+      "githubLastUpdated": "2021-10-17T04:06:02Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--football-data",
@@ -20834,7 +21080,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 105,
+      "githubLastUpdated": "2022-02-18T06:19:14Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--compare-flight-prices",
@@ -21224,7 +21473,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 142,
+      "githubLastUpdated": "2025-10-21T23:03:36Z",
+      "githubLicense": "ISC"
     },
     {
       "id": "public-apis--transport-for-bordeaux-france",
@@ -21719,7 +21971,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 41,
+      "githubLastUpdated": "2023-10-04T17:59:39Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--bitly",
@@ -21854,7 +22109,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 23,
+      "githubLastUpdated": "2023-11-03T15:46:17Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--kutt",
@@ -22214,7 +22472,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 454,
+      "githubLastUpdated": "2026-03-16T19:17:09Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--catalogopolis",
@@ -22289,7 +22550,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 69,
+      "githubLastUpdated": "2022-07-10T10:09:17Z",
+      "githubLicense": null
     },
     {
       "id": "public-apis--final-space",
@@ -22379,7 +22643,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 159,
+      "githubLastUpdated": "2024-09-20T19:27:09Z",
+      "githubLicense": "AGPL-3.0"
     },
     {
       "id": "public-apis--json2video",
@@ -22409,7 +22676,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 11,
+      "githubLastUpdated": "2025-10-29T11:47:23Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--mcu-countdown",
@@ -22424,7 +22694,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 225,
+      "githubLastUpdated": "2026-06-07T05:22:25Z",
+      "githubLicense": "GPL-3.0"
     },
     {
       "id": "public-apis--motivational-quotes",
@@ -22454,7 +22727,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 39,
+      "githubLastUpdated": "2024-12-23T11:46:09Z",
+      "githubLicense": "GPL-3.0"
     },
     {
       "id": "public-apis--open-movie-database",
@@ -22514,7 +22790,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 311,
+      "githubLastUpdated": "2026-01-19T10:23:23Z",
+      "githubLicense": "Apache-2.0"
     },
     {
       "id": "public-apis--simkl",
@@ -22559,7 +22838,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 13,
+      "githubLastUpdated": "2025-03-24T00:20:31Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--stream",
@@ -22799,7 +23081,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": true
+      "cors": true,
+      "githubStars": 24,
+      "githubLastUpdated": "2023-06-19T13:16:44Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--youtube",
@@ -23264,7 +23549,10 @@
       "isFree": true,
       "auth": "No",
       "https": true,
-      "cors": false
+      "cors": false,
+      "githubStars": 474,
+      "githubLastUpdated": "2025-10-27T21:07:37Z",
+      "githubLicense": "MIT"
     },
     {
       "id": "public-apis--weatherapi",
