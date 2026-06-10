@@ -47,7 +47,8 @@ export async function generateMetadata({
   };
 }
 
-function RatingStars({ rating }: { rating: number }) {
+function RatingStars({ rating }: { rating?: number }) {
+  if (!rating) return <span className="text-sm text-muted-foreground">N/A</span>;
   return (
     <span className="inline-flex items-center gap-0.5">
       {Array.from({ length: 5 }, (_, i) => (
@@ -61,7 +62,8 @@ function RatingStars({ rating }: { rating: number }) {
   );
 }
 
-function MigrationDifficultyBadge({ difficulty }: { difficulty: string }) {
+function MigrationDifficultyBadge({ difficulty }: { difficulty?: string }) {
+  if (!difficulty) return <span className="text-xs text-muted-foreground">N/A</span>;
   const color =
     difficulty === "Easy"
       ? "bg-green-100 text-green-700 border-green-200"
