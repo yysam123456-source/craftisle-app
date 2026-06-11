@@ -3,34 +3,11 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Globe } from "lucide-react";
+import { ExternalLink, Globe, Zap, Shield, Clock, Users, Code, Sparkles, CheckCircle, HelpCircle } from "lucide-react";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
+import type { Resource } from "@/lib/fmhy-data";
 
-interface Resource {
-  id: string;
-  category: string;
-  categoryName?: string;
-  categoryIcon?: string;
-  name: string;
-  url: string;
-  description: string;
-  source?: string;
-  /** Public APIs 特有 */
-  auth?: string;
-  https?: boolean;
-  cors?: boolean;
-  /** Free-for-dev 特有 */
-  freeTier?: string;
-  /** Self-hosted 特有 */
-  isOpenSource?: boolean;
-  license?: string;
-  language?: string;
-  /** 通用 */
-  tags?: string[];
-  isFree?: boolean;
-}
-
-interface ResourceCardProps {
+interface EnrichedResourceCardProps {
   resource: Resource;
   showCategory?: boolean;
   variant?: "default" | "large";
@@ -53,111 +30,176 @@ function getFaviconUrl(url: string): string {
   }
 }
 
+/**
+ * 智能描述生成器 —— 根据数据源自动提取/生成最丰富的描述
+ */
 function buildRichDescription(resource: Resource): string {
   const parts: string[] = [];
 
-  // 基础描述
+  // 1. 基础描述（优先）
   if (resource.description && resource.description.trim().length > 5) {
     parts.push(resource.description.trim());
   }
 
-  // 根据数据源补充信息
+  // 2. free-for-dev: 从 freeTier 提取关键信息作为描述
+  if (resource.source === "free-for-dev" && resource.freeTier && resource.freeTier.trim().length > 10) {
+    const tier = resource.freeTier.trim();
+    // 提取前3条免费额度作为描述
+    const lines = tier.split(/\||\n/).map(l => l.trim()).filter(l => l.length > 5);
+    if (lines.length > 0 && parts.length === 0) {
+      // 没有description时，用freeTier生成摘要
+      const summary = lines.slice(0, 2).join(" · ");
+      parts.push(`Free tier includes: ${summary}${lines.length > 2 ? " and more..." : ""}`);
+    } else if (lines.length > 0) {
+      // 有description时，补充关键额度
+      const keyLine = lines[0];
+      if (keyLine.length < 100) {
+        parts.push(`Key free tier: ${keyLine}`);
+      }
+    }
+  }
+
+  // 3. public-apis: 认证和协议信息
   if (resource.source === "public-apis") {
     const apiInfo: string[] = [];
     if (resource.auth && resource.auth !== "No") {
-      apiInfo.push(`Authentication: ${resource.auth}`);
+      apiInfo.push(`Auth: ${resource.auth}`);
     } else if (resource.auth === "No") {
-      apiInfo.push("No authentication required");
+      apiInfo.push("No auth required");
     }
     if (resource.https !== undefined) {
-      apiInfo.push(resource.https ? "HTTPS supported" : "HTTP only");
+      apiInfo.push(resource.https ? "HTTPS" : "HTTP only");
     }
     if (resource.cors !== undefined) {
-      apiInfo.push(resource.cors ? "CORS enabled" : "CORS not supported");
+      apiInfo.push(resource.cors ? "CORS enabled" : "No CORS");
     }
     if (apiInfo.length > 0) {
       parts.push(apiInfo.join(" · "));
     }
   }
 
-  // free-for-dev: description为空时，从freeTier提取摘要
-  if (resource.source === "free-for-dev" && resource.freeTier && resource.freeTier.trim()) {
-    const tier = resource.freeTier.trim();
-    if (tier.length > 10) {
-      if (parts.length === 0) {
-        // 没有description时，提取前2条免费额度作为摘要
-        const lines = tier.split(/\||\n/).map(l => l.trim()).filter(l => l.length > 5);
-        const summary = lines.slice(0, 2).join(" · ");
-        parts.push(`Free tier includes: ${summary}${lines.length > 2 ? " and more..." : ""}`);
-      } else {
-        // 有description时，补充关键额度
-        parts.push(`Free tier: ${tier.slice(0, 180)}${tier.length > 180 ? "..." : ""}`);
-      }
-    }
-  }
-
+  // 4. awesome-selfhosted: 开源信息
   if (resource.source === "awesome-selfhosted") {
     const selfInfo: string[] = [];
     if (resource.isOpenSource) selfInfo.push("Open Source");
     if (resource.license) selfInfo.push(`License: ${resource.license}`);
-    if (resource.language) selfInfo.push(`Built with ${resource.language}`);
+    if (resource.language) selfInfo.push(`${resource.language}`);
+    if (resource.isSelfHosted) selfInfo.push("Self-hosted");
     if (selfInfo.length > 0) {
       parts.push(selfInfo.join(" · "));
     }
   }
 
-  // GitHub信息补充
+  // 5. GitHub 信息补充
   if (resource.githubStars && resource.githubStars > 0) {
     parts.push(`${resource.githubStars >= 1000 ? (resource.githubStars / 1000).toFixed(1) + "k" : resource.githubStars} GitHub stars`);
   }
 
-  // 兜底：用tags
+  // 6. 兜底：用tags
   if (parts.length === 0 && resource.tags && resource.tags.length > 0) {
     parts.push(resource.tags.join(" · "));
   }
 
-  // 最终兜底：用名称+类别生成一句话
+  // 7. 最终兜底：用名称+类别生成一句话
   if (parts.length === 0) {
-    const hostname = getHostname(resource.url);
-    parts.push(`${resource.name} — ${resource.categoryName || "free resource"} available at ${hostname}`);
+    parts.push(`${resource.name} — ${resource.categoryName || "free resource"} available at ${getHostname(resource.url)}`);
   }
 
   return parts.join(" · ");
 }
 
-function getFeatureBadges(resource: Resource): { label: string; variant: "default" | "secondary" | "outline" | "destructive" }[] {
-  const badges: { label: string; variant: "default" | "secondary" | "outline" | "destructive" }[] = [];
+/**
+ * 获取资源特性标签
+ */
+function getFeatureBadges(resource: Resource): { label: string; variant: "default" | "secondary" | "outline" | "destructive"; icon?: React.ReactNode }[] {
+  const badges: { label: string; variant: "default" | "secondary" | "outline" | "destructive"; icon?: React.ReactNode }[] = [];
 
-  if (resource.isFree) {
-    badges.push({ label: "Free", variant: "default" });
+  if (resource.isFree || resource.source === "free-for-dev") {
+    badges.push({ label: "Free", variant: "default", icon: <Zap className="h-3 w-3" /> });
   }
 
   if (resource.source === "public-apis") {
     if (resource.auth === "No") {
-      badges.push({ label: "No Auth", variant: "secondary" });
+      badges.push({ label: "No Auth", variant: "secondary", icon: <Shield className="h-3 w-3" /> });
     } else if (resource.auth) {
-      badges.push({ label: `Auth: ${resource.auth.replace(/`/g, "")}`, variant: "outline" });
+      badges.push({ label: resource.auth.replace(/`/g, ""), variant: "outline" });
     }
     if (resource.https) badges.push({ label: "HTTPS", variant: "secondary" });
     if (resource.cors) badges.push({ label: "CORS", variant: "secondary" });
   }
 
-  if (resource.source === "free-for-dev" && resource.freeTier && resource.freeTier.trim().length > 5) {
-    badges.push({ label: "Free Tier", variant: "default" });
+  if (resource.source === "free-for-dev" && resource.freeTier && resource.freeTier.trim().length > 10) {
+    badges.push({ label: "Free Tier", variant: "default", icon: <Sparkles className="h-3 w-3" /> });
   }
 
   if (resource.source === "awesome-selfhosted") {
-    if (resource.isOpenSource) badges.push({ label: "Open Source", variant: "default" });
+    if (resource.isOpenSource) badges.push({ label: "Open Source", variant: "default", icon: <Code className="h-3 w-3" /> });
+    if (resource.isSelfHosted) badges.push({ label: "Self-Hosted", variant: "secondary", icon: <Users className="h-3 w-3" /> });
     if (resource.license) badges.push({ label: resource.license, variant: "outline" });
     if (resource.language) badges.push({ label: resource.language, variant: "outline" });
+  }
+
+  if (resource.githubStars && resource.githubStars > 100) {
+    badges.push({ label: "⭐ Popular", variant: "secondary" });
   }
 
   return badges;
 }
 
-export function ResourceCard({ resource, showCategory = true, variant = "default" }: ResourceCardProps) {
+/**
+ * 提取 freeTier 关键条目（用于详情页展示）
+ */
+export function extractFreeTierHighlights(freeTier: string): string[] {
+  if (!freeTier || freeTier.trim().length < 5) return [];
+  const lines = freeTier.split(/\||\n/).map(l => l.trim()).filter(l => l.length > 5);
+  return lines.slice(0, 6);
+}
+
+/**
+ * 生成资源的一行摘要（用于列表页和SEO）
+ */
+export function generateResourceSummary(resource: Resource): string {
+  if (resource.description && resource.description.trim().length > 30) {
+    return resource.description.trim();
+  }
+
+  const hostname = getHostname(resource.url);
+  const category = resource.categoryName || resource.category;
+
+  if (resource.source === "free-for-dev" && resource.freeTier) {
+    const highlights = extractFreeTierHighlights(resource.freeTier);
+    if (highlights.length > 0) {
+      return `${resource.name} offers a generous free tier for developers including ${highlights[0]}. ${highlights.length > 1 ? `Also includes ${highlights[1]}.` : ""}`;
+    }
+  }
+
+  if (resource.source === "public-apis") {
+    const features = [];
+    if (resource.auth === "No") features.push("requires no authentication");
+    if (resource.https) features.push("supports HTTPS");
+    if (resource.cors) features.push("has CORS enabled");
+    if (features.length > 0) {
+      return `${resource.name} is a public API that ${features.join(", ")}.`;
+    }
+  }
+
+  if (resource.source === "awesome-selfhosted") {
+    const features = [];
+    if (resource.isOpenSource) features.push("open-source");
+    if (resource.isSelfHosted) features.push("self-hosted");
+    if (resource.language) features.push(`built with ${resource.language}`);
+    if (features.length > 0) {
+      return `${resource.name} is an ${features.join(", ")} solution for ${category}.`;
+    }
+  }
+
+  return `${resource.name} — a free ${category} resource available at ${hostname}.`;
+}
+
+export function EnrichedResourceCard({ resource, showCategory = true, variant = "default" }: EnrichedResourceCardProps) {
   const faviconUrl = getFaviconUrl(resource.url);
   const isLarge = variant === "large";
+  const badges = getFeatureBadges(resource);
 
   return (
     <Card
@@ -210,9 +252,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
                 </Link>
               </CardTitle>
               <div className="flex items-center flex-shrink-0 gap-0.5 mt-0.5">
-                {/* Star button */}
                 <StarButtonWrapper resourceId={resource.id} />
-                {/* External link */}
                 <a
                   href={resource.url}
                   target="_blank"
@@ -237,29 +277,43 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
 
       <CardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"}`}>
         {/* Rich Description */}
-        {(resource.description || resource.source) && (
-          <p
-            className={`text-muted-foreground leading-relaxed ${
-              isLarge ? "text-sm line-clamp-4" : "text-sm line-clamp-3"
-            }`}
-          >
-            {buildRichDescription(resource)}
-          </p>
-        )}
+        <p
+          className={`text-muted-foreground leading-relaxed ${
+            isLarge ? "text-sm line-clamp-4" : "text-sm line-clamp-3"
+          }`}
+        >
+          {buildRichDescription(resource)}
+        </p>
 
         {/* Feature Badges */}
-        {(() => {
-          const badges = getFeatureBadges(resource);
-          return badges.length > 0 ? (
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {badges.map((b, i) => (
-                <Badge key={i} variant={b.variant} className="text-[10px] px-1.5 py-0 h-5">
-                  {b.label}
-                </Badge>
-              ))}
+        {badges.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {badges.map((b, i) => (
+              <Badge key={i} variant={b.variant} className="text-[10px] px-1.5 py-0 h-5 flex items-center gap-0.5">
+                {b.icon}
+                {b.label}
+              </Badge>
+            ))}
+          </div>
+        )}
+
+        {/* freeTier 关键信息预览 */}
+        {resource.source === "free-for-dev" && resource.freeTier && (
+          <div className="mt-3 pt-3 border-t border-border/50">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1.5">
+              <Sparkles className="h-3 w-3 text-amber-500" />
+              <span className="font-medium">Free Tier Highlights</span>
             </div>
-          ) : null;
-        })()}
+            <ul className="space-y-1">
+              {extractFreeTierHighlights(resource.freeTier).slice(0, 2).map((line, i) => (
+                <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                  <CheckCircle className="h-3 w-3 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span className="line-clamp-1">{line}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Footer: URL + Visit button */}
         <div className="mt-4 flex items-center justify-between gap-2">
