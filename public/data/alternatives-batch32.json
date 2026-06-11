@@ -1,0 +1,974 @@
+{
+  "Evernote": {
+    "name": "Evernote",
+    "category": "Note Taking",
+    "description": "Evernote is a popular note-taking and organization app. While it has a free tier, it is heavily limited (2 devices, 60MB upload/month, no offline access). Paid plans start at $10.83/month (Personal) and $14.99/month (Professional), which many users find expensive for a note-taking app.",
+    "website": "https://evernote.com",
+    "painPoints": [
+      "Free plan limited to 2 devices and 60MB monthly upload — very restrictive",
+      "Personal plan at $10.83/month is expensive for a note-taking app",
+      "Professional at $14.99/month adds AI features but still feels overpriced",
+      "Offline access is paid-only (even on mobile)",
+      "Sync speed can be slow, especially on free tier",
+      "Data lock-in — exporting notes is clunky (ENEX format)"
+    ],
+    "whySwitch": "There are excellent free and cheaper alternatives to Evernote. Obsidian is free (with optional paid sync) and stores notes as plain Markdown files (future-proof). Joplin is 100% free and open-source. Notion (free tier) combines notes with databases and wikis. For most users, Evernote's paid plans are unnecessary when these alternatives exist.",
+    "alternatives": [
+      {
+        "name": "Obsidian",
+        "url": "https://obsidian.md",
+        "pricing": "Free for personal use; Sync $10/month; Publish $20/month",
+        "features": [
+          "Local-first: notes stored as Markdown files on your device",
+          "Bi-directional linking (backlinks) for knowledge graphs",
+          "Extensive plugin ecosystem (1000+ community plugins)",
+          "Graph view to visualize note connections",
+          "Supports huge vaults (10000+ notes)",
+          "Mobile apps with sync (paid) or via iCloud/Dropbox (free)"
+        ],
+        "pros": [
+          "Notes are plain Markdown files — you own them forever",
+          "Free for personal use (no monthly upload limits like Evernote free)",
+          "Bi-directional linking is powerful for building a knowledge base",
+          "Plugin ecosystem is incredible (kanban, calendaring, etc.)",
+          "Local-first means fast and works offline natively"
+        ],
+        "cons": [
+          "Sync between devices requires either manual setup (iCloud/Dropbox) or paid Obsidian Sync",
+          "Learning curve for new users (Markdown, plugins, settings)",
+          "Mobile apps are less polished than Evernote's",
+          "No collaboration features (not a team wiki)"
+        ],
+        "bestFor": "Personal knowledge management, researchers, and people who want future-proof Markdown notes",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Joplin",
+        "url": "https://joplinapp.com",
+        "pricing": "100% free and open-source; optional End-to-End Encryption (E2EE) add-on $",
+        "features": [
+          "Open-source note-taking app (Markdown-based)",
+          "End-to-End Encryption (E2EE) available",
+          "Sync via Dropbox, OneDrive, Nextcloud, or WebDAV",
+          "Web Clipper browser extension",
+          "Mobile apps (iOS, Android)",
+          "Import from Evernote (.enex)"
+        ],
+        "pros": [
+          "Completely free with no feature gating",
+          "Open-source and privacy-friendly",
+          "Syncs via your own cloud (Dropbox, OneDrive, etc.)",
+          "Good Evernote import (preserves notebooks and tags)",
+          "End-to-End Encryption available"
+        ],
+        "cons": [
+          "UI is functional but not as polished as Evernote or Notion",
+          "Sync setup requires connecting to cloud storage (slight technical step)",
+          "No collaboration features (single-user focused)",
+          "Web Clipper is less powerful than Evernote's"
+        ],
+        "bestFor": "Privacy-conscious users who want a free, open-source Evernote alternative",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Notion (free tier)",
+        "url": "https://notion.so",
+        "pricing": "Free for personal use; Plus $10/month; Business $18/month",
+        "features": [
+          "All-in-one workspace: notes, databases, wikis, project management",
+          "Blocks-based editor (drag-and-drop everything)",
+          "Templates galore (thousands of community templates)",
+          "Real-time collaboration",
+          "Web clipper and API",
+          "Mobile apps with offline access"
+        ],
+        "pros": [
+          "Free tier is very generous (unlimited pages and blocks for personal use)",
+          "Combines notes with databases — much more powerful than Evernote",
+          "Real-time collaboration built-in (great for shared knowledge bases)",
+          "Thousands of free templates",
+          "Active community and ecosystem"
+        ],
+        "cons": [
+          "Learning curve — the block-based system is different from traditional note apps",
+          "Can get slow with very large workspaces",
+          "Offline support is weaker than Obsidian or Joplin",
+          "Free tier has file upload limits (5MB per file)"
+        ],
+        "bestFor": "Teams, project managers, and people who want notes + databases + wikis in one tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Simplenote",
+        "url": "https://simplenote.com",
+        "pricing": "100% free (with optional $1.99/month for version history)",
+        "features": [
+          "Minimalist, distraction-free note-taking",
+          "Supports tags and pins",
+          "Version history (paid for extended history)",
+          "Cross-platform (Web, iOS, Android, macOS, Windows, Linux)",
+          "Markdown support",
+          "Open-source (simplenote-go on GitHub)"
+        ],
+        "pros": [
+          "Extremely simple — opens instantly, no bloat",
+          "Completely free for basic use",
+          "Cross-platform with seamless sync",
+          "Version history (even in free tier, 30 days)",
+          "Open-source backend"
+        ],
+        "cons": [
+          "Very basic — no images, no attachments, no rich text",
+          "No folders or notebooks (only tags)",
+          "No collaboration features",
+          "Not suitable for complex note organization"
+        ],
+        "bestFor": "People who want the simplest possible note-taking experience",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.2
+      },
+      {
+        "name": "Microsoft OneNote",
+        "url": "https://www.microsoft.com/en-us/microsoft-365/onenote/digital-note-taking-app",
+        "pricing": "Free (included with Microsoft account); desktop version free with Windows",
+        "features": [
+          "Free-form canvas (type anywhere, not just top-to-bottom)",
+          "Supports images, handwriting, audio recording",
+          "Integrates with Outlook and Office",
+          "Cloud-synced across all devices",
+          "OCR (Optical Character Recognition) for images",
+          "Share and collaborate in real-time"
+        ],
+        "pros": [
+          "Completely free — no paid tier at all (unlike Evernote)",
+          "Free-form canvas is unique — great for visual notes and diagrams",
+          "Excellent handwriting and drawing support (great for tablet users)",
+          "Deep integration with Microsoft Office ecosystem",
+          "Very generous — no device limit, no upload limit"
+        ],
+        "cons": [
+          "Search can be slow with large notebooks",
+          "Formatting is less precise than in a traditional note app",
+          "No Markdown support (uses rich text)",
+          "Can feel cluttered with the ribbon interface"
+        ],
+        "bestFor": "Microsoft ecosystem users, students, and tablet/pen users",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.3
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from Evernote is well-supported. Evernote allows exporting notebooks as .enex files, which can be imported into Joplin, Obsidian (via plugin), and Notion. The key is preserving your notebook structure and tags.",
+      "steps": [
+        "In Evernote, select notebooks → Export → ENEX format (with tags and attachments)",
+        "For Joplin: File → Import → Evernote (.enex) — preserves notebooks and tags",
+        "For Obsidian: install 'Evernote Converter' plugin or import via Joplin as intermediate",
+        "For Notion: use the Evernote importer in Notion (Settings → Import)",
+        "Re-create your tag structure and notebook links in the new tool",
+        "Cancel Evernote subscription after confirming all notes are accessible"
+      ],
+      "tips": [
+        "Joplin's Evernote import is the most reliable — if other tools fail, import to Joplin first, then export to Markdown for Obsidian",
+        "If you relied on Evernote's Web Clipper, Notion's Web Clipper is the closest replacement",
+        "Obsidian's Markdown files are future-proof — even if Obsidian dies, your notes are readable in any text editor",
+        "OneNote is the best free alternative if you're already in the Microsoft ecosystem — it's completely free with no device limits"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Will I lose my notes if I cancel Evernote?",
+        "a": "No — Evernote allows you to export your notes as .enex files before canceling. Even after canceling, you can still access your notes in read-only mode on the devices you've synced. However, you should export your notes as a backup before canceling."
+      },
+      {
+        "q": "What about Evernote's PDF annotation and document search?",
+        "a": "Obsidian with the 'Annotater' plugin, or Notion (with its PDF viewer), can handle PDF annotation. For document search within images (OCR), OneNote has excellent OCR built-in. Most alternatives handle PDFs well, though the workflow may be slightly different."
+      },
+      {
+        "q": "Is there a tool that works exactly like Evernote?",
+        "a": "Microsoft OneNote is the closest in terms of free-form note-taking and visual notes. Joplin is the closest in terms of notebook/tag structure. However, most modern alternatives (Obsidian, Notion) are actually more powerful than Evernote — they just have a different workflow."
+      }
+    ]
+  },
+  "Microsoft OneNote": {
+    "name": "Microsoft OneNote",
+    "category": "Note Taking",
+    "description": "Microsoft OneNote is a free-form digital notebook that is free for personal use. However, some users want alternatives because of its cluttered interface, sync issues, or because they don't use the Microsoft ecosystem. While OneNote itself is free, it's often compared against paid note-taking apps.",
+    "website": "https://www.microsoft.com/en-us/microsoft-365/onenote/digital-note-taking-app",
+    "painPoints": [
+      "Interface can feel cluttered and inconsistent across platforms",
+      "Sync issues — sometimes notes don't sync instantly across devices",
+      "Free-form canvas is either loved or hated — not suitable for structured note-taking",
+      "No Markdown support (uses rich text only)",
+      "Integration is deep with Microsoft Office, but weak for non-Microsoft users"
+    ],
+    "whySwitch": "If you don't like OneNote's free-form canvas or want Markdown support, there are excellent alternatives. Obsidian uses Markdown and is local-first. Notion combines notes with databases. Apple Notes is excellent for Apple users. For structured note-taking (outline-style), Logseq or Roam Research are better choices.",
+    "alternatives": [
+      {
+        "name": "Obsidian",
+        "url": "https://obsidian.md",
+        "pricing": "Free for personal use; Sync $10/month; Publish $20/month",
+        "features": [
+          "Local-first Markdown notes",
+          "Bi-directional linking",
+          "Graph view",
+          "1000+ plugins",
+          "Mobile apps"
+        ],
+        "pros": [
+          "Markdown-based (future-proof)",
+          "Local-first (fast, private)",
+          "Free for personal use",
+          "Powerful linking for knowledge graphs",
+          "Huge plugin ecosystem"
+        ],
+        "cons": [
+          "Sync requires setup or paid plan",
+          "Learning curve for Markdown",
+          "No real-time collaboration"
+        ],
+        "bestFor": "Knowledge workers, researchers, and Markdown enthusiasts",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Notion",
+        "url": "https://notion.so",
+        "pricing": "Free for personal use; Plus $10/month",
+        "features": [
+          "All-in-one workspace",
+          "Databases + notes",
+          "Real-time collaboration",
+          "Templates",
+          "Web clipper"
+        ],
+        "pros": [
+          "Very generous free tier",
+          "Combines notes with databases",
+          "Excellent for team collaboration",
+          "Thousands of free templates",
+          "Block-based editor is flexible"
+        ],
+        "cons": [
+          "Learning curve",
+          "Can be slow with large workspaces",
+          "Weaker offline support"
+        ],
+        "bestFor": "Teams, project managers, and all-in-one workspace seekers",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Apple Notes",
+        "url": "https://support.apple.com/guide/notes/welcome/icloud",
+        "pricing": "Free (included with macOS and iOS)",
+        "features": [
+          "Built into macOS and iOS",
+          "Supports text, images, sketches, checklists",
+          "Folder organization with sub-folders",
+          "Collaboration via iCloud sharing",
+          "Mentions and hashtags"
+        ],
+        "pros": [
+          "Already on your Mac/iPad/iPhone — no install needed",
+          "Fast, native, and reliable",
+          "Good for quick notes and checklists",
+          "Syncs via iCloud seamlessly",
+          "Supports PDF annotation and document scanning"
+        ],
+        "cons": [
+          "Apple-only (no Windows or Android official app)",
+          "No Markdown support",
+          "Less powerful than Obsidian or Notion for knowledge management",
+          "No templates or advanced organization"
+        ],
+        "bestFor": "Apple ecosystem users who want simple, fast note-taking",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Logseq",
+        "url": "https://logseq.com",
+        "pricing": "Free and open-source; Pro $4/month for sync and publishing",
+        "features": [
+          "Outliner-style note-taking (bullet points, foldable blocks)",
+          "Bi-directional linking (like Obsidian)",
+          "Local-first (Markdown files)",
+          "Whiteboard for visual thinking",
+          "Journaling feature (daily notes)"
+        ],
+        "pros": [
+          "Outliner style is excellent for structured thinking",
+          "Local-first and private (Markdown files)",
+          "Open-source and free",
+          "Bi-directional linking like Obsidian",
+          "Whiteboard feature for visual notes"
+        ],
+        "cons": [
+          "Outliner style isn't for everyone (preference thing)",
+          "Mobile apps are newer and less polished",
+          "Smaller plugin ecosystem than Obsidian",
+          "Sync requires either manual setup or Logseq Pro"
+        ],
+        "bestFor": "Structured thinkers who prefer outline-style notes over free-form",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Google Keep",
+        "url": "https://keep.google.com",
+        "pricing": "Free (with Google account)",
+        "features": [
+          "Simple note-taking with color-coded notes",
+          "Checklists, reminders, and labels",
+          "Speech-to-text",
+          "Integrates with Google Docs and Google Drive",
+          "Mobile apps (Android and iOS)"
+        ],
+        "pros": [
+          "Extremely simple and fast",
+          "Free with any Google account",
+          "Good for quick notes and reminders",
+          "Color-coded notes are visually organizing",
+          "Syncs instantly across all devices"
+        ],
+        "cons": [
+          "Very basic — no rich formatting, no Markdown",
+          "No folder structure (only labels and colors)",
+          "Google account required",
+          "Not suitable for long-form notes or knowledge management"
+        ],
+        "bestFor": "Quick notes, reminders, and simple checklists",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 3.9
+      }
+    ],
+    "migrationGuide": {
+      "overview": "OneNote notes can be exported as .onepkg files, but most alternatives don't import this format directly. The best approach is to export your OneNote notebooks as PDF or use OneNote's 'Copy Text from Picture' and manual copying for smaller note collections.",
+      "steps": [
+        "For small note collections: manually copy-paste or use OneNote's export to PDF, then re-create in the new tool",
+        "For large collections: use OneNote's 'Export → PDF' for each section, then use the PDFs as reference while re-creating in Markdown in Obsidian",
+        "For structured migration: export OneNote pages as .mht (web archive), then convert to Markdown using Pandoc",
+        "Set up your new tool's folder/notebook structure to match your OneNote organization",
+        "Use Obsidian's 'Daily Notes' or Logseq's 'Journals' if you used OneNote for daily notes"
+      ],
+      "tips": [
+        "If you have many notes, prioritize migrating your most-used notebooks first — you can keep OneNote installed as read-only for the rest",
+        "Obsidian's 'Tags' pane is a good replacement for OneNote's tag search",
+        "For handwritten notes in OneNote: export as images, then use Obsidian or Notion to embed them",
+        "Notion's 'Import from Evernote' won't help with OneNote, but you can share OneNote pages to Notion via 'Copy Link' and embed as web pages"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I export my OneNote notes to use in other apps?",
+        "a": "OneNote allows exporting notebooks as .onepkg (OneNote format), .pdf, or .mht (web archive). For migrating to Markdown-based tools (Obsidian, Logseq), export to .mht and use Pandoc to convert to Markdown. For small collections, manual copy-paste is often the simplest path."
+      },
+      {
+        "q": "What if I only use OneNote for handwritten notes on my iPad?",
+        "a": "If you use OneNote primarily for handwriting, consider Apple Notes (if on iPad), GoodNotes (one-time purchase, excellent for handwriting), or Notability. These are much better for handwriting and PDF annotation than OneNote."
+      },
+      {
+        "q": "Is there a free alternative with handwriting support like OneNote?",
+        "a": "Apple Notes (free, excellent handwriting) and Google Keep (free, simpler) both support handwriting on mobile. For advanced handwriting and PDF annotation, GoodNotes ($9.99 one-time) or Notability (subscription or one-time) are the best iPad alternatives to OneNote's handwriting features."
+      }
+    ]
+  },
+  "Cubase": {
+    "name": "Cubase",
+    "category": "Music Production",
+    "description": "Cubase is a professional Digital Audio Workstation (DAW) developed by Steinberg. It is widely used in music production, film scoring, and game audio. Pricing starts at $99.99 (Elements) and goes up to $579.99 (Pro), which is a significant investment for hobbyist musicians.",
+    "website": "https://www.steinberg.net/cubase/",
+    "painPoints": [
+      "Expensive: $99.99 (Elements) to $579.99 (Pro) — steep for beginners",
+      "Steinberg's licensing system (Steinberg Licenser) is clunky and hardware-dongle-based for some versions",
+      "Resource-heavy — requires a powerful computer for large projects",
+      "Steep learning curve for beginners",
+      "No native Linux version"
+    ],
+    "whySwitch": "Excellent free and cheaper DAWs exist. Reaper is only $60 (discounted) and is incredibly powerful. Audacity (free, open-source) is great for simple recording and editing. LMMS (free, open-source) is good for beat-making and electronic music. Cakewalk by BandLab is a full-featured DAW that is now completely free. For many producers, these alternatives cover 90% of what they need.",
+    "alternatives": [
+      {
+        "name": "Reaper",
+        "url": "https://www.reaper.fm",
+        "pricing": "$60 discounted license (personal/hobbyist use); $225 commercial license",
+        "features": [
+          "Full-featured DAW with unlimited tracks and effects",
+          "Supports VST, VST3, AU, DX, and JS plugins",
+          "Extremely customizable (themes, scripts, actions)",
+          "Very lightweight — runs on old hardware",
+          "Regular updates (often monthly)",
+          "Excellent MIDI editing and scoring"
+        ],
+        "pros": [
+          "Incredible value — $60 for a professional-grade DAW",
+          "Lightweight and fast (can run on older computers)",
+          "Unlimited evaluation period (just a nag screen at startup)",
+          "Extremely customizable (you can script almost anything)",
+          "Supports all major plugin formats"
+        ],
+        "cons": [
+          "Interface is functional but not as polished as Cubase or Logic Pro",
+          "Learning curve for customization (though defaults are fine)",
+          "No bundled virtual instruments (unlike Cubase Pro)",
+          "MIDI editor is powerful but looks dated"
+        ],
+        "bestFor": "Budget-conscious musicians who want professional features without the high price",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Cakewalk by BandLab",
+        "url": "https://www.bandlab.com/products/cakewalk",
+        "pricing": "100% free (was previously $500+ as 'Sonar')",
+        "features": [
+          "Full-featured DAW (was a premium product, now free)",
+          "Supports VST3 plugins",
+          "Advanced MIDI editing",
+          "MixRecall (save and recall mix states)",
+          "Integrated onboarding and tours",
+          "Cloud integration with BandLab"
+        ],
+        "pros": [
+          "Completely free — was a $500+ DAW (Sonar Platinum)",
+          "Very capable — used to be an industry-standard DAW",
+          "Good MIDI editing and scoring features",
+          "Integrated with BandLab's cloud collaboration",
+          "No feature gating — everything is free"
+        ],
+        "cons": [
+          "Windows-only (no macOS or Linux)",
+          "Interface is showing its age in places",
+          "Smaller community than Reaper or Audacity",
+          "Some advanced features require learning the workflow"
+        ],
+        "bestFor": "Windows users who want a full-featured free DAW",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "LMMS (Linux MultiMedia Studio)",
+        "url": "https://lmms.io",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Free, open-source DAW focused on electronic music and beat-making",
+          "Built-in instruments and effects (Triple Oscillator, Zasf DSP plugins)",
+          "Piano roll editor (excellent for MIDI composition)",
+          "Supports VST plugins (on Windows; limited on macOS/Linux)",
+          "Song Editor and Beat+Bassline Editor",
+          "Cross-platform (Windows, macOS, Linux)"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Great for electronic music, hip-hop beats, and loop-based production",
+          "Built-in instruments — no need to buy virtual instruments immediately",
+          "Cross-platform (Windows, macOS, Linux)",
+          "Active community and tutorials"
+        ],
+        "cons": [
+          "Not ideal for recording live instruments (audio recording is limited)",
+          "VST support is limited on macOS and Linux",
+          "Interface is functional but not as polished as paid DAWs",
+          "No ARR support (cannot open Cubase/Ableton project files)"
+        ],
+        "bestFor": "Electronic music producers, beat-makers, and beginners on a budget",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.2
+      },
+      {
+        "name": "Audacity",
+        "url": "https://www.audacityteam.org",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Simple but capable audio recording and editing",
+          "Supports VST plugins",
+          "Multi-track editing",
+          "Export to MP3, WAV, FLAC, OGG",
+          "Spectrogram view for audio analysis",
+          "Cross-platform (Windows, macOS, Linux)"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Very easy to learn for basic recording and editing",
+          "Cross-platform",
+          "Good for podcasts, voice recording, and simple music editing",
+          "Large community and many tutorials"
+        ],
+        "cons": [
+          "Not a full DAW — no MIDI sequencing, no virtual instruments",
+          "Interface is dated",
+          "Not suitable for complex music production (no VSTi support natively)",
+          "Destructive editing (most operations modify the original audio)"
+        ],
+        "bestFor": "Podcasters, voice recording, and simple audio editing",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4
+      },
+      {
+        "name": "Bitwig Studio (modern alternative, cheaper than Cubase Pro)",
+        "url": "https://www.bitwig.com",
+        "pricing": "€399 (standard); €599 (pro); 30-day free trial",
+        "features": [
+          "Modern DAW with a unique modulation system",
+          "Excellent for electronic music and sound design",
+          "Cross-platform (Windows, macOS, Linux)",
+          "Built-in instruments and effects",
+          "Clip-based launcher (like Ableton Live's Session View)",
+          "Regular updates with new features"
+        ],
+        "pros": [
+          "Modern, innovative workflow (modulation system is unique)",
+          "Linux support (rare among professional DAWs)",
+          "Excellent for electronic music and experimental sound design",
+          "Clip launcher is great for live performance",
+          "Clean, modern interface"
+        ],
+        "cons": [
+          "More expensive than Reaper or Cakewalk ($399+)",
+          "Less suitable for traditional linear recording (film scoring, etc.)",
+          "Smaller community than Ableton or Cubase",
+          "No VST3 support on Linux (only VST2)"
+        ],
+        "bestFor": "Electronic music producers and sound designers who want a modern, innovative DAW",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.4
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from Cubase to another DAW involves re-creating your projects in the new tool. There's no direct project file conversion. The best approach is to export your Cubase tracks as audio (WAV/FLAC) and import them into the new DAW, then re-add MIDI data and effects.",
+      "steps": [
+        "Export each Cubase track as a separate WAV/FLAC audio file (with effects baked in or not, depending on your needs)",
+        "If you have MIDI tracks, export the MIDI data as .mid files and import into the new DAW",
+        "Set up your new DAW's project structure (tracks, routing, groups)",
+        "Import the audio files and MIDI files into the new DAW",
+        "Re-create any Cubase-specific effects or processing using the new DAW's built-in effects or third-party VSTs",
+        "For future projects, start working directly in the new DAW"
+      ],
+      "tips": [
+        "Reaper's $60 license is the best value in DAWs — even if you keep Cubase for some projects, Reaper is worth having as a backup",
+        "If you use Cubase primarily for MIDI composition, Reaper and Bitwig both have excellent MIDI editors",
+        "Cakewalk is the best free alternative if you're on Windows — it was a premium DAW (Sonar) that is now completely free",
+        "LMMS is great for beat-making and electronic music, but it's not a full replacement for Cubase's recording and mixing capabilities"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my Cubase project files (.cpr) in other DAWs?",
+        "a": "No — there's no direct project file conversion between DAWs. You need to export your Cubase tracks as audio (WAV) and MIDI, then import them into the new DAW. Some third-party tools claim to convert project files, but they're unreliable. The cleanest approach is audio/MIDI export."
+      },
+      {
+        "q": "What if I have third-party VST plugins I bought for Cubase?",
+        "a": "VST plugins are generally compatible across all DAWs that support VST. Reaper, Cakewalk, Bitwig, and LMMS (on Windows) all support VST plugins. Your plugin licenses are separate from Cubase — you can use them in any compatible DAW."
+      },
+      {
+        "q": "Is there a free DAW that's as powerful as Cubase?",
+        "a": "Cakewalk by BandLab is the closest — it was a premium DAW (Sonar Platinum, $500+) that is now completely free. It has advanced MIDI editing, mixing, and scoring features. For electronic music, LMMS is free and capable. For overall value, Reaper ($60) is arguably more powerful than Cubase for most use cases."
+      }
+    ]
+  },
+  "Ableton Live": {
+    "name": "Ableton Live",
+    "category": "Music Production",
+    "description": "Ableton Live is a popular DAW known for its unique Session View (clip launcher) and excellent live performance capabilities. Pricing starts at $99 (Intro), $449 (Standard), and $749 (Suite). The high price of Standard and Suite puts it out of reach for many bedroom producers.",
+    "website": "https://www.ableton.com",
+    "painPoints": [
+      "Expensive: $449 (Standard), $749 (Suite) — significant investment",
+      "Intro ($99) is too limited (16 audio tracks, 16 MIDI tracks) for serious production",
+      "No notation view (score editor) — unlike Cubase, Logic Pro, or Musescore",
+      "Resource-heavy — Session View with many clips can tax older computers",
+      "Max for Live (included in Suite) has a steep learning curve"
+    ],
+    "whySwitch": "Bitwig Studio ($399) offers a similar clip-launching workflow and is cheaper than Ableton Standard. Reaper ($60) is incredibly powerful and lightweight. For live performance specifically, there's also Maschine+ (hardware) or even a simple setup with a launchpad and free software. Many producers find that Bitwig or Reaper covers 90% of what they use Ableton for.",
+    "alternatives": [
+      {
+        "name": "Bitwig Studio",
+        "url": "https://www.bitwig.com",
+        "pricing": "€399 (standard); €599 (pro); 30-day free trial",
+        "features": [
+          "Clip launcher (similar to Ableton's Session View)",
+          "Modern modulation system (unique to Bitwig)",
+          "Cross-platform (Windows, macOS, Linux)",
+          "Built-in instruments and effects",
+          "Excellent for sound design and electronic music",
+          "Regular updates"
+        ],
+        "pros": [
+          "Closest workflow to Ableton Live (clip launching, session view)",
+          "Cheaper than Ableton Standard ($399 vs $449)",
+          "Linux support (rare among professional DAWs)",
+          "Modern, innovative modulation system",
+          "Clean, modern interface"
+        ],
+        "cons": [
+          "More expensive than Reaper ($399 vs $60)",
+          "Smaller community than Ableton",
+          "Less suitable for traditional linear recording",
+          "No notation view (like Ableton)"
+        ],
+        "bestFor": "Ableton users who want a similar workflow at a lower price, and Linux users",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Reaper",
+        "url": "https://www.reaper.fm",
+        "pricing": "$60 discounted (personal); $225 commercial",
+        "features": [
+          "Full-featured DAW",
+          "Supports all plugin formats",
+          "Lightweight and fast",
+          "Unlimited tracks and effects",
+          "Customizable"
+        ],
+        "pros": [
+          "Incredible value at $60",
+          "Lightweight — runs on old hardware",
+          "Unlimited evaluation (nag screen only)",
+          "Supports all major plugin formats",
+          "Extremely customizable"
+        ],
+        "cons": [
+          "No clip launcher (unlike Ableton's Session View)",
+          "Interface is functional, not beautiful",
+          "No built-in instruments (unlike Ableton Suite)",
+          "Learning curve for customization"
+        ],
+        "bestFor": "Budget-conscious musicians who want professional features",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Renoise (tracker-style DAW, unique workflow)",
+        "url": "https://www.renoise.com",
+        "pricing": "€78 one-time (all features included); demo available",
+        "features": [
+          "Tracker-style DAW (unique workflow — row-based sequencing)",
+          "Built-in instruments and effects",
+          "Supports VST plugins",
+          "Cross-platform (Windows, macOS, Linux)",
+          "Sampler and phrase editor",
+          "Automation and modulation"
+        ],
+        "pros": [
+          "Unique workflow — great for beat-making and chiptune",
+          "One-time purchase (€78) for all features (no tiers)",
+          "Cross-platform including Linux",
+          "Built-in instruments and effects",
+          "Good for old-school tracker fans"
+        ],
+        "cons": [
+          "Tracker workflow has a steep learning curve if you're used to piano-roll DAWs",
+          "Not suitable for traditional recording (no Arranger like Ableton)",
+          "Smaller community than Ableton or Reaper",
+          "Interface is functional but dated"
+        ],
+        "bestFor": "Electronic music producers who want a unique tracker workflow",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4
+      },
+      {
+        "name": "Cakewalk by BandLab",
+        "url": "https://www.bandlab.com/products/cakewalk",
+        "pricing": "100% free",
+        "features": [
+          "Full-featured DAW (former Sonar Platinum)",
+          "VST3 support",
+          "Advanced MIDI editing",
+          "MixRecall",
+          "Cloud integration"
+        ],
+        "pros": [
+          "Completely free (was $500+)",
+          "Full-featured — is a premium DAW",
+          "Good MIDI and scoring features",
+          "Windows-only but very capable",
+          "No feature gating"
+        ],
+        "cons": [
+          "Windows-only",
+          "No clip launcher (unlike Ableton Session View)",
+          "Interface is showing its age",
+          "Smaller community than Reaper"
+        ],
+        "bestFor": "Windows users who want a free, full-featured DAW",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "LMMS",
+        "url": "https://lmms.io",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Free DAW for electronic music",
+          "Built-in instruments",
+          "Piano roll editor",
+          "VST support (Windows)",
+          "Cross-platform"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Good for electronic music and beat-making",
+          "Built-in instruments",
+          "Cross-platform",
+          "Active community"
+        ],
+        "cons": [
+          "Not a full DAW (limited audio recording)",
+          "VST support limited on macOS/Linux",
+          "Interface is functional, not polished",
+          "No clip launcher (unlike Ableton)"
+        ],
+        "bestFor": "Beginners and electronic music producers on a budget",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.2
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Like Cubase, Ableton Live project files (.als) can't be opened in other DAWs. You need to export your tracks as audio (WAV/FLAC) and MIDI, then import into the new DAW. For clip-launching workflows, Bitwig is the closest alternative.",
+      "steps": [
+        "Open your Ableton project and export each track as WAV/FLAC (with or without effects, depending on your needs)",
+        "Export MIDI clips as .mid files",
+        "Set up your new DAW (Bitwig is closest for clip launching; Reaper for traditional production)",
+        "Import audio and MIDI files into the new DAW",
+        "Re-create Ableton-specific effects using the new DAW's built-in effects or VSTs",
+        "For future projects, start working directly in the new DAW"
+      ],
+      "tips": [
+        "Bitwig Studio is the closest alternative to Ableton's clip-launching workflow — if you love Session View, try Bitwig first",
+        "Reaper is incredible value at $60 — even if you keep Ableton for live performance, Reaper is worth having for production",
+        "If you use Ableton primarily for live performance with a clip launcher, consider adding a hardware clip launcher (like Novation Launchpad) and using free software like QMidiLab for Linux",
+        "Cakewalk is free and full-featured — if you're on Windows and don't need clip launching, it's an excellent alternative"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my Ableton project files (.als) in other DAWs?",
+        "a": "No — there's no direct project file conversion. You need to export your Ableton tracks as audio (WAV) and MIDI, then import them into the new DAW. Bitwig can import some Ableton clip arrangements, but it's not seamless."
+      },
+      {
+        "q": "What about my Ableton packs and instruments (Wavetable, Operator, etc.)?",
+        "a": "Ableton's built-in instruments and packs are exclusive to Ableton. You'll need to find alternatives (VST plugins) for those sounds. Bitwig has its own built-in instruments (POLYSYNTH, THE GRID) that can replace some Ableton instruments. For free alternatives, check out the built-in instruments in LMMS or free VSTs from Spitfire LABS, Vital, etc."
+      },
+      {
+        "q": "Is there a free DAW with a clip launcher like Ableton?",
+        "a": "No free DAW has a clip launcher exactly like Ableton's Session View. Bitwig ($399) is the closest. For live performance on a budget, consider using a hardware clip launcher (Novation Launchpad) with free software, or use Ableton Live Intro ($99) which includes Session View with limitations."
+      }
+    ]
+  },
+  "Pro Tools": {
+    "name": "Pro Tools",
+    "category": "Music Production",
+    "description": "Pro Tools is the industry-standard DAW for professional recording studios, film scoring, and post-production. It uses a subscription model: $29.99/month (Artist), $79.99/month (Studio), or $99.99/month (Flex). Many home studio owners and indie producers find the subscription cost unjustifiable.",
+    "website": "https://www.avid.com/pro-tools",
+    "painPoints": [
+      "Expensive subscription: $29.99/month (Artist) to $99.99/month (Flex)",
+      "Perpetual license option is very expensive ($599 for Pro Tools Studio perpetual)",
+      "Resource-heavy — requires powerful hardware and often an Avid audio interface for low latency",
+      "Steep learning curve, especially for those used to other DAWs",
+      "No MIDI notation view (score editor) in many versions",
+      "Collaboration (Pro Tools Clud) requires additional subscription"
+    ],
+    "whySwitch": "Pro Tools is industry-standard for a reason, but for home studios and indie producers, it's overkill. Reaper ($60) is incredibly powerful and lightweight. Cubase (one-time purchase) and Logic Pro ($199 one-time, macOS only) are both excellent. For film scoring specifically, Cubase and Logic Pro have better scoring features than Pro Tools. Unless you're working in a professional studio that requires Pro Tools, you can switch to a cheaper or one-time-purchase DAW.",
+    "alternatives": [
+      {
+        "name": "Reaper",
+        "url": "https://www.reaper.fm",
+        "pricing": "$60 discounted (personal); $225 commercial",
+        "features": [
+          "Full-featured DAW",
+          "Lightweight",
+          "Unlimited tracks",
+          "VST support",
+          "Customizable"
+        ],
+        "pros": [
+          "Incredible value ($60 vs $29.99/month subscription)",
+          "Lightweight and fast",
+          "No subscription — one-time payment",
+          "Supports all major plugin formats",
+          "Unlimited evaluation (nag screen only)"
+        ],
+        "cons": [
+          "Interface is functional, not beautiful",
+          "No built-in instruments (unlike Pro Tools)",
+          "Learning curve for customization",
+          "No notation view (unlike Cubase or Logic Pro)"
+        ],
+        "bestFor": "Budget-conscious musicians and home studio owners",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Logic Pro (macOS only)",
+        "url": "https://www.apple.com/logic-pro/",
+        "pricing": "$199 one-time (includes ALL features — no tiers!)",
+        "features": [
+          "Full-featured DAW for macOS",
+          "Includes professional virtual instruments and effects",
+          "Score editor (notation view)",
+          "Dolby Atmos support",
+          "Live Loops (clip launcher similar to Ableton)",
+          "Spatial Audio support"
+        ],
+        "pros": [
+          "One-time purchase ($199) includes everything — no subscriptions, no tiers",
+          "Excellent built-in virtual instruments and effects (Drumer, Alchemy, Sculpture)",
+          "Score editor for music notation",
+          "Live Loops for clip launching",
+          "Great for film scoring (includes Logic Pro Score editor)"
+        ],
+        "cons": [
+          "macOS-only (no Windows or Linux)",
+          "Interface is less customizable than Reaper",
+          "No Linux support (unlike Bitwig or Reaper)",
+          "Some advanced Pro Tools features (AAX DSP, HDX) are unavailable"
+        ],
+        "bestFor": "macOS users who want a professional DAW with all features included",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Cubase (one-time purchase)",
+        "url": "https://www.steinberg.net/cubase/",
+        "pricing": "$99.99 (Elements); $369.99 (Artist); $579.99 (Pro) — one-time",
+        "features": [
+          "Full-featured DAW",
+          "Score editor (Pro version)",
+          "VariAudio (pitch correction)",
+          "Channel Strip",
+          "VST3 support"
+        ],
+        "pros": [
+          "One-time purchase (no subscription)",
+          "Excellent scoring and notation features (Pro version)",
+          "VariAudio is powerful for pitch correction",
+          "Used in professional studios (though less than Pro Tools)",
+          "Cross-platform (Windows, macOS)"
+        ],
+        "cons": [
+          "More expensive than Reaper ($99.99+ vs $60)",
+          "Steinberg Licenser is clunky",
+          "Interface can feel dated in places",
+          "Resource-heavy on older computers"
+        ],
+        "bestFor": "Composers, film scorers, and those who need notation features",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Studio One (PreSonus)",
+        "url": "https://www.presonus.com/studio-one/",
+        "pricing": "$99.95 (Artist); $399.95 (Professional) — one-time",
+        "features": [
+          "Modern DAW with intuitive drag-drop workflow",
+          "Scratch Pads (alternative song arrangements)",
+          "Melodyne Essential included (Artist and above)",
+          "VST3, AU, AAX support",
+          "Score editor (Professional)"
+        ],
+        "pros": [
+          "Intuitive drag-drop workflow (easier than Pro Tools for beginners)",
+          "One-time purchase (no subscription)",
+          "Melodyne Essential included (great for pitch correction)",
+          "Scratch Pads for trying alternative arrangements",
+          "Good for both recording and electronic music"
+        ],
+        "cons": [
+          "More expensive than Reaper ($99.95+ vs $60)",
+          "Smaller community than Pro Tools or Ableton",
+          "Some advanced features only in Professional version",
+          "No Linux support"
+        ],
+        "bestFor": "Beginners and intermediate producers who want an intuitive DAW",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Audacity (free, for simple recording)",
+        "url": "https://www.audacityteam.org",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Simple audio recording and editing",
+          "Multi-track",
+          "VST support",
+          "Export to MP3, WAV, FLAC",
+          "Cross-platform"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Easy to learn for basic recording",
+          "Cross-platform",
+          "Good for podcasts and voice recording",
+          "Large community"
+        ],
+        "cons": [
+          "Not a full DAW (no MIDI, no virtual instruments)",
+          "Destructive editing",
+          "Interface is dated",
+          "Not suitable for complex music production"
+        ],
+        "bestFor": "Podcasters, voice recording, and simple audio editing",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Pro Tools project files (.ptx) can't be opened in other DAWs. You need to export your Pro Tools tracks as audio (WAV/FLAC at the desired sample rate/depth) and import them into the new DAW. For MIDI data, export as .mid files. The hardest part is re-creating Pro Tools-specific effects and routing.",
+      "steps": [
+        "Open your Pro Tools session and export each track as WAV/FLAC (bounce to disk)",
+        "If you have MIDI tracks, export as .mid files",
+        "Set up your new DAW (Reaper, Logic Pro, Cubase, or Studio One)",
+        "Import audio and MIDI files into the new DAW",
+        "Re-create Pro Tools-specific effects using the new DAW's built-in effects or third-party AAX/VST/AU plugins",
+        "For future projects, start working directly in the new DAW"
+      ],
+      "tips": [
+        "Reaper's $60 license is the best value — even if you occasionally need Pro Tools for collaboration, Reaper can handle 99% of production tasks",
+        "Logic Pro ($199 one-time) is the best value for macOS users — it includes everything (no tiers, no subscriptions)",
+        "If you collaborate with studios that use Pro Tools, consider keeping a subscription for those specific projects — use Reaper or Logic for everything else",
+        "Pro Tools' AAX plugin format is proprietary — if you own AAX plugins, they won't work in other DAWs. Look for VST/AU versions of those plugins"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my Pro Tools project files (.ptx) in other DAWs?",
+        "a": "No — there's no direct project file conversion. You need to export your Pro Tools tracks as audio (WAV) and MIDI, then import them into the new DAW. Some third-party tools claim to convert, but they're unreliable."
+      },
+      {
+        "q": "What if I need to collaborate with studios that use Pro Tools?",
+        "a": "You have three options: (1) Keep a Pro Tools subscription for those specific collaborations, (2) Export your tracks as audio stems and send them to the studio (they can import into their Pro Tools session), or (3) Use Reaper or Logic Pro for your work and only use Pro Tools at the studio."
+      },
+      {
+        "q": "Is Pro Tools really necessary for professional work?",
+        "a": "It depends. Pro Tools is the industry standard in major recording studios and post-production houses. If you're working in those environments, you need Pro Tools. For home studios, indie production, and even many professional film/game scoring projects, other DAWs (Reaper, Logic Pro, Cubase) are perfectly acceptable and often preferred for their workflow advantages."
+      }
+    ]
+  }
+}
