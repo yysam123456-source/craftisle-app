@@ -29,6 +29,7 @@ interface Resource {
   tags?: string[];
   isFree?: boolean;
   githubStars?: number;
+  hasReview?: boolean;
 }
 
 interface ResourceCardProps {
@@ -59,19 +60,20 @@ function getFaviconUrl(url: string): string {
  * 如果没有丰富信息，点击卡片直接跳转外部网站
  */
 function hasRichInfo(resource: Resource): boolean {
-  const desc = resource.description || "";
-  // 描述足够长（>80字符，大概2-3句话以上）
-  if (desc.length > 80) return true;
-  // 有 freeTier 详细信息
-  if (resource.freeTier && resource.freeTier.length > 20) return true;
-  // 有 API 规格信息
-  if (resource.auth || resource.https !== undefined || resource.cors !== undefined) return true;
-  // 有自托管详细信息
-  if (resource.license || resource.language || resource.isOpenSource) return true;
-  // 有标签
-  if (resource.tags && resource.tags.length > 0) return true;
-  // 有 GitHub stars
+  // 有 AI Review 数据 → 详情页有价值
+  if (resource.hasReview) return true;
+  // 有 GitHub stars 数据 → 详情页有价值
   if (resource.githubStars && resource.githubStars > 0) return true;
+  // 有 freeTier 详细信息 → 详情页有价值
+  if (resource.freeTier && resource.freeTier.length > 20) return true;
+  // 有 API 规格信息 → 详情页有价值
+  if (resource.auth || resource.https !== undefined || resource.cors !== undefined) return true;
+  // 有自托管详细信息 → 详情页有价值
+  if (resource.license || resource.language || resource.isOpenSource) return true;
+  // 有标签 → 详情页有价值
+  if (resource.tags && resource.tags.length > 0) return true;
+  // 描述很长（>300字符）→ 详情页有价值
+  if ((resource.description || "").length > 300) return true;
   return false;
 }
 

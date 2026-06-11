@@ -6,6 +6,33 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 
+// ── Review lookup (lazy-loaded) ────────────────────
+
+let _reviewLookup: Set<string> | null = null;
+
+function getReviewLookup(): Set<string> {
+  if (_reviewLookup) return _reviewLookup;
+  _reviewLookup = new Set<string>();
+  try {
+    const manifestPath = join(process.cwd(), "public", "data", "reviews", "_manifest.json");
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+    for (const entry of manifest.reviews || []) {
+      if (entry.resourceId) _reviewLookup.add(entry.resourceId);
+      if (entry.resourceName) _reviewLookup.add(entry.resourceName.toLowerCase());
+    }
+  } catch {
+    // ignore — no reviews available
+  }
+  return _reviewLookup;
+}
+
+function hasReviewFor(resource: { id?: string; name?: string }): boolean {
+  const lookup = getReviewLookup();
+  if (resource.id && lookup.has(resource.id)) return true;
+  if (resource.name && lookup.has(resource.name.toLowerCase())) return true;
+  return false;
+}
+
 // ── Types ──────────────────────────────────────────
 
 export interface Resource {
@@ -40,6 +67,8 @@ export interface Resource {
   /** 通用 */
   tags?: string[];
   isFree?: boolean;
+  /** 是否有 AI Review */
+  hasReview?: boolean;
 }
 
 export interface Category {
@@ -91,6 +120,7 @@ function loadFmhyResources(): Resource[] {
             ...r,
             source: "fmhy",
             category: r.category || "uncategorized",
+            hasReview: hasReviewFor(r),
           });
         }
       }
@@ -115,7 +145,7 @@ function loadSourceResources(source: string): Resource[] {
     for (const r of (data.resources || [])) {
       if (!seen.has(r.id)) {
         seen.add(r.id);
-        resources.push({ ...r, source });
+        resources.push({ ...r, source, hasReview: hasReviewFor(r) });
       }
     }
     _cachedBySource[source] = resources;
@@ -245,23 +275,28 @@ export function getHotResources(limit = 8): Resource[] {
     const raw = readFileSync(filePath, "utf-8");
     const data = JSON.parse(raw);
 
-    // 构建 name+category -> id 的查找表
+    // 构建 name+category -> full resource 的查找表
     const all = getAllResources();
-    const idLookup = new Map<string, string>();
+    const resourceLookup = new Map<string, Resource>();
     for (const r of all) {
       const key = `${r.category}|${r.name}`;
-      if (!idLookup.has(key)) {
-        idLookup.set(key, r.id);
+      if (!resourceLookup.has(key)) {
+        resourceLookup.set(key, r);
       }
     }
 
     const resources: Resource[] = (data?.resources || []).map((r: any) => {
       const key = `${r.category}|${r.name}`;
-      const matchedId = idLookup.get(key);
+      const matched = resourceLookup.get(key);
+      if (matched) {
+        return matched;
+      }
+      // fallback: build minimal resource
       return {
         ...r,
-        id: matchedId || r.id || r.name?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        id: r.id || r.name?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
         source: "fmhy",
+        hasReview: hasReviewFor(r),
       };
     });
 
