@@ -1,0 +1,341 @@
+[
+  {
+    "paidTool": "Adobe Creative Cloud",
+    "slug": "adobe-creative-cloud",
+    "category": "Design",
+    "description": "Adobe Creative Cloud is the subscription bundle for Photoshop, Ilustrator, Premiere Pro, and more at $54.99/month. Users seek one-time purchase or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Very expensive monthly/annual cost",
+        "impact": "$54.99/month or $599.88/year"
+      },
+      {
+        "problem": "Ongoing subscription forever",
+        "impact": "Stop paying and lose access to all sotware"
+      },
+      {
+        "problem": "Forces latest version (no choice)",
+        "impact": "Cannot stay on a stable version indefinitely"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Affinity Suite (Photo, Designer, Publisher)",
+        "url": "https://affinity.serif.com",
+        "reason": "One-time purchase (~$70 each) with no subscription",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "One-time purchase",
+          "Professional features",
+          "No subscription"
+        ],
+        "pricing": "~$70 one-time each"
+      },
+      {
+        "name": "GIMP (free Photoshop alternative)",
+        "url": "https://www.gimp.org",
+        "reason": "Completely free and open-source image editing",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free/Open-source",
+          "Image editing",
+          "Extensible"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Inkscape (free Ilustrator alternative)",
+        "url": "https://inkscape.org",
+        "reason": "Free and open-source vector graphics editor",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free/Open-source",
+          "Vector graphics",
+          "SVG editing"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "DaVinci Resolve (free Premiere alternative)",
+        "url": "https://www.blackmagicdesign.com/products/davinciresolve/",
+        "reason": "Free professional video editing with color grading",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free version very capable",
+          "Color grading",
+          "Professional editing"
+        ],
+        "pricing": "Free; Studio $295 one-time"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Identify which Adobe apps you actually use",
+        "Download Affinity equivalents (Photo=Photoshop, Designer=Ilustrator)",
+        "Export projects from Adobe apps to standard formats (PSD, AI, PDF)",
+        "Import into Affinity apps",
+        "Learn Affinity keyboard shortcuts (can mimic Adobe shortcuts)"
+      ],
+      "tips": [
+        "Affinity has a 7-day free trial",
+        "GIMP and Inkscape are completely free but have learning curves"
+      ]
+    },
+    "verdict": "Affinity Suite is the best paid alternative with one-time purchase. For free options, GIMP (photo) and Inkscape (vector) are capable but require learning.",
+    "faqs": [
+      {
+        "question": "Can Affinity open my PSD/AI files?",
+        "answer": "Yes, Affinity Photo can open PSD files, and Affinity Designer can open AI files. Some advanced features may need adjustment."
+      },
+      {
+        "question": "Is DaVinci Resolve as good as Premiere Pro?",
+        "answer": "DaVinci Resolve is excellent for color grading and professional editing. The free version is very capable; the $295 Studio version adds advanced features."
+      }
+    ],
+    "tagline": "Adobe subscription bundle at $54.99/month",
+    "paidToolUrl": "https://www.adobe.com/creativecloud",
+    "pricing": "Photography $9.99/month; Single app $22.99/month; Al apps $54.99/month",
+    "whySwitch": [
+      "One-time purchase option (Affinity)",
+      "Free open-source alternatives",
+      "No subscription forever"
+    ],
+    "seoKeywords": [
+      "adobe creative cloud alternative",
+      "affinity suite",
+      "gimp vs photoshop",
+      "free adobe alternatives"
+    ]
+  },
+  {
+    "paidTool": "Sony Vegas Pro",
+    "slug": "sony-vegas-pro",
+    "category": "Video Editing",
+    "description": "Sony Vegas Pro is a professional video editing sotware with a one-time purchase of $399+. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "High one-time cost",
+        "impact": "$399+ for the full version"
+      },
+      {
+        "problem": "Less widely taught than Premiere/DaVinci",
+        "impact": "Harder to find tutorials and community help"
+      },
+      {
+        "problem": "Windows-only",
+        "impact": "No Mac or Linux support"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "DaVinci Resolve",
+        "url": "https://www.blackmagicdesign.com/products/davinciresolve/",
+        "reason": "Free professional video editor with color grading and Fairlight audio",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free version very capable",
+          "Color grading",
+          "Fairlight audio"
+        ],
+        "pricing": "Free; Studio $295 one-time"
+      },
+      {
+        "name": "Kdenlive (open-source)",
+        "url": "https://kdenlive.org",
+        "reason": "Completely free and open-source video editor for Windows/Mac/Linux",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Cross-platform",
+          "Multi-track editing"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Shotcut (open-source)",
+        "url": "https://shotcut.org",
+        "reason": "Free, open-source, cross-platform video editor",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Cross-platform",
+          "Wide format support"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "HitFilm Express",
+        "url": "https://fxhome.com/hitfilm-express",
+        "reason": "Free video editor with professional VFX capabilities",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free version",
+          "VFX capabilities",
+          "Professional features"
+        ],
+        "pricing": "Free; Pro $349 one-time"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download DaVinci Resolve or Kdenlive",
+        "Export your Vegas projects (check compatibility)",
+        "Rebuild projects in new editor (may need manual reconstruction)",
+        "Learn new keyboard shortcuts",
+        "Test render quality and speed"
+      ],
+      "tips": [
+        "DaVinci Resolve is the best free professional alternative",
+        "Kdenlive is best for simple to intermediate projects"
+      ]
+    },
+    "verdict": "DaVinci Resolve is the best free professional alternative. Kdenlive and Shotcut are excellent open-source options for simpler projects.",
+    "faqs": [
+      {
+        "question": "Can I open my Vegas project in DaVinci Resolve?",
+        "answer": "No, project files are not directly compatible. You'll need to export your final video or rebuild the project in the new sotware."
+      },
+      {
+        "question": "Is DaVinci Resolve really free?",
+        "answer": "Yes, DaVinci Resolve has a very capable free version. The $295 Studio version adds advanced features like neural engine and 3D tools."
+      }
+    ],
+    "tagline": "Professional video editing at $399+ one-time",
+    "paidToolUrl": "https://www.vegascreativesoftware.com",
+    "pricing": "Vegas Pro $399; Post Suite $799; Suite $1199",
+    "whySwitch": [
+      "Free professional alternatives",
+      "Open-source options",
+      "Lower-cost one-time purchase"
+    ],
+    "seoKeywords": [
+      "sony vegas pro alternative",
+      "davinci resolve",
+      "free video editing sotware",
+      "kdenlive"
+    ]
+  },
+  {
+    "paidTool": "CorelDRAW",
+    "slug": "coreldraw",
+    "category": "Design",
+    "description": "CorelDRAW is a vector graphics editor with a one-time purchase of $499 or subscription at $22/month. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "High cost (one-time or subscription)",
+        "impact": "$499 one-time or $22/month"
+      },
+      {
+        "problem": "Less popular than Ilustrator",
+        "impact": "Fewer tutorials and community resources"
+      },
+      {
+        "problem": "Windows-only (main version)",
+        "impact": "No native Mac version for the full suite"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Inkscape (open-source)",
+        "url": "https://inkscape.org",
+        "reason": "Completely free and open-source vector graphics editor",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free/Open-source",
+          "Vector graphics",
+          "SVG editing"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Affinity Designer",
+        "url": "https://affinity.serif.com",
+        "reason": "One-time purchase ($69.99) with professional vector tools",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "One-time purchase",
+          "Professional features",
+          "No subscription"
+        ],
+        "pricing": "$69.99 one-time"
+      },
+      {
+        "name": "Adobe Ilustrator (subscription)",
+        "url": "https://www.adobe.com/products/ilustrator",
+        "reason": "Industry-standard vector graphics with subscription",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Industry standard",
+          "Advanced features",
+          "Cloud sync"
+        ],
+        "pricing": "$22.99/month"
+      },
+      {
+        "name": "Boxy SVG (web-based)",
+        "url": "https://boxy-svg.com",
+        "reason": "Affordable web-based SVG editor with one-time purchase",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Web-based",
+          "SVG focus",
+          "Affordable"
+        ],
+        "pricing": "$9.99/month or $99 one-time"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Download Inkscape or Affinity Designer",
+        "Export CorelDRAW files to SVG or PDF",
+        "Import SVG/PDF into new editor",
+        "Adjust designs as needed (some effects may not translate)",
+        "Learn new interface and shortcuts"
+      ],
+      "tips": [
+        "Inkscape is completely free but has a learning curve",
+        "Affinity Designer is a very affordable one-time purchase"
+      ]
+    },
+    "verdict": "Inkscape is the best free alternative. Affinity Designer is the best paid alternative with one-time purchase.",
+    "faqs": [
+      {
+        "question": "Can Inkscape open CDR files?",
+        "answer": "Inkscape cannot directly open CDR files. Export from CorelDRAW to SVG or PDF, then import into Inkscape."
+      },
+      {
+        "question": "Is Affinity Designer as good as Ilustrator?",
+        "answer": "Affinity Designer is excellent and professional-grade. It's missing a few advanced features but covers 95% of use cases at a much lower price."
+      }
+    ],
+    "tagline": "Vector graphics editor at $499 or $22/month",
+    "paidToolUrl": "https://www.coreldraw.com",
+    "pricing": "Standard $499; Subscription $22/month",
+    "whySwitch": [
+      "Free open-source alternative (Inkscape)",
+      "One-time purchase (Affinity Designer)",
+      "No subscription forever"
+    ],
+    "seoKeywords": [
+      "coreldraw alternative",
+      "inkscape vs coreldraw",
+      "affinity designer",
+      "free vector graphics"
+    ]
+  }
+]

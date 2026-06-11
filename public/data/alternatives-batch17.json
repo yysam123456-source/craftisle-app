@@ -1,0 +1,338 @@
+[
+  {
+    "paidTool": "Paramount+",
+    "slug": "paramount-plus",
+    "category": "Entertainment",
+    "description": "Paramount+ offers content from CBS, MTV, Nickelodeon, and Paramount Pictures for $5.99-11.99/month. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$5.99-11.99/month"
+      },
+      {
+        "problem": "Smaller catalog than Netflix/Prime",
+        "impact": "May need multiple services"
+      },
+      {
+        "problem": "Content overlaps with other services",
+        "impact": "Paying for duplicate content"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Tubi",
+        "url": "https://tubitv.com",
+        "reason": "Completely free with 40,000+ movies and TV shows",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "40,000+ titles",
+          "No subscription",
+          "All devices"
+        ],
+        "pricing": "Free (ad-supported)"
+      },
+      {
+        "name": "Plex",
+        "url": "https://www.plex.tv",
+        "reason": "Free ad-supported movies/TV plus personal media server",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free movies/TV",
+          "Live TV channels",
+          "Personal media"
+        ],
+        "pricing": "Free; Plex Pass $4.99/month"
+      },
+      {
+        "name": "Netflix",
+        "url": "https://netflix.com",
+        "reason": "Larger catalog with original content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Large catalog",
+          "Originals",
+          "4K streaming"
+        ],
+        "pricing": "With ads $6.99/month; Standard $15.49/month"
+      },
+      {
+        "name": "Peacock",
+        "url": "https://www.peacocktv.com",
+        "reason": "More affordable alternative with NBC/Universal content",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "NBC/Universal",
+          "Live sports"
+        ],
+        "pricing": "Free; Premium $5.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Browse free alternatives (Tubi, Plex, Peacock Free)",
+        "Check JustWatch.com for Paramount+ shows on other platforms",
+        "Consider antenna TV for local channels",
+        "Cancel Paramount+ when ready"
+      ],
+      "tips": [
+        "Peacock Free has a surprising amount of free content",
+        "Paramount+ shows often move to Netflix after exclusivity period"
+      ]
+    },
+    "verdict": "Tubi and Plex offer free streaming. Peacock Free is a good no-cost alternative with NBC content.",
+    "faqs": [
+      {
+        "question": "Is Paramount+ worth it for Star Trek?",
+        "answer": "If you only want Star Trek, consider buying episodes on iTunes or Amazon Prime Video instead of a monthly subscription."
+      },
+      {
+        "question": "Can I watch Paramount+ for free?",
+        "answer": "Paramount+ offers a limited free tier. Also check Tubi and Plex for Paramount movies/TV."
+      }
+    ],
+    "tagline": "CBS/Paramount streaming at $5.99-11.99/month",
+    "paidToolUrl": "https://www.paramountplus.com",
+    "pricing": "Essential $5.99/month; Premium $11.99/month",
+    "whySwitch": [
+      "Free ad-supported alternatives",
+      "Smaller catalog elsewhere",
+      "Rent/buy only what you watch"
+    ],
+    "seoKeywords": [
+      "paramount plus alternative",
+      "free streaming",
+      "tubi",
+      "peacock free"
+    ]
+  },
+  {
+    "paidTool": "Peacock",
+    "slug": "peacock",
+    "category": "Entertainment",
+    "description": "Peacock is NBC's streaming service with NBC shows, Universal movies, and live sports at $5.99-11.99/month. Free tier available but limited.",
+    "painPoints": [
+      {
+        "problem": "Free tier very limited",
+        "impact": "Must pay for meaningful access"
+      },
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$5.99-11.99/month"
+      },
+      {
+        "problem": "Content still less than Netflix",
+        "impact": "May need multiple subscriptions"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Tubi",
+        "url": "https://tubitv.com",
+        "reason": "Completely free with 40,000+ movies and TV shows",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "40,000+ titles",
+          "No subscription",
+          "All devices"
+        ],
+        "pricing": "Free (ad-supported)"
+      },
+      {
+        "name": "Plex",
+        "url": "https://www.plex.tv",
+        "reason": "Free ad-supported movies/TV plus personal media server",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free movies/TV",
+          "Live TV",
+          "Personal media"
+        ],
+        "pricing": "Free; Plex Pass $4.99/month"
+      },
+      {
+        "name": "Netflix",
+        "url": "https://netflix.com",
+        "reason": "Larger catalog with original content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Large catalog",
+          "Originals",
+          "4K"
+        ],
+        "pricing": "With ads $6.99/month; Standard $15.49/month"
+      },
+      {
+        "name": "Hulu",
+        "url": "https://www.hulu.com",
+        "reason": "Better TV selection with next-day episodes",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Next-day TV",
+          "Live TV option",
+          "Disney+ bundle"
+        ],
+        "pricing": "With ads $7.99/month; No ads $17.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Browse free alternatives (Tubi, Plex, Peacock Free)",
+        "Check JustWatch.com for Peacock shows on other platforms",
+        "Consider antenna TV for local channels",
+        "Cancel Peacock Premium when ready"
+      ],
+      "tips": [
+        "Peacock Free has some NBC episodes for free",
+        "Many NBC shows are free on NBC.com with ads"
+      ]
+    },
+    "verdict": "Tubi and Plex offer free streaming. Peacock Free has limited but real free content.",
+    "faqs": [
+      {
+        "question": "Is Peacock Free really free?",
+        "answer": "Yes, Peacock has a free tier with limited content. It includes some NBC shows, movies, and live channels."
+      },
+      {
+        "question": "Can I watch NBC shows for free?",
+        "answer": "Yes, many NBC shows are available on NBC.com for free with ads. Also check Peacock Free tier."
+      }
+    ],
+    "tagline": "NBC/Universal streaming with limited free tier",
+    "paidToolUrl": "https://www.peacocktv.com",
+    "pricing": "Free limited tier; Premium $5.99/month; Premium Plus $11.99/month",
+    "whySwitch": [
+      "Free tier available",
+      "Free ad-supported alternatives",
+      "Better catalogs elsewhere"
+    ],
+    "seoKeywords": [
+      "peacock alternative",
+      "free streaming",
+      "tubi",
+      "peacock free"
+    ]
+  },
+  {
+    "paidTool": "Max (HBO)",
+    "slug": "max-hbo",
+    "category": "Entertainment",
+    "description": "Max (formerly HBO Max) offers HBO, Warner Bros., DC, and Discovery content at $9.99-20.99/month. Users seek alternatives for lower cost.",
+    "painPoints": [
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$9.99-20.99/month"
+      },
+      {
+        "problem": "Content still less than Netflix",
+        "impact": "May need multiple subscriptions"
+      },
+      {
+        "problem": "Price increases over time",
+        "impact": "Launched cheaper, now more expensive"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Tubi",
+        "url": "https://tubitv.com",
+        "reason": "Completely free with 40,000+ movies and TV shows",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "40,000+ titles",
+          "No subscription",
+          "All devices"
+        ],
+        "pricing": "Free (ad-supported)"
+      },
+      {
+        "name": "Plex",
+        "url": "https://www.plex.tv",
+        "reason": "Free ad-supported movies/TV plus personal media server",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free movies/TV",
+          "Live TV",
+          "Personal media"
+        ],
+        "pricing": "Free; Plex Pass $4.99/month"
+      },
+      {
+        "name": "Netflix",
+        "url": "https://netflix.com",
+        "reason": "Larger catalog with original content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Large catalog",
+          "Originals",
+          "4K"
+        ],
+        "pricing": "With ads $6.99/month; Standard $15.49/month"
+      },
+      {
+        "name": "Disney+",
+        "url": "https://www.disneyplus.com",
+        "reason": "More affordable alternative with Disney/Marvel content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Disney/Marvel/Star Wars",
+          "4K",
+          "Download"
+        ],
+        "pricing": "Basic $7.99/month; Premium $13.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Browse free alternatives (Tubi, Plex)",
+        "Check JustWatch.com for Max shows on other platforms",
+        "Consider antenna TV for local channels",
+        "Cancel Max when ready"
+      ],
+      "tips": [
+        "Max shows often move to other platforms after exclusivity",
+        "Library cards often include free streaming (Kanopy, Hoopla)"
+      ]
+    },
+    "verdict": "Tubi and Plex offer free streaming. Netflix has a larger catalog for similar pricing.",
+    "faqs": [
+      {
+        "question": "Is Max worth it for HBO shows?",
+        "answer": "If you only want HBO shows, consider buying episodes on iTunes or Amazon Prime Video instead of a monthly subscription."
+      },
+      {
+        "question": "Can I watch Max for free?",
+        "answer": "Max does not have a free tier. Check Tubi, Plex, or your library card (Kanopy) for Max content."
+      }
+    ],
+    "tagline": "HBO/Warner Bros. streaming at $9.99-20.99/month",
+    "paidToolUrl": "https://max.com",
+    "pricing": "With ads $9.99/month; Ad-free $15.99/month; Ultimate $20.99/month",
+    "whySwitch": [
+      "Free ad-supported alternatives",
+      "Better catalog elsewhere",
+      "Rent/buy only what you watch"
+    ],
+    "seoKeywords": [
+      "max hbo alternative",
+      "free streaming",
+      "tubi",
+      "netflix vs max"
+    ]
+  }
+]

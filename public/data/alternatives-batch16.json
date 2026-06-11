@@ -1,0 +1,567 @@
+[
+  {
+    "paidTool": "Amazon Prime Video",
+    "slug": "amazon-prime-video",
+    "category": "Entertainment",
+    "description": "Amazon Prime Video is included with Prime membership ($14.99/month or $139/year) or as standalone $8.99/month. Users seek alternatives for lower cost or broader content.",
+    "painPoints": [
+      {
+        "problem": "Included in Prime but still $8.99 standalone",
+        "impact": "$8.99-14.99/month"
+      },
+      {
+        "problem": "Content rotates and leaves the platform",
+        "impact": "Favorite shows/movies disappear unexpectedly"
+      },
+      {
+        "problem": "Additional fee for some content (Prime Video Channels)",
+        "impact": "Costs add up with add-on subscriptions"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Tubi",
+        "url": "https://tubitv.com",
+        "reason": "Completely free streaming with 40,000+ movies and TV shows",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "40,000+ titles",
+          "No subscription",
+          "Available on all devices"
+        ],
+        "pricing": "Free (ad-supported)"
+      },
+      {
+        "name": "Plex",
+        "url": "https://www.plex.tv",
+        "reason": "Free ad-supported movies/TV plus personal media server",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free movies/TV",
+          "Live TV channels",
+          "Personal media server"
+        ],
+        "pricing": "Free; Plex Pass $4.99/month"
+      },
+      {
+        "name": "Hulu",
+        "url": "https://www.hulu.com",
+        "reason": "More affordable alternative with live TV options",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Live TV option",
+          "Next-day TV episodes",
+          "Disney+ bundle"
+        ],
+        "pricing": "With ads $7.99/month; No ads $17.99/month"
+      },
+      {
+        "name": "Kanopy (free with library card)",
+        "url": "https://www.kanopy.com",
+        "reason": "Free with library card, high-quality indie and classic films",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free with library card",
+          "Indie/Classic films",
+          "No ads"
+        ],
+        "pricing": "Free with library card"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Browse free alternatives (Tubi, Plex, Kanopy)",
+        "Check JustWatch.com for where your favorite shows stream",
+        "Consider antenna TV for local channels",
+        "Set up Plex or Kodi for personal media",
+        "Cancel Prime Video when ready"
+      ],
+      "tips": [
+        "Kanopy is free with a library card — check your local library",
+        "Many PBS shows are free on PBS.org or the PBS app"
+      ]
+    },
+    "verdict": "Tubi and Plex offer free streaming. Kanopy is an amazing free resource with a library card. For paid, Hulu has better TV selection.",
+    "faqs": [
+      {
+        "question": "Is there a free legal way to watch Prime Video content?",
+        "answer": "Some Prime Video content is available on Tubi, Plex, or Freevee. Check JustWatch.com to find where a specific title streams."
+      },
+      {
+        "question": "Can I watch Prime Video offline?",
+        "answer": "Prime Video allows downloads on mobile apps. For a free offline option, download videos from Tubi or Plex (select titles) for offline viewing."
+      }
+    ],
+    "tagline": "Popular streaming included with Amazon Prime",
+    "paidToolUrl": "https://www.primevideo.com",
+    "pricing": "Standalone $8.99/month; Included with Prime $14.99/month or $139/year",
+    "whySwitch": [
+      "Free ad-supported alternatives",
+      "Library card streaming (Kanopy)",
+      "Lower-cost niche services"
+    ],
+    "seoKeywords": [
+      "amazon prime video alternative",
+      "free streaming",
+      "tubi",
+      "plex vs prime"
+    ]
+  },
+  {
+    "paidTool": "Apple TV+",
+    "slug": "apple-tv-plus",
+    "category": "Entertainment",
+    "description": "Apple TV+ is Apple's streaming service at $9.99/month with original content. The catalog is smaller than competitors, pushing users to seek alternatives with larger libraries.",
+    "painPoints": [
+      {
+        "problem": "Small catalog compared to Netflix/Prime",
+        "impact": "Limited content variety"
+      },
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$9.99/month"
+      },
+      {
+        "problem": "Must have Apple device or Apple TV app",
+        "impact": "Less accessible on non-Apple platforms"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Tubi",
+        "url": "https://tubitv.com",
+        "reason": "Completely free with 40,000+ movies and TV shows",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "40,000+ titles",
+          "No subscription",
+          "All devices"
+        ],
+        "pricing": "Free (ad-supported)"
+      },
+      {
+        "name": "Plex",
+        "url": "https://www.plex.tv",
+        "reason": "Free movies/TV with personal media server",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free movies/TV",
+          "Live TV",
+          "Personal media"
+        ],
+        "pricing": "Free; Plex Pass $4.99/month"
+      },
+      {
+        "name": "Netflix",
+        "url": "https://netflix.com",
+        "reason": "Much larger catalog with original and licensed content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Large catalog",
+          "Original content",
+          "4K streaming"
+        ],
+        "pricing": "With ads $6.99/month; Standard $15.49/month"
+      },
+      {
+        "name": "HBO Max (now Max)",
+        "url": "https://max.com",
+        "reason": "Larger catalog with HBO, Warner Bros., and Discovery content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "HBO originals",
+          "Warner Bros. films",
+          "Discovery content"
+        ],
+        "pricing": "With ads $9.99/month; Ad-free $15.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Browse free alternatives (Tubi, Plex)",
+        "Check JustWatch.com for Apple TV+ shows on other platforms",
+        "Consider antenna TV for local channels",
+        "Download favorite Apple TV+ shows before cancellation",
+        "Cancel Apple TV+ subscription"
+      ],
+      "tips": [
+        "Some Apple TV+ shows are available on other platforms",
+        "Family Sharing allows up to 6 people to share one subscription"
+      ]
+    },
+    "verdict": "Tubi and Plex offer free streaming. Netflix and Max have much larger catalogs for similar pricing.",
+    "faqs": [
+      {
+        "question": "Is Apple TV+ worth it for the price?",
+        "answer": "Apple TV+ has high-quality original content but a much smaller catalog than Netflix or Prime Video. It's worth it if you like their originals."
+      },
+      {
+        "question": "Can I watch Apple TV+ for free?",
+        "answer": "Apple sometimes offers free trials. Some Apple devices include free Apple TV+ for a period. Also check if your cable/satellite provider includes it."
+      }
+    ],
+    "tagline": "Apple's original content streaming at $9.99/month",
+    "paidToolUrl": "https://tv.apple.com",
+    "pricing": "$9.99/month; Free trial available",
+    "whySwitch": [
+      "Free ad-supported alternatives",
+      "Larger catalogs elsewhere",
+      "Free trials of other services"
+    ],
+    "seoKeywords": [
+      "apple tv plus alternative",
+      "free streaming",
+      "tubi",
+      "netflix vs apple tv"
+    ]
+  },
+  {
+    "paidTool": "Hulu",
+    "slug": "hulu",
+    "category": "Entertainment",
+    "description": "Hulu offers next-day TV episodes and original content at $7.99-17.99/month. Users seek alternatives for lower cost or broader content selection.",
+    "painPoints": [
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$7.99-17.99/month"
+      },
+      {
+        "problem": "Ads on lower tier",
+        "impact": "Must pay $17.99/month for no ads"
+      },
+      {
+        "problem": "Content still less than Netflix/Prime",
+        "impact": "May need multiple subscriptions"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Tubi",
+        "url": "https://tubitv.com",
+        "reason": "Completely free with 40,000+ movies and TV shows",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "40,000+ titles",
+          "No subscription",
+          "All devices"
+        ],
+        "pricing": "Free (ad-supported)"
+      },
+      {
+        "name": "Plex",
+        "url": "https://www.plex.tv",
+        "reason": "Free movies/TV with personal media server",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free movies/TV",
+          "Live TV",
+          "Personal media"
+        ],
+        "pricing": "Free; Plex Pass $4.99/month"
+      },
+      {
+        "name": "Netflix",
+        "url": "https://netflix.com",
+        "reason": "Larger catalog with original and licensed content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Large catalog",
+          "Original content",
+          "4K streaming"
+        ],
+        "pricing": "With ads $6.99/month; Standard $15.49/month"
+      },
+      {
+        "name": "Disney+",
+        "url": "https://www.disneyplus.com",
+        "reason": "More affordable alternative with Disney, Marvel, Star Wars content",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Disney/Marvel/Star Wars",
+          "4K streaming",
+          "Download for offline"
+        ],
+        "pricing": "Basic $7.99/month; Premium $13.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Browse free alternatives (Tubi, Plex)",
+        "Check JustWatch.com for Hulu shows on other platforms",
+        "Consider antenna TV for local channels",
+        "Set up Plex or Kodi for personal media",
+        "Cancel Hulu subscription"
+      ],
+      "tips": [
+        "Hulu + Disney+ + ESPN+ bundle is a good deal if you want multiple services",
+        "Many TV network websites offer free episodes with ads"
+      ]
+    },
+    "verdict": "Tubi and Plex offer free streaming. Netflix has a larger catalog. Disney+ bundle is good value if you want multiple services.",
+    "faqs": [
+      {
+        "question": "Is Hulu worth it for the price?",
+        "answer": "Hulu is best for next-day TV episodes. If you mainly watch movies, Netflix or Disney+ may be better value."
+      },
+      {
+        "question": "Can I watch Hulu for free?",
+        "answer": "Hulu offers a limited free tier with ads. Some TV network websites offer free episodes with ads, and Tubi/Plex offer free movies/TV."
+      }
+    ],
+    "tagline": "Next-day TV episodes and originals at $7.99-17.99/month",
+    "paidToolUrl": "https://www.hulu.com",
+    "pricing": "With ads $7.99/month; No ads $17.99/month; Live TV $76.99+/month",
+    "whySwitch": [
+      "Free ad-supported alternatives",
+      "Larger catalogs elsewhere",
+      "Bundle deals with other services"
+    ],
+    "seoKeywords": [
+      "hulu alternative",
+      "free streaming",
+      "tubi",
+      "netflix vs hulu"
+    ]
+  },
+  {
+    "paidTool": "Bitdefender",
+    "slug": "bitdefender",
+    "category": "Security",
+    "description": "Bitdefender is a popular antivirus with low system impact and high malware detection rates. Plans start at $29.99/year, pushing users to seek free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Annual subscription cost",
+        "impact": "$29.99-89.99/year"
+      },
+      {
+        "problem": "Auto-renewal at higher price",
+        "impact": "Forget to cancel and get charged full price"
+      },
+      {
+        "problem": "Some features require higher tiers",
+        "impact": "VPN, password manager cost extra"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Windows Defender (built-in)",
+        "url": "https://www.microsoft.com/windows/comprehensive-security",
+        "reason": "Free built-in antivirus for Windows 10/11, surprisingly effective",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free built-in",
+          "Low system impact",
+          "Real-time protection"
+        ],
+        "pricing": "Free with Windows"
+      },
+      {
+        "name": "ClamAV (open-source)",
+        "url": "https://www.clamav.net",
+        "reason": "Free open-source antivirus for advanced users",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Cross-platform",
+          "Command-line and GUI"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Malwarebytes",
+        "url": "https://www.malwarebytes.com",
+        "reason": "Excellent at removing existing malware, free version available",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free version",
+          "Excellent malware removal",
+          "Real-time protection (paid)"
+        ],
+        "pricing": "Free; Premium $44.99/year"
+      },
+      {
+        "name": "Sophos Home",
+        "url": "https://home.sophos.com",
+        "reason": "Free for home use with commercial-grade security",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free for home",
+          "Commercial-grade",
+          "Remote management"
+        ],
+        "pricing": "Free; Premium $42/year"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Uninstall Bitdefender",
+        "Enable Windows Defender (automatic on Windows)",
+        "Install Malwarebytes free for on-demand scans",
+        "Test system performance",
+        "Cancel Bitdefender auto-renewal"
+      ],
+      "tips": [
+        "Windows Defender is surprisingly good in 2024 — most users don't need paid antivirus",
+        "Run Malwarebytes free as a second opinion scanner"
+      ]
+    },
+    "verdict": "Windows Defender (free, built-in) is sufficient for most users. Malwarebytes free is excellent as a second-opinion scanner.",
+    "faqs": [
+      {
+        "question": "Is Windows Defender enough to protect my PC?",
+        "answer": "Yes, Windows Defender has improved dramatically and now provides excellent real-time protection for most users. Pair it with Malwarebytes free for occasional scans."
+      },
+      {
+        "question": "Do I need antivirus on Mac?",
+        "answer": "Macs are less targeted but not immune. Malwarebytes free or ClamAV are good free options for Mac."
+      }
+    ],
+    "tagline": "Popular antivirus at $29.99-89.99/year",
+    "paidToolUrl": "https://www.bitdefender.com",
+    "pricing": "Antivirus Plus $29.99/year; Internet Security $39.99/year; Total Security $89.99/year",
+    "whySwitch": [
+      "Free built-in antivirus (Windows Defender)",
+      "Open-source alternative (ClamAV)",
+      "Free second-opinion scanner (Malwarebytes)"
+    ],
+    "seoKeywords": [
+      "bitdefender alternative",
+      "free antivirus",
+      "windows defender",
+      "malwarebytes"
+    ]
+  },
+  {
+    "paidTool": "McAfee",
+    "slug": "mcafee",
+    "category": "Security",
+    "description": "McAfee is a well-known antivirus suite with identity protection and VPN. Plans start at $39.99/year, and it's often bundled with new PCs, pushing users to remove it.",
+    "painPoints": [
+      {
+        "problem": "Annual subscription cost",
+        "impact": "$39.99-119.99/year"
+      },
+      {
+        "problem": "Often bundled with new PCs (bloatware)",
+        "impact": "Users want to remove it but find it hard to uninstall"
+      },
+      {
+        "problem": "Heavy system impact",
+        "impact": "Slows down older computers significantly"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Windows Defender (built-in)",
+        "url": "https://www.microsoft.com/windows/comprehensive-security",
+        "reason": "Free built-in antivirus for Windows 10/11, lightweight and effective",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free built-in",
+          "Low system impact",
+          "Real-time protection"
+        ],
+        "pricing": "Free with Windows"
+      },
+      {
+        "name": "Malwarebytes",
+        "url": "https://www.malwarebytes.com",
+        "reason": "Lightweight, excellent malware removal, free version available",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free version",
+          "Lightweight",
+          "Excellent malware removal"
+        ],
+        "pricing": "Free; Premium $44.99/year"
+      },
+      {
+        "name": "ClamAV (open-source)",
+        "url": "https://www.clamav.net",
+        "reason": "Free open-source antivirus for advanced users",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Cross-platform",
+          "Command-line and GUI"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Sophos Home",
+        "url": "https://home.sophos.com",
+        "reason": "Free for home use with commercial-grade security",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free for home",
+          "Commercial-grade",
+          "Remote management"
+        ],
+        "pricing": "Free; Premium $42/year"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Use McAfee's official removal tool (MCPR)",
+        "Enable Windows Defender",
+        "Install Malwarebytes free for on-demand scans",
+        "Remove auto-renewal from McAfee account",
+        "Verify system performance improved"
+      ],
+      "tips": [
+        "McAfee is notorious for being hard to uninstall — use their MCPR tool",
+        "Windows Defender is sufficient for most users"
+      ]
+    },
+    "verdict": "Windows Defender (free, built-in) is sufficient for most users. Use McAfee's MCPR tool to completely remove it from your system.",
+    "faqs": [
+      {
+        "question": "How do I completely remove McAfee from my PC?",
+        "answer": "Download and run the McAfee Consumer Product Removal (MCPR) tool from McAfee's website. It completely removes all McAfee software."
+      },
+      {
+        "question": "Is it safe to uninstall McAfee?",
+        "answer": "Yes, as long as you have another antivirus enabled (Windows Defender enables automatically when you uninstall third-party antivirus)."
+      }
+    ],
+    "tagline": "Well-known antivirus often bundled with new PCs",
+    "paidToolUrl": "https://www.mcafee.com",
+    "pricing": "Antivirus $39.99/year; Total Protection $119.99/year",
+    "whySwitch": [
+      "Free built-in antivirus (Windows Defender)",
+      "Lighter system impact",
+      "No bloatware"
+    ],
+    "seoKeywords": [
+      "mcafee alternative",
+      "free antivirus",
+      "windows defender",
+      "remove mcafee"
+    ]
+  }
+]

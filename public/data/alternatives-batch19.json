@@ -1,0 +1,341 @@
+[
+  {
+    "paidTool": "Affinity Photo",
+    "slug": "affinity-photo",
+    "category": "Design",
+    "description": "Affinity Photo is a professional photo editing software with a one-time purchase of $69.99, positioned as a Photoshop alternative without subscription.",
+    "painPoints": [
+      {
+        "problem": "Still a cost (one-time)",
+        "impact": "$69.99 upfront"
+      },
+      {
+        "problem": "Less third-party plugin support than Photoshop",
+        "impact": "Some Photoshop plugins don't work"
+      },
+      {
+        "problem": "Smaller community than Photoshop",
+        "impact": "Fewer tutorials and resources"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "GIMP (open-source)",
+        "url": "https://www.gimp.org",
+        "reason": "Completely free and open-source photo editor with advanced features",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Advanced editing",
+          "Extensible"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Photopea (web-based)",
+        "url": "https://www.photopea.com",
+        "reason": "Free web-based Photoshop alternative with similar interface",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Web-based",
+          "Photoshop-like UI",
+          "Free version"
+        ],
+        "pricing": "Free; Premium $9/year"
+      },
+      {
+        "name": "Krita (open-source)",
+        "url": "https://krita.org",
+        "reason": "Free open-source painting and photo editing software",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Painting focus",
+          "Free",
+          "Open-source"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Pixelmator Pro",
+        "url": "https://www.pixelmator.com",
+        "reason": "Mac-only photo editor with one-time purchase",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Mac-only",
+          "One-time purchase",
+          "Modern UI"
+        ],
+        "pricing": "$39.99 one-time"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Download GIMP or Photopea",
+        "Export Photoshop files as PSD (Affinity can open them)",
+        "Learn basic Affinity shortcuts (can mimic Photoshop)",
+        "Test your common workflows",
+        "Decide if one-time purchase is worth it"
+      ],
+      "tips": [
+        "GIMP is completely free but has a learning curve",
+        "Photopea is web-based and free — great for quick edits"
+      ]
+    },
+    "verdict": "GIMP is the best free alternative. Photopea is excellent for web-based editing. Krita is great if you focus on painting.",
+    "faqs": [
+      {
+        "question": "Can Affinity Photo open PSD files?",
+        "answer": "Yes, Affinity Photo can open and edit PSD files. It also saves to PSD format."
+      },
+      {
+        "question": "Is GIMP as good as Photoshop?",
+        "answer": "GIMP is very capable but has a different interface. It's free and open-source, making it the best free alternative."
+      }
+    ],
+    "tagline": "One-time purchase Photoshop alternative at $69.99",
+    "paidToolUrl": "https://affinity.serif.com/photo",
+    "pricing": "$69.99 one-time",
+    "whySwitch": [
+      "Free open-source alternative (GIMP)",
+      "Web-based free option (Photopea)",
+      "Lower-cost one-time purchase"
+    ],
+    "seoKeywords": [
+      "affinity photo alternative",
+      "gimp vs photoshop",
+      "free photo editing",
+      "photopea"
+    ]
+  },
+  {
+    "paidTool": "Procreate",
+    "slug": "procreate",
+    "category": "Design",
+    "description": "Procreate is a popular iPad illustration app with a one-time purchase of $12.99. Users seek free alternatives for drawing and painting.",
+    "painPoints": [
+      {
+        "problem": "iPad-only (no iPhone or Mac)",
+        "impact": "Cannot use on other devices"
+      },
+      {
+        "problem": "No Android version",
+        "impact": "Android users cannot use it"
+      },
+      {
+        "problem": "One-time cost still required",
+        "impact": "$12.99 per iPad"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Autodesk SketchBook (free)",
+        "url": "https://www.sketchbook.com",
+        "reason": "Free drawing app for iPad, Android, and desktop",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Cross-platform",
+          "Professional brushes"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Infinite Painter (Android/iOS)",
+        "url": "https://www.infinitepainter.com",
+        "reason": "Affordable drawing app for Android and iOS",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Android/iOS",
+          "Affordable",
+          "Professional tools"
+        ],
+        "pricing": "$9.99 one-time"
+      },
+      {
+        "name": "MediBang Paint (free)",
+        "url": "https://medibangpaint.com",
+        "reason": "Free drawing and painting software for multiple platforms",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Cloud storage",
+          "Comic creation"
+        ],
+        "pricing": "Free; Pro $9.99/month"
+      },
+      {
+        "name": "Adobe Fresco (freemium)",
+        "url": "https://www.adobe.com/products/fresco",
+        "reason": "Free drawing app from Adobe with premium features",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free version",
+          "Adobe integration",
+          "Brush engines"
+        ],
+        "pricing": "Free; Premium $9.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Download SketchBook or MediBang Paint",
+        "Export Procreate files (PSD format)",
+        "Import PSD into new app",
+        "Test brushes and workflow",
+        "Decide if free version meets your needs"
+      ],
+      "tips": [
+        "SketchBook is completely free and cross-platform",
+        "MediBang Paint is great for comic creation"
+      ]
+    },
+    "verdict": "SketchBook is the best free alternative. MediBang Paint is excellent for comic creators. Infinite Painter is great for Android users.",
+    "faqs": [
+      {
+        "question": "Can I open Procreate files in other apps?",
+        "answer": "Procreate can export to PSD, PNG, JPEG, and other formats. Most drawing apps can import PSD files."
+      },
+      {
+        "question": "Is there a free Procreate alternative for Android?",
+        "answer": "Yes, SketchBook and MediBang Paint are both free and available on Android."
+      }
+    ],
+    "tagline": "Popular iPad illustration app at $12.99 one-time",
+    "paidToolUrl": "https://procreate.art",
+    "pricing": "$12.99 one-time (iPad only)",
+    "whySwitch": [
+      "Free cross-platform alternatives",
+      "Android-compatible options",
+      "No cost drawing apps"
+    ],
+    "seoKeywords": [
+      "procreate alternative",
+      "free drawing app",
+      "sketchbook vs procreate",
+      "android drawing app"
+    ]
+  },
+  {
+    "paidTool": "Clip Studio Paint",
+    "slug": "clip-studio-paint",
+    "category": "Design",
+    "description": "Clip Studio Paint is a popular comic and illustration software with a one-time purchase of $49.99 or subscription at $0.99-4.49/month. Users seek free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Subscription option can be confusing",
+        "impact": "Users unsure whether to buy or subscribe"
+      },
+      {
+        "problem": "Windows/Mac only (main version)",
+        "impact": "iPad version is separate purchase"
+      },
+      {
+        "problem": "Learning curve for beginners",
+        "impact": "Takes time to master all features"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Krita (open-source)",
+        "url": "https://krita.org",
+        "reason": "Free open-source painting and illustration software",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Free",
+          "Illustration tools"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "MediBang Paint (free)",
+        "url": "https://medibangpaint.com",
+        "reason": "Free comic creation software with cloud storage",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Comic creation",
+          "Cloud storage"
+        ],
+        "pricing": "Free; Pro $9.99/month"
+      },
+      {
+        "name": "FireAlpaca (free)",
+        "url": "https://firealpaca.com",
+        "reason": "Free painting software with simple interface",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Simple interface",
+          "Lightweight"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Procreate (iPad)",
+        "url": "https://procreate.art",
+        "reason": "One-time purchase iPad app for illustration",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "iPad-only",
+          "One-time purchase",
+          "Illustration tools"
+        ],
+        "pricing": "$12.99 one-time"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download Krita or MediBang Paint",
+        "Export Clip Studio Paint files (CLIP format)",
+        "Import into new app (may need to rework some elements)",
+        "Learn new interface and shortcuts",
+        "Test your common workflows"
+      ],
+      "tips": [
+        "Krita is completely free and open-source",
+        "MediBang Paint is great for comic creation"
+      ]
+    },
+    "verdict": "Krita is the best free alternative. MediBang Paint is excellent for comic creators. FireAlpaca is great for simple painting.",
+    "faqs": [
+      {
+        "question": "Can I open Clip Studio Paint files in Krita?",
+        "answer": "Krita can import some Clip Studio Paint files, but not all features may translate perfectly."
+      },
+      {
+        "question": "Is there a free Clip Studio Paint alternative for comic creation?",
+        "answer": "Yes, MediBang Paint is free and specifically designed for comic creation."
+      }
+    ],
+    "tagline": "Popular comic/illustration software at $49.99 or subscription",
+    "paidToolUrl": "https://www.clipstudio.net",
+    "pricing": "Pro $49.99 one-time; EX $219; Subscription from $0.99/month",
+    "whySwitch": [
+      "Free open-source alternative (Krita)",
+      "Free comic creation tools",
+      "No subscription needed"
+    ],
+    "seoKeywords": [
+      "clip studio paint alternative",
+      "krita vs clip studio",
+      "free comic software",
+      "medibang paint"
+    ]
+  }
+]

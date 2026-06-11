@@ -1,0 +1,428 @@
+[
+  {
+    "paidTool": "Kaspersky",
+    "slug": "kaspersky",
+    "category": "Security",
+    "description": "Kaspersky is a well-regarded antivirus with high malware detection rates. Plans start at $39.99/year, pushing users to seek free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Annual subscription cost",
+        "impact": "$39.99-89.99/year"
+      },
+      {
+        "problem": "Political issues in some countries",
+        "impact": "Banned or restricted in US/UK government systems"
+      },
+      {
+        "problem": "Heavy system impact",
+        "impact": "Slows down older computers"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Windows Defender (built-in)",
+        "url": "https://www.microsoft.com/windows/comprehensive-security",
+        "reason": "Free built-in antivirus for Windows 10/11, lightweight and effective",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free built-in",
+          "Low system impact",
+          "Real-time protection"
+        ],
+        "pricing": "Free with Windows"
+      },
+      {
+        "name": "ClamAV (open-source)",
+        "url": "https://www.clamav.net",
+        "reason": "Free open-source antivirus for advanced users",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Cross-platform",
+          "Command-line and GUI"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Malwarebytes",
+        "url": "https://www.malwarebytes.com",
+        "reason": "Excellent at removing existing malware, free version available",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free version",
+          "Excellent malware removal",
+          "Real-time protection (paid)"
+        ],
+        "pricing": "Free; Premium $44.99/year"
+      },
+      {
+        "name": "ESET NOD32",
+        "url": "https://www.eset.com",
+        "reason": "Lightweight antivirus with lower system impact",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Lightweight",
+          "Low system impact",
+          "Good detection"
+        ],
+        "pricing": "$39.99/year"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Uninstall Kaspersky",
+        "Enable Windows Defender",
+        "Install Malwarebytes free for on-demand scans",
+        "Test system performance",
+        "Cancel Kaspersky auto-renewal"
+      ],
+      "tips": [
+        "Windows Defender is surprisingly good in 2024",
+        "Run Malwarebytes free as a second opinion scanner"
+      ]
+    },
+    "verdict": "Windows Defender (free, built-in) is sufficient for most users. Malwarebytes free is excellent as a second-opinion scanner.",
+    "faqs": [
+      {
+        "question": "Is Kaspersky safe to use?",
+        "answer": "Kaspersky has excellent malware detection, but some governments have banned it due to political concerns. For most home users, it is technically safe."
+      },
+      {
+        "question": "Do I need antivirus on Mac?",
+        "answer": "Macs are less targeted but not immune. Malwarebytes free or ClamAV are good free options for Mac."
+      }
+    ],
+    "tagline": "Well-regarded antivirus at $39.99-89.99/year",
+    "paidToolUrl": "https://www.kaspersky.com",
+    "pricing": "Anti-Virus $39.99/year; Internet Security $49.99/year; Total Security $89.99/year",
+    "whySwitch": [
+      "Free built-in antivirus (Windows Defender)",
+      "Open-source alternative (ClamAV)",
+      "Free second-opinion scanner (Malwarebytes)"
+    ],
+    "seoKeywords": [
+      "kaspersky alternative",
+      "free antivirus",
+      "windows defender",
+      "malwarebytes"
+    ]
+  },
+  {
+    "paidTool": "Malwarebytes Premium",
+    "slug": "malwarebytes-premium",
+    "category": "Security",
+    "description": "Malwarebytes Premium adds real-time protection at $44.99/year. Many users find the free version sufficient for occasional scans.",
+    "painPoints": [
+      {
+        "problem": "Real-time protection requires paid version",
+        "impact": "$44.99/year for always-on protection"
+      },
+      {
+        "problem": "Free version has limited features",
+        "impact": "Must upgrade for real-time protection"
+      },
+      {
+        "problem": "Can conflict with other antivirus",
+        "impact": "May need to uninstall other antivirus"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Windows Defender (built-in)",
+        "url": "https://www.microsoft.com/windows/comprehensive-security",
+        "reason": "Free built-in antivirus with real-time protection",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free built-in",
+          "Real-time protection",
+          "Low system impact"
+        ],
+        "pricing": "Free with Windows"
+      },
+      {
+        "name": "ClamAV (open-source)",
+        "url": "https://www.clamav.net",
+        "reason": "Free open-source antivirus for advanced users",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Cross-platform",
+          "Command-line and GUI"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Sophos Home Free",
+        "url": "https://home.sophos.com",
+        "reason": "Free for home use with commercial-grade security",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free for home",
+          "Commercial-grade",
+          "Remote management"
+        ],
+        "pricing": "Free; Premium $42/year"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Uninstall Malwarebytes Premium",
+        "Enable Windows Defender (automatic)",
+        "Install Malwarebytes free for on-demand scans",
+        "Test system performance",
+        "Cancel Malwarebytes auto-renewal"
+      ],
+      "tips": [
+        "Windows Defender includes real-time protection for free",
+        "Run Malwarebytes free as a second opinion scanner"
+      ]
+    },
+    "verdict": "Windows Defender (free, built-in) includes real-time protection. Malwarebytes free is excellent as a second-opinion scanner.",
+    "faqs": [
+      {
+        "question": "Is Malwarebytes free good enough?",
+        "answer": "For most users, yes. Run occasional scans with Malwarebytes free. Windows Defender provides real-time protection."
+      },
+      {
+        "question": "Can I use Malwarebytes free with Windows Defender?",
+        "answer": "Yes, they can run together. Malwarebytes free will not conflict with Windows Defender."
+      }
+    ],
+    "tagline": "Malware removal with real-time protection at $44.99/year",
+    "paidToolUrl": "https://www.malwarebytes.com",
+    "pricing": "Free version; Premium $44.99/year",
+    "whySwitch": [
+      "Free built-in antivirus (Windows Defender)",
+      "Open-source alternative (ClamAV)",
+      "Free version available"
+    ],
+    "seoKeywords": [
+      "malwarebytes premium alternative",
+      "free antivirus",
+      "windows defender",
+      "malwarebytes free"
+    ]
+  },
+  {
+    "paidTool": "Surfshark",
+    "slug": "surfshark",
+    "category": "Security",
+    "description": "Surfshark is a popular VPN service at $2.49-12.95/month. Users seek free or cheaper alternatives.",
+    "painPoints": [
+      {
+        "problem": "Monthly/annual subscription cost",
+        "impact": "$2.49-12.95/month depending on plan"
+      },
+      {
+        "problem": "Trust in VPN provider required",
+        "impact": "VPN provider can see all your traffic"
+      },
+      {
+        "problem": "Sometimes blocked by streaming services",
+        "impact": "Netflix/Hulu may detect and block Surfshark IPs"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "ProtonVPN",
+        "url": "https://protonvpn.com",
+        "reason": "Free tier with no data limit, open-source, Swiss privacy laws",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "No data limit free tier",
+          "Open-source",
+          "Swiss privacy"
+        ],
+        "pricing": "Free; Paid from $3.59/month"
+      },
+      {
+        "name": "WireGuard (self-hosted)",
+        "url": "https://www.wireguard.com",
+        "reason": "Open-source VPN protocol, can be self-hosted on your own server",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Self-hosted",
+          "High speed",
+          "Open-source"
+        ],
+        "pricing": "Free (plus server cost)"
+      },
+      {
+        "name": "Tailscale",
+        "url": "https://tailscale.com",
+        "reason": "Zero-config WireGuard mesh network, free for personal use",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Zero config",
+          "Mesh network",
+          "Free for personal"
+        ],
+        "pricing": "Free personal; Paid for teams"
+      },
+      {
+        "name": "Mullvad VPN",
+        "url": "https://mullvad.net",
+        "reason": "Privacy-first VPN with flat rate $5/month, no personal data collected",
+        "isFree": false,
+        "isOpenSource": true,
+        "features": [
+          "Flat $5/month",
+          "No logs",
+          "Anonymous account"
+        ],
+        "pricing": "$5/month flat"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Research alternative VPNs (ProtonVPN, Mullvad, self-hosted)",
+        "Download and install alternative VPN client",
+        "Export Surfshark server config if using manual setup",
+        "Test alternative VPN for speed and reliability",
+        "Cancel Surfshark subscription"
+      ],
+      "tips": [
+        "ProtonVPN free tier has no data limit (rare for free VPNs)",
+        "WireGuard is faster than OpenVPN for self-hosting"
+      ]
+    },
+    "verdict": "ProtonVPN is the best free alternative with no data limits. Mullvad is the best paid privacy-focused alternative. For tech-savvy users, self-hosted WireGuard offers complete control.",
+    "faqs": [
+      {
+        "question": "Is ProtonVPN really free with no data limit?",
+        "answer": "Yes, ProtonVPN's free tier has no data limit. The free tier includes servers in 3 countries. Paid tier adds more countries and faster speeds."
+      },
+      {
+        "question": "Can I self-host my own VPN?",
+        "answer": "Yes, you can set up WireGuard or OpenVPN on a VPS (DigitalOcean, Linode, etc.). Tailscale makes this zero-config for mesh networks."
+      }
+    ],
+    "tagline": "Popular VPN for privacy at $2.49-12.95/month",
+    "paidToolUrl": "https://surfshark.com",
+    "pricing": "2-year $2.49/month; 1-year $3.99/month; Monthly $12.95/month",
+    "whySwitch": [
+      "Free tier with no data limit",
+      "Self-hosted privacy control",
+      "Flat-rate ethical VPN (Mullvad)"
+    ],
+    "seoKeywords": [
+      "surfshark alternative",
+      "protonvpn",
+      "free vpn",
+      "self-hosted vpn"
+    ]
+  },
+  {
+    "paidTool": "Bitwarden Premium",
+    "slug": "bitwarden-premium",
+    "category": "Security",
+    "description": "Bitwarden Premium adds advanced features at $10/year. Many users find the free version sufficient.",
+    "painPoints": [
+      {
+        "problem": "Premium features require $10/year",
+        "impact": "Must pay for advanced features like file attachments"
+      },
+      {
+        "problem": "Free version has limitations",
+        "impact": "No file attachments, limited 2FA options"
+      },
+      {
+        "problem": "Premium required for some features",
+        "impact": "Must upgrade for full functionality"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Bitwarden Free",
+        "url": "https://bitwarden.com",
+        "reason": "Free version of Bitwarden with core password management features",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free forever",
+          "Core password management",
+          "Cross-platform"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "KeePassXC",
+        "url": "https://keepassxc.org",
+        "reason": "Completely offline, open-source password manager with local database",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Completely offline",
+          "Local database",
+          "No cloud needed"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Proton Pass",
+        "url": "https://proton.me/pass",
+        "reason": "Free password manager from Proton (also makes ProtonVPN)",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free tier",
+          "End-to-end encryption",
+          "Alias email"
+        ],
+        "pricing": "Free; Paid from $3.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Export passwords from Bitwarden Premium (CSV export)",
+        "Downgrade to Bitwarden Free",
+        "Or import CSV into KeePassXC or Proton Pass",
+        "Install browser extension for new manager",
+        "Verify all logins work"
+      ],
+      "tips": [
+        "Bitwarden Free is sufficient for most users",
+        "KeePassXC stores everything locally — best for privacy"
+      ]
+    },
+    "verdict": "Bitwarden Free is sufficient for most users. KeePassXC is best for users who want completely offline, local password storage.",
+    "faqs": [
+      {
+        "question": "Is Bitwarden Free as secure as Premium?",
+        "answer": "Yes, Bitwarden Free uses the same AES-256 encryption and zero-knowledge architecture as Premium."
+      },
+      {
+        "question": "Can I use Bitwarden Free forever?",
+        "answer": "Yes, Bitwarden Free is free forever with core password management features. Premium adds advanced features like file attachments and 2FA."
+      }
+    ],
+    "tagline": "Password manager with premium features at $10/year",
+    "paidToolUrl": "https://bitwarden.com/premium",
+    "pricing": "Free; Premium $10/year",
+    "whySwitch": [
+      "Free forever version available",
+      "Completely offline option (KeePassXC)",
+      "Open-source transparency"
+    ],
+    "seoKeywords": [
+      "bitwarden premium alternative",
+      "free password manager",
+      "keepassxc",
+      "bitwarden free"
+    ]
+  }
+]

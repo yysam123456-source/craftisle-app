@@ -1,0 +1,802 @@
+[
+  {
+    "paidTool": "Affinity Publisher",
+    "slug": "affinity-publisher",
+    "category": "Design",
+    "description": "Affinity Publisher is a one-time purchase desktop publishing software at $69.99, positioned as an InDesign alternative without subscription.",
+    "painPoints": [
+      {
+        "problem": "One-time cost still required",
+        "impact": "$69.99 upfront"
+      },
+      {
+        "problem": "Less third-party plugin support than InDesign",
+        "impact": "Some workflows may need adaptation"
+      },
+      {
+        "problem": "Smaller community than Adobe",
+        "impact": "Fewer tutorials and resources"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Scribus (open-source)",
+        "url": "https://www.scribus.net",
+        "reason": "Completely free and open-source desktop publishing",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Professional publishing",
+          "Cross-platform"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Inkscape + extensions",
+        "url": "https://inkscape.org",
+        "reason": "Free vector graphics with desktop publishing extensions",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free",
+          "Vector graphics",
+          "Extensible"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Canva (free tier)",
+        "url": "https://www.canva.com",
+        "reason": "Free web-based design with publishing templates",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Web-based",
+          "Templates"
+        ],
+        "pricing": "Free; Paid from $14.99/month"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download Scribus",
+        "Export Affinity Publisher files (PDF/IDML if available)",
+        "Rebuild layouts in Scribus (may need manual adjustment)",
+        "Learn Scribus interface and shortcuts",
+        "Test print/output quality"
+      ],
+      "tips": [
+        "Scribus has a learning curve but is completely free",
+        "Canva is great for simple publishing needs"
+      ]
+    },
+    "verdict": "Scribus is the best free alternative. Canva is great for simple publishing needs without learning complex software.",
+    "faqs": [
+      {
+        "question": "Can Scribus open Affinity Publisher files?",
+        "answer": "No, Scribus cannot directly open Affinity Publisher files. Export to PDF from Affinity, then import into Scribus."
+      },
+      {
+        "question": "Is Canva good enough for professional publishing?",
+        "answer": "For simple brochures, flyers, and magazines, yes. For complex books with advanced typography, Scribus is better."
+      }
+    ],
+    "tagline": "One-time purchase desktop publishing at $69.99",
+    "paidToolUrl": "https://affinity.serif.com/publisher",
+    "pricing": "$69.99 one-time",
+    "whySwitch": [
+      "Free open-source alternative (Scribus)",
+      "Web-based free option (Canva)",
+      "No cost desktop publishing"
+    ],
+    "seoKeywords": [
+      "affinity publisher alternative",
+      "scribus vs indesign",
+      "free desktop publishing",
+      "canva for publishing"
+    ]
+  },
+  {
+    "paidTool": "Rebelle",
+    "slug": "rebelle",
+    "category": "Design",
+    "description": "Rebelle is a realistic painting sotware with a one-time purchase of $89.99. Users seek free alternatives for digital painting.",
+    "painPoints": [
+      {
+        "problem": "One-time cost required",
+        "impact": "$89.99 upfront"
+      },
+      {
+        "problem": "Windows/Mac only",
+        "impact": "No iPad or Android version"
+      },
+      {
+        "problem": "Learning curve for beginners",
+        "impact": "Takes time to master realistic painting"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Krita (open-source)",
+        "url": "https://krita.org",
+        "reason": "Free open-source painting software with realistic brushes",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Realistic brushes",
+          "Free"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "MediBang Paint (free)",
+        "url": "https://medibangpaint.com",
+        "reason": "Free painting software with cloud storage",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Cloud storage",
+          "Comic creation"
+        ],
+        "pricing": "Free; Pro $9.99/month"
+      },
+      {
+        "name": "FireAlpaca (free)",
+        "url": "https://firealpaca.com",
+        "reason": "Free painting software with simple interface",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Simple interface",
+          "Lightweight"
+        ],
+        "pricing": "Free"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Download Krita or MediBang Paint",
+        "Export Rebelle files (PSD format if available)",
+        "Import PSD into new software",
+        "Adjust brush settings and canvas texture",
+        "Test your common painting workflows"
+      ],
+      "tips": [
+        "Krita is completely free and open-source",
+        "MediBang Paint is great for comic creation"
+      ]
+    },
+    "verdict": "Krita is the best free alternative with realistic brushes. MediBang Paint is excellent for comic creators.",
+    "faqs": [
+      {
+        "question": "Can Krita open Rebelle files?",
+        "answer": "Krita cannot directly open Rebelle files. Export to PSD from Rebelle, then import into Krita."
+      },
+      {
+        "question": "Is there a free Rebelle alternative for comic creation?",
+        "answer": "Yes, MediBang Paint is free and specifically designed for comic creation."
+      }
+    ],
+    "tagline": "Realistic painting software at $89.99 one-time",
+    "paidToolUrl": "https://www.escapemotions.com/rebelle",
+    "pricing": "$89.99 one-time",
+    "whySwitch": [
+      "Free open-source alternative (Krita)",
+      "Free comic creation tools",
+      "No cost painting software"
+    ],
+    "seoKeywords": [
+      "rebelle alternative",
+      "krita vs rebelle",
+      "free painting software",
+      "medibang paint"
+    ]
+  },
+  {
+    "paidTool": "TVPaint",
+    "slug": "tvpaint",
+    "category": "Animation",
+    "description": "TVPaint is a professional 2D animation software with a one-time purchase of $500+. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "High one-time cost",
+        "impact": "$500+ for the full version"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "Takes significant time to master"
+      },
+      {
+        "problem": "No free trial (only demo)",
+        "impact": "Must buy before fully testing"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "OpenToonz (open-source)",
+        "url": "https://opentoonz.github.io",
+        "reason": "Free open-source 2D animation software used by Studio Ghibli",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Professional features",
+          "Used by Ghibli"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Krita (free animation)",
+        "url": "https://krita.org",
+        "reason": "Free animation with timeline and onion skinning",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free",
+          "Animation timeline",
+          "Onion skinning"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Blender (free 2D animation)",
+        "url": "https://www.blender.org",
+        "reason": "Free 2D animation with Grease Pencil",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Free",
+          "Grease Pencil",
+          "3D integration"
+        ],
+        "pricing": "Free"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download OpenToonz or Krita",
+        "Export TVPaint projects (image sequences)",
+        "Import image sequences into new software",
+        "Rebuild animation timelines",
+        "Learn new interface and shortcuts"
+      ],
+      "tips": [
+        "OpenToonz is used by Studio Ghibli — professional-grade",
+        "Krita is great for simple 2D animation"
+      ]
+    },
+    "verdict": "OpenToonz is the best free professional alternative. Krita is great for simpler 2D animation projects.",
+    "faqs": [
+      {
+        "question": "Can OpenToonz open TVPaint files?",
+        "answer": "No, project files are not directly compatible. Export your animation as image sequences from TVPaint, then import into OpenToonz."
+      },
+      {
+        "question": "Is Blender good for 2D animation?",
+        "answer": "Yes, Blender's Grease Pencil tool is excellent for 2D animation and integrates with 3D."
+      }
+    ],
+    "tagline": "Professional 2D animation at $500+ one-time",
+    "paidToolUrl": "https://www.tvpaint.com",
+    "pricing": "Standard $500; Pro $1000+",
+    "whySwitch": [
+      "Free professional alternative (OpenToonz)",
+      "Free open-source option (Krita)",
+      "No cost 2D animation"
+    ],
+    "seoKeywords": [
+      "tvpaint alternative",
+      "opentoonz vs tvpaint",
+      "free 2d animation",
+      "blender grease pencil"
+    ]
+  },
+  {
+    "paidTool": "Cinema 4D",
+    "slug": "cinema-4d",
+    "category": "3D",
+    "description": "Cinema 4D is a professional 3D modeling and animation software at $60+/month or $995 one-time. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "High monthly or one-time cost",
+        "impact": "$60+/month or $995 one-time"
+      },
+      {
+        "problem": "Less industry-standard than Maya/Blender",
+        "impact": "Fewer job opportunities requiring Cinema 4D"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "Takes significant time to master"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Blender (open-source)",
+        "url": "https://www.blender.org",
+        "reason": "Completely free and open-source 3D modeling, animation, and rendering",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Full 3D pipeline",
+          "Free"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Houdini Apprentice (free)",
+        "url": "https://www.sidefx.com/products/houdini-apprentice/",
+        "reason": "Free version of Houdini for learning (watermarked output)",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free for learning",
+          "Professional features",
+          "Watermarked output"
+        ],
+        "pricing": "Free for learning; Paid from $269/year"
+      },
+      {
+        "name": "Wings 3D (open-source)",
+        "url": "https://www.wings3d.com",
+        "reason": "Free open-source 3D modeling with simple interface",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Simple interface",
+          "Polygon modeling"
+        ],
+        "pricing": "Free"
+      }
+    ],
+    "migrationDifficulty": "Hard",
+    "migrationGuide": {
+      "steps": [
+        "Download Blender",
+        "Export Cinema 4D projects (FBX/OBJ)",
+        "Import models into Blender",
+        "Rebuild scenes and animations (may need manual reconstruction)",
+        "Learn Blender interface and shortcuts (very different from Cinema 4D)"
+      ],
+      "tips": [
+        "Blender is completely free and industry-recognized",
+        "Houdini Apprentice is free for learning but watermarks output"
+      ]
+    },
+    "verdict": "Blender is the best free alternative. It's industry-recognized and completely free.",
+    "faqs": [
+      {
+        "question": "Can Blender open Cinema 4D files?",
+        "answer": "No, project files are not directly compatible. Export models as FBX or OBJ from Cinema 4D, then import into Blender."
+      },
+      {
+        "question": "Is Blender as good as Cinema 4D?",
+        "answer": "Blender is excellent and completely free. It has a steeper learning curve but is industry-recognized."
+      }
+    ],
+    "tagline": "Professional 3D modeling at $60+/month or $995 one-time",
+    "paidToolUrl": "https://www.maxon.net/cinema-4d",
+    "pricing": "Subscription from $60/month; One-time $995",
+    "whySwitch": [
+      "Free open-source alternative (Blender)",
+      "Free learning version (Houdini)",
+      "No cost 3D modeling"
+    ],
+    "seoKeywords": [
+      "cinema 4d alternative",
+      "blender vs cinema 4d",
+      "free 3d modeling",
+      "houdini apprentice"
+    ]
+  },
+  {
+    "paidTool": "Maya",
+    "slug": "maya",
+    "category": "3D",
+    "description": "Maya is an industry-standard 3D modeling and animation software at $225/month. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Very expensive monthly cost",
+        "impact": "$225/month"
+      },
+      {
+        "problem": "Industry-standard but overkill for beginners",
+        "impact": "Too complex for simple projects"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "Takes significant time to master"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Blender (open-source)",
+        "url": "https://www.blender.org",
+        "reason": "Completely free and open-source 3D modeling, animation, and rendering",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Full 3D pipeline",
+          "Free"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Houdini Apprentice (free)",
+        "url": "https://www.sidefx.com/products/houdini-apprentice/",
+        "reason": "Free version of Houdini for learning (watermarked output)",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free for learning",
+          "Professional features",
+          "Watermarked output"
+        ],
+        "pricing": "Free for learning; Paid from $269/year"
+      },
+      {
+        "name": "3ds Max (Autodesk subscription)",
+        "url": "https://www.autodesk.com/products/3ds-max",
+        "reason": "Alternative Autodesk 3D software at $225/month",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Industry-standard",
+          "3D modeling",
+          "Animation"
+        ],
+        "pricing": "$225/month"
+      }
+    ],
+    "migrationDifficulty": "Hard",
+    "migrationGuide": {
+      "steps": [
+        "Download Blender",
+        "Export Maya projects (FBX/OBJ)",
+        "Import models into Blender",
+        "Rebuild scenes and animations (may need manual reconstruction)",
+        "Learn Blender interface and shortcuts (very different from Maya)"
+      ],
+      "tips": [
+        "Blender is completely free and industry-recognized",
+        "Houdini is best for procedural effects"
+      ]
+    },
+    "verdict": "Blender is the best free alternative. It's industry-recognized and completely free.",
+    "faqs": [
+      {
+        "question": "Can Blender open Maya files?",
+        "answer": "No, project files are not directly compatible. Export models as FBX or OBJ from Maya, then import into Blender."
+      },
+      {
+        "question": "Is Blender as good as Maya?",
+        "answer": "Blender is excellent and completely free. For high-end VFX, Houdini is industry-standard, but Blender covers 95% of use cases."
+      }
+    ],
+    "tagline": "Industry-standard 3D modeling at $225/month",
+    "paidToolUrl": "https://www.autodesk.com/products/maya",
+    "pricing": "$225/month (Autodesk subscription)",
+    "whySwitch": [
+      "Free open-source alternative (Blender)",
+      "Free learning version (Houdini)",
+      "No cost 3D modeling"
+    ],
+    "seoKeywords": [
+      "maya alternative",
+      "blender vs maya",
+      "free 3d modeling",
+      "houdini vs maya"
+    ]
+  },
+  {
+    "paidTool": "ZBrush",
+    "slug": "zbrush",
+    "category": "3D",
+    "description": "ZBrush is an industry-standard digital sculpting software at $895 one-time. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "High one-time cost",
+        "impact": "$895 upfront"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "Takes significant time to master"
+      },
+      {
+        "problem": "Windows/Mac only",
+        "impact": "No Linux or mobile version"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Blender (open-source sculpting)",
+        "url": "https://www.blender.org",
+        "reason": "Free sculpting with Dynotopo and Multiresolution",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Sculpting tools",
+          "Free"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Sculptris (free)",
+        "url": "https://pixologic.com/sculptris/",
+        "reason": "Free entry-level sculpting software from Pixologic",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Entry-level",
+          "Simple interface"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Mudbox (Autodesk subscription)",
+        "url": "https://www.autodesk.com/products/mudbox",
+        "reason": "Autodesk sculpting software at $10/month (indie license)",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Autodesk integration",
+          "Sculpting tools",
+          "Texture painting"
+        ],
+        "pricing": "$10/month (indie)"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download Blender",
+        "Export ZBrush projects (OBJ/FBX)",
+        "Import models into Blender",
+        "Learn Blender sculpting tools (Dynotopo, Multiresolution)",
+        "Test your common sculpting workflows"
+      ],
+      "tips": [
+        "Blender sculpting is completely free",
+        "Sculptris is great for beginners"
+      ]
+    },
+    "verdict": "Blender is the best free alternative. Its sculpting tools are excellent and completely free.",
+    "faqs": [
+      {
+        "question": "Can Blender open ZBrush files?",
+        "answer": "No, project files are not directly compatible. Export models as OBJ or FBX from ZBrush, then import into Blender."
+      },
+      {
+        "question": "Is Blender sculpting as good as ZBrush?",
+        "answer": "Blender sculpting is excellent and completely free. ZBrush has more advanced features, but Blender covers 90% of use cases."
+      }
+    ],
+    "tagline": "Industry-standard digital sculpting at $895 one-time",
+    "paidToolUrl": "https://www.pixologic.com/zbrush/",
+    "pricing": "$895 one-time",
+    "whySwitch": [
+      "Free open-source alternative (Blender)",
+      "Free entry-level option (Sculptris)",
+      "No cost digital sculpting"
+    ],
+    "seoKeywords": [
+      "zbrush alternative",
+      "blender vs zbrush",
+      "free digital sculpting",
+      "sculptris"
+    ]
+  },
+  {
+    "paidTool": "KeyShot",
+    "slug": "keyshot",
+    "category": "3D",
+    "description": "KeyShot is a real-time ray tracing and global illumination render at $995/year. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Annual subscription cost",
+        "impact": "$995/year"
+      },
+      {
+        "problem": "Easy to use but limited advanced features",
+        "impact": "May need more advanced render for complex scenes"
+      },
+      {
+        "problem": "No Linux version",
+        "impact": "Limited to Windows/Mac"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Blender Cycles (open-source)",
+        "url": "https://www.blender.org",
+        "reason": "Free path-traced render built into Blender",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Path tracing",
+          "Free"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "LuxCoreRender (open-source)",
+        "url": "https://luxcorerender.org",
+        "reason": "Free open-source physically based render",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Physically based",
+          "Cross-platform"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "POV-Ray (open-source)",
+        "url": "http://www.povray.org",
+        "reason": "Free open-source ray tracing render",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Ray tracing",
+          "Script-based"
+        ],
+        "pricing": "Free"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download Blender (includes Cycles render)",
+        "Export KeyShot scenes (BXS/OBJ)",
+        "Import models into Blender",
+        "Set up Cycles render settings",
+        "Test render quality and speed"
+      ],
+      "tips": [
+        "Blender Cycles is completely free and produces excellent results",
+        "LuxCoreRender is great for physically based rendering"
+      ]
+    },
+    "verdict": "Blender Cycles is the best free alternative. It produces excellent results and is completely free.",
+    "faqs": [
+      {
+        "question": "Can Blender Cycles match KeyShot quality?",
+        "answer": "Yes, Blender Cycles can produce results matching or exceeding KeyShot quality. It has a steeper learning curve but is free."
+      },
+      {
+        "question": "Is there a free real-time render alternative?",
+        "answer": "Yes, Blender Eevee is a free real-time render that can produce results similar to KeyShot in real-time."
+      }
+    ],
+    "tagline": "Real-time ray tracing render at $995/year",
+    "paidToolUrl": "https://www.keyshot.com",
+    "pricing": "$995/year",
+    "whySwitch": [
+      "Free open-source alternative (Blender Cycles)",
+      "Free real-time render (Blender Eevee)",
+      "No cost rendering"
+    ],
+    "seoKeywords": [
+      "keyshot alternative",
+      "blender cycles vs keyshot",
+      "free rendering",
+      "luxcorerender"
+    ]
+  },
+  {
+    "paidTool": "Mari",
+    "slug": "mari",
+    "category": "3D",
+    "description": "Mari is a professional 3D texture painting software at $1,790/year. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Very expensive annual cost",
+        "impact": "$1,790/year"
+      },
+      {
+        "problem": "Industry-standard but overkill for small projects",
+        "impact": "Too complex for simple texture painting"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "Takes significant time to master"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Blender (open-source texture painting)",
+        "url": "https://www.blender.org",
+        "reason": "Free texture painting with UV editing and painting",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Texture painting",
+          "UV editing"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Substance Painter (subscription)",
+        "url": "https://www.adobe.com/products/substance3d-painter.html",
+        "reason": "Industry-standard texture painting at $21.99/month",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Industry-standard",
+          "Texture painting",
+          "Smart materials"
+        ],
+        "pricing": "$21.99/month (Adobe subscription)"
+      },
+      {
+        "name": "ArmorPaint (open-source)",
+        "url": "https://armorpaint.org",
+        "reason": "Free open-source texture painting (similar to Substance Painter)",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Similar to Substance",
+          "Free"
+        ],
+        "pricing": "Free (open-source); $49 one-time (paid version)"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download Blender",
+        "Export Mari projects (OBJ/FBX with texture maps)",
+        "Import models into Blender",
+        "Re-paint textures in Blender or Substance Painter",
+        "Test texture quality and workflow"
+      ],
+      "tips": [
+        "Blender texture painting is completely free",
+        "ArmorPaint is a free open-source alternative to Substance Painter"
+      ]
+    },
+    "verdict": "Blender is the best free alternative. ArmorPaint is a great free alternative to Substance Painter.",
+    "faqs": [
+      {
+        "question": "Can Blender open Mari files?",
+        "answer": "No, project files are not directly compatible. Export texture maps from Mari, then re-apply them in Blender."
+      },
+      {
+        "question": "Is ArmorPaint as good as Substance Painter?",
+        "answer": "ArmorPaint is good and free (open-source). Substance Painter has more advanced features but requires subscription."
+      }
+    ],
+    "tagline": "Professional 3D texture painting at $1,790/year",
+    "paidToolUrl": "https://www.foundry.com/mari",
+    "pricing": "$1,790/year (Foundry subscription)",
+    "whySwitch": [
+      "Free open-source alternative (Blender)",
+      "Free Substance Painter alternative (ArmorPaint)",
+      "No cost texture painting"
+    ],
+    "seoKeywords": [
+      "mari alternative",
+      "blender vs mari",
+      "free texture painting",
+      "armorpaint"
+    ]
+  }
+]
