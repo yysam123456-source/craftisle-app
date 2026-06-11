@@ -1,0 +1,969 @@
+{
+  "VMware Workstation / Fusion": {
+    "name": "VMware Workstation / Fusion",
+    "category": "Virtualization",
+    "description": "VMware Workstation (Windows/Linux) and VMware Fusion (macOS) are premium virtualization tools for running multiple operating systems on one computer. Pricing starts at $199/year for Workstation Pro, and Fusion Pro is $199/year. Many users find this expensive for occasional virtualization needs.",
+    "website": "https://www.vmware.com/products/workstation-pro.html",
+    "painPoints": [
+      "Expensive: $199/year for Workstation Pro; Fusion Pro $199/year",
+      "No one-time purchase option — subscription only for Pro features",
+      "Resource-heavy — requires significant RAM and CPU for smooth VM performance",
+      "Broadcom acquisition has led to licensing changes and price increases",
+      "Free version (Player/Fusion Player) is very limited (no snapshots, no cloning)"
+    ],
+    "whySwitch": "There are excellent free and cheaper virtualization alternatives. VirtualBox is 100% free and open-source with most features. For macOS, UTM (free, open-source, uses Apple's Hypervisor.framework) is excellent for running Windows/Linux on Apple Silicon. For Linux users, KVM/QEMU is free and extremely powerful. Even VMware's own free Player is enough for basic use cases.",
+    "alternatives": [
+      {
+        "name": "VirtualBox (free, open-source)",
+        "url": "https://www.virtualbox.org",
+        "pricing": "100% free and open-source (GPLv2)",
+        "features": [
+          "Free and open-source (no paid tier!)",
+          "Supports Windows, Linux, macOS, Solaris as hosts and guests",
+          "Snapshots, cloning, and grouping",
+          "Shared folders, clipboard sharing, USB passthrough",
+          "Extensible with Extension Pack (free for personal use)",
+          "Active community and extensive documentation"
+        ],
+        "pros": [
+          "Completely free with no feature gating",
+          "Open-source and transparent",
+          "Snapshots and cloning included (unlike VMware Player)",
+          "Cross-platform (Windows, macOS, Linux)",
+          "Very mature — stable and well-documented"
+        ],
+        "cons": [
+          "Slower than VMware for some workloads (no paravirtualization as advanced)",
+          "UI is functional but dated",
+          "No official support (community-only for free users)",
+          "macOS version is less polished than Fusion"
+        ],
+        "bestFor": "Anyone who wants free, full-featured virtualization with snapshots and cloning",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.5
+      },
+      {
+        "name": "UTM (macOS, free and open-source)",
+        "url": "https://mac.getutm.app",
+        "pricing": "100% free (open-source); $9.99 on Mac App Store (supports development)",
+        "features": [
+          "Free virtualization for macOS (Intel and Apple Silicon)",
+          "Uses Apple's Hypervisor.framework (native performance on Apple Silicon)",
+          "Supports Windows 11 ARM, Linux, macOS guests",
+          "QEMU backend for architecture emulation (x86 on Apple Silicon)",
+          "Snapshot support",
+          "No cost, no subscriptions, no feature gating"
+        ],
+        "pros": [
+          "Free and open-source — no $199/year fee",
+          "Native Apple Silicon support (runs Windows 11 ARM smoothly)",
+          "Snapshots supported (unlike VMware Fusion Player free version)",
+          "Can emulate other architectures (run x86 Linux on Apple Silicon)",
+          "Clean, modern macOS-native UI"
+        ],
+        "cons": [
+          "Apple Silicon only runs ARM guests (Windows 11 ARM, Linux ARM)",
+          "No official support (community + GitHub issues)",
+          "Setup requires some technical knowledge (downloading Windows 11 ARM ISO)",
+          "No 3D acceleration for gaming (yet)"
+        ],
+        "bestFor": "macOS users (especially Apple Silicon) who want free virtualization with snapshots",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.6
+      },
+      {
+        "name": "KVM/QEMU (Linux, free and open-source)",
+        "url": "https://www.linux-kvm.org",
+        "pricing": "100% free and open-source (built into Linux kernel)",
+        "features": [
+          "Kernel-based Virtual Machine (built into Linux kernel)",
+          "Near-native performance (Type-1 hypervisor performance on Linux)",
+          "Supports GPU passthrough (VFIO) for gaming VMs",
+          "Manage via virt-manager (GUI) or virsh (CLI)",
+          "Snapshots, cloning, live migration",
+          "Supports Windows, Linux, BSD, and more as guests"
+        ],
+        "pros": [
+          "Completely free — built into Linux kernel",
+          "Near-native performance (better than VirtualBox, comparable to VMware)",
+          "GPU passthrough (run Windows games in a VM with dedicated GPU)",
+          "No artificial limits (unlike VMware Player)",
+          "Enterprise-grade features (live migration, snapshots, cloning)"
+        ],
+        "cons": [
+          "Linux-only (no Windows or macOS host support)",
+          "Steeper learning curve (need to learn virt-manager or virsh CLI)",
+          "GPU passthrough requires advanced setup (IOMMU grouping, BIOS settings)",
+          "No official commercial support (Red Hat offers commercial support for a fee)"
+        ],
+        "bestFor": "Linux users who want near-native performance and advanced features like GPU passthrough",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Parallels Desktop (macOS, cheaper than Fusion Pro)",
+        "url": "https://www.parallels.com",
+        "pricing": "$99.99/year (Standard); $119.99/year (Pro); one-time purchase option available",
+        "features": [
+          "Optimized for macOS and Apple Silicon (best performance for Windows on Mac)",
+          "Coherence mode (run Windows apps like Mac apps — no visible Windows desktop)",
+          "Supports Windows 11, Linux, macOS (as guest on Apple Silicon with workarounds)",
+          "Shared folders, clipboard, and smart resizing",
+          "One-click install for Windows, Ubuntu, Fedora, etc.",
+          "Better performance than free alternatives on macOS"
+        ],
+        "pros": [
+          "Best performance for Windows on Mac (especially Apple Silicon)",
+          "Coherence mode is excellent — Windows apps integrate seamlessly",
+          "One-click setup (downloads Windows ISO automatically)",
+          "Much cheaper than VMware Fusion Pro ($99.99 vs $199)",
+          "Officially supports macOS as a guest (with caveats on Apple Silicon)"
+        ],
+        "cons": [
+          "Still a paid product ($99.99/year — not free like VirtualBox or UTM)",
+          "Subscription model (though one-time purchase is available)",
+          "No GPU passthrough (unlike KVM)",
+          "Resource-heavy — requires significant RAM"
+        ],
+        "bestFor": "macOS users who want the best possible Windows performance and are willing to pay (but less than VMware Fusion Pro)",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Docker (containers — not VMs, but replaces many VM use cases)",
+        "url": "https://www.docker.com",
+        "pricing": "Free for personal use; Pro $9/month; Team $15/user/month",
+        "features": [
+          "Containers instead of full VMs (much lighter weight)",
+          "Docker Desktop for macOS, Windows, Linux",
+          "Docker Hub with 100,000+ pre-built images",
+          "Docker Compose for multi-container apps",
+          "Kubernetes integration for orchestration",
+          "Shared volumes, port mapping, and networking"
+        ],
+        "pros": [
+          "Lightweight — containers share the host kernel (no full OS per container)",
+          "Free for personal use (unlike VMware paid tiers)",
+          "Massive ecosystem (Docker Hub has images for almost everything)",
+          "Fast startup (seconds vs minutes for full VMs)",
+          "Great for development, testing, and CI/CD"
+        ],
+        "cons": [
+          "Not a VM replacement for running full other OS desktops (no GUI desktops like Windows)",
+          "Security isolation is weaker than VMs (containers share the kernel)",
+          "Docker Desktop can be resource-heavy on macOS (uses a hidden Linux VM)",
+          "Learning curve for those used to full VMs"
+        ],
+        "bestFor": "Developers who need to run services/databases in isolation (not full desktop VMs)",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.3
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from VMware to an alternative depends on your use case: full desktop VMs (VirtualBox, UTM, Parallels), lightweight containers (Docker), or Linux-native performance (KVM). The main work is exporting your VMware VMs and importing them into the new tool.",
+      "steps": [
+        "Identify your primary use case: full desktop VMs, headless servers, or development containers?",
+        "For full desktop VMs: export your VMware VMs as OVF/OVA files (File → Export to OVF)",
+        "Import the OVF/OVA into VirtualBox (File → Import Appliance) or UTM (New VM → Import VMDK)",
+        "For headless servers: consider Docker (if the service can run in a container) or KVM (if you need full VM isolation)",
+        "Test the imported VM in the new tool — you may need to re-install VMware Tools and install the new tool's guest additions",
+        "Cancel VMware subscription after confirming your VMs work in the new tool"
+      ],
+      "tips": [
+        "VirtualBox can import OVF/OVA files exported from VMware — this is the easiest migration path for full desktop VMs",
+        "On macOS with Apple Silicon: UTM is the best free alternative to VMware Fusion — it uses Apple's native Hypervisor.framework for near-native performance",
+        "If you only need to run Linux servers: Docker containers are much lighter than full VMs — consider switching if you don't need a GUI",
+        "Parallels Desktop is the best performance alternative on macOS if you're willing to pay — it's cheaper than VMware Fusion Pro and faster for Windows on Mac"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my VMware VMs (.vmx) in these alternatives?",
+        "a": "VirtualBox can import OVF/OVA exports from VMware. UTM can use VMDK disk files (the main virtual disk format). However, you can't directly open .vmx files — you need to export as OVF/OVA first, or copy the VMDK file and create a new VM in the alternative tool pointing to that disk."
+      },
+      {
+        "q": "What about VMware Tools (guest additions for better performance)?",
+        "a": "Each virtualization tool has its own guest additions: VirtualBox has 'Guest Additions', UTM has 'SPICE guest tools', Parallels has 'Parallels Tools'. After migrating, uninstall VMware Tools from the guest OS and install the new tool's guest additions for optimal performance."
+      },
+      {
+        "q": "Is there a free alternative that performs as well as VMware?",
+        "a": "On Linux: KVM/QEMU has near-native performance (often better than VMware). On macOS/Apple Silicon: UTM (free) performs well but Parallels Desktop (paid, $99.99/year) is faster. On Windows: VirtualBox is free but slightly slower than VMware; for best free performance, consider WSL2 (built into Windows 10/11) for Linux workloads."
+      }
+    ]
+  },
+  "Autodesk Maya": {
+    "name": "Autodesk Maya",
+    "category": "3D Animation & Modeling",
+    "description": "Autodesk Maya is the industry-standard 3D animation, modeling, simulation, and rendering software used in film, TV, and game development. Pricing is $245/month or $1,945/year — extremely expensive for indie creators and students.",
+    "website": "https://www.autodesk.com/products/maya/overview",
+    "painPoints": [
+      "Very expensive: $245/month or $1,945/year — prohibitive for indie creators",
+      "Steep learning curve — hundreds of features, menus, and workflows to learn",
+      "Resource-heavy — requires powerful GPU, lots of RAM, and fast storage",
+      "No one-time purchase option — subscription only",
+      "Frequent crashes on complex scenes with many objects and simulations"
+    ],
+    "whySwitch": "There are excellent free and cheaper 3D alternatives. Blender is 100% free and open-source, used in actual film production (next to Maya). For indie game developers, Unity and Unreal Engine are free to use (royalty-based). For CAD-style 3D modeling, Fusion 360 has a free personal use license. Unless you're working in a studio that mandates Maya, the alternatives cover 90% of use cases.",
+    "alternatives": [
+      {
+        "name": "Blender (free, open-source)",
+        "url": "https://www.blender.org",
+        "pricing": "100% free and open-source (GPLv3)",
+        "features": [
+          "Complete 3D suite: modeling, sculpting, animation, simulation, rendering",
+          "Cycles (ray-tracing renderer) and Eevee (real-time renderer)",
+          "Grease Pencil for 2D animation within 3D",
+          "Python scripting and extensive API",
+          "Asset browser and geometry nodes (procedural modeling)",
+          "Used in actual film production (next to Maya)"
+        ],
+        "pros": [
+          "Completely free with no feature gating — ever",
+          "Open-source and community-driven",
+          "Incredibly powerful — matches Maya for most workflows",
+          "Active development (new features every 3 months)",
+          "Massive free tutorial ecosystem (Blender Guru, Blender Nation)"
+        ],
+        "cons": [
+          "Different workflow than Maya — steep learning curve if switching from Maya",
+          "No direct .ma/.mb file import (need to export/import via FBX/OBJ/glTF)",
+          "Some studios still mandate Maya (but this is changing)",
+          "Interface is less 'professional' looking than Maya (subjective)"
+        ],
+        "bestFor": "Indie creators, students, and studios that don't mandate Maya",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Blender (free) + Unreal Engine (free for most uses)",
+        "url": "https://www.unrealengine.com",
+        "pricing": "Free to use; 5% royalty only if your product earns >$1M (Unreal Engine)",
+        "features": [
+          "Unreal Engine: real-time 3D creation tool (games, film, architecture)",
+          "Blender: 3D modeling and animation",
+          "Unreal Engine has Sequencer (cinematic tools) and MetaHumans",
+          "Blender has Geometry Nodes (procedural modeling)",
+          "Both are industry-standard (Unreal for real-time, Blender for pre-rendered)"
+        ],
+        "pros": [
+          "Both are free to use (Unreal only charges royalty on >$1M revenue)",
+          "Unreal Engine is the best real-time 3D tool (better than Maya for real-time)",
+          "Blender + Unreal is the indie standard pipeline",
+          "Massive learning resources for both",
+          "No subscription, no feature gating"
+        ],
+        "cons": [
+          "Unreal Engine has a steep learning curve (C++ or Blueprints)",
+          "Maya's animation tools are more mature than Blender's (though Blender is catching up)",
+          "No direct file compatibility — need to export/import between tools",
+          "Complex pipeline setup for Blender → Unreal workflow"
+        ],
+        "bestFor": "Game developers, real-time VFX artists, and indie film makers",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Cinema 4D (cheaper than Maya for many use cases)",
+        "url": "https://www.maxon.net/cinema-4d",
+        "pricing": "$94.99/month or $719.88/year (cheaper than Maya's $1,945/year)",
+        "features": [
+          "3D modeling, animation, and rendering (strong in motion graphics)",
+          "MoGraph module (best-in-class for motion graphics)",
+          "Redshift renderer (GPU-accelerated, included in some plans)",
+          "Integration with After Effects (excellent for motion designers)",
+          "Easier learning curve than Maya or Blender"
+        ],
+        "pros": [
+          "Much cheaper than Maya ($719.88/year vs $1,945/year)",
+          "Easier to learn than Maya (more intuitive interface)",
+          "Best-in-class motion graphics tools (MoGraph)",
+          "Excellent integration with After Effects",
+          "Redshift renderer is fast and beautiful"
+        ],
+        "cons": [
+          "Still expensive ($719.88/year — not free like Blender)",
+          "Less capable for character animation than Maya or Blender",
+          "Smaller community than Blender or Maya",
+          "No Linux version (Windows and macOS only)"
+        ],
+        "bestFor": "Motion graphics artists and indie creators who find Maya too expensive and Blender too complex",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Houdini (free Apprentice version for learning)",
+        "url": "https://www.sidefx.com",
+        "pricing": "Free Apprentice version (non-commercial); $269/year (Indie); $4,995 (Commercial)",
+        "features": [
+          "Procedural 3D animation and VFX (best-in-class for simulations)",
+          "Node-based workflow (similar to Blender's Geometry Nodes but more advanced)",
+          "Free Apprentice version for learning (water-marked renders)",
+          "Excellent for simulations: fire, smoke, fluids, cloth, particles",
+          "Used in major VFX studios (Marvel, Disney, etc.)"
+        ],
+        "pros": [
+          "Free Apprentice version for learning (no time limit)",
+          "Best-in-class procedural workflow and simulations",
+          "Used in major VFX studios (high-end industry standard)",
+          "Active learning community and SideFX tutorials",
+          "Indie license is $269/year (much cheaper than Maya)"
+        ],
+        "cons": [
+          "Steepest learning curve of all 3D software",
+          "Free Apprentice version has watermarked renders (can't use commercially)",
+          "Less intuitive for simple modeling (procedural workflow is different)",
+          "No built-in renderer in free version (uses Mantra, which is slow)"
+        ],
+        "bestFor": "VFX artists, simulation specialists, and students learning procedural 3D",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Wings 3D (free, open-source, simpler than Maya)",
+        "url": "https://www.wings3d.com",
+        "pricing": "100% free and open-source (BSD license)",
+        "features": [
+          "Free and open-source 3D modeler (subdivision modeling)",
+          "Supports importing/exporting many formats (OBJ, FBX, glTF, etc.)",
+          "AutoUV mapping and baking",
+          "Rendering with Yafaray or external renderers",
+          "Extensible with plugins (Lua scripting)",
+          "Much simpler than Maya or Blender — easier for beginners"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Much simpler than Maya or Blender (easier for beginners)",
+          "Good for conceptual modeling and 3D printing prep",
+          "Cross-platform (Windows, macOS, Linux)",
+          "Active community (smaller than Blender but friendly)"
+        ],
+        "cons": [
+          "Not a complete 3D suite (no animation, no simulation, no rendering built-in)",
+          "Less capable than Blender or Maya for full production pipelines",
+          "Smaller community and fewer tutorials than Blender",
+          "Interface is functional but dated"
+        ],
+        "bestFor": "Beginners who want to learn 3D modeling without the complexity of Maya or Blender",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 3.9
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from Maya to an alternative (usually Blender) involves re-creating your workflows in the new tool. There's no direct project file conversion. The best approach is to export your Maya assets (FBX, OBJ, ABC) and import them into Blender, then re-create animations and simulations using Blender's tools.",
+      "steps": [
+        "Identify your primary Maya use case: character animation, modeling, simulation, or rendering?",
+        "For general 3D work: download and install Blender (free)",
+        "Export your Maya assets as FBX or OBJ (File → Export → FBX/OBJ)",
+        "Import the FBX/OBJ into Blender (File → Import → FBX/OBJ)",
+        "Re-create your animations and simulations in Blender (Bendr's animation system is different from Maya's)",
+        "For rendering: set up Cycles or Eevee in Blender to match your Maya render output",
+        "Cancel Maya subscription after confirming your workflow works in Blender"
+      ],
+      "tips": [
+        "Blender's interface is highly customizable — you can set it up to resemble Maya's layout (there are YouTube tutorials for 'Maya to Blender keymap')",
+        "If you do character animation: Blender's rigging and animation tools are now excellent — watch 'Blender Rigging for Animators' tutorials",
+        "For simulations (fluids, cloth, particles): Blender's simulation tools have improved dramatically — they're now comparable to Maya's Bifrost",
+        "If you collaborate with Maya-using studios: you can export Blender assets as FBX for handoff — the pipeline works both ways"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my Maya project files (.ma, .mb) in Blender?",
+        "a": "No — there's no direct project file conversion. You need to export your Maya assets as FBX, OBJ, or ABC (Alembic), then import them into Blender. Animation curves and simulation caches may need to be re-created in Blender."
+      },
+      {
+        "q": "What if I need to collaborate with a studio that uses Maya?",
+        "a": "You can export your Blender assets as FBX or ABC for handoff to Maya. Many studios now accept Blender files or FBX exports. If the studio mandates Maya, you may need to keep a Maya subscription for collaboration — but do your personal work in Blender."
+      },
+      {
+        "q": "Is Blender really used in professional production, or just for hobbyists?",
+        "a": "Blender is used in actual professional production. Examples: 'Next Gen' (Netflix) was made entirely in Blender; Ubisoft uses Blender for some assets; many VFX studios use Blender alongside Maya. It's not 'just for hobbyists' anymore."
+      }
+    ]
+  },
+  "Adobe InDesign": {
+    "name": "Adobe InDesign",
+    "category": "Page Design & Layout",
+    "description": "Adobe InDesign is the industry-standard page design and layout tool for print and digital media. It is part of Adobe Creative Cloud and requires a subscription: $24.19/month for InDesign alone, or $62.99/month for all Creative Cloud apps. Many freelance designers and small studios find the subscription cost prohibitive.",
+    "website": "https://www.adobe.com/products/indesign",
+    "painPoints": [
+      "Expensive subscription: $24.19/month for InDesign alone, or $62.99/month for all Creative Cloud apps",
+      "No one-time purchase option — Adobe discontinued perpetual licenses",
+      "Resource-heavy — requires a powerful computer for smooth performance with large documents",
+      "Steep learning curve for beginners",
+      "Files are saved in proprietary .indd format, creating vendor lock-in"
+    ],
+    "whySwitch": "There are excellent free and cheaper page design alternatives. Affinity Publisher is a one-time purchase ($69.99) with no subscription. Scribus is 100% free and open-source. For simple layout work, Canva (free tier) is sufficient. For many designers, these alternatives cover 80-90% of InDesign's features at a fraction of the cost.",
+    "alternatives": [
+      {
+        "name": "Affinity Publisher (one-time purchase, no subscription)",
+        "url": "https://affinity.serif.com/publisher",
+        "pricing": "$69.99 one-time (no subscription); iPad version $16.99 separately",
+        "features": [
+          "Professional page design and layout (alternative to InDesign)",
+          "Master pages, grids, and guides",
+          "Supports importing InDesign files (.idml format)",
+          "PDF passthrough (place PDFs without rasterizing)",
+          "Integration with Affinity Photo and Designer (studio linking)",
+          "One-time purchase — no subscription forever"
+        ],
+        "pros": [
+          "One-time purchase ($69.99) — no subscription forever",
+          "Professional-grade features rivaling InDesign",
+          "Can import InDesign .idml files (preserves most layout)",
+          "Fast and responsive (optimized for modern hardware)",
+          "iPad version available (one-time purchase too)"
+        ],
+        "cons": [
+          "No mobile collaboration or cloud features like Adobe Creative Cloud",
+          "Smaller plugin/asset ecosystem than InDesign",
+          "No AI-powered features (no Generative AI like Adobe Firefly)",
+          "Less industry recognition — some clients specifically request .indd files"
+        ],
+        "bestFor": "Professional designers who want InDesign-quality tools without the subscription",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Scribus (free, open-source)",
+        "url": "https://www.scribus.net",
+        "pricing": "100% free and open-source (GPLv2)",
+        "features": [
+          "Free and open-source page layout tool (alternative to InDesign)",
+          "Supports professional publishing features: CMYK, spot colors, ICC color management",
+          "Import/export to many formats (PDF, SVG, EPS, etc.)",
+          "Python scripting for automation",
+          "Available on Windows, macOS, Linux"
+        ],
+        "pros": [
+          "Completely free with no ads or premium tiers",
+          "Open-source and community-driven",
+          "Supports professional printing features (CMYK, spot colors, ICC profiles)",
+          "Cross-platform (Windows, macOS, Linux)",
+          "Active development and community"
+        ],
+        "cons": [
+          "Interface is dated and less polished than InDesign or Affinity Publisher",
+          "Learning curve is steep for beginners",
+          "No native .indd import (must use .idml export from InDesign)",
+          "Less capable for complex layouts than InDesign or Affinity Publisher"
+        ],
+        "bestFor": "Budget-conscious designers, open-source advocates, and Linux users",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.2
+      },
+      {
+        "name": "Canva (free tier for simple layouts)",
+        "url": "https://www.canva.com",
+        "pricing": "Free tier; Pro $14.99/month or $119.99/year",
+        "features": [
+          "Browser-based design with templates for print and digital",
+          "Massive template library (millions of templates)",
+          "Brand Kit and asset management (Pro)",
+          "Background remover and Magic Resize (Pro)",
+          "Real-time collaboration",
+          "Export to PNG, JPG, PDF, SVG (Pro for PDF with crop marks)"
+        ],
+        "pros": [
+          "Extremely easy to learn — minimal learning curve",
+          "Free tier is very capable for simple layouts",
+          "Huge library of templates, photos, and graphics",
+          "Great for social media graphics and marketing materials",
+          "Team collaboration features in Pro plan"
+        ],
+        "cons": [
+          "Not a professional page layout tool — limited for multi-page documents, print-ready PDFs",
+          "Files are somewhat locked into Canva ecosystem",
+          "Pro plan required for most advanced features and assets",
+          "Not suitable for books, magazines, or complex print layouts"
+        ],
+        "bestFor": "Non-designers, social media managers, and simple marketing materials (not professional print layout)",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.3
+      },
+      {
+        "name": "VivaDesigner (free version available)",
+        "url": "https://www.vivadesigner.com",
+        "pricing": "Free version (basic features); Pro version €299 one-time",
+        "features": [
+          "Professional page layout (alternative to InDesign)",
+          "Free version includes basic layout features",
+          "Advanced typography and grid systems",
+          "Supports PDF export (free version has watermark)",
+          "Available on Windows, macOS, Linux"
+        ],
+        "pros": [
+          "Free version available (unlike InDesign which has no free tier)",
+          "Professional-grade typography and layout features",
+          "Cross-platform (Windows, macOS, Linux)",
+          "One-time purchase for Pro (no subscription)",
+          "Good for newspaper and magazine layout"
+        ],
+        "cons": [
+          "Free version has limited features and watermarked PDF export",
+          "Pro version is €299 (cheaper than InDesign subscription but still a cost)",
+          "Interface is functional but not as polished as Affinity Publisher",
+          "Smaller community than Scribus or Canva"
+        ],
+        "bestFor": "Newspaper and magazine designers who want a professional layout tool with a free tier",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 3.9
+      },
+      {
+        "name": "LaTeX (Scribtex, Overleaf) — for technical documents",
+        "url": "https://www.overleaf.com",
+        "pricing": "Free tier (unlimited projects, 1 collaborator); Premium $15/month",
+        "features": [
+          "LaTeX-based document preparation (not WYSIWYG — markup-based)",
+          "Excellent for technical documents, academic papers, books",
+          "Overleaf: online LaTeX editor with real-time collaboration",
+          "Hundreds of templates (journals, books, resumes)",
+          "Version control built-in",
+          "Export to PDF (print-ready)"
+        ],
+        "pros": [
+          "Best-in-class for academic, technical, and scientific documents",
+          "Overleaf free tier is generous (unlimited projects)",
+          "Real-time collaboration in Overleaf (better than InDesign's co-authoring)",
+          "Professional typography (LaTeX's algorithm is best-in-class)",
+          "Free tier is sufficient for most academic use cases"
+        ],
+        "cons": [
+          "Not WYSIWYG — you write markup, then compile to PDF (steep learning curve)",
+          "Not suitable for visual layout work (magazines, brochures with images)",
+          "Overleaf free tier has limited collaboration (1 collaborator)",
+          "No direct InDesign import (completely different workflow)"
+        ],
+        "bestFor": "Academic researchers, scientists, and technical document authors (not general page layout)",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.4
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from InDesign to an alternative involves exporting your InDesign files as .idml (InDesign Markup Language), which Affinity Publisher can import. Scribus can also import .idml with some limitations. For Canva, you need to export each page as a PDF and import the PDF into Canva.",
+      "steps": [
+        "Identify your primary InDesign use case: books, magazines, brochures, or simple marketing materials?",
+        "For professional page layout: download and install Affinity Publisher ($69.99 one-time)",
+        "In InDesign: export your document as .idml (File → Export → InDesign Markup)",
+        "In Affinity Publisher: open the .idml file (File → Open → select .idml)",
+        "Check formatting, fonts, and layout — some adjustments may be needed",
+        "For simpler layouts: export pages as PDF from InDesign and import into Canva",
+        "Cancel Adobe Creative Cloud subscription after confirming your workflow works in the alternative"
+      ],
+      "tips": [
+        "Affinity Publisher's .idml import is the best migration path from InDesign — it preserves most layout, fonts, and formatting",
+        "If you collaborate with InDesign-using clients: Affinity Publisher can export to PDF for handoff, or you can keep a minimal Creative Cloud subscription for file exchange",
+        "Scribus is the best free alternative, but its .idml import is less reliable than Affinity Publisher's — test with your most complex document first",
+        "For academic or technical documents: consider switching to LaTeX (Overleaf) — it produces better typography for technical content than any GUI page layout tool"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my InDesign files (.indd) in these alternatives?",
+        "a": "Affinity Publisher can import .idml files (export your InDesign file as .idml first). Scribus can also import .idml with some limitations. Canva cannot import .indd or .idml — you need to export pages as PDF from InDesign and import the PDF into Canva."
+      },
+      {
+        "q": "What if my client requires InDesign files?",
+        "a": "You have three options: (1) Keep a minimal Creative Cloud subscription for file compatibility only, (2) Export your work as PDF from Affinity Publisher or Scribus (most clients can open PDFs), or (3) Use Affinity Publisher and export to PDF — you can also export back to .idml for InDesign users."
+      },
+      {
+        "q": "Is Affinity Publisher a complete replacement for InDesign?",
+        "a": "For 80-90% of use cases, yes. Affinity Publisher has master pages, grids, professional typography, and can import InDesign .idml files. For complex book layouts with advanced cross-references and indexing, InDesign is still slightly more capable. But for most designers, Affinity Publisher is sufficient."
+      }
+    ]
+  },
+  "X (Twitter) Premium": {
+    "name": "X (Twitter) Premium",
+    "category": "Social Media",
+    "description": "X Premium (formerly Twitter Blue) is the paid subscription for X (formerly Twitter). It costs $8/month (web) or $11/month (iOS/Android, due to Apple/Google fees). Benefits include the blue checkmark, edit button, longer posts, and reduced ads. Many users find it overpriced for the value provided.",
+    "website": "https://premium.x.com",
+    "painPoints": [
+      "Blue checkmark is now pay-to-win — undermines trust in verification",
+      "$8/month ($11 on mobile) is expensive for what you get (edit button, longer posts, reduced ads)",
+      "Reduced ads is only 'half the ads' — still more ads than pre-Musk Twitter",
+      "Premium features are minor quality-of-life improvements, not transformative",
+      "Many users report that Premium doesn't significantly increase reach or engagement"
+    ],
+    "whySwitch": "There are better uses for $8-11/month than X Premium. Mastodon (free, open-source, decentralized) is a true Twitter alternative without ads or algorithms. For staying on X but avoiding the Premium hard-sell, use free third-party X clients (where still available) or just use X without Premium — the free tier is still functional. For professional networking, LinkedIn (free tier) or Bluesky (free) are alternatives.",
+    "alternatives": [
+      {
+        "name": "Mastodon (free, open-source, decentralized)",
+        "url": "https://joinmastodon.org",
+        "pricing": "Free (host your own instance, or join a free public instance)",
+        "features": [
+          "Decentralized social network (no central authority, no algorithm)",
+          "No ads, no tracking, no data mining",
+          "Open-source and transparent",
+          "Custom emojis, content warnings, and granular privacy",
+          "Migrate accounts between instances (you own your data)"
+        ],
+        "pros": [
+          "100% free with no premium tiers",
+          "No ads, no algorithms, no data tracking",
+          "Open-source and decentralized (you can host your own instance)",
+          "Chronological timeline (no algorithmic manipulation)",
+          "Active, friendly communities (less toxic than X)"
+        ],
+        "cons": [
+          "Smaller user base than X (though growing)",
+          "Learning curve for decentralization (choosing an instance, migration)",
+          "No algorithm — you see only who you follow (some see this as a pro)",
+          "Less real-time breaking news than X"
+        ],
+        "bestFor": "Users who want a non-toxic, non-algorithmic, ad-free Twitter alternative",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Bluesky (free, open protocol)",
+        "url": "https://bsky.social",
+        "pricing": "Free (no paid tier yet)",
+        "features": [
+          "Open protocol (AT Protocol) — decentralized like Mastodon but with a smoother onboarding",
+          "Chronological timeline (no algorithm by default)",
+          "Custom feeds (you choose your algorithm, not the platform)",
+          "No ads, no tracking",
+          "Migrate your account between providers (like Mastodon)"
+        ],
+        "pros": [
+          "Free with no paid tier (unlike X Premium)",
+          "Smoother onboarding than Mastodon (no choosing an instance upfront)",
+          "Custom feeds are innovative — you can subscribe to different algorithms",
+          "No ads, no algorithmic manipulation",
+          "Backed by Jack Dorsey (Twitter co-founder) — credibility"
+        ],
+        "cons": [
+          "Still in growth phase — smaller user base than X or Mastodon",
+          "No DMs yet (in development)",
+          "Some features still missing (but improving rapidly)",
+          "Custom feeds require some setup (though simpler than it sounds)"
+        ],
+        "bestFor": "Users who want a Twitter-like experience without ads, algorithms, or paid checkmarks",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.2
+      },
+      {
+        "name": "LinkedIn (free tier for professional networking)",
+        "url": "https://www.linkedin.com",
+        "pricing": "Free tier; Premium $39.99/month (Career); $59.99/month (Business); $119.95/month (Sales Navigator)",
+        "features": [
+          "Professional networking (different use case than X, but replaces X for many professionals)",
+          "Free tier is generous (messaging, profile, job search)",
+          "LinkedIn Premium removes ads and shows who viewed your profile",
+          "Learning courses included in Premium",
+          "Publishing platform (write articles)"
+        ],
+        "pros": [
+          "Free tier is very capable (unlike X where Premium is pushed aggressively)",
+          "Better for professional networking than X",
+          "No algorithm manipulation (chronological feed)",
+          "Publishing platform is good for thought leadership",
+          "Job search features are excellent (Premium adds more)"
+        ],
+        "cons": [
+          "Different use case than X (professional networking, not microblogging)",
+          "LinkedIn Premium is expensive ($39.99/month — more than X Premium)",
+          "Some users find LinkedIn's feed boring or too work-focused",
+          "No microblogging (280-character posts) like X"
+        ],
+        "bestFor": "Professionals who use X primarily for networking and industry news (not microblogging)",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4
+      },
+      {
+        "name": "Just use X without Premium (free tier is still functional)",
+        "url": "https://x.com",
+        "pricing": "Free (with ads); Premium $8-11/month",
+        "features": [
+          "Free tier still lets you post, reply, like, retweet, and DM",
+          "Ads are more frequent on free tier, but still usable",
+          "No edit button on free tier (but do you really need it?)",
+          "No blue checkmark (but does that matter?)",
+          "Longer posts (up to 25,000 characters) are Premium-only"
+        ],
+        "pros": [
+          "Free tier is still functional — you can use X without paying",
+          "No subscription needed to participate in conversations",
+          "If you don't care about the blue checkmark, free tier is fine",
+          "Many users don't see significant reach/engagement boost from Premium"
+        ],
+        "cons": [
+          "More ads on free tier (though still usable)",
+          "No edit button (though you can delete and repost)",
+          "No blue checkmark (if that matters to you)",
+          "Longer posts are Premium-only (25,000 characters vs 280)"
+        ],
+        "bestFor": "Users who don't care about the blue checkmark or edit button and don't mind some ads",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 3.8
+      },
+      {
+        "name": "Cohost (free tier, no ads, creative-focused)",
+        "url": "https://cohost.org",
+        "pricing": "Free (with optional tips to creators); no paid tier yet",
+        "features": [
+          "Creative-focused microblogging platform (alternative to X)",
+          "No ads, no algorithms, no tracking",
+          "Markdown support in posts",
+          "Ask feature (like Tumblr's ask)",
+          "No character limit (unlike X's 280 characters)"
+        ],
+        "pros": [
+          "Free, no ads, no algorithms",
+          "Markdown support (great for technical posts)",
+          "Creative-friendly community (art, writing, coding)",
+          "No character limit (unlike X)",
+          "No paid tier (unlike X Premium)"
+        ],
+        "cons": [
+          "Smaller user base than X, Mastodon, or Bluesky",
+          "Not focused on news or real-time events (more creative/art)",
+          "No DMs yet (in development)",
+          "Less suitable for professional networking than LinkedIn"
+        ],
+        "bestFor": "Creatives, artists, and writers who want a non-toxic, non-algorithmic microblogging platform",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 3.9
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Canceling X Premium is straightforward — you can downgrade to the free tier and still use X. For migrating to a true X alternative (Mastodon, Bluesky), the main work is building your follower base again. But the communities are friendlier and less toxic.",
+      "steps": [
+        "Decide what you use X for: real-time news, professional networking, or creative expression?",
+        "For real-time news and less toxicity: create an account on Mastodon (joinmastodon.org) or Bluesky (bsky.social)",
+        "For professional networking: optimize your LinkedIn profile and start posting there",
+        "For creative expression: try Cohost (cohost.org) or Tumblr (tumblr.com)",
+        "Announce your move on X (post a link to your Mastodon/Bluesky/Tumblr profile)",
+        "Cancel X Premium (downgrade to free tier) — you can still use X to announce your posts on other platforms",
+        "Eventually, you may find you use X less and less"
+      ],
+      "tips": [
+        "Mastodon's decentralized nature means you choose an 'instance' (server) — pick one that matches your interests (technology, art, local community, etc.)",
+        "Bluesky's custom feeds are worth exploring — you can subscribe to feeds that show only posts from people you follow, or feeds that show specific topics",
+        "If you're staying on X but hate the ads: use an ad blocker (on web) or use a third-party X client (where still available)",
+        "LinkedIn is the best X alternative for professional networking — but it's not a microblogging platform. For microblogging without ads/algorithms, use Mastodon or Bluesky"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Will I lose my followers if I leave X for Mastodon or Bluesky?",
+        "a": "Yes — there's no automatic follower migration between platforms. You need to announce your new handle on X and invite followers to follow you on the new platform. Many X users are already on Mastodon or Bluesky — you may find many of your X followers there."
+      },
+      {
+        "q": "Is X Premium worth it for the blue checkmark?",
+        "a": "Since the blue checkmark is now pay-to-win (anyone can get it), it no longer signals 'trustworthy' or 'notable.' Many users find it's not worth $8-11/month. The edit button and longer posts are nice, but not transformative."
+      },
+      {
+        "q": "What about X Premium for reach and engagement?",
+        "a": "X claims Premium subscribers get 'prioritized' ranking in replies and search. In practice, many Premium subscribers report no significant increase in reach or engagement. If your goal is more reach, focus on posting quality content and engaging with others — not paying for Premium."
+      }
+    ]
+  },
+  "LinkedIn Premium": {
+    "name": "LinkedIn Premium",
+    "category": "Professional Networking",
+    "description": "LinkedIn Premium is the paid tier of LinkedIn, offering enhanced profile visibility, who viewed your profile, InMail credits, and access to LinkedIn Learning. Pricing starts at $39.99/month (Career), $59.99/month (Business), and $119.95/month (Sales Navigator). Many users find it overpriced for the value provided.",
+    "website": "https://www.linkedin.com/premium",
+    "painPoints": [
+      "Expensive: $39.99/month (Career) to $119.95/month (Sales Navigator)",
+      "Free tier is already quite capable — Premium features are 'nice-to-have' not 'must-have'",
+      "InMail credits are limited and often go unanswered",
+      "LinkedIn Learning courses are also available on other platforms (Coursera, Udemy, etc.) often cheaper",
+      "Profile visibility boost is marginal — most users won't notice a difference"
+    ],
+    "whySwitch": "LinkedIn's free tier is already very capable. For learning, Coursera, Udemy, and YouTube are cheaper or free. For job searching, LinkedIn free tier is sufficient (Premium adds some insights but not transformative). For sales/networking, there are better CRM and lead generation tools than LinkedIn Sales Navigator. Unless you're a recruiter or sales professional who relies on InMail, Premium is unnecessary.",
+    "alternatives": [
+      {
+        "name": "LinkedIn Free Tier (yes, the free tier is already good)",
+        "url": "https://www.linkedin.com",
+        "pricing": "Free (with ads); Premium $39.99/month+",
+        "features": [
+          "Free tier lets you message connections, apply to jobs, and post updates",
+          "Profile visibility is already good on free tier (Premium adds marginal boost)",
+          "Job search is fully functional on free tier (Premium adds some insights)",
+          "LinkedIn Learning is the main Premium feature — but courses are available elsewhere cheaper"
+        ],
+        "pros": [
+          "Free tier is very capable — you can use LinkedIn effectively without paying",
+          "No subscription needed to network, apply to jobs, or post content",
+          "If you don't need InMail or Learning, free tier is sufficient",
+          "Many users don't see significant ROI from Premium"
+        ],
+        "cons": [
+          "Ads in feed (but not intrusive)",
+          "No InMail credits (but you can still message your connections for free)",
+          "No 'who viewed your profile' for anonymous viewers (but do you really need that?)",
+          "LinkedIn Learning not included (but courses are available elsewhere cheaper)"
+        ],
+        "bestFor": "90% of LinkedIn users who don't need InMail or Learning",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 3.9
+      },
+      {
+        "name": "Coursera (for learning, cheaper than LinkedIn Learning)",
+        "url": "https://www.coursera.org",
+        "pricing": "Free courses (audit mode); Coursera Plus $59/month or $399/year",
+        "features": [
+          "Online courses from top universities (Stanford, Yale, Google, etc.)",
+          "Certificates and degrees (many are accredited)",
+          "Free audit mode for most courses (no certificate)",
+          "Coursera Plus gives unlimited access to 7,000+ courses",
+          "Mobile app for offline viewing"
+        ],
+        "pros": [
+          "Much cheaper than LinkedIn Premium ($399/year vs $39.99/month = $479.88/year)",
+          "Courses from top universities (more prestigious than LinkedIn Learning)",
+          "Free audit mode (watch videos for free, no certificate)",
+          "More comprehensive than LinkedIn Learning (full degrees available)"
+        ],
+        "cons": [
+          "Different focus than LinkedIn Learning (university-style courses vs. short professional skills videos)",
+          "No InMail or networking features (it's a learning platform, not a professional network)",
+          "Certificate requires payment (but audit mode is free)",
+          "Less focused on 'business skills' than LinkedIn Learning (more academic)"
+        ],
+        "bestFor": "Learners who want university-quality courses at a lower price than LinkedIn Premium",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Udemy (for learning, much cheaper than LinkedIn Learning)",
+        "url": "https://www.udemy.com",
+        "pricing": "Pay-per-course (often $9.99–$19.99 per course on sale); Personal Plan $16.58/month",
+        "features": [
+          "Online courses on almost every topic (business, tech, personal development)",
+          "Frequent sales (courses often $9.99–$19.99)",
+          "Lifetime access to purchased courses",
+          "Udemy Business for teams",
+          "Mobile app for offline viewing"
+        ],
+        "pros": [
+          "Much cheaper than LinkedIn Premium (buy 3-4 courses for the price of 1 month of Premium)",
+          "Lifetime access (unlike subscription-based platforms)",
+          "Huge variety of courses (often more practical than LinkedIn Learning)",
+          "Frequent sales (never pay full price)"
+        ],
+        "cons": [
+          "Quality varies widely (some courses are excellent, some are poor)",
+          "No university accreditation (unlike Coursera)",
+          "No networking or InMail features (it's a learning platform)",
+          "Subscription model (Personal Plan) is less popular than pay-per-course"
+        ],
+        "bestFor": "Learners who want practical skills at the lowest possible cost",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.2
+      },
+      {
+        "name": "Apolo.io (for sales/lead generation, cheaper than Sales Navigator)",
+        "url": "https://www.apolo.io",
+        "pricing": "Free tier; $49/month (Basic); $99/month (Professional)",
+        "features": [
+          "Sales intelligence and lead generation platform (alternative to LinkedIn Sales Navigator)",
+          "Access to 265M+ contacts (often more than Sales Navigator)",
+          "Email finder and verifier",
+          "Integrations with CRM (Salesforce, HubSpot, etc.)",
+          "Chrome extension for LinkedIn profile enrichment"
+        ],
+        "pros": [
+          "Cheaper than Sales Navigator ($49/month vs $119.95/month)",
+          "Larger contact database (265M+ vs Sales Navigator's ~200M)",
+          "Email finder and verifier included (extra cost on Sales Navigator)",
+          "Better for cold email outreach (Sales Navigator is better for warm LinkedIn outreach)"
+        ],
+        "cons": [
+          "Different workflow than Sales Navigator (focused on email outreach, not LinkedIn InMail)",
+          "Less 'social' — no LinkedIn integration for sending InMail (you need to find email addresses)",
+          "Learning curve for the platform and email outreach best practices",
+          "Data accuracy can vary (like any lead gen platform)"
+        ],
+        "bestFor": "Sales professionals who do cold email outreach (not just LinkedIn InMail)",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Indeed / Glassdoor (for job searching, free)",
+        "url": "https://www.indeed.com",
+        "pricing": "Free for job seekers; employers pay for job postings and resume access",
+        "features": [
+          "Job search engine (alternative to LinkedIn Jobs)",
+          "Free for job seekers (no Premium needed)",
+          "Company reviews (Glassdoor integration)",
+          "Resume upload and easy apply",
+          "Salary insights and company ratings"
+        ],
+        "pros": [
+          "Completely free for job seekers",
+          "Large job database (often larger than LinkedIn Jobs)",
+          "Company reviews help you evaluate offers (Glassdoor)",
+          "No subscription needed to apply to jobs",
+          "Salary insights help with negotiation"
+        ],
+        "cons": [
+          "Not a professional network (unlike LinkedIn — no networking, no content posting)",
+          "Less 'passive' job opportunities (recruiters using LinkedIn InMail can reach you, but not on Indeed)",
+          "Spammy job postings (need to filter carefully)",
+          "No learning platform (unlike LinkedIn Learning)"
+        ],
+        "bestFor": "Job seekers who want a free, large job database without paying for LinkedIn Premium",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.1
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Canceling LinkedIn Premium is straightforward — you can downgrade to the free tier and still use LinkedIn for networking, job searching, and content posting. For learning, Coursera or Udemy are cheaper. For sales, Apollo.io is cheaper than Sales Navigator. The main consideration is whether you actually use the Premium features enough to justify the cost.",
+      "steps": [
+        "Review your LinkedIn Premium usage: which features do you actually use? (InMail, Learning, who viewed your profile?)",
+        "For learning: sign up for Coursera (free audit) or Udemy (wait for sale, then buy courses for $9.99–$19.99)",
+        "For sales: sign up for Apollo.io (free tier or $49/month vs Sales Navigator's $119.95/month)",
+        "For job searching: Indeed and Glassdoor are free and have large job databases",
+        "Cancel LinkedIn Premium (downgrade to free tier) — you can still use LinkedIn for networking and job searching",
+        "Keep LinkedIn free tier for networking and content posting"
+      ],
+      "tips": [
+        "LinkedIn Learning is also available through many public libraries (free with your library card) — check before paying for Premium",
+        "If you're a student: many universities provide free LinkedIn Learning access — check with your university's IT department",
+        "For sales: Apollo.io is cheaper than Sales Navigator, but if you do warm LinkedIn outreach (InMail), Sales Navigator may still be worth it",
+        "Indeed and Glassdoor are free for job seekers — use them alongside LinkedIn free tier for maximum job search coverage"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Will I lose my LinkedIn network if I cancel Premium?",
+        "a": "No — your connections, messages, and profile remain intact on the free tier. You just lose InMail credits, 'who viewed your profile' for anonymous viewers, and LinkedIn Learning access. Your network is safe."
+      },
+      {
+        "q": "Is LinkedIn Premium worth it for job seekers?",
+        "a": "For most job seekers, no. The free tier lets you apply to jobs, message recruiters (if they're in your network), and post updates. Premium adds 'Top Applicant' badge and some insights, but these are marginal. Use Indeed and Glassdoor (free) alongside LinkedIn free tier."
+      },
+      {
+        "q": "What about LinkedIn Sales Navigator for sales professionals?",
+        "a": "If you do warm LinkedIn outreach (InMail, connection requests), Sales Navigator is still the best tool. But if you do cold email outreach, Apollo.io ($49/month) is cheaper and better. Many sales professionals use both: Sales Navigator for LinkedIn outreach, Apollo for email outreach."
+      }
+    ]
+  }
+}
