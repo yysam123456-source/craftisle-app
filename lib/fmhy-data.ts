@@ -28,8 +28,8 @@ function getReviewLookup(): Set<string> {
 
 function hasReviewFor(resource: { id?: string; name?: string }): boolean {
   const lookup = getReviewLookup();
+  // ✅ 只检查 resourceId（唯一标识），不检查 resourceName（可能不够唯一，比如很多资源都叫 "GitHub"）
   if (resource.id && lookup.has(resource.id)) return true;
-  if (resource.name && lookup.has(resource.name.toLowerCase())) return true;
   return false;
 }
 
@@ -350,24 +350,18 @@ export function getStats() {
   return { total, bySource };
 }
 
-// ── Rich-info filter（供 generateStaticParams / sitemap 复用） ────────────
-
-let _richInfoIdSet: Set<string> | null = null;
-
+// ── Rich-info filter（供 generateStaticParams / sitemap / 页面组件复用）
+// 注意：不缓存，每次调用重新计算（ISR 按需生成页面时需要读取最新数据）
+// 【判断标准】只保留有 AI review 的资源详情页（约 48 个）
+// 其他资源的卡片直接跳转外部网站，不预构建详情页（避免生成数千个垃圾页面影响 SEO）
 export function getRichInfoResourceIds(): Set<string> {
-  if (_richInfoIdSet) return _richInfoIdSet;
   const all = getAllResources();
   const set = new Set<string>();
   for (const r of all) {
+    // ✅ 仅保留有 AI Review 的资源（高质量内容页）
     if (hasReviewFor(r)) { set.add(r.id); continue; }
-    if (r.githubStars && r.githubStars > 0) { set.add(r.id); continue; }
-    if (r.freeTier && r.freeTier.length > 20) { set.add(r.id); continue; }
-    if (r.auth || r.https !== undefined || r.cors !== undefined) { set.add(r.id); continue; }
-    if (r.license || r.language || r.isOpenSource) { set.add(r.id); continue; }
-    if (r.tags && r.tags.length > 0) { set.add(r.id); continue; }
-    if ((r.description || "").length > 300) { set.add(r.id); continue; }
+    // ❌ 其他情况：不预构建详情页，卡片直接跳转外部网站
   }
-  _richInfoIdSet = set;
   return set;
 }
 
