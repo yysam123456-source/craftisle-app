@@ -2176,6 +2176,7 @@ export const ALTERNATIVES_MAP: Record<string, AlternativeEntry> = {
     paidTool: "InVision",
     paidToolUrl: "https://www.invisionapp.com",
     tagline: "The world's leading prototyping and collaboration platform for design teams",
+    description: "InVision is a prototyping and collaboration platform for design teams. While powerful, its free plan limits users to 1 prototype, and the Pro plan at $7.95/month per user can get expensive for teams. Many designers are switching to tools with better free tiers and more robust feature sets, such as Figma which includes prototyping as part of its free tier.",
     pricing: "Free plan for 1 prototype; Pro $7.95/month per user",
     painPoints: [
       { problem: "Free plan limited to 1 prototype", impact: "Users can't test multiple designs simultaneously" },
@@ -2277,6 +2278,8 @@ const BATCH_FILES: string[] = [
   "alternatives-batch36.json",
   "alternatives-batch37.json",
   "alternatives-batch38.json",
+  "alternatives-batch39.json",
+  "alternatives-batch40.json",
 ];
 
 export function getCombinedMap(): Record<string, AlternativeEntry> {

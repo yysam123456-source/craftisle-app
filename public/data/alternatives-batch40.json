@@ -1,0 +1,765 @@
+[
+  {
+    "paidTool": "Zoom",
+    "paidToolUrl": "https://zoom.us",
+    "tagline": "The world's most popular video conferencing tool — and its many free alternatives",
+    "description": "Zoom is the dominant video conferencing platform used by businesses, schools, and individuals worldwide. The free tier limits group meetings to 40 minutes, while Zoom Pro ($15.99/month) removes this restriction. For many users, the 40-minute limit is a dealbreaker, but there are excellent free alternatives with longer (or no) time limits.",
+    "pricing": "Free tier: 40-minute limit on group meetings; Pro $15.99/month/host; Business $21.99/month/host",
+    "painPoints": [
+      {
+        "problem": "40-minute time limit on free group meetings",
+        "impact": "Interrupts workflow and requires restarting meetings"
+      },
+      {
+        "problem": "Subscription cost for teams",
+        "impact": "$16-22/month per host adds up quickly"
+      },
+      {
+        "problem": "Privacy and security concerns (zoombombing)",
+        "impact": "Sensitive meetings may be exposed"
+      },
+      {
+        "problem": "Resource-heavy on older devices",
+        "impact": "Laggy on budget hardware"
+      }
+    ],
+    "whySwitch": [
+      "No time limits on free group calls",
+      "Save $192/year per host by switching to free alternatives",
+      "Better privacy and encryption options",
+      "Lighter on system resources"
+    ],
+    "alternatives": [
+      {
+        "name": "Google Meet",
+        "url": "https://meet.google.com",
+        "reason": "Google's video meeting tool with no time limit for 1:1 and up to 24-hour meetings for Google Workspace users; free tier supports up to 100 participants for 60 minutes",
+        "description": "Google Meet is Google's enterprise-grade video conferencing solution, deeply integrated with Google Workspace. The free tier is generous, and there are no downloads required — it runs entirely in the browser.",
+        "features": [
+          "Browser-based (no download)",
+          "Live captions with translation",
+          "Screen sharing and recording",
+          "Google Workspace integration",
+          "Up to 100 participants (free tier: 60-min limit)"
+        ],
+        "pros": [
+          "No time limit for 1:1 calls",
+          "Excellent video quality",
+          "Works in all modern browsers",
+          "Free with Google account"
+        ],
+        "cons": [
+          "60-minute limit on group calls (free tier)",
+          "Requires Google account",
+          "Fewer features than Zoom for free users"
+        ],
+        "bestFor": "Google Workspace users, educators, and anyone wanting browser-based meetings",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "Jitsi Meet",
+        "url": "https://meet.jit.si",
+        "reason": "100% free, open-source video conferencing with no account required and no time limits — the best truly-free Zoom alternative",
+        "description": "Jitsi Meet is a fully open-source, privacy-focused video conferencing platform. You can start a meeting instantly without any account, and there are no time limits or participant limits. It can also be self-hosted for complete control.",
+        "features": [
+          "No account needed",
+          "No time limits",
+          "No participant limits",
+          "End-to-end encryption (optional)",
+          "Self-hosting capable",
+          "Phone dial-in support"
+        ],
+        "pros": [
+          "Completely free with no limits",
+          "Open-source and privacy-focused",
+          "No registration required",
+          "Can be self-hosted"
+        ],
+        "cons": [
+          "Video quality depends on connection",
+          "Fewer enterprise features",
+          "No native dial-in for free users"
+        ],
+        "bestFor": "Privacy-conscious users, open-source enthusiasts, and self-hosters",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.4
+      },
+      {
+        "name": "Microsoft Teams",
+        "url": "https://teams.microsoft.com",
+        "reason": "Microsoft's collaboration hub with free perpetual meetings (up to 60 minutes, 100 participants) and deep Office integration",
+        "description": "Microsoft Teams is the free tier of Microsoft's collaboration platform. It includes chat, video meetings, file sharing, and Office app integration. The free version supports up to 100 participants with a 60-minute limit per meeting.",
+        "features": [
+          "Up to 100 participants",
+          "60-minute meeting limit (free)",
+          "Chat and channels",
+          "File sharing via OneDrive",
+          "Office apps integration",
+          "Background blur"
+        ],
+        "pros": [
+          "Free with Microsoft account",
+          "Integrated with Office 365",
+          "Good for organizations already using Microsoft tools",
+          "Decent free tier"
+        ],
+        "cons": [
+          "60-minute limit on group meetings",
+          "Can be resource-heavy",
+          "Steeper learning curve than Zoom"
+        ],
+        "bestFor": "Organizations already using Microsoft 365, schools, and enterprises",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.3
+      },
+      {
+        "name": "Discord",
+        "url": "https://discord.com",
+        "reason": "Originally built for gamers, Discord now offers excellent free video calls with screen sharing, no time limits, and up to 25 people on video",
+        "description": "Discord is a VoIP and instant messaging platform that has evolved into a general-purpose communication tool. Video calls are free with no time limits, and screen sharing with audio works seamlessly. The Nitro subscription adds some enhancements but is not needed for core functionality.",
+        "features": [
+          "No time limits on video calls",
+          "Screen sharing with audio",
+          "Up to 25 people on video (25 on screen sharing)",
+          "Text chat alongside video",
+          "Server-based organization",
+          "Mobile and desktop apps"
+        ],
+        "pros": [
+          "Completely free core features",
+          "No time limits",
+          "Great community features",
+          "Excellent audio quality"
+        ],
+        "cons": [
+          "Not designed for formal business meetings",
+          "Max 25 people on video (more can listen)",
+          "May feel too casual for corporate use"
+        ],
+        "bestFor": "Communities, creators, gamers, and informal team meetings",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      }
+    ],
+    "category": "Communication",
+    "seoKeywords": [
+      "Zoom alternatives",
+      "free video conferencing",
+      "Zoom alternative open source",
+      "no time limit video call",
+      "best free Zoom alternative"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a truly free video conferencing tool with no time limit?",
+        "answer": "Yes! Jitsi Meet is 100% free with no time limits and no account required. Google Meet also has no time limit for 1:1 calls."
+      },
+      {
+        "question": "Which Zoom alternative is best for businesses?",
+        "answer": "Google Meet (for Google Workspace users) and Microsoft Teams (for Office 365 users) are the best business-grade alternatives. Both have free tiers with reasonable limits."
+      },
+      {
+        "question": "Can I self-host a Zoom alternative for maximum privacy?",
+        "answer": "Yes, Jitsi Meet can be self-hosted on your own server. BigBlueButton is another excellent open-source, self-hosted option designed for online education and meetings."
+      }
+    ]
+  },
+  {
+    "paidTool": "Trello",
+    "paidToolUrl": "https://trello.com",
+    "tagline": "The visual Kanban board tool — and the free alternatives that go beyond it",
+    "description": "Trello is a web-based Kanban-style project management application owned by Atlassian. It uses boards, lists, and cards to organize tasks visually. The free tier is generous but limits integrations (Butler automation) and file attachments (10MB max). Trello Gold/Standard starts at $5/month. Many users find the Kanban approach limiting for complex projects and seek more powerful free alternatives.",
+    "pricing": "Free tier: unlimited personal boards, 10MB attachment limit; Standard $5/user/month; Premium $10/user/month",
+    "painPoints": [
+      {
+        "problem": "Free tier limits file attachments to 10MB",
+        "impact": "Cannot share large design files or videos"
+      },
+      {
+        "problem": "Limited automation on free tier (Butler)",
+        "impact": "Manual work for repetitive tasks"
+      },
+      {
+        "problem": "Kanban-only view is limiting for complex projects",
+        "impact": "Need timeline/Gantt views for project planning"
+      },
+      {
+        "problem": "Paid plans are per-user monthly",
+        "impact": "Costs add up for large teams"
+      }
+    ],
+    "whySwitch": [
+      "Get unlimited file attachments for free",
+      "Access timeline and Gantt views missing from Trello free",
+      "Save $60/year per user with free alternatives",
+      "Get more powerful automation and integration for free"
+    ],
+    "alternatives": [
+      {
+        "name": "Notion",
+        "url": "https://notion.so",
+        "reason": "All-in-one workspace with Kanban boards, docs, wikis, and databases — free for individuals and small teams with generous limits",
+        "description": "Notion combines notes, tasks, wikis, and databases into one flexible workspace. The board view replicates Trello's Kanban functionality while adding rich document support, databases, and linked views. The free plan is very generous for individuals and small teams.",
+        "features": [
+          "Kanban boards + database views",
+          "Rich text docs and wikis",
+          "Templates gallery",
+          "Real-time collaboration",
+          "Web clipper",
+          "Mobile apps"
+        ],
+        "pros": [
+          "Much more than just Kanban",
+          "Generous free tier",
+          "Highly customizable",
+          "Great for documentation + project management"
+        ],
+        "cons": [
+          "Steeper learning curve",
+          "Can get slow with very large datasets",
+          "Offline mode is limited"
+        ],
+        "bestFor": "Teams that want docs + tasks + wiki in one place",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "Taiga",
+        "url": "https://taiga.io",
+        "reason": "Open-source project management with Kanban, Scrum, and issue tracking — free for self-hosting, free tier for SaaS with generous limits",
+        "description": "Taiga is an open-source project management platform that supports Kanban, Scrum, and issue tracking. It's designed for agile teams and offers a clean, modern interface. Self-hosting is free, and the SaaS version has a free tier for small teams.",
+        "features": [
+          "Kanban and Scrum boards",
+          "Issue tracking",
+          "Wiki pages",
+          "Backlog management",
+          "Self-hosting option",
+          "REST API"
+        ],
+        "pros": [
+          "Open-source and self-hostable",
+          "Supports multiple agile methodologies",
+          "Clean, modern UI",
+          "Free SaaS tier for small teams"
+        ],
+        "cons": [
+          "Smaller community than Trello",
+          "Some features require self-hosting knowledge",
+          "Fewer integrations than Trello"
+        ],
+        "bestFor": "Agile development teams, open-source projects, and self-hosters",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4.3
+      },
+      {
+        "name": "ClickUp",
+        "url": "https://clickup.com",
+        "reason": "Feature-rich project management with Kanban, Gantt, docs, and goals — free tier is very generous with 100MB storage and unlimited tasks",
+        "description": "ClickUp is an all-in-one project management platform that aims to replace all other productivity tools. The free forever plan includes unlimited tasks, 100MB storage, and core features like Kanban boards, lists, and calendars. It's more feature-rich than Trello even on the free tier.",
+        "features": [
+          "Kanban boards, lists, calendars",
+          "Docs and wikis",
+          "Goals and targets",
+          "Time tracking",
+          "24/7 support even on free tier",
+          "Mobile apps"
+        ],
+        "pros": [
+          "Very generous free tier",
+          "More views than Trello (Gantt, calendar, box)",
+          "Active development and regular new features",
+          "Good import from Trello"
+        ],
+        "cons": [
+          "Can feel overwhelming due to many features",
+          "Some advanced features are paid",
+          "Performance can lag with very large projects"
+        ],
+        "bestFor": "Teams that want more than just Kanban and don't want to pay yet",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      }
+    ],
+    "category": "Project Management",
+    "seoKeywords": [
+      "Trello alternatives",
+      "free Kanban board",
+      "Trello alternative open source",
+      "best free project management",
+      "Notion vs Trello"
+    ],
+    "faqs": [
+      {
+        "question": "What is the best free alternative to Trello?",
+        "answer": "Notion is the best free alternative for most users — it offers Kanban boards plus docs, databases, and wikis in one workspace. ClickUp is another excellent option with more project views."
+      },
+      {
+        "question": "Can I self-host a Trello alternative?",
+        "answer": "Yes! Taiga, Wekan, and Kanboard are all open-source and can be self-hosted for free. Taiga is the most full-featured of these options."
+      },
+      {
+        "question": "Which free Trello alternative has the best Kanban implementation?",
+        "answer": "Wekan is a pure Kanban tool that closely mirrors Trello's simplicity while adding features like Markdown support and multi-language support. It's fully open-source and self-hosted."
+      }
+    ]
+  },
+  {
+    "paidTool": "Hootsuite",
+    "paidToolUrl": "https://hootsuite.com",
+    "tagline": "The social media management tool with a expensive subscription — here are the free and cheaper alternatives",
+    "description": "Hootsuite is one of the most popular social media management platforms, allowing users to schedule posts, monitor mentions, and analyze performance across multiple social networks. However, its pricing has become increasingly expensive, with plans starting at $99/month for a single user. Many users are switching to more affordable or free alternatives that offer similar functionality.",
+    "pricing": "Professional $99/month (1 user, 10 social accounts); Team $249/month (3 users); Business custom pricing",
+    "painPoints": [
+      {
+        "problem": "Very expensive starting at $99/month",
+        "impact": "Prohibitive for small businesses and solopreneurs"
+      },
+      {
+        "problem": "Free plan is extremely limited (2 social accounts, 5 scheduled posts)",
+        "impact": "Essentially unusable for free"
+      },
+      {
+        "problem": "Analytics are basic unless you pay for expensive plans",
+        "impact": "Need to use separate analytics tools"
+      },
+      {
+        "problem": "Bulk scheduling requires expensive plans",
+        "impact": "Time-consuming to schedule posts individually"
+      }
+    ],
+    "whySwitch": [
+      "Save $1,188/year by switching to a free alternative",
+      "Get more social accounts on free plans",
+      "Access better analytics without enterprise pricing",
+      "Schedule unlimited posts for free"
+    ],
+    "alternatives": [
+      {
+        "name": "Buffer",
+        "url": "https://buffer.com",
+        "reason": "The most popular Hootsuite alternative with a generous free plan (3 social accounts, 10 scheduled posts per account) and simple, clean interface",
+        "description": "Buffer is a streamlined social media scheduling tool that focuses on doing one thing well: letting you schedule posts across multiple social networks. The free plan supports 3 social accounts with 10 scheduled posts each. Paid plans start at $6/month per channel, much cheaper than Hootsuite.",
+        "features": [
+          "Post scheduling queue",
+          "Link shortening",
+          "Basic analytics",
+          "Mobile apps",
+          "Browser extension",
+          "Pablo image creator"
+        ],
+        "pros": [
+          "Much cheaper than Hootsuite",
+          "Very easy to use",
+          "Clean, distraction-free interface",
+          "Good free plan"
+        ],
+        "cons": [
+          "Free plan limited to 3 accounts and 10 posts each",
+          "Analytics are basic on free plan",
+          "No social listening on free plan"
+        ],
+        "bestFor": "Solopreneurs, small businesses, and creators who want simple scheduling",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "Later",
+        "url": "https://later.com",
+        "reason": "Visual social media scheduler with a free plan for Instagram, TikTok, Twitter, Pinterest, and LinkedIn — great for visual-first brands",
+        "description": "Later (formerly Latergramme) is a visual social media marketing platform focused on Instagram but now supporting multiple networks. The free plan allows 1 social set (up to 30 posts per profile, 2 social profiles). It's particularly strong for Instagram with its visual content calendar.",
+        "features": [
+          "Visual content calendar",
+          "Instagram grid preview",
+          "Linkin.bio page",
+          "Hashtag suggestions",
+          "User-generated content tools",
+          "Analytics"
+        ],
+        "pros": [
+          "Excellent for visual content (Instagram, TikTok)",
+          "Free plan is usable",
+          "Great Instagram-specific features",
+          "Linkin.bio is valuable for Instagram"
+        ],
+        "cons": [
+          "Free plan limited to 30 posts per profile",
+          "Less suitable for Twitter/Facebook-focused marketing",
+          "Some features are Instagram-only"
+        ],
+        "bestFor": "Instagram-first brands, creators, and visual marketers",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.4
+      },
+      {
+        "name": "Publer",
+        "url": "https://publer.io",
+        "reason": "Free Hootsuite alternative with 3 social accounts, unlimited scheduling, and robust analytics — no credit card required",
+        "description": "Publer is a social media management platform that offers one of the most generous free plans in the industry. You can connect 3 social accounts and schedule unlimited posts for free. It also includes a social media calendar, basic analytics, and the ability to recycle top-performing posts.",
+        "features": [
+          "Unlimited scheduling (free)",
+          "3 social accounts (free)",
+          "Bulk scheduling",
+          "RSS feed automation",
+          "Basic analytics",
+          "Browser extension"
+        ],
+        "pros": [
+          "Unlimited scheduling on free plan",
+          "No credit card required",
+          "Bulk scheduling and RSS automation",
+          "Recycle evergreen content"
+        ],
+        "cons": [
+          "Free plan limited to 3 social accounts",
+          "Advanced analytics are paid",
+          "Smaller community than Buffer or Hootsuite"
+        ],
+        "bestFor": "Small businesses and creators who want unlimited scheduling for free",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      }
+    ],
+    "category": "Marketing",
+    "seoKeywords": [
+      "Hootsuite alternatives",
+      "free social media scheduler",
+      "Buffer vs Hootsuite",
+      "cheap social media management",
+      "best free Hootsuite alternative"
+    ],
+    "faqs": [
+      {
+        "question": "What is the best free alternative to Hootsuite?",
+        "answer": "Buffer has the best free plan among paid tools (3 accounts, 10 posts each). For completely unlimited free scheduling, Publer offers 3 social accounts with unlimited posts."
+      },
+      {
+        "question": "Can I manage multiple social accounts for free?",
+        "answer": "Yes, several tools offer free plans: Buffer (3 accounts), Publer (3 accounts with unlimited scheduling), and Later (2 accounts with 30 posts each)."
+      },
+      {
+        "question": "Is there an open-source alternative to Hootsuite?",
+        "answer": "Yes, Friends don't let friends use vendor lock-in. Open-source options include Pterotype (for Mastodon/Fediverse) and various self-hosted solutions, though the ecosystem is still maturing compared to commercial tools."
+      }
+    ]
+  },
+  {
+    "paidTool": "Shopify",
+    "paidToolUrl": "https://shopify.com",
+    "tagline": "The leading e-commerce platform — but is it worth $39/month when these free alternatives exist?",
+    "description": "Shopify is the world's most popular e-commerce platform, powering over 2 million online stores. While it's excellent, the cost adds up: $39/month for Basic, plus transaction fees (0.5-2%), plus paid themes and apps. For new or small-scale sellers, these costs can eat up all the profit. There are free and cheaper alternatives worth considering.",
+    "pricing": "Basic $39/month + transaction fees; Shopify $105/month; Advanced $399/month; Plus $2,000/month",
+    "painPoints": [
+      {
+        "problem": "Monthly subscription fee even before making sales",
+        "impact": "Ongoing cost burden for new stores"
+      },
+      {
+        "problem": "Transaction fees on every order (0.5-2%)",
+        "impact": "Reduces profit margins significantly"
+      },
+      {
+        "problem": "Many essential features require paid apps",
+        "impact": "Real cost is much higher than base subscription"
+      },
+      {
+        "problem": "Themes and customization can get expensive",
+        "impact": "Initial setup cost is high"
+      }
+    ],
+    "whySwitch": [
+      "Save $468/year in subscription fees alone",
+      "Avoid transaction fees by using free platforms",
+      "Get essential features without paying for apps",
+      "Own your store completely with self-hosted solutions"
+    ],
+    "alternatives": [
+      {
+        "name": "WooCommerce",
+        "url": "https://woocommerce.com",
+        "reason": "The most popular open-source e-commerce platform — completely free, you just pay for hosting; no transaction fees; unlimited products and customization",
+        "description": "WooCommerce is a free, open-source e-commerce plugin for WordPress. It powers over 30% of all online stores. Since it's self-hosted, you have complete control and pay no transaction fees. You only pay for web hosting (can be as low as $5/month). It's infinitely customizable with thousands of free and paid extensions.",
+        "features": [
+          "Unlimited products and orders",
+          "No transaction fees",
+          "Hundreds of free themes",
+          "Extensive plugin ecosystem",
+          "Full WordPress integration",
+          "Multi-currency and shipping options"
+        ],
+        "pros": [
+          "100% free (just pay for hosting)",
+          "No transaction fees",
+          "Complete ownership and control",
+          "Massive community and documentation",
+          "Highly customizable"
+        ],
+        "cons": [
+          "Requires WordPress knowledge",
+          "You manage hosting and security",
+          "Some advanced features need paid extensions"
+        ],
+        "bestFor": "WordPress users, developers, and anyone wanting full control without monthly fees",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "Big Cartel",
+        "url": "https://bigcartel.com",
+        "reason": "Free e-commerce platform for artists and makers — 5 products for free, no transaction fees on the free plan, simple and focused",
+        "description": "Big Cartel is an e-commerce platform designed specifically for artists, makers, and small-scale sellers. The free plan allows up to 5 products with no transaction fees. It's much simpler than Shopify but perfect for anyone just starting out or selling a small number of unique products.",
+        "features": [
+          "5 free products (free plan)",
+          "No transaction fees (free plan)",
+          "Customizable themes",
+          "Inventory tracking",
+          "Real-time stats",
+          "Mobile app"
+        ],
+        "pros": [
+          "Free plan with no transaction fees",
+          "Designed for small-scale sellers",
+          "Simple and easy to set up",
+          "No coding required"
+        ],
+        "cons": [
+          "Limited to 5 products on free plan",
+          "Fewer features than Shopify or WooCommerce",
+          "Not suitable for large stores"
+        ],
+        "bestFor": "Artists, makers, and small-scale sellers with 5 or fewer products",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.3
+      },
+      {
+        "name": "Ecwid",
+        "url": "https://ecwid.com",
+        "reason": "Free e-commerce that works with any existing website — up to 5 products free, no transaction fees, and it works on social media too",
+        "description": "Ecwid is unique because it's designed to add e-commerce functionality to an existing website rather than being a standalone store builder. The free plan supports up to 5 products and works on Facebook, Instagram, and TikTok. It's a great way to start selling without building a whole new website.",
+        "features": [
+          "Works with any existing website",
+          "5 free products",
+          "Sells on Facebook and Instagram",
+          "Mobile point-of-sale",
+          "No transaction fees (free plan)",
+          "Instant site integration"
+        ],
+        "pros": [
+          "Free plan with 5 products",
+          "Works with your existing site",
+          "Sells on social media",
+          "No coding required"
+        ],
+        "cons": [
+          "Limited to 5 products on free plan",
+          "Less customizable than WooCommerce",
+          "Some features require paid plans"
+        ],
+        "bestFor": "Anyone with an existing website who wants to add e-commerce quickly",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.4
+      }
+    ],
+    "category": "E-commerce",
+    "seoKeywords": [
+      "Shopify alternatives",
+      "free e-commerce platform",
+      "WooCommerce vs Shopify",
+      "free online store",
+      "best free Shopify alternative"
+    ],
+    "faqs": [
+      {
+        "question": "What is the best free alternative to Shopify?",
+        "answer": "WooCommerce is the best free alternative — it has no monthly fees, no transaction fees, and unlimited products. For a simpler option, Big Cartel offers 5 free products with no transaction fees."
+      },
+      {
+        "question": "Can I sell online without paying monthly fees?",
+        "answer": "Yes! WooCommerce (self-hosted) has no monthly fees — you only pay for web hosting. Big Cartel and Ecwid also have free plans to get started."
+      },
+      {
+        "question": "Is WooCommerce really free?",
+        "answer": "Yes, the WooCommerce plugin is 100% free and open-source. You only pay for web hosting (typically $5-20/month) and any premium extensions you choose to add. There are no transaction fees."
+      }
+    ]
+  },
+  {
+    "paidTool": "Mailchimp",
+    "paidToolUrl": "https://mailchimp.com",
+    "tagline": "The most well-known email marketing tool — but these free alternatives offer more subscribers and better features",
+    "description": "Mailchimp is one of the most recognized email marketing platforms, but its free plan is quite limited (500 subscribers, 1,000 sends/month, Mailchimp branding). Paid plans start at $13/month and quickly become expensive as your list grows. Many users are switching to more generous free alternatives that offer better value for growing businesses.",
+    "pricing": "Free: 500 subscribers, 1,000 sends/month; Essentials $13/month; Standard $20/month; Premium $350/month",
+    "painPoints": [
+      {
+        "problem": "Free plan limited to 500 subscribers",
+        "impact": "Forces upgrade quickly as list grows"
+      },
+      {
+        "problem": "Mailchimp branding on all free emails",
+        "impact": "Looks unprofessional for businesses"
+      },
+      {
+        "problem": "Expensive as list grows ($100s/month for large lists)",
+        "impact": "Email marketing becomes a major expense"
+      },
+      {
+        "problem": "Limited automation on free and low-tier plans",
+        "impact": "Miss out on revenue-driving automated sequences"
+      }
+    ],
+    "whySwitch": [
+      "Get 10x more free subscribers (500 → 5,000+)",
+      "Remove email branding on free plans",
+      "Save $156+/year with cheaper paid plans",
+      "Access better automation features for free"
+    ],
+    "alternatives": [
+      {
+        "name": "MailerLite",
+        "url": "https://www.mailerlite.com",
+        "reason": "The most generous free plan in email marketing: 1,000 subscribers, 12,000 emails/month, no branding, and automation included",
+        "description": "MailerLite offers one of the most generous free plans in the industry. You get up to 1,000 subscribers, 12,000 monthly emails, a drag-and-drop editor, signup forms, and basic automation — all for free with no Mailchimp-style branding. Paid plans start at just $10/month.",
+        "features": [
+          "1,000 subscribers (free)",
+          "12,000 emails/month (free)",
+          "Drag-and-drop editor",
+          "Signup forms and popups",
+          "Basic automation",
+          "No branding (free plan)"
+        ],
+        "pros": [
+          "Much more generous free plan than Mailchimp",
+          "No branding on free emails",
+          "Clean, modern interface",
+          "Good automation on free plan"
+        ],
+        "cons": [
+          "Free plan limited to 1,000 subscribers",
+          "Some advanced features require paid plan",
+          "Smaller template library than Mailchimp"
+        ],
+        "bestFor": "Small businesses, creators, and anyone wanting a generous free email marketing tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "Brevo (formerly Sendinblue)",
+        "url": "https://www.brevo.com",
+        "reason": "Free plan includes 300 emails/day (unlimited contacts), SMS marketing, and a built-in CRM — much more than just email",
+        "description": "Brevo (formerly Sendinblue) is an all-in-one marketing platform that includes email marketing, SMS, chat, and CRM. The free plan allows 300 emails per day with no limit on contacts (unlike Mailchimp's 500-contact limit). It also includes SMS marketing and a basic CRM.",
+        "features": [
+          "300 emails/day (free, no daily limit)",
+          "Unlimited contacts",
+          "SMS marketing",
+          "Basic CRM",
+          "Marketing automation",
+          "Transactional emails"
+        ],
+        "pros": [
+          "No limit on number of contacts",
+          "Includes SMS and CRM",
+          "Good for transactional emails",
+          "Strong in Europe (GDPR compliant)"
+        ],
+        "cons": [
+          "Daily email limit (300/day on free)",
+          "Learning curve for automation",
+          "Smaller template library"
+        ],
+        "bestFor": "Businesses needing email + SMS + CRM in one tool, especially in Europe",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5
+      },
+      {
+        "name": "ConvertKit",
+        "url": "https://convertkit.com",
+        "reason": "Built for creators with a free plan for up to 1,000 subscribers, unlimited landing pages, and powerful automation — no branding",
+        "description": "ConvertKit is an email marketing platform designed specifically for creators (bloggers, YouTubers, podcasters, artists). The free plan supports up to 1,000 subscribers with unlimited landing pages, signup forms, and email broadcasts. There's no branding on free emails, and the automation features are excellent.",
+        "features": [
+          "1,000 subscribers (free)",
+          "Unlimited landing pages",
+          "Email broadcasts",
+          "Signup forms",
+          "Basic automation",
+          "Creator network"
+        ],
+        "pros": [
+          "Free for up to 1,000 subscribers",
+          "No branding on emails",
+          "Excellent for creators",
+          "Powerful automation even on free plan"
+        ],
+        "cons": [
+          "No visual email designer on free plan (uses simple editor)",
+          "Less suitable for e-commerce than other tools",
+          "Some advanced features require paid plan"
+        ],
+        "bestFor": "Bloggers, YouTubers, podcasters, and online creators",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6
+      }
+    ],
+    "category": "Email Marketing",
+    "seoKeywords": [
+      "Mailchimp alternatives",
+      "free email marketing",
+      "MailerLite vs Mailchimp",
+      "best free email marketing tool",
+      "ConvertKit free"
+    ],
+    "faqs": [
+      {
+        "question": "What is the best free alternative to Mailchimp?",
+        "answer": "MailerLite has the most generous free plan: 1,000 subscribers, 12,000 monthly emails, no branding, and automation included. ConvertKit is also excellent for creators with 1,000 free subscribers."
+      },
+      {
+        "question": "Which free email marketing tool has the highest subscriber limit?",
+        "answer": "Brevo has no limit on the number of contacts — you can have unlimited subscribers on the free plan. The limit is on sends (300/day), not subscribers."
+      },
+      {
+        "question": "Can I switch from Mailchimp without losing my email list?",
+        "answer": "Yes, all the alternatives listed here have Mailchimp import tools. You simply export your list from Mailchimp as a CSV and import it into the new platform. Most tools provide step-by-step guides for this."
+      }
+    ]
+  }
+]

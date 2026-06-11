@@ -6,11 +6,26 @@
     "pricing": "$99/year (subscription only since v2023)",
     "category": "Design",
     "painPoints": [
-      {"problem": "Subscription-only since 2023 ($99/year)", "impact": "Users who bought lifetime license must now pay yearly"},
-      {"problem": "Mac-only — no Windows or Linux support", "impact": "Teams using Windows can't use it"},
-      {"problem": "No real-time collaboration built-in", "impact": "Teams struggle to collaborate on designs"},
-      {"problem": "Limited prototyping compared to Figma", "impact": "Users need separate tools for prototyping"},
-      {"problem": "Plugin ecosystem is smaller than Figma's", "impact": "Users have fewer third-party tools"}
+      {
+        "problem": "Subscription-only since 2023 ($99/year)",
+        "impact": "Users who bought lifetime license must now pay yearly"
+      },
+      {
+        "problem": "Mac-only — no Windows or Linux support",
+        "impact": "Teams using Windows can't use it"
+      },
+      {
+        "problem": "No real-time collaboration built-in",
+        "impact": "Teams struggle to collaborate on designs"
+      },
+      {
+        "problem": "Limited prototyping compared to Figma",
+        "impact": "Users need separate tools for prototyping"
+      },
+      {
+        "problem": "Plugin ecosystem is smaller than Figma's",
+        "impact": "Users have fewer third-party tools"
+      }
     ],
     "whySwitch": [
       "Get a free, web-based design tool with Figma",
@@ -25,9 +40,24 @@
         "url": "https://www.figma.com",
         "reason": "Free tier with unlimited projects, real-time collaboration, and better prototyping",
         "description": "Figma is the industry-standard UI/UX design tool. The free tier includes unlimited projects and real-time collaboration. It's cross-platform (web-based).",
-        "features": ["Free tier with unlimited projects", "Real-time collaboration", "Advanced prototyping", "Design systems", "Cross-platform (web)"],
-        "pros": ["Industry standard", "Generous free tier", "Real-time collaboration", "Cross-platform", "Better than Sketch in most ways"],
-        "cons": ["Requires internet", "Less powerful vector editing than Sketch (subtle)"],
+        "features": [
+          "Free tier with unlimited projects",
+          "Real-time collaboration",
+          "Advanced prototyping",
+          "Design systems",
+          "Cross-platform (web)"
+        ],
+        "pros": [
+          "Industry standard",
+          "Generous free tier",
+          "Real-time collaboration",
+          "Cross-platform",
+          "Better than Sketch in most ways"
+        ],
+        "cons": [
+          "Requires internet",
+          "Less powerful vector editing than Sketch (subtle)"
+        ],
         "bestFor": "Design teams who want free, cross-platform UI/UX design tool with real-time collaboration",
         "isFree": true,
         "isOpenSource": false,
@@ -40,9 +70,23 @@
         "url": "https://penpot.app",
         "reason": "100% free and open-source, with Figma-like interface",
         "description": "Penpot is a free and open-source UI/UX design tool. It has a Figma-like interface. Completely free — no premium tier. You can self-host it.",
-        "features": ["100% free and open-source", "Figma-like interface", "Real-time collaboration", "Self-hostable", "Cross-platform (web)"],
-        "pros": ["Completely free", "Open-source", "Self-hostable", "No limits"],
-        "cons": ["Smaller community than Figma", "Less polished UI"],
+        "features": [
+          "100% free and open-source",
+          "Figma-like interface",
+          "Real-time collaboration",
+          "Self-hostable",
+          "Cross-platform (web)"
+        ],
+        "pros": [
+          "Completely free",
+          "Open-source",
+          "Self-hostable",
+          "No limits"
+        ],
+        "cons": [
+          "Smaller community than Figma",
+          "Less polished UI"
+        ],
         "bestFor": "Designers who want a free, open-source UI/UX design tool",
         "isFree": true,
         "isOpenSource": true,
@@ -55,9 +99,23 @@
         "url": "https://lunacy.com",
         "reason": "Free Sketch alternative with Sketch file support",
         "description": "Lunacy is a free vector graphics editor that opens Sketch files. It's free for personal and commercial use. Cross-platform (Mac, Windows, Linux).",
-        "features": ["Free (personal & commercial)", "Opens Sketch files", "Cross-platform", "Offline mode", "Built-in graphics"],
-        "pros": ["Free", "Opens Sketch files", "Cross-platform", "Offline mode"],
-        "cons": ["Smaller community than Figma", "Less powerful than Figma for collaboration"],
+        "features": [
+          "Free (personal & commercial)",
+          "Opens Sketch files",
+          "Cross-platform",
+          "Offline mode",
+          "Built-in graphics"
+        ],
+        "pros": [
+          "Free",
+          "Opens Sketch files",
+          "Cross-platform",
+          "Offline mode"
+        ],
+        "cons": [
+          "Smaller community than Figma",
+          "Less powerful than Figma for collaboration"
+        ],
         "bestFor": "Designers who have Sketch files and want a free, cross-platform editor",
         "isFree": true,
         "isOpenSource": false,
@@ -79,12 +137,28 @@
         "Penpot is best if you want 100% open-source and self-hostable"
       ]
     },
-    "seoKeywords": ["sketch free alternative", "sketch alternative free", "best sketch alternative", "sketch vs figma", "sketch alternatives 2026"],
+    "seoKeywords": [
+      "sketch free alternative",
+      "sketch alternative free",
+      "best sketch alternative",
+      "sketch vs figma",
+      "sketch alternatives 2026"
+    ],
     "faqs": [
-      {"question": "Is there a completely free alternative to Sketch?", "answer": "Yes. Figma has a generous free tier. Lunacy is free for personal and commercial use."},
-      {"question": "Which Sketch alternative is best for Windows users?", "answer": "Figma is the best — it's web-based and works on any OS. Lunacy also has a Windows version."},
-      {"question": "Can I open my Sketch files in Figma?", "answer": "You can export Sketch files as SVG, then import into Figma. Lunacy can open Sketch files directly."}
-    ]
+      {
+        "question": "Is there a completely free alternative to Sketch?",
+        "answer": "Yes. Figma has a generous free tier. Lunacy is free for personal and commercial use."
+      },
+      {
+        "question": "Which Sketch alternative is best for Windows users?",
+        "answer": "Figma is the best — it's web-based and works on any OS. Lunacy also has a Windows version."
+      },
+      {
+        "question": "Can I open my Sketch files in Figma?",
+        "answer": "You can export Sketch files as SVG, then import into Figma. Lunacy can open Sketch files directly."
+      }
+    ],
+    "description": "Sketch is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Sketch in 2026."
   },
   {
     "paidTool": "Adobe Illustrator",
@@ -93,11 +167,26 @@
     "pricing": "Single app $20.99/month; All Apps $54.99/month",
     "category": "Design",
     "painPoints": [
-      {"problem": "Expensive ($20.99/month for single app)", "impact": "Users pay $252/year for vector graphics software"},
-      {"problem": "No free tier — must pay to use", "impact": "Students and hobbyists can't afford it"},
-      {"problem": "Subscription-only — no lifetime license", "impact": "Users must pay forever to keep using it"},
-      {"problem": "Resource-heavy — requires powerful hardware", "impact": "Users need to upgrade their computers"},
-      {"problem": "Adobe ecosystem lock-in", "impact": "Users who don't use other Adobe apps overpay"}
+      {
+        "problem": "Expensive ($20.99/month for single app)",
+        "impact": "Users pay $252/year for vector graphics software"
+      },
+      {
+        "problem": "No free tier — must pay to use",
+        "impact": "Students and hobbyists can't afford it"
+      },
+      {
+        "problem": "Subscription-only — no lifetime license",
+        "impact": "Users must pay forever to keep using it"
+      },
+      {
+        "problem": "Resource-heavy — requires powerful hardware",
+        "impact": "Users need to upgrade their computers"
+      },
+      {
+        "problem": "Adobe ecosystem lock-in",
+        "impact": "Users who don't use other Adobe apps overpay"
+      }
     ],
     "whySwitch": [
       "Get a free, open-source vector graphics editor with Inkscape",
@@ -112,9 +201,24 @@
         "url": "https://inkscape.org",
         "reason": "100% free and open-source vector graphics editor",
         "description": "Inkscape is a free and open-source vector graphics editor. It's cross-platform (Mac, Windows, Linux). 100% free — no premium tier.",
-        "features": ["100% free and open-source", "Vector graphics editing", "Cross-platform", "SVG support", "Extensible with extensions"],
-        "pros": ["Completely free", "Open-source", "Cross-platform", "Powerful vector editing"],
-        "cons": ["Less polished UI than Illustrator", "Steeper learning curve", "Less integration with other tools"],
+        "features": [
+          "100% free and open-source",
+          "Vector graphics editing",
+          "Cross-platform",
+          "SVG support",
+          "Extensible with extensions"
+        ],
+        "pros": [
+          "Completely free",
+          "Open-source",
+          "Cross-platform",
+          "Powerful vector editing"
+        ],
+        "cons": [
+          "Less polished UI than Illustrator",
+          "Steeper learning curve",
+          "Less integration with other tools"
+        ],
         "bestFor": "Designers who want a free, open-source vector graphics editor",
         "isFree": true,
         "isOpenSource": true,
@@ -127,9 +231,24 @@
         "url": "https://affinity.serif.com/designer",
         "reason": "$69.99 one-time purchase (no subscription)",
         "description": "Affinity Designer is a professional vector graphics editor. It's $69.99 one-time (no subscription). Cross-platform (Mac, Windows, iPad).",
-        "features": ["$69.99 one-time purchase", "Professional vector graphics", "Cross-platform", "No subscription", "iPad version available"],
-        "pros": ["One-time purchase", "Professional-grade", "Cross-platform", "No subscription"],
-        "cons": ["Not free ($69.99)", "Smaller community than Illustrator", "Less third-party tutorials"],
+        "features": [
+          "$69.99 one-time purchase",
+          "Professional vector graphics",
+          "Cross-platform",
+          "No subscription",
+          "iPad version available"
+        ],
+        "pros": [
+          "One-time purchase",
+          "Professional-grade",
+          "Cross-platform",
+          "No subscription"
+        ],
+        "cons": [
+          "Not free ($69.99)",
+          "Smaller community than Illustrator",
+          "Less third-party tutorials"
+        ],
         "bestFor": "Designers who want a professional vector graphics editor without subscription",
         "isFree": false,
         "isOpenSource": false,
@@ -141,9 +260,23 @@
         "url": "https://www.canva.com",
         "reason": "Free plan with vector graphics tools (simplified)",
         "description": "Canva is a web-based design tool. The free plan includes vector graphics tools (simplified). Great for beginners. Web-based (cross-platform).",
-        "features": ["Free plan available", "Vector graphics tools (simplified)", "Web-based", "Easy to use", "Great for beginners"],
-        "pros": ["Free version available", "Easy to use", "Great for beginners", "Web-based"],
-        "cons": ["Less powerful than Illustrator for professional work", "Free version has limitations"],
+        "features": [
+          "Free plan available",
+          "Vector graphics tools (simplified)",
+          "Web-based",
+          "Easy to use",
+          "Great for beginners"
+        ],
+        "pros": [
+          "Free version available",
+          "Easy to use",
+          "Great for beginners",
+          "Web-based"
+        ],
+        "cons": [
+          "Less powerful than Illustrator for professional work",
+          "Free version has limitations"
+        ],
         "bestFor": "Beginners and hobbyists who want a free, easy-to-use design tool",
         "isFree": true,
         "isOpenSource": false,
@@ -165,12 +298,28 @@
         "Canva is best for beginners and hobbyists"
       ]
     },
-    "seoKeywords": ["adobe illustrator free alternative", "illustrator alternative free", "best illustrator alternative", "illustrator vs inkscape", "illustrator alternatives 2026"],
+    "seoKeywords": [
+      "adobe illustrator free alternative",
+      "illustrator alternative free",
+      "best illustrator alternative",
+      "illustrator vs inkscape",
+      "illustrator alternatives 2026"
+    ],
     "faqs": [
-      {"question": "Is there a completely free alternative to Adobe Illustrator?", "answer": "Yes. Inkscape is 100% free and open-source. Canva has a free plan with simplified vector graphics tools."},
-      {"question": "Which Illustrator alternative is best for professionals?", "answer": "Affinity Designer is the best paid alternative — it's $69.99 one-time (no subscription) and professional-grade."},
-      {"question": "Can I open my Illustrator AI files in Inkscape?", "answer": "You can export Illustrator files as SVG, then import into Inkscape. Some complex effects may need adjustment."}
-    ]
+      {
+        "question": "Is there a completely free alternative to Adobe Illustrator?",
+        "answer": "Yes. Inkscape is 100% free and open-source. Canva has a free plan with simplified vector graphics tools."
+      },
+      {
+        "question": "Which Illustrator alternative is best for professionals?",
+        "answer": "Affinity Designer is the best paid alternative — it's $69.99 one-time (no subscription) and professional-grade."
+      },
+      {
+        "question": "Can I open my Illustrator AI files in Inkscape?",
+        "answer": "You can export Illustrator files as SVG, then import into Inkscape. Some complex effects may need adjustment."
+      }
+    ],
+    "description": "Adobe Illustrator is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Adobe Illustrator in 2026."
   },
   {
     "paidTool": "Adobe InDesign",
@@ -179,11 +328,26 @@
     "pricing": "Single app $20.99/month; All Apps $54.99/month",
     "category": "Design",
     "painPoints": [
-      {"problem": "Expensive ($20.99/month for single app)", "impact": "Users pay $252/year for desktop publishing software"},
-      {"problem": "No free tier — must pay to use", "impact": "Students and hobbyists can't afford it"},
-      {"problem": "Subscription-only — no lifetime license", "impact": "Users must pay forever to keep using it"},
-      {"problem": "Steep learning curve", "impact": "New users take weeks to master"},
-      {"problem": "Adobe ecosystem lock-in", "impact": "Users who don't use other Adobe apps overpay"}
+      {
+        "problem": "Expensive ($20.99/month for single app)",
+        "impact": "Users pay $252/year for desktop publishing software"
+      },
+      {
+        "problem": "No free tier — must pay to use",
+        "impact": "Students and hobbyists can't afford it"
+      },
+      {
+        "problem": "Subscription-only — no lifetime license",
+        "impact": "Users must pay forever to keep using it"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "New users take weeks to master"
+      },
+      {
+        "problem": "Adobe ecosystem lock-in",
+        "impact": "Users who don't use other Adobe apps overpay"
+      }
     ],
     "whySwitch": [
       "Get a free, open-source desktop publishing tool with Scribus",
@@ -198,9 +362,24 @@
         "url": "https://www.scribus.net",
         "reason": "100% free and open-source desktop publishing software",
         "description": "Scribus is a free and open-source desktop publishing software. It's cross-platform (Mac, Windows, Linux). 100% free — no premium tier.",
-        "features": ["100% free and open-source", "Desktop publishing", "Cross-platform", "PDF export", "Professional printing support"],
-        "pros": ["Completely free", "Open-source", "Cross-platform", "Professional printing support"],
-        "cons": ["Less polished UI than InDesign", "Steeper learning curve", "Less integration with other tools"],
+        "features": [
+          "100% free and open-source",
+          "Desktop publishing",
+          "Cross-platform",
+          "PDF export",
+          "Professional printing support"
+        ],
+        "pros": [
+          "Completely free",
+          "Open-source",
+          "Cross-platform",
+          "Professional printing support"
+        ],
+        "cons": [
+          "Less polished UI than InDesign",
+          "Steeper learning curve",
+          "Less integration with other tools"
+        ],
         "bestFor": "Publishers who want a free, open-source desktop publishing tool",
         "isFree": true,
         "isOpenSource": true,
@@ -213,9 +392,24 @@
         "url": "https://affinity.serif.com/publisher",
         "reason": "$69.99 one-time purchase (no subscription)",
         "description": "Affinity Publisher is a professional desktop publishing software. It's $69.99 one-time (no subscription). Cross-platform (Mac, Windows, iPad).",
-        "features": ["$69.99 one-time purchase", "Professional desktop publishing", "Cross-platform", "No subscription", "iPad version available"],
-        "pros": ["One-time purchase", "Professional-grade", "Cross-platform", "No subscription"],
-        "cons": ["Not free ($69.99)", "Smaller community than InDesign", "Less third-party tutorials"],
+        "features": [
+          "$69.99 one-time purchase",
+          "Professional desktop publishing",
+          "Cross-platform",
+          "No subscription",
+          "iPad version available"
+        ],
+        "pros": [
+          "One-time purchase",
+          "Professional-grade",
+          "Cross-platform",
+          "No subscription"
+        ],
+        "cons": [
+          "Not free ($69.99)",
+          "Smaller community than InDesign",
+          "Less third-party tutorials"
+        ],
         "bestFor": "Publishers who want a professional desktop publishing tool without subscription",
         "isFree": false,
         "isOpenSource": false,
@@ -227,9 +421,23 @@
         "url": "https://www.canva.com",
         "reason": "Free plan with layout and publishing tools (simplified)",
         "description": "Canva is a web-based design tool. The free plan includes layout and publishing tools (simplified). Great for beginners. Web-based (cross-platform).",
-        "features": ["Free plan available", "Layout and publishing tools (simplified)", "Web-based", "Easy to use", "Great for beginners"],
-        "pros": ["Free version available", "Easy to use", "Great for beginners", "Web-based"],
-        "cons": ["Less powerful than InDesign for professional publishing", "Free version has limitations"],
+        "features": [
+          "Free plan available",
+          "Layout and publishing tools (simplified)",
+          "Web-based",
+          "Easy to use",
+          "Great for beginners"
+        ],
+        "pros": [
+          "Free version available",
+          "Easy to use",
+          "Great for beginners",
+          "Web-based"
+        ],
+        "cons": [
+          "Less powerful than InDesign for professional publishing",
+          "Free version has limitations"
+        ],
         "bestFor": "Beginners and hobbyists who want a free, easy-to-use layout tool",
         "isFree": true,
         "isOpenSource": false,
@@ -251,11 +459,27 @@
         "Canva is best for beginners and hobbyists"
       ]
     },
-    "seoKeywords": ["adobe indesign free alternative", "indesign alternative free", "best indesign alternative", "indesign vs scribus", "indesign alternatives 2026"],
+    "seoKeywords": [
+      "adobe indesign free alternative",
+      "indesign alternative free",
+      "best indesign alternative",
+      "indesign vs scribus",
+      "indesign alternatives 2026"
+    ],
     "faqs": [
-      {"question": "Is there a completely free alternative to Adobe InDesign?", "answer": "Yes. Scribus is 100% free and open-source. Canva has a free plan with simplified layout tools."},
-      {"question": "Which InDesign alternative is best for professionals?", "answer": "Affinity Publisher is the best paid alternative — it's $69.99 one-time (no subscription) and professional-grade."},
-      {"question": "Can I open my InDesign INDD files in Scribus?", "answer": "You can export InDesign files as IDML, then import into Scribus. Some complex layouts may need adjustment."}
-    ]
+      {
+        "question": "Is there a completely free alternative to Adobe InDesign?",
+        "answer": "Yes. Scribus is 100% free and open-source. Canva has a free plan with simplified layout tools."
+      },
+      {
+        "question": "Which InDesign alternative is best for professionals?",
+        "answer": "Affinity Publisher is the best paid alternative — it's $69.99 one-time (no subscription) and professional-grade."
+      },
+      {
+        "question": "Can I open my InDesign INDD files in Scribus?",
+        "answer": "You can export InDesign files as IDML, then import into Scribus. Some complex layouts may need adjustment."
+      }
+    ],
+    "description": "Adobe InDesign is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Adobe InDesign in 2026."
   }
 ]

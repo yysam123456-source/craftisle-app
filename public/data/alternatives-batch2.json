@@ -129,7 +129,8 @@
         "question": "Can I migrate my InVision prototypes to Figma?",
         "answer": "Yes. Export your InVision screens as images or PDF, then import into Figma and rebuild prototypes. Figma's prototyping is more powerful than InVision's."
       }
-    ]
+    ],
+    "description": "InVision is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to InVision in 2026."
   },
   {
     "paidTool": "Framer",
@@ -259,7 +260,8 @@
         "question": "Can I migrate my Framer site to Webflow?",
         "answer": "Yes. You'll need to rebuild your site in Webflow, but Webflow's design tools are more powerful."
       }
-    ]
+    ],
+    "description": "Framer is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Framer in 2026."
   },
   {
     "paidTool": "Final Cut Pro",
@@ -389,7 +391,8 @@
         "question": "Can I migrate my Final Cut Pro projects to DaVinci Resolve?",
         "answer": "Yes. Export your Final Cut Pro project as XML, then import into DaVinci Resolve. You'll need to rebuild some edits, but the migration is manageable."
       }
-    ]
+    ],
+    "description": "Final Cut Pro is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Final Cut Pro in 2026."
   },
   {
     "paidTool": "After Effects",
@@ -519,7 +522,8 @@
         "question": "Can I migrate my After Effects compositions to Blender?",
         "answer": "Yes. You'll need to rebuild your compositions in Blender, but Blender's motion graphics capabilities are very powerful."
       }
-    ]
+    ],
+    "description": "After Effects is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to After Effects in 2026."
   },
   {
     "paidTool": "Power BI",
@@ -650,6 +654,7 @@
         "question": "Can I migrate my Power BI reports to Google Data Studio?",
         "answer": "Yes. You'll need to rebuild your reports in Google Data Studio, but it's free and web-based."
       }
-    ]
+    ],
+    "description": "Power BI is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Power BI in 2026."
   }
 ]

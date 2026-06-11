@@ -6,11 +6,26 @@
     "pricing": "$249 one-time (Camtasia 2023); $99/year (maintenance)",
     "category": "Video",
     "painPoints": [
-      {"problem": "Expensive at $249 one-time + $99/year maintenance", "impact": "Users pay $249 upfront + $99/year for screen recording software"},
-      {"problem": "No free tier — must pay to use", "impact": "Users can't try before buying"},
-      {"problem": "Windows and Mac versions sold separately", "impact": "Users who switch OS must buy again"},
-      {"problem": "Steep learning curve", "impact": "New users take weeks to master"},
-      {"problem": "Limited free alternatives awareness", "impact": "Users don't know about free alternatives"}
+      {
+        "problem": "Expensive at $249 one-time + $99/year maintenance",
+        "impact": "Users pay $249 upfront + $99/year for screen recording software"
+      },
+      {
+        "problem": "No free tier — must pay to use",
+        "impact": "Users can't try before buying"
+      },
+      {
+        "problem": "Windows and Mac versions sold separately",
+        "impact": "Users who switch OS must buy again"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "New users take weeks to master"
+      },
+      {
+        "problem": "Limited free alternatives awareness",
+        "impact": "Users don't know about free alternatives"
+      }
     ],
     "whySwitch": [
       "Get a free, open-source screen recorder with OBS Studio",
@@ -25,9 +40,25 @@
         "url": "https://obsproject.com",
         "reason": "100% free and open-source screen recorder and live streaming software",
         "description": "OBS Studio is a free and open-source screen recorder and live streaming software. It's cross-platform (Mac, Windows, Linux). 100% free — no premium tier.",
-        "features": ["100% free and open-source", "Screen recording", "Live streaming", "Cross-platform", "High-quality recording"],
-        "pros": ["Completely free", "Open-source", "Cross-platform", "High-quality recording", "Great for streaming"],
-        "cons": ["Steeper learning curve than Camtasia", "Less video editing features than Camtasia", "Less polished UI"],
+        "features": [
+          "100% free and open-source",
+          "Screen recording",
+          "Live streaming",
+          "Cross-platform",
+          "High-quality recording"
+        ],
+        "pros": [
+          "Completely free",
+          "Open-source",
+          "Cross-platform",
+          "High-quality recording",
+          "Great for streaming"
+        ],
+        "cons": [
+          "Steeper learning curve than Camtasia",
+          "Less video editing features than Camtasia",
+          "Less polished UI"
+        ],
         "bestFor": "Users who want a free, open-source screen recorder and live streaming software",
         "isFree": true,
         "isOpenSource": true,
@@ -40,9 +71,24 @@
         "url": "https://www.loom.com",
         "reason": "Free plan with screen recording and sharing",
         "description": "Loom is a web-based screen recorder. The free plan includes up to 25 videos (up to 5 minutes each). Great for quick screen recordings.",
-        "features": ["Free plan available", "Web-based", "Screen recording and sharing", "Cross-platform (web)", "Easy to use"],
-        "pros": ["Free version available", "Web-based (no installation)", "Easy to use", "Great for quick recordings"],
-        "cons": ["Free plan has limitations (25 videos, 5 minutes each)", "Requires internet", "Less powerful than Camtasia for video editing"],
+        "features": [
+          "Free plan available",
+          "Web-based",
+          "Screen recording and sharing",
+          "Cross-platform (web)",
+          "Easy to use"
+        ],
+        "pros": [
+          "Free version available",
+          "Web-based (no installation)",
+          "Easy to use",
+          "Great for quick recordings"
+        ],
+        "cons": [
+          "Free plan has limitations (25 videos, 5 minutes each)",
+          "Requires internet",
+          "Less powerful than Camtasia for video editing"
+        ],
         "bestFor": "Users who want a free, web-based screen recorder for quick recordings",
         "isFree": true,
         "isOpenSource": false,
@@ -54,9 +100,24 @@
         "url": "https://www.telestream.net/screenflow/",
         "reason": "$129 one-time (no subscription)",
         "description": "ScreenFlow is a screen recording and video editing software for Mac. It's $129 one-time (no subscription). Mac only.",
-        "features": ["$129 one-time purchase", "Screen recording and video editing", "Mac only", "No subscription", "High-quality recording"],
-        "pros": ["One-time purchase", "Professional-grade", "Mac only", "No subscription"],
-        "cons": ["Mac only", "Not free ($129)", "Less cross-platform than OBS Studio"],
+        "features": [
+          "$129 one-time purchase",
+          "Screen recording and video editing",
+          "Mac only",
+          "No subscription",
+          "High-quality recording"
+        ],
+        "pros": [
+          "One-time purchase",
+          "Professional-grade",
+          "Mac only",
+          "No subscription"
+        ],
+        "cons": [
+          "Mac only",
+          "Not free ($129)",
+          "Less cross-platform than OBS Studio"
+        ],
         "bestFor": "Mac users who want a professional screen recording and video editing software without subscription",
         "isFree": false,
         "isOpenSource": false,
@@ -78,12 +139,28 @@
         "ScreenFlow is best for Mac users who want professional screen recording and video editing without subscription"
       ]
     },
-    "seoKeywords": ["camtasia free alternative", "camtasia alternative free", "best camtasia alternative", "camtasia vs obs studio", "camtasia alternatives 2026"],
+    "seoKeywords": [
+      "camtasia free alternative",
+      "camtasia alternative free",
+      "best camtasia alternative",
+      "camtasia vs obs studio",
+      "camtasia alternatives 2026"
+    ],
     "faqs": [
-      {"question": "Is there a completely free alternative to Camtasia?", "answer": "Yes. OBS Studio is 100% free and open-source. Loom has a free plan (up to 25 videos, 5 minutes each)."},
-      {"question": "Which Camtasia alternative is best for live streaming?", "answer": "OBS Studio is the best free alternative for live streaming — it's 100% free and open-source."},
-      {"question": "Can I record my screen with OBS Studio?", "answer": "Yes. OBS Studio is a screen recorder and live streaming software. It's 100% free and open-source."}
-    ]
+      {
+        "question": "Is there a completely free alternative to Camtasia?",
+        "answer": "Yes. OBS Studio is 100% free and open-source. Loom has a free plan (up to 25 videos, 5 minutes each)."
+      },
+      {
+        "question": "Which Camtasia alternative is best for live streaming?",
+        "answer": "OBS Studio is the best free alternative for live streaming — it's 100% free and open-source."
+      },
+      {
+        "question": "Can I record my screen with OBS Studio?",
+        "answer": "Yes. OBS Studio is a screen recorder and live streaming software. It's 100% free and open-source."
+      }
+    ],
+    "description": "Camtasia is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Camtasia in 2026."
   },
   {
     "paidTool": "Snagit",
@@ -92,11 +169,26 @@
     "pricing": "$62.99 one-time (Snagit 2023); $24.99/year (maintenance)",
     "category": "Productivity",
     "painPoints": [
-      {"problem": "Expensive at $62.99 one-time + $24.99/year maintenance", "impact": "Users pay $62.99 upfront + $24.99/year for screen capture software"},
-      {"problem": "No free tier — must pay to use", "impact": "Users can't try before buying"},
-      {"problem": "Limited video editing features", "impact": "Users need separate video editing software"},
-      {"problem": "Windows and Mac versions sold separately", "impact": "Users who switch OS must buy again"},
-      {"problem": "Less powerful than dedicated screen recorders", "impact": "Users who need advanced features must use other tools"}
+      {
+        "problem": "Expensive at $62.99 one-time + $24.99/year maintenance",
+        "impact": "Users pay $62.99 upfront + $24.99/year for screen capture software"
+      },
+      {
+        "problem": "No free tier — must pay to use",
+        "impact": "Users can't try before buying"
+      },
+      {
+        "problem": "Limited video editing features",
+        "impact": "Users need separate video editing software"
+      },
+      {
+        "problem": "Windows and Mac versions sold separately",
+        "impact": "Users who switch OS must buy again"
+      },
+      {
+        "problem": "Less powerful than dedicated screen recorders",
+        "impact": "Users who need advanced features must use other tools"
+      }
     ],
     "whySwitch": [
       "Get a free, open-source screen capture tool with Shutter (Linux) or Greenshot (Windows)",
@@ -111,9 +203,24 @@
         "url": "https://shutter-project.org (Linux); https://getgreenshot.org (Windows)",
         "reason": "100% free and open-source screen capture tools",
         "description": "Shutter (Linux) and Greenshot (Windows) are free and open-source screen capture tools. They are 100% free — no premium tier.",
-        "features": ["100% free and open-source", "Screen capture", "Cross-platform (Linux/Windows)", "Lightweight", "Easy to use"],
-        "pros": ["Completely free", "Open-source", "Lightweight", "Easy to use"],
-        "cons": ["Less features than Snagit", "Linux (Shutter) / Windows (Greenshot) only", "Less polished UI"],
+        "features": [
+          "100% free and open-source",
+          "Screen capture",
+          "Cross-platform (Linux/Windows)",
+          "Lightweight",
+          "Easy to use"
+        ],
+        "pros": [
+          "Completely free",
+          "Open-source",
+          "Lightweight",
+          "Easy to use"
+        ],
+        "cons": [
+          "Less features than Snagit",
+          "Linux (Shutter) / Windows (Greenshot) only",
+          "Less polished UI"
+        ],
         "bestFor": "Users who want a free, open-source screen capture tool for Linux (Shutter) or Windows (Greenshot)",
         "isFree": true,
         "isOpenSource": true,
@@ -126,9 +233,24 @@
         "url": "https://www.loom.com",
         "reason": "Free plan with screen recording and sharing",
         "description": "Loom is a web-based screen recorder. The free plan includes up to 25 videos (up to 5 minutes each). Great for quick screen recordings.",
-        "features": ["Free plan available", "Web-based", "Screen recording and sharing", "Cross-platform (web)", "Easy to use"],
-        "pros": ["Free version available", "Web-based (no installation)", "Easy to use", "Great for quick recordings"],
-        "cons": ["Free plan has limitations (25 videos, 5 minutes each)", "Requires internet", "Less powerful than Snagit for screen capture"],
+        "features": [
+          "Free plan available",
+          "Web-based",
+          "Screen recording and sharing",
+          "Cross-platform (web)",
+          "Easy to use"
+        ],
+        "pros": [
+          "Free version available",
+          "Web-based (no installation)",
+          "Easy to use",
+          "Great for quick recordings"
+        ],
+        "cons": [
+          "Free plan has limitations (25 videos, 5 minutes each)",
+          "Requires internet",
+          "Less powerful than Snagit for screen capture"
+        ],
         "bestFor": "Users who want a free, web-based screen recorder for quick recordings",
         "isFree": true,
         "isOpenSource": false,
@@ -140,9 +262,24 @@
         "url": "https://monosnap.com",
         "reason": "Free screen capture and recording tool for Mac/Windows",
         "description": "Monosnap is a free screen capture and recording tool for Mac/Windows. It's free — no premium tier.",
-        "features": ["Free", "Screen capture and recording", "Cross-platform (Mac, Windows)", "Lightweight", "Easy to use"],
-        "pros": ["Free", "Cross-platform (Mac, Windows)", "Lightweight", "Easy to use"],
-        "cons": ["Less features than Snagit", "Less polished UI", "Smaller community than Snagit"],
+        "features": [
+          "Free",
+          "Screen capture and recording",
+          "Cross-platform (Mac, Windows)",
+          "Lightweight",
+          "Easy to use"
+        ],
+        "pros": [
+          "Free",
+          "Cross-platform (Mac, Windows)",
+          "Lightweight",
+          "Easy to use"
+        ],
+        "cons": [
+          "Less features than Snagit",
+          "Less polished UI",
+          "Smaller community than Snagit"
+        ],
         "bestFor": "Users who want a free screen capture and recording tool for Mac/Windows",
         "isFree": true,
         "isOpenSource": false,
@@ -163,11 +300,27 @@
         "Monosnap is best for free screen capture and recording (Mac/Windows)"
       ]
     },
-    "seoKeywords": ["snagit free alternative", "snagit alternative free", "best snagit alternative", "snagit vs shutter", "snagit alternatives 2026"],
+    "seoKeywords": [
+      "snagit free alternative",
+      "snagit alternative free",
+      "best snagit alternative",
+      "snagit vs shutter",
+      "snagit alternatives 2026"
+    ],
     "faqs": [
-      {"question": "Is there a completely free alternative to Snagit?", "answer": "Yes. Shutter (Linux) and Greenshot (Windows) are 100% free and open-source. Loom has a free plan."},
-      {"question": "Which Snagit alternative is best for Linux?", "answer": "Shutter is the best free alternative for Linux — it's 100% free and open-source."},
-      {"question": "Can I capture my screen with Shutter (Linux)?", "answer": "Yes. Shutter is a screen capture tool for Linux. It's 100% free and open-source."}
-    ]
+      {
+        "question": "Is there a completely free alternative to Snagit?",
+        "answer": "Yes. Shutter (Linux) and Greenshot (Windows) are 100% free and open-source. Loom has a free plan."
+      },
+      {
+        "question": "Which Snagit alternative is best for Linux?",
+        "answer": "Shutter is the best free alternative for Linux — it's 100% free and open-source."
+      },
+      {
+        "question": "Can I capture my screen with Shutter (Linux)?",
+        "answer": "Yes. Shutter is a screen capture tool for Linux. It's 100% free and open-source."
+      }
+    ],
+    "description": "Snagit is a paid tool that many users are looking to replace with free or cheaper alternatives. This page curates the best alternatives to Snagit in 2026."
   }
 ]

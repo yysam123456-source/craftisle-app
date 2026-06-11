@@ -273,7 +273,7 @@ export async function generateMetadata(props: ComparePageProps): Promise<Metadat
 
   return {
     title: `${data.paidTool} vs ${data.altName}: Which is Better in 2026? | Craftisle`,
-    description: `Compare ${data.paidTool} and ${data.altName}. ${data.reason.slice(0, 150)}`,
+    description: `Compare ${data.paidTool} and ${data.altName}. ${(data.reason || "").slice(0, 150)}`,
     alternates: {
       canonical: `https://craftisle.com/directory/compare/${slugA}/${slugB}`,
     },

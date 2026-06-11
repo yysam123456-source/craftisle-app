@@ -10,7 +10,9 @@
       "Resource-heavy — high CPU usage on older computers, causing fans to spin loudly",
       "Requires downloading desktop app for full functionality — web version is limited"
     ],
-    "whySwitch": "You're paying hundreds per year for features that cheaper or free alternatives now match. Modern alternatives offer longer free meeting durations, lower resource usage, better privacy practices, and often superior noise cancellation and video quality.",
+    "whySwitch": [
+      "You're paying hundreds per year for features that cheaper or free alternatives now match. Modern alternatives offer longer free meeting durations, lower resource usage, better privacy practices, and often superior noise cancellation and video quality."
+    ],
     "alternatives": [
       {
         "name": "Google Meet",
@@ -39,7 +41,8 @@
         "bestFor": "Google Workspace users, educators, and anyone wanting no-install video calls",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Google Meet is a compelling alternative to Zoom. It offers free access to essential features."
       },
       {
         "name": "Discord",
@@ -69,7 +72,8 @@
         "bestFor": "Remote teams, gaming communities, and casual ongoing communication",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Discord is a compelling alternative to Zoom. It offers free access to essential features."
       },
       {
         "name": "Jitsi Meet",
@@ -100,7 +104,8 @@
         "bestFor": "Privacy-conscious users, open-source advocates, and self-hosters",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4
+        "rating": 4,
+        "reason": "Jitsi Meet is a compelling alternative to Zoom. It offers free access to essential features."
       },
       {
         "name": "Microsoft Teams",
@@ -130,7 +135,8 @@
         "bestFor": "Organizations already using Microsoft 365 ecosystem",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "Microsoft Teams is a compelling alternative to Zoom. It offers free access to essential features."
       },
       {
         "name": "Whereby",
@@ -161,7 +167,8 @@
         "bestFor": "Small teams, consultants, and anyone wanting simple persistent meeting rooms",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.1
+        "rating": 4.1,
+        "reason": "Whereby is a compelling alternative to Zoom. It offers free access to essential features."
       }
     ],
     "migrationGuide": {
@@ -209,7 +216,9 @@
       "Apps can be buggy on Linux and mobile — frequent disconnects reported",
       "Speeds can be inconsistent depending on server load and location"
     ],
-    "whySwitch": "The VPN market is saturated with high-quality alternatives that are cheaper, more privacy-focused, or offer better performance. Many VPNs now match Nord's feature set (kill switch, no-logs, specialty servers) at lower prices or with more transparent ownership.",
+    "whySwitch": [
+      "The VPN market is saturated with high-quality alternatives that are cheaper, more privacy-focused, or offer better performance. Many VPNs now match Nord's feature set (kill switch, no-logs, specialty servers) at lower prices or with more transparent ownership."
+    ],
     "alternatives": [
       {
         "name": "Proton VPN",
@@ -240,7 +249,8 @@
         "bestFor": "Privacy-conscious users who want a trustworthy free VPN or a premium upgrade path",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.6
+        "rating": 4.6,
+        "reason": "Proton VPN is a compelling alternative to NordVPN. It offers free access to essential features."
       },
       {
         "name": "Mullvad VPN",
@@ -271,7 +281,8 @@
         "bestFor": "Privacy extremists, tech-savvy users, and anyone tired of VPN marketing tricks",
         "isFree": false,
         "isOpenSource": true,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "Mullvad VPN is a compelling alternative to NordVPN. It offers affordable access to essential features."
       },
       {
         "name": "Windscribe",
@@ -302,7 +313,8 @@
         "bestFor": "Users who want a flexible, customizable VPN with a solid free tier",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Windscribe is a compelling alternative to NordVPN. It offers free access to essential features."
       },
       {
         "name": "Surfshark",
@@ -332,7 +344,8 @@
         "bestFor": "Families or individuals with many devices who want good streaming support",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "Surfshark is a compelling alternative to NordVPN. It offers affordable access to essential features."
       },
       {
         "name": "Riseup VPN (Bitmask)",
@@ -362,7 +375,8 @@
         "bestFor": "Activists, journalists, and privacy-conscious users who prioritize ethics over speed",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 3.9
+        "rating": 3.9,
+        "reason": "Riseup VPN (Bitmask) is a compelling alternative to NordVPN. It offers free access to essential features."
       }
     ],
     "migrationGuide": {
@@ -410,7 +424,9 @@
       "Can be slow to load on older devices or with very large vaults",
       "Browser extension occasionally breaks after browser updates"
     ],
-    "whySwitch": "Excellent free and open-source password managers now match or exceed 1Password's feature set. Bitwarden, in particular, offers a free tier with nearly all essential features, is open-source and audited, and has a very generous unpaid plan. Self-hosted options give you complete data control.",
+    "whySwitch": [
+      "Excellent free and open-source password managers now match or exceed 1Password's feature set. Bitwarden, in particular, offers a free tier with nearly all essential features, is open-source and audited, and has a very generous unpaid plan. Self-hosted options give you complete data control."
+    ],
     "alternatives": [
       {
         "name": "Bitwarden",
@@ -441,7 +457,8 @@
         "bestFor": "Almost everyone — the free plan covers 90% of users; premium adds TOTP and file attachments",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "Bitwarden is a compelling alternative to 1Password. It offers free access to essential features."
       },
       {
         "name": "KeePassXC",
@@ -472,7 +489,8 @@
         "bestFor": "Privacy extremists, security professionals, and anyone who refuses to store passwords in the cloud",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "KeePassXC is a compelling alternative to 1Password. It offers free access to essential features."
       },
       {
         "name": "Proton Pass",
@@ -503,7 +521,8 @@
         "bestFor": "Proton ecosystem users and privacy-focused individuals who want integrated email aliases",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "Proton Pass is a compelling alternative to 1Password. It offers free access to essential features."
       },
       {
         "name": "Dashlane",
@@ -534,7 +553,8 @@
         "bestFor": "Users who want an all-in-one security suite (passwords + VPN + dark web monitoring)",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4
+        "rating": 4,
+        "reason": "Dashlane is a compelling alternative to 1Password. It offers free access to essential features."
       },
       {
         "name": "Enpass",
@@ -565,7 +585,8 @@
         "bestFor": "Users who want a one-time purchase password manager and prefer using their own cloud storage for sync",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 3.9
+        "rating": 3.9,
+        "reason": "Enpass is a compelling alternative to 1Password. It offers free access to essential features."
       }
     ],
     "migrationGuide": {
@@ -613,7 +634,9 @@
       "File format lock-in — .docx, .xlsx, .pptx are hard to edit perfectly in non-Microsoft tools",
       "Privacy concerns — Microsoft's telemetry and AI features send data to the cloud"
     ],
-    "whySwitch": "For many users, Microsoft 365 is overkill. Free alternatives like LibreOffice, Google Workspace (free tier), and WPS Office cover 95% of use cases. If you don't need advanced collaboration or enterprise features, you can switch to a free suite and never look back. One-time purchase options like Office 2021 also exist for those who want Microsoft's tools without subscriptions.",
+    "whySwitch": [
+      "For many users, Microsoft 365 is overkill. Free alternatives like LibreOffice, Google Workspace (free tier), and WPS Office cover 95% of use cases. If you don't need advanced collaboration or enterprise features, you can switch to a free suite and never look back. One-time purchase options like Office 2021 also exist for those who want Microsoft's tools without subscriptions."
+    ],
     "alternatives": [
       {
         "name": "LibreOffice",
@@ -643,7 +666,8 @@
         "bestFor": "Anyone wanting a full-featured offline office suite without subscription fees",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "LibreOffice is a compelling alternative to Microsoft 365. It offers free access to essential features."
       },
       {
         "name": "Google Workspace (Docs, Sheets, Slides)",
@@ -673,7 +697,8 @@
         "bestFor": "Collaborative work, students, and anyone who works across multiple devices",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Google Workspace (Docs, Sheets, Slides) is a compelling alternative to Microsoft 365. It offers free access to essential features."
       },
       {
         "name": "WPS Office",
@@ -703,7 +728,8 @@
         "bestFor": "Users who want the Microsoft Office experience without the Microsoft price tag",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4
+        "rating": 4,
+        "reason": "WPS Office is a compelling alternative to Microsoft 365. It offers free access to essential features."
       },
       {
         "name": "OnlyOffice",
@@ -733,7 +759,8 @@
         "bestFor": "Users who need the highest possible Microsoft Office file compatibility in a free suite",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.1
+        "rating": 4.1,
+        "reason": "OnlyOffice is a compelling alternative to Microsoft 365. It offers free access to essential features."
       },
       {
         "name": "Microsoft Office 2021 (one-time purchase)",
@@ -762,7 +789,8 @@
         "bestFor": "Users who want Microsoft Office permanently without ever paying a subscription",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4
+        "rating": 4,
+        "reason": "Microsoft Office 2021 (one-time purchase) is a compelling alternative to Microsoft 365. It offers affordable access to essential features."
       }
     ],
     "migrationGuide": {
@@ -810,7 +838,9 @@
       "Steep learning curve for beginners",
       "Files are saved in proprietary .ai format, creating vendor lock-in"
     ],
-    "whySwitch": "High-quality vector graphics alternatives now offer 80-90% of Illustrator's features at a fraction of the cost. Affinity Designer is a one-time purchase ($69.99) with no subscription. Inkscape is completely free and open-source. Figma (free tier) is now widely used for vector design, especially for UI/Web. For many designers, these alternatives are sufficient and save hundreds per year.",
+    "whySwitch": [
+      "High-quality vector graphics alternatives now offer 80-90% of Illustrator's features at a fraction of the cost. Affinity Designer is a one-time purchase ($69.99) with no subscription. Inkscape is completely free and open-source. Figma (free tier) is now widely used for vector design, especially for UI/Web. For many designers, these alternatives are sufficient and save hundreds per year."
+    ],
     "alternatives": [
       {
         "name": "Affinity Designer",
@@ -842,7 +872,8 @@
         "bestFor": "Professional designers who want Illustrator-quality tools without the subscription",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.6
+        "rating": 4.6,
+        "reason": "Affinity Designer is a compelling alternative to Adobe Illustrator. It offers affordable access to essential features."
       },
       {
         "name": "Inkscape",
@@ -873,7 +904,8 @@
         "bestFor": "Budget-conscious designers, open-source advocates, and web graphics work",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "Inkscape is a compelling alternative to Adobe Illustrator. It offers free access to essential features."
       },
       {
         "name": "Figma",
@@ -904,7 +936,8 @@
         "bestFor": "UI/UX designers, web designers, and collaborative design teams",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "Figma is a compelling alternative to Adobe Illustrator. It offers free access to essential features."
       },
       {
         "name": "Sketch",
@@ -935,7 +968,8 @@
         "bestFor": "Mac-based UI/UX designers who want a cheaper Illustrator alternative",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4
+        "rating": 4,
+        "reason": "Sketch is a compelling alternative to Adobe Illustrator. It offers affordable access to essential features."
       },
       {
         "name": "Canva Pro (for simple vector work)",
@@ -966,7 +1000,8 @@
         "bestFor": "Non-designers, social media managers, and quick marketing materials (not professional illustration)",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Canva Pro (for simple vector work) is a compelling alternative to Adobe Illustrator. It offers free access to essential features."
       }
     ],
     "migrationGuide": {

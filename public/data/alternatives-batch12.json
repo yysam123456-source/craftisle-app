@@ -63,6 +63,11 @@
         "question": "Do Google Meet and Teams have breakout rooms?",
         "answer": "Yes, both support breakout rooms in their paid tiers. Google Meet added breakout rooms in 2021."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Zoom",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -129,6 +134,11 @@
         "question": "Is Mattermost really free?",
         "answer": "The core open-source version is free. Mattermost makes money on enterprise add-ons (AD/LDAP, compliance, etc.)."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Slack",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -195,6 +205,11 @@
         "question": "Is Asana free like Trello?",
         "answer": "Asana is free for up to 15 users with unlimited tasks and projects. Trello's free tier limits to 10 boards."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Trello",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -261,6 +276,11 @@
         "question": "Can I open Premiere projects in Final Cut Pro?",
         "answer": "Not directly. You need to export as FCPXML from Premiere, then import into Final Cut Pro."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Adobe Premiere Pro",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -327,6 +347,11 @@
         "question": "How long does Salesforce migration take?",
         "answer": "For small teams (under 10 users), 2-4 weeks. For enterprises, 3-6 months is typical."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Salesforce",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -393,6 +418,11 @@
         "question": "Can I run Oracle and PostgreSQL in parallel during migration?",
         "answer": "Yes, many organizations run both in parallel and gradually migrate users and applications."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Oracle Database",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -459,6 +489,11 @@
         "question": "Is Odoo a viable alternative to SAP for large enterprises?",
         "answer": "Odoo is growing in enterprise capabilities but is traditionally stronger in SMB. Large enterprises may find Oracle or Microsoft more proven at scale."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to SAP",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -525,6 +560,11 @@
         "question": "Is Looker Studio really free?",
         "answer": "Yes, Looker Studio (formerly Google Data Studio) is completely free. Looker (the enterprise BI platform) is a separate paid product."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Tableau",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -591,6 +631,11 @@
         "question": "Is Linear free like Jira's free tier?",
         "answer": "Linear is free for up to 250 issues and 10MB file storage. Jira is free for up to 10 users."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Jira",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -657,6 +702,11 @@
         "question": "Is BookStack really free?",
         "answer": "Yes, BookStack is open-source and free. You just need to host it yourself (LAMP stack)."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Confluence",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -723,6 +773,11 @@
         "question": "Does GitLab have built-in CI/CD like Bitbucket Pipelines?",
         "answer": "Yes, GitLab CI/CD is built-in and more powerful than Bitbucket Pipelines."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Bitbucket",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -789,6 +844,11 @@
         "question": "Can I migrate employee data from BambooHR to Gusto?",
         "answer": "Yes, export employee data as CSV from BambooHR, then import into Gusto during onboarding."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to BambooHR",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -855,6 +915,11 @@
         "question": "Is BigCommerce easier than Shopify?",
         "answer": "Shopify is easier for beginners. BigCommerce has a steeper learning curve but more built-in features."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Shopify",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -921,6 +986,11 @@
         "question": "Is Ghost free like WordPress?",
         "answer": "Ghost is open-source and free if you self-host. The hosted version (ghost.org) starts at $9/month."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to WordPress",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -987,6 +1057,11 @@
         "question": "Does Substack have automation like Mailchimp?",
         "answer": "Substack's automation is basic (welcome email, drip sequence). For advanced automations, ConvertKit or Beehiiv are better."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Mailchimp",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   },
   {
@@ -1053,6 +1128,11 @@
         "question": "Is Affinity Photo a one-time purchase?",
         "answer": "Yes, Affinity Photo is a one-time purchase (usually $69.99, often on sale for $34.99). No subscription."
       }
+    ],
+    "whySwitch": [
+      "Save money by switching to a free alternative to Adobe Photoshop",
+      "Get more features with open-source alternatives",
+      "Avoid vendor lock-in and own your data"
     ]
   }
 ]

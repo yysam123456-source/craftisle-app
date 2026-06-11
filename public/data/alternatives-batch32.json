@@ -11,7 +11,13 @@
       "Sync speed can be slow, especially on free tier",
       "Data lock-in — exporting notes is clunky (ENEX format)"
     ],
-    "whySwitch": "There are excellent free and cheaper alternatives to Evernote. Obsidian is free (with optional paid sync) and stores notes as plain Markdown files (future-proof). Joplin is 100% free and open-source. Notion (free tier) combines notes with databases and wikis. For most users, Evernote's paid plans are unnecessary when these alternatives exist.",
+    "whySwitch": [
+      "Get unlimited notes for free (no 50-note limit)",
+      "Pay $0/year instead of $180/year",
+      "Get native Linux support with open-source alternatives",
+      "Own your data — use local-first alternatives",
+      "Avoid vendor lock-in — export is easy with alternatives"
+    ],
     "alternatives": [
       {
         "name": "Obsidian",
@@ -41,7 +47,8 @@
         "bestFor": "Personal knowledge management, researchers, and people who want future-proof Markdown notes",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "Free to use, Obsidian offers a cost-effective alternative to Evernote."
       },
       {
         "name": "Joplin",
@@ -71,7 +78,8 @@
         "bestFor": "Privacy-conscious users who want a free, open-source Evernote alternative",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.4
+        "rating": 4.4,
+        "reason": "100% free and open-source Joplin is a compelling alternative to Evernote."
       },
       {
         "name": "Notion (free tier)",
@@ -101,7 +109,8 @@
         "bestFor": "Teams, project managers, and people who want notes + databases + wikis in one tool",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Free to use, Notion (free tier) offers a cost-effective alternative to Evernote."
       },
       {
         "name": "Simplenote",
@@ -131,7 +140,8 @@
         "bestFor": "People who want the simplest possible note-taking experience",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "100% free and open-source Simplenote is a compelling alternative to Evernote."
       },
       {
         "name": "Microsoft OneNote",
@@ -161,7 +171,8 @@
         "bestFor": "Microsoft ecosystem users, students, and tablet/pen users",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Free to use, Microsoft OneNote offers a cost-effective alternative to Evernote."
       }
     ],
     "migrationGuide": {
@@ -208,7 +219,9 @@
       "No Markdown support (uses rich text only)",
       "Integration is deep with Microsoft Office, but weak for non-Microsoft users"
     ],
-    "whySwitch": "If you don't like OneNote's free-form canvas or want Markdown support, there are excellent alternatives. Obsidian uses Markdown and is local-first. Notion combines notes with databases. Apple Notes is excellent for Apple users. For structured note-taking (outline-style), Logseq or Roam Research are better choices.",
+    "whySwitch": [
+      "If you don't like OneNote's free-form canvas or want Markdown support, there are excellent alternatives. Obsidian uses Markdown and is local-first. Notion combines notes with databases. Apple Notes is excellent for Apple users. For structured note-taking (outline-style), Logseq or Roam Research are better choices."
+    ],
     "alternatives": [
       {
         "name": "Obsidian",
@@ -236,7 +249,8 @@
         "bestFor": "Knowledge workers, researchers, and Markdown enthusiasts",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "Free to use, Obsidian offers a cost-effective alternative to Microsoft OneNote."
       },
       {
         "name": "Notion",
@@ -264,7 +278,8 @@
         "bestFor": "Teams, project managers, and all-in-one workspace seekers",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Free to use, Notion offers a cost-effective alternative to Microsoft OneNote."
       },
       {
         "name": "Apple Notes",
@@ -293,7 +308,8 @@
         "bestFor": "Apple ecosystem users who want simple, fast note-taking",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.4
+        "rating": 4.4,
+        "reason": "Free to use, Apple Notes offers a cost-effective alternative to Microsoft OneNote."
       },
       {
         "name": "Logseq",
@@ -322,7 +338,8 @@
         "bestFor": "Structured thinkers who prefer outline-style notes over free-form",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "100% free and open-source Logseq is a compelling alternative to Microsoft OneNote."
       },
       {
         "name": "Google Keep",
@@ -351,7 +368,8 @@
         "bestFor": "Quick notes, reminders, and simple checklists",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 3.9
+        "rating": 3.9,
+        "reason": "Free to use, Google Keep offers a cost-effective alternative to Microsoft OneNote."
       }
     ],
     "migrationGuide": {
@@ -397,7 +415,9 @@
       "Steep learning curve for beginners",
       "No native Linux version"
     ],
-    "whySwitch": "Excellent free and cheaper DAWs exist. Reaper is only $60 (discounted) and is incredibly powerful. Audacity (free, open-source) is great for simple recording and editing. LMMS (free, open-source) is good for beat-making and electronic music. Cakewalk by BandLab is a full-featured DAW that is now completely free. For many producers, these alternatives cover 90% of what they need.",
+    "whySwitch": [
+      "Excellent free and cheaper DAWs exist. Reaper is only $60 (discounted) and is incredibly powerful. Audacity (free, open-source) is great for simple recording and editing. LMMS (free, open-source) is good for beat-making and electronic music. Cakewalk by BandLab is a full-featured DAW that is now completely free. For many producers, these alternatives cover 90% of what they need."
+    ],
     "alternatives": [
       {
         "name": "Reaper",
@@ -427,7 +447,8 @@
         "bestFor": "Budget-conscious musicians who want professional features without the high price",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.8
+        "rating": 4.8,
+        "reason": "Reaper is a popular alternative to Cubase with its own strengths."
       },
       {
         "name": "Cakewalk by BandLab",
@@ -457,7 +478,8 @@
         "bestFor": "Windows users who want a full-featured free DAW",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Free to use, Cakewalk by BandLab offers a cost-effective alternative to Cubase."
       },
       {
         "name": "LMMS (Linux MultiMedia Studio)",
@@ -487,7 +509,8 @@
         "bestFor": "Electronic music producers, beat-makers, and beginners on a budget",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "100% free and open-source LMMS (Linux MultiMedia Studio) is a compelling alternative to Cubase."
       },
       {
         "name": "Audacity",
@@ -517,7 +540,8 @@
         "bestFor": "Podcasters, voice recording, and simple audio editing",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4
+        "rating": 4,
+        "reason": "100% free and open-source Audacity is a compelling alternative to Cubase."
       },
       {
         "name": "Bitwig Studio (modern alternative, cheaper than Cubase Pro)",
@@ -547,7 +571,8 @@
         "bestFor": "Electronic music producers and sound designers who want a modern, innovative DAW",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.4
+        "rating": 4.4,
+        "reason": "Bitwig Studio (modern alternative, cheaper than Cubase Pro) is a popular alternative to Cubase with its own strengths."
       }
     ],
     "migrationGuide": {
@@ -594,7 +619,9 @@
       "Resource-heavy — Session View with many clips can tax older computers",
       "Max for Live (included in Suite) has a steep learning curve"
     ],
-    "whySwitch": "Bitwig Studio ($399) offers a similar clip-launching workflow and is cheaper than Ableton Standard. Reaper ($60) is incredibly powerful and lightweight. For live performance specifically, there's also Maschine+ (hardware) or even a simple setup with a launchpad and free software. Many producers find that Bitwig or Reaper covers 90% of what they use Ableton for.",
+    "whySwitch": [
+      "Bitwig Studio ($399) offers a similar clip-launching workflow and is cheaper than Ableton Standard. Reaper ($60) is incredibly powerful and lightweight. For live performance specifically, there's also Maschine+ (hardware) or even a simple setup with a launchpad and free software. Many producers find that Bitwig or Reaper covers 90% of what they use Ableton for."
+    ],
     "alternatives": [
       {
         "name": "Bitwig Studio",
@@ -624,7 +651,8 @@
         "bestFor": "Ableton users who want a similar workflow at a lower price, and Linux users",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Bitwig Studio is a popular alternative to Ableton Live with its own strengths."
       },
       {
         "name": "Reaper",
@@ -653,7 +681,8 @@
         "bestFor": "Budget-conscious musicians who want professional features",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.8
+        "rating": 4.8,
+        "reason": "Reaper is a popular alternative to Ableton Live with its own strengths."
       },
       {
         "name": "Renoise (tracker-style DAW, unique workflow)",
@@ -683,7 +712,8 @@
         "bestFor": "Electronic music producers who want a unique tracker workflow",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4
+        "rating": 4,
+        "reason": "Renoise (tracker-style DAW, unique workflow) is a popular alternative to Ableton Live with its own strengths."
       },
       {
         "name": "Cakewalk by BandLab",
@@ -712,7 +742,8 @@
         "bestFor": "Windows users who want a free, full-featured DAW",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Free to use, Cakewalk by BandLab offers a cost-effective alternative to Ableton Live."
       },
       {
         "name": "LMMS",
@@ -741,7 +772,8 @@
         "bestFor": "Beginners and electronic music producers on a budget",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "100% free and open-source LMMS is a compelling alternative to Ableton Live."
       }
     ],
     "migrationGuide": {
@@ -789,7 +821,9 @@
       "No MIDI notation view (score editor) in many versions",
       "Collaboration (Pro Tools Clud) requires additional subscription"
     ],
-    "whySwitch": "Pro Tools is industry-standard for a reason, but for home studios and indie producers, it's overkill. Reaper ($60) is incredibly powerful and lightweight. Cubase (one-time purchase) and Logic Pro ($199 one-time, macOS only) are both excellent. For film scoring specifically, Cubase and Logic Pro have better scoring features than Pro Tools. Unless you're working in a professional studio that requires Pro Tools, you can switch to a cheaper or one-time-purchase DAW.",
+    "whySwitch": [
+      "Pro Tools is industry-standard for a reason, but for home studios and indie producers, it's overkill. Reaper ($60) is incredibly powerful and lightweight. Cubase (one-time purchase) and Logic Pro ($199 one-time, macOS only) are both excellent. For film scoring specifically, Cubase and Logic Pro have better scoring features than Pro Tools. Unless you're working in a professional studio that requires Pro Tools, you can switch to a cheaper or one-time-purchase DAW."
+    ],
     "alternatives": [
       {
         "name": "Reaper",
@@ -818,7 +852,8 @@
         "bestFor": "Budget-conscious musicians and home studio owners",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.8
+        "rating": 4.8,
+        "reason": "Reaper is a popular alternative to Pro Tools with its own strengths."
       },
       {
         "name": "Logic Pro (macOS only)",
@@ -848,7 +883,8 @@
         "bestFor": "macOS users who want a professional DAW with all features included",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "Logic Pro (macOS only) is a popular alternative to Pro Tools with its own strengths."
       },
       {
         "name": "Cubase (one-time purchase)",
@@ -877,7 +913,8 @@
         "bestFor": "Composers, film scorers, and those who need notation features",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Cubase (one-time purchase) is a popular alternative to Pro Tools with its own strengths."
       },
       {
         "name": "Studio One (PreSonus)",
@@ -906,7 +943,8 @@
         "bestFor": "Beginners and intermediate producers who want an intuitive DAW",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Studio One (PreSonus) is a popular alternative to Pro Tools with its own strengths."
       },
       {
         "name": "Audacity (free, for simple recording)",
@@ -935,7 +973,8 @@
         "bestFor": "Podcasters, voice recording, and simple audio editing",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4
+        "rating": 4,
+        "reason": "100% free and open-source Audacity (free, for simple recording) is a compelling alternative to Pro Tools."
       }
     ],
     "migrationGuide": {

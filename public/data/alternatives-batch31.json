@@ -11,7 +11,9 @@
       "HiFi lossless audio still hasn't fully rolled out despite being announced years ago",
       "Artist payouts are controversially low (reportedly $0.003 – $0.005 per stream)"
     ],
-    "whySwitch": "There are excellent free and cheaper alternatives for music streaming. YouTube Music (free tier) has no skip limits and includes music videos. SoundCloud (free) has exclusive tracks not on Spotify. For offline listening, purchasing music outright (Bandcamp) or self-hosting (Navidrome) gives you ownership. Many users also find that a well-curated local music library beats any streaming service.",
+    "whySwitch": [
+      "There are excellent free and cheaper alternatives for music streaming. YouTube Music (free tier) has no skip limits and includes music videos. SoundCloud (free) has exclusive tracks not on Spotify. For offline listening, purchasing music outright (Bandcamp) or self-hosting (Navidrome) gives you ownership. Many users also find that a well-curated local music library beats any streaming service."
+    ],
     "alternatives": [
       {
         "name": "YouTube Music (free tier)",
@@ -41,7 +43,8 @@
         "bestFor": "Users who want a generous free tier and access to rare/live music content",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "YouTube Music (free tier) is a compelling alternative to Spotify Premium. It offers free access to essential features."
       },
       {
         "name": "SoundCloud (free tier)",
@@ -71,7 +74,8 @@
         "bestFor": "Music discoverers, DJs, and fans of independent/underground music",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4
+        "rating": 4,
+        "reason": "SoundCloud (free tier) is a compelling alternative to Spotify Premium. It offers free access to essential features."
       },
       {
         "name": "Bandcamp (purchase music outright)",
@@ -101,7 +105,8 @@
         "bestFor": "Music lovers who want to own their music and support artists directly",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "Bandcamp (purchase music outright) is a compelling alternative to Spotify Premium. It offers free access to essential features."
       },
       {
         "name": "Navidrome (self-hosted streaming)",
@@ -131,7 +136,8 @@
         "bestFor": "Self-hosters, privacy enthusiasts, and people with large local music libraries",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Navidrome (self-hosted streaming) is a compelling alternative to Spotify Premium. It offers free access to essential features."
       },
       {
         "name": "Apple Music (cheaper for Apple ecosystem users)",
@@ -161,7 +167,8 @@
         "bestFor": "Apple ecosystem users who want lossless audio and tight integration",
         "isFree": false,
         "isOpenSource": false,
-        "rating": 4.4
+        "rating": 4.4,
+        "reason": "Apple Music (cheaper for Apple ecosystem users) is a compelling alternative to Spotify Premium. It offers affordable access to essential features."
       }
     ],
     "migrationGuide": {
@@ -208,7 +215,9 @@
       "No one-time purchase option — Adobe discontinued perpetual licenses",
       "Frequent crashes on complex projects with many layers and effects"
     ],
-    "whySwitch": "High-quality alternatives now offer 80-90% of After Effects' capabilities at a fraction of the cost. Blender (free, open-source) has a powerful compositor and video editor built-in. DaVinci Resolve (free version is very capable) includes Fusion for motion graphics and VFX. For 2D motion graphics specifically, tools like OpenToonz (free) and Krita (free) are excellent. Even if you occasionally need After Effects, using alternatives for 80% of your work can dramatically reduce how many months you need to subscribe.",
+    "whySwitch": [
+      "High-quality alternatives now offer 80-90% of After Effects' capabilities at a fraction of the cost. Blender (free, open-source) has a powerful compositor and video editor built-in. DaVinci Resolve (free version is very capable) includes Fusion for motion graphics and VFX. For 2D motion graphics specifically, tools like OpenToonz (free) and Krita (free) are excellent. Even if you occasionally need After Effects, using alternatives for 80% of your work can dramatically reduce how many months you need to subscribe."
+    ],
     "alternatives": [
       {
         "name": "Blender (Compositing & Video Editor)",
@@ -238,7 +247,8 @@
         "bestFor": "3D artists, motion designers who incorporate 3D, and budget-conscious creators",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.6
+        "rating": 4.6,
+        "reason": "Blender (Compositing & Video Editor) is a compelling alternative to Adobe After Effects. It offers free access to essential features."
       },
       {
         "name": "DaVinci Resolve (Fusion page)",
@@ -268,7 +278,8 @@
         "bestFor": "Professional video editors, colorists, and VFX artists who want an all-in-one solution",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "DaVinci Resolve (Fusion page) is a compelling alternative to Adobe After Effects. It offers free access to essential features."
       },
       {
         "name": "Natron",
@@ -298,7 +309,8 @@
         "bestFor": "Budget-conscious VFX artists and students learning node-based compositing",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 3.9
+        "rating": 3.9,
+        "reason": "Natron is a compelling alternative to Adobe After Effects. It offers free access to essential features."
       },
       {
         "name": "OpenToonz (for 2D animation & motion graphics)",
@@ -328,7 +340,8 @@
         "bestFor": "2D animators, hand-drawn motion graphics artists, and Studio Ghibli fans",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4
+        "rating": 4,
+        "reason": "OpenToonz (for 2D animation & motion graphics) is a compelling alternative to Adobe After Effects. It offers free access to essential features."
       },
       {
         "name": "Krita (for 2D animation & motion graphics)",
@@ -358,7 +371,8 @@
         "bestFor": "2D animators and motion graphics artists creating frame-by-frame content",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Krita (for 2D animation & motion graphics) is a compelling alternative to Adobe After Effects. It offers free access to essential features."
       }
     ],
     "migrationGuide": {
@@ -406,7 +420,9 @@
       "Windows-only (Visio for the web is limited compared to desktop version)",
       "File format (.vsdx) creates vendor lock-in — hard to open in non-Microsoft tools"
     ],
-    "whySwitch": "Excellent free alternatives now match 90% of Visio's diagramming features. diagrams.net (draw.io) is completely free, runs in any browser, and supports Visio file import/export. Lucidchart (free tier) is excellent for collaboration. For technical diagrams (network, AWS architecture), tools like Miro and Excalidraw are modern and intuitive. For many users, Visio is overkill — a free web-based tool is all they need.",
+    "whySwitch": [
+      "Excellent free alternatives now match 90% of Visio's diagramming features. diagrams.net (draw.io) is completely free, runs in any browser, and supports Visio file import/export. Lucidchart (free tier) is excellent for collaboration. For technical diagrams (network, AWS architecture), tools like Miro and Excalidraw are modern and intuitive. For many users, Visio is overkill — a free web-based tool is all they need."
+    ],
     "alternatives": [
       {
         "name": "diagrams.net (draw.io)",
@@ -436,7 +452,8 @@
         "bestFor": "Anyone who wants a free, privacy-friendly, full-featured diagramming tool",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "diagrams.net (draw.io) is a compelling alternative to Microsoft Visio. It offers free access to essential features."
       },
       {
         "name": "Lucidchart",
@@ -466,7 +483,8 @@
         "bestFor": "Teams and collaborators who need real-time co-editing of diagrams",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Lucidchart is a compelling alternative to Microsoft Visio. It offers free access to essential features."
       },
       {
         "name": "Miro",
@@ -496,7 +514,8 @@
         "bestFor": "Agile teams, product managers, and collaborative brainstorming sessions",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.4
+        "rating": 4.4,
+        "reason": "Miro is a compelling alternative to Microsoft Visio. It offers free access to essential features."
       },
       {
         "name": "Excalidraw",
@@ -526,7 +545,8 @@
         "bestFor": "Informal diagrams, brainstorming, and presentations where a hand-drawn look is desirable",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.2
+        "rating": 4.2,
+        "reason": "Excalidraw is a compelling alternative to Microsoft Visio. It offers free access to essential features."
       },
       {
         "name": "Penpot (open-source Figma alternative with diagramming)",
@@ -556,7 +576,8 @@
         "bestFor": "Design teams who want an open-source Figma alternative and occasionally need simple diagrams",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 3.9
+        "rating": 3.9,
+        "reason": "Penpot (open-source Figma alternative with diagramming) is a compelling alternative to Microsoft Visio. It offers free access to essential features."
       }
     ],
     "migrationGuide": {
@@ -603,7 +624,9 @@
       "Resource-heavy — can slow down older computers during remote sessions",
       "Privacy concerns — TeamViewer has had security incidents, and the company can access connection metadata"
     ],
-    "whySwitch": "There are excellent free remote desktop tools that don't artificially limit free users. Chrome Remote Desktop is completely free with no time limits. AnyDesk (free for personal use) is faster and lighter than TeamViewer. For advanced users, Rustdesk (open-source, self-hostable) gives you complete control. Even Windows' built-in Remote Desktop (RDP) is free for Windows Pro users. For many use cases, TeamViewer is unnecessary expensive.",
+    "whySwitch": [
+      "There are excellent free remote desktop tools that don't artificially limit free users. Chrome Remote Desktop is completely free with no time limits. AnyDesk (free for personal use) is faster and lighter than TeamViewer. For advanced users, Rustdesk (open-source, self-hostable) gives you complete control. Even Windows' built-in Remote Desktop (RDP) is free for Windows Pro users. For many use cases, TeamViewer is unnecessary expensive."
+    ],
     "alternatives": [
       {
         "name": "Chrome Remote Desktop",
@@ -633,7 +656,8 @@
         "bestFor": "Personal use, simple remote access, and non-technical users",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "Chrome Remote Desktop is a compelling alternative to TeamViewer. It offers free access to essential features."
       },
       {
         "name": "AnyDesk",
@@ -663,7 +687,8 @@
         "bestFor": "Personal use, small businesses, and users who want a faster TeamViewer alternative",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.4
+        "rating": 4.4,
+        "reason": "AnyDesk is a compelling alternative to TeamViewer. It offers free access to essential features."
       },
       {
         "name": "Rustdesk (open-source, self-hostable)",
@@ -693,7 +718,8 @@
         "bestFor": "Privacy-conscious users, self-hosters, and developers",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "Rustdesk (open-source, self-hostable) is a compelling alternative to TeamViewer. It offers free access to essential features."
       },
       {
         "name": "Windows Remote Desktop (RDP) — built-in",
@@ -723,7 +749,8 @@
         "bestFor": "Windows Pro users accessing their own PCs over LAN or VPN",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.1
+        "rating": 4.1,
+        "reason": "Windows Remote Desktop (RDP) — built-in is a compelling alternative to TeamViewer. It offers free access to essential features."
       },
       {
         "name": "VNC Connect (RealVNC)",
@@ -753,7 +780,8 @@
         "bestFor": "Raspberry Pi users, Linux remote access, and cross-platform VNC needs",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 3.8
+        "rating": 3.8,
+        "reason": "VNC Connect (RealVNC) is a compelling alternative to TeamViewer. It offers free access to essential features."
       }
     ],
     "migrationGuide": {
@@ -800,7 +828,9 @@
       "Proprietary RAR format — people who receive .rar files may need WinRAR to open them (though 7-Zip can open RAR)",
       "Lacks some modern features (encryption standards, archive formats) compared to newer tools"
     ],
-    "whySwitch": "7-Zip is a free, open-source file archiver that supports every format WinRAR does (including RAR extraction) and many more (7z, ZIP, GZIP, BZIP2, TAR, etc.). It's completely free with no nag screens, no registration, no ads. For macOS, Keka or The Unarchiver are excellent free alternatives. For most users, WinRAR is completely unnecessary — 7-Zip or the built-in Windows zip feature handles 99% of use cases.",
+    "whySwitch": [
+      "7-Zip is a free, open-source file archiver that supports every format WinRAR does (including RAR extraction) and many more (7z, ZIP, GZIP, BZIP2, TAR, etc.). It's completely free with no nag screens, no registration, no ads. For macOS, Keka or The Unarchiver are excellent free alternatives. For most users, WinRAR is completely unnecessary — 7-Zip or the built-in Windows zip feature handles 99% of use cases."
+    ],
     "alternatives": [
       {
         "name": "7-Zip",
@@ -831,7 +861,8 @@
         "bestFor": "Windows users who want a free, powerful, no-nonsense file archiver",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.7
+        "rating": 4.7,
+        "reason": "7-Zip is a compelling alternative to WinRAR. It offers free access to essential features."
       },
       {
         "name": "PeaZip",
@@ -861,7 +892,8 @@
         "bestFor": "Users who want a modern GUI and support for many archive formats",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.3
+        "rating": 4.3,
+        "reason": "PeaZip is a compelling alternative to WinRAR. It offers free access to essential features."
       },
       {
         "name": "The Unarchiver (macOS)",
@@ -890,7 +922,8 @@
         "bestFor": "Mac users who just need to extract archives (no creation needed)",
         "isFree": true,
         "isOpenSource": true,
-        "rating": 4.5
+        "rating": 4.5,
+        "reason": "The Unarchiver (macOS) is a compelling alternative to WinRAR. It offers free access to essential features."
       },
       {
         "name": "Keka (macOS)",
@@ -920,7 +953,8 @@
         "bestFor": "Mac users who want a native, full-featured compression tool",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 4.4
+        "rating": 4.4,
+        "reason": "Keka (macOS) is a compelling alternative to WinRAR. It offers free access to essential features."
       },
       {
         "name": "Windows built-in ZIP support (no install needed)",
@@ -949,7 +983,8 @@
         "bestFor": "Casual users who only need ZIP compression/decompression",
         "isFree": true,
         "isOpenSource": false,
-        "rating": 3.7
+        "rating": 3.7,
+        "reason": "Windows built-in ZIP support (no install needed) is a compelling alternative to WinRAR. It offers free access to essential features."
       }
     ],
     "migrationGuide": {
