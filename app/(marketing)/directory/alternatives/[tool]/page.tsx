@@ -197,9 +197,11 @@ export default async function AlternativesPage({
 
               {/* Description */}
               <div className="prose prose-sm max-w-none text-muted-foreground mb-8">
-                {entry.description.split("\n\n").map((para, i) => (
+                {entry.description ? entry.description.split("\n\n").map((para, i) => (
                   <p key={i} className="mb-3 leading-relaxed">{para}</p>
-                ))}
+                )) : (
+                  <p className="mb-3 leading-relaxed">Looking for free alternatives to {entry.paidTool}? We&apos;ve curated {entry.alternatives.length} free options that can replace {entry.paidTool} — no subscription required.</p>
+                )}
               </div>
 
               {/* Quick stats */}

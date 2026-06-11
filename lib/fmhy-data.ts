@@ -244,11 +244,27 @@ export function getHotResources(limit = 8): Resource[] {
     const filePath = join(process.cwd(), "public", "data", "fmhy-hot.json");
     const raw = readFileSync(filePath, "utf-8");
     const data = JSON.parse(raw);
-    const resources: Resource[] = (data?.resources || []).map((r: any) => ({
-      ...r,
-      id: r.id || r.name?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
-      source: "fmhy",
-    }));
+
+    // 构建 name+category -> id 的查找表
+    const all = getAllResources();
+    const idLookup = new Map<string, string>();
+    for (const r of all) {
+      const key = `${r.category}|${r.name}`;
+      if (!idLookup.has(key)) {
+        idLookup.set(key, r.id);
+      }
+    }
+
+    const resources: Resource[] = (data?.resources || []).map((r: any) => {
+      const key = `${r.category}|${r.name}`;
+      const matchedId = idLookup.get(key);
+      return {
+        ...r,
+        id: matchedId || r.id || r.name?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        source: "fmhy",
+      };
+    });
+
     return resources.slice(0, limit);
   } catch {
     return [];
