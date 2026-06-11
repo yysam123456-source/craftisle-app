@@ -1,0 +1,202 @@
+[
+  {
+    "paidTool": "Obsidian Premium",
+    "slug": "obsidian-premium",
+    "category": "Productivity",
+    "description": "Obsidian Premium adds sync and publish features at $10/month. Many users find the free version sufficient.",
+    "painPoints": [
+      {
+        "problem": "Sync and publish require paid plan",
+        "impact": "$10/month or $100/year"
+      },
+      {
+        "problem": "Free version has no sync",
+        "impact": "Must pay for cross-device sync"
+      },
+      {
+        "problem": "Publish feature requires paid plan",
+        "impact": "Cannot publish sites without payment"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Obsidian Free",
+        "url": "https://obsidian.md",
+        "reason": "Free version with local storage and core plugins",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free forever",
+          "Local storage",
+          "Core plugins"
+        ],
+        "pricing": "Free"
+      },
+      {
+        "name": "Logseq (open-source)",
+        "url": "https://logseq.com",
+        "reason": "Free open-source outliner with sync",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Sync available",
+          "Outliner"
+        ],
+        "pricing": "Free; Sync $4/month"
+      },
+      {
+        "name": "Notion Free",
+        "url": "https://www.notion.so",
+        "reason": "Free tier with sync and collaboration",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Sync",
+          "Collaboration"
+        ],
+        "pricing": "Free; Paid from $10/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Export Obsidian vault (Markdown files)",
+        "Import into Logseq or Notion",
+        "Set up sync in new tool",
+        "Test collaboration features",
+        "Cancel Obsidian Premium"
+      ],
+      "tips": [
+        "Obsidian Free is sufficient for most users",
+        "Logseq is completely open-source"
+      ]
+    },
+    "verdict": "Obsidian Free is sufficient for most users. Logseq is the best open-source alternative with sync.",
+    "faqs": [
+      {
+        "question": "Is Obsidian Free enough?",
+        "answer": "Yes, Obsidian Free includes local storage and core plugins. You only need Premium for sync and publish."
+      },
+      {
+        "question": "Can I sync Obsidian for free?",
+        "answer": "Use third-party sync tools like Syncthing or iCloud/Dropbox to sync your Obsidian vault for free."
+      }
+    ],
+    "tagline": "Note-taking with sync and publish at $10/month",
+    "paidToolUrl": "https://obsidian.md/pricing",
+    "pricing": "Sync $8/month; Publish $20/month; Catalyst $25 one-time",
+    "whySwitch": [
+      "Free version available",
+      "Open-source alternative (Logseq)",
+      "Third-party sync options"
+    ],
+    "seoKeywords": [
+      "obsidian premium alternative",
+      "logseq vs obsidian",
+      "free note-taking",
+      "obsidian free"
+    ]
+  },
+  {
+    "paidTool": "Logseq",
+    "slug": "logseq",
+    "category": "Productivity",
+    "description": "Logseq is a free open-source outliner. Premium sync is $4/month. Users seek free alternatives with similar features.",
+    "painPoints": [
+      {
+        "problem": "Sync requires paid plan",
+        "impact": "$4/month for sync"
+      },
+      {
+        "problem": "Less polished UI than competitors",
+        "impact": "UI feels clunky"
+      },
+      {
+        "problem": "Learning curve for outliner newbies",
+        "impact": "Takes time to master outliner workflow"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Obsidian Free",
+        "url": "https://obsidian.md",
+        "reason": "Free note-taking with local storage",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Local storage",
+          "Plugins"
+        ],
+        "pricing": "Free; Premium $10/month"
+      },
+      {
+        "name": "Notion Free",
+        "url": "https://www.notion.so",
+        "reason": "Free tier with outliner-like databases",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Databases",
+          "Collaboration"
+        ],
+        "pricing": "Free; Paid from $10/month"
+      },
+      {
+        "name": "Roam Research",
+        "url": "https://roamresearch.com",
+        "reason": "Similar outliner with bi-directional links",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "Outliner",
+          "Bi-directional links",
+          "Daily notes"
+        ],
+        "pricing": "$15/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Export Logseq pages (Markdown)",
+        "Import into Obsidian or Notion",
+        "Set up new workflow",
+        "Test daily notes and outlines",
+        "Decide if sync is needed"
+      ],
+      "tips": [
+        "Logseq is completely free and open-source",
+        "Obsidian Free is great for local storage"
+      ]
+    },
+    "verdict": "Logseq is already free and open-source. Obsidian Free is a great alternative with better UI.",
+    "faqs": [
+      {
+        "question": "Is Logseq completely free?",
+        "answer": "Yes, Logseq is free and open-source. Sync is $4/month optional."
+      },
+      {
+        "question": "Can I use Logseq without sync?",
+        "answer": "Yes, you can use Logseq completely offline. Sync is only needed for cross-device access."
+      }
+    ],
+    "tagline": "Open-source outliner with optional sync at $4/month",
+    "paidToolUrl": "https://logseq.com/pricing",
+    "pricing": "Free; Sync $4/month",
+    "whySwitch": [
+      "Completely free and open-source",
+      "Better UI (Obsidian)",
+      "No sync cost (local-only)"
+    ],
+    "seoKeywords": [
+      "logseq alternative",
+      "obsidian vs logseq",
+      "free outliner",
+      "open source note taking"
+    ]
+  }
+]
