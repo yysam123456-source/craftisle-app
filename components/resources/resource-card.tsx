@@ -54,6 +54,27 @@ function getFaviconUrl(url: string): string {
   }
 }
 
+/**
+ * 判断资源是否有足够丰富的信息值得展示详情页
+ * 如果没有丰富信息，点击卡片直接跳转外部网站
+ */
+function hasRichInfo(resource: Resource): boolean {
+  const desc = resource.description || "";
+  // 描述足够长（>80字符，大概2-3句话以上）
+  if (desc.length > 80) return true;
+  // 有 freeTier 详细信息
+  if (resource.freeTier && resource.freeTier.length > 20) return true;
+  // 有 API 规格信息
+  if (resource.auth || resource.https !== undefined || resource.cors !== undefined) return true;
+  // 有自托管详细信息
+  if (resource.license || resource.language || resource.isOpenSource) return true;
+  // 有标签
+  if (resource.tags && resource.tags.length > 0) return true;
+  // 有 GitHub stars
+  if (resource.githubStars && resource.githubStars > 0) return true;
+  return false;
+}
+
 function buildRichDescription(resource: Resource): string {
   const parts: string[] = [];
 
@@ -159,12 +180,14 @@ function getFeatureBadges(resource: Resource): { label: string; variant: "defaul
 export function ResourceCard({ resource, showCategory = true, variant = "default" }: ResourceCardProps) {
   const faviconUrl = getFaviconUrl(resource.url);
   const isLarge = variant === "large";
+  const hasDetail = hasRichInfo(resource);
 
   return (
     <Card
       className={`group overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border-border/60 ${
         isLarge ? "h-full" : ""
-      }`}
+      } ${!hasDetail ? "cursor-pointer" : ""}`}
+      onClick={!hasDetail ? () => window.open(resource.url, "_blank", "noopener,noreferrer") : undefined}
     >
       <CardHeader className={`${isLarge ? "pb-4 pt-6" : "pb-3 pt-5"}`}>
         <div className="flex items-start gap-3">
@@ -203,12 +226,23 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
                   isLarge ? "text-lg" : "text-base"
                 }`}
               >
-                <Link
-                  href={`/directory/resource/${resource.id}`}
-                  className="hover:text-primary hover:underline decoration-primary/50 underline-offset-2 transition-colors"
-                >
-                  {resource.name}
-                </Link>
+                {hasDetail ? (
+                  <Link
+                    href={`/directory/resource/${resource.id}`}
+                    className="hover:text-primary hover:underline decoration-primary/50 underline-offset-2 transition-colors"
+                  >
+                    {resource.name}
+                  </Link>
+                ) : (
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary hover:underline decoration-primary/50 underline-offset-2 transition-colors"
+                  >
+                    {resource.name}
+                  </a>
+                )}
               </CardTitle>
               <div className="flex items-center flex-shrink-0 gap-0.5 mt-0.5">
                 {/* Star button */}
