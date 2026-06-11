@@ -2172,7 +2172,7 @@ export const ALTERNATIVES_MAP: Record<string, AlternativeEntry> = {
   // ============================================================
   // 新增工具条目 (2026-06-11)
   // ============================================================
-  {
+  "InVision": {
     paidTool: "InVision",
     paidToolUrl: "https://www.invisionapp.com",
     tagline: "The world's leading prototyping and collaboration platform for design teams",
@@ -2252,8 +2252,6 @@ const BATCH_FILES: string[] = [
   "alternatives-batch11.json",
   "alternatives-batch12.json",
   "alternatives-batch13.json",
-  "alternatives-batch14.json",
-  "alternatives-batch15.json",
 ];
 
 export function getCombinedMap(): Record<string, AlternativeEntry> {

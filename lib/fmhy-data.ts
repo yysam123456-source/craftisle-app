@@ -246,6 +246,7 @@ export function getHotResources(limit = 8): Resource[] {
     const data = JSON.parse(raw);
     const resources: Resource[] = (data?.resources || []).map((r: any) => ({
       ...r,
+      id: r.id || r.name?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
       source: "fmhy",
     }));
     return resources.slice(0, limit);

@@ -218,7 +218,7 @@ export default async function AlternativesPage({
                 </div>
                 <div className="bg-card border rounded-lg p-4 text-center">
                   <p className="text-2xl font-bold text-amber-600">
-                    ${entry.pricing.match(/\$(\d+)/)?.[1] ? parseInt(entry.pricing.match(/\$(\d+)/)![1]) * 12 : "?"}
+                    ${entry.pricing?.match(/\$(\d+)/)?.[1] ? parseInt(entry.pricing.match(/\$(\d+)/)![1]) * 12 : "?"}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">Est. Yearly Cost</p>
                 </div>
@@ -423,7 +423,7 @@ export default async function AlternativesPage({
                 </div>
                 <div className="bg-card border rounded-xl p-6 md:p-8">
                   <ol className="space-y-4">
-                    {entry.migrationGuide.steps.map((step, i) => (
+                    {(entry.migrationGuide?.steps || []).map((step, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <span className="flex-shrink-0 h-7 w-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-bold">
                           {i + 1}
@@ -432,11 +432,11 @@ export default async function AlternativesPage({
                       </li>
                     ))}
                   </ol>
-                  {entry.migrationGuide.tips.length > 0 && (
+                  {(entry.migrationGuide?.tips || []).length > 0 && (
                     <div className="mt-6 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
                       <p className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Pro Tips</p>
                       <ul className="space-y-1.5">
-                        {entry.migrationGuide.tips.map((tip, i) => (
+                        {(entry.migrationGuide?.tips || []).map((tip, i) => (
                           <li key={i} className="text-sm text-blue-700 dark:text-blue-300 flex items-start gap-2">
                             <span className="text-blue-400 mt-0.5">💡</span>
                             {tip}

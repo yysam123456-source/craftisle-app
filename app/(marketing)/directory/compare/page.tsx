@@ -150,7 +150,9 @@ export default function CompareListPage() {
                           {ICON_MAP[entry.paidTool] || <ArrowRight className="h-4 w-4" />}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h3 className="font-medium text-sm">{entry.paidTool}</h3>
+                          <Link href={`/directory/alternatives/${slugA}`} className="no-underline">
+                            <h3 className="font-medium text-sm hover:text-primary hover:underline">{entry.paidTool}</h3>
+                          </Link>
                           <p className="text-xs text-gray-500 line-clamp-2">{entry.description}</p>
                         </div>
                       </div>
@@ -179,14 +181,12 @@ export default function CompareListPage() {
                             </Link>
                           );
                         })}
-                        {entry.alternatives.length > 4 && (
-                          <Link
-                            href={`/directory/alternatives/${slugA}`}
-                            className="text-xs text-primary hover:underline block pt-1"
-                          >
-                            + {entry.alternatives.length - 4} more alternatives →
-                          </Link>
-                        )}
+                        <Link
+                          href={`/directory/alternatives/${slugA}`}
+                          className="text-xs text-primary hover:underline block pt-2 mt-1 border-t"
+                        >
+                          View {entry.alternatives.length} alternative{entry.alternatives.length > 1 ? 's' : ''} →
+                        </Link>
                       </div>
                     </Card>
                   </div>
