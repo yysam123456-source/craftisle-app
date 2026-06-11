@@ -313,9 +313,70 @@ export default async function ResourceDetailPage({
               {/* Description */}
               <div className="mt-8 max-w-2xl">
                 <h2 className="text-lg font-semibold mb-3">About {resource.name}</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {resource.description}
-                </p>
+                {resource.description && resource.description.trim().length > 5 ? (
+                  <p className="text-muted-foreground leading-relaxed">{resource.description}</p>
+                ) : (
+                  <p className="text-muted-foreground leading-relaxed text-sm italic">
+                    No description available. Visit the website to learn more.
+                  </p>
+                )}
+
+                {/* free-for-dev: Free Tier Details */}
+                {resource.source === "free-for-dev" && resource.freeTier && resource.freeTier.trim().length > 10 && (
+                  <div className="mt-6 p-4 bg-muted/30 rounded-l border">
+                    <h3 className="text-sm font-semibold text-foreground mb-2">🎁 Free Tier Details</h3>
+                    <div className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed">
+                      {resource.freeTier.trim()}
+                    </div>
+                  </div>
+                )}
+
+                {/* public-apis: API Specs */}
+                {resource.source === "public-apis" && (
+                  <div className="mt-6 p-4 bg-muted/30 rounded-l border">
+                    <h3 className="text-sm font-semibold text-foreground mb-2">🔌 API Specifications</h3>
+                    <div className="flex flex-wrap gap-2 text-sm">
+                      {resource.auth !== undefined && (
+                        <span className={`px-2 py-0.5 rounded ${resource.auth === "No" ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
+                          {resource.auth === "No" ? "No Auth" : `Auth: ${resource.auth}`}
+                        </span>
+                      )}
+                      {resource.https !== undefined && (
+                        <span className={`px-2 py-0.5 rounded ${resource.https ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                          {resource.https ? "HTTPS" : "HTTP only"}
+                        </span>
+                      )}
+                      {resource.cors !== undefined && (
+                        <span className={`px-2 py-0.5 rounded ${resource.cors ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-600"}`}>
+                          {resource.cors ? "CORS enabled" : "No CORS"}
+                        </span>
+                      )}
+                      {resource.category && (
+                        <span className="px-2 py-0.5 rounded bg-blue-100 text-blue-700">
+                          {resource.category}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* awesome-selfhosted: Self-Hosting Details */}
+                {resource.source === "awesome-selfhosted" && (
+                  <div className="mt-6 p-4 bg-muted/30 rounded-l border">
+                    <h3 className="text-sm font-semibold text-foreground mb-2">🏠 Self-Hosting Details</h3>
+                    <div className="flex flex-wrap gap-2 text-sm">
+                      {resource.isOpenSource && (
+                        <span className="px-2 py-0.5 rounded bg-green-100 text-green-700">Open Source</span>
+                      )}
+                      {resource.license && (
+                        <span className="px-2 py-0.5 rounded bg-blue-100 text-blue-700">License: {resource.license}</span>
+                      )}
+                      {resource.language && (
+                        <span className="px-2 py-0.5 rounded bg-purple-100 text-purple-700">Built with: {resource.language}</span>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* 内容中广告位 */}

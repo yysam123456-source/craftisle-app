@@ -174,7 +174,7 @@ export function generateResourceSummary(resource: Resource): string {
   }
 
   if (resource.source === "public-apis") {
-    const features = [];
+    const features: string[] = [];
     if (resource.auth === "No") features.push("requires no authentication");
     if (resource.https) features.push("supports HTTPS");
     if (resource.cors) features.push("has CORS enabled");
@@ -184,7 +184,7 @@ export function generateResourceSummary(resource: Resource): string {
   }
 
   if (resource.source === "awesome-selfhosted") {
-    const features = [];
+    const features: string[] = [];
     if (resource.isOpenSource) features.push("open-source");
     if (resource.isSelfHosted) features.push("self-hosted");
     if (resource.language) features.push(`built with ${resource.language}`);

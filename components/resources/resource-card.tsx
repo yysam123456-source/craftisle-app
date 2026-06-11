@@ -28,6 +28,7 @@ interface Resource {
   /** 通用 */
   tags?: string[];
   isFree?: boolean;
+  githubStars?: number;
 }
 
 interface ResourceCardProps {
