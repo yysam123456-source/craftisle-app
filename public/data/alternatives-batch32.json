@@ -1,6 +1,5 @@
-{
-  "Evernote": {
-    "name": "Evernote",
+[
+  {
     "category": "Note Taking",
     "description": "Evernote is a popular note-taking and organization app. While it has a free tier, it is heavily limited (2 devices, 60MB upload/month, no offline access). Paid plans start at $10.83/month (Personal) and $14.99/month (Professional), which many users find expensive for a note-taking app.",
     "website": "https://evernote.com",
@@ -195,10 +194,10 @@
         "q": "Is there a tool that works exactly like Evernote?",
         "a": "Microsoft OneNote is the closest in terms of free-form note-taking and visual notes. Joplin is the closest in terms of notebook/tag structure. However, most modern alternatives (Obsidian, Notion) are actually more powerful than Evernote — they just have a different workflow."
       }
-    ]
+    ],
+    "paidTool": "Evernote"
   },
-  "Microsoft OneNote": {
-    "name": "Microsoft OneNote",
+  {
     "category": "Note Taking",
     "description": "Microsoft OneNote is a free-form digital notebook that is free for personal use. However, some users want alternatives because of its cluttered interface, sync issues, or because they don't use the Microsoft ecosystem. While OneNote itself is free, it's often compared against paid note-taking apps.",
     "website": "https://www.microsoft.com/en-us/microsoft-365/onenote/digital-note-taking-app",
@@ -384,10 +383,10 @@
         "q": "Is there a free alternative with handwriting support like OneNote?",
         "a": "Apple Notes (free, excellent handwriting) and Google Keep (free, simpler) both support handwriting on mobile. For advanced handwriting and PDF annotation, GoodNotes ($9.99 one-time) or Notability (subscription or one-time) are the best iPad alternatives to OneNote's handwriting features."
       }
-    ]
+    ],
+    "paidTool": "Microsoft OneNote"
   },
-  "Cubase": {
-    "name": "Cubase",
+  {
     "category": "Music Production",
     "description": "Cubase is a professional Digital Audio Workstation (DAW) developed by Steinberg. It is widely used in music production, film scoring, and game audio. Pricing starts at $99.99 (Elements) and goes up to $579.99 (Pro), which is a significant investment for hobbyist musicians.",
     "website": "https://www.steinberg.net/cubase/",
@@ -581,10 +580,10 @@
         "q": "Is there a free DAW that's as powerful as Cubase?",
         "a": "Cakewalk by BandLab is the closest — it was a premium DAW (Sonar Platinum, $500+) that is now completely free. It has advanced MIDI editing, mixing, and scoring features. For electronic music, LMMS is free and capable. For overall value, Reaper ($60) is arguably more powerful than Cubase for most use cases."
       }
-    ]
+    ],
+    "paidTool": "Cubase"
   },
-  "Ableton Live": {
-    "name": "Ableton Live",
+  {
     "category": "Music Production",
     "description": "Ableton Live is a popular DAW known for its unique Session View (clip launcher) and excellent live performance capabilities. Pricing starts at $99 (Intro), $449 (Standard), and $749 (Suite). The high price of Standard and Suite puts it out of reach for many bedroom producers.",
     "website": "https://www.ableton.com",
@@ -775,10 +774,10 @@
         "q": "Is there a free DAW with a clip launcher like Ableton?",
         "a": "No free DAW has a clip launcher exactly like Ableton's Session View. Bitwig ($399) is the closest. For live performance on a budget, consider using a hardware clip launcher (Novation Launchpad) with free software, or use Ableton Live Intro ($99) which includes Session View with limitations."
       }
-    ]
+    ],
+    "paidTool": "Ableton Live"
   },
-  "Pro Tools": {
-    "name": "Pro Tools",
+  {
     "category": "Music Production",
     "description": "Pro Tools is the industry-standard DAW for professional recording studios, film scoring, and post-production. It uses a subscription model: $29.99/month (Artist), $79.99/month (Studio), or $99.99/month (Flex). Many home studio owners and indie producers find the subscription cost unjustifiable.",
     "website": "https://www.avid.com/pro-tools",
@@ -969,6 +968,7 @@
         "q": "Is Pro Tools really necessary for professional work?",
         "a": "It depends. Pro Tools is the industry standard in major recording studios and post-production houses. If you're working in those environments, you need Pro Tools. For home studios, indie production, and even many professional film/game scoring projects, other DAWs (Reaper, Logic Pro, Cubase) are perfectly acceptable and often preferred for their workflow advantages."
       }
-    ]
+    ],
+    "paidTool": "Pro Tools"
   }
-}
+]

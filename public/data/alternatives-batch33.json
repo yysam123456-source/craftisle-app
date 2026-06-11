@@ -1,6 +1,5 @@
-{
-  "VMware Workstation / Fusion": {
-    "name": "VMware Workstation / Fusion",
+[
+  {
     "category": "Virtualization",
     "description": "VMware Workstation (Windows/Linux) and VMware Fusion (macOS) are premium virtualization tools for running multiple operating systems on one computer. Pricing starts at $199/year for Workstation Pro, and Fusion Pro is $199/year. Many users find this expensive for occasional virtualization needs.",
     "website": "https://www.vmware.com/products/workstation-pro.html",
@@ -194,10 +193,10 @@
         "q": "Is there a free alternative that performs as well as VMware?",
         "a": "On Linux: KVM/QEMU has near-native performance (often better than VMware). On macOS/Apple Silicon: UTM (free) performs well but Parallels Desktop (paid, $99.99/year) is faster. On Windows: VirtualBox is free but slightly slower than VMware; for best free performance, consider WSL2 (built into Windows 10/11) for Linux workloads."
       }
-    ]
+    ],
+    "paidTool": "VMware Workstation / Fusion"
   },
-  "Autodesk Maya": {
-    "name": "Autodesk Maya",
+  {
     "category": "3D Animation & Modeling",
     "description": "Autodesk Maya is the industry-standard 3D animation, modeling, simulation, and rendering software used in film, TV, and game development. Pricing is $245/month or $1,945/year — extremely expensive for indie creators and students.",
     "website": "https://www.autodesk.com/products/maya/overview",
@@ -389,10 +388,10 @@
         "q": "Is Blender really used in professional production, or just for hobbyists?",
         "a": "Blender is used in actual professional production. Examples: 'Next Gen' (Netflix) was made entirely in Blender; Ubisoft uses Blender for some assets; many VFX studios use Blender alongside Maya. It's not 'just for hobbyists' anymore."
       }
-    ]
+    ],
+    "paidTool": "Autodesk Maya"
   },
-  "Adobe InDesign": {
-    "name": "Adobe InDesign",
+  {
     "category": "Page Design & Layout",
     "description": "Adobe InDesign is the industry-standard page design and layout tool for print and digital media. It is part of Adobe Creative Cloud and requires a subscription: $24.19/month for InDesign alone, or $62.99/month for all Creative Cloud apps. Many freelance designers and small studios find the subscription cost prohibitive.",
     "website": "https://www.adobe.com/products/indesign",
@@ -585,10 +584,10 @@
         "q": "Is Affinity Publisher a complete replacement for InDesign?",
         "a": "For 80-90% of use cases, yes. Affinity Publisher has master pages, grids, professional typography, and can import InDesign .idml files. For complex book layouts with advanced cross-references and indexing, InDesign is still slightly more capable. But for most designers, Affinity Publisher is sufficient."
       }
-    ]
+    ],
+    "paidTool": "Adobe InDesign"
   },
-  "X (Twitter) Premium": {
-    "name": "X (Twitter) Premium",
+  {
     "category": "Social Media",
     "description": "X Premium (formerly Twitter Blue) is the paid subscription for X (formerly Twitter). It costs $8/month (web) or $11/month (iOS/Android, due to Apple/Google fees). Benefits include the blue checkmark, edit button, longer posts, and reduced ads. Many users find it overpriced for the value provided.",
     "website": "https://premium.x.com",
@@ -777,10 +776,10 @@
         "q": "What about X Premium for reach and engagement?",
         "a": "X claims Premium subscribers get 'prioritized' ranking in replies and search. In practice, many Premium subscribers report no significant increase in reach or engagement. If your goal is more reach, focus on posting quality content and engaging with others — not paying for Premium."
       }
-    ]
+    ],
+    "paidTool": "X (Twitter) Premium"
   },
-  "LinkedIn Premium": {
-    "name": "LinkedIn Premium",
+  {
     "category": "Professional Networking",
     "description": "LinkedIn Premium is the paid tier of LinkedIn, offering enhanced profile visibility, who viewed your profile, InMail credits, and access to LinkedIn Learning. Pricing starts at $39.99/month (Career), $59.99/month (Business), and $119.95/month (Sales Navigator). Many users find it overpriced for the value provided.",
     "website": "https://www.linkedin.com/premium",
@@ -964,6 +963,7 @@
         "q": "What about LinkedIn Sales Navigator for sales professionals?",
         "a": "If you do warm LinkedIn outreach (InMail, connection requests), Sales Navigator is still the best tool. But if you do cold email outreach, Apollo.io ($49/month) is cheaper and better. Many sales professionals use both: Sales Navigator for LinkedIn outreach, Apollo for email outreach."
       }
-    ]
+    ],
+    "paidTool": "LinkedIn Premium"
   }
-}
+]

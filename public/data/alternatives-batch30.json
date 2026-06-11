@@ -1,6 +1,5 @@
-{
-  "Zoom": {
-    "name": "Zoom",
+[
+  {
     "category": "Video Conferencing",
     "description": "Zoom is the dominant video conferencing platform used by businesses, schools, and individuals worldwide. While the free version is popular, paid plans are required for group meetings longer than 40 minutes, cloud recording, and advanced features like transcription and webinar hosting.",
     "website": "https://zoom.us",
@@ -196,10 +195,10 @@
         "q": "What about Zoom's Breakout Rooms feature?",
         "a": "Google Meet, Microsoft Teams, and Whereby all support breakout rooms. Jitsi doesn't have native breakout rooms yet, but you can create multiple separate rooms manually. If breakout rooms are critical, prioritize Google Meet or Teams."
       }
-    ]
+    ],
+    "paidTool": "Zoom"
   },
-  "NordVPN": {
-    "name": "NordVPN",
+  {
     "category": "VPN & Privacy",
     "description": "NordVPN is one of the most marketed VPN services, known for its aggressive advertising and large server network. While it offers solid security features, it is a paid service with a complex pricing structure, and many users find cheaper or more privacy-focused alternatives.",
     "website": "https://nordvpn.com",
@@ -397,10 +396,10 @@
         "q": "How do I know if a VPN is truly 'no-logs'?",
         "a": "Look for independent security audits (not just marketing claims), jurisdiction outside mass-surveillance alliances (14 Eyes), and a history of warrant canaries or real-world subpoena responses. Mullvad and Proton VPN have the strongest no-logs track records, with audits confirming their claims."
       }
-    ]
+    ],
+    "paidTool": "NordVPN"
   },
-  "1Password": {
-    "name": "1Password",
+  {
     "category": "Password Manager",
     "description": "1Password is a premium password manager with a polished user experience, strong security model, and excellent browser integration. However, it is a paid-only service with no free tier beyond a 14-day trial, and some users prefer open-source or self-hosted alternatives.",
     "website": "https://1password.com",
@@ -600,10 +599,10 @@
         "q": "Can I try an alternative before fully switching?",
         "a": "Yes — install the alternative and import your 1Password data (it creates a copy, your 1Password vault remains intact). Use both side-by-side for a week. Most people find Bitwarden or Proton Pass can replace 1Password completely within a few days of use."
       }
-    ]
+    ],
+    "paidTool": "1Password"
   },
-  "Microsoft 365": {
-    "name": "Microsoft 365",
+  {
     "category": "Office Suite",
     "description": "Microsoft 365 (formerly Office 365) is the subscription-based version of Microsoft Office, including Word, Excel, PowerPoint, Outlook, and OneDrive cloud storage. While powerful and industry-standard, the subscription model (starting at $69.99/year for Personal) has frustrated many users who prefer one-time purchases.",
     "website": "https://www.microsoft.com/microsoft-365",
@@ -797,10 +796,10 @@
         "q": "Can I keep using Microsoft Office without a subscription?",
         "a": "Yes — buy Microsoft Office 2021 (Home & Student for $149.99, one-time purchase). You get Word, Excel, PowerPoint permanently. You won't get new features or AI tools, but the core apps work perfectly. This is the best option if you need 100% format compatibility and refuse to pay subscriptions."
       }
-    ]
+    ],
+    "paidTool": "Microsoft 365"
   },
-  "Adobe Illustrator": {
-    "name": "Adobe Illustrator",
+  {
     "category": "Graphic Design",
     "description": "Adobe Illustrator is the industry-standard vector graphics editor used by professional designers worldwide. It is part of Adobe Creative Cloud and requires a subscription (€24.19/month for a single app, or €62.99/month for all Creative Cloud apps). Many designers seek alternatives due to the high subscription cost and Adobe's switch from perpetual licenses to subscription-only.",
     "website": "https://www.adobe.com/products/illustrator",
@@ -1001,6 +1000,7 @@
         "q": "Is Figma a complete replacement for Illustrator?",
         "a": "For UI/UX and web design, Figma is actually superior to Illustrator. For print design, complex illustration, and freehand drawing, Figma is not a full replacement. If your work is screen-focused, Figma can replace Illustrator entirely. If you do print work, use Affinity Designer or Inkscape alongside Figma."
       }
-    ]
+    ],
+    "paidTool": "Adobe Illustrator"
   }
-}
+]

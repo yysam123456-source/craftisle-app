@@ -1,6 +1,5 @@
-{
-  "Spotify Premium": {
-    "name": "Spotify Premium",
+[
+  {
     "category": "Music Streaming",
     "description": "Spotify Premium is the paid tier of the world's most popular music streaming service. While the free tier is ad-supported with limited skips, Premium removes ads, enables offline downloads, and offers higher audio quality. At $11.99/month (Individual), it adds up to a significant annual cost for music lovers.",
     "website": "https://spotify.com/premium",
@@ -195,10 +194,10 @@
         "q": "What about podcasts? Spotify has lots of exclusive podcasts.",
         "a": "Most Spotify exclusive podcasts have moved to video (YouTube) or have RSS feeds you can use in any podcast app (Apple Podcasts, Pocket Casts, AntennaPod). YouTube Music also includes podcasts now. Very few podcasts are truly exclusive to Spotify anymore."
       }
-    ]
+    ],
+    "paidTool": "Spotify Premium"
   },
-  "Adobe After Effects": {
-    "name": "Adobe After Effects",
+  {
     "category": "Video Compositing & Motion Graphics",
     "description": "Adobe After Effects is the industry-standard tool for motion graphics, visual effects (VFX), and compositing. It is a subscription-only product ($24.19/month standalone, or $62.99/month for all Creative Cloud apps). Many indie creators, YouTubers, and small studios find the subscription cost prohibitive.",
     "website": "https://adobe.com/products/aftereffects",
@@ -393,10 +392,10 @@
         "q": "Is Blender a complete replacement for After Effects?",
         "a": "For 3D motion graphics and compositing, Blender is actually superior (and free). For 2D motion graphics (title animations, shape animations, explainer videos), Blender's workflow is less intuitive than After Effects. For that use case, DaVinci Resolve (Fusion) or even Canva Pro might be a better fit depending on complexity."
       }
-    ]
+    ],
+    "paidTool": "Adobe After Effects"
   },
-  "Microsoft Visio": {
-    "name": "Microsoft Visio",
+  {
     "category": "Diagramming & Flowcharts",
     "description": "Microsoft Visio is a diagramming and vector drawing application for creating flowcharts, org charts, floor plans, network diagrams, and more. It is sold as a separate purchase from Microsoft 365: Visio Plan 1 starts at $5.00/user/month, Plan 2 at $15.00/user/month, and Visio Professional 2021 as a one-time purchase at $569.99.",
     "website": "https://microsoft.com/en-us/microsoft-365/visio/flowchart-software",
@@ -590,10 +589,10 @@
         "q": "Is there a truly offline alternative to Visio?",
         "a": "Yes — draw.io has a desktop app (download from github.com/jgraph/drawio) that works completely offline. You can also use LibreOffice Draw (free, open-source) for simple diagrams, though it lacks the specialized shape libraries of Visio or draw.io."
       }
-    ]
+    ],
+    "paidTool": "Microsoft Visio"
   },
-  "TeamViewer": {
-    "name": "TeamViewer",
+  {
     "category": "Remote Desktop",
     "description": "TeamViewer is a popular remote desktop and support tool that allows users to access computers and devices remotely for technical support, file transfer, and collaboration. While it has a free tier for personal use, commercial use requires a paid license starting at $24.90/month per user, with aggressive detection of commercial use that blocks free users.",
     "website": "https://teamviewer.com",
@@ -787,10 +786,10 @@
         "q": "Is there a mobile app for remotely controlling my computer?",
         "a": "Yes — Chrome Remote Desktop, AnyDesk, Rustdesk, and Microsoft Remote Desktop (iOS/Android) all have mobile apps. AnyDesk's mobile apps are particularly good — you can remotely control a PC from an iPad with a decent experience."
       }
-    ]
+    ],
+    "paidTool": "TeamViewer"
   },
-  "WinRAR": {
-    "name": "WinRAR",
+  {
     "category": "File Compression",
     "description": "WinRAR is a popular file compression and archiving utility for Windows. It is shareware — you can use the trial version indefinitely, but it nags you to purchase a license ($29 for single-user) every time you open it. Many users tolerate the nag screen for years, not realizing there are excellent free alternatives.",
     "website": "https://rarlab.com",
@@ -983,6 +982,7 @@
         "q": "Is 7-Zip safe? The website looks old and sketchy.",
         "a": "Yes — 7-Zip is safe, open-source, and widely trusted. The website looks dated because the developer focuses on functionality over aesthetics. Download from the official site (7-zip.org) or via Microsoft Store / package managers (Chocolatey, winget, apt, etc.). It's been around since 1999 and is malware-free."
       }
-    ]
+    ],
+    "paidTool": "WinRAR"
   }
-}
+]

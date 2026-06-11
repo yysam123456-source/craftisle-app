@@ -1,6 +1,5 @@
-{
-  "FL Studio": {
-    "name": "FL Studio",
+[
+  {
     "category": "Music Production",
     "description": "FL Studio (formerly Fruity Loops) is a popular DAW known for its pattern-based workflow, built-in instruments, and lifetime free updates policy. Pricing starts at $99 (Fruity Edition) and goes up to $899 (All Plugins Edition). While the lifetime updates are generous, the entry price is still significant for beginners.",
     "website": "https://www.image-line.com/fl-studio/",
@@ -194,10 +193,10 @@
         "q": "Is there a free DAW that's as powerful as FL Studio?",
         "a": "Cakewalk by BandLab is the closest — it was a premium DAW (Sonar Platinum, $500+) that is now completely free. It has advanced MIDI editing, mixing, and scoring features. For overall value, Reaper ($60) is arguably more powerful than FL Studio for most use cases."
       }
-    ]
+    ],
+    "paidTool": "FL Studio"
   },
-  "Procreate": {
-    "name": "Procreate",
+  {
     "category": "Digital Drawing & Painting",
     "description": "Procreate is a popular digital drawing and painting app for iPad. It's a one-time purchase of $12.99 (no subscription), which is already very affordable. However, some users want free alternatives or cross-platform options since Procreate is iPad-only.",
     "website": "https://procreate.art",
@@ -391,10 +390,10 @@
         "q": "Is Procreate worth $12.99 if I only use iPad?",
         "a": "Yes — Procreate is excellent value at $12.99 (one-time, no subscription). If you only draw on iPad, it's hard to beat. But if you need cross-platform support, the alternatives above are better choices."
       }
-    ]
+    ],
+    "paidTool": "Procreate"
   },
-  "DxO PhotoLab": {
-    "name": "DxO PhotoLab",
+  {
     "category": "Photo Editing",
     "description": "DxO PhotoLab is a premium photo editing and RAW processing software known for its excellent lens corrections and denoising. Pricing starts at $129 (Essential) and goes up to $229 (Elite). Many photographers find it expensive, especially when combined with Adobe Lightroom subscriptions.",
     "website": "https://www.dxo.com/dxo-photolab/",
@@ -588,10 +587,10 @@
         "q": "Is there a free alternative that's as good as DxO for denoising?",
         "a": "Yes — RawTherapee (free, open-source) has denoising that rivals DxO's Prime denoise algorithm. It's completely free and available on Windows, macOS, and Linux. Darktable also has good denoising, though not quite as good as RawTherapee or DxO."
       }
-    ]
+    ],
+    "paidTool": "DxO PhotoLab"
   },
-  "Capture One": {
-    "name": "Capture One",
+  {
     "category": "Photo Editing",
     "description": "Capture One is a professional RAW processor and photo editor known for its excellent color grading, tethered shooting, and skin tone handling. Pricing is $15/month (Pro) or $299 one-time (Perpetual Pro). Many photographers find the subscription model expensive, especially when combined with other software subscriptions.",
     "website": "https://www.captureone.com",
@@ -785,10 +784,10 @@
         "q": "Is there a free alternative that's as good as Capture One for tethered shooting?",
         "a": "Darktable supports tethered shooting (Windows and Linux; macOS support is limited). For professional tethered shooting, Capture One is still the best option. If tethered shooting is critical for you, consider keeping Capture One for that specific use case and using Darktable or Affinity Photo for everything else."
       }
-    ]
+    ],
+    "paidTool": "Capture One"
   },
-  "Luminar Neo": {
-    "name": "Luminar Neo",
+  {
     "category": "Photo Editing",
     "description": "Luminar Neo is an AI-powered photo editor from Skylum. It focuses on simplified, AI-driven editing with features like Sky AI, Relight AI, and Enhance AI. Pricing is $79/year or $149 one-time (Lifetime). Many users find the AI features gimmicky and prefer more traditional photo editing tools.",
     "website": "https://skylum.com/luminar",
@@ -982,6 +981,7 @@
         "q": "Is there a free alternative that's easier to use than Darktable?",
         "a": "Photopea (free, browser-based) has a more intuitive interface than Darktable and is great for beginners. RawTherapee is also relatively simple for RAW processing (though it lacks library management). If you want a balance of power and ease-of-use, Affinity Photo ($69.99 one-time) is excellent."
       }
-    ]
+    ],
+    "paidTool": "Luminar Neo"
   }
-}
+]

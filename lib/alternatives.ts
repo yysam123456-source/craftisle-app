@@ -2272,6 +2272,7 @@ const BATCH_FILES: string[] = [
   "alternatives-batch31.json",
   "alternatives-batch32.json",
   "alternatives-batch33.json",
+  "alternatives-batch34.json",
 ];
 
 export function getCombinedMap(): Record<string, AlternativeEntry> {
