@@ -16,19 +16,20 @@ import {
   getAllResources,
   getResourceById,
   getRelatedResources,
+  getRichInfoResourceIds,
   type Resource,
 } from "@/lib/fmhy-data";
 import { Share2, Twitter, MessageSquare } from "lucide-react";
 
 const baseUrl = "https://craftisle.com";
 
-// ── ISR：每6小时重新生成 ─────────────────────────────────
+// ── 静态生成：仅预构建「有丰富信息」的资源页（ISR：其余按需生成） ────
 export const revalidate = 21600;
-
-// ── 静态生成：构建时仅生成前3000个资源页（避免构建时间过长） ────
+export const dynamicParams = true;
 export async function generateStaticParams() {
+  const richIds = getRichInfoResourceIds();
   const resources = getAllResources();
-  return resources.slice(0, 3000).map((r) => ({ id: r.id }));
+  return resources.filter((r) => richIds.has(r.id)).map((r) => ({ id: r.id }));
 }
 
 // ── Metadata ────────────────────────────────────────────
@@ -169,6 +170,10 @@ export default async function ResourceDetailPage({
   const { id } = await params;
   const resource = getResourceById(id);
   if (!resource) notFound();
+
+  // 非富信息资源：不生成详情页，返回 404
+  // 卡片层已直接跳转外部链接，此处兜底
+  if (!getRichInfoResourceIds().has(id)) notFound();
 
   const related = getRelatedResources(resource, 6);
   const faviconUrl = getFaviconUrl(resource.url);

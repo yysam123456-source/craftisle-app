@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { toolMeta } from "@/lib/tools";
-import { getAllCategories, getAllResources } from "@/lib/fmhy-data";
+import { getAllCategories, getAllResources, getRichInfoResourceIds } from "@/lib/fmhy-data";
 import { ALTERNATIVES_MAP } from "@/lib/alternatives";
 import { DOMAINS } from "@/lib/unified-categories";
 import { BLOG_CATEGORIES } from "@/config/blog";
@@ -54,14 +54,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // ★ 新增：资源详情页（每个资源一个独立 URL）
-  const allResources = getAllResources();
-  const resourceDetailPages = allResources.map((r) => ({
-    url: `${baseUrl}/directory/resource/${r.id}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }));
+  // 资源详情页：仅收录「有丰富信息」的资源（避免搜索引擎收录垃圾页面）
+  const richIds = getRichInfoResourceIds();
+  const resourceDetailPages = getAllResources()
+    .filter((r) => richIds.has(r.id))
+    .map((r) => ({
+      url: `${baseUrl}/directory/resource/${r.id}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    }));
 
   // ★ 新增：替代品页面
   const alternativePages = Object.keys(ALTERNATIVES_MAP).map((tool) => ({

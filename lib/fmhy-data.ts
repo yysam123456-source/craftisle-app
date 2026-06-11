@@ -349,3 +349,28 @@ export function getStats() {
   }
   return { total, bySource };
 }
+
+// ── Rich-info filter（供 generateStaticParams / sitemap 复用） ────────────
+
+let _richInfoIdSet: Set<string> | null = null;
+
+export function getRichInfoResourceIds(): Set<string> {
+  if (_richInfoIdSet) return _richInfoIdSet;
+  const all = getAllResources();
+  const set = new Set<string>();
+  for (const r of all) {
+    if (hasReviewFor(r)) { set.add(r.id); continue; }
+    if (r.githubStars && r.githubStars > 0) { set.add(r.id); continue; }
+    if (r.freeTier && r.freeTier.length > 20) { set.add(r.id); continue; }
+    if (r.auth || r.https !== undefined || r.cors !== undefined) { set.add(r.id); continue; }
+    if (r.license || r.language || r.isOpenSource) { set.add(r.id); continue; }
+    if (r.tags && r.tags.length > 0) { set.add(r.id); continue; }
+    if ((r.description || "").length > 300) { set.add(r.id); continue; }
+  }
+  _richInfoIdSet = set;
+  return set;
+}
+
+export function isRichInfoResource(id: string): boolean {
+  return getRichInfoResourceIds().has(id);
+}
