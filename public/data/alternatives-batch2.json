@@ -1,0 +1,655 @@
+[
+  {
+    "paidTool": "InVision",
+    "paidToolUrl": "https://www.invisionapp.com",
+    "tagline": "The world's leading prototyping and collaboration platform for design teams",
+    "pricing": "Free plan for 1 prototype; Pro $7.95/month per user",
+    "category": "Design",
+    "painPoints": [
+      {
+        "problem": "Free plan limited to 1 prototype",
+        "impact": "Users can't test multiple designs simultaneously"
+      },
+      {
+        "problem": "Expensive Pro plan at $7.95/month per user",
+        "impact": "Small teams pay $95+/year per user"
+      },
+      {
+        "problem": "No real-time collaboration in free plan",
+        "impact": "Teams can't collaborate in real-time"
+      },
+      {
+        "problem": "Limited integration with development tools",
+        "impact": "Developers struggle to implement designs"
+      },
+      {
+        "problem": "Steep learning curve for advanced features",
+        "impact": "New users take weeks to master"
+      }
+    ],
+    "whySwitch": [
+      "Get unlimited prototypes for free with Figma",
+      "Pay $0 instead of $95+/year per user",
+      "Get real-time collaboration built-in",
+      "Use open-source tools with no subscription",
+      "Get better integration with development workflows"
+    ],
+    "alternatives": [
+      {
+        "name": "Figma",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with unlimited prototypes, real-time collaboration, and better design tools",
+        "description": "Figma is the industry-standard UI/UX design tool with prototyping built-in. The free tier includes unlimited projects and real-time collaboration. It's more powerful than InVision in most ways, and completely free for individuals.",
+        "features": [
+          "Unlimited projects (free)",
+          "Real-time collaboration",
+          "Advanced prototyping",
+          "Design systems",
+          "Developer handoff"
+        ],
+        "pros": [
+          "Industry standard",
+          "Generous free tier",
+          "Real-time collaboration",
+          "Cross-platform",
+          "Better than InVision"
+        ],
+        "cons": [
+          "Requires internet",
+          "Less powerful vector editing than Sketch"
+        ],
+        "bestFor": "Design teams who want free, unlimited prototyping with real-time collaboration",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.9,
+        "featured": true
+      },
+      {
+        "name": "Penpot",
+        "url": "https://penpot.app",
+        "reason": "100% free and open-source, with Figma-like interface and prototyping",
+        "description": "Penpot is a free and open-source UI/UX design and prototyping tool. It has a Figma-like interface with prototyping built-in. Completely free — no premium tier. You can self-host it for 100% privacy.",
+        "features": [
+          "100% free and open-source",
+          "Prototyping built-in",
+          "Real-time collaboration",
+          "Self-hostable",
+          "Figma-like interface"
+        ],
+        "pros": [
+          "Completely free",
+          "Open-source",
+          "Self-hostable",
+          "No limits"
+        ],
+        "cons": [
+          "Smaller community than Figma",
+          "Less polished UI"
+        ],
+        "bestFor": "Designers who want a free, open-source prototyping tool",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export your InVision prototypes as PDF or images",
+        "Import screens into Figma (drag and drop)",
+        "Rebuild prototypes in Figma's prototyping mode",
+        "Share Figma prototype link with stakeholders",
+        "Cancel InVision subscription after confirming Figma meets your needs"
+      ],
+      "tips": [
+        "Figma is the best free alternative for most users",
+        "Penpot is best if you want 100% open-source and self-hostable",
+        "Both have prototyping built-in — no need for separate tools"
+      ]
+    },
+    "seoKeywords": [
+      "invision free alternative",
+      "invision alternative free",
+      "best invision alternative",
+      "invision vs figma",
+      "invision alternatives 2026"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to InVision?",
+        "answer": "Yes. Figma has a generous free tier with unlimited projects and prototyping. Penpot is 100% free and open-source."
+      },
+      {
+        "question": "Which InVision alternative has the best free tier?",
+        "answer": "Figma has the most generous free tier (unlimited projects, real-time collaboration). Penpot is 100% free with no limits."
+      },
+      {
+        "question": "Can I migrate my InVision prototypes to Figma?",
+        "answer": "Yes. Export your InVision screens as images or PDF, then import into Figma and rebuild prototypes. Figma's prototyping is more powerful than InVision's."
+      }
+    ]
+  },
+  {
+    "paidTool": "Framer",
+    "paidToolUrl": "https://www.framer.com",
+    "tagline": "Design and publish responsive websites with advanced animations",
+    "pricing": "Free plan for 1 site; Basic $10/month; Pro $20/month",
+    "category": "Design",
+    "painPoints": [
+      {
+        "problem": "Free plan limited to 1 site",
+        "impact": "Users can't build multiple sites for free"
+      },
+      {
+        "problem": "Expensive Pro plan at $20/month",
+        "impact": "Users pay $240/year for a website builder"
+      },
+      {
+        "problem": "Steep learning curve for advanced animations",
+        "impact": "New users struggle to create complex animations"
+      },
+      {
+        "problem": "Limited e-commerce functionality",
+        "impact": "Users can't build full-featured online stores"
+      },
+      {
+        "problem": "No self-hosting option",
+        "impact": "Users must use Framer's hosting"
+      }
+    ],
+    "whySwitch": [
+      "Get unlimited sites for free with Webflow",
+      "Pay $0 instead of $240/year",
+      "Get more powerful design tools and CMS",
+      "Use open-source tools like React for custom sites",
+      "Get better e-commerce functionality"
+    ],
+    "alternatives": [
+      {
+        "name": "Webflow",
+        "url": "https://webflow.com",
+        "reason": "More powerful design tools, CMS, and e-commerce, with a generous free plan",
+        "description": "Webflow is a visual website builder with powerful design tools, CMS, and e-commerce. The free plan includes Webflow branding. It's more powerful than Framer for complex websites.",
+        "features": [
+          "Visual website builder",
+          "CMS and e-commerce",
+          "Responsive design",
+          "Interactions and animations",
+          "Hosting included"
+        ],
+        "pros": [
+          "More powerful than Framer",
+          "Generous free plan",
+          "CMS and e-commerce built-in",
+          "Great for complex sites"
+        ],
+        "cons": [
+          "Steeper learning curve",
+          "Expensive for high-traffic sites"
+        ],
+        "bestFor": "Designers who want to build complex, responsive websites with CMS and e-commerce",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "React + Tailwind CSS",
+        "url": "https://react.dev",
+        "reason": "100% free, unlimited customization, and no subscription fees",
+        "description": "Build custom websites with React and Tailwind CSS. 100% free — no subscription fees. You have unlimited customization. Host on Vercel or Netlify for free.",
+        "features": [
+          "100% free",
+          "Unlimited customization",
+          "React component library",
+          "Tailwind CSS styling",
+          "Free hosting on Vercel"
+        ],
+        "pros": [
+          "Completely free",
+          "Unlimited customization",
+          "No subscription fees",
+          "Great for developers"
+        ],
+        "cons": [
+          "Requires coding skills",
+          "No visual builder"
+        ],
+        "bestFor": "Developers who want to build custom websites without subscription fees",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.9
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export your Framer site as code (if possible)",
+        "Rebuild site in Webflow or React + Tailwind",
+        "Use Webflow's CMS for dynamic content",
+        "Host on Webflow or Vercel (free)",
+        "Cancel Framer subscription after confirming the alternative meets your needs"
+      ],
+      "tips": [
+        "Webflow is best for designers who want a visual builder",
+        "React + Tailwind is best for developers who want full control",
+        "Both are more powerful than Framer for complex sites"
+      ]
+    },
+    "seoKeywords": [
+      "framer free alternative",
+      "framer alternative free",
+      "best framer alternative",
+      "framer vs webflow",
+      "framer alternatives 2026"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Framer?",
+        "answer": "Webflow has a generous free plan. For developers, React + Tailwind is 100% free."
+      },
+      {
+        "question": "Which Framer alternative is best for e-commerce?",
+        "answer": "Webflow has built-in e-commerce functionality. Framer's e-commerce is limited."
+      },
+      {
+        "question": "Can I migrate my Framer site to Webflow?",
+        "answer": "Yes. You'll need to rebuild your site in Webflow, but Webflow's design tools are more powerful."
+      }
+    ]
+  },
+  {
+    "paidTool": "Final Cut Pro",
+    "paidToolUrl": "https://www.apple.com/final-cut-pro/",
+    "tagline": "Apple's professional video editing software for Mac",
+    "pricing": "$299.99 one-time purchase",
+    "category": "Video",
+    "painPoints": [
+      {
+        "problem": "Expensive $299.99 one-time purchase",
+        "impact": "Users pay $300 upfront for video editing software"
+      },
+      {
+        "problem": "Mac-only, no Windows or Linux support",
+        "impact": "Users on other platforms can't use it"
+      },
+      {
+        "problem": "Steep learning curve for beginners",
+        "impact": "New users take weeks to master"
+      },
+      {
+        "problem": "Limited collaboration features",
+        "impact": "Teams struggle to collaborate on projects"
+      },
+      {
+        "problem": "No built-in motion graphics tools",
+        "impact": "Users need to buy Motion separately"
+      }
+    ],
+    "whySwitch": [
+      "Get a free, open-source video editor with DaVinci Resolve",
+      "Pay $0 instead of $300 upfront",
+      "Get cross-platform support (Mac, Windows, Linux)",
+      "Get built-in motion graphics and VFX with Blender",
+      "Get better collaboration features with cloud-based tools"
+    ],
+    "alternatives": [
+      {
+        "name": "DaVinci Resolve",
+        "url": "https://www.blackmagicdesign.com/products/davinciresolve/",
+        "reason": "Free version with professional color grading, editing, VFX, and audio post-production",
+        "description": "DaVinci Resolve is a professional video editing software with a free version that includes color grading, editing, VFX, and audio post-production. It's cross-platform (Mac, Windows, Linux). The free version is very powerful.",
+        "features": [
+          "Professional color grading",
+          "Video editing",
+          "VFX and motion graphics",
+          "Audio post-production",
+          "Cross-platform"
+        ],
+        "pros": [
+          "Free version is very powerful",
+          "Cross-platform",
+          "Professional-grade color grading",
+          "All-in-one solution"
+        ],
+        "cons": [
+          "Steep learning curve",
+          "Requires powerful hardware"
+        ],
+        "bestFor": "Video editors who want a free, professional-grade video editing software with color grading",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "Blender (Video Editor)",
+        "url": "https://www.blender.org",
+        "reason": "100% free and open-source, with video editing, 3D modeling, and motion graphics",
+        "description": "Blender is a free and open-source 3D creation suite. It includes a video editor, 3D modeling, animation, and motion graphics. 100% free — no premium tier. Cross-platform (Mac, Windows, Linux).",
+        "features": [
+          "Video editing",
+          "3D modeling and animation",
+          "Motion graphics",
+          "VFX",
+          "Cross-platform"
+        ],
+        "pros": [
+          "100% free and open-source",
+          "Cross-platform",
+          "All-in-one 3D creation suite",
+          "Great community"
+        ],
+        "cons": [
+          "Video editor is less powerful than DaVinci Resolve",
+          "Steep learning curve for 3D"
+        ],
+        "bestFor": "Video editors who want a free, open-source video editor with 3D modeling and motion graphics",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.7
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Download DaVinci Resolve free version",
+        "Import your Final Cut Pro projects (XML export)",
+        "Rebuild edits in DaVinci Resolve",
+        "Use Blender for motion graphics and 3D elements",
+        "Cancel Final Cut Pro (no subscription, but you can keep it for reference)"
+      ],
+      "tips": [
+        "DaVinci Resolve is best for professional color grading and editing",
+        "Blender is best if you need 3D modeling and motion graphics",
+        "Both are cross-platform (Mac, Windows, Linux)"
+      ]
+    },
+    "seoKeywords": [
+      "final cut pro free alternative",
+      "final cut pro alternative free",
+      "best final cut pro alternative",
+      "final cut pro vs davinci resolve",
+      "final cut pro alternatives 2026"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Final Cut Pro?",
+        "answer": "Yes. DaVinci Resolve has a free version that's very powerful. Blender is 100% free and open-source."
+      },
+      {
+        "question": "Which Final Cut Pro alternative is best for color grading?",
+        "answer": "DaVinci Resolve is the industry standard for color grading. Its free version includes professional color grading tools."
+      },
+      {
+        "question": "Can I migrate my Final Cut Pro projects to DaVinci Resolve?",
+        "answer": "Yes. Export your Final Cut Pro project as XML, then import into DaVinci Resolve. You'll need to rebuild some edits, but the migration is manageable."
+      }
+    ]
+  },
+  {
+    "paidTool": "After Effects",
+    "paidToolUrl": "https://www.adobe.com/products/aftereffects.html",
+    "tagline": "Adobe's industry-standard motion graphics and visual effects software",
+    "pricing": "Single app $20.99/month; All Apps $54.99/month",
+    "category": "Video",
+    "painPoints": [
+      {
+        "problem": "Expensive ($20.99/month for single app)",
+        "impact": "Users pay $252/year for motion graphics software"
+      },
+      {
+        "problem": "No free tier — must pay to use",
+        "impact": "Students and casual users can't try"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "New users take months to master"
+      },
+      {
+        "problem": "Requires powerful hardware",
+        "impact": "Users need to upgrade their computers"
+      },
+      {
+        "problem": "Adobe ecosystem lock-in",
+        "impact": "Users who don't use other Adobe apps overpay"
+      }
+    ],
+    "whySwitch": [
+      "Get free motion graphics and VFX with Blender",
+      "Pay $0/year instead of $252/year",
+      "Get 100% open-source with no subscription",
+      "Get cross-platform support (Mac, Windows, Linux)",
+      "Get better 3D integration with Blender"
+    ],
+    "alternatives": [
+      {
+        "name": "Blender",
+        "url": "https://www.blender.org",
+        "reason": "100% free and open-source, with motion graphics, VFX, and 3D modeling",
+        "description": "Blender is a free and open-source 3D creation suite. It includes motion graphics, VFX, and 3D modeling. 100% free — no premium tier. Cross-platform (Mac, Windows, Linux).",
+        "features": [
+          "Motion graphics",
+          "VFX",
+          "3D modeling and animation",
+          "Video editing",
+          "Cross-platform"
+        ],
+        "pros": [
+          "100% free and open-source",
+          "Cross-platform",
+          "All-in-one 3D creation suite",
+          "Great community"
+        ],
+        "cons": [
+          "Motion graphics less specialized than After Effects",
+          "Steep learning curve for 3D"
+        ],
+        "bestFor": "Motion graphics artists who want a free, open-source alternative to After Effects",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "DaVinci Resolve (Fusion)",
+        "url": "https://www.blackmagicdesign.com/products/davinciresolve/",
+        "reason": "Free version with professional VFX and motion graphics (Fusion page)",
+        "description": "DaVinci Resolve includes Fusion, a professional VFX and motion graphics tool. The free version includes Fusion. It's cross-platform (Mac, Windows, Linux).",
+        "features": [
+          "Professional VFX and motion graphics",
+          "Fusion page",
+          "Cross-platform",
+          "Free version available",
+          "Node-based compositing"
+        ],
+        "pros": [
+          "Free version is very powerful",
+          "Cross-platform",
+          "Professional-grade VFX",
+          "Node-based compositing"
+        ],
+        "cons": [
+          "Steep learning curve",
+          "Requires powerful hardware"
+        ],
+        "bestFor": "Motion graphics artists who want a free, professional-grade VFX and motion graphics tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.7
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Download Blender (free and open-source)",
+        "Learn Blender's motion graphics workflow",
+        "Use DaVinci Resolve (Fusion) for VFX",
+        "Rebuild After Effects compositions in Blender or Fusion",
+        "Cancel Adobe After Effects subscription after confirming the alternative meets your needs"
+      ],
+      "tips": [
+        "Blender is best for 3D motion graphics and VFX",
+        "DaVinci Resolve (Fusion) is best for node-based compositing",
+        "Both are cross-platform (Mac, Windows, Linux)"
+      ]
+    },
+    "seoKeywords": [
+      "after effects free alternative",
+      "after effects alternative free",
+      "best after effects alternative",
+      "after effects vs blender",
+      "after effects alternatives 2026"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to After Effects?",
+        "answer": "Yes. Blender is 100% free and open-source. DaVinci Resolve has a free version with Fusion (VFX and motion graphics)."
+      },
+      {
+        "question": "Which After Effects alternative is best for 3D motion graphics?",
+        "answer": "Blender is the best free alternative for 3D motion graphics and VFX."
+      },
+      {
+        "question": "Can I migrate my After Effects compositions to Blender?",
+        "answer": "Yes. You'll need to rebuild your compositions in Blender, but Blender's motion graphics capabilities are very powerful."
+      }
+    ]
+  },
+  {
+    "paidTool": "Power BI",
+    "paidToolUrl": "https://powerbi.microsoft.com",
+    "tagline": "Microsoft's business intelligence and data visualization platform",
+    "pricing": "Pro $9.99/user/month; Premium from $20/user/month",
+    "category": "Data",
+    "painPoints": [
+      {
+        "problem": "Expensive Pro plan at $9.99/user/month",
+        "impact": "Teams pay $120+/year per user"
+      },
+      {
+        "problem": "Requires Microsoft account and ecosystem",
+        "impact": "Users outside Microsoft ecosystem struggle"
+      },
+      {
+        "problem": "Steep learning curve for advanced features",
+        "impact": "New users take weeks to master"
+      },
+      {
+        "problem": "Limited customization for visualizations",
+        "impact": "Users can't create unique visualizations"
+      },
+      {
+        "problem": "No Mac-native app",
+        "impact": "Mac users must use browser version"
+      }
+    ],
+    "whySwitch": [
+      "Get free data visualization with Google Data Studio",
+      "Pay $0 instead of $120+/year per user",
+      "Get 100% open-source with Apache Superset",
+      "Get better customization for visualizations",
+      "Get cross-platform support (Mac, Windows, Linux)"
+    ],
+    "alternatives": [
+      {
+        "name": "Google Data Studio (Looker Studio)",
+        "url": "https://datastudio.google.com",
+        "reason": "Free, web-based data visualization and reporting tool",
+        "description": "Google Data Studio (now Looker Studio) is a free, web-based data visualization and reporting tool. It's completely free — no premium tier. Connects to various data sources (Google Analytics, Google Sheets, etc.).",
+        "features": [
+          "Free, web-based",
+          "Connects to various data sources",
+          "Interactive dashboards",
+          "Sharing and collaboration",
+          "Cross-platform"
+        ],
+        "pros": [
+          "Completely free",
+          "Web-based (cross-platform)",
+          "Easy to use",
+          "Great for Google ecosystem users"
+        ],
+        "cons": [
+          "Less powerful than Power BI for enterprise",
+          "Limited data source connectors in free version"
+        ],
+        "bestFor": "Users who want a free, web-based data visualization and reporting tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "Apache Superset",
+        "url": "https://superset.apache.org",
+        "reason": "100% free and open-source, enterprise-grade business intelligence",
+        "description": "Apache Superset is a free and open-source business intelligence and data visualization platform. It's enterprise-grade, used by Airbnb, Twitter, etc. 100% free — no premium tier. You can self-host it.",
+        "features": [
+          "100% free and open-source",
+          "Enterprise-grade",
+          "Data visualization",
+          "SQL Lab",
+          "Self-hostable"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Enterprise-grade",
+          "Self-hostable",
+          "Great for developers"
+        ],
+        "cons": [
+          "Requires self-hosting (or use Preset cloud)",
+          "Less user-friendly than Power BI"
+        ],
+        "bestFor": "Developers and enterprises who want a free, open-source business intelligence platform",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.5
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Sign up for Google Data Studio (free)",
+        "Connect your data sources to Google Data Studio",
+        "Rebuild your Power BI reports in Google Data Studio",
+        "Use Apache Superset for self-hosted, enterprise-grade BI",
+        "Cancel Power BI subscription after confirming the alternative meets your needs"
+      ],
+      "tips": [
+        "Google Data Studio is best for users in Google ecosystem",
+        "Apache Superset is best for developers who want self-hosted, open-source BI",
+        "Both are free — no subscription fees"
+      ]
+    },
+    "seoKeywords": [
+      "power bi free alternative",
+      "power bi alternative free",
+      "best power bi alternative",
+      "power bi vs tableau",
+      "power bi alternatives 2026"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Power BI?",
+        "answer": "Yes. Google Data Studio (Looker Studio) is completely free. Apache Superset is 100% free and open-source."
+      },
+      {
+        "question": "Which Power BI alternative is best for Google ecosystem users?",
+        "answer": "Google Data Studio (Looker Studio) is the best free alternative for Google ecosystem users."
+      },
+      {
+        "question": "Can I migrate my Power BI reports to Google Data Studio?",
+        "answer": "Yes. You'll need to rebuild your reports in Google Data Studio, but it's free and web-based."
+      }
+    ]
+  }
+]

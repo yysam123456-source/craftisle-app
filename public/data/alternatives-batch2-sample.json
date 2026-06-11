@@ -1,0 +1,161 @@
+[
+  {
+    "paidTool": "InVision",
+    "paidToolUrl": "https://www.invisionapp.com",
+    "tagline": "Design prototyping & collaboration platform, $7.95/month+",
+    "description": "InVision is a design prototyping and collaboration platform. It's known for its prototyping features and design handoff. The free tier is limited (1 active prototype). The Pro plan starts at $7.95/month (billed annually). Users looking for free or cheaper alternatives seek options with similar functionality.",
+    "pricing": "Free (1 active prototype); Pro $7.95/month (billed annually); Enterprise (custom)",
+    "painPoints": [
+      {
+        "problem": "Free tier limited to 1 active prototype",
+        "impact": "Users hit limits quickly"
+      },
+      {
+        "problem": "Expensive for small teams ($7.95/month per user)",
+        "impact": "Small teams pay $95+/year per user"
+      },
+      {
+        "problem": "No real-time collaboration (unlike Figma)",
+        "impact": "Teams struggle to collaborate in real-time"
+      }
+    ],
+    "whySwitch": [
+      "Get free prototyping with unlimited projects",
+      "Pay $0/year instead of $95+/year per user",
+      "Get real-time collaboration (like Figma)"
+    ],
+    "alternatives": [
+      {
+        "name": "Figma",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with real-time collaboration, more powerful than InVision",
+        "description": "Figma is the industry-standard UI/UX design tool with real-time collaboration built-in. The free tier includes 3 projects and unlimited collaborators. It's more powerful than InVision in most ways.",
+        "features": [
+          "Real-time collaboration (free)",
+          "Cross-platform (browser-based)",
+          "Free tier with 3 projects",
+          "Auto-layout and smart selection",
+          "Massive plugin ecosystem"
+        ],
+        "pros": [
+          "Industry standard",
+          "Real-time collaboration built-in",
+          "Cross-platform",
+          "Very generous free tier",
+          "Better prototyping than InVision"
+        ],
+        "cons": [
+          "Free tier limited to 3 projects",
+          "Requires internet (browser-based)"
+        ],
+        "bestFor": "UI/UX designers who want free, cross-platform, real-time collaboration",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.9,
+        "featured": true
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export your InVision prototypes (InVision Settings → Export)",
+        "Import into Figma (drag and drop)",
+        "Set up real-time collaboration in Figma (invite collaborators)",
+        "Rebuild any complex prototypes in Figma"
+      ],
+      "tips": [
+        "Figma is the best free alternative for most users",
+        "Penpot is best if you want 100% open-source and self-hostable"
+      ]
+    },
+    "category": "Design",
+    "seoKeywords": [
+      "invision free alternative",
+      "invision alternative free",
+      "best invision alternative"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a free alternative to InVision?",
+        "answer": "Yes. Figma has a generous free tier. Penpot is 100% free and open-source."
+      }
+    ]
+  },
+  {
+    "paidTool": "Framer",
+    "paidToolUrl": "https://www.framer.com",
+    "tagline": "Interactive design & prototyping tool, $15/month+",
+    "description": "Framer is an interactive design and prototyping tool. It's known for its advanced prototyping features (complex animations, code components). The free tier is limited (2 projects, Framer domain). The Pro plan starts at $15/month. Users looking for free interactive prototyping look for alternatives.",
+    "pricing": "Free (2 projects, Framer domain); Pro $15/month; Enterprise (custom)",
+    "painPoints": [
+      {
+        "problem": "Free tier limited to 2 projects",
+        "impact": "Users hit limits quickly"
+      },
+      {
+        "problem": "Expensive for individuals ($15/month)",
+        "impact": "Individuals pay $180/year"
+      }
+    ],
+    "whySwitch": [
+      "Get interactive prototyping for free with more projects",
+      "Pay $0/year instead of $180/year"
+    ],
+    "alternatives": [
+      {
+        "name": "Figma",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with prototyping, more community support than Framer",
+        "description": "Figma is the industry-standard UI/UX design tool with prototyping features. The free tier includes 3 projects and unlimited collaborators. Much larger community than Framer — easy to find tutorials.",
+        "features": [
+          "Prototyping (free)",
+          "Real-time collaboration (free)",
+          "Cross-platform (browser-based)",
+          "Massive plugin ecosystem",
+          "Huge community and tutorials"
+        ],
+        "pros": [
+          "Industry standard",
+          "Real-time collaboration built-in",
+          "Generous free tier (3 projects)",
+          "Better prototyping than Framer for most use cases",
+          "Huge community support"
+        ],
+        "cons": [
+          "Free tier limited to 3 projects",
+          "Requires internet (browser-based)"
+        ],
+        "bestFor": "UI/UX designers who want free prototyping with massive community support",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.9,
+        "featured": true
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export your Framer projects (Framer Settings → Export)",
+        "Import into Figma (drag and drop)",
+        "Rebuild any code components using Figma's prototyping features",
+        "Test the prototype with your team"
+      ],
+      "tips": [
+        "Figma is the best free alternative for most users",
+        "Penpot is best if you want 100% open-source"
+      ]
+    },
+    "category": "Design",
+    "seoKeywords": [
+      "framer free alternative",
+      "framer alternative free",
+      "best framer alternative"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a free alternative to Framer?",
+        "answer": "Yes. Figma has a generous free tier with prototyping. Penpot is 100% free and open-source."
+      }
+    ]
+  }
+]

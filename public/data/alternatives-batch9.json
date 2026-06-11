@@ -1,0 +1,174 @@
+[
+  {
+    "paidTool": "Microsoft Visio",
+    "paidToolUrl": "https://www.microsoft.com/en-us/microsoft-365/visio/flowchart-software",
+    "tagline": "Industry-standard diagramming and vector graphics tool",
+    "pricing": "Plan 1 $5/user/month; Plan 2 $15/user/month (subscription only)",
+    "category": "Productivity",
+    "painPoints": [
+      {"problem": "Expensive at $5/user/month (Plan 1)", "impact": "Users pay $60/year per user for diagramming software"},
+      {"problem": "Subscription-only — no lifetime license", "impact": "Users must pay forever to keep using it"},
+      {"problem": "Limited free tier (web-only, limited features)", "impact": "Users can't try full features for free"},
+      {"problem": "Windows-only (desktop version)", "impact": "Mac/Linux users can't use desktop version"},
+      {"problem": "Requires Microsoft account and ecosystem", "impact": "Users outside Microsoft ecosystem struggle"}
+    ],
+    "whySwitch": [
+      "Get a free, open-source diagramming tool with Draw.io (diagrams.net)",
+      "Pay $0 instead of $60/year per user",
+      "Get cross-platform support (Mac, Windows, Linux) with open-source tools",
+      "Use a free, web-based diagramming tool with Lucidchart free plan",
+      "Get better value with Affinity Designer ($69.99 one-time) for vector graphics"
+    ],
+    "alternatives": [
+      {
+        "name": "Draw.io (diagrams.net)",
+        "url": "https://app.diagrams.net",
+        "reason": "100% free and open-source, web-based diagramming tool",
+        "description": "Draw.io (diagrams.net) is a free and open-source diagramming tool. It's web-based (also desktop version). 100% free — no premium tier. Cross-platform (web, desktop).",
+        "features": ["100% free and open-source", "Web-based and desktop versions", "Cross-platform", "Many diagram types", "Offline mode (desktop)"],
+        "pros": ["Completely free", "Open-source", "Cross-platform", "No registration needed (web)"],
+        "cons": ["Less polished UI than Visio", "Fewer templates than Visio", "Less integration with Microsoft Office"],
+        "bestFor": "Users who want a free, open-source diagramming tool",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "Lucidchart (free plan)",
+        "url": "https://www.lucid.app",
+        "reason": "Free plan with basic diagramming features",
+        "description": "Lucidchart is a web-based diagramming tool. The free plan includes basic diagramming features. Great for simple diagrams.",
+        "features": ["Free plan available", "Web-based", "Basic diagramming features", "Real-time collaboration", "Cross-platform (web)"],
+        "pros": ["Free version available", "Easy to use", "Great for simple diagrams", "Real-time collaboration"],
+        "cons": ["Free plan has limitations", "Less powerful than Visio for complex diagrams", "Requires internet"],
+        "bestFor": "Users who want a free, web-based diagramming tool for simple diagrams",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      },
+      {
+        "name": "Inkscape",
+        "url": "https://inkscape.org",
+        "reason": "100% free and open-source vector graphics editor (can create diagrams)",
+        "description": "Inkscape is a free and open-source vector graphics editor. It can be used for diagramming (though not specialized). 100% free — no premium tier. Cross-platform (Mac, Windows, Linux).",
+        "features": ["100% free and open-source", "Vector graphics editing", "Cross-platform", "Extensible with extensions", "SVG support"],
+        "pros": ["Completely free", "Open-source", "Cross-platform", "Powerful vector editing"],
+        "cons": ["Not specialized for diagramming", "Steeper learning curve for diagramming", "Less templates than Visio"],
+        "bestFor": "Users who want a free, open-source vector graphics editor for diagrams (not specialized)",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4.7
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Go to Draw.io (diagrams.net) — 100% free and open-source",
+        "Create your diagrams in Draw.io",
+        "Export your diagrams as PNG, SVG, or PDF",
+        "Use Lucidchart free plan for simple diagrams",
+        "Cancel Microsoft Visio subscription after confirming the alternative meets your needs"
+      ],
+      "tips": [
+        "Draw.io is best for 100% free and open-source diagramming",
+        "Lucidchart free plan is best for simple diagrams",
+        "Inkscape is best if you also need vector graphics editing"
+      ]
+    },
+    "seoKeywords": ["microsoft visio free alternative", "visio alternative free", "best visio alternative", "visio vs draw.io", "visio alternatives 2026"],
+    "faqs": [
+      {"question": "Is there a completely free alternative to Microsoft Visio?", "answer": "Yes. Draw.io (diagrams.net) is 100% free and open-source. Lucidchart has a free plan."},
+      {"question": "Which Visio alternative is best for cross-platform use?", "answer": "Draw.io is the best free alternative for cross-platform use — it's web-based and has desktop versions for Mac, Windows, Linux."},
+      {"question": "Can I open my Visio VSDX files in Draw.io?", "answer": "Draw.io supports importing VSDX files. Some complex diagrams may need adjustment."}
+    ]
+  },
+  {
+    "paidTool": "MindManager",
+    "paidToolUrl": "https://www.mindjet.com/mindmanager/",
+    "tagline": "Industry-standard mind mapping and brainstorming software",
+    "pricing": "$169 one-time (MindManager Essentials); $349 one-time (MindManager Pro)",
+    "category": "Productivity",
+    "painPoints": [
+      {"problem": "Expensive at $169 one-time (Essentials)", "impact": "Users pay $169 upfront for mind mapping software"},
+      {"problem": "No free tier — must pay to use", "impact": "Students and hobbyists can't afford it"},
+      {"problem": "Windows and Mac versions are sold separately", "impact": "Users who switch OS must buy again"},
+      {"problem": "Steep learning curve", "impact": "New users take weeks to master"},
+      {"problem": "Limited collaboration features", "impact": "Teams struggle to collaborate on mind maps"}
+    ],
+    "whySwitch": [
+      "Get a free, open-source mind mapping tool with FreeMind",
+      "Pay $0 instead of $169 upfront",
+      "Get 100% open-source with no payment",
+      "Use a free, web-based mind mapping tool with MindMeister (free plan)",
+      "Get better value with XMind (free version available)"
+    ],
+    "alternatives": [
+      {
+        "name": "FreeMind",
+        "url": "https://freemind.sourceforge.net",
+        "reason": "100% free and open-source mind mapping software",
+        "description": "FreeMind is a free and open-source mind mapping software. It's cross-platform (Mac, Windows, Linux). 100% free — no premium tier.",
+        "features": ["100% free and open-source", "Mind mapping", "Cross-platform", "Export to HTML, PNG, etc.", "Lightweight"],
+        "pros": ["Completely free", "Open-source", "Cross-platform", "Lightweight"],
+        "cons": ["Less polished UI than MindManager", "Fewer features than MindManager", "Smaller community"],
+        "bestFor": "Users who want a free, open-source mind mapping software",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5,
+        "featured": true
+      },
+      {
+        "name": "MindMeister (free plan)",
+        "url": "https://www.mindmeister.com",
+        "reason": "Free plan with basic mind mapping features, web-based",
+        "description": "MindMeister is a web-based mind mapping tool. The free plan includes basic mind mapping features. Great for collaboration.",
+        "features": ["Free plan available", "Web-based", "Basic mind mapping features", "Real-time collaboration", "Cross-platform (web)"],
+        "pros": ["Free version available", "Easy to use", "Great for collaboration", "Real-time collaboration"],
+        "cons": ["Free plan has limitations", "Less powerful than MindManager for advanced features", "Requires internet"],
+        "bestFor": "Users who want a free, web-based mind mapping tool for collaboration",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6
+      },
+      {
+        "name": "XMind (free version)",
+        "url": "https://www.xmind.net",
+        "reason": "Free version available, cross-platform mind mapping tool",
+        "description": "XMind is a mind mapping tool. The free version includes basic mind mapping features. Cross-platform (Mac, Windows, Linux, mobile).",
+        "features": ["Free version available", "Mind mapping", "Cross-platform", "Gantt view", "Presentation mode"],
+        "pros": ["Free version available", "Cross-platform", "Many features in free version"],
+        "cons": ["Free version has limitations", "Less polished UI than MindManager", "Smaller community than FreeMind"],
+        "bestFor": "Users who want a free mind mapping tool with Gantt view and presentation mode",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Download FreeMind (free and open-source)",
+        "Export your MindManager mind maps as MM (MindManager format) or XML",
+        "Import MM/XML files into FreeMind",
+        "Use MindMeister free plan for web-based, collaborative mind mapping",
+        "Cancel MindManager license after confirming the alternative meets your needs"
+      ],
+      "tips": [
+        "FreeMind is best for 100% free and open-source mind mapping",
+        "MindMeister free plan is best for web-based, collaborative mind mapping",
+        "XMind free version is best if you want Gantt view and presentation mode"
+      ]
+    },
+    "seoKeywords": ["mindmanager free alternative", "mindmanager alternative free", "best mindmanager alternative", "mindmanager vs freemind", "mindmanager alternatives 2026"],
+    "faqs": [
+      {"question": "Is there a completely free alternative to MindManager?", "answer": "Yes. FreeMind is 100% free and open-source. MindMeister and XMind have free plans."},
+      {"question": "Which MindManager alternative is best for collaboration?", "answer": "MindMeister free plan is the best free alternative for collaboration — it's web-based and has real-time collaboration."},
+      {"question": "Can I open my MindManager MM files in FreeMind?", "answer": "Yes. FreeMind supports importing MM files. Some complex elements may need adjustment."}
+    ]
+  }
+]
