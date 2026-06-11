@@ -1,0 +1,1088 @@
+[
+  {
+    "paidTool": "Canva Pro",
+    "paidToolUrl": "https://www.canva.com",
+    "tagline": "Popular online design tool with premium templates and AI features",
+    "description": "Canva is a widely-used online design tool that makes graphic design accessible to everyone. The free tier is very capable, but Canva Pro ($14.99/month or $119.99/year) adds premium templates, AI features (Magic Resize, Background Remover), brand kit, and team collaboration. For individuals and small teams, the Pro subscription adds up.",
+    "pricing": "Free tier (very capable); Canva Pro $14.99/month or $119.99/year; Canva for Teams $29.99/month for first 5 people",
+    "painPoints": [
+      {
+        "problem": "Pro plan is expensive for teams",
+        "impact": "A 5-person team pays $360+/year"
+      },
+      {
+        "problem": "Free tier has limited templates and assets",
+        "impact": "Users hit paywalls for premium templates"
+      },
+      {
+        "problem": "AI features (Magic Resize, etc.) require Pro",
+        "impact": "Power users must upgrade for AI features"
+      },
+      {
+        "problem": "Brand Kit and asset management require Pro",
+        "impact": "Teams cannot manage brand assets on free tier"
+      }
+    ],
+    "whySwitch": [
+      "Use free alternatives like Gravit Designer, Penpot, or Figma (free tier)",
+      "Use GIMP or Photopea for free image editing",
+      "Use Blender for free 3D design and rendering",
+      "Use open-source Scribus for free desktop publishing"
+    ],
+    "alternatives": [
+      {
+        "name": "Penpot (Free, Open-Source)",
+        "url": "https://penpot.app",
+        "reason": "Free, open-source design tool with no file limits — great for infographics and simple designs",
+        "description": "Penpot is a free, open-source design and prototyping tool. While focused on UI design, it's also capable for simple graphic design. No file limits, SVG-based, and self-hosted option available.",
+        "features": [
+          "Completely free and open-source",
+          "No file or project limits",
+          "SVG-based (open standard)",
+          "Real-time collaboration",
+          "Self-hosted option"
+        ],
+        "pros": [
+          "No file limits",
+          "Open-source and SVG-based",
+          "Free forever",
+          "Self-hosted option"
+        ],
+        "cons": [
+          "Less template library than Canva",
+          "Not as beginner-friendly as Canva",
+          "Smaller asset library"
+        ],
+        "bestFor": "Teams that want a free, open-source alternative to Canva for design collaboration",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.4,
+        "featured": true
+      },
+      {
+        "name": "Photopea (Free, Browser-based)",
+        "url": "https://www.photopea.com",
+        "reason": "Free, browser-based Photoshop alternative — great for image editing without subscription",
+        "description": "Photopea is a free, browser-based image editor that works like Photoshop. It supports PSD files, layers, masks, and advanced editing. No subscription, no installation — just open the website and edit.",
+        "features": [
+          "Free, browser-based image editor",
+          "Supports PSD (Photoshop) files",
+          "Layers, masks, advanced editing",
+          "No subscription or installation",
+          "Works on any device with a browser"
+        ],
+        "pros": [
+          "Completely free",
+          "No installation needed",
+          "Supports PSD files",
+          "Very capable for image editing"
+        ],
+        "cons": [
+          "Interface is less polished than Canva",
+          "Requires internet connection",
+          "Not focused on templates (more on editing)"
+        ],
+        "bestFor": "Users who need free image editing without Canva's template focus",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7
+      },
+      {
+        "name": "GIMP (Free, Open-Source)",
+        "url": "https://www.gimp.org",
+        "reason": "Free, open-source image manipulation program — the classic free Photoshop alternative",
+        "description": "GIMP is a free, open-source image manipulation program. It's been around for decades and is very capable for photo retouching, image composition, and image authoring. No subscription, no paywalls.",
+        "features": [
+          "Free and open-source (GNU GPL)",
+          "Advanced photo retouching",
+          "Image composition and authoring",
+          "Plugin ecosystem",
+          "Cross-platform (Windows, Mac, Linux)"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Very capable for advanced editing",
+          "Huge plugin ecosystem",
+          "Cross-platform"
+        ],
+        "cons": [
+          "Steep learning curve",
+          "Interface is less modern than Canva",
+          "Not template-focused like Canva"
+        ],
+        "bestFor": "Users who need advanced image editing for free",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4.3
+      },
+      {
+        "name": "Figma (Free tier)",
+        "url": "https://www.figma.com",
+        "reason": "Free tier includes 3 Figma files and 3 FigJam files — great for design collaboration",
+        "description": "Figma is the leading UI/UX design tool. The free tier supports up to 3 Figma files and 3 FigJam files, which is enough for small projects. Great for collaborative design.",
+        "features": [
+          "Free tier (3 Figma files, 3 FigJam files)",
+          "Real-time collaboration",
+          "UI/UX design and prototyping",
+          "Cross-platform (browser-based)",
+          "Massive plugin ecosystem"
+        ],
+        "pros": [
+          "Generous free tier for small projects",
+          "Best-in-class collaboration",
+          "Industry-standard tool",
+          "Cross-platform"
+        ],
+        "cons": [
+          "Free tier limited to 3 files",
+          "Professional plan is expensive ($12/editor/month)",
+          "More focused on UI/UX than general graphic design"
+        ],
+        "bestFor": "Designers who want a free, collaborative UI/UX design tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "Gravit Designer (Free)",
+        "url": "https://www.designer.io",
+        "reason": "Free vector design tool that works in browser and on desktop — good for simple designs",
+        "description": "Gravit Designer is a free vector design tool that works in the browser and as a desktop app. It's simpler than Canva but covers basic design needs. The Pro version ($49/year) adds advanced features.",
+        "features": [
+          "Free version available",
+          "Vector design (browser and desktop)",
+          "Advanced export options",
+          "Cloud storage and sync",
+          "Pro version ($49/year) for advanced features"
+        ],
+        "pros": [
+          "Free version is capable",
+          "Works in browser and desktop",
+          "Much cheaper Pro version ($49/year)",
+          "Good for simple designs"
+        ],
+        "cons": [
+          "Less feature-rich than Canva Pro",
+          "Smaller template library",
+          "Not as beginner-friendly as Canva"
+        ],
+        "bestFor": "Individuals who want a free or low-cost vector design tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export Canva designs as PNG, JPG, or PDF (free tier supports this)",
+        "For Penpot: create new designs and import images/PDFs as assets",
+        "For Photopea/GIMP: open exported images and continue editing",
+        "For Figma: export designs as images and import into Figma frames",
+        "Share new tool access with your team"
+      ],
+      "tips": [
+        "Canva's templates are its biggest strength — free alternatives have smaller template libraries",
+        "If you rely heavily on Canva's templates, consider whether the $120/year Pro cost is worth it",
+        "Penpot is the best free alternative for collaborative design work"
+      ]
+    },
+    "category": "Design",
+    "seoKeywords": [
+      "canva pro free alternative",
+      "canva alternative free",
+      "best canva pro alternative",
+      "free canva alternative",
+      "canva vs photopea"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Canva Pro?",
+        "answer": "Penpot is completely free and open-source with no file limits. Photopea is a free, browser-based image editor. GIMP is a free, open-source image manipulation program."
+      },
+      {
+        "question": "Can I use Canva designs in free alternatives?",
+        "answer": "Yes. Export your Canva designs as PNG, JPG, or PDF, then import them into Penpot, Photopea, or GIMP for further editing."
+      },
+      {
+        "question": "Which Canva Pro alternative is best?",
+        "answer": "For design collaboration: Penpot (free, open-source). For image editing: Photopea (free, browser-based). For advanced image manipulation: GIMP (free, open-source)."
+      }
+    ]
+  },
+  {
+    "paidTool": "Notion (Paid Tier)",
+    "paidToolUrl": "https://www.notion.80k.ch",
+    "tagline": "All-in-one workspace with powerful databases — paid tiers add advanced features",
+    "description": "Notion is a flexible all-in-one workspace that combines docs, databases, and project management. The free tier is very capable for individuals, but paid plans ($8/month per member, billed annually) add unlimited file uploads, version history, and advanced permissions. Teams often need the paid plan.",
+    "pricing": "Free for individuals (unlimited pages and blocks); Plus $8/month per member (billed annually); Business $15/month per member; Enterprise (custom)",
+    "painPoints": [
+      {
+        "problem": "Free tier limits file uploads to 5MB",
+        "impact": "Cannot upload large files on free tier"
+      },
+      {
+        "problem": "Version history limited to 7 days on free tier",
+        "impact": "Cannot restore older versions of pages"
+      },
+      {
+        "problem": "Paid plan is $8/month per member (billed annually)",
+        "impact": "A 10-person team pays $960+/year"
+      },
+      {
+        "problem": "Advanced permissions and SSO require paid plans",
+        "impact": "Teams need paid plan for proper access control"
+      }
+    ],
+    "whySwitch": [
+      "Use free alternatives like Trello, ClickUp, or Airtable with generous free tiers",
+      "Use open-source self-hosted options like AppFlowy or Trilium",
+      "Use Obsidian (free for personal use) for knowledge management",
+      "Use Craftisle for a free, all-in-one workspace"
+    ],
+    "alternatives": [
+      {
+        "name": "Obsidian (Free for Personal Use)",
+        "url": "https://obsidian.md",
+        "reason": "Free for personal use, powerful knowledge management with local files (no cloud lock-in)",
+        "description": "Obsidian is a free (for personal use) knowledge management tool that stores notes as local Markdown files. It's extremely fast, supports backlinks, and has a huge plugin ecosystem. No subscription for personal use.",
+        "features": [
+          "Free for personal use",
+          "Local Markdown files (no cloud lock-in)",
+          "Backlinks and graph view",
+          "Huge plugin ecosystem",
+          "Fast and lightweight"
+        ],
+        "pros": [
+          "Free for personal use",
+          "Local files (no cloud lock-in)",
+          "Extremely fast and lightweight",
+          "Huge plugin ecosystem"
+        ],
+        "cons": [
+          "Not free for commercial use ($50/year)",
+          "Less collaborative than Notion",
+          "Learning curve for advanced features"
+        ],
+        "bestFor": "Individuals who want free, local-first knowledge management",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "ClickUp (Free)",
+        "url": "https://clickup.com",
+        "reason": "All-in-one project management with an extremely generous free tier (unlimited tasks)",
+        "description": "ClickUp is an all-in-one project management platform with a very generous free tier (unlimited tasks, 100MB storage). It combines docs, databases, and project tracking. Paid plans start at $7/user/month.",
+        "features": [
+          "Unlimited tasks and members (free)",
+          "Docs, goals, and dashboards",
+          "Multiple project views",
+          "Whiteboards and mind maps",
+          "Mobile and desktop apps"
+        ],
+        "pros": [
+          "Extremely generous free tier",
+          "Multiple project views in free tier",
+          "All-in-one workspace",
+          "Very feature-rich"
+        ],
+        "cons": [
+          "Can be overwhelming for new users",
+          "Free tier has storage limits",
+          "Interface is less polished than Notion"
+        ],
+        "bestFor": "Teams that want an all-in-one workspace with a generous free tier",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "AppFlowy (Free, Open-Source)",
+        "url": "https://appflowy.com",
+        "reason": "Free, open-source alternative to Notion — supports self-hosting and local data",
+        "description": "AppFlowy is a free, open-source alternative to Notion. It supports self-hosting, local data storage, and real-time collaboration. The interface is similar to Notion, making migration easy.",
+        "features": [
+          "Free and open-source (Apache 2.0)",
+          "Self-hosted option available",
+          "Local data storage",
+          "Real-time collaboration",
+          "Similar interface to Notion"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Self-hosted option for data control",
+          "Local data storage",
+          "Similar to Notion (easy migration)"
+        ],
+        "cons": [
+          "Less feature-rich than Notion",
+          "Smaller community and plugin ecosystem",
+          "Self-hosting requires setup"
+        ],
+        "bestFor": "Teams that want a free, open-source, self-hosted Notion alternative",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5
+      },
+      {
+        "name": "Trello (Free)",
+        "url": "https://trello.com",
+        "reason": "Simple, visual kanban boards with a generous free tier — easier to learn than Notion",
+        "description": "Trello is a visual project management tool based on kanban boards. The free tier is very generous — unlimited cards, 10 boards per Workspace, and basic automation. Simpler than Notion but easier to learn.",
+        "features": [
+          "Visual kanban boards",
+          "Unlimited cards and lists",
+          "10 boards per Workspace (free)",
+          "Basic automation (Butler)",
+          "Mobile apps (iOS, Android)"
+        ],
+        "pros": [
+          "Very easy to learn and use",
+          "Generous free tier",
+          "Visual and intuitive",
+          "Excellent mobile apps"
+        ],
+        "cons": [
+          "Less feature-rich than Notion",
+          "No database functionality like Notion",
+          "Free tier limits Power-ups"
+        ],
+        "bestFor": "Small teams and individuals who want a simple, visual task management tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      },
+      {
+        "name": "Trilium Notes (Free, Open-Source)",
+        "url": "https://github.com/zadam/trilium",
+        "reason": "Free, open-source, self-hosted note-taking app with hierarchical note organization",
+        "description": "Trilium Notes is a free, open-source, self-hosted note-taking app. It supports hierarchical note organization, rich text, images, and file attachments. Data is stored locally (or self-hosted), so you have full control.",
+        "features": [
+          "Free and open-source",
+          "Self-hosted (or local desktop app)",
+          "Hierarchical note organization",
+          "Rich text, images, file attachments",
+          "Version history and encryption"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Self-hosted (full data control)",
+          "Hierarchical notes (like Notion's nested pages)",
+          "Version history built-in"
+        ],
+        "cons": [
+          "Less polished UI than Notion",
+          "Requires self-hosting setup",
+          "Smaller community than Notion"
+        ],
+        "bestFor": "Users who want a free, self-hosted, hierarchical note-taking app",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.6
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export Notion pages as Markdown (use Notion's Export feature)",
+        "For Obsidian: import Markdown files directly (drag and drop)",
+        "For ClickUp: create docs and paste content from exported Markdown",
+        "For AppFlowy/Trilium: import Markdown files",
+        "Set up new tool and invite team members"
+      ],
+      "tips": [
+        "Notion's database feature is hard to replicate — plan how to handle databases in the new tool",
+        "Export all Notion pages as Markdown before switching (Notion Export feature)",
+        "Obsidian is the best free alternative for personal knowledge management"
+      ]
+    },
+    "category": "Productivity",
+    "seoKeywords": [
+      "notion free alternative",
+      "notion alternative free",
+      "best notion alternative",
+      "notion vs obsidian 2026",
+      "free notion alternative"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Notion?",
+        "answer": "Yes. Obsidian is free for personal use. AppFlowy is completely free and open-source. ClickUp has a generous free tier with unlimited tasks."
+      },
+      {
+        "question": "Can I export my Notion pages to another tool?",
+        "answer": "Yes. Export Notion pages as Markdown (Notion Export feature), then import the Markdown files into Obsidian, ClickUp, or AppFlowy."
+      },
+      {
+        "question": "Which Notion alternative is best for personal use?",
+        "answer": "Obsidian is the best free alternative for personal knowledge management. It's free, local-first, and has a huge plugin ecosystem."
+      }
+    ]
+  },
+  {
+    "paidTool": "Miro (Paid Tier)",
+    "paidToolUrl": "https://miro.com",
+    "tagline": "Online collaborative whiteboard platform for teams",
+    "description": "Miro is a popular online collaborative whiteboard platform used by teams for brainstorming, agile workflows, and diagramming. The free tier supports up to 3 boards. Paid plans start at $8/month per member (billed annually), which adds unlimited boards, advanced templates, and integrations.",
+    "pricing": "Free: 3 boards; Starter: $8/month per member (billed annually); Business: $16/month per member; Enterprise: custom pricing",
+    "painPoints": [
+      {
+        "problem": "Free tier limited to 3 boards",
+        "impact": "Teams quickly outgrow the free tier"
+      },
+      {
+        "problem": "Paid plan is $8/month per member (billed annually)",
+        "impact": "A 10-person team pays $960+/year"
+      },
+      {
+        "problem": "Advanced templates and integrations require paid plans",
+        "impact": "Teams need paid plan for proper workflows"
+      },
+      {
+        "problem": "Data export is limited on free tier",
+        "impact": "Hard to leave once your data is locked in"
+      }
+    ],
+    "whySwitch": [
+      "Use free alternatives like Excalidraw, FigJam (Figma free tier), or Mural (free trial)",
+      "Use open-source self-hosted options like tldraw or Excalidraw+",
+      "Use Google Jamboard (free, but being discontinued) or Microsoft Whiteboard (free with Office 365)",
+      "Use InVision Freehand (free tier) for design collaboration"
+    ],
+    "alternatives": [
+      {
+        "name": "FigJam (Figma Free Tier)",
+        "url": "https://www.figma.com/figjam/",
+        "reason": "Free tier includes 3 FigJam files — great for collaborative whiteboarding",
+        "description": "FigJam is Figma's collaborative whiteboard tool. The free tier includes up to 3 FigJam files, which is enough for small teams. It supports sticky notes, shapes, connectors, and real-time collaboration.",
+        "features": [
+          "Free tier (3 FigJam files)",
+          "Real-time collaboration",
+          "Sticky notes, shapes, connectors",
+          "Voting and timers",
+          "Integration with Figma design files"
+        ],
+        "pros": [
+          "Generous free tier for small teams",
+          "Best-in-class collaboration",
+          "Integration with Figma",
+          "Intuitive and fun interface"
+        ],
+        "cons": [
+          "Free tier limited to 3 files",
+          "Professional plan is expensive ($12/editor/month)",
+          "Less feature-rich than Miro for advanced workflows"
+        ],
+        "bestFor": "Teams that want a free, collaborative whiteboard tool integrated with Figma",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "Excalidraw (Free, Open-Source)",
+        "url": "https://excalidraw.com",
+        "reason": "Free, open-source, browser-based whiteboard — no registration required",
+        "description": "Excalidraw is a free, open-source, browser-based whiteboard tool. It has a hand-drawn style that makes diagrams look sketchy and friendly. No registration required — just open the website and start drawing.",
+        "features": [
+          "Free and open-source",
+          "Browser-based (no installation)",
+          "Hand-drawn style",
+          "Real-time collaboration",
+          "No registration required"
+        ],
+        "pros": [
+          "Completely free",
+          "No registration required",
+          "Hand-drawn style is unique and friendly",
+          "Real-time collaboration"
+        ],
+        "cons": [
+          "Less feature-rich than Miro",
+          "No advanced templates",
+          "Not ideal for complex workflows"
+        ],
+        "bestFor": "Quick, free collaborative sketching without registration",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "tldraw (Free, Open-Source)",
+        "url": "https://tldraw.com",
+        "reason": "Free, open-source, browser-based whiteboard with a clean, modern interface",
+        "description": "tldraw is a free, open-source, browser-based whiteboard tool. It has a clean, modern interface and supports real-time collaboration. You can also self-host tldraw for full control over your data.",
+        "features": [
+          "Free and open-source",
+          "Browser-based (no installation)",
+          "Clean, modern interface",
+          "Real-time collaboration",
+          "Self-hosted option available"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Clean, modern interface",
+          "Self-hosted option",
+          "Real-time collaboration"
+        ],
+        "cons": [
+          "Less feature-rich than Miro",
+          "Smaller community than Excalidraw",
+          "Not ideal for complex workflows"
+        ],
+        "bestFor": "Teams that want a free, open-source, self-hosted whiteboard tool",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6
+      },
+      {
+        "name": "Microsoft Whiteboard (Free with Office 365)",
+        "url": "https://whiteboard.microsoft.com",
+        "reason": "Free with Office 365 subscription — good for teams already in Microsoft ecosystem",
+        "description": "Microsoft Whiteboard is a free whiteboard tool for teams. It's free with an Office 365 subscription, and supports real-time collaboration, sticky notes, shapes, and templates. Good for teams already in the Microsoft ecosystem.",
+        "features": [
+          "Free with Office 365 subscription",
+          "Real-time collaboration",
+          "Sticky notes, shapes, templates",
+          "Integration with Microsoft Teams",
+          "Mobile apps (iOS, Android)"
+        ],
+        "pros": [
+          "Free with Office 365",
+          "Good for Microsoft-centric teams",
+          "Real-time collaboration",
+          "Integration with Teams"
+        ],
+        "cons": [
+          "Requires Office 365 for full features",
+          "Less feature-rich than Miro",
+          "Interface is less polished than FigJam"
+        ],
+        "bestFor": "Teams already using Office 365 that want a free whiteboard tool",
+        "isFree": false,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.3
+      },
+      {
+        "name": "InVision Freehand (Free Tier)",
+        "url": "https://www.invisionapp.com/freehand",
+        "reason": "Free tier for collaborative whiteboarding and design brainstorming",
+        "description": "InVision Freehand is a collaborative whiteboard tool for design teams. The free tier supports 1 active freehand, which is enough for small projects. It excels at design brainstorming and stakeholder reviews.",
+        "features": [
+          "Free tier (1 active freehand)",
+          "Real-time collaboration",
+          "Design-focused templates",
+          "Stakeholder review and commenting",
+          "Integration with design tools"
+        ],
+        "pros": [
+          "Free tier available",
+          "Great for design teams",
+          "Stakeholder review features",
+          "Integration with design tools"
+        ],
+        "cons": [
+          "Free tier limited to 1 freehand",
+          "Less feature-rich than Miro",
+          "More focused on design than general collaboration"
+        ],
+        "bestFor": "Design teams that want a free whiteboard tool for brainstorming",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.2
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export Miro boards as images (PNG, JPG, SVG, or PDF)",
+        "For FigJam/Excalidraw: create new whiteboards and import images as backgrounds",
+        "For tldraw: create new project and recreate whiteboard content",
+        "Share new tool access with your team",
+        "Set up templates and workflows in the new tool"
+      ],
+      "tips": [
+        "Miro's advanced templates are hard to replicate — plan how to handle workflows in the new tool",
+        "Export all Miro boards as images before switching (Miro Export feature)",
+        "FigJam (Figma free tier) is the best free alternative for teams already using Figma"
+      ]
+    },
+    "category": "Collaboration",
+    "seoKeywords": [
+      "miro free alternative",
+      "miro alternative free",
+      "best miro alternative",
+      "miro vs figjam 2026",
+      "free whiteboard tool"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Miro?",
+        "answer": "Yes. Excalidraw and tldraw are completely free and open-source. FigJam (Figma free tier) includes 3 free FigJam files. InVision Freehand has a free tier."
+      },
+      {
+        "question": "Can I export my Miro boards to another tool?",
+        "answer": "Yes. Export Miro boards as images (PNG, JPG, SVG, or PDF), then import them into FigJam, Excalidraw, or tldraw as backgrounds."
+      },
+      {
+        "question": "Which Miro alternative is best for design teams?",
+        "answer": "FigJam (Figma free tier) is the best free alternative for design teams. It integrates with Figma and has a fun, intuitive interface. InVision Freehand is also great for design brainstorming."
+      }
+    ]
+  },
+  {
+    "paidTool": "Zapier",
+    "paidToolUrl": "https://zapier.com",
+    "tagline": "Popular no-code automation tool connecting apps and services",
+    "description": "Zapier is the most popular no-code automation tool, connecting over 5,000 apps and services. The free tier supports 100 tasks/month and 5 Zaps. Paid plans start at $19.99/month (billed annually) for 1,000 tasks/month. For teams with many automations, the cost adds up quickly.",
+    "pricing": "Free: 100 tasks/month, 5 Zaps; Starter: $19.99/month (1,000 tasks); Professional: $49/month; Team: $69/month per user; Company: $99/month per user",
+    "painPoints": [
+      {
+        "problem": "Free tier limited to 100 tasks/month and 5 Zaps",
+        "impact": "Teams quickly outgrow the free tier"
+      },
+      {
+        "problem": "Paid plan is $19.99/month (billed annually) for 1,000 tasks",
+        "impact": "A team with multiple Zaps pays $240+/year"
+      },
+      {
+        "problem": "Task limits on paid plans can be restrictive",
+        "impact": "Teams need to upgrade to higher plans for more tasks"
+      },
+      {
+        "problem": "Per-user pricing on Team/Company plans gets expensive",
+        "impact": "Large teams face significant ongoing costs"
+      }
+    ],
+    "whySwitch": [
+      "Use free alternatives like Make (formerly Integromat) with generous free tier",
+      "Use n8n (open-source, self-hosted) for unlimited automations",
+      "Use IFTTT (free tier) for simple automations",
+      "Use Microsoft Power Automate (free with Office 365) for Microsoft-centric workflows"
+    ],
+    "alternatives": [
+      {
+        "name": "Make (formerly Integromat) (Free Tier)",
+        "url": "https://www.make.com",
+        "reason": "Generous free tier (1,000 operations/month) — much better than Zapier's free tier",
+        "description": "Make (formerly Integromat) is a powerful no-code automation tool with a generous free tier (1,000 operations/month). It has a visual scenario builder that's more powerful than Zapier's simple trigger-action model.",
+        "features": [
+          "Free tier: 1,000 operations/month",
+          "Visual scenario builder",
+          "Supports complex workflows (branching, iterators)",
+          "Over 1,500 apps supported",
+          "Error handling and execution history"
+        ],
+        "pros": [
+          "Much more generous free tier than Zapier",
+          "Visual scenario builder is powerful",
+          "Supports complex workflows",
+          "Lower pricing than Zapier"
+        ],
+        "cons": [
+          "Learning curve for visual scenario builder",
+          "Smaller app ecosystem than Zapier",
+          "Interface is less polished than Zapier"
+        ],
+        "bestFor": "Teams that want a more generous free tier and powerful visual automation builder",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "n8n (Free, Open-Source, Self-hosted)",
+        "url": "https://n8n.io",
+        "reason": "Free, open-source workflow automation — self-host for unlimited automations at no cost",
+        "description": "n8n is a free, open-source workflow automation tool. You can self-host it for free and run unlimited automations. It has over 200 integrations and a visual workflow editor. Cloud-hosted option also available (free tier: 200 executions).",
+        "features": [
+          "Free and open-source (fair-code license)",
+          "Self-hosted (unlimited automations, no cost)",
+          "Visual workflow editor",
+          "Over 200 integrations",
+          "Cloud-hosted option (free tier: 200 executions)"
+        ],
+        "pros": [
+          "Completely free when self-hosted",
+          "Unlimited automations (self-hosted)",
+          "Open-source with active community",
+          "Visual workflow editor"
+        ],
+        "cons": [
+          "Requires self-hosting setup",
+          "Learning curve for workflow editor",
+          "Smaller integration ecosystem than Zapier"
+        ],
+        "bestFor": "Teams that want free, unlimited workflow automations with self-hosting",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.8,
+        "featured": true
+      },
+      {
+        "name": "IFTTT (Free Tier)",
+        "url": "https://ifttt.com",
+        "reason": "Free tier supports 5 applets — good for simple automations",
+        "description": "IFTTT (If This Then That) is a simple no-code automation tool. The free tier supports 5 applets (automations). It's less powerful than Zapier but easier to use for simple tasks like connecting smart home devices.",
+        "features": [
+          "Free tier: 5 applets",
+          "Simple trigger-action model",
+          "Over 600 services supported",
+          "Mobile app for creating applets",
+          "Good for smart home automations"
+        ],
+        "pros": [
+          "Very easy to use",
+          "Free tier available",
+          "Good for simple automations",
+          "Supports smart home devices"
+        ],
+        "cons": [
+          "Free tier limited to 5 applets",
+          "Less powerful than Zapier or Make",
+          "No complex workflows (branching, iterators)"
+        ],
+        "bestFor": "Individuals who want simple, free automations for personal use",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.3
+      },
+      {
+        "name": "Microsoft Power Automate (Free with Office 365)",
+        "url": "https://powerautomate.com",
+        "reason": "Free with Office 365 — good for teams already in Microsoft ecosystem",
+        "description": "Microsoft Power Automate is a workflow automation tool that's free with an Office 365 subscription. It supports hundreds of connectors (including Microsoft and third-party services). Good for teams already in the Microsoft ecosystem.",
+        "features": [
+          "Free with Office 365 subscription",
+          "Hundreds of connectors",
+          "AI-powered automations",
+          "Mobile app",
+          "Integration with Microsoft Teams"
+        ],
+        "pros": [
+          "Free with Office 365",
+          "Good for Microsoft-centric teams",
+          "AI-powered automations",
+          "Integration with Teams"
+        ],
+        "cons": [
+          "Requires Office 365 for full features",
+          "Less intuitive than Zapier for beginners",
+          "Smaller third-party integration ecosystem"
+        ],
+        "bestFor": "Teams already using Office 365 that want free workflow automations",
+        "isFree": false,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5
+      },
+      {
+        "name": "Huginn (Free, Open-Source, Self-hosted)",
+        "url": "https://github.com/huginn/huginn",
+        "reason": "Free, open-source system for building agents that perform automated tasks",
+        "description": "Huginn is a free, open-source system for building agents that perform automated tasks. It's more technical than Zapier (requires self-hosting and configuration), but completely free and unlimited. Good for developers who want full control over their automations.",
+        "features": [
+          "Free and open-source (MIT license)",
+          "Self-hosted (unlimited automations)",
+          "Build custom agents for any task",
+          "Supports web scraping, monitoring, and notifications",
+          "Active community and documentation"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Unlimited automations (self-hosted)",
+          "Highly customizable",
+          "Great for developers"
+        ],
+        "cons": [
+          "Requires self-hosting and technical setup",
+          "Steep learning curve",
+          "No visual editor (configure via JSON/YAML)"
+        ],
+        "bestFor": "Developers who want free, unlimited, customizable workflow automations",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.4
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export your Zapier Zaps (each Zap can be exported as JSON)",
+        "For Make: recreate scenarios manually (Make has a visual scenario builder)",
+        "For n8n: recreate workflows manually (n8n has a visual workflow editor)",
+        "For IFTTT: create simple applets manually",
+        "Test all automations thoroughly in the new tool"
+      ],
+      "tips": [
+        "Make's visual scenario builder is more powerful than Zapier's simple trigger-action model — take time to learn it",
+        "n8n is the best free alternative if you're willing to self-host (unlimited automations at no cost)",
+        "Don't try to replicate Zapier Zaps 1:1 — adapt to the new tool's strengths"
+      ]
+    },
+    "category": "Automation",
+    "seoKeywords": [
+      "zapier free alternative",
+      "zapier alternative free",
+      "best zapier alternative",
+      "zapier vs make 2026",
+      "free automation tool"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Zapier?",
+        "answer": "Yes. n8n is completely free and open-source when self-hosted (unlimited automations). Huginn is also free and open-source. IFTTT has a free tier with 5 applets."
+      },
+      {
+        "question": "Can I export my Zapier Zaps to another tool?",
+        "answer": "Not directly. You'll need to recreate your Zaps manually in the new tool. Make and n8n have visual editors that make this process easier."
+      },
+      {
+        "question": "Which Zapier alternative has the best free tier?",
+        "answer": "Make (formerly Integromat) has the most generous free tier: 1,000 operations/month (vs Zapier's 100 tasks/month). n8n is completely free when self-hosted."
+      }
+    ]
+  },
+  {
+    "paidTool": "HubSpot Sales Hub",
+    "paidToolUrl": "https://www.hubspot.com/products/sales",
+    "tagline": "Popular sales CRM and automation platform",
+    "description": "HubSpot Sales Hub is a popular sales CRM and automation platform. The free CRM is very capable, but paid Sales Hub plans start at $15/month per user (Starter) and go up to $90/month per user (Professional). For teams needing advanced sales automations, the cost adds up quickly.",
+    "pricing": "Free CRM (very capable); Sales Hub Starter: $15/month per user; Professional: $90/month per user; Enterprise: $150/month per user",
+    "painPoints": [
+      {
+        "problem": "Sales Hub Professional is expensive ($90/month per user)",
+        "impact": "A 10-person sales team pays $10,800+/year"
+      },
+      {
+        "problem": "Advanced automations and reporting require paid plans",
+        "impact": "Teams need Professional or Enterprise for proper sales workflows"
+      },
+      {
+        "problem": "Marketing Hub and Service Hub add significant cost",
+        "impact": "Full HubSpot suite is very expensive"
+      },
+      {
+        "problem": "Data export is limited on lower tiers",
+        "impact": "Hard to leave once your data is locked in"
+      }
+    ],
+    "whySwitch": [
+      "Use free CRM alternatives like Zoho CRM (free for 3 users) or Pipedrive (free trial)",
+      "Use open-source self-hosted options like SuiteCRM or Odoo",
+      "Use Freshworks CRM (free tier) for a modern, affordable alternative",
+      "Use Agile CRM (free for 10 users) for small teams"
+    ],
+    "alternatives": [
+      {
+        "name": "Zoho CRM (Free for 3 Users)",
+        "url": "https://www.zoho.com/crm/",
+        "reason": "Free for up to 3 users — much more affordable than HubSpot Sales Hub",
+        "description": "Zoho CRM is a comprehensive CRM platform used by over 250,000 businesses worldwide. The free tier supports up to 3 users and includes lead management, contact management, and basic workflow automation.",
+        "features": [
+          "Free for up to 3 users",
+          "Lead and contact management",
+          "Workflow automation",
+          "Mobile apps (iOS, Android)",
+          "Integration with Zoho suite"
+        ],
+        "pros": [
+          "Free for up to 3 users",
+          "Much more affordable than HubSpot",
+          "Comprehensive all-in-one business suite (Zoho One)",
+          "Excellent customer support"
+        ],
+        "cons": [
+          "Free tier is limited (3 users, no advanced features)",
+          "Interface is less polished than HubSpot",
+          "Learning curve for advanced automation features"
+        ],
+        "bestFor": "Small businesses that want an affordable, all-in-one CRM and business suite",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.3,
+        "featured": true
+      },
+      {
+        "name": "Freshworks CRM (Free Tier)",
+        "url": "https://www.freshworks.com/crm/",
+        "reason": "Free tier for up to 3 users — modern, affordable CRM alternative",
+        "description": "Freshworks CRM (formerly Freshsales) is a modern, affordable CRM platform. The free tier supports up to 3 users and includes contact management, deal pipelines, and basic automations. Paid plans start at $15/month per user.",
+        "features": [
+          "Free for up to 3 users",
+          "Contact management and deal pipelines",
+          "Basic automations",
+          "Mobile apps (iOS, Android)",
+          "Built-in phone and email"
+        ],
+        "pros": [
+          "Free for up to 3 users",
+          "Modern, intuitive interface",
+          "Built-in phone and email",
+          "Affordable paid plans"
+        ],
+        "cons": [
+          "Free tier is limited (3 users, no advanced features)",
+          "Smaller ecosystem than HubSpot",
+          "Learning curve for advanced automation features"
+        ],
+        "bestFor": "Small businesses that want a modern, affordable CRM with a free tier",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5,
+        "featured": true
+      },
+      {
+        "name": "Agile CRM (Free for 10 Users)",
+        "url": "https://www.agilecrm.com",
+        "reason": "Free for up to 10 users — great for small sales teams",
+        "description": "Agile CRM is a modern CRM platform with a free tier for up to 10 users. It includes contact management, deal pipelines, automations, and marketing features. Much more generous free tier than HubSpot.",
+        "features": [
+          "Free for up to 10 users",
+          "Contact management and deal pipelines",
+          "Marketing automations",
+          "Email campaigns and tracking",
+          "Mobile apps (iOS, Android)"
+        ],
+        "pros": [
+          "Free for up to 10 users (very generous)",
+          "Includes marketing features",
+          "Affordable paid plans",
+          "Good for small sales teams"
+        ],
+        "cons": [
+          "Interface is less polished than HubSpot",
+          "Smaller integration ecosystem",
+          "Learning curve for advanced features"
+        ],
+        "bestFor": "Small sales teams (up to 10 users) that want a free, all-in-one CRM",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.4
+      },
+      {
+        "name": "SuiteCRM (Free, Open-Source, Self-hosted)",
+        "url": "https://suitecrm.com",
+        "reason": "Free, open-source CRM — self-host for unlimited users at no cost",
+        "description": "SuiteCRM is a free, open-source CRM platform. It's a fork of SugarCRM Community Edition, with many additional features. You can self-host it for free and have unlimited users. Requires technical setup.",
+        "features": [
+          "Free and open-source (AGPLv3)",
+          "Self-hosted (unlimited users, no cost)",
+          "Contact and lead management",
+          "Workflow automations",
+          "Reporting and dashboards"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Unlimited users (self-hosted)",
+          "No per-user pricing",
+          "Full control over your data"
+        ],
+        "cons": [
+          "Requires self-hosting setup",
+          "Interface is less modern than HubSpot",
+          "Learning curve for setup and maintenance"
+        ],
+        "bestFor": "Teams that want a free, open-source, self-hosted CRM with unlimited users",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.2
+      },
+      {
+        "name": "Odoo (Free, Open-Source, Self-hosted)",
+        "url": "https://www.odoo.com",
+        "reason": "Free, open-source ERP and CRM — self-host for unlimited users at no cost",
+        "description": "Odoo is a free, open-source ERP and CRM platform. It includes CRM, sales, inventory, accounting, and more. The community edition is free and self-hosted. Cloud-hosted option also available (paid).",
+        "features": [
+          "Free and open-source (community edition)",
+          "Self-hosted (unlimited users, no cost)",
+          "All-in-one ERP: CRM, sales, inventory, accounting",
+          "Modern, intuitive interface",
+          "Over 30,000 apps in the Odoo app store"
+        ],
+        "pros": [
+          "Completely free (community edition)",
+          "All-in-one ERP suite",
+          "Modern, intuitive interface",
+          "Huge app ecosystem"
+        ],
+        "cons": [
+          "Requires self-hosting setup (community edition)",
+          "Cloud-hosted version is expensive",
+          "Learning curve for full ERP features"
+        ],
+        "bestFor": "Businesses that want a free, all-in-one ERP and CRM suite",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.5
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Export your HubSpot contacts, deals, and companies as CSV",
+        "For Zoho CRM: import CSV data into Zoho (Settings → Data Administration → Import)",
+        "For Freshworks CRM: import CSV data into Freshworks (Contacts → Import)",
+        "For SuiteCRM/Odoo: import CSV data via the import wizard",
+        "Set up new sales workflows and automations in the new tool"
+      ],
+      "tips": [
+        "HubSpot's free CRM is actually very capable — you might not need Sales Hub at all",
+        "Zoho CRM's free tier (3 users) is a great starting point for small teams",
+        "Don't try to replicate HubSpot's exact workflows 1:1 — adapt to the new tool's strengths"
+      ]
+    },
+    "category": "CRM",
+    "seoKeywords": [
+      "hubspot sales hub free alternative",
+      "hubspot alternative free",
+      "best hubspot alternative",
+      "hubspot vs zoho crm 2026",
+      "free crm for small business"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to HubSpot Sales Hub?",
+        "answer": "Yes. Zoho CRM is free for up to 3 users. Agile CRM is free for up to 10 users. SuiteCRM and Odoo are completely free and open-source when self-hosted."
+      },
+      {
+        "question": "Can I export my HubSpot data to another CRM?",
+        "answer": "Yes. Export your HubSpot contacts, deals, and companies as CSV (HubSpot Export feature), then import the CSV into Zoho CRM, Freshworks CRM, or SuiteCRM."
+      },
+      {
+        "question": "Which HubSpot alternative is best for small teams?",
+        "answer": "Zoho CRM (free for 3 users) and Agile CRM (free for 10 users) are the best free alternatives for small teams. Freshworks CRM also has a good free tier."
+      }
+    ]
+  }
+]
