@@ -1,0 +1,502 @@
+[
+  {
+    "paidTool": "Sketch",
+    "slug": "sketch",
+    "category": "Design",
+    "description": "Sketch is a popular Mac-only UI/UX design tool with a one-time purchase of $99. Users seek cross-platform or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "Mac-only",
+        "impact": "No Windows or Linux support"
+      },
+      {
+        "problem": "One-time cost still required",
+        "impact": "$99 upfront"
+      },
+      {
+        "problem": "Less widely used than Figma",
+        "impact": "Harder to collaborate with teams using Figma"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Figma (free tier)",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with excellent collaboration features",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Real-time collaboration",
+          "Cross-platform"
+        ],
+        "pricing": "Free; Paid from $12/month"
+      },
+      {
+        "name": "Penpot (open-source)",
+        "url": "https://penpot.app",
+        "reason": "Free open-source UI/UX design tool",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Cross-platform",
+          "SVG-based"
+        ],
+        "pricing": "Free; Self-hosted option"
+      },
+      {
+        "name": "Lunacy (free)",
+        "url": "https://icons8.com/lunacy",
+        "reason": "Free design tool with built-in asset library",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Built-in assets",
+          "Offline mode"
+        ],
+        "pricing": "Free; Pro $9.99/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Download Figma or Penpot",
+        "Export Sketch files (.sketch)",
+        "Import into new tool (Figma can open Sketch files)",
+        "Adjust designs as needed",
+        "Collaborate with team on new platform"
+      ],
+      "tips": [
+        "Figma can directly import Sketch files",
+        "Penpot is completely free and open-source"
+      ]
+    },
+    "verdict": "Figma is the best alternative with free tier and excellent collaboration. Penpot is the best free open-source option.",
+    "faqs": [
+      {
+        "question": "Can Figma open Sketch files?",
+        "answer": "Yes, Figma can directly import .sketch files. Most layers and styles translate well."
+      },
+      {
+        "question": "Is there a free Sketch alternative for Windows?",
+        "answer": "Yes, Figma (free tier) and Penpot (open-source) both run on Windows."
+      }
+    ],
+    "tagline": "Mac-only UI/UX design tool at $99 one-time",
+    "paidToolUrl": "https://www.sketch.com",
+    "pricing": "$99 one-time",
+    "whySwitch": [
+      "Cross-platform support",
+      "Free open-source option (Penpot)",
+      "Better collaboration (Figma)"
+    ],
+    "seoKeywords": [
+      "sketch alternative",
+      "figma vs sketch",
+      "free ui design tool",
+      "penpot"
+    ]
+  },
+  {
+    "paidTool": "Framer",
+    "slug": "framer",
+    "category": "Design",
+    "description": "Framer is a web-based design and prototyping tool at $15-25/month. Users seek free or one-time purchase alternatives.",
+    "painPoints": [
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$15-25/month"
+      },
+      {
+        "problem": "Learning curve for advanced features",
+        "impact": "Takes time to master animations"
+      },
+      {
+        "problem": "Less community resources than Figma",
+        "impact": "Fewer tutorials and plugins"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Figma (free tier)",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with prototyping features",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Prototyping",
+          "Cross-platform"
+        ],
+        "pricing": "Free; Paid from $12/month"
+      },
+      {
+        "name": "Penpot (open-source)",
+        "url": "https://penpot.app",
+        "reason": "Free open-source UI/UX design tool with prototyping",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Prototyping",
+          "Free"
+        ],
+        "pricing": "Free; Self-hosted option"
+      },
+      {
+        "name": "Origami Studio (free)",
+        "url": "https://origami.design",
+        "reason": "Free prototyping tool from Facebook",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free",
+          "Advanced prototyping",
+          "Facebook-made"
+        ],
+        "pricing": "Free"
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Download Figma",
+        "Export Framer prototypes",
+        "Rebuild prototypes in Figma (may need manual work)",
+        "Learn Figma prototyping features",
+        "Test interactions"
+      ],
+      "tips": [
+        "Figma has excellent prototyping features in free tier",
+        "Origami Studio is free but Mac-only"
+      ]
+    },
+    "verdict": "Figma is the best alternative with free tier and better collaboration. Origami Studio is great for advanced prototyping on Mac.",
+    "faqs": [
+      {
+        "question": "Can I open Framer files in Figma?",
+        "answer": "No, project files are not directly compatible. You'll need to rebuild prototypes in Figma."
+      },
+      {
+        "question": "Is Framer worth it for simple prototyping?",
+        "answer": "For simple prototyping, Figma free tier is sufficient. Framer is better for advanced animations and code components."
+      }
+    ],
+    "tagline": "Web-based design and prototyping at $15-25/month",
+    "paidToolUrl": "https://www.framer.com",
+    "pricing": "Basic $15/month; Pro $25/month",
+    "whySwitch": [
+      "Free tier available (Figma)",
+      "Free prototyping tool (Origami)",
+      "No subscription needed for simple prototypes"
+    ],
+    "seoKeywords": [
+      "framer alternative",
+      "figma prototyping",
+      "free prototyping tool",
+      "origami studio"
+    ]
+  },
+  {
+    "paidTool": "Axure RP",
+    "slug": "axure-rp",
+    "category": "Design",
+    "description": "Axure RP is a professional prototyping and documentation tool at $29-49/month. Users seek cheaper or free alternatives.",
+    "painPoints": [
+      {
+        "problem": "High monthly cost",
+        "impact": "$29-49/month"
+      },
+      {
+        "problem": "Steep learning curve",
+        "impact": "Takes significant time to master"
+      },
+      {
+        "problem": "Less modern UI than competitors",
+        "impact": "Feels outdated compared to Figma"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Figma (free tier)",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with prototyping and documentation features",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Prototyping",
+          "Documentation"
+        ],
+        "pricing": "Free; Paid from $12/month"
+      },
+      {
+        "name": "Balsamiq (one-time)",
+        "url": "https://balsamiq.com",
+        "reason": "One-time purchase wireframing tool",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "One-time purchase",
+          "Wireframing focus",
+          "Simple interface"
+        ],
+        "pricing": "$89 one-time"
+      },
+      {
+        "name": "Miro (free tier)",
+        "url": "https://miro.com",
+        "reason": "Free tier with wireframing and flowcharts",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Wireframing",
+          "Flowcharts"
+        ],
+        "pricing": "Free; Paid from $8/month"
+      }
+    ],
+    "migrationDifficulty": "Hard",
+    "migrationGuide": {
+      "steps": [
+        "Download Figma",
+        "Export Axure RP prototypes (HTML/PDF)",
+        "Rebuild prototypes in Figma",
+        "Learn Figma prototyping and documentation features",
+        "Test interactions"
+      ],
+      "tips": [
+        "Figma has most features needed for prototyping",
+        "Balsamiq is great for quick wireframes"
+      ]
+    },
+    "verdict": "Figma is the best alternative with free tier and better collaboration. Balsamiq is great for quick wireframes with one-time purchase.",
+    "faqs": [
+      {
+        "question": "Can I open Axure RP files in Figma?",
+        "answer": "No, project files are not directly compatible. You'll need to rebuild prototypes in Figma."
+      },
+      {
+        "question": "Is Axure RP worth it for complex prototyping?",
+        "answer": "For complex prototyping with conditional logic, Axure is still powerful. But Figma covers 90% of use cases."
+      }
+    ],
+    "tagline": "Professional prototyping and documentation at $29-49/month",
+    "paidToolUrl": "https://www.axure.com",
+    "pricing": "Pro $29/month; Enterprise $49/month",
+    "whySwitch": [
+      "Free tier available (Figma)",
+      "One-time purchase option (Balsamiq)",
+      "No subscription needed for simple wireframes"
+    ],
+    "seoKeywords": [
+      "axure rp alternative",
+      "figma vs axure",
+      "free prototyping tool",
+      "balsamiq"
+    ]
+  },
+  {
+    "paidTool": "Marvel",
+    "slug": "marvel",
+    "category": "Design",
+    "description": "Marvel is a web-based design and prototyping platform at $12-32/month. Users seek free or cheaper alternatives.",
+    "painPoints": [
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$12-32/month"
+      },
+      {
+        "problem": "Less powerful than Figma",
+        "impact": "Fewer advanced features"
+      },
+      {
+        "problem": "No free tier for teams",
+        "impact": "Must pay for collaboration"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Figma (free tier)",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with excellent collaboration and prototyping",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Real-time collaboration",
+          "Prototyping"
+        ],
+        "pricing": "Free; Paid from $12/month"
+      },
+      {
+        "name": "Penpot (open-source)",
+        "url": "https://penpot.app",
+        "reason": "Free open-source UI/UX design tool",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Free",
+          "Cross-platform"
+        ],
+        "pricing": "Free; Self-hosted option"
+      },
+      {
+        "name": "Miro (free tier)",
+        "url": "https://miro.com",
+        "reason": "Free tier with wireframing and flowcharts",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Wireframing",
+          "Flowcharts"
+        ],
+        "pricing": "Free; Paid from $8/month"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Download Figma or Penpot",
+        "Export Marvel prototypes",
+        "Rebuild prototypes in new tool",
+        "Learn new interface and shortcuts",
+        "Test interactions"
+      ],
+      "tips": [
+        "Figma can import some Marvel files",
+        "Penpot is completely free and open-source"
+      ]
+    },
+    "verdict": "Figma is the best alternative with free tier and excellent collaboration. Penpot is the best free open-source option.",
+    "faqs": [
+      {
+        "question": "Can I open Marvel files in Figma?",
+        "answer": "No, project files are not directly compatible. You'll need to rebuild prototypes in Figma."
+      },
+      {
+        "question": "Is Marvel worth it for simple prototyping?",
+        "answer": "For simple prototyping, Figma free tier is sufficient. Marvel is better for quick prototypes but lacks advanced features."
+      }
+    ],
+    "tagline": "Web-based design and prototyping at $12-32/month",
+    "paidToolUrl": "https://www.marvelapp.com",
+    "pricing": "Pro $12/month; Team $32/month",
+    "whySwitch": [
+      "Free tier available (Figma)",
+      "Free open-source option (Penpot)",
+      "No subscription needed for simple prototypes"
+    ],
+    "seoKeywords": [
+      "marvel alternative",
+      "figma vs marvel",
+      "free prototyping tool",
+      "penpot"
+    ]
+  },
+  {
+    "paidTool": "Justinmind",
+    "slug": "justinmind",
+    "category": "Design",
+    "description": "Justinmind is a prototyping tool at $9-19/month. Users seek free or one-time purchase alternatives.",
+    "painPoints": [
+      {
+        "problem": "Monthly subscription cost",
+        "impact": "$9-19/month"
+      },
+      {
+        "problem": "Less popular than Figma",
+        "impact": "Fewer tutorials and community resources"
+      },
+      {
+        "problem": "No free tier for teams",
+        "impact": "Must pay for collaboration"
+      }
+    ],
+    "alternatives": [
+      {
+        "name": "Figma (free tier)",
+        "url": "https://www.figma.com",
+        "reason": "Free tier with excellent collaboration and prototyping",
+        "isFree": true,
+        "isOpenSource": false,
+        "features": [
+          "Free tier",
+          "Real-time collaboration",
+          "Prototyping"
+        ],
+        "pricing": "Free; Paid from $12/month"
+      },
+      {
+        "name": "Penpot (open-source)",
+        "url": "https://penpot.app",
+        "reason": "Free open-source UI/UX design tool",
+        "isFree": true,
+        "isOpenSource": true,
+        "features": [
+          "Open-source",
+          "Free",
+          "Cross-platform"
+        ],
+        "pricing": "Free; Self-hosted option"
+      },
+      {
+        "name": "Balsamiq (one-time)",
+        "url": "https://balsamiq.com",
+        "reason": "One-time purchase wireframing tool",
+        "isFree": false,
+        "isOpenSource": false,
+        "features": [
+          "One-time purchase",
+          "Wireframing focus",
+          "Simple interface"
+        ],
+        "pricing": "$89 one-time"
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Download Figma or Penpot",
+        "Export Justinmind prototypes",
+        "Rebuild prototypes in new tool",
+        "Learn new interface and shortcuts",
+        "Test interactions"
+      ],
+      "tips": [
+        "Figma has most features needed for prototyping",
+        "Balsamiq is great for quick wireframes"
+      ]
+    },
+    "verdict": "Figma is the best alternative with free tier and excellent collaboration. Balsamiq is great for quick wireframes with one-time purchase.",
+    "faqs": [
+      {
+        "question": "Can I open Justinmind files in Figma?",
+        "answer": "No, project files are not directly compatible. You'll need to rebuild prototypes in Figma."
+      },
+      {
+        "question": "Is Justinmind worth it for simple prototyping?",
+        "answer": "For simple prototyping, Figma free tier is sufficient. Justinmind is better for quick prototypes but lacks advanced features."
+      }
+    ],
+    "tagline": "Prototyping tool at $9-19/month",
+    "paidToolUrl": "https://www.justinmind.com",
+    "pricing": "Basic $9/month; Pro $19/month",
+    "whySwitch": [
+      "Free tier available (Figma)",
+      "One-time purchase option (Balsamiq)",
+      "Free open-source option (Penpot)"
+    ],
+    "seoKeywords": [
+      "justinmind alternative",
+      "figma vs justinmind",
+      "free prototyping tool",
+      "balsamiq"
+    ]
+  }
+]
