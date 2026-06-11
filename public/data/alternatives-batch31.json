@@ -1,0 +1,988 @@
+{
+  "Spotify Premium": {
+    "name": "Spotify Premium",
+    "category": "Music Streaming",
+    "description": "Spotify Premium is the paid tier of the world's most popular music streaming service. While the free tier is ad-supported with limited skips, Premium removes ads, enables offline downloads, and offers higher audio quality. At $11.99/month (Individual), it adds up to a significant annual cost for music lovers.",
+    "website": "https://spotify.com/premium",
+    "painPoints": [
+      "Expensive: $11.99/month Individual, $16.99/month Duo, $19.99/month Family — adds up quickly",
+      "Free tier has unskipable ads every 2-3 songs, which is disruptive",
+      "Free tier limits skips (only 6 per hour on mobile)",
+      "Offline downloads are Premium-only — you can't listen without internet on free plan",
+      "HiFi lossless audio still hasn't fully rolled out despite being announced years ago",
+      "Artist payouts are controversially low (reportedly $0.003 – $0.005 per stream)"
+    ],
+    "whySwitch": "There are excellent free and cheaper alternatives for music streaming. YouTube Music (free tier) has no skip limits and includes music videos. SoundCloud (free) has exclusive tracks not on Spotify. For offline listening, purchasing music outright (Bandcamp) or self-hosting (Navidrome) gives you ownership. Many users also find that a well-curated local music library beats any streaming service.",
+    "alternatives": [
+      {
+        "name": "YouTube Music (free tier)",
+        "url": "https://music.youtube.com",
+        "pricing": "Free with ads; Premium $10.99/month",
+        "features": [
+          "Vast catalog including music videos and live performances",
+          "No skip limits on free tier (just ads between songs)",
+          "Upload your own music to YouTube Music library",
+          "Smart recommendations based on your YouTube history",
+          "Background play (paid) / restricted on free (iOS)",
+          "Podcasts included"
+        ],
+        "pros": [
+          "Free tier is very usable — no skip limits like Spotify free",
+          "Includes music videos, live sessions, and covers not on Spotify",
+          "Upload feature lets you add your own tracks to the cloud",
+          "Huge catalog — Google's metadata is excellent",
+          "Seamless switch with Google account"
+        ],
+        "cons": [
+          "Ads on free tier are more frequent than Spotify's",
+          "Background play on mobile requires Premium (unless on Android with mod)",
+          "UI is less polished than Spotify",
+          "No collaborative playlists on free tier"
+        ],
+        "bestFor": "Users who want a generous free tier and access to rare/live music content",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.3
+      },
+      {
+        "name": "SoundCloud (free tier)",
+        "url": "https://soundcloud.com",
+        "pricing": "Free limited; Go $4.99/month; Go+ $9.99/month",
+        "features": [
+          "Massive library of independent and emerging artists",
+          "Direct artist interaction (comments on tracks)",
+          "Free tier: 120 minutes upload for creators",
+          "Offline listening (paid tiers)",
+          "Podcasts and DJ sets",
+          "Algorithm that surfaces new underground music"
+        ],
+        "pros": [
+          "Exclusive content not available on Spotify (remixes, DJ sets, unreleased tracks)",
+          "Strong community — comment directly on tracks",
+          "Free tier is generous for listening (ads are less intrusive)",
+          "Great for discovering new and independent artists",
+          "Good for creators who want to upload their own music"
+        ],
+        "cons": [
+          "Catalog of mainstream artists is weaker than Spotify/Apple Music",
+          "Free tier has listening limits and ads",
+          "Mobile app experience is clunky",
+          "Audio quality maxes out at 256kbps MP3 (no lossless)"
+        ],
+        "bestFor": "Music discoverers, DJs, and fans of independent/underground music",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4
+      },
+      {
+        "name": "Bandcamp (purchase music outright)",
+        "url": "https://bandcamp.com",
+        "pricing": "Free to use; you pay for albums/tracks (artist gets ~80-85%)",
+        "features": [
+          "Purchase music outright and download in FLAC, MP3, ALAC",
+          "Support artists directly (they get ~82% of the sale)",
+          "No subscription — pay only for what you want",
+          "Mobile app for streaming purchased music",
+          "Daily discovery via Bandcamp Daily blog",
+          "Fair trade — artists set their own prices (often pay-what-you-want)"
+        ],
+        "pros": [
+          "You own the music — not a rental like streaming",
+          "Artists are paid fairly (unlike Spotify's fraction-of-a-cent per stream)",
+          "High-quality downloads (FLAC lossless available)",
+          "No ads, no subscription, no skip limits — ever",
+          "Great for discovering niche and independent music"
+        ],
+        "cons": [
+          "Not a streaming service — you pay per album/track",
+          "No algorithmic recommendations like Spotify's Discover Weekly",
+          "Need to build your library manually (no 'endless play' by default)",
+          "Smaller catalog of mainstream artists"
+        ],
+        "bestFor": "Music lovers who want to own their music and support artists directly",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Navidrome (self-hosted streaming)",
+        "url": "https://navidrome.org",
+        "pricing": "100% free and open-source (host it yourself)",
+        "features": [
+          "Self-host your own music collection as a streaming service",
+          "Subsonic API-compatible — works with many mobile apps (DSub, Symfonium)",
+          "Scan your local music files (MP3, FLAC, OGG, etc.) and serve them",
+          "Web UI similar to Spotify",
+          "Transcoding on the fly (save bandwidth)",
+          "Multi-user support with permissions"
+        ],
+        "pros": [
+          "Completely free — no subscription, no ads, no data collection",
+          "You own your music — stream your own collection from anywhere",
+          "Open-source and privacy-friendly",
+          "Works with excellent third-party mobile apps",
+          "No internet required when hosting on local network"
+        ],
+        "cons": [
+          "Requires self-hosting (Need a server/NAS and some technical setup)",
+          "No music discovery — you need to own the files",
+          "Mobile apps are third-party (not official Navidrome apps)",
+          "No lyrics, no artist bios, no social features"
+        ],
+        "bestFor": "Self-hosters, privacy enthusiasts, and people with large local music libraries",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Apple Music (cheaper for Apple ecosystem users)",
+        "url": "https://apple.com/apple-music",
+        "pricing": "$10.99/month; $5.99/month for students; $16.99/month for families",
+        "features": [
+          "Lossless Audio and Spatial Audio (Dolby Atmos) at no extra cost",
+          "Integration with iOS/macOS — works seamlessly with Siri",
+          "Large catalog (100M+ songs)",
+          "Offline downloads",
+          "Time-synced lyrics",
+          "Radio stations and Beats 1 live"
+        ],
+        "pros": [
+          "Lossless and Spatial Audio included in base price (Spotify charges extra eventually)",
+          "Seamless integration if you're in the Apple ecosystem",
+          "High-quality metadata and curated playlists",
+          "No ads on any tier (unlike Spotify free)",
+          "Good for Dolby Atmos-compatible headphones/speakers"
+        ],
+        "cons": [
+          "Android and Windows apps are subpar compared to iOS/macOS",
+          "No free tier — must pay or use trial",
+          "Social features (following friends) are weak",
+          "locking into Apple ecosystem (hard to leave later)"
+        ],
+        "bestFor": "Apple ecosystem users who want lossless audio and tight integration",
+        "isFree": false,
+        "isOpenSource": false,
+        "rating": 4.4
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Switching from Spotify Premium to an alternative depends on what you value most: if it's cost, YouTube Music free or SoundCloud free are good starting points. If it's ownership, Bandcamp lets you buy music outright. If it's privacy and control, Navidrome (self-hosted) is the answer.",
+      "steps": [
+        "Export your Spotify playlists using a third-party tool like SpotMyBackup, Exportify, or TuneMyMusic",
+        "For YouTube Music: use TuneMyMusic or Soundiiz to transfer playlists directly",
+        "For Bandcamp: follow your favorite artists on Bandcamp and start purchasing albums — you'll get DRM-free downloads",
+        "For Navidrome: set up a server (NAS or VPS), organize your local music files, and install a Subsonic-compatible mobile app",
+        "Cancel Spotify Premium only after confirming your most-listened-to playlists are recreated elsewhere",
+        "Keep Spotify Free installed as a backup — you can still access your playlists with ads"
+      ],
+      "tips": [
+        "Use Soundiiz (free tier) or TuneMyMusic (free for 1 transfer) to move playlists between services — they support 50+ platforms",
+        "If you have local music files, Navidrome + Symfonium (Android) or play:Sub (iOS) gives you a Spotify-like experience with your own files",
+        "Bandcamp often has 'pay what you want' pricing — you can get full albums for $0 if the artist allows it",
+        "YouTube Music's upload feature is underrated — you can upload tracks not available on any streaming service and stream them from the cloud"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Will I lose my playlists if I cancel Spotify Premium?",
+        "a": "No — your playlists remain in your Spotify account even after canceling Premium (you just go back to the free ad-supported tier). However, downloaded offline music will stop working. Use Exportify or TuneMyMusic to back up your playlists before canceling."
+      },
+      {
+        "q": "Is YouTube Music actually free (no skip limits)?",
+        "a": "Yes — YouTube Music's free tier lets you skip as many times as you want. The trade-off is ads (audio and video ads between songs). It's significantly more usable than Spotify's free tier, which limits skips."
+      },
+      {
+        "q": "What about podcasts? Spotify has lots of exclusive podcasts.",
+        "a": "Most Spotify exclusive podcasts have moved to video (YouTube) or have RSS feeds you can use in any podcast app (Apple Podcasts, Pocket Casts, AntennaPod). YouTube Music also includes podcasts now. Very few podcasts are truly exclusive to Spotify anymore."
+      }
+    ]
+  },
+  "Adobe After Effects": {
+    "name": "Adobe After Effects",
+    "category": "Video Compositing & Motion Graphics",
+    "description": "Adobe After Effects is the industry-standard tool for motion graphics, visual effects (VFX), and compositing. It is a subscription-only product ($24.19/month standalone, or $62.99/month for all Creative Cloud apps). Many indie creators, YouTubers, and small studios find the subscription cost prohibitive.",
+    "website": "https://adobe.com/products/aftereffects",
+    "painPoints": [
+      "Expensive subscription: $24.19/month for After Effects alone, or $62.99/month for all Creative Cloud apps",
+      "Steep learning curve — overwhelming for beginners with hundreds of features",
+      "Resource-heavy — requires a powerful GPU and lots of RAM for smooth playback",
+      "No one-time purchase option — Adobe discontinued perpetual licenses",
+      "Frequent crashes on complex projects with many layers and effects"
+    ],
+    "whySwitch": "High-quality alternatives now offer 80-90% of After Effects' capabilities at a fraction of the cost. Blender (free, open-source) has a powerful compositor and video editor built-in. DaVinci Resolve (free version is very capable) includes Fusion for motion graphics and VFX. For 2D motion graphics specifically, tools like OpenToonz (free) and Krita (free) are excellent. Even if you occasionally need After Effects, using alternatives for 80% of your work can dramatically reduce how many months you need to subscribe.",
+    "alternatives": [
+      {
+        "name": "Blender (Compositing & Video Editor)",
+        "url": "https://blender.org",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Full 3D suite with built-in compositor (Node-based)",
+          "Video Sequence Editor (VSE) for basic editing",
+          "Motion tracking and camera tracking",
+          "Grease Pencil for 2D animation within 3D",
+          "Python scripting for automation",
+          "Active community and free tutorials"
+        ],
+        "pros": [
+          "Completely free with no premium tiers — ever",
+          "Powerful compositor can handle many VFX tasks (keying, tracking, color grading)",
+          "Regular updates from the Blender Foundation",
+          "Excellent for 3D motion graphics (which After Effects can't do natively)",
+          "Open-source and privacy-friendly"
+        ],
+        "cons": [
+          "Not a direct 1:1 replacement for After Effects — different workflow",
+          "Compositor is powerful but less mature than After Effects for 2D motion graphics",
+          "Learning curve is steep for non-3D users",
+          "No native support for After Effects plugins or presets"
+        ],
+        "bestFor": "3D artists, motion designers who incorporate 3D, and budget-conscious creators",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.6
+      },
+      {
+        "name": "DaVinci Resolve (Fusion page)",
+        "url": "https://blackmagicdesign.com/products/davinciresolve",
+        "pricing": "Free version is very capable; Studio $295 one-time (not subscription!)",
+        "features": [
+          "Fusion page for node-based compositing and motion graphics",
+          "Fairlight page for audio post-production",
+          "Color page for professional color grading",
+          "Cut and Edit pages for video editing",
+          "Free version includes most features (limits: no noise reduction, limited resolution for some features)",
+          "Multi-user collaboration (Studio version)"
+        ],
+        "pros": [
+          "Free version is professional-grade — used in actual Hollywood films",
+          "One-time purchase for Studio ($295) vs Adobe's subscription forever model",
+          "Fusion is a true node-based compositor (like Nuke)",
+          "All-in-one: editing, color, VFX, audio in one app",
+          "Excellent color grading tools (industry-standard)"
+        ],
+        "cons": [
+          "Very steep learning curve — not beginner-friendly",
+          "Free version has some limitations (no AI tools, no some advanced features)",
+          "Resource-heavy — needs a powerful workstation",
+          "Not as many tutorials for Fusion as there are for After Effects"
+        ],
+        "bestFor": "Professional video editors, colorists, and VFX artists who want an all-in-one solution",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Natron",
+        "url": "https://natrongithub.github.io",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Node-based compositing (similar workflow to Nuke)",
+          "OpenFX plugin support (many free and paid plugins available)",
+          "Multi-platform (Windows, macOS, Linux)",
+          "32-bit floating-point color pipeline",
+          "Keying, tracking, and rotoscoping tools",
+          "Active community and plugin ecosystem"
+        ],
+        "pros": [
+          "Free and open-source — no cost whatsoever",
+          "Node-based workflow is similar to Nuke (good for learning professional VFX)",
+          "Supports many OpenFX plugins (some are free)",
+          "Lightweight compared to Blender or DaVinci Resolve",
+          "Good for learning compositing concepts without paying for software"
+        ],
+        "cons": [
+          "Development has slowed down in recent years (less active than Blender)",
+          "Smaller community than After Effects — fewer tutorials",
+          "Interface is functional but not as polished",
+          "Some advanced features are missing compared to After Effects or Nuke"
+        ],
+        "bestFor": "Budget-conscious VFX artists and students learning node-based compositing",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 3.9
+      },
+      {
+        "name": "OpenToonz (for 2D animation & motion graphics)",
+        "url": "https://opentoonz.github.io",
+        "pricing": "100% free and open-source",
+        "features": [
+          "2D animation software used by Studio Ghibli",
+          "Motion graphics and effects tools",
+          "Scan and clean-up tools for hand-drawn animation",
+          "Scripting support (Python)",
+          "Multi-platform",
+          "Integration with other open-source tools"
+        ],
+        "pros": [
+          "Completely free — used by major studios (Ghibli!)",
+          "Excellent for hand-drawn 2D animation and motion graphics",
+          "Open-source with active development",
+          "Unique features like the 'Effects' system for procedural animation",
+          "Good for traditional animators transitioning to digital"
+        ],
+        "cons": [
+          "Not a direct alternative for VFX/compositing (more for 2D animation)",
+          "Steep learning curve for the interface",
+          "Less suitable for live-action VFX than After Effects",
+          "Smaller plugin ecosystem than After Effects"
+        ],
+        "bestFor": "2D animators, hand-drawn motion graphics artists, and Studio Ghibli fans",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4
+      },
+      {
+        "name": "Krita (for 2D animation & motion graphics)",
+        "url": "https://krita.org",
+        "pricing": "100% free and open-source",
+        "features": [
+          "2D animation tools (timeline, onion skinning)",
+          "Excellent brush engine (great for frame-by-frame animation)",
+          "Vector and raster support",
+          "Good for motion graphics elements (titles, lower thirds)",
+          "Available on Windows, macOS, Linux",
+          "OpenGL-accelerated canvas"
+        ],
+        "pros": [
+          "Free and open-source — no cost",
+          "Excellent for frame-by-frame 2D animation",
+          "Good brush engine for creating motion graphics assets",
+          "Active development and community",
+          "Can export animation as video or image sequence"
+        ],
+        "cons": [
+          "Not a VFX/compositing tool — more for creating assets",
+          "No node-based compositing like After Effects",
+          "Timeline is basic compared to dedicated video editors",
+          "Not suitable for complex VFX work"
+        ],
+        "bestFor": "2D animators and motion graphics artists creating frame-by-frame content",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.3
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from After Effects to an alternative depends on what you use it for: 3D compositing (Blender), node-based VFX (Natron, Fusion), or 2D motion graphics (OpenToonz, Krita). The hardest part is re-creating your existing projects in the new tool.",
+      "steps": [
+        "Identify your primary use case: VFX/compositing, 2D motion graphics, or 3D motion graphics",
+        "Download and install your chosen alternative (Blender for 3D, DaVinci Resolve for all-in-one, Natron for node-based compositing)",
+        "Follow beginner tutorials specifically for that alternative — don't try to map After Effects concepts 1:1",
+        "For existing projects, export assets (PNG sequences, video clips) from After Effects and import into the new tool",
+        "Re-create motion graphics templates from scratch in the new tool (there's no direct project conversion)",
+        "Cancel Adobe Creative Cloud subscription after confirming your workflow works in the alternative",
+        "Keep After Effects installed for a grace period in case you need to export old projects"
+      ],
+      "tips": [
+        "Blender's compositor is powerful but works differently than After Effects — watch Blender Guru or Blender Nation tutorials to learn the node-based workflow",
+        "DaVinci Resolve's Fusion page is the closest professional alternative to After Effects — if you can afford $295 one-time, it's worth it over subscription",
+        "For simple motion graphics (title animations, lower thirds), even Canva or CapCut can replace After Effects for 80% of use cases",
+        "If you only need After Effects occasionally, consider subscribing for 1 month, completing your project, then canceling — $24.19 for 1 month is cheaper than a year of subscription"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my After Effects project files (.aep) in these alternatives?",
+        "a": "No — there's no direct project file conversion. You need to render your After Effects compositions to video/PNG sequence, then import those assets into the new tool. For motion graphics templates, you'll need to re-create them from scratch in the alternative."
+      },
+      {
+        "q": "What if I need to open After Effects project files that a client sent me?",
+        "a": "Ask the client to export the composition as a PNG sequence or video render with alpha channel. Alternatively, if they used specific plugins or effects, ask which ones — you might be able to recreate the look in your alternative. If you absolutely must open .aep files, consider subscribing to After Effects for 1 month to do the conversion."
+      },
+      {
+        "q": "Is Blender a complete replacement for After Effects?",
+        "a": "For 3D motion graphics and compositing, Blender is actually superior (and free). For 2D motion graphics (title animations, shape animations, explainer videos), Blender's workflow is less intuitive than After Effects. For that use case, DaVinci Resolve (Fusion) or even Canva Pro might be a better fit depending on complexity."
+      }
+    ]
+  },
+  "Microsoft Visio": {
+    "name": "Microsoft Visio",
+    "category": "Diagramming & Flowcharts",
+    "description": "Microsoft Visio is a diagramming and vector drawing application for creating flowcharts, org charts, floor plans, network diagrams, and more. It is sold as a separate purchase from Microsoft 365: Visio Plan 1 starts at $5.00/user/month, Plan 2 at $15.00/user/month, and Visio Professional 2021 as a one-time purchase at $569.99.",
+    "website": "https://microsoft.com/en-us/microsoft-365/visio/flowchart-software",
+    "painPoints": [
+      "Expensive: $5–$15/user/month subscription, or $569.99 one-time (Professional 2021)",
+      "Not included in standard Microsoft 365 subscriptions — separate purchase required",
+      "Steep learning curve for advanced features (data-linked diagrams, custom stencils)",
+      "Windows-only (Visio for the web is limited compared to desktop version)",
+      "File format (.vsdx) creates vendor lock-in — hard to open in non-Microsoft tools"
+    ],
+    "whySwitch": "Excellent free alternatives now match 90% of Visio's diagramming features. diagrams.net (draw.io) is completely free, runs in any browser, and supports Visio file import/export. Lucidchart (free tier) is excellent for collaboration. For technical diagrams (network, AWS architecture), tools like Miro and Excalidraw are modern and intuitive. For many users, Visio is overkill — a free web-based tool is all they need.",
+    "alternatives": [
+      {
+        "name": "diagrams.net (draw.io)",
+        "url": "https://app.diagrams.net",
+        "pricing": "100% free — no account needed, no premium tier",
+        "features": [
+          "Completely free, open-source, no registration required",
+          "Supports Visio (.vsdx) import and export",
+          "Integrates with Google Drive, OneDrive, GitHub, GitLab",
+          "Hundreds of templates (flowcharts, network diagrams, UML, ERD)",
+          "Desktop app available (offline use)",
+          "No account required — files saved locally or to your cloud"
+        ],
+        "pros": [
+          "Truly free with no premium features locked behind paywall",
+          "No account or registration needed — start diagramming immediately",
+          "Supports Visio file format (.vsdx) for import and export",
+          "Works offline (desktop app) and online",
+          "No data collection — files stay on your machine or your cloud"
+        ],
+        "cons": [
+          "Collaboration is weaker than Lucidchart or Miro (no real-time co-editing natively)",
+          "Interface is functional but less polished than modern tools",
+          "No mobile app (mobile browser works but is clunky)",
+          "Fewer smart features (no auto-layout, no AI suggestions)"
+        ],
+        "bestFor": "Anyone who wants a free, privacy-friendly, full-featured diagramming tool",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Lucidchart",
+        "url": "https://lucid.app",
+        "pricing": "Free plan (60 objects per document); Individual $9.00/month; Team $9.00/user/month",
+        "features": [
+          "Real-time collaboration with comments and chat",
+          "Intelligent formatting and auto-layout",
+          "Integrations with Slack, Atlassian, Microsoft Office",
+          "Import Visio files (.vsd, .vsdx)",
+          "Templates for flowcharts, ERD, network diagrams, org charts",
+          "Presentation mode and export to PDF/PNG"
+        ],
+        "pros": [
+          "Real-time collaboration is best-in-class (better than Visio's co-authoring)",
+          "Import Visio files works well",
+          "Intelligent formatting auto-aligns and spaces objects",
+          "Good free tier for simple diagrams (60 objects is enough for basic flowcharts)",
+          "Excellent for team collaboration"
+        ],
+        "cons": [
+          "Free plan limits documents to 60 objects (forces upgrade for complex diagrams)",
+          "More expensive than Diagramming.net (but cheaper than Visio)",
+          "Requires internet connection (no true offline mode)",
+          "Some advanced features (data linking, custom shape libraries) require paid plan"
+        ],
+        "bestFor": "Teams and collaborators who need real-time co-editing of diagrams",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Miro",
+        "url": "https://miro.com",
+        "pricing": "Free plan (3 boards); Starter $8/user/month; Business $16/user/month",
+        "features": [
+          "Infinite canvas for brainstorming and diagramming",
+          "Templates for flowcharts, mind maps, wireframes, Kanban",
+          "Real-time collaboration with cursor tracking",
+          "Integrations with Jira, Slack, Figma, Asana",
+          "Timer, voting, and presentation mode",
+          "Mobile apps and tablet stylus support"
+        ],
+        "pros": [
+          "Infinite canvas is great for brainstorming and early-stage diagramming",
+          "Real-time collaboration is excellent (see others' cursors in real-time)",
+          "Good free tier (3 boards is enough for many users)",
+          "Great for agile teams (integrates with Jira, Confluence)",
+          "Excellent mobile and tablet experience"
+        ],
+        "cons": [
+          "Not a dedicated diagramming tool — less precise than Visio or draw.io for formal diagrams",
+          "Free plan limited to 3 boards (then you must delete or archive)",
+          "More expensive than Visio for some plans",
+          "Can get messy with large diagrams (infinite canvas is a double-edged sword)"
+        ],
+        "bestFor": "Agile teams, product managers, and collaborative brainstorming sessions",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Excalidraw",
+        "url": "https://excalidraw.com",
+        "pricing": "Free (web app); Excalidraw+ $7/month for cloud sync and collaboration",
+        "features": [
+          "Hand-drawn sketch style (unique and charming)",
+          "Real-time collaboration (end-to-end encrypted)",
+          "Local-first — works offline, saves to browser storage",
+          "Export to PNG, SVG, clipboard",
+          "Libraries of shared components",
+          "Open-source with self-hosting option"
+        ],
+        "pros": [
+          "Unique hand-drawn style makes diagrams look friendly and approachable",
+          "Real-time collaboration with end-to-end encryption (privacy-friendly)",
+          "Free version is very capable (no object limits)",
+          "Works offline (local-first architecture)",
+          "Open-source — can self-host Excalidraw+ features"
+        ],
+        "cons": [
+          "Hand-drawn style isn't suitable for formal/technical diagrams (network diagrams, ERDs)",
+          "Fewer shape libraries than Visio or draw.io",
+          "No Visio import/export (must recreate diagrams manually)",
+          "Less suitable for precise technical drawings"
+        ],
+        "bestFor": "Informal diagrams, brainstorming, and presentations where a hand-drawn look is desirable",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.2
+      },
+      {
+        "name": "Penpot (open-source Figma alternative with diagramming)",
+        "url": "https://penpot.app",
+        "pricing": "Free and open-source (self-host or use penpot.app for free)",
+        "features": [
+          "Open-source design and prototyping tool (similar to Figma)",
+          "SVG-based — works with standard web formats",
+          "Real-time collaboration",
+          "Components and design systems",
+          "Can be used for wireframing and simple diagrams",
+          "Self-hosting option with Docker"
+        ],
+        "pros": [
+          "Open-source and free — no vendor lock-in",
+          "SVG-based (standard format, not proprietary like .vsdx)",
+          "Real-time collaboration built-in",
+          "Can replace both Figma and simple Visio use cases",
+          "Self-hosting gives you complete control"
+        ],
+        "cons": [
+          "Not a dedicated diagramming tool — lacks specialized shape libraries (network equipment, ERD symbols)",
+          "Smaller community than draw.io or Lucidchart",
+          "More focused on UI design than technical diagramming",
+          "Learning curve if coming from Visio"
+        ],
+        "bestFor": "Design teams who want an open-source Figma alternative and occasionally need simple diagrams",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 3.9
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from Visio to an alternative is relatively straightforward because most modern diagramming tools support importing .vsdx files. The main work is adjusting formatting (fonts, colors, shape sizes) to match your organization's standards in the new tool.",
+      "steps": [
+        "Identify which Visio features you actually use — basic flowcharts? data-linked diagrams? custom stencils?",
+        "Try importing your most complex .vsdx file into draw.io and Lucidchart to see which preserves formatting best",
+        "For each alternative, recreate your organization's standard templates and shape libraries",
+        "Set up integrations (Google Drive, OneDrive, GitHub) for file storage in the new tool",
+        "Share the new tool with your team and train them on the new interface",
+        "Export any Visio files you need to keep to .vsdx as backup before canceling Visio"
+      ],
+      "tips": [
+        "draw.io can import .vsdx files and export back to .vsdx — this is the best path if you occasionally need to share with Visio users",
+        "For AWS or Azure architecture diagrams, draw.io has excellent shape libraries for cloud infrastructure — often better than Visio's built-in stencils",
+        "If you use Visio for data-linked diagrams (linking shapes to Excel data), Lucidchart has a similar feature in its paid plan — test it before committing",
+        "Miro is excellent for early-stage diagramming (brainstorming, mind maps) but use draw.io for final, formal diagrams"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Can I open my existing .vsdx files in these alternatives?",
+        "a": "Yes — draw.io, Lucidchart, and some other tools support importing .vsdx files. Formatting may shift slightly (fonts, colors, shape sizes), so you'll need to do some cleanup. Export back to .vsdx is also supported in draw.io for sharing with Visio users."
+      },
+      {
+        "q": "What if my organization requires Visio for compliance or standards?",
+        "a": "If your organization mandates Visio, you may need to keep a license. However, you can do the actual work in draw.io and export to .vsdx for delivery. This gives you the free tool's ease of use while maintaining compliance."
+      },
+      {
+        "q": "Is there a truly offline alternative to Visio?",
+        "a": "Yes — draw.io has a desktop app (download from github.com/jgraph/drawio) that works completely offline. You can also use LibreOffice Draw (free, open-source) for simple diagrams, though it lacks the specialized shape libraries of Visio or draw.io."
+      }
+    ]
+  },
+  "TeamViewer": {
+    "name": "TeamViewer",
+    "category": "Remote Desktop",
+    "description": "TeamViewer is a popular remote desktop and support tool that allows users to access computers and devices remotely for technical support, file transfer, and collaboration. While it has a free tier for personal use, commercial use requires a paid license starting at $24.90/month per user, with aggressive detection of commercial use that blocks free users.",
+    "website": "https://teamviewer.com",
+    "painPoints": [
+      "Free version aggressively detects 'commercial use' and blocks connections after a few minutes",
+      "Paid plans are expensive: $24.90/month per user (billed annually) for the basic business plan",
+      "Requires account creation and internet connection — no peer-to-peer without a server",
+      "Resource-heavy — can slow down older computers during remote sessions",
+      "Privacy concerns — TeamViewer has had security incidents, and the company can access connection metadata"
+    ],
+    "whySwitch": "There are excellent free remote desktop tools that don't artificially limit free users. Chrome Remote Desktop is completely free with no time limits. AnyDesk (free for personal use) is faster and lighter than TeamViewer. For advanced users, Rustdesk (open-source, self-hostable) gives you complete control. Even Windows' built-in Remote Desktop (RDP) is free for Windows Pro users. For many use cases, TeamViewer is unnecessary expensive.",
+    "alternatives": [
+      {
+        "name": "Chrome Remote Desktop",
+        "url": "https://remotedesktop.google.com",
+        "pricing": "100% free — no limits, no accounts beyond Google account",
+        "features": [
+          "Browser-based — works in Chrome or Edge without installing desktop software (or use the Chrome Remote Desktop app)",
+          "Google account authentication (secure and familiar)",
+          "Unattended access (set up permanent access to your computers)",
+          "File transfer via copy-paste through remote session",
+          "Cross-platform (Windows, macOS, Linux, ChromeOS, Android, iOS)",
+          "No connection time limits"
+        ],
+        "pros": [
+          "Completely free with no time limits or 'commercial use' detection",
+          "Works in browser — no complex setup or port forwarding",
+          "Google account security (2FA, security keys supported)",
+          "Very reliable — Google's infrastructure",
+          "Simple interface — easy for non-technical users"
+        ],
+        "cons": [
+          "Requires Google account (privacy concern for some)",
+          "No advanced features (no chat, no multi-monitor support in browser version)",
+          "File transfer is slow (copy-paste through remote session)",
+          "No mobile-to-mobile remote control (only remote into a desktop from mobile)"
+        ],
+        "bestFor": "Personal use, simple remote access, and non-technical users",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.3
+      },
+      {
+        "name": "AnyDesk",
+        "url": "https://anydesk.com",
+        "pricing": "Free for personal use; Lite $14.90/month per user for commercial",
+        "features": [
+          "Very fast and lightweight (lower latency than TeamViewer)",
+          "Cross-platform (Windows, macOS, Linux, Android, iOS)",
+          "Unattended access with password or license key",
+          "File transfer with drag-and-drop",
+          "VPN alternative (tunnel connections through AnyDesk)",
+          "Whiteboard and annotation tools"
+        ],
+        "pros": [
+          "Faster and more responsive than TeamViewer (especially on slower connections)",
+          "Free for personal use with no time limits (unlike TeamViewer which blocks commercial-looking use)",
+          "Lighter weight — uses fewer system resources",
+          "Good mobile apps (remote from iPad to PC, etc.)",
+          "Simple interface — easier than TeamViewer for basic remote control"
+        ],
+        "cons": [
+          "Free version explicitly prohibits commercial use (enforced by EULA, though not as aggressively as TeamViewer)",
+          "Paid plans are still expensive for small teams",
+          "Privacy concerns similar to TeamViewer (connection routing through their servers)",
+          "No Linux ARM support (yet)"
+        ],
+        "bestFor": "Personal use, small businesses, and users who want a faster TeamViewer alternative",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Rustdesk (open-source, self-hostable)",
+        "url": "https://rustdesk.com",
+        "pricing": "Free and open-source; Rustdesk Pro (self-hosted) has a one-time license fee",
+        "features": [
+          "Open-source remote desktop (Rust-based, lightweight)",
+          "Self-hosting option — run your own relay server for complete privacy",
+          "Cross-platform (Windows, macOS, Linux, Android, iOS)",
+          "File transfer, TCP tunneling, and VPN-like functionality",
+          "No account required for direct peer-to-peer connections",
+          "End-to-end encryption with Curve25519 + ChaCha20Poly1305"
+        ],
+        "pros": [
+          "Completely free and open-source — no 'commercial use' restrictions",
+          "Self-hosting option gives you complete privacy and control",
+          "Lightweight and fast (Rust is efficient)",
+          "No account required for direct connections (unlike TeamViewer/AnyDesk)",
+          "Active development and community"
+        ],
+        "cons": [
+          "Self-hosting requires technical knowledge (Docker or manual setup)",
+          "Smaller user base than TeamViewer — fewer tutorials",
+          "Mobile apps are newer and less polished",
+          "If you don't self-host, you rely on their public relay servers (which could go down)"
+        ],
+        "bestFor": "Privacy-conscious users, self-hosters, and developers",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Windows Remote Desktop (RDP) — built-in",
+        "url": "https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/welcome-to-rds",
+        "pricing": "Free (included with Windows Pro and above)",
+        "features": [
+          "Built into Windows Pro/Enterprise/Education (no download needed)",
+          "Supports multiple simultaneous users (with proper licensing)",
+          "Network Level Authentication (NLA) for security",
+          "Remote Desktop Gateway for secure access over the internet",
+          "Supports multiple monitors",
+          "File and printer redirection"
+        ],
+        "pros": [
+          "Completely free — included with Windows Pro (no additional cost)",
+          "Very fast and efficient (native Windows protocol)",
+          "Works over LAN without any cloud service",
+          "Supports multiple monitors",
+          "No account creation — uses Windows credentials"
+        ],
+        "cons": [
+          "Windows Home edition does NOT include RDP host (only client)",
+          "Requires port forwarding or VPN for access over the internet (security risk if not done properly)",
+          "No mobile client from Microsoft (use Microsoft Remote Desktop app on iOS/Android)",
+          "No file transfer via simple drag-drop (must use network shares or Remote Desktop's redirection)"
+        ],
+        "bestFor": "Windows Pro users accessing their own PCs over LAN or VPN",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.1
+      },
+      {
+        "name": "VNC Connect (RealVNC)",
+        "url": "https://realvnc.com",
+        "pricing": "Free for personal use (VNC Viewer + VNC Server on Raspberry Pi); Commercial from $3.39/device/month",
+        "features": [
+          "Cross-platform (Windows, macOS, Linux, Raspberry Pi)",
+          "VNC protocol (standard since the 1990s)",
+          "Cloud connectivity (VNC Connect) or direct connection via IP",
+          "File transfer, chat, and printing",
+          "Multi-factor authentication",
+          "Session recording (paid)"
+        ],
+        "pros": [
+          "Free for personal use on Raspberry Pi (very popular for Pi remote access)",
+          "Standard VNC protocol — works with many VNC clients/servers",
+          "Good for accessing headless Raspberry Pi devices",
+          "Cross-platform support is excellent",
+          "On-premise option available for enterprises"
+        ],
+        "cons": [
+          "Free version is limited (mainly for Raspberry Pi personal use)",
+          "Paid version is expensive for what it offers",
+          "VNC protocol is less efficient than modern alternatives (higher latency)",
+          "Setup can be complex for non-technical users (port forwarding, firewall rules)"
+        ],
+        "bestFor": "Raspberry Pi users, Linux remote access, and cross-platform VNC needs",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 3.8
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from TeamViewer to an alternative is straightforward — most alternatives have similar core features (remote control, file transfer, unattended access). The main work is setting up the new tool on all your devices and ensuring firewall/router settings allow connections.",
+      "steps": [
+        "Choose your alternative based on your use case: Chrome Remote Desktop for personal/simple, AnyDesk for speed, Rustdesk for privacy, RDP for Windows-to-Windows",
+        "Install the alternative on all computers you need to access remotely",
+        "Set up unattended access (if needed) — this usually involves setting a fixed password or PIN",
+        "Test the connection from your typical remote locations (home, coffee shop, etc.) to ensure it works through firewalls",
+        "Update any documentation or shared credentials your team uses for remote access",
+        "Uninstall TeamViewer from all devices after confirming the new tool works reliably"
+      ],
+      "tips": [
+        "For Windows-to-Windows remote access over LAN, nothing beats built-in RDP for speed and quality — use it if both computers are on the same network",
+        "If you need to access computers over the internet without VPN, Chrome Remote Desktop is the simplest option (no port forwarding needed)",
+        "Rustdesk's self-hosted option is excellent for teams who want privacy and control — the Docker setup is well-documented",
+        "AnyDesk's 'TCP tunneling' feature lets you tunnel connections through AnyDesk (useful for accessing NAS or router admin pages remotely)"
+      ]
+    },
+    "faq": [
+      {
+        "q": "Will the free alternatives suddenly block me for 'commercial use' like TeamViewer did?",
+        "a": "Chrome Remote Desktop and Rustdesk (self-hosted) have no 'commercial use' detection. AnyDesk's free version prohibits commercial use in its EULA, but it's not enforced by automatic detection like TeamViewer. For genuine commercial use, pay for a license — it's cheaper than TeamViewer."
+      },
+      {
+        "q": "What about accessing my computer from a different network (no VPN)?",
+        "a": "Chrome Remote Desktop, AnyDesk, and Rustdesk (with their cloud relay) all work over the internet without VPN or port forwarding. Windows RDP requires either VPN or port forwarding (which has security risks). For secure internet-based RDP, set up a WireGuard VPN or use Chrome Remote Desktop instead."
+      },
+      {
+        "q": "Is there a mobile app for remotely controlling my computer?",
+        "a": "Yes — Chrome Remote Desktop, AnyDesk, Rustdesk, and Microsoft Remote Desktop (iOS/Android) all have mobile apps. AnyDesk's mobile apps are particularly good — you can remotely control a PC from an iPad with a decent experience."
+      }
+    ]
+  },
+  "WinRAR": {
+    "name": "WinRAR",
+    "category": "File Compression",
+    "description": "WinRAR is a popular file compression and archiving utility for Windows. It is shareware — you can use the trial version indefinitely, but it nags you to purchase a license ($29 for single-user) every time you open it. Many users tolerate the nag screen for years, not realizing there are excellent free alternatives.",
+    "website": "https://rarlab.com",
+    "painPoints": [
+      "Nag screen every time you open WinRAR — asks you to buy a license even after the trial 'expires'",
+      "Cost: $29 for a single-user license (unnecessary when free alternatives exist)",
+      "Windows-only (no official macOS or Linux version)",
+      "Proprietary RAR format — people who receive .rar files may need WinRAR to open them (though 7-Zip can open RAR)",
+      "Lacks some modern features (encryption standards, archive formats) compared to newer tools"
+    ],
+    "whySwitch": "7-Zip is a free, open-source file archiver that supports every format WinRAR does (including RAR extraction) and many more (7z, ZIP, GZIP, BZIP2, TAR, etc.). It's completely free with no nag screens, no registration, no ads. For macOS, Keka or The Unarchiver are excellent free alternatives. For most users, WinRAR is completely unnecessary — 7-Zip or the built-in Windows zip feature handles 99% of use cases.",
+    "alternatives": [
+      {
+        "name": "7-Zip",
+        "url": "https://7-zip.org",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Supports every major archive format: 7z, ZIP, GZIP, BZIP2, TAR, XZ, WIM, AR, CAB, DMG, ISO, RAR, and more",
+          "High compression ratio (especially with 7z format with LZMA/LZMA2)",
+          "Strong AES-256 encryption",
+          "Self-extracting capability for 7z format",
+          "Integration with Windows Shell (right-click context menu)",
+          "Command-line version for scripting"
+        ],
+        "pros": [
+          "Completely free with no ads, no nag screens, no registration",
+          "Open-source and actively maintained",
+          "Better compression than ZIP (7z format)",
+          "Handles RAR files (extract only — can't create RAR)",
+          "Lightweight — uses minimal system resources",
+          "Available in 80+ languages"
+        ],
+        "cons": [
+          "Interface is very dated (functional but not pretty)",
+          "No official support for creating RAR archives (but RAR is proprietary and dying anyway)",
+          "Windows-only (use p7zip on Linux/macOS)",
+          "No mobile app (but you can use ZArchiver on Android)"
+        ],
+        "bestFor": "Windows users who want a free, powerful, no-nonsense file archiver",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.7
+      },
+      {
+        "name": "PeaZip",
+        "url": "https://peazip.github.io",
+        "pricing": "100% free and open-source",
+        "features": [
+          "Supports 200+ archive formats (more than 7-Zip)",
+          "Graphical user interface (more modern than 7-Zip's)",
+          "Encrypted password manager for archive passwords",
+          "Secure delete (wipe) function",
+          "Cross-platform (Windows, Linux; portable version available)",
+          "Scripting and automation support"
+        ],
+        "pros": [
+          "Free and open-source with a more modern GUI than 7-Zip",
+          "Supports an incredible number of archive formats (200+)",
+          "Good security features (encrypted password manager, secure delete)",
+          "Portable version available (run from USB without installing)",
+          "Cross-platform (Windows and Linux)"
+        ],
+        "cons": [
+          "Slower compression speed than 7-Zip for some formats",
+          "Interface can feel cluttered with many options",
+          "Less widely known than 7-Zip (fewer tutorials online)",
+          "Windows-only for the official portable version (Linux uses different package)"
+        ],
+        "bestFor": "Users who want a modern GUI and support for many archive formats",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.3
+      },
+      {
+        "name": "The Unarchiver (macOS)",
+        "url": "https://theunarchiver.com",
+        "pricing": "Free (with optional donation)",
+        "features": [
+          "Supports every archive format you'll encounter (RAR, 7z, ZIP, TAR, GZIP, BZIP2, ISO, etc.)",
+          "Integrates with Finder — double-click any archive to extract",
+          "Lightweight and fast",
+          "Also available as command-line tool (unar/lsar) for scripting",
+          "Supports non-UTF8 encoding (opens archives with Chinese/Japanese filenames correctly)"
+        ],
+        "pros": [
+          "Completely free with no ads",
+          "Just works — double-click any archive and it extracts",
+          "Handles filenames in any language correctly (unlike some other tools)",
+          "Very lightweight — doesn't slow down your Mac",
+          "Also works on older macOS versions"
+        ],
+        "cons": [
+          "macOS-only (not cross-platform)",
+          "No archive creation — only extraction (use Keka or 7-Zip for creating archives)",
+          "No GUI for advanced options (compression level, encryption) — use Keka for that",
+          "Development has slowed — it's stable but not actively adding features"
+        ],
+        "bestFor": "Mac users who just need to extract archives (no creation needed)",
+        "isFree": true,
+        "isOpenSource": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Keka (macOS)",
+        "url": "https://keka.io",
+        "pricing": "Free (with optional donation on website; Mac App Store version is $4.99)",
+        "features": [
+          ".7z, ZIP, TAR, GZIP, BZIP2, XZ, LZIP, DMG, ISO",
+          "Split archives (split large files into multiple volumes)",
+          "Password protection and AES-256 encryption",
+          "Integrates with Finder (right-click to compress)",
+          "Supports extracting RAR, 7z, ZIP, and many other formats",
+          "Queue for batch compression/extraction"
+        ],
+        "pros": [
+          "Excellent macOS integration (much better than 7-Zip on Mac via Wine)",
+          "Free from website (donation optional); cheap on Mac App Store",
+          "Good compression ratios with 7z format",
+          "Handles split archives well",
+          "Clean, modern macOS-native interface"
+        ],
+        "cons": [
+          "macOS-only",
+          "Free version from website has a small nag screen (donation removes it; or buy from Mac App Store for $4.99 to remove entirely)",
+          "Not open-source (though free beer from website)",
+          "Fewer formats supported than PeaZip or 7-Zip"
+        ],
+        "bestFor": "Mac users who want a native, full-featured compression tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Windows built-in ZIP support (no install needed)",
+        "url": "",
+        "pricing": "Free (built into Windows)",
+        "features": [
+          "Right-click any folder → 'Send to → Compressed (zipped) folder'",
+          "Double-click any .zip file to open and extract",
+          "Supports ZIP format (create and extract)",
+          "Integrates with File Explorer",
+          "No additional software needed"
+        ],
+        "pros": [
+          "Already on your computer — no installation needed",
+          "Simple and familiar (every Windows user knows how to use it)",
+          "No ads, no nag screens, no registration",
+          "Good enough for 90% of users who only need ZIP (not RAR, 7z, etc.)",
+          "Fast for small to medium archives"
+        ],
+        "cons": [
+          "ZIP-only — can't create or extract 7z, RAR, TAR, etc.",
+          "No encryption options (no password-protected ZIP from right-click)",
+          "No advanced options (compression level, split archives)",
+          "Slower than 7-Zip for large archives"
+        ],
+        "bestFor": "Casual users who only need ZIP compression/decompression",
+        "isFree": true,
+        "isOpenSource": false,
+        "rating": 3.7
+      }
+    ],
+    "migrationGuide": {
+      "overview": "Migrating from WinRAR to a free alternative is the easiest migration possible — just install the alternative, and it will associate itself with archive file types. You can then uninstall WinRAR. Your existing .rar files can be opened by 7-Zip or PeaZip with no issues.",
+      "steps": [
+        "Download and install 7-Zip (Windows) or Keka (macOS) — both are free",
+        "Open the alternative and use its 'Tools → Options → System' (7-Zip) to associate it with all archive formats",
+        "Double-click a .rar file to confirm the alternative opens it correctly",
+        "Uninstall WinRAR (optional — having multiple archivers doesn't hurt, but WinRAR's nag screen is annoying)",
+        "If you have any .rar files you created, consider re-compressing them to .7z format (better compression, open format)",
+        "Never see a WinRAR nag screen again"
+      ],
+      "tips": [
+        "7-Zip's .7z format has better compression than RAR or ZIP — if you're creating archives, use 7z with LZMA2 for maximum compression",
+        "If you receive .rar files from others, 7-Zip extracts them perfectly — you don't need WinRAR for that",
+        "On macOS, The Unarchiver is the best free tool for extracting any archive format — it 'just works' with Finder",
+        "If you're tempted to buy WinRAR to stop the nag screen: don't. 7-Zip is free, open-source, and better in every way."
+      ]
+    },
+    "faq": [
+      {
+        "q": "Will I still be able to open .rar files if I uninstall WinRAR?",
+        "a": "Yes — 7-Zip, PeaZip, and The Unarchiver (macOS) all open .rar files perfectly. You don't need WinRAR to open RAR archives. The RAR compression format is proprietary, but the extraction algorithm has been reverse-engineered and is supported by all major free archivers."
+      },
+      {
+        "q": "Should I still create .rar archives, or switch to something else?",
+        "a": "Switch to .7z (7-Zip) or .zip. 7z has better compression than RAR, is open-source (no proprietary format), and is supported by every major archiver. ZIP is the most compatible format (every OS can open ZIP natively). There's no reason to create .rar files anymore."
+      },
+      {
+        "q": "Is 7-Zip safe? The website looks old and sketchy.",
+        "a": "Yes — 7-Zip is safe, open-source, and widely trusted. The website looks dated because the developer focuses on functionality over aesthetics. Download from the official site (7-zip.org) or via Microsoft Store / package managers (Chocolatey, winget, apt, etc.). It's been around since 1999 and is malware-free."
+      }
+    ]
+  }
+}
