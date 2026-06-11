@@ -1,0 +1,1087 @@
+[
+  {
+    "paidTool": "Squarespace",
+    "paidToolUrl": "https://www.squarespace.com",
+    "tagline": "Popular website builder with beautiful templates",
+    "description": "Squarespace is a popular website builder known for beautiful, professionally-designed templates. Pricing starts at $16/month (billed annually) for Personal, and $23/month for Business. While templates are beautiful, it's expensive compared to free alternatives, and customization is limited.",
+    "pricing": "Personal: $16/month (billed annually); Business: $23/month; Basic Commerce: $28/month; Advanced Commerce: $52/month",
+    "painPoints": [
+      {
+        "problem": "Expensive ($16/month billed annually for basic plan)",
+        "impact": "Users pay significant ongoing cost for website builder"
+      },
+      {
+        "problem": "Limited customization (locked into templates)",
+        "impact": "Users hit limits when trying to customize beyond template"
+      },
+      {
+        "problem": "No free tier (only 14-day free trial)",
+        "impact": "Users must pay to continue using after trial ends"
+      },
+      {
+        "problem": "Transaction fees on lower tiers (Personal, Business)",
+        "impact": "Users pay extra fees on sales"
+      }
+    ],
+    "whySwitch": [
+      "Use free website builders like WordPress.com (free tier) or Google Sites (completely free)",
+      "Use cheaper alternatives like Wix (free tier) or Carrd (one-time $19 for up to 3 sites)",
+      "Use open-source self-hosted options like WordPress.org (free software) + cheap hosting",
+      "Use Webflow (free tier) for more design control"
+    ],
+    "alternatives": [
+      {
+        "name": "WordPress.com (Free Tier)",
+        "url": "https://wordpress.com",
+        "reason": "Free tier includes basic website building — much cheaper than Squarespace",
+        "description": "WordPress.com is a website builder based on WordPress. The free tier includes basic website building with WordPress.com subdomain. Paid plans start at $4/month (much cheaper than Squarespace).",
+        "features": [
+          "Free tier (with WordPress.com subdomain)",
+          "Paid plans start at $4/month (much cheaper)",
+          "Huge plugin ecosystem (self-hosted)",
+          "Flexible and customizable",
+          "Powerful blogging features"
+        ],
+        "pros": [
+          "Much cheaper than Squarespace",
+          "Free tier available",
+          "Huge ecosystem (plugins, themes)",
+          "Excellent for blogging"
+        ],
+        "cons": [
+          "Free tier has limited features",
+          "Less beautiful templates than Squarespace (out of the box)",
+          "Learning curve for customization"
+        ],
+        "bestFor": "Users who want a cheaper website builder with more flexibility than Squarespace",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "Wix (Free Tier)",
+        "url": "https://www.wix.com",
+        "reason": "Free tier includes website building with Wix branding — good for simple sites",
+        "description": "Wix is a popular website builder with a free tier that includes basic website building (with Wix branding and subdomain). Paid plans start at $16/month (similar to Squarespace).",
+        "features": [
+          "Free tier (with Wix branding and subdomain)",
+          "Drag-and-drop builder",
+          "500+ templates",
+          "App Market for adding features",
+          "Paid plans start at $16/month"
+        ],
+        "pros": [
+          "Free tier available",
+          "Drag-and-drop builder is easy",
+          "500+ templates",
+          "App Market for adding features"
+        ],
+        "cons": [
+          "Free tier has Wix branding and subdomain",
+          "Less beautiful templates than Squarespace (out of the box)",
+          "Website loading speed can be slow"
+        ],
+        "bestFor": "Users who want a free or low-cost website builder with drag-and-drop",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      },
+      {
+        "name": "Google Sites (Completely Free)",
+        "url": "https://sites.google.com",
+        "reason": "Completely free website builder by Google — no subscription needed",
+        "description": "Google Sites is a completely free website builder by Google. It's simple and basic, but completely free (no subscription, no branding). Good for simple sites, intranets, and project sites.",
+        "features": [
+          "Completely free (no subscription, no branding)",
+          "Simple drag-and-drop builder",
+          "Integration with Google Workspace",
+          "Custom domains supported",
+          "Mobile-responsive"
+        ],
+        "pros": [
+          "Completely free",
+          "No branding or subscription",
+          "Integration with Google Workspace",
+          "Simple and easy to use"
+        ],
+        "cons": [
+          "Very basic templates and features",
+          "Less flexible than Squarespace or Wix",
+          "Limited design control"
+        ],
+        "bestFor": "Users who want a completely free, simple website builder for basic sites",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.2,
+        "featured": true
+      },
+      {
+        "name": "Carrd (One-time Payment)",
+        "url": "https://carrd.co",
+        "reason": "One-time payment ($19) for up to 3 sites — much cheaper than Squarespace subscription",
+        "description": "Carrd is a simple website builder for one-page sites. One-time payment of $19 gives you up to 3 sites (no recurring subscription). Much cheaper than Squarespace's $16/month.",
+        "features": [
+          "One-time payment ($19 for up to 3 sites)",
+          "Simple one-page sites",
+          "Custom domains supported",
+          "Mobile-responsive",
+          "No recurring subscription"
+        ],
+        "pros": [
+          "One-time payment (much cheaper than subscription)",
+          "Simple and easy to use",
+          "No recurring cost",
+          "Good for one-page sites"
+        ],
+        "cons": [
+          "One-page sites only (not for multi-page sites)",
+          "Less feature-rich than Squarespace",
+          "Limited templates"
+        ],
+        "bestFor": "Users who want a simple, one-page site with no recurring subscription",
+        "isFree": false,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "WordPress.org (Free, Self-hosted)",
+        "url": "https://wordpress.org",
+        "reason": "Free, open-source website software — self-host for full control and no subscription",
+        "description": "WordPress.org is the free, open-source website software (unlike WordPress.com, which is a hosted service). You can download and install it on your own hosting (as low as $3/month), and have full control with no subscription fees.",
+        "features": [
+          "Free and open-source (GNU GPL)",
+          "Self-hosted (full control, no subscription)",
+          "Huge plugin ecosystem (50,000+ free plugins)",
+          "Flexible and customizable",
+          "Powerful blogging and CMS features"
+        ],
+        "pros": [
+          "Completely free (software)",
+          "Self-hosted (full control, no subscription)",
+          "Huge ecosystem (plugins, themes)",
+          "Most popular CMS (40%+ of the web)"
+        ],
+        "cons": [
+          "Requires self-hosting setup",
+          "Learning curve for customization",
+          "Responsible for your own hosting and maintenance"
+        ],
+        "bestFor": "Users who want full control over their website with no subscription fees (ok with self-hosting)",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.9,
+        "featured": true
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "For WordPress.com: sign up for free tier, pick a theme, and start building",
+        "For Wix: sign up for free tier, use drag-and-drop builder, and publish (with Wix branding)",
+        "For Google Sites: sign in with Google account, create a new site, and build (completely free)",
+        "For Carrd: pay one-time $19, then build your one-page site (no recurring cost)",
+        "For WordPress.org: set up hosting ($3-10/month), install WordPress, pick a theme, and build"
+      ],
+      "tips": [
+        "Squarespace's templates are beautiful but limited — WordPress.org (self-hosted) gives you full control",
+        "Carrd's one-time $19 payment is much cheaper than Squarespace's $16/month subscription",
+        "If you only need a simple one-page site, Carrd is the best value"
+      ]
+    },
+    "category": "Website Builder",
+    "seoKeywords": [
+      "squarespace free alternative",
+      "squarespace alternative free",
+      "best squarespace alternative",
+      "squarespace vs wordpress 2026",
+      "free website builder"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Squarespace?",
+        "answer": "Yes. Google Sites is completely free (no subscription, no branding). WordPress.com has a free tier. Wix has a free tier (with branding)."
+      },
+      {
+        "question": "Which Squarespace alternative is cheapest?",
+        "answer": "Google Sites (completely free). Carrd (one-time $19 for up to 3 sites). WordPress.org (self-hosted, free software + $3-10/month hosting)."
+      },
+      {
+        "question": "Should I use WordPress.org instead of Squarespace?",
+        "answer": "If you want full control and no recurring subscription: yes. WordPress.org is free (software) + cheap hosting ($3-10/month). But you're responsible for maintenance. Squarespace is easier (managed), but you pay $16/month forever."
+      }
+    ]
+  },
+  {
+    "paidTool": "Webflow",
+    "paidToolUrl": "https://webflow.com",
+    "tagline": "Professional website builder with visual coding",
+    "description": "Webflow is a professional website builder that combines visual design with clean code output. It's more powerful than Squarespace or Wix, but also more expensive: $14/month (billed annually) for Basic, and up to $39/month for CMS plan. Free tier has Webflow branding and limited features.",
+    "pricing": "Starter (Free with branding): free; Basic: $14/month (billed annually); CMS: $23/month; Business: $39/month",
+    "painPoints": [
+      {
+        "problem": "Free tier has Webflow branding and limited features",
+        "impact": "Users hit limits quickly on free tier"
+      },
+      {
+        "problem": "Paid plans are expensive ($14-39/month)",
+        "impact": "Users pay significant ongoing cost for professional website builder"
+      },
+      {
+        "problem": "Steep learning curve (more complex than Squarespace or Wix)",
+        "impact": "Beginners struggle to learn Webflow's interface"
+      },
+      {
+        "problem": "No built-in e-commerce on lower tiers",
+        "impact": "Users must upgrade to expensive plans for online store"
+      }
+    ],
+    "whySwitch": [
+      "Use free tier (it's capable for basic sites)",
+      "Use free alternatives like WordPress.com (free tier) or Google Sites (completely free)",
+      "Use cheaper alternatives like Wix (free tier) or Carrd (one-time $19)",
+      "Use open-source self-hosted options like WordPress.org (free) + cheap hosting"
+    ],
+    "alternatives": [
+      {
+        "name": "WordPress.org (Free, Self-hosted)",
+        "url": "https://wordpress.org",
+        "reason": "Free, open-source — self-host for full control and no subscription (unlike Webflow)",
+        "description": "WordPress.org is the free, open-source website software. You can download and install it on your own hosting (as low as $3/month), and have full control with no subscription fees. Much more flexible than Webflow.",
+        "features": [
+          "Free and open-source (GNU GPL)",
+          "Self-hosted (full control, no subscription)",
+          "Huge plugin ecosystem (50,000+ free plugins)",
+          "Flexible and customizable",
+          "Powerful CMS and blogging features"
+        ],
+        "pros": [
+          "Completely free (software)",
+          "Self-hosted (full control, no subscription)",
+          "Much more flexible than Webflow",
+          "Huge ecosystem (plugins, themes)"
+        ],
+        "cons": [
+          "Requires self-hosting setup",
+          "Learning curve for customization",
+          "No visual designer like Webflow (need to code or use page builders)"
+        ],
+        "bestFor": "Users who want full control over their website with no subscription fees (ok with self-hosting)",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.9,
+        "featured": true
+      },
+      {
+        "name": "Wix (Free Tier)",
+        "url": "https://www.wix.com",
+        "reason": "Free tier includes drag-and-drop builder — easier than Webflow, completely free to start",
+        "description": "Wix is a popular website builder with a free tier that includes drag-and-drop builder. It's easier to learn than Webflow, and free tier is capable for basic sites.",
+        "features": [
+          "Free tier (with Wix branding and subdomain)",
+          "Drag-and-drop builder (easy to learn)",
+          "500+ templates",
+          "App Market for adding features",
+          "Paid plans start at $16/month"
+        ],
+        "pros": [
+          "Free tier available",
+          "Easier to learn than Webflow",
+          "Drag-and-drop builder",
+          "500+ templates"
+        ],
+        "cons": [
+          "Free tier has Wix branding and subdomain",
+          "Less powerful than Webflow for complex sites",
+          "Website loading speed can be slow"
+        ],
+        "bestFor": "Users who want an easier, free alternative to Webflow for basic sites",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      },
+      {
+        "name": "Squarespace (Paid, but easier than Webflow)",
+        "url": "https://www.squarespace.com",
+        "reason": "Easier to use than Webflow (less learning curve) — good alternative if you find Webflow too complex",
+        "description": "Squarespace is easier to use than Webflow (less learning curve). It has beautiful templates and is more suitable for beginners. Pricing starts at $16/month (similar to Webflow).",
+        "features": [
+          "Beautiful, professionally-designed templates",
+          "Easier to use than Webflow",
+          "Pricing starts at $16/month (similar to Webflow)",
+          "Good for portfolios, blogs, and simple e-commerce"
+        ],
+        "pros": [
+          "Easier to use than Webflow",
+          "Beautiful templates",
+          "Less learning curve"
+        ],
+        "cons": [
+          "More expensive than free alternatives",
+          "Less powerful than Webflow for complex sites",
+          "Limited customization (locked into templates)"
+        ],
+        "bestFor": "Users who find Webflow too complex and want an easier website builder",
+        "isFree": false,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6
+      },
+      {
+        "name": "Google Sites (Completely Free)",
+        "url": "https://sites.google.com",
+        "reason": "Completely free — no subscription, no branding (unlike Webflow's free tier)",
+        "description": "Google Sites is a completely free website builder by Google. It's simple and basic, but completely free (no subscription, no branding). Good for simple sites and intranets.",
+        "features": [
+          "Completely free (no subscription, no branding)",
+          "Simple drag-and-drop builder",
+          "Integration with Google Workspace",
+          "Custom domains supported",
+          "Mobile-responsive"
+        ],
+        "pros": [
+          "Completely free",
+          "No branding or subscription",
+          "Integration with Google Workspace",
+          "Simple and easy to use"
+        ],
+        "cons": [
+          "Very basic templates and features",
+          "Less powerful than Webflow",
+          "Limited design control"
+        ],
+        "bestFor": "Users who want a completely free, simple website builder for basic sites",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.2
+      },
+      {
+        "name": "Framer (Free Tier)",
+        "url": "https://www.framer.com",
+        "reason": "Free tier includes basic website building — similar to Webflow but easier to learn",
+        "description": "Framer is a website builder similar to Webflow but easier to learn. The free tier includes basic website building (with Framer branding). Good Webflow alternative for designers.",
+        "features": [
+          "Free tier (with Framer branding)",
+          "Similar to Webflow but easier to learn",
+          "Designer-friendly interface",
+          "React-based (can add custom React components)",
+          "Paid plans start at $10/month"
+        ],
+        "pros": [
+          "Easier to learn than Webflow",
+          "Designer-friendly",
+          "React-based (custom components)",
+          "Cheaper paid plans ($10/month)"
+        ],
+        "cons": [
+          "Free tier has Framer branding",
+          "Less powerful than Webflow for complex sites",
+          "Smaller community than Webflow"
+        ],
+        "bestFor": "Designers who want a Webflow alternative that's easier to learn",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5,
+        "featured": true
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "For WordPress.org: set up hosting ($3-10/month), install WordPress, pick a theme, and build",
+        "For Wix: sign up for free tier, use drag-and-drop builder, and publish (with Wix branding)",
+        "For Squarespace: sign up for free trial, pick a template, and build",
+        "For Google Sites: sign in with Google account, create a new site, and build (completely free)",
+        "For Framer: sign up for free tier, design your site, and publish (with Framer branding)"
+      ],
+      "tips": [
+        "Webflow's free tier has branding — try it before paying",
+        "WordPress.org (self-hosted) gives you full control with no subscription (but requires setup)",
+        "Framer is easier to learn than Webflow — good for designers"
+      ]
+    },
+    "category": "Website Builder",
+    "seoKeywords": [
+      "webflow free alternative",
+      "webflow alternative free",
+      "best webflow alternative",
+      "webflow vs wordpress 2026",
+      "free website builder no subscription"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Webflow?",
+        "answer": "Yes. Google Sites is completely free (no subscription, no branding). WordPress.com has a free tier. Wix has a free tier (with branding)."
+      },
+      {
+        "question": "Which Webflow alternative is best for designers?",
+        "answer": "Framer is similar to Webflow but easier to learn. WordPress.org (self-hosted) gives you full control. Squarespace is easier to use than Webflow."
+      },
+      {
+        "question": "Should I use WordPress.org instead of Webflow?",
+        "answer": "If you want full control and no recurring subscription: yes. WordPress.org is free (software) + cheap hosting ($3-10/month). But you're responsible for maintenance. Webflow is managed (easier), but you pay $14/month forever."
+      }
+    ]
+  },
+  {
+    "paidTool": "WordPress.com (Paid Plans)",
+    "paidToolUrl": "https://wordpress.com",
+    "tagline": "Hosted WordPress with paid plans for more features",
+    "description": "WordPress.com is the hosted version of WordPress (unlike WordPress.org, which is self-hosted). Paid plans start at $4/month (billed annually) for Personal, and go up to $45/month for Ecommerce. While cheaper than Squarespace or Webflow, the free tier has limited features.",
+    "pricing": "Free (with WordPress.com subdomain); Personal: $4/month; Premium: $8/month; Business: $25/month; Ecommerce: $45/month",
+    "painPoints": [
+      {
+        "problem": "Free tier has limited features and WordPress.com subdomain",
+        "impact": "Users hit limits quickly on free tier"
+      },
+      {
+        "problem": "Paid plans add up (Business is $25/month)",
+        "impact": "Users pay significant ongoing cost for hosted WordPress"
+      },
+      {
+        "problem": "Cannot install third-party plugins on lower tiers (Personal, Premium)",
+        "impact": "Users must upgrade to Business ($25/month) to install plugins"
+      },
+      {
+        "problem": "WordPress.com takes 15% of revenue from Ecommerce plan sales",
+        "impact": "Users lose significant revenue to WordPress.com"
+      }
+    ],
+    "whySwitch": [
+      "Use WordPress.org (free, self-hosted) for full control and no subscription",
+      "Use free website builders like Google Sites (completely free) or Wix (free tier)",
+      "Use cheaper hosted alternatives like Hostinger (cheap hosting $2.99/month) + WordPress.org",
+      "Use Squarespace or Wix if you prefer managed hosting (no maintenance)"
+    ],
+    "alternatives": [
+      {
+        "name": "WordPress.org (Free, Self-hosted)",
+        "url": "https://wordpress.org",
+        "reason": "Free, open-source — self-host for full control, no subscription, and no revenue sharing",
+        "description": "WordPress.org is the free, open-source website software. You can download and install it on your own hosting (as low as $2.99/month), and have full control with no subscription fees and no revenue sharing.",
+        "features": [
+          "Free and open-source (GNU GPL)",
+          "Self-hosted (full control, no subscription)",
+          "Huge plugin ecosystem (50,000+ free plugins)",
+          "No revenue sharing (unlike WordPress.com)",
+          "Powerful CMS and blogging features"
+        ],
+        "pros": [
+          "Completely free (software)",
+          "Self-hosted (full control, no subscription)",
+          "No revenue sharing",
+          "Huge ecosystem (plugins, themes)"
+        ],
+        "cons": [
+          "Requires self-hosting setup",
+          "Learning curve for customization",
+          "Responsible for your own hosting and maintenance"
+        ],
+        "bestFor": "Users who want full control over their website with no subscription fees or revenue sharing",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.9,
+        "featured": true
+      },
+      {
+        "name": "Google Sites (Completely Free)",
+        "url": "https://sites.google.com",
+        "reason": "Completely free — no subscription, no branding, no revenue sharing (unlike WordPress.com)",
+        "description": "Google Sites is a completely free website builder by Google. It's simple and basic, but completely free (no subscription, no branding, no revenue sharing). Good for simple sites.",
+        "features": [
+          "Completely free (no subscription, no branding)",
+          "Simple drag-and-drop builder",
+          "Integration with Google Workspace",
+          "Custom domains supported",
+          "Mobile-responsive"
+        ],
+        "pros": [
+          "Completely free",
+          "No branding or subscription",
+          "No revenue sharing",
+          "Integration with Google Workspace"
+        ],
+        "cons": [
+          "Very basic templates and features",
+          "Less powerful than WordPress",
+          "Limited design control"
+        ],
+        "bestFor": "Users who want a completely free, simple website builder for basic sites",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.2
+      },
+      {
+        "name": "Wix (Free Tier)",
+        "url": "https://www.wix.com",
+        "reason": "Free tier includes drag-and-drop builder — easier than WordPress, completely free to start",
+        "description": "Wix is a popular website builder with a free tier that includes drag-and-drop builder. It's easier to use than WordPress (both .com and .org), and free tier is capable for basic sites.",
+        "features": [
+          "Free tier (with Wix branding and subdomain)",
+          "Drag-and-drop builder (easy to use)",
+          "500+ templates",
+          "App Market for adding features",
+          "Paid plans start at $16/month"
+        ],
+        "pros": [
+          "Free tier available",
+          "Easier to use than WordPress",
+          "Drag-and-drop builder",
+          "500+ templates"
+        ],
+        "cons": [
+          "Free tier has Wix branding and subdomain",
+          "Less flexible than WordPress.org",
+          "Website loading speed can be slow"
+        ],
+        "bestFor": "Users who want an easier, free alternative to WordPress for basic sites",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      },
+      {
+        "name": "Hostinger (Cheap Hosting + WordPress)",
+        "url": "https://www.hostinger.com",
+        "reason": "Cheap hosting ($2.99/month) + free WordPress installation — much cheaper than WordPress.com paid plans",
+        "description": "Hostinger is a cheap web hosting provider that offers WordPress hosting starting at $2.99/month. Much cheaper than WordPress.com's paid plans ($4-45/month), and you get full control with no revenue sharing.",
+        "features": [
+          "Cheap hosting starting at $2.99/month",
+          "Free WordPress installation",
+          "Full control (no revenue sharing)",
+          "Free domain (on annual plans)",
+          "24/7 customer support"
+        ],
+        "pros": [
+          "Much cheaper than WordPress.com paid plans",
+          "Full control (no revenue sharing)",
+          "Free WordPress installation",
+          "Cheap hosting ($2.99/month)"
+        ],
+        "cons": [
+          "Requires self-hosting setup (though Hostinger helps)",
+          "Less managed than WordPress.com (you're responsible for some maintenance)",
+          "Learning curve for WordPress customization"
+        ],
+        "bestFor": "Users who want cheap WordPress hosting with full control and no revenue sharing",
+        "isFree": false,
+        "isOpenSource": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "Squarespace (Easier than WordPress)",
+        "url": "https://www.squarespace.com",
+        "reason": "Easier to use than WordPress (both .com and .org) — good alternative if you find WordPress too complex",
+        "description": "Squarespace is easier to use than WordPress (both .com and .org). It has beautiful templates and is more suitable for beginners. Pricing starts at $16/month (more expensive than WordPress.com but easier).",
+        "features": [
+          "Beautiful, professionally-designed templates",
+          "Easier to use than WordPress",
+          "Pricing starts at $16/month (more than WordPress.com but easier)",
+          "Good for portfolios, blogs, and simple e-commerce"
+        ],
+        "pros": [
+          "Easier to use than WordPress",
+          "Beautiful templates",
+          "Less learning curve",
+          "Managed hosting (no maintenance)"
+        ],
+        "cons": [
+          "More expensive than WordPress.com paid plans",
+          "Less flexible than WordPress.org",
+          "Limited customization (locked into templates)"
+        ],
+        "bestFor": "Users who find WordPress too complex and want an easier, managed website builder",
+        "isFree": false,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "For WordPress.org: set up hosting ($2.99-10/month), install WordPress, pick a theme, and build",
+        "For Google Sites: sign in with Google account, create a new site, and build (completely free)",
+        "For Wix: sign up for free tier, use drag-and-drop builder, and publish (with Wix branding)",
+        "For Hostinger: sign up for cheap hosting ($2.99/month), install WordPress, and build",
+        "For Squarespace: sign up for free trial, pick a template, and build"
+      ],
+      "tips": [
+        "WordPress.com takes 15% of revenue from Ecommerce plan sales — use WordPress.org (self-hosted) to avoid this",
+        "Hostinger ($2.99/month) + WordPress.org is much cheaper than WordPress.com paid plans",
+        "If you find WordPress too complex, try Squarespace (easier) or Wix (easier)"
+      ]
+    },
+    "category": "Website Builder",
+    "seoKeywords": [
+      "wordpress.com free alternative",
+      "wordpress alternative free",
+      "best wordpress alternative",
+      "wordpress.com vs wordpress.org 2026",
+      "free website builder"
+    ],
+    "faqs": [
+      {
+        "question": "Is WordPress.com free?",
+        "answer": "Yes, there's a free tier (with WordPress.com subdomain and limited features). But for a custom domain and more features, you need to pay ($4-45/month)."
+      },
+      {
+        "question": "Should I use WordPress.com or WordPress.org?",
+        "answer": "If you want managed hosting (no maintenance): WordPress.com. If you want full control, no subscription, and no revenue sharing: WordPress.org (self-hosted). WordPress.org is free (software) + cheap hosting ($2.99-10/month)."
+      },
+      {
+        "question": "Which WordPress.com alternative is cheapest?",
+        "answer": "Google Sites (completely free). Hostinger ($2.99/month) + WordPress.org. Wix (free tier)."
+      }
+    ]
+  },
+  {
+    "paidTool": "Mailchimp",
+    "paidToolUrl": "https://mailchimp.com",
+    "tagline": "Popular email marketing platform",
+    "description": "Mailchimp is a popular email marketing platform. The free tier supports up to 500 subscribers and 1,000 emails/month. Paid plans start at $13/month (billed annually) for Essentials, and go up to $350/month for Premium. For small businesses, the cost adds up quickly.",
+    "pricing": "Free: 500 subscribers, 1,000 emails/month; Essentials: $13/month; Standard: $20/month; Premium: $350/month",
+    "painPoints": [
+      {
+        "problem": "Free tier has low limits (500 subscribers, 1,000 emails/month)",
+        "impact": "Small businesses quickly outgrow the free tier"
+      },
+      {
+        "problem": "Paid plans are expensive ($13-350/month)",
+        "impact": "Small businesses pay significant ongoing cost for email marketing"
+      },
+      {
+        "problem": "Add-on fees for extra features (like advanced segmentation)",
+        "impact": "Users pay extra for features that should be included"
+      },
+      {
+        "problem": "Complex pricing structure (confusing for beginners)",
+        "impact": "Users struggle to understand which plan they need"
+      }
+    ],
+    "whySwitch": [
+      "Use free email marketing alternatives like EmailOctopus (free tier: 2,500 subscribers) or Sender (free tier: 2,500 subscribers)",
+      "Use cheaper alternatives like MailerLite (free tier: 1,000 subscribers, 12,000 emails/month)",
+      "Use open-source self-hosted options like Mautic (completely free, self-hosted)",
+      "Use Substack (free) for newsletter-focused email marketing"
+    ],
+    "alternatives": [
+      {
+        "name": "EmailOctopus (Free Tier)",
+        "url": "https://emailoctopus.com",
+        "reason": "Free tier includes 2,500 subscribers (much more generous than Mailchimp's 500)",
+        "description": "EmailOctopus is an email marketing platform with a generous free tier: 2,500 subscribers and 10,000 emails/month. Much more generous than Mailchimp's free tier (500 subscribers, 1,000 emails/month).",
+        "features": [
+          "Free tier: 2,500 subscribers, 10,000 emails/month",
+          "Much more generous than Mailchimp free tier",
+          "Simple and easy to use",
+          "Good deliverability",
+          "Paid plans start at $24/month (cheaper than Mailchimp)"
+        ],
+        "pros": [
+          "Much more generous free tier than Mailchimp",
+          "Simple and easy to use",
+          "Good deliverability",
+          "Cheaper paid plans"
+        ],
+        "cons": [
+          "Less feature-rich than Mailchimp",
+          "Smaller template library",
+          "Less advanced analytics"
+        ],
+        "bestFor": "Small businesses who want a free email marketing platform with more generous limits than Mailchimp",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "MailerLite (Free Tier)",
+        "url": "https://www.mailerlite.com",
+        "reason": "Free tier includes 1,000 subscribers and 12,000 emails/month — more generous than Mailchimp",
+        "description": "MailerLite is an email marketing platform with a free tier that includes 1,000 subscribers and 12,000 emails/month. More generous than Mailchimp's free tier (500 subscribers, 1,000 emails/month).",
+        "features": [
+          "Free tier: 1,000 subscribers, 12,000 emails/month",
+          "More generous than Mailchimp free tier",
+          "Drag-and-drop editor",
+          "Landing pages and pop-ups (free tier)",
+          "Paid plans start at $10/month (cheaper than Mailchimp)"
+        ],
+        "pros": [
+          "More generous free tier than Mailchimp",
+          "Drag-and-drop editor",
+          "Landing pages and pop-ups (free tier)",
+          "Cheaper paid plans"
+        ],
+        "cons": [
+          "Less feature-rich than Mailchimp Premium",
+          "Smaller template library",
+          "Less advanced analytics than Mailchimp"
+        ],
+        "bestFor": "Small businesses who want a free email marketing platform with a good free tier and cheap paid plans",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "Sender (Free Tier)",
+        "url": "https://www.sender.net",
+        "reason": "Free tier includes 2,500 subscribers and 15,000 emails/month — very generous",
+        "description": "Sender is an email marketing platform with a very generous free tier: 2,500 subscribers and 15,000 emails/month. More generous than both Mailchimp and EmailOctopus free tiers.",
+        "features": [
+          "Free tier: 2,500 subscribers, 15,000 emails/month",
+          "Very generous free tier",
+          "Drag-and-drop editor",
+          "SMS marketing (paid plans)",
+          "Push notifications (paid plans)"
+        ],
+        "pros": [
+          "Very generous free tier",
+          "Drag-and-drop editor",
+          "SMS and push notifications (unique)",
+          "Cheap paid plans"
+        ],
+        "cons": [
+          "Less famous than Mailchimp",
+          "Smaller template library",
+          "Less advanced analytics"
+        ],
+        "bestFor": "Small businesses who want a very generous free tier for email marketing",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      },
+      {
+        "name": "Mautic (Free, Open-Source, Self-hosted)",
+        "url": "https://www.mautic.org",
+        "reason": "Free, open-source marketing automation — self-host for unlimited subscribers and emails at no cost",
+        "description": "Mautic is a free, open-source marketing automation platform. You can self-host it for free and have unlimited subscribers, unlimited emails, and full control over your data. Requires technical setup.",
+        "features": [
+          "Free and open-source (GNU GPLv3)",
+          "Self-hosted (unlimited subscribers, unlimited emails)",
+          "Marketing automation (not just email)",
+          "Full control over your data",
+          "CRM and lead management"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Unlimited subscribers and emails (self-hosted)",
+          "Marketing automation (not just email)",
+          "Full control over your data"
+        ],
+        "cons": [
+          "Requires self-hosting setup",
+          "Learning curve for setup and maintenance",
+          "Less polished UI than Mailchimp"
+        ],
+        "bestFor": "Businesses that want free, unlimited email marketing with marketing automation (ok with self-hosting)",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.4
+      },
+      {
+        "name": "Substack (Free for Newsletters)",
+        "url": "https://substack.com",
+        "reason": "Completely free for newsletter-focused email marketing — no subscriber or email limits",
+        "description": "Substack is completely free for newsletter-focused email marketing. You can build a subscriber base, send newsletters, and even charge for paid subscriptions (Substack takes 10% + Stripe fees). No cost to start.",
+        "features": [
+          "Completely free to start",
+          "No subscriber or email limits",
+          "Can charge for paid subscriptions (Substack takes 10%)",
+          "Built-in audience discovery",
+          "Simple and easy to use"
+        ],
+        "pros": [
+          "Completely free to start",
+          "No subscriber or email limits",
+          "Can monetize with paid subscriptions",
+          "Built-in audience discovery"
+        ],
+        "cons": [
+          "Less feature-rich than Mailchimp (focused on newsletters)",
+          "Substack takes 10% + Stripe fees if you charge for paid subscriptions",
+          "Less advanced analytics and segmentation"
+        ],
+        "bestFor": "Writers and creators who want free newsletter-focused email marketing with monetization options",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7,
+        "featured": true
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "For EmailOctopus: sign up for free tier (2,500 subscribers), import your Mailchimp audience (CSV export/import)",
+        "For MailerLite: sign up for free tier (1,000 subscribers), import your Mailchimp audience",
+        "For Sender: sign up for free tier (2,500 subscribers), import your Mailchimp audience",
+        "For Mautic: set up self-hosted server, install Mautic, and import your Mailchimp audience",
+        "For Substack: sign up (free), import your Mailchimp audience (CSV), and start sending newsletters"
+      ],
+      "tips": [
+        "Mailchimp's free tier (500 subscribers) is very limited — EmailOctopus (2,500) and Sender (2,500) are much more generous",
+        "If you're focused on newsletters, Substack is completely free and has built-in audience discovery",
+        "Mautic (self-hosted) gives you unlimited subscribers and emails for free — best for businesses with technical resources"
+      ]
+    },
+    "category": "Email Marketing",
+    "seoKeywords": [
+      "mailchimp free alternative",
+      "mailchimp alternative free",
+      "best mailchimp alternative",
+      "mailchimp vs emailoctopus 2026",
+      "free email marketing platform"
+    ],
+    "faqs": [
+      {
+        "question": "Is there a completely free alternative to Mailchimp?",
+        "answer": "Yes. Substack is completely free for newsletters. Mautic is free and open-source (self-hosted). EmailOctopus, MailerLite, and Sender have generous free tiers."
+      },
+      {
+        "question": "Which Mailchimp alternative has the best free tier?",
+        "answer": "Sender (2,500 subscribers, 15,000 emails/month). EmailOctopus (2,500 subscribers, 10,000 emails/month). MailerLite (1,000 subscribers, 12,000 emails/month). All are more generous than Mailchimp (500 subscribers, 1,000 emails/month)."
+      },
+      {
+        "question": "Should I use Substack instead of Mailchimp?",
+        "answer": "If you're focused on newsletters and want to monetize with paid subscriptions: yes. Substack is completely free to start, has built-in audience discovery, and you only pay if you charge for paid subscriptions (10% + Stripe fees)."
+      }
+    ]
+  },
+  {
+    "paidTool": "ConvertKit",
+    "paidToolUrl": "https://convertkit.com",
+    "tagline": "Email marketing platform for creators",
+    "description": "ConvertKit is an email marketing platform designed for creators (bloggers, podcasters, YouTubers). The free tier supports up to 1,000 subscribers with unlimited emails. Paid plans start at $15/month (billed annually) for Creator, and go up to $79/month for Pro. While free tier is generous, paid plans add advanced automations and integrations.",
+    "pricing": "Free: 1,000 subscribers, unlimited emails; Creator: $15/month; Pro: $79/month; Enterprise: custom",
+    "painPoints": [
+      {
+        "problem": "Free tier has no advanced automations or integrations",
+        "impact": "Creators need paid plan for advanced features"
+      },
+      {
+        "problem": "Paid plans are expensive ($15-79/month)",
+        "impact": "Creators pay significant ongoing cost for email marketing"
+      },
+      {
+        "problem": "Limited template library (less beautiful than Mailchimp or Squarespace Email Campaigns)",
+        "impact": "Users struggle to create beautiful emails"
+      },
+      {
+        "problem": "No built-in landing page templates (unlike Mailchimp)",
+        "impact": "Users must create landing pages elsewhere"
+      }
+    ],
+    "whySwitch": [
+      "Use free tier (it's generous with 1,000 subscribers and unlimited emails)",
+      "Use free alternatives like EmailOctopus (free tier: 2,500 subscribers) or Sender (free tier: 2,500 subscribers)",
+      "Use Substack (free) for newsletter-focused email marketing",
+      "Use open-source self-hosted options like Mautic (completely free, self-hosted)"
+    ],
+    "alternatives": [
+      {
+        "name": "EmailOctopus (Free Tier)",
+        "url": "https://emailoctopus.com",
+        "reason": "Free tier includes 2,500 subscribers (more than ConvertKit's 1,000) and 10,000 emails/month",
+        "description": "EmailOctopus is an email marketing platform with a generous free tier: 2,500 subscribers and 10,000 emails/month. More generous than ConvertKit's free tier (1,000 subscribers, unlimited emails).",
+        "features": [
+          "Free tier: 2,500 subscribers, 10,000 emails/month",
+          "More generous than ConvertKit free tier (2,500 vs 1,000 subscribers)",
+          "Simple and easy to use",
+          "Good deliverability",
+          "Paid plans start at $24/month"
+        ],
+        "pros": [
+          "More generous free tier than ConvertKit",
+          "Simple and easy to use",
+          "Good deliverability",
+          "Cheaper paid plans"
+        ],
+        "cons": [
+          "Less feature-rich than ConvertKit Pro",
+          "Smaller template library",
+          "Less advanced automations than ConvertKit Pro"
+        ],
+        "bestFor": "Creators who want a free email marketing platform with more generous limits than ConvertKit",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "Substack (Free for Newsletters)",
+        "url": "https://substack.com",
+        "reason": "Completely free for newsletter-focused email marketing — no subscriber or email limits (unlike ConvertKit's free tier)",
+        "description": "Substack is completely free for newsletter-focused email marketing. You can build a subscriber base, send newsletters, and even charge for paid subscriptions (Substack takes 10% + Stripe fees). No subscriber or email limits.",
+        "features": [
+          "Completely free to start",
+          "No subscriber or email limits",
+          "Can charge for paid subscriptions (Substack takes 10%)",
+          "Built-in audience discovery",
+          "Simple and easy to use"
+        ],
+        "pros": [
+          "Completely free to start",
+          "No subscriber or email limits",
+          "Can monetize with paid subscriptions",
+          "Built-in audience discovery"
+        ],
+        "cons": [
+          "Less feature-rich than ConvertKit (focused on newsletters)",
+          "Substack takes 10% + Stripe fees if you charge for paid subscriptions",
+          "Less advanced automations and integrations"
+        ],
+        "bestFor": "Creators who want free newsletter-focused email marketing with no subscriber limits and monetization options",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.7,
+        "featured": true
+      },
+      {
+        "name": "Sender (Free Tier)",
+        "url": "https://www.sender.net",
+        "reason": "Free tier includes 2,500 subscribers and 15,000 emails/month — very generous",
+        "description": "Sender is an email marketing platform with a very generous free tier: 2,500 subscribers and 15,000 emails/month. More generous than both ConvertKit and EmailOctopus free tiers.",
+        "features": [
+          "Free tier: 2,500 subscribers, 15,000 emails/month",
+          "Very generous free tier",
+          "Drag-and-drop editor",
+          "SMS marketing (paid plans)",
+          "Push notifications (paid plans)"
+        ],
+        "pros": [
+          "Very generous free tier",
+          "Drag-and-drop editor",
+          "SMS and push notifications (unique)",
+          "Cheap paid plans"
+        ],
+        "cons": [
+          "Less famous than ConvertKit",
+          "Smaller template library",
+          "Less advanced automations than ConvertKit Pro"
+        ],
+        "bestFor": "Creators who want a very generous free tier for email marketing",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5
+      },
+      {
+        "name": "MailerLite (Free Tier)",
+        "url": "https://www.mailerlite.com",
+        "reason": "Free tier includes 1,000 subscribers and 12,000 emails/month — similar to ConvertKit free tier",
+        "description": "MailerLite is an email marketing platform with a free tier that includes 1,000 subscribers and 12,000 emails/month. Similar to ConvertKit free tier, but with a drag-and-drop editor and landing pages.",
+        "features": [
+          "Free tier: 1,000 subscribers, 12,000 emails/month",
+          "Similar to ConvertKit free tier",
+          "Drag-and-drop editor",
+          "Landing pages and pop-ups (free tier)",
+          "Paid plans start at $10/month"
+        ],
+        "pros": [
+          "Similar free tier to ConvertKit",
+          "Drag-and-drop editor",
+          "Landing pages and pop-ups (free tier)",
+          "Cheaper paid plans"
+        ],
+        "cons": [
+          "Less feature-rich than ConvertKit Pro",
+          "Smaller template library",
+          "Less advanced automations than ConvertKit Pro"
+        ],
+        "bestFor": "Creators who want a free email marketing platform with drag-and-drop editor and landing pages",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6
+      },
+      {
+        "name": "Mautic (Free, Open-Source, Self-hosted)",
+        "url": "https://www.mautic.org",
+        "reason": "Free, open-source marketing automation — self-host for unlimited subscribers and emails at no cost",
+        "description": "Mautic is a free, open-source marketing automation platform. You can self-host it for free and have unlimited subscribers, unlimited emails, and full control over your data. Requires technical setup.",
+        "features": [
+          "Free and open-source (GNU GPLv3)",
+          "Self-hosted (unlimited subscribers, unlimited emails)",
+          "Marketing automation (not just email)",
+          "Full control over your data",
+          "CRM and lead management"
+        ],
+        "pros": [
+          "Completely free and open-source",
+          "Unlimited subscribers and emails (self-hosted)",
+          "Marketing automation (not just email)",
+          "Full control over your data"
+        ],
+        "cons": [
+          "Requires self-hosting setup",
+          "Learning curve for setup and maintenance",
+          "Less polished UI than ConvertKit"
+        ],
+        "bestFor": "Creators and businesses that want free, unlimited email marketing with marketing automation (ok with self-hosting)",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4.4
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "For EmailOctopus: sign up for free tier (2,500 subscribers), import your ConvertKit audience (CSV export/import)",
+        "For Substack: sign up (free), import your ConvertKit audience (CSV), and start sending newsletters",
+        "For Sender: sign up for free tier (2,500 subscribers), import your ConvertKit audience",
+        "For MailerLite: sign up for free tier (1,000 subscribers), import your ConvertKit audience",
+        "For Mautic: set up self-hosted server, install Mautic, and import your ConvertKit audience"
+      ],
+      "tips": [
+        "ConvertKit's free tier (1,000 subscribers, unlimited emails) is generous — try it before paying",
+        "EmailOctopus (2,500 subscribers) and Sender (2,500 subscribers) have more generous free tiers",
+        "If you're focused on newsletters, Substack is completely free and has built-in audience discovery"
+      ]
+    },
+    "category": "Email Marketing",
+    "seoKeywords": [
+      "convertkit free alternative",
+      "convertkit alternative free",
+      "best convertkit alternative",
+      "convertkit vs substack 2026",
+      "free email marketing for creators"
+    ],
+    "faqs": [
+      {
+        "question": "Is ConvertKit free tier good enough, or do I need to pay?",
+        "answer": "ConvertKit's free tier is generous (1,000 subscribers, unlimited emails). You only need to pay for advanced automations and integrations. Many creators stay on the free tier for a long time."
+      },
+      {
+        "question": "Is there a completely free alternative to ConvertKit?",
+        "answer": "Yes. Substack is completely free for newsletters. Mautic is free and open-source (self-hosted). EmailOctopus, MailerLite, and Sender have generous free tiers."
+      },
+      {
+        "question": "Which ConvertKit alternative is best for creators?",
+        "answer": "For newsletters: Substack (completely free, built-in audience). For generous free tier: EmailOctopus (2,500 subscribers) or Sender (2,500 subscribers). For unlimited self-hosted: Mautic (free, open-source)."
+      }
+    ]
+  }
+]
