@@ -33,15 +33,14 @@ export async function POST(req: Request) {
       session.subscription as string,
     );
 
-    // Update the user stripe into in our database.
-    // Since this is the initial subscription, we need to update
-    // the subscription id and customer id.
+    // Update the user stripe info in our database.
+    // TODO: Phase 3 - Add stripeSubscriptionId field to User model
     await prisma.user.update({
       where: {
         id: session?.metadata?.userId,
       },
       data: {
-        stripeSubscriptionId: subscription.id,
+        // stripeSubscriptionId: subscription.id,  // TODO: Add field to schema
         stripeCustomerId: subscription.customer as string,
         stripePriceId: subscription.items.data[0].price.id,
         stripeCurrentPeriodEnd: new Date(
@@ -62,18 +61,25 @@ export async function POST(req: Request) {
         session.subscription as string,
       );
 
-      // Update the price id and set the new period end.
-      await prisma.user.update({
-        where: {
-          stripeSubscriptionId: subscription.id,
-        },
-        data: {
-          stripePriceId: subscription.items.data[0].price.id,
-          stripeCurrentPeriodEnd: new Date(
-            subscription.current_period_end * 1000,
-          ),
-        },
-      });
+      // TODO: Phase 3 - Add stripeSubscriptionId field to User model
+      // Update by user ID instead of subscription ID
+      if (session.customer) {
+        const user = await prisma.user.findFirst({
+          where: { stripeCustomerId: session.customer as string },
+        });
+        
+        if (user) {
+          await prisma.user.update({
+            where: { id: user.id },
+            data: {
+              stripePriceId: subscription.items.data[0].price.id,
+              stripeCurrentPeriodEnd: new Date(
+                subscription.current_period_end * 1000,
+              ),
+            },
+          });
+        }
+      }
     }
   }
 

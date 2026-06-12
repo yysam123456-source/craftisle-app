@@ -24,6 +24,12 @@ model User {
   // 用户角色
   role Role @default(USER)
   
+  // Stripe 订阅相关字段（Phase 3 准备）
+  stripeCustomerId          String?   @unique @map("stripe_customer_id")
+  stripeSubscriptionId      String?   @unique @map("stripe_subscription_id")
+  stripePriceId            String?
+  stripeCurrentPeriodEnd   DateTime?
+  
   // 用户生成内容
   reviews    Review[]
   ratings    Rating[]

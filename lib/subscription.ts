@@ -18,9 +18,8 @@ export async function getUserSubscriptionPlan(
       id: userId,
     },
     select: {
-      stripeSubscriptionId: true,
-      stripeCurrentPeriodEnd: true,
       stripeCustomerId: true,
+      stripeCurrentPeriodEnd: true,
       stripePriceId: true,
     },
   })
@@ -48,17 +47,18 @@ export async function getUserSubscriptionPlan(
       : null
     : null;
 
+  // TODO: Phase 3 - Add stripeSubscriptionId field to User model when implementing Stripe
   let isCanceled = false;
-  if (isPaid && user.stripeSubscriptionId) {
-    const stripePlan = await stripe.subscriptions.retrieve(
-      user.stripeSubscriptionId
-    )
-    isCanceled = stripePlan.cancel_at_period_end
-  }
+  // if (isPaid && user.stripeSubscriptionId) {
+  //   const stripePlan = await stripe.subscriptions.retrieve(
+  //     user.stripeSubscriptionId
+  //   )
+  //   isCanceled = stripePlan.cancel_at_period_end
+  // }
 
   return {
     ...plan,
-    ...user,
+    stripeCustomerId: user.stripeCustomerId,
     stripeCurrentPeriodEnd: user.stripeCurrentPeriodEnd?.getTime() ?? 0,
     isPaid,
     interval,
