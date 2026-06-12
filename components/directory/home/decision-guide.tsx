@@ -8,27 +8,35 @@ import { ArrowRight, HelpCircle, CheckCircle } from "lucide-react";
 export function DecisionGuide() {
   const guides = [
     {
-      question: "Need AI Assistant?",
+      question: "I need an AI coding assistant",
       options: [
-        { text: "Need coding help", href: "/directory/compare/github-copilot/cursor", cta: "Copilot vs Cursor" },
-        { text: "Need writing help", href: "/directory/resource/artificial-intelligence-0001", cta: "ChatGPT" },
-        { text: "Need learning help", href: "/directory/resource/artificial-intelligence-0006", cta: "NotebookLM" },
+        { text: "I want GitHub integration", href: "/directory/compare/github-copilot/cursor", cta: "Compare Copilot vs Cursor" },
+        { text: "I'm looking for a free option", href: "/directory/resource/artificial-intelligence-0001", cta: "Try ChatGPT" },
+        { text: "I need local/private AI", href: "/directory/best/artificial-intelligence", cta: "View Private AI Tools" },
       ],
     },
     {
-      question: "Need Design Tools?",
+      question: "I need to design graphics",
       options: [
-        { text: "Professional UI design", href: "/directory/alternatives/figma", cta: "Figma Alternatives" },
-        { text: "Quick graphics", href: "/directory/resource/design-0001", cta: "Canva" },
-        { text: "Open source design tools", href: "/directory/best/design", cta: "Open Source Design Tools" },
+        { text: "I'm a professional designer", href: "/directory/alternatives/figma", cta: "Figma Alternatives" },
+        { text: "I need quick social media graphics", href: "/directory/resource/design-0001", cta: "Try Canva" },
+        { text: "I want open-source design tools", href: "/directory/best/design", cta: "Open Source Options" },
       ],
     },
     {
-      question: "Need Privacy Tools?",
+      question: "I want to protect my privacy",
       options: [
-        { text: "Block ads", href: "/directory/best/adblock", cta: "Ad Blockers Ranking" },
-        { text: "Encrypted messaging", href: "/directory/resource/privacy-0001", cta: "Signal" },
-        { text: "Anonymous browsing", href: "/directory/resource/privacy-0002", cta: "Tor Browser" },
+        { text: "I want to block ads & trackers", href: "/directory/best/adblock", cta: "Top Ad Blockers" },
+        { text: "I need encrypted messaging", href: "/directory/resource/privacy-0001", cta: "Try Signal" },
+        { text: "I want anonymous browsing", href: "/directory/resource/privacy-0002", cta: "Download Tor" },
+      ],
+    },
+    {
+      question: "I need project management tools",
+      options: [
+        { text: "I want all-in-one workspace", href: "/directory/alternatives/notion", cta: "Notion Alternatives" },
+        { text: "I need simple task tracking", href: "/directory/best/productivity", cta: "Simple Task Tools" },
+        { text: "I want open-source PM tools", href: "/directory/best/development", cta: "Open Source PM" },
       ],
     },
   ];
@@ -41,11 +49,11 @@ export function DecisionGuide() {
             Quick Decision Guide
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Not sure which tool to choose? Quickly find the right tool based on your needs
+            Not sure which tool fits your needs? Tell us what you're looking for, and we'll point you to the best options.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {guides.map((guide, idx) => (
             <div key={idx} className="bg-background rounded-xl border p-6 hover:shadow-lg transition-shadow">
               <div className="flex items-center gap-3 mb-4">
@@ -56,15 +64,27 @@ export function DecisionGuide() {
                 {guide.options.map((opt, i) => (
                   <Link key={i} href={opt.href} className="flex items-center justify-between p-3 rounded-lg border hover:border-primary/40 hover:bg-muted/30 transition-all group">
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
                       <span className="text-sm">{opt.text}</span>
                     </div>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                   </Link>
                 ))}
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <p className="text-sm text-muted-foreground mb-4">
+            Can't find what you're looking for? Try our search — it's pretty good.
+          </p>
+          <Link href="/directory/search">
+            <button className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
+              Search All Tools
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

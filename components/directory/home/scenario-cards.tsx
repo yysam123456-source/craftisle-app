@@ -57,6 +57,54 @@ const SCENARIO_ENTRIES = [
     cta: "View Recommendations",
     color: "pink",
   },
+  {
+    icon: "📝",
+    title: "Find Productivity Tools",
+    description: "Notion alternatives, task managers, note-taking apps",
+    href: "/directory/alternatives/notion",
+    cta: "View Alternatives",
+    color: "indigo",
+  },
+  {
+    icon: "💰",
+    title: "Find Free Alternatives",
+    description: "Free alternatives to popular paid tools",
+    href: "/directory/best/free-tools",
+    cta: "View Free Tools",
+    color: "emerald",
+  },
+  {
+    icon: "🌐",
+    title: "Find Open Source Tools",
+    description: "Self-hosted, customizable, privacy-friendly",
+    href: "/directory/best/open-source",
+    cta: "View Open Source",
+    color: "orange",
+  },
+  {
+    icon: "📊",
+    title: "Find Marketing Tools",
+    description: "SEO, social media, email marketing, analytics",
+    href: "/directory/best/marketing",
+    cta: "View Marketing Tools",
+    color: "cyan",
+  },
+  {
+    icon: "🏠",
+    title: "Find Remote Work Tools",
+    description: "Video calls, collaboration, project management",
+    href: "/directory/best/productivity",
+    cta: "View Remote Tools",
+    color: "teal",
+  },
+  {
+    icon: "🔧",
+    title: "Find Browser Extensions",
+    description: "Productivity, privacy, developer tools for your browser",
+    href: "/directory/best/browser-extensions",
+    cta: "View Extensions",
+    color: "slate",
+  },
 ];
 
 const colorMap: Record<string, string> = {
@@ -66,6 +114,12 @@ const colorMap: Record<string, string> = {
   red: "bg-red-500/10 text-red-600 border-red-200",
   yellow: "bg-yellow-500/10 text-yellow-600 border-yellow-200",
   pink: "bg-pink-500/10 text-pink-600 border-pink-200",
+  indigo: "bg-indigo-500/10 text-indigo-600 border-indigo-200",
+  emerald: "bg-emerald-500/10 text-emerald-600 border-emerald-200",
+  orange: "bg-orange-500/10 text-orange-600 border-orange-200",
+  cyan: "bg-cyan-500/10 text-cyan-600 border-cyan-200",
+  teal: "bg-teal-500/10 text-teal-600 border-teal-200",
+  slate: "bg-slate-500/10 text-slate-600 border-slate-200",
 };
 
 export function ScenarioCards() {
@@ -81,7 +135,7 @@ export function ScenarioCards() {
           </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {SCENARIO_ENTRIES.map((entry) => (
             <Link key={entry.href} href={entry.href} className="group">
               <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
