@@ -29,6 +29,7 @@ model User {
   ratings    Rating[]
   comments   Comment[]
   favorites Favorite[]
+  sessions   Session[]  // 添加缺少的反向关系字段
   
   // 时间戳
   createdAt DateTime @default(now())
