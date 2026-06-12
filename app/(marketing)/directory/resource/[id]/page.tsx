@@ -20,6 +20,7 @@ import {
   type Resource,
   generateAdvantages,
   findSimilarResources,
+  generateUsageTips,
 } from "@/lib/fmhy-data";
 import { Share2, Twitter, MessageSquare } from "lucide-react";
 
@@ -403,6 +404,216 @@ export default async function ResourceDetailPage({
                         </li>
                       ))}
                     </ul>
+                  </div>
+                ) : null;
+              })()}
+
+              {/* "Usage Tips" section */}
+              {(() => {
+                const tips = generateUsageTips(resource);
+                return tips.length > 0 ? (
+                  <div className="mt-6 p-5 bg-amber-50/50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <Lightbulb className="h-5 w-5 text-amber-600" />
+                      Usage Tips
+                    </h3>
+                    <ul className="space-y-3">
+                      {tips.map((tip, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm">
+                          <span className="text-amber-600 mt-0.5 flex-shrink-0">💡</span>
+                          <span className="text-muted-foreground">{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null;
+              })()}
+
+              {/* "Related Resources" section */}
+              {(() => {
+                interface RelatedLink {
+                  title: string;
+                  url: string;
+                  icon: string;
+                  description: string;
+                }
+                
+                const relatedLinks: RelatedLink[] = [];
+
+                // Official website
+                relatedLinks.push({
+                  title: "Official Website",
+                  url: resource.url,
+                  icon: "🌐",
+                  description: `Visit the official ${resource.name} website`
+                });
+
+                // GitHub repo
+                if (resource.githubUrl) {
+                  relatedLinks.push({
+                    title: "GitHub Repository",
+                    url: resource.githubUrl,
+                    icon: "⭐",
+                    description: `Source code and community discussions`
+                  });
+                }
+
+                // Documentation (if different from main website)
+                if (resource.githubUrl && resource.isOpenSource) {
+                  const docsUrl = resource.githubUrl.includes("github.com") 
+                    ? `${resource.githubUrl}/wiki`
+                    : resource.url;
+                  relatedLinks.push({
+                    title: "Documentation",
+                    url: docsUrl,
+                    icon: "📚",
+                    description: "Installation guides and API reference"
+                  });
+                }
+
+                // Self-hosted tools: Docker Hub
+                if (resource.isSelfHosted && resource.name) {
+                  relatedLinks.push({
+                    title: "Docker Hub",
+                    url: `https://hub.docker.com/search?q=${encodeURIComponent(resource.name)}`,
+                    icon: "🐳",
+                    description: "Official Docker images for easy deployment"
+                  });
+                }
+
+                return relatedLinks.length > 0 ? (
+                  <div className="mt-6 p-5 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <BookOpen className="h-5 w-5 text-blue-600" />
+                      Related Resources
+                    </h3>
+                    <div className="space-y-3">
+                      {relatedLinks.map((link, i) => (
+                        <a
+                          key={i}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:border-primary/40 hover:shadow-sm transition-all group"
+                        >
+                          <span className="text-2xl">{link.icon}</span>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-medium group-hover:text-primary transition-colors">
+                              {link.title}
+                            </h4>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {link.description}
+                            </p>
+                          </div>
+                          <ExternalLink className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0 mt-0.5" />
+                        </a>
+                      ))}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-4">
+                      💡 We're working on adding curated tutorials and blog posts. Check back soon!
+                    </p>
+                  </div>
+                ) : null;
+              })()}
+
+              {/* "Update History" section */}
+              {(() => {
+                interface UpdateItem {
+                  date: string;
+                  title: string;
+                  description: string;
+                  link?: string;
+                  isRecent: boolean;
+                }
+                
+                const updates: UpdateItem[] = [];
+
+                // Last updated from GitHub
+                if (resource.githubLastUpdated) {
+                  const lastUpdated = new Date(resource.githubLastUpdated);
+                  const daysSince = Math.floor((Date.now() - lastUpdated.getTime()) / (1000 * 60 * 60 * 24));
+                  
+                  updates.push({
+                    date: lastUpdated.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }),
+                    title: "Last Commit",
+                    description: daysSince === 0 
+                      ? "Updated today"
+                      : daysSince === 1
+                      ? "Updated yesterday"
+                      : daysSince < 30
+                      ? `Updated ${daysSince} days ago`
+                      : daysSince < 365
+                      ? `Updated ${Math.floor(daysSince / 30)} months ago`
+                      : `Updated ${Math.floor(daysSince / 365)} years ago`,
+                    isRecent: daysSince < 30
+                  });
+                }
+
+                // GitHub releases link
+                if (resource.githubUrl) {
+                  updates.push({
+                    date: "Ongoing",
+                    title: "Releases",
+                    description: "Check GitHub releases for version history",
+                    link: `${resource.githubUrl}/releases`,
+                    isRecent: false
+                  });
+                }
+
+                // Resource added date
+                if (resource.dateAdded) {
+                  const addedDate = new Date(resource.dateAdded);
+                  updates.push({
+                    date: addedDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }),
+                    title: "Added to Craftisle",
+                    description: "This resource was added to our directory",
+                    isRecent: false
+                  });
+                }
+
+                return updates.length > 0 ? (
+                  <div className="mt-6 p-5 bg-purple-50/50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-purple-600" />
+                      Update History
+                    </h3>
+                    <div className="space-y-3">
+                      {updates.map((update, i) => (
+                        <div key={i} className="flex items-start gap-3 p-3 rounded-lg border bg-card">
+                          <div className="flex-shrink-0 w-20 text-xs text-muted-foreground font-mono">
+                            {update.date}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-medium flex items-center gap-2">
+                              {update.title}
+                              {update.isRecent && (
+                                <Badge variant="outline" className="text-xs text-green-600 border-green-300">
+                                  Active
+                                </Badge>
+                              )}
+                            </h4>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {update.description}
+                            </p>
+                          </div>
+                          {update.link && (
+                            <a
+                              href={update.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-shrink-0"
+                            >
+                              <Button variant="ghost" size="sm" className="gap-1">
+                                View <ExternalLink className="h-3 w-3" />
+                              </Button>
+                            </a>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-4">
+                      💡 Stay updated by watching the GitHub repo or starring it for notifications.
+                    </p>
                   </div>
                 ) : null;
               })()}

@@ -464,3 +464,67 @@ export function findSimilarResources(resource: Resource, limit = 5): Resource[] 
     .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
     .slice(0, limit);
 }
+
+/**
+ * 根据资源数据自动生成"使用技巧"列表（用于详情页"使用技巧"板块）
+ * 返回最多 4 个实用技巧
+ */
+export function generateUsageTips(resource: Resource): string[] {
+  const tips: string[] = [];
+
+  // 1. 开源项目的小贴士
+  if (resource.isOpenSource && resource.githubUrl) {
+    tips.push(`💡 Star the GitHub repo (${resource.githubUrl}) to get updates and support the developer`);
+    tips.push("🔧 Check the GitHub Issues tab for common problems and solutions");
+  }
+
+  // 2. 可自部署的小贴士
+  if (resource.isSelfHosted) {
+    tips.push("🏠 Self-host for full control: deploy with Docker using the official image");
+    tips.push("📖 Read the self-hosting docs carefully — configuration can be tricky");
+  }
+
+  // 3. GitHub Stars 高的项目
+  if (resource.githubStars && resource.githubStars > 1000) {
+    tips.push(`🌟 This tool has ${resource.githubStars.toLocaleString()} GitHub stars — join the community for tutorials and support`);
+  }
+
+  // 4. 有 AI Review 的资源
+  if (hasReviewFor(resource)) {
+    tips.push("📝 Read our in-depth review below for pros, cons, and best use cases");
+  }
+
+  // 5. 根据数据源类型提供小贴士
+  if (resource.source === "free-for-dev" && resource.freeTier) {
+    tips.push("🎁 Free tier available — check the limits before heavy use");
+    tips.push("⚠️ Monitor your usage to avoid unexpected charges");
+  }
+
+  if (resource.source === "public-apis") {
+    tips.push("🔌 Test the API with Postman or curl before integrating");
+    if (resource.auth === "No") {
+      tips.push("✅ No auth required — great for quick prototyping");
+    }
+  }
+
+  if (resource.source === "awesome-selfhosted") {
+    tips.push("🐳 Check Docker Hub for official images — easiest way to deploy");
+    tips.push("🔒 Keep self-hosted apps updated for security patches");
+  }
+
+  // 6. 通用小贴士
+  if (resource.tags && resource.tags.includes("privacy")) {
+    tips.push("🔒 Privacy-first tool — no data leaves your device / your server");
+  }
+
+  if (resource.tags && resource.tags.includes("ai")) {
+    tips.push("🤖 AI-powered — results may vary, always verify important outputs");
+  }
+
+  // 7. 最后添加一个通用小贴士
+  if (tips.length < 4) {
+    tips.push("💬 Join the discussion below to share your experience and ask questions");
+  }
+
+  return tips.slice(0, 4); // 最多 4 个
+}
