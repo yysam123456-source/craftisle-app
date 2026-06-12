@@ -13,6 +13,7 @@ import { DOMAINS, getDomainForCategoryId } from "@/lib/unified-categories";
 import { ScenarioCards } from "@/components/directory/home/scenario-cards";
 import { EditorPicks } from "@/components/directory/home/editor-picks";
 import { QuickRankings } from "@/components/directory/home/quick-rankings";
+import { DecisionGuide } from "@/components/directory/home/decision-guide";
 
 export const metadata: Metadata = constructMetadata({
   title: "Free Resource Directory | 10,000+ Curated Free Tools, APIs & Software | Craftisle",
@@ -236,6 +237,9 @@ export default async function ResourcesPage() {
 
       {/* 快速排行榜 */}
       <QuickRankings />
+
+      {/* 快速决策指南 */}
+      <DecisionGuide />
 
       {/* Hot Resources（保留，作为补充） */}
       {hotResources.length > 0 && (
