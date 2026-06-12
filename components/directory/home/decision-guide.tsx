@@ -10,7 +10,7 @@ export function DecisionGuide() {
     {
       question: "I need an AI coding assistant",
       options: [
-        { text: "I want GitHub integration", href: "/directory/compare/github-copilot/cursor", cta: "Compare Copilot vs Cursor" },
+        { text: "I want GitHub integration", href: "/directory/compare/github-copilot/continue-dev", cta: "Compare Copilot vs Continue" },
         { text: "I'm looking for a free option", href: "/directory/resource/artificial-intelligence-0001", cta: "Try ChatGPT" },
         { text: "I need local/private AI", href: "/directory/best/artificial-intelligence", cta: "View Private AI Tools" },
       ],
@@ -19,7 +19,7 @@ export function DecisionGuide() {
       question: "I need to design graphics",
       options: [
         { text: "I'm a professional designer", href: "/directory/alternatives/figma", cta: "Figma Alternatives" },
-        { text: "I need quick social media graphics", href: "/directory/resource/design-0001", cta: "Try Canva" },
+        { text: "I need quick social media graphics", href: "/directory/alternatives/canva-pro", cta: "Canva Pro Alternatives" },
         { text: "I want open-source design tools", href: "/directory/best/design", cta: "Open Source Options" },
       ],
     },
@@ -27,8 +27,8 @@ export function DecisionGuide() {
       question: "I want to protect my privacy",
       options: [
         { text: "I want to block ads & trackers", href: "/directory/best/adblock", cta: "Top Ad Blockers" },
-        { text: "I need encrypted messaging", href: "/directory/resource/privacy-0001", cta: "Try Signal" },
-        { text: "I want anonymous browsing", href: "/directory/resource/privacy-0002", cta: "Download Tor" },
+        { text: "I need a secure password manager", href: "/directory/alternatives/lastpass", cta: "LastPass Alternatives" },
+        { text: "I want anonymous browsing", href: "/directory/alternatives/nordvpn", cta: "NordVPN Alternatives" },
       ],
     },
     {
