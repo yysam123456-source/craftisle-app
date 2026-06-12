@@ -58,12 +58,24 @@ function getFaviconUrl(url: string): string {
 /**
  * 判断资源是否有足够丰富的信息值得展示详情页
  * 如果没有丰富信息，点击卡片直接跳转外部网站
- * 【判断标准】只保留有 AI review 的资源详情页（约 48 个）
- * 其他资源的卡片直接跳转外部网站，避免生成垃圾页面
+ * 【判断标准】与服务端 getRichInfoResourceIds() 保持一致：
+ *   - 有 AI Review，或
+ *   - 综合评分较高（用启发式近似判断，避免客户端计算完整评分）
  */
 function hasRichInfo(resource: Resource): boolean {
-  // 只检查是否有 AI Review（与 fmhy-data.ts 中的 getRichInfoResourceIds() 保持一致）
-  return !!resource.hasReview;
+  // 1. 有 AI Review（最高质量内容）
+  if (resource.hasReview) return true;
+  // 2. GitHub 项目且有一定关注度
+  if (resource.githubStars && resource.githubStars > 50) return true;
+  // 3. 描述较详细
+  if ((resource.description || "").length > 200) return true;
+  // 4. 有结构化数据（tags）
+  if (resource.tags && resource.tags.length > 0) return true;
+  // 5. 有 API 规格信息（public-apis）
+  if (resource.auth || resource.https !== undefined || resource.cors !== undefined) return true;
+  // 6. 有自托管信息（awesome-selfhosted）
+  if (resource.license || resource.language || resource.isOpenSource) return true;
+  return false;
 }
 
 function buildRichDescription(resource: Resource): string {

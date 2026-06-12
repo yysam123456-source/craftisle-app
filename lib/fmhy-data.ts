@@ -268,42 +268,9 @@ export function getAllCategories(source?: string): Category[] {
   return all;
 }
 
-/** 获取热门资源（目前仅 FMHY 有热度数据） */
+/** 获取热门资源（按综合评分排序，自动更新） */
 export function getHotResources(limit = 8): Resource[] {
-  try {
-    const filePath = join(process.cwd(), "public", "data", "fmhy-hot.json");
-    const raw = readFileSync(filePath, "utf-8");
-    const data = JSON.parse(raw);
-
-    // 构建 name+category -> full resource 的查找表
-    const all = getAllResources();
-    const resourceLookup = new Map<string, Resource>();
-    for (const r of all) {
-      const key = `${r.category}|${r.name}`;
-      if (!resourceLookup.has(key)) {
-        resourceLookup.set(key, r);
-      }
-    }
-
-    const resources: Resource[] = (data?.resources || []).map((r: any) => {
-      const key = `${r.category}|${r.name}`;
-      const matched = resourceLookup.get(key);
-      if (matched) {
-        return matched;
-      }
-      // fallback: build minimal resource
-      return {
-        ...r,
-        id: r.id || r.name?.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
-        source: "fmhy",
-        hasReview: hasReviewFor(r),
-      };
-    });
-
-    return resources.slice(0, limit);
-  } catch {
-    return [];
-  }
+  return getHotResourcesByScore(limit);
 }
 
 /** 获取相同分类的相关资源（排除自身，跨源搜索） */
@@ -352,19 +319,93 @@ export function getStats() {
 
 // ── Rich-info filter（供 generateStaticParams / sitemap / 页面组件复用）
 // 注意：不缓存，每次调用重新计算（ISR 按需生成页面时需要读取最新数据）
-// 【判断标准】只保留有 AI review 的资源详情页（约 48 个）
-// 其他资源的卡片直接跳转外部网站，不预构建详情页（避免生成数千个垃圾页面影响 SEO）
+// 【判断标准】预构建两类详情页：
+//   1. 有 AI review 的资源（高质量内容）
+//   2. 综合评分 TOP 100 的资源（热门资源，自动更新）
 export function getRichInfoResourceIds(): Set<string> {
   const all = getAllResources();
   const set = new Set<string>();
+
+  // 1. 有 AI Review 的资源
   for (const r of all) {
-    // ✅ 仅保留有 AI Review 的资源（高质量内容页）
-    if (hasReviewFor(r)) { set.add(r.id); continue; }
-    // ❌ 其他情况：不预构建详情页，卡片直接跳转外部网站
+    if (hasReviewFor(r)) { set.add(r.id); }
   }
+
+  // 2. 综合评分 TOP 100 的资源（热门资源，自动更新）
+  const topByScore = [...all]
+    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
+    .slice(0, 100)
+    .map(r => r.id);
+  for (const id of topByScore) {
+    set.add(id);
+  }
+
   return set;
 }
 
 export function isRichInfoResource(id: string): boolean {
   return getRichInfoResourceIds().has(id);
+}
+
+// ── Resource scoring system（供 hot resources / rich info 判断复用）
+/**
+ * 综合评分系统（满分 ~100 分）
+ * 维度：GitHub Stars(30) + AI Review(25) + 描述质量(15) + 数据丰富度(15) + 时效性(5) + 数据源特性(15)
+ */
+export function calculateResourceScore(resource: Resource): number {
+  let score = 0;
+
+  // 1. GitHub Stars（0-30 分）
+  if (resource.githubStars && resource.githubStars > 0) {
+    score += Math.min(Math.log10(resource.githubStars) * 10, 30);
+  }
+
+  // 2. 有 AI Review（0-25 分）
+  if (hasReviewFor(resource)) {
+    score += 25;
+  }
+
+  // 3. 描述质量（0-15 分）
+  const descLen = (resource.description || "").length;
+  if (descLen > 500) score += 15;
+  else if (descLen > 200) score += 10;
+  else if (descLen > 100) score += 5;
+
+  // 4. 数据丰富度（0-15 分）
+  let dataRichness = 0;
+  if (resource.tags && resource.tags.length > 0) dataRichness += 5;
+  if (resource.license) dataRichness += 5;
+  if (resource.language) dataRichness += 3;
+  if (resource.isOpenSource) dataRichness += 2;
+  score += Math.min(dataRichness, 15);
+
+  // 5. 时效性（0-5 分）
+  if (resource.dateAdded) {
+    try {
+      const daysSinceAdded = (Date.now() - new Date(resource.dateAdded).getTime()) / (1000 * 60 * 60 * 24);
+      if (daysSinceAdded < 30) score += 5;
+      else if (daysSinceAdded < 90) score += 3;
+      else if (daysSinceAdded < 180) score += 1;
+    } catch {}
+  }
+
+  // 6. 数据源特性（0-15 分）
+  let sourceRichness = 0;
+  // public-apis: auth / https / cors
+  if (resource.auth) sourceRichness += 5;
+  if (resource.https !== undefined) sourceRichness += 3;
+  if (resource.cors !== undefined) sourceRichness += 2;
+  // free-for-dev: freeTier
+  if (resource.freeTier && resource.freeTier.length > 20) sourceRichness += 5;
+  score += Math.min(sourceRichness, 15);
+
+  return Math.round(score);
+}
+
+/** 获取按综合评分排序的热门资源（默认取前 20 个，预构建详情页用） */
+export function getHotResourcesByScore(limit = 20): Resource[] {
+  const all = getAllResources();
+  return [...all]
+    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
+    .slice(0, limit);
 }
