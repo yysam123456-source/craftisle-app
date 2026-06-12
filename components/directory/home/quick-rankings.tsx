@@ -5,14 +5,14 @@ import { Star, ArrowRight, Trophy } from "lucide-react";
 import { getHotResourcesByScore, getAllResources, calculateResourceScore } from "@/lib/fmhy-data";
 
 /**
- * 快速排行榜（首页版）
- * 按分类展示 TOP 5，使用横向 tab 切换
+ * Quick Rankings (homepage version)
+ * Show TOP 5 by category, use horizontal tabs to switch
  */
 
 const RANKING_CATEGORIES = [
-  { id: "Artificial-Intelligence", name: "AI 工具", icon: "🤖" },
-  { id: "Development", name: "开发工具", icon: "💻" },
-  { id: "Privacy-Security", name: "隐私工具", icon: "🔒" },
+  { id: "Artificial-Intelligence", name: "AI Tools", icon: "🤖" },
+  { id: "Development", name: "Dev Tools", icon: "💻" },
+  { id: "Privacy-Security", name: "Privacy Tools", icon: "🔒" },
 ];
 
 function getTopResourcesByCategory(categoryId: string, limit = 5) {
@@ -24,7 +24,7 @@ function getTopResourcesByCategory(categoryId: string, limit = 5) {
 }
 
 export function QuickRankings() {
-  // 默认显示第一个分类
+  // Default to first category
   const defaultCat = RANKING_CATEGORIES[0];
 
   return (
@@ -32,14 +32,14 @@ export function QuickRankings() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
           <h2 className="text-2xl font-bold tracking-tight">
-            🏆 快速排行榜
+            🏆 Quick Rankings
           </h2>
           <p className="mt-1 text-muted-foreground">
-            按分类查看 TOP 5，点击资源查看详情
+            View TOP 5 by category, click resource to view details
           </p>
         </div>
 
-        {/* Tab 切换 */}
+        {/* Tab switcher */}
         <div className="flex justify-center gap-2 mb-8">
           {RANKING_CATEGORIES.map((cat) => (
             <Badge
@@ -52,7 +52,7 @@ export function QuickRankings() {
           ))}
         </div>
 
-        {/* 默认显示第一个分类的 TOP 5 */}
+        {/* Default to first category's TOP 5 */}
         <div className="max-w-2xl mx-auto">
           <QuickRankingList category={defaultCat} />
         </div>
@@ -60,7 +60,7 @@ export function QuickRankings() {
         <div className="mt-8 text-center">
           <Link href="/directory/best/ai-tools">
             <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
-              查看完整排行榜 <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              View Full Rankings <ArrowRight className="ml-1 h-3.5 w-3.5" />
             </Badge>
           </Link>
         </div>
@@ -89,7 +89,7 @@ function QuickRankingList({ category }: { category: (typeof RANKING_CATEGORIES)[
             <Card className="transition-all hover:border-primary/40 hover:shadow-sm">
               <CardContent className="p-4">
                 <div className="flex items-center gap-4">
-                  {/* 排名 */}
+                  {/* Rank */}
                   <div className={`rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg ${
                     index === 0 ? "bg-yellow-500/10 text-yellow-600" :
                     index === 1 ? "bg-gray-500/10 text-gray-600" :
@@ -99,21 +99,21 @@ function QuickRankingList({ category }: { category: (typeof RANKING_CATEGORIES)[
                     {index + 1}
                   </div>
 
-                  {/* 资源信息 */}
+                  {/* Resource info */}
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-sm group-hover:text-primary transition-colors truncate">
                       {resource.name}
                     </h4>
                     <p className="text-xs text-muted-foreground truncate">
-                      {resource.description?.slice(0, 60) || "暂无描述"}
+                      {resource.description?.slice(0, 60) || "No description"}
                     </p>
                   </div>
 
-                  {/* 评分 + GitHub Stars */}
+                  {/* Score + GitHub Stars */}
                   <div className="flex items-center gap-3 text-sm">
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <Trophy className="h-3.5 w-3.5 text-yellow-500" />
-                      <span>{score}分</span>
+                      <span>{score}</span>
                     </div>
                     {resource.githubStars && resource.githubStars > 0 && (
                       <div className="flex items-center gap-1 text-muted-foreground">

@@ -293,7 +293,7 @@ export default async function ResourceDetailPage({
                         {resource.name}
                       </h1>
                       <p className="mt-1 text-muted-foreground text-sm">{hostname}</p>
-                      {/* 用户评分 */}
+                      {/* User Rating */}
                       <StarRating resourceId={resource.id} size="sm" />
                     </div>
                     {/* Star button (client component) */}
@@ -386,14 +386,14 @@ export default async function ResourceDetailPage({
                 )}
               </div>
 
-                {/* "为什么选这个？" 板块 */}
+                {/* "Why Choose This?" section */}
               {(() => {
                 const advantages = generateAdvantages(resource);
                 return advantages.length > 0 ? (
                   <div className="mt-8 p-5 bg-green-50/50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <ThumbsUp className="h-5 w-5 text-green-600" />
-                      为什么选 {resource.name}？
+                      Why Choose {resource.name}?
                     </h3>
                     <ul className="space-y-3">
                       {advantages.map((adv, i) => (
@@ -407,36 +407,36 @@ export default async function ResourceDetailPage({
                 ) : null;
               })()}
 
-              {/* "和竞品比怎么样？" 板块 */}
+              {/* "How Does It Compare?" section */}
               {(() => {
-                // 查找相关的 compare 页面
+                // Find related compare pages
                 const compareUrl = `/directory/compare/${resource.id.split("-")[0]}`;
                 return (
                   <div className="mt-6 p-5 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <ArrowRight className="h-5 w-5 text-blue-600" />
-                      和竞品比怎么样？
+                      How Does It Compare?
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4">
-                      查看 {resource.name} 与其他热门工具的详细对比
+                      View detailed comparison of {resource.name} vs other popular tools
                     </p>
                     <Link href={`/directory/compare/${resource.category.toLowerCase()}/${resource.id.split("-")[0]}`}>
                       <Button variant="outline" size="sm" className="gap-2">
-                        查看对比 <ArrowRight className="h-3.5 w-3.5" />
+                        View Comparison <ArrowRight className="h-3.5 w-3.5" />
                       </Button>
                     </Link>
                   </div>
                 );
               })()}
 
-              {/* "类似工具" 板块 */}
+              {/* "Similar Tools" section */}
               {(() => {
                 const similar = findSimilarResources(resource, 5);
                 return similar.length > 0 ? (
                   <div className="mt-6">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <Sparkles className="h-5 w-5 text-purple-600" />
-                      类似工具
+                      Similar Tools
                     </h3>
                     <div className="grid gap-3 sm:grid-cols-2">
                       {similar.map((r) => (
@@ -454,7 +454,7 @@ export default async function ResourceDetailPage({
                               )}
                             </div>
                             <p className="text-xs text-muted-foreground line-clamp-2">
-                              {r.description?.slice(0, 80) || "暂无描述"}
+                              {r.description?.slice(0, 80) || "No description"}
                             </p>
                           </div>
                         </Link>
@@ -464,7 +464,7 @@ export default async function ResourceDetailPage({
                 ) : null;
               })()}
 
-              {/* 内容中广告位 */}
+              {/* Ad slot in content */}
               <div className="my-8 flex justify-center">
                 <AdSlot slot="in-content-resource" format="rectangle" />
               </div>
@@ -496,7 +496,7 @@ export default async function ResourceDetailPage({
                 </Link>
               </div>
 
-              {/* 分享按钮 */}
+              {/* Share buttons */}
               <div className="mt-4 flex items-center gap-3">
                 <span className="text-sm text-muted-foreground">Share:</span>
                 <a

@@ -3,57 +3,58 @@ import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 /**
- * 场景化入口（用户视角，不是分类视角）
- * "你想干什么" → 点一个场景 → 看到精选推荐 + 快速决策信息
+ * Scenario-based entry points
+ * User-centric view, not category view
+ * "What do you want to do?" → Click a scenario → See curated recommendations
  */
 
 const SCENARIO_ENTRIES = [
   {
     icon: "🤖",
-    title: "找 AI 助手",
-    description: "ChatGPT、Claude、Gemini 哪个适合你？",
+    title: "Find AI Assistant",
+    description: "ChatGPT, Claude, Gemini - which one fits you?",
     href: "/directory/compare/chatgpt/claude",
-    cta: "查看对比",
+    cta: "View Comparison",
     color: "blue",
   },
   {
     icon: "🎨",
-    title: "找设计工具",
-    description: "Figma 替代品、免费设计工具",
+    title: "Find Design Tools",
+    description: "Figma alternatives, free design tools",
     href: "/directory/alternatives/figma",
-    cta: "查看替代品",
+    cta: "View Alternatives",
     color: "purple",
   },
   {
     icon: "💻",
-    title: "找开发工具",
-    description: "API、数据库、部署工具",
+    title: "Find Dev Tools",
+    description: "APIs, databases, deployment tools",
     href: "/directory/best/development",
-    cta: "查看排行榜",
+    cta: "View Rankings",
     color: "green",
   },
   {
     icon: "🔒",
-    title: "找隐私工具",
-    description: "广告拦截、加密通讯、匿名浏览",
+    title: "Find Privacy Tools",
+    description: "Ad blocking, encrypted messaging, anonymous browsing",
     href: "/directory/Privacy-Security",
-    cta: "查看推荐",
+    cta: "View Recommendations",
     color: "red",
   },
   {
     icon: "📚",
-    title: "找学习资源",
-    description: "免费课程、教程、文档",
+    title: "Find Learning Resources",
+    description: "Free courses, tutorials, documentation",
     href: "/directory/Learning-Education",
-    cta: "查看资源",
+    cta: "View Resources",
     color: "yellow",
   },
   {
     icon: "🎮",
-    title: "找娱乐工具",
-    description: "游戏、媒体、生产力工具",
+    title: "Find Entertainment Tools",
+    description: "Games, media, productivity tools",
     href: "/directory/Gaming",
-    cta: "查看推荐",
+    cta: "View Recommendations",
     color: "pink",
   },
 ];
@@ -73,10 +74,10 @@ export function ScenarioCards() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
           <h2 className="text-2xl font-bold tracking-tight">
-            你想干什么？
+            What do you want to do?
           </h2>
           <p className="mt-1 text-muted-foreground">
-            不是分类，是场景 — 点一个，快速找到你想要的工具
+            Not categories, but scenarios — click one to quickly find the tool you need
           </p>
         </div>
 

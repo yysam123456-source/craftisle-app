@@ -5,12 +5,12 @@ import { Star, ArrowRight } from "lucide-react";
 import { getHotResourcesByScore } from "@/lib/fmhy-data";
 
 /**
- * 编辑精选（每周更新）
- * 展示评分 TOP 6 的资源，带推荐理由
+ * Editor's Picks (weekly updated)
+ * Show TOP 6 resources by score, with recommendations
  */
 
 export function EditorPicks() {
-  // 获取评分 TOP 6 的资源
+  // Get TOP 6 resources by score
   const picks = getHotResourcesByScore(6);
 
   if (!picks || picks.length === 0) return null;
@@ -21,15 +21,15 @@ export function EditorPicks() {
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">
-              ⭐ 编辑精选
+              ⭐ Editor's Picks
             </h2>
             <p className="mt-1 text-muted-foreground">
-              每周更新，基于综合评分（GitHub Stars + 数据丰富度 + 描述质量）
+              Weekly update, based on comprehensive scoring (GitHub Stars + Data Richness + Description Quality)
             </p>
           </div>
           <Link href="/directory/best/ai-tools">
             <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
-              查看全部 <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              View All <ArrowRight className="ml-1 h-3.5 w-3.5" />
             </Badge>
           </Link>
         </div>
@@ -43,7 +43,7 @@ export function EditorPicks() {
                   <CardContent className="p-5">
                     <div className="flex items-start justify-between mb-3">
                       <Badge variant="secondary" className="text-xs">
-                        #{index + 1} 精选
+                        #{index + 1} Pick
                       </Badge>
                       {resource.githubStars && resource.githubStars > 0 && (
                         <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -58,7 +58,7 @@ export function EditorPicks() {
                     </h3>
 
                     <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                      {resource.description?.slice(0, 100) || "暂无描述"}
+                      {resource.description?.slice(0, 100) || "No description"}
                     </p>
 
                     <div className="flex flex-wrap gap-2">
