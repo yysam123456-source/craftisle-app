@@ -409,3 +409,58 @@ export function getHotResourcesByScore(limit = 20): Resource[] {
     .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
     .slice(0, limit);
 }
+
+/**
+ * 根据资源数据自动生成"优势"列表（用于详情页"为什么选这个"板块）
+ * 返回最多 3 个优势点
+ */
+export function generateAdvantages(resource: Resource): string[] {
+  const advantages: string[] = [];
+
+  // 1. GitHub Stars 高
+  if (resource.githubStars && resource.githubStars > 10000) {
+    advantages.push(`⭐ 高人气：GitHub ${resource.githubStars.toLocaleString()} stars`);
+  } else if (resource.githubStars && resource.githubStars > 1000) {
+    advantages.push(`⭐ 受欢迎：GitHub ${resource.githubStars.toLocaleString()} stars`);
+  }
+
+  // 2. 开源协议友好
+  if (resource.githubLicense === "MIT" || resource.githubLicense === "Apache-2.0") {
+    advantages.push(`📖 开源协议：${resource.githubLicense}，可自由使用`);
+  } else if (resource.githubLicense) {
+    advantages.push(`📖 License：${resource.githubLicense}`);
+  }
+
+  // 3. 开源 + 可自部署
+  if (resource.isOpenSource) {
+    advantages.push("🔓 开源：代码透明，可自部署");
+  }
+
+  // 4. 文档完善
+  if (resource.description && resource.description.length > 200) {
+    advantages.push("📚 文档完善：有详细的使用说明");
+  }
+
+  // 5. 有 AI Review
+  if (hasReviewFor(resource)) {
+    advantages.push("✅ 已评测：有详细的 AI 评测报告");
+  }
+
+  return advantages.slice(0, 3); // 最多 3 个
+}
+
+/**
+ * 根据 tags 或 category，推荐相似资源（用于详情页"类似工具"板块）
+ * 返回最多 5 个相似资源
+ */
+export function findSimilarResources(resource: Resource, limit = 5): Resource[] {
+  const all = getAllResources();
+  return all
+    .filter(r => r.id !== resource.id)
+    .filter(r => 
+      r.category === resource.category || 
+      (r.tags && resource.tags && r.tags.some(t => resource.tags?.includes(t)))
+    )
+    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
+    .slice(0, limit);
+}

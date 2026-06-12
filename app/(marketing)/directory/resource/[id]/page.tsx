@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles } from "lucide-react";
+import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles, Star } from "lucide-react";
 import { ResourceCard } from "@/components/resources/resource-card";
 import { GiscusComments } from "@/components/giscus-comments";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
@@ -18,6 +18,8 @@ import {
   getRelatedResources,
   getRichInfoResourceIds,
   type Resource,
+  generateAdvantages,
+  findSimilarResources,
 } from "@/lib/fmhy-data";
 import { Share2, Twitter, MessageSquare } from "lucide-react";
 
@@ -383,6 +385,84 @@ export default async function ResourceDetailPage({
                   </div>
                 )}
               </div>
+
+                {/* "为什么选这个？" 板块 */}
+              {(() => {
+                const advantages = generateAdvantages(resource);
+                return advantages.length > 0 ? (
+                  <div className="mt-8 p-5 bg-green-50/50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <ThumbsUp className="h-5 w-5 text-green-600" />
+                      为什么选 {resource.name}？
+                    </h3>
+                    <ul className="space-y-3">
+                      {advantages.map((adv, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm">
+                          <span className="text-green-600 mt-0.5">✓</span>
+                          <span className="text-muted-foreground">{adv}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null;
+              })()}
+
+              {/* "和竞品比怎么样？" 板块 */}
+              {(() => {
+                // 查找相关的 compare 页面
+                const compareUrl = `/directory/compare/${resource.id.split("-")[0]}`;
+                return (
+                  <div className="mt-6 p-5 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <ArrowRight className="h-5 w-5 text-blue-600" />
+                      和竞品比怎么样？
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      查看 {resource.name} 与其他热门工具的详细对比
+                    </p>
+                    <Link href={`/directory/compare/${resource.category.toLowerCase()}/${resource.id.split("-")[0]}`}>
+                      <Button variant="outline" size="sm" className="gap-2">
+                        查看对比 <ArrowRight className="h-3.5 w-3.5" />
+                      </Button>
+                    </Link>
+                  </div>
+                );
+              })()}
+
+              {/* "类似工具" 板块 */}
+              {(() => {
+                const similar = findSimilarResources(resource, 5);
+                return similar.length > 0 ? (
+                  <div className="mt-6">
+                    <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-purple-600" />
+                      类似工具
+                    </h3>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {similar.map((r) => (
+                        <Link key={r.id} href={`/directory/resource/${r.id}`} className="group">
+                          <div className="p-4 rounded-lg border bg-card hover:border-primary/40 hover:shadow-sm transition-all">
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
+                                {r.name}
+                              </h4>
+                              {r.githubStars && r.githubStars > 0 && (
+                                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                  <Star className="h-3 w-3 fill-yellow-400 text-yellow-500" />
+                                  <span>{(r.githubStars / 1000).toFixed(1)}K</span>
+                                </div>
+                              )}
+                            </div>
+                            <p className="text-xs text-muted-foreground line-clamp-2">
+                              {r.description?.slice(0, 80) || "暂无描述"}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : null;
+              })()}
 
               {/* 内容中广告位 */}
               <div className="my-8 flex justify-center">
