@@ -9884,7 +9884,10 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": ""
+      "language": "",
+      "githubStars": 627,
+      "githubLastUpdated": "2021-07-14T09:40:43Z",
+      "githubLicense": "AGPL-3.0"
     },
     {
       "id": "awesome-selfhosted--lms",
