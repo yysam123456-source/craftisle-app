@@ -16,7 +16,9 @@ interface Resource {
   description: string;
   source?: string;
   githubStars?: number;
+  githubLastUpdated?: string;
   isOpenSource?: boolean;
+  isSelfHosted?: boolean;
   tags?: string[];
 }
 
@@ -45,6 +47,8 @@ function SearchResultsContent() {
   const [githubFilter, setGithubFilter] = useState<"all" | "hasgithub" | "nogithub">("all");
   const [openSourceFilter, setOpenSourceFilter] = useState<"all" | "opensource" | "commercial">("all");
   const [sortBy, setSortBy] = useState<"relevance" | "stars" | "name">("relevance");
+  const [updateFrequencyFilter, setUpdateFrequencyFilter] = useState<"all" | "recent" | "active" | "maintained">("all");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -117,6 +121,20 @@ function SearchResultsContent() {
     loadAllData();
   }, []);
 
+  // Extract top tags from all resources
+  const topTags = useMemo(() => {
+    const tagCounts: Record<string, number> = {};
+    for (const r of allResources) {
+      for (const tag of (r.tags || [])) {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      }
+    }
+    return Object.entries(tagCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 15)
+      .map(([tag]) => tag);
+  }, [allResources]);
+
   const results = useMemo(() => {
     if (!query.trim()) return [];
     const q = query.toLowerCase();
@@ -150,6 +168,26 @@ function SearchResultsContent() {
       filtered = filtered.filter((r) => r.isOpenSource !== true);
     }
 
+    // 更新频率过滤
+    if (updateFrequencyFilter !== "all") {
+      filtered = filtered.filter((r) => {
+        if (!r.githubLastUpdated) return false;
+        const lastUpdated = new Date(r.githubLastUpdated);
+        const daysSince = Math.floor((Date.now() - lastUpdated.getTime()) / (1000 * 60 * 60 * 24));
+        if (updateFrequencyFilter === "recent") return daysSince <= 30;
+        if (updateFrequencyFilter === "active") return daysSince <= 90;
+        if (updateFrequencyFilter === "maintained") return daysSince <= 365;
+        return true;
+      });
+    }
+
+    // 标签过滤
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter((r) => 
+        r.tags && selectedTags.some(tag => r.tags?.includes(tag))
+      );
+    }
+
     // 排序
     if (sortBy === "stars") {
       filtered.sort((a, b) => (b.githubStars || 0) - (a.githubStars || 0));
@@ -159,7 +197,7 @@ function SearchResultsContent() {
     // relevance 排序保持默认（按搜索匹配度）
 
     return filtered;
-  }, [allResources, query, sourceFilter, categoryFilter, githubFilter, openSourceFilter, sortBy]);
+  }, [allResources, query, sourceFilter, categoryFilter, githubFilter, openSourceFilter, updateFrequencyFilter, selectedTags, sortBy]);
 
   // Count by source
   const sourceCounts = useMemo(() => {
@@ -280,7 +318,51 @@ function SearchResultsContent() {
                   <option value="opensource">Open Source Only</option>
                   <option value="commercial">Commercial Only</option>
                 </select>
+                {/* 更新频率过滤 */}
+                <select
+                  value={updateFrequencyFilter}
+                  onChange={(e) => setUpdateFrequencyFilter(e.target.value as "all" | "recent" | "active" | "maintained")}
+                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
+                >
+                  <option value="all">Any Update Date</option>
+                  <option value="recent">Recently Updated (30 days)</option>
+                  <option value="active">Actively Maintained (90 days)</option>
+                  <option value="maintained">Maintained (1 year)</option>
+                </select>
               </div>
+              {/* 标签过滤 */}
+              {topTags.length > 0 && (
+                <div className="mt-3">
+                  <p className="text-xs text-muted-foreground mb-2">Filter by tags:</p>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {topTags.map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant={selectedTags.includes(tag) ? "default" : "outline"}
+                        className="cursor-pointer text-xs"
+                        onClick={() => {
+                          setSelectedTags(prev => 
+                            prev.includes(tag) 
+                              ? prev.filter(t => t !== tag) 
+                              : [...prev, tag]
+                          );
+                        }}
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                    {selectedTags.length > 0 && (
+                      <Badge
+                        variant="outline"
+                        className="cursor-pointer text-xs text-red-600 border-red-300"
+                        onClick={() => setSelectedTags([])}
+                      >
+                        Clear Tags
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {!loading && query && results.length === 0 && (
