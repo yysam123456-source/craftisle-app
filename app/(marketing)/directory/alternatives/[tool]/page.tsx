@@ -8,6 +8,7 @@ import { ExternalLink, ArrowLeft, CheckCircle2, XCircle, HelpCircle, Star, Arrow
 import {
   getAlternativeBySlug,
   getAllAlternativeSlugs,
+  toSlug,
   AlternativeEntry,
   AlternativeTool,
 } from "@/lib/alternatives";
@@ -490,12 +491,12 @@ export default async function AlternativesPage({
               <h2 className="text-xl font-bold mb-6">More Alternative Comparisons</h2>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {Object.entries(await getAlternativesMap())
-                  .filter(([key]) => key.toLowerCase().replace(/\s+/g, "-") !== tool)
+                  .filter(([key]) => toSlug(key) !== tool)
                   .slice(0, 6)
                   .map(([key, val]) => (
                     <Link
                       key={key}
-                      href={`/directory/alternatives/${key.toLowerCase().replace(/\s+/g, "-")}`}
+                      href={`/directory/alternatives/${toSlug(key)}`}
                       className="rounded-lg border bg-card p-4 hover:shadow-md transition-all hover:border-primary/30"
                     >
                       <p className="font-medium text-sm">Free {key} Alternatives</p>

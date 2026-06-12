@@ -2302,17 +2302,24 @@ export function getCombinedMap(): Record<string, AlternativeEntry> {
   return _combinedMap;
 }
 
+/** 健壮的 slug 生成：移除所有非字母数字字符，只保留连字符 */
+export function toSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")  // 所有非字母数字字符 → 连字符
+    .replace(/^-+|-+$/g, "")      // 去掉首尾连字符
+    .replace(/-+/g, "-");         // 多个连字符 → 单个
+}
+
 export function getAlternativeBySlug(slug: string): AlternativeEntry | null {
   const allMap = getCombinedMap();
   const entry = Object.entries(allMap).find(
-    ([key]) => key.toLowerCase().replace(/\s+/g, "-") === slug
+    ([key]) => toSlug(key) === slug
   );
   return entry ? entry[1] : null;
 }
 
 export function getAllAlternativeSlugs(): string[] {
   const allMap = getCombinedMap();
-  return Object.keys(allMap).map((key) =>
-    key.toLowerCase().replace(/\s+/g, "-")
-  );
+  return Object.keys(allMap).map((key) => toSlug(key));
 }

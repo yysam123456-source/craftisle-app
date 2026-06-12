@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
-import { getCombinedMap, type AlternativeEntry } from "@/lib/alternatives";
+import { getCombinedMap, toSlug, type AlternativeEntry } from "@/lib/alternatives";
 
 export const metadata: Metadata = {
   title: "Tool Alternatives Comparison | Craftisle",
@@ -45,10 +45,6 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   "Zoom": <MessageSquare className="h-5 w-5" />,
   "Microsoft Teams": <MessageSquare className="h-5 w-5" />,
 };
-
-function toSlug(name: string): string {
-  return name.toLowerCase().replace(/\s+/g, "-");
-}
 
 // ── 页面组件 ─────────────────────────────
 export default function CompareListPage() {
