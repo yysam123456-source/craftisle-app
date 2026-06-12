@@ -10,6 +10,9 @@ import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
 import { getAllCategories, getHotResources, getSources, getStats } from "@/lib/fmhy-data";
 import { DOMAINS, getDomainForCategoryId } from "@/lib/unified-categories";
+import { ScenarioCards } from "@/components/directory/home/scenario-cards";
+import { EditorPicks } from "@/components/directory/home/editor-picks";
+import { QuickRankings } from "@/components/directory/home/quick-rankings";
 
 export const metadata: Metadata = constructMetadata({
   title: "Free Resource Directory | 10,000+ Curated Free Tools, APIs & Software | Craftisle",
@@ -225,7 +228,16 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      {/* Hot Resources */}
+      {/* 场景化入口 */}
+      <ScenarioCards />
+
+      {/* 编辑精选 */}
+      <EditorPicks />
+
+      {/* 快速排行榜 */}
+      <QuickRankings />
+
+      {/* Hot Resources（保留，作为补充） */}
       {hotResources.length > 0 && (
         <HotResources resources={hotResources} />
       )}
