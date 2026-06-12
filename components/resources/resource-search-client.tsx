@@ -1,10 +1,24 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, X } from "lucide-react";
+
+// 搜索建议列表
+const SEARCH_SUGGESTIONS = [
+  "free AI tools",
+  "Figma alternatives",
+  "open source password manager",
+  "best Markdown editor",
+  "AI coding assistant",
+  "privacy browser",
+  "self-hosted email",
+  "free API service",
+  "GitHub stars top 100",
+  "open source design tools",
+];
 
 interface ResourceSearchClientProps {
   placeholder?: string;
@@ -22,6 +36,9 @@ export function ResourceSearchClient({
   onSearch,
 }: ResourceSearchClientProps) {
   const [query, setQuery] = useState(value || "");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   // 当外部 value 变化时（如 URL 参数变化），同步到内部 state
@@ -31,10 +48,24 @@ export function ResourceSearchClient({
     }
   }, [value]);
 
+  // 根据输入生成搜索建议
+  useEffect(() => {
+    if (query.trim().length === 0) {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
+    const q = query.toLowerCase();
+    const matched = SEARCH_SUGGESTIONS.filter(s => s.toLowerCase().includes(q));
+    setSuggestions(matched.slice(0, 5)); // 最多显示 5 个建议
+    setShowSuggestions(matched.length > 0);
+  }, [query]);
+
   const doSearch = useCallback(
     (q: string) => {
       const trimmed = q.trim();
       if (!trimmed) return;
+      setShowSuggestions(false);
       if (onSearch) {
         onSearch(trimmed);
       } else {
@@ -50,6 +81,7 @@ export function ResourceSearchClient({
 
   const handleClear = useCallback(() => {
     setQuery("");
+    setShowSuggestions(false);
   }, []);
 
   const handleKeyDown = useCallback(
@@ -57,19 +89,30 @@ export function ResourceSearchClient({
       if (e.key === "Enter") {
         handleSearch();
       }
+      if (e.key === "Escape") {
+        setShowSuggestions(false);
+      }
     },
     [handleSearch]
   );
+
+  const handleSuggestionClick = useCallback((suggestion: string) => {
+    setQuery(suggestion);
+    doSearch(suggestion);
+  }, [doSearch]);
 
   return (
     <div className={`relative ${className || ""}`}>
       <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
       <Input
+        ref={inputRef}
         type="text"
         placeholder={placeholder}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
+        onFocus={() => query.trim().length > 0 && setShowSuggestions(suggestions.length > 0)}
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
         className="h-14 pl-12 pr-20 text-base rounded-xl border-2 focus-visible:border-primary"
       />
       <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
@@ -87,6 +130,24 @@ export function ResourceSearchClient({
           Search
         </Button>
       </div>
+      {/* 搜索建议下拉 */}
+      {showSuggestions && suggestions.length > 0 && (
+        <div className="absolute top-full left-0 right-0 mt-2 bg-background border rounded-xl shadow-lg z-50 overflow-hidden">
+          {suggestions.map((s, i) => (
+            <button
+              key={i}
+              className="w-full px-4 py-3 text-left text-sm hover:bg-muted/50 transition-colors flex items-center gap-2"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                handleSuggestionClick(s);
+              }}
+            >
+              <Search className="h-4 w-4 text-muted-foreground" />
+              <span>{s}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -15,6 +15,9 @@ interface Resource {
   url: string;
   description: string;
   source?: string;
+  githubStars?: number;
+  isOpenSource?: boolean;
+  tags?: string[];
 }
 
 interface CategoryMeta {
@@ -38,6 +41,10 @@ function SearchResultsContent() {
   const [categories, setCategories] = useState<CategoryMeta[]>([]);
   const [loading, setLoading] = useState(true);
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
+  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
+  const [githubFilter, setGithubFilter] = useState<"all" | "hasgithub" | "nogithub">("all");
+  const [openSourceFilter, setOpenSourceFilter] = useState<"all" | "opensource" | "commercial">("all");
+  const [sortBy, setSortBy] = useState<"relevance" | "stars" | "name">("relevance");
   const router = useRouter();
 
   useEffect(() => {
@@ -113,18 +120,46 @@ function SearchResultsContent() {
   const results = useMemo(() => {
     if (!query.trim()) return [];
     const q = query.toLowerCase();
-
+    
     let filtered = allResources.filter((r) => {
       const text = `${r.name} ${r.url} ${r.description || ""} ${r.categoryName || ""} ${r.category || ""}`.toLowerCase();
       return text.includes(q);
     });
 
+    // 数据源过滤
     if (sourceFilter) {
       filtered = filtered.filter((r) => r.source === sourceFilter);
     }
 
+    // 分类过滤
+    if (categoryFilter) {
+      filtered = filtered.filter((r) => r.category === categoryFilter || r.categoryName === categoryFilter);
+    }
+
+    // GitHub 数据过滤
+    if (githubFilter === "hasgithub") {
+      filtered = filtered.filter((r) => r.githubStars && r.githubStars > 0);
+    } else if (githubFilter === "nogithub") {
+      filtered = filtered.filter((r) => !r.githubStars || r.githubStars === 0);
+    }
+
+    // 开源过滤
+    if (openSourceFilter === "opensource") {
+      filtered = filtered.filter((r) => r.isOpenSource === true);
+    } else if (openSourceFilter === "commercial") {
+      filtered = filtered.filter((r) => r.isOpenSource !== true);
+    }
+
+    // 排序
+    if (sortBy === "stars") {
+      filtered.sort((a, b) => (b.githubStars || 0) - (a.githubStars || 0));
+    } else if (sortBy === "name") {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    // relevance 排序保持默认（按搜索匹配度）
+
     return filtered;
-  }, [allResources, query, sourceFilter]);
+  }, [allResources, query, sourceFilter, categoryFilter, githubFilter, openSourceFilter, sortBy]);
 
   // Count by source
   const sourceCounts = useMemo(() => {
@@ -172,34 +207,80 @@ function SearchResultsContent() {
           )}
           {!loading && query && (
             <div className="mb-6 space-y-3">
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center justify-between gap-2 flex-wrap">
                 <p className="text-muted-foreground">
                   <span className="font-semibold text-foreground">{results.length}</span> results
                   {query && <span> for &quot;{query}&quot;</span>}
                 </p>
+                {/* 排序下拉 */}
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as "relevance" | "stars" | "name")}
+                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
+                >
+                  <option value="relevance">Relevance</option>
+                  <option value="stars">GitHub Stars</option>
+                  <option value="name">Name A-Z</option>
+                </select>
               </div>
-              {/* Source filter badges */}
-              {Object.keys(sourceCounts).length > 1 ? (
-                <div className="flex gap-2 flex-wrap">
-                  <Badge
-                    variant={sourceFilter === null ? "default" : "outline"}
-                    className="cursor-pointer"
-                    onClick={() => setSourceFilter(null)}
-                  >
-                    All ({results.length})
-                  </Badge>
-                  {Object.entries(sourceCounts).map(([src, count]) => (
+              {/* 过滤控件 */}
+              <div className="flex gap-2 flex-wrap">
+                {/* 数据源过滤 */}
+                {Object.keys(sourceCounts).length > 1 ? (
+                  <div className="flex gap-2 flex-wrap">
                     <Badge
-                      key={src}
-                      variant={sourceFilter === src ? "default" : "outline"}
+                      variant={sourceFilter === null ? "default" : "outline"}
                       className="cursor-pointer"
-                      onClick={() => setSourceFilter(src)}
+                      onClick={() => setSourceFilter(null)}
                     >
-                      {sourceIcons[src] || "📦"} {sourceLabels[src] || src} ({count})
+                      All ({results.length})
                     </Badge>
-                  ))}
-                </div>
-              ) : null}
+                    {Object.entries(sourceCounts).map(([src, count]) => (
+                      <Badge
+                        key={src}
+                        variant={sourceFilter === src ? "default" : "outline"}
+                        className="cursor-pointer"
+                        onClick={() => setSourceFilter(src)}
+                      >
+                        {sourceIcons[src] || "📦"} {sourceLabels[src] || src} ({count})
+                      </Badge>
+                    ))}
+                  </div>
+                ) : null}
+                {/* 分类过滤 */}
+                {categories.length > 0 && (
+                  <select
+                    value={categoryFilter || ""}
+                    onChange={(e) => setCategoryFilter(e.target.value || null)}
+                    className="px-3 py-1.5 text-sm border rounded-lg bg-background"
+                  >
+                    <option value="">All Categories</option>
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>{cat.icon || "📁"} {cat.name}</option>
+                    ))}
+                  </select>
+                )}
+                {/* GitHub 数据过滤 */}
+                <select
+                  value={githubFilter}
+                  onChange={(e) => setGithubFilter(e.target.value as "all" | "hasgithub" | "nogithub")}
+                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
+                >
+                  <option value="all">All Resources</option>
+                  <option value="hasgithub">Has GitHub Data</option>
+                  <option value="nogithub">No GitHub Data</option>
+                </select>
+                {/* 开源过滤 */}
+                <select
+                  value={openSourceFilter}
+                  onChange={(e) => setOpenSourceFilter(e.target.value as "all" | "opensource" | "commercial")}
+                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
+                >
+                  <option value="all">All Types</option>
+                  <option value="opensource">Open Source Only</option>
+                  <option value="commercial">Commercial Only</option>
+                </select>
+              </div>
             </div>
           )}
           {!loading && query && results.length === 0 && (
