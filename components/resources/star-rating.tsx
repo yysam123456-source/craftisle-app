@@ -5,11 +5,11 @@ import { Star, StarHalf } from "lucide-react";
 
 interface StarRatingProps {
   resourceId: string;
-  /** 当前平均评分（0-5，0 表示暂无）*/
+  /** Current average rating (0-5, 0 means none) */
   averageRating?: number;
-  /** 总评分人数 */
+  /** Total number of ratings */
   totalRatings?: number;
-  /** 尺寸 */
+  /** Size */
   size?: "sm" | "md" | "lg";
 }
 
@@ -20,7 +20,7 @@ const SIZE_MAP = {
 };
 
 /**
- * 读取 localStorage 中的用户评分
+ * Load user rating from localStorage
  * key = `rating:${resourceId}`
  */
 function loadLocalRating(resourceId: string): number {
@@ -32,7 +32,7 @@ function loadLocalRating(resourceId: string): number {
 }
 
 /**
- * 保存用户评分到 localStorage
+ * Save user rating to localStorage
  */
 function saveLocalRating(resourceId: string, rating: number) {
   try {

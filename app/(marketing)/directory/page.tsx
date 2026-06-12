@@ -229,19 +229,19 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      {/* 场景化入口 */}
+      {/* Scenario-based entry */}
       <ScenarioCards />
 
-      {/* 编辑精选 */}
+      {/* Editor's Picks */}
       <EditorPicks />
 
-      {/* 快速排行榜 */}
+      {/* Quick Rankings */}
       <QuickRankings />
 
-      {/* 快速决策指南 */}
+      {/* Quick Decision Guide */}
       <DecisionGuide />
 
-      {/* Hot Resources（保留，作为补充） */}
+      {/* Hot Resources (kept as supplement) */}
       {hotResources.length > 0 && (
         <HotResources resources={hotResources} />
       )}
