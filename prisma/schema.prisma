@@ -1,6 +1,7 @@
+// prisma/schema.prisma
+
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -8,61 +9,203 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ── 用户模型 ───────────────────────────────────────
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?   // 加密后的密码（邮箱注册用）
+  
+  // OAuth
+  accounts Account[]
+  
+  // 用户角色
+  role Role @default(USER)
+  
+  // 用户生成内容
+  reviews    Review[]
+  ratings    Rating[]
+  comments   Comment[]
+  favorites Favorite[]
+  
+  // 时间戳
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  CONTRIBUTOR
+  MODERATOR
+  ADMIN
+}
+
+// ── OAuth 账户 ────────────────────────────────────
 model Account {
-  id                String   @id @default(cuid())
+  id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String?  @db.Text
-  access_token      String?  @db.Text
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String?  @db.Text
+  id_token          String? @db.Text
   session_state     String?
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@index([userId])
-  @@map("accounts")
 }
 
+// ── 会话（NextAuth.js 需要）─────────────────────
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@map("sessions")
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model User {
-  id                        String     @id @default(cuid())
-  name                      String?
-  email                     String?    @unique
-  emailVerified             DateTime?   @map("email_verified")
-  image                     String?
-  createdAt                 DateTime   @default(now())  @map("created_at")
-  updatedAt                 DateTime   @default(now())  @map("updated_at")
-  role                      String     @default("USER")
-  stripeCustomerId          String?    @unique  @map("stripe_customer_id")
-  stripeSubscriptionId      String?    @unique  @map("stripe_subscription_id")
-  stripePriceId             String?              @map("stripe_price_id")
-  stripeCurrentPeriodEnd    DateTime?           @map("stripe_current_period_end")
-  accounts                  Account[]
-  sessions                  Session[]
-
-  @@map("users")
-}
-
+// ── 验证码（NextAuth.js 需要）───────────────────
 model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("verification_tokens")
+}
+
+// ── 资源模型 ───────────────────────────────────────
+model Resource {
+  id          String   @id
+  name        String
+  url         String
+  description String?
+  
+  // 分类
+  category    String
+  categoryName String?
+  categoryIcon String?
+  
+  // 数据源
+  source      String
+  
+  // GitHub 数据
+  githubUrl       String?
+  githubStars     Int?
+  githubLicense   String?
+  githubLastUpdated DateTime?
+  
+  // 属性
+  isOpenSource   Boolean @default(false)
+  isSelfHosted   Boolean @default(false)
+  tags           String[]
+  
+  // 用户生成内容
+  reviews  Review[]
+  ratings  Rating[]
+  favorites Favorite[]
+  comments Comment[]
+  
+  // 统计
+  avgRating Float? @default(0)
+  reviewCount Int @default(0)
+  
+  // 时间戳
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ── 评测/评论 ────────────────────────────────────
+model Review {
+  id          String   @id @default(cuid())
+  title       String?
+  content     String   @db.Text
+  rating      Int      // 1-5 分
+  
+  // 作者
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  // 资源
+  resourceId  String
+  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  
+  // 点赞
+  helpful     Int @default(0)
+  
+  // 时间戳
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([authorId, resourceId]) // 一个用户只能给一个资源写一个评测
+}
+
+// ── 评分 ─────────────────────────────────────────
+model Rating {
+  id          String   @id @default(cuid())
+  value       Int      // 1-5 分
+  
+  // 用户
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // 资源
+  resourceId  String
+  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  
+  // 时间戳
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([userId, resourceId]) // 一个用户只能给一个资源评一次分
+}
+
+// ── 收藏 ─────────────────────────────────────────
+model Favorite {
+  id          String   @id @default(cuid())
+  
+  // 用户
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // 资源
+  resourceId  String
+  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  
+  // 时间戳
+  createdAt DateTime @default(now())
+  
+  @@unique([userId, resourceId]) // 一个用户只能收藏一个资源一次
+}
+
+// ── 评论 ─────────────────────────────────────────
+model Comment {
+  id          String   @id @default(cuid())
+  content     String   @db.Text
+  
+  // 作者
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  // 资源
+  resourceId  String
+  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  
+  // 父评论（支持回复）
+  parentId    String?
+  parent      Comment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     Comment[] @relation("CommentReplies")
+  
+  // 点赞
+  helpful     Int @default(0)
+  
+  // 时间戳
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
