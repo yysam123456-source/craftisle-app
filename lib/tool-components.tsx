@@ -100,6 +100,20 @@ const componentLoaders: Record<string, ComponentLoader> = {
 
   // ==================== JSON Tools ====================
   "json-to-csv": () => import("@/components/tools/JsonToCsvTool"),
+
+  // ==================== More Time Tools ====================
+  "days-to-hours": () => import("@/components/tools/DaysToHoursTool"),
+  "hours-to-days": () => import("@/components/tools/HoursToDaysTool"),
+  "time-to-seconds": () => import("@/components/tools/TimeToSecondsTool"),
+  "truncate-time": () => import("@/components/tools/TruncateClockTimeTool"),
+  "time-to-decimal": () => import("@/components/tools/TimeToDecimalTool"),
+
+  // ==================== More List Tools ====================
+  "duplicate-lines": () => import("@/components/tools/ListDuplicateTool"),
+  "find-popular": () => import("@/components/tools/FindMostPopularTool"),
+  "reverse-lines": () => import("@/components/tools/ListReverseTool"),
+  "rotate-lines": () => import("@/components/tools/ListRotateTool"),
+  "wrap-lines": () => import("@/components/tools/ListWrapTool"),
 };
 
 // ---------------------------------------------------------------------------

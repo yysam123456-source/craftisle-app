@@ -3133,6 +3133,272 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["csv-to-json", "json-formatter"],
   },
 
+  // ==================== More Time Tools ====================
+  "days-to-hours": {
+    title: "Days to Hours Converter",
+    desc: "Convert days to hours",
+    icon: "⏱️",
+    category: CATEGORIES.utility,
+    seoTitle: "Days to Hours Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free days to hours converter online. Convert days to hours. Simple and fast. 100% browser-based.",
+    seoKeywords: ["days to hours", "convert days to hours", "days to hours calculator", "time conversion"],
+    description: "Convert days to hours. Simple multiplication: 1 day = 24 hours. Useful for converting time durations, project planning, and scheduling.",
+    howToUse: [
+      { heading: "Enter days", text: "Type or paste day values (one per line)." },
+      { heading: "Convert", text: "Click Convert. Results appear in hours." },
+    ],
+    useCases: [
+      { title: "Project planning", text: "Convert project duration from days to hours for detailed scheduling." },
+      { title: "Work tracking", text: "Convert work days to hours for timesheets and billing." },
+      { title: "Event planning", text: "Convert days to hours for detailed event schedules." },
+    ],
+    faq: [
+      { q: "How many hours in a day?", a: "There are 24 hours in a day." },
+      { q: "Can I convert partial days?", a: "Yes. Decimal values are supported (e.g., 1.5 days = 36 hours)." },
+    ],
+    relatedTools: ["hours-to-days", "seconds-to-time"],
+  },
+
+  "hours-to-days": {
+    title: "Hours to Days Converter",
+    desc: "Convert hours to days",
+    icon: "📅",
+    category: CATEGORIES.utility,
+    seoTitle: "Hours to Days Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free hours to days converter online. Convert hours to days with adjustable decimal accuracy. 100% browser-based.",
+    seoKeywords: ["hours to days", "convert hours to days", "hours to days calculator", "time conversion"],
+    description: "Convert hours to days. Supports decimal accuracy adjustment (0-6 decimal places). Useful for converting work hours to days, calculating project duration, and time analysis.",
+    howToUse: [
+      { heading: "Enter hours", text: "Type or paste hour values (one per line)." },
+      { heading: "Set accuracy", text: "Choose decimal accuracy (0-6 decimal places)." },
+      { heading: "Convert", text: "Click Convert. Results appear in days with specified accuracy." },
+    ],
+    useCases: [
+      { title: "Work tracking", text: "Convert work hours to days for timesheets." },
+      { title: "Project planning", text: "Convert task hours to days for project scheduling." },
+      { title: "Time analysis", text: "Analyze time logs by converting hours to days." },
+    ],
+    faq: [
+      { q: "How many hours in a day?", a: "There are 24 hours in a day." },
+      { q: "What accuracy should I use?", a: "Use 0 for whole days, 2 for most cases, 6 for high precision." },
+    ],
+    relatedTools: ["days-to-hours", "time-between-dates"],
+  },
+
+  "time-to-seconds": {
+    title: "Time to Seconds Converter",
+    desc: "Convert HH:MM:SS to seconds",
+    icon: "⏲",
+    category: CATEGORIES.utility,
+    seoTitle: "Time to Seconds Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free time to seconds converter online. Convert HH:MM:SS time format to seconds. Supports partial time formats. 100% browser-based.",
+    seoKeywords: ["time to seconds", "hh:mm:ss to seconds", "convert time to seconds", "time format converter"],
+    description: "Convert time in HH:MM:SS format to total seconds. Supports partial formats (MM:SS or just seconds). Useful for video editing, audio processing, and time calculations.",
+    howToUse: [
+      { heading: "Enter time", text: "Type or paste time values in HH:MM:SS format (one per line)." },
+      { heading: "Convert", text: "Click Convert. Results appear in total seconds." },
+    ],
+    useCases: [
+      { title: "Video editing", text: "Convert timecodes to seconds for video editing software." },
+      { title: "Audio processing", text: "Convert audio timestamps to seconds for processing." },
+      { title: "Data analysis", text: "Convert time values to seconds for calculations." },
+    ],
+    faq: [
+      { q: "What formats are supported?", a: "HH:MM:SS, MM:SS, or just seconds. The tool auto-detects the format." },
+      { q: "Does it handle milliseconds?", a: "This tool expects whole seconds. For milliseconds, multiply by 1000 or use a dedicated tool." },
+    ],
+    relatedTools: ["seconds-to-time", "unix-to-date"],
+  },
+
+  "truncate-time": {
+    title: "Truncate Clock Time",
+    desc: "Truncate time to hours only or hours+minutes",
+    icon: "⏳",
+    category: CATEGORIES.utility,
+    seoTitle: "Truncate Clock Time Free — Online Tool | Craftisle",
+    seoDesc: "Free truncate clock time online. Truncate time to hours only or hours+minutes. Options for zero-padding and showing zero values. 100% browser-based.",
+    seoKeywords: ["truncate time", "truncate clock time", "keep hours only", "remove minutes seconds", "time truncation"],
+    description: "Truncate clock time to hours only or hours+minutes. Useful for rounding down time values, simplifying time displays, and data normalization. Options for zero-padding and showing/hiding zero values.",
+    howToUse: [
+      { heading: "Enter time", text: "Type or paste time values in HH:MM:SS format (one per line)." },
+      { heading: "Choose options", text: "Enable 'Keep hours only' to remove minutes and seconds. Enable other options as needed." },
+      { heading: "Truncate", text: "Click Truncate. Results appear with truncated time." },
+    ],
+    useCases: [
+      { title: "Time rounding", text: "Round down time values to nearest hour or nearest 15 minutes." },
+      { title: "Data simplification", text: "Simplify time data by removing seconds or minutes." },
+      { title: "Display formatting", text: "Format time values for display by truncating unnecessary precision." },
+    ],
+    faq: [
+      { q: "What does 'truncate' mean?", a: "Truncation removes the smaller time units. For example, 14:35:20 becomes 14:35 (or 14 if hours-only mode)." },
+      { q: "Does it round or truncate?", a: "It truncates (rounds down). 14:59:59 becomes 14:59 (or 14), not 15:00." },
+    ],
+    relatedTools: ["seconds-to-time", "time-to-seconds"],
+  },
+
+  "time-to-decimal": {
+    title: "Time to Decimal Converter",
+    desc: "Convert HH:MM:SS to decimal hours",
+    icon: "⏴",
+    category: CATEGORIES.utility,
+    seoTitle: "Time to Decimal Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free time to decimal converter online. Convert HH:MM:SS time format to decimal hours. Adjustable decimal places. 100% browser-based.",
+    seoKeywords: ["time to decimal", "hh:mm:ss to decimal", "convert time to decimal", "time format converter", "decimal hours"],
+    description: "Convert time in HH:MM:SS format to decimal hours. Supports adjustable decimal places (0-4). Useful for payroll, time tracking, and data analysis where decimal format is required.",
+    howToUse: [
+      { heading: "Enter time", text: "Type or paste time values in HH:MM:SS format (one per line)." },
+      { heading: "Set decimal places", text: "Choose decimal accuracy (0-4 decimal places)." },
+      { heading: "Convert", text: "Click Convert. Results appear in decimal hours." },
+    ],
+    useCases: [
+      { title: "Payroll", text: "Convert time logs to decimal hours for payroll systems." },
+      { title: "Time tracking", text: "Convert tracked time to decimal format for reporting." },
+      { title: "Data analysis", text: "Convert time values to decimal for calculations and analysis." },
+    ],
+    faq: [
+      { q: "What is decimal hours?", a: "Decimal hours express time as a decimal fraction of an hour. For example, 1:30 = 1.5 hours, 0:45 = 0.75 hours." },
+      { q: "How many decimal places should I use?", a: "Use 2 for most cases (1.50 hours). Use 0 for whole hours only." },
+    ],
+    relatedTools: ["seconds-to-time", "days-to-hours"],
+  },
+
+  // ==================== More List Tools ====================
+  "duplicate-lines": {
+    title: "Duplicate Lines",
+    desc: "Duplicate lines in text N times",
+    icon: "📋",
+    category: CATEGORIES.text,
+    seoTitle: "Duplicate Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free duplicate lines online tool. Duplicate lines in text N times. Concatenate or interleave mode. Reverse option. 100% browser-based.",
+    seoKeywords: ["duplicate lines", "repeat lines", "duplicate text lines", "repeat text lines", "line duplication"],
+    description: "Duplicate lines in text N times. Supports two modes: concatenate (Original + Copy + Copy) or interleave (Original, Copy, Original, Copy). Option to reverse copies. Useful for creating repeated content, test data, and text patterns.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Set number of copies", text: "Enter how many times to duplicate (2 = original + 1 copy)." },
+      { heading: "Choose mode", text: "Select 'Concatenate' to append copies, or 'Interleave' to alternate." },
+      { heading: "Duplicate", text: "Click Duplicate. The duplicated text appears in output." },
+    ],
+    useCases: [
+      { title: "Test data generation", text: "Create repeated test data for software testing." },
+      { title: "Content creation", text: "Create repeated patterns for text art or formatting." },
+      { title: "Data expansion", text: "Expand small datasets by duplicating entries." },
+    ],
+    faq: [
+      { q: "What is 'Concatenate' mode?", a: "Concatenate mode puts all copies together: Original + Copy + Copy + ..." },
+      { q: "What is 'Interleave' mode?", a: "Interleave mode alternates: Original, Copy, Original, Copy, ..." },
+      { q: "Can I reverse the copies?", a: "Yes. Enable 'Reverse copies' to reverse the order of duplicated lines." },
+    ],
+    relatedTools: ["shuffle-lines", "repeat-text"],
+  },
+
+  "find-popular": {
+    title: "Find Most Popular Items",
+    desc: "Count and rank items in a list",
+    icon: "📊",
+    category: CATEGORIES.text,
+    seoTitle: "Find Most Popular Items Free — Online Text Tool | Craftisle",
+    seoDesc: "Free find most popular items online tool. Count and rank items in a list. Sort by count or alphabetically. Multiple display formats. 100% browser-based.",
+    seoKeywords: ["find most popular", "count items", "item frequency", "list statistics", "word frequency counter"],
+    description: "Count and rank items in a list. Supports multiple separators (newline, comma, space, semicolon). Sort by count (most popular first) or alphabetically. Display formats: count only, with percentage, or with total. Case-insensitive option available.",
+    howToUse: [
+      { heading: "Paste your list", text: "Type or paste a list of items (one per line, or separated by comma/space)." },
+      { heading: "Choose separator", text: "Select the separator used in your list (newline, comma, space, semicolon)." },
+      { heading: "Choose sort and display", text: "Select sort method (by count or alphabetical) and display format (count, percentage, or total)." },
+      { heading: "Analyze", text: "Click Analyze. The ranked list appears in output." },
+    ],
+    useCases: [
+      { title: "Survey analysis", text: "Count responses in survey data to find most common answers." },
+      { title: "Log analysis", text: "Count error messages or events in log files." },
+      { title: "Shopping list analysis", text: "Count items in a shopping list to find most frequently bought items." },
+    ],
+    faq: [
+      { q: "What is 'Display Format'?", a: "Count: 'Alice: 5'. Percentage: 'Alice: 5 (50%)'. Total: 'Alice: 5 (5/10)'." },
+      { q: "Does case matter?", a: "By default, case is ignored ('Alice' = 'alice'). Disable 'Ignore case' to treat them as different." },
+      { q: "Can I count words in a paragraph?", a: "Yes. Use 'Space' as separator to count individual words." },
+    ],
+    relatedTools: ["unique-lines", "sort-lines", "shuffle-lines"],
+  },
+
+  "reverse-lines": {
+    title: "Reverse Lines",
+    desc: "Reverse the order of lines in text",
+    icon: "🔃",
+    category: CATEGORIES.text,
+    seoTitle: "Reverse Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free reverse lines online tool. Reverse the order of lines in text. Preserve or remove empty lines. 100% browser-based.",
+    seoKeywords: ["reverse lines", "reverse text order", "reverse line order", "invert lines", "reverse list order"],
+    description: "Reverse the order of lines in text. Useful for reversing lists, inverting order of items, and processing data in reverse. Optionally preserve or remove empty lines.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Choose options", text: "Enable 'Preserve empty lines' to keep blank lines in the reversed output." },
+      { heading: "Reverse", text: "Click Reverse. The lines are reversed in order." },
+      { heading: "Copy result", text: "Copy the reversed text or download as a file." },
+    ],
+    useCases: [
+      { title: "List inversion", text: "Reverse the order of items in a list (e.g., highest to lowest)." },
+      { title: "Data processing", text: "Process data in reverse order for analysis." },
+      { title: "Text transformation", text: "Reverse paragraphs or stanzas in poetry." },
+    ],
+    faq: [
+      { q: "Does it reverse the text within each line?", a: "No. It reverses the ORDER of lines, not the text within each line. Use 'Reverse Text' tool for that." },
+      { q: "Can I reverse part of a list?", a: "Yes. Select the lines you want to reverse and paste them separately." },
+    ],
+    relatedTools: ["shuffle-lines", "sort-lines", "rotate-lines"],
+  },
+
+  "rotate-lines": {
+    title: "Rotate Lines",
+    desc: "Rotate lines in text (move first N lines to end)",
+    icon: "🔄",
+    category: CATEGORIES.text,
+    seoTitle: "Rotate Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free rotate lines online tool. Rotate lines in text (move first N lines to end). Preserve or remove empty lines. 100% browser-based.",
+    seoKeywords: ["rotate lines", "circular shift lines", "move lines to end", "line rotation", "cyclic permutation"],
+    description: "Rotate lines in text (cyclic permutation). Move the first N lines to the end of the text. Useful for rotating lists, cycling through items, and creating circular references.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Set rotate positions", text: "Enter how many lines to move from beginning to end." },
+      { heading: "Choose options", text: "Enable 'Preserve empty lines' to keep blank lines." },
+      { heading: "Rotate", text: "Click Rotate. The lines are rotated." },
+    ],
+    useCases: [
+      { title: "List cycling", text: "Cycle through items in a list (e.g., rotate shift schedule)." },
+      { title: "Text transformation", text: "Create circular references in text." },
+      { title: "Data rotation", text: "Rotate data rows for analysis or presentation." },
+    ],
+    faq: [
+      { q: "What does 'rotate by 1' mean?", a: "'abc' with rotate=1 becomes 'bca' (first line moves to end)." },
+      { q: "Can I rotate by more than 1?", a: "Yes. Rotate by any number up to the total number of lines." },
+    ],
+    relatedTools: ["reverse-lines", "shuffle-lines", "sort-lines"],
+  },
+
+  "wrap-lines": {
+    title: "Wrap / Unwrap Lines",
+    desc: "Wrap long lines or unwrap short lines",
+    icon: "📝",
+    category: CATEGORIES.text,
+    seoTitle: "Wrap / Unwrap Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free wrap unwrap lines online tool. Wrap long lines at specified width or unwrap short lines. Custom separator support. 100% browser-based.",
+    seoKeywords: ["wrap lines", "unwrap lines", "line wrapping", "text wrapping", "join lines"],
+    description: "Wrap long lines at specified width or unwrap (join) short lines. Useful for formatting text, preparing email text, and processing data. Custom separator support for unwrapping.",
+    howToUse: [
+      { heading: "Choose mode", text: "Select 'Wrap' to break long lines, or 'Unwrap' to join lines." },
+      { heading: "Set options", text: "For Wrap: set width (characters per line). For Unwrap: set separator (space, comma, etc.)." },
+      { heading: "Process", text: "Click Wrap or Unwrap. The processed text appears in output." },
+    ],
+    useCases: [
+      { title: "Email formatting", text: "Wrap text to 72 characters for plain text email." },
+      { title: "Code formatting", text: "Wrap long comment lines in code." },
+      { title: "Data preparation", text: "Unwrap lines to create comma-separated lists." },
+    ],
+    faq: [
+      { q: "Where does it break long lines?", a: "It tries to break at the separator (space by default). If not found near the wrap width, it breaks at the width." },
+      { q: "Can I unwrap with custom separator?", a: "Yes. Choose from space, comma, comma+space, or newline." },
+    ],
+    relatedTools: ["sort-lines", "shuffle-lines", "reverse-lines"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",
