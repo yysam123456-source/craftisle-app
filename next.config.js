@@ -1,10 +1,11 @@
 const { withContentlayer } = require("next-contentlayer2");
+const BundleAnalyzer = require("@next/bundle-analyzer");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   // trailingSlash: true, // disabled: causes Vercel 404 on homepage
-
+  
   // Disable the Next.js Dev Tools panel (bottom-left overlay in dev mode)
   devIndicators: false,
 
@@ -19,8 +20,8 @@ const nextConfig = {
 
   images: {
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 31536000, // 1 year for static images
     remotePatterns: [
       {
@@ -52,6 +53,9 @@ const nextConfig = {
     ],
   },
 
+  // Disable source maps in production to reduce bundle size
+  productionBrowserSourceMaps: false,
+
   // Code splitting: extract CSS per page to reduce bundle size
   experimental: {
     optimizeCss: true,
@@ -73,4 +77,9 @@ const nextConfig = {
   },
 };
 
-module.exports = withContentlayer(nextConfig);
+// Only enable bundle analyzer if ANALYZE env var is set
+const config = process.env.ANALYZE === "true"
+  ? BundleAnalyzer.withBundleAnalyzer(nextConfig)
+  : nextConfig;
+
+module.exports = withContentlayer(config);
