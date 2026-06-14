@@ -25,6 +25,7 @@ import {
   PenTool,
   Pencil,
   FileEdit,
+  Layout,
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
@@ -275,6 +276,22 @@ export default function IndexPage() {
                 </Link>
               </CardContent>
             </Card>
+            {/* Draw - Whiteboard */}
+            <Card className="transition-shadow hover:shadow-lg">
+              <CardHeader>
+                <Layout className="h-8 w-8 text-primary" />
+                <CardTitle className="mt-2 text-lg">Online Whiteboard</CardTitle>
+                <CardDescription>Collaborative online whiteboard for brainstorming</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <a href="https://draw.craftisle.com" target="_blank" rel="noopener noreferrer">
+                  <Button variant="ghost" size="sm" className="w-full">
+                    Open Tool ↗
+                  </Button>
+                </a>
+              </CardContent>
+            </Card>
+
             <Card className="transition-shadow hover:shadow-lg">
               <CardHeader>
                 <Pencil className="h-8 w-8 text-primary" />
