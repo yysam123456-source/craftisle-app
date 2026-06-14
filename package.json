@@ -15,7 +15,12 @@
     "postinstall": "prisma generate && node -e \"const fs=require('fs');const p='node_modules/tegaki/package.json';const d=JSON.parse(fs.readFileSync(p,'utf8'));d.main='./dist/index.mjs';delete d.exports;fs.writeFileSync(p,JSON.stringify(d,null,2));console.log('[postinstall] patched tegaki: set main, removed exports')\"",
     "kill-node": "taskkill /F /IM node.exe",
     "sync:fmhy": "node scripts/sync-fmhy.mjs",
-    "sync:sources": "node scripts/scrape-sources.mjs"
+    "sync:sources": "node scripts/scrape-sources.mjs",
+    "update:fmhy": "node scripts/update-fmhy.js",
+    "update:github-stars": "node scripts/update-github-stars.js",
+    "update:producthunt": "node scripts/update-producthunt.js",
+    "update:alternativeto": "node scripts/update-alternativeto.js",
+    "update:awesome-lists": "node scripts/update-awesome-lists.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
