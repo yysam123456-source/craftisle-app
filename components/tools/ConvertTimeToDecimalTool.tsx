@@ -7,13 +7,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
 
-export default function TruncateClockTimeTool() {
+export default function ConvertTimeToDecimalTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
-  const [truncateTo, setTruncateTo] = useState<"hour" | "minute" | "second">("minute");
 
-  const truncateTime = (timeStr: string, unit: string): string | null => {
+  const timeToDecimal = (timeStr: string): string | null => {
     const trimmed = timeStr.trim();
     
     // Match HH:MM:SS or HH:MM
@@ -27,13 +26,8 @@ export default function TruncateClockTimeTool() {
     
     if (minutes >= 60 || seconds >= 60) return null;
     
-    if (unit === "hour") {
-      return `${String(hours).padStart(2, "0")}:00:00`;
-    } else if (unit === "minute") {
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:00`;
-    } else {
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-    }
+    const decimal = hours + (minutes / 60) + (seconds / 3600);
+    return decimal.toFixed(6).replace(/\.?0+$/, "");
   };
 
   const handleProcess = () => {
@@ -51,11 +45,11 @@ export default function TruncateClockTimeTool() {
       .filter((line) => line !== "");
 
     const results = lines.map((line) => {
-      const truncated = truncateTime(line, truncateTo);
-      if (truncated === null) {
+      const decimal = timeToDecimal(line);
+      if (decimal === null) {
         return `${line} = Invalid format (use HH:MM or HH:MM:SS)`;
       }
-      return `${line} → ${truncated}`;
+      return `${line} = ${decimal}`;
     });
 
     setOutput(results.join("\n"));
@@ -70,7 +64,7 @@ export default function TruncateClockTimeTool() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Truncate Clock Time</CardTitle>
+        <CardTitle>Convert Time to Decimal</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
@@ -82,47 +76,25 @@ export default function TruncateClockTimeTool() {
         <div className="space-y-2">
           <Label>Enter time (one per line):</Label>
           <Textarea
-            placeholder="14:35:42&#10;09:08&#10;23:59:59"
+            placeholder="01:30:00&#10;02:45&#10;08:00:30"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="min-h-[150px] font-mono"
           />
         </div>
 
-        <div className="space-y-3 rounded-lg bg-muted/30 p-4">
-          <Label className="text-sm font-medium">Truncate to:</Label>
-          <div className="flex gap-4">
-            {[
-              { value: "hour", label: "Hour" },
-              { value: "minute", label: "Minute" },
-              { value: "second", label: "Second" },
-            ].map((option) => (
-              <label key={option.value} className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="truncateTo"
-                  checked={truncateTo === option.value}
-                  onChange={() => setTruncateTo(option.value as "hour" | "minute" | "second")}
-                  className="h-4 w-4"
-                />
-                <span className="text-sm">{option.label}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-
         <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
-          <p className="font-medium mb-1">Examples:</p>
+          <p className="font-medium mb-1">Conversion examples:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Truncate to hour: 14:35:42 → 14:00:00</li>
-            <li>Truncate to minute: 14:35:42 → 14:35:00</li>
-            <li>Truncate to second: 14:35:42 → 14:35:42</li>
+            <li>01:30:00 → 1.5</li>
+            <li>02:45 → 2.75</li>
+            <li>08:00:30 → 8.008333</li>
           </ul>
         </div>
 
         <div className="flex gap-2">
           <Button onClick={handleProcess} className="flex-1">
-            Truncate
+            Convert
           </Button>
           <Button onClick={handleClear} variant="outline">
             Clear

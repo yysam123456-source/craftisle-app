@@ -1,98 +1,129 @@
 "use client";
 
 import { useState } from "react";
-import { TextToolLayout } from "./TextToolLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Label } from "@/components/ui/label";
 
-/**
- * Discord Timestamp Generator
- * Generate Discord timestamp strings from dates
- */
 export default function DiscordTimestampTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [format, setFormat] = useState<string>("F");
-  const [enforceUTC, setEnforceUTC] = useState(true);
+  const [error, setError] = useState("");
 
-  const formatOptions: { value: string; label: string; example: string }[] = [
-    { value: "t", label: "Short Time", example: "16:20" },
-    { value: "T", label: "Long Time", example: "16:20:30" },
-    { value: "d", label: "Short Date", example: "20/04/2021" },
-    { value: "D", label: "Long Date", example: "20 April 2021" },
-    { value: "f", label: "Short DateTime", example: "20 April 2021 16:20" },
-    { value: "F", label: "Long DateTime", example: "Tuesday, 20 April 2021 16:20" },
-    { value: "R", label: "Relative Time", example: "2 months ago" },
-  ];
+  const generateDiscordTimestamp = (date: Date, format: string): string => {
+    const unix = Math.floor(date.getTime() / 1000);
+    const formats: Record<string, string> = {
+      "t": `<t:${unix}:t>`,  // Short time
+      "T": `<t:${unix}:T>`,  // Long time
+      "d": `<t:${unix}:d>`,  // Short date
+      "D": `<t:${unix}:D>`,  // Long date
+      "f": `<t:${unix}:f>`,  // Short date/time
+      "F": `<t:${unix}:F>`,  // Long date/time
+      "R": `<t:${unix}:R>`,  // Relative
+    };
+    return formats[format] || `<t:${unix}:f>`;
+  };
 
-  const handleGenerate = () => {
+  const handleProcess = () => {
+    setError("");
+    
     if (!input.trim()) {
+      setError("Please enter a date/time");
       setOutput("");
       return;
     }
 
-    const results: string[] = [];
-
-    input.split("\n").forEach(line => {
-      if (!line.trim()) {
-        results.push("");
-        return;
-      }
-
-      const raw = line.trim();
-      const date = enforceUTC ? new Date(raw + "Z") : new Date(raw);
-
+    try {
+      const date = new Date(input);
       if (isNaN(date.getTime())) {
-        results.push(`❌ Invalid: ${line}`);
+        setError("Invalid date format. Use YYYY-MM-DD HH:MM:SS or similar");
+        setOutput("");
         return;
       }
 
-      const unix = Math.floor(date.getTime() / 1000);
-      results.push(`<t:${unix}:${format}>`);
-    });
+      const results = [
+        "Discord Timestamp Formats:",
+        "",
+        `Short time: ${generateDiscordTimestamp(date, "t")}`,
+        `Long time: ${generateDiscordTimestamp(date, "T")}`,
+        `Short date: ${generateDiscordTimestamp(date, "d")}`,
+        `Long date: ${generateDiscordTimestamp(date, "D")}`,
+        `Short date/time: ${generateDiscordTimestamp(date, "f")}`,
+        `Long date/time: ${generateDiscordTimestamp(date, "F")}`,
+        `Relative: ${generateDiscordTimestamp(date, "R")}`,
+        "",
+        `Unix timestamp: ${Math.floor(date.getTime() / 1000)}`,
+      ].join("\n");
 
-    setOutput(results.join("\n"));
+      setOutput(results);
+    } catch {
+      setError("Error processing date");
+      setOutput("");
+    }
+  };
+
+  const handleClear = () => {
+    setInput("");
+    setOutput("");
+    setError("");
+  };
+
+  const handleExample = () => {
+    const now = new Date();
+    setInput(now.toISOString().slice(0, 19).replace("T", " "));
   };
 
   return (
-    <TextToolLayout
-      title="Discord Timestamp Generator"
-      description="Generate Discord timestamp strings from dates"
-      input={input}
-      output={output}
-      onInputChange={setInput}
-      onProcess={handleGenerate}
-      processLabel="Generate"
-      options={
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">Timestamp Format</label>
-            <select
-              value={format}
-              onChange={(e) => setFormat(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md"
-            >
-              {formatOptions.map(opt => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label} - {opt.example}
-                </option>
-              ))}
-            </select>
-          </div>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Discord Timestamp Generator</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
 
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={enforceUTC}
-              onChange={(e) => setEnforceUTC(e.target.checked)}
-            />
-            <span className="text-sm">Treat input as UTC (add Z suffix)</span>
-          </label>
-
-          <div className="text-xs text-gray-500 dark:text-gray-400">
-            <p>Input format: YYYY-MM-DD HH:mm:ss</p>
-            <p>Example: 2024-07-18 10:00:00</p>
-          </div>
+        <div className="space-y-2">
+          <Label>Enter date/time:</Label>
+          <Textarea
+            placeholder="2024-07-18 10:00:27"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="min-h-[100px] font-mono"
+          />
         </div>
-      }
-    />
+
+        <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
+          <p className="font-medium mb-1">Discord format:</p>
+          <code className="text-xs">{'<t:unix_timestamp:f>'}</code>
+          <p className="mt-2 text-xs">Discord will display the timestamp in the user's local timezone.</p>
+        </div>
+
+        <div className="flex gap-2">
+          <Button onClick={handleProcess} className="flex-1">
+            Generate
+          </Button>
+          <Button onClick={handleExample} variant="outline">
+            Now
+          </Button>
+          <Button onClick={handleClear} variant="outline">
+            Clear
+          </Button>
+        </div>
+
+        {output && (
+          <div className="space-y-2">
+            <Label>Discord Timestamps:</Label>
+            <div className="rounded-lg border bg-muted/50 p-4">
+              <pre className="whitespace-pre-wrap text-sm">{output}</pre>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

@@ -1,91 +1,150 @@
 "use client";
 
 import { useState } from "react";
-import { TextToolLayout } from "./TextToolLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Label } from "@/components/ui/label";
 
-/**
- * Cron Parser / Crontab Guru
- * Parse and explain cron expressions
- */
 export default function CrontabGuruTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
 
-  const parseCron = (expression: string): string => {
-    const parts = expression.trim().split(/\s+/);
-
+  // Simplified cron explanation without external library
+  const explainCron = (expr: string): string => {
+    const parts = expr.trim().split(/\s+/);
+    
     if (parts.length !== 5) {
-      return "❌ Invalid cron format. Expected: minute hour day month weekday";
+      return `Invalid: Cron expression must have 5 fields (minute hour day month day-of-week)`;
     }
-
-    const [minute, hour, day, month, weekday] = parts;
-
-    const explain = (field: string, name: string): string => {
-      if (field === "*") return `Every ${name}`;
-      if (field.includes(",")) return `${name} in [${field}]`;
-      if (field.includes("-")) return `${name} from ${field.replace("-", " to ")}`;
-      if (field.includes("/")) {
-        const [start, interval] = field.split("/");
-        return `Every ${interval} ${name}${start && start !== "*" ? ` starting at ${start}` : ""}`;
-      }
-      return `${name} = ${field}`;
-    };
-
-    const explanations = [
-      explain(minute, "minute"),
-      explain(hour, "hour"),
-      explain(day, "day"),
-      explain(month, "month"),
-      explain(weekday, "weekday"),
-    ];
-
-    // Common patterns
-    let common = "";
-    if (expression === "* * * * *") common = "→ Runs every minute";
-    else if (expression === "0 * * * *") common = "→ Runs every hour";
-    else if (expression === "0 0 * * *") common = "→ Runs daily at midnight";
-    else if (expression === "0 0 * * 0") common = "→ Runs weekly on Sunday at midnight";
-    else if (expression === "0 0 1 * *") common = "→ Runs monthly on the 1st at midnight";
-
-    return [`Cron: ${expression}`, ...explanations.map((e, i) => `  ${["Minute", "Hour", "Day", "Month", "Weekday"][i]}: ${e}`), common].filter(Boolean).join("\n");
+    
+    const [minute, hour, day, month, dayOfWeek] = parts;
+    
+    const explain: string[] = [];
+    
+    // Minute
+    if (minute === "*") {
+      explain.push("every minute");
+    } else if (minute.startsWith("*/")) {
+      explain.push(`every ${minute.slice(2)} minutes`);
+    } else {
+      explain.push(`at minute ${minute}`);
+    }
+    
+    // Hour
+    if (hour === "*") {
+      explain.push("every hour");
+    } else if (hour.startsWith("*/")) {
+      explain.push(`every ${hour.slice(2)} hours`);
+    } else {
+      explain.push(`at hour ${hour}`);
+    }
+    
+    // Day
+    if (day === "*") {
+      explain.push("every day");
+    } else {
+      explain.push(`on day ${day}`);
+    }
+    
+    // Month
+    if (month === "*") {
+      explain.push("every month");
+    } else {
+      explain.push(`in month ${month}`);
+    }
+    
+    // Day of week
+    if (dayOfWeek === "*") {
+      explain.push("every day of week");
+    } else {
+      const dowNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const dowValues = dayOfWeek.split(",");
+      const dowExplained = dowValues.map(d => {
+        const num = parseInt(d, 10);
+        return isNaN(num) ? d : dowNames[num] || d;
+      }).join(", ");
+      explain.push(`on ${dowExplained}`);
+    }
+    
+    return explain.join(", ");
   };
 
-  const handleParse = () => {
+  const handleProcess = () => {
+    setError("");
+    
     if (!input.trim()) {
+      setError("Please enter one or more cron expressions (one per line)");
       setOutput("");
       return;
     }
 
-    const results = input.split("\n").map(line => {
-      if (!line.trim()) return "";
-      return parseCron(line);
+    const lines = input
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line !== "");
+
+    const results = lines.map((line) => {
+      return `${line} → ${explainCron(line)}`;
     });
 
-    setOutput(results.join("\n\n"));
+    setOutput(results.join("\n"));
+  };
+
+  const handleClear = () => {
+    setInput("");
+    setOutput("");
+    setError("");
   };
 
   return (
-    <TextToolLayout
-      title="Cron Expression Parser"
-      description="Parse and explain cron expressions"
-      input={input}
-      output={output}
-      onInputChange={setInput}
-      onProcess={handleParse}
-      processLabel="Parse"
-      options={
-        <div className="text-xs text-gray-500 dark:text-gray-400 space-y-1">
-          <p><strong>Format:</strong> minute hour day month weekday</p>
-          <p><strong>Examples:</strong></p>
-          <ul className="list-disc pl-4">
-            <li><code>* * * * *</code> - Every minute</li>
-            <li><code>0 * * * *</code> - Every hour</li>
-            <li><code>0 0 * * *</code> - Daily at midnight</li>
-            <li><code>*/15 * * * *</code> - Every 15 minutes</li>
-            <li><code>0 9-17 * * 1-5</code> - Every hour 9-17, weekdays</li>
-          </ul>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Crontab Guru</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+
+        <div className="space-y-2">
+          <Label>Cron expression (one per line):</Label>
+          <Textarea
+            placeholder="* * * * *&#10;*/5 * * * *&#10;0 12 1 * *&#10;35 16 * * 0-5"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="min-h-[150px] font-mono"
+          />
         </div>
-      }
-    />
+
+        <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
+          <p className="font-medium mb-1">Cron format:</p>
+          <code className="text-xs">minute hour day month day-of-week</code>
+          <p className="mt-2 text-xs">Example: <code>0 12 * * 1</code> = At 12:00 PM, every Monday</p>
+        </div>
+
+        <div className="flex gap-2">
+          <Button onClick={handleProcess} className="flex-1">
+            Explain
+          </Button>
+          <Button onClick={handleClear} variant="outline">
+            Clear
+          </Button>
+        </div>
+
+        {output && (
+          <div className="space-y-2">
+            <Label>Explanation:</Label>
+            <div className="rounded-lg border bg-muted/50 p-4">
+              <pre className="whitespace-pre-wrap text-sm">{output}</pre>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
