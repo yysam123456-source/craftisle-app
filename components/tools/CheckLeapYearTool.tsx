@@ -1,68 +1,69 @@
-import { useState, useCallback } from "react";
-import { Card } from "@/components/ui/card";
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
 
 export default function CheckLeapYearTool() {
-  const [years, setYears] = useState("");
-  const [results, setResults] = useState<{ year: number; isLeap: boolean }[]>([]);
+  const [year, setYear] = useState<string>("");
+  const [result, setResult] = useState<{ isLeap: boolean; year: number } | null>(null);
 
-  const handleCheck = useCallback(() => {
-    const yearList = years
-      .split("\n")
-      .map(y => parseInt(y.trim()))
-      .filter(y => !isNaN(y));
-    
-    const results = yearList.map(year => ({
-      year,
-      isLeap: (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
-    }));
-    
-    setResults(results);
-  }, [years]);
+  const checkLeapYear = (year: number): boolean => {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  };
+
+  const handleCheck = () => {
+    const yearNum = parseInt(year);
+    if (isNaN(yearNum)) return;
+    setResult({
+      isLeap: checkLeapYear(yearNum),
+      year: yearNum,
+    });
+  };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-bold">Check Leap Year</h1>
-      <Card className="p-6 space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-2">Enter Years (one per line)</label>
-          <textarea
-            value={years}
-            onChange={(e) => setYears(e.target.value)}
-            placeholder="2024\n2025\n2026"
-            className="w-full h-32 px-3 py-2 border rounded-md font-mono text-sm"
-          />
+    <div className="max-w-2xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">Check Leap Year</h1>
+      
+      <Card className="p-6">
+        <div className="mb-4">
+          <Label htmlFor="year">Enter Year</Label>
+          <div className="flex gap-2 mt-2">
+            <Input
+              id="year"
+              type="number"
+              placeholder="e.g., 2024"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleCheck()}
+            />
+            <Button onClick={handleCheck}>Check</Button>
+          </div>
         </div>
-        <Button onClick={handleCheck} className="w-full">Check</Button>
-        {results.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-medium">Results</h3>
-            <div className="border rounded-lg overflow-hidden">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b bg-muted/50">
-                    <th className="px-4 py-2 text-left">Year</th>
-                    <th className="px-4 py-2 text-left">Is Leap Year?</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {results.map((r) => (
-                    <tr key={r.year} className="border-b">
-                      <td className="px-4 py-2">{r.year}</td>
-                      <td className="px-4 py-2">
-                        {r.isLeap ? (
-                          <span className="text-green-600 font-medium">✓ Yes</span>
-                        ) : (
-                          <span className="text-red-600">✗ No</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+
+        {result && (
+          <div className={`p-4 rounded-lg ${result.isLeap ? "bg-green-100 dark:bg-green-900" : "bg-red-100 dark:bg-red-900"}`}>
+            <p className="text-lg font-semibold">
+              {result.year} is {result.isLeap ? "a leap year" : "not a leap year"}
+            </p>
+            <p className="text-sm mt-2 text-muted-foreground">
+              {result.isLeap
+                ? `${result.year} has 366 days (February has 29 days)`
+                : `${result.year} has 365 days (February has 28 days)`}
+            </p>
           </div>
         )}
+
+        <div className="mt-6 text-sm text-muted-foreground">
+          <h3 className="font-semibold mb-2">Leap Year Rules:</h3>
+          <ul className="list-disc list-inside space-y-1">
+            <li>A year is a leap year if it is divisible by 4</li>
+            <li>However, if it is divisible by 100, it is NOT a leap year (unless...)</li>
+            <li>If it is also divisible by 400, then it IS a leap year</li>
+          </ul>
+        </div>
       </Card>
     </div>
   );

@@ -219,6 +219,21 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "image-base64": () => import("@/components/tools/ImageBase64Tool"),
   "svg-editor": () => import("@/components/tools/SvgEditorTool"),
   "truncate-clock-time": () => import("@/components/tools/TruncateClockTimeTool"),
+  "handwriting-animation": () => import("@/components/tools/handwriting-animation"),
+  "image-info": () => import("@/components/tools/ImageInfoTool"),
+
+  "image-beautify-screenshots": () => import("@/components/tools/ImageBeautifyScreenshotsTool"),
+  "image-border": () => import("@/components/tools/ImageBorderTool"),
+  "image-color-adjust": () => import("@/components/tools/ImageColorAdjustTool"),
+  "image-color-palette": () => import("@/components/tools/ImageColorPaletteTool"),
+  "image-favicon": () => import("@/components/tools/ImageFaviconTool"),
+  "image-generate-memes": () => import("@/components/tools/ImageGenerateMemesTool"),
+  "image-passport-photo": () => import("@/components/tools/ImagePassportPhotoTool"),
+  "image-strip-metadata": () => import("@/components/tools/ImageStripMetadataTool"),
+  "image-watermark": () => import("@/components/tools/ImageWatermarkTool"),
+  "check-leap-years": () => import("@/components/tools/CheckLeapYearTool"),
+  "pdf-tools": () => import("@/components/tools/PdfToolsTool"),
+  "regex-vis": () => import("@/components/tools/RegexVisTool"),
 };
 
 // ---------------------------------------------------------------------------
