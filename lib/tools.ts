@@ -3724,6 +3724,117 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["json-formatter", "escape-json"],
   },
 
+  // ==================== CSV Tools (Batch 4) ====================
+  "find-incomplete-csv": {
+    title: "Find Incomplete CSV Records",
+    desc: "Find rows with missing columns or empty values in CSV",
+    icon: "🔍",
+    category: CATEGORIES.dev,
+    seoTitle: "Find Incomplete CSV Records Free — Online Tool | Craftisle",
+    seoDesc: "Free find incomplete CSV records online tool. Find rows with missing columns or empty values. Supports custom separator and empty check. 100% browser-based.",
+    seoKeywords: ["find incomplete csv", "csv missing columns", "csv empty values", "validate csv integrity"],
+    description: "Find rows with missing columns or empty values in CSV data. Useful for data validation, data cleaning, and ensuring CSV integrity before import.",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data (with header row)." },
+      { heading: "Set options", text: "Choose separator, enable/disable empty value check, set issue limit." },
+      { heading: "Find Issues", text: "Click Find Issues. Rows with missing columns or empty values are listed." },
+      { heading: "Fix CSV", text: "Review issues and fix the CSV data accordingly." },
+    ],
+    useCases: [
+      { title: "Data validation", text: "Check CSV data for missing columns before import." },
+      { title: "Data cleaning", text: "Find and fix incomplete rows in CSV data." },
+      { title: "Ensure integrity", text: "Validate CSV structure before processing." },
+    ],
+    faq: [
+      { q: "What does 'missing columns' mean?", a: "Rows that have fewer columns than the maximum number of columns in the CSV." },
+      { q: "What does 'empty values' mean?", a: "Cells that are empty (no value between separators)." },
+    ],
+    relatedTools: ["csv-formatter", "csv-to-json"],
+  },
+
+  "insert-csv-column": {
+    title: "Insert CSV Column",
+    desc: "Insert a new column into CSV data",
+    icon: "➕",
+    category: CATEGORIES.dev,
+    seoTitle: "Insert CSV Column Free — Online Tool | Craftisle",
+    seoDesc: "Free insert CSV column online tool. Insert a new column into CSV data. Supports custom separator and column index. 100% browser-based.",
+    seoKeywords: ["insert csv column", "add csv column", "csv insert column online", "modify csv structure"],
+    description: "Insert a new column into CSV data at a specified index. Header row gets column name, data rows get default value. Useful for adding new fields, data transformation, and CSV restructuring.",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data (with header row)." },
+      { heading: "Set options", text: "Choose separator, column index (1-based), column name (for header), default value (for data rows)." },
+      { heading: "Insert Column", text: "Click Insert Column. New column is inserted at specified index." },
+      { heading: "Copy or download", text: "Copy the CSV or download as a .csv file." },
+    ],
+    useCases: [
+      { title: "Add new fields", text: "Insert a new column for data you want to add." },
+      { title: "Data transformation", text: "Restructure CSV by inserting columns at specific positions." },
+      { title: "Prepare for import", text: "Add required columns before importing to database." },
+    ],
+    faq: [
+      { q: "What is 'Column Index'?", a: "1-based index. Column 1 = first column, Column 2 = second column, etc." },
+      { q: "What happens to header row?", a: "Header row gets the column name. Data rows get the default value." },
+    ],
+    relatedTools: ["csv-formatter", "swap-csv-columns"],
+  },
+
+  "swap-csv-columns": {
+    title: "Swap CSV Columns",
+    desc: "Swap two columns in CSV data",
+    icon: "🔄",
+    category: CATEGORIES.dev,
+    seoTitle: "Swap CSV Columns Free — Online Tool | Craftisle",
+    seoDesc: "Free swap CSV columns online tool. Swap two columns in CSV data. Supports custom separator and column indexes. 100% browser-based.",
+    seoKeywords: ["swap csv columns", "exchange csv columns", "reorder csv columns", "csv swap columns online"],
+    description: "Swap two columns in CSV data by their 1-based indexes. Useful for reordering columns, data transformation, and preparing CSV for export.",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data (with header row)." },
+      { heading: "Set options", text: "Choose separator, column 1 index, column 2 index (both 1-based)." },
+      { heading: "Swap Columns", text: "Click Swap Columns. The two columns are swapped." },
+      { heading: "Copy or download", text: "Copy the CSV or download as a .csv file." },
+    ],
+    useCases: [
+      { title: "Reorder columns", text: "Swap columns to change the order of fields." },
+      { title: "Data transformation", text: "Rearrange CSV structure by swapping columns." },
+      { title: "Prepare for export", text: "Reorder columns to match export requirements." },
+    ],
+    faq: [
+      { q: "What is 'Column Index'?", a: "1-based index. Column 1 = first column, Column 2 = second column, etc." },
+      { q: "What if rows have different column counts?", a: "Rows with insufficient columns are skipped (returned unchanged)." },
+    ],
+    relatedTools: ["csv-formatter", "insert-csv-column"],
+  },
+
+  // ==================== JSON Tools (Batch 4) ====================
+  "json-comparison": {
+    title: "JSON Comparison",
+    desc: "Compare two JSON objects and show differences",
+    icon: "🔬",
+    category: CATEGORIES.dev,
+    seoTitle: "JSON Comparison Free — Online Tool | Craftisle",
+    seoDesc: "Free JSON comparison online tool. Compare two JSON objects and show differences. Supports text and JSON output formats. 100% browser-based.",
+    seoKeywords: ["json comparison", "compare json objects", "json diff", "json compare online"],
+    description: "Compare two JSON objects and show differences. Supports text (human-readable) and JSON (structured) output formats. Useful for debugging API responses, tracking configuration changes, and validating data transformations.",
+    howToUse: [
+      { heading: "Paste first JSON", text: "Type or paste the first JSON object." },
+      { heading: "Paste second JSON", text: "Type or paste the second JSON object." },
+      { heading: "Choose format", text: "Select output format (text or JSON)." },
+      { heading: "Compare", text: "Click Compare JSONs. Differences are shown." },
+      { heading: "Review differences", text: "Review the differences and fix as needed." },
+    ],
+    useCases: [
+      { title: "Debug API responses", text: "Compare API request and response JSON." },
+      { title: "Track configuration changes", text: "Compare old and new configuration JSON files." },
+      { title: "Validate data transformations", text: "Compare input and output JSON of a transformation." },
+    ],
+    faq: [
+      { q: "What format is the output?", a: "Text format shows human-readable differences. JSON format shows structured differences as a JSON object." },
+      { q: "Does it compare nested objects?", a: "Yes. Nested objects are compared recursively." },
+    ],
+    relatedTools: ["json-formatter", "json-validator"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",

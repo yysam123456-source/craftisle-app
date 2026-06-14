@@ -138,6 +138,14 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "json-to-xml": () => import("@/components/tools/JsonToXmlTool"),
   "sort-json": () => import("@/components/tools/SortJsonTool"),
   "stringify-json": () => import("@/components/tools/StringifyJsonTool"),
+
+  // ==================== CSV Tools (Batch 4) ====================
+  "find-incomplete-csv": () => import("@/components/tools/FindIncompleteCsvTool"),
+  "insert-csv-column": () => import("@/components/tools/InsertCsvColumnTool"),
+  "swap-csv-columns": () => import("@/components/tools/SwapCsvColumnsTool"),
+
+  // ==================== JSON Tools (Batch 4) ====================
+  "json-comparison": () => import("@/components/tools/JsonComparisonTool"),
 };
 
 // ---------------------------------------------------------------------------
