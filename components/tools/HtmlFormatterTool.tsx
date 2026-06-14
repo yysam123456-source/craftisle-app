@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Editor from "@monaco-editor/react";
+import { DynamicMonacoEditor } from "./MonacoEditorDynamic";
 import { html_beautify } from "js-beautify";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -99,7 +99,7 @@ export default function HtmlFormatterTool() {
             </div>
           </CardHeader>
           <CardContent className="p-0 flex-1 h-125">
-             <Editor
+             <DynamicMonacoEditor
                 height="100%"
                 defaultLanguage="html"
                 theme={theme === "dark" ? "vs-dark" : "light"}
@@ -124,7 +124,7 @@ export default function HtmlFormatterTool() {
             </Button>
           </CardHeader>
           <CardContent className="p-0 flex-1 bg-muted/30 h-125">
-             <Editor
+             <DynamicMonacoEditor
                 height="100%"
                 defaultLanguage="html"
                 theme={theme === "dark" ? "vs-dark" : "light"}

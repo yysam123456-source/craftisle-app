@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DiffEditor } from "@monaco-editor/react";
+import { DynamicMonacoDiffEditor } from "./MonacoEditorDynamic";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -77,7 +77,7 @@ export default function DiffTool() {
            </div>
         </CardHeader>
         <CardContent className="p-0 flex-1 relative h-full">
-          <DiffEditor
+          <DynamicMonacoDiffEditor
             height="100%"
             language={language}
             original={original}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Editor from "@monaco-editor/react";
+import { DynamicMonacoEditor } from "./MonacoEditorDynamic";
 import { format as formatSql } from "sql-formatter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -94,7 +94,7 @@ export default function SqlFormatterTool() {
             </div>
           </CardHeader>
           <CardContent className="p-0 flex-1 h-125">
-             <Editor
+             <DynamicMonacoEditor
                 height="100%"
                 defaultLanguage="sql"
                 theme={theme === "dark" ? "vs-dark" : "light"}
@@ -119,7 +119,7 @@ export default function SqlFormatterTool() {
             </Button>
           </CardHeader>
           <CardContent className="p-0 flex-1 bg-muted/30 h-125">
-             <Editor
+             <DynamicMonacoEditor
                 height="100%"
                 defaultLanguage="sql"
                 theme={theme === "dark" ? "vs-dark" : "light"}

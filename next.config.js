@@ -59,10 +59,11 @@ const nextConfig = {
   // Enable compression for smaller transfer size
   compress: true,
 
-  // Standalone output for smaller deployment size
+  // Standalone output for smaller deployment size (reduces node_modules)
   output: 'standalone',
 
-  // Code splitting: extract CSS per page to reduce bundle size
+  // Incremental Static Regeneration (ISR) global config
+  // Individual pages can override with their own revalidate
   experimental: {
     optimizeCss: true,
     optimizePackageImports: [

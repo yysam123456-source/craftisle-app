@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Editor from "@monaco-editor/react";
+import { DynamicMonacoEditor } from "./MonacoEditorDynamic";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -73,7 +73,7 @@ export default function MarkdownTool() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0 flex-1 min-h-0 relative">
-             <Editor
+             <DynamicMonacoEditor
                 height="100%"
                 defaultLanguage="markdown"
                 theme={theme === "dark" ? "vs-dark" : "light"}
