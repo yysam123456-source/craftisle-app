@@ -37,6 +37,7 @@ export const CATEGORIES = {
   dev: "Developer Tools",
   generator: "Generators",
   text: "Text Tools",
+  json: "JSON Tools",
   time: "Time Tools",
   network: "Network Tools",
   image: "Image",
@@ -238,6 +239,110 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is my data private?", a: "Yes. All formatting happens locally in your browser. Nothing is uploaded to any server." },
     ],
     relatedTools: ["csv-json", "yaml-formatter", "sql-formatter"],
+  },
+  "json-minify": {
+    title: "Minify JSON",
+    desc: "Remove whitespace from JSON",
+    icon: "📦",
+    category: CATEGORIES.json,
+    seoTitle: "Minify JSON Free — Online Tool | Craftisle",
+    seoDesc: "Free minify JSON online tool. Remove whitespace from JSON. 100% browser-based.",
+    seoKeywords: ["minify json", "compress json", "json minifier", "remove whitespace"],
+    description: "Remove whitespace from JSON to make it compact.",
+    howToUse: [
+      { heading: "Enter JSON", text: "Type or paste JSON to minify." },
+      { heading: "Process", text: "Click Minify to remove whitespace." },
+      { heading: "Copy Result", text: "Copy the minified JSON." }
+    ],
+    faq: [
+      { q: "What does minify do?", a: "Minify removes all unnecessary whitespace from JSON, making it compact." },
+      { q: "Is the original JSON validated?", a: "Yes, the input must be valid JSON before minification." }
+    ],
+    relatedTools: ["json-formatter", "json-validator", "yaml-minify"]
+  },
+
+  "json-comparison": {
+    title: "JSON Compare",
+    desc: "Compare two JSON objects and find differences",
+    icon: "🔍",
+    category: CATEGORIES.json,
+    seoTitle: "JSON Compare Free — Online Tool | Craftisle",
+    seoDesc: "Free JSON compare online tool. Compare two JSON objects and find differences. 100% browser-based.",
+    seoKeywords: ["json compare", "compare json", "json diff", "json difference"],
+    description: "Compare two JSON objects and find differences between them.",
+    howToUse: [
+      { heading: "Enter JSON", text: "Type or paste two JSON objects to compare." },
+      { heading: "Compare", text: "Click Compare to find differences." },
+      { heading: "Review", text: "Review the differences in text or JSON format." }
+    ],
+    faq: [
+      { q: "What format is the output?", a: "You can choose text (human-readable) or JSON (structured) output format." },
+      { q: "Does it support nested objects?", a: "Yes, the tool recursively compares nested objects and arrays." }
+    ],
+    relatedTools: ["json-formatter", "json-validator", "diff-checker"]
+  },
+
+  "json-sort": {
+    title: "Sort JSON",
+    desc: "Sort JSON keys alphabetically",
+    icon: "🔤",
+    category: CATEGORIES.json,
+    seoTitle: "Sort JSON Free — Online Tool | Craftisle",
+    seoDesc: "Free sort JSON online tool. Sort JSON keys alphabetically. 100% browser-based.",
+    seoKeywords: ["sort json", "json sort", "order json keys", "alphabetize json"],
+    description: "Sort JSON object keys alphabetically (ascending or descending).",
+    howToUse: [
+      { heading: "Enter JSON", text: "Type or paste JSON to sort." },
+      { heading: "Configure", text: "Choose sort order (ascending/descending)." },
+      { heading: "Sort", text: "Click Sort to reorder keys." }
+    ],
+    faq: [
+      { q: "Does it work with arrays?", a: "Yes, it sorts keys of objects in arrays too." },
+      { q: "Can I sort by value?", a: "Currently only sorting by key is supported." }
+    ],
+    relatedTools: ["json-formatter", "json-minify", "yaml-sort"]
+  },
+
+  "json-escape": {
+    title: "Escape JSON",
+    desc: "Escape or unescape JSON strings",
+    icon: "✏️",
+    category: CATEGORIES.json,
+    seoTitle: "Escape JSON Free — Online Tool | Craftisle",
+    seoDesc: "Free escape JSON online tool. Escape or unescape JSON strings. 100% browser-based.",
+    seoKeywords: ["escape json", "unescape json", "json escape", "json string"],
+    description: "Escape or unescape JSON strings (convert text to/from JSON-encoded strings).",
+    howToUse: [
+      { heading: "Enter Text", text: "Type or paste text to escape, or JSON string to unescape." },
+      { heading: "Choose Mode", text: "Select Escape or Unescape mode." },
+      { heading: "Process", text: "Click Process to convert." }
+    ],
+    faq: [
+      { q: "What does escape do?", a: "Escape converts text to a JSON-encoded string (e.g., quotes become \")." },
+      { q: "What does unescape do?", a: "Unescape converts a JSON string back to readable text." }
+    ],
+    relatedTools: ["json-formatter", "json-stringify", "string-escape"]
+  },
+
+  "json-stringify": {
+    title: "Stringify JSON",
+    desc: "Convert JavaScript objects to JSON strings",
+    icon: "📝",
+    category: CATEGORIES.json,
+    seoTitle: "Stringify JSON Free — Online Tool | Craftisle",
+    seoDesc: "Free stringify JSON online tool. Convert JavaScript objects to JSON strings. 100% browser-based.",
+    seoKeywords: ["stringify json", "js to json", "javascript to json", "object to json"],
+    description: "Convert JavaScript objects/arrays to JSON strings.",
+    howToUse: [
+      { heading: "Enter JS Object", text: "Type or paste a JavaScript object (not JSON)." },
+      { heading: "Configure", text: "Choose indentation and HTML escaping options." },
+      { heading: "Stringify", text: "Click Stringify to convert to JSON." }
+    ],
+    faq: [
+      { q: "What input format is expected?", a: "JavaScript object/array syntax (e.g., {name: 'John'}), not JSON." },
+      { q: "Why would I use this?", a: "Useful for converting JS code to JSON for APIs or storage." }
+    ],
+    relatedTools: ["json-formatter", "json-escape", "yaml-to-json"]
   },
 
   "html-formatter": {
@@ -3805,35 +3910,6 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What if rows have different column counts?", a: "Rows with insufficient columns are skipped (returned unchanged)." },
     ],
     relatedTools: ["csv-formatter", "insert-csv-column"],
-  },
-
-  // ==================== JSON Tools (Batch 4) ====================
-  "json-comparison": {
-    title: "JSON Comparison",
-    desc: "Compare two JSON objects and show differences",
-    icon: "🔬",
-    category: CATEGORIES.dev,
-    seoTitle: "JSON Comparison Free — Online Tool | Craftisle",
-    seoDesc: "Free JSON comparison online tool. Compare two JSON objects and show differences. Supports text and JSON output formats. 100% browser-based.",
-    seoKeywords: ["json comparison", "compare json objects", "json diff", "json compare online"],
-    description: "Compare two JSON objects and show differences. Supports text (human-readable) and JSON (structured) output formats. Useful for debugging API responses, tracking configuration changes, and validating data transformations.",
-    howToUse: [
-      { heading: "Paste first JSON", text: "Type or paste the first JSON object." },
-      { heading: "Paste second JSON", text: "Type or paste the second JSON object." },
-      { heading: "Choose format", text: "Select output format (text or JSON)." },
-      { heading: "Compare", text: "Click Compare JSONs. Differences are shown." },
-      { heading: "Review differences", text: "Review the differences and fix as needed." },
-    ],
-    useCases: [
-      { title: "Debug API responses", text: "Compare API request and response JSON." },
-      { title: "Track configuration changes", text: "Compare old and new configuration JSON files." },
-      { title: "Validate data transformations", text: "Compare input and output JSON of a transformation." },
-    ],
-    faq: [
-      { q: "What format is the output?", a: "Text format shows human-readable differences. JSON format shows structured differences as a JSON object." },
-      { q: "Does it compare nested objects?", a: "Yes. Nested objects are compared recursively." },
-    ],
-    relatedTools: ["json-formatter", "json-validator"],
   },
 
   // ==================== CSV Tools (Batch 5) ====================
