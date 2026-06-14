@@ -1,0 +1,166 @@
+#!/usr/bin/env node
+
+/**
+ * Competitor Analysis Report Generator
+ * 
+ * Generates a top-10 competitor analysis report.
+ * Output: docs/analysis/competitor-analysis-YYYY-MM-DD.json
+ * 
+ * Usage: node scripts/competitor-analysis.mjs
+ */
+
+import { writeFileSync, mkdirSync, existsSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DOCS_DIR = join(__dirname, "..", "docs", "analysis");
+
+// Top 10 competitors
+const COMPETITORS = [
+  {
+    name: "AlternativeTo",
+    url: "https://alternativeto.com",
+    type: "directory",
+    strengths: ["Largest alternative database", "Community reviews", "SEO authority"],
+    weaknesses: ["Paid tool focus", "Outdated UI", "No free-tier emphasis"],
+    opportunity: "Craftisle focuses on FREE tools (they focus on paid alternatives)",
+  },
+  {
+    name: "Product Hunt",
+    url: "https://www.producthunt.com",
+    type: "discovery",
+    strengths: ["Daily new products", "Community voting", "Maker audience"],
+    weaknesses: ["Not directory-focused", "Limited search", "No alternatives data"],
+    opportunity: "Craftisle provides persistent directory (PH is ephemeral)",
+  },
+  {
+    name: "G2",
+    url: "https://www.g2.com",
+    type: "reviews",
+    strengths: ["Enterprise focus", "Verified reviews", "Category breadth"],
+    weaknesses: ["Paid-only tools", "Expensive ads", "Not for free tools"],
+    opportunity: "Craftisle is the 'G2 for free tools'",
+  },
+  {
+    name: "Capterra",
+    url: "https://www.capterra.com",
+    type: "reviews",
+    strengths: ["B2B focus", "Detailed filters", "Gartner ownership"],
+    weaknesses: ["Paid tools only", "Complex UX", "No free-tier emphasis"],
+    opportunity: "Craftisle owns the 'free tools' niche they ignore",
+  },
+  {
+    name: "Slant",
+    url: "https://www.slant.co",
+    type: "comparison",
+    strengths: ["Pro/con comparisons", "Community answers", "Topic-based"],
+    weaknesses: ["Small database", "Outdated content", "No tool directory"],
+    opportunity: "Craftisle has 16,000+ resources vs their ~1,000",
+  },
+  {
+    name: "StackShare",
+    url: "https://stackshare.io",
+    type: "tech-stack",
+    strengths: ["Developer-focused", "Integration data", "Company adoption"],
+    weaknesses: ["Not for free tools", "Enterprise sales focus", "Limited discovery"],
+    opportunity: "Craftisle serves indie makers they don't reach",
+  },
+  {
+    name: "LibHunt",
+    url: "https://libhunt.com",
+    type: "developer",
+    strengths: ["Programming focus", "GitHub integration", "Trending libs"],
+    weaknesses: ["Small scale", "Developer-only", "No general tools"],
+    opportunity: "Craftisle covers non-dev tools they miss",
+  },
+  {
+    name: "Awesome Lists (GitHub)",
+    url: "https://github.com/sindresorhus/awesome",
+    type: "curated",
+    strengths: ["Open-source", "Community-maintained", "High-quality curated lists"],
+    weaknesses: ["No search", "No reviews", "Hard to navigate"],
+    opportunity: "Craftisle adds search + reviews on top of awesome lists",
+  },
+  {
+    name: "Free for Dev",
+    url: "https://free-for.dev",
+    type: "curated",
+    strengths: ["Developer-focused free tiers", "Comprehensive coverage", "Simple markdown format"],
+    weaknesses: ["No search", "No categories UI", "No reviews"],
+    opportunity: "Craftisle provides the UI/UX layer on top of their data",
+  },
+  {
+    name: "Awesome Self-Hosted",
+    url: "https://github.com/awesome-selfhosted/awesome-selfhosted",
+    type: "curated",
+    strengths: ["Self-hosted focus", "License info", "Deployment details"],
+    weaknesses: ["No reviews", "No comparison", "Markdown only"],
+    opportunity: "Craftisle adds interactive comparison + reviews",
+  },
+];
+
+async function main() {
+  console.log("📊 Generating competitor analysis report...\n");
+
+  if (!existsSync(DOCS_DIR)) {
+    mkdirSync(DOCS_DIR, { recursive: true });
+  }
+
+  const report = {
+    generatedAt: new Date().toISOString(),
+    summary: {
+      totalCompetitors: COMPETITORS.length,
+      craftisleAdvantages: [
+        "16,000+ free resources (largest free-tools directory)",
+        "FMHY + GitHub + Product Hunt + Awesome Lists data (multi-source)",
+        "SEO-optimized pages (GEO-ready)",
+        "Free-tier emphasis (competitors focus on paid tools)",
+        "Open data (JSON API for developers)",
+      ],
+      craftisleGaps: [
+        "No user reviews yet (Giscus integration planned)",
+        "No community contributions (read-only data)",
+        "Limited social features (no user profiles/bookmarks synced)",
+        "Young domain (lower SEO authority than G2/Capterra)",
+      ],
+    },
+    competitors: COMPETITORS,
+    recommendations: [
+      {
+        priority: "P0",
+        action: "Add user reviews (Giscus)",
+        rationale: "AlternativeTo's main advantage is community reviews. Craftisle needs this to compete.",
+      },
+      {
+        priority: "P1",
+        action: "Build 'AlternativeTo for Free Tools' landing page",
+        rationale: "Direct positioning against AlternativeTo. Capture their SEO traffic.",
+      },
+      {
+        priority: "P1",
+        action: "Submit to Awesome Lists (curated backlinks)",
+        rationale: "Free for Dev, Awesome Self-Hosted, etc. High-authority backlinks.",
+      },
+      {
+        priority: "P2",
+        action: "Product Hunt launch (re-launch with new features)",
+        rationale: "Get maker audience. Drive initial traffic + backlinks.",
+      },
+    ],
+  };
+
+  const outFile = join(DOCS_DIR, `competitor-analysis-${new Date().toISOString().slice(0, 10)}.json`);
+  writeFileSync(outFile, JSON.stringify(report, null, 2));
+  console.log(`✅ Report generated: ${outFile}`);
+  console.log(`\n📊 Summary:`);
+  console.log(`   Competitors analyzed: ${COMPETITORS.length}`);
+  console.log(`   Craftisle advantages: ${report.summary.craftisleAdvantages.length}`);
+  console.log(`   Recommendations: ${report.recommendations.length}`);
+  console.log("\n💡 Top recommendation: Add user reviews (Giscus) — P0 priority");
+}
+
+main().catch((err) => {
+  console.error("❌ Error:", err.message);
+  process.exit(1);
+});
