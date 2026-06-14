@@ -4057,6 +4057,34 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["to-morse", "unicode"],
   },
 
+  // ==================== String Tools (Batch 7) ====================
+  "extract-substring": {
+    title: "Extract Substring",
+    desc: "Extract a substring from text by index",
+    icon: "✂️",
+    category: CATEGORIES.dev,
+    seoTitle: "Extract Substring Free — Online Tool | Craftisle",
+    seoDesc: "Free extract substring online tool. Extract a substring from text by start and end index. Supports partial extraction. 100% browser-based.",
+    seoKeywords: ["extract substring", "substring extraction", "extract text by index", "string slice online"],
+    description: "Extract a substring from text by specifying start and end index. Index starts at 0. Leave end index empty to extract to the end. Useful for text processing, data extraction, and string manipulation.",
+    howToUse: [
+      { heading: "Paste text", text: "Type or paste text to extract from." },
+      { heading: "Set start index", text: "Enter start index (0-based)." },
+      { heading: "Set end index (optional)", text: "Enter end index, or leave empty to extract to end." },
+      { heading: "Extract", text: "Click Extract. The substring is shown." },
+    ],
+    useCases: [
+      { title: "Text processing", text: "Extract specific parts from a long text." },
+      { title: "Data extraction", text: "Extract substrings based on position." },
+      { title: "String manipulation", text: "Get parts of a string for further processing." },
+    ],
+    faq: [
+      { q: "What is 'Index starts at 0'?", a: "The first character is at index 0, second at index 1, etc." },
+      { q: "What if I leave 'End Index' empty?", a: "The extraction continues to the end of the text." },
+    ],
+    relatedTools: ["text-replacer", "text-compare"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",

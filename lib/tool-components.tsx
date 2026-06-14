@@ -166,6 +166,9 @@ const componentLoaders: Record<string, ComponentLoader> = {
   // ==================== String Tools (Batch 6) ====================
   "text-replacer": () => import("@/components/tools/TextReplacerTool"),
   "morse-code": () => import("@/components/tools/MorseCodeTool"),
+
+  // ==================== String Tools (Batch 7) ====================
+  "extract-substring": () => import("@/components/tools/ExtractSubstringTool"),
 };
 
 // ---------------------------------------------------------------------------
