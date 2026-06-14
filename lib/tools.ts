@@ -3560,6 +3560,170 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["wrap-lines", "duplicate-lines", "sort-lines"],
   },
 
+  // ==================== More CSV Tools ====================
+  "csv-to-yaml": {
+    title: "CSV to YAML Converter",
+    desc: "Convert CSV data to YAML format",
+    icon: "📋",
+    category: CATEGORIES.converter,
+    seoTitle: "CSV to YAML Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free CSV to YAML converter online. Convert CSV data to YAML format. Custom indent size. 100% browser-based.",
+    seoKeywords: ["csv to yaml", "convert csv to yaml", "csv to yaml online", "csv yaml converter", "export csv to yaml"],
+    description: "Convert CSV (Comma-Separated Values) data to YAML format. Supports custom indent size. Useful for configuration files, data serialization, and Kubernetes manifests.",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data with headers in the first row." },
+      { heading: "Set indent size", text: "Choose indent size (2 or 4 spaces)." },
+      { heading: "Convert", text: "Click Convert. The YAML output appears." },
+      { heading: "Copy or download", text: "Copy the YAML or download as a .yaml file." },
+    ],
+    useCases: [
+      { title: "Configuration files", text: "Convert CSV data to YAML for config files (Kubernetes, Docker Compose, etc.)." },
+      { title: "Data serialization", text: "Convert CSV data to YAML for data serialization." },
+      { title: "API integration", text: "Convert CSV data to YAML for APIs that accept YAML." },
+    ],
+    faq: [
+      { q: "What YAML structure is generated?", a: "Array of objects. Each object represents a row, with keys from CSV headers." },
+      { q: "Can I customize the YAML structure?", a: "The generated YAML follows standard YAML array-of-objects format. For custom structures, post-process the YAML." },
+    ],
+    relatedTools: ["json-to-yaml", "csv-to-json"],
+  },
+
+  "tsv-to-json": {
+    title: "TSV to JSON Converter",
+    desc: "Convert TSV (Tab-Separated Values) to JSON",
+    icon: "📌",
+    category: CATEGORIES.converter,
+    seoTitle: "TSV to JSON Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free TSV to JSON converter online. Convert TSV (Tab-Separated Values) to JSON format. 100% browser-based.",
+    seoKeywords: ["tsv to json", "convert tsv to json", "tsv to json online", "tab separated to json"],
+    description: "Convert TSV (Tab-Separated Values) data to JSON format. TSV is similar to CSV but uses tab as separator. Useful for data exported from spreadsheets as TSV.",
+    howToUse: [
+      { heading: "Paste TSV data", text: "Type or paste TSV data with headers in the first row." },
+      { heading: "Choose format", text: "Select 'Objects' (array of objects) or 'Arrays' (array of arrays)." },
+      { heading: "Convert", text: "Click Convert. The JSON output appears." },
+      { heading: "Copy or download", text: "Copy the JSON or download as a .json file." },
+    ],
+    useCases: [
+      { title: "Data import", text: "Convert TSV data from spreadsheets to JSON for web applications." },
+      { title: "API integration", text: "Convert TSV data to JSON for APIs." },
+      { title: "Data transformation", text: "Convert TSV to JSON for modern data processing pipelines." },
+    ],
+    faq: [
+      { q: "What is TSV?", a: "TSV (Tab-Separated Values) is similar to CSV but uses tab character as separator. It's often used when data contains commas." },
+      { q: "How is it different from CSV to JSON?", a: "This tool expects tab as separator instead of comma. The conversion logic is otherwise similar." },
+    ],
+    relatedTools: ["csv-to-json", "json-to-csv"],
+  },
+
+  "transpose-csv": {
+    title: "Transpose CSV",
+    desc: "Swap rows and columns in CSV data",
+    icon: "🔄",
+    category: CATEGORIES.converter,
+    seoTitle: "Transpose CSV Free — Online Tool | Craftisle",
+    seoDesc: "Free transpose CSV online tool. Swap rows and columns in CSV data. Supports custom delimiter. 100% browser-based.",
+    seoKeywords: ["transpose csv", "swap rows columns csv", "rotate csv", "csv transpose online"],
+    description: "Transpose CSV data (swap rows and columns). Useful for reformatting data, pivoting tables, and preparing data for different analysis tools. Supports custom delimiter.",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data." },
+      { heading: "Set delimiter", text: "Select delimiter (comma, semicolon, tab, pipe)." },
+      { heading: "Transpose", text: "Click Transpose. The transposed CSV appears." },
+      { heading: "Copy or download", text: "Copy the CSV or download as a .csv file." },
+    ],
+    useCases: [
+      { title: "Data reformatting", text: "Swap rows and columns for better data layout." },
+      { title: "Pivoting tables", text: "Transpose data for pivot table analysis." },
+      { title: "Data preparation", text: "Reformat data for different analysis tools." },
+    ],
+    faq: [
+      { q: "What does 'transpose' mean?", a: "Transpose swaps rows and columns. Row 1 becomes Column 1, Column 1 becomes Row 1, etc." },
+      { q: "Does it handle headers?", a: "Yes. Headers are also transposed. The first column of the transposed data will be the original headers." },
+    ],
+    relatedTools: ["csv-to-json", "sort-lines"],
+  },
+
+  // ==================== More JSON Tools ====================
+  "json-to-xml": {
+    title: "JSON to XML Converter",
+    desc: "Convert JSON data to XML format",
+    icon: "📍",
+    category: CATEGORIES.converter,
+    seoTitle: "JSON to XML Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free JSON to XML converter online. Convert JSON data to XML format. Custom root and item element names. 100% browser-based.",
+    seoKeywords: ["json to xml", "convert json to xml", "json to xml online", "json xml converter", "export json to xml"],
+    description: "Convert JSON data to XML format. Supports custom root element name and item element name. Useful for data interchange, API integration, and legacy system support.",
+    howToUse: [
+      { heading: "Paste JSON data", text: "Type or paste JSON data (array of objects format works best)." },
+      { heading: "Set element names", text: "Enter root element name (e.g., 'data') and item element name (e.g., 'item')." },
+      { heading: "Convert", text: "Click Convert. The XML output appears." },
+      { heading: "Copy or download", text: "Copy the XML or download as a .xml file." },
+    ],
+    useCases: [
+      { title: "API integration", text: "Convert JSON data to XML for APIs that accept XML." },
+      { title: "Data interchange", text: "Convert JSON to XML for systems that require XML format." },
+      { title: "Legacy system support", text: "Convert modern JSON data to XML for legacy systems." },
+    ],
+    faq: [
+      { q: "What XML structure is generated?", a: "Root element contains item elements. Each item contains elements named after JSON keys." },
+      { q: "Can I convert nested JSON?", a: "Nested objects are converted to nested XML elements. Arrays are converted to repeated elements." },
+    ],
+    relatedTools: ["xml-beautifier", "csv-to-xml"],
+  },
+
+  "sort-json": {
+    title: "Sort JSON Keys",
+    desc: "Sort keys in JSON objects alphabetically",
+    icon: "🔃",
+    category: CATEGORIES.dev,
+    seoTitle: "Sort JSON Keys Free — Online Tool | Craftisle",
+    seoDesc: "Free sort JSON keys online tool. Sort keys in JSON objects alphabetically. Recursive option. 100% browser-based.",
+    seoKeywords: ["sort json keys", "alphabetize json keys", "sort json properties", "json key sorter"],
+    description: "Sort keys in JSON objects alphabetically. Supports recursive sorting (sort nested objects too). Useful for normalizing JSON, comparing JSON files, and improving readability.",
+    howToUse: [
+      { heading: "Paste JSON", text: "Type or paste JSON data." },
+      { heading: "Choose options", text: "Enable 'Recursive' to sort nested objects too." },
+      { heading: "Sort Keys", text: "Click Sort Keys. The sorted JSON appears." },
+      { heading: "Copy or download", text: "Copy the JSON or download as a .json file." },
+    ],
+    useCases: [
+      { title: "Normalize JSON", text: "Sort keys to normalize JSON for comparison." },
+      { title: "Improve readability", text: "Sort keys alphabetically for easier reading." },
+      { title: "Prepare for diff", text: "Sort keys before comparing JSON files with diff tools." },
+    ],
+    faq: [
+      { q: "What does 'Recursive' mean?", a: "Recursive mode sorts keys in nested objects too. Without it, only top-level keys are sorted." },
+      { q: "Does it preserve array order?", a: "Yes. Array order is preserved. Only object keys are sorted." },
+    ],
+    relatedTools: ["json-formatter", "json-validator"],
+  },
+
+  "stringify-json": {
+    title: "Stringify JSON",
+    desc: "Convert JavaScript objects to JSON string",
+    icon: "🔤",
+    category: CATEGORIES.dev,
+    seoTitle: "Stringify JSON Free — Online Tool | Craftisle",
+    seoDesc: "Free stringify JSON online tool. Convert JavaScript objects to JSON string. Supports custom indent. 100% browser-based.",
+    seoKeywords: ["stringify json", "js object to json", "javascript to json", "json stringify online"],
+    description: "Convert JavaScript objects to JSON string. Supports custom indent size. Useful for preparing data for APIs, localStorage, and data export. Handles JavaScript-specific syntax (quotes, functions, etc.) are removed.",
+    howToUse: [
+      { heading: "Enter JavaScript object", text: "Type or paste a JavaScript object (e.g., {name: 'Alice', age: 25})." },
+      { heading: "Set indent", text: "Choose indent size (2 or 4 spaces, or tab)." },
+      { heading: "Stringify", text: "Click Stringify. The JSON string appears." },
+      { heading: "Copy", text: "Copy the JSON string for use in code." },
+    ],
+    useCases: [
+      { title: "API requests", text: "Convert JS objects to JSON for API requests." },
+      { title: "localStorage", text: "Convert data to JSON for storing in localStorage." },
+      { title: "Data export", text: "Convert JS data to JSON for export." },
+    ],
+    faq: [
+      { q: "What input format is supported?", a: "Valid JavaScript object syntax. Keys can be unquoted (JS style) or quoted (JSON style)." },
+      { q: "Does it handle functions or undefined?", a: "Functions and undefined values are removed (replaced with null). This matches JSON.stringify() behavior." },
+    ],
+    relatedTools: ["json-formatter", "escape-json"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",

@@ -130,6 +130,14 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "csv-to-xml": () => import("@/components/tools/CsvToXmlTool"),
   "csv-to-tsv": () => import("@/components/tools/CsvToTsvTool"),
   "change-csv-separator": () => import("@/components/tools/ChangeCsvSeparatorTool"),
+  "csv-to-yaml": () => import("@/components/tools/CsvToYamlTool"),
+  "tsv-to-json": () => import("@/components/tools/TsvToJsonTool"),
+  "transpose-csv": () => import("@/components/tools/TransposeCsvTool"),
+
+  // ==================== More JSON Tools ====================
+  "json-to-xml": () => import("@/components/tools/JsonToXmlTool"),
+  "sort-json": () => import("@/components/tools/SortJsonTool"),
+  "stringify-json": () => import("@/components/tools/StringifyJsonTool"),
 };
 
 // ---------------------------------------------------------------------------
