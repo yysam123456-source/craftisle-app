@@ -56,6 +56,12 @@ const nextConfig = {
   // Disable source maps in production to reduce bundle size
   productionBrowserSourceMaps: false,
 
+  // Enable compression for smaller transfer size
+  compress: true,
+
+  // Standalone output for smaller deployment size
+  output: 'standalone',
+
   // Code splitting: extract CSS per page to reduce bundle size
   experimental: {
     optimizeCss: true,
