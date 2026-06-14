@@ -1,298 +1,94 @@
-import React, { useState, useCallback } from 'react';
-import { 
-  Code, Minimize2, CheckCircle, Copy, FilePlus, Eraser, Check, XCircle 
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Tooltip, 
-  TooltipContent, 
-  TooltipProvider, 
-  TooltipTrigger 
-} from '@/components/ui/tooltip';
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "sonner";
+"use client";
 
-type Mode = 'format' | 'compress' | 'validate';
+import { useState } from "react";
+import { TextToolLayout } from "./TextToolLayout";
 
+/**
+ * JSON Formatter / Beautifier
+ * Format and validate JSON
+ */
 export default function JsonFormatterTool() {
-  const [mode, setMode] = useState<Mode>('format');
-  const [inputJson, setInputJson] = useState('');
-  const [outputJson, setOutputJson] = useState('');
-  const [isValid, setIsValid] = useState<boolean | null>(null);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [charCount, setCharCount] = useState(0);
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
+  const [indent, setIndent] = useState(2);
+  const [sortKeys, setSortKeys] = useState(false);
 
-  const validateJson = useCallback((jsonStr: string) => {
-    if (!jsonStr.trim()) {
-      setIsValid(null);
-      setErrorMsg('');
-      return null;
-    }
-
-    try {
-      const parsed = JSON.parse(jsonStr);
-      setIsValid(true);
-      setErrorMsg('');
-      return parsed;
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Unknown error';
-      setErrorMsg(msg);
-      setIsValid(false);
-      return null;
-    }
-  }, []);
-
-  const formatJson = useCallback(() => {
-    const parsed = validateJson(inputJson);
-    if (parsed !== null) {
-      const formatted = JSON.stringify(parsed, null, 2);
-      setOutputJson(formatted);
-      toast.success('Formatted successfully');
-    }
-  }, [inputJson, validateJson]);
-
-  const compressJson = useCallback(() => {
-    const parsed = validateJson(inputJson);
-    if (parsed !== null) {
-      const compressed = JSON.stringify(parsed);
-      setOutputJson(compressed);
-      toast.success('Minified successfully');
-    }
-  }, [inputJson, validateJson]);
-
-  const validateOnly = useCallback(() => {
-    validateJson(inputJson);
-    if (inputJson.trim() && isValid) {
-      toast.success('Valid JSON');
-    }
-  }, [inputJson, validateJson, isValid]);
-
-  const handleAction = useCallback(() => {
-    switch (mode) {
-      case 'format':
-        formatJson();
-        break;
-      case 'compress':
-        compressJson();
-        break;
-      case 'validate':
-        validateOnly();
-        break;
-    }
-  }, [mode, formatJson, compressJson, validateOnly]);
-
-  const copyToClipboard = useCallback(async (text: string, type: string) => {
-    if (!text) {
-      toast.warning('Nothing to copy');
+  const handleFormat = () => {
+    if (!input.trim()) {
+      setOutput("");
       return;
     }
 
     try {
-      await navigator.clipboard.writeText(text);
-      toast.success(`${type}Copied`);
+      const json = JSON.parse(input);
+      const formatted = JSON.stringify(json, sortKeys ? Object.keys(json).sort() : null, indent);
+      setOutput(formatted);
     } catch {
-      toast.error('Copy failed');
+      setOutput("❌ Invalid JSON format. Check syntax.");
     }
-  }, []);
+  };
 
-  const clearAll = useCallback(() => {
-    setInputJson('');
-    setOutputJson('');
-    setIsValid(null);
-    setErrorMsg('');
-    setCharCount(0);
-  }, []);
-
-  const loadExample = useCallback(() => {
-    const example = {
-      name: "Toolkit",
-      version: "1.0.0",
-      features: ["JSONFormat", "Minify", "Validate"],
-      config: {
-        theme: "cyan",
-        language: "zh-CN"
-      }
-    };
-    const exampleStr = JSON.stringify(example, null, 2);
-    setInputJson(exampleStr);
-    setCharCount(exampleStr.length);
-    validateJson(exampleStr);
-  }, [validateJson]);
-
-  const handleInputChange = useCallback((value: string) => {
-    setInputJson(value);
-    setCharCount(value.length);
-    if (value.trim()) {
-      validateJson(value);
-    } else {
-      setIsValid(null);
-      setErrorMsg('');
+  const handleMinify = () => {
+    if (!input.trim()) {
+      setOutput("");
+      return;
     }
-  }, [validateJson]);
+
+    try {
+      const json = JSON.parse(input);
+      const minified = JSON.stringify(json);
+      setOutput(minified);
+    } catch {
+      setOutput("❌ Invalid JSON format. Check syntax.");
+    }
+  };
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Page Header */}
+    <TextToolLayout
+      title="JSON Formatter"
+      description="Format, validate, and minify JSON"
+      input={input}
+      output={output}
+      onInputChange={setInput}
+      onProcess={handleFormat}
+      processLabel="Format"
+      options={
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-2">Indent Size</label>
+            <select
+              value={indent}
+              onChange={(e) => setIndent(parseInt(e.target.value, 10))}
+              className="w-full px-3 py-2 border rounded-md"
+            >
+              <option value={2}>2 spaces</option>
+              <option value={4}>4 spaces</option>
+              <option value={0}>Tab</option>
+            </select>
+          </div>
 
-      {/* Action Bar */}
-      <Card>
-        <CardContent className="flex flex-wrap items-center gap-4 p-4">
-          <Button 
-            onClick={handleAction} 
-            disabled={!inputJson.trim()} 
-            className="gap-2"
-          >
-            {mode === 'format' && <Code className="h-4 w-4" />}
-            {mode === 'compress' && <Minimize2 className="h-4 w-4" />}
-            {mode === 'validate' && <CheckCircle className="h-4 w-4" />}
-            {mode === 'format' ? 'Format' : mode === 'compress' ? 'Minify' : 'Validate'}
-          </Button>
-          
-          <Button
-            variant="secondary"
-            onClick={compressJson}
-            disabled={!inputJson.trim() || isValid === false}
-            className="gap-2"
-          >
-            <Minimize2 className="h-4 w-4" />
-            Minify
-          </Button>
-
-          <Button
-            variant="outline"
-            onClick={validateOnly}
-            disabled={!inputJson.trim()}
-            className="gap-2"
-          >
-            <CheckCircle className="h-4 w-4" />
-            Validate
-          </Button>
-
-          <Button variant="ghost" onClick={loadExample} className="gap-2">
-            <FilePlus className="h-4 w-4" />
-            Load example
-          </Button>
-
-          <Button variant="ghost" onClick={clearAll} className="gap-2 text-destructive hover:text-destructive/90 hover:bg-destructive/10">
-            <Eraser className="h-4 w-4" />
-            Clear content
-          </Button>
-        </CardContent>
-      </Card>
-
-      {/* Main Content */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Input Panel */}
-        <Card className="flex flex-col h-full">
-          <CardHeader className="py-3 flex flex-row items-center justify-between">
-            <CardTitle className="text-base font-medium flex items-center gap-2">
-              JSON Input
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => copyToClipboard(inputJson, "Input content")}>
-                      <Copy className="h-3 w-3" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>CopyInput</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </CardTitle>
-            {isValid !== null && (
-              <Badge variant={isValid ? "default" : "destructive"} className={isValid ? "bg-emerald-500 hover:bg-emerald-600" : ""}>
-                 {isValid ? <Check className="h-3 w-3 mr-1" /> : <XCircle className="h-3 w-3 mr-1" />}
-                 {isValid ? ' format' : 'FormatError'}
-              </Badge>
-            )}
-          </CardHeader>
-          <CardContent className="flex-1 p-0 relative">
-            <Textarea
-              value={inputJson}
-              onChange={(e) => handleInputChange(e.target.value)}
-              placeholder="Enter or paste JSON data..."
-              className="min-h-125 h-full border-0 rounded-none focus-visible:ring-0 resize-none font-mono text-sm leading-relaxed p-4 bg-transparent"
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={sortKeys}
+              onChange={(e) => setSortKeys(e.target.checked)}
             />
-            {errorMsg && (
-              <div className="absolute bottom-0 left-0 right-0 bg-destructive/10 text-destructive text-xs p-2 border-t border-destructive/20">
-                {errorMsg}
-              </div>
-            )}
-          </CardContent>
-          <div className="p-2 border-t bg-muted/30 text-xs text-muted-foreground flex justify-end">
-            Character count: {charCount}
-          </div>
-        </Card>
+            <span className="text-sm">Sort keys alphabetically</span>
+          </label>
 
-        {/* Output Panel */}
-        <Card className="flex flex-col h-full">
-          <CardHeader className="py-3 flex flex-row items-center justify-between">
-            <CardTitle className="text-base font-medium flex items-center gap-2">
-              Formatted Result
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => copyToClipboard(outputJson, 'Result')}>
-                      <Copy className="h-3 w-3" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>CopyResult</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex-1 p-0 bg-muted/30">
-            <Textarea
-              value={outputJson}
-              readOnly
-              placeholder="ProcessResults will appear here..."
-              className="min-h-125 h-full border-0 rounded-none focus-visible:ring-0 resize-none font-mono text-sm leading-relaxed p-4 bg-transparent"
-            />
-          </CardContent>
-        </Card>
-      </div>
+          <button
+            onClick={handleMinify}
+            className="px-4 py-2 text-sm bg-gray-200 dark:bg-gray-700 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600"
+          >
+            Minify JSON
+          </button>
 
-      {/* Usage Info */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-base">
-            <span className="text-xl">💡</span> Usage
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="space-y-2">
-              <h4 className="font-semibold text-sm">Format Mode</h4>
-              <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Beautify JSON structure with proper indentation</li>
-                <li>Improve readability</li>
-                <li>Easy to debug and inspect</li>
-              </ul>
-            </div>
-            <div className="space-y-2">
-              <h4 className="font-semibold text-sm">Minify Mode</h4>
-              <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Remove all whitespace characters</li>
-                <li>Reduce file size</li>
-                <li>Suitable for production</li>
-              </ul>
-            </div>
-<div className="space-y-2">
-              <h4 className="font-semibold text-sm">Validate Mode</h4>
-              <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Check JSON syntax validity</li>
-                <li>Show detailed stats information</li>
-                <li>Provide error diagnostics</li>
-              </ul>
-            </div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">
+            <p>Paste JSON to format or validate.</p>
+            <p>Use "Minify" to remove whitespace.</p>
           </div>
-          <div className="mt-4 p-3 bg-muted rounded-md text-xs text-muted-foreground">
-            💡 Tip: Supports Object, Array, String, Number, Boolean, null.
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      }
+    />
   );
 }

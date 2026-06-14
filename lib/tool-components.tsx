@@ -81,6 +81,25 @@ const componentLoaders: Record<string, ComponentLoader> = {
   // Non-standard file names:
   "create-gif": () => import("@/components/tools/create-gif-page").then(m => ({ default: m.CreateGifPage })),
   "find-duplicates": () => import("@/components/tools/find-duplicates-page").then(m => ({ default: m.FindDuplicatesPage })),
+
+  // ==================== Time Tools ====================
+  "unix-to-date": () => import("@/components/tools/UnixToDateTool"),
+  "discord-timestamp": () => import("@/components/tools/DiscordTimestampTool"),
+  "seconds-to-time": () => import("@/components/tools/SecondsToTimeTool"),
+  "time-between-dates": () => import("@/components/tools/TimeBetweenDatesTool"),
+  "cron-parser": () => import("@/components/tools/CrontabGuruTool"),
+  "leap-year": () => import("@/components/tools/LeapYearTool"),
+
+  // ==================== List Tools ====================
+  "shuffle-lines": () => import("@/components/tools/ListShuffleTool"),
+  "sort-lines": () => import("@/components/tools/ListSortTool"),
+  "unique-lines": () => import("@/components/tools/ListUniqueTool"),
+
+  // ==================== CSV Tools ====================
+  "csv-to-json": () => import("@/components/tools/CsvToJsonTool"),
+
+  // ==================== JSON Tools ====================
+  "json-to-csv": () => import("@/components/tools/JsonToCsvTool"),
 };
 
 // ---------------------------------------------------------------------------

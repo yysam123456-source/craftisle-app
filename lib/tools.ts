@@ -2826,6 +2826,313 @@ export const toolMeta: Record<string, ToolMeta> = {
     stars: 4,
   },
 
+  // ==================== Time Tools ====================
+  "unix-to-date": {
+    title: "Unix Timestamp Converter",
+    desc: "Convert between Unix timestamps and human-readable dates",
+    icon: "🕐",
+    category: CATEGORIES.utility,
+    seoTitle: "Unix Timestamp Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free Unix timestamp converter online. Convert Unix timestamps to dates and dates to Unix timestamps. Supports UTC and local time. 100% browser-based.",
+    seoKeywords: ["unix timestamp converter", "unix to date", "date to unix", "timestamp converter online", "epoch converter"],
+    description: "Convert between Unix timestamps (seconds since Jan 1, 1970) and human-readable dates. Supports both directions: Unix→Date and Date→Unix. Choose UTC or local time output. Essential for developers working with APIs, databases, and logging systems.",
+    howToUse: [
+      { heading: "Choose conversion mode", text: "Select 'Unix → Date' to convert timestamps, or 'Date → Unix' to convert dates." },
+      { heading: "Enter timestamps or dates", text: "Paste Unix timestamps (one per line) or dates in YYYY-MM-DD HH:mm:ss format." },
+      { heading: "Select time zone", text: "Choose UTC or local time for output. Optionally add UTC label." },
+      { heading: "Convert", text: "Click Convert. Results appear in the output panel." },
+    ],
+    useCases: [
+      { title: "API debugging", text: "Convert API timestamps to readable dates for debugging and logging." },
+      { title: "Database queries", text: "Convert dates to Unix timestamps for SQL queries and database operations." },
+      { title: "Log analysis", text: "Convert log timestamps to local time for easier analysis." },
+    ],
+    faq: [
+      { q: "What is a Unix timestamp?", a: "A Unix timestamp is the number of seconds that have elapsed since January 1, 1970 (UTC). It's widely used in programming and databases." },
+      { q: "Does it handle milliseconds?", a: "This tool expects seconds. For millisecond timestamps, divide by 1000 first." },
+      { q: "What time zone is used?", a: "You can choose UTC or local time. UTC is the standard for Unix timestamps." },
+    ],
+    relatedTools: ["time-between-dates", "discord-timestamp", "seconds-to-time"],
+  },
+
+  "discord-timestamp": {
+    title: "Discord Timestamp Generator",
+    desc: "Generate Discord timestamp strings from dates",
+    icon: "💬",
+    category: CATEGORIES.utility,
+    seoTitle: "Discord Timestamp Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free Discord timestamp generator online. Create Discord timestamp strings (<t:unix:format>) from dates. Supports all Discord formats. 100% browser-based.",
+    seoKeywords: ["discord timestamp generator", "discord time format", "discord epoch", "discord date format", "discord embed timestamp"],
+    description: "Generate Discord timestamp strings from dates. Discord uses a special format (<t:unix:format>) to display timestamps that automatically adjust to each user's local time zone. Supports all 7 Discord timestamp formats: short time, long time, short date, long date, short datetime, long datetime, and relative time.",
+    howToUse: [
+      { heading: "Enter dates", text: "Type or paste dates in YYYY-MM-DD HH:mm:ss format (one per line)." },
+      { heading: "Choose format", text: "Select a Discord timestamp format from the dropdown." },
+      { heading: "Generate", text: "Click Generate. Copy the Discord timestamp strings." },
+      { heading: "Use in Discord", text: "Paste the timestamp strings in Discord messages. They'll display as formatted times." },
+    ],
+    useCases: [
+      { title: "Discord bots", text: "Generate timestamps for bot embed messages and responses." },
+      { title: "Event announcements", text: "Create timestamps for event announcements that show in each user's local time." },
+      { title: "Moderation logs", text: "Add timestamps to moderation logs that are readable in any time zone." },
+    ],
+    faq: [
+      { q: "What format should I use?", a: "Use 'F' (long datetime) for most cases. Use 'R' (relative time) for '2 hours ago' style display." },
+      { q: "Does Discord need UTC?", a: "Yes. This tool treats input as UTC by default. Enable 'Treat input as local time' for local time input." },
+      { q: "Where do I use these timestamps?", a: "In any Discord message, embed, or webhook. Discord automatically renders them as formatted timestamps." },
+    ],
+    relatedTools: ["unix-to-date", "time-between-dates"],
+  },
+
+  "seconds-to-time": {
+    title: "Seconds to Time Converter",
+    desc: "Convert seconds to HH:MM:SS time format",
+    icon: "⏱️",
+    category: CATEGORIES.utility,
+    seoTitle: "Seconds to Time Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free seconds to time converter online. Convert seconds to HH:MM:SS format. Optional zero-padding. 100% browser-based.",
+    seoKeywords: ["seconds to time", "seconds to hh:mm:ss", "convert seconds to time", "time format converter", "seconds calculator"],
+    description: "Convert seconds to HH:MM:SS time format. Useful for converting durations, video lengths, and time intervals. Optionally pad with zeros (00:05:30 instead of 0:5:30). Supports batch conversion of multiple values.",
+    howToUse: [
+      { heading: "Enter seconds", text: "Type or paste seconds values (one per line)." },
+      { heading: "Choose padding", text: "Enable 'Pad with zeros' for two-digit format (00:05:30). Disable for minimal format (0:5:30)." },
+      { heading: "Convert", text: "Click Convert. Results appear in HH:MM:SS format." },
+    ],
+    useCases: [
+      { title: "Video editing", text: "Convert video durations from seconds to time format for editing software." },
+      { title: "Audio metadata", text: "Format track lengths for audio file metadata and playlists." },
+      { title: "Data export", text: "Convert time values in datasets from seconds to readable time format." },
+    ],
+    faq: [
+      { q: "What is the maximum value?", a: "No fixed maximum. The tool handles any positive integer." },
+      { q: "Does it support milliseconds?", a: "This tool expects whole seconds. For milliseconds, divide by 1000 first or use a dedicated milliseconds tool." },
+      { q: "Why use zero-padding?", a: "Zero-padding ensures consistent column width in tables and makes time values easier to read." },
+    ],
+    relatedTools: ["time-to-seconds", "unix-to-date"],
+  },
+
+  "time-between-dates": {
+    title: "Time Between Dates Calculator",
+    desc: "Calculate duration between two dates",
+    icon: "📅",
+    category: CATEGORIES.utility,
+    seoTitle: "Time Between Dates Calculator Free — Online Tool | Craftisle",
+    seoDesc: "Free time between dates calculator online. Calculate duration between two dates in days, hours, minutes, or auto mode. 100% browser-based.",
+    seoKeywords: ["time between dates", "date difference calculator", "days between dates", "date duration calculator", "time span calculator"],
+    description: "Calculate the duration between two dates. Supports multiple output units: auto (years, months, days), days, hours, minutes, or seconds. Useful for project planning, age calculation, and deadline tracking.",
+    howToUse: [
+      { heading: "Enter start date", text: "Select or type the start date in YYYY-MM-DD format." },
+      { heading: "Enter end date", text: "Select or type the end date in YYYY-MM-DD format." },
+      { heading: "Choose output unit", text: "Select 'Auto' for years/months/days, or choose a specific unit (days, hours, etc.)." },
+      { heading: "Calculate", text: "Click Calculate. The duration appears in the selected unit." },
+    ],
+    useCases: [
+      { title: "Project planning", text: "Calculate project duration and track deadlines." },
+      { title: "Age calculation", text: "Calculate exact age in years, months, and days." },
+      { title: "Event planning", text: "Count days until an event or since an event." },
+    ],
+    faq: [
+      { q: "Does it include the end date?", a: "The calculation counts full days between dates. The end date is not counted as a full day." },
+      { q: "Can I calculate negative durations?", a: "The tool always returns a positive duration. If end date is before start date, it swaps them automatically." },
+      { q: "What is 'Auto' mode?", a: "Auto mode breaks down the duration into years, months, and days for human-readable output." },
+    ],
+    relatedTools: ["unix-to-date", "leap-year"],
+  },
+
+  "cron-parser": {
+    title: "Cron Expression Parser",
+    desc: "Parse and explain cron expressions",
+    icon: "⏰",
+    category: CATEGORIES.dev,
+    seoTitle: "Cron Expression Parser Free — Online Tool | Craftisle",
+    seoDesc: "Free cron expression parser online. Parse and explain cron expressions for crontab. Supports all standard cron formats. 100% browser-based.",
+    seoKeywords: ["cron parser", "crontab guru", "cron expression decoder", "cron format explainer", "cron schedule parser"],
+    description: "Parse and explain cron expressions. Cron is a time-based job scheduler in Unix-like operating systems. This tool helps you understand cron expressions by breaking down each field (minute, hour, day, month, weekday) and explaining what the cron job will do.",
+    howToUse: [
+      { heading: "Enter cron expression", text: "Type or paste a cron expression (e.g., '0 * * * *' for every hour)." },
+      { heading: "Parse", text: "Click Parse. The tool explains each field and shows what the cron job does." },
+      { heading: "Check examples", text: "Use the example cron expressions in the help text to learn the format." },
+    ],
+    useCases: [
+      { title: "Server administration", text: "Understand cron jobs when setting up scheduled tasks on Linux servers." },
+      { title: "CI/CD pipelines", text: "Configure scheduled builds and deployments in Jenkins, GitLab CI, or GitHub Actions." },
+      { title: "Database backups", text: "Set up automated database backup schedules using cron expressions." },
+    ],
+    faq: [
+      { q: "What is a cron expression?", a: "A cron expression is a string of 5 fields: minute, hour, day of month, month, day of week. Each field can be *, a number, a range, or a step value." },
+      { q: "Does it support special strings?", a: "This tool supports standard 5-field cron expressions. Special strings like '@daily' are not supported yet." },
+      { q: "Where do I use cron expressions?", a: "In crontab files on Linux/Unix systems, and in CI/CD tools like Jenkins, GitLab, and GitHub Actions." },
+    ],
+    relatedTools: ["unix-to-date", "time-between-dates"],
+  },
+
+  "leap-year": {
+    title: "Leap Year Checker",
+    desc: "Check if years are leap years",
+    icon: "📆",
+    category: CATEGORIES.utility,
+    seoTitle: "Leap Year Checker Free — Online Tool | Craftisle",
+    seoDesc: "Free leap year checker online. Check if years are leap years. Supports batch checking of multiple years. 100% browser-based.",
+    seoKeywords: ["leap year checker", "is leap year", "leap year calculator", "leap year list", "gregorian calendar leap year"],
+    description: "Check if one or multiple years are leap years. A leap year has 366 days instead of 365, with February 29 as the extra day. Leap years are divisible by 4, except for years divisible by 100 but not by 400.",
+    howToUse: [
+      { heading: "Enter years", text: "Type or paste years (one per line). Supports batch checking." },
+      { heading: "Check", text: "Click Check. Results show which years are leap years." },
+    ],
+    useCases: [
+      { title: "Date calculations", text: "Verify if a year is a leap year when calculating dates and durations." },
+      { title: "Payroll systems", text: "Check if February has 28 or 29 days for payroll calculations." },
+      { title: "Event planning", text: "Plan events that occur every 4 years (like leap day celebrations)." },
+    ],
+    faq: [
+      { q: "What is a leap year?", a: "A leap year is a year with 366 days instead of 365. The extra day (February 29) keeps our calendar aligned with Earth's orbit." },
+      { q: "Why are century years special?", a: "Century years (like 1900) are NOT leap years unless divisible by 400 (like 2000). This corrects for over-correction in the 4-year rule." },
+      { q: "When is the next leap year?", a: "2024, 2028, 2032, etc. (every 4 years, with century year exceptions)." },
+    ],
+    relatedTools: ["time-between-dates", "unix-to-date"],
+  },
+
+  // ==================== List Tools ====================
+  "shuffle-lines": {
+    title: "Shuffle Lines",
+    desc: "Randomize the order of lines in text",
+    icon: "🔀",
+    category: CATEGORIES.text,
+    seoTitle: "Shuffle Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free shuffle lines online tool. Randomize the order of lines in text. Preserve or remove empty lines. 100% browser-based.",
+    seoKeywords: ["shuffle lines", "randomize lines", "random line order", "shuffle text lines", "randomize text order"],
+    description: "Randomize the order of lines in text using Fisher-Yates shuffle algorithm. Useful for randomizing lists, creating fair team assignments, or generating random orderings. Optionally preserve or remove empty lines.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Choose options", text: "Enable 'Preserve empty lines' to keep blank lines in the shuffled output." },
+      { heading: "Shuffle", text: "Click Shuffle. The lines are randomized." },
+      { heading: "Copy result", text: "Copy the shuffled text or download as a file." },
+    ],
+    useCases: [
+      { title: "Team assignments", text: "Randomly assign people to teams or tasks." },
+      { title: "Playlist ordering", text: "Shuffle a playlist or reading list for variety." },
+      { title: "Sampling", text: "Randomly order a list before selecting a sample." },
+    ],
+    faq: [
+      { q: "Is the shuffle truly random?", a: "Yes. This tool uses the Fisher-Yates shuffle algorithm, which produces uniform random permutations." },
+      { q: "Can I shuffle comma-separated values?", a: "This tool shuffles lines. For comma-separated values, convert to lines first (one value per line), shuffle, then convert back." },
+      { q: "Does it preserve line breaks?", a: "Yes. Each line is treated as a unit and shuffled as a whole." },
+    ],
+    relatedTools: ["sort-lines", "unique-lines"],
+  },
+
+  "sort-lines": {
+    title: "Sort Lines",
+    desc: "Sort lines alphabetically, numerically, or by length",
+    icon: "📝",
+    category: CATEGORIES.text,
+    seoTitle: "Sort Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free sort lines online tool. Sort lines alphabetically, numerically, or by length. Remove duplicates. Case-insensitive option. 100% browser-based.",
+    seoKeywords: ["sort lines", "alphabetize lines", "sort text lines", "line sorter", "text line sorter"],
+    description: "Sort lines in text alphabetically (A→Z or Z→A), numerically, or by string length. Remove duplicates during sorting. Case-insensitive option available. Essential for organizing lists, cleaning data, and preparing text for analysis.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Choose sort options", text: "Select direction (ascending/descending), sort type (alphabetical/numeric/length), and case sensitivity." },
+      { heading: "Remove duplicates (optional)", text: "Enable 'Remove duplicates' to deduplicate while sorting." },
+      { heading: "Sort", text: "Click Sort. The sorted lines appear in the output." },
+    ],
+    useCases: [
+      { title: "Data cleaning", text: "Sort and deduplicate lists of emails, URLs, or product codes." },
+      { title: "Code organization", text: "Sort import statements, function lists, or configuration keys." },
+      { title: "Content preparation", text: "Organize outlines, bibliographies, or reference lists alphabetically." },
+    ],
+    faq: [
+      { q: "What is 'numeric' sort?", a: "Numeric sort parses each line as a number (if possible) and sorts by value. Lines that can't be parsed are sorted alphabetically." },
+      { q: "Does case-insensitive sort work with non-English characters?", a: "Yes. The tool uses Unicode case folding, which handles accented characters correctly." },
+      { q: "Can I sort by multiple criteria?", a: "This tool sorts by one criterion at a time. For multi-criteria sorting, sort multiple times in reverse priority order." },
+    ],
+    relatedTools: ["shuffle-lines", "unique-lines", "remove-duplicate-lines"],
+  },
+
+  "unique-lines": {
+    title: "Find Unique Lines",
+    desc: "Extract lines that appear exactly once",
+    icon: "🔍",
+    category: CATEGORIES.text,
+    seoTitle: "Find Unique Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free find unique lines online tool. Extract lines that appear exactly once. Case-sensitive option. Count mode available. 100% browser-based.",
+    seoKeywords: ["unique lines", "find unique lines", "extract unique lines", "lines that appear once", "text deduplication"],
+    description: "Extract lines that appear exactly once in a text. Lines that appear multiple times are excluded. Useful for finding singletons in data, identifying unique entries, and cleaning lists. Supports case-sensitive and case-insensitive comparison.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Choose options", text: "Enable 'Case-sensitive comparison' to treat 'Apple' and 'apple' as different. Enable 'Count only' to see the number of unique lines without listing them." },
+      { heading: "Find Unique", text: "Click Find Unique. Unique lines (or count) appear in output." },
+    ],
+    useCases: [
+      { title: "Data analysis", text: "Find unique entries in datasets, logs, or survey responses." },
+      { title: "List cleaning", text: "Extract unique items from a list that has duplicates." },
+      { title: "Debugging", text: "Find unique error messages or log entries that appear only once." },
+    ],
+    faq: [
+      { q: "What does 'appear exactly once' mean?", a: "A line is 'unique' if it appears exactly one time in the input. Lines that appear 2+ times are excluded." },
+      { q: "How is this different from 'Remove Duplicates'?", a: " 'Remove Duplicates' keeps one copy of each line. 'Find Unique' only keeps lines that have NO duplicates." },
+      { q: "Does it preserve original order?", a: "Yes. Unique lines are returned in the order they first appeared in the input." },
+    ],
+    relatedTools: ["remove-duplicate-lines", "sort-lines", "shuffle-lines"],
+  },
+
+  // ==================== CSV Tools ====================
+  "csv-to-json": {
+    title: "CSV to JSON Converter",
+    desc: "Convert CSV data to JSON format",
+    icon: "📊",
+    category: CATEGORIES.converter,
+    seoTitle: "CSV to JSON Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free CSV to JSON converter online. Convert CSV data to JSON array of objects or array of arrays. Custom delimiter support. 100% browser-based.",
+    seoKeywords: ["csv to json", "convert csv to json", "csv to json online", "csv json converter", "csv to json array"],
+    description: "Convert CSV (Comma-Separated Values) data to JSON format. Supports two output formats: array of objects (each row is an object with column names as keys) or array of arrays (first row as headers). Custom delimiter support (comma, semicolon, tab, pipe).",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data with headers in the first row." },
+      { heading: "Choose options", text: "Select output format (objects or arrays) and delimiter (comma, semicolon, tab, pipe)." },
+      { heading: "Convert", text: "Click Convert. The JSON output appears, formatted with 2-space indentation." },
+      { heading: "Copy or download", text: "Copy the JSON or download as a .json file." },
+    ],
+    useCases: [
+      { title: "API development", text: "Convert CSV data from spreadsheets to JSON for API requests and responses." },
+      { title: "Data migration", text: "Transform CSV exports from legacy systems to JSON for modern applications." },
+      { title: "Web development", text: "Convert CSV data to JSON for use in JavaScript applications and frontend frameworks." },
+    ],
+    faq: [
+      { q: "What delimiter should I use?", a: "Comma (,) is standard for CSV. Semicolon (;) is common in European Excel exports. Tab is used for TSV files." },
+      { q: "Does it handle quoted values?", a: "Yes. The tool handles quoted values (e.g., 'Value with, comma') correctly." },
+      { q: "What format should I choose?", a: "Use 'objects' format for most cases (easier to work with in JavaScript). Use 'arrays' format for minimal output or when processing with other tools." },
+    ],
+    relatedTools: ["json-to-csv", "csv-formatter"],
+  },
+
+  // ==================== JSON Tools ====================
+  "json-to-csv": {
+    title: "JSON to CSV Converter",
+    desc: "Convert JSON data to CSV format",
+    icon: "📋",
+    category: CATEGORIES.converter,
+    seoTitle: "JSON to CSV Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free JSON to CSV converter online. Convert JSON array of objects to CSV format. Custom delimiter support. 100% browser-based.",
+    seoKeywords: ["json to csv", "convert json to csv", "json to csv online", "json csv converter", "export json to csv"],
+    description: "Convert JSON data to CSV (Comma-Separated Values) format. Supports JSON arrays of objects (most common format). Custom delimiter support (comma, semicolon, tab, pipe). Handles string escaping for values containing delimiters or quotes.",
+    howToUse: [
+      { heading: "Paste JSON data", text: "Type or paste JSON data (array of objects format works best)." },
+      { heading: "Choose delimiter", text: "Select delimiter (comma, semicolon, tab, pipe)." },
+      { heading: "Convert", text: "Click Convert. The CSV output appears with headers in the first row." },
+      { heading: "Copy or download", text: "Copy the CSV or download as a .csv file." },
+    ],
+    useCases: [
+      { title: "Data export", text: "Export JSON data from APIs or databases to CSV for Excel analysis." },
+      { title: "Reporting", text: "Convert JSON data to CSV for business reports and spreadsheets." },
+      { title: "Interoperability", text: "Convert JSON to CSV for systems that only accept CSV input." },
+    ],
+    faq: [
+      { q: "What JSON format is supported?", a: "Array of objects (e.g., [{'name': 'Alice', 'age': 25}]) works best. The tool extracts all unique keys as CSV headers." },
+      { q: "Does it handle nested objects?", a: "Nested objects are converted to '[object Object]' by default. Flatten nested objects before conversion for better results." },
+      { q: "How are special characters handled?", a: "Values containing delimiters or quotes are wrapped in double quotes with internal quotes escaped (CSV standard)." },
+    ],
+    relatedTools: ["csv-to-json", "json-formatter"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",
