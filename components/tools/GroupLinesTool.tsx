@@ -4,15 +4,16 @@ import { useState } from "react";
 import { TextToolLayout } from "./TextToolLayout";
 
 /**
- * Group Lines (Chunk)
- * Group lines into chunks of N items
+ * Group Lines
+ * Group list items into chunks
  */
 export default function GroupLinesTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [chunkSize, setChunkSize] = useState(3);
-  const [separator, setSeparator] = useState("\n");
-  const [chunkSeparator, setChunkSeparator] = useState("\n\n");
+  const [separator, setSeparator] = useState(",");
+  const [groupSize, setGroupSize] = useState(3);
+  const [groupSeparator, setGroupSeparator] = useState("\n");
+  const [itemSeparator, setItemSeparator] = useState(",");
   const [leftWrap, setLeftWrap] = useState("");
   const [rightWrap, setRightWrap] = useState("");
   const [padNonFull, setPadNonFull] = useState(false);
@@ -24,34 +25,37 @@ export default function GroupLinesTool() {
       return;
     }
 
-    let items = input.split(separator);
-    const chunks: string[][] = [];
-
-    // Split into chunks
-    for (let i = 0; i < items.length; i += chunkSize) {
-      chunks.push(items.slice(i, i + chunkSize));
-    }
-
-    // Pad non-full chunk if requested
-    if (padNonFull && chunks.length > 0) {
-      const lastChunk = chunks[chunks.length - 1];
-      while (lastChunk.length < chunkSize) {
-        lastChunk.push(padChar);
+    try {
+      let items = input.split(separator).map(s => s.trim()).filter(s => s);
+      
+      // Pad non-full group
+      if (padNonFull && items.length > 0) {
+        const remainder = items.length % groupSize;
+        if (remainder > 0) {
+          const paddingNeeded = groupSize - remainder;
+          for (let i = 0; i < paddingNeeded; i++) {
+            items.push(padChar);
+          }
+        }
       }
+
+      // Group items
+      const groups: string[] = [];
+      for (let i = 0; i < items.length; i += groupSize) {
+        const group = items.slice(i, i + groupSize);
+        groups.push(leftWrap + group.join(itemSeparator) + rightWrap);
+      }
+
+      setOutput(groups.join(groupSeparator));
+    } catch {
+      setOutput("❌ Error grouping lines. Check format.");
     }
-
-    // Format output
-    const result = chunks.map(chunk => {
-      return leftWrap + chunk.join(" ") + rightWrap;
-    });
-
-    setOutput(result.join(chunkSeparator));
   };
 
   return (
     <TextToolLayout
-      title="Group Lines (Chunk)"
-      description="Group lines into chunks of N items"
+      title="Group Lines"
+      description="Group list items into chunks"
       input={input}
       output={output}
       onInputChange={setInput}
@@ -60,40 +64,34 @@ export default function GroupLinesTool() {
       options={
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Chunk Size</label>
+            <label className="block text-sm font-medium mb-2">Item Separator</label>
+            <input
+              type="text"
+              value={separator}
+              onChange={(e) => setSeparator(e.target.value)}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2">Group Size</label>
             <input
               type="number"
-              value={chunkSize}
-              onChange={(e) => setChunkSize(Math.max(1, parseInt(e.target.value, 10)))}
+              value={groupSize}
+              onChange={(e) => setGroupSize(Math.max(1, parseInt(e.target.value, 10)))}
               min={1}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Item Separator</label>
-            <select
-              value={separator}
-              onChange={(e) => setSeparator(e.target.value)}
+            <label className="block text-sm font-medium mb-2">Item Separator (within group)</label>
+            <input
+              type="text"
+              value={itemSeparator}
+              onChange={(e) => setItemSeparator(e.target.value)}
               className="w-full px-3 py-2 border rounded-md"
-            >
-              <option value="\n">Newline</option>
-              <option value=",">Comma</option>
-              <option value=" ">Space</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Chunk Separator</label>
-            <select
-              value={chunkSeparator}
-              onChange={(e) => setChunkSeparator(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md"
-            >
-              <option value="\n\n">Double newline</option>
-              <option value="\n">Newline</option>
-              <option value=",">Comma</option>
-            </select>
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -103,7 +101,7 @@ export default function GroupLinesTool() {
                 type="text"
                 value={leftWrap}
                 onChange={(e) => setLeftWrap(e.target.value)}
-                placeholder="["
+                placeholder="e.g., ("
                 className="w-full px-3 py-2 border rounded-md"
               />
             </div>
@@ -113,10 +111,21 @@ export default function GroupLinesTool() {
                 type="text"
                 value={rightWrap}
                 onChange={(e) => setRightWrap(e.target.value)}
-                placeholder="]"
+                placeholder="e.g., )"
                 className="w-full px-3 py-2 border rounded-md"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2">Group Separator</label>
+            <input
+              type="text"
+              value={groupSeparator}
+              onChange={(e) => setGroupSeparator(e.target.value)}
+              placeholder="\n for newline"
+              className="w-full px-3 py-2 border rounded-md"
+            />
           </div>
 
           <label className="flex items-center gap-2">
@@ -125,7 +134,7 @@ export default function GroupLinesTool() {
               checked={padNonFull}
               onChange={(e) => setPadNonFull(e.target.checked)}
             />
-            <span className="text-sm">Pad non-full chunks</span>
+            <span className="text-sm">Pad non-full groups</span>
           </label>
 
           {padNonFull && (
@@ -135,11 +144,15 @@ export default function GroupLinesTool() {
                 type="text"
                 value={padChar}
                 onChange={(e) => setPadChar(e.target.value)}
-                placeholder=""
                 className="w-full px-3 py-2 border rounded-md"
               />
             </div>
           )}
+
+          <div className="text-xs text-gray-500 dark:text-gray-400">
+            <p>Groups items into chunks of specified size.</p>
+            <p>Supports custom separators, wrapping, and padding.</p>
+          </div>
         </div>
       }
     />

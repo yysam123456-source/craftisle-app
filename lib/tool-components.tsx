@@ -146,6 +146,15 @@ const componentLoaders: Record<string, ComponentLoader> = {
 
   // ==================== JSON Tools (Batch 4) ====================
   "json-comparison": () => import("@/components/tools/JsonComparisonTool"),
+
+  // ==================== CSV Tools (Batch 5) ====================
+  "csv-rows-to-columns": () => import("@/components/tools/CsvRowsToColumnsTool"),
+
+  // ==================== List Tools (Batch 5) ====================
+  "group-lines": () => import("@/components/tools/GroupLinesTool"),
+
+  // ==================== String Tools (Batch 5) ====================
+  "text-compare": () => import("@/components/tools/TextCompareTool"),
 };
 
 // ---------------------------------------------------------------------------

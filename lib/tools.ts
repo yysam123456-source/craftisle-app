@@ -3835,6 +3835,91 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["json-formatter", "json-validator"],
   },
 
+  // ==================== CSV Tools (Batch 5) ====================
+  "csv-rows-to-columns": {
+    title: "CSV Rows to Columns",
+    desc: "Convert CSV rows to columns (transpose)",
+    icon: "🔃",
+    category: CATEGORIES.dev,
+    seoTitle: "CSV Rows to Columns Free — Online Tool | Craftisle",
+    seoDesc: "Free CSV rows to columns online tool. Convert CSV rows to columns (transpose). Supports custom separator and empty value handling. 100% browser-based.",
+    seoKeywords: ["csv rows to columns", "transpose csv", "csv transpose", "convert csv rows to columns"],
+    description: "Convert CSV rows to columns (transpose). Supports custom separator, empty value filling, and comment line removal. Useful for data transformation, reshaping CSV data, and preparing for analysis.",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data." },
+      { heading: "Set options", text: "Choose separator, enable/disable empty value filling, set custom filler or comment character." },
+      { heading: "Convert", text: "Click Convert. Rows are converted to columns." },
+      { heading: "Copy or download", text: "Copy the CSV or download as a .csv file." },
+    ],
+    useCases: [
+      { title: "Data transformation", text: "Transpose CSV data for different analysis needs." },
+      { title: "Reshape data", text: "Convert horizontal data to vertical (or vice versa)." },
+      { title: "Prepare for import", text: "Reshape CSV to match import requirements." },
+    ],
+    faq: [
+      { q: "What does 'Fill With Empty Values' mean?", a: "Add empty fields to incomplete rows to make a well-formed CSV." },
+      { q: "What does 'Comment Character' do?", a: "Lines starting with this character are treated as comments and removed." },
+    ],
+    relatedTools: ["csv-to-json", "transpose-csv"],
+  },
+
+  // ==================== List Tools (Batch 5) ====================
+  "group-lines": {
+    title: "Group Lines",
+    desc: "Group list items into chunks",
+    icon: "📊",
+    category: CATEGORIES.dev,
+    seoTitle: "Group Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free group lines online tool. Group list items into chunks. Supports custom separators, wrapping, and padding. 100% browser-based.",
+    seoKeywords: ["group lines", "chunk list", "group list items", "split list into chunks"],
+    description: "Group list items into chunks of specified size. Supports custom item separator, group separator, left/right wrapping, and padding for non-full groups. Useful for formatting data, creating batches, and restructuring lists.",
+    howToUse: [
+      { heading: "Paste list", text: "Type or paste a list (items separated by a character)." },
+      { heading: "Set options", text: "Set item separator, group size, item separator (within group), left/right wrap, group separator." },
+      { heading: "Group", text: "Click Group. Items are grouped into chunks." },
+      { heading: "Copy or download", text: "Copy the result or download as a .txt file." },
+    ],
+    useCases: [
+      { title: "Format data", text: "Group items into fixed-size chunks for display." },
+      { title: "Create batches", text: "Split a list into batches for processing." },
+      { title: "Restructure lists", text: "Add wrapping and separators to list items." },
+    ],
+    faq: [
+      { q: "What is 'Item Separator'?", a: "The character that separates items in the input (e.g., comma, semicolon, space)." },
+      { q: "What is 'Pad Non-Full Groups'?", a: "If enabled, the last group is padded with a padding character to make it full size." },
+    ],
+    relatedTools: ["split", "wrap-lines"],
+  },
+
+  // ==================== String Tools (Batch 5) ====================
+  "text-compare": {
+    title: "Text Compare",
+    desc: "Compare two texts and show differences",
+    icon: "🔍",
+    category: CATEGORIES.dev,
+    seoTitle: "Text Compare Free — Online Tool | Craftisle",
+    seoDesc: "Free text compare online tool. Compare two texts and show differences. Supports word-level and character-level comparison. 100% browser-based.",
+    seoKeywords: ["text compare", "compare two texts", "text diff", "compare text online"],
+    description: "Compare two texts and show differences. Supports word-level and character-level comparison. Useful for tracking changes, reviewing edits, and identifying modifications.",
+    howToUse: [
+      { heading: "Paste original text", text: "Type or paste the original text." },
+      { heading: "Paste modified text", text: "Type or paste the modified text." },
+      { heading: "Choose mode", text: "Select word-level or character-level comparison." },
+      { heading: "Compare", text: "Click Compare Texts. Differences are shown (+, -, or unchanged)." },
+      { heading: "Review differences", text: "Review the differences and make changes as needed." },
+    ],
+    useCases: [
+      { title: "Track changes", text: "Compare versions of text to see what changed." },
+      { title: "Review edits", text: "Compare original and edited text to review modifications." },
+      { title: "Identify modifications", text: "Find exactly what was changed between two versions." },
+    ],
+    faq: [
+      { q: "What is 'word-level' comparison?", a: "Compares texts word by word. Good for prose and documents." },
+      { q: "What is 'character-level' comparison?", a: "Compares texts character by character. Good for code and short strings." },
+    ],
+    relatedTools: ["json-comparison", "diff"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",
