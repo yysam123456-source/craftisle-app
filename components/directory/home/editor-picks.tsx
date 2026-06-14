@@ -1,19 +1,28 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, ArrowRight } from "lucide-react";
-import { getHotResourcesByScore, getRichInfoResourceIds } from "@/lib/fmhy-data";
+import { Star, ArrowRight, Flame, Sparkles } from "lucide-react";
+import { getHotResourcesByScore, getRichInfoResourceIds, getAllResources } from "@/lib/fmhy-data";
 
 /**
  * Editor's Picks (weekly updated)
- * Show TOP 6 resources by score, with recommendations
+ * Show diverse high-quality resources: TOP 3 by score + 3 featured by category
  */
 
 export function EditorPicks() {
-  // Get TOP 6 resources by score
-  const picks = getHotResourcesByScore(6);
+  // Get TOP 3 resources by score
+  const topByScore = getHotResourcesByScore(3);
   const richInfoIds = getRichInfoResourceIds();
-
+  
+  // Get 3 featured resources from different categories
+  const allResources = getAllResources();
+  const featured = allResources
+    .filter(r => r.categoryName && r.description && r.description.length > 50)
+    .filter(r => !topByScore.some(p => p.id === r.id))
+    .slice(0, 3);
+  
+  const picks = [...topByScore, ...featured];
+  
   if (!picks || picks.length === 0) return null;
 
   return (
@@ -21,11 +30,12 @@ export function EditorPicks() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">
-              ⭐ Editor's Picks
+            <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+              <Sparkles className="h-6 w-6 text-yellow-500" />
+              Editor's Picks
             </h2>
             <p className="mt-1 text-muted-foreground">
-              Weekly update, based on comprehensive scoring (GitHub Stars + Data Richness + Description Quality)
+              Carefully curated high-quality resources, updated weekly
             </p>
           </div>
           <Link href="/directory/best/ai-tools">
@@ -49,7 +59,7 @@ export function EditorPicks() {
                       <CardContent className="p-5">
                         <div className="flex items-start justify-between mb-3">
                           <Badge variant="secondary" className="text-xs">
-                            #{index + 1} Pick
+                            {index < 3 ? `#${index + 1} Top Score` : "✨ Featured"}
                           </Badge>
                           {resource.githubStars && resource.githubStars > 0 && (
                             <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -59,12 +69,12 @@ export function EditorPicks() {
                           )}
                         </div>
 
-                        <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors">
+                        <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors line-clamp-1">
                           {resource.name}
                         </h3>
 
                         <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                          {resource.description?.slice(0, 100) || "No description"}
+                          {resource.description?.slice(0, 120) || "No description"}
                         </p>
 
                         <div className="flex flex-wrap gap-2">
@@ -93,7 +103,7 @@ export function EditorPicks() {
                       <CardContent className="p-5">
                         <div className="flex items-start justify-between mb-3">
                           <Badge variant="secondary" className="text-xs">
-                            #{index + 1} Pick
+                            {index < 3 ? `#${index + 1} Top Score` : "✨ Featured"}
                           </Badge>
                           {resource.githubStars && resource.githubStars > 0 && (
                             <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -103,12 +113,12 @@ export function EditorPicks() {
                           )}
                         </div>
 
-                        <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors">
+                        <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors line-clamp-1">
                           {resource.name}
                         </h3>
 
                         <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                          {resource.description?.slice(0, 100) || "No description"}
+                          {resource.description?.slice(0, 120) || "No description"}
                         </p>
 
                         <div className="flex flex-wrap gap-2">

@@ -35,10 +35,10 @@ export function ResourceCard({
   return (
     <Link href={href} className="group">
       <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-        <CardContent className="p-5">
+        <CardContent className="p-3 md:p-5">
           {/* Rank badge (optional) */}
           {rank !== undefined && (
-            <div className={`rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg mb-3 ${
+            <div className={`rounded-lg w-8 h-8 md:w-10 md:h-10 flex items-center justify-center font-bold text-sm md:text-lg mb-2 md:mb-3 ${
               rank === 0 ? "bg-yellow-500/10 text-yellow-600" :
               rank === 1 ? "bg-gray-500/10 text-gray-600" :
               rank === 2 ? "bg-orange-500/10 text-orange-600" :
@@ -49,30 +49,30 @@ export function ResourceCard({
           )}
 
           {/* Resource name */}
-          <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors">
+          <h3 className="font-semibold text-sm md:text-base mb-1 md:mb-2 group-hover:text-primary transition-colors line-clamp-1">
             {resource.name}
           </h3>
 
           {/* Description (optional) */}
           {showDescription && (
-            <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-              {resource.description?.slice(0, 100) || "No description"}
+            <p className="text-xs md:text-sm text-muted-foreground line-clamp-2 mb-2 md:mb-3">
+              {resource.description?.slice(0, 80) || "No description"}
             </p>
           )}
 
           {/* Score (optional) */}
           {showScore && (
-            <div className="flex items-center gap-1 text-sm text-muted-foreground mb-3">
-              <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
+            <div className="flex items-center gap-1 text-xs md:text-sm text-muted-foreground mb-2 md:mb-3">
+              <Star className="h-3 w-3 md:h-3.5 md:w-3.5 fill-yellow-400 text-yellow-500" />
               <span>{resource.githubStars ? (resource.githubStars / 1000).toFixed(1) + "K" : "N/A"}</span>
             </div>
           )}
 
           {/* Tags (optional) */}
           {showTags && resource.tags && (
-            <div className="flex flex-wrap gap-2">
-              {resource.tags.slice(0, 3).map((tag) => (
-                <Badge key={tag} variant="outline" className="text-xs">
+            <div className="flex flex-wrap gap-1 md:gap-2">
+              {resource.tags.slice(0, 2).map((tag) => (
+                <Badge key={tag} variant="outline" className="text-[10px] md:text-xs px-1 md:px-2">
                   {tag}
                 </Badge>
               ))}
@@ -80,14 +80,14 @@ export function ResourceCard({
           )}
 
           {/* Category and License badges */}
-          <div className="flex flex-wrap gap-2 mt-3">
+          <div className="flex flex-wrap gap-1 md:gap-2 mt-2 md:mt-3">
             {resource.categoryName && (
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-[10px] md:text-xs px-1 md:px-2">
                 {resource.categoryIcon} {resource.categoryName}
               </Badge>
             )}
             {resource.githubLicense && (
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-[10px] md:text-xs px-1 md:px-2">
                 {resource.githubLicense}
               </Badge>
             )}

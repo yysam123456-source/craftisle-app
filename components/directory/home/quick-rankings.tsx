@@ -6,7 +6,7 @@ import { getHotResourcesByScore, getAllResources, calculateResourceScore, getRic
 
 /**
  * Quick Rankings (homepage version)
- * Show TOP 5 by category, use horizontal tabs to switch
+ * Show TOP 5 by category, display all categories at once
  */
 
 const RANKING_CATEGORIES = [
@@ -24,37 +24,30 @@ function getTopResourcesByCategory(categoryId: string, limit = 5) {
 }
 
 export function QuickRankings() {
-  // Default to first category
-  const defaultCat = RANKING_CATEGORIES[0];
-
   return (
     <section className="py-12 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold tracking-tight">
-            🏆 Quick Rankings
+          <h2 className="text-2xl font-bold tracking-tight flex items-center justify-center gap-2">
+            <Trophy className="h-6 w-6 text-yellow-500" />
+            Quick Rankings
           </h2>
           <p className="mt-1 text-muted-foreground">
-            View TOP 5 by category, click resource to view details
+            TOP 5 resources by category
           </p>
         </div>
 
-        {/* Tab switcher */}
-        <div className="flex justify-center gap-2 mb-8">
+        {/* Show all categories at once */}
+        <div className="space-y-12">
           {RANKING_CATEGORIES.map((cat) => (
-            <Badge
-              key={cat.id}
-              variant="outline"
-              className="cursor-pointer hover:bg-primary/10 px-4 py-2"
-            >
-              {cat.icon} {cat.name}
-            </Badge>
+            <div key={cat.id}>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-2xl">{cat.icon}</span>
+                <h3 className="font-semibold text-lg">{cat.name} TOP 5</h3>
+              </div>
+              <QuickRankingList category={cat} />
+            </div>
           ))}
-        </div>
-
-        {/* Default to first category's TOP 5 */}
-        <div className="max-w-2xl mx-auto">
-          <QuickRankingList category={defaultCat} />
         </div>
 
         <div className="mt-8 text-center">

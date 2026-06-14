@@ -253,8 +253,8 @@ export default async function ResourcesPage() {
 
       {/* Popular Alternatives */}
       <SectionContainer
-        title="Popular Alternatives"
-        subtitle="Find the best free alternatives to popular paid tools"
+        title="Free Alternatives to Paid Tools"
+        subtitle="Discover high-quality free replacements for popular paid software"
         icon="🔥"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
@@ -267,8 +267,8 @@ export default async function ResourcesPage() {
 
       {/* More Ways to Explore */}
       <SectionContainer
-        title="More Ways to Explore"
-        subtitle="Compare tools and discover the best free software"
+        title="Discover & Compare"
+        subtitle="Find the perfect tool for your needs"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 max-w-3xl mx-auto">
           {/* Compare Tools */}
@@ -341,8 +341,8 @@ export default async function ResourcesPage() {
 
       {/* FAQ Section (for users + AI citation) */}
       <SectionContainer
-        title="Frequently Asked Questions"
-        subtitle="Common questions about Craftisle Resource Directory"
+        title="Common Questions"
+        subtitle="Everything you need to know about our free resource directory"
       >
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="rounded-lg border bg-card p-6">

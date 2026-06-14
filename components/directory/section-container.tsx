@@ -30,21 +30,21 @@ export function SectionContainer({
   id,
 }: SectionContainerProps) {
   return (
-    <section className={`py-12 ${className}`} id={id}>
+    <section className={`py-8 md:py-12 ${className}`} id={id}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="mb-8 text-center">
+        <div className="mb-6 md:mb-8 text-center">
           {badge && (
-            <Badge variant="secondary" className="mb-4">
+            <Badge variant="secondary" className="mb-3 md:mb-4">
               {badge}
             </Badge>
           )}
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight">
             {icon && <span className="mr-2">{icon}</span>}
             {title}
           </h2>
           {subtitle && (
-            <p className="mt-2 text-muted-foreground text-lg">
+            <p className="mt-2 text-muted-foreground text-base md:text-lg">
               {subtitle}
             </p>
           )}
