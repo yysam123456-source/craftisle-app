@@ -8,11 +8,12 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-export default function RotateTool() {
+export default function DuplicateTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
-  const [positions, setPositions] = useState("1");
+  const [copies, setCopies] = useState("2");
+  const [separator, setSeparator] = useState(" ");
 
   const handleProcess = () => {
     setError("");
@@ -24,23 +25,19 @@ export default function RotateTool() {
     }
 
     const lines = input.split("\n").filter(line => line.trim() !== "");
-    const numPositions = parseInt(positions, 10);
+    const numCopies = parseInt(copies, 10);
     
-    if (isNaN(numPositions) || numPositions < 1) {
-      setError("Number of positions must be a positive integer");
+    if (isNaN(numCopies) || numCopies < 1) {
+      setError("Number of copies must be a positive integer");
       setOutput("");
       return;
     }
 
-    const rotated = [...lines];
-    for (let i = 0; i < numPositions; i++) {
-      const first = rotated.shift();
-      if (first !== undefined) {
-        rotated.push(first);
-      }
-    }
-    
-    setOutput(rotated.join("\n"));
+    const results = lines.map(line => {
+      return Array(numCopies).fill(line).join(separator);
+    });
+
+    setOutput(results.join("\n"));
   };
 
   const handleClear = () => {
@@ -52,7 +49,7 @@ export default function RotateTool() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Rotate Lines</CardTitle>
+        <CardTitle>Duplicate Lines</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
@@ -62,38 +59,41 @@ export default function RotateTool() {
         )}
 
         <div className="space-y-2">
-          <Label>Enter text (lines will be rotated):</Label>
+          <Label>Enter text (each line will be duplicated):</Label>
           <Textarea
-            placeholder="Line 1&#10;Line 2&#10;Line 3&#10;Line 4"
+            placeholder="Line 1&#10;Line 2&#10;Line 3"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="min-h-[150px] font-mono"
           />
         </div>
 
-        <div className="space-y-2">
-          <Label>Number of positions to rotate:</Label>
-          <Input
-            type="number"
-            min="1"
-            value={positions}
-            onChange={(e) => setPositions(e.target.value)}
-            className="w-full"
-          />
-        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="space-y-2">
+            <Label>Number of copies:</Label>
+            <Input
+              type="number"
+              min="1"
+              value={copies}
+              onChange={(e) => setCopies(e.target.value)}
+              className="w-full"
+            />
+          </div>
 
-        <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
-          <p className="font-medium mb-1">About rotation:</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Moves first N lines to the end</li>
-            <li>Example: [1,2,3] with 1 position → [2,3,1]</li>
-            <li>Use "1" to rotate by 1 position</li>
-          </ul>
+          <div className="space-y-2">
+            <Label>Separator:</Label>
+            <Input
+              value={separator}
+              onChange={(e) => setSeparator(e.target.value)}
+              placeholder=" "
+              className="w-full"
+            />
+          </div>
         </div>
 
         <div className="flex gap-2">
           <Button onClick={handleProcess} className="flex-1">
-            Rotate
+            Duplicate
           </Button>
           <Button onClick={handleClear} variant="outline">
             Clear
@@ -102,7 +102,7 @@ export default function RotateTool() {
 
         {output && (
           <div className="space-y-2">
-            <Label>Rotated:</Label>
+            <Label>Duplicated:</Label>
             <div className="rounded-lg border bg-muted/50 p-4">
               <pre className="whitespace-pre-wrap text-sm">{output}</pre>
             </div>

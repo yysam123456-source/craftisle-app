@@ -4351,6 +4351,242 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["convert-time-to-decimal", "convert-seconds-to-time"],
   },
 
+
+  // ==================== List Tools (Batch 10) ====================
+  "list-reverse": {
+    title: "Reverse Lines",
+    desc: "Reverse the order of lines",
+    icon: "🔄",
+    category: CATEGORIES.text,
+    seoTitle: "Reverse Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free reverse lines online tool. Reverse the order of lines in text. 100% browser-based.",
+    seoKeywords: ["reverse lines", "reverse text order", "flip lines", "line reversal"],
+    description: "Reverse the order of lines in text. Useful for reordering lists, flipping data, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Reverse", text: "Click Reverse. The order of lines is reversed." },
+      { heading: "Copy", text: "Copy the reversed text for use." },
+    ],
+    useCases: [
+      { title: "Reorder lists", text: "Reverse the order of list items." },
+      { title: "Flip data", text: "Reverse lines for data processing." },
+      { title: "Text processing", text: "Reverse lines as part of text processing pipeline." },
+    ],
+    faq: [
+      { q: "Does it reverse line content?", a: "No, it reverses the order of lines, not the content within each line." },
+      { q: "Can I reverse words within a line?", a: "No, use a different tool for that. This tool only reverses line order." },
+    ],
+    relatedTools: ["list-shuffle", "list-sort"],
+  },
+
+  "list-shuffle": {
+    title: "Shuffle Lines",
+    desc: "Randomly shuffle lines",
+    icon: "🎲",
+    category: CATEGORIES.text,
+    seoTitle: "Shuffle Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free shuffle lines online tool. Randomly shuffle lines in text. 100% browser-based.",
+    seoKeywords: ["shuffle lines", "randomize lines", "random order", "shuffle text"],
+    description: "Randomly shuffle lines in text. Useful for randomizing lists, creating random orders, and mixing data.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Shuffle", text: "Click Shuffle. The lines are randomly reordered." },
+      { heading: "Copy", text: "Copy the shuffled text for use." },
+    ],
+    useCases: [
+      { title: "Randomize lists", text: "Shuffle list items for random order." },
+      { title: "Mix data", text: "Randomly mix data for sampling." },
+      { title: "Create random order", text: "Shuffle lines to create random order." },
+    ],
+    faq: [
+      { q: "Is the shuffle truly random?", a: "Yes, it uses Fisher-Yates algorithm for uniform randomness." },
+      { q: "Can I control the random seed?", a: "No, each shuffle is independent with random seed." },
+    ],
+    relatedTools: ["list-reverse", "list-sort"],
+  },
+
+  "list-sort": {
+    title: "Sort Lines",
+    desc: "Sort lines alphabetically",
+    icon: "📝",
+    category: CATEGORIES.text,
+    seoTitle: "Sort Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free sort lines online tool. Sort lines alphabetically (ascending or descending). 100% browser-based.",
+    seoKeywords: ["sort lines", "alphabetical sort", "sort text", "line sorting"],
+    description: "Sort lines alphabetically. Supports ascending/descending order, case-sensitive/insensitive sorting, and duplicate removal. Useful for organizing lists, sorting data, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Configure", text: "Choose order (asc/desc), case sensitivity, and duplicate removal." },
+      { heading: "Sort", text: "Click Sort. The lines are sorted alphabetically." },
+    ],
+    useCases: [
+      { title: "Organize lists", text: "Sort list items alphabetically." },
+      { title: "Sort data", text: "Sort data rows for analysis." },
+      { title: "Text processing", text: "Sort lines as part of text processing pipeline." },
+    ],
+    faq: [
+      { q: "What is case-insensitive sorting?", a: "Treats 'Apple' and 'apple' as the same for sorting." },
+      { q: "Can I sort numerically?", a: "Currently only alphabetical sorting is supported. Numeric sorting may be added in future." },
+    ],
+    relatedTools: ["list-reverse", "list-shuffle", "list-unique"],
+  },
+
+  "list-duplicate": {
+    title: "Duplicate Lines",
+    desc: "Duplicate lines multiple times",
+    icon: "📋",
+    category: CATEGORIES.text,
+    seoTitle: "Duplicate Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free duplicate lines online tool. Duplicate each line N times. Supports custom separator. 100% browser-based.",
+    seoKeywords: ["duplicate lines", "repeat lines", "line duplication", "copy lines"],
+    description: "Duplicate lines multiple times. Specify the number of copies and separator. Useful for creating repeated entries, testing, and data generation.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Configure", text: "Set number of copies and separator." },
+      { heading: "Duplicate", text: "Click Duplicate. Each line is duplicated N times." },
+    ],
+    useCases: [
+      { title: "Create repeated entries", text: "Duplicate lines for repeated use." },
+      { title: "Testing", text: "Create test data with repeated entries." },
+      { title: "Data generation", text: "Generate data by duplicating existing lines." },
+    ],
+    faq: [
+      { q: "What is the separator?", a: "The text between duplicates (default: space)." },
+      { q: "Can I duplicate a fraction of times?", a: "Yes, use decimal values (e.g., 1.5 copies duplicates the first half)." },
+    ],
+    relatedTools: ["list-unique", "list-wrap"],
+  },
+
+  "list-unique": {
+    title: "Remove Duplicates",
+    desc: "Remove duplicate lines",
+    icon: "✨",
+    category: CATEGORIES.text,
+    seoTitle: "Remove Duplicates Free — Online Tool | Craftisle",
+    seoDesc: "Free remove duplicates online tool. Remove duplicate lines from text. Supports case-sensitive/insensitive. 100% browser-based.",
+    seoKeywords: ["remove duplicates", "unique lines", "deduplicate", "delete duplicate lines"],
+    description: "Remove duplicate lines from text. Keeps only the first occurrence of each line. Supports case-sensitive and case-insensitive modes. Useful for cleaning data, removing redundancies, and list processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Configure", text: "Toggle case sensitivity." },
+      { heading: "Remove", text: "Click Remove Duplicates. Duplicate lines are removed." },
+    ],
+    useCases: [
+      { title: "Clean data", text: "Remove duplicate entries from datasets." },
+      { title: "Deduplicate lists", text: "Remove duplicate items from lists." },
+      { title: "Process text", text: "Remove redundancies in text processing." },
+    ],
+    faq: [
+      { q: "What is case-insensitive mode?", a: "Treats 'Apple' and 'apple' as duplicates." },
+      { q: "Does it preserve order?", a: "Yes, only the first occurrence of each line is kept." },
+    ],
+    relatedTools: ["list-sort", "list-duplicate"],
+  },
+
+  "list-wrap": {
+    title: "Wrap Text",
+    desc: "Wrap text to specified line length",
+    icon: "📄",
+    category: CATEGORIES.text,
+    seoTitle: "Wrap Text Free — Online Tool | Craftisle",
+    seoDesc: "Free wrap text online tool. Wrap text to specified line length (default: 80). Supports word boundary wrapping. 100% browser-based.",
+    seoKeywords: ["wrap text", "text wrapping", "line wrapping", "format text"],
+    description: "Wrap text to specified line length. Wrapping occurs at word boundaries to avoid breaking words. Useful for formatting text, preparing for display, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text to wrap." },
+      { heading: "Configure", text: "Set line length (default: 80)." },
+      { heading: "Wrap", text: "Click Wrap. Text is wrapped to specified line length." },
+    ],
+    useCases: [
+      { title: "Format text", text: "Wrap text for display or printing." },
+      { title: "Prepare for display", text: "Wrap text to fit display width." },
+      { title: "Text processing", text: "Wrap text as part of processing pipeline." },
+    ],
+    faq: [
+      { q: "What is word boundary wrapping?", a: "Text is wrapped at spaces to avoid breaking words." },
+      { q: "What if a word exceeds line length?", a: "The word is kept as-is on its own line." },
+    ],
+    relatedTools: ["list-unwrap", "list-truncate"],
+  },
+
+  "list-unwrap": {
+    title: "Unwrap Text",
+    desc: "Join lines into a single line",
+    icon: "📎",
+    category: CATEGORIES.text,
+    seoTitle: "Unwrap Text Free — Online Tool | Craftisle",
+    seoDesc: "Free unwrap text online tool. Join multiple lines into a single line. Supports custom separator. 100% browser-based.",
+    seoKeywords: ["unwrap text", "join lines", "line joining", "merge lines"],
+    description: "Unwrap text by joining multiple lines into a single line. Specify the separator (default: space). Useful for merging lines, creating single-line output, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Configure", text: "Set separator (default: space)." },
+      { heading: "Unwrap", text: "Click Unwrap. Lines are joined into a single line." },
+    ],
+    useCases: [
+      { title: "Merge lines", text: "Join multiple lines into one." },
+      { title: "Create single-line output", text: "Unwrap text for single-line display." },
+      { title: "Text processing", text: "Unwrap text as part of processing pipeline." },
+    ],
+    faq: [
+      { q: "What is the separator?", a: "The text between joined lines (default: space)." },
+      { q: "Can I join without separator?", a: "Yes, set separator to empty string." },
+    ],
+    relatedTools: ["list-wrap", "list-duplicate"],
+  },
+
+  "list-truncate": {
+    title: "Truncate Lines",
+    desc: "Keep only first N lines",
+    icon: "✂️",
+    category: CATEGORIES.text,
+    seoTitle: "Truncate Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free truncate lines online tool. Keep only first N lines of text. Useful for previewing, limiting output. 100% browser-based.",
+    seoKeywords: ["truncate lines", "keep first N lines", "limit lines", "preview text"],
+    description: "Truncate text by keeping only the first N lines. Useful for previewing large text, limiting output size, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Configure", text: "Set number of lines to keep." },
+      { heading: "Truncate", text: "Click Truncate. Only first N lines are kept." },
+    ],
+    useCases: [
+      { title: "Preview text", text: "Keep only first few lines for preview." },
+      { title: "Limit output", text: "Truncate text to limit output size." },
+      { title: "Text processing", text: "Truncate text as part of processing pipeline." },
+    ],
+    faq: [
+      { q: "What happens to remaining lines?", a: "They are discarded." },
+      { q: "Can I keep last N lines instead?", a: "No, this tool only keeps first N lines. Use Reverse + Truncate to keep last N." },
+    ],
+    relatedTools: ["list-wrap", "list-unique"],
+  },
+
+  "list-rotate": {
+    title: "Rotate Lines",
+    desc: "Rotate lines by N positions",
+    icon: "🔃",
+    category: CATEGORIES.text,
+    seoTitle: "Rotate Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free rotate lines online tool. Rotate lines by N positions (move first line to end). 100% browser-based.",
+    seoKeywords: ["rotate lines", "cycle lines", "shift lines", "line rotation"],
+    description: "Rotate lines by N positions. Moving the first N lines to the end. Useful for cycling through items, creating rotations, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Configure", text: "Set number of positions to rotate." },
+      { heading: "Rotate", text: "Click Rotate. Lines are rotated by N positions." },
+    ],
+    useCases: [
+      { title: "Cycle items", text: "Rotate list items for cycling display." },
+      { title: "Create rotations", text: "Rotate lines to create variations." },
+      { title: "Text processing", text: "Rotate lines as part of processing pipeline." },
+    ],
+    faq: [
+      { q: "What does rotate by 1 position mean?", a: "Moves the first line to the end. [1,2,3] → [2,3,1]." },
+      { q: "Can I rotate backwards?", a: "Yes, use negative numbers or rotate by (N-lines) positions." },
+    ],
+    relatedTools: ["list-reverse", "list-shuffle"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",

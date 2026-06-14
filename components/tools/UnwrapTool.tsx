@@ -8,11 +8,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
-export default function RotateTool() {
+export default function UnwrapTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
-  const [positions, setPositions] = useState("1");
+  const [separator, setSeparator] = useState(" ");
 
   const handleProcess = () => {
     setError("");
@@ -23,24 +23,9 @@ export default function RotateTool() {
       return;
     }
 
-    const lines = input.split("\n").filter(line => line.trim() !== "");
-    const numPositions = parseInt(positions, 10);
-    
-    if (isNaN(numPositions) || numPositions < 1) {
-      setError("Number of positions must be a positive integer");
-      setOutput("");
-      return;
-    }
-
-    const rotated = [...lines];
-    for (let i = 0; i < numPositions; i++) {
-      const first = rotated.shift();
-      if (first !== undefined) {
-        rotated.push(first);
-      }
-    }
-    
-    setOutput(rotated.join("\n"));
+    const lines = input.split("\n");
+    const unwrapped = lines.join(separator);
+    setOutput(unwrapped);
   };
 
   const handleClear = () => {
@@ -52,7 +37,7 @@ export default function RotateTool() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Rotate Lines</CardTitle>
+        <CardTitle>Unwrap Text</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
@@ -62,9 +47,9 @@ export default function RotateTool() {
         )}
 
         <div className="space-y-2">
-          <Label>Enter text (lines will be rotated):</Label>
+          <Label>Enter text (lines will be joined):</Label>
           <Textarea
-            placeholder="Line 1&#10;Line 2&#10;Line 3&#10;Line 4"
+            placeholder="Line 1&#10;Line 2&#10;Line 3"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="min-h-[150px] font-mono"
@@ -72,28 +57,27 @@ export default function RotateTool() {
         </div>
 
         <div className="space-y-2">
-          <Label>Number of positions to rotate:</Label>
+          <Label>Separator:</Label>
           <Input
-            type="number"
-            min="1"
-            value={positions}
-            onChange={(e) => setPositions(e.target.value)}
+            value={separator}
+            onChange={(e) => setSeparator(e.target.value)}
+            placeholder=" "
             className="w-full"
           />
         </div>
 
         <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
-          <p className="font-medium mb-1">About rotation:</p>
+          <p className="font-medium mb-1">About unwrapping:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Moves first N lines to the end</li>
-            <li>Example: [1,2,3] with 1 position → [2,3,1]</li>
-            <li>Use "1" to rotate by 1 position</li>
+            <li>Joins all lines into a single line</li>
+            <li>Default separator is a space</li>
+            <li>Use empty separator to join without spaces</li>
           </ul>
         </div>
 
         <div className="flex gap-2">
           <Button onClick={handleProcess} className="flex-1">
-            Rotate
+            Unwrap
           </Button>
           <Button onClick={handleClear} variant="outline">
             Clear
@@ -102,7 +86,7 @@ export default function RotateTool() {
 
         {output && (
           <div className="space-y-2">
-            <Label>Rotated:</Label>
+            <Label>Unwrapped:</Label>
             <div className="rounded-lg border bg-muted/50 p-4">
               <pre className="whitespace-pre-wrap text-sm">{output}</pre>
             </div>
