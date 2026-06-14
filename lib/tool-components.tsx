@@ -155,6 +155,17 @@ const componentLoaders: Record<string, ComponentLoader> = {
 
   // ==================== String Tools (Batch 5) ====================
   "text-compare": () => import("@/components/tools/TextCompareTool"),
+
+  // ==================== Number Tools (Batch 6) ====================
+  "arithmetic-sequence": () => import("@/components/tools/ArithmeticSequenceTool"),
+  "random-number-generator": () => import("@/components/tools/RandomNumberGeneratorTool"),
+
+  // ==================== Utilities (Batch 6) ====================
+  "password-generator": () => import("@/components/tools/PasswordGeneratorTool"),
+
+  // ==================== String Tools (Batch 6) ====================
+  "text-replacer": () => import("@/components/tools/TextReplacerTool"),
+  "morse-code": () => import("@/components/tools/MorseCodeTool"),
 };
 
 // ---------------------------------------------------------------------------

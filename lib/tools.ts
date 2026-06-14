@@ -3920,6 +3920,143 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["json-comparison", "diff"],
   },
 
+  // ==================== Number Tools (Batch 6) ====================
+  "arithmetic-sequence": {
+    title: "Arithmetic Sequence Generator",
+    desc: "Generate arithmetic sequence",
+    icon: "🔢",
+    category: CATEGORIES.dev,
+    seoTitle: "Arithmetic Sequence Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free arithmetic sequence generator online tool. Generate arithmetic sequence with custom start, difference, and count. 100% browser-based.",
+    seoKeywords: ["arithmetic sequence", "sequence generator", "math sequence", "generate sequence"],
+    description: "Generate arithmetic sequence with custom start value, common difference, and count. Useful for math education, pattern generation, and sequence analysis.",
+    howToUse: [
+      { heading: "Set parameters", text: "Enter start value, common difference, and count." },
+      { heading: "Generate", text: "Click Generate. The sequence is shown." },
+      { heading: "Copy", text: "Copy the sequence for use in calculations or documents." },
+    ],
+    useCases: [
+      { title: "Math education", text: "Generate sequences for teaching arithmetic progressions." },
+      { title: "Pattern generation", text: "Create number patterns for testing or demonstration." },
+      { title: "Sequence analysis", text: "Generate sequences for mathematical analysis." },
+    ],
+    faq: [
+      { q: "What is an arithmetic sequence?", a: "A sequence where the difference between consecutive terms is constant (e.g., 2, 5, 8, 11... where difference = 3)." },
+      { q: "Can I generate negative sequences?", a: "Yes. Set a negative start value or negative common difference." },
+    ],
+    relatedTools: ["random-number-generator", "sum"],
+  },
+
+  "random-number-generator": {
+    title: "Random Number Generator",
+    desc: "Generate random numbers in a range",
+    icon: "🎲",
+    category: CATEGORIES.dev,
+    seoTitle: "Random Number Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free random number generator online tool. Generate random integers in a custom range. Supports unique numbers and batch generation. 100% browser-based.",
+    seoKeywords: ["random number generator", "generate random numbers", "random integer", "random number online"],
+    description: "Generate random numbers in a specified range. Supports batch generation, unique numbers only, and custom count. Useful for games, sampling, testing, and simulations.",
+    howToUse: [
+      { heading: "Set range", text: "Enter min and max values." },
+      { heading: "Set count", text: "Enter how many numbers to generate." },
+      { heading: "Enable unique (optional)", text: "Check 'Unique numbers only' to avoid duplicates." },
+      { heading: "Generate", text: "Click Generate. Random numbers are shown." },
+    ],
+    useCases: [
+      { title: "Games", text: "Generate random numbers for board games, dice rolls, etc." },
+      { title: "Sampling", text: "Generate random samples from a population." },
+      { title: "Testing", text: "Generate test data with random values." },
+    ],
+    faq: [
+      { q: "Are the numbers truly random?", a: "They use Math.random(), which is pseudo-random. Good for most purposes but not cryptographic." },
+      { q: "What does 'Unique numbers only' do?", a: "Ensures no duplicates in the generated numbers. Requires count <= (max - min + 1)." },
+    ],
+    relatedTools: ["random-string", "random-port-generator"],
+  },
+
+  // ==================== Utilities (Batch 6) ====================
+  "password-generator": {
+    title: "Password Generator",
+    desc: "Generate secure passwords",
+    icon: "🔐",
+    category: CATEGORIES.dev,
+    seoTitle: "Password Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free password generator online tool. Generate secure passwords with custom length and character types. Supports batch generation. 100% browser-based.",
+    seoKeywords: ["password generator", "secure password", "generate password", "strong password"],
+    description: "Generate secure passwords with custom length, character types (uppercase, lowercase, numbers, symbols), and count. Useful for creating strong passwords, API keys, and secure tokens.",
+    howToUse: [
+      { heading: "Set length", text: "Enter password length (4-128)." },
+      { heading: "Set count", text: "Enter how many passwords to generate." },
+      { heading: "Choose character types", text: "Check uppercase, lowercase, numbers, symbols." },
+      { heading: "Generate", text: "Click Generate Password. Passwords are shown." },
+    ],
+    useCases: [
+      { title: "Create strong passwords", text: "Generate passwords that meet security requirements." },
+      { title: "Generate API keys", text: "Create secure tokens for API authentication." },
+      { title: "Batch password creation", text: "Generate multiple passwords for team members." },
+    ],
+    faq: [
+      { q: "How long should my password be?", a: "At least 12 characters. 16+ is recommended for critical accounts." },
+      { q: "Are the passwords saved?", a: "No. Passwords are generated in your browser and not sent to any server." },
+    ],
+    relatedTools: ["random-string", "bcrypt"],
+  },
+
+  // ==================== String Tools (Batch 6) ====================
+  "text-replacer": {
+    title: "Text Replacer",
+    desc: "Find and replace text",
+    icon: "🔍",
+    category: CATEGORIES.dev,
+    seoTitle: "Text Replacer Free — Online Tool | Craftisle",
+    seoDesc: "Free text replacer online tool. Find and replace text in a string. Supports case-sensitive and case-insensitive modes. 100% browser-based.",
+    seoKeywords: ["text replacer", "find and replace", "replace text", "text replace online"],
+    description: "Find and replace text in a string. Supports case-sensitive and case-insensitive modes. Useful for text editing, data cleaning, and string manipulation.",
+    howToUse: [
+      { heading: "Paste text", text: "Type or paste text to process." },
+      { heading: "Set search and replace", text: "Enter text to find and replacement text." },
+      { heading: "Set case sensitivity", text: "Check or uncheck 'Case sensitive'." },
+      { heading: "Replace", text: "Click Replace. The text is updated." },
+    ],
+    useCases: [
+      { title: "Text editing", text: "Find and replace words in a document." },
+      { title: "Data cleaning", text: "Replace incorrect values in CSV or JSON." },
+      { title: "String manipulation", text: "Batch replace multiple occurrences of a substring." },
+    ],
+    faq: [
+      { q: "Does it support regex?", a: "Not yet. Currently only supports literal string search." },
+      { q: "What does 'Case sensitive' mean?", a: "If checked, 'Cat' and 'cat' are treated as different. If unchecked, they are treated as the same." },
+    ],
+    relatedTools: ["text-compare", "extract-substring"],
+  },
+
+  "morse-code": {
+    title: "Morse Code Converter",
+    desc: "Convert text to Morse code or Morse code to text",
+    icon: "📡",
+    category: CATEGORIES.dev,
+    seoTitle: "Morse Code Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free Morse code converter online tool. Convert text to Morse code or Morse code to text. Supports letters, numbers, and space. 100% browser-based.",
+    seoKeywords: ["morse code converter", "text to morse", "morse to text", "morse code online"],
+    description: "Convert text to Morse code or Morse code to text. Supports letters A-Z, numbers 0-9, and space. Useful for learning Morse code, encoding messages, and decoding Morse.",
+    howToUse: [
+      { heading: "Choose mode", text: "Select 'Text → Morse' or 'Morse → Text'." },
+      { heading: "Enter text", text: "Type or paste text (or Morse code)." },
+      { heading: "Convert", text: "Click Convert. The result is shown." },
+      { heading: "Copy", text: "Copy the result for use in communications." },
+    ],
+    useCases: [
+      { title: "Learn Morse code", text: "Practice encoding and decoding Morse code." },
+      { title: "Encode messages", text: "Convert secret messages to Morse code." },
+      { title: "Decode Morse", text: "Decode Morse code messages from radio or telegraph." },
+    ],
+    faq: [
+      { q: "What characters are supported?", a: "Letters A-Z, numbers 0-9, and space." },
+      { q: "How is Morse code formatted?", a: "Dots (.) and dashes (-). Characters are separated by spaces." },
+    ],
+    relatedTools: ["to-morse", "unicode"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",
