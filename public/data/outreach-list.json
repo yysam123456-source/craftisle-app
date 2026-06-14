@@ -1,0 +1,72 @@
+[
+  {
+    "name": "AlternativeTo",
+    "url": "https://alternativeto.com",
+    "type": "directory",
+    "contact": "https://alternativeto.com/contact/",
+    "why": "Craftisle provides free alternatives data that complements AlternativeTo's paid tool listings.",
+    "emailTemplate": {
+      "to": "https://alternativeto.com/contact/",
+      "subject": "Free Tools Directory - Link Exchange Opportunity",
+      "body": "Hi AlternativeTo team,\n\nI hope this email finds you well. I'm the founder of Craftisle (https://craftisle.com), a free tools directory that helps developers and makers find high-quality free alternatives to paid software.\n\nI noticed that AlternativeTo provides great resources for [relevant audience]. I think Craftisle would be a valuable addition to your [directory/list/resources] because:\n\n- Craftisle provides free alternatives data that complements AlternativeTo's paid tool listings.\n- We have 16,000+ curated free resources across 20+ categories\n- All data is open-source and regularly updated\n\nI've also included a link to AlternativeTo from our [relevant page], which I think your users would find useful.\n\nWould you be open to reviewing Craftisle for inclusion? Happy to provide any additional information.\n\nBest,\n[Your Name]\nFounder, Craftisle\nhttps://craftisle.com"
+    },
+    "status": "pending",
+    "dateAdded": "2026-06-14"
+  },
+  {
+    "name": "Product Hunt",
+    "url": "https://www.producthunt.com",
+    "type": "directory",
+    "contact": "https://www.producthunt.com/contact",
+    "why": "Craftisle's free tools list is a great resource for PH community members.",
+    "emailTemplate": {
+      "to": "https://www.producthunt.com/contact",
+      "subject": "Free Tools Directory - Link Exchange Opportunity",
+      "body": "Hi Product Hunt team,\n\nI hope this email finds you well. I'm the founder of Craftisle (https://craftisle.com), a free tools directory that helps developers and makers find high-quality free alternatives to paid software.\n\nI noticed that Product Hunt provides great resources for [relevant audience]. I think Craftisle would be a valuable addition to your [directory/list/resources] because:\n\n- Craftisle's free tools list is a great resource for PH community members.\n- We have 16,000+ curated free resources across 20+ categories\n- All data is open-source and regularly updated\n\nI've also included a link to Product Hunt from our [relevant page], which I think your users would find useful.\n\nWould you be open to reviewing Craftisle for inclusion? Happy to provide any additional information.\n\nBest,\n[Your Name]\nFounder, Craftisle\nhttps://craftisle.com"
+    },
+    "status": "pending",
+    "dateAdded": "2026-06-14"
+  },
+  {
+    "name": "Awesome Lists (GitHub)",
+    "url": "https://github.com/sindresorhus/awesome",
+    "type": "github",
+    "contact": "https://github.com/sindresorhus/awesome/blob/main/contributing.md",
+    "why": "Craftisle's free tools directory can be added to relevant Awesome lists.",
+    "emailTemplate": {
+      "to": "https://github.com/sindresorhus/awesome/blob/main/contributing.md",
+      "subject": "Free Tools Directory - Link Exchange Opportunity",
+      "body": "Hi Awesome Lists (GitHub) team,\n\nI hope this email finds you well. I'm the founder of Craftisle (https://craftisle.com), a free tools directory that helps developers and makers find high-quality free alternatives to paid software.\n\nI noticed that Awesome Lists (GitHub) provides great resources for [relevant audience]. I think Craftisle would be a valuable addition to your [directory/list/resources] because:\n\n- Craftisle's free tools directory can be added to relevant Awesome lists.\n- We have 16,000+ curated free resources across 20+ categories\n- All data is open-source and regularly updated\n\nI've also included a link to Awesome Lists (GitHub) from our [relevant page], which I think your users would find useful.\n\nWould you be open to reviewing Craftisle for inclusion? Happy to provide any additional information.\n\nBest,\n[Your Name]\nFounder, Craftisle\nhttps://craftisle.com"
+    },
+    "status": "pending",
+    "dateAdded": "2026-06-14"
+  },
+  {
+    "name": "Free for Dev",
+    "url": "https://free-for.dev",
+    "type": "directory",
+    "contact": "https://github.com/ripienaar/free-for-dev/blob/master/README.md",
+    "why": "Craftisle curates free dev resources, complementary to free-for.dev.",
+    "emailTemplate": {
+      "to": "https://github.com/ripienaar/free-for-dev/blob/master/README.md",
+      "subject": "Free Tools Directory - Link Exchange Opportunity",
+      "body": "Hi Free for Dev team,\n\nI hope this email finds you well. I'm the founder of Craftisle (https://craftisle.com), a free tools directory that helps developers and makers find high-quality free alternatives to paid software.\n\nI noticed that Free for Dev provides great resources for [relevant audience]. I think Craftisle would be a valuable addition to your [directory/list/resources] because:\n\n- Craftisle curates free dev resources, complementary to free-for.dev.\n- We have 16,000+ curated free resources across 20+ categories\n- All data is open-source and regularly updated\n\nI've also included a link to Free for Dev from our [relevant page], which I think your users would find useful.\n\nWould you be open to reviewing Craftisle for inclusion? Happy to provide any additional information.\n\nBest,\n[Your Name]\nFounder, Craftisle\nhttps://craftisle.com"
+    },
+    "status": "pending",
+    "dateAdded": "2026-06-14"
+  },
+  {
+    "name": "LibHunt",
+    "url": "https://libhunt.com",
+    "type": "directory",
+    "contact": "https://libhunt.com/contact",
+    "why": "Craftisle's tool reviews can drive traffic to LibHunt discussions.",
+    "emailTemplate": {
+      "to": "https://libhunt.com/contact",
+      "subject": "Free Tools Directory - Link Exchange Opportunity",
+      "body": "Hi LibHunt team,\n\nI hope this email finds you well. I'm the founder of Craftisle (https://craftisle.com), a free tools directory that helps developers and makers find high-quality free alternatives to paid software.\n\nI noticed that LibHunt provides great resources for [relevant audience]. I think Craftisle would be a valuable addition to your [directory/list/resources] because:\n\n- Craftisle's tool reviews can drive traffic to LibHunt discussions.\n- We have 16,000+ curated free resources across 20+ categories\n- All data is open-source and regularly updated\n\nI've also included a link to LibHunt from our [relevant page], which I think your users would find useful.\n\nWould you be open to reviewing Craftisle for inclusion? Happy to provide any additional information.\n\nBest,\n[Your Name]\nFounder, Craftisle\nhttps://craftisle.com"
+    },
+    "status": "pending",
+    "dateAdded": "2026-06-14"
+  }
+]
