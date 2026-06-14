@@ -709,6 +709,63 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["ip-calc", "radix-converter", "user-agent"],
   },
 
+  // ==================== Number Tools (omni-tools port) ====================
+  "byte-converter": {
+    title: "Byte Converter",
+    desc: "Convert between bytes, KB, MB, GB, TB, PB",
+    icon: "💾",
+    category: CATEGORIES.converter,
+    stars: 4,
+    seoTitle: "Byte Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free byte converter online tool. Convert between bytes, KB, MB, GB, TB, PB. Supports binary (1024) conversion.",
+    seoKeywords: ["byte converter online free", "MB to GB converter", "KB to MB converter", "data size converter free", "bytes to megabytes online"],
+    description: "Convert data sizes between Bytes, Kilobytes (KB), Megabytes (MB), Gigabytes (GB), Terabytes (TB), and Petabytes (PB). Uses binary conversion (1 KB = 1024 B). Essential for understanding file sizes, storage capacity, and data transfer rates.",
+    howToUse: [
+      { heading: "Enter a number", text: "Type the number you want to convert in the input box." },
+      { heading: "Select units", text: "Choose the source unit (From) and target unit (To)." },
+      { heading: "Set precision", text: "Adjust decimal places for the output (default: 4)." },
+      { heading: "Convert", text: "Click Convert. The result appears instantly." },
+    ],
+    useCases: [
+      { title: "File size understanding", text: "Convert file sizes from bytes to human-readable units (MB, GB)." },
+      { title: "Storage capacity planning", text: "Calculate how many GB a TB drive can hold, accounting for filesystem overhead." },
+      { title: "Data transfer estimation", text: "Estimate transfer time by converting file sizes to bandwidth-friendly units." },
+    ],
+    faq: [
+      { q: "Why does 1 KB = 1024 B, not 1000 B?", a: "Computers use binary, so 1 KB = 2^10 = 1024 bytes. This is the standard in most operating systems and programming languages. Some contexts (hard drive manufacturing) use decimal (1 KB = 1000 B)." },
+      { q: "What is the difference between MB and MiB?", a: "MB (megabyte) = 1000^2 bytes (decimal). MiB (mebibyte) = 1024^2 bytes (binary). This tool uses the binary standard (1024), which is most common in software." },
+    ],
+    relatedTools: ["radix-converter", "generic-calc", "string-statistic"],
+  },
+
+  "sum": {
+    title: "Sum Numbers",
+    desc: "Calculate sum of numbers in text",
+    icon: "➕",
+    category: CATEGORIES.converter,
+    stars: 4,
+    seoTitle: "Sum Numbers Free — Online Tool | Craftisle",
+    seoDesc: "Free sum numbers online tool. Calculate sum of numbers extracted from text. Smart mode finds all numbers automatically.",
+    seoKeywords: ["sum numbers online free", "add numbers in text", "calculate sum online free", "number sum tool free", "running sum calculator online"],
+    description: "Calculate the sum of numbers in text. Smart mode automatically extracts all numbers from text (e.g. 'I have 3 apples and 5 oranges' → sum = 8). Delimiter mode splits by a separator (comma, space, etc.). Also supports running sum (cumulative).",
+    howToUse: [
+      { heading: "Enter text or numbers", text: "Type or paste text containing numbers, or enter numbers directly." },
+      { heading: "Choose extraction mode", text: "Smart mode: extracts all numbers from text. Delimiter mode: splits by separator." },
+      { heading: "Compute", text: "Click Compute Sum. The result appears in the output." },
+      { heading: "Running sum (optional)", text: "Enable 'Running sum' to see cumulative sum after each number." },
+    ],
+    useCases: [
+      { title: "Quick addition", text: "Add up numbers in a paragraph or list without manual calculation." },
+      { title: "Data analysis", text: "Sum values from copied spreadsheet data or CSV exports." },
+      { title: "Expense tracking", text: "Sum expenses listed in a text document or notes." },
+    ],
+    faq: [
+      { q: "What does 'smart mode' do?", a: "Smart mode uses regex to find all numbers in the input text, regardless of surrounding words. Example: 'The 3 items cost $50 each, total $150' → numbers found: 3, 50, 150 → sum = 203." },
+      { q: "Does this support decimals and negatives?", a: "Yes. Both positive/negative decimals are supported. Example: '-5.5, 10.2' → sum = 4.7." },
+    ],
+    relatedTools: ["string-statistic", "generic-calc", "byte-converter"],
+  },
+
   // ==================== Developer Tools ====================
   "cron": {
     title: "Cron Expression",
@@ -1256,6 +1313,223 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["text-formatter", "case-converter", "base64"],
   },
 
+  // ==================== Text Tools (omni-tools port) ====================
+  "string-reverse": {
+    title: "Reverse Text",
+    desc: "Reverse text or each line independently",
+    icon: "🔄",
+    category: CATEGORIES.text,
+    stars: 4,
+    seoTitle: "Reverse Text Free — Online Tool | Craftisle",
+    seoDesc: "Free reverse text online tool. Reverse strings or each line independently. Client-side processing, no upload.",
+    seoKeywords: ["reverse text online free", "reverse each line online", "string reverse tool free", "text reverser online"],
+    description: "Reverse text strings or process each line independently. Options to remove empty lines and trim whitespace. Useful for debugging encoded strings, creating mirrored text effects, and data transformation.",
+    howToUse: [
+      { heading: "Paste your text", text: "Enter the text you want to reverse in the input box." },
+      { heading: "Toggle options", text: "Choose whether to reverse each line independently, remove empty lines, or trim whitespace." },
+      { heading: "Reverse", text: "Click Reverse. The result appears instantly." },
+    ],
+    useCases: [
+      { title: "Debugging encoded strings", text: "Reverse a string to check if it contains hidden patterns or encoded data." },
+      { title: "Creating text effects", text: "Reverse text for mirrored or artistic effects in designs." },
+      { title: "Data transformation", text: "Reverse lines of a data file for specific processing needs." },
+    ],
+    faq: [
+      { q: "Does this modify the original text?", a: "No. The original text remains unchanged in the input box. The reversed result appears separately." },
+      { q: "Can I reverse only specific lines?", a: "Use the multi-line mode to reverse each line independently, then manually edit the result." },
+    ],
+    relatedTools: ["text-formatter", "case-converter", "string-statistic"],
+  },
+
+  "string-statistic": {
+    title: "Text Statistics",
+    desc: "Analyze text statistics: characters, words, lines, sentences",
+    icon: "📊",
+    category: CATEGORIES.text,
+    stars: 4,
+    seoTitle: "Text Statistics Free — Online Tool | Craftisle",
+    seoDesc: "Free text statistics online tool. Count characters, words, lines, sentences, paragraphs. Client-side processing.",
+    seoKeywords: ["text statistics online free", "word count tool free", "character count online", "text analyzer free"],
+    description: "Analyze text and get detailed statistics: character count, word count, line count, sentence count, paragraph count, plus optional word and character frequency analysis.",
+    howToUse: [
+      { heading: "Paste your text", text: "Enter or paste the text you want to analyze in the input box." },
+      { heading: "Configure options", text: "Toggle word frequency and/or character frequency display." },
+      { heading: "Analyze", text: "Click Analyze. Statistics appear in the result box." },
+    ],
+    useCases: [
+      { title: "Writing & editing", text: "Check word counts for articles, essays, and social media posts against platform limits." },
+      { title: "SEO optimization", text: "Verify meta description length (155-160 chars) and title length (50-60 chars)." },
+      { title: "Data analysis", text: "Understand text structure and character distribution." },
+    ],
+    faq: [
+      { q: "What counts as a sentence?", a: "Sentences end with . ! ? or ... The delimiters can be customized in options." },
+      { q: "Is there a word limit?", a: "No. The tool processes text entirely in your browser, so even long documents work." },
+    ],
+    relatedTools: ["text-formatter", "case-converter", "diff"],
+  },
+
+  "slug-generator": {
+    title: "Slug Generator",
+    desc: "Generate URL-friendly slugs from text",
+    icon: "🔗",
+    category: CATEGORIES.text,
+    stars: 4,
+    seoTitle: "Slug Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free slug generator online tool. Convert text to URL-friendly slugs. Supports multi-line. Client-side.",
+    seoKeywords: ["slug generator online free", "URL slug maker free", "SEO slug generator online", "text to slug free"],
+    description: "Convert any text into a URL-friendly slug: lowercase, remove special characters, replace spaces with hyphens. Processes multiple lines at once. Essential for SEO-friendly URLs, blog post slugs, and file naming.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text you want to convert to a slug." },
+      { heading: "Adjust options", text: "Toggle case sensitivity if you want to preserve uppercase letters." },
+      { heading: "Generate", text: "Click Generate Slug. The result appears instantly." },
+    ],
+    useCases: [
+      { title: "Blog post URLs", text: "Generate SEO-friendly slugs for blog post titles automatically." },
+      { title: "File naming", text: "Convert document titles to filesystem-safe names." },
+      { title: "E-commerce product URLs", text: "Generate clean product page URLs from product names." },
+    ],
+    faq: [
+      { q: "What is a slug?", a: "A slug is a URL-friendly version of a string — lowercase, hyphens instead of spaces, no special characters. Example: 'My Blog Post!' becomes 'my-blog-post'." },
+      { q: "Does this handle non-English characters?", a: "Yes. Accented characters (é, ü, ñ) are converted to their ASCII equivalents (e, u, n) using Unicode normalization." },
+    ],
+    relatedTools: ["text-formatter", "case-converter", "url-encode"],
+  },
+
+  "rot13": {
+    title: "ROT13 Cipher",
+    desc: "Apply ROT13 substitution cipher",
+    icon: "🔐",
+    category: CATEGORIES.text,
+    stars: 3,
+    seoTitle: "ROT13 Cipher Free — Online Tool | Craftisle",
+    seoDesc: "Free ROT13 cipher online tool. Encode or decode text with ROT13 substitution. Client-side processing.",
+    seoKeywords: ["ROT13 cipher online free", "ROT13 encoder online", "ROT13 decoder online", "substitution cipher free"],
+    description: "Apply the ROT13 cipher — a simple substitution cipher that replaces each letter with the 13th letter after it in the alphabet. ROT13 is its own inverse, so applying it twice restores the original text.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text you want to encode/decode." },
+      { heading: "Apply ROT13", text: "Click Apply ROT13. Since ROT13 is its own inverse, the same button encodes and decodes." },
+    ],
+    useCases: [
+      { title: "Obscuring text", text: "Lightly obfuscate text in forum posts or code comments (not secure encryption)." },
+      { title: "Learning cryptography", text: "Understand how substitution ciphers work as a first step into cryptography." },
+      { title: "Puzzle solving", text: "Decode ROT13-encoded puzzles and riddles." },
+    ],
+    faq: [
+      { q: "Is ROT13 secure?", a: "No. ROT13 is not encryption — it's a simple substitution cipher that can be broken instantly. It's only for fun/obfuscation, not security." },
+      { q: "Why is ROT13 its own inverse?", a: "Because there are 26 letters in the English alphabet. Rotating by 13 twice gives 26, which wraps around to the original letter." },
+    ],
+    relatedTools: ["aes-des", "hash", "base64"],
+  },
+
+  "string-randomize-case": {
+    title: "Randomize Case",
+    desc: "Randomly capitalize letters in text",
+    icon: "🎲",
+    category: CATEGORIES.text,
+    stars: 3,
+    seoTitle: "Randomize Case Free — Online Tool | Craftisle",
+    seoDesc: "Free randomize case online tool. Randomly capitalize letters in text. Fun text effects, client-side.",
+    seoKeywords: ["randomize case online free", "random caps generator", "sPoNgEbOb text generator", "fun text effects free"],
+    description: "Randomly capitalize or lowercase each letter in your text. Creates playful 'sPoNgEbOb case' effects. Each click produces a different random result.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text you want to randomize." },
+      { heading: "Randomize", text: "Click Randomize Case. Each letter gets a random case." },
+    ],
+    useCases: [
+      { title: "Social media posts", text: "Create playful, attention-grabbing text for social media captions." },
+      { title: "Mocking meme text", text: "Generate 'sPoNgEbOb' style text for memes and jokes." },
+      { title: "A/B testing headlines", text: "Generate variations of headlines with different casing for testing." },
+    ],
+    faq: [
+      { q: "Is the result truly random?", a: "Yes, each letter is assigned a random case using JavaScript's Math.random()." },
+      { q: "Can I get the same result twice?", a: "Possible but unlikely for long text. Each execution produces a fresh random result." },
+    ],
+    relatedTools: ["case-converter", "text-formatter", "string-reverse"],
+  },
+
+  "quote": {
+    title: "Quote Text",
+    desc: "Add quotation marks to text lines",
+    icon: "❝",
+    category: CATEGORIES.text,
+    stars: 3,
+    seoTitle: "Quote Text Free — Online Tool | Craftisle",
+    seoDesc: "Free quote text online tool. Add custom quotation marks to text lines. Supports multi-line processing.",
+    seoKeywords: ["quote text online free", "add quotes to text", "text quoting tool free", "CSV quoting tool"],
+    description: "Add custom quotation marks to text lines. Supports multi-line processing, empty line handling, and double-quote mode. Useful for formatting code strings, CSV fields, and text data.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text lines you want to quote." },
+      { heading: "Set quote characters", text: "Customize left and right quote characters (default: double quotes)." },
+      { heading: "Apply quotes", text: "Click Apply Quotes. Each line will be wrapped with the specified quotes." },
+    ],
+    useCases: [
+      { title: "CSV field quoting", text: "Add quotes to fields in CSV data for proper parsing." },
+      { title: "Code string formatting", text: "Wrap text lines in quotes for use in code (e.g. Python, JavaScript)." },
+      { title: "Text data preparation", text: "Prepare text data for import into databases or spreadsheets." },
+    ],
+    faq: [
+      { q: "What is double quote mode?", a: "In double quote mode, existing quoted text is not quoted again. This prevents double-quoting already-quoted lines." },
+      { q: "Can I use custom quote characters?", a: "Yes. You can set any character as left/right quote, e.g. « and » for French quotes." },
+    ],
+    relatedTools: ["text-formatter", "case-converter", "string-reverse"],
+  },
+
+  "censor": {
+    title: "Text Censor",
+    desc: "Censor sensitive words in text",
+    icon: "🆘",
+    category: CATEGORIES.text,
+    stars: 3,
+    seoTitle: "Text Censor Free — Online Tool | Craftisle",
+    seoDesc: "Free text censor online tool. Replace sensitive words with symbols or placeholder text. Word boundary respected.",
+    seoKeywords: ["text censor online free", "word filter tool free", "censor text online", "sensitive word replacement"],
+    description: "Censor sensitive or inappropriate words in text by replacing them with symbols or placeholder text. Word boundaries are respected (partial matches are not censored). Supports symbol mode (e.g. ***), word mode (e.g. [censored]), and per-letter symbol repetition.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text you want to censor." },
+      { heading: "Enter words to censor", text: "List words to censor, one per line." },
+      { heading: "Configure options", text: "Choose symbol mode or word mode, set symbol character, enable per-letter repetition." },
+      { heading: "Censor", text: "Click Censor. Words will be replaced according to your settings." },
+    ],
+    useCases: [
+      { title: "Content moderation", text: "Censor profanity or sensitive terms in user-generated content." },
+      { title: "Data anonymization", text: "Replace personally identifiable information (PII) with placeholders." },
+      { title: "Text sanitization", text: "Clean text data before publishing or sharing." },
+    ],
+    faq: [
+      { q: "Are word boundaries respected?", a: "Yes. Only whole words are censored. For example, 'hell' will not match 'hello'. This prevents over-censoring." },
+      { q: "What is 'each letter' mode?", a: "In symbol mode, enabling 'each letter' repeats the symbol for each character in the word. E.g. 'bad' → '***' (3 symbols for 3 letters)." },
+    ],
+    relatedTools: ["text-formatter", "string-replace", "diff"],
+  },
+
+  "palindrome": {
+    title: "Palindrome Checker",
+    desc: "Check if words are palindromes",
+    icon: "🔤",
+    category: CATEGORIES.text,
+    stars: 3,
+    seoTitle: "Palindrome Checker Free — Online Tool | Craftisle",
+    seoDesc: "Free palindrome checker online tool. Check if words are palindromes (read same forwards and backwards).",
+    seoKeywords: ["palindrome checker online free", "check palindrome text", "palindrome tool free", "word palindrome tester"],
+    description: "Check if words are palindromes — words that read the same forwards and backwards (e.g. 'aba', 'racecar'). Results are returned as 'true' or 'false' for each word, joined by the separator.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text containing words to check." },
+      { heading: "Set separator", text: "Choose how words are separated (space, comma, or custom regex)." },
+      { heading: "Check", text: "Click Check Palindrome. Results (true/false) appear in the output." },
+    ],
+    useCases: [
+      { title: "Word games & puzzles", text: "Check candidate words for palindrome property in word games." },
+      { title: "Linguistic research", text: "Analyze text corpora for palindromic words." },
+      { title: "Coding challenges", text: "Test your palindrome-checking logic against known examples." },
+    ],
+    faq: [
+      { q: "What is a palindrome?", a: "A palindrome is a word, phrase, or sequence that reads the same backwards as forwards. Examples: 'level', 'madam', 'racecar'. This tool checks individual words, not phrases." },
+      { q: "Does case matter?", a: "No. The check is case-insensitive. 'Aba' and 'aba' are both palindromes." },
+    ],
+    relatedTools: ["text-formatter", "string-reverse", "diff"],
+  },
+
+  // ==================== Generator Tools (continued) ====================
   "tts": {
     title: "Text to Speech",
     desc: "Online TTS conversion",
@@ -1297,6 +1571,145 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["lorem-ipsum", "text-formatter", "unicode"],
   },
 
+  "remove-duplicate-lines": {
+    title: "Remove Duplicate Lines",
+    desc: "Remove duplicate lines from text with multiple modes",
+    icon: "📄",
+    category: CATEGORIES.text,
+    stars: 4,
+    seoTitle: "Remove Duplicate Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free remove duplicate lines online tool. Remove duplicate lines from text with multiple modes: all, consecutive, unique only.",
+    seoKeywords: ["remove duplicate lines online free", "delete duplicate lines text", "text deduplication tool free", "remove duplicates from text online"],
+    description: "Remove duplicate lines from text with multiple modes: remove all duplicates (keep first occurrence), remove only consecutive duplicates, or keep only unique lines. Also supports sorting, trimming, and empty line handling.",
+    howToUse: [
+      { heading: "Paste your text", text: "Enter the text with duplicate lines in the input box." },
+      { heading: "Choose mode", text: "Select removal mode: all duplicates, consecutive only, or unique only." },
+      { heading: "Configure options", text: "Set newline handling, sorting, and trimming options." },
+      { heading: "Remove duplicates", text: "Click Remove Duplicates. Clean text appears in the output." },
+    ],
+    useCases: [
+      { title: "Data cleaning", text: "Remove duplicate entries from CSV data, log files, or text lists." },
+      { title: "List deduplication", text: "Clean up email lists, URL lists, or keyword lists." },
+      { title: "Log analysis", text: "Remove repeated log entries to focus on unique events." },
+    ],
+    faq: [
+      { q: "What is 'unique only' mode?", a: "Unique only mode keeps only lines that appear exactly once. Lines that appear 2+ times are removed entirely." },
+      { q: "Does trimming affect duplicate detection?", a: "Yes. When 'Trim lines' is enabled, '  hello  ' and 'hello' are treated as duplicates because both trim to 'hello'." },
+    ],
+    relatedTools: ["text-formatter", "diff", "string-reverse"],
+  },
+
+  "string-rotate": {
+    title: "Rotate Text",
+    desc: "Rotate characters in text by N positions",
+    icon: "🔃",
+    category: CATEGORIES.text,
+    stars: 3,
+    seoTitle: "Rotate Text Free — Online Tool | Craftisle",
+    seoDesc: "Free rotate text online tool. Rotate characters in text by N positions left or right. Multi-line support.",
+    seoKeywords: ["rotate text online free", "character rotation tool", "caesar cipher online free", "text rotation tool"],
+    description: "Rotate characters in text by N positions left or right. Like a Caesar cipher but for arbitrary rotation amounts. Multi-line mode rotates each line independently.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text you want to rotate." },
+      { heading: "Set step and direction", text: "Choose rotation step (number of positions) and direction (left or right)." },
+      { heading: "Rotate", text: "Click Rotate. The rotated text appears in the output." },
+    ],
+    useCases: [
+      { title: "Caesar cipher exploration", text: "Try different rotation steps to explore Caesar cipher encryption." },
+      { title: "Text transformation", text: "Create rotated text effects for puzzles or games." },
+      { title: "Data encoding", text: "Apply simple rotation as a step in data encoding pipelines." },
+    ],
+    faq: [
+      { q: "Is this a Caesar cipher?", a: "Yes, when step=3 and right=true, this is exactly the Caesar cipher (rotate by 3). But this tool supports any step value." },
+      { q: "What happens with multi-line mode?", a: "Each line is rotated independently. This is useful for rotating multiple strings at once." },
+    ],
+    relatedTools: ["rot13", "aes-des", "hash"],
+  },
+
+  "string-split": {
+    title: "Split Text",
+    desc: "Split text by separator, regex, length, or chunks",
+    icon: "✂️",
+    category: CATEGORIES.text,
+    stars: 4,
+    seoTitle: "Split Text Free — Online Tool | Craftisle",
+    seoDesc: "Free split text online tool. Split text by separator, regex, fixed length, or into chunks. Flexible text splitting.",
+    seoKeywords: ["split text online free", "text splitter tool free", "split string by delimiter online", "text chunk splitter free"],
+    description: "Split text by separator, regex, fixed length, or into a specific number of chunks. Supports custom output separator. Essential for text processing, data parsing, and string manipulation.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text you want to split." },
+      { heading: "Choose split mode", text: "Select: by symbol (delimiter), by regex, by fixed length, or into N chunks." },
+      { heading: "Configure options", text: "Set separator, regex pattern, length, or chunk count. Set output separator." },
+      { heading: "Split", text: "Click Split. The split parts appear in the output, joined by the output separator." },
+    ],
+    useCases: [
+      { title: "CSV parsing", text: "Split CSV lines by comma to extract individual fields." },
+      { title: "Text chunking", text: "Split long text into fixed-length chunks for processing or display." },
+      { title: "Data transformation", text: "Split text by regex patterns (e.g. split by whitespace, punctuation)." },
+    ],
+    faq: [
+      { q: "What is 'by length' mode?", a: "Splits text into substrings of exactly N characters (except possibly the last chunk). Useful for fixed-width text processing." },
+      { q: "What is 'into chunks' mode?", a: "Splits text into exactly N chunks of approximately equal size. You can also add prefix/suffix to each chunk." },
+    ],
+    relatedTools: ["string-join", "text-formatter", "regex"],
+  },
+
+  "string-join": {
+    title: "Join Lines",
+    desc: "Join multiple lines into one with a separator",
+    icon: "🤝",
+    category: CATEGORIES.text,
+    stars: 4,
+    seoTitle: "Join Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free join lines online tool. Join multiple text lines into one line with a custom separator. Remove blank lines and trim spaces.",
+    seoKeywords: ["join lines online free", "merge lines into one", "text join tool free", "concatenate lines online"],
+    description: "Join multiple text lines into a single line with a custom separator. Optionally remove blank lines and trim trailing spaces from each line. The inverse of the Split Text tool.",
+    howToUse: [
+      { heading: "Enter text lines", text: "Type or paste text with multiple lines in the input box." },
+      { heading: "Set separator", text: "Choose the separator to insert between lines (comma, space, newline, etc.)." },
+      { heading: "Configure options", text: "Toggle blank line removal and trailing space trimming." },
+      { heading: "Join", text: "Click Join Lines. The merged line appears in the output." },
+    ],
+    useCases: [
+      { title: "CSV creation", text: "Join lines with comma separator to create CSV data." },
+      { title: "Array creation", text: "Join lines with comma+space to create JavaScript/Python arrays." },
+      { title: "Sentence merging", text: "Join lines with space to merge broken sentences into paragraphs." },
+    ],
+    faq: [
+      { q: "What happens to blank lines?", a: "When 'Delete blank lines' is enabled, blank lines are removed before joining. Otherwise, they produce empty segments in the output." },
+      { q: "Is this the inverse of Split Text?", a: "Yes. If you split by comma and then join by comma, you get back the original text (minus blank lines and trailing spaces if those options are enabled)." },
+    ],
+    relatedTools: ["string-split", "text-formatter", "csv-json"],
+  },
+
+  "string-repeat": {
+    title: "Repeat Text",
+    desc: "Repeat text N times with a delimiter",
+    icon: "🔁",
+    category: CATEGORIES.text,
+    stars: 3,
+    seoTitle: "Repeat Text Free — Online Tool | Craftisle",
+    seoDesc: "Free repeat text online tool. Repeat text N times with a custom delimiter. Generate test data and patterns.",
+    seoKeywords: ["repeat text online free", "text repeater tool", "string repetition online", "generate repeated text free"],
+    description: "Repeat text N times with a custom delimiter between copies. Useful for generating test data, repeated patterns, filler text, or any situation where you need multiple copies of the same string.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste the text you want to repeat." },
+      { heading: "Set repeat count", text: "Enter the number of times to repeat the text." },
+      { heading: "Set delimiter", text: "Choose the separator to insert between repeated copies (space, comma, newline, etc.)." },
+      { heading: "Repeat", text: "Click Repeat Text. The repeated text appears in the output." },
+    ],
+    useCases: [
+      { title: "Test data generation", text: "Generate repeated test data for development and testing." },
+      { title: "Pattern creation", text: "Create repeated patterns for text art, dividers, or formatting." },
+      { title: "Filler text", text: "Generate filler text for layout testing or placeholder content." },
+    ],
+    faq: [
+      { q: "Can I repeat without a separator?", a: "Yes. Set the delimiter to empty string (delete all characters in the delimiter field)." },
+      { q: "Is there a limit on repeat count?", a: "The tool processes in your browser, so very large repeat counts (e.g. 100,000+) may cause performance issues. For reasonable counts (under 10,000), it works fine." },
+    ],
+    relatedTools: ["text-formatter", "lorem-ipsum", "string-reverse"],
+  },
+
   // ==================== Network Tools ====================
   "ip-calc": {
     title: "IP Calculator",
@@ -1323,6 +1736,34 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Does this support IPv6?", a: "Yes. Enter an IPv6 address with CIDR suffix (e.g., 2001:db8::/32). IPv6 subnetting works differently from IPv4 — typically /64 for LAN segments." },
     ],
     relatedTools: ["ip-radix", "user-agent", "timestamp"],
+  },
+
+  "random-port-generator": {
+    title: "Random Port Generator",
+    desc: "Generate random network port numbers",
+    icon: "🔌",
+    category: CATEGORIES.network,
+    stars: 4,
+    seoTitle: "Random Port Generator Free — Online Tool | Craftisle",
+    seoDesc: "Free random port generator online tool. Generate random network port numbers for testing. Supports well-known, registered, and dynamic port ranges.",
+    seoKeywords: ["random port generator online free", "generate random ports", "network port generator free", "random TCP port generator", "port number generator online"],
+    description: "Generate random network port numbers for testing, development, and configuration. Supports standard IANA port ranges: Well-Known (1-1023), Registered (1024-49151), and Dynamic/Private (49152-65535). Optionally allow duplicates, sort results, and set custom range.",
+    howToUse: [
+      { heading: "Set count", text: "Enter the number of ports to generate (1-1000)." },
+      { heading: "Choose port range", text: "Select a standard range or set a custom min/max." },
+      { heading: "Configure options", text: "Toggle duplicate allowance and result sorting." },
+      { heading: "Generate", text: "Click Generate Ports. The ports appear in the result grid." },
+    ],
+    useCases: [
+      { title: "Development testing", text: "Generate random ports for testing application connectivity and port conflict scenarios." },
+      { title: "Configuration templates", text: "Generate port numbers for Docker Compose, Kubernetes, or firewall rule templates." },
+      { title: "Security testing", text: "Generate random high-numbered ports to test firewall rules and port scanning defenses." },
+    ],
+    faq: [
+      { q: "What are Well-Known ports?", a: "Ports 1-1023 are reserved for system services (HTTP 80, HTTPS 443, SSH 22, etc.). Most OSes require admin privileges to bind to these ports." },
+      { q: "What port range should I use for my app?", a: "For custom applications, use Registered ports (1024-49151) or Dynamic ports (49152-65535). Avoid Well-Known ports unless you're implementing a standard service." },
+    ],
+    relatedTools: ["ip-calc", "user-agent", "network"],
   },
 
   "user-agent": {
