@@ -4085,6 +4085,33 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["text-replacer", "text-compare"],
   },
 
+  // ==================== String Tools (Batch 7) ====================
+  "hidden-character-detector": {
+    title: "Hidden Character Detector",
+    desc: "Detect hidden characters in text",
+    icon: "🔍",
+    category: CATEGORIES.dev,
+    seoTitle: "Hidden Character Detector Free — Online Tool | Craftisle",
+    seoDesc: "Free hidden character detector online tool. Detect zero-width space, BOM, and other hidden characters in text. 100% browser-based.",
+    seoKeywords: ["hidden character detector", "detect hidden characters", "zero-width space", "BOM detector"],
+    description: "Detect hidden characters in text, such as zero-width space (U+200B), BOM (U+FEFF), ZWNJ (U+200C), ZWJ (U+200D), WJ (U+2060). Useful for debugging text encoding issues, cleaning data, and ensuring text integrity.",
+    howToUse: [
+      { heading: "Paste text", text: "Type or paste text to check." },
+      { heading: "Detect", text: "Click Detect. Hidden characters are reported." },
+      { heading: "Review", text: "Review the report and fix the text accordingly." },
+    ],
+    useCases: [
+      { title: "Debug text encoding", text: "Find hidden characters that cause display issues." },
+      { title: "Clean data", text: "Remove hidden characters from imported data." },
+      { title: "Ensure integrity", text: "Check text before processing or storage." },
+    ],
+    faq: [
+      { q: "What are hidden characters?", a: "Characters that are invisible or have no width, such as zero-width space, BOM, etc." },
+      { q: "Why do hidden characters matter?", a: "They can cause display issues, data corruption, and processing errors." },
+    ],
+    relatedTools: ["unicode", "text-formatter"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",

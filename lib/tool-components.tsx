@@ -169,6 +169,9 @@ const componentLoaders: Record<string, ComponentLoader> = {
 
   // ==================== String Tools (Batch 7) ====================
   "extract-substring": () => import("@/components/tools/ExtractSubstringTool"),
+
+  // ==================== String Tools (Batch 7) ====================
+  "hidden-character-detector": () => import("@/components/tools/HiddenCharacterDetectorTool"),
 };
 
 // ---------------------------------------------------------------------------
