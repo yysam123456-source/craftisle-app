@@ -2240,6 +2240,68 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     relatedTools: ["image-resize", "image-compress", "image-border"],
   },
+  "image-change-opacity": {
+    title: "Change Image Opacity",
+    desc: "Adjust image opacity (solid or gradient mode)",
+    icon: "🔳",
+    category: CATEGORIES.image,
+    seoTitle: "Change Image Opacity Free — Online Tool | Craftisle",
+    seoDesc: "Free change image opacity online tool. Adjust transparency with solid or gradient mode. 100% browser-based.",
+    seoKeywords: ["change opacity", "image opacity", "transparent image", "adjust transparency"],
+    description: "Adjust image opacity with solid or gradient mode.",
+    howToUse: [
+      { heading: "Upload Image", text: "Select an image file to process." },
+      { heading: "Adjust Opacity", text: "Set opacity level (0-1) and mode (solid/gradient)." },
+      { heading: "Download", text: "Download the processed image." }
+    ],
+    faq: [
+      { q: "What does solid mode do?", a: "Solid mode applies the same opacity level to all pixels." },
+      { q: "What does gradient mode do?", a: "Gradient mode creates a smooth opacity transition (linear or radial)." }
+    ],
+    relatedTools: ["image-crop", "image-resize", "image-rotate"]
+  },
+
+  "image-create-transparent": {
+    title: "Create Transparent PNG",
+    desc: "Make specific colors transparent in an image",
+    icon: "🔴",
+    category: CATEGORIES.image,
+    seoTitle: "Create Transparent PNG Free — Online Tool | Craftisle",
+    seoDesc: "Free create transparent PNG online tool. Make specific colors transparent. 100% browser-based.",
+    seoKeywords: ["transparent png", "remove background", "color to transparent", "create transparent"],
+    description: "Make specific colors in an image transparent.",
+    howToUse: [
+      { heading: "Upload Image", text: "Select an image file to process." },
+      { heading: "Select Color", text: "Choose the color to make transparent and set similarity threshold." },
+      { heading: "Download", text: "Download the transparent PNG." }
+    ],
+    faq: [
+      { q: "What is similarity?", a: "Similarity controls how closely matching colors are included (0-100%)." },
+      { q: "What format is the output?", a: "The output is a PNG file with transparency." }
+    ],
+    relatedTools: ["image-crop", "image-resize", "image-compress"]
+  },
+
+  "image-split": {
+    title: "Split Image",
+    desc: "Split an image into multiple tiles",
+    icon: "✂️",
+    category: CATEGORIES.image,
+    seoTitle: "Split Image Free — Online Tool | Craftisle",
+    seoDesc: "Free split image online tool. Split an image into multiple tiles. 100% browser-based.",
+    seoKeywords: ["split image", "image tiles", "divide image", "image grid"],
+    description: "Split an image into multiple tiles of specified size.",
+    howToUse: [
+      { heading: "Upload Image", text: "Select an image file to split." },
+      { heading: "Set Tile Size", text: "Enter the width and height of each tile in pixels." },
+      { heading: "Download", text: "Download all tiles as separate PNG files." }
+    ],
+    faq: [
+      { q: "What happens to edge tiles?", a: "Edge tiles are automatically resized to fit the remaining pixels." },
+      { q: "What format are the tiles?", a: "All tiles are saved as PNG files." }
+    ],
+    relatedTools: ["image-crop", "image-resize", "image-to-pixel"]
+  },
 
   "image-compress": {
     title: "Image Compressor",

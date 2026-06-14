@@ -38,6 +38,10 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "html-escape": () => import("@/components/tools/HtmlEscapeTool"),
   "html-formatter": () => import("@/components/tools/HtmlFormatterTool"),
   "image-to-pixel": () => import("@/components/tools/ImageToPixelTool"),
+  // ==================== Image Tools (New) ====================
+  "image-change-opacity": () => import("@/components/tools/ChangeOpacityTool"),
+  "image-create-transparent": () => import("@/components/tools/CreateTransparentTool"),
+  "image-split": () => import("@/components/tools/SplitImageTool"),
   "ip-calc": () => import("@/components/tools/IpCalcTool"),
   "ip-radix": () => import("@/components/tools/IpRadixTool"),
   "json-formatter": () => import("@/components/tools/JsonFormatterTool"),
