@@ -1,4 +1,5 @@
 export const revalidate = 86400;
+export const dynamicParams = false;
 /**
  * /directory/best/[slug]
  * "Best X Tools 2026" - 程序化 SEO 页面
@@ -98,6 +99,14 @@ function buildSlugMaps() {
     const sTools = toSlug(cat.name + " Tools");
     if (!slugToCat[sTools]) slugToCat[sTools] = cat;
     if (!slugToCat2026[`${sTools}-2026`]) slugToCat2026[`${sTools}-2026`] = cat;
+
+    // 同时映射原始分类名短 slug（如 "Productivity" → "productivity"）
+    const originalName = DISPLAY_TO_ORIGINAL[cat.name];
+    if (originalName && originalName !== cat.name) {
+      const sRaw = toSlug(originalName);
+      if (!slugToCat[sRaw]) slugToCat[sRaw] = cat;
+      if (!slugToCat2026[`${sRaw}-2026`]) slugToCat2026[`${sRaw}-2026`] = cat;
+    }
   }
 
   return { slugToCat, slugToCat2026 };
@@ -125,13 +134,18 @@ export async function generateStaticParams() {
     params.push({ slug: `${toolsSlug}-2026` });
   }
 
-  return params.slice(0, 10);
+  // 去重：FMHY 和 alternatives 可能产生相同 slug
+  const unique = params.filter(
+    (p, i, arr) => arr.findIndex((x) => x.slug === p.slug) === i
+  );
+  return unique.slice(0, 10);
 }
 
-// ── 根据 slug 查找分类 ──────────────────────────
+// ── 根据 slug 查找分类（大小写不敏感） ──────────────────────────
 function findCategory(slug: string): Category | null {
   const { slugToCat, slugToCat2026 } = buildSlugMaps();
-  return slugToCat[slug] || slugToCat2026[slug] || null;
+  const lowerSlug = slug.toLowerCase();
+  return slugToCat[lowerSlug] || slugToCat2026[lowerSlug] || slugToCat[slug] || slugToCat2026[slug] || null;
 }
 
 // ── 获取分类下的资源（fmhy 数据）──────────────────────────

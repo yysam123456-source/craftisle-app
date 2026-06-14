@@ -215,9 +215,9 @@ export function ResourcesClient({
       )}
 
       <div className="grid gap-5 sm:grid-cols-2">
-        {paged.map((resource) => (
+        {paged.map((resource, idx) => (
           <ResourceCard
-            key={resource.id}
+            key={resource.id || `${resource.url}-${idx}`}
             resource={resource}
             showCategory={false}
             variant="large"

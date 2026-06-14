@@ -11,6 +11,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@/components/analytics";
 import CookieConsent from "@/components/cookie-consent";
 import ModalProvider from "@/components/modals/providers";
+import { ServiceWorkerRegistration } from "@/components/sw-registration";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -128,20 +129,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </ThemeProvider>
         </SessionProvider>
         <CookieConsent />
+        <ServiceWorkerRegistration />
       </body>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            if ('serviceWorker' in navigator) {
-              window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                  .then((registration) => console.log('✅ SW registered:', registration.scope))
-                  .catch((error) => console.log('❌ SW registration failed:', error));
-              });
-            }
-          `,
-        }}
-      />
     </html>
   );
 }

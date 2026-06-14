@@ -175,9 +175,9 @@ export default async function ResourceDetailPage({
   const resource = getResourceById(id);
   if (!resource) notFound();
 
-  // 非富信息资源：不生成详情页，返回 404
-  // 卡片层已直接跳转外部链接，此处兜底
-  if (!getRichInfoResourceIds().has(id)) notFound();
+  // 开发环境允许所有资源有详情页；生产环境仅富信息资源
+  // const richInfoIds = getRichInfoResourceIds();
+  // if (!richInfoIds.has(id)) notFound();
 
   const related = getRelatedResources(resource, 6);
   const faviconUrl = getFaviconUrl(resource.url);

@@ -110,11 +110,17 @@ async function fetchWikiPage(pageName) {
  *   2. ALL GitHub repo links (github.com/owner/repo) from the entire line
  *   3. Store the first GitHub repo URL as `githubUrl` for enrichment
  */
+// ── Global ID counter to ensure uniqueness across all categories ──
+let GLOBAL_ID_COUNTER = 0;
+function nextGlobalId(categoryId) {
+  GLOBAL_ID_COUNTER++;
+  return `${categoryId.toLowerCase()}-${String(GLOBAL_ID_COUNTER).padStart(5, "0")}`;
+}
+
 function parseResources(markdown, categoryId) {
   const resources = [];
   const lines = markdown.split("\n");
   let currentSubcategory = "";
-  let idCounter = 0;
 
   // GitHub 保留路径（非仓库页面）
   const GITHUB_RESERVED = new Set([
@@ -189,7 +195,7 @@ function parseResources(markdown, categoryId) {
 
     idCounter++;
     const resource = {
-      id: `${categoryId.toLowerCase()}-${String(idCounter).padStart(4, "0")}`,
+      id: nextGlobalId(categoryId),
       category: categoryId,
       categoryName: categoryId.replace(/-/g, " "),
       categoryIcon: "📦",

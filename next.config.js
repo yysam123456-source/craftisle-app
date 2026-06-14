@@ -9,14 +9,11 @@ const nextConfig = {
   // Disable the Next.js Dev Tools panel (bottom-left overlay in dev mode)
   devIndicators: false,
 
-  // Turbopack: use webpack for tegaki compatibility
-  // Set to {} to enable Turbopack (default in Next.js 16),
-  // or set to false to force webpack (not valid — use --webpack flag in build script).
-  // We use "next build --webpack" in package.json build script instead.
-  turbopack: {
-    // Empty config = Turbopack enabled (for dev)
-    // For build, package.json build script has --webpack flag
-  },
+  // Turbopack: DISABLED in dev due to known false-positive "duplicate key" warning
+  // See: https://github.com/vercel/next.js/issues/57709
+  // Turbopack incorrectly triggers React key warnings on dynamic routes
+  // Use webpack for dev to avoid console noise; build script still uses its own flag.
+  turbopack: false,
 
   images: {
     formats: ["image/avif", "image/webp"],
