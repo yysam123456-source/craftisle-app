@@ -1,3 +1,4 @@
+export const revalidate = 86400;
 /**
  * /directory/compare/[...slug]
  * "X vs Y" 对比页面 — SEO 核心页面类型（丰富版）
@@ -55,7 +56,7 @@ export async function generateStaticParams() {
       });
     }
   }
-  return params;
+  return params.slice(0, 10);
 }
 
 // ── 查找对比数据（增强版）─────────────────────────

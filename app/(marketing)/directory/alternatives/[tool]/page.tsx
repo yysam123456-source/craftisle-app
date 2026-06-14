@@ -15,8 +15,11 @@ import {
 
 const baseUrl = "https://craftisle.com";
 
+export const revalidate = 86400; // ISR: 24小时重新生成
+
 export async function generateStaticParams() {
-  return getAllAlternativeSlugs().map((slug) => ({ tool: slug }));
+  // 只预生成前10个最受欢迎的替代方案页面
+  return getAllAlternativeSlugs().slice(0, 10).map((slug) => ({ tool: slug }));
 }
 
 export async function generateMetadata({

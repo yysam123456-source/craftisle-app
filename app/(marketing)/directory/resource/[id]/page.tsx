@@ -26,13 +26,14 @@ import { Share2, Twitter, MessageSquare } from "lucide-react";
 
 const baseUrl = "https://craftisle.com";
 
-// ── 静态生成：仅预构建「有丰富信息」的资源页（ISR：其余按需生成） ────
-export const revalidate = 21600;
+// ── 静态生成：仅预构建前10个「有丰富信息」的资源页（ISR：其余按需生成） ────
+export const revalidate = 21600; // 6小时 ISR
 export const dynamicParams = true;
 export async function generateStaticParams() {
   const richIds = getRichInfoResourceIds();
   const resources = getAllResources();
-  return resources.filter((r) => richIds.has(r.id)).map((r) => ({ id: r.id }));
+  // 只预生成前10个资源页面，其余按需生成
+  return resources.filter((r) => richIds.has(r.id)).slice(0, 10).map((r) => ({ id: r.id }));
 }
 
 // ── Metadata ────────────────────────────────────────────

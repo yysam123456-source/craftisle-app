@@ -1,3 +1,4 @@
+export const revalidate = 86400;
 /**
  * /directory/best/[slug]
  * "Best X Tools 2026" - 程序化 SEO 页面
@@ -124,7 +125,7 @@ export async function generateStaticParams() {
     params.push({ slug: `${toolsSlug}-2026` });
   }
 
-  return params;
+  return params.slice(0, 10);
 }
 
 // ── 根据 slug 查找分类 ──────────────────────────
