@@ -176,6 +176,49 @@ const componentLoaders: Record<string, ComponentLoader> = {
 
   // ==================== String Tools (Batch 7) ====================
   "hidden-character-detector": () => import("@/components/tools/HiddenCharacterDetectorTool"),
+
+  // ==================== Missing Tools (Batch 8) ====================
+  "convert-days-to-hours": () => import("@/components/tools/ConvertDaysToHoursTool"),
+  "convert-hours-to-days": () => import("@/components/tools/ConvertHoursToDaysTool"),
+  "convert-seconds-to-time": () => import("@/components/tools/ConvertSecondsToTimeTool"),
+  "convert-time-to-decimal": () => import("@/components/tools/ConvertTimeToDecimalTool"),
+  "convert-time-to-seconds": () => import("@/components/tools/ConvertTimeToSecondsTool"),
+  "convert-unix-to-date": () => import("@/components/tools/ConvertUnixToDateTool"),
+  "crontab-guru": () => import("@/components/tools/CrontabGuruTool"),
+  "list-duplicate": () => import("@/components/tools/ListDuplicateTool"),
+  "list-reverse": () => import("@/components/tools/ListReverseTool"),
+  "list-rotate": () => import("@/components/tools/ListRotateTool"),
+  "list-shuffle": () => import("@/components/tools/ListShuffleTool"),
+  "list-sort": () => import("@/components/tools/ListSortTool"),
+  "list-truncate": () => import("@/components/tools/ListTruncateTool"),
+  "list-unique": () => import("@/components/tools/ListUniqueTool"),
+  "list-unwrap": () => import("@/components/tools/ListUnwrapTool"),
+  "list-wrap": () => import("@/components/tools/ListWrapTool"),
+  "png-to-svg": () => import("@/components/tools/PngToSvgTool"),
+  "randomize-case": () => import("@/components/tools/RandomizeCaseTool"),
+  "json-escape": () => import("@/components/tools/EscapeJsonTool"),
+  "json-sort": () => import("@/components/tools/SortJsonTool"),
+  "json-stringify": () => import("@/components/tools/StringifyJsonTool"),
+
+  // ==================== Image Tools (Missing) ====================
+  "image-resize": () => import("@/components/tools/ImageResizeTool"),
+  "image-crop": () => import("@/components/tools/ImageCropTool"),
+  "image-compress": () => import("@/components/tools/ImageCompressTool"),
+  "image-convert": () => import("@/components/tools/ImageConvertTool"),
+  "image-rotate": () => import("@/components/tools/ImageRotateTool"),
+
+  // ==================== String Tools (Missing) ====================
+  "string-uppercase": () => import("@/components/tools/UppercaseTool"),
+  "string-truncate": () => import("@/components/tools/TruncateTool"),
+  "string-quote": () => import("@/components/tools/QuoteTool"),
+  "string-palindrome": () => import("@/components/tools/PalindromeTool"),
+  "string-remove-duplicates": () => import("@/components/tools/RemoveDuplicateLinesTool"),
+
+  // ==================== More Missing Tools ====================
+  "html-visual-editor": () => import("@/components/tools/HtmlVisualEditorTool"),
+  "image-base64": () => import("@/components/tools/ImageBase64Tool"),
+  "svg-editor": () => import("@/components/tools/SvgEditorTool"),
+  "truncate-clock-time": () => import("@/components/tools/TruncateClockTimeTool"),
 };
 
 // ---------------------------------------------------------------------------

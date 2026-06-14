@@ -1,107 +1,69 @@
-"use client";
-
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useCallback } from "react";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { CheckCircle2, XCircle } from "lucide-react";
-
-function isLeapYear(year: number): boolean {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
 
 export default function CheckLeapYearTool() {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
-  const [error, setError] = useState("");
+  const [years, setYears] = useState("");
+  const [results, setResults] = useState<{ year: number; isLeap: boolean }[]>([]);
 
-  const handleProcess = () => {
-    setError("");
-    
-    if (!input.trim()) {
-      setError("Please enter one or more years (one per line)");
-      setOutput("");
-      return;
-    }
-
-    const years = input
+  const handleCheck = useCallback(() => {
+    const yearList = years
       .split("\n")
-      .map((year) => year.trim())
-      .filter((year) => year !== "");
-
-    const results = years.map((yearStr) => {
-      if (!/^\d{1,4}$/.test(yearStr)) {
-        return `${yearStr}: Invalid year`;
-      }
-
-      const year = Number(yearStr);
-      return `${year} ${
-        isLeapYear(year) ? "is a leap year." : "is not a leap year."
-      }`;
-    });
-
-    setOutput(results.join("\n"));
-  };
-
-  const handleClear = () => {
-    setInput("");
-    setOutput("");
-    setError("");
-  };
+      .map(y => parseInt(y.trim()))
+      .filter(y => !isNaN(y));
+    
+    const results = yearList.map(year => ({
+      year,
+      isLeap: (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+    }));
+    
+    setResults(results);
+  }, [years]);
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <CheckCircle2 className="h-5 w-5" />
-          Check Leap Years
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {error && (
-          <Alert variant="destructive">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Enter years (one per line):</label>
-          <Textarea
-            placeholder="2024&#10;2025&#10;2026&#10;2028"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="min-h-[150px] font-mono"
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
+      <h1 className="text-2xl font-bold">Check Leap Year</h1>
+      <Card className="p-6 space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-2">Enter Years (one per line)</label>
+          <textarea
+            value={years}
+            onChange={(e) => setYears(e.target.value)}
+            placeholder="2024\n2025\n2026"
+            className="w-full h-32 px-3 py-2 border rounded-md font-mono text-sm"
           />
         </div>
-
-        <div className="flex gap-2">
-          <Button onClick={handleProcess} className="flex-1">
-            Check Leap Years
-          </Button>
-          <Button onClick={handleClear} variant="outline">
-            Clear
-          </Button>
-        </div>
-
-        {output && (
+        <Button onClick={handleCheck} className="w-full">Check</Button>
+        {results.length > 0 && (
           <div className="space-y-2">
-            <label className="text-sm font-medium">Results:</label>
-            <div className="rounded-lg border bg-muted/50 p-4">
-              <pre className="whitespace-pre-wrap text-sm">{output}</pre>
+            <h3 className="font-medium">Results</h3>
+            <div className="border rounded-lg overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-muted/50">
+                    <th className="px-4 py-2 text-left">Year</th>
+                    <th className="px-4 py-2 text-left">Is Leap Year?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {results.map((r) => (
+                    <tr key={r.year} className="border-b">
+                      <td className="px-4 py-2">{r.year}</td>
+                      <td className="px-4 py-2">
+                        {r.isLeap ? (
+                          <span className="text-green-600 font-medium">✓ Yes</span>
+                        ) : (
+                          <span className="text-red-600">✗ No</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
-
-        <div className="rounded-lg bg-muted/30 p-4 text-sm text-muted-foreground">
-          <p className="font-medium mb-2">About Leap Years:</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>A leap year is divisible by 4</li>
-            <li>But not divisible by 100 (unless also divisible by 400)</li>
-            <li>Examples: 2024 ✓, 2100 ✗, 2000 ✓</li>
-          </ul>
-        </div>
-      </CardContent>
-    </Card>
+      </Card>
+    </div>
   );
 }
