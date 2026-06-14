@@ -14,6 +14,7 @@ import { ScenarioCards } from "@/components/directory/home/scenario-cards";
 import { EditorPicks } from "@/components/directory/home/editor-picks";
 import { QuickRankings } from "@/components/directory/home/quick-rankings";
 import { DecisionGuide } from "@/components/directory/home/decision-guide";
+import { SectionContainer } from "@/components/directory/section-container";
 
 export const metadata: Metadata = constructMetadata({
   title: "Free Resource Directory | 10,000+ Curated Free Tools, APIs & Software | Craftisle",
@@ -239,203 +240,162 @@ export default async function ResourcesPage() {
       <QuickRankings />
 
       {/* Browse by Category */}
-      <section className="py-16" id="categories">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold tracking-tight">
-              Browse by Category — 12 Domains
-            </h2>
-            <p className="mt-1 text-muted-foreground">
-              {totalCount.toLocaleString()} resources across {categories.length} categories in 12 domains
-            </p>
-          </div>
-          <DomainCategoryGrid
-            domainGroups={getDomainGroups(categories)}
-            allCategories={categories}
-          />
-        </div>
-      </section>
+      <SectionContainer
+        title="Browse by Category"
+        subtitle={`${totalCount.toLocaleString()} resources across ${categories.length} categories in 12 domains`}
+        id="categories"
+      >
+        <DomainCategoryGrid
+          domainGroups={getDomainGroups(categories)}
+          allCategories={categories}
+        />
+      </SectionContainer>
 
       {/* Popular Alternatives */}
-      <section className="py-12 bg-muted/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 text-center">
-            <h2 className="text-2xl font-bold tracking-tight">
-              🔥 Popular Alternatives
-            </h2>
-            <p className="mt-1 text-muted-foreground">
-              Find the best free alternatives to popular paid tools
-            </p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
-            {/* TODO: Add Popular Alternatives component */}
-            <p className="text-muted-foreground text-center col-span-full">
-              Coming soon...
-            </p>
-          </div>
+      <SectionContainer
+        title="Popular Alternatives"
+        subtitle="Find the best free alternatives to popular paid tools"
+        icon="🔥"
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+          {/* TODO: Add Popular Alternatives component */}
+          <p className="text-muted-foreground text-center col-span-full">
+            Coming soon...
+          </p>
         </div>
-      </section>
+      </SectionContainer>
 
       {/* More Ways to Explore */}
-      <section className="py-12 border-b bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 text-center">
-            <h2 className="text-2xl font-bold tracking-tight">More Ways to Explore</h2>
-            <p className="mt-1 text-muted-foreground">Compare tools and discover the best free software</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 max-w-3xl mx-auto">
-            {/* Compare Tools */}
-            <Link href="/directory/compare" className="group">
-              <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="rounded-lg bg-blue-500/10 p-2 text-blue-600">
-                    <ArrowRight className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-semibold">Compare Alternatives</h3>
+      <SectionContainer
+        title="More Ways to Explore"
+        subtitle="Compare tools and discover the best free software"
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 max-w-3xl mx-auto">
+          {/* Compare Tools */}
+          <Link href="/directory/compare" className="group">
+            <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="rounded-lg bg-blue-500/10 p-2 text-blue-600">
+                  <ArrowRight className="h-5 w-5" />
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Find the best free alternatives to popular paid tools like Notion, Figma, Slack, and more.
-                </p>
+                <h3 className="font-semibold">Compare Alternatives</h3>
               </div>
-            </Link>
+              <p className="text-sm text-muted-foreground">
+                Find the best free alternatives to popular paid tools like Notion, Figma, Slack, and more.
+              </p>
+            </div>
+          </Link>
 
-            {/* Best Tools 2026 */}
-            <Link href="/directory/best/ai-tools" className="group">
-              <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="rounded-lg bg-green-500/10 p-2 text-green-600">
-                    <Star className="h-5 w-5 fill-green-400" />
-                  </div>
-                  <h3 className="font-semibold">Best Tools 2026</h3>
+          {/* Best Tools 2026 */}
+          <Link href="/directory/best/ai-tools" className="group">
+            <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="rounded-lg bg-green-500/10 p-2 text-green-600">
+                  <Star className="h-5 w-5 fill-green-400" />
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Curated lists of the best free tools in every category. Updated for 2026.
-                </p>
+                <h3 className="font-semibold">Best Tools 2026</h3>
               </div>
-            </Link>
-          </div>
+              <p className="text-sm text-muted-foreground">
+                Curated lists of the best free tools in every category. Updated for 2026.
+              </p>
+            </div>
+          </Link>
         </div>
-      </section>
+      </SectionContainer>
 
       {/* Source Tabs */}
-      <section className="py-8 border-b bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight mb-6">
-            Explore {totalCount.toLocaleString()}+ Resources
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {sources.map((src) => {
-              const data = sourceCategories[src.id];
-              const catCount = data?.categories.length || 0;
-              if (catCount === 0 && src.id !== "fmhy") return null;
-              return (
-                <div
-                  key={src.id}
-                  className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-2xl">{src.icon}</span>
-                    <div>
-                      <h3 className="font-semibold">
-                        {src.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
-                        {src.type}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 text-sm text-muted-foreground">
-                    <span>{src.resourceCount.toLocaleString()} resources</span>
-                    <span>{catCount} categories</span>
+      <SectionContainer
+        title={`Explore ${totalCount.toLocaleString()}+ Resources`}
+        subtitle="Multiple curated sources: FMHY, Free for Dev, Public APIs, Self-Hosted"
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {sources.map((src) => {
+            const data = sourceCategories[src.id];
+            const catCount = data?.categories.length || 0;
+            if (catCount === 0 && src.id !== "fmhy") return null;
+            return (
+              <div
+                key={src.id}
+                className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">{src.icon}</span>
+                  <div>
+                    <h3 className="font-semibold">
+                      {src.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      {src.type}
+                    </p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+                <div className="flex gap-4 text-sm text-muted-foreground">
+                  <span>{src.resourceCount.toLocaleString()} resources</span>
+                  <span>{catCount} categories</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </section>
-
-      {/* All Categories — Domain Grouped */}
-      <section className="py-16" id="categories">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold tracking-tight">
-              All Categories — 12 Domains
-            </h2>
-            <p className="mt-1 text-muted-foreground">
-              {totalCount.toLocaleString()} resources across {categories.length} categories in 12 domains
-            </p>
-          </div>
-          <DomainCategoryGrid
-            domainGroups={getDomainGroups(categories)}
-            allCategories={categories}
-          />
-        </div>
-      </section>
+      </SectionContainer>
 
       {/* FAQ Section (for users + AI citation) */}
-      <section className="border-t bg-muted/20 py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight mb-8 text-center">
-            Frequently Asked Questions
-          </h2>
-          <div className="mx-auto max-w-3xl space-y-6">
-            <div className="rounded-lg border bg-card p-6">
-              <h3 className="font-semibold text-base">What is Craftisle Resource Directory?</h3>
-              <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
-                Craftisle Resource Directory is a curated collection of 6,000+ free, compliant tools and resources for developers, creators, and learners. All resources are manually reviewed to ensure they are free, open-source, or have a free tier with no mandatory signup.
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-6">
-              <h3 className="font-semibold text-base">Are all resources in the directory free?</h3>
-              <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
-                Yes. Every resource listed in the Craftisle directory is free to use, open-source, or offers a free tier. We do not include resources that require payment or mandatory account creation.
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-6">
-              <h3 className="font-semibold text-base">How are resources categorized?</h3>
-              <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
-                Resources are organized into 12 domains (Development, AI & ML, DevOps, Security, Design, Data, Productivity, Cloud, Media, Communication, Learning, and More) and 200+ specific categories. Each resource is tagged by source (FMHY, Free for Dev, Public APIs, Self-Hosted) for easy filtering.
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-6">
-              <h3 className="font-semibold text-base">Can I suggest a resource to be added?</h3>
-              <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
-                Yes! If you know a high-quality free resource that is not yet listed, you can suggest it by opening an issue on our GitHub repository. We review all suggestions for compliance and quality before adding them to the directory.
-              </p>
-            </div>
-            <div className="rounded-lg border bg-card p-6">
-              <h3 className="font-semibold text-base">What does &quot;compliant&quot; mean in the resource directory?</h3>
-              <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
-                Compliant means the resource does not involve piracy, cracking, adult content, or other non-compliant materials. We only list resources that respect intellectual property rights and are safe to use.
-              </p>
-            </div>
+      <SectionContainer
+        title="Frequently Asked Questions"
+        subtitle="Common questions about Craftisle Resource Directory"
+      >
+        <div className="mx-auto max-w-3xl space-y-6">
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="font-semibold text-base">What is Craftisle Resource Directory?</h3>
+            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+              Craftisle Resource Directory is a curated collection of 6,000+ free, compliant tools and resources for developers, creators, and learners. All resources are manually reviewed to ensure they are free, open-source, or have a free tier with no mandatory signup.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="font-semibold text-base">Are all resources in the directory free?</h3>
+            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+              Yes. Every resource listed in the Craftisle directory is free to use, open-source, or offers a free tier. We do not include resources that require payment or mandatory account creation.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="font-semibold text-base">How are resources categorized?</h3>
+            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+              Resources are organized into 12 domains (Development, AI & ML, DevOps, Security, Design, Data, Productivity, Cloud, Media, Communication, Learning, and More) and 200+ specific categories. Each resource is tagged by source (FMHY, Free for Dev, Public APIs, Self-Hosted) for easy filtering.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="font-semibold text-base">Can I suggest a resource to be added?</h3>
+            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+              Yes! If you know a high-quality free resource that is not yet listed, you can suggest it by opening an issue on our GitHub repository. We review all suggestions for compliance and quality before adding them to the directory.
+            </p>
+          </div>
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="font-semibold text-base">What does &quot;compliant&quot; mean in the resource directory?</h3>
+            <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+              Compliant means the resource does not involve piracy, cracking, adult content, or other non-compliant materials. We only list resources that respect intellectual property rights and are safe to use.
+            </p>
           </div>
         </div>
-      </section>
+      </SectionContainer>
 
       {/* Footer CTA */}
-      <section className="border-t bg-muted/30 py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold">
-              Know a great free resource?
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              If you discover a high-quality free resource, feel free to recommend it via Issues.
-            </p>
-            <a
-              href="https://github.com/yysam123456/yysam123456-source/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" className="mt-8">
-                Recommend <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </a>
-          </div>
+      <SectionContainer
+        title="Know a great free resource?"
+        subtitle="If you discover a high-quality free resource, feel free to recommend it via Issues."
+        className="bg-muted/30"
+      >
+        <div className="text-center">
+          <a
+            href="https://github.com/yysam123456/yysam123456-source/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="lg">
+              Recommend <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
         </div>
-      </section>
+      </SectionContainer>
     </>
   );
 }
