@@ -1,175 +1,110 @@
+"use client";
+
 import { useState } from "react";
-import { ArrowRightLeft, Copy, Eraser } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { toast } from "sonner";
-
-type DupMode = "all" | "consecutive" | "unique";
-type NewlineOpt = "preserve" | "filter" | "delete";
-
-interface DupOptions {
-  mode: DupMode;
-  newlines: NewlineOpt;
-  sortLines: boolean;
-  trimLines: boolean;
-}
-
-function removeDuplicateLines(text: string, opts: DupOptions): string {
-  let lines = text.split("\n");
-
-  if (opts.newlines === "delete") {
-    lines = lines.filter(line => line.trim() !== "");
-  }
-
-  if (opts.trimLines) {
-    lines = lines.map(line => line.trim());
-  }
-
-  let result: string[];
-  if (opts.mode === "all") {
-    const seen = new Set<string>();
-    result = lines.filter(line => {
-      if (seen.has(line)) return false;
-      seen.add(line);
-      return true;
-    });
-  } else if (opts.mode === "consecutive") {
-    result = lines.filter((line, i, arr) => i === 0 || line !== arr[i - 1]);
-  } else {
-    const counts = new Map<string, number>();
-    lines.forEach(line => counts.set(line, (counts.get(line) || 0) + 1));
-    result = lines.filter(line => counts.get(line) === 1);
-  }
-
-  if (opts.sortLines) result.sort();
-
-  if (opts.newlines === "preserve") {
-    const preserved: string[] = [];
-    for (const line of text.split("\n")) {
-      if (line.trim() === "") {
-        preserved.push(line);
-      } else {
-        preserved.push(result.includes(line) ? line : "");
-      }
-    }
-    return preserved.join("\n");
-  }
-
-  return result.join("\n");
-}
 
 export default function RemoveDuplicateLinesTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [mode, setMode] = useState<DupMode>("all");
-  const [newlines, setNewlines] = useState<NewlineOpt>("filter");
-  const [sortLines, setSortLines] = useState(false);
-  const [trimLines, setTrimLines] = useState(false);
+  const [error, setError] = useState("");
+  const [caseSensitive, setCaseSensitive] = useState(false);
 
-  const handleConvert = () => {
-    if (!input) { toast.warning("Enter text"); return; }
-    const result = removeDuplicateLines(input, { mode, newlines, sortLines, trimLines });
-    setOutput(result);
-    toast.success("Duplicates removed");
+  const handleProcess = () => {
+    setError("");
+    
+    if (!input.trim()) {
+      setError("Please enter some text");
+      setOutput("");
+      return;
+    }
+
+    const lines = input.split("\n");
+    const unique = new Set<string>();
+    const result: string[] = [];
+
+    for (const line of lines) {
+      const key = caseSensitive ? line : line.toLowerCase();
+      if (!unique.has(key)) {
+        unique.add(key);
+        result.push(line);
+      }
+    }
+
+    setOutput(result.join("\n"));
   };
 
-  const copyToClipboard = async () => {
-    if (!output) { toast.warning("Nothing to copy"); return; }
-    try { await navigator.clipboard.writeText(output); toast.success("Copied"); } catch { toast.error("Copy failed"); }
+  const handleClear = () => {
+    setInput("");
+    setOutput("");
+    setError("");
   };
-
-  const clearAll = () => { setInput(""); setOutput(""); };
-  const swapInputOutput = () => { setInput(output); setOutput(""); };
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex flex-wrap items-center gap-4 bg-muted/50 p-4 rounded-lg border">
-        <div className="flex items-center gap-2">
-          <Label className="text-sm">Mode:</Label>
-          <Select value={mode} onValueChange={v => setMode(v as DupMode)}>
-            <SelectTrigger className="w-36 h-8"><SelectValue /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Remove all</SelectItem>
-              <SelectItem value="consecutive">Consecutive only</SelectItem>
-              <SelectItem value="unique">Keep unique only</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="flex items-center gap-2">
-          <Label className="text-sm">Newlines:</Label>
-          <Select value={newlines} onValueChange={v => setNewlines(v as NewlineOpt)}>
-            <SelectTrigger className="w-32 h-8"><SelectValue /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="preserve">Preserve</SelectItem>
-              <SelectItem value="filter">Filter</SelectItem>
-              <SelectItem value="delete">Delete empty</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="flex items-center gap-4">
-          <label className="flex items-center gap-1.5 text-sm cursor-pointer">
-            <Checkbox checked={sortLines} onCheckedChange={v => setSortLines(!!v)} />
-            Sort lines
-          </label>
-          <label className="flex items-center gap-1.5 text-sm cursor-pointer">
-            <Checkbox checked={trimLines} onCheckedChange={v => setTrimLines(!!v)} />
-            Trim lines
-          </label>
-        </div>
-        <div className="flex items-center gap-2 ml-auto sm:ml-0">
-          <Button onClick={handleConvert} className="gap-2"><ArrowRightLeft className="h-4 w-4" />Remove Duplicates</Button>
-          <Button variant="outline" onClick={swapInputOutput} className="gap-2"><ArrowRightLeft className="h-4 w-4 rotate-90" /></Button>
-          <Button variant="ghost" onClick={clearAll} className="gap-2 text-destructive hover:text-destructive"><Eraser className="h-4 w-4" />Clear</Button>
-        </div>
-      </div>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>Remove Duplicate Lines</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <div className="space-y-4">
-          <Card className="h-full flex flex-col">
-            <CardHeader className="pb-3"><CardTitle className="text-base font-medium">Input Text</CardTitle></CardHeader>
-            <CardContent className="flex-1 min-h-75">
-              <Textarea value={input} onChange={e => setInput(e.target.value)} placeholder="Enter text with duplicate lines..." className="h-full min-h-75 font-mono resize-none" />
-            </CardContent>
-          </Card>
+        <div className="space-y-2">
+          <Label>Enter text (duplicate lines will be removed):</Label>
+          <Textarea
+            placeholder="apple&#10;banana&#10;apple&#10;cherry&#10;banana"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="min-h-[150px] font-mono"
+          />
         </div>
-        <div className="space-y-4">
-          <Card className="h-full flex flex-col">
-            <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
-              <CardTitle className="text-base font-medium">Result (duplicates removed)</CardTitle>
-              <Button variant="ghost" size="sm" className="h-8 gap-1" onClick={copyToClipboard}><Copy className="h-3 w-3" />Copy</Button>
-            </CardHeader>
-            <CardContent className="flex-1 min-h-75">
-              <Textarea value={output} readOnly placeholder="Result will appear here..." className="h-full min-h-75 font-mono resize-none bg-muted/50" />
-            </CardContent>
-          </Card>
-        </div>
-      </div>
 
-      <Card>
-        <CardHeader><CardTitle className="flex items-center gap-2 text-base"><span className="text-xl">💡</span>Usage</CardTitle></CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-2">
-              <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li><b>Remove all</b>: Removes all duplicate lines, keeping only first occurrence</li>
-                <li><b>Consecutive only</b>: Removes only consecutive duplicate lines</li>
-                <li><b>Keep unique only</b>: Keeps only lines that appear exactly once</li>
-              </ul>
-            </div>
-            <div className="space-y-2">
-              <ul className="list-disc pl-4 text-sm text-muted-foreground space-y-1">
-                <li>Newline options: preserve empty lines, filter them, or delete them</li>
-                <li>Enable "Sort lines" to alphabetically sort the output</li>
-                <li>Enable "Trim lines" to remove leading/trailing whitespace</li>
-              </ul>
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="caseSensitive"
+            checked={caseSensitive}
+            onChange={(e) => setCaseSensitive(e.target.checked)}
+            className="h-4 w-4"
+          />
+          <Label htmlFor="caseSensitive" className="text-sm font-normal">
+            Case sensitive
+          </Label>
+        </div>
+
+        <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
+          <p className="font-medium mb-1">About removing duplicates:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Only the first occurrence of each line is kept</li>
+            <li>Empty lines are preserved</li>
+            <li>Use "Case sensitive" to treat uppercase and lowercase as different</li>
+          </ul>
+        </div>
+
+        <div className="flex gap-2">
+          <Button onClick={handleProcess} className="flex-1">
+            Remove Duplicates
+          </Button>
+          <Button onClick={handleClear} variant="outline">
+            Clear
+          </Button>
+        </div>
+
+        {output && (
+          <div className="space-y-2">
+            <Label>Unique lines:</Label>
+            <div className="rounded-lg border bg-muted/50 p-4">
+              <pre className="whitespace-pre-wrap text-sm">{output}</pre>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

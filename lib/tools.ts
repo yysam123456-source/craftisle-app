@@ -4587,6 +4587,165 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["list-reverse", "list-shuffle"],
   },
 
+
+  
+  // ==================== String Tools (Batch 11) ====================
+  "string-uppercase": {
+    title: "Uppercase Text",
+    desc: "Convert text to uppercase",
+    icon: "🔠",
+    category: CATEGORIES.text,
+    seoTitle: "Uppercase Text Free — Online Tool | Craftisle",
+    seoDesc: "Free uppercase text online tool. Convert text to uppercase instantly. 100% browser-based.",
+    seoKeywords: ["uppercase text", "convert to uppercase", "text to uppercase", "uppercase converter"],
+    description: "Convert text to uppercase. Useful for formatting text, creating headings, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text to convert." },
+      { heading: "Convert", text: "Click Convert to Uppercase. The text is converted." },
+      { heading: "Copy", text: "Copy the uppercase text for use." },
+    ],
+    useCases: [
+      { title: "Format text", text: "Convert text to uppercase for headings." },
+      { title: "Create headings", text: "Use uppercase for section headings." },
+      { title: "Text processing", text: "Convert case as part of processing pipeline." },
+    ],
+    faq: [
+      { q: "Does it handle non-ASCII characters?", a: "Yes, Unicode characters are handled correctly." },
+      { q: "Is there a lowercase tool?", a: "Currently only uppercase is supported. Lowercase may be added in future." },
+    ],
+    relatedTools: ["string-lowercase", "randomize-case"],
+  },
+
+  "randomize-case": {
+    title: "Randomize Case",
+    desc: "Randomly change text case",
+    icon: "🎲",
+    category: CATEGORIES.text,
+    seoTitle: "Randomize Case Free — Online Tool | Craftisle",
+    seoDesc: "Free randomize case online tool. Randomly change text case for each character. 100% browser-based.",
+    seoKeywords: ["randomize case", "random case", "mix case", "text case randomizer"],
+    description: "Randomly change text case for each character. Useful for creating visual effects, testing, and fun text transformations.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text to randomize." },
+      { heading: "Randomize", text: "Click Randomize Case. Each character's case is randomized." },
+      { heading: "Copy", text: "Copy the randomized text for use." },
+    ],
+    useCases: [
+      { title: "Create visual effects", text: "Randomize case for artistic text." },
+      { title: "Testing", text: "Test text processing with random case." },
+      { title: "Fun transformations", text: "Create fun text variations." },
+    ],
+    faq: [
+      { q: "Is the randomization truly random?", a: "Yes, each character has 50% chance of being uppercase." },
+      { q: "Can I control the randomness?", a: "No, each click generates a new random pattern." },
+    ],
+    relatedTools: ["string-reverse", "string-uppercase"],
+  },
+
+  "string-remove-duplicates": {
+    title: "Remove Duplicate Lines",
+    desc: "Remove duplicate lines from text",
+    icon: "✨",
+    category: CATEGORIES.text,
+    seoTitle: "Remove Duplicate Lines Free — Online Tool | Craftisle",
+    seoDesc: "Free remove duplicates online tool. Remove duplicate lines from text. Supports case-sensitive/insensitive. 100% browser-based.",
+    seoKeywords: ["remove duplicates", "unique lines", "deduplicate", "delete duplicate lines"],
+    description: "Remove duplicate lines from text. Keeps only the first occurrence of each line. Supports case-sensitive and case-insensitive modes. Useful for cleaning data, removing redundancies, and list processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with multiple lines." },
+      { heading: "Configure", text: "Toggle case sensitivity." },
+      { heading: "Remove", text: "Click Remove Duplicates. Duplicate lines are removed." },
+    ],
+    useCases: [
+      { title: "Clean data", text: "Remove duplicate entries from datasets." },
+      { title: "Deduplicate lists", text: "Remove duplicate items from lists." },
+      { title: "Process text", text: "Remove redundancies in text processing." },
+    ],
+    faq: [
+      { q: "What is case-insensitive mode?", a: "Treats 'Apple' and 'apple' as duplicates." },
+      { q: "Does it preserve order?", a: "Yes, only the first occurrence of each line is kept." },
+    ],
+    relatedTools: ["list-sort", "list-duplicate"],
+  },
+
+  "string-truncate": {
+    title: "Truncate Text",
+    desc: "Truncate text to specified length",
+    icon: "✂️",
+    category: CATEGORIES.text,
+    seoTitle: "Truncate Text Free — Online Tool | Craftisle",
+    seoDesc: "Free truncate text online tool. Truncate text to specified length. Adds '...' if truncated. 100% browser-based.",
+    seoKeywords: ["truncate text", "limit text length", "shorten text", "text truncation"],
+    description: "Truncate text to specified length. Adds '...' if text exceeds the length. Useful for previewing, limiting display length, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text to truncate." },
+      { heading: "Configure", text: "Set maximum length." },
+      { heading: "Truncate", text: "Click Truncate. Text is truncated to specified length." },
+    ],
+    useCases: [
+      { title: "Preview text", text: "Truncate text for preview display." },
+      { title: "Limit display", text: "Truncate text to fit display width." },
+      { title: "Text processing", text: "Truncate text as part of processing pipeline." },
+    ],
+    faq: [
+      { q: "What happens to truncated text?", a: "Adds '...' to indicate truncation." },
+      { q: "Can I truncate without '...'?", a: "Currently always adds '...'. May add option in future." },
+    ],
+    relatedTools: ["string-reverse", "randomize-case"],
+  },
+
+  "string-quote": {
+    title: "Quote Text",
+    desc: "Add quotes to text",
+    icon: "💬",
+    category: CATEGORIES.text,
+    seoTitle: "Quote Text Free — Online Tool | Craftisle",
+    seoDesc: "Free quote text online tool. Add double, single, or backtick quotes to text. 100% browser-based.",
+    seoKeywords: ["quote text", "add quotes", "wrap in quotes", "text quoting"],
+    description: "Add quotes to text. Supports double quotes, single quotes, and backtick quotes. Useful for formatting text, preparing code, and text processing.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text to quote." },
+      { heading: "Configure", text: "Choose quote type (double/single/backtick)." },
+      { heading: "Quote", text: "Click Quote. Quotes are added to text." },
+    ],
+    useCases: [
+      { title: "Format text", text: "Add quotes to text for formatting." },
+      { title: "Prepare code", text: "Add backtick quotes for code snippets." },
+      { title: "Text processing", text: "Add quotes as part of processing pipeline." },
+    ],
+    faq: [
+      { q: "What quote types are supported?", a: "Double quotes, single quotes, and backtick quotes." },
+      { q: "Can I quote multiple lines?", a: "Yes, each line is quoted separately." },
+    ],
+    relatedTools: ["string-reverse", "string-uppercase"],
+  },
+
+  "string-palindrome": {
+    title: "Check Palindrome",
+    desc: "Check if text is a palindrome",
+    icon: "🔤",
+    category: CATEGORIES.text,
+    seoTitle: "Check Palindrome Free — Online Tool | Craftisle",
+    seoDesc: "Free check palindrome online tool. Check if text is a palindrome (reads same forwards and backwards). 100% browser-based.",
+    seoKeywords: ["check palindrome", "is palindrome", "palindrome checker", "mirror text"],
+    description: "Check if text is a palindrome (reads same forwards and backwards). Case-insensitive, ignores non-alphanumeric characters. Useful for word games, text analysis, and fun challenges.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text to check (one per line)." },
+      { heading: "Check", text: "Click Check. Results show if each line is a palindrome." },
+      { heading: "Review", text: "Review the results and use for word games." },
+    ],
+    useCases: [
+      { title: "Word games", text: "Check if words are palindromes for games." },
+      { title: "Text analysis", text: "Analyze text for palindromic patterns." },
+      { title: "Fun challenges", text: "Challenge friends to find palindromes." },
+    ],
+    faq: [
+      { q: "What is a palindrome?", a: "Text that reads the same forwards and backwards (e.g., 'racecar')." },
+      { q: "Is case important?", a: "No, case-insensitive check ('Racecar' is a palindrome)." },
+    ],
+    relatedTools: ["string-reverse", "randomize-case"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",

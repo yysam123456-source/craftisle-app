@@ -23,7 +23,7 @@ export default function RotateTool() {
       return;
     }
 
-    const lines = input.split("\n").filter(line => line.trim() !== "");
+    const text = input;
     const numPositions = parseInt(positions, 10);
     
     if (isNaN(numPositions) || numPositions < 1) {
@@ -32,15 +32,8 @@ export default function RotateTool() {
       return;
     }
 
-    const rotated = [...lines];
-    for (let i = 0; i < numPositions; i++) {
-      const first = rotated.shift();
-      if (first !== undefined) {
-        rotated.push(first);
-      }
-    }
-    
-    setOutput(rotated.join("\n"));
+    const rotated = text.slice(numPositions) + text.slice(0, numPositions);
+    setOutput(rotated);
   };
 
   const handleClear = () => {
@@ -52,7 +45,7 @@ export default function RotateTool() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Rotate Lines</CardTitle>
+        <CardTitle>Rotate Text</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
@@ -62,17 +55,17 @@ export default function RotateTool() {
         )}
 
         <div className="space-y-2">
-          <Label>Enter text (lines will be rotated):</Label>
+          <Label>Enter text (will be rotated):</Label>
           <Textarea
-            placeholder="Line 1&#10;Line 2&#10;Line 3&#10;Line 4"
+            placeholder="Hello World"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="min-h-[150px] font-mono"
+            className="min-h-[100px] font-mono"
           />
         </div>
 
         <div className="space-y-2">
-          <Label>Number of positions to rotate:</Label>
+          <Label>Positions to rotate:</Label>
           <Input
             type="number"
             min="1"
@@ -85,9 +78,8 @@ export default function RotateTool() {
         <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
           <p className="font-medium mb-1">About rotation:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Moves first N lines to the end</li>
-            <li>Example: [1,2,3] with 1 position → [2,3,1]</li>
-            <li>Use "1" to rotate by 1 position</li>
+            <li>Moves first N characters to the end</li>
+            <li>Example: "Hello" with 2 positions → "lloHe"</li>
           </ul>
         </div>
 

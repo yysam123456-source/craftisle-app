@@ -12,7 +12,7 @@ export default function TruncateTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
-  const [count, setCount] = useState("10");
+  const [length, setLength] = useState("100");
 
   const handleProcess = () => {
     setError("");
@@ -23,17 +23,20 @@ export default function TruncateTool() {
       return;
     }
 
-    const lines = input.split("\n");
-    const numLines = parseInt(count, 10);
+    const numLength = parseInt(length, 10);
     
-    if (isNaN(numLines) || numLines < 1) {
-      setError("Number of lines must be a positive integer");
+    if (isNaN(numLength) || numLength < 1) {
+      setError("Truncation length must be a positive integer");
       setOutput("");
       return;
     }
 
-    const truncated = lines.slice(0, numLines);
-    setOutput(truncated.join("\n"));
+    let result = input;
+    if (result.length > numLength) {
+      result = result.slice(0, numLength) + "...";
+    }
+    
+    setOutput(result);
   };
 
   const handleClear = () => {
@@ -45,7 +48,7 @@ export default function TruncateTool() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Truncate Lines</CardTitle>
+        <CardTitle>Truncate Text</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
@@ -55,9 +58,9 @@ export default function TruncateTool() {
         )}
 
         <div className="space-y-2">
-          <Label>Enter text (will keep only first N lines):</Label>
+          <Label>Enter text (will be truncated):</Label>
           <Textarea
-            placeholder="Line 1&#10;Line 2&#10;Line 3&#10;Line 4&#10;Line 5"
+            placeholder="This is a long text that will be truncated..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="min-h-[150px] font-mono"
@@ -65,12 +68,12 @@ export default function TruncateTool() {
         </div>
 
         <div className="space-y-2">
-          <Label>Number of lines to keep:</Label>
+          <Label>Max length:</Label>
           <Input
             type="number"
             min="1"
-            value={count}
-            onChange={(e) => setCount(e.target.value)}
+            value={length}
+            onChange={(e) => setLength(e.target.value)}
             className="w-full"
           />
         </div>
@@ -78,9 +81,9 @@ export default function TruncateTool() {
         <div className="rounded-lg bg-muted/30 p-3 text-sm text-muted-foreground">
           <p className="font-medium mb-1">About truncation:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Keeps only the first N lines</li>
-            <li>Remaining lines are discarded</li>
-            <li>Use "10" to keep first 10 lines</li>
+            <li>Keeps only first N characters</li>
+            <li>Adds "..." if text exceeds length</li>
+            <li>Default length is 100 characters</li>
           </ul>
         </div>
 
@@ -95,7 +98,7 @@ export default function TruncateTool() {
 
         {output && (
           <div className="space-y-2">
-            <Label>Truncated (first {count} lines):</Label>
+            <Label>Truncated:</Label>
             <div className="rounded-lg border bg-muted/50 p-4">
               <pre className="whitespace-pre-wrap text-sm">{output}</pre>
             </div>

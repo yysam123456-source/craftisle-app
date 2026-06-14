@@ -6,13 +6,18 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export default function QuoteTool() {
+export default function RandomizeCaseTool() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
-  const [quoteType, setQuoteType] = useState<"double" | "single" | "backtick">("double");
+
+  const randomizeCase = (text: string): string => {
+    return text
+      .split("")
+      .map((char) => (Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase()))
+      .join("");
+  };
 
   const handleProcess = () => {
     setError("");
@@ -23,11 +28,7 @@ export default function QuoteTool() {
       return;
     }
 
-    let quoteChar = '"';
-    if (quoteType === "single") quoteChar = "'";
-    if (quoteType === "backtick") quoteChar = "`";
-
-    const result = `${quoteChar}${input}${quoteChar}`;
+    const result = randomizeCase(input);
     setOutput(result);
   };
 
@@ -40,7 +41,7 @@ export default function QuoteTool() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Quote Text</CardTitle>
+        <CardTitle>Randomize Case</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
@@ -50,32 +51,18 @@ export default function QuoteTool() {
         )}
 
         <div className="space-y-2">
-          <Label>Enter text (will be quoted):</Label>
+          <Label>Enter text (case will be randomized):</Label>
           <Textarea
             placeholder="Hello World"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="min-h-[100px] font-mono"
+            className="min-h-[150px] font-mono"
           />
-        </div>
-
-        <div className="space-y-2">
-          <Label>Quote type:</Label>
-          <Select value={quoteType} onValueChange={(v) => setQuoteType(v as "double" | "single" | "backtick")}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="double">Double quotes (")</SelectItem>
-              <SelectItem value="single">Single quotes (')</SelectItem>
-              <SelectItem value="backtick">Backtick quotes (`)</SelectItem>
-            </SelectContent>
-          </Select>
         </div>
 
         <div className="flex gap-2">
           <Button onClick={handleProcess} className="flex-1">
-            Quote
+            Randomize Case
           </Button>
           <Button onClick={handleClear} variant="outline">
             Clear
@@ -84,7 +71,7 @@ export default function QuoteTool() {
 
         {output && (
           <div className="space-y-2">
-            <Label>Quoted:</Label>
+            <Label>Randomized:</Label>
             <div className="rounded-lg border bg-muted/50 p-4">
               <pre className="whitespace-pre-wrap text-sm">{output}</pre>
             </div>

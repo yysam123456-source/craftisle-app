@@ -21,9 +21,8 @@ export default function ReverseTool() {
       return;
     }
 
-    const lines = input.split("\n");
-    const reversed = lines.reverse();
-    setOutput(reversed.join("\n"));
+    const result = input.split("").reverse().join("");
+    setOutput(result);
   };
 
   const handleClear = () => {
@@ -35,7 +34,7 @@ export default function ReverseTool() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Reverse Lines</CardTitle>
+        <CardTitle>Reverse Text</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
@@ -45,12 +44,12 @@ export default function ReverseTool() {
         )}
 
         <div className="space-y-2">
-          <Label>Enter text (lines will be reversed):</Label>
+          <Label>Enter text (will be reversed):</Label>
           <Textarea
-            placeholder="Line 1&#10;Line 2&#10;Line 3"
+            placeholder="Hello World"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="min-h-[200px] font-mono"
+            className="min-h-[150px] font-mono"
           />
         </div>
 
