@@ -326,18 +326,39 @@ export function getRichInfoResourceIds(): Set<string> {
   const all = getAllResources();
   const set = new Set<string>();
 
-  // 1. 有 AI Review 的资源
+  // 1. 有 AI Review 的资源（高质量内容）
   for (const r of all) {
     if (hasReviewFor(r)) { set.add(r.id); }
   }
 
-  // 2. 综合评分 TOP 100 的资源（热门资源，自动更新）
+  // 2. 综合评分 TOP 500 的资源（热门资源，自动更新）—— 从 TOP 100 扩展到 TOP 500
   const topByScore = [...all]
     .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
-    .slice(0, 100)
+    .slice(0, 500)
     .map(r => r.id);
   for (const id of topByScore) {
     set.add(id);
+  }
+
+  // 3. GitHub Stars > 500 的资源（有一定知名度的开源工具）
+  for (const r of all) {
+    if (r.githubStars && r.githubStars > 500) {
+      set.add(r.id);
+    }
+  }
+
+  // 4. 有描述且描述长度 > 50 字符的资源（有一定信息量）
+  for (const r of all) {
+    if (r.description && r.description.length > 50) {
+      set.add(r.id);
+    }
+  }
+
+  // 5. 有标签的资源（有一定元数据）
+  for (const r of all) {
+    if (r.tags && r.tags.length > 0) {
+      set.add(r.id);
+    }
   }
 
   return set;

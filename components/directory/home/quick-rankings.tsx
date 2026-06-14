@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, ArrowRight, Trophy } from "lucide-react";
-import { getHotResourcesByScore, getAllResources, calculateResourceScore } from "@/lib/fmhy-data";
+import { getHotResourcesByScore, getAllResources, calculateResourceScore, getRichInfoResourceIds } from "@/lib/fmhy-data";
 
 /**
  * Quick Rankings (homepage version)
@@ -71,6 +71,7 @@ export function QuickRankings() {
 
 function QuickRankingList({ category }: { category: (typeof RANKING_CATEGORIES)[0] }) {
   const resources = getTopResourcesByCategory(category.id, 5);
+  const richInfoIds = getRichInfoResourceIds();
 
   if (resources.length === 0) return null;
 
@@ -82,50 +83,104 @@ function QuickRankingList({ category }: { category: (typeof RANKING_CATEGORIES)[
       </div>
 
       {resources.map((resource, index) => {
-        const href = `/directory/resource/${resource.id}`;
+        const hasDetailPage = richInfoIds.has(resource.id);
+        const detailHref = `/directory/resource/${resource.id}`;
+        const officialUrl = resource.url || "#";
         const score = calculateResourceScore(resource);
+        
         return (
-          <Link key={resource.id} href={href} className="group">
-            <Card className="transition-all hover:border-primary/40 hover:shadow-sm">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-4">
-                  {/* Rank */}
-                  <div className={`rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg ${
-                    index === 0 ? "bg-yellow-500/10 text-yellow-600" :
-                    index === 1 ? "bg-gray-500/10 text-gray-600" :
-                    index === 2 ? "bg-orange-500/10 text-orange-600" :
-                    "bg-muted/50 text-muted-foreground"
-                  }`}>
-                    {index + 1}
-                  </div>
-
-                  {/* Resource info */}
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-sm group-hover:text-primary transition-colors truncate">
-                      {resource.name}
-                    </h4>
-                    <p className="text-xs text-muted-foreground truncate">
-                      {resource.description?.slice(0, 60) || "No description"}
-                    </p>
-                  </div>
-
-                  {/* Score + GitHub Stars */}
-                  <div className="flex items-center gap-3 text-sm">
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                      <Trophy className="h-3.5 w-3.5 text-yellow-500" />
-                      <span>{score}</span>
-                    </div>
-                    {resource.githubStars && resource.githubStars > 0 && (
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
-                        <span>{(resource.githubStars / 1000).toFixed(1)}K</span>
+          <div key={resource.id} className="group">
+            {hasDetailPage ? (
+              <Link href={detailHref} className="block">
+                <Card className="transition-all hover:border-primary/40 hover:shadow-sm">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-4">
+                      {/* Rank */}
+                      <div className={`rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg ${
+                        index === 0 ? "bg-yellow-500/10 text-yellow-600" :
+                        index === 1 ? "bg-gray-500/10 text-gray-600" :
+                        index === 2 ? "bg-orange-500/10 text-orange-600" :
+                        "bg-muted/50 text-muted-foreground"
+                      }`}>
+                        {index + 1}
                       </div>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+
+                      {/* Resource info */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-sm group-hover:text-primary transition-colors truncate">
+                          {resource.name}
+                        </h4>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {resource.description?.slice(0, 60) || "No description"}
+                        </p>
+                      </div>
+
+                      {/* Score + GitHub Stars */}
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Trophy className="h-3.5 w-3.5 text-yellow-500" />
+                          <span>{score}</span>
+                        </div>
+                        {resource.githubStars && resource.githubStars > 0 && (
+                          <div className="flex items-center gap-1 text-muted-foreground">
+                            <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
+                            <span>{(resource.githubStars / 1000).toFixed(1)}K</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ) : (
+              <a 
+                href={officialUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Card className="transition-all hover:border-primary/40 hover:shadow-sm">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-4">
+                      {/* Rank */}
+                      <div className={`rounded-lg w-10 h-10 flex items-center justify-center font-bold text-lg ${
+                        index === 0 ? "bg-yellow-500/10 text-yellow-600" :
+                        index === 1 ? "bg-gray-500/10 text-gray-600" :
+                        index === 2 ? "bg-orange-500/10 text-orange-600" :
+                        "bg-muted/50 text-muted-foreground"
+                      }`}>
+                        {index + 1}
+                      </div>
+
+                      {/* Resource info */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold text-sm group-hover:text-primary transition-colors truncate">
+                          {resource.name}
+                        </h4>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {resource.description?.slice(0, 60) || "No description"}
+                        </p>
+                      </div>
+
+                      {/* Score + GitHub Stars */}
+                      <div className="flex items-center gap-3 text-sm">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Trophy className="h-3.5 w-3.5 text-yellow-500" />
+                          <span>{score}</span>
+                        </div>
+                        {resource.githubStars && resource.githubStars > 0 && (
+                          <div className="flex items-center gap-1 text-muted-foreground">
+                            <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
+                            <span>{(resource.githubStars / 1000).toFixed(1)}K</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            )}
+          </div>
         );
       })}
     </div>
