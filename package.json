@@ -16,11 +16,11 @@
     "kill-node": "taskkill /F /IM node.exe",
     "sync:fmhy": "node scripts/sync-fmhy.mjs",
     "sync:sources": "node scripts/scrape-sources.mjs",
-    "update:fmhy": "node scripts/update-fmhy.js",
-    "update:github-stars": "node scripts/update-github-stars.js",
-    "update:producthunt": "node scripts/update-producthunt.js",
-    "update:alternativeto": "node scripts/update-alternativeto.js",
-    "update:awesome-lists": "node scripts/update-awesome-lists.js"
+    "update:fmhy": "node scripts/sync-fmhy.mjs",
+    "update:github-stars": "node scripts/update-github-stars.mjs",
+    "update:producthunt": "node scripts/update-producthunt.mjs",
+    "update:alternativeto": "node scripts/update-alternativeto.mjs",
+    "update:awesome-lists": "node scripts/scrape-sources.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

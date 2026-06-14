@@ -2,7 +2,9 @@ name: Update Directory Data
 
 on:
   schedule:
-    # 每天凌晨 2 点（北京时间）运行
+    # FMHY + Awesome Lists：每周一凌晨 2 点（北京时间）
+    - cron: '0 18 * * 1'
+    # GitHub Stars + Product Hunt：每天凌晨 2 点（北京时间）
     - cron: '0 18 * * *'
   workflow_dispatch: # 允许手动触发
 
@@ -24,7 +26,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add lib/fmhy-data.ts
+          git add public/data/fmhy-*.json
           git diff --staged --quiet || (git commit -m "Auto-update: FMHY data ($(date +'%Y-%m-%d'))" && git push)
 
   update-github-stars:
@@ -46,7 +48,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add lib/fmhy-data.ts
+          git add public/data/fmhy-resources.json
           git diff --staged --quiet || (git commit -m "Auto-update: GitHub Stars ($(date +'%Y-%m-%d'))" && git push)
 
   update-producthunt:
@@ -68,7 +70,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add lib/fmhy-data.ts
+          git add public/data/fmhy-resources.json
           git diff --staged --quiet || (git commit -m "Auto-update: Product Hunt data ($(date +'%Y-%m-%d'))" && git push)
 
   update-alternativeto:
@@ -88,7 +90,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add lib/fmhy-data.ts
+          git add public/data/alternatives-*.json lib/alternatives.ts
           git diff --staged --quiet || (git commit -m "Auto-update: AlternativeTo data ($(date +'%Y-%m-%d'))" && git push)
 
   update-awesome-lists:
@@ -108,5 +110,5 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add lib/fmhy-data.ts
+          git add public/data/*-resources.json public/data/all-sources-index.json
           git diff --staged --quiet || (git commit -m "Auto-update: Awesome Lists data ($(date +'%Y-%m-%d'))" && git push)

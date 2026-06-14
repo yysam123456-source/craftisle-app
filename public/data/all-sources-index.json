@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-09T01:56:54.631Z",
-  "totalResources": 3942,
+  "generatedAt": "2026-06-14T13:44:07.315Z",
+  "totalResources": 3948,
   "totalCategories": 202,
   "sources": [
     {
@@ -8,7 +8,7 @@
       "name": "Free for Dev",
       "type": "dev-tools",
       "icon": "🛠️",
-      "resourceCount": 1232,
+      "resourceCount": 1235,
       "categoryCount": 57
     },
     {
@@ -16,7 +16,7 @@
       "name": "Public APIs",
       "type": "apis",
       "icon": "🔌",
-      "resourceCount": 1534,
+      "resourceCount": 1543,
       "categoryCount": 51
     },
     {
@@ -24,7 +24,7 @@
       "name": "Awesome Self-Hosted",
       "type": "selfhosted",
       "icon": "🏠",
-      "resourceCount": 1176,
+      "resourceCount": 1170,
       "categoryCount": 94
     }
   ]

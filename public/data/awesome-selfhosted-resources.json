@@ -4,7 +4,7 @@
     "name": "Awesome Self-Hosted",
     "type": "selfhosted",
     "icon": "🏠",
-    "resourceCount": 1176,
+    "resourceCount": 1170,
     "categoryCount": 94
   },
   "categories": [
@@ -588,10 +588,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Nodejs/Docker",
-      "githubStars": 39,
-      "githubLastUpdated": "2026-06-02T21:17:20Z",
-      "githubLicense": "MIT"
+      "language": "Nodejs/Docker"
     },
     {
       "id": "awesome-selfhosted--aptabase",
@@ -672,10 +669,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Nodejs/Docker",
-      "githubStars": 197,
-      "githubLastUpdated": "2026-06-09T16:39:32Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Nodejs/Docker"
     },
     {
       "id": "awesome-selfhosted--goaccess",
@@ -786,19 +780,6 @@
       "name": "Middleware",
       "url": "https://middlewarehq.com/",
       "description": "Tool designed to help engineering leaders measure and analyze the effectiveness of their teams using the DORA metrics",
-      "category": "sh-analytics",
-      "source": "awesome-selfhosted",
-      "tags": [],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "",
-      "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--mixpost",
-      "name": "Mixpost",
-      "url": "https://mixpost.app/",
-      "description": "Social media management software to easily create, schedule, publish, and manage social media content in one place (alternative to Hootsuite and Buffer)",
       "category": "sh-analytics",
       "source": "awesome-selfhosted",
       "tags": [],
@@ -990,6 +971,22 @@
       "language": ""
     },
     {
+      "id": "awesome-selfhosted--bichon",
+      "name": "Bichon",
+      "url": "https://github.com/rustmailer/bichon",
+      "description": "Email archiving server that syncs from IMAP accounts, indexes emails for full-text search, and provides a REST API. No external database required, includes WebUI with multi-account support",
+      "category": "sh-archiving-and-digital-preservation-dp",
+      "source": "awesome-selfhosted",
+      "tags": [
+        "AGPL-3.0",
+        "Rust/Docker"
+      ],
+      "isFree": true,
+      "isOpenSource": true,
+      "license": "AGPL-3.0",
+      "language": "Rust/Docker"
+    },
+    {
       "id": "awesome-selfhosted--bitmagnet",
       "name": "bitmagnet",
       "url": "https://bitmagnet.io",
@@ -1055,10 +1052,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker",
-      "githubStars": 1938,
-      "githubLastUpdated": "2026-06-08T17:37:57Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--omeka-s",
@@ -1126,10 +1120,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Go",
-      "githubStars": 2199,
-      "githubLastUpdated": "2026-06-03T21:05:27Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Go"
     },
     {
       "id": "awesome-selfhosted--activepieces",
@@ -1223,10 +1214,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker",
-      "githubStars": 1258,
-      "githubLastUpdated": "2026-05-27T12:06:44Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--dagu",
@@ -1265,10 +1253,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 231,
-      "githubLastUpdated": "2025-09-05T22:45:21Z",
-      "githubLicense": "WTFPL"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--flowctl",
@@ -1297,10 +1282,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 543,
-      "githubLastUpdated": "2026-06-09T04:24:18Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--handbrake-web",
@@ -1316,10 +1298,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker",
-      "githubStars": 776,
-      "githubLastUpdated": "2026-03-27T02:31:22Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--healthchecks",
@@ -1348,10 +1327,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Ruby",
-      "githubStars": 49449,
-      "githubLastUpdated": "2026-06-09T17:07:53Z",
-      "githubLicense": "MIT"
+      "language": "Ruby"
     },
     {
       "id": "awesome-selfhosted--kestra",
@@ -1406,10 +1382,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker",
-      "githubStars": 2540,
-      "githubLastUpdated": "2026-05-05T19:49:04Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--mylar3",
@@ -1477,10 +1450,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "BSD-3-Clause",
-      "language": "Go/Docker",
-      "githubStars": 1382,
-      "githubLastUpdated": "2026-06-10T09:30:28Z",
-      "githubLicense": "BSD-3-Clause"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--antville",
@@ -1577,10 +1547,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 315,
-      "githubLastUpdated": "2026-06-01T21:53:45Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--ghost",
@@ -1817,10 +1784,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Python/deb",
-      "githubStars": 7139,
-      "githubLastUpdated": "2026-06-06T05:37:32Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Python/deb"
     },
     {
       "id": "awesome-selfhosted--digibunch",
@@ -1849,29 +1813,13 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Haskell",
-      "githubStars": 890,
-      "githubLastUpdated": "2026-06-09T03:52:59Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Haskell"
     },
     {
       "id": "awesome-selfhosted--firefox-account-server",
       "name": "Firefox Account Server",
       "url": "https://mozilla-services.readthedocs.io/en/latest/howtos/run-fxa.html",
       "description": "Host your own Firefox accounts server",
-      "category": "sh-bookmarks-and-link-sharing",
-      "source": "awesome-selfhosted",
-      "tags": [],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "",
-      "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--grimoire",
-      "name": "Grimoire",
-      "url": "https://grimoire.pro",
-      "description": "Bookmark manager with a modern UI, automatic content & metadata extraction, categorization, filtering, and more. It has fully documented REST API, and Docker image for easy deployment",
       "category": "sh-bookmarks-and-link-sharing",
       "source": "awesome-selfhosted",
       "tags": [],
@@ -1946,10 +1894,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 401,
-      "githubLastUpdated": "2026-03-23T06:20:45Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--readeck",
@@ -1975,10 +1920,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 815,
-      "githubLastUpdated": "2026-04-15T20:09:10Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--shaarli",
@@ -1991,10 +1933,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 3868,
-      "githubLastUpdated": "2026-05-28T21:40:25Z",
-      "githubLicense": "NOASSERTION"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--shiori",
@@ -2010,10 +1949,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker",
-      "githubStars": 11492,
-      "githubLastUpdated": "2026-02-01T10:14:02Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--slash",
@@ -2029,10 +1965,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker",
-      "githubStars": 3160,
-      "githubLastUpdated": "2026-03-01T10:43:30Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--syncmarks",
@@ -2087,10 +2020,20 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "PHP",
-      "githubStars": 711,
-      "githubLastUpdated": "2026-06-01T20:21:19Z",
-      "githubLicense": "MIT"
+      "language": "PHP"
+    },
+    {
+      "id": "awesome-selfhosted--keeper-sh",
+      "name": "Keeper.sh",
+      "url": "https://keeper.sh/",
+      "description": "Calendar syncing tool that pulls and pushes events between calendar sources and destinations via iCal/ICS or OAuth, with support for anonymized busy/free events",
+      "category": "sh-calendar-contacts",
+      "source": "awesome-selfhosted",
+      "tags": [],
+      "isFree": true,
+      "isOpenSource": true,
+      "license": "",
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--manage-my-damn-life",
@@ -2145,10 +2088,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Python/deb",
-      "githubStars": 576,
-      "githubLastUpdated": "2026-06-08T09:44:20Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Python/deb"
     },
     {
       "id": "awesome-selfhosted--anycable",
@@ -2177,10 +2117,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python/Docker/deb",
-      "githubStars": 16710,
-      "githubLastUpdated": "2026-06-09T03:43:11Z",
-      "githubLicense": "BSD-2-Clause"
+      "language": "Python/Docker/deb"
     },
     {
       "id": "awesome-selfhosted--centrifugo",
@@ -2245,10 +2182,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1459,
-      "githubLastUpdated": "2026-04-17T11:59:48Z",
-      "githubLicense": "Apache-2.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--element",
@@ -2368,10 +2302,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "C#",
-      "githubStars": 873,
-      "githubLastUpdated": "2026-03-24T18:32:38Z",
-      "githubLicense": "MIT"
+      "language": "C#"
     },
     {
       "id": "awesome-selfhosted--novu",
@@ -2439,10 +2370,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "ISC",
-      "language": "Go",
-      "githubStars": 359,
-      "githubLastUpdated": "2026-01-10T16:49:35Z",
-      "githubLicense": "ISC"
+      "language": "Go"
     },
     {
       "id": "awesome-selfhosted--retroshare",
@@ -2510,10 +2438,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python",
-      "githubStars": 414,
-      "githubLastUpdated": "2026-05-20T01:25:36Z",
-      "githubLicense": "MIT"
+      "language": "Python"
     },
     {
       "id": "awesome-selfhosted--simplex-chat",
@@ -2529,10 +2454,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Haskell",
-      "githubStars": 11228,
-      "githubLastUpdated": "2026-06-10T11:40:34Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Haskell"
     },
     {
       "id": "awesome-selfhosted--spectrum-2",
@@ -2649,10 +2571,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 2603,
-      "githubLastUpdated": "2026-05-29T17:22:27Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--zulip",
@@ -2731,25 +2650,6 @@
       "isOpenSource": true,
       "license": "",
       "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--emailwiz",
-      "name": "emailwiz",
-      "url": "https://github.com/LukeSmithxyz/emailwiz",
-      "description": "Luke Smith's bash script to completely automate the setup of a Postfix/Dovecot/SpamAssassin/OpenDKIM server on debian",
-      "category": "sh-communication-email-complete-solutions",
-      "source": "awesome-selfhosted",
-      "tags": [
-        "GPL-3.0",
-        "Shell"
-      ],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "GPL-3.0",
-      "language": "Shell",
-      "githubStars": 2159,
-      "githubLastUpdated": "2025-05-04T15:22:26Z",
-      "githubLicense": "GPL-3.0"
     },
     {
       "id": "awesome-selfhosted--inboxen",
@@ -2989,10 +2889,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "BSD-3-Clause",
-      "language": "C",
-      "githubStars": 256,
-      "githubLastUpdated": "2026-05-29T03:42:24Z",
-      "githubLicense": "NOASSERTION"
+      "language": "C"
     },
     {
       "id": "awesome-selfhosted--emailrelay",
@@ -3060,10 +2957,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Python/PHP/Docker",
-      "githubStars": 864,
-      "githubLastUpdated": "2025-08-28T06:05:53Z",
-      "githubLicense": "Apache-2.0"
+      "language": "Python/PHP/Docker"
     },
     {
       "id": "awesome-selfhosted--postfix",
@@ -3303,10 +3197,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 972,
-      "githubLastUpdated": "2026-06-05T16:54:48Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--inspircd",
@@ -4440,10 +4331,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 66,
-      "githubLastUpdated": "2026-06-07T21:14:44Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--indico",
@@ -4680,10 +4568,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Nodejs",
-      "githubStars": 448,
-      "githubLastUpdated": "2026-04-05T10:33:42Z",
-      "githubLicense": "MIT"
+      "language": "Nodejs"
     },
     {
       "id": "awesome-selfhosted--joomla",
@@ -5274,19 +5159,6 @@
       "language": ""
     },
     {
-      "id": "awesome-selfhosted--webdb",
-      "name": "WebDB",
-      "url": "https://webdb.app",
-      "description": "Efficient database IDE",
-      "category": "sh-database-management",
-      "source": "awesome-selfhosted",
-      "tags": [],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "",
-      "language": ""
-    },
-    {
       "id": "awesome-selfhosted--adguard-home",
       "name": "AdGuard Home",
       "url": "https://adguard.com/en/adguard-home/overview.html",
@@ -5404,10 +5276,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/Ruby",
-      "githubStars": 368,
-      "githubLastUpdated": "2026-05-19T14:49:03Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/Ruby"
     },
     {
       "id": "awesome-selfhosted--gotenberg",
@@ -5524,10 +5393,20 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 793,
-      "githubLastUpdated": "2026-06-09T09:13:58Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
+    },
+    {
+      "id": "awesome-selfhosted--simpledms",
+      "name": "SimpleDMS",
+      "url": "https://simpledms.eu",
+      "description": "Easy-to-use, metadata-driven, open-source document management system (DMS) for small businesses that sorts documents almost by itself",
+      "category": "sh-document-management",
+      "source": "awesome-selfhosted",
+      "tags": [],
+      "isFree": true,
+      "isOpenSource": true,
+      "license": "",
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--stirling-pdf",
@@ -5543,10 +5422,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Docker/Java",
-      "githubStars": 80556,
-      "githubLastUpdated": "2026-06-10T11:44:58Z",
-      "githubLicense": "NOASSERTION"
+      "language": "Docker/Java"
     },
     {
       "id": "awesome-selfhosted--atsumeru",
@@ -5572,10 +5448,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 575,
-      "githubLastUpdated": "2026-06-09T16:55:08Z",
-      "githubLicense": "Apache-2.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--calibre-web-automated",
@@ -5591,10 +5464,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker",
-      "githubStars": 5737,
-      "githubLastUpdated": "2026-03-11T17:35:22Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--calibre-web",
@@ -5610,10 +5480,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Python",
-      "githubStars": 17475,
-      "githubLastUpdated": "2026-05-24T08:20:51Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Python"
     },
     {
       "id": "awesome-selfhosted--calibre",
@@ -5684,10 +5551,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "C++",
-      "githubStars": 869,
-      "githubLastUpdated": "2026-03-02T08:23:51Z",
-      "githubLicense": "GPL-3.0"
+      "language": "C++"
     },
     {
       "id": "awesome-selfhosted--komga",
@@ -5937,10 +5801,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "PHP",
-      "githubStars": 4240,
-      "githubLastUpdated": "2026-06-10T11:20:15Z",
-      "githubLicense": "NOASSERTION"
+      "language": "PHP"
     },
     {
       "id": "awesome-selfhosted--opencart",
@@ -6109,10 +5970,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 230,
-      "githubLastUpdated": "2026-01-10T11:13:20Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--commafeed",
@@ -6126,25 +5984,6 @@
       "isOpenSource": true,
       "license": "",
       "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--feedpushr",
-      "name": "Feedpushr",
-      "url": "https://github.com/ncarlier/feedpushr",
-      "description": "Powerful RSS aggregator, able to transform and send articles to many outputs. Single binary, extensible with plugins",
-      "category": "sh-feed-readers",
-      "source": "awesome-selfhosted",
-      "tags": [
-        "GPL-3.0",
-        "Go/Docker"
-      ],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "GPL-3.0",
-      "language": "Go/Docker",
-      "githubStars": 389,
-      "githubLastUpdated": "2026-02-04T22:10:54Z",
-      "githubLicense": "GPL-3.0"
     },
     {
       "id": "awesome-selfhosted--feeds-fun",
@@ -6186,10 +6025,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker",
-      "githubStars": 2102,
-      "githubLastUpdated": "2026-06-03T11:16:51Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--jarr",
@@ -6218,10 +6054,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "CC0-1.0",
-      "language": "PHP",
-      "githubStars": 287,
-      "githubLastUpdated": "2026-01-07T05:17:39Z",
-      "githubLicense": null
+      "language": "PHP"
     },
     {
       "id": "awesome-selfhosted--leed",
@@ -6237,10 +6070,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "PHP",
-      "githubStars": 229,
-      "githubLastUpdated": "2026-04-24T16:22:08Z",
-      "githubLicense": null
+      "language": "PHP"
     },
     {
       "id": "awesome-selfhosted--miniflux",
@@ -6295,10 +6125,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "BSD-3-Clause",
-      "language": "Python",
-      "githubStars": 540,
-      "githubLastUpdated": "2026-05-26T15:23:06Z",
-      "githubLicense": "BSD-3-Clause"
+      "language": "Python"
     },
     {
       "id": "awesome-selfhosted--readflow",
@@ -6327,10 +6154,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Unlicense",
-      "language": "PHP/Docker",
-      "githubStars": 9003,
-      "githubLastUpdated": "2026-06-05T16:24:41Z",
-      "githubLicense": "Unlicense"
+      "language": "PHP/Docker"
     },
     {
       "id": "awesome-selfhosted--rss-monster",
@@ -6346,10 +6170,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "PHP",
-      "githubStars": 468,
-      "githubLastUpdated": "2026-06-09T13:57:17Z",
-      "githubLicense": "MIT"
+      "language": "PHP"
     },
     {
       "id": "awesome-selfhosted--rss2email",
@@ -6365,10 +6186,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-2.0",
-      "language": "Python/deb",
-      "githubStars": 449,
-      "githubLastUpdated": "2025-04-17T23:41:11Z",
-      "githubLicense": "GPL-2.0"
+      "language": "Python/deb"
     },
     {
       "id": "awesome-selfhosted--rsshub",
@@ -6410,10 +6228,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Ruby",
-      "githubStars": 4114,
-      "githubLastUpdated": "2026-06-10T02:50:31Z",
-      "githubLicense": "MIT"
+      "language": "Ruby"
     },
     {
       "id": "awesome-selfhosted--tiny-tiny-rss",
@@ -6455,10 +6270,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go",
-      "githubStars": 3851,
-      "githubLastUpdated": "2026-06-07T21:53:12Z",
-      "githubLicense": "MIT"
+      "language": "Go"
     },
     {
       "id": "awesome-selfhosted--bewcloud",
@@ -6708,10 +6520,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Go",
-      "githubStars": 32819,
-      "githubLastUpdated": "2026-06-10T08:58:13Z",
-      "githubLicense": "Apache-2.0"
+      "language": "Go"
     },
     {
       "id": "awesome-selfhosted--zenko-cloudserver",
@@ -6828,10 +6637,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 636,
-      "githubLastUpdated": "2025-11-30T08:29:59Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--015",
@@ -6912,10 +6718,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "PHP/Docker",
-      "githubStars": 278,
-      "githubLastUpdated": "2025-08-20T10:00:09Z",
-      "githubLicense": "GPL-3.0"
+      "language": "PHP/Docker"
     },
     {
       "id": "awesome-selfhosted--flare",
@@ -6931,10 +6734,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Nodejs",
-      "githubStars": 119,
-      "githubLastUpdated": "2026-06-07T05:07:17Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Nodejs"
     },
     {
       "id": "awesome-selfhosted--gokapi",
@@ -6950,10 +6750,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Go/Docker",
-      "githubStars": 2762,
-      "githubLastUpdated": "2026-05-20T14:23:17Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--goploader",
@@ -7014,10 +6811,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Python/deb",
-      "githubStars": 6988,
-      "githubLastUpdated": "2026-06-10T06:50:00Z",
-      "githubLicense": "NOASSERTION"
+      "language": "Python/deb"
     },
     {
       "id": "awesome-selfhosted--picoshare",
@@ -7033,10 +6827,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Go/Docker",
-      "githubStars": 2945,
-      "githubLastUpdated": "2026-05-26T17:58:29Z",
-      "githubLicense": "NOASSERTION"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--picsur",
@@ -7052,10 +6843,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker",
-      "githubStars": 1235,
-      "githubLastUpdated": "2025-10-12T16:03:45Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--pictshare",
@@ -7084,10 +6872,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "BSD-2-Clause",
-      "language": "Docker/Nodejs",
-      "githubStars": 152,
-      "githubLastUpdated": "2026-06-10T11:48:46Z",
-      "githubLicense": "BSD-2-Clause"
+      "language": "Docker/Nodejs"
     },
     {
       "id": "awesome-selfhosted--plik",
@@ -7100,10 +6885,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1774,
-      "githubLastUpdated": "2026-05-25T11:22:08Z",
-      "githubLicense": "NOASSERTION"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--projectsend",
@@ -7132,10 +6914,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "BSD-2-Clause",
-      "language": "Nodejs",
-      "githubStars": 1893,
-      "githubLastUpdated": "2026-06-02T09:26:53Z",
-      "githubLicense": "BSD-2-Clause"
+      "language": "Nodejs"
     },
     {
       "id": "awesome-selfhosted--quickshare",
@@ -7177,10 +6956,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Scala/Java/deb/Docker",
-      "githubStars": 1303,
-      "githubLastUpdated": "2026-06-04T20:11:59Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Scala/Java/deb/Docker"
     },
     {
       "id": "awesome-selfhosted--shifter",
@@ -7196,10 +6972,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 41,
-      "githubLastUpdated": "2026-06-04T19:45:00Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--slink",
@@ -7228,10 +7001,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go",
-      "githubStars": 15847,
-      "githubLastUpdated": "2025-11-20T00:30:07Z",
-      "githubLicense": "MIT"
+      "language": "Go"
     },
     {
       "id": "awesome-selfhosted--uguu",
@@ -7247,10 +7017,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "PHP",
-      "githubStars": 1166,
-      "githubLastUpdated": "2025-12-06T22:19:33Z",
-      "githubLicense": "GPL-3.0"
+      "language": "PHP"
     },
     {
       "id": "awesome-selfhosted--xbackbone",
@@ -7279,10 +7046,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Nodejs",
-      "githubStars": 3211,
-      "githubLastUpdated": "2026-06-03T02:39:06Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Nodejs"
     },
     {
       "id": "awesome-selfhosted--apaxy",
@@ -7308,10 +7072,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 45172,
-      "githubLastUpdated": "2026-05-26T19:21:36Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--directory-lister",
@@ -7363,10 +7124,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 966,
-      "githubLastUpdated": "2026-06-03T04:27:09Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--filestash",
@@ -7395,10 +7153,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go",
-      "githubStars": 1089,
-      "githubLastUpdated": "2025-07-21T08:43:26Z",
-      "githubLicense": "MIT"
+      "language": "Go"
     },
     {
       "id": "awesome-selfhosted--ifm",
@@ -7414,10 +7169,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "PHP",
-      "githubStars": 368,
-      "githubLastUpdated": "2026-06-08T22:05:27Z",
-      "githubLicense": "MIT"
+      "language": "PHP"
     },
     {
       "id": "awesome-selfhosted--mikochi",
@@ -7433,10 +7185,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker/K8S",
-      "githubStars": 363,
-      "githubLastUpdated": "2026-06-05T13:23:47Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker/K8S"
     },
     {
       "id": "awesome-selfhosted--miniserve",
@@ -7452,10 +7201,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Rust",
-      "githubStars": 7646,
-      "githubLastUpdated": "2026-06-01T16:40:39Z",
-      "githubLicense": "MIT"
+      "language": "Rust"
     },
     {
       "id": "awesome-selfhosted--resourcespace",
@@ -7549,10 +7295,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 8131,
-      "githubLastUpdated": "2025-05-23T15:33:06Z",
-      "githubLicense": "MPL-2.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--ddracenetwork",
@@ -7591,10 +7334,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1562,
-      "githubLastUpdated": "2026-06-07T09:44:00Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--lila",
@@ -7659,10 +7399,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 234,
-      "githubLastUpdated": "2026-05-10T08:23:25Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--posio",
@@ -7678,10 +7415,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python",
-      "githubStars": 685,
-      "githubLastUpdated": "2024-10-08T21:32:49Z",
-      "githubLicense": "MIT"
+      "language": "Python"
     },
     {
       "id": "awesome-selfhosted--razzia",
@@ -7697,10 +7431,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Nodejs/Docker",
-      "githubStars": 898,
-      "githubLastUpdated": "2026-06-09T11:31:13Z",
-      "githubLicense": "MIT"
+      "language": "Nodejs/Docker"
     },
     {
       "id": "awesome-selfhosted--red-eclipse-2",
@@ -7726,10 +7457,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 642,
-      "githubLastUpdated": "2026-05-31T19:13:34Z",
-      "githubLicense": "BSD-3-Clause"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--suroi",
@@ -7758,10 +7486,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-2.0",
-      "language": "C++/deb",
-      "githubStars": 6668,
-      "githubLastUpdated": "2026-06-10T04:34:24Z",
-      "githubLicense": "GPL-2.0"
+      "language": "C++/deb"
     },
     {
       "id": "awesome-selfhosted--veloren",
@@ -7920,10 +7645,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker/Python",
-      "githubStars": 839,
-      "githubLastUpdated": "2026-05-19T06:33:52Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker/Python"
     },
     {
       "id": "awesome-selfhosted--pelican-panel",
@@ -7965,25 +7687,6 @@
       "language": ""
     },
     {
-      "id": "awesome-selfhosted--rconcli",
-      "name": "RconCli",
-      "url": "https://github.com/gorcon/rcon-cli",
-      "description": "CLI for executing queries on a remote Valve Source dedicated server using the RCON Protocol",
-      "category": "sh-games-administrative-utilities-control-panels",
-      "source": "awesome-selfhosted",
-      "tags": [
-        "MIT",
-        "Go"
-      ],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "MIT",
-      "language": "Go",
-      "githubStars": 668,
-      "githubLastUpdated": "2025-06-08T20:03:12Z",
-      "githubLicense": "MIT"
-    },
-    {
       "id": "awesome-selfhosted--retrom",
       "name": "Retrom",
       "url": "https://github.com/JMBeresford/retrom",
@@ -7997,10 +7700,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/Rust",
-      "githubStars": 1974,
-      "githubLastUpdated": "2026-06-07T01:43:46Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/Rust"
     },
     {
       "id": "awesome-selfhosted--sourcebans",
@@ -8146,10 +7846,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Docker/Shell",
-      "githubStars": 3054,
-      "githubLastUpdated": "2026-06-09T21:12:26Z",
-      "githubLicense": "Apache-2.0"
+      "language": "Docker/Shell"
     },
     {
       "id": "awesome-selfhosted--llmkube",
@@ -8178,10 +7875,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Python",
-      "githubStars": 8432,
-      "githubLastUpdated": "2026-06-10T09:11:28Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Python"
     },
     {
       "id": "awesome-selfhosted--localai",
@@ -8249,10 +7943,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 35231,
-      "githubLastUpdated": "2026-04-11T14:33:06Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--citadel",
@@ -8411,10 +8102,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Python",
-      "language": "AGPL-3.0/LGPL-3.0/MIT",
-      "githubStars": 271,
-      "githubLastUpdated": "2026-04-16T07:13:48Z",
-      "githubLicense": "NOASSERTION"
+      "language": "AGPL-3.0/LGPL-3.0/MIT"
     },
     {
       "id": "awesome-selfhosted--zimbra-collaboration",
@@ -8664,10 +8352,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Lua",
-      "githubStars": 12,
-      "githubLastUpdated": "2026-05-24T20:08:42Z",
-      "githubLicense": "MIT"
+      "language": "Lua"
     },
     {
       "id": "awesome-selfhosted--node-red",
@@ -8891,10 +8576,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Python",
-      "githubStars": 2512,
-      "githubLastUpdated": "2026-06-07T21:01:28Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Python"
     },
     {
       "id": "awesome-selfhosted--affine-community-edition",
@@ -8988,10 +8670,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 465,
-      "githubLastUpdated": "2026-06-08T06:19:50Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--canvas-lms",
@@ -9290,10 +8969,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 62,
-      "githubLastUpdated": "2022-04-17T08:47:24Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--dawarich",
@@ -9322,10 +8998,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker",
-      "githubStars": 95,
-      "githubLastUpdated": "2026-06-03T12:44:02Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--graphhopper",
@@ -9455,10 +9128,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 3651,
-      "githubLastUpdated": "2026-06-10T11:09:45Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--deleterr",
@@ -9474,29 +9144,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 314,
-      "githubLastUpdated": "2026-06-02T01:24:55Z",
-      "githubLicense": "MIT"
-    },
-    {
-      "id": "awesome-selfhosted--headphones",
-      "name": "Headphones",
-      "url": "https://github.com/rembo10/headphones",
-      "description": "Automated music downloader for NZB and Torrent, written in Python. It supports SABnzbd, NZBget, Transmission, µTorrent, Deluge and Blackhole",
-      "category": "sh-media-management",
-      "source": "awesome-selfhosted",
-      "tags": [
-        "GPL-3.0",
-        "Python"
-      ],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "GPL-3.0",
-      "language": "Python",
-      "githubStars": 3733,
-      "githubLastUpdated": "2025-08-08T05:28:27Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--lidarr",
@@ -9522,10 +9170,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1960,
-      "githubLastUpdated": "2026-06-09T16:45:45Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--metube",
@@ -9541,10 +9186,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Python/Nodejs/Docker",
-      "githubStars": 13812,
-      "githubLastUpdated": "2026-06-10T00:46:02Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Python/Nodejs/Docker"
     },
     {
       "id": "awesome-selfhosted--mkvpriority",
@@ -9560,10 +9202,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python/Docker",
-      "githubStars": 67,
-      "githubLastUpdated": "2026-06-09T02:53:56Z",
-      "githubLicense": "MIT"
+      "language": "Python/Docker"
     },
     {
       "id": "awesome-selfhosted--nefarious",
@@ -9631,10 +9270,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Nodejs",
-      "githubStars": 11530,
-      "githubLastUpdated": "2026-06-10T11:08:25Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Nodejs"
     },
     {
       "id": "awesome-selfhosted--sonarr",
@@ -9660,10 +9296,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1386,
-      "githubLastUpdated": "2026-03-19T01:31:54Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--ydl-api-ng",
@@ -9679,10 +9312,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Python",
-      "githubStars": 236,
-      "githubLastUpdated": "2026-05-15T19:55:56Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Python"
     },
     {
       "id": "awesome-selfhosted--youtubedl-server",
@@ -9698,10 +9328,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python/Docker",
-      "githubStars": 310,
-      "githubLastUpdated": "2026-04-22T18:13:30Z",
-      "githubLicense": "MIT"
+      "language": "Python/Docker"
     },
     {
       "id": "awesome-selfhosted--yt-dlp-web-ui",
@@ -9717,10 +9344,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MPL-2.0",
-      "language": "Docker/Go/Nodejs",
-      "githubStars": 2461,
-      "githubLastUpdated": "2026-05-28T13:28:16Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/Go/Nodejs"
     },
     {
       "id": "awesome-selfhosted--ampache",
@@ -9762,10 +9386,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Rust",
-      "githubStars": 834,
-      "githubLastUpdated": "2026-06-10T00:41:25Z",
-      "githubLicense": null
+      "language": "Rust"
     },
     {
       "id": "awesome-selfhosted--azuracast",
@@ -9807,10 +9428,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Ruby",
-      "githubStars": 4266,
-      "githubLastUpdated": "2026-06-09T11:41:26Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Ruby"
     },
     {
       "id": "awesome-selfhosted--botwave",
@@ -9855,10 +9473,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Go/Docker",
-      "githubStars": 2425,
-      "githubLastUpdated": "2026-06-09T19:25:12Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--koel",
@@ -9884,10 +9499,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 627,
-      "githubLastUpdated": "2021-07-14T09:40:43Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--lms",
@@ -9903,10 +9515,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/deb/C++",
-      "githubStars": 1603,
-      "githubLastUpdated": "2026-06-09T21:01:36Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/deb/C++"
     },
     {
       "id": "awesome-selfhosted--lyrion-music-server",
@@ -9920,22 +9529,6 @@
       "isOpenSource": true,
       "license": "",
       "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--maloja",
-      "name": "Maloja",
-      "url": "https://github.com/krateng/maloja",
-      "description": "Music scrobble database (alternative to Last.fm)",
-      "category": "sh-media-streaming-audio-streaming",
-      "source": "awesome-selfhosted",
-      "tags": [],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "",
-      "language": "",
-      "githubStars": 1737,
-      "githubLastUpdated": "2025-05-18T12:08:34Z",
-      "githubLicense": "GPL-3.0"
     },
     {
       "id": "awesome-selfhosted--moode-audio",
@@ -10042,10 +9635,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Rust/Docker",
-      "githubStars": 2649,
-      "githubLastUpdated": "2026-05-08T02:20:14Z",
-      "githubLicense": "MIT"
+      "language": "Rust/Docker"
     },
     {
       "id": "awesome-selfhosted--snapcast",
@@ -10061,10 +9651,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "C++/deb",
-      "githubStars": 7684,
-      "githubLastUpdated": "2026-03-10T14:27:11Z",
-      "githubLicense": "GPL-3.0"
+      "language": "C++/deb"
     },
     {
       "id": "awesome-selfhosted--supysonic",
@@ -10080,10 +9667,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Python/deb",
-      "githubStars": 288,
-      "githubLastUpdated": "2025-11-08T15:18:26Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Python/deb"
     },
     {
       "id": "awesome-selfhosted--swingmusic",
@@ -10125,10 +9709,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "C/deb",
-      "githubStars": 193,
-      "githubLastUpdated": "2025-12-18T18:12:00Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "C/deb"
     },
     {
       "id": "awesome-selfhosted--gerbera",
@@ -10206,10 +9787,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 2472,
-      "githubLastUpdated": "2026-06-09T21:22:34Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--mediamtx",
@@ -10238,10 +9816,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker",
-      "githubStars": 1147,
-      "githubLastUpdated": "2026-06-10T10:23:35Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--mistserver",
@@ -10309,10 +9884,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "C/deb",
-      "githubStars": 2000,
-      "githubLastUpdated": "2026-05-31T16:10:03Z",
-      "githubLicense": "GPL-3.0"
+      "language": "C/deb"
     },
     {
       "id": "awesome-selfhosted--cytube",
@@ -10325,10 +9897,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1570,
-      "githubLastUpdated": "2026-01-21T23:06:15Z",
-      "githubLicense": "NOASSERTION"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--mediacms",
@@ -10354,10 +9923,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 3173,
-      "githubLastUpdated": "2026-06-10T09:36:14Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--owncast",
@@ -10399,10 +9965,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python/Docker",
-      "githubStars": 869,
-      "githubLastUpdated": "2026-06-07T22:43:58Z",
-      "githubLicense": "MIT"
+      "language": "Python/Docker"
     },
     {
       "id": "awesome-selfhosted--restreamer",
@@ -10444,10 +10007,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Nodejs/Haxe",
-      "githubStars": 378,
-      "githubLastUpdated": "2026-05-29T11:49:26Z",
-      "githubLicense": "MIT"
+      "language": "Nodejs/Haxe"
     },
     {
       "id": "awesome-selfhosted--tube",
@@ -10486,10 +10046,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 3980,
-      "githubLastUpdated": "2026-06-09T19:18:16Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--anchr",
@@ -10541,10 +10098,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 2794,
-      "githubLastUpdated": "2026-06-07T17:55:14Z",
-      "githubLicense": "BSD-2-Clause"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--clipcascade",
@@ -10560,10 +10114,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Java/Docker",
-      "githubStars": 1774,
-      "githubLastUpdated": "2026-05-04T01:06:52Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Java/Docker"
     },
     {
       "id": "awesome-selfhosted--cloudlog",
@@ -10592,10 +10143,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker",
-      "githubStars": 16983,
-      "githubLastUpdated": "2026-04-27T19:43:48Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--cups",
@@ -10621,10 +10169,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 35056,
-      "githubLastUpdated": "2026-06-10T11:53:00Z",
-      "githubLicense": "Apache-2.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--digiboard",
@@ -10770,10 +10315,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python/Docker",
-      "githubStars": 896,
-      "githubLastUpdated": "2026-06-01T07:19:00Z",
-      "githubLicense": "MIT"
+      "language": "Python/Docker"
     },
     {
       "id": "awesome-selfhosted--domain-locker",
@@ -10919,10 +10461,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1413,
-      "githubLastUpdated": "2026-06-08T23:36:32Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--jelu",
@@ -10951,10 +10490,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-2.0",
-      "language": "Docker",
-      "githubStars": 327,
-      "githubLastUpdated": "2026-03-22T16:13:31Z",
-      "githubLicense": "GPL-2.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--kasm-workspaces",
@@ -11152,10 +10688,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/Go",
-      "githubStars": 193,
-      "githubLastUpdated": "2026-06-03T21:12:23Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/Go"
     },
     {
       "id": "awesome-selfhosted--reactive-resume",
@@ -11249,10 +10782,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Elixir/Docker",
-      "githubStars": 8073,
-      "githubLastUpdated": "2026-06-07T12:35:24Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Elixir/Docker"
     },
     {
       "id": "awesome-selfhosted--url-to-png",
@@ -11268,10 +10798,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Nodejs/Docker",
-      "githubStars": 246,
-      "githubLastUpdated": "2026-06-08T18:12:07Z",
-      "githubLicense": "MIT"
+      "language": "Nodejs/Docker"
     },
     {
       "id": "awesome-selfhosted--usertour",
@@ -11352,10 +10879,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/K8S",
-      "githubStars": 564,
-      "githubLastUpdated": "2026-06-02T17:18:18Z",
-      "githubLicense": "MIT"
+      "language": "Docker/K8S"
     },
     {
       "id": "awesome-selfhosted--zero-totp",
@@ -11462,10 +10986,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker/K8S",
-      "githubStars": 1439,
-      "githubLastUpdated": "2025-10-18T14:33:23Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker/K8S"
     },
     {
       "id": "awesome-selfhosted--ezbookkeeping",
@@ -11494,10 +11015,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Scala",
-      "githubStars": 350,
-      "githubLastUpdated": "2026-02-08T08:28:45Z",
-      "githubLicense": "NOASSERTION"
+      "language": "Scala"
     },
     {
       "id": "awesome-selfhosted--fava",
@@ -11734,10 +11252,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker/C#",
-      "githubStars": 960,
-      "githubLastUpdated": "2026-01-10T09:45:00Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker/C#"
     },
     {
       "id": "awesome-selfhosted--rei3",
@@ -11792,10 +11307,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker",
-      "githubStars": 8615,
-      "githubLastUpdated": "2026-06-10T11:34:30Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--vouchervault",
@@ -11811,10 +11323,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker",
-      "githubStars": 491,
-      "githubLastUpdated": "2026-06-06T12:23:39Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--wallos",
@@ -11840,10 +11349,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 855,
-      "githubLastUpdated": "2026-06-08T07:57:20Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--yaffa",
@@ -11937,10 +11443,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker",
-      "githubStars": 5777,
-      "githubLastUpdated": "2026-06-01T20:03:26Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--wakupator",
@@ -11956,10 +11459,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "C",
-      "githubStars": 173,
-      "githubLastUpdated": "2026-05-30T23:53:17Z",
-      "githubLicense": "MIT"
+      "language": "C"
     },
     {
       "id": "awesome-selfhosted--watchyourlan",
@@ -11975,10 +11475,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Go/deb",
-      "githubStars": 7028,
-      "githubLastUpdated": "2025-09-10T12:08:09Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Go/deb"
     },
     {
       "id": "awesome-selfhosted--blinko",
@@ -12004,10 +11501,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 483,
-      "githubLastUpdated": "2026-06-07T21:24:21Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--docs",
@@ -12046,10 +11540,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 3103,
-      "githubLastUpdated": "2026-02-17T12:43:44Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--hedgedoc",
@@ -12117,10 +11608,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 988,
-      "githubLastUpdated": "2026-06-02T21:43:52Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--memos",
@@ -12175,6 +11663,19 @@
       "language": ""
     },
     {
+      "id": "awesome-selfhosted--plumio",
+      "name": "plumio",
+      "url": "https://plumio.app/",
+      "description": "Markdown notes taking app with live preview, document encryption, multi-user support, multi-organization capabilities and more",
+      "category": "sh-note-taking-editors",
+      "source": "awesome-selfhosted",
+      "tags": [],
+      "isFree": true,
+      "isOpenSource": true,
+      "license": "",
+      "language": ""
+    },
+    {
       "id": "awesome-selfhosted--silverbullet",
       "name": "SilverBullet",
       "url": "https://silverbullet.md/",
@@ -12214,10 +11715,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Nodejs/Docker/K8S",
-      "githubStars": 36392,
-      "githubLastUpdated": "2026-06-10T09:14:20Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Nodejs/Docker/K8S"
     },
     {
       "id": "awesome-selfhosted--turtl",
@@ -12402,10 +11900,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Rust/Docker",
-      "githubStars": 62156,
-      "githubLastUpdated": "2026-06-05T19:52:52Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Rust/Docker"
     },
     {
       "id": "awesome-selfhosted--bin",
@@ -12421,10 +11916,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Rust",
-      "language": "WTFPL/0BSD",
-      "githubStars": 673,
-      "githubLastUpdated": "2025-05-25T09:00:10Z",
-      "githubLicense": "NOASSERTION"
+      "language": "WTFPL/0BSD"
     },
     {
       "id": "awesome-selfhosted--binpastes",
@@ -12440,10 +11932,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Java",
-      "githubStars": 16,
-      "githubLastUpdated": "2026-06-02T09:09:13Z",
-      "githubLicense": "Apache-2.0"
+      "language": "Java"
     },
     {
       "id": "awesome-selfhosted--bytestash",
@@ -12456,10 +11945,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 2423,
-      "githubLastUpdated": "2026-05-23T08:37:02Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--chiyogami",
@@ -12472,10 +11958,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 75,
-      "githubLastUpdated": "2026-06-07T05:26:49Z",
-      "githubLicense": "BSD-3-Clause"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--dpaste",
@@ -12530,10 +12013,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Go",
-      "githubStars": 457,
-      "githubLastUpdated": "2026-01-28T21:03:05Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Go"
     },
     {
       "id": "awesome-selfhosted--not-th-re",
@@ -12640,10 +12120,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Rust",
-      "githubStars": 1172,
-      "githubLastUpdated": "2026-06-10T11:43:05Z",
-      "githubLicense": "MIT"
+      "language": "Rust"
     },
     {
       "id": "awesome-selfhosted--snypy",
@@ -12672,10 +12149,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go",
-      "githubStars": 564,
-      "githubLastUpdated": "2026-05-27T15:43:17Z",
-      "githubLicense": "MIT"
+      "language": "Go"
     },
     {
       "id": "awesome-selfhosted--wastebin",
@@ -12688,10 +12162,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 795,
-      "githubLastUpdated": "2026-06-01T19:53:07Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--yopass",
@@ -12704,10 +12175,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 2826,
-      "githubLastUpdated": "2026-06-10T04:13:50Z",
-      "githubLicense": "Apache-2.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--dashy",
@@ -12736,10 +12204,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker/Go",
-      "githubStars": 34956,
-      "githubLastUpdated": "2026-05-30T20:36:29Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker/Go"
     },
     {
       "id": "awesome-selfhosted--gobookmarks",
@@ -12755,10 +12220,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Go/Docker",
-      "githubStars": 15,
-      "githubLastUpdated": "2026-05-20T00:38:31Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--heimdall",
@@ -12813,10 +12275,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/Nodejs",
-      "githubStars": 30615,
-      "githubLastUpdated": "2026-06-09T18:06:53Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/Nodejs"
     },
     {
       "id": "awesome-selfhosted--homepage-by-tomershvueli",
@@ -12832,10 +12291,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "PHP",
-      "githubStars": 322,
-      "githubLastUpdated": "2021-05-09T18:11:15Z",
-      "githubLicense": "MIT"
+      "language": "PHP"
     },
     {
       "id": "awesome-selfhosted--homer",
@@ -12848,10 +12304,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 11387,
-      "githubLastUpdated": "2026-04-18T14:35:04Z",
-      "githubLicense": "Apache-2.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--hubleys",
@@ -12867,10 +12320,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 116,
-      "githubLastUpdated": "2026-06-02T16:01:19Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--linkstack",
@@ -12961,10 +12411,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 3331,
-      "githubLastUpdated": "2026-06-07T14:56:31Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--starbase-80",
@@ -12980,10 +12427,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 540,
-      "githubLastUpdated": "2025-10-18T15:02:25Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--chevereto",
@@ -13064,10 +12508,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/Go",
-      "githubStars": 1543,
-      "githubLastUpdated": "2026-06-10T10:07:03Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker/Go"
     },
     {
       "id": "awesome-selfhosted--immich",
@@ -13093,10 +12534,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 7990,
-      "githubLastUpdated": "2026-06-10T08:44:31Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--lychee",
@@ -13123,25 +12561,6 @@
       "isOpenSource": true,
       "license": "",
       "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--mejiro",
-      "name": "Mejiro",
-      "url": "https://github.com/dmpop/pellicola",
-      "description": "Easy-to-use instant photo publishing",
-      "category": "sh-photo-galleries",
-      "source": "awesome-selfhosted",
-      "tags": [
-        "GPL-3.0",
-        "PHP"
-      ],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "GPL-3.0",
-      "language": "PHP",
-      "githubStars": 185,
-      "githubLastUpdated": "2025-05-27T11:09:48Z",
-      "githubLicense": "GPL-3.0"
     },
     {
       "id": "awesome-selfhosted--memtly",
@@ -13183,10 +12602,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Go",
-      "githubStars": 585,
-      "githubLastUpdated": "2026-06-08T21:37:01Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Go"
     },
     {
       "id": "awesome-selfhosted--photoprism",
@@ -13254,10 +12670,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Python",
-      "githubStars": 938,
-      "githubLastUpdated": "2026-06-09T21:14:50Z",
-      "githubLicense": "MIT"
+      "language": "Python"
     },
     {
       "id": "awesome-selfhosted--spis",
@@ -13273,10 +12686,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/Rust",
-      "githubStars": 201,
-      "githubLastUpdated": "2026-06-09T13:42:52Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/Rust"
     },
     {
       "id": "awesome-selfhosted--this-week-in-past",
@@ -13292,10 +12702,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Rust",
-      "githubStars": 99,
-      "githubLastUpdated": "2026-06-09T17:51:40Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Rust"
     },
     {
       "id": "awesome-selfhosted--thumbor",
@@ -13334,10 +12741,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 305,
-      "githubLastUpdated": "2026-06-02T14:24:23Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--bracket",
@@ -13366,10 +12770,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker/Nodejs",
-      "githubStars": 412,
-      "githubLastUpdated": "2026-06-05T19:24:27Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker/Nodejs"
     },
     {
       "id": "awesome-selfhosted--claper",
@@ -13635,10 +13036,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker",
-      "githubStars": 4651,
-      "githubLastUpdated": "2026-06-05T03:23:01Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--socks5-proxy-server",
@@ -13654,10 +13052,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Docker",
-      "githubStars": 140,
-      "githubLastUpdated": "2026-03-21T17:33:45Z",
-      "githubLicense": "Apache-2.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--squid",
@@ -13761,10 +13156,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 894,
-      "githubLastUpdated": "2026-06-09T16:17:56Z",
-      "githubLicense": null
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--recipya",
@@ -13832,10 +13224,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "AGPL-3.0",
-      "language": "Docker",
-      "githubStars": 63,
-      "githubLastUpdated": "2025-11-20T21:09:46Z",
-      "githubLicense": "AGPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--cardea",
@@ -13851,10 +13240,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "EUPL-1.2",
-      "language": "Go/Docker",
-      "githubStars": 22,
-      "githubLastUpdated": "2026-06-09T22:07:27Z",
-      "githubLicense": "EUPL-1.2"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--engity-s-bifr-st",
@@ -13932,10 +13318,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 3103,
-      "githubLastUpdated": "2026-05-22T04:46:30Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--termix",
@@ -13964,10 +13347,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Rust/Docker",
-      "githubStars": 7108,
-      "githubLastUpdated": "2026-06-09T22:27:26Z",
-      "githubLicense": "Apache-2.0"
+      "language": "Rust/Docker"
     },
     {
       "id": "awesome-selfhosted--dolibarr",
@@ -14139,10 +13519,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker/deb/C++/K8S",
-      "githubStars": 11819,
-      "githubLastUpdated": "2026-06-10T11:40:27Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker/deb/C++/K8S"
     },
     {
       "id": "awesome-selfhosted--meilisearch",
@@ -14171,10 +13548,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Docker",
-      "githubStars": 677,
-      "githubLastUpdated": "2026-05-31T22:41:25Z",
-      "githubLicense": "Apache-2.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--opensearch",
@@ -14203,10 +13577,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "C/Docker",
-      "githubStars": 1269,
-      "githubLastUpdated": "2025-07-05T23:40:22Z",
-      "githubLicense": "GPL-3.0"
+      "language": "C/Docker"
     },
     {
       "id": "awesome-selfhosted--sosse",
@@ -14259,25 +13630,6 @@
       "isOpenSource": true,
       "license": "",
       "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--ansible-nas",
-      "name": "Ansible-NAS",
-      "url": "https://github.com/DaveStephens/ansible-nas",
-      "description": "Build a full-featured home server with this playbook and an Ubuntu box",
-      "category": "sh-self-hosting-solutions",
-      "source": "awesome-selfhosted",
-      "tags": [
-        "MIT",
-        "Ansible/Docker"
-      ],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "MIT",
-      "language": "Ansible/Docker",
-      "githubStars": 3753,
-      "githubLastUpdated": "2026-02-17T17:10:12Z",
-      "githubLicense": "MIT"
     },
     {
       "id": "awesome-selfhosted--casaos",
@@ -14397,10 +13749,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-2.0",
-      "language": "Shell/PHP",
-      "githubStars": 2905,
-      "githubLastUpdated": "2026-06-07T19:54:20Z",
-      "githubLicense": null
+      "language": "Shell/PHP"
     },
     {
       "id": "awesome-selfhosted--nirvati",
@@ -14770,10 +14119,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Nodejs/Docker",
-      "githubStars": 77889,
-      "githubLastUpdated": "2026-06-04T18:50:07Z",
-      "githubLicense": "MIT"
+      "language": "Nodejs/Docker"
     },
     {
       "id": "awesome-selfhosted--coder",
@@ -15182,6 +14528,19 @@
       "language": ""
     },
     {
+      "id": "awesome-selfhosted--ideon",
+      "name": "Ideon",
+      "url": "https://www.theideon.com",
+      "description": "Project workspace built around an infinite canvas; embed GitHub, GitLab, Gitea, and Forgejo repositories alongside notes, links, and tasks, with real-time collaboration",
+      "category": "sh-software-development-project-management",
+      "source": "awesome-selfhosted",
+      "tags": [],
+      "isFree": true,
+      "isOpenSource": true,
+      "license": "",
+      "language": ""
+    },
+    {
       "id": "awesome-selfhosted--kaneo",
       "name": "Kaneo",
       "url": "https://kaneo.app/",
@@ -15234,10 +14593,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 45,
-      "githubLastUpdated": "2026-04-17T15:55:07Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--onedev",
@@ -15342,25 +14698,6 @@
       "isOpenSource": true,
       "license": "",
       "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--rgit",
-      "name": "rgit",
-      "url": "https://github.com/w4/rgit",
-      "description": "Ultra-fast & lightweight cgit clone",
-      "category": "sh-software-development-project-management",
-      "source": "awesome-selfhosted",
-      "tags": [
-        "WTFPL",
-        "Rust/Docker"
-      ],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "WTFPL",
-      "language": "Rust/Docker",
-      "githubStars": 207,
-      "githubLastUpdated": "2025-10-01T19:04:44Z",
-      "githubLicense": "WTFPL"
     },
     {
       "id": "awesome-selfhosted--rhodecode",
@@ -15574,10 +14911,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Go/deb/K8S",
-      "githubStars": 491,
-      "githubLastUpdated": "2026-06-05T21:08:48Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Go/deb/K8S"
     },
     {
       "id": "awesome-selfhosted--4ga-boards",
@@ -15610,19 +14944,6 @@
       "name": "Donetick",
       "url": "https://donetick.com",
       "description": "Task and chore management tool for personal and family use, with advanced scheduling, flexible assignment, and group sharing capabilities, detailed history, automation via API, simple and modern design",
-      "category": "sh-task-management-to-do-lists",
-      "source": "awesome-selfhosted",
-      "tags": [],
-      "isFree": true,
-      "isOpenSource": true,
-      "license": "",
-      "language": ""
-    },
-    {
-      "id": "awesome-selfhosted--focalboard",
-      "name": "Focalboard",
-      "url": "https://www.focalboard.com/",
-      "description": "Define, organize, track and manage work across individuals and teams (alternative to Trello, Notion and Asana)",
       "category": "sh-task-management-to-do-lists",
       "source": "awesome-selfhosted",
       "tags": [],
@@ -15668,10 +14989,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 7,
-      "githubLastUpdated": "2026-05-04T03:05:58Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--mytinytodo",
@@ -15697,10 +15015,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 4145,
-      "githubLastUpdated": "2023-11-05T17:35:15Z",
-      "githubLicense": "NOASSERTION"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--openhabittracker",
@@ -15726,10 +15041,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 185,
-      "githubLastUpdated": "2026-03-03T17:26:20Z",
-      "githubLicense": "AGPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--super-productivity",
@@ -15758,10 +15070,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "Apache-2.0",
-      "language": "Scala",
-      "githubStars": 101,
-      "githubLastUpdated": "2026-04-11T14:02:29Z",
-      "githubLicense": "NOASSERTION"
+      "language": "Scala"
     },
     {
       "id": "awesome-selfhosted--tasks-md",
@@ -15777,10 +15086,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker",
-      "githubStars": 2127,
-      "githubLastUpdated": "2026-03-08T13:56:47Z",
-      "githubLicense": "MIT"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--taskwarrior",
@@ -16014,10 +15320,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1767,
-      "githubLastUpdated": "2026-05-20T13:04:14Z",
-      "githubLicense": "BSD-3-Clause"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--ever-gauzy",
@@ -16124,10 +15427,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Crystal",
-      "githubStars": 92,
-      "githubLastUpdated": "2026-06-05T00:50:34Z",
-      "githubLicense": "MIT"
+      "language": "Docker/Crystal"
     },
     {
       "id": "awesome-selfhosted--chhoto-url",
@@ -16140,10 +15440,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 858,
-      "githubLastUpdated": "2026-06-07T20:49:59Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--clink",
@@ -16221,10 +15518,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 58,
-      "githubLastUpdated": "2025-08-28T12:41:07Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--yourls",
@@ -16279,10 +15573,20 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Python/Docker",
-      "githubStars": 4606,
-      "githubLastUpdated": "2026-06-10T04:02:00Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Python/Docker"
+    },
+    {
+      "id": "awesome-selfhosted--secluso",
+      "name": "Secluso",
+      "url": "https://secluso.com",
+      "description": "Private DIY home security camera system for Raspberry Pi, with end-to-end encrypted remote access and mobile apps for live video, alerts, and recording playback",
+      "category": "sh-video-surveillance",
+      "source": "awesome-selfhosted",
+      "tags": [],
+      "isFree": true,
+      "isOpenSource": true,
+      "license": "",
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--sentryshot",
@@ -16314,10 +15618,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Go/Docker",
-      "githubStars": 706,
-      "githubLastUpdated": "2026-04-24T11:31:00Z",
-      "githubLicense": "MIT"
+      "language": "Go/Docker"
     },
     {
       "id": "awesome-selfhosted--viseron",
@@ -16424,10 +15725,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Docker/Go",
-      "githubStars": 3309,
-      "githubLastUpdated": "2026-06-10T09:19:09Z",
-      "githubLicense": "NOASSERTION"
+      "language": "Docker/Go"
     },
     {
       "id": "awesome-selfhosted--godoxy",
@@ -16560,10 +15858,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-3.0",
-      "language": "Docker",
-      "githubStars": 3678,
-      "githubLastUpdated": "2026-06-06T06:45:57Z",
-      "githubLicense": "GPL-3.0"
+      "language": "Docker"
     },
     {
       "id": "awesome-selfhosted--traefik",
@@ -16654,10 +15949,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 1920,
-      "githubLastUpdated": "2026-06-08T20:07:02Z",
-      "githubLicense": "GPL-3.0"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--docmost",
@@ -16725,10 +16017,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "GPL-2.0",
-      "language": "Haskell",
-      "githubStars": 2268,
-      "githubLastUpdated": "2026-06-10T09:37:44Z",
-      "githubLicense": "GPL-2.0"
+      "language": "Haskell"
     },
     {
       "id": "awesome-selfhosted--gollum",
@@ -16744,10 +16033,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "MIT",
-      "language": "Ruby",
-      "githubStars": 14276,
-      "githubLastUpdated": "2025-11-24T22:15:31Z",
-      "githubLicense": "MIT"
+      "language": "Ruby"
     },
     {
       "id": "awesome-selfhosted--leafwiki",
@@ -16760,10 +16046,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 372,
-      "githubLastUpdated": "2026-06-09T22:54:57Z",
-      "githubLicense": "MIT"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--mediawiki",
@@ -16987,10 +16270,7 @@
       "isFree": true,
       "isOpenSource": true,
       "license": "",
-      "language": "",
-      "githubStars": 34187,
-      "githubLastUpdated": "2026-06-03T21:31:07Z",
-      "githubLicense": "NOASSERTION"
+      "language": ""
     },
     {
       "id": "awesome-selfhosted--theme-park",
