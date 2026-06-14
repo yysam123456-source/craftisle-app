@@ -114,6 +114,22 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "reverse-lines": () => import("@/components/tools/ListReverseTool"),
   "rotate-lines": () => import("@/components/tools/ListRotateTool"),
   "wrap-lines": () => import("@/components/tools/ListWrapTool"),
+  "truncate-lines": () => import("@/components/tools/ListTruncateTool"),
+  "unwrap-lines": () => import("@/components/tools/ListUnwrapTool"),
+
+  // ==================== XML Tools ====================
+  "xml-beautifier": () => import("@/components/tools/XmlBeautifierTool"),
+  "xml-validator": () => import("@/components/tools/XmlValidatorTool"),
+
+  // ==================== More JSON Tools ====================
+  "escape-json": () => import("@/components/tools/EscapeJsonTool"),
+  "json-minify": () => import("@/components/tools/JsonMinifyTool"),
+  "json-validator": () => import("@/components/tools/JsonValidatorTool"),
+
+  // ==================== More CSV Tools ====================
+  "csv-to-xml": () => import("@/components/tools/CsvToXmlTool"),
+  "csv-to-tsv": () => import("@/components/tools/CsvToTsvTool"),
+  "change-csv-separator": () => import("@/components/tools/ChangeCsvSeparatorTool"),
 };
 
 // ---------------------------------------------------------------------------

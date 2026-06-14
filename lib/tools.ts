@@ -3399,6 +3399,167 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["sort-lines", "shuffle-lines", "reverse-lines"],
   },
 
+  // ==================== XML Tools ====================
+  "xml-beautifier": {
+    title: "XML Beautifier",
+    desc: "Format and validate XML",
+    icon: "📄",
+    category: CATEGORIES.utility,
+    seoTitle: "XML Beautifier Free — Online Tool | Craftisle",
+    seoDesc: "Free XML beautifier online. Format and validate XML. Uses fast-xml-parser library. 100% browser-based.",
+    seoKeywords: ["xml beautifier", "format xml", "xml formatter", "validate xml", "xml pretty print"],
+    description: "Format and validate XML. Uses fast-xml-parser library for reliable parsing and formatting. Supports custom indentation. Essential for API development, configuration file editing, and data interchange.",
+    howToUse: [
+      { heading: "Paste XML", text: "Type or paste XML data." },
+      { heading: "Format", text: "Click Format. The formatted XML appears in output." },
+      { heading: "Copy or download", text: "Copy the formatted XML or download as a .xml file." },
+    ],
+    useCases: [
+      { title: "API development", text: "Format XML responses from APIs for debugging." },
+      { title: "Configuration files", text: "Format XML config files (pom.xml, web.xml, etc.)." },
+      { title: "Data interchange", text: "Format XML data for human-readable display." },
+    ],
+    faq: [
+      { q: "What library is used?", a: "This tool uses fast-xml-parser, a fast and reliable XML parser for JavaScript." },
+      { q: "Does it validate XML?", a: "Yes. Invalid XML is detected and error messages show line and column numbers." },
+    ],
+    relatedTools: ["xml-validator", "json-formatter"],
+  },
+
+  "xml-validator": {
+    title: "XML Validator",
+    desc: "Validate XML format",
+    icon: "✓",
+    category: CATEGORIES.utility,
+    seoTitle: "XML Validator Free — Online Tool | Craftisle",
+    seoDesc: "Free XML validator online. Validate XML format and show line/column of errors. Uses fast-xml-parser. 100% browser-based.",
+    seoKeywords: ["xml validator", "validate xml", "xml validation", "check xml format", "xml syntax checker"],
+    description: "Validate XML format and show line/column of errors. Uses fast-xml-parser library. Essential for API development, configuration file validation, and data interchange.",
+    howToUse: [
+      { heading: "Paste XML", text: "Type or paste XML data." },
+      { heading: "Validate", text: "Click Validate. Valid XML shows success message. Invalid XML shows error with line/column." },
+    ],
+    useCases: [
+      { title: "API development", text: "Validate XML requests and responses." },
+      { title: "Configuration files", text: "Validate XML config files before deployment." },
+      { title: "Data validation", text: "Validate XML data files for import/export." },
+    ],
+    faq: [
+      { q: "What is validated?", a: "XML syntax: tags, attributes, nesting, special characters, etc." },
+      { q: "Does it validate against XSD?", a: "No. This tool validates XML syntax, not schema validation (XSD/DTD)." },
+    ],
+    relatedTools: ["xml-beautifier", "json-validator"],
+  },
+
+  // ==================== More JSON Tools ====================
+  "escape-json": {
+    title: "Escape JSON",
+    desc: "Escape special characters in JSON strings",
+    icon: "🔤",
+    category: CATEGORIES.dev,
+    seoTitle: "Escape JSON Free — Online Tool | Craftisle",
+    seoDesc: "Free escape JSON online tool. Escape special characters in JSON strings. Handle backslashes, quotes, newlines. 100% browser-based.",
+    seoKeywords: ["escape json", "escape json string", "json escape characters", "escape quotes json", "json string escaping"],
+    description: "Escape special characters in JSON strings. Handles backslashes, quotes, newlines, carriage returns, and tabs. Useful for embedding strings in JSON, preparing data for APIs, and string manipulation.",
+    howToUse: [
+      { heading: "Enter text", text: "Type or paste text with special characters." },
+      { heading: "Escape", text: "Click Escape. The escaped string appears in output." },
+      { heading: "Copy", text: "Copy the escaped string for use in JSON." },
+    ],
+    useCases: [
+      { title: "API development", text: "Escape strings before embedding in JSON requests." },
+      { title: "Data preparation", text: "Escape special characters in data for JSON export." },
+      { title: "String manipulation", text: "Escape strings for use in JavaScript/TypeScript." },
+    ],
+    faq: [
+      { q: "What characters are escaped?", a: "Backslash (\\\\), quotes (\\\"), newline (\\n), carriage return (\\r), tab (\\t)." },
+      { q: "When do I need to escape?", a: "When embedding strings in JSON that contain these special characters." },
+    ],
+    relatedTools: ["json-formatter", "stringify-json"],
+  },
+
+  // ==================== More CSV Tools ====================
+  "csv-to-xml": {
+    title: "CSV to XML Converter",
+    desc: "Convert CSV data to XML format",
+    icon: "📊",
+    category: CATEGORIES.converter,
+    seoTitle: "CSV to XML Converter Free — Online Tool | Craftisle",
+    seoDesc: "Free CSV to XML converter online. Convert CSV data to XML format. Custom root and item element names. 100% browser-based.",
+    seoKeywords: ["csv to xml", "convert csv to xml", "csv to xml online", "csv xml converter", "export csv to xml"],
+    description: "Convert CSV (Comma-Separated Values) data to XML format. Supports custom root element name and item element name. Useful for data interchange, API integration, and legacy system support.",
+    howToUse: [
+      { heading: "Paste CSV data", text: "Type or paste CSV data with headers in the first row." },
+      { heading: "Set element names", text: "Enter root element name (e.g., 'data') and item element name (e.g., 'item')." },
+      { heading: "Convert", text: "Click Convert. The XML output appears." },
+      { heading: "Copy or download", text: "Copy the XML or download as a .xml file." },
+    ],
+    useCases: [
+      { title: "API integration", text: "Convert CSV data to XML for APIs that accept XML." },
+      { title: "Data interchange", text: "Convert CSV to XML for systems that require XML format." },
+      { title: "Legacy system support", text: "Convert modern CSV exports to XML for legacy systems." },
+    ],
+    faq: [
+      { q: "What XML structure is generated?", a: "Root element contains item elements. Each item contains elements named after CSV headers." },
+      { q: "Can I customize the XML structure?", a: "You can customize the root and item element names. For more complex structures, post-process the XML." },
+    ],
+    relatedTools: ["xml-beautifier", "json-to-xml"],
+  },
+
+  // ==================== More List Tools ====================
+  "truncate-lines": {
+    title: "Truncate Lines",
+    desc: "Keep or remove first N lines",
+    icon: "✂️",
+    category: CATEGORIES.text,
+    seoTitle: "Truncate Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free truncate lines online tool. Keep or remove first N lines. Preserve or remove empty lines. 100% browser-based.",
+    seoKeywords: ["truncate lines", "keep first n lines", "remove first n lines", "line truncation", "text truncation"],
+    description: "Truncate lines in text. Keep first N lines or remove first N lines. Useful for extracting headers, removing introductions, and processing text in batches. Optionally preserve or remove empty lines.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Choose mode", text: "Select 'Keep first N lines' or 'Remove first N lines'." },
+      { heading: "Set number of lines", text: "Enter how many lines to keep or remove." },
+      { heading: "Truncate", text: "Click Truncate. The truncated text appears in output." },
+    ],
+    useCases: [
+      { title: "Extract headers", text: "Keep first line of CSV/text files as headers." },
+      { title: "Remove introductions", text: "Remove first N lines (introduction) from text." },
+      { title: "Process in batches", text: "Extract first N lines for batch processing." },
+    ],
+    faq: [
+      { q: "What does 'Keep first N lines' mean?", a: "Only the first N lines are kept. The rest are removed." },
+      { q: "What does 'Remove first N lines' mean?", a: "The first N lines are removed. The rest are kept." },
+    ],
+    relatedTools: ["wrap-lines", "reverse-lines", "sort-lines"],
+  },
+
+  "unwrap-lines": {
+    title: "Unwrap Lines",
+    desc: "Join lines with separator",
+    icon: "📝",
+    category: CATEGORIES.text,
+    seoTitle: "Unwrap Lines Free — Online Text Tool | Craftisle",
+    seoDesc: "Free unwrap lines online tool. Join lines with separator (space, comma, etc.). Alias for wrap tool in unwrap mode. 100% browser-based.",
+    seoKeywords: ["unwrap lines", "join lines", "concatenate lines", "merge lines", "combine lines"],
+    description: "Unwrap (join) lines in text. Supports multiple separators (space, comma, comma+space, newline). Useful for creating comma-separated lists, merging short lines, and preparing data for processing.",
+    howToUse: [
+      { heading: "Paste your text", text: "Type or paste text with multiple lines." },
+      { heading: "Choose separator", text: "Select separator (space, comma, comma+space, newline)." },
+      { heading: "Unwrap", text: "Click Unwrap. The joined text appears in output." },
+    ],
+    useCases: [
+      { title: "Create lists", text: "Join lines to create comma-separated lists." },
+      { title: "Merge short lines", text: "Merge short lines into paragraphs." },
+      { title: "Prepare data", text: "Join lines for processing as a single string." },
+    ],
+    faq: [
+      { q: "What separator should I use?", a: "Use space for sentences, comma for lists, newline for preserving line breaks." },
+      { q: "Is this the same as 'Wrap Lines' tool?", a: "No. 'Wrap Lines' breaks long lines. 'Unwrap Lines' joins short lines. They are opposite operations." },
+    ],
+    relatedTools: ["wrap-lines", "duplicate-lines", "sort-lines"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",
