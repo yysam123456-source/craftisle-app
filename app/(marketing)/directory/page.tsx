@@ -238,35 +238,45 @@ export default async function ResourcesPage() {
       {/* Quick Rankings */}
       <QuickRankings />
 
-      {/* Quick Decision Guide */}
-      <DecisionGuide />
-
-      {/* Hot Resources (kept as supplement) */}
-      {hotResources.length > 0 && (
-        <HotResources resources={hotResources} />
-      )}
-
-      {/* My Favorites shortcut */}
-      <section className="py-6 border-b bg-yellow-50/40 dark:bg-yellow-900/10">
+      {/* Browse by Category */}
+      <section className="py-16" id="categories">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Star className="h-5 w-5 text-yellow-500 fill-yellow-400" />
-              <div>
-                <p className="font-semibold">My Favorites</p>
-                <p className="text-sm text-muted-foreground">Quickly access your saved resources</p>
-              </div>
-            </div>
-            <Link href="/directory/favorites">
-              <Button variant="outline" size="sm" className="gap-1">
-                View Favorites <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-            </Link>
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold tracking-tight">
+              Browse by Category — 12 Domains
+            </h2>
+            <p className="mt-1 text-muted-foreground">
+              {totalCount.toLocaleString()} resources across {categories.length} categories in 12 domains
+            </p>
+          </div>
+          <DomainCategoryGrid
+            domainGroups={getDomainGroups(categories)}
+            allCategories={categories}
+          />
+        </div>
+      </section>
+
+      {/* Popular Alternatives */}
+      <section className="py-12 bg-muted/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl font-bold tracking-tight">
+              🔥 Popular Alternatives
+            </h2>
+            <p className="mt-1 text-muted-foreground">
+              Find the best free alternatives to popular paid tools
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+            {/* TODO: Add Popular Alternatives component */}
+            <p className="text-muted-foreground text-center col-span-full">
+              Coming soon...
+            </p>
           </div>
         </div>
       </section>
 
-      {/* More Ways to Explore — 只保留 Compare + Best Tools */}
+      {/* More Ways to Explore */}
       <section className="py-12 border-b bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
@@ -303,16 +313,6 @@ export default async function ResourcesPage() {
                 </p>
               </div>
             </Link>
-          </div>
-
-          {/* Paid Inclusion CTA */}
-          <div className="mt-8 text-center">
-            <p className="text-sm text-muted-foreground">
-              Want priority listing and homepage placement?{" "}
-              <Link href="/directory/paid-inclusion" className="text-primary hover:underline font-medium">
-                Learn about Paid Inclusion
-              </Link>
-            </p>
           </div>
         </div>
       </section>
