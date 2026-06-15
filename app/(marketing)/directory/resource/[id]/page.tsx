@@ -683,37 +683,50 @@ export default async function ResourceDetailPage({
                       <Sparkles className="h-5 w-5 text-purple-600" />
                       Update History
                     </h3>
-                    <div className="space-y-3">
+                    <div className="relative pl-8">
                       {updates.map((update, i) => (
-                        <div key={i} className="flex items-start gap-3 p-3 rounded-lg border bg-card">
-                          <div className="flex-shrink-0 w-20 text-xs text-muted-foreground font-mono">
-                            {update.date}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-medium flex items-center gap-2">
-                              {update.title}
-                              {update.isRecent && (
-                                <Badge variant="outline" className="text-xs text-green-600 border-green-300">
-                                  Active
-                                </Badge>
-                              )}
-                            </h4>
-                            <p className="text-xs text-muted-foreground mt-0.5">
-                              {update.description}
-                            </p>
-                          </div>
-                          {update.link && (
-                            <a
-                              href={update.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-shrink-0"
-                            >
-                              <Button variant="ghost" size="sm" className="gap-1">
-                                View <ExternalLink className="h-3 w-3" />
-                              </Button>
-                            </a>
+                        <div key={i} className="relative pb-8 last:pb-0">
+                          {/* Vertical timeline line */}
+                          {i < updates.length - 1 && (
+                            <div className="absolute left-2 top-2 bottom-0 w-0.5 bg-gradient-to-b from-green-400 via-blue-400 to-gray-300 rounded-full" />
                           )}
+                          
+                          {/* Dot */}
+                          <div className={`absolute -left-0.5 top-2 w-3 h-3 rounded-full border-2 border-background ${
+                            update.isRecent ? "bg-green-500" : update.title === "Releases" ? "bg-blue-500" : "bg-gray-400"
+                          }`} />
+                          
+                          {/* Content */}
+                          <div className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:shadow-sm transition-all">
+                            <div className="flex-shrink-0 w-20 text-xs text-muted-foreground font-mono">
+                              {update.date}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-medium flex items-center gap-2">
+                                {update.title}
+                                {update.isRecent && (
+                                  <Badge variant="outline" className="text-xs text-green-600 border-green-300">
+                                    Active
+                                  </Badge>
+                                )}
+                              </h4>
+                              <p className="text-xs text-muted-foreground mt-0.5">
+                                {update.description}
+                              </p>
+                            </div>
+                            {update.link && (
+                              <a
+                                href={update.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-shrink-0"
+                              >
+                                <Button variant="ghost" size="sm" className="gap-1">
+                                  View <ExternalLink className="h-3 w-3" />
+                                </Button>
+                              </a>
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>
