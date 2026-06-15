@@ -36,6 +36,7 @@ interface ResourceCardProps {
   resource: Resource;
   showCategory?: boolean;
   variant?: "default" | "large";
+  highlightQuery?: string;
 }
 
 function getHostname(url: string): string {
@@ -53,6 +54,20 @@ function getFaviconUrl(url: string): string {
   } catch {
     return "";
   }
+}
+
+function highlightText(text: string | undefined | null, query: string | undefined): string | React.ReactNode {
+  if (!query || !text) return text || "";
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(`(${escaped})`, "gi");
+  const parts = text.split(regex);
+  return parts.map((part, i) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+      <mark key={i} className="bg-yellow-200 rounded px-0.5 text-foreground">{part}</mark>
+    ) : (
+      part
+    )
+  );
 }
 
 /**
@@ -234,7 +249,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
                     href={`/directory/resource/${resource.id}`}
                     className="hover:text-primary hover:underline decoration-primary/50 underline-offset-2 transition-colors"
                   >
-                    {resource.name}
+                    {highlightText(resource.name, highlightQuery)}
                   </Link>
                 ) : (
                   <a
@@ -243,7 +258,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
                     rel="noopener noreferrer"
                     className="hover:text-primary hover:underline decoration-primary/50 underline-offset-2 transition-colors"
                   >
-                    {resource.name}
+                    {highlightText(resource.name, highlightQuery)}
                   </a>
                 )}
               </CardTitle>
@@ -281,7 +296,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
               isLarge ? "text-sm line-clamp-4" : "text-sm line-clamp-3"
             }`}
           >
-            {buildRichDescription(resource)}
+            {highlightText(buildRichDescription(resource), highlightQuery)}
           </p>
         )}
 

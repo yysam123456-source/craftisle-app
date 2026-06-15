@@ -562,14 +562,14 @@ export function generateAdvantages(resource: Resource): string[] {
 
   // 1. GitHub Stars 高
   if (resource.githubStars && resource.githubStars > 10000) {
-    advantages.push(`⭐ 高人气：GitHub ${resource.githubStars.toLocaleString()} stars`);
+    advantages.push(`⭐ Popular：GitHub ${resource.githubStars.toLocaleString()} stars`);
   } else if (resource.githubStars && resource.githubStars > 1000) {
     advantages.push(`⭐ 受欢迎：GitHub ${resource.githubStars.toLocaleString()} stars`);
   }
 
-  // 2. 开源协议友好
+  // 2. License友好
   if (resource.githubLicense === "MIT" || resource.githubLicense === "Apache-2.0") {
-    advantages.push(`📖 开源协议：${resource.githubLicense}，可自由使用`);
+    advantages.push(`📖 License：${resource.githubLicense}, free to use`);
   } else if (resource.githubLicense) {
     advantages.push(`📖 License：${resource.githubLicense}`);
   }
@@ -579,14 +579,14 @@ export function generateAdvantages(resource: Resource): string[] {
     advantages.push("🔓 开源：代码透明，可自部署");
   }
 
-  // 4. 文档完善
+  // 4. Detailed Documentation
   if (resource.description && resource.description.length > 200) {
-    advantages.push("📚 文档完善：有详细的使用说明");
+    advantages.push("📚 Detailed Documentation: comprehensive usage instructions");
   }
 
   // 5. 有 AI Review
   if (hasReviewFor(resource)) {
-    advantages.push("✅ 已评测：有详细的 AI 评测报告");
+    advantages.push("✅ AI Review available: detailed analysis inside");
   }
 
   return advantages.slice(0, 3); // 最多 3 个
