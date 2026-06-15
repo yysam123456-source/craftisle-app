@@ -1,0 +1,23 @@
+{
+  "id": "adblock-00549",
+  "description": "All Platforms / [GitLab](https://git.jami.net/savoirfairelinux/jami-project)",
+  "introduction": "All Platforms / [GitLab](https://git.jami.net/savoirfairelinux/jami-project)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://jami.net/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:45:54.136Z"
+}

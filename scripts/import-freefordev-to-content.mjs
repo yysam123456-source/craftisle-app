@@ -36,7 +36,12 @@ function main() {
     }
 
     // 使用 freeTier 作为 description（如果 description 为空）
-    const desc = r.description || (r.freeTier ? r.freeTier.slice(0, 200) : '**');
+    const desc = (r.description || '').trim() || (r.freeTier ? r.freeTier.slice(0, 200) : '').trim();
+    // 只导入有真实描述的资源
+    if (!desc || desc === '**' || desc.length < 20) {
+      skipped++;
+      continue;
+    }
 
     const content = {
       id: r.id,

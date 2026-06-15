@@ -3,8 +3,12 @@
   "description": "LLM API Key Proxy",
   "introduction": "LLM API Key Proxy",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "**Async-native** with `asyncio` and `httpx`",
+    "**Intelligent key selection** with tiered, model-aware locking",
+    "**Deadline-driven requests** with configurable global timeout",
+    "**Automatic failover** between keys on errors",
+    "**OAuth support** for Gemini CLI",
+    "**Stateless deployment ready** — load credentials from environment variables"
   ],
   "useCases": [
     "Self-hosted deployment",
@@ -21,7 +25,6 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/Mirrowel/LLM-API-Key-Proxy.git && cd LLM-API-Key-Proxy",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:47.050Z",
-  "updatedAt": "2026-06-15T03:28:08.840Z"
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:40:22.515Z"
 }

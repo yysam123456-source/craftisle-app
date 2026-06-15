@@ -137,6 +137,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Generate content by category (ensure 10+ per category)
+        run: node scripts/populate-content-by-category.mjs 10
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Generate content from real data (FMHY + GitHub README)
         run: node scripts/populate-content-v2.mjs 500
         env:

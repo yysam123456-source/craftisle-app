@@ -1,0 +1,26 @@
+{
+  "id": "adblock-00504",
+  "description": "Tor Network Client / Onion Routing / [GitHub](https://github.com/center2055/OnionHop)",
+  "introduction": "Tor Network Client / Onion Routing / [GitHub](https://github.com/center2055/OnionHop)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/center2055/OnionHop.git && cd OnionHop",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:45:09.843Z"
+}

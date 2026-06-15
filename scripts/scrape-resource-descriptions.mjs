@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * scrape-resource-descriptions.mjs
- * 从资源官网抓取真实描述（补充 FMHY 数据的不足）
+ * 从资源官网抓取真实描述
  */
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -13,32 +13,31 @@ const DATA_DIR = join(__dirname, '..', 'public', 'data');
 const GENERATED_DIR = join(DATA_DIR, 'generated-content');
 const FMHY_FILE = join(DATA_DIR, 'fmhy-resources.json');
 
-function cleanText(html) {
-  return html
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 function extractDescription(html) {
-  // 尝试 meta description
-  let m = html.match(/<meta[^>]+name=["\']description["\'][^>]*content=["\']([^"\']+)["\']/i);
-  if (m) { const d = cleanText(m[1]); if (d.length > 30) return d; }
+  // 方法1: meta name="description"
+  const m1 = html.match(/<meta\s+name\s*=\s*["']description["'][^>]*\s+content\s*=\s*["']([^"']{20,}?)["']/i);
+  if (m1 && m1[1]) return m1[1].trim();
   
-  // 尝试 og:description
-  m = html.match(/<meta[^>]+property=["\']og:description["\'][^>]*content=["\']([^"\']+)["\']/i);
-  if (m) { const d = cleanText(m[1]); if (d.length > 30) return d; }
+  // 方法2: meta property="og:description"
+  const m2 = html.match(/<meta\s+property\s*=\s*["']og:description["'][^>]*\s+content\s*=\s*["']([^"']{20,}?)["']/i);
+  if (m2 && m2[1]) return m2[1].trim();
   
-  // 取第一段有意义文字
-  const text = cleanText(html);
-  const sentences = text.split(/[.!?。！？]\s+/);
-  for (const s of sentences) {
-    if (s.length > 30 && s.length < 300) return s;
+  // 方法3: 取<body>第一段文字
+  const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  if (bodyMatch) {
+    const text = bodyMatch[1]
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const sentences = text.split(/(?:[.!?。！？]\s+|<\/p>|<\/div>)/);
+    for (const s of sentences) {
+      const cleaned = s.trim();
+      if (cleaned.length > 30 && cleaned.length < 300) return cleaned;
+    }
   }
+  
   return null;
 }
 
@@ -55,14 +54,20 @@ async function scrapeResource(url, maxTime = 8000) {
     if (!res.ok) return null;
     const html = await res.text();
     return extractDescription(html);
-  } catch { return null; }
+  } catch (e) {
+    return null;
+  }
 }
 
 async function main() {
   const limit = parseInt(process.argv[2] || '10', 10);
-  console.log(`Scraping resource descriptions (limit: ${limit})...`);
+  console.log(`Scraping resource descriptions (limit: ${limit})...\n`);
   
-  if (!existsSync(FMHY_FILE)) { console.error('fmhy-resources.json not found'); process.exit(1); }
+  if (!existsSync(FMHY_FILE)) {
+    console.error('fmhy-resources.json not found.');
+    process.exit(1);
+  }
+  
   const data = JSON.parse(readFileSync(FMHY_FILE, 'utf-8'));
   const resources = [];
   for (const [catId, catData] of Object.entries(data.categories || {})) {
@@ -71,11 +76,15 @@ async function main() {
     }
   }
   
+  console.log(`Total resources: ${resources.length}\n`);
+    
   let scraped = 0, updated = 0;
+    
   for (let i = 0; i < Math.min(limit, resources.length); i++) {
     const r = resources[i];
     if (!r.url || !r.id) continue;
-    
+      
+    // 检查是否已有真实描述
     const genFile = join(GENERATED_DIR, `${r.id}.json`);
     let hasReal = false;
     if (existsSync(genFile)) {
@@ -85,9 +94,10 @@ async function main() {
       } catch {}
     }
     if (hasReal) continue;
-    
+      
     process.stdout.write(`  [${i+1}/${limit}] ${r.name || r.id}... `);
     const desc = await scrapeResource(r.url);
+      
     if (desc) {
       scraped++;
       console.log(`✅ ${desc.slice(0, 60)}...`);
@@ -103,8 +113,10 @@ async function main() {
     } else {
       console.log('⚠️  no description');
     }
+      
     await new Promise(r => setTimeout(r, 1000));
   }
+    
   console.log(`\n✅ Done! Scraped: ${scraped}, Updated: ${updated}`);
 }
 

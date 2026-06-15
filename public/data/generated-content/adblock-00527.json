@@ -1,0 +1,26 @@
+{
+  "id": "adblock-00527",
+  "description": "2FA / Android",
+  "introduction": "2FA / Android",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/X1nto/Mauth.git && cd Mauth",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:45:30.523Z"
+}

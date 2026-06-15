@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13207",
+  "description": "** - Game Codex Library",
+  "introduction": "** - Game Codex Library",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://libraryofcodexes.com/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:47:23.818Z"
+}

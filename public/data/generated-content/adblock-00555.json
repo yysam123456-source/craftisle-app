@@ -1,0 +1,23 @@
+{
+  "id": "adblock-00555",
+  "description": "/ Windows, Mac, Linux, Android / [GitLab](https://git.openprivacy.ca/cwtch.im/cwtch)",
+  "introduction": "/ Windows, Mac, Linux, Android / [GitLab](https://git.openprivacy.ca/cwtch.im/cwtch)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://docs.cwtch.im to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:45:59.163Z"
+}

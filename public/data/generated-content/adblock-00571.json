@@ -1,0 +1,23 @@
+{
+  "id": "adblock-00571",
+  "description": "** / [GitHub](https://github.com/HaveIBeenPwned) or [F-Secure](https://www.f-secure.com/en/identity-theft-checker) / [X](https://x.com/FSecure) - Monitor Email Breaches",
+  "introduction": "** / [GitHub](https://github.com/HaveIBeenPwned) or [F-Secure](https://www.f-secure.com/en/identity-theft-checker) / [X](https://x.com/FSecure) - Monitor Email Breaches",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://haveibeenpwned.com/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:46:04.748Z"
+}

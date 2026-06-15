@@ -24,7 +24,8 @@
     "update:pricing": "node scripts/update-pricing.mjs",
     "ai:generate-content": "node scripts/ai-generate-content.mjs --mock --limit 5",
     "ai:translate-content": "echo \"Translation script coming soon. Use --mock mode.\"",
-    "fetch:tutorials": "node scripts/fetch-tutorials.mjs"
+    "fetch:tutorials": "node scripts/fetch-tutorials.mjs",
+    "generate:content:by-category": "node scripts/populate-content-by-category.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

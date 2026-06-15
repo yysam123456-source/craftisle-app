@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00702",
+  "description": "** / [Telegram](https://t.me/RBMods)",
+  "introduction": "** / [Telegram](https://t.me/RBMods)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.rockmods.net/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:47:06.954Z"
+}

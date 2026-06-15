@@ -35,11 +35,18 @@ function main() {
       continue;
     }
 
+    const desc = r.description || '';
+    // 只导入有真实描述的资源
+    if (!desc || desc === '**' || desc.length < 20) {
+      skipped++;
+      continue;
+    }
+
     const content = {
       id: r.id,
       name: r.name,
-      introduction: r.description || '**',
-      description: r.description || '**',
+      introduction: desc,
+      description: desc,
       url: r.url || '',
       pricing: r.isFree ? 'Free' : 'Unknown',
       license: r.license || '',

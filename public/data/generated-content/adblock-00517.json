@@ -1,0 +1,23 @@
+{
+  "id": "adblock-00517",
+  "description": "Cloudflare Browser Check",
+  "introduction": "Cloudflare Browser Check",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.cloudflare.com/ssl/encrypted-sni/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T04:45:21.845Z"
+}
