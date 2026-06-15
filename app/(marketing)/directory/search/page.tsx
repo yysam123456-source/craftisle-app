@@ -43,6 +43,22 @@ interface CategoryMeta {
 const sourceLabels: Record<string, string> = { fmhy: "FMHY", "free-for-dev": "Free for Dev", "public-apis": "Public APIs", "awesome-selfhosted": "Self-Hosted" };
 const sourceIcons: Record<string, string> = { fmhy: "📚", "free-for-dev": "🔧", "public-apis": "🔌", "awesome-selfhosted": "🏠" };
 
+
+// Loading skeleton for search results
+function SearchSkeleton() {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div key={i} className="p-4 rounded-lg border bg-card animate-pulse">
+          <div className="h-4 bg-muted rounded w-3/4 mb-2"></div>
+          <div className="h-3 bg-muted rounded w-1/2 mb-1"></div>
+          <div className="h-3 bg-muted rounded w-5/6"></div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /**
  * Inner component that uses useSearchParams().
  * Wrapped in <Suspense> by the parent to satisfy Next.js 15 requirements.
@@ -330,11 +346,7 @@ function SearchResultsContent() {
 
         <section className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {loading && (
-            <div className="text-center py-12 text-muted-foreground">
-              Loading 10,000+ resources...
-            </div>
-          )}
+          {loading && <SearchSkeleton />}
           {!loading && query && (
             <div className="mb-6 space-y-3">
               <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -459,10 +471,28 @@ function SearchResultsContent() {
           )}
           {!loading && query && results.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">No resources found</p>
-              <p className="text-sm text-muted-foreground mt-2">
+              <p className="text-muted-foreground mb-4">No resources found for "{query}"</p>
+              <p className="text-sm text-muted-foreground mb-6">
                 Try different keywords or browse categories
               </p>
+              {/* Show popular searches as suggestions */}
+              <div className="max-w-md mx-auto">
+                <p className="text-sm font-medium mb-3">Popular searches:</p>
+                <div className="flex gap-2 flex-wrap justify-center">
+                  {POPULAR_SEARCHES.slice(0, 6).map((term) => (
+                    <Badge
+                      key={term}
+                      variant="outline"
+                      className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                      onClick={() => {
+                        router.push(`/directory/search?q=${encodeURIComponent(term)}`);
+                      }}
+                    >
+                      {term}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
             </div>
           )}
           {!loading && results.length > 0 && (
