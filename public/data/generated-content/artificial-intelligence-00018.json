@@ -1,0 +1,45 @@
+{
+  "introduction": "⁠LongCat is a popular free tool in the Artificial Intelligence category. It provides users with a free, accessible solution that can be used directly in the browser without installation. The tool is well-regarded in the community and offers a clean, intuitive interface.",
+  "features": [
+    "Easy to use with intuitive interface",
+    "Free to use with no registration required",
+    "Regular updates with new features",
+    "Active community support"
+  ],
+  "useCases": [
+    "Personal projects and prototyping",
+    "Learning and skill development",
+    "Small team collaboration"
+  ],
+  "alternatives": [
+    {
+      "name": "⁠LongCat Alternative 1",
+      "reason": "Similar features with different approach"
+    },
+    {
+      "name": "⁠LongCat Alternative 2",
+      "reason": "Open source alternative"
+    }
+  ],
+  "pricing": {
+    "type": "free",
+    "description": "100% free to use, no credit card required"
+  },
+  "pros": [
+    "Completely free to use",
+    "No registration required",
+    "Clean and intuitive interface"
+  ],
+  "cons": [
+    "Limited advanced features",
+    "Requires internet connection"
+  ],
+  "quickStart": [
+    "Visit the official website",
+    "Start using immediately in browser",
+    "Check documentation for advanced tips"
+  ],
+  "generatedAt": "2026-06-15T02:00:21.088Z",
+  "source": "fmhy",
+  "version": 1
+}

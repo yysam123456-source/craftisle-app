@@ -1,0 +1,45 @@
+{
+  "introduction": "[繁體] Google AI Studio is a popular free tool in the Artificial Intelligence category. It provides users with a free, accessible solution that can be used directly in the browser without installation. The tool is well-regarded in the community and offers a clean, intuitive interface.",
+  "features": [
+    "[繁體] Easy to use with intuitive interface",
+    "[繁體] Free to use with no registration required",
+    "[繁體] Regular updates with new features",
+    "[繁體] Active community support"
+  ],
+  "useCases": [
+    "[繁體] Personal projects and prototyping",
+    "[繁體] Learning and skill development",
+    "[繁體] Small team collaboration"
+  ],
+  "alternatives": [
+    {
+      "name": "[繁體] Google AI Studio Alternative 1",
+      "reason": "[繁體] Similar features with different approach"
+    },
+    {
+      "name": "[繁體] Google AI Studio Alternative 2",
+      "reason": "[繁體] Open source alternative"
+    }
+  ],
+  "pricing": {
+    "type": "free",
+    "description": "[繁體] 100% free to use, no credit card required"
+  },
+  "pros": [
+    "[繁體] Completely free to use",
+    "[繁體] No registration required",
+    "[繁體] Clean and intuitive interface"
+  ],
+  "cons": [
+    "[繁體] Limited advanced features",
+    "[繁體] Requires internet connection"
+  ],
+  "quickStart": [
+    "[繁體] Visit the official website",
+    "[繁體] Start using immediately in browser",
+    "[繁體] Check documentation for advanced tips"
+  ],
+  "generatedAt": "2026-06-15T02:01:34.696Z",
+  "source": "fmhy",
+  "version": 1
+}

@@ -21,7 +21,9 @@
     "update:producthunt": "node scripts/update-producthunt.mjs",
     "update:alternativeto": "node scripts/update-alternativeto.mjs",
     "update:awesome-lists": "node scripts/scrape-sources.mjs",
-    "update:pricing": "node scripts/update-pricing.mjs"
+    "update:pricing": "node scripts/update-pricing.mjs",
+    "ai:generate-content": "node scripts/ai-generate-content.mjs --mock --limit 5",
+    "ai:translate-content": "echo \"Translation script coming soon. Use --mock mode.\""
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

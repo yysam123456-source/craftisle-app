@@ -1,0 +1,45 @@
+{
+  "introduction": "[中文] ◄◄ Back to Wiki Index is a popular free tool in the Artificial Intelligence category. It provides users with a free, accessible solution that can be used directly in the browser without installation. The tool is well-regarded in the community and offers a clean, intuitive interface.",
+  "features": [
+    "[中文] Easy to use with intuitive interface",
+    "[中文] Free to use with no registration required",
+    "[中文] Regular updates with new features",
+    "[中文] Active community support"
+  ],
+  "useCases": [
+    "[中文] Personal projects and prototyping",
+    "[中文] Learning and skill development",
+    "[中文] Small team collaboration"
+  ],
+  "alternatives": [
+    {
+      "name": "[中文] ◄◄ Back to Wiki Index Alternative 1",
+      "reason": "[中文] Similar features with different approach"
+    },
+    {
+      "name": "[中文] ◄◄ Back to Wiki Index Alternative 2",
+      "reason": "[中文] Open source alternative"
+    }
+  ],
+  "pricing": {
+    "type": "free",
+    "description": "[中文] 100% free to use, no credit card required"
+  },
+  "pros": [
+    "[中文] Completely free to use",
+    "[中文] No registration required",
+    "[中文] Clean and intuitive interface"
+  ],
+  "cons": [
+    "[中文] Limited advanced features",
+    "[中文] Requires internet connection"
+  ],
+  "quickStart": [
+    "[中文] Visit the official website",
+    "[中文] Start using immediately in browser",
+    "[中文] Check documentation for advanced tips"
+  ],
+  "generatedAt": "2026-06-15T02:01:34.688Z",
+  "source": "fmhy",
+  "version": 1
+}
