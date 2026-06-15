@@ -19,10 +19,6 @@ export const marketingConfig: MarketingConfig = {
       href: "/directory",
     },
     {
-      title: "Favorites",
-      href: "/directory/favorites",
-    },
-    {
       title: "Blog",
       href: "/blog",
     },
