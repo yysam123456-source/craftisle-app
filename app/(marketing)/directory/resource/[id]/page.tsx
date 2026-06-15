@@ -1048,7 +1048,7 @@ export default async function ResourceDetailPage({
 
 // ── Review Section Component ────────────────────────────
 function GeneratedContentSection({ content }: { content: GeneratedContent }) {
-  const { introduction, features, useCases, pros, cons, pricing, quickStart, source, generatedAt } = content;
+  const { introduction, features, useCases, pros, cons, pricing, quickStart, source, generatedAt, alternatives } = content;
 
   return (
     <div className="mt-10 border-t pt-8 animate-fade-in">
@@ -1171,6 +1171,26 @@ function GeneratedContentSection({ content }: { content: GeneratedContent }) {
             <pre className="bg-muted/50 rounded-lg p-4 overflow-x-auto text-sm">
               <code>{quickStart}</code>
             </pre>
+          </div>
+        )}
+
+        {/* Alternatives (from generated content) */}
+        {alternatives && alternatives.length > 0 && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+              <ArrowRight className="h-4 w-4 text-purple-500" />
+              Popular Alternatives
+            </h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {alternatives.map((alt, i) => (
+                <Card key={i} className="border-purple-200">
+                  <CardContent className="p-4">
+                    <h4 className="font-medium text-sm">{alt.name}</h4>
+                    <p className="text-xs text-muted-foreground mt-1">{alt.reason}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         )}
 
