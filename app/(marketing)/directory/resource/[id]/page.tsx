@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles, Star } from "lucide-react";
+import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles, Star, HelpCircle } from "lucide-react";
 import { ResourceCard } from "@/components/resources/resource-card";
 import { GiscusComments } from "@/components/giscus-comments";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
@@ -18,6 +18,8 @@ import {
   getRelatedResources,
   getRichInfoResourceIds,
   getHotResourcesByScore,
+  calculateResourceScore,
+  getResourceScoreBreakdown,
   type Resource,
   generateAdvantages,
   findSimilarResources,
@@ -247,6 +249,20 @@ export default async function ResourceDetailPage({
   const faviconUrl = getFaviconUrl(resource.url);
   const hostname = getHostname(resource.url);
   const tutorials = loadTutorials(id);
+
+  // 资源综合评分（0-100）
+  const resourceScore = calculateResourceScore(resource);
+  const scoreBreakdown = getResourceScoreBreakdown(resource);
+  const scoreLevel = resourceScore >= 80 ? "Excellent" : resourceScore >= 60 ? "Good" : resourceScore >= 40 ? "Average" : "Below Average";
+  const scoreColor = resourceScore >= 80 ? "text-green-600" : resourceScore >= 60 ? "text-blue-600" : resourceScore >= 40 ? "text-yellow-600" : "text-red-600";
+  const scoreBg = resourceScore >= 80 ? "border-green-200 bg-green-50" : resourceScore >= 60 ? "border-blue-200 bg-blue-50" : resourceScore >= 40 ? "border-yellow-200 bg-yellow-50" : "border-red-200 bg-red-50";
+
+  // 新鲜度评分
+  const freshnessDays = resource.githubLastUpdated
+    ? Math.floor((Date.now() - new Date(resource.githubLastUpdated).getTime()) / (1000 * 60 * 60 * 24))
+    : 9999;
+  const freshnessScore = freshnessDays <= 30 ? 100 : freshnessDays <= 90 ? 75 : freshnessDays <= 365 ? 50 : freshnessDays <= 730 ? 25 : 10;
+  const freshnessLabel = freshnessDays <= 30 ? "Very Active" : freshnessDays <= 90 ? "Active" : freshnessDays <= 365 ? "Maintained" : freshnessDays <= 730 ? "Stale" : "Unknown";
 
   // Generate FAQ for this resource
   const resourceFaq = [
@@ -874,13 +890,55 @@ export default async function ResourceDetailPage({
         <section className="py-10 border-b animate-fade-in">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {/* Resource Score */}
+                <Card className={`border-2 ${scoreBg}`}>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                      <Sparkles className="h-4 w-4" />
+                      Resource Score
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center gap-3">
+                      <div className={`text-3xl font-bold ${scoreColor}`}>{resourceScore}</div>
+                      <div className="flex-1">
+                        <div className={`text-xs font-medium ${scoreColor}`}>{scoreLevel}</div>
+                        <div className="mt-1 h-2 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${resourceScore >= 80 ? "bg-green-500" : resourceScore >= 60 ? "bg-blue-500" : resourceScore >= 40 ? "bg-yellow-500" : "bg-red-500"}`}
+                            style={{ width: `${resourceScore}%` }}
+                          />
+                        </div>
+                        <div className="text-xs text-muted-foreground mt-1">out of 100</div>
+                      </div>
+                    </div>
+                    {freshnessDays < 9999 && (
+                      <div className="mt-3 pt-3 border-t">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-muted-foreground">Maintenance</span>
+                          <span className={`font-medium ${freshnessDays <= 30 ? "text-green-600" : freshnessDays <= 90 ? "text-blue-600" : freshnessDays <= 365 ? "text-yellow-600" : "text-red-600"}`}>
+                            {freshnessLabel}
+                          </span>
+                        </div>
+                        <div className="mt-1 h-1.5 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full ${freshnessDays <= 30 ? "bg-green-500" : freshnessDays <= 90 ? "bg-blue-500" : freshnessDays <= 365 ? "bg-yellow-500" : "bg-red-500"}`}
+                            style={{ width: `${freshnessScore}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       Category
                     </CardTitle>
                   </CardHeader>
+
                   <CardContent>
                     <Link
                       href={`/directory/${resource.category}`}
@@ -920,7 +978,103 @@ export default async function ResourceDetailPage({
                 </Card>
               </div>
 
-              {/* GitHub / Tech Stack Info Cards (only shown when data exists) */}
+
+              {/* Score Breakdown */}
+              <section className="py-10 border-b animate-fade-in">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="max-w-4xl mx-auto">
+                    <h2 className="text-2xl font-bold tracking-tight mb-6 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-primary" />
+                      Score Breakdown
+                    </h2>
+                    <p className="text-sm text-muted-foreground mb-6">
+                      How we calculate the {resourceScore}/100 resource score
+                    </p>
+                    <div className="space-y-4">
+                      {/* GitHub Stars */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium">GitHub Stars</span>
+                          <span className="text-sm text-muted-foreground">{scoreBreakdown.stars}/30</span>
+                        </div>
+                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-blue-500"
+                            style={{ width: `${Math.min(scoreBreakdown.stars / 30 * 100, 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                      {/* AI Review */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium">AI Review Available</span>
+                          <span className="text-sm text-muted-foreground">{scoreBreakdown.review}/25</span>
+                        </div>
+                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-green-500"
+                            style={{ width: `${scoreBreakdown.review > 0 ? 100 : 0}%` }}
+                          />
+                        </div>
+                      </div>
+                      {/* Description Quality */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium">Description Quality</span>
+                          <span className="text-sm text-muted-foreground">{scoreBreakdown.description}/15</span>
+                        </div>
+                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-purple-500"
+                            style={{ width: `${scoreBreakdown.description / 15 * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                      {/* Data Richness */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium">Data Richness</span>
+                          <span className="text-sm text-muted-foreground">{scoreBreakdown.dataRichness}/15</span>
+                        </div>
+                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-orange-500"
+                            style={{ width: `${scoreBreakdown.dataRichness / 15 * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                      {/* Timeliness */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium">Timeliness</span>
+                          <span className="text-sm text-muted-foreground">{scoreBreakdown.timeliness}/5</span>
+                        </div>
+                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-teal-500"
+                            style={{ width: `${scoreBreakdown.timeliness / 5 * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                      {/* Source Richness */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium">Source Features</span>
+                          <span className="text-sm text-muted-foreground">{scoreBreakdown.sourceRichness}/15</span>
+                        </div>
+                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-pink-500"
+                            style={{ width: `${scoreBreakdown.sourceRichness / 15 * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+                            {/* GitHub / Tech Stack Info Cards (only shown when data exists) */}
               {(resource.githubStars !== undefined || resource.githubLicense || resource.isSelfHosted || resource.techStack?.length) && (
                 <div className="grid gap-4 sm:grid-cols-3 mt-4 animate-fade-up">
                   {resource.githubStars !== undefined && resource.githubStars !== null && (

@@ -429,6 +429,72 @@ export function getQuickRankingsByCategory(categoryId: string, limit = 5): Resou
  * 综合评分系统（满分 ~100 分）
  * 维度：GitHub Stars(30) + AI Review(25) + 描述质量(15) + 数据丰富度(15) + 时效性(5) + 数据源特性(15)
  */
+
+/**
+ * 返回资源评分的各维度分解（用于可视化）
+ * 返回 { total, stars, review, description, dataRichness, timeliness, sourceRichness }
+ */
+export function getResourceScoreBreakdown(resource: Resource): Record<string, number> {
+  let scores: Record<string, number> = {
+    stars: 0,
+    review: 0,
+    description: 0,
+    dataRichness: 0,
+    timeliness: 0,
+    sourceRichness: 0,
+  };
+
+  // 1. GitHub Stars（0-30 分）
+  if (resource.githubStars && resource.githubStars > 0) {
+    scores.stars = Math.min(Math.log10(resource.githubStars) * 10, 30);
+  }
+
+  // 2. 有 AI Review（0-25 分）
+  if (hasReviewFor(resource)) {
+    scores.review = 25;
+  }
+
+  // 3. 描述质量（0-15 分）
+  const descLen = (resource.description || "").length;
+  if (descLen > 500) scores.description = 15;
+  else if (descLen > 200) scores.description = 10;
+  else if (descLen > 100) scores.description = 5;
+
+  // 4. 数据丰富度（0-15 分）
+  let dataR = 0;
+  if (resource.description && resource.description !== '**' && resource.description.length > 50) dataR += 5;
+  if (resource.githubUrl) dataR += 3;
+  if (resource.tags && resource.tags.length > 0) dataR += 3;
+  if (resource.techStack && resource.techStack.length > 0) dataR += 2;
+  if (resource.isOpenSource !== undefined) dataR += 2;
+  scores.dataRichness = Math.min(dataR, 15);
+
+  // 5. 时效性（0-5 分）
+  if (resource.githubLastUpdated) {
+    const daysSince = Math.floor((Date.now() - new Date(resource.githubLastUpdated).getTime()) / (1000 * 60 * 60 * 24));
+    if (daysSince <= 30) scores.timeliness = 5;
+    else if (daysSince <= 90) scores.timeliness = 4;
+    else if (daysSince <= 365) scores.timeliness = 3;
+    else if (daysSince <= 730) scores.timeliness = 1;
+  }
+
+  // 6. 数据源特性（0-15 分）
+  let srcR = 0;
+  if (resource.auth !== undefined) srcR += 5;
+  if (resource.https !== undefined) srcR += 3;
+  if (resource.cors !== undefined) srcR += 2;
+  if (resource.freeTier && resource.freeTier.length > 20) srcR += 5;
+  scores.sourceRichness = Math.min(srcR, 15);
+
+  scores.total = Math.round(
+    scores.stars + scores.review + scores.description + 
+    scores.dataRichness + scores.timeliness + scores.sourceRichness
+  );
+
+  return scores;
+}
+
+
 export function calculateResourceScore(resource: Resource): number {
   let score = 0;
 
