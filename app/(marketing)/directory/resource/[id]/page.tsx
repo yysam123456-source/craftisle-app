@@ -248,7 +248,27 @@ export default async function ResourceDetailPage({
   const hostname = getHostname(resource.url);
   const tutorials = loadTutorials(id);
 
-  // Structured Data: SoftwareApplication
+  // Generate FAQ for this resource
+  const resourceFaq = [
+    {
+      question: `Is ${resource.name} free to use?`,
+      answer: resource.isFree !== false ? `Yes, ${resource.name} is 100% free to use.` : `${resource.name} offers a free tier with premium options available.`,
+    },
+    {
+      question: `What are the best alternatives to ${resource.name}?`,
+      answer: `Top alternatives to ${resource.name} include similar tools in the ${resource.categoryName || 'free tools'} category. Visit our compare page to see detailed comparisons.`,
+    },
+    ...(resource.isOpenSource !== false ? [{
+      question: `Is ${resource.name} open source?`,
+      answer: `Yes, ${resource.name} is open source software. You can view the source code on GitHub.`,
+    }] : []),
+    {
+      question: `How do I get started with ${resource.name}?`,
+      answer: resource.description && resource.description !== '**' ? resource.description.slice(0, 200) : `Visit the official website to get started with ${resource.name}.`,
+    },
+  ];
+
+  // Structured Data: SoftwareApplication + FAQPage
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -288,12 +308,29 @@ export default async function ResourceDetailPage({
     },
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: resourceFaq.map(f => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  };
+
   return (
     <>
       {/* Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="min-h-screen bg-background">
@@ -751,6 +788,7 @@ export default async function ResourceDetailPage({
                 return (
                   <>
                     {generatedContent ? <GeneratedContentSection content={generatedContent} /> : null}
+                    <FAQSection faq={resourceFaq} />
                     <TutorialsSection tutorials={tutorials} />
                   </>
                 );
@@ -1192,6 +1230,31 @@ function GeneratedContentSection({ content }: { content: GeneratedContent }) {
             </p>
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+// ── FAQ Section ────────────────────────────────────
+function FAQSection({ faq }: { faq: { question: string; answer: string }[] }) {
+  if (!faq || faq.length === 0) return null;
+  return (
+    <div className="mt-10 border-t pt-8 animate-fade-in">
+      <div className="flex items-center gap-2 mb-6">
+        <HelpCircle className="h-5 w-5 text-blue-500" />
+        <h2 className="text-xl font-bold">Frequently Asked Questions</h2>
+      </div>
+      <div className="max-w-3xl space-y-4">
+        {faq.map((item, i) => (
+          <Card key={i} className="hover:shadow-sm transition-shadow">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base font-semibold">{item.question}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed">{item.answer}</p>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );

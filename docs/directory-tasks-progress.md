@@ -1,13 +1,13 @@
 # Directory 重构任务完成进度（对标 PRD v2.0）
 
 **总任务数：55 个**  
-**已完成：13 个**  
+**已完成：16 个**  
 **进行中：0 个**  
-**待执行：44 个**
+**待执行：39 个**
 
 ---
 
-## ✅ 已完成任务（11/55）
+## ✅ 已完成任务（16/55）
 
 ### Phase 1：基础修复（已完成 5/5）
 - ✅ **Task 1.1**：修复 404 Bug（resource-card.tsx badhe 拼写 + getRichInfoResourceIds）
@@ -16,17 +16,24 @@
 - ✅ **Task 1.4**：优化 Directory 首页信息架构（章节顺序对齐 PRD + 清理未使用导入）
 - ✅ **Task 1.5**：资源详情页添加 Compare 按钮
 
-### Phase 2：内容增强（已完成 3/5）
+### Phase 2：内容增强（已完成 4/5）
 - ✅ **Task 2.1.3**：降低 `getRichInfoResourceIds()` 门槛（纳入 GitHub Stars / tags / freeTier 等资源）
 - ✅ **Task 2.1.9**：添加 "May be outdated" 警告（资源最后更新超过 6 个月时显示）
 - ✅ **Task 2.2.8**：添加免责声明（静态版本，在主组件作用域内）
+- ✅ **Task 2.2**：增强资源详情页（添加 Alternatives 板块 + 丰富 Features 展示）
 
-### Phase 3：数据更新（已完成 1/3）
+### Phase 3：SEO/GEO 优化（已完成 3/5）
 - ✅ **Task 3.1**：SEO / GEO 优化（资源详情页添加 JSON-LD 结构化数据 `SoftwareApplication` Schema）
+- ✅ **Task 3.4**：添加 `Breadcrumb` Schema（已在 JSON-LD 中实现）
+- ✅ **Task 3.5**：生成 `llms.txt`（专为 LLM 设计的站点地图）
 
-### 跨 Phase 任务（已完成 2/5）
+### Phase 4：性能优化（已完成 1/5）
+- ✅ **Task 4.3**：添加 Resource Hints（`dns-prefetch` / `preconnect` / `preload`）
+
+### 跨 Phase 任务（已完成 3/5）
 - ✅ **GitHub Actions 工作流**：已覆盖 5 个数据源自动更新（FMHY / GitHub Stars / AlternativeTo / Awesome-Lists / Product Hunt）
 - ✅ **多语言支持**：`generateMetadata` 已配置 `alternates`（14 种语言）+ `openGraph` + `twitter`
+- ✅ **删除 junk 内容**：删除 19,622 个模板内容文件，保留 450 个高质量文件
 
 ---
 
