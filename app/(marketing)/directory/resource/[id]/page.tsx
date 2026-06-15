@@ -26,6 +26,20 @@ import {
 } from "@/lib/fmhy-data";
 import { Share2, Twitter, MessageSquare } from "lucide-react";
 
+// Helper: get contextual icon for advantage text
+function getAdvantageIcon(advantage: string): string {
+  const lower = advantage.toLowerCase();
+  if (lower.includes("fast") || lower.includes("performance") || lower.includes("speed")) return "🚀";
+  if (lower.includes("secure") || lower.includes("privacy") || lower.includes("safe")) return "🔒";
+  if (lower.includes("free") || lower.includes("cost") || lower.includes("price")) return "💰";
+  if (lower.includes("easy") || lower.includes("simple") || lower.includes("user-friendly")) return "✨";
+  if (lower.includes("open source") || lower.includes("community")) return "🌟";
+  if (lower.includes("api") || lower.includes("integration")) return "🔌";
+  if (lower.includes("cloud") || lower.includes("scalable")) return "☁️";
+  if (lower.includes("offline") || lower.includes("local")) return "💾";
+  return "✅";
+}
+
 const baseUrl = "https://craftisle.com";
 const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
 
@@ -506,8 +520,8 @@ export default async function ResourceDetailPage({
                     </h3>
                     <ul className="space-y-3">
                       {advantages.map((adv, i) => (
-                        <li key={i} className="flex items-start gap-3 text-sm">
-                          <span className="text-green-600 mt-0.5">✓</span>
+                        <li key={i} className="flex items-start gap-3 text-sm p-2 rounded-lg hover:bg-green-50/50 dark:hover:bg-green-900/10 transition-colors">
+                          <span className="text-lg flex-shrink-0">{getAdvantageIcon(adv)}</span>
                           <span className="text-muted-foreground">{adv}</span>
                         </li>
                       ))}
