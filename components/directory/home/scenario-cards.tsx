@@ -6,9 +6,19 @@ import { Card, CardContent } from "@/components/ui/card";
  * Scenario-based entry points
  * User-centric view, not category view
  * "What do you want to do?" → Click a scenario → See curated recommendations
+ *
+ * ⚠️ 每个链接必须指向真实存在的、有内容的页面！
+ * 可用路由：
+ *   /directory/best/[slug]     → best/[slug]/page.tsx（支持 FMHY 分类 + alternatives 虚拟分类）
+ *   /directory/[category]     → [category]/page.tsx（FMHY 原始分类，如 Gaming）
+ *   /directory/alternatives/[tool] → alternatives/[tool]/page.tsx（替代工具页）
+ *   /directory/compare/[...slug]    → compare/[...slug]/page.tsx（对比页）
+ *   /directory/compare         → compare/page.tsx（对比首页）
+ *   /directory/search?q=xxx    → search/page.tsx（搜索页，支持预填查询）
  */
 
 const SCENARIO_ENTRIES = [
+  // ── Row 1 ──────────────────────────────────────
   {
     icon: "🤖",
     title: "Find AI Assistant",
@@ -33,30 +43,34 @@ const SCENARIO_ENTRIES = [
     cta: "View Rankings",
     color: "green",
   },
+
+  // ── Row 2 ──────────────────────────────────────
   {
     icon: "🔒",
     title: "Find Privacy Tools",
     description: "Ad blocking, encrypted messaging, anonymous browsing",
-    href: "/directory/best/privacy-security",
+    href: "/directory/best/adblock",
     cta: "View Recommendations",
     color: "red",
   },
   {
     icon: "📚",
     title: "Find Learning Resources",
-    description: "Free courses, tutorials, documentation",
-    href: "/directory/best/education",
+    description: "Free courses, tutorials, documentation, e-books",
+    href: "/directory/best/reading",
     cta: "View Resources",
     color: "yellow",
   },
   {
     icon: "🎮",
     title: "Find Entertainment Tools",
-    description: "Games, media, productivity tools",
+    description: "Games, media, streaming, entertainment",
     href: "/directory/Gaming",
     cta: "View Recommendations",
     color: "pink",
   },
+
+  // ── Row 3 ──────────────────────────────────────
   {
     icon: "📝",
     title: "Find Productivity Tools",
@@ -77,16 +91,18 @@ const SCENARIO_ENTRIES = [
     icon: "🌐",
     title: "Find Open Source Tools",
     description: "Self-hosted, customizable, privacy-friendly",
-    href: "/directory/best/development",
+    href: "/directory/best/linux",
     cta: "View Open Source",
     color: "orange",
   },
+
+  // ── Row 4 ──────────────────────────────────────
   {
     icon: "📊",
     title: "Find Marketing Tools",
     description: "SEO, social media, email marketing, analytics",
-    href: "/directory/best/marketing",
-    cta: "View Marketing Tools",
+    href: "/directory/search?q=marketing+tools",
+    cta: "Explore Tools",
     color: "cyan",
   },
   {
@@ -101,8 +117,8 @@ const SCENARIO_ENTRIES = [
     icon: "🔧",
     title: "Find Browser Extensions",
     description: "Productivity, privacy, developer tools for your browser",
-    href: "/directory/best/productivity",
-    cta: "View Extensions",
+    href: "/directory/search?q=browser+extensions",
+    cta: "Explore Extensions",
     color: "slate",
   },
 ];

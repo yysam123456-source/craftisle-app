@@ -1,5 +1,5 @@
 export const revalidate = 86400;
-export const dynamicParams = false;
+export const dynamicParams = true;
 /**
  * /directory/best/[slug]
  * "Best X Tools 2026" - 程序化 SEO 页面
@@ -138,7 +138,7 @@ export async function generateStaticParams() {
   const unique = params.filter(
     (p, i, arr) => arr.findIndex((x) => x.slug === p.slug) === i
   );
-  return unique.slice(0, 10);
+  return unique;
 }
 
 // ── 根据 slug 查找分类（大小写不敏感） ──────────────────────────
