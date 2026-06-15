@@ -82,7 +82,7 @@ function generateScenarioCards() {
       cta: 'View Recommendations',
       count: cat.count
     };
-  }).slice(0, 12); // 最多12个卡片
+  }).slice(0, 6); // 最多6个卡片（简化，减少认知负担）
 }
 
 const COLOR_CLASSES = {

@@ -69,6 +69,8 @@ export interface Resource {
   isFree?: boolean;
   /** 是否有 AI Review */
   hasReview?: boolean;
+  /** 资源图标（emoji 或 icon url） */
+  icon?: string;
   /**
    * 服务端预计算：是否有丰富详情页（供客户端 ResourceCard 使用）
    * 由 getEditorPicks()、getQuickRankingsByCategory() 等函数设置
