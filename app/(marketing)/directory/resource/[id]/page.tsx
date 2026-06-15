@@ -756,6 +756,20 @@ export default async function ResourceDetailPage({
                 );
               })()}
 
+              {/* Disclaimer (Task 2.2.8) */}
+              <div className="mt-4 pt-4 border-t text-xs text-muted-foreground space-y-1">
+                <p>
+                  Resource data sourced from FMHY, last updated: {resource.githubLastUpdated
+                    ? new Date(resource.githubLastUpdated).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+                    : resource.dateAdded
+                      ? new Date(resource.dateAdded).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })
+                      : "Unknown"}
+                </p>
+                <p>
+                  We are not responsible for the content of external websites. Please verify all information independently.
+                </p>
+              </div>
+
               {/* CTA */}
               <div className="mt-8 flex flex-wrap gap-3 animate-fade-up">
                 <a
