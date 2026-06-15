@@ -694,37 +694,45 @@ export default async function ResourceDetailPage({
                       <Sparkles className="h-5 w-5 text-purple-600" />
                       Update History
                     </h3>
-                    <div className="space-y-3">
+                    {/* Visual Timeline */}
+                    <div className="relative">
+                      {/* Vertical line */}
+                      <div className="absolute left-2 top-2 bottom-2 w-0.5 bg-gradient-to-b from-green-400 via-blue-400 to-gray-300 rounded-full" />
+                      <div className="space-y-4 pl-6">
                       {updates.map((update, i) => (
-                        <div key={i} className="flex items-start gap-3 p-3 rounded-lg border bg-card">
-                          <div className="flex-shrink-0 w-20 text-xs text-muted-foreground font-mono">
-                            {update.date}
+                        <div key={i} className="relative">
+                          {/* Timeline dot */}
+                          <div className={`absolute -left-4 top-3 w-3 h-3 rounded-full border-2 border-background ${update.isRecent ? "bg-green-500" : update.title === "Releases" ? "bg-blue-500" : "bg-gray-400"}`} />
+                          <div className="p-3 rounded-lg border bg-card hover:shadow-sm transition-all">
+                            <div className="flex items-start justify-between gap-2">
+                              <div>
+                                <h4 className="text-sm font-medium flex items-center gap-2">
+                                  {update.title}
+                                  {update.isRecent && (
+                                    <Badge variant="outline" className="text-xs text-green-600 border-green-300">
+                                      Active
+                                    </Badge>
+                                  )}
+                                </h4>
+                                <p className="text-xs text-muted-foreground mt-0.5">{update.description}</p>
+                              </div>
+                              <div className="flex-shrink-0 text-xs text-muted-foreground font-mono">
+                                {update.date}
+                              </div>
+                            </div>
+                            {update.link && (
+                              <a
+                                href={update.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex mt-2"
+                              >
+                                <Button variant="ghost" size="sm" className="gap-1">
+                                  View <ExternalLink className="h-3 w-3" />
+                                </Button>
+                              </a>
+                            )}
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-medium flex items-center gap-2">
-                              {update.title}
-                              {update.isRecent && (
-                                <Badge variant="outline" className="text-xs text-green-600 border-green-300">
-                                  Active
-                                </Badge>
-                              )}
-                            </h4>
-                            <p className="text-xs text-muted-foreground mt-0.5">
-                              {update.description}
-                            </p>
-                          </div>
-                          {update.link && (
-                            <a
-                              href={update.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-shrink-0"
-                            >
-                              <Button variant="ghost" size="sm" className="gap-1">
-                                View <ExternalLink className="h-3 w-3" />
-                              </Button>
-                            </a>
-                          )}
                         </div>
                       ))}
                     </div>
