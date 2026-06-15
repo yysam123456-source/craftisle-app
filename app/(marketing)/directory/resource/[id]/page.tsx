@@ -264,7 +264,7 @@ export default async function ResourceDetailPage({
         </div>
 
         {/* Hero Section */}
-        <section className="border-b py-12 md:py-16">
+        <section className="border-b py-12 md:py-16 animate-fade-in">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               {/* Back link */}
@@ -324,8 +324,8 @@ export default async function ResourceDetailPage({
                 </div>
               </div>
 
-              {/* Description */}
-              <div className="mt-8 max-w-2xl">
+                {/* Description */}
+                <div className="mt-8 max-w-2xl animate-fade-up">
                 <h2 className="text-lg font-semibold mb-3">About {resource.name}</h2>
                 {resource.description && resource.description.trim().length > 5 ? (
                   <p className="text-muted-foreground leading-relaxed">{resource.description}</p>
@@ -397,7 +397,7 @@ export default async function ResourceDetailPage({
               {(() => {
                 const advantages = generateAdvantages(resource);
                 return advantages.length > 0 ? (
-                  <div className="mt-8 p-5 bg-green-50/50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
+                  <div className="mt-8 p-5 bg-green-50/50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800 animate-fade-up">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <ThumbsUp className="h-5 w-5 text-green-600" />
                       Why Choose {resource.name}?
@@ -418,7 +418,7 @@ export default async function ResourceDetailPage({
               {(() => {
                 const tips = generateUsageTips(resource);
                 return tips.length > 0 ? (
-                  <div className="mt-6 p-5 bg-amber-50/50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800">
+                  <div className="mt-6 p-5 bg-amber-50/50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800 animate-fade-up">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <Lightbulb className="h-5 w-5 text-amber-600" />
                       Usage Tips
@@ -488,7 +488,7 @@ export default async function ResourceDetailPage({
                 }
 
                 return relatedLinks.length > 0 ? (
-                  <div className="mt-6 p-5 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                  <div className="mt-6 p-5 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800 animate-fade-up">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <BookOpen className="h-5 w-5 text-blue-600" />
                       Related Resources
@@ -578,7 +578,7 @@ export default async function ResourceDetailPage({
                 }
 
                 return updates.length > 0 ? (
-                  <div className="mt-6 p-5 bg-purple-50/50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
+                  <div className="mt-6 p-5 bg-purple-50/50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800 animate-fade-up">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <Sparkles className="h-5 w-5 text-purple-600" />
                       Update History
@@ -629,7 +629,7 @@ export default async function ResourceDetailPage({
                 // Find related compare pages
                 const compareUrl = `/directory/compare/${resource.id.split("-")[0]}`;
                 return (
-                  <div className="mt-6 p-5 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                  <div className="mt-6 p-5 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800 animate-fade-up">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <ArrowRight className="h-5 w-5 text-blue-600" />
                       How Does It Compare?
@@ -650,7 +650,7 @@ export default async function ResourceDetailPage({
               {(() => {
                 const similar = findSimilarResources(resource, 5);
                 return similar.length > 0 ? (
-                  <div className="mt-6">
+                  <div className="mt-6 animate-fade-up">
                     <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                       <Sparkles className="h-5 w-5 text-purple-600" />
                       Similar Tools
@@ -693,7 +693,7 @@ export default async function ResourceDetailPage({
               })()}
 
               {/* CTA */}
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3 animate-fade-up">
                 <a
                   href={resource.url}
                   target="_blank"
@@ -714,7 +714,7 @@ export default async function ResourceDetailPage({
               </div>
 
               {/* Share buttons */}
-              <div className="mt-4 flex items-center gap-3">
+              <div className="mt-4 flex items-center gap-3 animate-fade-up">
                 <span className="text-sm text-muted-foreground">Share:</span>
                 <a
                   href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${baseUrl}/directory/resource/${resource.id}`)}&text=${encodeURIComponent(`Check out ${resource.name} — a free ${resource.categoryName} tool via @Craftisle`)}`}
@@ -749,7 +749,7 @@ export default async function ResourceDetailPage({
         </section>
 
         {/* Info Cards */}
-        <section className="py-10 border-b">
+        <section className="py-10 border-b animate-fade-in">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="grid gap-4 sm:grid-cols-3">
@@ -800,7 +800,7 @@ export default async function ResourceDetailPage({
 
               {/* GitHub / Tech Stack Info Cards (only shown when data exists) */}
               {(resource.githubStars !== undefined || resource.githubLicense || resource.isSelfHosted || resource.techStack?.length) && (
-                <div className="grid gap-4 sm:grid-cols-3 mt-4">
+                <div className="grid gap-4 sm:grid-cols-3 mt-4 animate-fade-up">
                   {resource.githubStars !== undefined && resource.githubStars !== null && (
                     <Card>
                       <CardHeader className="pb-2">
@@ -883,7 +883,7 @@ export default async function ResourceDetailPage({
           </div>
         </section>
         {related.length > 0 && (
-          <section className="py-12">
+          <section className="py-12 animate-fade-in">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-2xl font-bold tracking-tight mb-6">
@@ -912,7 +912,7 @@ export default async function ResourceDetailPage({
         )}
 
         {/* Source Attribution (Google合规) */}
-        <section className="border-t py-8 bg-muted/20">
+        <section className="border-t py-8 bg-muted/20 animate-fade-in">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <p className="text-xs text-muted-foreground">
@@ -937,7 +937,7 @@ export default async function ResourceDetailPage({
         </section>
 
         {/* Comments (Giscus - GitHub Discussions) */}
-        <section className="py-12 border-t">
+        <section className="py-12 border-t animate-fade-in">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <GiscusComments term={resource.name} />
