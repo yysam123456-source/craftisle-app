@@ -25,6 +25,7 @@ import {
 import { Share2, Twitter, MessageSquare } from "lucide-react";
 
 const baseUrl = "https://craftisle.com";
+const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
 
 // ── 静态生成：仅预构建前10个「有丰富信息」的资源页（ISR：其余按需生成） ────
 export const revalidate = 21600; // 6小时 ISR
@@ -79,6 +80,10 @@ export async function generateMetadata({
     ...(isLowQuality ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: canonicalUrl,
+      languages: LANGUAGES.reduce((acc, lang) => ({
+        ...acc,
+        [lang]: `/directory/resource/${resource.id}${lang === 'en' ? '' : `/${lang}`}`,
+      }), {}),
     },
     openGraph: {
       type: "article",
