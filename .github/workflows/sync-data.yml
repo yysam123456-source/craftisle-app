@@ -1,52 +1,156 @@
-name: Sync Resource Data
+name: Daily Data Sync
 
 on:
   schedule:
-    # Every Monday at 08:00 UTC
-    - cron: "0 8 * * 1"
-  workflow_dispatch:  # Manual trigger
+    # 每天北京时间 凌晨 2 点（UTC 18:00）
+    - cron: '0 18 * * *'
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
 
 jobs:
-  sync:
+  # ── Job 1: 同步 FMHY 数据 ──────────────────────────
+  sync-fmhy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Restore FMHY cache
+        uses: actions/cache@v4
+        with:
+          path: public/data/fmhy-raw.json
+          key: fmhy-raw-${{ hashFiles('scripts/sync-fmhy.mjs') }}
+          restore-keys: fmhy-raw-
 
       - name: Sync FMHY data
-        run: npm run sync:fmhy
-        continue-on-error: true
+        run: node scripts/sync-fmhy.mjs
+        timeout-minutes: 10
 
-      - name: Sync multi-source data (free-for.dev, public-apis, awesome-selfhosted)
-        run: npm run sync:sources
-        continue-on-error: true
-
-      - name: Check for changes
-        id: check
+      - name: Commit & push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet public/data/; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "No changes detected"
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "Changes detected in public/data/"
-          fi
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add public/data/fmhy-*.json || true
+          git diff --staged --quiet || (git commit -m "chore(data): auto-sync FMHY ($(date +'%Y-%m-%d'))" && git push)
 
-      - name: Commit and push
-        if: steps.check.outputs.changed == 'true'
+  # ── Job 2: 更新 GitHub Stars（增量，快） ─────────
+  update-stars:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update GitHub Stars（增量，只更新变更）
+        run: node scripts/update-github-stars.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        timeout-minutes: 30
+
+      - name: Commit & push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/data/
-          git commit -m "chore: auto-sync resource data [skip ci]"
-          git push
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add public/data/fmhy-resources.json || true
+          git diff --staged --quiet || (git commit -m "chore(data): update GitHub stars ($(date +'%Y-%m-%d'))" && git push)
+
+  # ── Job 3: 生成替代品映射（从 FMHY 数据） ──────
+  update-alternatives:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate alternatives from FMHY data
+        run: node scripts/generate-alternatives-from-fmhy.mjs
+        timeout-minutes: 5
+
+      - name: Commit & push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add public/data/alternatives.json || true
+          git diff --staged --quiet || (git commit -m "chore(data): update alternatives ($(date +'%Y-%m-%d'))" && git push)
+
+  # ── Job 4: 抓取 Awesome Lists ─────────────────────
+  update-awesome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Scrape Awesome Lists
+        run: node scripts/scrape-awesome-lists.mjs
+        timeout-minutes: 10
+
+      - name: Commit & push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add public/data/awesome-*.json || true
+          git diff --staged --quiet || (git commit -m "chore(data): update Awesome Lists ($(date +'%Y-%m-%d'))" && git push)
+
+  # ── Job 5: 抓取 Product Hunt（需要 API Key） ─────
+  update-producthunt:
+    runs-on: ubuntu-latest
+    # 跳过如果没配置 API Key
+    if: ${{ secrets.PRODUCTHUNT_API_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update Product Hunt data
+        run: node scripts/update-producthunt.mjs
+        env:
+          PRODUCTHUNT_API_KEY: ${{ secrets.PRODUCTHUNT_API_KEY }}
+        timeout-minutes: 5
+        continue-on-error: true  # 失败不阻塞其他任务
+
+      - name: Commit & push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add public/data/producthunt-*.json || true
+          git diff --staged --quiet || (git commit -m "chore(data): update Product Hunt ($(date +'%Y-%m-%d'))" && git push)
+        continue-on-error: true
