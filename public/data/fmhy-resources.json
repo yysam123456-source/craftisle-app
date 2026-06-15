@@ -6,7 +6,7 @@
       "nameZh": "Artificial Intelligence",
       "description": "Artificial-Intelligence resources",
       "icon": "📦",
-      "count": 355,
+      "count": 373,
       "resources": [
         {
           "id": "artificial-intelligence-00001",
@@ -3697,6 +3697,204 @@
           "url": "https://nixified.ai/",
           "description": "Nix Flake for AI Projects",
           "dateAdded": "2026-06-15"
+        },
+        {
+          "id": "ph-1149886",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Brew ",
+          "url": "https://www.producthunt.com/r/3Q7DPTEXUJAFUG?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Like Claude design for email marketing",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1144771",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "StoreClaw",
+          "url": "https://www.producthunt.com/r/PVXOOJINEBKKUA?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Grow your store profits with agents that know how to sell",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1135604",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "PollyReach",
+          "url": "https://www.producthunt.com/r/YNJ3R3XJ5FEEBJ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Give your agent a real number and voice to make calls.",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1140898",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Unabyss",
+          "url": "https://www.producthunt.com/r/3EY2VAEXSWTXAR?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "MCP-native self-updating context layer for your AI",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1168743",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Bond",
+          "url": "https://www.producthunt.com/r/7SFOLQBBWUEQXW?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "The AI to-do list that does itself",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1152782",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "own.page",
+          "url": "https://www.producthunt.com/r/MG5MNTMYZSEPJI?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Make your own personal website with bento tiles",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1152641",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Publora",
+          "url": "https://www.producthunt.com/r/FFFDHH6IKSRQWU?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "A publishing API for agents to post on 10 social platforms",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1134267",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "mailX by mailwarm",
+          "url": "https://www.producthunt.com/r/H2XLXASAORMP7Z?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Email deliverability toolkit for humans and AI agents",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1152111",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Pancake",
+          "url": "https://www.producthunt.com/r/AYXK7CGT2LEPGB?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "OpenClaw in Slack that makes your company autonomous",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1149728",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Elentaria",
+          "url": "https://www.producthunt.com/r/UJ3FSZT2ZNWJMT?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Your GTM: from diagnosis to execution",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1155751",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "SellerClaw",
+          "url": "https://www.producthunt.com/r/7EVPIJ3T3Q6YW2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "A team of AI agents that runs your stores across channels",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1124409",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "SocLeads 3.0",
+          "url": "https://www.producthunt.com/r/ALZHOD7ZH2TWYV?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Scrape emails from socials and maps by location",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1152148",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Tycoon AI ",
+          "url": "https://www.producthunt.com/r/RL4GWQKCKC4Y5K?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Run one-person companies entirely with AI agents",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1159756",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "InsForge Backend Branching",
+          "url": "https://www.producthunt.com/r/QFEQQG4XV2YKOJ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Git style branching for your backend",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1151377",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Stitch 3.0 by Google",
+          "url": "https://www.producthunt.com/r/2WIQLRJ4DNSJF5?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Generate and iterate UI screens with AI on a live canvas",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1158759",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Honen",
+          "url": "https://www.producthunt.com/r/KGWER5KAKVLXHX?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Automated teaching + learning infrastructure for any company",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1163169",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Minimi",
+          "url": "https://www.producthunt.com/r/SIMPLUAHCBBLII?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Your ambient memory for Claude",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
+        },
+        {
+          "id": "ph-1146113",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial Intelligence",
+          "categoryIcon": "🤖",
+          "name": "Vivago Video Agent",
+          "url": "https://www.producthunt.com/r/4UYKCH63ZLBZY7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Craftisle+Directory+%28ID%3A+288021%29",
+          "description": "Skip the prompting. Produce consistently compelling videos. ",
+          "dateAdded": "2026-06-15",
+          "source": "producthunt"
         }
       ]
     },

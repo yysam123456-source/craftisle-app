@@ -36,7 +36,7 @@ async function fetchTopProducts() {
             description
             url
             votesCount
-            websiteUrl
+            website
             thumbnail {
               url
             }
@@ -51,18 +51,24 @@ async function fetchTopProducts() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": PRODUCTHUNT_API_KEY,
+        "Authorization": `Bearer ${PRODUCTHUNT_API_KEY}`,
         "User-Agent": "craftisle-app",
       },
       body: JSON.stringify({ query }),
     });
 
     if (!resp.ok) {
-      console.error(`❌ Product Hunt API error: ${resp.status}`);
+      const text = await resp.text();
+      console.error(`❌ Product Hunt API error: ${resp.status}`, text);
       return [];
     }
 
     const data = await resp.json();
+    if (data.errors) {
+      console.error("❌ GraphQL errors:", data.errors);
+      return [];
+    }
+
     const posts = data.data?.posts?.edges?.map((e) => e.node) || [];
     console.log(`  ✓ Fetched ${posts.length} products from Product Hunt`);
     return posts;
@@ -112,7 +118,7 @@ async function main() {
 
   for (const product of products) {
     if (!isFreeTool(product)) continue;
-    if (existingUrls.has(product.websiteUrl || product.url)) continue;
+    if (existingUrls.has(product.website || product.url)) continue;
 
     // Add to "Artificial-Intelligence" or "Misc" category
     const targetCat = data.categories["Artificial-Intelligence"] || data.categories["Misc"];
@@ -124,7 +130,7 @@ async function main() {
       categoryName: "Artificial Intelligence",
       categoryIcon: "🤖",
       name: product.name,
-      url: product.websiteUrl || product.url,
+      url: product.website || product.url,
       description: product.tagline || product.description || "",
       dateAdded: new Date().toISOString().split("T")[0],
       source: "producthunt",
