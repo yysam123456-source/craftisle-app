@@ -18,9 +18,8 @@ import {
   getRelatedResources,
   getRichInfoResourceIds,
   getHotResourcesByScore,
-  calculateResourceScore,
-  getResourceScoreBreakdown,
   type Resource,
+  calculateResourceScore,
   generateAdvantages,
   findSimilarResources,
   generateUsageTips,
@@ -249,20 +248,7 @@ export default async function ResourceDetailPage({
   const faviconUrl = getFaviconUrl(resource.url);
   const hostname = getHostname(resource.url);
   const tutorials = loadTutorials(id);
-
-  // 资源综合评分（0-100）
   const resourceScore = calculateResourceScore(resource);
-  const scoreBreakdown = getResourceScoreBreakdown(resource);
-  const scoreLevel = resourceScore >= 80 ? "Excellent" : resourceScore >= 60 ? "Good" : resourceScore >= 40 ? "Average" : "Below Average";
-  const scoreColor = resourceScore >= 80 ? "text-green-600" : resourceScore >= 60 ? "text-blue-600" : resourceScore >= 40 ? "text-yellow-600" : "text-red-600";
-  const scoreBg = resourceScore >= 80 ? "border-green-200 bg-green-50" : resourceScore >= 60 ? "border-blue-200 bg-blue-50" : resourceScore >= 40 ? "border-yellow-200 bg-yellow-50" : "border-red-200 bg-red-50";
-
-  // 新鲜度评分
-  const freshnessDays = resource.githubLastUpdated
-    ? Math.floor((Date.now() - new Date(resource.githubLastUpdated).getTime()) / (1000 * 60 * 60 * 24))
-    : 9999;
-  const freshnessScore = freshnessDays <= 30 ? 100 : freshnessDays <= 90 ? 75 : freshnessDays <= 365 ? 50 : freshnessDays <= 730 ? 25 : 10;
-  const freshnessLabel = freshnessDays <= 30 ? "Very Active" : freshnessDays <= 90 ? "Active" : freshnessDays <= 365 ? "Maintained" : freshnessDays <= 730 ? "Stale" : "Unknown";
 
   // Generate FAQ for this resource
   const resourceFaq = [
@@ -409,8 +395,11 @@ export default async function ResourceDetailPage({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl flex items-center gap-3 flex-wrap">
                         {resource.name}
+                        <Badge variant="outline" className={`text-xs font-mono ${resourceScore >= 80 ? 'text-green-600 border-green-300' : resourceScore >= 60 ? 'text-yellow-600 border-yellow-300' : 'text-gray-600 border-gray-300'}`}>
+                          Score: {resourceScore}/100
+                        </Badge>
                       </h1>
                       <p className="mt-1 text-muted-foreground text-sm">{hostname}</p>
                       {/* User Rating */}
@@ -694,45 +683,37 @@ export default async function ResourceDetailPage({
                       <Sparkles className="h-5 w-5 text-purple-600" />
                       Update History
                     </h3>
-                    {/* Visual Timeline */}
-                    <div className="relative">
-                      {/* Vertical line */}
-                      <div className="absolute left-2 top-2 bottom-2 w-0.5 bg-gradient-to-b from-green-400 via-blue-400 to-gray-300 rounded-full" />
-                      <div className="space-y-4 pl-6">
+                    <div className="space-y-3">
                       {updates.map((update, i) => (
-                        <div key={i} className="relative">
-                          {/* Timeline dot */}
-                          <div className={`absolute -left-4 top-3 w-3 h-3 rounded-full border-2 border-background ${update.isRecent ? "bg-green-500" : update.title === "Releases" ? "bg-blue-500" : "bg-gray-400"}`} />
-                          <div className="p-3 rounded-lg border bg-card hover:shadow-sm transition-all">
-                            <div className="flex items-start justify-between gap-2">
-                              <div>
-                                <h4 className="text-sm font-medium flex items-center gap-2">
-                                  {update.title}
-                                  {update.isRecent && (
-                                    <Badge variant="outline" className="text-xs text-green-600 border-green-300">
-                                      Active
-                                    </Badge>
-                                  )}
-                                </h4>
-                                <p className="text-xs text-muted-foreground mt-0.5">{update.description}</p>
-                              </div>
-                              <div className="flex-shrink-0 text-xs text-muted-foreground font-mono">
-                                {update.date}
-                              </div>
-                            </div>
-                            {update.link && (
-                              <a
-                                href={update.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex mt-2"
-                              >
-                                <Button variant="ghost" size="sm" className="gap-1">
-                                  View <ExternalLink className="h-3 w-3" />
-                                </Button>
-                              </a>
-                            )}
+                        <div key={i} className="flex items-start gap-3 p-3 rounded-lg border bg-card">
+                          <div className="flex-shrink-0 w-20 text-xs text-muted-foreground font-mono">
+                            {update.date}
                           </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-medium flex items-center gap-2">
+                              {update.title}
+                              {update.isRecent && (
+                                <Badge variant="outline" className="text-xs text-green-600 border-green-300">
+                                  Active
+                                </Badge>
+                              )}
+                            </h4>
+                            <p className="text-xs text-muted-foreground mt-0.5">
+                              {update.description}
+                            </p>
+                          </div>
+                          {update.link && (
+                            <a
+                              href={update.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-shrink-0"
+                            >
+                              <Button variant="ghost" size="sm" className="gap-1">
+                                View <ExternalLink className="h-3 w-3" />
+                              </Button>
+                            </a>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -898,55 +879,13 @@ export default async function ResourceDetailPage({
         <section className="py-10 border-b animate-fade-in">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {/* Resource Score */}
-                <Card className={`border-2 ${scoreBg}`}>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                      <Sparkles className="h-4 w-4" />
-                      Resource Score
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center gap-3">
-                      <div className={`text-3xl font-bold ${scoreColor}`}>{resourceScore}</div>
-                      <div className="flex-1">
-                        <div className={`text-xs font-medium ${scoreColor}`}>{scoreLevel}</div>
-                        <div className="mt-1 h-2 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${resourceScore >= 80 ? "bg-green-500" : resourceScore >= 60 ? "bg-blue-500" : resourceScore >= 40 ? "bg-yellow-500" : "bg-red-500"}`}
-                            style={{ width: `${resourceScore}%` }}
-                          />
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-1">out of 100</div>
-                      </div>
-                    </div>
-                    {freshnessDays < 9999 && (
-                      <div className="mt-3 pt-3 border-t">
-                        <div className="flex items-center justify-between text-xs">
-                          <span className="text-muted-foreground">Maintenance</span>
-                          <span className={`font-medium ${freshnessDays <= 30 ? "text-green-600" : freshnessDays <= 90 ? "text-blue-600" : freshnessDays <= 365 ? "text-yellow-600" : "text-red-600"}`}>
-                            {freshnessLabel}
-                          </span>
-                        </div>
-                        <div className="mt-1 h-1.5 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${freshnessDays <= 30 ? "bg-green-500" : freshnessDays <= 90 ? "bg-blue-500" : freshnessDays <= 365 ? "bg-yellow-500" : "bg-red-500"}`}
-                            style={{ width: `${freshnessScore}%` }}
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-
+              <div className="grid gap-4 sm:grid-cols-3">
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium text-muted-foreground">
                       Category
                     </CardTitle>
                   </CardHeader>
-
                   <CardContent>
                     <Link
                       href={`/directory/${resource.category}`}
@@ -986,103 +925,7 @@ export default async function ResourceDetailPage({
                 </Card>
               </div>
 
-
-              {/* Score Breakdown */}
-              <section className="py-10 border-b animate-fade-in">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="max-w-4xl mx-auto">
-                    <h2 className="text-2xl font-bold tracking-tight mb-6 flex items-center gap-2">
-                      <Sparkles className="h-5 w-5 text-primary" />
-                      Score Breakdown
-                    </h2>
-                    <p className="text-sm text-muted-foreground mb-6">
-                      How we calculate the {resourceScore}/100 resource score
-                    </p>
-                    <div className="space-y-4">
-                      {/* GitHub Stars */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">GitHub Stars</span>
-                          <span className="text-sm text-muted-foreground">{scoreBreakdown.stars}/30</span>
-                        </div>
-                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-blue-500"
-                            style={{ width: `${Math.min(scoreBreakdown.stars / 30 * 100, 100)}%` }}
-                          />
-                        </div>
-                      </div>
-                      {/* AI Review */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">AI Review Available</span>
-                          <span className="text-sm text-muted-foreground">{scoreBreakdown.review}/25</span>
-                        </div>
-                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-green-500"
-                            style={{ width: `${scoreBreakdown.review > 0 ? 100 : 0}%` }}
-                          />
-                        </div>
-                      </div>
-                      {/* Description Quality */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">Description Quality</span>
-                          <span className="text-sm text-muted-foreground">{scoreBreakdown.description}/15</span>
-                        </div>
-                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-purple-500"
-                            style={{ width: `${scoreBreakdown.description / 15 * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                      {/* Data Richness */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">Data Richness</span>
-                          <span className="text-sm text-muted-foreground">{scoreBreakdown.dataRichness}/15</span>
-                        </div>
-                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-orange-500"
-                            style={{ width: `${scoreBreakdown.dataRichness / 15 * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                      {/* Timeliness */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">Timeliness</span>
-                          <span className="text-sm text-muted-foreground">{scoreBreakdown.timeliness}/5</span>
-                        </div>
-                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-teal-500"
-                            style={{ width: `${scoreBreakdown.timeliness / 5 * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                      {/* Source Richness */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">Source Features</span>
-                          <span className="text-sm text-muted-foreground">{scoreBreakdown.sourceRichness}/15</span>
-                        </div>
-                        <div className="h-2 w-full bg-muted/50 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-pink-500"
-                            style={{ width: `${scoreBreakdown.sourceRichness / 15 * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-                            {/* GitHub / Tech Stack Info Cards (only shown when data exists) */}
+              {/* GitHub / Tech Stack Info Cards (only shown when data exists) */}
               {(resource.githubStars !== undefined || resource.githubLicense || resource.isSelfHosted || resource.techStack?.length) && (
                 <div className="grid gap-4 sm:grid-cols-3 mt-4 animate-fade-up">
                   {resource.githubStars !== undefined && resource.githubStars !== null && (
