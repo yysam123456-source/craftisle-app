@@ -13,6 +13,10 @@ const POPULAR_SEARCHES = [
   "ai tools", "free tier", "docker", "react",
 ];
 
+// 最近搜索 localStorage key
+const RECENT_SEARCHES_KEY = "craftisle-recent-searches";
+const MAX_RECENT_SEARCHES = 5;
+
 interface Resource {
   id: string;
   category: string;
@@ -56,13 +60,37 @@ function SearchResultsContent() {
   const [sortBy, setSortBy] = useState<"relevance" | "stars" | "name">("relevance");
   const [updateFrequencyFilter, setUpdateFrequencyFilter] = useState<"all" | "recent" | "active" | "maintained">("all");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const router = useRouter();
 
   useEffect(() => {
     const q = searchParams.get("q") || "";
     setQuery(q);
     setSourceFilter(null);
+  
+    // 保存到最近搜索
+    if (q.trim()) {
+      setRecentSearches(prev => {
+        const updated = [q, ...prev.filter(s => s !== q)].slice(0, MAX_RECENT_SEARCHES);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updated));
+        }
+        return updated;
+      });
+    }
   }, [searchParams]);
+
+  // 加载最近搜索
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem(RECENT_SEARCHES_KEY);
+        if (saved) {
+          setRecentSearches(JSON.parse(saved));
+        }
+      } catch {}
+    }
+  }, []);
 
   useEffect(() => {
     async function loadAllData() {
@@ -239,6 +267,26 @@ function SearchResultsContent() {
               value={query}
               onSearch={handleSearch}
             />
+            {/* 最近搜索 */}
+            {!loading && !query && recentSearches.length > 0 && (
+              <div className="mt-6">
+                <p className="text-sm text-muted-foreground mb-3">Recent searches:</p>
+                <div className="flex gap-2 flex-wrap">
+                  {recentSearches.map((term) => (
+                    <Badge
+                      key={term}
+                      variant="secondary"
+                      className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                      onClick={() => {
+                        router.push(`/directory/search?q=${encodeURIComponent(term)}`);
+                      }}
+                    >
+                      {term}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
             {/* 热门搜索建议 */}
             {!loading && !query && (
               <div className="mt-6">
