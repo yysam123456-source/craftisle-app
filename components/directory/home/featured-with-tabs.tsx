@@ -26,21 +26,34 @@ function shouldBlock(name: string): boolean {
   return BLOCKED_NAMES.some((b) => lower.includes(b));
 }
 
-/** 清理 FMHY 原始描述文字 */
+/** 清洗 FMHY 原始描述文字
+ *
+ * FMHY 原始格式：'**, [link1](url), [link2](url) or [link3](url) - 实际描述'
+ * 核心策略：取最后一个 "- " 之后的内容，那是真正有意义的分类/主题描述
+ */
 function cleanDescription(desc: string | undefined): string {
   if (!desc) return "";
-  // 去除 ** 开头的标记符号和过长的技术细节
-  let cleaned = desc
-    .replace(/^\*+\s*/, "")
-    .replace(/\[.*?\]\(.*?\)/g, "")
-    .replace(/\/\s*\[Subreddit\].*/i, "")
-    .replace(/\[\w+\]\(https?:\/\/[^)]+\)/g, "")
-    .trim();
-  // 截断到合理长度
-  if (cleaned.length > 90) {
-    cleaned = cleaned.slice(0, 87) + "...";
+
+  // 取最后一个 "- " 之后的内容（FMHY 的真正描述总在末尾）
+  const lastDash = desc.lastIndexOf("- ");
+  if (lastDash > desc.length * 0.4) {
+    let result = desc.slice(lastDash + 2).trim();
+    result = result.replace(/\[.*?\]\(.*?\)/g, " ").trim();
+    result = result.replace(/\s{2,}/g, " ").trim();
+    if (result.length >= 3)
+      return result.length > 80 ? result.slice(0, 77) + "..." : result;
   }
-  return cleaned;
+
+  // 兜底：去掉所有链接和噪音符号
+  let cleaned = desc
+    .replace(/\[.*?\]\(.*?\)/g, "")
+    .replace(/^\*+\s*/, "")
+    .replace(/^[\/,\s]+/g, "")
+    .replace(/\\/g, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  return cleaned.length > 80 ? cleaned.slice(0, 77) + "..." : cleaned;
 }
 
 // 获取 Trending 资源（按 GitHub Stars 排序）
