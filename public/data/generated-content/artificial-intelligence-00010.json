@@ -1,45 +1,26 @@
 {
-  "introduction": "ChatGPT is a popular free tool in the Artificial Intelligence category. It provides users with a free, accessible solution that can be used directly in the browser without installation. The tool is well-regarded in the community and offers a clean, intuitive interface.",
+  "id": "artificial-intelligence-00010",
+  "description": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use /think) / [r/OpenAI](https://www.reddit.com/r/OpenAI/) / [r/ChatGPT](https://www.reddit.com/r/ChatGPT/) / [Discord](https://discord.com/invite/openai) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/chatgpt-limits.md)",
+  "introduction": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use /think) / [r/OpenAI](https://www.reddit.com/r/OpenAI/) / [r/ChatGPT](https://www.reddit.com/r/ChatGPT/) / [Discord](https://discord.com/invite/openai) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/chatgpt-limits.md)",
   "features": [
-    "Easy to use with intuitive interface",
-    "Free to use with no registration required",
-    "Regular updates with new features",
-    "Active community support"
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
   ],
   "useCases": [
-    "Personal projects and prototyping",
-    "Learning and skill development",
-    "Small team collaboration"
+    "Self-hosted deployment",
+    "Replacing proprietary software"
   ],
-  "alternatives": [
-    {
-      "name": "ChatGPT Alternative 1",
-      "reason": "Similar features with different approach"
-    },
-    {
-      "name": "ChatGPT Alternative 2",
-      "reason": "Open source alternative"
-    }
-  ],
-  "pricing": {
-    "type": "free",
-    "description": "100% free to use, no credit card required"
-  },
+  "pricing": "Free / Open Source",
   "pros": [
-    "Completely free to use",
-    "No registration required",
-    "Clean and intuitive interface"
+    "Free and open-source",
+    "Community-driven"
   ],
   "cons": [
-    "Limited advanced features",
-    "Requires internet connection"
+    "May require technical setup",
+    "Community support only"
   ],
-  "quickStart": [
-    "Visit the official website",
-    "Start using immediately in browser",
-    "Check documentation for advanced tips"
-  ],
-  "generatedAt": "2026-06-15T02:00:21.087Z",
-  "source": "fmhy",
-  "version": 1
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/fmhy/edit.git && cd edit",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T02:38:00.794Z"
 }

@@ -1,45 +1,26 @@
 {
-  "introduction": "Gemini is a popular free tool in the Artificial Intelligence category. It provides users with a free, accessible solution that can be used directly in the browser without installation. The tool is well-regarded in the community and offers a clean, intuitive interface.",
+  "id": "artificial-intelligence-00006",
+  "description": "** - Gemini 3.1 Pro Preview (5 daily) / Gemini 3.1 Flash / Gemini 3.5 Flash  / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Limits](https://support.google.com/gemini/answer/16275805) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+  "introduction": "** - Gemini 3.1 Pro Preview (5 daily) / Gemini 3.1 Flash / Gemini 3.5 Flash  / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Limits](https://support.google.com/gemini/answer/16275805) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
   "features": [
-    "Easy to use with intuitive interface",
-    "Free to use with no registration required",
-    "Regular updates with new features",
-    "Active community support"
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
   ],
   "useCases": [
-    "Personal projects and prototyping",
-    "Learning and skill development",
-    "Small team collaboration"
+    "Self-hosted deployment",
+    "Replacing proprietary software"
   ],
-  "alternatives": [
-    {
-      "name": "Gemini Alternative 1",
-      "reason": "Similar features with different approach"
-    },
-    {
-      "name": "Gemini Alternative 2",
-      "reason": "Open source alternative"
-    }
-  ],
-  "pricing": {
-    "type": "free",
-    "description": "100% free to use, no credit card required"
-  },
+  "pricing": "Free / Open Source",
   "pros": [
-    "Completely free to use",
-    "No registration required",
-    "Clean and intuitive interface"
+    "Free and open-source",
+    "Community-driven"
   ],
   "cons": [
-    "Limited advanced features",
-    "Requires internet connection"
+    "May require technical setup",
+    "Community support only"
   ],
-  "quickStart": [
-    "Visit the official website",
-    "Start using immediately in browser",
-    "Check documentation for advanced tips"
-  ],
-  "generatedAt": "2026-06-15T02:00:21.087Z",
-  "source": "fmhy",
-  "version": 1
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Nagi-ovo/gemini-voyager.git && cd gemini-voyager",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T02:37:59.626Z"
 }

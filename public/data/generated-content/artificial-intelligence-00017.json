@@ -1,45 +1,23 @@
 {
-  "introduction": "⁠Ai2 Playground is a popular free tool in the Artificial Intelligence category. It provides users with a free, accessible solution that can be used directly in the browser without installation. The tool is well-regarded in the community and offers a clean, intuitive interface.",
+  "id": "artificial-intelligence-00017",
+  "description": "Olmo 3.1 32B (Think) / No Sign-Up / Unlimited / [Discord](https://discord.gg/NE5xPufNwu)",
+  "introduction": "Olmo 3.1 32B (Think) / No Sign-Up / Unlimited / [Discord](https://discord.gg/NE5xPufNwu)",
   "features": [
-    "Easy to use with intuitive interface",
-    "Free to use with no registration required",
-    "Regular updates with new features",
-    "Active community support"
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
   ],
-  "useCases": [
-    "Personal projects and prototyping",
-    "Learning and skill development",
-    "Small team collaboration"
-  ],
-  "alternatives": [
-    {
-      "name": "⁠Ai2 Playground Alternative 1",
-      "reason": "Similar features with different approach"
-    },
-    {
-      "name": "⁠Ai2 Playground Alternative 2",
-      "reason": "Open source alternative"
-    }
-  ],
-  "pricing": {
-    "type": "free",
-    "description": "100% free to use, no credit card required"
-  },
+  "useCases": [],
+  "pricing": "Free",
   "pros": [
-    "Completely free to use",
-    "No registration required",
-    "Clean and intuitive interface"
+    "Free and open-source",
+    "Community-driven"
   ],
   "cons": [
-    "Limited advanced features",
-    "Requires internet connection"
+    "May require technical setup",
+    "Community support only"
   ],
-  "quickStart": [
-    "Visit the official website",
-    "Start using immediately in browser",
-    "Check documentation for advanced tips"
-  ],
-  "generatedAt": "2026-06-15T02:00:21.088Z",
-  "source": "fmhy",
-  "version": 1
+  "alternatives": [],
+  "quickStart": "Visit https://playground.allenai.org/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T02:38:03.106Z"
 }

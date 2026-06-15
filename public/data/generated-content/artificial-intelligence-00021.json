@@ -1,7 +1,7 @@
 {
-  "id": "artificial-intelligence-00008",
-  "description": "Muse Spark / Meta Sign-Up / Unlimited",
-  "introduction": "Muse Spark / Meta Sign-Up / Unlimited",
+  "id": "artificial-intelligence-00021",
+  "description": "Sarvam-105b / Sarvam-30b / Unlimited / Sign-Up",
+  "introduction": "Sarvam-105b / Sarvam-30b / Unlimited / Sign-Up",
   "features": [
     "A powerful alternative to commercial tools",
     "Open-source and community-driven"
@@ -17,7 +17,7 @@
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.meta.ai/ to get started",
+  "quickStart": "Visit https://dashboard.sarvam.ai/chat to get started",
   "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:37:59.629Z"
+  "generatedAt": "2026-06-15T02:38:03.108Z"
 }
