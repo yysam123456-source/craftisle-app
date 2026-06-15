@@ -6,6 +6,13 @@ import { ResourceCard } from "@/components/resources/resource-card";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
 import { Badge } from "@/components/ui/badge";
 
+// 热门搜索建议
+const POPULAR_SEARCHES = [
+  "image generator", "video editor", "code assistant", "free api",
+  "self-hosted", "github stars", "open source", "productivity",
+  "ai tools", "free tier", "docker", "react",
+];
+
 interface Resource {
   id: string;
   category: string;
@@ -232,11 +239,31 @@ function SearchResultsContent() {
               value={query}
               onSearch={handleSearch}
             />
+            {/* 热门搜索建议 */}
+            {!loading && !query && (
+              <div className="mt-6">
+                <p className="text-sm text-muted-foreground mb-3">Popular searches:</p>
+                <div className="flex gap-2 flex-wrap">
+                  {POPULAR_SEARCHES.map((term) => (
+                    <Badge
+                      key={term}
+                      variant="outline"
+                      className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                      onClick={() => {
+                        router.push(`/directory/search?q=${encodeURIComponent(term)}`);
+                      }}
+                    >
+                      {term}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-12">
+        <section className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {loading && (
             <div className="text-center py-12 text-muted-foreground">
