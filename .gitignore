@@ -49,6 +49,9 @@ dev-server.log
 dev.log
 server.log
 
+# generated content (build-time generated, do NOT commit)
+public/data/generated-content/
+
 # codegraph (daemon pid, cache)
 .codegraph/
 download_twb.py
