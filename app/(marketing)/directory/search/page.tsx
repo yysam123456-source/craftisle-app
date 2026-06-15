@@ -52,7 +52,7 @@ function SearchResultsContent() {
   const [query, setQuery] = useState("");
   const [allResources, setAllResources] = useState<Resource[]>([]);
   const [categories, setCategories] = useState<CategoryMeta[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [githubFilter, setGithubFilter] = useState<"all" | "hasgithub" | "nogithub">("all");
@@ -67,6 +67,23 @@ function SearchResultsContent() {
     const q = searchParams.get("q") || "";
     setQuery(q);
     setSourceFilter(null);
+  
+    // 从 API 搜索
+    if (q.trim()) {
+      setLoading(true);
+      fetch(`/api/directory/search?q=${encodeURIComponent(q)}&limit=100`)
+        .then(res => res.json())
+        .then(data => {
+          setAllResources(data.results || []);
+          setLoading(false);
+        })
+        .catch(() => {
+          setAllResources([]);
+          setLoading(false);
+        });
+    } else {
+      setAllResources([]);
+    }
   
     // 保存到最近搜索
     if (q.trim()) {
