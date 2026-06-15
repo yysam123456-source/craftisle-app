@@ -7,7 +7,7 @@
 
 ---
 
-## ✅ 已完成任务（16/55）
+## ✅ 已完成任务（19/55）
 
 ### Phase 1：基础修复（已完成 5/5）
 - ✅ **Task 1.1**：修复 404 Bug（resource-card.tsx badhe 拼写 + getRichInfoResourceIds）
@@ -22,18 +22,21 @@
 - ✅ **Task 2.2.8**：添加免责声明（静态版本，在主组件作用域内）
 - ✅ **Task 2.2**：增强资源详情页（添加 Alternatives 板块 + 丰富 Features 展示）
 
-### Phase 3：SEO/GEO 优化（已完成 3/5）
+### Phase 3：SEO/GEO 优化（已完成 4/5）
 - ✅ **Task 3.1**：SEO / GEO 优化（资源详情页添加 JSON-LD 结构化数据 `SoftwareApplication` Schema）
+- ✅ **Task 3.2**：添加 FAQ Schema 结构化数据（资源详情页添加 FAQPage Schema + 可视化 FAQ 板块）
 - ✅ **Task 3.4**：添加 `Breadcrumb` Schema（已在 JSON-LD 中实现）
 - ✅ **Task 3.5**：生成 `llms.txt`（专为 LLM 设计的站点地图）
 
-### Phase 4：性能优化（已完成 1/5）
+### Phase 4：性能优化（已完成 2/5）
 - ✅ **Task 4.3**：添加 Resource Hints（`dns-prefetch` / `preconnect` / `preload`）
+- ✅ **Task 4.5**：优化 `fmhy-data.ts` 性能（添加缓存机制，避免重复计算）
 
-### 跨 Phase 任务（已完成 3/5）
+### 跨 Phase 任务（已完成 4/5）
 - ✅ **GitHub Actions 工作流**：已覆盖 5 个数据源自动更新（FMHY / GitHub Stars / AlternativeTo / Awesome-Lists / Product Hunt）
 - ✅ **多语言支持**：`generateMetadata` 已配置 `alternates`（14 种语言）+ `openGraph` + `twitter`
 - ✅ **删除 junk 内容**：删除 19,622 个模板内容文件，保留 450 个高质量文件
+- ✅ **性能优化**：`getRichInfoResourceIds()` 添加缓存，提升页面加载速度
 
 ---
 
