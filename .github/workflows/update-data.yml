@@ -2,9 +2,9 @@ name: Update Directory Data
 
 on:
   schedule:
-    # FMHY + Awesome Lists：每周一凌晨 2 点（北京时间）
+    # 内容生成：每周一凌晨 2 点（北京时间）
     - cron: '0 18 * * 1'
-    # GitHub Stars + Product Hunt：每天凌晨 2 点（北京时间）
+    # 数据更新：每天凌晨 2 点（北京时间）
     - cron: '0 18 * * *'
   workflow_dispatch: # 允许手动触发
 
@@ -13,15 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      
+
       - name: Update FMHY data
         run: npm run update:fmhy
-      
+
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions"
@@ -33,17 +33,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      
+
       - name: Update GitHub Stars
         run: npm run update:github-stars
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions"
@@ -51,41 +51,19 @@ jobs:
           git add public/data/fmhy-resources.json
           git diff --staged --quiet || (git commit -m "Auto-update: GitHub Stars ($(date +'%Y-%m-%d'))" && git push)
 
-  update-producthunt:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      
-      - name: Update Product Hunt data
-        run: npm run update:producthunt
-        env:
-          PRODUCTHUNT_API_KEY: ${{ secrets.PRODUCTHUNT_API_KEY }}
-      
-      - name: Commit and push
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add public/data/fmhy-resources.json
-          git diff --staged --quiet || (git commit -m "Auto-update: Product Hunt data ($(date +'%Y-%m-%d'))" && git push)
-
   update-alternativeto:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      
+
       - name: Update AlternativeTo data
         run: npm run update:alternativeto
-      
+
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions"
@@ -93,22 +71,36 @@ jobs:
           git add public/data/alternatives-*.json lib/alternatives.ts
           git diff --staged --quiet || (git commit -m "Auto-update: AlternativeTo data ($(date +'%Y-%m-%d'))" && git push)
 
-  update-awesome-lists:
+  generate-content:
     runs-on: ubuntu-latest
+    needs: [update-fmhy, update-github-stars, update-alternativeto]
     steps:
       - uses: actions/checkout@v4
-      
+        with:
+          fetch-depth: 0 # 拉取最新提交（包含前面 job 的数据更新）
+
+      - name: Pull latest changes
+        run: git pull origin main
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      
-      - name: Update Awesome Lists data
-        run: npm run update:awesome-lists
-      
-      - name: Commit and push
+
+      - name: Generate content from real data (FMHY + GitHub README)
+        run: node scripts/populate-content-v2.mjs 500
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge Awesome-Selfhosted data
+        run: node scripts/merge-selfhosted.mjs
+
+      - name: Merge AlternativeTo data
+        run: node scripts/merge-alternativeto-data.mjs
+
+      - name: Commit and push generated content
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add public/data/*-resources.json public/data/all-sources-index.json
-          git diff --staged --quiet || (git commit -m "Auto-update: Awesome Lists data ($(date +'%Y-%m-%d'))" && git push)
+          git add public/data/generated-content/*.json
+          git diff --staged --quiet || (git commit -m "Auto-generate: content ($(date +'%Y-%m-%d'))" && git push)
