@@ -69,6 +69,11 @@ export interface Resource {
   isFree?: boolean;
   /** 是否有 AI Review */
   hasReview?: boolean;
+  /**
+   * 服务端预计算：是否有丰富详情页（供客户端 ResourceCard 使用）
+   * 由 getEditorPicks()、getQuickRankingsByCategory() 等函数设置
+   */
+  _hasRichInfo?: boolean;
 }
 
 export interface Category {
@@ -290,7 +295,7 @@ export function getNewResources(limit = 8, source?: string): Resource[] {
       return 0;
     })
     .slice(0, limit);
-}
+  }
 
 /** 获取最受欢迎资源（按 popularity 排序） */
 export function getPopularResources(limit = 8, source?: string): Resource[] {
@@ -371,6 +376,18 @@ export function isRichInfoResource(id: string): boolean {
 }
 
 /**
+ * 服务端辅助：给资源列表中的每个资源设置 _hasRichInfo 标志
+ * 供服务端组件（editor-picks.tsx、quick-rankings.tsx 等）在传递资源给 ResourceCard 前调用
+ */
+export function enrichResourcesWithRichInfo(resources: Resource[]): Resource[] {
+  const richSet = getRichInfoResourceIds();
+  for (const r of resources) {
+    (r as any)._hasRichInfo = richSet.has(r.id);
+  }
+  return resources;
+}
+
+/**
  * Editor's Picks — 编辑精选（6 个资源，确保分类多样化）
  * 选择逻辑：
  *   1. 按综合评分排序
@@ -391,6 +408,7 @@ export function getEditorsPicks(): Resource[] {
     const cat = r.category || 'other';
     if ((categoryCount[cat] || 0) >= 2) continue;
     categoryCount[cat] = (categoryCount[cat] || 0) + 1;
+    (r as any)._hasRichInfo = getRichInfoResourceIds().has(r.id);
     picks.push(r);
   }
 
@@ -406,6 +424,9 @@ export function getEditorsPicks(): Resource[] {
     }
   }
 
+  // 设置 _hasRichInfo 标志（供客户端 ResourceCard 使用）
+  const richSet = getRichInfoResourceIds();
+  for (const r of picks) (r as any)._hasRichInfo = richSet.has(r.id);
   return picks;
 }
 
@@ -416,11 +437,14 @@ export function getQuickRankingsByCategory(categoryId: string, limit = 5): Resou
   const all = getAllResources();
   const picksIds = new Set(getEditorsPicks().map(r => r.id));
 
-  return [...all]
+  const results = [...all]
     .filter(r => r.category === categoryId)
     .filter(r => !picksIds.has(r.id))
     .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
     .slice(0, limit);
+
+  // 设置 _hasRichInfo 标志（供客户端 ResourceCard 使用）
+  return enrichResourcesWithRichInfo(results);
 }
 
 // ── Resource scoring system（供 hot resources / rich info 判断复用）

@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, ExternalLink } from "lucide-react";
 import type { Resource } from "@/lib/fmhy-data";
-import { isRichInfoResource } from "@/lib/fmhy-data";
 
 interface ResourceCardProps {
   resource: Resource;
@@ -27,7 +26,10 @@ export function ResourceCard({
   showTags = false,
   variant = "default",
 }: ResourceCardProps) {
-  const isRich = isRichInfoResource(resource.id);
+  // 使用服务端预计算的 _hasRichInfo 标志（避免导入服务端模块）
+  // 若服务端未设置此标志，则默认跳转外链（安全行为）
+  const rawFlag = (resource as any)._hasRichInfo;
+  const isRich = rawFlag === true;
   const href = isRich
     ? `/directory/resource/${resource.id}`
     : (resource.url || "#");
