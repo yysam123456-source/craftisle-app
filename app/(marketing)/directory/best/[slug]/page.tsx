@@ -223,7 +223,7 @@ export default async function BestToolsPage(props: BestPageProps) {
         </nav>
 
         <h1 className="text-3xl font-bold mb-2">
-          Best {category.name} Tools to Use in {is2026 ? "2026" : "2025"}
+          Best {category.name} Tools to Use in {is2026 ? "2026" : "2026"}
         </h1>
         <p className="text-gray-600 mb-8 max-w-2xl">
           Discover the best free and open-source {category.name.toLowerCase()} tools

@@ -133,7 +133,7 @@ function findComparison(slugA: string, slugB: string): ComparisonResult | null {
 
 // ── 评分星星组件 ─────────────────────────────────
 function RatingStars({ rating }: { rating?: number }) {
-  if (!rating) return <span className="text-sm text-muted-foreground">N/A</span>;
+  if (!rating) return null;
   return (
     <span className="inline-flex items-center gap-0.5">
       {Array.from({ length: 5 }, (_, i) => (

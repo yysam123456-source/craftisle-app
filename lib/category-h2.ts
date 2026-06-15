@@ -6,7 +6,7 @@ export interface CategoryH2Content {
 
 export const CATEGORY_H2_CONTENT: Record<string, CategoryH2Content> = {
   "Artificial-Intelligence": {
-    about: "Looking for free AI tools that actually work? You've found the right place. This curated list brings together the best free artificial intelligence tools available in 2025 — from AI chatbots and writing assistants to image generators, code helpers, and research aids. Every tool here is free to use (no credit card required), open-source where possible, and regularly updated. Whether you're a developer integrating AI into your workflow, a student using AI for research, or a creator exploring generative AI, you'll find something useful here. We've tested each tool for reliability, rate limits, and output quality — so you don't have to.",
+    about: "Looking for free AI tools that actually work? You've found the right place. This curated list brings together the best free artificial intelligence tools available in 2026 — from AI chatbots and writing assistants to image generators, code helpers, and research aids. Every tool here is free to use (no credit card required), open-source where possible, and regularly updated. Whether you're a developer integrating AI into your workflow, a student using AI for research, or a creator exploring generative AI, you'll find something useful here. We've tested each tool for reliability, rate limits, and output quality — so you don't have to.",
     related: ["Educational", "Misc"],
     faq: [
       { question: "What are the best free AI tools in 2026?", answer: "ChatGPT (free tier), Claude (free tier), Hugging Face, Google Colab, and Cursor. All have free tiers with rate limits. Test each for your specific use case." },
@@ -16,7 +16,7 @@ export const CATEGORY_H2_CONTENT: Record<string, CategoryH2Content> = {
     ],
   },
   Educational: {
-    about: "Free learning resources for everyone. This collection covers free online courses, programming tutorials, certification programs, and self-study tools across every major subject. Whether you're learning to code, mastering a new language, or pursuing professional certifications, these curated resources will help you learn without breaking the bank. All tools are free (many with optional paid tiers), and we've prioritized platforms with certificates upon completion. From MIT OpenCourseWare to free Codecademy alternatives, this is your gateway to free education in 2025.",
+    about: "Free learning resources for everyone. This collection covers free online courses, programming tutorials, certification programs, and self-study tools across every major subject. Whether you're learning to code, mastering a new language, or pursuing professional certifications, these curated resources will help you learn without breaking the bank. All tools are free (many with optional paid tiers), and we've prioritized platforms with certificates upon completion. From MIT OpenCourseWare to free Codecademy alternatives, this is your gateway to free education in 2026.",
     related: ["Artificial-Intelligence", "Misc"],
     faq: [
       { question: "Best free learning platforms 2026?", answer: "MIT OpenCourseWare, free Coursera courses, edX free tier, and Khan Academy. All are free, some offer paid certificates." },
@@ -26,7 +26,7 @@ export const CATEGORY_H2_CONTENT: Record<string, CategoryH2Content> = {
     ],
   },
   Adblock: {
-    about: "Take back your browser. This collection of free ad blockers and privacy tools helps you block ads, stop trackers, and browse faster. We've curated the best open-source adblockers, including uBlock Origin alternatives, privacy-focused browser extensions, and anti-tracking tools that actually work in 2025. Every tool here is free, open-source where possible, and regularly updated to keep pace with changing web standards. Whether you want to block YouTube ads, stop Facebook tracking, or just browse faster, you'll find the right tool here.",
+    about: "Take back your browser. This collection of free ad blockers and privacy tools helps you block ads, stop trackers, and browse faster. We've curated the best open-source adblockers, including uBlock Origin alternatives, privacy-focused browser extensions, and anti-tracking tools that actually work in 2026. Every tool here is free, open-source where possible, and regularly updated to keep pace with changing web standards. Whether you want to block YouTube ads, stop Facebook tracking, or just browse faster, you'll find the right tool here.",
     related: ["Misc", "Downloading"],
     faq: [
       { question: "Best free ad blocker 2026?", answer: "uBlock Origin, AdBlock Plus (free tier), and Privacy Badger. All are open-source and free. uBlock Origin is the lightest and most effective." },
@@ -55,7 +55,7 @@ export const CATEGORY_H2_CONTENT: Record<string, CategoryH2Content> = {
     ],
   },
   Reading: {
-    about: "Free books, articles, and reading platforms. This collection brings together the best free ebook sites, online libraries, audiobook platforms, and digital reading tools available in 2025. Whether you're looking for free PDF books, public domain literature, academic papers, or web-based reading platforms — everything here is free, legal, and accessible. We've prioritized open-access resources, library alternatives, and platforms that don't require account creation. From Project Gutenberg to modern reading platforms, discover your next free read here.",
+    about: "Free books, articles, and reading platforms. This collection brings together the best free ebook sites, online libraries, audiobook platforms, and digital reading tools available in 2026. Whether you're looking for free PDF books, public domain literature, academic papers, or web-based reading platforms — everything here is free, legal, and accessible. We've prioritized open-access resources, library alternatives, and platforms that don't require account creation. From Project Gutenberg to modern reading platforms, discover your next free read here.",
     related: ["Educational", "Non-Eng"],
     faq: [
       { question: "Best free ebook sites 2026?", answer: "Project Gutenberg (public domain), Open Library (borrow ebooks), Google Books (free previews). All free and legal." },
@@ -75,7 +75,7 @@ export const CATEGORY_H2_CONTENT: Record<string, CategoryH2Content> = {
     ],
   },
   Storage: {
-    about: "Free cloud storage and file-sharing tools. This collection covers the best free cloud storage providers, file hosting services, backup solutions, and large-file transfer tools available in 2025. We've compared storage limits, upload sizes, privacy policies, and ease of use — so you can pick the right tool for your needs. Whether you need 5GB of free cloud drive space, a way to send large files, or automated backups for your projects, these curated resources have you covered. All tools are free to start, with clear pricing if you need more.",
+    about: "Free cloud storage and file-sharing tools. This collection covers the best free cloud storage providers, file hosting services, backup solutions, and large-file transfer tools available in 2026. We've compared storage limits, upload sizes, privacy policies, and ease of use — so you can pick the right tool for your needs. Whether you need 5GB of free cloud drive space, a way to send large files, or automated backups for your projects, these curated resources have you covered. All tools are free to start, with clear pricing if you need more.",
     related: ["Downloading", "Misc"],
     faq: [
       { question: "Best free cloud storage 2026?", answer: "Google Drive (15GB), Dropbox (2GB free), OneDrive (5GB). All have free tiers with clear upgrade paths." },
@@ -95,7 +95,7 @@ export const CATEGORY_H2_CONTENT: Record<string, CategoryH2Content> = {
     ],
   },
   Music: {
-    about: "Free music production tools and audio software. This collection brings together the best free DAWs, audio editors, plugins, and music streaming tools available in 2025. Whether you're producing your first track, need a free alternative to Adobe Audition, or want open-source audio tools for podcasting — everything here is free, capable, and regularly updated. We've prioritized tools that are free for commercial use, have active communities, and don't watermark your output. Make better music without spending a fortune.",
+    about: "Free music production tools and audio software. This collection brings together the best free DAWs, audio editors, plugins, and music streaming tools available in 2026. Whether you're producing your first track, need a free alternative to Adobe Audition, or want open-source audio tools for podcasting — everything here is free, capable, and regularly updated. We've prioritized tools that are free for commercial use, have active communities, and don't watermark your output. Make better music without spending a fortune.",
     related: ["Gaming", "Streaming"],
     faq: [
       { question: "Best free DAW 2026?", answer: "Reaper (60-day free trial, then $60 one-time), Cakewalk (100% free), Tracktion (free tier). Cakewalk is the best 100% free DAW." },
@@ -105,7 +105,7 @@ export const CATEGORY_H2_CONTENT: Record<string, CategoryH2Content> = {
     ],
   },
   Streaming: {
-    about: "Free video players, media tools, and streaming utilities. This collection covers the best free media players, video codecs, live streaming software, screen recorders, and IPTV tools available in 2025. Whether you need a free alternative to VLC, free OBS alternatives for live streaming, or video conversion tools — these curated resources are all free, open-source where possible, and regularly updated. We've tested each tool for format support, performance, and ease of use.",
+    about: "Free video players, media tools, and streaming utilities. This collection covers the best free media players, video codecs, live streaming software, screen recorders, and IPTV tools available in 2026. Whether you need a free alternative to VLC, free OBS alternatives for live streaming, or video conversion tools — these curated resources are all free, open-source where possible, and regularly updated. We've tested each tool for format support, performance, and ease of use.",
     related: ["Music", "Torrenting"],
     faq: [
       { question: "Best free video player 2026?", answer: "VLC Media Player — 100% free, open-source, plays everything. No ads, no spyware, no paywall. The best free video player." },

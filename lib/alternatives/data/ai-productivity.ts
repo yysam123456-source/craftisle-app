@@ -47,7 +47,7 @@ export const aiProductivityEntries: Record<string, any> = {
         url: "https://www.gimp.org",
         reason: "The most powerful free and open-source image editor, available for all platforms, with advanced retouching and editing tools",
         description:
-          "GIMP (GNU Image Manipulation Program) is the most mature free and open-source alternative to Photoshop. It has been in development for over 25 years and offers advanced image manipulation capabilities including retouching, compositing, and color management. GIMP 3.0 (released 2025) brought a modernized UI and improved performance.",
+          "GIMP (GNU Image Manipulation Program) is the most mature free and open-source alternative to Photoshop. It has been in development for over 25 years and offers advanced image manipulation capabilities including retouching, compositing, and color management. GIMP 3.0 (released 2026) brought a modernized UI and improved performance.",
         features: ["Advanced photo retouching", "Customizable interface", "Plugin ecosystem (GIMP Plugin Registry)", "Supports PSD files (import/export)", "CMYK color support (with plugin)", "Scriptable with Python"],
         pros: ["100% free and open-source (GPL)", "Extremely powerful — rivals Photoshop for many tasks", "Cross-platform (Windows, macOS, Linux)", "Massive community and tutorials", "No subscription, no paywalls, ever"],
         cons: ["UI is less polished than Photoshop", "Learning curve is steep for beginners", "PSD file support is good but not perfect"],
@@ -99,7 +99,7 @@ export const aiProductivityEntries: Record<string, any> = {
       tips: [
         "Photopea is the fastest transition — the UI is almost identical to Photoshop",
         "Affinity Photo often goes on sale for $34.99 — wait for a sale if budget is tight",
-        "GIMP 3.0 (2025) finally has a modern UI — it's much more approachable than older versions",
+        "GIMP 3.0 (2026) finally has a modern UI — it's much more approachable than older versions",
       ],
     },
     category: "Creative Tools",
