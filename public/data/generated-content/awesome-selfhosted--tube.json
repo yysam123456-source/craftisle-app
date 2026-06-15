@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tube",
+  "name": "Tube",
+  "introduction": "Youtube-like (_without censorship and features you don't need!_) video sharing app written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed",
+  "description": "Youtube-like (_without censorship and features you don't need!_) video sharing app written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed",
+  "url": "https://git.mills.io/prologic/tube",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-streaming-video-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Youtube-like (_without censorship and features you don't need!_) video sharing app written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.442Z"
+}

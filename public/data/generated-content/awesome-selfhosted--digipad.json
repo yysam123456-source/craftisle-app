@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--digipad",
+  "name": "Digipad",
+  "introduction": "An online self-hosted application for creating collaborative digital notepads (Documentation in french)",
+  "description": "An online self-hosted application for creating collaborative digital notepads (Documentation in french)",
+  "url": "https://digipad.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-groupware",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "An online self-hosted application for creating collaborative digital notepads (Documentation in french)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.413Z"
+}

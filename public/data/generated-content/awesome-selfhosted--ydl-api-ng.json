@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--ydl-api-ng",
+  "name": "ydl_api_ng",
+  "introduction": "Simple youtube-dl REST API to launch downloads on a distant server",
+  "description": "Simple youtube-dl REST API to launch downloads on a distant server",
+  "url": "https://github.com/Totonyus/ydl_api_ng",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Python",
+  "category": "sh-media-management",
+  "tags": [
+    "GPL-3.0",
+    "Python"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple youtube-dl REST API to launch downloads on a distant server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.435Z"
+}

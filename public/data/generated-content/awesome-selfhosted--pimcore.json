@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pimcore",
+  "name": "Pimcore",
+  "introduction": "Multi-channel experience and engagement management platform",
+  "description": "Multi-channel experience and engagement management platform",
+  "url": "http://www.pimcore.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Multi-channel experience and engagement management platform"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.370Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--sish",
+  "name": "sish",
+  "introduction": "HTTP(S)/WS(S)/TCP tunnels to localhost using only SSH (serveo/ngrok alternative)",
+  "description": "HTTP(S)/WS(S)/TCP tunnels to localhost using only SSH (serveo/ngrok alternative)",
+  "url": "https://github.com/antoniomika/sish",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Go/Docker",
+  "category": "sh-proxy",
+  "tags": [
+    "MIT",
+    "Go/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "HTTP(S)/WS(S)/TCP tunnels to localhost using only SSH (serveo/ngrok alternative)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.460Z"
+}

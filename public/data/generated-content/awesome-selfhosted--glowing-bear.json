@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--glowing-bear",
+  "name": "Glowing Bear",
+  "introduction": "A web frontend for WeeChat",
+  "description": "A web frontend for WeeChat",
+  "url": "https://github.com/glowing-bear/glowing-bear",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-irc",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A web frontend for WeeChat"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

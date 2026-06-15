@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/xtekky/gpt4free.git && cd gpt4free",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:20.739Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:20.739Z",
+  "updatedAt": "2026-06-15T03:28:08.839Z"
 }

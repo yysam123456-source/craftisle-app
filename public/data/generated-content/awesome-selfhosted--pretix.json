@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pretix",
+  "name": "Pretix",
+  "introduction": "Ticket sales platform for events",
+  "description": "Ticket sales platform for events",
+  "url": "https://pretix.eu/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-e-commerce",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Ticket sales platform for events"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.386Z"
+}

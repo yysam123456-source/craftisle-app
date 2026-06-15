@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--wakupator",
+  "name": "Wakupator",
+  "introduction": "Wake On LAN Machine Manager based on network traffic",
+  "description": "Wake On LAN Machine Manager based on network traffic",
+  "url": "https://github.com/Gibus21250/Wakupator",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "C",
+  "category": "sh-network-utilities",
+  "tags": [
+    "MIT",
+    "C"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Wake On LAN Machine Manager based on network traffic"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.452Z"
+}

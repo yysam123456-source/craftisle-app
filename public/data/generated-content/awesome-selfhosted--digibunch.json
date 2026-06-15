@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--digibunch",
+  "name": "Digibunch",
+  "introduction": "Create bunches of links to share with your learners or colleagues",
+  "description": "Create bunches of links to share with your learners or colleagues",
+  "url": "https://ladigitale.dev/digibunch/#/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-bookmarks-and-link-sharing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Create bunches of links to share with your learners or colleagues"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.345Z"
+}

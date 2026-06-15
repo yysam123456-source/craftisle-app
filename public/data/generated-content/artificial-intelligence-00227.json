@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00227",
+  "description": "/ No Sign-Up / [Discord](https://discord.gg/QuGxSWBfQy) / [GitHub](https://github.com/hexgrad/kokoro) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/hugging-face-warning.md)",
+  "introduction": "/ No Sign-Up / [Discord](https://discord.gg/QuGxSWBfQy) / [GitHub](https://github.com/hexgrad/kokoro) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/hugging-face-warning.md)",
+  "features": [
+    "An inference library for [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M). You can [`pip install kokoro`](https:/"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/hexgrad/kokoro.git && cd kokoro",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:39.195Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--eclipse-che",
+  "name": "Eclipse Che",
+  "introduction": "Open source workspace server and cloud IDE",
+  "description": "Open source workspace server and cloud IDE",
+  "url": "https://www.eclipse.org/che/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-ide-tools",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Open source workspace server and cloud IDE"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.477Z"
+}

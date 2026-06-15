@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/onyx-dot-app/onyx.git && cd onyx",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:13.687Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:13.687Z",
+  "updatedAt": "2026-06-15T03:28:08.838Z"
 }

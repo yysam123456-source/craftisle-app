@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--readeck",
+  "name": "Readeck",
+  "introduction": "Save the precious readable content of web pages you like and want to keep forever. See it as a bookmark manager and a read later tool",
+  "description": "Save the precious readable content of web pages you like and want to keep forever. See it as a bookmark manager and a read later tool",
+  "url": "https://readeck.org/en/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-bookmarks-and-link-sharing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Save the precious readable content of web pages you like and want to keep forever. See it as a bookmark manager and a read later tool"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.346Z"
+}

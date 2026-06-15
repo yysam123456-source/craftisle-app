@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00208",
+  "description": "Generate Audio for Silent Videos / [Demo](https://huggingface.co/spaces/hkchengrex/MMAudio) / [Colab](https://colab.research.google.com/drive/1TAaXCY2-kPk4xE4PwKB3EqFbSnkUuzZ8?usp=sharing) / [GitHub](https://github.com/hkchengrex/MMAudio)",
+  "introduction": "Generate Audio for Silent Videos / [Demo](https://huggingface.co/spaces/hkchengrex/MMAudio) / [Colab](https://colab.research.google.com/drive/1TAaXCY2-kPk4xE4PwKB3EqFbSnkUuzZ8?usp=sharing) / [GitHub](https://github.com/hkchengrex/MMAudio)",
+  "features": [
+    "<div align=\"center\">"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/hkchengrex/MMAudio.git && cd MMAudio",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:23.574Z"
+}

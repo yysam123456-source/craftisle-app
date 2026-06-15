@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00160",
+  "description": "/ [Discord](https://discord.com/invite/ASbS3EykXm), [Shap-e](https://github.com/openai/shap-e), [Stable Dreamfusion](https://github.com/ashawkey/stable-dreamfusion) or [threestudio](https://github.com/threestudio-project/threestudio) / [Colab](https://colab.research.google.com/github/threestudio-project/threestudio/blob/main/threestudio.ipynb) / [Discord](https://discord.gg/ejer2MAB8N) - 3D Image Generators",
+  "introduction": "/ [Discord](https://discord.com/invite/ASbS3EykXm), [Shap-e](https://github.com/openai/shap-e), [Stable Dreamfusion](https://github.com/ashawkey/stable-dreamfusion) or [threestudio](https://github.com/threestudio-project/threestudio) / [Colab](https://colab.research.google.com/github/threestudio-project/threestudio/blob/main/threestudio.ipynb) / [Discord](https://discord.gg/ejer2MAB8N) - 3D Image Generators",
+  "features": [
+    "This is the official code and model release for [Shap-E: Generating Conditional 3D Implicit Functions](https://arxiv.org"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/openai/shap-e.git && cd shap-e",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:28:49.061Z"
+}

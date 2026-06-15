@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--opencart",
+  "name": "OpenCart",
+  "introduction": "Shopping cart solution",
+  "description": "Shopping cart solution",
+  "url": "https://www.opencart.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-e-commerce",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Shopping cart solution"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.386Z"
+}

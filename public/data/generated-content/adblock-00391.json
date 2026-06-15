@@ -1,0 +1,23 @@
+{
+  "id": "adblock-00391",
+  "description": "Customizable DNS Adblocking Service / [X](https://x.com/adguard) / [Subreddit](https://reddit.com/r/Adguard) / [Telegram](https://t.me/adguarden)",
+  "introduction": "Customizable DNS Adblocking Service / [X](https://x.com/adguard) / [Subreddit](https://reddit.com/r/Adguard) / [Telegram](https://t.me/adguarden)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://adguard-dns.io/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:34.979Z"
+}

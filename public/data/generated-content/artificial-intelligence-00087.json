@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/Mirrowel/LLM-API-Key-Proxy.git && cd LLM-API-Key-Proxy",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:47.050Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:47.050Z",
+  "updatedAt": "2026-06-15T03:28:08.840Z"
 }

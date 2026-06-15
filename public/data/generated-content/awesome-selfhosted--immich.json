@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--immich",
+  "name": "Immich",
+  "introduction": "Photo and video backup solution directly from your mobile phone (alternative to Google Photos)",
+  "description": "Photo and video backup solution directly from your mobile phone (alternative to Google Photos)",
+  "url": "https://immich.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-photo-galleries",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Photo and video backup solution directly from your mobile phone (alternative to Google Photos)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.458Z"
+}

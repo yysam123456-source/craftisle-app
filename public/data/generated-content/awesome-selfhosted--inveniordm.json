@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--inveniordm",
+  "name": "InvenioRDM",
+  "introduction": "Highly scalable turn-key research data management platform with a beautiful user experience",
+  "description": "Highly scalable turn-key research data management platform with a beautiful user experience",
+  "url": "https://inveniordm.docs.cern.ch/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-document-management-institutional-repository-and-digital-library-software",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Highly scalable turn-key research data management platform with a beautiful user experience"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.383Z"
+}

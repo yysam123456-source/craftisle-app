@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--squid",
+  "name": "Squid",
+  "introduction": "Caching proxy for the Web supporting HTTP, HTTPS, FTP, and more. It reduces bandwidth and improves response times by caching and reusing frequently-requested web pages",
+  "description": "Caching proxy for the Web supporting HTTP, HTTPS, FTP, and more. It reduces bandwidth and improves response times by caching and reusing frequently-requested web pages",
+  "url": "http://www.squid-cache.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-proxy",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Caching proxy for the Web supporting HTTP, HTTPS, FTP, and more. It reduces bandwidth and improves response times by caching and reusing frequently-requested web pages"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.460Z"
+}

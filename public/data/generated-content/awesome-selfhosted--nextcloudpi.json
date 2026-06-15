@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--nextcloudpi",
+  "name": "NextCloudPi",
+  "introduction": "Nextcloud preinstalled and preconfigured, with a text and web management interface and all the tools needed to self host private data. With installation images for Raspberry Pi, Odroid, Rock64, Docker, and a curl installer for Armbian/Debian",
+  "description": "Nextcloud preinstalled and preconfigured, with a text and web management interface and all the tools needed to self host private data. With installation images for Raspberry Pi, Odroid, Rock64, Docker, and a curl installer for Armbian/Debian",
+  "url": "https://github.com/nextcloud/nextcloudpi",
+  "pricing": "Free",
+  "license": "GPL-2.0",
+  "tech": "Shell/PHP",
+  "category": "sh-self-hosting-solutions",
+  "tags": [
+    "GPL-2.0",
+    "Shell/PHP"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Nextcloud preinstalled and preconfigured, with a text and web management interface and all the tools needed to self host private data. With installation images for Raspberry Pi, Odroid, Rock64, Docker, and a curl installer for Armbian/Debian"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

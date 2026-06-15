@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--gramps-web",
+  "name": "Gramps Web",
+  "introduction": "Web app for collaborative genealogy, based on and interoperable with Gramps, the open source genealogy desktop application",
+  "description": "Web app for collaborative genealogy, based on and interoperable with Gramps, the open source genealogy desktop application",
+  "url": "https://www.grampsweb.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-genealogy",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web app for collaborative genealogy, based on and interoperable with Gramps, the open source genealogy desktop application"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.411Z"
+}

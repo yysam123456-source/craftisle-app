@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--apache-http-server",
+  "name": "Apache HTTP Server",
+  "introduction": "Secure, efficient and extensible server that provides HTTP services in sync with the current HTTP standards",
+  "description": "Secure, efficient and extensible server that provides HTTP services in sync with the current HTTP standards",
+  "url": "https://httpd.apache.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Secure, efficient and extensible server that provides HTTP services in sync with the current HTTP standards"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.497Z"
+}

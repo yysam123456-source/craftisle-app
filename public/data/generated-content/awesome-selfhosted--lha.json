@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--lha",
+  "name": "LHA",
+  "introduction": "Light Home Automation application that is fully extensible using Blockly, HTML or Lua. It includes extensions such as ConBee, Philips Hue or Z-Wave JS",
+  "description": "Light Home Automation application that is fully extensible using Blockly, HTML or Lua. It includes extensions such as ConBee, Philips Hue or Z-Wave JS",
+  "url": "https://github.com/javalikescript/lha",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Lua",
+  "category": "sh-internet-of-things-iot",
+  "tags": [
+    "MIT",
+    "Lua"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Light Home Automation application that is fully extensible using Blockly, HTML or Lua. It includes extensions such as ConBee, Philips Hue or Z-Wave JS"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.420Z"
+}

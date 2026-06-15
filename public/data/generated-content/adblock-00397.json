@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00397",
+  "description": "Self-Hosted DNS Server / [Subreddit](https://reddit.com/r/technitium/) / [GitHub](https://github.com/TechnitiumSoftware/DnsServer)",
+  "introduction": "Self-Hosted DNS Server / [Subreddit](https://reddit.com/r/technitium/) / [GitHub](https://github.com/TechnitiumSoftware/DnsServer)",
+  "features": [
+    "<p align=\"center\">"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/TechnitiumSoftware/DnsServer.git && cd DnsServer",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:36.787Z"
+}

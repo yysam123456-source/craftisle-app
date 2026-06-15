@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--zoneminder",
+  "name": "Zoneminder",
+  "introduction": "Closed-circuit television (CCTV) software application which supports IP, USB and Analog cameras",
+  "description": "Closed-circuit television (CCTV) software application which supports IP, USB and Analog cameras",
+  "url": "https://www.zoneminder.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-video-surveillance",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Closed-circuit television (CCTV) software application which supports IP, USB and Analog cameras"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.497Z"
+}

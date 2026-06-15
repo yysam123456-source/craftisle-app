@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--azimutt",
+  "name": "Azimutt",
+  "introduction": "Visual database exploration made for real world databases (big and messy). Explore your database schema as well as data, document them, extend them and even get analysis and guidelines",
+  "description": "Visual database exploration made for real world databases (big and messy). Explore your database schema as well as data, document them, extend them and even get analysis and guidelines",
+  "url": "https://azimutt.app",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-database-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Visual database exploration made for real world databases (big and messy). Explore your database schema as well as data, document them, extend them and even get analysis and guidelines"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.374Z"
+}

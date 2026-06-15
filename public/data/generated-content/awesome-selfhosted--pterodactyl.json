@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pterodactyl",
+  "name": "Pterodactyl",
+  "introduction": "Management panel for game servers, with an intuitive UI for end users",
+  "description": "Management panel for game servers, with an intuitive UI for end users",
+  "url": "https://pterodactyl.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games-administrative-utilities-control-panels",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Management panel for game servers, with an intuitive UI for end users"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.409Z"
+}

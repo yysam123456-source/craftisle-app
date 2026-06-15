@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--docmost",
+  "name": "docmost",
+  "introduction": "Collaborative wiki and documentation software (alternative to Confluence, Notion)",
+  "description": "Collaborative wiki and documentation software (alternative to Confluence, Notion)",
+  "url": "https://docmost.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Collaborative wiki and documentation software (alternative to Confluence, Notion)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.499Z"
+}

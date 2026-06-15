@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00169",
+  "description": "/ [Colab](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services#google-colab) / [Templates](https://github.com/ThereforeGames/unprompted) / [Upscaling](https://github.com/Coyote-A/ultimate-upscale-for-automatic1111), [2](https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111)",
+  "introduction": "/ [Colab](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services#google-colab) / [Templates](https://github.com/ThereforeGames/unprompted) / [Upscaling](https://github.com/Coyote-A/ultimate-upscale-for-automatic1111), [2](https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111)",
+  "features": [
+    "<div align=\"center\">"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/vladmandic/sdnext.git && cd sdnext",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:00.409Z"
+}

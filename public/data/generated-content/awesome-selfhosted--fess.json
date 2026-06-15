@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--fess",
+  "name": "Fess",
+  "introduction": "Powerful and easily deployable Enterprise Search Server",
+  "description": "Powerful and easily deployable Enterprise Search Server",
+  "url": "https://fess.codelibs.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-search-engines",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Powerful and easily deployable Enterprise Search Server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.462Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mirotalk-c2c",
+  "name": "MiroTalk C2C",
+  "introduction": "Real-time cam-2-cam video calls & screen sharing, end-to-end encrypted, to embed in any website with a simple iframe",
+  "description": "Real-time cam-2-cam video calls & screen sharing, end-to-end encrypted, to embed in any website with a simple iframe",
+  "url": "https://c2c.mirotalk.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-video-conferencing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Real-time cam-2-cam video calls & screen sharing, end-to-end encrypted, to embed in any website with a simple iframe"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.364Z"
+}

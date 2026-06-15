@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--edx",
+  "name": "edX",
+  "introduction": "The Open edX platform is open-source code that powers edX.org",
+  "description": "The Open edX platform is open-source code that powers edX.org",
+  "url": "https://www.edx.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "The Open edX platform is open-source code that powers edX.org"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.423Z"
+}

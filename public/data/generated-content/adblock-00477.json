@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00477",
+  "description": "Personal Checklist for Privacy & Security / [GitHub](https://github.com/lissy93/personal-security-checklist)",
+  "introduction": "Personal Checklist for Privacy & Security / [GitHub](https://github.com/lissy93/personal-security-checklist)",
+  "features": [
+    "<h1 align=\"center\">Personal Security Checklist</h1>"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/lissy93/personal-security-checklist.git && cd personal-security-checklist",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:32:33.101Z"
+}

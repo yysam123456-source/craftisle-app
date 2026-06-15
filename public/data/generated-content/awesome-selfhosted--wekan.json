@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wekan",
+  "name": "Wekan",
+  "introduction": "Open-source Trello-like kanban",
+  "description": "Open-source Trello-like kanban",
+  "url": "https://wekan.github.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-task-management-to-do-lists",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Open-source Trello-like kanban"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.494Z"
+}

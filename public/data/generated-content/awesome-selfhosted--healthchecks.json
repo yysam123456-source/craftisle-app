@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--healthchecks",
+  "name": "Healthchecks",
+  "introduction": "Listen for pings and sends alerts when pings are late",
+  "description": "Listen for pings and sends alerts when pings are late",
+  "url": "https://healthchecks.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-automation",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Listen for pings and sends alerts when pings are late"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.336Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ddracenetwork",
+  "name": "DDraceNetwork",
+  "introduction": "Cooperative platformer version of DDRace, a Teeworlds modification featuring unique cooperative gameplay",
+  "description": "Cooperative platformer version of DDRace, a Teeworlds modification featuring unique cooperative gameplay",
+  "url": "https://ddnet.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Cooperative platformer version of DDRace, a Teeworlds modification featuring unique cooperative gameplay"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.405Z"
+}

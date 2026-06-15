@@ -183,13 +183,32 @@ interface GeneratedContent {
   generatedAt?: string;
 }
 
-function loadGeneratedContent(resourceId: string): GeneratedContent | null {
-  try {
-    const filePath = join(process.cwd(), "public", "data", "generated-content", `${resourceId}.json`);
-    return JSON.parse(readFileSync(filePath, "utf-8"));
-  } catch {
-    return null;
+function loadGeneratedContent(resourceId: string, resourceName?: string): GeneratedContent | null {
+  const tryLoad = (id: string): GeneratedContent | null => {
+    try {
+      const filePath = join(process.cwd(), "public", "data", "generated-content", `${id}.json`);
+      return JSON.parse(readFileSync(filePath, "utf-8"));
+    } catch {
+      return null;
+    }
+  };
+
+  // 1. Try direct ID (FMHY format: artificial-intelligence-00001)
+  let result = tryLoad(resourceId);
+  if (result) return result;
+
+  // 2. Try awesome-selfhosted format (if name available)
+  if (resourceName) {
+    const slug = resourceName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    result = tryLoad(`awesome-selfhosted--${slug}`);
+    if (result) return result;
+
+    // 3. Try free-for-dev format
+    result = tryLoad(`free-for-dev--${slug}`);
+    if (result) return result;
   }
+
+  return null;
 }
 
 interface Tutorial {
@@ -727,7 +746,7 @@ export default async function ResourceDetailPage({
 
               {/* Auto-Generated Content Section (scripts + APIs, no AI) */}
               {(() => {
-                const generatedContent = loadGeneratedContent(resource.id);
+                const generatedContent = loadGeneratedContent(resource.id, resource.name);
                 const tutorials = loadTutorials(resource.id);
                 return (
                   <>

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--mikochi",
+  "name": "mikochi",
+  "introduction": "Browse remote folders, upload files, delete, rename, download and stream files to VLC/mpv",
+  "description": "Browse remote folders, upload files, delete, rename, download and stream files to VLC/mpv",
+  "url": "https://github.com/zer0tonin/Mikochi",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Go/Docker/K8S",
+  "category": "sh-file-transfer-web-based-file-managers",
+  "tags": [
+    "MIT",
+    "Go/Docker/K8S"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Browse remote folders, upload files, delete, rename, download and stream files to VLC/mpv"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.404Z"
+}

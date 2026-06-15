@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hiccup",
+  "name": "Hiccup",
+  "introduction": "Beautiful static homepage to get to your links and services quickly. It has built-in search, editing, PWA support and localstorage caching to easily organize your start page",
+  "description": "Beautiful static homepage to get to your links and services quickly. It has built-in search, editing, PWA support and localstorage caching to easily organize your start page",
+  "url": "https://designedbyashw.in/test/hiccup/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-personal-dashboards",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Beautiful static homepage to get to your links and services quickly. It has built-in search, editing, PWA support and localstorage caching to easily organize your start page"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.456Z"
+}

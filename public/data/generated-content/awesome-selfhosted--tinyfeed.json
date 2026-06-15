@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tinyfeed",
+  "name": "TinyFeed",
+  "introduction": "Generate a static HTML page from a collection of feeds with a simple CLI",
+  "description": "Generate a static HTML page from a collection of feeds with a simple CLI",
+  "url": "https://feed.lovergne.dev/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-feed-readers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Generate a static HTML page from a collection of feeds with a simple CLI"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.391Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--typebot",
+  "name": "Typebot",
+  "introduction": "Conversational app builder (alternative to Typeform and Landbot)",
+  "description": "Conversational app builder (alternative to Typeform and Landbot)",
+  "url": "https://typebot.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Conversational app builder (alternative to Typeform and Landbot)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.351Z"
+}

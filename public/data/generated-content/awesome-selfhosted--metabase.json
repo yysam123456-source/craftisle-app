@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--metabase",
+  "name": "Metabase",
+  "introduction": "Easy way for everyone in your company to ask questions and learn from data",
+  "description": "Easy way for everyone in your company to ask questions and learn from data",
+  "url": "https://metabase.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Easy way for everyone in your company to ask questions and learn from data"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.331Z"
+}

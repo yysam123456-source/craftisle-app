@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00345",
+  "description": "Machine Learning Course Notes",
+  "introduction": "Machine Learning Course Notes",
+  "features": [
+    "A place to collaborate and share lecture notes on all topics related to machine learning, NLP, and AI."
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/dair-ai/ML-Course-Notes.git && cd ML-Course-Notes",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:30:53.429Z"
+}

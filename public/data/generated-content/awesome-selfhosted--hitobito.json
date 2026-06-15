@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hitobito",
+  "name": "hitobito",
+  "introduction": "Manage complex group hierarchies with members, events and a lot more",
+  "description": "Manage complex group hierarchies with members, events and a lot more",
+  "url": "https://hitobito.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-polls-and-events",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Manage complex group hierarchies with members, events and a lot more"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.459Z"
+}

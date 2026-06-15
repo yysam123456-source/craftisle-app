@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00278",
+  "description": "AI Screen Recorder / No Sign-Up / [Discord](https://discord.gg/dU9EBuw7Uq) / [GitHub](https://github.com/mediar-ai/screenpipe)",
+  "introduction": "AI Screen Recorder / No Sign-Up / [Discord](https://discord.gg/dU9EBuw7Uq) / [GitHub](https://github.com/mediar-ai/screenpipe)",
+  "features": [
+    "<img width=\"1500\" height=\"500\" alt=\"image\" src=\"https://github.com/user-attachments/assets/058a44b8-fcad-4a37-92d8-83016"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/mediar-ai/screenpipe.git && cd screenpipe",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:30:14.922Z"
+}

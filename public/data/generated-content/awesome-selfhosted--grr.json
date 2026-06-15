@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--grr",
+  "name": "GRR",
+  "introduction": "Assets management and booking for small/medium companies",
+  "description": "Assets management and booking for small/medium companies",
+  "url": "https://grr.devome.com/?lang=en",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Assets management and booking for small/medium companies"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.450Z"
+}

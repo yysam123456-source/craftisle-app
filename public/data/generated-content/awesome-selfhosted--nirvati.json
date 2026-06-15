@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--nirvati",
+  "name": "Nirvati",
+  "introduction": "Easily 1-click spin up popular self-hosted apps from a convenient web interface",
+  "description": "Easily 1-click spin up popular self-hosted apps from a convenient web interface",
+  "url": "https://nirvati.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Easily 1-click spin up popular self-hosted apps from a convenient web interface"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

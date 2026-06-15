@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--queues",
+  "name": "Queues",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://developers.cloudflare.com/queues/",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-major-cloud-providers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.334Z"
+}

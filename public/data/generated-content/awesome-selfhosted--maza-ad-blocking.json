@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--maza-ad-blocking",
+  "name": "Maza ad blocking",
+  "introduction": "Local ad blocker. Like Pi-hole but local and using your operating system",
+  "description": "Local ad blocker. Like Pi-hole but local and using your operating system",
+  "url": "https://maza-ad-blocking.andros.dev/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-dns",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Local ad blocker. Like Pi-hole but local and using your operating system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.378Z"
+}

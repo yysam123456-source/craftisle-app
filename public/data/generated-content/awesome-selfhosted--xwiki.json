@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--xwiki",
+  "name": "XWiki",
+  "introduction": "Second generation wiki that allows the user to extend its functionalities with a powerful extension-based architecture",
+  "description": "Second generation wiki that allows the user to extend its functionalities with a powerful extension-based architecture",
+  "url": "https://www.xwiki.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Second generation wiki that allows the user to extend its functionalities with a powerful extension-based architecture"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.500Z"
+}

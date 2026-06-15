@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--open-webui",
+  "name": "Open-WebUI",
+  "introduction": "User-friendly AI Interface, supports Ollama, OpenAI API",
+  "description": "User-friendly AI Interface, supports Ollama, OpenAI API",
+  "url": "https://openwebui.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-generative-artificial-intelligence-genai",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "User-friendly AI Interface, supports Ollama, OpenAI API"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.413Z"
+}

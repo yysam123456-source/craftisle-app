@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wikisuite",
+  "name": "WikiSuite",
+  "introduction": "The most comprehensive and integrated Free / Libre / Open Source enterprise software suite",
+  "description": "The most comprehensive and integrated Free / Libre / Open Source enterprise software suite",
+  "url": "https://wikisuite.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "The most comprehensive and integrated Free / Libre / Open Source enterprise software suite"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

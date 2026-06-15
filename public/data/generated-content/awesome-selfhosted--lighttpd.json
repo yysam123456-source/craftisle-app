@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--lighttpd",
+  "name": "Lighttpd",
+  "introduction": "Secure, fast, compliant, and very flexible web server that has been optimized for high-performance environments",
+  "description": "Secure, fast, compliant, and very flexible web server that has been optimized for high-performance environments",
+  "url": "https://www.lighttpd.net/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Secure, fast, compliant, and very flexible web server that has been optimized for high-performance environments"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.498Z"
+}

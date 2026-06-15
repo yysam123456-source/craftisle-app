@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--signature-pdf",
+  "name": "Signature PDF",
+  "introduction": "Sign and manipulate PDFs with collaboration, organization, compression and metadata editing",
+  "description": "Sign and manipulate PDFs with collaboration, organization, compression and metadata editing",
+  "url": "https://github.com/24eme/signaturepdf",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-document-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Sign and manipulate PDFs with collaboration, organization, compression and metadata editing"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.381Z"
+}

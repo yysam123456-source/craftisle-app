@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--grocy",
+  "name": "grocy",
+  "introduction": "ERP beyond your fridge. Groceries & household management solution for your home",
+  "description": "ERP beyond your fridge. Groceries & household management solution for your home",
+  "url": "https://grocy.info/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-resource-planning",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "ERP beyond your fridge. Groceries & household management solution for your home"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.462Z"
+}

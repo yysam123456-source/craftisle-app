@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--buddypress",
+  "name": "BuddyPress",
+  "introduction": "Powerful plugin that takes your WordPress.org powered site beyond the blog with social-network features like user profiles, activity streams, user groups, and more",
+  "description": "Powerful plugin that takes your WordPress.org powered site beyond the blog with social-network features like user profiles, activity streams, user groups, and more",
+  "url": "https://buddypress.org/about/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Powerful plugin that takes your WordPress.org powered site beyond the blog with social-network features like user profiles, activity streams, user groups, and more"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.360Z"
+}

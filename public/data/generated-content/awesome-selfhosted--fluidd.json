@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--fluidd",
+  "name": "Fluidd",
+  "introduction": "Lightweight & responsive user interface for Klipper, the 3D printer firmware",
+  "description": "Lightweight & responsive user interface for Klipper, the 3D printer firmware",
+  "url": "https://docs.fluidd.xyz/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-manufacturing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight & responsive user interface for Klipper, the 3D printer firmware"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.424Z"
+}

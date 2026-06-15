@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--d9",
+  "name": "d9",
+  "introduction": "Turn SQL databases into secure APIs through an intuitive admin interface. Data platform and headless CMS (fork of Directus)",
+  "description": "Turn SQL databases into secure APIs through an intuitive admin interface. Data platform and headless CMS (fork of Directus)",
+  "url": "https://d9.webcapsule.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-database-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Turn SQL databases into secure APIs through an intuitive admin interface. Data platform and headless CMS (fork of Directus)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.376Z"
+}

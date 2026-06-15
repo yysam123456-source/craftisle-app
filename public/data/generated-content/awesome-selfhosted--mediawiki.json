@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mediawiki",
+  "name": "Mediawiki",
+  "introduction": "Wiki software package that powers Wikipedia and all other Wikimedia projects, serving hundreds of millions of users each month",
+  "description": "Wiki software package that powers Wikipedia and all other Wikimedia projects, serving hundreds of millions of users each month",
+  "url": "https://www.mediawiki.org/wiki/MediaWiki",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Wiki software package that powers Wikipedia and all other Wikimedia projects, serving hundreds of millions of users each month"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.499Z"
+}

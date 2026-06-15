@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--omnitools",
+  "name": "OmniTools",
+  "introduction": "Collection of powerful web-based tools for everyday tasks (coding, manipulating images/videos, PDFs or crunching numbers...)",
+  "description": "Collection of powerful web-based tools for everyday tasks (coding, manipulating images/videos, PDFs or crunching numbers...)",
+  "url": "https://omnitools.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Collection of powerful web-based tools for everyday tasks (coding, manipulating images/videos, PDFs or crunching numbers...)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.447Z"
+}

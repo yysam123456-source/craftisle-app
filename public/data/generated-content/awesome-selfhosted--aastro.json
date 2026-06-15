@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--aastro",
+  "name": "Aastro",
+  "introduction": "Extensible API Gateway written in Go",
+  "description": "Extensible API Gateway written in Go",
+  "url": "https://starwalkn.github.io/aastro-docs",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-api-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Extensible API Gateway written in Go"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

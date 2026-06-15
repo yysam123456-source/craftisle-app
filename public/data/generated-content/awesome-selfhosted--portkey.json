@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--portkey",
+  "name": "portkey",
+  "introduction": "Simple web portal that serves as a startup page, displaying a compilation of links and URLs, while also allowing the addition of custom pages, all managed through a single configuration file",
+  "description": "Simple web portal that serves as a startup page, displaying a compilation of links and URLs, while also allowing the addition of custom pages, all managed through a single configuration file",
+  "url": "https://portkey.page",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-personal-dashboards",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple web portal that serves as a startup page, displaying a compilation of links and URLs, while also allowing the addition of custom pages, all managed through a single configuration file"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.457Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--kriss-feed",
+  "name": "Kriss Feed",
+  "introduction": "Simple and smart (or stupid) feed reader",
+  "description": "Simple and smart (or stupid) feed reader",
+  "url": "https://github.com/tontof/kriss_feed",
+  "pricing": "Free",
+  "license": "CC0-1.0",
+  "tech": "PHP",
+  "category": "sh-feed-readers",
+  "tags": [
+    "CC0-1.0",
+    "PHP"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple and smart (or stupid) feed reader"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.389Z"
+}

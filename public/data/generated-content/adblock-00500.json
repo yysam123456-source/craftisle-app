@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00500",
+  "description": "** / [GitHub](https://github.com/politiwatch/privacyspy) or [ToS;DR](https://tosdr.org/) / [Discord](https://discord.gg/tosdr) / [GitHub](https://github.com/tosdr) - Sites Privacy Policies",
+  "introduction": "** / [GitHub](https://github.com/politiwatch/privacyspy) or [ToS;DR](https://tosdr.org/) / [Discord](https://discord.gg/tosdr) / [GitHub](https://github.com/tosdr) - Sites Privacy Policies",
+  "features": [
+    "Most people don’t have the patience to read privacy policies. But privacy is important, and we shouldn’t just trust that"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/politiwatch/privacyspy.git && cd privacyspy",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:32:42.945Z"
+}

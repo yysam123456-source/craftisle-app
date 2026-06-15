@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--kresus",
+  "name": "Kresus",
+  "introduction": "Personal finance manager",
+  "description": "Personal finance manager",
+  "url": "https://kresus.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Personal finance manager"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.450Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--chartbrew",
+  "name": "Chartbrew",
+  "introduction": "Connect directly to databases and APIs and use the data to create beautiful charts",
+  "description": "Connect directly to databases and APIs and use the data to create beautiful charts",
+  "url": "https://chartbrew.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-database-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Connect directly to databases and APIs and use the data to create beautiful charts"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.376Z"
+}

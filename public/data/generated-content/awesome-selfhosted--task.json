@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--task",
+  "name": "µTask",
+  "introduction": "Automation engine that models and executes business processes declared in yaml",
+  "description": "Automation engine that models and executes business processes declared in yaml",
+  "url": "https://github.com/ovh/utask",
+  "pricing": "Free",
+  "license": "BSD-3-Clause",
+  "tech": "Go/Docker",
+  "category": "sh-automation",
+  "tags": [
+    "BSD-3-Clause",
+    "Go/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Automation engine that models and executes business processes declared in yaml"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.338Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--digitranscode",
+  "name": "Digitranscode",
+  "introduction": "Convert audio files and videos directly in the browser (documentation in French)",
+  "description": "Convert audio files and videos directly in the browser (documentation in French)",
+  "url": "https://ladigitale.dev/digitranscode",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Convert audio files and videos directly in the browser (documentation in French)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.446Z"
+}

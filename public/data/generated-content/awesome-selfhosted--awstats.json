@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--awstats",
+  "name": "AWStats",
+  "introduction": "Generate statistics from web, streaming, ftp or mail server logfiles",
+  "description": "Generate statistics from web, streaming, ftp or mail server logfiles",
+  "url": "http://www.awstats.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Generate statistics from web, streaming, ftp or mail server logfiles"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.330Z"
+}

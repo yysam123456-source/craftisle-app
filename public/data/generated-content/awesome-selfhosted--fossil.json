@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--fossil",
+  "name": "Fossil",
+  "introduction": "Distributed version control system featuring wiki and bug tracker",
+  "description": "Distributed version control system featuring wiki and bug tracker",
+  "url": "https://www.fossil-scm.org/index.html/doc/trunk/www/index.wiki",
+  "pricing": "Free",
+  "license": "C",
+  "tech": "BSD-2-Clause-FreeBSD",
+  "category": "sh-software-development-project-management",
+  "tags": [
+    "C",
+    "BSD-2-Clause-FreeBSD"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Distributed version control system featuring wiki and bug tracker"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.488Z"
+}

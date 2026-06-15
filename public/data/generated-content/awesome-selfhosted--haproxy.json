@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--haproxy",
+  "name": "HAProxy",
+  "introduction": "Very fast and reliable reverse-proxy offering high availability, load balancing, and proxying for TCP and HTTP-based applications",
+  "description": "Very fast and reliable reverse-proxy offering high availability, load balancing, and proxying for TCP and HTTP-based applications",
+  "url": "https://www.haproxy.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Very fast and reliable reverse-proxy offering high availability, load balancing, and proxying for TCP and HTTP-based applications"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.498Z"
+}

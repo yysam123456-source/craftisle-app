@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--judge0-ce",
+  "name": "Judge0 CE",
+  "introduction": "API to compile and run source code",
+  "description": "API to compile and run source code",
+  "url": "https://judge0.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-ide-tools",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "API to compile and run source code"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.477Z"
+}

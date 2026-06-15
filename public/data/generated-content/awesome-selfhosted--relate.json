@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--relate",
+  "name": "RELATE",
+  "introduction": "Courseware package that includes features such as: flexible rules, statistics, multi-course support, class calendar",
+  "description": "Courseware package that includes features such as: flexible rules, statistics, multi-course support, class calendar",
+  "url": "https://documen.tician.de/relate/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Courseware package that includes features such as: flexible rules, statistics, multi-course support, class calendar"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.424Z"
+}

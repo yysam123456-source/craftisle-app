@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--canvas-lms",
+  "name": "Canvas LMS",
+  "introduction": "Learning management system (LMS) that is revolutionizing the way we educate",
+  "description": "Learning management system (LMS) that is revolutionizing the way we educate",
+  "url": "https://www.instructure.com/canvas/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Learning management system (LMS) that is revolutionizing the way we educate"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.423Z"
+}

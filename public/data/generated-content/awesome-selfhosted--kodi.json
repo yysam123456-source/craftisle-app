@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--kodi",
+  "name": "Kodi",
+  "introduction": "Multimedia/Entertainment center, formerly known as XBMC. Runs on Android, BSD, Linux, macOS, iOS and Windows",
+  "description": "Multimedia/Entertainment center, formerly known as XBMC. Runs on Android, BSD, Linux, macOS, iOS and Windows",
+  "url": "https://kodi.tv/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-streaming-multimedia-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Multimedia/Entertainment center, formerly known as XBMC. Runs on Android, BSD, Linux, macOS, iOS and Windows"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.440Z"
+}

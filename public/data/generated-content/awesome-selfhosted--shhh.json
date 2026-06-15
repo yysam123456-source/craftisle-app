@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--shhh",
+  "name": "Shhh",
+  "introduction": "Keep secrets out of emails or chat logs, share them using secure links with passphrase and expiration dates",
+  "description": "Keep secrets out of emails or chat logs, share them using secure links with passphrase and expiration dates",
+  "url": "https://github.com/smallwat3r/shhh",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Python",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [
+    "MIT",
+    "Python"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Keep secrets out of emails or chat logs, share them using secure links with passphrase and expiration dates"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.350Z"
+}

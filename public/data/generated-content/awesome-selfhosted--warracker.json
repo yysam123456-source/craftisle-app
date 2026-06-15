@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--warracker",
+  "name": "Warracker",
+  "introduction": "Warranty tracker that lets you monitor expiry dates, upload receipts/files, and get alerts before warranties expire",
+  "description": "Warranty tracker that lets you monitor expiry dates, upload receipts/files, and get alerts before warranties expire",
+  "url": "https://warracker.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Warranty tracker that lets you monitor expiry dates, upload receipts/files, and get alerts before warranties expire"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.448Z"
+}

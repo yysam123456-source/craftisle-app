@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00383",
+  "description": "/ [GitHub](https://github.com/BrainicHQ/DoHSpeedTest), [DNS Perf](https://dnsperf.com/dns-speed-benchmark) or [NameBench](https://code.google.com/archive/p/namebench/) - DNS Speed Tests",
+  "introduction": "/ [GitHub](https://github.com/BrainicHQ/DoHSpeedTest), [DNS Perf](https://dnsperf.com/dns-speed-benchmark) or [NameBench](https://code.google.com/archive/p/namebench/) - DNS Speed Tests",
+  "features": [
+    "Welcome to the **DNS Speed Test** tool! This innovative web application, accessible"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/BrainicHQ/DoHSpeedTest.git && cd DoHSpeedTest",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:26.646Z"
+}

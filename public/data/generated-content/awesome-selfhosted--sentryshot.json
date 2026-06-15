@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--sentryshot",
+  "name": "SentryShot",
+  "introduction": "Video surveillance management system",
+  "description": "Video surveillance management system",
+  "url": "https://codeberg.org/SentryShot/sentryshot",
+  "pricing": "Free",
+  "license": "GPL-2.0",
+  "tech": "Docker/Rust",
+  "category": "sh-video-surveillance",
+  "tags": [
+    "GPL-2.0",
+    "Docker/Rust"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Video surveillance management system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.497Z"
+}

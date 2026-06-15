@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--gollum",
+  "name": "Gollum",
+  "introduction": "Simple, Git-powered wiki with a sweet API and local frontend",
+  "description": "Simple, Git-powered wiki with a sweet API and local frontend",
+  "url": "https://github.com/gollum/gollum",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Ruby",
+  "category": "sh-wikis",
+  "tags": [
+    "MIT",
+    "Ruby"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple, Git-powered wiki with a sweet API and local frontend"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.499Z"
+}

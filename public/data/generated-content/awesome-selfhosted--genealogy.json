@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--genealogy",
+  "name": "Genealogy",
+  "introduction": "Record family members and their relationships and build a family tree",
+  "description": "Record family members and their relationships and build a family tree",
+  "url": "https://genealogy.kreaweb.be/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-genealogy",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Record family members and their relationships and build a family tree"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.410Z"
+}

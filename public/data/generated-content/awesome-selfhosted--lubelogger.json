@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--lubelogger",
+  "name": "LubeLogger",
+  "introduction": "Web-based vehicle maintenance and fuel mileage tracker",
+  "description": "Web-based vehicle maintenance and fuel mileage tracker",
+  "url": "https://lubelogger.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based vehicle maintenance and fuel mileage tracker"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.447Z"
+}

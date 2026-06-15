@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--manyfold",
+  "name": "Manyfold",
+  "introduction": "Digital asset manager for 3d print files; STL, OBJ, 3MF and more",
+  "description": "Digital asset manager for 3d print files; STL, OBJ, 3MF and more",
+  "url": "https://manyfold.app",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-manufacturing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Digital asset manager for 3d print files; STL, OBJ, 3MF and more"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.424Z"
+}

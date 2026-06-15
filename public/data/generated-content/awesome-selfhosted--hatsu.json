@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hatsu",
+  "name": "Hatsu",
+  "introduction": "Bridge that interacts with Fediverse on behalf of your static site",
+  "description": "Bridge that interacts with Fediverse on behalf of your static site",
+  "url": "https://hatsu.cli.rs/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Bridge that interacts with Fediverse on behalf of your static site"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.361Z"
+}

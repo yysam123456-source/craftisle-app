@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--shaper",
+  "name": "Shaper",
+  "introduction": "Build Data Dashboards all in SQL. Powered by DuckDB",
+  "description": "Build Data Dashboards all in SQL. Powered by DuckDB",
+  "url": "https://taleshape.com/shaper/docs",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Build Data Dashboards all in SQL. Powered by DuckDB"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.332Z"
+}

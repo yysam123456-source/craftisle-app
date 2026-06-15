@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pretalx",
+  "name": "pretalx",
+  "introduction": "Web-based event management, including running a Call for Papers, reviewing submissions, and scheduling talks. Exports and imports for various related tools",
+  "description": "Web-based event management, including running a Call for Papers, reviewing submissions, and scheduling talks. Exports and imports for various related tools",
+  "url": "https://pretalx.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-conference-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based event management, including running a Call for Papers, reviewing submissions, and scheduling talks. Exports and imports for various related tools"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.366Z"
+}

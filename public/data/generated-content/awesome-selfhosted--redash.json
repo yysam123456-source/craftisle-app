@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--redash",
+  "name": "Redash",
+  "introduction": "Connect and query your data sources, build dashboards to visualize data and share them with your company",
+  "description": "Connect and query your data sources, build dashboards to visualize data and share them with your company",
+  "url": "http://redash.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Connect and query your data sources, build dashboards to visualize data and share them with your company"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.332Z"
+}

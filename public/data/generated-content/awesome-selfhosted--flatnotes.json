@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--flatnotes",
+  "name": "flatnotes",
+  "introduction": "Database-less note-taking web app that utilises a flat folder of markdown files for storage",
+  "description": "Database-less note-taking web app that utilises a flat folder of markdown files for storage",
+  "url": "https://github.com/dullage/flatnotes",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-note-taking-editors",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Database-less note-taking web app that utilises a flat folder of markdown files for storage"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.452Z"
+}

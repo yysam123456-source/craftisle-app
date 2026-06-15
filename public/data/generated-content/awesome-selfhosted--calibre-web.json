@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--calibre-web",
+  "name": "Calibre Web",
+  "introduction": "Browse, read and download eBooks using an existing Calibre database",
+  "description": "Browse, read and download eBooks using an existing Calibre database",
+  "url": "https://github.com/janeczku/calibre-web",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Python",
+  "category": "sh-document-management-e-books",
+  "tags": [
+    "GPL-3.0",
+    "Python"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Browse, read and download eBooks using an existing Calibre database"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.382Z"
+}

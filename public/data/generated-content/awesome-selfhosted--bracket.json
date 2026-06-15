@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--bracket",
+  "name": "Bracket",
+  "introduction": "Flexible tournament system to build a tournament setup, add teams, schedule matches, keep track of scores and present ranking live to the public",
+  "description": "Flexible tournament system to build a tournament setup, add teams, schedule matches, keep track of scores and present ranking live to the public",
+  "url": "https://docs.bracketapp.nl/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-polls-and-events",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Flexible tournament system to build a tournament setup, add teams, schedule matches, keep track of scores and present ranking live to the public"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.459Z"
+}

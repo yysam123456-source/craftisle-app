@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hive-pal",
+  "name": "Hive-Pal",
+  "introduction": "Mobile-first beekeeping management app for tracking hives, inspections, queen records, and equipment with streamlined data entry optimized for field use",
+  "description": "Mobile-first beekeeping management app for tracking hives, inspections, queen records, and equipment with streamlined data entry optimized for field use",
+  "url": "https://hivepal.app",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-community-supported-agriculture-csa",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Mobile-first beekeeping management app for tracking hives, inspections, queen records, and equipment with streamlined data entry optimized for field use"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.365Z"
+}

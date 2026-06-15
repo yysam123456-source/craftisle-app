@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--privatebin",
+  "name": "PrivateBin",
+  "introduction": "Minimalist pastebin/discussion board where the server has zero knowledge of hosted data",
+  "description": "Minimalist pastebin/discussion board where the server has zero knowledge of hosted data",
+  "url": "https://privatebin.info/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-pastebins",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Minimalist pastebin/discussion board where the server has zero knowledge of hosted data"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.455Z"
+}

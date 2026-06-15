@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tileserver-gl",
+  "name": "TileServer GL",
+  "introduction": "Vector and raster maps with GL styles. Server side rendering by Mapbox GL Native. Map tile server for Mapbox GL JS, Android, iOS, Leaflet, OpenLayers, GIS via WMTS, etc",
+  "description": "Vector and raster maps with GL styles. Server side rendering by Mapbox GL Native. Map tile server for Mapbox GL JS, Android, iOS, Leaflet, OpenLayers, GIS via WMTS, etc",
+  "url": "https://tileserver.readthedocs.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-maps-and-global-positioning-system-gps",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Vector and raster maps with GL styles. Server side rendering by Mapbox GL Native. Map tile server for Mapbox GL JS, Android, iOS, Leaflet, OpenLayers, GIS via WMTS, etc"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.428Z"
+}

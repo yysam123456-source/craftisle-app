@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--nefarious",
+  "name": "nefarious",
+  "introduction": "Automate downloading Movies and TV Shows",
+  "description": "Automate downloading Movies and TV Shows",
+  "url": "https://lardbit.github.io/nefarious/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Automate downloading Movies and TV Shows"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.431Z"
+}

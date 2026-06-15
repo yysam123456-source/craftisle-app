@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--clipbucket",
+  "name": "ClipBucket",
+  "introduction": "Start your own video sharing website (YouTube/Netflix Clone) in a matter of minutes",
+  "description": "Start your own video sharing website (YouTube/Netflix Clone) in a matter of minutes",
+  "url": "https://clipbucket.fr/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-streaming-multimedia-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Start your own video sharing website (YouTube/Netflix Clone) in a matter of minutes"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.439Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--leafwiki",
+  "name": "LeafWiki",
+  "introduction": "A fast wiki for people who think in folders, not feeds. Fast editing. Tree navigation. Markdown on disk",
+  "description": "A fast wiki for people who think in folders, not feeds. Fast editing. Tree navigation. Markdown on disk",
+  "url": "https://github.com/perber/leafwiki",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A fast wiki for people who think in folders, not feeds. Fast editing. Tree navigation. Markdown on disk"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.499Z"
+}

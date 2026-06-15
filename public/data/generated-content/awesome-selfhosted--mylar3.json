@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mylar3",
+  "name": "Mylar3",
+  "introduction": "Automated Comic Book (cbr/cbz) downloader program for use with NZB and torrents",
+  "description": "Automated Comic Book (cbr/cbz) downloader program for use with NZB and torrents",
+  "url": "https://mylarcomics.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-automation",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Automated Comic Book (cbr/cbz) downloader program for use with NZB and torrents"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.336Z"
+}

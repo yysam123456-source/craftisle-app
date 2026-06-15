@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--kiwix-serve",
+  "name": "kiwix-serve",
+  "introduction": "HTTP daemon for serving wikis from ZIM files",
+  "description": "HTTP daemon for serving wikis from ZIM files",
+  "url": "https://github.com/kiwix/kiwix-tools",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "C++",
+  "category": "sh-document-management-e-books",
+  "tags": [
+    "GPL-3.0",
+    "C++"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "HTTP daemon for serving wikis from ZIM files"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.383Z"
+}

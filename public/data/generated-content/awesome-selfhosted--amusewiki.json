@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--amusewiki",
+  "name": "AmuseWiki",
+  "introduction": "Amusewiki is based on the Emacs Muse markup, remaining mostly compatible with the original implementation. It can work as a read-only site, as a moderated wiki, or as a fully open wiki or even as a private site",
+  "description": "Amusewiki is based on the Emacs Muse markup, remaining mostly compatible with the original implementation. It can work as a read-only site, as a moderated wiki, or as a fully open wiki or even as a private site",
+  "url": "https://amusewiki.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Amusewiki is based on the Emacs Muse markup, remaining mostly compatible with the original implementation. It can work as a read-only site, as a moderated wiki, or as a fully open wiki or even as a private site"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.499Z"
+}

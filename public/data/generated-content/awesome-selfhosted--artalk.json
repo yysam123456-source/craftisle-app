@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--artalk",
+  "name": "Artalk",
+  "introduction": "Comment system built in Golang, providing a lightweight and highly customizable solution for adding comments to your website",
+  "description": "Comment system built in Golang, providing a lightweight and highly customizable solution for adding comments to your website",
+  "url": "https://artalk.js.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Comment system built in Golang, providing a lightweight and highly customizable solution for adding comments to your website"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.360Z"
+}

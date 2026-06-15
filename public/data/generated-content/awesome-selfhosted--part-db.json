@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--part-db",
+  "name": "Part-DB",
+  "introduction": "Inventory management system for your electronic components",
+  "description": "Inventory management system for your electronic components",
+  "url": "https://docs.part-db.de/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-inventory-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Inventory management system for your electronic components"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.421Z"
+}

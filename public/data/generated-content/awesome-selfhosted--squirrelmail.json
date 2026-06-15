@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--squirrelmail",
+  "name": "SquirrelMail",
+  "introduction": "Another browser-based IMAP client",
+  "description": "Another browser-based IMAP client",
+  "url": "https://squirrelmail.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-webmail-clients",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Another browser-based IMAP client"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

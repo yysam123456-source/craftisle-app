@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--dockstarter",
+  "name": "DockSTARTer",
+  "introduction": "DockSTARTer helps you get started with home server apps running in Docker",
+  "description": "DockSTARTer helps you get started with home server apps running in Docker",
+  "url": "https://dockstarter.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "DockSTARTer helps you get started with home server apps running in Docker"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.463Z"
+}

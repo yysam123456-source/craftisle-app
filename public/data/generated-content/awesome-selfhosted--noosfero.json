@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--noosfero",
+  "name": "Noosfero",
+  "introduction": "Platform for social and solidarity economy networks with blog, e-Portfolios, CMS, RSS, thematic discussion, events agenda and collective intelligence for solidarity economy in the same system",
+  "description": "Platform for social and solidarity economy networks with blog, e-Portfolios, CMS, RSS, thematic discussion, events agenda and collective intelligence for solidarity economy in the same system",
+  "url": "https://gitlab.com/noosfero/noosfero",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Ruby",
+  "category": "sh-content-management-systems-cms",
+  "tags": [
+    "AGPL-3.0",
+    "Ruby"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Platform for social and solidarity economy networks with blog, e-Portfolios, CMS, RSS, thematic discussion, events agenda and collective intelligence for solidarity economy in the same system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.370Z"
+}

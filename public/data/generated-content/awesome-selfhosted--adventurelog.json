@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--adventurelog",
+  "name": "AdventureLog",
+  "introduction": "Travel tracker and trip planner",
+  "description": "Travel tracker and trip planner",
+  "url": "https://adventurelog.app",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-maps-and-global-positioning-system-gps",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Travel tracker and trip planner"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.425Z"
+}

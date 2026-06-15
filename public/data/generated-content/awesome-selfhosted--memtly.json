@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--memtly",
+  "name": "Memtly",
+  "introduction": "Event photo sharing platform and gallery with slideshow that allows guests to view and share memories via a QR code",
+  "description": "Event photo sharing platform and gallery with slideshow that allows guests to view and share memories via a QR code",
+  "url": "https://docs.memtly.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-photo-galleries",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Event photo sharing platform and gallery with slideshow that allows guests to view and share memories via a QR code"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.458Z"
+}

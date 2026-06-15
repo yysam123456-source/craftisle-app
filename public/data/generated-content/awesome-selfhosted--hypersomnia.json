@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hypersomnia",
+  "name": "Hypersomnia",
+  "introduction": "Competitive top-down shooter blending Counter-Strike with Hotline Miami. Runs on Linux, Windows, MacOS and the Web",
+  "description": "Competitive top-down shooter blending Counter-Strike with Hotline Miami. Runs on Linux, Windows, MacOS and the Web",
+  "url": "https://github.com/TeamHypersomnia/Hypersomnia",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Competitive top-down shooter blending Counter-Strike with Hotline Miami. Runs on Linux, Windows, MacOS and the Web"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.406Z"
+}

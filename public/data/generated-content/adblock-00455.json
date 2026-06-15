@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00455",
+  "description": "or [⁠Data Broker Watch](https://databrokerswatch.org/) - Data Broker Removal & Opt-Out Methods",
+  "introduction": "or [⁠Data Broker Watch](https://databrokerswatch.org/) - Data Broker Removal & Opt-Out Methods",
+  "features": [
+    "| Symbols | Meanings                                             |"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/yaelwrites/Big-Ass-Data-Broker-Opt-Out-List.git && cd Big-Ass-Data-Broker-Opt-Out-List",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:32:12.715Z"
+}

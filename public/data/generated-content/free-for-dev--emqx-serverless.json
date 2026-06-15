@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--emqx-serverless",
+  "name": "EMQX Serverless",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://www.emqx.com/en/cloud/serverless-mqtt",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-messaging-and-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.400Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--projectsend",
+  "name": "ProjectSend",
+  "introduction": "Upload files and assign them to specific clients you create. Give access to those files to your clients",
+  "description": "Upload files and assign them to specific clients you create. Give access to those files to your clients",
+  "url": "https://www.projectsend.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Upload files and assign them to specific clients you create. Give access to those files to your clients"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.401Z"
+}

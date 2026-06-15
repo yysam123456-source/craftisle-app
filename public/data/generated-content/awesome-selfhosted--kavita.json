@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--kavita",
+  "name": "Kavita",
+  "introduction": "Cross-platform e-book/manga/comic/pdf server and web reader with user management, ratings and reviews, and metadata support",
+  "description": "Cross-platform e-book/manga/comic/pdf server and web reader with user management, ratings and reviews, and metadata support",
+  "url": "https://www.kavitareader.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-document-management-e-books",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Cross-platform e-book/manga/comic/pdf server and web reader with user management, ratings and reviews, and metadata support"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.383Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--chasquid",
+  "name": "chasquid",
+  "introduction": "SMTP (email) server with a focus on simplicity, security, and ease of operation",
+  "description": "SMTP (email) server with a focus on simplicity, security, and ease of operation",
+  "url": "https://blitiri.com.ar/p/chasquid/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-mail-transfer-agents",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "SMTP (email) server with a focus on simplicity, security, and ease of operation"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.355Z"
+}

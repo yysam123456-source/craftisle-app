@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00196",
+  "description": "/ No Sign-Up / [Colab](https://colab.research.google.com/drive/1ECmNEoXk8kvnLEMBMF2LY82E7XmIG4yu) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/hugging-face-warning.md)",
+  "introduction": "/ No Sign-Up / [Colab](https://colab.research.google.com/drive/1ECmNEoXk8kvnLEMBMF2LY82E7XmIG4yu) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/hugging-face-warning.md)",
+  "features": [
+    "AudioCraft is a PyTorch library for deep learning research on audio generation. AudioCraft contains inference and traini"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/facebookresearch/audiocraft.git && cd audiocraft",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:17.994Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--live-helper-chat",
+  "name": "Live Helper Chat",
+  "introduction": "Live Support chat for your website",
+  "description": "Live Support chat for your website",
+  "url": "https://livehelperchat.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Live Support chat for your website"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.348Z"
+}

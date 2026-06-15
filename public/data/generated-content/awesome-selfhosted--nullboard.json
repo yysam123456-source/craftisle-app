@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--nullboard",
+  "name": "Nullboard",
+  "introduction": "Single-page minimalist kanban board; compact, highly readable and quick to use",
+  "description": "Single-page minimalist kanban board; compact, highly readable and quick to use",
+  "url": "https://github.com/apankrat/nullboard",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-task-management-to-do-lists",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Single-page minimalist kanban board; compact, highly readable and quick to use"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.493Z"
+}

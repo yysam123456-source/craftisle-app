@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pyload",
+  "name": "pyLoad",
+  "introduction": "Lightweight, customizable and remotely manageable downloader for 1-click-hosting sites like rapidshare.com or uploaded.to",
+  "description": "Lightweight, customizable and remotely manageable downloader for 1-click-hosting sites like rapidshare.com or uploaded.to",
+  "url": "https://pyload.net/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-automation",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight, customizable and remotely manageable downloader for 1-click-hosting sites like rapidshare.com or uploaded.to"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.337Z"
+}

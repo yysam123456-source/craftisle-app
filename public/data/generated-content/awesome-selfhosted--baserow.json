@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--baserow",
+  "name": "Baserow",
+  "introduction": "Create your own database without technical experience (alternative to Airtable)",
+  "description": "Create your own database without technical experience (alternative to Airtable)",
+  "url": "https://baserow.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-database-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Create your own database without technical experience (alternative to Airtable)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.374Z"
+}

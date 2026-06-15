@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cypht",
+  "name": "Cypht",
+  "introduction": "Feed reader for your email accounts",
+  "description": "Feed reader for your email accounts",
+  "url": "https://cypht.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-webmail-clients",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Feed reader for your email accounts"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.357Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--bichon",
+  "name": "Bichon",
+  "introduction": "Email archiving server that syncs from IMAP accounts, indexes emails for full-text search, and provides a REST API. No external database required, includes WebUI with multi-account support",
+  "description": "Email archiving server that syncs from IMAP accounts, indexes emails for full-text search, and provides a REST API. No external database required, includes WebUI with multi-account support",
+  "url": "https://github.com/rustmailer/bichon",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Rust/Docker",
+  "category": "sh-archiving-and-digital-preservation-dp",
+  "tags": [
+    "AGPL-3.0",
+    "Rust/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Email archiving server that syncs from IMAP accounts, indexes emails for full-text search, and provides a REST API. No external database required, includes WebUI with multi-account support"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.333Z"
+}

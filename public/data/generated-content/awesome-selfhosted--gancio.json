@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--gancio",
+  "name": "Gancio",
+  "introduction": "Local community event and agenda sharing",
+  "description": "Local community event and agenda sharing",
+  "url": "https://gancio.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-polls-and-events",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Local community event and agenda sharing"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.459Z"
+}

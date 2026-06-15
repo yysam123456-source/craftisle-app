@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--siyuan",
+  "name": "SiYuan",
+  "introduction": "A privacy-first personal knowledge management software, written in typescript and golang",
+  "description": "A privacy-first personal knowledge management software, written in typescript and golang",
+  "url": "https://b3log.org/siyuan/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-knowledge-management-tools",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A privacy-first personal knowledge management software, written in typescript and golang"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.423Z"
+}

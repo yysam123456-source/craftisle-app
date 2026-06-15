@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--maddy-mail-server",
+  "name": "Maddy Mail Server",
+  "introduction": "All-in-one mail server that implements SMTP (both MTA and MX) and IMAP. Replaces Postfix, Dovecot, OpenDKIM, OpenSPF, OpenDMARC with single daemon",
+  "description": "All-in-one mail server that implements SMTP (both MTA and MX) and IMAP. Replaces Postfix, Dovecot, OpenDKIM, OpenSPF, OpenDMARC with single daemon",
+  "url": "https://maddy.email/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-complete-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "All-in-one mail server that implements SMTP (both MTA and MX) and IMAP. Replaces Postfix, Dovecot, OpenDKIM, OpenSPF, OpenDMARC with single daemon"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.353Z"
+}

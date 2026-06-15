@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ergo",
+  "name": "Ergo",
+  "introduction": "Modern IRCv3 server written in Go, combining the features of an ircd, a services framework, and a bouncer",
+  "description": "Modern IRCv3 server written in Go, combining the features of an ircd, a services framework, and a bouncer",
+  "url": "https://ergo.chat/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-irc",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Modern IRCv3 server written in Go, combining the features of an ircd, a services framework, and a bouncer"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

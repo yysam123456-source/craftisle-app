@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hitkeep",
+  "name": "HitKeep",
+  "introduction": "Privacy-first web analytics with goals, funnels, ecommerce tracking, and team management in a single binary with embedded DuckDB (alternative to Google Analytics, Plausible, Umami)",
+  "description": "Privacy-first web analytics with goals, funnels, ecommerce tracking, and team management in a single binary with embedded DuckDB (alternative to Google Analytics, Plausible, Umami)",
+  "url": "https://hitkeep.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Privacy-first web analytics with goals, funnels, ecommerce tracking, and team management in a single binary with embedded DuckDB (alternative to Google Analytics, Plausible, Umami)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.331Z"
+}

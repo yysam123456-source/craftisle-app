@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--request-tracker",
+  "name": "Request Tracker",
+  "introduction": "Enterprise-grade issue tracking system",
+  "description": "Enterprise-grade issue tracking system",
+  "url": "https://www.bestpractical.com/rt/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-ticketing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Enterprise-grade issue tracking system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.494Z"
+}

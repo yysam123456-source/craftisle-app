@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--radarr",
+  "name": "Radarr",
+  "introduction": "Automatically download movies via Usenet and BitTorrent (fork of Sonarr)",
+  "description": "Automatically download movies via Usenet and BitTorrent (fork of Sonarr)",
+  "url": "https://radarr.video/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Automatically download movies via Usenet and BitTorrent (fork of Sonarr)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.433Z"
+}

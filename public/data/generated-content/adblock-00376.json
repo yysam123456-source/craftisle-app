@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00376",
+  "description": "Removes AI Imagery from Search Engines",
+  "introduction": "Removes AI Imagery from Search Engines",
+  "features": [
+    "A huge blocklist of manually curated sites (1000+) that contain AI generated content, for the purposes of cleaning image"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist.git && cd uBlockOrigin-HUGE-AI-Blocklist",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:21.914Z"
+}

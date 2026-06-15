@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--openremote",
+  "name": "OpenRemote",
+  "introduction": "IoT Asset management, Flow Rules and WHEN-THEN rules, Data visualization, Edge Gateway",
+  "description": "IoT Asset management, Flow Rules and WHEN-THEN rules, Data visualization, Edge Gateway",
+  "url": "https://openremote.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-internet-of-things-iot",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "IoT Asset management, Flow Rules and WHEN-THEN rules, Data visualization, Edge Gateway"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.420Z"
+}

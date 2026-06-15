@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--lychee",
+  "name": "Lychee",
+  "introduction": "Grid and album based photo-management-system",
+  "description": "Grid and album based photo-management-system",
+  "url": "https://lycheeorg.github.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-photo-galleries",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Grid and album based photo-management-system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.458Z"
+}

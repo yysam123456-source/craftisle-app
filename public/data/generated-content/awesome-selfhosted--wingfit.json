@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wingfit",
+  "name": "Wingfit",
+  "introduction": "Minimalist fitness app to plan your workouts, track your personal records and leverage smartwatch data",
+  "description": "Minimalist fitness app to plan your workouts, track your personal records and leverage smartwatch data",
+  "url": "https://wingfit.fr",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-health-and-fitness",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Minimalist fitness app to plan your workouts, track your personal records and leverage smartwatch data"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.419Z"
+}

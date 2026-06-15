@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--fusion",
+  "name": "Fusion",
+  "introduction": "Lightweight RSS aggregator and reader",
+  "description": "Lightweight RSS aggregator and reader",
+  "url": "https://github.com/0x2E/fusion",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Go/Docker",
+  "category": "sh-feed-readers",
+  "tags": [
+    "MIT",
+    "Go/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight RSS aggregator and reader"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.388Z"
+}

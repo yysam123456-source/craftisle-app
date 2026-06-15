@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--picsur",
+  "name": "Picsur",
+  "introduction": "Simple imaging hosting platform that allows you to easily host, edit, and share images",
+  "description": "Simple imaging hosting platform that allows you to easily host, edit, and share images",
+  "url": "https://github.com/CaramelFur/Picsur",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Docker",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [
+    "AGPL-3.0",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple imaging hosting platform that allows you to easily host, edit, and share images"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.401Z"
+}

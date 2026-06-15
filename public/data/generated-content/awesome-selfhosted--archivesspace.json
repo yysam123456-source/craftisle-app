@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--archivesspace",
+  "name": "ArchivesSpace",
+  "introduction": "Archives information management application for managing and providing Web access to archives, manuscripts and digital objects",
+  "description": "Archives information management application for managing and providing Web access to archives, manuscripts and digital objects",
+  "url": "https://archivesspace.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-archiving-and-digital-preservation-dp",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Archives information management application for managing and providing Web access to archives, manuscripts and digital objects"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.333Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--manifest",
+  "name": "Manifest",
+  "introduction": "Complete backend that fits into 1 YAML file",
+  "description": "Complete backend that fits into 1 YAML file",
+  "url": "https://manifest.build",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-low-code",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Complete backend that fits into 1 YAML file"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.488Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--calibre-web-automated",
+  "name": "Calibre Web Automated",
+  "introduction": "All-in-one solution, combining the modern lightweight web UI from Calibre-Web with the robust, versatile feature set of Calibre (fork of Calibre Web)",
+  "description": "All-in-one solution, combining the modern lightweight web UI from Calibre-Web with the robust, versatile feature set of Calibre (fork of Calibre Web)",
+  "url": "https://github.com/crocodilestick/Calibre-Web-Automated",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Docker",
+  "category": "sh-document-management-e-books",
+  "tags": [
+    "GPL-3.0",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "All-in-one solution, combining the modern lightweight web UI from Calibre-Web with the robust, versatile feature set of Calibre (fork of Calibre Web)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.382Z"
+}

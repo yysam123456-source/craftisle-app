@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/aandrew-me/tgpt.git && cd tgpt",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:35.277Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:35.277Z",
+  "updatedAt": "2026-06-15T03:28:08.839Z"
 }

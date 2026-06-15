@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hyphanet",
+  "name": "Hyphanet",
+  "introduction": "Anonymously share files, browse and publish _freesites_ (web sites accessible only through Hyphanet) and chat on forums",
+  "description": "Anonymously share files, browse and publish _freesites_ (web sites accessible only through Hyphanet) and chat on forums",
+  "url": "https://hyphanet.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Anonymously share files, browse and publish _freesites_ (web sites accessible only through Hyphanet) and chat on forums"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.348Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--elixire",
+  "name": "elixire",
+  "introduction": "Simple yet advanced screenshot uploading and link shortening service",
+  "description": "Simple yet advanced screenshot uploading and link shortening service",
+  "url": "https://gitlab.com/elixire/elixire",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple yet advanced screenshot uploading and link shortening service"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.398Z"
+}

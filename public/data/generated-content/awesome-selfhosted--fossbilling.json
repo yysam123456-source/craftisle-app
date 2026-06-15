@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--fossbilling",
+  "name": "FOSSBilling",
+  "introduction": "Hosting and billing automation. Integrates with WHM, CWP, cPanel and HestiaCP. Full API and easily extensible",
+  "description": "Hosting and billing automation. Integrates with WHM, CWP, cPanel and HestiaCP. Full API and easily extensible",
+  "url": "https://fossbilling.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Hosting and billing automation. Integrates with WHM, CWP, cPanel and HestiaCP. Full API and easily extensible"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.450Z"
+}

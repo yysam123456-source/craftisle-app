@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--rukovoditel",
+  "name": "Rukovoditel",
+  "introduction": "Configurable open source project management, web-based application",
+  "description": "Configurable open source project management, web-based application",
+  "url": "https://www.rukovoditel.net/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Configurable open source project management, web-based application"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.490Z"
+}

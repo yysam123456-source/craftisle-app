@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/mudler/LocalAI.git && cd LocalAI",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:48.296Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:48.296Z",
+  "updatedAt": "2026-06-15T03:28:08.840Z"
 }

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--prosody-im",
+  "name": "Prosody IM",
+  "introduction": "Feature-rich and easy to configure XMPP server",
+  "description": "Feature-rich and easy to configure XMPP server",
+  "url": "https://prosody.im/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-xmpp-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Feature-rich and easy to configure XMPP server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.364Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--snikket",
+  "name": "Snikket",
+  "introduction": "All-in-one Dockerized easy XMPP solution, including web admin and clients",
+  "description": "All-in-one Dockerized easy XMPP solution, including web admin and clients",
+  "url": "https://snikket.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-xmpp-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "All-in-one Dockerized easy XMPP solution, including web admin and clients"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.364Z"
+}

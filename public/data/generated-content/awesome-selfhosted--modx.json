@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--modx",
+  "name": "MODX",
+  "introduction": "Advanced content management and publishing platform. The current version is called 'Revolution'",
+  "description": "Advanced content management and publishing platform. The current version is called 'Revolution'",
+  "url": "https://modx.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Advanced content management and publishing platform. The current version is called 'Revolution'"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.370Z"
+}

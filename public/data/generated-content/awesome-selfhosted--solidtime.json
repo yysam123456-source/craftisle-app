@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--solidtime",
+  "name": "solidtime",
+  "introduction": "Modern time tracking application for freelancers and agencies",
+  "description": "Modern time tracking application for freelancers and agencies",
+  "url": "https://www.solidtime.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-time-tracking",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Modern time tracking application for freelancers and agencies"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.495Z"
+}

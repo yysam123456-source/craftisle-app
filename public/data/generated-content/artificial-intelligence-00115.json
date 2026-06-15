@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00115",
+  "description": "Unlimited / Sign-Up",
+  "introduction": "Unlimited / Sign-Up",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://aistudio.tencent.com/modelSquare/home/play?modelId=303&from=/visual to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:28:37.320Z"
+}

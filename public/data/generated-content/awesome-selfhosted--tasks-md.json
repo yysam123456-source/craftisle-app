@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--tasks-md",
+  "name": "Tasks.md",
+  "introduction": "A self-hosted, file based task management board that supports Markdown syntax",
+  "description": "A self-hosted, file based task management board that supports Markdown syntax",
+  "url": "https://github.com/BaldissaraMatheus/Tasks.md",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker",
+  "category": "sh-task-management-to-do-lists",
+  "tags": [
+    "MIT",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A self-hosted, file based task management board that supports Markdown syntax"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.494Z"
+}

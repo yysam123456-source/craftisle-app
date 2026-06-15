@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--fedora-commons-repository",
+  "name": "Fedora Commons Repository",
+  "introduction": "Robust and modular repository system for the management and dissemination of digital content especially suited for digital libraries and archives, both for access and preservation",
+  "description": "Robust and modular repository system for the management and dissemination of digital content especially suited for digital libraries and archives, both for access and preservation",
+  "url": "https://wiki.lyrasis.org/display/FF/Fedora+Repository+Home",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-document-management-institutional-repository-and-digital-library-software",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Robust and modular repository system for the management and dissemination of digital content especially suited for digital libraries and archives, both for access and preservation"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.383Z"
+}

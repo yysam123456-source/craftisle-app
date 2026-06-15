@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--zentao",
+  "name": "ZenTao",
+  "introduction": "An agile(scrum) project management system/tool",
+  "description": "An agile(scrum) project management system/tool",
+  "url": "https://www.zentao.pm/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "An agile(scrum) project management system/tool"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.491Z"
+}

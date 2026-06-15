@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hortusfox",
+  "name": "HortusFox",
+  "introduction": "Collaborative plant management and tracking system for plant enthusiasts",
+  "description": "Collaborative plant management and tracking system for plant enthusiasts",
+  "url": "https://hortusfox.github.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Collaborative plant management and tracking system for plant enthusiasts"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.446Z"
+}

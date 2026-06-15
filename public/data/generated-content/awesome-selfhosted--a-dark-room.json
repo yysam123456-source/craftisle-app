@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--a-dark-room",
+  "name": "A Dark Room",
+  "introduction": "Minimalist text adventure game for your browser",
+  "description": "Minimalist text adventure game for your browser",
+  "url": "https://github.com/doublespeakgames/adarkroom",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Minimalist text adventure game for your browser"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.405Z"
+}

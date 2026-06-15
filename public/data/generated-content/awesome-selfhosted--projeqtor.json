@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--projeqtor",
+  "name": "ProjeQtOr",
+  "introduction": "Complete, mature, multi-user project management system with extensive functionality for all phases of a project",
+  "description": "Complete, mature, multi-user project management system with extensive functionality for all phases of a project",
+  "url": "https://www.projeqtor.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Complete, mature, multi-user project management system with extensive functionality for all phases of a project"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.490Z"
+}

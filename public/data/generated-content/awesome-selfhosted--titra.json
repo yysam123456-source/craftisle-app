@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--titra",
+  "name": "Titra",
+  "introduction": "Time-tracking solution for freelancers and small teams",
+  "description": "Time-tracking solution for freelancers and small teams",
+  "url": "https://titra.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Time-tracking solution for freelancers and small teams"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.491Z"
+}

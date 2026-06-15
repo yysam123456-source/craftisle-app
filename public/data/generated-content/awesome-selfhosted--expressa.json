@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--expressa",
+  "name": "Expressa",
+  "introduction": "Content Management System for powering database driven websites using JSON schemas. Provides permission management and automatic REST APIs",
+  "description": "Content Management System for powering database driven websites using JSON schemas. Provides permission management and automatic REST APIs",
+  "url": "https://github.com/thomas4019/expressa",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Nodejs",
+  "category": "sh-content-management-systems-cms",
+  "tags": [
+    "MIT",
+    "Nodejs"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Content Management System for powering database driven websites using JSON schemas. Provides permission management and automatic REST APIs"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.370Z"
+}

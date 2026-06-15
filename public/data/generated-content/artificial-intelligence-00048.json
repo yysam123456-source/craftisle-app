@@ -21,6 +21,9 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/ItzCrazyKns/Vane.git && cd Vane",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:10.116Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:10.116Z",
+  "license": "MIT",
+  "tech": "Docker",
+  "updatedAt": "2026-06-15T03:28:08.838Z"
 }

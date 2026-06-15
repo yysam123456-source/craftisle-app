@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--anythingllm",
+  "name": "AnythingLLM",
+  "introduction": "All-in-one desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, MCP compatibility, and more",
+  "description": "All-in-one desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, MCP compatibility, and more",
+  "url": "https://anythingllm.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-generative-artificial-intelligence-genai",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "All-in-one desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, MCP compatibility, and more"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.411Z"
+}

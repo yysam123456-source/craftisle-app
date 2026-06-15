@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--jirafeau",
+  "name": "Jirafeau",
+  "introduction": "One-click-fileshare project. Select your file, upload, and share a link. That's it",
+  "description": "One-click-fileshare project. Select your file, upload, and share a link. That's it",
+  "url": "https://gitlab.com/jirafeau/Jirafeau",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "PHP/Docker",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [
+    "AGPL-3.0",
+    "PHP/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "One-click-fileshare project. Select your file, upload, and share a link. That's it"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.400Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--etherpad",
+  "name": "Etherpad",
+  "introduction": "Highly customizable online editor providing collaborative editing in real-time",
+  "description": "Highly customizable online editor providing collaborative editing in real-time",
+  "url": "https://etherpad.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-office-suites",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Highly customizable online editor providing collaborative editing in real-time"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.453Z"
+}

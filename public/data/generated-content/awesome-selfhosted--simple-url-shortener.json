@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--simple-url-shortener",
+  "name": "Simple-URL-Shortener",
+  "introduction": "KISS URL shortener, public or private (with account). Minimalist and lightweight. No dependencies",
+  "description": "KISS URL shortener, public or private (with account). Minimalist and lightweight. No dependencies",
+  "url": "https://github.com/azlux/Simple-URL-Shortener",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-url-shorteners",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "KISS URL shortener, public or private (with account). Minimalist and lightweight. No dependencies"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.497Z"
+}

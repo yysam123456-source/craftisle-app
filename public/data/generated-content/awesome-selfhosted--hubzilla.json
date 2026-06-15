@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hubzilla",
+  "name": "Hubzilla",
+  "introduction": "Decentralized identity, privacy, publishing, sharing, cloud storage, and communications/social platform",
+  "description": "Decentralized identity, privacy, publishing, sharing, cloud storage, and communications/social platform",
+  "url": "https://hubzilla.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Decentralized identity, privacy, publishing, sharing, cloud storage, and communications/social platform"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.361Z"
+}

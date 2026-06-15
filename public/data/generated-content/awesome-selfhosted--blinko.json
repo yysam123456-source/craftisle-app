@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--blinko",
+  "name": "Blinko",
+  "introduction": "A personal note tool with AI features",
+  "description": "A personal note tool with AI features",
+  "url": "https://blinko.space/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-note-taking-editors",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A personal note tool with AI features"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.452Z"
+}

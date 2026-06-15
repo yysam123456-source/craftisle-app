@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--gos",
+  "name": "GoSƐ",
+  "introduction": "Modern file-uploader focusing on scalability and simplicity. It only depends on a S3 storage backend and hence scales horizontally without the need for additional databases or caches",
+  "description": "Modern file-uploader focusing on scalability and simplicity. It only depends on a S3 storage backend and hence scales horizontally without the need for additional databases or caches",
+  "url": "https://codeberg.org/stv0g/gose",
+  "pricing": "Free",
+  "license": "Apache-2.0",
+  "tech": "Go/Docker",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [
+    "Apache-2.0",
+    "Go/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Modern file-uploader focusing on scalability and simplicity. It only depends on a S3 storage backend and hence scales horizontally without the need for additional databases or caches"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.400Z"
+}

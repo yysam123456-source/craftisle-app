@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--shlink",
+  "name": "Shlink",
+  "introduction": "URL shortener with REST API and command line interface. Includes official progressive web application and docker images",
+  "description": "URL shortener with REST API and command line interface. Includes official progressive web application and docker images",
+  "url": "https://shlink.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-url-shorteners",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "URL shortener with REST API and command line interface. Includes official progressive web application and docker images"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.496Z"
+}

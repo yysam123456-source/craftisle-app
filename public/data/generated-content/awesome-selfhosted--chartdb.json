@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--chartdb",
+  "name": "ChartDB",
+  "introduction": "Database diagrams editor that allows you to visualize and design your DB with a single query",
+  "description": "Database diagrams editor that allows you to visualize and design your DB with a single query",
+  "url": "https://chartdb.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-database-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Database diagrams editor that allows you to visualize and design your DB with a single query"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.376Z"
+}

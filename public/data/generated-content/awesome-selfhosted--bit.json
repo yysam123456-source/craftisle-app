@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--bit",
+  "name": "bit",
+  "introduction": "Fast, lightweight, resource-efficient, compiled URL shortener",
+  "description": "Fast, lightweight, resource-efficient, compiled URL shortener",
+  "url": "https://github.com/sjdonado/bit",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker/Crystal",
+  "category": "sh-url-shorteners",
+  "tags": [
+    "MIT",
+    "Docker/Crystal"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Fast, lightweight, resource-efficient, compiled URL shortener"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.496Z"
+}

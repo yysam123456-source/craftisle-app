@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--request-inbox",
+  "name": "Request Inbox",
+  "introduction": "Collect and inspect HTTP requests for testing and debugging. Create and manage inboxes, capture detailed request data, configure custom responses",
+  "description": "Collect and inspect HTTP requests for testing and debugging. Create and manage inboxes, capture detailed request data, configure custom responses",
+  "url": "https://request-inbox.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-testing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Collect and inspect HTTP requests for testing and debugging. Create and manage inboxes, capture detailed request data, configure custom responses"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.493Z"
+}

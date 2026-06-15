@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mailcow",
+  "name": "Mailcow",
+  "introduction": "Mail server suite based on Dovecot, Postfix and other open source software, that provides a modern Web UI for administration",
+  "description": "Mail server suite based on Dovecot, Postfix and other open source software, that provides a modern Web UI for administration",
+  "url": "https://mailcow.email/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-complete-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Mail server suite based on Dovecot, Postfix and other open source software, that provides a modern Web UI for administration"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.354Z"
+}

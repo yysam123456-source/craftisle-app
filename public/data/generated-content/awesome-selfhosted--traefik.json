@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--traefik",
+  "name": "Traefik",
+  "introduction": "HTTP reverse proxy and load balancer that makes deploying microservices easy",
+  "description": "HTTP reverse proxy and load balancer that makes deploying microservices easy",
+  "url": "https://traefik.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "HTTP reverse proxy and load balancer that makes deploying microservices easy"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.498Z"
+}

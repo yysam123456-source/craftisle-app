@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pacebin",
+  "name": "pacebin",
+  "introduction": "Super-minimal pastebin and file upload service focusing on small executable size, portability, and ease of configuration",
+  "description": "Super-minimal pastebin and file upload service focusing on small executable size, portability, and ease of configuration",
+  "url": "https://git.crueter.xyz/crueter/pacebin",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-pastebins",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Super-minimal pastebin and file upload service focusing on small executable size, portability, and ease of configuration"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.455Z"
+}

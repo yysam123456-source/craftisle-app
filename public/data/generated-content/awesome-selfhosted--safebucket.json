@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--safebucket",
+  "name": "Safebucket",
+  "introduction": "File sharing platform with pluggable infrastructure, where uploads and downloads go directly between clients and S3-compatible storage",
+  "description": "File sharing platform with pluggable infrastructure, where uploads and downloads go directly between clients and S3-compatible storage",
+  "url": "https://docs.safebucket.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "File sharing platform with pluggable infrastructure, where uploads and downloads go directly between clients and S3-compatible storage"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.401Z"
+}

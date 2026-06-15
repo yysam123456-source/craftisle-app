@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--zot-oci-registry",
+  "name": "ZOT OCI Registry",
+  "introduction": "A production-ready vendor-neutral OCI-native container image registry",
+  "description": "A production-ready vendor-neutral OCI-native container image registry",
+  "url": "https://zotregistry.dev",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-object-storage-file-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A production-ready vendor-neutral OCI-native container image registry"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.397Z"
+}

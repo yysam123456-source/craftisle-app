@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--smederee",
+  "name": "Smederee",
+  "introduction": "A frugal platform which is dedicated to help people build great software together leveraging the power of the Darcs version control system",
+  "description": "A frugal platform which is dedicated to help people build great software together leveraging the power of the Darcs version control system",
+  "url": "https://smeder.ee",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A frugal platform which is dedicated to help people build great software together leveraging the power of the Darcs version control system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.490Z"
+}

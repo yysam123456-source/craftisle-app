@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wikiss",
+  "name": "WiKiss",
+  "introduction": "Wiki, simple to use and install",
+  "description": "Wiki, simple to use and install",
+  "url": "https://wikiss.tuxfamily.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Wiki, simple to use and install"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.500Z"
+}

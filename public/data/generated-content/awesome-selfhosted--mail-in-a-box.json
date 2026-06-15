@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mail-in-a-box",
+  "name": "Mail-in-a-Box",
+  "introduction": "Turns any Ubuntu server into a fully functional mail server with one command",
+  "description": "Turns any Ubuntu server into a fully functional mail server with one command",
+  "url": "https://mailinabox.email/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-complete-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Turns any Ubuntu server into a fully functional mail server with one command"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.354Z"
+}

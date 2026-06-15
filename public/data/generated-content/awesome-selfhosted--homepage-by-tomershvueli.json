@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--homepage-by-tomershvueli",
+  "name": "Homepage by tomershvueli",
+  "introduction": "Simple, standalone, self-hosted PHP page that is your window to your server and the web",
+  "description": "Simple, standalone, self-hosted PHP page that is your window to your server and the web",
+  "url": "https://github.com/tomershvueli/homepage",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "PHP",
+  "category": "sh-personal-dashboards",
+  "tags": [
+    "MIT",
+    "PHP"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple, standalone, self-hosted PHP page that is your window to your server and the web"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.457Z"
+}

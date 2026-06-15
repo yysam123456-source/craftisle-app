@@ -1,0 +1,23 @@
+{
+  "id": "adblock-00448",
+  "description": "** / [Telegram](https://t.me/s/Whonix) / [GitHub](https://github.com/Whonix), **[Qubes](https://www.qubes-os.org/)** / [GitHub](https://github.com/QubesOS) or **[Tails](https://tails.net/)** / [Telegram](https://t.me/torproject) / [GitHub](https://github.com/torproject) - Privacy-Focused Operating Systems",
+  "introduction": "** / [Telegram](https://t.me/s/Whonix) / [GitHub](https://github.com/Whonix), **[Qubes](https://www.qubes-os.org/)** / [GitHub](https://github.com/QubesOS) or **[Tails](https://tails.net/)** / [Telegram](https://t.me/torproject) / [GitHub](https://github.com/torproject) - Privacy-Focused Operating Systems",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.whonix.org/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:32:06.480Z"
+}

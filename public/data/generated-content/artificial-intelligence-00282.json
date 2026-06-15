@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00282",
+  "description": "** - Jailbreak Prompts / [X](https://x.com/elder_plinius) / [Discord](https://discord.gg/basi)",
+  "introduction": "** - Jailbreak Prompts / [X](https://x.com/elder_plinius) / [Discord](https://discord.gg/basi)",
+  "features": [
+    "J̴̡̢̡̧̧̨̛̛̺̼̫̝̲̦̪͔̮̭͔͙͕͓̱̲͖͓̹̞͉̤͖̬̟͙̟̳̦̯͚̺͔͍̲̓͐͒̾͐͂̈́̑̑̊̓̔͂̈́̂͌̈́̊͐̌̓̊͒͌̉̈͜͜͝͝A̸̛͌̀̓̈́͂͋̿̈́̃̒̂͊̈̓̉̃͑̉̊̈̈́͋̉̃̊́̉͛͛̏͋́̐̍͘͘̚͝͠͠"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/elder-plinius/L1B3RT4S.git && cd L1B3RT4S",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:30:19.650Z"
+}

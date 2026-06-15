@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--myfin-budget",
+  "name": "MyFin Budget",
+  "introduction": "Personal finances platform (web + REST API + Android) that'll help you budget, keep track of your income/spending and forecast your financial future",
+  "description": "Personal finances platform (web + REST API + Android) that'll help you budget, keep track of your income/spending and forecast your financial future",
+  "url": "https://myfinbudget.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Personal finances platform (web + REST API + Android) that'll help you budget, keep track of your income/spending and forecast your financial future"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.450Z"
+}

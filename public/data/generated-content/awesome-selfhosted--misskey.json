@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--misskey",
+  "name": "Misskey",
+  "introduction": "Decentralized app-like microblogging server/SNS for the Fediverse, using the ActivityPub protocol like GNU social and Mastodon",
+  "description": "Decentralized app-like microblogging server/SNS for the Fediverse, using the ActivityPub protocol like GNU social and Mastodon",
+  "url": "https://misskey.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Decentralized app-like microblogging server/SNS for the Fediverse, using the ActivityPub protocol like GNU social and Mastodon"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.362Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--dovel",
+  "name": "Dovel",
+  "introduction": "SMTP server that sends and receives emails according to a simple configuration file, with an optional web interface that you can use to browse your emails",
+  "description": "SMTP server that sends and receives emails according to a simple configuration file, with an optional web interface that you can use to browse your emails",
+  "url": "https://dovel.email",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-complete-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "SMTP server that sends and receives emails according to a simple configuration file, with an optional web interface that you can use to browse your emails"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.352Z"
+}

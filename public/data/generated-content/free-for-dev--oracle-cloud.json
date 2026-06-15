@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--oracle-cloud",
+  "name": "Oracle Cloud",
+  "introduction": "Compute | 2 AMD-based Compute VMs with 1/8 OCPU and 1 GB memory each | 2 Arm-based Ampere A1 cores and 12 GB of memory usable as one VM or up to 2 VMs | Instances will be reclaimed when [deemed idle](",
+  "description": "Compute | 2 AMD-based Compute VMs with 1/8 OCPU and 1 GB memory each | 2 Arm-based Ampere A1 cores and 12 GB of memory usable as one VM or up to 2 VMs | Instances will be reclaimed when [deemed idle](",
+  "url": "https://www.oracle.com/cloud/",
+  "pricing": "Free Tier",
+  "freeTier": "Compute | 2 AMD-based Compute VMs with 1/8 OCPU and 1 GB memory each | 2 Arm-based Ampere A1 cores and 12 GB of memory usable as one VM or up to 2 VMs | Instances will be reclaimed when [deemed idle](https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm#compute__idleinstances) | Block Volume - 2 volumes, 200 GB total (used for compute) | Object Storage - 10 GB | Load balancer - 1 instance with 10 Mbps | Databases - 2 DBs, 20 GB each | Monitoring - 500 million ingestion data points, 1 billion retrieval datapoints | Bandwidth - 10 TB egress per month, speed limited to 50 Mbps on x64-based VM, 500 Mbps * core count on ARM-based VM | Public IP - 2 IPv4 for VMs, 1 IPv4 for load balancer | Notifications - 1 million delivery options per month, 1000 emails sent per month | Full, detailed list - https://www.oracle.com/cloud/free/",
+  "category": "ffd-major-cloud-providers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.333Z"
+}

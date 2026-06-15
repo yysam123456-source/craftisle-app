@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--snappymail",
+  "name": "SnappyMail",
+  "introduction": "Simple, modern, lightweight & fast web-based email client (fork of RainLoop)",
+  "description": "Simple, modern, lightweight & fast web-based email client (fork of RainLoop)",
+  "url": "https://snappymail.eu/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-webmail-clients",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple, modern, lightweight & fast web-based email client (fork of RainLoop)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

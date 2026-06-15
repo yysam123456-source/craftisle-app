@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--reader",
+  "name": "reader",
+  "introduction": "Feed reader web app and library (so you can use it to build your own), with only standard library and pure-Python dependencies",
+  "description": "Feed reader web app and library (so you can use it to build your own), with only standard library and pure-Python dependencies",
+  "url": "https://github.com/lemon24/reader",
+  "pricing": "Free",
+  "license": "BSD-3-Clause",
+  "tech": "Python",
+  "category": "sh-feed-readers",
+  "tags": [
+    "BSD-3-Clause",
+    "Python"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Feed reader web app and library (so you can use it to build your own), with only standard library and pure-Python dependencies"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.390Z"
+}

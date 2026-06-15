@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--para",
+  "name": "Para",
+  "introduction": "Flexible and modular backend framework/server for object persistence, API development and authentication",
+  "description": "Flexible and modular backend framework/server for object persistence, API development and authentication",
+  "url": "https://paraio.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-api-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Flexible and modular backend framework/server for object persistence, API development and authentication"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.472Z"
+}

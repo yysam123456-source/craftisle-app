@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/rafska/awesome-local-llm.git && cd awesome-local-llm",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:37.622Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:37.622Z",
+  "updatedAt": "2026-06-15T03:28:08.839Z"
 }

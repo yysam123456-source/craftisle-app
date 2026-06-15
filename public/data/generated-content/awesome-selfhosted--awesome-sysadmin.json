@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--awesome-sysadmin",
+  "name": "Awesome Sysadmin",
+  "introduction": "Curated list of amazingly awesome open source sysadmin resources",
+  "description": "Curated list of amazingly awesome open source sysadmin resources",
+  "url": "https://github.com/awesome-foss/awesome-sysadmin",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Curated list of amazingly awesome open source sysadmin resources"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.500Z"
+}

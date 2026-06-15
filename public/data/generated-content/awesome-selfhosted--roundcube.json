@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--roundcube",
+  "name": "Roundcube",
+  "introduction": "Browser-based IMAP client with an application-like user interface",
+  "description": "Browser-based IMAP client with an application-like user interface",
+  "url": "https://roundcube.net",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-webmail-clients",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Browser-based IMAP client with an application-like user interface"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

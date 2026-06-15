@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--slcl",
+  "name": "slcl",
+  "introduction": "Simple and lightweight web cloud storage",
+  "description": "Simple and lightweight web cloud storage",
+  "url": "https://gitea.privatedns.org/xavi/slcl",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-web-based-file-managers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple and lightweight web cloud storage"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.404Z"
+}

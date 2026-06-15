@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--razzia",
+  "name": "Razzia",
+  "introduction": "Quiz game platform, designed for smaller self-hosted events (alternative to Kahoot!)",
+  "description": "Quiz game platform, designed for smaller self-hosted events (alternative to Kahoot!)",
+  "url": "https://github.com/Ralex91/Razzia",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Nodejs/Docker",
+  "category": "sh-games",
+  "tags": [
+    "MIT",
+    "Nodejs/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Quiz game platform, designed for smaller self-hosted events (alternative to Kahoot!)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.407Z"
+}

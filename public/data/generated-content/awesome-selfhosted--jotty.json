@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--jotty",
+  "name": "Jotty",
+  "introduction": "Lightweight but powerful alternative for managing your personal, file based, notes and checklists",
+  "description": "Lightweight but powerful alternative for managing your personal, file based, notes and checklists",
+  "url": "https://jotty.page",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-note-taking-editors",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight but powerful alternative for managing your personal, file based, notes and checklists"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.452Z"
+}

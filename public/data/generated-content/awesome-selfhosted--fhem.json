@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--fhem",
+  "name": "FHEM",
+  "introduction": "Automate common tasks in the household like switching lamps and heating. It can also be used to log events like temperature or power consumption. You can control it via web or smartphone frontends, telnet or TCP/IP directly",
+  "description": "Automate common tasks in the household like switching lamps and heating. It can also be used to log events like temperature or power consumption. You can control it via web or smartphone frontends, telnet or TCP/IP directly",
+  "url": "https://fhem.de/fhem.html",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-internet-of-things-iot",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Automate common tasks in the household like switching lamps and heating. It can also be used to log events like temperature or power consumption. You can control it via web or smartphone frontends, telnet or TCP/IP directly"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.419Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--changedetection-io",
+  "name": "changedetection.io",
+  "introduction": "Stay up-to-date with web-site content changes",
+  "description": "Stay up-to-date with web-site content changes",
+  "url": "https://changedetection.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-automation",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Stay up-to-date with web-site content changes"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.334Z"
+}

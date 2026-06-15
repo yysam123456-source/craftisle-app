@@ -1,0 +1,23 @@
+{
+  "id": "adblock-00392",
+  "description": "Customizable DNS Adblocking Service / [X](https://x.com/controldns) / [Subreddit](https://reddit.com/r/ControlD/) / [Discord](https://discord.gg/dns)",
+  "introduction": "Customizable DNS Adblocking Service / [X](https://x.com/controldns) / [Subreddit](https://reddit.com/r/ControlD/) / [Discord](https://discord.gg/dns)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://controld.com/free-dns to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:34.980Z"
+}

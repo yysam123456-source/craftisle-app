@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--open-meteo",
+  "name": "Open-Meteo",
+  "introduction": "Weather API with open-data forecasts, historical and climate data from all major national weather services",
+  "description": "Weather API with open-data forecasts, historical and climate data from all major national weather services",
+  "url": "https://open-meteo.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Weather API with open-data forecasts, historical and climate data from all major national weather services"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.447Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--homelabos",
+  "name": "HomelabOS",
+  "introduction": "Offline privacy-centric data-center. Deploy over 100 services with a few commands",
+  "description": "Offline privacy-centric data-center. Deploy over 100 services with a few commands",
+  "url": "https://homelabos.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Offline privacy-centric data-center. Deploy over 100 services with a few commands"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.463Z"
+}

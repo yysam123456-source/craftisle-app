@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--neonlink",
+  "name": "NeonLink",
+  "introduction": "Bookmark service with unique design and simple installation with Docker",
+  "description": "Bookmark service with unique design and simple installation with Docker",
+  "url": "https://github.com/AlexSciFier/neonlink",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker",
+  "category": "sh-bookmarks-and-link-sharing",
+  "tags": [
+    "MIT",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Bookmark service with unique design and simple installation with Docker"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.346Z"
+}

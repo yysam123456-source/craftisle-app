@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--kiwi-irc",
+  "name": "Kiwi IRC",
+  "introduction": "Responsive web IRC client with theming support",
+  "description": "Responsive web IRC client with theming support",
+  "url": "https://kiwiirc.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-irc",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Responsive web IRC client with theming support"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--multi-scrobbler",
+  "name": "multi-scrobbler",
+  "introduction": "Scrobble plays from multiple sources to multiple scrobbling services",
+  "description": "Scrobble plays from multiple sources to multiple scrobbling services",
+  "url": "https://foxxmd.github.io/multi-scrobbler",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-streaming-audio-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Scrobble plays from multiple sources to multiple scrobbling services"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.438Z"
+}

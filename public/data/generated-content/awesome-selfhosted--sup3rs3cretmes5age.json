@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--sup3rs3cretmes5age",
+  "name": "Sup3rS3cretMes5age",
+  "introduction": "Very simple (to deploy and to use) secret message service using Hashicorp Vault as a secrets storage",
+  "description": "Very simple (to deploy and to use) secret message service using Hashicorp Vault as a secrets storage",
+  "url": "https://github.com/algolia/sup3rS3cretMes5age",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Go",
+  "category": "sh-pastebins",
+  "tags": [
+    "MIT",
+    "Go"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Very simple (to deploy and to use) secret message service using Hashicorp Vault as a secrets storage"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.456Z"
+}

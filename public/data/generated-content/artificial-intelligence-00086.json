@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/Mozilla-Ocho/llamafile.git && cd llamafile",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:45.764Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:45.764Z",
+  "updatedAt": "2026-06-15T03:28:08.840Z"
 }

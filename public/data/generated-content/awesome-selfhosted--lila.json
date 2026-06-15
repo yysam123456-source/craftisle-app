@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--lila",
+  "name": "Lila",
+  "introduction": "Ad-less chess server powering lichess.org, with official iOS and Android client apps",
+  "description": "Ad-less chess server powering lichess.org, with official iOS and Android client apps",
+  "url": "https://lichess.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Ad-less chess server powering lichess.org, with official iOS and Android client apps"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.406Z"
+}

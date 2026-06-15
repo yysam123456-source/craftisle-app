@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--onloc",
+  "name": "Onloc",
+  "introduction": "Track and share your location in real time. Control and lock stolen or lost phones",
+  "description": "Track and share your location in real time. Control and lock stolen or lost phones",
+  "url": "https://onloc.app",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-internet-of-things-iot",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Track and share your location in real time. Control and lock stolen or lost phones"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.420Z"
+}

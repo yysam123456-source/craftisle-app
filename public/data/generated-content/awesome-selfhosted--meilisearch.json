@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--meilisearch",
+  "name": "MeiliSearch",
+  "introduction": "Ultra relevant, instant and typo-tolerant full-text search API",
+  "description": "Ultra relevant, instant and typo-tolerant full-text search API",
+  "url": "https://www.meilisearch.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-search-engines",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Ultra relevant, instant and typo-tolerant full-text search API"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.463Z"
+}

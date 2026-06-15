@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--caddy",
+  "name": "Caddy",
+  "introduction": "Powerful, enterprise-ready, open source web server with automatic HTTPS",
+  "description": "Powerful, enterprise-ready, open source web server with automatic HTTPS",
+  "url": "https://caddyserver.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Powerful, enterprise-ready, open source web server with automatic HTTPS"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.497Z"
+}

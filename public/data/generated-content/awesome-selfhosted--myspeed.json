@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--myspeed",
+  "name": "MySpeed",
+  "introduction": "Speed test analysis software that shows your internet speed for up to 30 days",
+  "description": "Speed test analysis software that shows your internet speed for up to 30 days",
+  "url": "https://myspeed.dev/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-network-utilities",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Speed test analysis software that shows your internet speed for up to 30 days"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.451Z"
+}

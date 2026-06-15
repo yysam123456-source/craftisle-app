@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mantisbt",
+  "name": "MantisBT",
+  "introduction": "Bug tracker, fits best for software development",
+  "description": "Bug tracker, fits best for software development",
+  "url": "https://www.mantisbt.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-ticketing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Bug tracker, fits best for software development"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.494Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--eonvelope",
+  "name": "Eonvelope",
+  "introduction": "Email archiving software that allows you to preserve your emails for an indefinite long period of time",
+  "description": "Email archiving software that allows you to preserve your emails for an indefinite long period of time",
+  "url": "https://dacid99.gitlab.io/eonvelope",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-archiving-and-digital-preservation-dp",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Email archiving software that allows you to preserve your emails for an indefinite long period of time"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.333Z"
+}

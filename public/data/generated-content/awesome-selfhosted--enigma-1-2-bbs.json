@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--enigma-1-2-bbs",
+  "name": "Enigma 1/2 BBS",
+  "introduction": "Enigma 1/2 is a modern, multi-platform BBS engine with unlimited \"callers\" and legacy DOS door game support",
+  "description": "Enigma 1/2 is a modern, multi-platform BBS engine with unlimited \"callers\" and legacy DOS door game support",
+  "url": "https://nuskooler.github.io/enigma-bbs/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Enigma 1/2 is a modern, multi-platform BBS engine with unlimited \"callers\" and legacy DOS door game support"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.361Z"
+}

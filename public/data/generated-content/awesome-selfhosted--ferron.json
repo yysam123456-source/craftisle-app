@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ferron",
+  "name": "Ferron",
+  "introduction": "Fast, memory-safe web server written in Rust",
+  "description": "Fast, memory-safe web server written in Rust",
+  "url": "https://ferron.sh/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Fast, memory-safe web server written in Rust"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.498Z"
+}

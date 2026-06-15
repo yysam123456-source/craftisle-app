@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--loomio",
+  "name": "Loomio",
+  "introduction": "Collaborative decision-making tool that makes it easy for anyone to participate in decisions which affect them",
+  "description": "Collaborative decision-making tool that makes it easy for anyone to participate in decisions which affect them",
+  "url": "https://www.loomio.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Collaborative decision-making tool that makes it easy for anyone to participate in decisions which affect them"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.362Z"
+}

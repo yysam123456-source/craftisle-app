@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--chirpy",
+  "name": "Chirpy",
+  "introduction": "Privacy-friendly and customizable Disqus (comment system) alternate",
+  "description": "Privacy-friendly and customizable Disqus (comment system) alternate",
+  "url": "https://chirpy.dev",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Privacy-friendly and customizable Disqus (comment system) alternate"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.360Z"
+}

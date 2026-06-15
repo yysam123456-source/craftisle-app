@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mediacms",
+  "name": "MediaCMS",
+  "introduction": "Modern, fully featured open source video and media CMS, written in Python/Django/React, featuring a REST API",
+  "description": "Modern, fully featured open source video and media CMS, written in Python/Django/React, featuring a REST API",
+  "url": "https://mediacms.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-streaming-video-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Modern, fully featured open source video and media CMS, written in Python/Django/React, featuring a REST API"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.441Z"
+}

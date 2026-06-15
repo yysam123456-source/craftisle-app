@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--iredmail",
+  "name": "iRedMail",
+  "introduction": "Full-featured mail server solution based on Postfix and Dovecot",
+  "description": "Full-featured mail server solution based on Postfix and Dovecot",
+  "url": "https://www.iredmail.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-complete-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Full-featured mail server solution based on Postfix and Dovecot"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.353Z"
+}

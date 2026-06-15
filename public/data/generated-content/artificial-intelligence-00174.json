@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00174",
+  "description": "Dione — Free online tool",
+  "introduction": "Dione — Free online tool",
+  "features": [
+    "Dione had an amazing 2025, with **25k+ downloads** and **10k+ users**."
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/dioneapp/dioneapp.git && cd dioneapp",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:06.610Z"
+}

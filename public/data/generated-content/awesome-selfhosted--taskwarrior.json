@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--taskwarrior",
+  "name": "Taskwarrior",
+  "introduction": "Taskwarrior is Free and Open Source Software that manages your TODO list from your command line. It is flexible, fast, efficient, and unobtrusive. It does its job then gets out of your way",
+  "description": "Taskwarrior is Free and Open Source Software that manages your TODO list from your command line. It is flexible, fast, efficient, and unobtrusive. It does its job then gets out of your way",
+  "url": "https://taskwarrior.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-task-management-to-do-lists",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Taskwarrior is Free and Open Source Software that manages your TODO list from your command line. It is flexible, fast, efficient, and unobtrusive. It does its job then gets out of your way"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.494Z"
+}

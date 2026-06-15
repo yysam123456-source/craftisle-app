@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--play-with-docker",
+  "name": "Play with Docker",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://labs.play-with-docker.com/",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-docker-related",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.497Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00245",
+  "description": "/ Requires Google Account",
+  "introduction": "/ Requires Google Account",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://aivocal.io/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:44.984Z"
+}

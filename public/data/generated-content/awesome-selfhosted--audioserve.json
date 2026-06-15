@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--audioserve",
+  "name": "Audioserve",
+  "introduction": "Simple personal server to serve audio files from directories (audiobooks, music, podcasts...). Focused on simplicity and supports sync of play position between clients",
+  "description": "Simple personal server to serve audio files from directories (audiobooks, music, podcasts...). Focused on simplicity and supports sync of play position between clients",
+  "url": "https://github.com/izderadicka/audioserve",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Rust",
+  "category": "sh-media-streaming-audio-streaming",
+  "tags": [
+    "MIT",
+    "Rust"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple personal server to serve audio files from directories (audiobooks, music, podcasts...). Focused on simplicity and supports sync of play position between clients"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.437Z"
+}

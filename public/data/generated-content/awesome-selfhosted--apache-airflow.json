@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--apache-airflow",
+  "name": "Apache Airflow",
+  "introduction": "Platform to programmatically author, schedule, and monitor workflows",
+  "description": "Platform to programmatically author, schedule, and monitor workflows",
+  "url": "https://airflow.apache.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-automation",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Platform to programmatically author, schedule, and monitor workflows"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.334Z"
+}

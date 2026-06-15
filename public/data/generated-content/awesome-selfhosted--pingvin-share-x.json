@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--pingvin-share-x",
+  "name": "Pingvin Share X",
+  "introduction": "File sharing platform with support for logins, reverse shares, share expiry, S3 Buckets, advanced authentication, ClamAV for security scans and more (fork of Pingvin Share)",
+  "description": "File sharing platform with support for logins, reverse shares, share expiry, S3 Buckets, advanced authentication, ClamAV for security scans and more (fork of Pingvin Share)",
+  "url": "https://github.com/smp46/pingvin-share-x",
+  "pricing": "Free",
+  "license": "BSD-2-Clause",
+  "tech": "Docker/Nodejs",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [
+    "BSD-2-Clause",
+    "Docker/Nodejs"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "File sharing platform with support for logins, reverse shares, share expiry, S3 Buckets, advanced authentication, ClamAV for security scans and more (fork of Pingvin Share)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.401Z"
+}

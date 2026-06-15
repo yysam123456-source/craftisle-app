@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--odoo",
+  "name": "Odoo",
+  "introduction": "Free open source ERP system",
+  "description": "Free open source ERP system",
+  "url": "https://www.odoo.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-resource-planning",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Free open source ERP system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.462Z"
+}

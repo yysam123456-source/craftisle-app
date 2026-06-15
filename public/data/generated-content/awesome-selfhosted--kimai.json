@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--kimai",
+  "name": "Kimai",
+  "introduction": "Track work time and print out a summary of your activities on demand",
+  "description": "Track work time and print out a summary of your activities on demand",
+  "url": "https://www.kimai.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-time-tracking",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Track work time and print out a summary of your activities on demand"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.495Z"
+}

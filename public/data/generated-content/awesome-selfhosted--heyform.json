@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--heyform",
+  "name": "HeyForm",
+  "introduction": "Form builder that allows anyone to create engaging conversational forms for surveys, questionnaires, quizzes, and polls",
+  "description": "Form builder that allows anyone to create engaging conversational forms for surveys, questionnaires, quizzes, and polls",
+  "url": "https://heyform.net",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-polls-and-events",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Form builder that allows anyone to create engaging conversational forms for surveys, questionnaires, quizzes, and polls"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.459Z"
+}

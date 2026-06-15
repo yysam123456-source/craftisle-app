@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--freshrss",
+  "name": "FreshRSS",
+  "introduction": "Self-hostable RSS feed aggregator",
+  "description": "Self-hostable RSS feed aggregator",
+  "url": "https://freshrss.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-feed-readers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Self-hostable RSS feed aggregator"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.388Z"
+}

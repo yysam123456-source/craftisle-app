@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--meelo",
+  "name": "Meelo",
+  "introduction": "Personal Music Server, designed for collectors and music maniacs",
+  "description": "Personal Music Server, designed for collectors and music maniacs",
+  "url": "https://github.com/Arthi-chaud/Meelo",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Docker",
+  "category": "sh-media-streaming-multimedia-streaming",
+  "tags": [
+    "GPL-3.0",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Personal Music Server, designed for collectors and music maniacs"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.440Z"
+}

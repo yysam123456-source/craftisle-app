@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mirotalk-sfu",
+  "name": "MiroTalk SFU",
+  "introduction": "Simple, secure, scalable real-time video conferences up to 4k, compatible with all browsers and platforms",
+  "description": "Simple, secure, scalable real-time video conferences up to 4k, compatible with all browsers and platforms",
+  "url": "https://sfu.mirotalk.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-video-conferencing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple, secure, scalable real-time video conferences up to 4k, compatible with all browsers and platforms"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.364Z"
+}

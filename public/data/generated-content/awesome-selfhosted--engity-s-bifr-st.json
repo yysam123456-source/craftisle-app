@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--engity-s-bifr-st",
+  "name": "Engity's Bifröst",
+  "introduction": "Highly customizable SSH server with several ways to authorize a user and options where and how to execute a user's session",
+  "description": "Highly customizable SSH server with several ways to authorize a user and options where and how to execute a user's session",
+  "url": "https://bifroest.engity.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-remote-access",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Highly customizable SSH server with several ways to authorize a user and options where and how to execute a user's session"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.461Z"
+}

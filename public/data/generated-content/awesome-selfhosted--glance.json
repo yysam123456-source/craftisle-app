@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--glance",
+  "name": "Glance",
+  "introduction": "Highly customizable dashboard that puts all your feeds in one place",
+  "description": "Highly customizable dashboard that puts all your feeds in one place",
+  "url": "https://github.com/glanceapp/glance",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Docker/Go",
+  "category": "sh-personal-dashboards",
+  "tags": [
+    "AGPL-3.0",
+    "Docker/Go"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Highly customizable dashboard that puts all your feeds in one place"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.456Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cloudbeaver",
+  "name": "CloudBeaver",
+  "introduction": "Manage databases, supports PostgreSQL, MySQL, SQLite and more. A web/hosted version of DBeaver",
+  "description": "Manage databases, supports PostgreSQL, MySQL, SQLite and more. A web/hosted version of DBeaver",
+  "url": "https://dbeaver.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-database-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Manage databases, supports PostgreSQL, MySQL, SQLite and more. A web/hosted version of DBeaver"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.376Z"
+}

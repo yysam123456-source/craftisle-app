@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--swag-secure-web-application-gateway",
+  "name": "SWAG (Secure Web Application Gateway)",
+  "introduction": "Nginx webserver and reverse proxy with PHP support, built-in Certbot (Let's Encrypt) client and fail2ban integration",
+  "description": "Nginx webserver and reverse proxy with PHP support, built-in Certbot (Let's Encrypt) client and fail2ban integration",
+  "url": "https://github.com/linuxserver/docker-swag",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Docker",
+  "category": "sh-web-servers",
+  "tags": [
+    "GPL-3.0",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Nginx webserver and reverse proxy with PHP support, built-in Certbot (Let's Encrypt) client and fail2ban integration"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.498Z"
+}

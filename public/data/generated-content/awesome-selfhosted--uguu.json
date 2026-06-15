@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--uguu",
+  "name": "Uguu",
+  "introduction": "Stores files and deletes after X amount of time",
+  "description": "Stores files and deletes after X amount of time",
+  "url": "https://github.com/nokonoko/uguu",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "PHP",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [
+    "MIT",
+    "PHP"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Stores files and deletes after X amount of time"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.402Z"
+}

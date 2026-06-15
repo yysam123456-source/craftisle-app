@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--stirling-pdf",
+  "name": "Stirling-PDF",
+  "introduction": "Local hosted web application that allows you to perform various operations on PDF files, such as merging, splitting, file conversions and OCR",
+  "description": "Local hosted web application that allows you to perform various operations on PDF files, such as merging, splitting, file conversions and OCR",
+  "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+  "pricing": "Free",
+  "license": "Apache-2.0",
+  "tech": "Docker/Java",
+  "category": "sh-document-management",
+  "tags": [
+    "Apache-2.0",
+    "Docker/Java"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Local hosted web application that allows you to perform various operations on PDF files, such as merging, splitting, file conversions and OCR"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.381Z"
+}

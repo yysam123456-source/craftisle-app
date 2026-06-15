@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--teikei",
+  "name": "teikei",
+  "introduction": "A web application that maps out community-supported agriculture based on crowdsourced data",
+  "description": "A web application that maps out community-supported agriculture based on crowdsourced data",
+  "url": "https://github.com/teikei/teikei",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-community-supported-agriculture-csa",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A web application that maps out community-supported agriculture based on crowdsourced data"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.366Z"
+}

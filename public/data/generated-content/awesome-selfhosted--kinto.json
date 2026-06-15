@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--kinto",
+  "name": "Kinto",
+  "introduction": "Minimalist JSON storage service with synchronisation and sharing abilities",
+  "description": "Minimalist JSON storage service with synchronisation and sharing abilities",
+  "url": "https://kinto.readthedocs.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-synchronization",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Minimalist JSON storage service with synchronisation and sharing abilities"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.392Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--peergos",
+  "name": "Peergos",
+  "introduction": "Secure and private space online where you can store, share and view your photos, videos, music and documents. Also includes a calendar, news feed, task lists, chat and email client",
+  "description": "Secure and private space online where you can store, share and view your photos, videos, music and documents. Also includes a calendar, news feed, task lists, chat and email client",
+  "url": "https://peergos.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-synchronization",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Secure and private space online where you can store, share and view your photos, videos, music and documents. Also includes a calendar, news feed, task lists, chat and email client"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.392Z"
+}

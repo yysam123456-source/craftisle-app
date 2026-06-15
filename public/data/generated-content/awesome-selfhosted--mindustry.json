@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mindustry",
+  "name": "Mindustry",
+  "introduction": "Factorio-like tower defense game. Build production chains to gather more resources, and build complex facilities",
+  "description": "Factorio-like tower defense game. Build production chains to gather more resources, and build complex facilities",
+  "url": "https://mindustrygame.github.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Factorio-like tower defense game. Build production chains to gather more resources, and build complex facilities"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.406Z"
+}

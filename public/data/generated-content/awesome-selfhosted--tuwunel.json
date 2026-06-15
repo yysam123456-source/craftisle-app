@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tuwunel",
+  "name": "Tuwunel",
+  "introduction": "High-performance and feature-rich chat server for Matrix, and the successor to conduwuit (fork of Conduit)",
+  "description": "High-performance and feature-rich chat server for Matrix, and the successor to conduwuit (fork of Conduit)",
+  "url": "https://tuwunel.chat",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "High-performance and feature-rich chat server for Matrix, and the successor to conduwuit (fork of Conduit)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.351Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--bugzilla",
+  "name": "Bugzilla",
+  "introduction": "General-purpose bugtracker and testing tool originally developed and used by the Mozilla project",
+  "description": "General-purpose bugtracker and testing tool originally developed and used by the Mozilla project",
+  "url": "https://www.bugzilla.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-ticketing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "General-purpose bugtracker and testing tool originally developed and used by the Mozilla project"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.494Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00326",
+  "description": "AI Chess Benchmarks",
+  "introduction": "AI Chess Benchmarks",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.chessarena.ai/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:30:36.802Z"
+}

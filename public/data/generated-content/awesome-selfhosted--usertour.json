@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--usertour",
+  "name": "Usertour",
+  "introduction": "User onboarding platform allowing you to create in-app product tours, checklists, and surveys in minutes effortlessly",
+  "description": "User onboarding platform allowing you to create in-app product tours, checklists, and surveys in minutes effortlessly",
+  "url": "https://www.usertour.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "User onboarding platform allowing you to create in-app product tours, checklists, and surveys in minutes effortlessly"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.448Z"
+}

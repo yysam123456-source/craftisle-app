@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wordpress",
+  "name": "WordPress",
+  "introduction": "World's most-used blogging and CMS engine",
+  "description": "World's most-used blogging and CMS engine",
+  "url": "https://wordpress.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "World's most-used blogging and CMS engine"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.373Z"
+}

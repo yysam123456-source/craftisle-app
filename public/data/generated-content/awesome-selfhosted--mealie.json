@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mealie",
+  "name": "Mealie",
+  "introduction": "Material design inspired recipe manager with category and tag management, shopping-lists, meal-planner, and site customizations. Mealie is focused on simple user interactions to keep the whole family using the app",
+  "description": "Material design inspired recipe manager with category and tag management, shopping-lists, meal-planner, and site customizations. Mealie is focused on simple user interactions to keep the whole family using the app",
+  "url": "https://nightly.mealie.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-recipe-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Material design inspired recipe manager with category and tag management, shopping-lists, meal-planner, and site customizations. Mealie is focused on simple user interactions to keep the whole family using the app"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.460Z"
+}

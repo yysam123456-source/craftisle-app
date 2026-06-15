@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--transmission",
+  "name": "Transmission",
+  "introduction": "Fast, easy, free Bittorrent client",
+  "description": "Fast, easy, free Bittorrent client",
+  "url": "https://transmissionbt.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-peer-to-peer-filesharing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Fast, easy, free Bittorrent client"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.398Z"
+}

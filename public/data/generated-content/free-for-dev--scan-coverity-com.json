@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--scan-coverity-com",
+  "name": "scan.coverity.com",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://scan.coverity.com/",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-code-quality",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.374Z"
+}

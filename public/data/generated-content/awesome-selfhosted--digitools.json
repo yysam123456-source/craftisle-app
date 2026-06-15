@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--digitools",
+  "name": "Digitools",
+  "introduction": "A set of simple tools to accompany the animation of courses in person or remotely. (documentation in French)",
+  "description": "A set of simple tools to accompany the animation of courses in person or remotely. (documentation in French)",
+  "url": "https://ladigitale.dev/digitools",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A set of simple tools to accompany the animation of courses in person or remotely. (documentation in French)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.423Z"
+}

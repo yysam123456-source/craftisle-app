@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--handbrake-web",
+  "name": "HandBrake Web",
+  "introduction": "Use one or more instances of HandBrake video transcoder on a headless device via a web interface",
+  "description": "Use one or more instances of HandBrake video transcoder on a headless device via a web interface",
+  "url": "https://github.com/TheNickOfTime/handbrake-web",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Docker",
+  "category": "sh-automation",
+  "tags": [
+    "AGPL-3.0",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Use one or more instances of HandBrake video transcoder on a headless device via a web interface"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.336Z"
+}

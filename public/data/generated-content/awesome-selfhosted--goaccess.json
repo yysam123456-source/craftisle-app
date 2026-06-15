@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--goaccess",
+  "name": "GoAccess",
+  "introduction": "Real-time web log analyzer and interactive viewer that runs in a terminal",
+  "description": "Real-time web log analyzer and interactive viewer that runs in a terminal",
+  "url": "http://goaccess.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Real-time web log analyzer and interactive viewer that runs in a terminal"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.330Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--calagopus",
+  "name": "Calagopus",
+  "introduction": "Modern game server management panel. Deploy, monitor, and manage Minecraft, Hytale, and other game servers with industry-leading performance",
+  "description": "Modern game server management panel. Deploy, monitor, and manage Minecraft, Hytale, and other game servers with industry-leading performance",
+  "url": "https://calagopus.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games-administrative-utilities-control-panels",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Modern game server management panel. Deploy, monitor, and manage Minecraft, Hytale, and other game servers with industry-leading performance"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.409Z"
+}

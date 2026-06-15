@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00476",
+  "description": "** - Documents Practices That Impact Consumer Rights / [Extension](https://github.com/FULU-Foundation/CRW-Extension) / [Discord](https://discord.gg/8w5rSNAXRf)",
+  "introduction": "** - Documents Practices That Impact Consumer Rights / [Extension](https://github.com/FULU-Foundation/CRW-Extension) / [Discord](https://discord.gg/8w5rSNAXRf)",
+  "features": [
+    "Browser extension that shows a popup and notifications when the site, product, or service you're viewing has an article "
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/FULU-Foundation/CRW-Extension.git && cd CRW-Extension",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:32:31.615Z"
+}

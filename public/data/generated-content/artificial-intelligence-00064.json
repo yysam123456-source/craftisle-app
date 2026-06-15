@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/oobabooga/textgen.git && cd textgen",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:19.522Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:19.522Z",
+  "updatedAt": "2026-06-15T03:28:08.839Z"
 }

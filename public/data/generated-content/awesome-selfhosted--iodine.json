@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--iodine",
+  "name": "iodine",
+  "introduction": "IPv4 over DNS tunnel solution, enabling you to start up a socks5 proxy listener",
+  "description": "IPv4 over DNS tunnel solution, enabling you to start up a socks5 proxy listener",
+  "url": "https://code.kryo.se/iodine/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-proxy",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "IPv4 over DNS tunnel solution, enabling you to start up a socks5 proxy listener"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.460Z"
+}

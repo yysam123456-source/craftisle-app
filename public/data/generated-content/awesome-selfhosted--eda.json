@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--eda",
+  "name": "EDA",
+  "introduction": "Web application for data analysis and visualization",
+  "description": "Web application for data analysis and visualization",
+  "url": "https://github.com/jortilles/EDA",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Nodejs/Docker",
+  "category": "sh-analytics",
+  "tags": [
+    "AGPL-3.0",
+    "Nodejs/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web application for data analysis and visualization"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.330Z"
+}

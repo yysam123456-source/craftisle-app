@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--opnform",
+  "name": "OpnForm",
+  "introduction": "Beautiful open-source form builder",
+  "description": "Beautiful open-source form builder",
+  "url": "https://opnform.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-polls-and-events",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Beautiful open-source form builder"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.460Z"
+}

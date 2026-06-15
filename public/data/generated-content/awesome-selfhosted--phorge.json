@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--phorge",
+  "name": "Phorge",
+  "introduction": "Community-driven platform for collaborating, managing, organizing and reviewing software development projects",
+  "description": "Community-driven platform for collaborating, managing, organizing and reviewing software development projects",
+  "url": "https://we.phorge.it/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Community-driven platform for collaborating, managing, organizing and reviewing software development projects"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.490Z"
+}

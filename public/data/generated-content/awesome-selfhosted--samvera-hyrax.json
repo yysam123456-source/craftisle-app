@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--samvera-hyrax",
+  "name": "Samvera Hyrax",
+  "introduction": "Front-end for the Samvera framework, which itself is a Ruby on Rails application for browsing and managing Fedora-based digital repositories",
+  "description": "Front-end for the Samvera framework, which itself is a Ruby on Rails application for browsing and managing Fedora-based digital repositories",
+  "url": "https://samvera.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-document-management-institutional-repository-and-digital-library-software",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Front-end for the Samvera framework, which itself is a Ruby on Rails application for browsing and managing Fedora-based digital repositories"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.383Z"
+}

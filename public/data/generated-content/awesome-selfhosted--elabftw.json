@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--elabftw",
+  "name": "eLabFTW",
+  "introduction": "Online lab notebook for research labs. Store experiments, use a database to find reagents or protocols, use trusted timestamping to legally timestamp an experiment, export as pdf or zip archive, share with collaborators…",
+  "description": "Online lab notebook for research labs. Store experiments, use a database to find reagents or protocols, use trusted timestamping to legally timestamp an experiment, export as pdf or zip archive, share with collaborators…",
+  "url": "https://www.elabftw.net",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Online lab notebook for research labs. Store experiments, use a database to find reagents or protocols, use trusted timestamping to legally timestamp an experiment, export as pdf or zip archive, share with collaborators…"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.370Z"
+}

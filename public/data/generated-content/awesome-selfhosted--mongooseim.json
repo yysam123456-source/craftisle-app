@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mongooseim",
+  "name": "MongooseIM",
+  "introduction": "Mobile messaging platform with a focus on performance and scalability",
+  "description": "Mobile messaging platform with a focus on performance and scalability",
+  "url": "https://www.erlang-solutions.com/products/mongooseim.html",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-xmpp-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Mobile messaging platform with a focus on performance and scalability"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.364Z"
+}

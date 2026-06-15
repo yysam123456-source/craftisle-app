@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ollama",
+  "name": "Ollama",
+  "introduction": "Get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models",
+  "description": "Get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models",
+  "url": "https://ollama.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-generative-artificial-intelligence-genai",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 3, and other large language models"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.413Z"
+}

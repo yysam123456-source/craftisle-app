@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--graphweaver",
+  "name": "Graphweaver",
+  "introduction": "Turn multiple data sources into a single GraphQL API",
+  "description": "Turn multiple data sources into a single GraphQL API",
+  "url": "https://graphweaver.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-api-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Turn multiple data sources into a single GraphQL API"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.465Z"
+}

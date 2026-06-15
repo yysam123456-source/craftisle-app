@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--watcharr",
+  "name": "Watcharr",
+  "introduction": "Add and track all the shows and movies you are watching. Comes with user authentication, modern and clean UI and a very simple setup",
+  "description": "Add and track all the shows and movies you are watching. Comes with user authentication, modern and clean UI and a very simple setup",
+  "url": "https://github.com/sbondCo/Watcharr",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Add and track all the shows and movies you are watching. Comes with user authentication, modern and clean UI and a very simple setup"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.435Z"
+}

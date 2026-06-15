@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--black-candy",
+  "name": "Black Candy",
+  "introduction": "Music streaming server",
+  "description": "Music streaming server",
+  "url": "https://github.com/blackcandy-org/blackcandy",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker/Ruby",
+  "category": "sh-media-streaming-audio-streaming",
+  "tags": [
+    "MIT",
+    "Docker/Ruby"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Music streaming server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.437Z"
+}

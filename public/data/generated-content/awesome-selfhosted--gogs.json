@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--gogs",
+  "name": "Gogs",
+  "introduction": "Painless self-hosted Git Service written in Go",
+  "description": "Painless self-hosted Git Service written in Go",
+  "url": "https://gogs.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Painless self-hosted Git Service written in Go"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.489Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--local-content-share",
+  "name": "Local Content Share",
+  "introduction": "Store and share text snippets and files within your local network",
+  "description": "Store and share text snippets and files within your local network",
+  "url": "https://github.com/Tanq16/local-content-share",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker/Go",
+  "category": "sh-pastebins",
+  "tags": [
+    "MIT",
+    "Docker/Go"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Store and share text snippets and files within your local network"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.455Z"
+}

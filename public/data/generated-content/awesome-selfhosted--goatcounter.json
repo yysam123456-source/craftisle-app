@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--goatcounter",
+  "name": "GoatCounter",
+  "introduction": "Easy web statistics without tracking of personal data",
+  "description": "Easy web statistics without tracking of personal data",
+  "url": "https://www.goatcounter.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Easy web statistics without tracking of personal data"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.330Z"
+}

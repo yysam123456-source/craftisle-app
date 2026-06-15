@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--db-ip",
+  "name": "DB-IP",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://db-ip.com/api/free",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-apis-data-and-ml",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.347Z"
+}

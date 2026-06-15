@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--librekb",
+  "name": "LibreKB",
+  "introduction": "Web-based knowledge base solution. A simple web app, it runs on pretty much any web server or hosting provider with PHP and MySQL",
+  "description": "Web-based knowledge base solution. A simple web app, it runs on pretty much any web server or hosting provider with PHP and MySQL",
+  "url": "https://librekb.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-knowledge-management-tools",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based knowledge base solution. A simple web app, it runs on pretty much any web server or hosting provider with PHP and MySQL"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.422Z"
+}

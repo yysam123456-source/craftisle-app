@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--davis",
+  "name": "Davis",
+  "introduction": "A simple, dockerizable and fully translatable admin interface for sabre/dav based on Symfony 5 and Bootstrap 4, largely inspired by Baïkal",
+  "description": "A simple, dockerizable and fully translatable admin interface for sabre/dav based on Symfony 5 and Bootstrap 4, largely inspired by Baïkal",
+  "url": "https://github.com/tchapi/davis",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "PHP",
+  "category": "sh-calendar-contacts",
+  "tags": [
+    "MIT",
+    "PHP"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A simple, dockerizable and fully translatable admin interface for sabre/dav based on Symfony 5 and Bootstrap 4, largely inspired by Baïkal"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.347Z"
+}

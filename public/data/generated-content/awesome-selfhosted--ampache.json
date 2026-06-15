@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ampache",
+  "name": "Ampache",
+  "introduction": "Web based audio/video streaming application",
+  "description": "Web based audio/video streaming application",
+  "url": "https://ampache.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-streaming-audio-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web based audio/video streaming application"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.436Z"
+}

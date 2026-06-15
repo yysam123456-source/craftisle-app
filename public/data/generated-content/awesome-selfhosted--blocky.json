@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--blocky",
+  "name": "blocky",
+  "introduction": "Fast and lightweight DNS proxy as ad-blocker for local network with many features (alternative to Pi-hole)",
+  "description": "Fast and lightweight DNS proxy as ad-blocker for local network with many features (alternative to Pi-hole)",
+  "url": "https://0xerr0r.github.io/blocky/latest/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-dns",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Fast and lightweight DNS proxy as ad-blocker for local network with many features (alternative to Pi-hole)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.377Z"
+}

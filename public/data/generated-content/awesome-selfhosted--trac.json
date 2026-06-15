@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--trac",
+  "name": "Trac",
+  "introduction": "Trac is an enhanced wiki and issue tracking system for software development projects",
+  "description": "Trac is an enhanced wiki and issue tracking system for software development projects",
+  "url": "https://trac.edgewall.org/",
+  "pricing": "Free",
+  "license": "BSD-3-Clause",
+  "tech": "Python/deb",
+  "category": "sh-software-development-project-management",
+  "tags": [
+    "BSD-3-Clause",
+    "Python/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Trac is an enhanced wiki and issue tracking system for software development projects"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.491Z"
+}

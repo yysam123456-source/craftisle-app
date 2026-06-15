@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--okta",
+  "name": "Okta",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://developer.okta.com/signup/",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-authentication-authorization-and-user-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.392Z"
+}

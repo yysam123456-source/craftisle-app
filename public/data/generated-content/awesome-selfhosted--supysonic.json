@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--supysonic",
+  "name": "Supysonic",
+  "introduction": "Python implementation of the Subsonic server API",
+  "description": "Python implementation of the Subsonic server API",
+  "url": "https://github.com/spl0k/supysonic",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Python/deb",
+  "category": "sh-media-streaming-audio-streaming",
+  "tags": [
+    "AGPL-3.0",
+    "Python/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Python implementation of the Subsonic server API"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.439Z"
+}

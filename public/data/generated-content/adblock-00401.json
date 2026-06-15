@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00401",
+  "description": "Hosts File Aggregator — Free online tool",
+  "introduction": "Hosts File Aggregator — Free online tool",
+  "features": [
+    "> [!IMPORTANT]"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/StevenBlack/hosts.git && cd hosts",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:43.727Z"
+}

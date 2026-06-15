@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--digibuzzer",
+  "name": "Digibuzzer",
+  "introduction": "Create a virtual game room around a connected buzzer (documentation in French)",
+  "description": "Create a virtual game room around a connected buzzer (documentation in French)",
+  "url": "https://digibuzzer.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Create a virtual game room around a connected buzzer (documentation in French)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.405Z"
+}

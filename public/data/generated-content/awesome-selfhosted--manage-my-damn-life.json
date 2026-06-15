@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--manage-my-damn-life",
+  "name": "Manage My Damn Life",
+  "introduction": "Manage my Damn Life (MMDL) is a self-hosted front end for managing your CalDAV tasks and calendars",
+  "description": "Manage my Damn Life (MMDL) is a self-hosted front end for managing your CalDAV tasks and calendars",
+  "url": "https://intri.in/manage-my-damn-life/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-calendar-contacts",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Manage my Damn Life (MMDL) is a self-hosted front end for managing your CalDAV tasks and calendars"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.347Z"
+}

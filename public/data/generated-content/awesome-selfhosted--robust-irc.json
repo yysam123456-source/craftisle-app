@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--robust-irc",
+  "name": "Robust IRC",
+  "introduction": "IRC without netsplits. Distributed IRC server, based on RobustSession protocol",
+  "description": "IRC without netsplits. Distributed IRC server, based on RobustSession protocol",
+  "url": "https://robustirc.net/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-irc",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "IRC without netsplits. Distributed IRC server, based on RobustSession protocol"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

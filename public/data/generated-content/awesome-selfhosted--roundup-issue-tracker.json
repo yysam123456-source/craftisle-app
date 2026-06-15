@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--roundup-issue-tracker",
+  "name": "Roundup Issue Tracker",
+  "introduction": "Simple-to-use and -install issue tracking system with command-line, web, REST, XML-RPC, and e-mail interfaces. Designed with flexibility in mind - not just another bug tracker",
+  "description": "Simple-to-use and -install issue tracking system with command-line, web, REST, XML-RPC, and e-mail interfaces. Designed with flexibility in mind - not just another bug tracker",
+  "url": "https://www.roundup-tracker.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-ticketing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple-to-use and -install issue tracking system with command-line, web, REST, XML-RPC, and e-mail interfaces. Designed with flexibility in mind - not just another bug tracker"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.495Z"
+}

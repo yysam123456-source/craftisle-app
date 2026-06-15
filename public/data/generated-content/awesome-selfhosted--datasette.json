@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--datasette",
+  "name": "Datasette",
+  "introduction": "Explore and publish data with easy import and export and database management",
+  "description": "Explore and publish data with easy import and export and database management",
+  "url": "https://datasette.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-database-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Explore and publish data with easy import and export and database management"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.376Z"
+}

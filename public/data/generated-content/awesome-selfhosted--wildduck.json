@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wildduck",
+  "name": "wildduck",
+  "introduction": "Scalable no-SPOF IMAP/POP3 mail server",
+  "description": "Scalable no-SPOF IMAP/POP3 mail server",
+  "url": "https://wildduck.email/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-complete-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Scalable no-SPOF IMAP/POP3 mail server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.354Z"
+}

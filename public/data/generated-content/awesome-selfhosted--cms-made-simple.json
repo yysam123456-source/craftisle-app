@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cms-made-simple",
+  "name": "CMS Made Simple",
+  "introduction": "Faster and easier management of website contents, scalable for small businesses to large corporations",
+  "description": "Faster and easier management of website contents, scalable for small businesses to large corporations",
+  "url": "https://www.cmsmadesimple.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Faster and easier management of website contents, scalable for small businesses to large corporations"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.369Z"
+}

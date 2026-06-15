@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--flatpress",
+  "name": "FlatPress",
+  "introduction": "A lightweight, easy-to-set-up flat-file blogging engine",
+  "description": "A lightweight, easy-to-set-up flat-file blogging engine",
+  "url": "https://flatpress.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-blogging-platforms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A lightweight, easy-to-set-up flat-file blogging engine"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.340Z"
+}

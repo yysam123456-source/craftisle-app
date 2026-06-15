@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--komga",
+  "name": "Komga",
+  "introduction": "Media server for comics/mangas/BDs with API and OPDS support, a modern web interface for exploring your libraries, as well as a web reader",
+  "description": "Media server for comics/mangas/BDs with API and OPDS support, a modern web interface for exploring your libraries, as well as a web reader",
+  "url": "https://komga.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-document-management-e-books",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Media server for comics/mangas/BDs with API and OPDS support, a modern web interface for exploring your libraries, as well as a web reader"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.383Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--expenseowl",
+  "name": "ExpenseOwl",
+  "introduction": "Extremely simple expense tracker with a beautiful UI",
+  "description": "Extremely simple expense tracker with a beautiful UI",
+  "url": "https://github.com/tanq16/expenseowl",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Go/Docker/K8S",
+  "category": "sh-money-budgeting-management",
+  "tags": [
+    "MIT",
+    "Go/Docker/K8S"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Extremely simple expense tracker with a beautiful UI"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.449Z"
+}

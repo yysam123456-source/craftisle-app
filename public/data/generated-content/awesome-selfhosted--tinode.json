@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tinode",
+  "name": "Tinode",
+  "introduction": "Instant messaging platform. Backend in Go. Clients: Swift iOS, Java Android, JS webapp, scriptable command line; chatbots",
+  "description": "Instant messaging platform. Backend in Go. Clients: Swift iOS, Java Android, JS webapp, scriptable command line; chatbots",
+  "url": "https://github.com/tinode",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Instant messaging platform. Backend in Go. Clients: Swift iOS, Java Android, JS webapp, scriptable command line; chatbots"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.351Z"
+}

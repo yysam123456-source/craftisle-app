@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cncjs",
+  "name": "CNCjs",
+  "introduction": "Web interface for CNC milling controllers running Grbl, Smoothieware, or TinyG",
+  "description": "Web interface for CNC milling controllers running Grbl, Smoothieware, or TinyG",
+  "url": "https://cnc.js.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-manufacturing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web interface for CNC milling controllers running Grbl, Smoothieware, or TinyG"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.424Z"
+}

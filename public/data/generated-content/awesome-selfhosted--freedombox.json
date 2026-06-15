@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--freedombox",
+  "name": "FreedomBox",
+  "introduction": "Community project to develop, design and promote personal servers running free software for private, personal, communications",
+  "description": "Community project to develop, design and promote personal servers running free software for private, personal, communications",
+  "url": "https://freedombox.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Community project to develop, design and promote personal servers running free software for private, personal, communications"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.463Z"
+}

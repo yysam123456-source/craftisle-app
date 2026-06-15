@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--operational-co",
+  "name": "Operational.co",
+  "introduction": "Receive alerts in a live timeline from your product",
+  "description": "Receive alerts in a live timeline from your product",
+  "url": "https://operational.co",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Receive alerts in a live timeline from your product"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.447Z"
+}

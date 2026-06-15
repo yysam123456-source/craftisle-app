@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--saleor",
+  "name": "Saleor",
+  "introduction": "Django based open-sourced e-commerce storefront",
+  "description": "Django based open-sourced e-commerce storefront",
+  "url": "https://saleor.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-e-commerce",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Django based open-sourced e-commerce storefront"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.386Z"
+}

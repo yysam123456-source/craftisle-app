@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--aliasvault",
+  "name": "AliasVault",
+  "introduction": "End-to-end encrypted password manager with a built-in email alias generator and server",
+  "description": "End-to-end encrypted password manager with a built-in email alias generator and server",
+  "url": "https://www.aliasvault.net",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-password-managers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "End-to-end encrypted password manager with a built-in email alias generator and server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.454Z"
+}

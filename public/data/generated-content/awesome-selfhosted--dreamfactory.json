@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--dreamfactory",
+  "name": "DreamFactory",
+  "introduction": "Turns any SQL/NoSQL/Structured data into Restful API",
+  "description": "Turns any SQL/NoSQL/Structured data into Restful API",
+  "url": "https://www.dreamfactory.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-api-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Turns any SQL/NoSQL/Structured data into Restful API"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

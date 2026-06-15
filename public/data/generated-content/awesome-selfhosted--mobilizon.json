@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mobilizon",
+  "name": "Mobilizon",
+  "introduction": "Federated tool that helps you find, create and organise events and groups",
+  "description": "Federated tool that helps you find, create and organise events and groups",
+  "url": "https://mobilizon.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-polls-and-events",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Federated tool that helps you find, create and organise events and groups"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.459Z"
+}

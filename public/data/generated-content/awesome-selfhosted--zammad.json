@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--zammad",
+  "name": "Zammad",
+  "introduction": "Easy to use but powerful open-source support and ticketing system",
+  "description": "Easy to use but powerful open-source support and ticketing system",
+  "url": "https://zammad.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-ticketing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Easy to use but powerful open-source support and ticketing system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.495Z"
+}

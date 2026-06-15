@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--nodebb",
+  "name": "NodeBB",
+  "introduction": "Forum software built for the modern web",
+  "description": "Forum software built for the modern web",
+  "url": "https://nodebb.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Forum software built for the modern web"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.362Z"
+}

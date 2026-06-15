@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--paaster",
+  "name": "paaster",
+  "introduction": "End-to-end encrypted pastebin built with the objective of simplicity",
+  "description": "End-to-end encrypted pastebin built with the objective of simplicity",
+  "url": "https://paaster.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-pastebins",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "End-to-end encrypted pastebin built with the objective of simplicity"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.455Z"
+}

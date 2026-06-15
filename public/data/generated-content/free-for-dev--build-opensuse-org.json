@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--build-opensuse-org",
+  "name": "build.opensuse.org",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://build.opensuse.org/",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-package-build-system",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.481Z"
+}

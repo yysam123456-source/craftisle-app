@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--listmonk",
+  "name": "Listmonk",
+  "introduction": "High performance, self-hosted newsletter and mailing list manager with a modern dashboard",
+  "description": "High performance, self-hosted newsletter and mailing list manager with a modern dashboard",
+  "url": "https://listmonk.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-mailing-lists-and-newsletters",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "High performance, self-hosted newsletter and mailing list manager with a modern dashboard"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.357Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--rosariosis",
+  "name": "RosarioSIS",
+  "introduction": "Student Information System for school management. Features students demographics, grades, scheduling, attendance, student billing, discipline & food service modules",
+  "description": "Student Information System for school management. Features students demographics, grades, scheduling, attendance, student billing, discipline & food service modules",
+  "url": "https://www.rosariosis.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Student Information System for school management. Features students demographics, grades, scheduling, attendance, student billing, discipline & food service modules"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.424Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--webtrees",
+  "name": "webtrees",
+  "introduction": "Webtrees is the web's leading online collaborative genealogy application",
+  "description": "Webtrees is the web's leading online collaborative genealogy application",
+  "url": "https://www.webtrees.net",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-genealogy",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Webtrees is the web's leading online collaborative genealogy application"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.411Z"
+}

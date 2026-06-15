@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--esmira",
+  "name": "ESMira",
+  "introduction": "Run longitudinal studies (ESM, AA, EMA) with data collection and communication with participants being completely anonymous",
+  "description": "Run longitudinal studies (ESM, AA, EMA) with data collection and communication with participants being completely anonymous",
+  "url": "https://esmira.kl.ac.at",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Run longitudinal studies (ESM, AA, EMA) with data collection and communication with participants being completely anonymous"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.446Z"
+}

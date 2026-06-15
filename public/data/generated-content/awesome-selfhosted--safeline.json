@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--safeline",
+  "name": "SafeLine",
+  "introduction": "Web application firewall / reverse proxy to protect your web apps from attacks and exploits",
+  "description": "Web application firewall / reverse proxy to protect your web apps from attacks and exploits",
+  "url": "https://waf.chaitin.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web application firewall / reverse proxy to protect your web apps from attacks and exploits"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.498Z"
+}

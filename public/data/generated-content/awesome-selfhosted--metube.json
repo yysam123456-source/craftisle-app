@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--metube",
+  "name": "MeTube",
+  "introduction": "Web GUI for youtube-dl, with playlist support. Allows downloading videos from dozens of websites",
+  "description": "Web GUI for youtube-dl, with playlist support. Allows downloading videos from dozens of websites",
+  "url": "https://github.com/alexta69/metube",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Python/Nodejs/Docker",
+  "category": "sh-media-management",
+  "tags": [
+    "AGPL-3.0",
+    "Python/Nodejs/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web GUI for youtube-dl, with playlist support. Allows downloading videos from dozens of websites"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.431Z"
+}

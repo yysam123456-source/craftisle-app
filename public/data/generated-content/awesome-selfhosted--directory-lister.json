@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--directory-lister",
+  "name": "Directory Lister",
+  "introduction": "Simple PHP based directory lister that lists a directory and all its sub-directories and allows you to navigate there within",
+  "description": "Simple PHP based directory lister that lists a directory and all its sub-directories and allows you to navigate there within",
+  "url": "https://www.directorylister.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-web-based-file-managers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple PHP based directory lister that lists a directory and all its sub-directories and allows you to navigate there within"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.402Z"
+}

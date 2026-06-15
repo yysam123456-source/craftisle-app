@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tiki",
+  "name": "Tiki",
+  "introduction": "Wiki CMS Groupware with the most built-in features",
+  "description": "Wiki CMS Groupware with the most built-in features",
+  "url": "https://tiki.org/HomePage",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Wiki CMS Groupware with the most built-in features"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.500Z"
+}

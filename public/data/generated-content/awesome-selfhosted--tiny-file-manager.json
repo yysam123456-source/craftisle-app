@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tiny-file-manager",
+  "name": "Tiny File Manager",
+  "introduction": "Web based File Manager in PHP, simple, fast and small file manager with a single file",
+  "description": "Web based File Manager in PHP, simple, fast and small file manager with a single file",
+  "url": "https://tinyfilemanager.github.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-web-based-file-managers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web based File Manager in PHP, simple, fast and small file manager with a single file"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.405Z"
+}

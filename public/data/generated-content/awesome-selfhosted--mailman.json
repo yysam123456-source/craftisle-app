@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mailman",
+  "name": "Mailman",
+  "introduction": "Manage electronic mail discussion and e-newsletter lists",
+  "description": "Manage electronic mail discussion and e-newsletter lists",
+  "url": "https://www.list.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-mailing-lists-and-newsletters",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Manage electronic mail discussion and e-newsletter lists"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.357Z"
+}

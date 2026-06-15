@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--form-io",
+  "name": "form.io",
+  "introduction": "A REST API building platform that utilizes a drag & drop form builder, and is application framework agnostic. Contains open source and enterprise version",
+  "description": "A REST API building platform that utilizes a drag & drop form builder, and is application framework agnostic. Contains open source and enterprise version",
+  "url": "https://form.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-api-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A REST API building platform that utilizes a drag & drop form builder, and is application framework agnostic. Contains open source and enterprise version"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

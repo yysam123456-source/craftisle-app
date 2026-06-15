@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00249",
+  "description": "** - Real-Time Voice Changer (W-Okada) / [Github](https://github.com/deiteris/voice-changer) / [Colab](https://colab.research.google.com/github/deiteris/voice-changer/blob/master-custom/Colab_RealtimeVoiceChanger.ipynb)",
+  "introduction": "** - Real-Time Voice Changer (W-Okada) / [Github](https://github.com/deiteris/voice-changer) / [Colab](https://colab.research.google.com/github/deiteris/voice-changer/blob/master-custom/Colab_RealtimeVoiceChanger.ipynb)",
+  "features": [
+    "VCClient は、AI を用いてリアルタイム音声変換を行うソフトウェアです。"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/w-okada/voice-changer.git && cd voice-changer",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:50.759Z"
+}

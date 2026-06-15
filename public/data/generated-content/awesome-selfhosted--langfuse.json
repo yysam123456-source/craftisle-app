@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--langfuse",
+  "name": "Langfuse",
+  "introduction": "LLM engineering platform for model tracing, prompt management, and application evaluation. Langfuse helps teams collaboratively debug, analyze, and iterate on their LLM applications such as chatbots or AI agents",
+  "description": "LLM engineering platform for model tracing, prompt management, and application evaluation. Langfuse helps teams collaboratively debug, analyze, and iterate on their LLM applications such as chatbots or AI agents",
+  "url": "https://langfuse.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-ide-tools",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "LLM engineering platform for model tracing, prompt management, and application evaluation. Langfuse helps teams collaboratively debug, analyze, and iterate on their LLM applications such as chatbots or AI agents"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.481Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--sonarr",
+  "name": "Sonarr",
+  "introduction": "Automatic TV Shows downloader and manager for Usenet and BitTorrent. It can grab, sort and rename new episodes and automatically upgrade the quality of files already downloaded when a better quality format becomes available",
+  "description": "Automatic TV Shows downloader and manager for Usenet and BitTorrent. It can grab, sort and rename new episodes and automatically upgrade the quality of files already downloaded when a better quality format becomes available",
+  "url": "https://sonarr.tv/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Automatic TV Shows downloader and manager for Usenet and BitTorrent. It can grab, sort and rename new episodes and automatically upgrade the quality of files already downloaded when a better quality format becomes available"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.435Z"
+}

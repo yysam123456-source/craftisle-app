@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--dawarich",
+  "name": "Dawarich",
+  "introduction": "Visualize your location history, track your movements, and analyze your travel patterns with complete privacy and control (alternative to Google Timeline a.k.a. Google Location History)",
+  "description": "Visualize your location history, track your movements, and analyze your travel patterns with complete privacy and control (alternative to Google Timeline a.k.a. Google Location History)",
+  "url": "https://dawarich.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-maps-and-global-positioning-system-gps",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Visualize your location history, track your movements, and analyze your travel patterns with complete privacy and control (alternative to Google Timeline a.k.a. Google Location History)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.425Z"
+}

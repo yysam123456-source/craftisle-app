@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tagspaces",
+  "name": "TagSpaces",
+  "introduction": "TagSpaces is an offline, cross-platform file manager and organiser that also can function as a note taking app. The WebDAV version of the application can be installed on top of a WebDAV servers such as Nextcloud or ownCloud",
+  "description": "TagSpaces is an offline, cross-platform file manager and organiser that also can function as a note taking app. The WebDAV version of the application can be installed on top of a WebDAV servers such as Nextcloud or ownCloud",
+  "url": "https://www.tagspaces.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-web-based-file-managers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "TagSpaces is an offline, cross-platform file manager and organiser that also can function as a note taking app. The WebDAV version of the application can be installed on top of a WebDAV servers such as Nextcloud or ownCloud"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.405Z"
+}

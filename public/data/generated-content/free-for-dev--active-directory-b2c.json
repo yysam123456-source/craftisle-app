@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--active-directory-b2c",
+  "name": "Active Directory B2C",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://azure.microsoft.com/services/active-directory/external-identities/b2c/",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-major-cloud-providers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.331Z"
+}

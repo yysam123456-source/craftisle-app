@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--dragonfly",
+  "name": "DragonFly",
+  "introduction": "A small MTA for home and office use. Works on Linux and FreeBSD",
+  "description": "A small MTA for home and office use. Works on Linux and FreeBSD",
+  "url": "https://github.com/corecode/dma",
+  "pricing": "Free",
+  "license": "BSD-3-Clause",
+  "tech": "C",
+  "category": "sh-communication-email-mail-transfer-agents",
+  "tags": [
+    "BSD-3-Clause",
+    "C"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A small MTA for home and office use. Works on Linux and FreeBSD"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.355Z"
+}

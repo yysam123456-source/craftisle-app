@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--penpot",
+  "name": "penpot",
+  "introduction": "Web-based design and prototyping platform meant for cross-domain teams",
+  "description": "Web-based design and prototyping platform meant for cross-domain teams",
+  "url": "https://penpot.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based design and prototyping platform meant for cross-domain teams"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.447Z"
+}

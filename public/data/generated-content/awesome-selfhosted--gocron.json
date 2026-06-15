@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--gocron",
+  "name": "gocron",
+  "introduction": "Task scheduler that allows users to specify recurring jobs via a simple YAML configuration file",
+  "description": "Task scheduler that allows users to specify recurring jobs via a simple YAML configuration file",
+  "url": "https://github.com/flohoss/gocron",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker",
+  "category": "sh-automation",
+  "tags": [
+    "MIT",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Task scheduler that allows users to specify recurring jobs via a simple YAML configuration file"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.336Z"
+}

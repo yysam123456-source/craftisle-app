@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--econumo",
+  "name": "Econumo",
+  "introduction": "Budgeting application for managing personal and family finances, supporting multiple currencies, joint accounts, and budgets",
+  "description": "Budgeting application for managing personal and family finances, supporting multiple currencies, joint accounts, and budgets",
+  "url": "https://econumo.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Budgeting application for managing personal and family finances, supporting multiple currencies, joint accounts, and budgets"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.449Z"
+}

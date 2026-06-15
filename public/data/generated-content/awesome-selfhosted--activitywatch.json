@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--activitywatch",
+  "name": "ActivityWatch",
+  "introduction": "Automatically track how you spend time on your devices",
+  "description": "Automatically track how you spend time on your devices",
+  "url": "https://activitywatch.net",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-time-tracking",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Automatically track how you spend time on your devices"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.495Z"
+}

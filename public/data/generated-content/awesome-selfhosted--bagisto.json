@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--bagisto",
+  "name": "Bagisto",
+  "introduction": "Leading Laravel open source e-commerce framework with multi-inventory sources, taxation, localization, dropshipping and more exciting features",
+  "description": "Leading Laravel open source e-commerce framework with multi-inventory sources, taxation, localization, dropshipping and more exciting features",
+  "url": "https://bagisto.com/en/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-e-commerce",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Leading Laravel open source e-commerce framework with multi-inventory sources, taxation, localization, dropshipping and more exciting features"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.384Z"
+}

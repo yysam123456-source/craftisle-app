@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--writing",
+  "name": "Writing",
+  "introduction": "Lightweight distraction-free text editor, in the browser (Markdown and LaTeX supported). No lag when writing",
+  "description": "Lightweight distraction-free text editor, in the browser (Markdown and LaTeX supported). No lag when writing",
+  "url": "https://josephernest.github.io/writing/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-note-taking-editors",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight distraction-free text editor, in the browser (Markdown and LaTeX supported). No lag when writing"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.453Z"
+}

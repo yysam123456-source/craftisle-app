@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--yarn-social",
+  "name": "yarn.social",
+  "introduction": "Self-Hosted, Twitter™-like Decentralised micro-logging platform. No ads, no tracking, your content, your data",
+  "description": "Self-Hosted, Twitter™-like Decentralised micro-logging platform. No ads, no tracking, your content, your data",
+  "url": "https://yarn.social",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Self-Hosted, Twitter™-like Decentralised micro-logging platform. No ads, no tracking, your content, your data"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.363Z"
+}

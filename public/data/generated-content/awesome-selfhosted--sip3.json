@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--sip3",
+  "name": "SIP3",
+  "introduction": "VoIP troubleshooting and monitoring platform",
+  "description": "VoIP troubleshooting and monitoring platform",
+  "url": "https://sip3.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-sip",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "VoIP troubleshooting and monitoring platform"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.359Z"
+}

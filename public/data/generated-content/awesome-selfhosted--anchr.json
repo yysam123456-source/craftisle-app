@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--anchr",
+  "name": "Anchr",
+  "introduction": "Toolbox for tiny tasks on the internet, including bookmark collections, URL shortening and (encrypted) image uploads",
+  "description": "Toolbox for tiny tasks on the internet, including bookmark collections, URL shortening and (encrypted) image uploads",
+  "url": "https://anchr.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Toolbox for tiny tasks on the internet, including bookmark collections, URL shortening and (encrypted) image uploads"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.444Z"
+}

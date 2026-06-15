@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--silverbullet",
+  "name": "SilverBullet",
+  "introduction": "Note-taking application optimized for people with a hacker mindset",
+  "description": "Note-taking application optimized for people with a hacker mindset",
+  "url": "https://silverbullet.md/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-note-taking-editors",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Note-taking application optimized for people with a hacker mindset"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.453Z"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "artificial-intelligence-00226",
+  "description": "/ No Sign-Up / [GitHub](https://github.com/chrisjp/tts)",
+  "introduction": "/ No Sign-Up / [GitHub](https://github.com/chrisjp/tts)",
+  "features": [
+    "Over 1000 different high-quality voices",
+    "Lightning fast",
+    "Copy link to TTS URL to clipboard for sharing with others",
+    "Save audio locally for a configurable amount of time",
+    "Plain old HTML5 and vanilla JavaScript (PHP >=8 required for full functionality)",
+    "Conversations - create a conversation using multiple TTS voices and share it as a playlist of TTS audio clips."
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/chrisjp/tts.git && cd tts",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:37.864Z"
+}

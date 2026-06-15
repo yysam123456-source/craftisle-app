@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--buku",
+  "name": "Buku",
+  "introduction": "Powerful bookmark manager and a personal textual mini-web",
+  "description": "Powerful bookmark manager and a personal textual mini-web",
+  "url": "https://github.com/jarun/Buku",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Python/deb",
+  "category": "sh-bookmarks-and-link-sharing",
+  "tags": [
+    "GPL-3.0",
+    "Python/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Powerful bookmark manager and a personal textual mini-web"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.345Z"
+}

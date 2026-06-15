@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--flarum",
+  "name": "Flarum",
+  "introduction": "Delightfully simple forums. Flarum is the next-generation forum software that makes online discussion fun again",
+  "description": "Delightfully simple forums. Flarum is the next-generation forum software that makes online discussion fun again",
+  "url": "https://flarum.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Delightfully simple forums. Flarum is the next-generation forum software that makes online discussion fun again"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.361Z"
+}

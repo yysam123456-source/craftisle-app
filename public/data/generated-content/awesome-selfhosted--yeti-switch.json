@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--yeti-switch",
+  "name": "Yeti-Switch",
+  "introduction": "Transit class4 softswitch(SBC) with integrated billing and routing engine and REST API",
+  "description": "Transit class4 softswitch(SBC) with integrated billing and routing engine and REST API",
+  "url": "https://yeti-switch.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-sip",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Transit class4 softswitch(SBC) with integrated billing and routing engine and REST API"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.360Z"
+}

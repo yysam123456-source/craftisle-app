@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--syncmarks",
+  "name": "SyncMarks",
+  "introduction": "Sync and manage your browser bookmarks from Edge, Firefox and Chromium",
+  "description": "Sync and manage your browser bookmarks from Edge, Firefox and Chromium",
+  "url": "https://codeberg.org/Offerel/SyncMarks-Webapp",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-bookmarks-and-link-sharing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Sync and manage your browser bookmarks from Edge, Firefox and Chromium"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.346Z"
+}

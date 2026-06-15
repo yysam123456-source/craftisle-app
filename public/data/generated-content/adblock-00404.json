@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00404",
+  "description": "Scam Blocklist — Free online tool",
+  "introduction": "Scam Blocklist — Free online tool",
+  "features": [
+    "A blocklist to protect users against untrustworthy sites."
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/durablenapkin/scamblocklist.git && cd scamblocklist",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:46.817Z"
+}

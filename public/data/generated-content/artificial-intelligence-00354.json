@@ -1,0 +1,30 @@
+{
+  "id": "artificial-intelligence-00354",
+  "description": "Cross-Platform ChatGPT / Gemini UI",
+  "introduction": "Cross-Platform ChatGPT / Gemini UI",
+  "features": [
+    "**Deploy for free with one-click** on Vercel in under 1 minute",
+    "Compact client (~5MB) on Linux/Windows/MacOS, [download it now](https://github.com/Yidadaa/ChatGPT-Next-Web/releases)",
+    "Privacy first, all data is stored locally in the browser",
+    "Markdown support: LaTex, mermaid, code highlight, etc.",
+    "Responsive design, dark mode and PWA",
+    "Fast first screen loading speed (~100kb), support streaming response"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web.git && cd ChatGPT-Next-Web",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:05.706Z"
+}

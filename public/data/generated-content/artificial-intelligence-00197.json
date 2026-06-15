@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00197",
+  "description": "Waveformer — Free online tool",
+  "introduction": "Waveformer — Free online tool",
+  "features": [
+    "https://waveformer.replicate.dev"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/fofr/waveformer.git && cd waveformer",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:19.213Z"
+}

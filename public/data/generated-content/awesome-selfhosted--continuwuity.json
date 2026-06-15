@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--continuwuity",
+  "name": "Continuwuity",
+  "introduction": "Community-driven Matrix homeserver, the continuation of conduwuit focusing on user experience and new features (fork of Conduit)",
+  "description": "Community-driven Matrix homeserver, the continuation of conduwuit focusing on user experience and new features (fork of Conduit)",
+  "url": "https://continuwuity.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Community-driven Matrix homeserver, the continuation of conduwuit focusing on user experience and new features (fork of Conduit)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.348Z"
+}

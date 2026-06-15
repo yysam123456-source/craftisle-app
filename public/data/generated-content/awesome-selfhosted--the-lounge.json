@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--the-lounge",
+  "name": "The Lounge",
+  "introduction": "Self-hosted web IRC client",
+  "description": "Self-hosted web IRC client",
+  "url": "https://thelounge.chat/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-irc",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Self-hosted web IRC client"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.358Z"
+}

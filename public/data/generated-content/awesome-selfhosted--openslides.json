@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--openslides",
+  "name": "OpenSlides",
+  "introduction": "Presentation and assembly system for managing and projecting agenda, motions and elections of an assembly",
+  "description": "Presentation and assembly system for managing and projecting agenda, motions and elections of an assembly",
+  "url": "https://openslides.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-conference-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Presentation and assembly system for managing and projecting agenda, motions and elections of an assembly"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.366Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--vikunja",
+  "name": "Vikunja",
+  "introduction": "The to-do app to organize your life",
+  "description": "The to-do app to organize your life",
+  "url": "https://vikunja.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-task-management-to-do-lists",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "The to-do app to organize your life"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.494Z"
+}

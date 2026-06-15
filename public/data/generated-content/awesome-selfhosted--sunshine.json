@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--sunshine",
+  "name": "Sunshine",
+  "introduction": "Remote game stream host for Moonlight with support up to 120 frames per second and 4K resolution",
+  "description": "Remote game stream host for Moonlight with support up to 120 frames per second and 4K resolution",
+  "url": "https://app.lizardbyte.dev/Sunshine/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games-administrative-utilities-control-panels",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Remote game stream host for Moonlight with support up to 120 frames per second and 4K resolution"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.410Z"
+}

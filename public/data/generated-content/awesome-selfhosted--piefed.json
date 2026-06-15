@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--piefed",
+  "name": "PieFed",
+  "introduction": "A link aggregator / reddit clone for the fediverse (alternative to Reddit)",
+  "description": "A link aggregator / reddit clone for the fediverse (alternative to Reddit)",
+  "url": "https://join.piefed.social",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A link aggregator / reddit clone for the fediverse (alternative to Reddit)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.362Z"
+}

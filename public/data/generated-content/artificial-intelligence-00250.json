@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00250",
+  "description": "AI Voice Models and Guides / [Discord](https://discord.gg/3WJ8r6Bf5A)",
+  "introduction": "AI Voice Models and Guides / [Discord](https://discord.gg/3WJ8r6Bf5A)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://voice-models.com/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:50.760Z"
+}

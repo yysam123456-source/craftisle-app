@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00165",
+  "description": "** / [Subreddit](https://www.reddit.com/r/comfyui/) / [Discord](https://discord.gg/comfyorg) / [GitHub](https://github.com/comfyanonymous/ComfyUI)",
+  "introduction": "** / [Subreddit](https://www.reddit.com/r/comfyui/) / [Discord](https://discord.gg/comfyorg) / [GitHub](https://github.com/comfyanonymous/ComfyUI)",
+  "features": [
+    "Image Models"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/comfyanonymous/ComfyUI.git && cd ComfyUI",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:28:55.025Z"
+}

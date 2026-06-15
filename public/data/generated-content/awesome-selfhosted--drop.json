@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--drop",
+  "name": "Drop",
+  "introduction": "Game distribution platform, designed for distributing and sharing DRM-free games efficiently (alternative to Steam, GameVault)",
+  "description": "Game distribution platform, designed for distributing and sharing DRM-free games efficiently (alternative to Steam, GameVault)",
+  "url": "https://droposs.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games-administrative-utilities-control-panels",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Game distribution platform, designed for distributing and sharing DRM-free games efficiently (alternative to Steam, GameVault)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.409Z"
+}

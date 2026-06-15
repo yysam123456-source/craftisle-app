@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--koel",
+  "name": "koel",
+  "introduction": "Personal music streaming server that works",
+  "description": "Personal music streaming server that works",
+  "url": "https://koel.dev/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-media-streaming-audio-streaming",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Personal music streaming server that works"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.438Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00201",
+  "description": "Mubert — Free online tool",
+  "introduction": "Mubert — Free online tool",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://mubert.com/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:20.829Z"
+}

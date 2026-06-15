@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--evergreen",
+  "name": "Evergreen",
+  "introduction": "Highly-scalable software for libraries that helps library patrons find library materials, and helps libraries manage, catalog, and circulate those materials",
+  "description": "Highly-scalable software for libraries that helps library patrons find library materials, and helps libraries manage, catalog, and circulate those materials",
+  "url": "https://evergreen-ils.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-document-management-integrated-library-systems-ils",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Highly-scalable software for libraries that helps library patrons find library materials, and helps libraries manage, catalog, and circulate those materials"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.384Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--zero-trust-sase",
+  "name": "Zero Trust & SASE",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://www.cloudflare.com/plans/zero-trust-services/",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-major-cloud-providers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.333Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--synctube",
+  "name": "SyncTube",
+  "introduction": "Lightweight and very simple to setup CyTube alternative to watch videos with friends and chat",
+  "description": "Lightweight and very simple to setup CyTube alternative to watch videos with friends and chat",
+  "url": "https://github.com/RblSb/SyncTube",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Nodejs/Haxe",
+  "category": "sh-media-streaming-video-streaming",
+  "tags": [
+    "MIT",
+    "Nodejs/Haxe"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight and very simple to setup CyTube alternative to watch videos with friends and chat"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.442Z"
+}

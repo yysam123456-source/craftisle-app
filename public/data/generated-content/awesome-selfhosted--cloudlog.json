@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cloudlog",
+  "name": "Cloudlog",
+  "introduction": "Log your amateur radio contacts anywhere",
+  "description": "Log your amateur radio contacts anywhere",
+  "url": "https://magicbug.co.uk/cloudlog/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Log your amateur radio contacts anywhere"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.445Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--farmos",
+  "name": "farmOS",
+  "introduction": "Web-based farm record keeping application",
+  "description": "Web-based farm record keeping application",
+  "url": "https://farmos.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-resource-planning",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based farm record keeping application"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.462Z"
+}

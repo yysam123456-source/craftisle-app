@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--qpixel",
+  "name": "qpixel",
+  "introduction": "Q&A-based community knowledge-sharing software",
+  "description": "Q&A-based community knowledge-sharing software",
+  "url": "https://codidact.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Q&A-based community knowledge-sharing software"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.363Z"
+}

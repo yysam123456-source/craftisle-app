@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--piqueserver",
+  "name": "piqueserver",
+  "introduction": "Server for openspades, the first-person shooter in a destructible voxel world",
+  "description": "Server for openspades, the first-person shooter in a destructible voxel world",
+  "url": "https://github.com/piqueserver/piqueserver",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Server for openspades, the first-person shooter in a destructible voxel world"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.406Z"
+}

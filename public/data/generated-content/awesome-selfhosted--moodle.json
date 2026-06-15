@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--moodle",
+  "name": "Moodle",
+  "introduction": "Learning and courses platform with one of the largest open source communities worldwide",
+  "description": "Learning and courses platform with one of the largest open source communities worldwide",
+  "url": "https://moodle.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Learning and courses platform with one of the largest open source communities worldwide"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.424Z"
+}

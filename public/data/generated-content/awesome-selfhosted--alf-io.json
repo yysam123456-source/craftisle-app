@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--alf-io",
+  "name": "Alf.io",
+  "introduction": "Ticket reservation system",
+  "description": "Ticket reservation system",
+  "url": "https://alf.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-booking-and-scheduling",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Ticket reservation system"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.344Z"
+}

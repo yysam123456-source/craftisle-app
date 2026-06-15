@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--sendmail",
+  "name": "Sendmail",
+  "introduction": "Message transfer agent (MTA)",
+  "description": "Message transfer agent (MTA)",
+  "url": "https://www.proofpoint.com/us/products/email-protection/open-source-email-solution",
+  "pricing": "Free",
+  "license": "Sendmail",
+  "tech": "C/deb",
+  "category": "sh-communication-email-mail-transfer-agents",
+  "tags": [
+    "Sendmail",
+    "C/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Message transfer agent (MTA)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.356Z"
+}

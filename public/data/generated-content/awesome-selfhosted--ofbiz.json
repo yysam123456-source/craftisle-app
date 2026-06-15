@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ofbiz",
+  "name": "OFBiz",
+  "introduction": "Enterprise Resource Planning system with a suite of business applications flexible enough to be used across any industry",
+  "description": "Enterprise Resource Planning system with a suite of business applications flexible enough to be used across any industry",
+  "url": "https://ofbiz.apache.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-resource-planning",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Enterprise Resource Planning system with a suite of business applications flexible enough to be used across any industry"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.462Z"
+}

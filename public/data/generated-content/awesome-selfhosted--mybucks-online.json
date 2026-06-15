@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mybucks-online",
+  "name": "Mybucks.online",
+  "introduction": "Secure, browser-based, password-only self-custodial cryptocurrency wallet",
+  "description": "Secure, browser-based, password-only self-custodial cryptocurrency wallet",
+  "url": "https://mybucks.online",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Secure, browser-based, password-only self-custodial cryptocurrency wallet"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.450Z"
+}

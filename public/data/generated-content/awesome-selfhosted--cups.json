@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cups",
+  "name": "CUPS",
+  "introduction": "The Common Unix Print System uses Internet Printing Protocol (IPP) to support printing to local and network printers",
+  "description": "The Common Unix Print System uses Internet Printing Protocol (IPP) to support printing to local and network printers",
+  "url": "https://www.cups.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "The Common Unix Print System uses Internet Printing Protocol (IPP) to support printing to local and network printers"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.445Z"
+}

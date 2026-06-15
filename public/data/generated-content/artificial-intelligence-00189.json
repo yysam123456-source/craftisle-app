@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00189",
+  "description": "Generative AI Guides",
+  "introduction": "Generative AI Guides",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://microsoft.github.io/generative-ai-for-beginners/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:16.673Z"
+}

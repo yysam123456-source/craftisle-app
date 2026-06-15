@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--quickshare",
+  "name": "QuickShare",
+  "introduction": "Quick and simple file sharing between different devices",
+  "description": "Quick and simple file sharing between different devices",
+  "url": "https://ihexxa.github.io/quickshare.site/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Quick and simple file sharing between different devices"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.401Z"
+}

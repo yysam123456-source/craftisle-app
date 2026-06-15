@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--digiscreen",
+  "name": "Digiscreen",
+  "introduction": "Interactive whiteboard/wallpaper for the classroom, in person or remotely (documentation in French)",
+  "description": "Interactive whiteboard/wallpaper for the classroom, in person or remotely (documentation in French)",
+  "url": "https://ladigitale.dev/digiscreen/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Interactive whiteboard/wallpaper for the classroom, in person or remotely (documentation in French)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.423Z"
+}

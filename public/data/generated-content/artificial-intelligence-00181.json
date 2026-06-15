@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00181",
+  "description": "**, [sdg-link](https://rentry.co/sdg-link), [LocalModelsLinks](https://rentry.org/LocalModelsLinks) or [SDTools](https://sdtools.org) - AI Image Resources",
+  "introduction": "**, [sdg-link](https://rentry.co/sdg-link), [LocalModelsLinks](https://rentry.org/LocalModelsLinks) or [SDTools](https://sdtools.org) - AI Image Resources",
+  "features": [
+    "Paper2GUI: 一款面向普通人的 AI 桌面 APP 工具箱，免安装即开即用，已支持 50+AI 模型，内容涵盖 AI 绘画、语音合成、视频补帧、视频超分、伴奏分离、字幕翻译、OCR 识别等领域。支持 Windows、Mac、Linu"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Baiyuetribe/paper2gui.git && cd paper2gui",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:12.410Z"
+}

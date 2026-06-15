@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tryton",
+  "name": "Tryton",
+  "introduction": "Free open source business solution",
+  "description": "Free open source business solution",
+  "url": "https://www.tryton.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-resource-planning",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Free open source business solution"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.462Z"
+}

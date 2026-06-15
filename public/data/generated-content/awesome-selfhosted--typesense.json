@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--typesense",
+  "name": "Typesense",
+  "introduction": "Blazing fast, typo-tolerant open source search engine optimized for developer happiness and ease of use",
+  "description": "Blazing fast, typo-tolerant open source search engine optimized for developer happiness and ease of use",
+  "url": "https://typesense.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-search-engines",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Blazing fast, typo-tolerant open source search engine optimized for developer happiness and ease of use"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.463Z"
+}

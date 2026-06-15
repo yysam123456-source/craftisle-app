@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--accent",
+  "name": "Accent",
+  "introduction": "Developer-oriented translation tool",
+  "description": "Developer-oriented translation tool",
+  "url": "https://www.accent.reviews/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-localization",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Developer-oriented translation tool"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.487Z"
+}

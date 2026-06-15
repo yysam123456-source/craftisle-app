@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--hedgedoc",
+  "name": "HedgeDoc",
+  "introduction": "Realtime collaborative markdown notes on all platforms, formerly known as CodiMD and HackMD CE",
+  "description": "Realtime collaborative markdown notes on all platforms, formerly known as CodiMD and HackMD CE",
+  "url": "https://hedgedoc.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-note-taking-editors",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Realtime collaborative markdown notes on all platforms, formerly known as CodiMD and HackMD CE"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.452Z"
+}

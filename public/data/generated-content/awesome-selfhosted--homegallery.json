@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--homegallery",
+  "name": "HomeGallery",
+  "introduction": "Browse personal photos and videos featuring tagging, mobile-friendly, and AI powered image discovery",
+  "description": "Browse personal photos and videos featuring tagging, mobile-friendly, and AI powered image discovery",
+  "url": "https://home-gallery.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-photo-galleries",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Browse personal photos and videos featuring tagging, mobile-friendly, and AI powered image discovery"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.457Z"
+}

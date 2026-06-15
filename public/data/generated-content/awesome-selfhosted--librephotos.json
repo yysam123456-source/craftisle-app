@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--librephotos",
+  "name": "LibrePhotos",
+  "introduction": "Photo management service with a slight focus on cool graphs (alternative to Google Photos)",
+  "description": "Photo management service with a slight focus on cool graphs (alternative to Google Photos)",
+  "url": "https://github.com/LibrePhotos/librephotos",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-photo-galleries",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Photo management service with a slight focus on cool graphs (alternative to Google Photos)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.458Z"
+}

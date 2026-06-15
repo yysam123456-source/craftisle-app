@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--gokapi",
+  "name": "Gokapi",
+  "introduction": "Lightweight server to share files, which expire after a set amount of downloads or days. Similar to the discontinued Firefox Send, with the difference that only the admin is allowed to upload files",
+  "description": "Lightweight server to share files, which expire after a set amount of downloads or days. Similar to the discontinued Firefox Send, with the difference that only the admin is allowed to upload files",
+  "url": "https://github.com/Forceu/gokapi",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Go/Docker",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [
+    "GPL-3.0",
+    "Go/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight server to share files, which expire after a set amount of downloads or days. Similar to the discontinued Firefox Send, with the difference that only the admin is allowed to upload files"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.399Z"
+}

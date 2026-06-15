@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--llm-harbor",
+  "name": "LLM Harbor",
+  "introduction": "Containerized LLM toolkit. Run LLM backends, APIs, frontends, and additional services via a concise CLI",
+  "description": "Containerized LLM toolkit. Run LLM backends, APIs, frontends, and additional services via a concise CLI",
+  "url": "https://github.com/av/harbor",
+  "pricing": "Free",
+  "license": "Apache-2.0",
+  "tech": "Docker/Shell",
+  "category": "sh-generative-artificial-intelligence-genai",
+  "tags": [
+    "Apache-2.0",
+    "Docker/Shell"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Containerized LLM toolkit. Run LLM backends, APIs, frontends, and additional services via a concise CLI"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.412Z"
+}

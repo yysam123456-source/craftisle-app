@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ech0",
+  "name": "Ech0",
+  "introduction": "Lightweight federated publishing platform focused on personal idea sharing (documentation in Chinese)",
+  "description": "Lightweight federated publishing platform focused on personal idea sharing (documentation in Chinese)",
+  "url": "https://echo.soopy.cn/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-blogging-platforms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight federated publishing platform focused on personal idea sharing (documentation in Chinese)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.339Z"
+}

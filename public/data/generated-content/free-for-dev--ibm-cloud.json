@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--ibm-cloud",
+  "name": "IBM Cloud",
+  "introduction": "Cloudant database - 1 GB of data storage | Db2 database - 100MB of data storage | API Connect - 50,000 API calls per month | Availability Monitoring - 3 million data points per month | Log Analysis - ",
+  "description": "Cloudant database - 1 GB of data storage | Db2 database - 100MB of data storage | API Connect - 50,000 API calls per month | Availability Monitoring - 3 million data points per month | Log Analysis - ",
+  "url": "https://www.ibm.com/cloud/free/",
+  "pricing": "Free Tier",
+  "freeTier": "Cloudant database - 1 GB of data storage | Db2 database - 100MB of data storage | API Connect - 50,000 API calls per month | Availability Monitoring - 3 million data points per month | Log Analysis - 500MB of daily log | Full, detailed list - https://www.ibm.com/cloud/free/",
+  "category": "ffd-major-cloud-providers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.333Z"
+}

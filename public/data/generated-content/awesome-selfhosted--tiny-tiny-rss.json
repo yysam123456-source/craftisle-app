@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tiny-tiny-rss",
+  "name": "Tiny Tiny RSS",
+  "introduction": "Web-based news feed (RSS/Atom) reader and aggregator",
+  "description": "Web-based news feed (RSS/Atom) reader and aggregator",
+  "url": "https://tt-rss.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-feed-readers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based news feed (RSS/Atom) reader and aggregator"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.391Z"
+}

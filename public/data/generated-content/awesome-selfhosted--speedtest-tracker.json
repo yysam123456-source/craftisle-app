@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--speedtest-tracker",
+  "name": "Speedtest Tracker",
+  "introduction": "Monitor the performance and uptime of your internet connection",
+  "description": "Monitor the performance and uptime of your internet connection",
+  "url": "https://docs.speedtest-tracker.dev/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-network-utilities",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Monitor the performance and uptime of your internet connection"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.451Z"
+}

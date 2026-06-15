@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--writefreely",
+  "name": "WriteFreely",
+  "introduction": "Writing software for starting a minimalist, federated blog — or an entire community",
+  "description": "Writing software for starting a minimalist, federated blog — or an entire community",
+  "url": "https://writefreely.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-blogging-platforms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Writing software for starting a minimalist, federated blog — or an entire community"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.344Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--tracim",
+  "name": "Tracim",
+  "introduction": "Collaborative Platform for team collaboration: file,threads,notes,agenda,etc",
+  "description": "Collaborative Platform for team collaboration: file,threads,notes,agenda,etc",
+  "url": "https://github.com/tracim/tracim",
+  "pricing": "Free",
+  "license": "Python",
+  "tech": "AGPL-3.0/LGPL-3.0/MIT",
+  "category": "sh-groupware",
+  "tags": [
+    "Python",
+    "AGPL-3.0/LGPL-3.0/MIT"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Collaborative Platform for team collaboration: file,threads,notes,agenda,etc"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.416Z"
+}

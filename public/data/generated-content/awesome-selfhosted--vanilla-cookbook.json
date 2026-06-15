@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--vanilla-cookbook",
+  "name": "Vanilla Cookbook",
+  "introduction": "Recipe manager designed with complexity under the hood, keeping the user experience as uncluttered, simply vanilla as possible",
+  "description": "Recipe manager designed with complexity under the hood, keeping the user experience as uncluttered, simply vanilla as possible",
+  "url": "https://vanilla-cookbook.readthedocs.io/en/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-recipe-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Recipe manager designed with complexity under the hood, keeping the user experience as uncluttered, simply vanilla as possible"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.461Z"
+}

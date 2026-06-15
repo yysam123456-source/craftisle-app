@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--apprise",
+  "name": "Apprise",
+  "introduction": "Apprise allows you to send a notification to almost all of the most popular notification services available to us today such as: Telegram, Discord, Slack, Amazon SNS, Gotify, etc",
+  "description": "Apprise allows you to send a notification to almost all of the most popular notification services available to us today such as: Telegram, Discord, Slack, Amazon SNS, Gotify, etc",
+  "url": "https://github.com/caronc/apprise",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Python/Docker/deb",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [
+    "MIT",
+    "Python/Docker/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Apprise allows you to send a notification to almost all of the most popular notification services available to us today such as: Telegram, Discord, Slack, Amazon SNS, Gotify, etc"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.347Z"
+}

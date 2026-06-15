@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cockpit",
+  "name": "Cockpit",
+  "introduction": "Simple content platform to manage any structured content",
+  "description": "Simple content platform to manage any structured content",
+  "url": "https://getcockpit.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple content platform to manage any structured content"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.369Z"
+}

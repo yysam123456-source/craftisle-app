@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--indico",
+  "name": "indico",
+  "introduction": "Feature-rich event management system, made @ CERN, the place where the Web was born",
+  "description": "Feature-rich event management system, made @ CERN, the place where the Web was born",
+  "url": "https://getindico.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-conference-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Feature-rich event management system, made @ CERN, the place where the Web was born"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.366Z"
+}

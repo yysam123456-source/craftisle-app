@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--onedev",
+  "name": "OneDev",
+  "introduction": "All-In-One DevOps Platform. With Git Management, Issue Tracking, and CI/CD. Simple yet Powerful",
+  "description": "All-In-One DevOps Platform. With Git Management, Issue Tracking, and CI/CD. Simple yet Powerful",
+  "url": "https://onedev.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "All-In-One DevOps Platform. With Git Management, Issue Tracking, and CI/CD. Simple yet Powerful"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.489Z"
+}

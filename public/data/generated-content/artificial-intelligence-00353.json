@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00353",
+  "description": "Deep Learning Model Deployment Toolset / [GitHub](https://github.com/open-mmlab/mmdeploy)",
+  "introduction": "Deep Learning Model Deployment Toolset / [GitHub](https://github.com/open-mmlab/mmdeploy)",
+  "features": [
+    "<div align=\"center\">"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/open-mmlab/mmdeploy.git && cd mmdeploy",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:02.482Z"
+}

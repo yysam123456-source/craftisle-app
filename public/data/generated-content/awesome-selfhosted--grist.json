@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--grist",
+  "name": "Grist",
+  "introduction": "Next-generation spreadsheet with relational structure, formula-based access control, and a portable, self-contained format (alternative to Airtable)",
+  "description": "Next-generation spreadsheet with relational structure, formula-based access control, and a portable, self-contained format (alternative to Airtable)",
+  "url": "https://getgrist.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-office-suites",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Next-generation spreadsheet with relational structure, formula-based access control, and a portable, self-contained format (alternative to Airtable)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.453Z"
+}

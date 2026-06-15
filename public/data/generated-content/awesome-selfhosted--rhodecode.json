@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--rhodecode",
+  "name": "RhodeCode",
+  "introduction": "Unify and simplify repository management for Git, Subversion, and Mercurial",
+  "description": "Unify and simplify repository management for Git, Subversion, and Mercurial",
+  "url": "https://rhodecode.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-project-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Unify and simplify repository management for Git, Subversion, and Mercurial"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.490Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--kanboard",
+  "name": "Kanboard",
+  "introduction": "Simple visual task board",
+  "description": "Simple visual task board",
+  "url": "https://kanboard.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-task-management-to-do-lists",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple visual task board"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.493Z"
+}

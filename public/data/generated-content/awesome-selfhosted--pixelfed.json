@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pixelfed",
+  "name": "PixelFed",
+  "introduction": "Ethical photo sharing platform, powered by ActivityPub federation (alternative to Instagram)",
+  "description": "Ethical photo sharing platform, powered by ActivityPub federation (alternative to Instagram)",
+  "url": "https://pixelfed.social",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Ethical photo sharing platform, powered by ActivityPub federation (alternative to Instagram)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.362Z"
+}

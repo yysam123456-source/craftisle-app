@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--xbackbone",
+  "name": "XBackBone",
+  "introduction": "A simple, fast and lightweight file manager with instant sharing tools integration, like ShareX (a free and open-source screenshot utility for Windows)",
+  "description": "A simple, fast and lightweight file manager with instant sharing tools integration, like ShareX (a free and open-source screenshot utility for Windows)",
+  "url": "https://xbackbone.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "A simple, fast and lightweight file manager with instant sharing tools integration, like ShareX (a free and open-source screenshot utility for Windows)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.402Z"
+}

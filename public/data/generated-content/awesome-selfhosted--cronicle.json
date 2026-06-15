@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--cronicle",
+  "name": "Cronicle",
+  "introduction": "Simple, distributed task scheduler and runner with a web based UI",
+  "description": "Simple, distributed task scheduler and runner with a web based UI",
+  "url": "https://cronicle.net/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-automation",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple, distributed task scheduler and runner with a web based UI"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.334Z"
+}

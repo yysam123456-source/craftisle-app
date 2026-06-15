@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--startos",
+  "name": "StartOS",
+  "introduction": "Browser-based, graphical Operating System (OS) that makes running a personal server as easy as running a personal computer",
+  "description": "Browser-based, graphical Operating System (OS) that makes running a personal server as easy as running a personal computer",
+  "url": "https://start9.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Browser-based, graphical Operating System (OS) that makes running a personal server as easy as running a personal computer"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

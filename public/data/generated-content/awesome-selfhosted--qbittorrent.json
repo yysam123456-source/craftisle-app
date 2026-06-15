@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--qbittorrent",
+  "name": "qBittorrent",
+  "introduction": "Free cross-platform bittorrent client with a feature rich Web UI for remote access",
+  "description": "Free cross-platform bittorrent client with a feature rich Web UI for remote access",
+  "url": "https://www.qbittorrent.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-peer-to-peer-filesharing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Free cross-platform bittorrent client with a feature rich Web UI for remote access"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.398Z"
+}

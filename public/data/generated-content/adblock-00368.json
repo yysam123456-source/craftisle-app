@@ -1,0 +1,28 @@
+{
+  "id": "adblock-00368",
+  "description": "Hide Website Overlays",
+  "introduction": "Hide Website Overlays",
+  "features": [
+    "Requires no special permissions.",
+    "Supports hiding of multiple DOM overlay elements.",
+    "Enables overflow auto of the body when overlay script hides it to disable the scroll of the page.",
+    "Support of keyboard shortcut. Ctrl+Shift+X on Windows,Linux and Cmd+Shift+X on Mac."
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/NicolaeNMV/BehindTheOverlay.git && cd BehindTheOverlay",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:31:13.334Z"
+}

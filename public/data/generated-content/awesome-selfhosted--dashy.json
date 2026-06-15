@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--dashy",
+  "name": "Dashy",
+  "introduction": "Feature-rich homepage for your homelab, with easy YAML configuration",
+  "description": "Feature-rich homepage for your homelab, with easy YAML configuration",
+  "url": "https://dashy.to/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-personal-dashboards",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Feature-rich homepage for your homelab, with easy YAML configuration"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.456Z"
+}

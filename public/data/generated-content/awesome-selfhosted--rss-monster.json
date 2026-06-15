@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--rss-monster",
+  "name": "RSS Monster",
+  "introduction": "Easy to use web-based RSS aggregator and reader compatible with the Fever API (alternative to Google Reader)",
+  "description": "Easy to use web-based RSS aggregator and reader compatible with the Fever API (alternative to Google Reader)",
+  "url": "https://github.com/pietheinstrengholt/rssmonster",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "PHP",
+  "category": "sh-feed-readers",
+  "tags": [
+    "MIT",
+    "PHP"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Easy to use web-based RSS aggregator and reader compatible with the Fever API (alternative to Google Reader)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.390Z"
+}

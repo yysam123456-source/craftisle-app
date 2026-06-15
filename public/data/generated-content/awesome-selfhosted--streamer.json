@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--streamer",
+  "name": "µStreamer",
+  "introduction": "Lightweight and very quick server to stream MJPEG video from any V4L2 device to the net",
+  "description": "Lightweight and very quick server to stream MJPEG video from any V4L2 device to the net",
+  "url": "https://github.com/pikvm/ustreamer",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "C/deb",
+  "category": "sh-media-streaming-multimedia-streaming",
+  "tags": [
+    "GPL-3.0",
+    "C/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight and very quick server to stream MJPEG video from any V4L2 device to the net"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.441Z"
+}

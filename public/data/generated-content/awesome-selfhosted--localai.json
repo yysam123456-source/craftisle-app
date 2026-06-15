@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--localai",
+  "name": "LocalAI",
+  "introduction": "Run your AI models locally and generate images and audio (alternative to OpenAI and Claude)",
+  "description": "Run your AI models locally and generate images and audio (alternative to OpenAI and Claude)",
+  "url": "https://localai.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-generative-artificial-intelligence-genai",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Run your AI models locally and generate images and audio (alternative to OpenAI and Claude)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.413Z"
+}

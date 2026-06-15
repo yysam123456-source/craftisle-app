@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--sshwifty",
+  "name": "Sshwifty",
+  "introduction": "Sshwifty is a SSH and Telnet connector made for the Web",
+  "description": "Sshwifty is a SSH and Telnet connector made for the Web",
+  "url": "https://github.com/nirui/sshwifty",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-remote-access",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Sshwifty is a SSH and Telnet connector made for the Web"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.461Z"
+}

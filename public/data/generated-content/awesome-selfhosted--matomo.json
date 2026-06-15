@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--matomo",
+  "name": "Matomo",
+  "introduction": "Web analytics that protects your data and your customers' privacy (alternative to Google Analytics)",
+  "description": "Web analytics that protects your data and your customers' privacy (alternative to Google Analytics)",
+  "url": "https://matomo.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-analytics",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web analytics that protects your data and your customers' privacy (alternative to Google Analytics)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.331Z"
+}

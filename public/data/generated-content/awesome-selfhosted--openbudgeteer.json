@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--openbudgeteer",
+  "name": "OpenBudgeteer",
+  "introduction": "Budgeting app based on the Bucket Budgeting Principle",
+  "description": "Budgeting app based on the Bucket Budgeting Principle",
+  "url": "https://github.com/TheAxelander/OpenBudgeteer",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Docker/C#",
+  "category": "sh-money-budgeting-management",
+  "tags": [
+    "AGPL-3.0",
+    "Docker/C#"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Budgeting app based on the Bucket Budgeting Principle"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.451Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--bigcapital",
+  "name": "Bigcapital",
+  "introduction": "Financial accounting and inventory management software for small to medium businesses",
+  "description": "Financial accounting and inventory management software for small to medium businesses",
+  "url": "https://bigcapital.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Financial accounting and inventory management software for small to medium businesses"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.449Z"
+}

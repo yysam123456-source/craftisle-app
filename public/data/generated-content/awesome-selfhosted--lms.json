@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--lms",
+  "name": "LMS",
+  "introduction": "Access your self-hosted music using a web interface",
+  "description": "Access your self-hosted music using a web interface",
+  "url": "https://github.com/epoupon/lms",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Docker/deb/C++",
+  "category": "sh-media-streaming-audio-streaming",
+  "tags": [
+    "GPL-3.0",
+    "Docker/deb/C++"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Access your self-hosted music using a web interface"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.438Z"
+}

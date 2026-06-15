@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--filegator",
+  "name": "FileGator",
+  "introduction": "FileGator is a powerful multi-user file manager with a single page front-end",
+  "description": "FileGator is a powerful multi-user file manager with a single page front-end",
+  "url": "https://filegator.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-web-based-file-managers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "FileGator is a powerful multi-user file manager with a single page front-end"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.402Z"
+}

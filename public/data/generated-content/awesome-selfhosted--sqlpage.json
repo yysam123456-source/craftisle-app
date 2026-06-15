@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--sqlpage",
+  "name": "SQLPage",
+  "introduction": "SQL-only dynamic website builder",
+  "description": "SQL-only dynamic website builder",
+  "url": "https://sql-page.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-low-code",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "SQL-only dynamic website builder"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.488Z"
+}

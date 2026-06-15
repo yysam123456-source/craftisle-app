@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00270",
+  "description": "Create Component Workflows to Generate or Transform Data / [Discord](https://discord.com/invite/SBBEVCA4PG) / [GitHub](https://github.com/tldraw/tldraw)",
+  "introduction": "Create Component Workflows to Generate or Transform Data / [Discord](https://discord.com/invite/SBBEVCA4PG) / [GitHub](https://github.com/tldraw/tldraw)",
+  "features": [
+    "<div alt style=\"text-align: center; transform: scale(.25);\">"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/tldraw/tldraw.git && cd tldraw",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:30:05.279Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wallos",
+  "name": "Wallos",
+  "introduction": "Lightweight personal subscription tracker with statistics and optional notifications",
+  "description": "Lightweight personal subscription tracker with statistics and optional notifications",
+  "url": "https://wallosapp.com",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-money-budgeting-management",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight personal subscription tracker with statistics and optional notifications"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.451Z"
+}

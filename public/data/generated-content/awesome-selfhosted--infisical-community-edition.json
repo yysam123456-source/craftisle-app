@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--infisical-community-edition",
+  "name": "Infisical Community Edition",
+  "introduction": "Platform for secrets, certificates, and privileged access management",
+  "description": "Platform for secrets, certificates, and privileged access management",
+  "url": "https://infisical.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Platform for secrets, certificates, and privileged access management"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.446Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--the-battle-for-wesnoth",
+  "name": "The Battle for Wesnoth",
+  "introduction": "The Battle for Wesnoth is an Open Source, turn-based tactical strategy game with a high fantasy theme, featuring both singleplayer and online/hotseat multiplayer combat",
+  "description": "The Battle for Wesnoth is an Open Source, turn-based tactical strategy game with a high fantasy theme, featuring both singleplayer and online/hotseat multiplayer combat",
+  "url": "https://github.com/wesnoth/wesnoth",
+  "pricing": "Free",
+  "license": "GPL-2.0",
+  "tech": "C++/deb",
+  "category": "sh-games",
+  "tags": [
+    "GPL-2.0",
+    "C++/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "The Battle for Wesnoth is an Open Source, turn-based tactical strategy game with a high fantasy theme, featuring both singleplayer and online/hotseat multiplayer combat"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.407Z"
+}

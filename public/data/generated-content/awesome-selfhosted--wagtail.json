@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wagtail",
+  "name": "Wagtail",
+  "introduction": "Django content management system focused on flexibility and user experience",
+  "description": "Django content management system focused on flexibility and user experience",
+  "url": "https://wagtail.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Django content management system focused on flexibility and user experience"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.373Z"
+}

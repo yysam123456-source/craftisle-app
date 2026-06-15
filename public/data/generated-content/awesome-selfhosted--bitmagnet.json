@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--bitmagnet",
+  "name": "bitmagnet",
+  "introduction": "BitTorrent indexer, DHT crawler, content classifier and torrent search engine with web UI, GraphQL API and Servarr stack integration",
+  "description": "BitTorrent indexer, DHT crawler, content classifier and torrent search engine with web UI, GraphQL API and Servarr stack integration",
+  "url": "https://bitmagnet.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-archiving-and-digital-preservation-dp",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "BitTorrent indexer, DHT crawler, content classifier and torrent search engine with web UI, GraphQL API and Servarr stack integration"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.333Z"
+}

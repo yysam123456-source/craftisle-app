@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--what-to-cook",
+  "name": "What To Cook?",
+  "introduction": "Get a recipe to cook today, based on the ingredients you have at home",
+  "description": "Get a recipe to cook today, based on the ingredients you have at home",
+  "url": "https://github.com/kassner/whattocook",
+  "pricing": "Free",
+  "license": "AGPL-3.0",
+  "tech": "Docker",
+  "category": "sh-recipe-management",
+  "tags": [
+    "AGPL-3.0",
+    "Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Get a recipe to cook today, based on the ingredients you have at home"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.461Z"
+}

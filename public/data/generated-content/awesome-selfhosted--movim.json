@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--movim",
+  "name": "Movim",
+  "introduction": "Modern, federated social network based on XMPP, with a fully featured group-chat, subscriptions and microblogging",
+  "description": "Modern, federated social network based on XMPP, with a fully featured group-chat, subscriptions and microblogging",
+  "url": "https://movim.eu/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-social-networks-and-forums",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Modern, federated social network based on XMPP, with a fully featured group-chat, subscriptions and microblogging"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.362Z"
+}

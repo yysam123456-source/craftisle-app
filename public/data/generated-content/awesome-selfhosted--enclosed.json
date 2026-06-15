@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--enclosed",
+  "name": "Enclosed",
+  "introduction": "Minimalistic web application designed for sending private and secure notes",
+  "description": "Minimalistic web application designed for sending private and secure notes",
+  "url": "https://enclosed.cc/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-single-click-drag-n-drop-upload",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Minimalistic web application designed for sending private and secure notes"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.399Z"
+}

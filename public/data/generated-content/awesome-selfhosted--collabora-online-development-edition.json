@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--collabora-online-development-edition",
+  "name": "Collabora Online Development Edition",
+  "introduction": "Collabora Online Development Edition (CODE) is a powerful LibreOffice-based online office that supports all major document, spreadsheet and presentation file formats, which you can integrate in your own infrastructure",
+  "description": "Collabora Online Development Edition (CODE) is a powerful LibreOffice-based online office that supports all major document, spreadsheet and presentation file formats, which you can integrate in your own infrastructure",
+  "url": "https://www.collaboraoffice.com/code",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-office-suites",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Collabora Online Development Edition (CODE) is a powerful LibreOffice-based online office that supports all major document, spreadsheet and presentation file formats, which you can integrate in your own infrastructure"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.453Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--wintercms",
+  "name": "WinterCMS",
+  "introduction": "Speedy and secure content management system built on the Laravel PHP framework",
+  "description": "Speedy and secure content management system built on the Laravel PHP framework",
+  "url": "https://wintercms.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Speedy and secure content management system built on the Laravel PHP framework"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.373Z"
+}

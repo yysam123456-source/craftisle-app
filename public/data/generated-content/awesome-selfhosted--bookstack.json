@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--bookstack",
+  "name": "BookStack",
+  "introduction": "Organize and store information. Stores documentation in a book like fashion",
+  "description": "Organize and store information. Stores documentation in a book like fashion",
+  "url": "https://www.bookstackapp.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Organize and store information. Stores documentation in a book like fashion"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.499Z"
+}

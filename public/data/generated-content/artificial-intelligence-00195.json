@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00195",
+  "description": "/ 10 Monthly / [Discord](https://discord.com/invite/stablediffusion)",
+  "introduction": "/ 10 Monthly / [Discord](https://discord.com/invite/stablediffusion)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.stableaudio.com/ to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:16.677Z"
+}

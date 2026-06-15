@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--featbit",
+  "name": "Featbit",
+  "introduction": "Enterprise-grade feature flag platform that you can self-host",
+  "description": "Enterprise-grade feature flag platform that you can self-host",
+  "url": "https://www.featbit.co/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-feature-toggle",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Enterprise-grade feature flag platform that you can self-host"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.472Z"
+}

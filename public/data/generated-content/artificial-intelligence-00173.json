@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00173",
+  "description": "biniou — Free online tool",
+  "introduction": "biniou — Free online tool",
+  "features": [
+    "**Text generation using  :**"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Woolverine94/biniou.git && cd biniou",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:05.303Z"
+}

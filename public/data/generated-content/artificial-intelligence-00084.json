@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/leon-ai/leon.git && cd leon",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:43.410Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:43.410Z",
+  "updatedAt": "2026-06-15T03:28:08.839Z"
 }

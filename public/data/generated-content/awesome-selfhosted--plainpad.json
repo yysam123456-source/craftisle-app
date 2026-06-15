@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--plainpad",
+  "name": "Plainpad",
+  "introduction": "Modern note taking application for the cloud, utilizing the best features of progressive web apps technology",
+  "description": "Modern note taking application for the cloud, utilizing the best features of progressive web apps technology",
+  "url": "https://alextselegidis.com/get/plainpad/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-note-taking-editors",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Modern note taking application for the cloud, utilizing the best features of progressive web apps technology"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.452Z"
+}

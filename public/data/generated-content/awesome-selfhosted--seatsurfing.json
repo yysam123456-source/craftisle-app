@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--seatsurfing",
+  "name": "Seatsurfing",
+  "introduction": "Webbased app to book seats, desks and rooms for offices",
+  "description": "Webbased app to book seats, desks and rooms for offices",
+  "url": "https://seatsurfing.app/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-booking-and-scheduling",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Webbased app to book seats, desks and rooms for offices"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.345Z"
+}

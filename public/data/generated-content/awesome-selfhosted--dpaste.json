@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--dpaste",
+  "name": "dpaste",
+  "introduction": "Simple pastebin with multiple text and code option, with short url result easy to remember",
+  "description": "Simple pastebin with multiple text and code option, with short url result easy to remember",
+  "url": "https://dpaste.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-pastebins",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple pastebin with multiple text and code option, with short url result easy to remember"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.454Z"
+}

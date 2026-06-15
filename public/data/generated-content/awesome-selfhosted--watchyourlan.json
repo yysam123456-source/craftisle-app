@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--watchyourlan",
+  "name": "WatchYourLAN",
+  "introduction": "Lightweight network IP scanner with notifications, history, export to Grafana",
+  "description": "Lightweight network IP scanner with notifications, history, export to Grafana",
+  "url": "https://github.com/aceberg/WatchYourLAN",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker/Go/deb",
+  "category": "sh-network-utilities",
+  "tags": [
+    "MIT",
+    "Docker/Go/deb"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Lightweight network IP scanner with notifications, history, export to Grafana"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.452Z"
+}

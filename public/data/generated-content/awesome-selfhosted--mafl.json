@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mafl",
+  "name": "Mafl",
+  "introduction": "Minimalistic flexible homepage",
+  "description": "Minimalistic flexible homepage",
+  "url": "https://mafl.hywax.space/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-personal-dashboards",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Minimalistic flexible homepage"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.457Z"
+}

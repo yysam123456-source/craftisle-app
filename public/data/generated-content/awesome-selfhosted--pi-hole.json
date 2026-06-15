@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--pi-hole",
+  "name": "Pi-hole",
+  "introduction": "Blackhole for Internet advertisements with a GUI for management and monitoring",
+  "description": "Blackhole for Internet advertisements with a GUI for management and monitoring",
+  "url": "https://pi-hole.net/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-dns",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Blackhole for Internet advertisements with a GUI for management and monitoring"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.378Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--easy-appointments",
+  "name": "Easy!Appointments",
+  "introduction": "Allows your customers to book appointments with you via the web",
+  "description": "Allows your customers to book appointments with you via the web",
+  "url": "https://easyappointments.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-booking-and-scheduling",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Allows your customers to book appointments with you via the web"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.345Z"
+}

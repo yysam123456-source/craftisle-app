@@ -1,0 +1,25 @@
+{
+  "id": "adblock-00431",
+  "description": "PE File Scanner / [GitHub](https://github.com/JusticeRage/Manalyze)",
+  "introduction": "PE File Scanner / [GitHub](https://github.com/JusticeRage/Manalyze)",
+  "features": [
+    "Manalyze is a static analysis tool for PE files that you can use to conduct primary assessment on an executable (or set "
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/JusticeRage/Manalyze.git && cd Manalyze",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:32:02.426Z"
+}

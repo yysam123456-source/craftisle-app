@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--newsblur",
+  "name": "NewsBlur",
+  "introduction": "Personal news reader that brings people together to talk about the world. A new sound of an old instrument",
+  "description": "Personal news reader that brings people together to talk about the world. A new sound of an old instrument",
+  "url": "https://www.newsblur.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-feed-readers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Personal news reader that brings people together to talk about the world. A new sound of an old instrument"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.389Z"
+}

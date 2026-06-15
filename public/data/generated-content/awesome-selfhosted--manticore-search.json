@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--manticore-search",
+  "name": "Manticore Search",
+  "introduction": "Full-text search and data analytics, with fast response time for small, medium and big data (alternative to Elasticsearch)",
+  "description": "Full-text search and data analytics, with fast response time for small, medium and big data (alternative to Elasticsearch)",
+  "url": "https://github.com/manticoresoftware/manticoresearch/",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Docker/deb/C++/K8S",
+  "category": "sh-search-engines",
+  "tags": [
+    "GPL-3.0",
+    "Docker/deb/C++/K8S"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Full-text search and data analytics, with fast response time for small, medium and big data (alternative to Elasticsearch)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.462Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ots",
+  "name": "OTS",
+  "introduction": "One-Time-Secret sharing platform with a symmetric 256bit AES encryption in the browser",
+  "description": "One-Time-Secret sharing platform with a symmetric 256bit AES encryption in the browser",
+  "url": "https://ots.fyi/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-custom-communication-systems",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "One-Time-Secret sharing platform with a symmetric 256bit AES encryption in the browser"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.349Z"
+}

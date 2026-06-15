@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--foodcoopshop",
+  "name": "FoodCoopShop",
+  "introduction": "User-friendly software for food-coops",
+  "description": "User-friendly software for food-coops",
+  "url": "https://www.foodcoopshop.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-community-supported-agriculture-csa",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "User-friendly software for food-coops"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.365Z"
+}

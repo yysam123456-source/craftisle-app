@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--exim",
+  "name": "Exim",
+  "introduction": "Message transfer agent (MTA) developed at the University of Cambridge",
+  "description": "Message transfer agent (MTA) developed at the University of Cambridge",
+  "url": "https://www.exim.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-mail-transfer-agents",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Message transfer agent (MTA) developed at the University of Cambridge"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.356Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--0-a-d",
+  "name": "0 A.D.",
+  "introduction": "Cross-platform real-time strategy game of ancient warfare",
+  "description": "Cross-platform real-time strategy game of ancient warfare",
+  "url": "https://play0ad.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-games",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Cross-platform real-time strategy game of ancient warfare"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.405Z"
+}

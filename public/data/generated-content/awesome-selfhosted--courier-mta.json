@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--courier-mta",
+  "name": "Courier MTA",
+  "introduction": "Fast, scalable, enterprise mail/groupware server providing ESMTP, IMAP, POP3, webmail, mailing list, basic web-based calendaring and scheduling services",
+  "description": "Fast, scalable, enterprise mail/groupware server providing ESMTP, IMAP, POP3, webmail, mailing list, basic web-based calendaring and scheduling services",
+  "url": "https://www.courier-mta.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-communication-email-mail-transfer-agents",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Fast, scalable, enterprise mail/groupware server providing ESMTP, IMAP, POP3, webmail, mailing list, basic web-based calendaring and scheduling services"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.355Z"
+}

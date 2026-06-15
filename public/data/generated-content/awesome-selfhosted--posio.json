@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--posio",
+  "name": "Posio",
+  "introduction": "Geography multiplayer game",
+  "description": "Geography multiplayer game",
+  "url": "https://github.com/abrenaut/posio",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Python",
+  "category": "sh-games",
+  "tags": [
+    "MIT",
+    "Python"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Geography multiplayer game"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.407Z"
+}

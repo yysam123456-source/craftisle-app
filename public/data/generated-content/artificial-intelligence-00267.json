@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00267",
+  "description": "** or [Awesome ChatGPT](https://github.com/uhub/awesome-chatgpt) - AI Resources",
+  "introduction": "** or [Awesome ChatGPT](https://github.com/uhub/awesome-chatgpt) - AI Resources",
+  "features": [
+    "<div align=\"center\">"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/sindresorhus/awesome-chatgpt.git && cd awesome-chatgpt",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:30:02.476Z"
+}

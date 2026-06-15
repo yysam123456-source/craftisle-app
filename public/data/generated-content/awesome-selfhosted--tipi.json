@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--tipi",
+  "name": "Tipi",
+  "introduction": "Homeserver manager. One command setup, one click installs for your favorites self-hosted apps",
+  "description": "Homeserver manager. One command setup, one click installs for your favorites self-hosted apps",
+  "url": "https://runtipi.io/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Homeserver manager. One command setup, one click installs for your favorites self-hosted apps"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

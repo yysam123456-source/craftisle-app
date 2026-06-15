@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--ilias",
+  "name": "ILIAS",
+  "introduction": "Learning management system that can cope with anything you throw at it",
+  "description": "Learning management system that can cope with anything you throw at it",
+  "url": "https://www.ilias.de",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-learning-and-courses",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Learning management system that can cope with anything you throw at it"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.424Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--nginx",
+  "name": "NGINX",
+  "introduction": "HTTP and reverse proxy server, mail proxy server, and generic TCP/UDP proxy server",
+  "description": "HTTP and reverse proxy server, mail proxy server, and generic TCP/UDP proxy server",
+  "url": "https://nginx.org/en/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "HTTP and reverse proxy server, mail proxy server, and generic TCP/UDP proxy server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.498Z"
+}

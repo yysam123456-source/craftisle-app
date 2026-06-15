@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--technitium-dns-server",
+  "name": "Technitium DNS Server",
+  "introduction": "Authoritative/recursive DNS server with ad blocking functionality",
+  "description": "Authoritative/recursive DNS server with ad blocking functionality",
+  "url": "https://technitium.com/dns/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-dns",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Authoritative/recursive DNS server with ad blocking functionality"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.378Z"
+}

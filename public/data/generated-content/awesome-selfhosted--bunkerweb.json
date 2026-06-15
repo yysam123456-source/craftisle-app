@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--bunkerweb",
+  "name": "BunkerWeb",
+  "introduction": "Next-gen Web Application Firewall (WAF) that will protect your web services",
+  "description": "Next-gen Web Application Firewall (WAF) that will protect your web services",
+  "url": "https://www.bunkerweb.io",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-web-servers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Next-gen Web Application Firewall (WAF) that will protect your web services"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.497Z"
+}

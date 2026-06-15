@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--p-nskelisten",
+  "name": "Pønskelisten",
+  "introduction": "Sharing wishlists and collaborating on gifts and presents",
+  "description": "Sharing wishlists and collaborating on gifts and presents",
+  "url": "https://github.com/aunefyren/poenskelisten",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "Docker/Go",
+  "category": "sh-miscellaneous",
+  "tags": [
+    "GPL-3.0",
+    "Docker/Go"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Sharing wishlists and collaborating on gifts and presents"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.448Z"
+}

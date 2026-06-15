@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--traccar",
+  "name": "Traccar",
+  "introduction": "Java application to track GPS positions. Supports loads of tracking devices and protocols, has an Android and iOS App. Has a web interface to view your trips",
+  "description": "Java application to track GPS positions. Supports loads of tracking devices and protocols, has an Android and iOS App. Has a web interface to view your trips",
+  "url": "https://www.traccar.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-maps-and-global-positioning-system-gps",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Java application to track GPS positions. Supports loads of tracking devices and protocols, has an Android and iOS App. Has a web interface to view your trips"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.429Z"
+}

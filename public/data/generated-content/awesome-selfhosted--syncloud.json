@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--syncloud",
+  "name": "Syncloud",
+  "introduction": "Your own online file storage, social network or email server",
+  "description": "Your own online file storage, social network or email server",
+  "url": "https://syncloud.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-self-hosting-solutions",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Your own online file storage, social network or email server"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.464Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--autokitteh",
+  "name": "autokitteh",
+  "introduction": "Durable workflow automation in just a few lines of code",
+  "description": "Durable workflow automation in just a few lines of code",
+  "url": "https://autokitteh.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-software-development-low-code",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Durable workflow automation in just a few lines of code"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.488Z"
+}

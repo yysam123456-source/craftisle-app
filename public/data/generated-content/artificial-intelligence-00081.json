@@ -21,6 +21,7 @@
   ],
   "alternatives": [],
   "quickStart": "git clone https://github.com/LostRuins/koboldcpp.git && cd koboldcpp",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:39.942Z"
+  "source": "fmhy+github+selfhosted",
+  "generatedAt": "2026-06-15T02:38:39.942Z",
+  "updatedAt": "2026-06-15T03:28:08.839Z"
 }

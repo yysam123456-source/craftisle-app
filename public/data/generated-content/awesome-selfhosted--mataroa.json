@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--mataroa",
+  "name": "Mataroa",
+  "introduction": "Naked blogging platform for minimalists",
+  "description": "Naked blogging platform for minimalists",
+  "url": "https://mataroa.blog/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-blogging-platforms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Naked blogging platform for minimalists"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.344Z"
+}

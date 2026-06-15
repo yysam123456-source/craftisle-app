@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--e-label",
+  "name": "E-Label",
+  "introduction": "Solution for electronic labels, with QR Codes, on wine bottles sold within the European Union",
+  "description": "Solution for electronic labels, with QR Codes, on wine bottles sold within the European Union",
+  "url": "https://filipecarneiro.github.io/ELabel/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-community-supported-agriculture-csa",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Solution for electronic labels, with QR Codes, on wine bottles sold within the European Union"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.364Z"
+}

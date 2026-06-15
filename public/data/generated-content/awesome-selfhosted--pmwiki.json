@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--pmwiki",
+  "name": "PmWiki",
+  "introduction": "Wiki-based system for collaborative creation and maintenance of websites",
+  "description": "Wiki-based system for collaborative creation and maintenance of websites",
+  "url": "https://www.pmwiki.org",
+  "pricing": "Free",
+  "license": "GPL-3.0",
+  "tech": "PHP",
+  "category": "sh-wikis",
+  "tags": [
+    "GPL-3.0",
+    "PHP"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Wiki-based system for collaborative creation and maintenance of websites"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.500Z"
+}

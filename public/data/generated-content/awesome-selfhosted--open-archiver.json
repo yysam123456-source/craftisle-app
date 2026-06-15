@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--open-archiver",
+  "name": "Open Archiver",
+  "introduction": "Email archiving solution with full-text search and eDiscovery search features",
+  "description": "Email archiving solution with full-text search and eDiscovery search features",
+  "url": "https://openarchiver.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-archiving-and-digital-preservation-dp",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Email archiving solution with full-text search and eDiscovery search features"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.334Z"
+}

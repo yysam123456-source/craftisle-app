@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--family-accounting-tool",
+  "name": "Family Accounting Tool",
+  "introduction": "Web-based finance management tool for partners with partially shared expenses",
+  "description": "Web-based finance management tool for partners with partially shared expenses",
+  "url": "https://github.com/nymanjens/facto",
+  "pricing": "Free",
+  "license": "Apache-2.0",
+  "tech": "Scala",
+  "category": "sh-money-budgeting-management",
+  "tags": [
+    "Apache-2.0",
+    "Scala"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based finance management tool for partners with partially shared expenses"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.449Z"
+}

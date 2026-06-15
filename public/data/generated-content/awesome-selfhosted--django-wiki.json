@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--django-wiki",
+  "name": "django-wiki",
+  "introduction": "Wiki system with complex functionality for simple integration and a superb interface. Store your knowledge with style: Use django models",
+  "description": "Wiki system with complex functionality for simple integration and a superb interface. Store your knowledge with style: Use django models",
+  "url": "https://github.com/django-wiki/django-wiki",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-wikis",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Wiki system with complex functionality for simple integration and a superb interface. Store your knowledge with style: Use django models"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.499Z"
+}

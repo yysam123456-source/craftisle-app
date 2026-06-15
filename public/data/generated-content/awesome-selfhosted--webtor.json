@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--webtor",
+  "name": "Webtor",
+  "introduction": "Web-based torrent client with instant audio/video streaming",
+  "description": "Web-based torrent client with instant audio/video streaming",
+  "url": "https://github.com/webtor-io/self-hosted",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-file-transfer-peer-to-peer-filesharing",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web-based torrent client with instant audio/video streaming"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.398Z"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--warpgate",
+  "name": "Warpgate",
+  "introduction": "Smart SSH and HTTPS bastion that works with any SSH client",
+  "description": "Smart SSH and HTTPS bastion that works with any SSH client",
+  "url": "https://github.com/warp-tech/warpgate",
+  "pricing": "Free",
+  "license": "Apache-2.0",
+  "tech": "Rust/Docker",
+  "category": "sh-remote-access",
+  "tags": [
+    "Apache-2.0",
+    "Rust/Docker"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Smart SSH and HTTPS bastion that works with any SSH client"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.461Z"
+}

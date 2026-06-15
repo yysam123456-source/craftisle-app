@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--jelu",
+  "name": "Jelu",
+  "introduction": "Read and to-read list book tracker",
+  "description": "Read and to-read list book tracker",
+  "url": "https://bayang.github.io/jelu-web",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Read and to-read list book tracker"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.447Z"
+}

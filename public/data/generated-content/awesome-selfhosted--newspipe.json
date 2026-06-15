@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--newspipe",
+  "name": "Newspipe",
+  "introduction": "Web news reader",
+  "description": "Web news reader",
+  "url": "https://git.sr.ht/~cedric/newspipe",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-feed-readers",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Web news reader"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.390Z"
+}

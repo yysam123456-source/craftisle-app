@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--habitica",
+  "name": "Habitica",
+  "introduction": "Habit tracker app which treats your goals like a Role Playing Game",
+  "description": "Habit tracker app which treats your goals like a Role Playing Game",
+  "url": "https://habitica.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-miscellaneous",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Habit tracker app which treats your goals like a Role Playing Game"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.446Z"
+}

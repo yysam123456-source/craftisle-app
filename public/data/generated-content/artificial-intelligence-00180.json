@@ -1,0 +1,23 @@
+{
+  "id": "artificial-intelligence-00180",
+  "description": "Stable Diffusion for AMD Systems / [Discord](https://discord.gg/ptgMMv36Xu)",
+  "introduction": "Stable Diffusion for AMD Systems / [Discord](https://discord.gg/ptgMMv36Xu)",
+  "features": [
+    "A powerful alternative to commercial tools",
+    "Open-source and community-driven"
+  ],
+  "useCases": [],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://huggingface.co/TensorStack/Diffuse to get started",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:29:10.999Z"
+}

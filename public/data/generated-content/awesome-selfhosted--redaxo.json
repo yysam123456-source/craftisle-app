@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--redaxo",
+  "name": "REDAXO",
+  "introduction": "Simple, flexible and useful content management system (documentation in German)",
+  "description": "Simple, flexible and useful content management system (documentation in German)",
+  "url": "https://www.redaxo.org",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Simple, flexible and useful content management system (documentation in German)"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.371Z"
+}

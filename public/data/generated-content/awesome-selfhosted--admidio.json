@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--admidio",
+  "name": "admidio",
+  "introduction": "User management system for websites of organizations and groups. The system has a flexible role model so that it’s possible to reflect the structure and permissions of your organization",
+  "description": "User management system for websites of organizations and groups. The system has a flexible role model so that it’s possible to reflect the structure and permissions of your organization",
+  "url": "https://www.admidio.org/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-human-resources-management-hrm",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "User management system for websites of organizations and groups. The system has a flexible role model so that it’s possible to reflect the structure and permissions of your organization"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.419Z"
+}

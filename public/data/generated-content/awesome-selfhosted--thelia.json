@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--thelia",
+  "name": "Thelia",
+  "introduction": "Thelia is an open source and flexible e-commerce solution",
+  "description": "Thelia is an open source and flexible e-commerce solution",
+  "url": "https://thelia.net/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-e-commerce",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Thelia is an open source and flexible e-commerce solution"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.387Z"
+}

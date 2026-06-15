@@ -1,0 +1,25 @@
+{
+  "id": "artificial-intelligence-00292",
+  "description": "/ [GitHub](https://github.com/HumanCompatibleAI/tensor-trust) or [Gandalf](https://gandalf.lakera.ai/) / [GitHub](https://github.com/lakeraai) - Prompting Skill Games",
+  "introduction": "/ [GitHub](https://github.com/HumanCompatibleAI/tensor-trust) or [Gandalf](https://gandalf.lakera.ai/) / [GitHub](https://github.com/lakeraai) - Prompting Skill Games",
+  "features": [
+    "This is the source code for the Tensor Trust web game and data cleaning pipeline. See the [paper website](https://tensor"
+  ],
+  "useCases": [
+    "Self-hosted deployment",
+    "Replacing proprietary software"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source",
+    "Community-driven"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/HumanCompatibleAI/tensor-trust.git && cd tensor-trust",
+  "source": "fmhy+github",
+  "generatedAt": "2026-06-15T03:30:31.638Z"
+}

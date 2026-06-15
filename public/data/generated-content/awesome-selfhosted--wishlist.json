@@ -1,0 +1,24 @@
+{
+  "id": "awesome-selfhosted--wishlist",
+  "name": "Wishlist",
+  "introduction": "Wishlist application that you can share with your friends and family",
+  "description": "Wishlist application that you can share with your friends and family",
+  "url": "https://github.com/cmintey/wishlist",
+  "pricing": "Free",
+  "license": "MIT",
+  "tech": "Docker/K8S",
+  "category": "sh-miscellaneous",
+  "tags": [
+    "MIT",
+    "Docker/K8S"
+  ],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Wishlist application that you can share with your friends and family"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.449Z"
+}

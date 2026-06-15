@@ -1,0 +1,18 @@
+{
+  "id": "free-for-dev--news-api",
+  "name": "News API",
+  "introduction": "**",
+  "description": "**",
+  "url": "https://newsapi.org",
+  "pricing": "Free Tier",
+  "freeTier": "",
+  "category": "ffd-apis-data-and-ml",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "free-for-dev",
+  "updatedAt": "2026-06-15T04:18:09.354Z"
+}

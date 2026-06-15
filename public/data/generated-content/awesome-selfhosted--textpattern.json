@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--textpattern",
+  "name": "Textpattern",
+  "introduction": "Flexible, elegant and easy-to-use CMS",
+  "description": "Flexible, elegant and easy-to-use CMS",
+  "url": "https://textpattern.com/",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Flexible, elegant and easy-to-use CMS"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.371Z"
+}

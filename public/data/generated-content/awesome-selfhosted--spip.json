@@ -1,0 +1,21 @@
+{
+  "id": "awesome-selfhosted--spip",
+  "name": "SPIP",
+  "introduction": "Publication system for the Internet aimed at collaborative work, multilingual environments, and simplicity of use for web authors",
+  "description": "Publication system for the Internet aimed at collaborative work, multilingual environments, and simplicity of use for web authors",
+  "url": "https://www.spip.net/fr",
+  "pricing": "Free",
+  "license": "",
+  "tech": "",
+  "category": "sh-content-management-systems-cms",
+  "tags": [],
+  "pros": [],
+  "cons": [],
+  "useCases": [
+    "Publication system for the Internet aimed at collaborative work, multilingual environments, and simplicity of use for web authors"
+  ],
+  "alternatives": [],
+  "similarAlternatives": [],
+  "source": "awesome-selfhosted",
+  "updatedAt": "2026-06-15T04:18:09.371Z"
+}
