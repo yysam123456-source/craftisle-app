@@ -193,7 +193,6 @@ function parseResources(markdown, categoryId) {
     // 🔑 提取 GitHub 仓库链接
     const githubRepo = extractGitHubRepo(line);
 
-    idCounter++;
     const resource = {
       id: nextGlobalId(categoryId),
       category: categoryId,

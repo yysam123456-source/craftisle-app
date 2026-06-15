@@ -2,10 +2,10 @@ name: Update Directory Data
 
 on:
   schedule:
-    # 内容生成：每周一凌晨 2 点（北京时间）
-    - cron: '0 18 * * 1'
-    # 数据更新：每天凌晨 2 点（北京时间）
+    # 数据更新：每天北京时间 凌晨 2 点（UTC 18:00）
     - cron: '0 18 * * *'
+    # 内容生成：每周一 北京时间 凌晨 2 点（UTC 每周一 18:00）
+    - cron: '0 18 * * 1'
   workflow_dispatch: # 允许手动触发
 
 jobs:
@@ -17,12 +17,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Update FMHY data
         run: npm run update:fmhy
 
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
@@ -37,7 +39,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Update GitHub Stars
         run: npm run update:github-stars
@@ -45,6 +47,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
@@ -59,25 +63,71 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Update AlternativeTo data
         run: npm run update:alternativeto
 
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add public/data/alternatives-*.json lib/alternatives.ts
           git diff --staged --quiet || (git commit -m "Auto-update: AlternativeTo data ($(date +'%Y-%m-%d'))" && git push)
 
+  update-awesome-lists:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update Awesome Lists data
+        run: npm run update:awesome-lists
+
+      - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add public/data/awesome-selfhosted-resources.json public/data/free-for-dev-resources.json
+          git diff --staged --quiet || (git commit -m "Auto-update: Awesome Lists data ($(date +'%Y-%m-%d'))" && git push)
+
+  update-producthunt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update Product Hunt data
+        run: npm run update:producthunt
+
+      - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add public/data/producthunt-*.json
+          git diff --staged --quiet || (git commit -m "Auto-update: Product Hunt data ($(date +'%Y-%m-%d'))" && git push)
+
   generate-content:
     runs-on: ubuntu-latest
-    needs: [update-fmhy, update-github-stars, update-alternativeto]
+    needs: [update-fmhy, update-github-stars, update-alternativeto, update-awesome-lists]
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 拉取最新提交（包含前面 job 的数据更新）
+          fetch-depth: 0
 
       - name: Pull latest changes
         run: git pull origin main
@@ -85,20 +135,28 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Generate content from real data (FMHY + GitHub README)
         run: node scripts/populate-content-v2.mjs 500
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge Awesome-Selfhosted data
-        run: node scripts/merge-selfhosted.mjs
+      - name: Import Awesome-Selfhosted data
+        run: node scripts/import-selfhosted-to-content.mjs
+
+      - name: Import Free-for-Dev data
+        run: node scripts/import-freefordev-to-content.mjs
 
       - name: Merge AlternativeTo data
         run: node scripts/merge-alternativeto-data.mjs
 
+      - name: Scrape resource descriptions (official websites)
+        run: node scripts/scrape-resource-descriptions.mjs 100
+
       - name: Commit and push generated content
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
