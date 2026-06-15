@@ -104,7 +104,7 @@ export function TopCategories() {
         {/* View All Button */}
         <div className="text-center">
           <Link
-            href="/directory/best"
+            href="/directory/categories"
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           >
             <LayoutGrid className="h-4 w-4" />

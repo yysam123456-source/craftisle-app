@@ -14,7 +14,7 @@ import { getCombinedMap, type AlternativeEntry } from "@/lib/alternatives";
 import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe, Star, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface BestPageProps {
@@ -146,6 +146,26 @@ function findCategory(slug: string): Category | null {
   const { slugToCat, slugToCat2026 } = buildSlugMaps();
   const lowerSlug = slug.toLowerCase();
   return slugToCat[lowerSlug] || slugToCat2026[lowerSlug] || slugToCat[slug] || slugToCat2026[slug] || null;
+}
+
+// ── 清洗 FMHY 原始描述文字 ──────────────────────────
+function cleanDescription(desc: string | undefined): string {
+  if (!desc) return "";
+  const lastDash = desc.lastIndexOf("- ");
+  if (lastDash > desc.length * 0.4) {
+    let result = desc.slice(lastDash + 2).trim();
+    result = result.replace(/\[.*?\]\(.*?\)/g, " ").trim();
+    result = result.replace(/\s{2,}/g, " ").trim();
+    if (result.length >= 3)
+      return result.length > 120 ? result.slice(0, 117) + "..." : result;
+  }
+  let cleaned = desc
+    .replace(/\[.*?\]\(.*?\)/g, "")
+    .replace(/^\*+\s*/, "")
+    .replace(/^[\/,\s]+/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+  return cleaned.length > 120 ? cleaned.slice(0, 117) + "..." : cleaned;
 }
 
 // ── 获取分类下的资源（fmhy 数据）──────────────────────────
@@ -324,7 +344,7 @@ export default async function BestToolsPage(props: BestPageProps) {
       </nav>
 
       <h1 className="text-3xl font-bold mb-2">
-        Best {category.name} Tools to Use in {is2026 ? "2026" : "2025"}
+        Best {category.name} Tools to Use in 2026
       </h1>
       <p className="text-gray-600 mb-8 max-w-2xl">
         {description}
@@ -343,20 +363,30 @@ export default async function BestToolsPage(props: BestPageProps) {
               >
                 <Card className="p-4 hover:shadow-md transition-shadow h-full">
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                      <Globe className="w-5 h-5 text-muted-foreground" />
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-lg font-bold text-primary">
+                      {(r.icon || r.name?.charAt(0) || "?").toUpperCase()}
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-medium text-sm truncate">{r.name}</h3>
                       <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                        {r.description}
+                        {cleanDescription(r.description) || `${r.categoryName} tool`}
                       </p>
-                      <div className="flex gap-1 mt-2 flex-wrap">
-                        {r.tags?.slice(0, 2).map((t: string) => (
-                          <Badge key={t} variant="outline" className="text-xs">
-                            {t}
+                      <div className="flex gap-1 mt-2 flex-wrap items-center">
+                        {r.isFree !== false && (
+                          <Badge className="bg-green-50 text-green-700 border-green-200 text-xs px-1.5 py-0">
+                            Free
                           </Badge>
-                        ))}
+                        )}
+                        {r.isOpenSource && (
+                          <Badge variant="outline" className="text-xs px-1.5 py-0">
+                            OSS
+                          </Badge>
+                        )}
+                        {r.githubStars && (
+                          <span className="text-xs text-muted-foreground ml-auto">
+                            {"\u2B50"}{r.githubStars > 1000 ? `${(r.githubStars / 1000).toFixed(1)}k` : r.githubStars}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -393,7 +423,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium">{r.name}</h3>
                       <p className="text-sm text-gray-500 truncate">
-                        {r.description}
+                        {cleanDescription(r.description) || `${r.categoryName} tool`}
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
