@@ -14,6 +14,7 @@ import { EditorPicks } from "@/components/directory/home/editor-picks";
 import { QuickRankings } from "@/components/directory/home/quick-rankings";
 import { DecisionGuide } from "@/components/directory/home/decision-guide";
 import { SectionContainer } from "@/components/directory/section-container";
+import { PopularAlternatives } from "@/components/directory/home/popular-alternatives";
 
 export const metadata: Metadata = constructMetadata({
   title: "Free Resource Directory | 10,000+ Curated Free Tools, APIs & Software | Craftisle",
@@ -256,12 +257,7 @@ export default async function ResourcesPage() {
         subtitle="Discover high-quality free replacements for popular paid software"
         icon="🔥"
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
-          {/* TODO: Add Popular Alternatives component */}
-          <p className="text-muted-foreground text-center col-span-full">
-            Coming soon...
-          </p>
-        </div>
+        <PopularAlternatives />
       </SectionContainer>
 
       {/* More Ways to Explore */}

@@ -17,6 +17,7 @@ import {
   getResourceById,
   getRelatedResources,
   getRichInfoResourceIds,
+  getHotResourcesByScore,
   type Resource,
   generateAdvantages,
   findSimilarResources,
@@ -31,10 +32,9 @@ const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', '
 export const revalidate = 21600; // 6小时 ISR
 export const dynamicParams = true;
 export async function generateStaticParams() {
-  const richIds = getRichInfoResourceIds();
-  const resources = getAllResources();
-  // 只预生成前10个资源页面，其余按需生成
-  return resources.filter((r) => richIds.has(r.id)).slice(0, 10).map((r) => ({ id: r.id }));
+  // 按综合评分取 TOP 50 预渲染（覆盖首页各板块展示的资源）
+  const top = getHotResourcesByScore(50);
+  return top.map((r) => ({ id: r.id }));
 }
 
 // ── Metadata ────────────────────────────────────────────

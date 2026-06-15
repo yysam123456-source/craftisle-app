@@ -11,8 +11,8 @@ import { ArrowRight, Trophy } from "lucide-react";
 
 const RANKING_CATEGORIES = [
   { id: "Artificial-Intelligence", name: "AI Tools", icon: "🤖" },
-  { id: "Development", name: "Dev Tools", icon: "💻" },
-  { id: "Privacy-Security", name: "Privacy Tools", icon: "🔒" },
+  { id: "Adblock", name: "Adblock Tools", icon: "🛡️" },
+  { id: "Gaming", name: "Gaming Tools", icon: "🎮" },
 ];
 
 function getTopResourcesByCategory(categoryId: string, limit = 5) {
