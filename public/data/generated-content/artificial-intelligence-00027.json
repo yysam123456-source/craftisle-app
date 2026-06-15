@@ -1,16 +1,17 @@
 {
   "id": "artificial-intelligence-00027",
   "description": "Claude Opus 4.8 / Claude Sonnet 4.6 / Multiple Models / Sign-Up (GitHub) / [Subreddit](https://www.reddit.com/r/Ishchat/) / [Discord](https://discord.gg/cwDTVKyKJz) / [Token Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/ish.md)",
-  "introduction": "Claude Opus 4.8 / Claude Sonnet 4.6 / Multiple Models / Sign-Up (GitHub) / [Subreddit](https://www.reddit.com/r/Ishchat/) / [Discord](https://discord.gg/cwDTVKyKJz) / [Token Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/ish.md)",
+  "introduction": "Affinity Publisher is a one-time purchase desktop publishing software at $69.99, positioned as an InDesign alternative without subscription.",
   "features": [
     "A powerful alternative to commercial tools",
     "Open-source and community-driven"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "One-time cost still required",
+    "Less third-party plugin support than InDesign",
+    "Smaller community than Adobe"
   ],
-  "pricing": "Free / Open Source",
+  "pricing": "$69.99 one-time",
   "pros": [
     "Free and open-source",
     "Community-driven"
@@ -19,8 +20,31 @@
     "May require technical setup",
     "Community support only"
   ],
-  "alternatives": [],
+  "alternatives": [
+    {
+      "name": "Scribus (open-source)",
+      "url": "https://www.scribus.net",
+      "reason": "Completely free and open-source desktop publishing"
+    },
+    {
+      "name": "Inkscape + extensions",
+      "url": "https://inkscape.org",
+      "reason": "Free vector graphics with desktop publishing extensions"
+    },
+    {
+      "name": "Canva (free tier)",
+      "url": "https://www.canva.com",
+      "reason": "Free web-based design with publishing templates"
+    }
+  ],
   "quickStart": "git clone https://github.com/fmhy/edit.git && cd edit",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:04.303Z"
+  "source": "fmhy+github+alternativeto",
+  "generatedAt": "2026-06-15T02:38:04.303Z",
+  "tagline": "One-time purchase desktop publishing at $69.99",
+  "similarAlternatives": [
+    "Scribus (open-source)",
+    "Inkscape + extensions",
+    "Canva (free tier)"
+  ],
+  "updatedAt": "2026-06-15T03:20:28.244Z"
 }

@@ -5,7 +5,7 @@ import { join } from "path";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles, Star } from "lucide-react";
 import { ResourceCard } from "@/components/resources/resource-card";
 import { GiscusComments } from "@/components/giscus-comments";
@@ -88,13 +88,13 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       url: canonicalUrl,
-      title: review ? `${resource.name} — In-Depth Review | Craftisle` : title,
+      title: generatedContent ? `${resource.name} — In-Depth Review | Craftisle` : title,
       description,
       siteName: "Craftisle",
     },
     twitter: {
       card: "summary",
-      title: review ? `${resource.name} Review` : title,
+      title: generatedContent ? `${resource.name} Review` : title,
       description,
     },
   };
@@ -118,59 +118,56 @@ function getFaviconUrl(url: string): string {
 }
 
 function slugify(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""  );
 }
 
-// ── Review loading ─────────────────────────────────────
-interface ReviewContent {
-  overview: string;
-  pros: string[];
-  cons: string[];
-  bestUseCases: string[];
-  similarAlternatives: string[];
-  category?: string;
+// ── Tutorials Section ────────────────────────────────
+function TutorialsSection({ tutorials }: { tutorials: Tutorial[] }) {
+  if (!tutorials || tutorials.length === 0) return null;
+
+  return (
+    <div className="mt-10 border-t pt-8 animate-fade-in">
+      <div className="flex items-center gap-2 mb-6">
+        <BookOpen className="h-5 w-5 text-blue-500" />
+        <h2 className="text-xl font-bold">Tutorials & Resources</h2>
+        <Badge variant="outline" className="text-xs text-blue-600 border-blue-300">
+          Community
+        </Badge>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {tutorials.map((tut, i) => (
+          <Card key={i} className="hover:shadow-md transition-shadow">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">
+                <a
+                  href={tut.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline flex items-start gap-2"
+                >
+                  {tut.type === "github-readme" ? (
+                    <Globe className="h-4 w-4 mt-0.5 flex-shrink-0 text-muted-foreground" />
+                  ) : (
+                    <ExternalLink className="h-4 w-4 mt-0.5 flex-shrink-0 text-muted-foreground" />
+                  )}
+                  <span>{tut.title || tut.url}</span>
+                </a>
+              </CardTitle>
+              {tut.description && (
+                <CardDescription className="text-sm line-clamp-3 mt-1">
+                  {tut.description.replace(/<[^>]+>/g, "").slice(0, 200)}
+                </CardDescription>
+              )}
+            </CardHeader>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-interface ReviewData {
-  resourceId: string;
-  resourceName: string;
-  resourceUrl: string;
-  source: string;
-  generatedAt: string;
-  version: number;
-  content: ReviewContent;
-}
-
-function loadReview(resourceIdOrName: string): ReviewData | null {
-  // First try: direct file by resourceId
-  try {
-    const filePath = join(process.cwd(), "public", "data", "reviews", `${resourceIdOrName}.json`);
-    return JSON.parse(readFileSync(filePath, "utf-8"));
-  } catch {
-    // Fallback: look up by resource name via manifest
-  }
-
-  // Second try: search _manifest.json for matching resourceName
-  try {
-    const manifestPath = join(process.cwd(), "public", "data", "reviews", "_manifest.json");
-    const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
-    const reviews: any[] = manifest.reviews || [];
-    for (const entry of reviews) {
-      if (
-        entry.resourceId === resourceIdOrName ||
-        entry.resourceName?.toLowerCase() === resourceIdOrName.toLowerCase()
-      ) {
-        const filePath = join(process.cwd(), "public", "data", "reviews", `${entry.resourceId}.json`);
-        return JSON.parse(readFileSync(filePath, "utf-8"));
-      }
-    }
-  } catch {
-    // no match
-  }
-  return null;
-}
-
-// ── 加载脚本生成的真实内容（来自 public/data/generated-content/{id}.json）───
+// ── Page component continues ────────────────────────// ── 加载脚本生成的真实内容（来自 public/data/generated-content/{id}.json）───
 interface GeneratedContent {
   id?: string;
   description?: string;
@@ -195,6 +192,24 @@ function loadGeneratedContent(resourceId: string): GeneratedContent | null {
   }
 }
 
+interface Tutorial {
+  type: string;
+  url: string;
+  title: string;
+  description?: string;
+  thumbnail?: string;
+}
+
+function loadTutorials(resourceId: string): Tutorial[] {
+  try {
+    const filePath = join(process.cwd(), "public", "data", "tutorials.json");
+    const all = JSON.parse(readFileSync(filePath, "utf-8"));
+    return all[resourceId] || [];
+  } catch {
+    return [];
+  }
+}
+
 // ── Page ─────────────────────────────────────────────────
 export default async function ResourceDetailPage({
   params,
@@ -212,6 +227,7 @@ export default async function ResourceDetailPage({
   const related = getRelatedResources(resource, 6);
   const faviconUrl = getFaviconUrl(resource.url);
   const hostname = getHostname(resource.url);
+  const tutorials = loadTutorials(id);
 
   // Structured Data: SoftwareApplication
   const jsonLd = {
@@ -540,9 +556,7 @@ export default async function ResourceDetailPage({
                         </a>
                       ))}
                     </div>
-                    <p className="text-xs text-muted-foreground mt-4">
-                      💡 We're working on adding curated tutorials and blog posts. Check back soon!
-                    </p>
+                    <TutorialsSection tutorials={tutorials} />
                   </div>
                 ) : null;
               })()}
@@ -714,7 +728,13 @@ export default async function ResourceDetailPage({
               {/* Auto-Generated Content Section (scripts + APIs, no AI) */}
               {(() => {
                 const generatedContent = loadGeneratedContent(resource.id);
-                return generatedContent ? <GeneratedContentSection content={generatedContent} /> : null;
+                const tutorials = loadTutorials(resource.id);
+                return (
+                  <>
+                    {generatedContent ? <GeneratedContentSection content={generatedContent} /> : null}
+                    <TutorialsSection tutorials={tutorials} />
+                  </>
+                );
               })()}
 
               {/* CTA */}
@@ -975,109 +995,6 @@ export default async function ResourceDetailPage({
 }
 
 // ── Review Section Component ────────────────────────────
-function ReviewSection({ review }: { review: ReviewData }) {
-  const { content } = review;
-
-  return (
-    <div className="mt-10 border-t pt-8">
-      <div className="flex items-center gap-2 mb-6">
-        <Sparkles className="h-5 w-5 text-amber-500" />
-        <h2 className="text-xl font-bold">In-Depth Review</h2>
-        <Badge variant="outline" className="text-xs text-amber-600 border-amber-300">
-          AI-Enhanced
-        </Badge>
-      </div>
-
-      {/* Overview */}
-      <div className="mb-8">
-        <p className="text-muted-foreground leading-relaxed text-[15px]">
-          {content.overview}
-        </p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Pros */}
-        <Card className="border-green-200 dark:border-green-900 bg-green-50/40 dark:bg-green-950/20">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2 text-green-700 dark:text-green-400">
-              <ThumbsUp className="h-4 w-4" />
-              Pros
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {content.pros.map((pro, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="text-green-500 mt-1 flex-shrink-0">✓</span>
-                  <span>{pro}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-
-        {/* Cons */}
-        <Card className="border-red-200 dark:border-red-900 bg-red-50/40 dark:bg-red-950/20">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2 text-red-700 dark:text-red-400">
-              <ThumbsDown className="h-4 w-4" />
-              Cons
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {content.cons.map((con, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="text-red-500 mt-1 flex-shrink-0">✗</span>
-                  <span>{con}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Best Use Cases */}
-      <Card className="mt-6 border-blue-200 dark:border-blue-900 bg-blue-50/40 dark:bg-blue-950/20">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base flex items-center gap-2 text-blue-700 dark:text-blue-400">
-            <Lightbulb className="h-4 w-4" />
-            Best Use Cases
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {content.bestUseCases.map((useCase, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                <span className="text-blue-500 mt-1 flex-shrink-0">•</span>
-                <span>{useCase}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-
-      {/* Similar Alternatives */}
-      {content.similarAlternatives && content.similarAlternatives.length > 0 && (
-        <div className="mt-6">
-          <h3 className="text-sm font-semibold mb-3">Similar Tools & Alternatives</h3>
-          <div className="flex flex-wrap gap-2">
-            {content.similarAlternatives.map((alt) => (
-              <Badge key={alt} variant="secondary" className="text-xs">
-                {alt}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Link to full blog article */}
-      <div className="mt-6 flex justify-end">
-        <Link href={`/blog/review/${slugify(review.resourceName)}`}>
-          <Button variant="outline" size="sm" className="gap-1.5">
-            Read Full Review <ArrowRight className="h-3.5 w-3.5" />
-          </Button>
-// ── Generated Content Section (scripts + APIs, no AI) ─────────
 function GeneratedContentSection({ content }: { content: GeneratedContent }) {
   const { introduction, features, useCases, pros, cons, pricing, quickStart, source, generatedAt } = content;
 
