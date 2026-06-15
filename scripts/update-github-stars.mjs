@@ -36,14 +36,20 @@ function parseGitHubUrl(url) {
   }
 }
 
-async function fetchStars(repo) {
+async function fetchStars(repo, retryCount = 0) {
   const url = `https://api.github.com/repos/${repo}`;
   try {
     const resp = await fetch(url, { headers: HEADERS });
     if (resp.status === 403) {
-      console.warn(`  ⚠ Rate limited, waiting...`);
-      await new Promise((r) => setTimeout(r, 60000));
-      return fetchStars(repo);
+      if (retryCount < 3) {
+        const waitTime = Math.pow(2, retryCount) * 1000; // 指数退避
+        console.warn(`  ⚠️ Rate limited, waiting ${waitTime}ms...`);
+        await new Promise((r) => setTimeout(r, waitTime));
+        return fetchStars(repo, retryCount + 1);
+      } else {
+        console.warn(`  ⚠️ Rate limit exceeded for ${repo}, skipping...`);
+        return null;
+      }
     }
     if (!resp.ok) return null;
     const data = await resp.json();

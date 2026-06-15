@@ -9,11 +9,11 @@ import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
 import { getAllCategories, getHotResources, getSources, getStats } from "@/lib/fmhy-data";
 import { DOMAINS, getDomainForCategoryId } from "@/lib/unified-categories";
-import { ScenarioCards } from "@/components/directory/home/scenario-cards";
+import { ScenarioCardsDynamic } from "@/components/directory/home/scenario-cards-dynamic";
 import { EditorPicks } from "@/components/directory/home/editor-picks";
 import { QuickRankings } from "@/components/directory/home/quick-rankings";
 import { SectionContainer } from "@/components/directory/section-container";
-import { PopularAlternatives } from "@/components/directory/home/popular-alternatives";
+import { PopularAlternativesDynamic } from "@/components/directory/home/popular-alternatives-dynamic";
 
 export const metadata: Metadata = constructMetadata({
   title: "Free Resource Directory | 10,000+ Curated Free Tools, APIs & Software | Craftisle",
@@ -230,7 +230,7 @@ export default async function ResourcesPage() {
       </section>
 
       {/* Scenario-based entry */}
-      <ScenarioCards />
+      <ScenarioCardsDynamic />
 
       {/* Editor's Picks */}
       <EditorPicks />
@@ -256,7 +256,7 @@ export default async function ResourcesPage() {
         subtitle="Discover high-quality free replacements for popular paid software"
         icon="🔥"
       >
-        <PopularAlternatives />
+        <PopularAlternativesDynamic />
       </SectionContainer>
 
       {/* More Ways to Explore */}

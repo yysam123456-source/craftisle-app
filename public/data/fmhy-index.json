@@ -26,7 +26,7 @@
       "name": "Misc",
       "description": "Misc resources",
       "icon": "📦",
-      "count": 8887
+      "count": 8894
     },
     {
       "id": "Downloading",
@@ -40,14 +40,14 @@
       "name": "Reading",
       "description": "Reading resources",
       "icon": "📦",
-      "count": 2305
+      "count": 2309
     },
     {
       "id": "Gaming",
       "name": "Gaming",
       "description": "Gaming resources",
       "icon": "📦",
-      "count": 1789
+      "count": 1793
     },
     {
       "id": "Linux",
