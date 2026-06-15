@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { readFileSync } from "fs";
 import { join } from "path";
@@ -258,9 +258,9 @@ export default async function ResourceDetailPage({
   const resource = getResourceById(id);
   if (!resource) notFound();
 
-  // 开发环境允许所有资源有详情页；生产环境仅富信息资源
-  // const richInfoIds = getRichInfoResourceIds();
-  // if (!richInfoIds.has(id)) notFound();
+  // 质量优先：无实质内容的资源直接跳转外链
+  const richInfoIds = getRichInfoResourceIds();
+  if (!richInfoIds.has(id)) redirect(resource.url);
 
   const related = getRelatedResources(resource, 6);
   const faviconUrl = getFaviconUrl(resource.url);

@@ -326,41 +326,40 @@ let _richInfoIdsCache: Set<string> | null = null;
 
 export function getRichInfoResourceIds(): Set<string> {
   if (_richInfoIdsCache) return _richInfoIdsCache;
-  
+
   const all = getAllResources();
   const set = new Set<string>();
 
-  // 规则（Task 1.1.3 降低门槛）：
-  // 1. 有真实描述（非 "**"，长度 > 20 字符，从 50 降至 20）
-  // 2. 综合评分 TOP 200（热门资源）
-  // 3. 有 GitHub Stars 的资源
-  // 4. 有标签（tags）的资源
-  // 5. 有 freeTier 描述的 free-for-dev 资源
+  // 高质量门槛：只选择有实质内容的资源（质量优先，避免垃圾页面）
   for (const r of all) {
-    if (r.description && r.description !== '**' && r.description.length > 20) {
+    const desc = (r.description || "").trim();
+    const hasReview = hasReviewFor(r);
+    const hasStars = !!(r.githubStars && r.githubStars > 0);
+    const hasGoodStars = !!(r.githubStars && r.githubStars > 10);
+    
+    // 规则1：有 AI review（最高质量）
+    if (hasReview) {
       set.add(r.id);
       continue;
     }
-    if (r.githubStars && r.githubStars > 0) {
+    
+    // 规则2：有详细描述且有一定 GitHub Stars（确保资源真实有价值）
+    if (desc.length > 100 && hasGoodStars) {
       set.add(r.id);
       continue;
     }
-    if (r.tags && r.tags.length > 0) {
+    
+    // 规则3：有描述且有 GitHub Stars（低门槛，但需要有 stars 证明价值）
+    if (desc.length > 50 && hasStars) {
       set.add(r.id);
       continue;
     }
-    if (r.source === 'free-for-dev' && r.freeTier && r.freeTier.length > 10) {
+    
+    // 规则4：开源项目且有详细描述（无 stars 但开源，可能有价值）
+    if (desc.length > 150 && r.isOpenSource) {
       set.add(r.id);
       continue;
     }
-  }
-
-  // 补充：综合评分 TOP 200
-  const topByScore = [...all]
-    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
-    .slice(0, 200);
-  for (const r of topByScore) {
-    set.add(r.id);
   }
 
   _richInfoIdsCache = set;

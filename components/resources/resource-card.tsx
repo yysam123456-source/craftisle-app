@@ -73,23 +73,30 @@ function highlightText(text: string | undefined | null, query: string | undefine
 /**
  * 判断资源是否有足够丰富的信息值得展示详情页
  * 如果没有丰富信息，点击卡片直接跳转外部网站
- * 【判断标准】与服务端 getRichInfoResourceIds() 保持一致：
+ * 【判断标准】与服务器端 getRichInfoResourceIds() 保持一致（质量优先）：
  *   - 有 AI Review，或
- *   - 综合评分较高（用启发式近似判断，避免客户端计算完整评分）
+ *   - 有详细描述（> 100 chars）且有 GitHub Stars，或
+ *   - 有描述（> 50 chars）且有 GitHub Stars，或
+ *   - 开源项目且有详细描述（> 150 chars）
  */
 function hasRichInfo(resource: Resource): boolean {
-  // 1. 有 AI Review（最高质量内容）
-  if (resource.hasReview) return true;
-  // 2. GitHub 项目且有一定关注度
-  if (resource.githubStars && resource.githubStars > 50) return true;
-  // 3. 描述较详细
-  if ((resource.description || "").length > 200) return true;
-  // 4. 有结构化数据（tags）
-  if (resource.tags && resource.tags.length > 0) return true;
-  // 5. 有 API 规格信息（public-apis）
-  if (resource.auth || resource.https !== undefined || resource.cors !== undefined) return true;
-  // 6. 有自托管信息（awesome-selfhosted）
-  if (resource.license || resource.language || resource.isOpenSource) return true;
+  const desc = (resource.description || "").trim();
+  const hasReview = !!resource.hasReview;
+  const hasStars = !!(resource.githubStars && resource.githubStars > 0);
+  const hasGoodStars = !!(resource.githubStars && resource.githubStars > 10);
+  
+  // 规则1：有 AI Review（最高质量）
+  if (hasReview) return true;
+  
+  // 规则2：有详细描述且有一定 GitHub Stars
+  if (desc.length > 100 && hasGoodStars) return true;
+    
+  // 规则3：有描述且有 GitHub Stars
+  if (desc.length > 50 && hasStars) return true;
+    
+  // 规则4：开源项目且有详细描述
+  if (desc.length > 150 && resource.isOpenSource) return true;
+    
   return false;
 }
 
@@ -195,7 +202,7 @@ function getFeatureBadges(resource: Resource): { label: string; variant: "defaul
   return badges;
 }
 
-export function ResourceCard({ resource, showCategory = true, variant = "default" }: ResourceCardProps) {
+export function ResourceCard({ resource, showCategory = true, variant = "default", highlightQuery }: ResourceCardProps) {
   const faviconUrl = getFaviconUrl(resource.url);
   const isLarge = variant === "large";
   const hasDetail = hasRichInfo(resource);
