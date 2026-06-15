@@ -5,11 +5,12 @@ import { ALTERNATIVES_MAP } from "@/lib/alternatives";
 import { DOMAINS } from "@/lib/unified-categories";
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { allPosts, allGuides } from "contentlayer/generated";
-import { readFileSync, readdirSync } from "fs";
+import { readFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 
 const baseUrl = "https://craftisle.com";
 const now = new Date();
+const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
 
 function loadReviewSlugs(): string[] {
   try {
@@ -156,11 +157,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // ★ 新增：多语种资源详情页（14 种语言）
+  const contentDir = join(process.cwd(), "public", "data", "generated-content");
+  const resourcesWithContent = existsSync(contentDir)
+    ? readdirSync(contentDir).filter(f => f.endsWith(".json")).slice(0, 100) // 限制前 100 个
+    : [];
+  const multiLangPages = resourcesWithContent.flatMap(slug => {
+    const resourceId = slug.replace(".json", "");
+    return LANGUAGES.map(lang => ({
+      url: `${baseUrl}/directory/resource/${resourceId}${lang === "en" ? "" : `/${lang}`}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.4,
+      alternates: {
+        languages: LANGUAGES.reduce((acc, l) => ({
+          ...acc,
+          [l]: `${baseUrl}/directory/resource/${resourceId}${l === "en" ? "" : `/${l}`}`,
+        }), {}),
+      },
+    }));
+  });
+
   return [
     ...staticPages,
     ...categoryPages,
     ...domainPages,
     ...resourceDetailPages,
+    ...multiLangPages,
     ...alternativePages,
     ...mdxBlogPages,
     ...blogCategoryPages,
