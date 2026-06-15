@@ -322,7 +322,11 @@ export function getStats() {
 // 【判断标准】预构建两类详情页：
 //   1. 有 AI review 的资源（高质量内容）
 //   2. 综合评分 TOP 100 的资源（热门资源，自动更新）
+let _richInfoIdsCache: Set<string> | null = null;
+
 export function getRichInfoResourceIds(): Set<string> {
+  if (_richInfoIdsCache) return _richInfoIdsCache;
+  
   const all = getAllResources();
   const set = new Set<string>();
 
@@ -359,6 +363,7 @@ export function getRichInfoResourceIds(): Set<string> {
     set.add(r.id);
   }
 
+  _richInfoIdsCache = set;
   return set;
 }
 
