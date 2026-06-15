@@ -323,7 +323,20 @@ export default async function ResourceDetailPage({
           </div>
         </div>
 
-        {/* Hero Section */}
+        <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": resource.name,
+            "description": resource.description || "Free online tool",
+            "url": resource.url,
+          }, null, 2),
+        }}
+      />
+
+{/* Hero Section */}
         <section className="border-b py-12 md:py-16 animate-fade-in bg-gradient-to-r from-primary/5 to-secondary/5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
