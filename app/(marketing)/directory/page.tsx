@@ -12,7 +12,6 @@ import { DOMAINS, getDomainForCategoryId } from "@/lib/unified-categories";
 import { ScenarioCards } from "@/components/directory/home/scenario-cards";
 import { EditorPicks } from "@/components/directory/home/editor-picks";
 import { QuickRankings } from "@/components/directory/home/quick-rankings";
-import { DecisionGuide } from "@/components/directory/home/decision-guide";
 import { SectionContainer } from "@/components/directory/section-container";
 import { PopularAlternatives } from "@/components/directory/home/popular-alternatives";
 
@@ -262,7 +261,7 @@ export default async function ResourcesPage() {
 
       {/* More Ways to Explore */}
       <SectionContainer
-        title="Discover & Compare"
+        title="More Ways to Explore"
         subtitle="Find the perfect tool for your needs"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 max-w-3xl mx-auto">
@@ -336,7 +335,7 @@ export default async function ResourcesPage() {
 
       {/* FAQ Section (for users + AI citation) */}
       <SectionContainer
-        title="Common Questions"
+        title="Frequently Asked Questions"
         subtitle="Everything you need to know about our free resource directory"
       >
         <div className="mx-auto max-w-3xl space-y-6">

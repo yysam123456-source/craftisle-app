@@ -769,6 +769,12 @@ export default async function ResourceDetailPage({
                     <ExternalLink className="h-4 w-4" />
                   </Button>
                 </a>
+                <Link href={`/directory/compare/${resource.category.toLowerCase()}/${resource.id.split("-")[0]}`}>
+                  <Button variant="outline" size="lg" className="gap-2">
+                    <ArrowRight className="h-4 w-4" />
+                    Compare
+                  </Button>
+                </Link>
                 <Link href={`/directory/${resource.category}`}>
                   <Button variant="outline" size="lg" className="gap-2">
                     <BookOpen className="h-4 w-4" />

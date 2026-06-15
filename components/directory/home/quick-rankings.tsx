@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { getHotResourcesByScore, getAllResources, calculateResourceScore } from "@/lib/fmhy-data";
+import { getQuickRankingsByCategory } from "@/lib/fmhy-data";
 import { ResourceCard } from "@/components/directory/resource-card";
 import { ArrowRight, Trophy } from "lucide-react";
 
 /**
  * Quick Rankings (homepage version)
- * Show TOP 5 by category, display all categories at once
+ * Show TOP 5 by category, EXCLUDING Editor's Picks resources
  */
 
 const RANKING_CATEGORIES = [
@@ -14,14 +14,6 @@ const RANKING_CATEGORIES = [
   { id: "Adblock", name: "Adblock Tools", icon: "🛡️" },
   { id: "Gaming", name: "Gaming Tools", icon: "🎮" },
 ];
-
-function getTopResourcesByCategory(categoryId: string, limit = 5) {
-  const all = getAllResources();
-  return [...all]
-    .filter(r => r.category === categoryId)
-    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
-    .slice(0, limit);
-}
 
 export function QuickRankings() {
   return (
@@ -33,7 +25,7 @@ export function QuickRankings() {
             Quick Rankings
           </h2>
           <p className="mt-1 text-muted-foreground">
-            TOP 5 resources by category
+            TOP 5 resources by category (excluding Editor's Picks)
           </p>
         </div>
 
@@ -63,7 +55,7 @@ export function QuickRankings() {
 }
 
 function QuickRankingList({ category }: { category: (typeof RANKING_CATEGORIES)[0] }) {
-  const resources = getTopResourcesByCategory(category.id, 5);
+  const resources = getQuickRankingsByCategory(category.id, 5);
 
   if (resources.length === 0) return null;
 

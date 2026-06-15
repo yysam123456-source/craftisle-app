@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { Star, ExternalLink } from "lucide-react";
 import type { Resource } from "@/lib/fmhy-data";
+import { isRichInfoResource } from "@/lib/fmhy-data";
 
 interface ResourceCardProps {
   resource: Resource;
@@ -15,12 +16,8 @@ interface ResourceCardProps {
 
 /**
  * Unified resource card component
- * Provides consistent card design, typography, and layout for all directory sections
- * 
- * Variants:
- * - default: Standard card with name, description, and badges
- * - compact: Smaller card with only name and icon (for grids)
- * - featured: Larger card with score, stars, and full description
+ * - Rich info resources -> link to detail page (/directory/resource/[id])
+ * - External-only resources -> link directly to resource.url (new tab)
  */
 export function ResourceCard({
   resource,
@@ -30,10 +27,20 @@ export function ResourceCard({
   showTags = false,
   variant = "default",
 }: ResourceCardProps) {
-  const href = `/directory/resource/${resource.id}`;
+  const isRich = isRichInfoResource(resource.id);
+  const href = isRich
+    ? `/directory/resource/${resource.id}`
+    : (resource.url || "#");
+  const target = isRich ? undefined : "_blank";
+  const rel = isRich ? undefined : "noopener noreferrer";
 
   return (
-    <Link href={href} className="group">
+    <Link
+      href={href}
+      target={target}
+      rel={rel}
+      className="group block"
+    >
       <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
         <CardContent className="p-3 md:p-5">
           {/* Rank badge (optional) */}
@@ -56,7 +63,9 @@ export function ResourceCard({
           {/* Description (optional) */}
           {showDescription && (
             <p className="text-xs md:text-sm text-muted-foreground line-clamp-2 mb-2 md:mb-3">
-              {resource.description?.slice(0, 80) || "No description"}
+              {(resource.description && resource.description !== "**")
+                ? resource.description.slice(0, 80)
+                : "No description"}
             </p>
           )}
 
@@ -79,8 +88,8 @@ export function ResourceCard({
             </div>
           )}
 
-          {/* Category and License badges */}
-          <div className="flex flex-wrap gap-1 md:gap-2 mt-2 md:mt-3">
+          {/* Category and License badges + External link indicator */}
+          <div className="flex flex-wrap gap-1 md:gap-2 mt-2 md:mt-3 items-center">
             {resource.categoryName && (
               <Badge variant="outline" className="text-[10px] md:text-xs px-1 md:px-2">
                 {resource.categoryIcon} {resource.categoryName}
@@ -89,6 +98,13 @@ export function ResourceCard({
             {resource.githubLicense && (
               <Badge variant="outline" className="text-[10px] md:text-xs px-1 md:px-2">
                 {resource.githubLicense}
+              </Badge>
+            )}
+            {/* Show "Visit Site" badge for external-only resources */}
+            {!isRich && (
+              <Badge variant="outline" className="text-[10px] md:text-xs px-1 md:px-2 ml-auto">
+                <ExternalLink className="h-3 w-3 inline mr-1" />
+                Visit Site
               </Badge>
             )}
           </div>

@@ -326,39 +326,37 @@ export function getRichInfoResourceIds(): Set<string> {
   const all = getAllResources();
   const set = new Set<string>();
 
-  // 1. 有 AI Review 的资源（高质量内容）
+  // 规则（Task 1.1.3 降低门槛）：
+  // 1. 有真实描述（非 "**"，长度 > 20 字符，从 50 降至 20）
+  // 2. 综合评分 TOP 200（热门资源）
+  // 3. 有 GitHub Stars 的资源
+  // 4. 有标签（tags）的资源
+  // 5. 有 freeTier 描述的 free-for-dev 资源
   for (const r of all) {
-    if (hasReviewFor(r)) { set.add(r.id); }
-  }
-
-  // 2. 综合评分 TOP 500 的资源（热门资源，自动更新）—— 从 TOP 100 扩展到 TOP 500
-  const topByScore = [...all]
-    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
-    .slice(0, 500)
-    .map(r => r.id);
-  for (const id of topByScore) {
-    set.add(id);
-  }
-
-  // 3. GitHub Stars > 500 的资源（有一定知名度的开源工具）
-  for (const r of all) {
-    if (r.githubStars && r.githubStars > 500) {
+    if (r.description && r.description !== '**' && r.description.length > 20) {
       set.add(r.id);
+      continue;
     }
-  }
-
-  // 4. 有描述且描述长度 > 50 字符的资源（有一定信息量）
-  for (const r of all) {
-    if (r.description && r.description.length > 50) {
+    if (r.githubStars && r.githubStars > 0) {
       set.add(r.id);
+      continue;
     }
-  }
-
-  // 5. 有标签的资源（有一定元数据）
-  for (const r of all) {
     if (r.tags && r.tags.length > 0) {
       set.add(r.id);
+      continue;
     }
+    if (r.source === 'free-for-dev' && r.freeTier && r.freeTier.length > 10) {
+      set.add(r.id);
+      continue;
+    }
+  }
+
+  // 补充：综合评分 TOP 200
+  const topByScore = [...all]
+    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
+    .slice(0, 200);
+  for (const r of topByScore) {
+    set.add(r.id);
   }
 
   return set;
@@ -366,6 +364,59 @@ export function getRichInfoResourceIds(): Set<string> {
 
 export function isRichInfoResource(id: string): boolean {
   return getRichInfoResourceIds().has(id);
+}
+
+/**
+ * Editor's Picks — 编辑精选（6 个资源，确保分类多样化）
+ * 选择逻辑：
+ *   1. 按综合评分排序
+ *   2. 每个分类最多选 2 个（确保多样化）
+ *   3. 优先选择有真实描述的资源
+ */
+export function getEditorsPicks(): Resource[] {
+  const all = getAllResources();
+  const scored = [...all]
+    .filter(r => r.description && r.description !== '**' && r.description.length > 50)
+    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a));
+
+  const picks: Resource[] = [];
+  const categoryCount: Record<string, number> = {};
+
+  for (const r of scored) {
+    if (picks.length >= 6) break;
+    const cat = r.category || 'other';
+    if ((categoryCount[cat] || 0) >= 2) continue;
+    categoryCount[cat] = (categoryCount[cat] || 0) + 1;
+    picks.push(r);
+  }
+
+  // 如果不足 6 个，放宽条件（不要求 description 长度 > 50）
+  if (picks.length < 6) {
+    for (const r of scored) {
+      if (picks.length >= 6) break;
+      if (picks.some(p => p.id === r.id)) continue;
+      const cat = r.category || 'other';
+      if ((categoryCount[cat] || 0) >= 2) continue;
+      categoryCount[cat] = (categoryCount[cat] || 0) + 1;
+      picks.push(r);
+    }
+  }
+
+  return picks;
+}
+
+/**
+ * Quick Rankings — 按分类获取 TOP 资源（排除 Editor's Picks）
+ */
+export function getQuickRankingsByCategory(categoryId: string, limit = 5): Resource[] {
+  const all = getAllResources();
+  const picksIds = new Set(getEditorsPicks().map(r => r.id));
+
+  return [...all]
+    .filter(r => r.category === categoryId)
+    .filter(r => !picksIds.has(r.id))
+    .sort((a, b) => calculateResourceScore(b) - calculateResourceScore(a))
+    .slice(0, limit);
 }
 
 // ── Resource scoring system（供 hot resources / rich info 判断复用）

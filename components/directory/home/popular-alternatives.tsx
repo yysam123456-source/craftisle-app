@@ -29,7 +29,7 @@ export function PopularAlternatives() {
         const alt = alternatives[i] || { free: resource.name, paid: "Paid Tool", category: resource.categoryName || "Tools" };
         return (
           <Link key={resource.id} href={`/directory/resource/${resource.id}`} className="group">
-            <div className="rounded-xl border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
+            <div className="rounded-xl border bg-card p-3 md:p-5 transition-all hover:border-primary/40 hover:shadow-md h-full">
               <div className="flex items-center gap-2 mb-3">
                 <Flame className="h-5 w-5 text-orange-500" />
                 <Badge variant="secondary" className="text-xs">{alt.category}</Badge>

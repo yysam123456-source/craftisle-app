@@ -1,30 +1,19 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { getHotResourcesByScore, getRichInfoResourceIds, getAllResources } from "@/lib/fmhy-data";
+import { getEditorsPicks } from "@/lib/fmhy-data";
 import { ResourceCard } from "@/components/directory/resource-card";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 /**
  * Editor's Picks (weekly updated)
- * Show diverse high-quality resources: TOP 3 by score + 3 featured by category
+ * Show 6 diverse high-quality resources (ensured by getEditorsPicks())
  */
 
 export function EditorPicks() {
-  // Get TOP 3 resources by score
-  const topByScore = getHotResourcesByScore(3);
-  const richInfoIds = getRichInfoResourceIds();
-  
-  // Get 3 featured resources from different categories
-  const allResources = getAllResources();
-  const featured = allResources
-    .filter(r => r.categoryName && r.description && r.description.length > 50)
-    .filter(r => !topByScore.some(p => p.id === r.id))
-    .slice(0, 3);
-  
-  const picks = [...topByScore, ...featured];
-  
+  const picks = getEditorsPicks();
+
   if (!picks || picks.length === 0) return null;
-  
+
   return (
     <section className="py-12 bg-muted/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

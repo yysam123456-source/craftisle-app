@@ -139,7 +139,7 @@ export function ScenarioCards() {
           {SCENARIO_ENTRIES.map((entry) => (
             <Link key={entry.href} href={entry.href} className="group">
               <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-                <CardContent className="p-5">
+                <CardContent className="p-3 md:p-5">
                   <div className="flex items-start gap-4">
                     <div className={`rounded-lg p-3 text-2xl ${colorMap[entry.color]?.split(" ").slice(0, 2).join(" ")}`}>
                       {entry.icon}
