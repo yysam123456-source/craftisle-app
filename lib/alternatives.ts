@@ -2323,3 +2323,69 @@ export function getAllAlternativeSlugs(): string[] {
   const allMap = getCombinedMap();
   return Object.keys(allMap).map((key) => toSlug(key));
 }
+
+// ============================================================
+// 真实数据增强层（P1: 交叉引用 FMHY 数据注入 GitHub Stars 等真实数据）
+// ============================================================
+
+import { getAllResources } from "./fmhy-data";
+
+/** 从 FMHY 数据中查找匹配的真实数据 */
+export interface EnrichedData {
+  githubStars?: number;
+  githubUrl?: string;
+  githubLicense?: string;
+  githubLastUpdated?: string;
+  techStack?: string[];
+  officialUrl?: string;
+  description?: string;
+  source: "fmhy" | "none";
+}
+
+/**
+ * 从 FMHY 资源库中查找与 alternative name 匹配的数据
+ * 匹配策略：精确匹配 → 包含匹配（名称互相包含）→ 首词匹配
+ */
+export function enrichWithLiveData(altName: string): EnrichedData {
+  try {
+    const allResources = getAllResources();
+    const lowerName = altName.toLowerCase().trim();
+
+    // 1. 精确匹配
+    let match = allResources.find((r) => r.name.toLowerCase() === lowerName);
+
+    // 2. 包含匹配
+    if (!match) {
+      match = allResources.find(
+        (r) =>
+          r.name.toLowerCase().includes(lowerName) ||
+          lowerName.includes(r.name.toLowerCase())
+      );
+    }
+
+    // 3. 首词匹配（处理 "Qwen (Tongyi)" 等格式）
+    if (!match) {
+      const firstWord = lowerName.split(/[(\s-]/)[0];
+      if (firstWord.length >= 3) {
+        match = allResources.find((r) =>
+          r.name.toLowerCase().includes(firstWord)
+        );
+      }
+    }
+
+    if (!match || !match.name) return { source: "none" };
+
+    return {
+      githubStars: match.githubStars,
+      githubUrl: match.githubUrl,
+      githubLicense: match.githubLicense,
+      githubLastUpdated: match.githubLastUpdated,
+      techStack: match.techStack,
+      officialUrl: match.url,
+      description: match.description,
+      source: "fmhy",
+    };
+  } catch {
+    return { source: "none" };
+  }
+}

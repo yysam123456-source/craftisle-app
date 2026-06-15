@@ -1,4 +1,5 @@
 export const revalidate = 86400;
+export const dynamicParams = true;
 /**
  * /directory/compare/[...slug]
  * "X vs Y" 对比页面 — SEO 核心页面类型（丰富版）
@@ -11,6 +12,7 @@ import {
   getCombinedMap,
   getAlternativeBySlug,
   toSlug,
+  enrichWithLiveData,
   type AlternativeEntry,
   type AlternativeTool,
 } from "@/lib/alternatives";
@@ -56,7 +58,7 @@ export async function generateStaticParams() {
       });
     }
   }
-  return params.slice(0, 10);
+  return params; // Generate ALL comparison pages (no limit)
 }
 
 // ── 查找对比数据（增强版）─────────────────────────
@@ -159,6 +161,10 @@ export default async function ComparePage(props: ComparePageProps) {
   const { entry, paidTool, alt } = data;
   const pageTitle = `${paidTool.name} vs ${alt.name}: Which is Better in 2026?`;
   const canonical = `https://craftisle.com/directory/compare/${slugA}/${slugB}`;
+
+  // ── 注入真实数据（P1: FMHY 交叉引用）────────────
+  const paidToolLive = enrichWithLiveData(paidTool.name);
+  const altLive = enrichWithLiveData(alt.name);
 
   // 计算其他替代品（排除当前对比的这个）
   const otherAlts = entry.alternatives.filter((a) => toSlug(a.name) !== slugB).slice(0, 3);
@@ -282,6 +288,146 @@ export default async function ComparePage(props: ComparePageProps) {
           </div>
         </div>
       </section>
+
+      {/* ===== Live Data（真实数据，来源 FMHY + GitHub） ===== */}
+      {(paidToolLive.source === "fmhy" || altLive.source === "fmhy") && (
+        <section className="py-10 border-b bg-blue-50/30 dark:bg-blue-950/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center gap-2 mb-6">
+                <Zap className="h-5 w-5 text-blue-500" />
+                <h2 className="text-xl font-bold">Live Data</h2>
+                <Badge variant="outline" className="text-xs">
+                  Source: FMHY Directory
+                </Badge>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {/* Paid Tool Live Data */}
+                {paidToolLive.source === "fmhy" && (
+                  <Card className="border-blue-200 dark:border-blue-800">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm font-medium">{paidTool.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-2 gap-3 text-sm">
+                        {paidToolLive.githubStars !== undefined && (
+                          <div>
+                            <p className="text-xs text-muted-foreground">GitHub Stars</p>
+                            <p className="font-semibold flex items-center gap-1">
+                              <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
+                              {paidToolLive.githubStars >= 1000
+                                ? `${(paidToolLive.githubStars / 1000).toFixed(1)}K`
+                                : paidToolLive.githubStars}
+                            </p>
+                          </div>
+                        )}
+                        {paidToolLive.githubLicense && (
+                          <div>
+                            <p className="text-xs text-muted-foreground">License</p>
+                            <p className="font-medium text-xs font-mono">{paidToolLive.githubLicense}</p>
+                          </div>
+                        )}
+                        {paidToolLive.techStack && paidToolLive.techStack.length > 0 && (
+                          <div className="col-span-2">
+                            <p className="text-xs text-muted-foreground mb-1">Tech Stack</p>
+                            <div className="flex flex-wrap gap-1">
+                              {paidToolLive.techStack.slice(0, 5).map((t) => (
+                                <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {paidToolLive.githubLastUpdated && (
+                          <div className="col-span-2">
+                            <p className="text-xs text-muted-foreground">Last Updated</p>
+                            <p className="text-xs font-mono">{new Date(paidToolLive.githubLastUpdated).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</p>
+                          </div>
+                        )}
+                      </div>
+                      {paidToolLive.githubUrl && (
+                        <a
+                          href={paidToolLive.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-3"
+                        >
+                          View on GitHub <ExternalLink className="h-3 w-3" />
+                        </a>
+                      )}
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Alternative Live Data */}
+                <Card className={altLive.source === "fmhy" ? "border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/10" : ""}>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium">{alt.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {altLive.source === "fmhy" ? (
+                      <div className="grid grid-cols-2 gap-3 text-sm">
+                        {altLive.githubStars !== undefined && (
+                          <div>
+                            <p className="text-xs text-muted-foreground">GitHub Stars</p>
+                            <p className="font-semibold flex items-center gap-1">
+                              <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-500" />
+                              {altLive.githubStars >= 1000
+                                ? `${(altLive.githubStars / 1000).toFixed(1)}K`
+                                : altLive.githubStars}
+                            </p>
+                          </div>
+                        )}
+                        {altLive.githubLicense && (
+                          <div>
+                            <p className="text-xs text-muted-foreground">License</p>
+                            <p className="font-medium text-xs font-mono">{altLive.githubLicense}</p>
+                          </div>
+                        )}
+                        {altLive.techStack && altLive.techStack.length > 0 && (
+                          <div className="col-span-2">
+                            <p className="text-xs text-muted-foreground mb-1">Tech Stack</p>
+                            <div className="flex flex-wrap gap-1">
+                              {altLive.techStack.slice(0, 5).map((t) => (
+                                <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {altLive.githubLastUpdated && (
+                          <div className="col-span-2">
+                            <p className="text-xs text-muted-foreground">Last Updated</p>
+                            <p className="text-xs font-mono">{new Date(altLive.githubLastUpdated).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</p>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-muted-foreground italic">No live data available for this tool yet.</p>
+                    )}
+                    {(altLive.githubUrl || alt.url) && (
+                      <a
+                        href={altLive.githubUrl || alt.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs text-primary hover:underline mt-3"
+                      >
+                        {altLive.githubUrl ? <>View on GitHub <ExternalLink className="h-3 w-3" /></> : <>Visit Website <ExternalLink className="h-3 w-3" /></>}
+                      </a>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
+
+              <p className="text-xs text-muted-foreground mt-4">
+                💡 Data sourced from{" "}
+                <a href="https://fmhy.net" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+                  FMHY (Free Media Heck Yeah)
+                </a>{" "}
+                and updated regularly. GitHub stars reflect real-time community adoption.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ===== Detailed Comparison Table ===== */}
       <section className="py-12 border-b">

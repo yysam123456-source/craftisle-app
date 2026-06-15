@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DomainCategoryGrid } from "@/components/resources/domain-category-grid";
 import { getDomainGroups } from "@/lib/category-domains";
-import { HotResources } from "@/components/resources/hot-resources";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
 import { ArrowRight, Star, PlusCircle } from "lucide-react";
 import Link from "next/link";
