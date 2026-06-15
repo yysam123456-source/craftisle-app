@@ -6,12 +6,13 @@ import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles, Star, HelpCircle } from "lucide-react";
+import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles, Star, HelpCircle, BarChart2 } from "lucide-react";
 import { ResourceCard } from "@/components/resources/resource-card";
 import { GiscusComments } from "@/components/giscus-comments";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
 import StarRating from "@/components/resources/star-rating";
 import AdSlot from "@/components/ads/ad-slot";
+import { ScoreBreakdown } from "@/components/resources/score-breakdown";
 import {
   getAllResources,
   getResourceById,
@@ -20,6 +21,8 @@ import {
   getHotResourcesByScore,
   type Resource,
   calculateResourceScore,
+  getResourceScoreBreakdown,
+  cleanDescription,
   generateAdvantages,
   findSimilarResources,
   generateUsageTips,
@@ -63,6 +66,7 @@ export async function generateMetadata({
   if (!resource) return { title: "Resource Not Found | Craftisle" };
 
   const title = `${resource.name} Review — Free ${resource.categoryName || "Online"} Tool | Craftisle`;
+    const cleanDesc = cleanDescription(resource.description);
   const generatedContent = loadGeneratedContent(id);
   const description = generatedContent?.introduction
     ? generatedContent.introduction.slice(0, 155) + "..."
@@ -263,6 +267,8 @@ export default async function ResourceDetailPage({
   const hostname = getHostname(resource.url);
   const tutorials = loadTutorials(id);
   const resourceScore = calculateResourceScore(resource);
+  const cleanDesc = cleanDescription(resource.description);
+  const scoreBreakdown = getResourceScoreBreakdown(resource);
 
   // Generate FAQ for this resource
   const resourceFaq = [
@@ -415,6 +421,8 @@ export default async function ResourceDetailPage({
                           Score: {resourceScore}/100
                         </Badge>
                       </h1>
+                                            {/* Score breakdown — mini progress bars */}
+                                            <ScoreBreakdown resource={resource} />
                       <p className="mt-1 text-muted-foreground text-sm">{hostname}</p>
                       {/* User Rating */}
                       <StarRating resourceId={resource.id} size="sm" />
@@ -443,8 +451,8 @@ export default async function ResourceDetailPage({
                 {/* Description */}
                 <div className="mt-8 max-w-2xl animate-fade-up">
                 <h2 className="text-lg font-semibold mb-3">About {resource.name}</h2>
-                {resource.description && resource.description.trim().length > 5 ? (
-                  <p className="text-muted-foreground leading-relaxed">{resource.description}</p>
+                {cleanDesc && cleanDesc.trim().length > 5 ? (
+                  <p className="text-muted-foreground leading-relaxed">{cleanDesc}</p>
                 ) : (
                   <p className="text-muted-foreground leading-relaxed text-sm italic">
                     No description available. Visit the website to learn more.

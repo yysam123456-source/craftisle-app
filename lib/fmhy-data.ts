@@ -671,3 +671,24 @@ export function generateUsageTips(resource: Resource): string[] {
 
   return tips.slice(0, 4); // 最多 4 个
 }
+
+// ── Description cleaner（清洗 FMHY 原始数据的 markdown 杂乱格式）───
+export function cleanDescription(desc: string, maxLen = 0): string {
+  if (!desc) return "";
+  let cleaned = desc;
+  // 1. 去掉开头的 "** - " 模式
+  cleaned = cleaned.replace(/^\*\*\s*-\s*/, "");
+  // 2. 将 markdown 链接 [text](url) 替换为 text
+  cleaned = cleaned.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+  // 3. 去掉多余的 " / " 分隔符（连续多个压缩为一个）
+  cleaned = cleaned.replace(/\s*\/\s*/g, " / ");
+  // 4. 去掉开头/结尾的 " / " 或 "-"
+  cleaned = cleaned.replace(/^[\s\/\-]+|[\s\/\-]+$/g, "");
+  // 5. 合并多余空格
+  cleaned = cleaned.replace(/\s{2,}/g, " ").trim();
+  // 6. 可选截断
+  if (maxLen > 0 && cleaned.length > maxLen) {
+    cleaned = cleaned.slice(0, maxLen).replace(/\s+[^\s]*$/, "") + "...";
+  }
+  return cleaned;
+}
