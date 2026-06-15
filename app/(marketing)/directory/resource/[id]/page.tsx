@@ -48,29 +48,29 @@ export async function generateMetadata({
   if (!resource) return { title: "Resource Not Found | Craftisle" };
 
   const title = `${resource.name} Review — Free ${resource.categoryName || "Online"} Tool | Craftisle`;
-  const review = loadReview(id) || loadReview(resource.name);
-  const description = review?.content?.overview
-    ? review.content.overview.slice(0, 155) + "..."
+  const generatedContent = loadGeneratedContent(id);
+  const description = generatedContent?.introduction
+    ? generatedContent.introduction.slice(0, 155) + "..."
     : resource.description?.length > 155
       ? resource.description.slice(0, 152) + "..."
       : resource.description || `${resource.name} is a free ${resource.categoryName || "online"} resource listed in the Craftisle directory.`;
 
   const canonicalUrl = `${baseUrl}/directory/resource/${resource.id}`;
 
-  const keywords = review?.content
+  const keywords = generatedContent
     ? [
         resource.name,
         `${resource.name} review`,
         `${resource.name} free`,
-        ...(review.content.bestUseCases || []),
-        ...(review.content.similarAlternatives || []),
+        ...(generatedContent.useCases || []),
+        ...(generatedContent.alternatives?.map(a => a.name) || []),
         resource.categoryName || "",
       ].filter(Boolean)
     : undefined;
 
-  // Selective noindex: low-quality pages (no review + short/empty description)
+  // Selective noindex: low-quality pages (no generated content + short/empty description)
   const isLowQuality =
-    !review &&
+    !generatedContent &&
     (!resource.description || resource.description.trim().length < 80);
 
   return {
@@ -168,6 +168,31 @@ function loadReview(resourceIdOrName: string): ReviewData | null {
     // no match
   }
   return null;
+}
+
+// ── 加载脚本生成的真实内容（来自 public/data/generated-content/{id}.json）───
+interface GeneratedContent {
+  id?: string;
+  description?: string;
+  introduction?: string;
+  features?: string[];
+  useCases?: string[];
+  pricing?: string | { type: string; description: string };
+  pros?: string[];
+  cons?: string[];
+  alternatives?: { name: string; reason: string }[];
+  quickStart?: string;
+  source?: string;
+  generatedAt?: string;
+}
+
+function loadGeneratedContent(resourceId: string): GeneratedContent | null {
+  try {
+    const filePath = join(process.cwd(), "public", "data", "generated-content", `${resourceId}.json`);
+    return JSON.parse(readFileSync(filePath, "utf-8"));
+  } catch {
+    return null;
+  }
 }
 
 // ── Page ─────────────────────────────────────────────────
@@ -686,10 +711,10 @@ export default async function ResourceDetailPage({
                 <AdSlot slot="in-content-resource" format="rectangle" />
               </div>
 
-              {/* AI Review Section */}
+              {/* Auto-Generated Content Section (scripts + APIs, no AI) */}
               {(() => {
-                const review = loadReview(resource.id) || loadReview(resource.name);
-                return review ? <ReviewSection review={review} /> : null;
+                const generatedContent = loadGeneratedContent(resource.id);
+                return generatedContent ? <GeneratedContentSection content={generatedContent} /> : null;
               })()}
 
               {/* CTA */}
@@ -1052,8 +1077,147 @@ function ReviewSection({ review }: { review: ReviewData }) {
           <Button variant="outline" size="sm" className="gap-1.5">
             Read Full Review <ArrowRight className="h-3.5 w-3.5" />
           </Button>
-        </Link>
+// ── Generated Content Section (scripts + APIs, no AI) ─────────
+function GeneratedContentSection({ content }: { content: GeneratedContent }) {
+  const { introduction, features, useCases, pros, cons, pricing, quickStart, source, generatedAt } = content;
+
+  return (
+    <div className="mt-10 border-t pt-8 animate-fade-in">
+      <div className="flex items-center gap-2 mb-6">
+        <Sparkles className="h-5 w-5 text-green-500" />
+        <h2 className="text-xl font-bold">Resource Overview</h2>
+        <Badge variant="outline" className="text-xs text-green-600 border-green-300">
+          Auto-generated from real data
+        </Badge>
+      </div>
+
+      <div className="max-w-3xl space-y-6">
+        {/* Introduction */}
+        {introduction && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2">About this tool</h3>
+            <p className="text-muted-foreground leading-relaxed">{introduction}</p>
+          </div>
+        )}
+
+        {/* Features */}
+        {features && features.length > 0 && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+              <Lightbulb className="h-4 w-4 text-amber-500" />
+              Key Features
+            </h3>
+            <ul className="space-y-1.5">
+              {features.map((f, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span className="text-green-500 mt-1 flex-shrink-0">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Use Cases */}
+        {useCases && useCases.length > 0 && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+              <BookOpen className="h-4 w-4 text-blue-500" />
+              Best Use Cases
+            </h3>
+            <ul className="space-y-1.5">
+              {useCases.map((u, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span className="text-blue-500 mt-1 flex-shrink-0">•</span>
+                  <span>{u}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Pros & Cons */}
+        {(pros && pros.length > 0) || (cons && cons.length > 0) ? (
+          <div className="grid md:grid-cols-2 gap-4">
+            {pros && pros.length > 0 && (
+              <Card className="border-green-200 bg-green-50/40 dark:bg-green-950/20">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base flex items-center gap-2 text-green-700 dark:text-green-400">
+                    <ThumbsUp className="h-4 w-4" />
+                    Pros
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-1">
+                    {pros.map((p, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <span className="text-green-500 mt-1">+</span>
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
+            {cons && cons.length > 0 && (
+              <Card className="border-red-200 bg-red-50/40 dark:bg-red-950/20">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base flex items-center gap-2 text-red-700 dark:text-red-400">
+                    <ThumbsDown className="h-4 w-4" />
+                    Cons
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-1">
+                    {cons.map((c, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <span className="text-red-500 mt-1">−</span>
+                        <span>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        ) : null}
+
+        {/* Pricing */}
+        {pricing && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Pricing</h3>
+            <Badge className="text-sm px-3 py-1">
+              {typeof pricing === 'string' ? pricing : pricing.type || 'Free'}
+            </Badge>
+            {typeof pricing === 'object' && pricing.description && (
+              <p className="text-sm text-muted-foreground mt-2">{pricing.description}</p>
+            )}
+          </div>
+        )}
+
+        {/* Quick Start */}
+        {quickStart && (
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Quick Start</h3>
+            <pre className="bg-muted/50 rounded-lg p-4 overflow-x-auto text-sm">
+              <code>{quickStart}</code>
+            </pre>
+          </div>
+        )}
+
+        {/* Attribution */}
+        {source && (
+          <div className="text-xs text-muted-foreground border-t pt-4 mt-6">
+            <p>
+              Data source: {source === 'fmhy+github' ? 'FMHY Directory + GitHub API' : source}
+              {generatedAt && (
+                <> · Generated: {new Date(generatedAt).toLocaleDateString()}</>
+              )}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
