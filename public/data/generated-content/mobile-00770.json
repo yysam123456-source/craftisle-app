@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00770",
+  "description": "Distraction-Free Launcher / [GitHub](https://github.com/jkuester/unlauncher)",
+  "introduction": "Distraction-Free Launcher / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/jkuester/unlauncher"
+  ],
+  "useCases": [
+    "Visit https://jkuester.github.io/unlauncher/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/jkuester/unlauncher.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.391Z"
+}

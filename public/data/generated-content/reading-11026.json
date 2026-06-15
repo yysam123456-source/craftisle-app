@@ -1,0 +1,21 @@
+{
+  "id": "reading-11026",
+  "description": "Science / Tech / Math / Physics",
+  "introduction": "Science / Tech / Math / Physics",
+  "features": [],
+  "useCases": [
+    "Visit https://qntm2017.github.io/qntm/OV.html"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://qntm2017.github.io/qntm/OV.html",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.425Z"
+}

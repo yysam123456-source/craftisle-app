@@ -1,0 +1,21 @@
+{
+  "id": "misc-01917",
+  "description": "or [Old Time Radio](https://oldtime.radio/) - Classic Radio",
+  "introduction": "or [Old Time Radio](https://oldtime",
+  "features": [],
+  "useCases": [
+    "Visit https://www.relicradio.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.relicradio.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.405Z"
+}

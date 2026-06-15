@@ -1,0 +1,21 @@
+{
+  "id": "misc-01865",
+  "description": "Podcast Downloads / Search",
+  "introduction": "Podcast Downloads / Search",
+  "features": [],
+  "useCases": [
+    "Visit https://podcasttomp3.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://podcasttomp3.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.403Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01786",
+  "description": "Browser Music / US Only",
+  "introduction": "Browser Music / US Only",
+  "features": [],
+  "useCases": [
+    "Visit https://www.pandora.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.pandora.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

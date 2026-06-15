@@ -1,0 +1,23 @@
+{
+  "id": "linux-15113",
+  "description": "Multi-Computer Control",
+  "introduction": "Multi-Computer Control",
+  "features": [
+    "GitHub: https://github.com/input-leap/input-leap"
+  ],
+  "useCases": [
+    "Visit https://github.com/input-leap/input-leap"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/input-leap/input-leap.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.445Z"
+}

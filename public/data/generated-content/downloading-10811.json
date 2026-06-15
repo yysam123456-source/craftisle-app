@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10811",
+  "description": "** - DHT-Based / [.onion](http://btdigggink2pdqzqrik3blmqemsbntpzwxottujilcdjfz56jumzfsyd.onion/)",
+  "introduction": "** - DHT-Based / [",
+  "features": [],
+  "useCases": [
+    "Visit https://btdig.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://btdig.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.416Z"
+}

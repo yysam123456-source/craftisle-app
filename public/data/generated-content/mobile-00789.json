@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00789",
+  "description": "Downgrade Apps on Android 12/13 / Root",
+  "introduction": "Downgrade Apps on Android 12/13 / Root",
+  "features": [
+    "GitHub: https://github.com/DavidBerdik/Let-Me-Downgrade"
+  ],
+  "useCases": [
+    "Visit https://github.com/DavidBerdik/Let-Me-Downgrade"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/DavidBerdik/Let-Me-Downgrade.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

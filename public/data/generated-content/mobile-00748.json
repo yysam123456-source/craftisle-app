@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00748",
+  "description": "** / [Firefox](https://addons.mozilla.org/en-US/firefox/addon/toolbox-google-play-store/) / [Chrome](https://chrome.google.com/webstore/detail/toolbox-for-google-play-s/fepaalfjfchbdianlgginbmpeeacahoo) / [Installer](https://github.com/AbdurazaaqMohammed/AntiSplit-M)",
+  "introduction": "** / [Firefox](https://addons",
+  "features": [
+    "GitHub: https://github.com/AbdurazaaqMohammed/AntiSplit-M"
+  ],
+  "useCases": [
+    "Visit https://www.apkmirror.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/AbdurazaaqMohammed/AntiSplit-M.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.390Z"
+}

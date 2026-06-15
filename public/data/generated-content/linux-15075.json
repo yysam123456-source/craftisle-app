@@ -1,0 +1,21 @@
+{
+  "id": "linux-15075",
+  "description": "** - FOSS Software Packages Index",
+  "introduction": "** - FOSS Software Packages Index",
+  "features": [],
+  "useCases": [
+    "Visit https://wikipedia.org/wiki/List_of_free_and_open-source_software_packages"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://wikipedia.org/wiki/List_of_free_and_open-source_software_packages",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

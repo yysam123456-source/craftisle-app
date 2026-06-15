@@ -3,24 +3,21 @@
   "description": "Reddit Auto Post Delete",
   "introduction": "Reddit Auto Post Delete",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/j0be/PowerDeleteSuite"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/j0be/PowerDeleteSuite"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/j0be/PowerDeleteSuite.git && cd PowerDeleteSuite",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:14.663Z"
+  "quickStart": "git clone https://github.com/j0be/PowerDeleteSuite.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.384Z"
 }

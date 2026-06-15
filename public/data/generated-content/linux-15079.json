@@ -1,0 +1,23 @@
+{
+  "id": "linux-15079",
+  "description": "Bulk App Installer / [GitHub](https://github.com/abusoww/tuxmate)",
+  "introduction": "Bulk App Installer / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/abusoww/tuxmate"
+  ],
+  "useCases": [
+    "Visit https://tuxmate.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/abusoww/tuxmate.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

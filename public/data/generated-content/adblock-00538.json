@@ -3,24 +3,21 @@
   "description": "Unofficial Bitwarden Server Backend / Self-Hosted",
   "introduction": "Unofficial Bitwarden Server Backend / Self-Hosted",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/dani-garcia/vaultwarden"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/dani-garcia/vaultwarden"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/dani-garcia/vaultwarden.git && cd vaultwarden",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:45.408Z"
+  "quickStart": "git clone https://github.com/dani-garcia/vaultwarden.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

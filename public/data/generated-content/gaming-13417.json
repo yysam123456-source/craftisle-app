@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13417",
+  "description": "Visual Novel Database",
+  "introduction": "Visual Novel Database",
+  "features": [],
+  "useCases": [
+    "Visit https://vndb.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://vndb.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.439Z"
+}

@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00076",
   "description": "Self-Hosted / [Discord](https://discord.com/invite/myY5YDR8z8) / [GitHub](https://github.com/nomic-ai/gpt4all)",
-  "introduction": "Self-Hosted / [Discord](https://discord.com/invite/myY5YDR8z8) / [GitHub](https://github.com/nomic-ai/gpt4all)",
+  "introduction": "Self-Hosted / [Discord](https://discord",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/nomic-ai/gpt4all"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://www.nomic.ai/gpt4all"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/nomic-ai/gpt4all.git && cd gpt4all",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:34.120Z"
+  "quickStart": "git clone https://github.com/nomic-ai/gpt4all.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.343Z"
 }

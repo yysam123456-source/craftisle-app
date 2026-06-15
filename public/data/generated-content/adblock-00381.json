@@ -1,25 +1,23 @@
 {
   "id": "adblock-00381",
   "description": "** - Self-Hosted DNS Adblocking / [Balena-AdGuard](https://github.com/klutchell/balena-adguard) / [X](https://x.com/adguard) / [Subreddit](https://reddit.com/r/Adguard) / [Telegram](https://t.me/adguarden) / [GitHub](https://github.com/AdguardTeam/AdGuardHome)",
-  "introduction": "** - Self-Hosted DNS Adblocking / [Balena-AdGuard](https://github.com/klutchell/balena-adguard) / [X](https://x.com/adguard) / [Subreddit](https://reddit.com/r/Adguard) / [Telegram](https://t.me/adguarden) / [GitHub](https://github.com/AdguardTeam/AdGuardHome)",
+  "introduction": "** - Self-Hosted DNS Adblocking / [Balena-AdGuard](https://github",
   "features": [
-    "balenaCloud: Easily deploy a network-wide ad blocker and DNS server to your home"
+    "GitHub: https://github.com/klutchell/balena-adguard"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://adguard.com/en/adguard-home/overview.html"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/klutchell/balena-adguard.git && cd balena-adguard",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:25.203Z"
+  "quickStart": "git clone https://github.com/klutchell/balena-adguard.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.379Z"
 }

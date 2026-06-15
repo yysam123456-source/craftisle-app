@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10684",
+  "description": "**, [Awesome Free Apps](https://github.com/Axorax/awesome-free-apps), [Windows Ultimate Collection](https://xdaforums.com/t/windows-ultimate-collection-guides.4507867/) or [Free Lunch](https://github.com/auctors/free-lunch) - Freeware Indexes",
+  "introduction": "**, [Awesome Free Apps](https://github",
+  "features": [
+    "GitHub: https://github.com/Axorax/awesome-free-apps"
+  ],
+  "useCases": [
+    "Visit https://github.com/Axorax/awesome-free-apps"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Axorax/awesome-free-apps.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.411Z"
+}

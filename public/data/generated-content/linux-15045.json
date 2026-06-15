@@ -1,0 +1,23 @@
+{
+  "id": "linux-15045",
+  "description": "Turn Webpages into Desktop Apps",
+  "introduction": "Turn Webpages into Desktop Apps",
+  "features": [
+    "GitHub: https://github.com/hamza72x/web2app"
+  ],
+  "useCases": [
+    "Visit https://github.com/hamza72x/web2app"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/hamza72x/web2app.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

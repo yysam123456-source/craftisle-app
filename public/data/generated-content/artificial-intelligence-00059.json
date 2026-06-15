@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00059",
   "description": "P2P AI Network / [GitHub](https://github.com/hyperspaceai)",
-  "introduction": "P2P AI Network / [GitHub](https://github.com/hyperspaceai)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "P2P AI Network / [GitHub](https://github",
+  "features": [],
+  "useCases": [
+    "Visit https://hyper.space/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://hyper.space/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:14.843Z"
+  "quickStart": "Visit https://hyper.space/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.341Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10893",
+  "description": "/ [GitHub](https://github.com/leoherzog/TorrentParts) or [Torrent File Editor](https://torrent-file-editor.github.io/) / [GitHub](https://github.com/torrent-file-editor/torrent-file-editor) - Edit Torrents Files",
+  "introduction": "/ [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/leoherzog/TorrentParts"
+  ],
+  "useCases": [
+    "Visit https://torrent.parts/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/leoherzog/TorrentParts.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.419Z"
+}

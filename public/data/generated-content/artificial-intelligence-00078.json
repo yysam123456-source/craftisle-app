@@ -3,25 +3,21 @@
   "description": "Language Model Bridge / Lightweight / Minimal",
   "introduction": "Language Model Bridge / Lightweight / Minimal",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/Deep-ai-inc/ch.at"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/Deep-ai-inc/ch.at"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Deep-ai-inc/ch.at.git && cd ch.at",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:36.442Z",
-  "updatedAt": "2026-06-15T03:28:08.839Z"
+  "quickStart": "git clone https://github.com/Deep-ai-inc/ch.at.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.343Z"
 }

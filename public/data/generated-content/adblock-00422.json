@@ -3,23 +3,21 @@
   "description": "Configure Windows Defender Settings",
   "introduction": "Configure Windows Defender Settings",
   "features": [
-    "https://github.com/AndyFul/ConfigureDefender/raw/master/ConfigureDefender.exe"
+    "GitHub: https://github.com/AndyFul/ConfigureDefender"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/AndyFul/ConfigureDefender"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/AndyFul/ConfigureDefender.git && cd ConfigureDefender",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:58.180Z"
+  "quickStart": "git clone https://github.com/AndyFul/ConfigureDefender.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.381Z"
 }

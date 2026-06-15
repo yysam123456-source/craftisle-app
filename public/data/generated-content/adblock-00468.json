@@ -2,22 +2,20 @@
   "id": "adblock-00468",
   "description": "Best Practices if Contacted by Agents",
   "introduction": "Best Practices if Contacted by Agents",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://docs.google.com/document/d/176Yds1p63Q3iaKilw0luChMzlJhODdiPvF2I4g9eIXo/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://docs.google.com/document/d/176Yds1p63Q3iaKilw0luChMzlJhODdiPvF2I4g9eIXo/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:20.390Z"
+  "quickStart": "Visit https://docs.google.com/document/d/176Yds1p63Q3iaKilw0luChMzlJhODdiPvF2I4g9eIXo/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.383Z"
 }

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01888",
+  "description": "** - Customizable Ambient Sound Mixer",
+  "introduction": "** - Customizable Ambient Sound Mixer",
+  "features": [],
+  "useCases": [
+    "Visit https://mynoise.net/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://mynoise.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.404Z"
+}

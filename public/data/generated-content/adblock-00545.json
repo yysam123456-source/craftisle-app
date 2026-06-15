@@ -1,23 +1,21 @@
 {
   "id": "adblock-00545",
   "description": "** / [Desktop](https://briarproject.org/download-briar-desktop/) / [GitLab](https://code.briarproject.org/briar/briar)",
-  "introduction": "** / [Desktop](https://briarproject.org/download-briar-desktop/) / [GitLab](https://code.briarproject.org/briar/briar)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** / [Desktop](https://briarproject",
+  "features": [],
+  "useCases": [
+    "Visit https://briarproject.org/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://briarproject.org/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:52.831Z"
+  "quickStart": "Visit https://briarproject.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

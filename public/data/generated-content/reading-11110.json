@@ -1,0 +1,23 @@
+{
+  "id": "reading-11110",
+  "description": ", [⁠Fritzing](https://gist.github.com/RyanLua/fc2457d87641bb39754278b01a647526) (linux), [SKiDL](https://devbisme.github.io/skidl/) / [GitHub](https://github.com/devbisme/skidl), [atopile](https://docs.atopile.io/atopile/quickstart), [EasyEDA](https://easyeda.com/editor) or [LibrePCB](https://librepcb.org/) - Electronic Circuit Design / Simulation Tools",
+  "introduction": ", [⁠Fritzing](https://gist",
+  "features": [
+    "GitHub: https://github.com/devbisme/skidl"
+  ],
+  "useCases": [
+    "Visit https://www.falstad.com/circuit/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/devbisme/skidl.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.428Z"
+}

@@ -1,26 +1,23 @@
 {
   "id": "adblock-00568",
   "description": "Give Emails PGP Encryption / [GitHub](https://github.com/mailvelope/mailvelope)",
-  "introduction": "Give Emails PGP Encryption / [GitHub](https://github.com/mailvelope/mailvelope)",
+  "introduction": "Give Emails PGP Encryption / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/mailvelope/mailvelope"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://mailvelope.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/mailvelope/mailvelope.git && cd mailvelope",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:46:04.745Z"
+  "quickStart": "git clone https://github.com/mailvelope/mailvelope.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.387Z"
 }

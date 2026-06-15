@@ -1,0 +1,21 @@
+{
+  "id": "storage-15726",
+  "description": "NES Browser Emulator / NeptunJS",
+  "introduction": "NES Browser Emulator / NeptunJS",
+  "features": [],
+  "useCases": [
+    "Visit https://www.8bbit.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.8bbit.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.453Z"
+}

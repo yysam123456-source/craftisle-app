@@ -1,0 +1,21 @@
+{
+  "id": "storage-15742",
+  "description": "dns.sb — Free online tool",
+  "introduction": "dns",
+  "features": [],
+  "useCases": [
+    "Visit https://dns.sb/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://dns.sb/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.454Z"
+}

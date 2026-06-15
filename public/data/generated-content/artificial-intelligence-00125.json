@@ -3,23 +3,21 @@
   "description": "Desktop App / Local Models / Requires NVIDIA GPU",
   "introduction": "Desktop App / Local Models / Requires NVIDIA GPU",
   "features": [
-    "<h1 align=\"center\">FramePack Studio</h1>"
+    "GitHub: https://github.com/colinurbs/FramePack-Studio"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/colinurbs/FramePack-Studio"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/colinurbs/FramePack-Studio.git && cd FramePack-Studio",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:41.669Z"
+  "quickStart": "git clone https://github.com/colinurbs/FramePack-Studio.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.367Z"
 }

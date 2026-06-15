@@ -1,0 +1,23 @@
+{
+  "id": "linux-15103",
+  "description": "/ [Instance](https://anura.pro/) - Linux Browser Emulator",
+  "introduction": "/ [Instance](https://anura",
+  "features": [
+    "GitHub: https://github.com/MercuryWorkshop/anuraOS"
+  ],
+  "useCases": [
+    "Visit https://github.com/MercuryWorkshop/anuraOS"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/MercuryWorkshop/anuraOS.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.445Z"
+}

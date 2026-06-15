@@ -1,0 +1,21 @@
+{
+  "id": "reading-11083",
+  "description": "Statistic Practice / Guides",
+  "introduction": "Statistic Practice / Guides",
+  "features": [],
+  "useCases": [
+    "Visit https://stats.libretexts.org/Bookshelves"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://stats.libretexts.org/Bookshelves",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.427Z"
+}

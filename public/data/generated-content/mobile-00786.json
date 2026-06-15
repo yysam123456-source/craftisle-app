@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00786",
+  "description": "Disable Signature Verification / [Telegram](https://t.me/core_patch_chat)",
+  "introduction": "Disable Signature Verification / [Telegram](https://t",
+  "features": [
+    "GitHub: https://github.com/LSPosed/CorePatch"
+  ],
+  "useCases": [
+    "Visit https://github.com/LSPosed/CorePatch"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/LSPosed/CorePatch.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

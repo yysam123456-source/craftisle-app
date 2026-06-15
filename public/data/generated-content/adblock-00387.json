@@ -1,30 +1,23 @@
 {
   "id": "adblock-00387",
   "description": "DNS Adblocking / [GitHub](https://github.com/pengelana/blocklist)",
-  "introduction": "DNS Adblocking / [GitHub](https://github.com/pengelana/blocklist)",
+  "introduction": "DNS Adblocking / [GitHub](https://github",
   "features": [
-    "[x] Filter: Ad, Ad-tracking and Malware (AdBlock).",
-    "[x] DNS 0x20",
-    "[x] DNSSEC Validation",
-    "[x] No EDNS Client Subnet (ECS)",
-    "[x] No logs",
-    "[x] Free"
+    "GitHub: https://github.com/pengelana/blocklist"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://doh.tiar.app/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/pengelana/blocklist.git && cd blocklist",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:31.944Z"
+  "quickStart": "git clone https://github.com/pengelana/blocklist.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.379Z"
 }

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01828",
+  "description": "Russian Record Recordings",
+  "introduction": "Russian Record Recordings",
+  "features": [],
+  "useCases": [
+    "Visit https://www.russian-records.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.russian-records.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.401Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10890",
+  "description": "IRC Channel Monitor / Autodownload / [Slack Notifications](https://gist.github.com/Igglybuff/00d5e91274a562ac724d358bbbc8bc7b)",
+  "introduction": "IRC Channel Monitor / Autodownload / [Slack Notifications](https://gist",
+  "features": [],
+  "useCases": [
+    "Visit https://autodl-community.github.io/autodl-irssi/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://autodl-community.github.io/autodl-irssi/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.419Z"
+}

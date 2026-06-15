@@ -1,25 +1,23 @@
 {
   "id": "adblock-00389",
   "description": "DNS Adblocking / [GitHub](https://github.com/bhanupratapys/dnswarden)",
-  "introduction": "DNS Adblocking / [GitHub](https://github.com/bhanupratapys/dnswarden)",
+  "introduction": "DNS Adblocking / [GitHub](https://github",
   "features": [
-    "Provides multiple types of DNS"
+    "GitHub: https://github.com/bhanupratapys/dnswarden"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://dnswarden.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/bhanupratapys/dnswarden.git && cd dnswarden",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:33.497Z"
+  "quickStart": "git clone https://github.com/bhanupratapys/dnswarden.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.379Z"
 }

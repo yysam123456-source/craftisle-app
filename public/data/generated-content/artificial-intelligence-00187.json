@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00187",
   "description": "Stable Diffusion GPU Hoarde / [Interface](https://aqualxx.github.io/stable-ui/), [2](https://tinybots.net/artbot), [3](https://artificial-art.eu/) / [Discord](https://discord.gg/3DxrhksKzn) / [GitHub](https://github.com/Haidra-Org/AI-Horde)",
-  "introduction": "Stable Diffusion GPU Hoarde / [Interface](https://aqualxx.github.io/stable-ui/), [2](https://tinybots.net/artbot), [3](https://artificial-art.eu/) / [Discord](https://discord.gg/3DxrhksKzn) / [GitHub](https://github.com/Haidra-Org/AI-Horde)",
+  "introduction": "Stable Diffusion GPU Hoarde / [Interface](https://aqualxx",
   "features": [
-    "**Flexibility**: Supports both image and text generation, catering to a wide range of AI applications."
+    "GitHub: https://github.com/Haidra-Org/AI-Horde"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://stablehorde.net/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Haidra-Org/AI-Horde.git && cd AI-Horde",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:16.671Z"
+  "quickStart": "git clone https://github.com/Haidra-Org/AI-Horde.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.372Z"
 }

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01858",
+  "description": "Rage Against the Machine Live Archive",
+  "introduction": "Rage Against the Machine Live Archive",
+  "features": [],
+  "useCases": [
+    "Visit https://ratm.live/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://ratm.live/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.402Z"
+}

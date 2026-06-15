@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00797",
+  "description": "ReVanced Builder / [Config Gen](https://j-hc.github.io/rvmm-config-gen/) / [Telegram](https://t.me/rvc_magisk)",
+  "introduction": "ReVanced Builder / [Config Gen](https://j-hc",
+  "features": [
+    "GitHub: https://github.com/j-hc/revanced-magisk-module"
+  ],
+  "useCases": [
+    "Visit https://github.com/j-hc/revanced-magisk-module"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/j-hc/revanced-magisk-module.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.393Z"
+}

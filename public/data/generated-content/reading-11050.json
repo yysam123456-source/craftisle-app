@@ -1,0 +1,21 @@
+{
+  "id": "reading-11050",
+  "description": "or [nLab Math](https://ncatlab.org/nlab/show/mathematics) - Mathematics Encyclopedias",
+  "introduction": "or [nLab Math](https://ncatlab",
+  "features": [],
+  "useCases": [
+    "Visit https://mathworld.wolfram.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://mathworld.wolfram.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.426Z"
+}

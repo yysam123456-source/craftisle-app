@@ -1,23 +1,21 @@
 {
   "id": "adblock-00546",
   "description": "All Platforms / Requires Phone / [GitHub](https://github.com/wireapp)",
-  "introduction": "All Platforms / Requires Phone / [GitHub](https://github.com/wireapp)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "All Platforms / Requires Phone / [GitHub](https://github",
+  "features": [],
+  "useCases": [
+    "Visit https://wire.com/en/download/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://wire.com/en/download/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:52.832Z"
+  "quickStart": "Visit https://wire.com/en/download/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

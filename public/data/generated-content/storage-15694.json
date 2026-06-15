@@ -1,0 +1,23 @@
+{
+  "id": "storage-15694",
+  "description": "Generate Flowchart from Text / [GitHub](https://github.com/tone-row/flowchart-fun)",
+  "introduction": "Generate Flowchart from Text / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/tone-row/flowchart-fun"
+  ],
+  "useCases": [
+    "Visit https://flowchart.fun/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/tone-row/flowchart-fun.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.451Z"
+}

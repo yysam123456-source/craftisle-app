@@ -1,25 +1,23 @@
 {
   "id": "adblock-00365",
   "description": "/ [Script](https://greasyfork.org/en/scripts/453320) / [Ports](https://github.com/ajayyy/SponsorBlock/wiki/3rd-Party-Ports) / [Database](https://sb.ltn.fi/) / [Chromecast](https://github.com/gabe565/CastSponsorSkip)",
-  "introduction": "/ [Script](https://greasyfork.org/en/scripts/453320) / [Ports](https://github.com/ajayyy/SponsorBlock/wiki/3rd-Party-Ports) / [Database](https://sb.ltn.fi/) / [Chromecast](https://github.com/gabe565/CastSponsorSkip)",
+  "introduction": "/ [Script](https://greasyfork",
   "features": [
-    "<p align=\"center\"><img src=\"docs/icon.png\"></p>"
+    "GitHub: https://github.com/mchangrh/sb.js"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/mchangrh/sb.js"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/mchangrh/sb.js.git && cd sb.js",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:10.810Z"
+  "quickStart": "git clone https://github.com/mchangrh/sb.js.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

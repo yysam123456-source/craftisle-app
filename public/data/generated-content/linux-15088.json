@@ -1,0 +1,23 @@
+{
+  "id": "linux-15088",
+  "description": "/ [Resources](https://github.com/nix-community/awesome-nix), [pkgx](https://pkgx.sh/) / [GitHub](https://github.com/pkgxdev/pkgx) or [Homebrew](https://brew.sh/) - Package Managers",
+  "introduction": "/ [Resources](https://github",
+  "features": [
+    "GitHub: https://github.com/nix-community/awesome-nix"
+  ],
+  "useCases": [
+    "Visit https://nixos.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/nix-community/awesome-nix.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

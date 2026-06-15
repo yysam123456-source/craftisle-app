@@ -1,0 +1,23 @@
+{
+  "id": "reading-11090",
+  "description": "** - Engineering Blogs",
+  "introduction": "** - Engineering Blogs",
+  "features": [
+    "GitHub: https://github.com/kilimchoi/engineering-blogs"
+  ],
+  "useCases": [
+    "Visit https://github.com/kilimchoi/engineering-blogs"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/kilimchoi/engineering-blogs.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.427Z"
+}

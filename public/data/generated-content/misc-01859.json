@@ -1,0 +1,21 @@
+{
+  "id": "misc-01859",
+  "description": "Red Hot Chili Peppers Live Archive",
+  "introduction": "Red Hot Chili Peppers Live Archive",
+  "features": [],
+  "useCases": [
+    "Visit https://www.rhcplivearchive.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.rhcplivearchive.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.402Z"
+}

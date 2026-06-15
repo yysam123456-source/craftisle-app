@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00031",
   "description": "Multiple Models / ≈2000 Monthly / Sign-Up / [Discord](https://discord.gg/rdBN6TYf66)",
-  "introduction": "Multiple Models / ≈2000 Monthly / Sign-Up / [Discord](https://discord.gg/rdBN6TYf66)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Multiple Models / ≈2000 Monthly / Sign-Up / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://woozlit.com/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://woozlit.com/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:05.463Z"
+  "quickStart": "Visit https://woozlit.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.340Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00829",
+  "description": "Clean Redundant WhatsApp Media Files",
+  "introduction": "Clean Redundant WhatsApp Media Files",
+  "features": [
+    "GitHub: https://github.com/VishnuSanal/WhatsAppCleaner"
+  ],
+  "useCases": [
+    "Visit https://github.com/VishnuSanal/WhatsAppCleaner"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/VishnuSanal/WhatsAppCleaner.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.394Z"
+}

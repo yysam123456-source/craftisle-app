@@ -1,0 +1,21 @@
+{
+  "id": "reading-11162",
+  "description": "** or [A-Z Animal](https://a-z-animals.com/) - Animal Encyclopedia",
+  "introduction": "** or [A-Z Animal](https://a-z-animals",
+  "features": [],
+  "useCases": [
+    "Visit https://animalia.bio/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://animalia.bio/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.430Z"
+}

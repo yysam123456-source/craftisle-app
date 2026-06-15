@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10840",
+  "description": "Torrent Client / Streaming / WebShare / Windows, Mac, Linux",
+  "introduction": "Torrent Client / Streaming / WebShare / Windows, Mac, Linux",
+  "features": [],
+  "useCases": [
+    "Visit https://wiztorrent.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://wiztorrent.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.417Z"
+}

@@ -1,27 +1,23 @@
 {
   "id": "artificial-intelligence-00065",
   "description": "Desktop App / [Web](https://g4f.dev/chat/) / [Telegram](https://telegram.me/g4f_channel) / [Discord](https://discord.com/invite/qXA4Wf4Fsm)",
-  "introduction": "Desktop App / [Web](https://g4f.dev/chat/) / [Telegram](https://telegram.me/g4f_channel) / [Discord](https://discord.com/invite/qXA4Wf4Fsm)",
+  "introduction": "Desktop App / [Web](https://g4f",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/xtekky/gpt4free"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/xtekky/gpt4free"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/xtekky/gpt4free.git && cd gpt4free",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:20.739Z",
-  "updatedAt": "2026-06-15T03:28:08.839Z"
+  "quickStart": "git clone https://github.com/xtekky/gpt4free.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.342Z"
 }

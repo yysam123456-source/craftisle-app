@@ -1,26 +1,23 @@
 {
   "id": "adblock-00542",
   "description": "** / [Mod Bot](https://github.com/matrix-org/mjolnir) / [Resources](https://matrix.org/ecosystem/) / [Servers](https://tatsumoto-ren.github.io/blog/list-of-matrix-servers.html), [2](https://tatsumoto.neocities.org/blog/list-of-matrix-servers.html), [3](https://gitlab.com/famedly/conduit), [4](https://joinmatrix.org/servers/), [5](https://archive.md/4xZE4), [6](https://wiki.asra.gr/en:public_servers)",
-  "introduction": "** / [Mod Bot](https://github.com/matrix-org/mjolnir) / [Resources](https://matrix.org/ecosystem/) / [Servers](https://tatsumoto-ren.github.io/blog/list-of-matrix-servers.html), [2](https://tatsumoto.neocities.org/blog/list-of-matrix-servers.html), [3](https://gitlab.com/famedly/conduit), [4](https://joinmatrix.org/servers/), [5](https://archive.md/4xZE4), [6](https://wiki.asra.gr/en:public_servers)",
+  "introduction": "** / [Mod Bot](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/matrix-org/mjolnir"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://matrix.org/ecosystem/clients/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/matrix-org/mjolnir.git && cd mjolnir",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:50.928Z"
+  "quickStart": "git clone https://github.com/matrix-org/mjolnir.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

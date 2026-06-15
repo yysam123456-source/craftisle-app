@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10880",
+  "description": "** / [2](https://github.com/nutbread/t2m) or [Torrent Kitty](https://www.torrentkitty.tv/) / [2](https://www.torrentkitty.net/) / [3](https://www.torrentkitty.lol/) - Torrent to Magnet Converters",
+  "introduction": "** / [2](https://github",
+  "features": [
+    "GitHub: https://github.com/nutbread/t2m"
+  ],
+  "useCases": [
+    "Visit https://nutbread.github.io/t2m/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/nutbread/t2m.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.419Z"
+}

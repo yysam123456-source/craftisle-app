@@ -1,23 +1,21 @@
 {
   "id": "adblock-00429",
   "description": "Local File Scanner / [Guide](https://www.bleepingcomputer.com/forums/t/781976/)",
-  "introduction": "Local File Scanner / [Guide](https://www.bleepingcomputer.com/forums/t/781976/)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Local File Scanner / [Guide](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://www.bleepingcomputer.com/download/farbar-recovery-scan-tool/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.bleepingcomputer.com/download/farbar-recovery-scan-tool/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:01.028Z"
+  "quickStart": "Visit https://www.bleepingcomputer.com/download/farbar-recovery-scan-tool/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.381Z"
 }

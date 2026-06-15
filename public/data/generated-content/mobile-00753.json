@@ -1,0 +1,21 @@
+{
+  "id": "mobile-00753",
+  "description": "APKToy — Free online tool",
+  "introduction": "APKToy — Free online tool",
+  "features": [],
+  "useCases": [
+    "Visit https://www.apktoy.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.apktoy.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.391Z"
+}

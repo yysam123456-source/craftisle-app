@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13350",
+  "description": "Breath of the Wild Map",
+  "introduction": "Breath of the Wild Map",
+  "features": [],
+  "useCases": [
+    "Visit https://nassimsoftware.github.io/zeldabotwstreetview/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://nassimsoftware.github.io/zeldabotwstreetview/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.436Z"
+}

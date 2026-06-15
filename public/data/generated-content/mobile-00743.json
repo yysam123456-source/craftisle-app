@@ -1,0 +1,21 @@
+{
+  "id": "mobile-00743",
+  "description": "FOSS Apps / [F-Droid](https://apt.izzysoft.de/fdroid/index.php) / [GitLab](https://gitlab.com/IzzyOnDroid/repo)",
+  "introduction": "FOSS Apps / [F-Droid](https://apt",
+  "features": [],
+  "useCases": [
+    "Visit https://android.izzysoft.de/applists.php"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://android.izzysoft.de/applists.php",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.390Z"
+}

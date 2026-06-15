@@ -1,0 +1,23 @@
+{
+  "id": "storage-15791",
+  "description": ", [Tagaini](https://www.tagaini.net/), [Takoboto](https://takoboto.jp/), [Jisho](https://jisho.org/), [Massif](https://github.com/rsimmons/massif), [Shirabe Jisho](https://apps.apple.com/us/app/shirabe-jisho/id1005203380), [Weblio](https://ejje.weblio.jp/), [JS-Dict](https://github.com/petlyh/JS-Dict), [rtk-search](https://hochanh.github.io/rtk/)",
+  "introduction": ", [Tagaini](https://www",
+  "features": [
+    "GitHub: https://github.com/rsimmons/massif"
+  ],
+  "useCases": [
+    "Visit https://jotoba.de/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/rsimmons/massif.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.456Z"
+}

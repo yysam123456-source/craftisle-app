@@ -3,24 +3,21 @@
   "description": "** - CSS Frameworks Index",
   "introduction": "** - CSS Frameworks Index",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/troxler/awesome-css-frameworks"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/troxler/awesome-css-frameworks"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/troxler/awesome-css-frameworks.git && cd awesome-css-frameworks",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:47:26.978Z"
+  "quickStart": "git clone https://github.com/troxler/awesome-css-frameworks.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.451Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "reading-11044",
+  "description": "** / [PT-BR](https://github.com/ossu/math-br) - Math Roadmap / [Discord](https://discord.gg/wuytwK5s9h)",
+  "introduction": "** / [PT-BR](https://github",
+  "features": [
+    "GitHub: https://github.com/ossu/math"
+  ],
+  "useCases": [
+    "Visit https://github.com/ossu/math"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ossu/math.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.425Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "linux-15049",
+  "description": "or [Remarkable](https://remarkableapp.github.io/) - Markdown Editor",
+  "introduction": "or [Remarkable](https://remarkableapp",
+  "features": [],
+  "useCases": [
+    "Visit https://ghostwriter.kde.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://ghostwriter.kde.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

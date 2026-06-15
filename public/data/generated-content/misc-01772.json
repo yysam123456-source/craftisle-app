@@ -1,0 +1,23 @@
+{
+  "id": "misc-01772",
+  "description": "YouTube Music Client",
+  "introduction": "YouTube Music Client",
+  "features": [
+    "GitHub: https://github.com/mps-youtube/yewtube"
+  ],
+  "useCases": [
+    "Visit https://github.com/mps-youtube/yewtube"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/mps-youtube/yewtube.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.399Z"
+}

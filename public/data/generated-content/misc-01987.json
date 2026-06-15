@@ -1,0 +1,21 @@
+{
+  "id": "misc-01987",
+  "description": "or [⁠The Classical Station](https://theclassicalstation.org/) - Classical Music Radio",
+  "introduction": "or [⁠The Classical Station](https://theclassicalstation",
+  "features": [],
+  "useCases": [
+    "Visit https://www.wqxr.org/streams/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.wqxr.org/streams/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.408Z"
+}

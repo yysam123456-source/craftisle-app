@@ -1,0 +1,21 @@
+{
+  "id": "storage-15719",
+  "description": "Retro Consoles / EmulatorJS",
+  "introduction": "Retro Consoles / EmulatorJS",
+  "features": [],
+  "useCases": [
+    "Visit https://pegasus-online.pl/en/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://pegasus-online.pl/en/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.452Z"
+}

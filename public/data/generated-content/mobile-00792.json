@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00792",
+  "description": "** - ReVanced Patch Index",
+  "introduction": "** - ReVanced Patch Index",
+  "features": [
+    "GitHub: https://github.com/Jman-Github/ReVanced-Patch-Bundles"
+  ],
+  "useCases": [
+    "Visit https://github.com/Jman-Github/ReVanced-Patch-Bundles"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Jman-Github/ReVanced-Patch-Bundles.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

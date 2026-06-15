@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00142",
   "description": "Wan 2.7 Pro / Wan 2.6 / 10 Credits Daily (Fast Credit Based, Slow Unlimited) / Sign-Up",
-  "introduction": "Wan 2.7 Pro / Wan 2.6 / 10 Credits Daily (Fast Credit Based, Slow Unlimited) / Sign-Up",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Wan 2",
+  "features": [],
+  "useCases": [
+    "Visit https://create.wan.video/explore/image/generate?model=wan2.7-pro"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://create.wan.video/explore/image/generate?model=wan2.7-pro to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:44.185Z"
+  "quickStart": "Visit https://create.wan.video/explore/image/generate?model=wan2.7-pro",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.368Z"
 }

@@ -3,23 +3,21 @@
   "description": "neodevhost — Free online tool",
   "introduction": "neodevhost — Free online tool",
   "features": [
-    "```"
+    "GitHub: https://github.com/neodevpro/neodevhost"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/neodevpro/neodevhost"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/neodevpro/neodevhost.git && cd neodevhost",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:48.383Z"
+  "quickStart": "git clone https://github.com/neodevpro/neodevhost.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.380Z"
 }

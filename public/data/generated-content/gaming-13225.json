@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13225",
+  "description": "Add Piracy Site Links to GOG Store",
+  "introduction": "Add Piracy Site Links to GOG Store",
+  "features": [],
+  "useCases": [
+    "Visit https://greasyfork.org/en/scripts/481134"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://greasyfork.org/en/scripts/481134",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.431Z"
+}

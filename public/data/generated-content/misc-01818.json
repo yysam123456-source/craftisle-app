@@ -1,0 +1,23 @@
+{
+  "id": "misc-01818",
+  "description": ", [Spotify2YoutubeMusic](https://github.com/mahdi-y/Spotify2YoutubeMusic) or [spotify_to_ytmusic](https://github.com/linsomniac/spotify_to_ytmusic) / [2](https://github.com/sigma67/spotify_to_ytmusic) - Spotify Playlist Importers",
+  "introduction": ", [Spotify2YoutubeMusic](https://github",
+  "features": [
+    "GitHub: https://github.com/mahdi-y/Spotify2YoutubeMusic"
+  ],
+  "useCases": [
+    "Visit https://spot-transfer.vercel.app/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/mahdi-y/Spotify2YoutubeMusic.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.401Z"
+}

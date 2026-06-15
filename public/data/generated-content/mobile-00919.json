@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00919",
+  "description": "or [Codec2 Talkie](https://github.com/sh123/codec2_talkie) - Walkie-Talkie Apps",
+  "introduction": "or [Codec2 Talkie](https://github",
+  "features": [
+    "GitHub: https://github.com/sh123/codec2_talkie"
+  ],
+  "useCases": [
+    "Visit https://walkie-talkie.io/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/sh123/codec2_talkie.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.398Z"
+}

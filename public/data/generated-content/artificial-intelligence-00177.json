@@ -3,23 +3,21 @@
   "description": "SD WebUI Forge — Free online tool",
   "introduction": "SD WebUI Forge — Free online tool",
   "features": [
-    "Stable Diffusion WebUI Forge is a platform on top of [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-di"
+    "GitHub: https://github.com/lllyasviel/stable-diffusion-webui-forge"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/lllyasviel/stable-diffusion-webui-forge"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/lllyasviel/stable-diffusion-webui-forge.git && cd stable-diffusion-webui-forge",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:09.379Z"
+  "quickStart": "git clone https://github.com/lllyasviel/stable-diffusion-webui-forge.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.370Z"
 }

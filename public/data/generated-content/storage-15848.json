@@ -1,0 +1,23 @@
+{
+  "id": "storage-15848",
+  "description": "/ [GitHub](https://github.com/Zavy86/WikiDocs), [Media Wiki](https://www.mediawiki.org/) / [GitHub](https://github.com/Wikia/mediawiki), [xWiki](https://www.xwiki.org/xwiki/bin/view/Main/), [DokuWiki](https://www.dokuwiki.org/dokuwiki) / [GitHub](https://github.com/dokuwiki/dokuwiki), [Archivy](https://github.com/archivy/archivy/), [Miraheze](https://miraheze.org/), [wikmd](https://linbreux.github.io/wikmd/), [Fandom](https://www.fandom.com/)",
+  "introduction": "/ [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/Zavy86/WikiDocs"
+  ],
+  "useCases": [
+    "Visit https://www.wikidocs.app/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Zavy86/WikiDocs.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.459Z"
+}

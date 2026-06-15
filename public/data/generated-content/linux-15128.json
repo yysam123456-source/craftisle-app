@@ -1,0 +1,23 @@
+{
+  "id": "linux-15128",
+  "description": ", [OneClick-macOS-Simple-KVM](https://oneclick-macos-simple-kvm.notaperson535.is-a.dev/) or [macOS-Simple-KVM](https://github.com/foxlet/macOS-Simple-KVM) - macOS Virtual Machines",
+  "introduction": ", [OneClick-macOS-Simple-KVM](https://oneclick-macos-simple-kvm",
+  "features": [
+    "GitHub: https://github.com/kholia/OSX-KVM"
+  ],
+  "useCases": [
+    "Visit https://github.com/kholia/OSX-KVM"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/kholia/OSX-KVM.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.446Z"
+}

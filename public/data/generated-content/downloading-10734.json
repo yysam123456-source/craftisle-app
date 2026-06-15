@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10734",
+  "description": "Audio / Books / Comics / Magazines",
+  "introduction": "Audio / Books / Comics / Magazines",
+  "features": [],
+  "useCases": [
+    "Visit https://1ddl.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://1ddl.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.413Z"
+}

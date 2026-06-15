@@ -1,25 +1,23 @@
 {
   "id": "adblock-00472",
   "description": "** - Educational Guide / [GitHub](https://github.com/tnonate/thenewoil)",
-  "introduction": "** - Educational Guide / [GitHub](https://github.com/tnonate/thenewoil)",
+  "introduction": "** - Educational Guide / [GitHub](https://github",
   "features": [
-    "- To **educate** readers on why privacy and security matter, and the various tools and techniques available to help them"
+    "GitHub: https://github.com/tnonate/thenewoil"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://thenewoil.org/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/tnonate/thenewoil.git && cd thenewoil",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:23.817Z"
+  "quickStart": "git clone https://github.com/tnonate/thenewoil.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.383Z"
 }

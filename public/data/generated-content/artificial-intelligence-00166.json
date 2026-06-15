@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00166",
   "description": "**, [2](https://github.com/MoonRide303/Fooocus-MRE) / [Colab](https://colab.research.google.com/github/lllyasviel/Fooocus/blob/main/fooocus_colab.ipynb)",
-  "introduction": "**, [2](https://github.com/MoonRide303/Fooocus-MRE) / [Colab](https://colab.research.google.com/github/lllyasviel/Fooocus/blob/main/fooocus_colab.ipynb)",
+  "introduction": "**, [2](https://github",
   "features": [
-    "<div align=center>"
+    "GitHub: https://github.com/lllyasviel/Fooocus"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/lllyasviel/Fooocus"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/lllyasviel/Fooocus.git && cd Fooocus",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:56.499Z"
+  "quickStart": "git clone https://github.com/lllyasviel/Fooocus.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.369Z"
 }

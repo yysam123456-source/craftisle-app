@@ -1,25 +1,23 @@
 {
   "id": "adblock-00380",
   "description": "/ [Tray App](https://github.com/PinchToDebug/Pihole-Tray/) / [Android Server](https://github.com/DesktopECHO/Pi-hole-for-Android) (root)",
-  "introduction": "/ [Tray App](https://github.com/PinchToDebug/Pihole-Tray/) / [Android Server](https://github.com/DesktopECHO/Pi-hole-for-Android) (root)",
+  "introduction": "/ [Tray App](https://github",
   "features": [
-    "**Pihole Tray** is a system tray application for Windows that allows you to manage your Pi-hole instance(s) directly fro"
+    "GitHub: https://github.com/PinchToDebug/Pihole-Tray"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://firebog.net/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/PinchToDebug/Pihole-Tray.git && cd Pihole-Tray",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:23.199Z"
+  "quickStart": "git clone https://github.com/PinchToDebug/Pihole-Tray.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.379Z"
 }

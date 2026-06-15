@@ -1,23 +1,21 @@
 {
   "id": "adblock-00426",
   "description": "Online File Scanner / Sign-Up Required / [Discord](https://discord.com/invite/p2YbdzJ6f2)",
-  "introduction": "Online File Scanner / Sign-Up Required / [Discord](https://discord.com/invite/p2YbdzJ6f2)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Online File Scanner / Sign-Up Required / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://www.threat.rip/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.threat.rip/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:01.026Z"
+  "quickStart": "Visit https://www.threat.rip/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.381Z"
 }

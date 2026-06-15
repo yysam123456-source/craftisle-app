@@ -1,27 +1,23 @@
 {
   "id": "artificial-intelligence-00086",
   "description": "Run LLM with Single Files / [Discord](https://discord.gg/YuMNeuKStr)",
-  "introduction": "Run LLM with Single Files / [Discord](https://discord.gg/YuMNeuKStr)",
+  "introduction": "Run LLM with Single Files / [Discord](https://discord",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/Mozilla-Ocho/llamafile"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/Mozilla-Ocho/llamafile"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Mozilla-Ocho/llamafile.git && cd llamafile",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:45.764Z",
-  "updatedAt": "2026-06-15T03:28:08.840Z"
+  "quickStart": "git clone https://github.com/Mozilla-Ocho/llamafile.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.343Z"
 }

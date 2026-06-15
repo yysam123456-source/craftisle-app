@@ -1,0 +1,21 @@
+{
+  "id": "mobile-00929",
+  "description": "Android System Patcher",
+  "introduction": "Android System Patcher",
+  "features": [],
+  "useCases": [
+    "Visit https://xdaforums.com/t/module-smali-patcher-7-4.3680053/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://xdaforums.com/t/module-smali-patcher-7-4.3680053/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.398Z"
+}

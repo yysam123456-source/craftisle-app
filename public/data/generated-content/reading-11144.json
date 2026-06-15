@@ -1,0 +1,21 @@
+{
+  "id": "reading-11144",
+  "description": "Chemistry Animations",
+  "introduction": "Chemistry Animations",
+  "features": [],
+  "useCases": [
+    "Visit https://phet.colorado.edu/en/simulations/filter?subjects=chemistry&type=html%2Cprototype"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://phet.colorado.edu/en/simulations/filter?subjects=chemistry&type=html%2Cprototype",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.430Z"
+}

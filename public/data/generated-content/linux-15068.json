@@ -1,0 +1,23 @@
+{
+  "id": "linux-15068",
+  "description": "or [dunst](https://dunst-project.org/) / [GitHub](https://github.com/dunst-project/dunst) - Customizable Notification Daemon",
+  "introduction": "or [dunst](https://dunst-project",
+  "features": [
+    "GitHub: https://github.com/emersion/mako"
+  ],
+  "useCases": [
+    "Visit https://github.com/emersion/mako"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/emersion/mako.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

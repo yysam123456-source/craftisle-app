@@ -1,0 +1,23 @@
+{
+  "id": "misc-01783",
+  "description": "Web Player / [Lyrics](https://github.com/mantou132/Spotify-Lyrics) / [Lyrics Script](https://greasyfork.org/en/scripts/377439)",
+  "introduction": "Web Player / [Lyrics](https://github",
+  "features": [
+    "GitHub: https://github.com/mantou132/Spotify-Lyrics"
+  ],
+  "useCases": [
+    "Visit https://open.spotify.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/mantou132/Spotify-Lyrics.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

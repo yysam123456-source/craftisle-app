@@ -1,26 +1,23 @@
 {
   "id": "adblock-00513",
   "description": "** - Firefox Privacy Tweak / [Video](https://youtu.be/F7-bW2y6lcI) / [GUI](https://arkenfox.github.io/gui/) / [Warning](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/general-tweak-warning.md)",
-  "introduction": "** - Firefox Privacy Tweak / [Video](https://youtu.be/F7-bW2y6lcI) / [GUI](https://arkenfox.github.io/gui/) / [Warning](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/general-tweak-warning.md)",
+  "introduction": "** - Firefox Privacy Tweak / [Video](https://youtu",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/arkenfox/user.js"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/arkenfox/user.js"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/arkenfox/user.js.git && cd user.js",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:16.249Z"
+  "quickStart": "git clone https://github.com/arkenfox/user.js.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.385Z"
 }

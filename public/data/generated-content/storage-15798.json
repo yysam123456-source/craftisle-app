@@ -1,0 +1,23 @@
+{
+  "id": "storage-15798",
+  "description": ", [2](https://discord.gg/3FbCpdKbdY) / [Desktop Client](https://github.com/Suwayomi/Suwayomi-Server)",
+  "introduction": ", [2](https://discord",
+  "features": [
+    "GitHub: https://github.com/Suwayomi/Suwayomi-Server"
+  ],
+  "useCases": [
+    "Visit https://keiyoushi.github.io/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Suwayomi/Suwayomi-Server.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.456Z"
+}

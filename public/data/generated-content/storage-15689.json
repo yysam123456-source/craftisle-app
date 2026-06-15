@@ -1,0 +1,21 @@
+{
+  "id": "storage-15689",
+  "description": "Terminal-style CSS Framework",
+  "introduction": "Terminal-style CSS Framework",
+  "features": [],
+  "useCases": [
+    "Visit https://terminalcss.xyz/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://terminalcss.xyz/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.451Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10894",
+  "description": "Torrenting Discussion",
+  "introduction": "Torrenting Discussion",
+  "features": [],
+  "useCases": [
+    "Visit https://reddit.com/r/torrents"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://reddit.com/r/torrents",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.419Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "storage-15866",
+  "description": "**, **[Awesome Stock Resources](https://github.com/neutraltone/awesome-stock-resources#icons)** or **[Free Icons](https://www.iconshock.com/freeicons/)** - Icon Site Indexes",
+  "introduction": "**, **[Awesome Stock Resources](https://github",
+  "features": [
+    "GitHub: https://github.com/notlmn/awesome-icons"
+  ],
+  "useCases": [
+    "Visit https://github.com/notlmn/awesome-icons"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/notlmn/awesome-icons.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.459Z"
+}

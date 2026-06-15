@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10860",
+  "description": "or [iOS Style](https://github.com/ntoporcov/iQbit/) - QBT Themes",
+  "introduction": "or [iOS Style](https://github",
+  "features": [
+    "GitHub: https://github.com/ntoporcov/iQbit"
+  ],
+  "useCases": [
+    "Visit https://draculatheme.com/qbittorrent"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ntoporcov/iQbit.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.418Z"
+}

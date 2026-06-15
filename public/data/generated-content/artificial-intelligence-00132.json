@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00132",
   "description": "Nano Banana Pro / Nano Banana 2 / GPT IMAGE 2 / Sign-up / [Discord](https://discord.com/invite/vJnYe86T8F)",
-  "introduction": "Nano Banana Pro / Nano Banana 2 / GPT IMAGE 2 / Sign-up / [Discord](https://discord.com/invite/vJnYe86T8F)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Nano Banana Pro / Nano Banana 2 / GPT IMAGE 2 / Sign-up / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://geminigen.ai/app/imagen"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://geminigen.ai/app/imagen to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:42.959Z"
+  "quickStart": "Visit https://geminigen.ai/app/imagen",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.367Z"
 }

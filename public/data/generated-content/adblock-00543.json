@@ -1,23 +1,21 @@
 {
   "id": "adblock-00543",
   "description": "** - All Platforms / [GitHub](https://github.com/simplex-chat)",
-  "introduction": "** - All Platforms / [GitHub](https://github.com/simplex-chat)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - All Platforms / [GitHub](https://github",
+  "features": [],
+  "useCases": [
+    "Visit https://simplex.chat/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://simplex.chat/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:50.929Z"
+  "quickStart": "Visit https://simplex.chat/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

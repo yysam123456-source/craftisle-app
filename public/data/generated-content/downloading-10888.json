@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10888",
+  "description": "Convert Magnets to Tracker Lists",
+  "introduction": "Convert Magnets to Tracker Lists",
+  "features": [],
+  "useCases": [
+    "Visit https://hutstep.github.io/magnet2list/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://hutstep.github.io/magnet2list/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.419Z"
+}

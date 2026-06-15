@@ -1,0 +1,21 @@
+{
+  "id": "reading-10916",
+  "description": "Films For Action — Free online tool",
+  "introduction": "Films For Action — Free online tool",
+  "features": [],
+  "useCases": [
+    "Visit https://www.filmsforaction.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.filmsforaction.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.420Z"
+}

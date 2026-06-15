@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13244",
+  "description": "** - Game Library / Launcher / Downloader / Windows, Linux / [Discord](https://ascendara.app/discord) / [GitHub](https://github.com/Ascendara/ascendara)",
+  "introduction": "** - Game Library / Launcher / Downloader / Windows, Linux / [Discord](https://ascendara",
+  "features": [
+    "GitHub: https://github.com/Ascendara/ascendara"
+  ],
+  "useCases": [
+    "Visit https://ascendara.app/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Ascendara/ascendara.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.432Z"
+}

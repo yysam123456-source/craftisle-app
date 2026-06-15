@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00010",
   "description": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use /think) / [r/OpenAI](https://www.reddit.com/r/OpenAI/) / [r/ChatGPT](https://www.reddit.com/r/ChatGPT/) / [Discord](https://discord.com/invite/openai) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/chatgpt-limits.md)",
-  "introduction": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use /think) / [r/OpenAI](https://www.reddit.com/r/OpenAI/) / [r/ChatGPT](https://www.reddit.com/r/ChatGPT/) / [Discord](https://discord.com/invite/openai) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/chatgpt-limits.md)",
+  "introduction": "GPT-5",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/fmhy/edit"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://chatgpt.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/fmhy/edit.git && cd edit",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:00.794Z"
+  "quickStart": "git clone https://github.com/fmhy/edit.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.338Z"
 }

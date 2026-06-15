@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00942",
+  "description": "MTKClient — Free online tool",
+  "introduction": "MTKClient — Free online tool",
+  "features": [
+    "GitHub: https://github.com/bkerler/mtkclient"
+  ],
+  "useCases": [
+    "Visit https://github.com/bkerler/mtkclient"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/bkerler/mtkclient.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.398Z"
+}

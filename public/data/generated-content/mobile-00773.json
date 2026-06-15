@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00773",
+  "description": "Enable Quickstep in Launchers / [Magisk Fix](https://github.com/skittles9823/QuickSwitch/issues/73#issuecomment-2359895577)",
+  "introduction": "Enable Quickstep in Launchers / [Magisk Fix](https://github",
+  "features": [
+    "GitHub: https://github.com/skittles9823/QuickSwitch"
+  ],
+  "useCases": [
+    "Visit https://github.com/skittles9823/QuickSwitch"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/skittles9823/QuickSwitch.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.391Z"
+}

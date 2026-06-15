@@ -1,23 +1,21 @@
 {
   "id": "adblock-00506",
   "description": "Delete X.com Likes / Favorites",
-  "introduction": "Delete X.com Likes / Favorites",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Delete X",
+  "features": [],
+  "useCases": [
+    "Visit https://gist.github.com/aymericbeaumet/d1d6799a1b765c3c8bc0b675b1a1547d"
   ],
-  "useCases": [],
-  "pricing": "Free / Open Source",
+  "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://gist.github.com/aymericbeaumet/d1d6799a1b765c3c8bc0b675b1a1547d to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:12.923Z"
+  "quickStart": "Visit https://gist.github.com/aymericbeaumet/d1d6799a1b765c3c8bc0b675b1a1547d",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.384Z"
 }

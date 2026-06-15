@@ -1,25 +1,23 @@
 {
   "id": "adblock-00474",
   "description": "** / [GitHub](https://github.com/lissy93/awesome-privacy), [Awesome Security Hardening](https://github.com/decalage2/awesome-security-hardening) or [pluja's Awesome Privacy](https://pluja.github.io/awesome-privacy/) / [GitHub](https://github.com/pluja/awesome-privacy) - Privacy Apps / Services",
-  "introduction": "** / [GitHub](https://github.com/lissy93/awesome-privacy), [Awesome Security Hardening](https://github.com/decalage2/awesome-security-hardening) or [pluja's Awesome Privacy](https://pluja.github.io/awesome-privacy/) / [GitHub](https://github.com/pluja/awesome-privacy) - Privacy Apps / Services",
+  "introduction": "** / [GitHub](https://github",
   "features": [
-    "<p align=\"center\" id=\"top\"><a href=\"https://github.com/Lissy93/awesome-privacy\"><img src=\"https://pixelflare.cc/i/tuj62q"
+    "GitHub: https://github.com/lissy93/awesome-privacy"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://awesome-privacy.xyz/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/lissy93/awesome-privacy.git && cd awesome-privacy",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:28.241Z"
+  "quickStart": "git clone https://github.com/lissy93/awesome-privacy.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.383Z"
 }

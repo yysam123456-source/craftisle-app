@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00042",
   "description": "** / [GitHub](https://github.com/google/generative-ai-docs/tree/main/demos/palm/web/textfx), [NeverWrite](https://neverwrite.app/) / [GitHub](https://github.com/jsgrrchg/NeverWrite), [Toolbaz](https://toolbaz.com/) / [2](https://app.toolbaz.com/ai-tools/list) or [Rytr](https://rytr.me/) - AI Creative Writing Tools",
-  "introduction": "** / [GitHub](https://github.com/google/generative-ai-docs/tree/main/demos/palm/web/textfx), [NeverWrite](https://neverwrite.app/) / [GitHub](https://github.com/jsgrrchg/NeverWrite), [Toolbaz](https://toolbaz.com/) / [2](https://app.toolbaz.com/ai-tools/list) or [Rytr](https://rytr.me/) - AI Creative Writing Tools",
+  "introduction": "** / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/google/generative-ai-docs"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://textfx.withgoogle.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/google/generative-ai-docs.git && cd generative-ai-docs",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:07.797Z"
+  "quickStart": "git clone https://github.com/google/generative-ai-docs.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.341Z"
 }

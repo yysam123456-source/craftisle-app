@@ -1,0 +1,21 @@
+{
+  "id": "misc-01796",
+  "description": "Independent Music Video Feed",
+  "introduction": "Independent Music Video Feed",
+  "features": [],
+  "useCases": [
+    "Visit https://watch.versusmedia.com/music-channel"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://watch.versusmedia.com/music-channel",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

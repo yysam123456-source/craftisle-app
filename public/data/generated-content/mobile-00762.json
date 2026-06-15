@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00762",
+  "description": "** - Search-Focused Launcher / [Telegram](https://t.me/Kvaesitso) / [GitHub](https://github.com/MM2-0/Kvaesitso)",
+  "introduction": "** - Search-Focused Launcher / [Telegram](https://t",
+  "features": [
+    "GitHub: https://github.com/MM2-0/Kvaesitso"
+  ],
+  "useCases": [
+    "Visit https://kvaesitso.mm20.de/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/MM2-0/Kvaesitso.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.391Z"
+}

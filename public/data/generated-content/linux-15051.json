@@ -1,0 +1,23 @@
+{
+  "id": "linux-15051",
+  "description": "or [gedit](https://gedit-text-editor.org/) - Text Editors",
+  "introduction": "or [gedit](https://gedit-text-editor",
+  "features": [
+    "GitHub: https://github.com/tsujan/FeatherPad"
+  ],
+  "useCases": [
+    "Visit https://github.com/tsujan/FeatherPad"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/tsujan/FeatherPad.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

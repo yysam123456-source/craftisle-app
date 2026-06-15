@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00161",
   "description": "Generate Interactive Scenes / [Discord](https://discord.com/invite/ASbS3EykXm)",
-  "introduction": "Generate Interactive Scenes / [Discord](https://discord.com/invite/ASbS3EykXm)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Generate Interactive Scenes / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://lumalabs.ai/interactive-scenes"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://lumalabs.ai/interactive-scenes to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:49.062Z"
+  "quickStart": "Visit https://lumalabs.ai/interactive-scenes",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.369Z"
 }

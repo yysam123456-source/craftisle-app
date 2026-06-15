@@ -1,0 +1,23 @@
+{
+  "id": "linux-15236",
+  "description": "Vulkan-Based Direct3D for Linux / Wine",
+  "introduction": "Vulkan-Based Direct3D for Linux / Wine",
+  "features": [
+    "GitHub: https://github.com/doitsujin/dxvk"
+  ],
+  "useCases": [
+    "Visit https://github.com/doitsujin/dxvk"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/doitsujin/dxvk.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

@@ -1,23 +1,21 @@
 {
   "id": "adblock-00366",
   "description": "or [Discord Adblock](https://codeberg.org/ridge/Discord-AdBlock) - Hide Discord Nitro / Boost Ads",
-  "introduction": "or [Discord Adblock](https://codeberg.org/ridge/Discord-AdBlock) - Hide Discord Nitro / Boost Ads",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "or [Discord Adblock](https://codeberg",
+  "features": [],
+  "useCases": [
+    "Visit https://codeberg.org/AllPurposeMat/Disblock-Origin"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://codeberg.org/AllPurposeMat/Disblock-Origin to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:10.811Z"
+  "quickStart": "Visit https://codeberg.org/AllPurposeMat/Disblock-Origin",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "storage-15687",
+  "description": ", [Float UI](https://floatui.com/) / [GitHub](https://github.com/MarsX-dev/floatui), [Aceternity UI](https://ui.aceternity.com/) or [Tailspark](https://tailspark.co/) - Tailwind CSS Components",
+  "introduction": ", [Float UI](https://floatui",
+  "features": [
+    "GitHub: https://github.com/MarsX-dev/floatui"
+  ],
+  "useCases": [
+    "Visit https://daisyui.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/MarsX-dev/floatui.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.451Z"
+}

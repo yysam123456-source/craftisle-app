@@ -1,0 +1,23 @@
+{
+  "id": "linux-15189",
+  "description": "**, [⁠Spectacle](https://apps.kde.org/spectacle/), [Gradia](https://gradia.alexandervanhee.be/) / [GitHub](https://github.com/AlexanderVanhee/Gradia) or [Scrot](https://github.com/resurrecting-open-source-projects/scrot) - Screenshot Tools",
+  "introduction": "**, [⁠Spectacle](https://apps",
+  "features": [
+    "GitHub: https://github.com/AlexanderVanhee/Gradia"
+  ],
+  "useCases": [
+    "Visit https://flameshot.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/AlexanderVanhee/Gradia.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

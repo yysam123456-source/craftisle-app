@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00216",
   "description": "/ No Sign-Up / [Colab](https://colab.research.google.com/github/rsxdalv/tts-webui/blob/main/notebooks/google_colab.ipynb) / [Discord](https://discord.gg/V8BKTVRtJ9) / [GitHub](https://github.com/rsxdalv/TTS-WebUI)",
-  "introduction": "/ No Sign-Up / [Colab](https://colab.research.google.com/github/rsxdalv/tts-webui/blob/main/notebooks/google_colab.ipynb) / [Discord](https://discord.gg/V8BKTVRtJ9) / [GitHub](https://github.com/rsxdalv/TTS-WebUI)",
+  "introduction": "/ No Sign-Up / [Colab](https://colab",
   "features": [
-    "<h1 align=\"center\">TTS WebUI</h1>"
+    "GitHub: https://github.com/rsxdalv/TTS-WebUI"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://ttswebui.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/rsxdalv/TTS-WebUI.git && cd TTS-WebUI",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:30.028Z"
+  "quickStart": "git clone https://github.com/rsxdalv/TTS-WebUI.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.377Z"
 }

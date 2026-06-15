@@ -3,23 +3,21 @@
   "description": "Blocklist Collection",
   "introduction": "Blocklist Collection",
   "features": [
-    "<div align=\"center\">"
+    "GitHub: https://github.com/anudeepND/blacklist"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/anudeepND/blacklist"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/anudeepND/blacklist.git && cd blacklist",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:17.756Z"
+  "quickStart": "git clone https://github.com/anudeepND/blacklist.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

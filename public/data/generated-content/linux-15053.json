@@ -1,0 +1,21 @@
+{
+  "id": "linux-15053",
+  "description": "Quick Text Transformations",
+  "introduction": "Quick Text Transformations",
+  "features": [],
+  "useCases": [
+    "Visit https://gitlab.com/liferooter/textpieces"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://gitlab.com/liferooter/textpieces",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

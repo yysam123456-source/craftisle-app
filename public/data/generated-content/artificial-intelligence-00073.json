@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00073",
   "description": "Web UI / [Discord](https://discord.com/invite/CEe6vDg9Ky) / [GitHub](https://github.com/danny-avila/LibreChat)",
-  "introduction": "Web UI / [Discord](https://discord.com/invite/CEe6vDg9Ky) / [GitHub](https://github.com/danny-avila/LibreChat)",
+  "introduction": "Web UI / [Discord](https://discord",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/danny-avila/LibreChat"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://librechat.ai/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/danny-avila/LibreChat.git && cd LibreChat",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:30.580Z"
+  "quickStart": "git clone https://github.com/danny-avila/LibreChat.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.342Z"
 }

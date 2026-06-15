@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13242",
+  "description": "** - Game Library / Launcher / [Extensions](https://playnite.link/addons.html), [2](https://github.com/darklinkpower/PlayniteExtensionsCollection) / Windows / [Subreddit](https://www.reddit.com/r/playnite/) / [Discord](https://discord.com/invite/BrtABqe) / [GitHub](https://github.com/JosefNemec/Playnite/)",
+  "introduction": "** - Game Library / Launcher / [Extensions](https://playnite",
+  "features": [
+    "GitHub: https://github.com/darklinkpower/PlayniteExtensionsCollection"
+  ],
+  "useCases": [
+    "Visit https://playnite.link/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/darklinkpower/PlayniteExtensionsCollection.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.432Z"
+}

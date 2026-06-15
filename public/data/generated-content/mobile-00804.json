@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00804",
+  "description": "** - Modded Discord Client / [Plugins](https://plugins-list.pages.dev/) / [Fonts](https://github.com/Rairof/Theme-Fonts), [2](https://github.com/Purple-EyeZ/Bunny-Fonts) / [Discord](https://discord.com/invite/ddcQf3s2Uq)",
+  "introduction": "** - Modded Discord Client / [Plugins](https://plugins-list",
+  "features": [
+    "GitHub: https://github.com/revenge-mod/revenge-bundle"
+  ],
+  "useCases": [
+    "Visit https://github.com/revenge-mod/revenge-bundle"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/revenge-mod/revenge-bundle.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.393Z"
+}

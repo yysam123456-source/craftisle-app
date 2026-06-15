@@ -1,0 +1,21 @@
+{
+  "id": "misc-01906",
+  "description": "8-bit Scenes with Ambient Sounds",
+  "introduction": "8-bit Scenes with Ambient Sounds",
+  "features": [],
+  "useCases": [
+    "Visit http://www.effectgames.com/demos/canvascycle/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit http://www.effectgames.com/demos/canvascycle/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.405Z"
+}

@@ -3,23 +3,21 @@
   "description": "Waveformer — Free online tool",
   "introduction": "Waveformer — Free online tool",
   "features": [
-    "https://waveformer.replicate.dev"
+    "GitHub: https://github.com/fofr/waveformer"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/fofr/waveformer"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/fofr/waveformer.git && cd waveformer",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:19.213Z"
+  "quickStart": "git clone https://github.com/fofr/waveformer.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.376Z"
 }

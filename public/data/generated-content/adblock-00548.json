@@ -1,26 +1,23 @@
 {
   "id": "adblock-00548",
   "description": "All Platforms / [GitHub](https://github.com/keybase/client)",
-  "introduction": "All Platforms / [GitHub](https://github.com/keybase/client)",
+  "introduction": "All Platforms / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/keybase/client"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://keybase.io/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/keybase/client.git && cd client",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:54.134Z"
+  "quickStart": "git clone https://github.com/keybase/client.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

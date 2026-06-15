@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00034",
   "description": "Deepseek V3.2 / GLM-4.7 / Kimi K2.5 / Multiple Models / No Sign-Up",
-  "introduction": "Deepseek V3.2 / GLM-4.7 / Kimi K2.5 / Multiple Models / No Sign-Up",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Deepseek V3",
+  "features": [],
+  "useCases": [
+    "Visit https://aiassistantbot.pages.dev/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://aiassistantbot.pages.dev/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:05.464Z"
+  "quickStart": "Visit https://aiassistantbot.pages.dev/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.340Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00736",
+  "description": "** / [GitHub](https://github.com/moneytoo/awesome-fdroid)",
+  "introduction": "** / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/moneytoo/awesome-fdroid"
+  ],
+  "useCases": [
+    "Visit https://fdroid.tabler.dev/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/moneytoo/awesome-fdroid.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.390Z"
+}

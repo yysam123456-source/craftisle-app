@@ -1,23 +1,21 @@
 {
   "id": "adblock-00473",
   "description": "** - Educational Guide / [.onion](http://i4pd4zpyhrojnyx5l3d2siauy4almteocqow4bp2lqxyocrfy6prycad.onion/)",
-  "introduction": "** - Educational Guide / [.onion](http://i4pd4zpyhrojnyx5l3d2siauy4almteocqow4bp2lqxyocrfy6prycad.onion/)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - Educational Guide / [",
+  "features": [],
+  "useCases": [
+    "Visit https://www.notrace.how/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.notrace.how/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:23.818Z"
+  "quickStart": "Visit https://www.notrace.how/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.383Z"
 }

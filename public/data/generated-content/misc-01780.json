@@ -1,0 +1,23 @@
+{
+  "id": "misc-01780",
+  "description": "**, [2](https://monochrome.samidy.com/), [3](https://lossless.wtf), [4](https://if-it-runs-ship-it.lol/), [5](https://monochromemusic.pages.dev/) - Browser Music / Lossless / [Discord](https://monochrome.samidy.com/discord) / [GitHub](https://github.com/monochrome-music/monochrome)",
+  "introduction": "**, [2](https://monochrome",
+  "features": [
+    "GitHub: https://github.com/monochrome-music/monochrome"
+  ],
+  "useCases": [
+    "Visit https://monochrome.tf/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/monochrome-music/monochrome.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "linux-15137",
+  "description": "or [⁠Init Freedom](https://www.devuan.org/os/init-freedom) - Alternatives to systemd",
+  "introduction": "or [⁠Init Freedom](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://nosystemd.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://nosystemd.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.446Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01882",
+  "description": "or [GPodder](https://gpodder.github.io/) - Podcast Client",
+  "introduction": "or [GPodder](https://gpodder",
+  "features": [],
+  "useCases": [
+    "Visit https://www.microsoft.com/store/productId/9NBLGGH6C4BC"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.microsoft.com/store/productId/9NBLGGH6C4BC",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.404Z"
+}

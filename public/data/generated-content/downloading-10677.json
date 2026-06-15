@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10677",
+  "description": "FOSS Directory / [GitHub](https://github.com/dubinc/oss-gallery)",
+  "introduction": "FOSS Directory / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/dubinc/oss-gallery"
+  ],
+  "useCases": [
+    "Visit https://oss.gallery/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/dubinc/oss-gallery.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.410Z"
+}

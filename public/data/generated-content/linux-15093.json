@@ -1,0 +1,23 @@
+{
+  "id": "linux-15093",
+  "description": "AppImage Installer / Manager",
+  "introduction": "AppImage Installer / Manager",
+  "features": [
+    "GitHub: https://github.com/kem-a/AppManager"
+  ],
+  "useCases": [
+    "Visit https://github.com/kem-a/AppManager"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/kem-a/AppManager.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.445Z"
+}

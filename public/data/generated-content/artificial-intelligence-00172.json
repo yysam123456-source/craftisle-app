@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00172",
   "description": "/ [Discord](https://discord.gg/FbdSxdeV8m)",
-  "introduction": "/ [Discord](https://discord.gg/FbdSxdeV8m)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "/ [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://makeayo.com"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://makeayo.com to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:03.684Z"
+  "quickStart": "Visit https://makeayo.com",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.370Z"
 }

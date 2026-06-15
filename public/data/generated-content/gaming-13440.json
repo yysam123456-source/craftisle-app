@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13440",
+  "description": "** - Steam Multi-Tool / Manifest Tool",
+  "introduction": "** - Steam Multi-Tool / Manifest Tool",
+  "features": [
+    "GitHub: https://github.com/Midrags/SFF"
+  ],
+  "useCases": [
+    "Visit https://github.com/Midrags/SFF"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Midrags/SFF.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.440Z"
+}

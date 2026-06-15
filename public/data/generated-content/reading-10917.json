@@ -1,0 +1,21 @@
+{
+  "id": "reading-10917",
+  "description": "r/Documentaries — Free online tool",
+  "introduction": "r/Documentaries — Free online tool",
+  "features": [],
+  "useCases": [
+    "Visit https://reddit.com/r/Documentaries"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://reddit.com/r/Documentaries",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.420Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01963",
+  "description": "Demo Scene Music Radio",
+  "introduction": "Demo Scene Music Radio",
+  "features": [],
+  "useCases": [
+    "Visit https://www.scenestream.net/demovibes/streams/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.scenestream.net/demovibes/streams/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.407Z"
+}

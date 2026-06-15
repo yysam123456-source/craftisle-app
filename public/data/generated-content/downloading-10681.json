@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10681",
+  "description": "or [CLI Club](https://cli.club/) / [GitHub](https://github.com/cli-club/cli-club.github.io) - FOSS CLI Apps / Tools",
+  "introduction": "or [CLI Club](https://cli",
+  "features": [
+    "GitHub: https://github.com/toolleeo/awesome-cli-apps-in-a-csv"
+  ],
+  "useCases": [
+    "Visit https://github.com/toolleeo/awesome-cli-apps-in-a-csv"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/toolleeo/awesome-cli-apps-in-a-csv.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.411Z"
+}

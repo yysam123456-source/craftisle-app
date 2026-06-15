@@ -1,0 +1,21 @@
+{
+  "id": "misc-01887",
+  "description": "** or **[Music For Programming](https://musicforprogramming.net/latest/)** - Ambient Playlists",
+  "introduction": "** or **[Music For Programming](https://musicforprogramming",
+  "features": [],
+  "useCases": [
+    "Visit https://somafm.com/player/#/now-playing/dronezone"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://somafm.com/player/#/now-playing/dronezone",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.404Z"
+}

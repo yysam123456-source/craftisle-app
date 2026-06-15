@@ -1,26 +1,23 @@
 {
   "id": "adblock-00537",
   "description": "Self-Hosted / Web / [GitHub](https://github.com/Bubka/2FAuth)",
-  "introduction": "Self-Hosted / Web / [GitHub](https://github.com/Bubka/2FAuth)",
+  "introduction": "Self-Hosted / Web / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/Bubka/2FAuth"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://docs.2fauth.app/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Bubka/2FAuth.git && cd 2FAuth",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:44.056Z"
+  "quickStart": "git clone https://github.com/Bubka/2FAuth.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

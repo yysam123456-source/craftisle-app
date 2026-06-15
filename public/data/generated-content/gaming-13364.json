@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13364",
+  "description": "Gaming Mouse Config Tool",
+  "introduction": "Gaming Mouse Config Tool",
+  "features": [
+    "GitHub: https://github.com/libratbag/piper"
+  ],
+  "useCases": [
+    "Visit https://github.com/libratbag/piper"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/libratbag/piper.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.437Z"
+}

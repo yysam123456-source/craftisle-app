@@ -1,0 +1,21 @@
+{
+  "id": "reading-11131",
+  "description": ", [⁠ChemQuiz](https://chemquiz.net/), [Science Geek](https://www.sciencegeek.net/) or [DocBrown](https://docbrown.info/) - Chemistry Practice / Guides",
+  "introduction": ", [⁠ChemQuiz](https://chemquiz",
+  "features": [],
+  "useCases": [
+    "Visit https://www.chemistrysteps.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.chemistrysteps.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.429Z"
+}

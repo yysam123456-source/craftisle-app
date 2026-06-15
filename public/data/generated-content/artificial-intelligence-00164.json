@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00164",
   "description": "** / [Discord](https://discord.com/invite/ZmtBAhwWhy) / [GitHub](https://github.com/invoke-ai/InvokeAI)",
-  "introduction": "** / [Discord](https://discord.com/invite/ZmtBAhwWhy) / [GitHub](https://github.com/invoke-ai/InvokeAI)",
+  "introduction": "** / [Discord](https://discord",
   "features": [
-    "<div align=\"center\">"
+    "GitHub: https://github.com/invoke-ai/InvokeAI"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://invoke-ai.github.io/InvokeAI/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/invoke-ai/InvokeAI.git && cd InvokeAI",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:53.042Z"
+  "quickStart": "git clone https://github.com/invoke-ai/InvokeAI.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.369Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13299",
+  "description": "Split Multiple Keyboards into 4 Unique Virtual Xbox 360 Controllers",
+  "introduction": "Split Multiple Keyboards into 4 Unique Virtual Xbox 360 Controllers",
+  "features": [
+    "GitHub: https://github.com/djlastnight/KeyboardSplitterXbox"
+  ],
+  "useCases": [
+    "Visit https://github.com/djlastnight/KeyboardSplitterXbox"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/djlastnight/KeyboardSplitterXbox.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.434Z"
+}

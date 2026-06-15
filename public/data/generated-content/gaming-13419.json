@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13419",
+  "description": "Delisted Games Database",
+  "introduction": "Delisted Games Database",
+  "features": [],
+  "useCases": [
+    "Visit https://delistedgames.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://delistedgames.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.439Z"
+}

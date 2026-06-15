@@ -1,0 +1,23 @@
+{
+  "id": "misc-01789",
+  "description": "Browser Music / Plugin-Based / [GitHub](https://github.com/TheVolecitor/BeatBoss)",
+  "introduction": "Browser Music / Plugin-Based / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/TheVolecitor/BeatBoss"
+  ],
+  "useCases": [
+    "Visit https://beatboss-web.thevolecitor.qzz.io/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/TheVolecitor/BeatBoss.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

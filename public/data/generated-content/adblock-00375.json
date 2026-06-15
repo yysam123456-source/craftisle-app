@@ -3,23 +3,21 @@
   "description": "Blocks AI Generated Sites",
   "introduction": "Blocks AI Generated Sites",
   "features": [
-    "A personal list for [uBlock Origin](https://github.com/gorhill/uBlock) blocking AI content farms. Pull requests welcome."
+    "GitHub: https://github.com/alvi-se/ai-ublock-blacklist"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/alvi-se/ai-ublock-blacklist"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/alvi-se/ai-ublock-blacklist.git && cd ai-ublock-blacklist",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:20.408Z"
+  "quickStart": "git clone https://github.com/alvi-se/ai-ublock-blacklist.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

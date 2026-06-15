@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00104",
   "description": "GUI for Roleplaying Chatbots / No Sign-Up / [Discord](https://discord.com/invite/XuQWadgU9k) / [GitHub](https://github.com/henk717/KoboldAI)",
-  "introduction": "GUI for Roleplaying Chatbots / No Sign-Up / [Discord](https://discord.com/invite/XuQWadgU9k) / [GitHub](https://github.com/henk717/KoboldAI)",
+  "introduction": "GUI for Roleplaying Chatbots / No Sign-Up / [Discord](https://discord",
   "features": [
-    "This is a browser-based front-end for AI-assisted writing with multiple local & remote AI models. It offers the standard"
+    "GitHub: https://github.com/henk717/KoboldAI"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://koboldai.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/henk717/KoboldAI.git && cd KoboldAI",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:36.059Z"
+  "quickStart": "git clone https://github.com/henk717/KoboldAI.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.346Z"
 }

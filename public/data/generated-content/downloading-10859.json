@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10859",
+  "description": "or [QBT VPN](https://github.com/binhex/arch-qbittorrentvpn) - Docker Builds",
+  "introduction": "or [QBT VPN](https://github",
+  "features": [
+    "GitHub: https://github.com/linuxserver/docker-qbittorrent"
+  ],
+  "useCases": [
+    "Visit https://github.com/linuxserver/docker-qbittorrent"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/linuxserver/docker-qbittorrent.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.418Z"
+}

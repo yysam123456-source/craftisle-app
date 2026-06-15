@@ -1,26 +1,23 @@
 {
   "id": "adblock-00535",
   "description": "2FA / iOS / [GitHub](https://github.com/iKenndac/Tofu)",
-  "introduction": "2FA / iOS / [GitHub](https://github.com/iKenndac/Tofu)",
+  "introduction": "2FA / iOS / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/iKenndac/Tofu"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://www.tofuauth.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/iKenndac/Tofu.git && cd Tofu",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:41.446Z"
+  "quickStart": "git clone https://github.com/iKenndac/Tofu.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.385Z"
 }

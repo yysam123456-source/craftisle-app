@@ -1,0 +1,23 @@
+{
+  "id": "linux-15225",
+  "description": "Steam Deck Utilities",
+  "introduction": "Steam Deck Utilities",
+  "features": [
+    "GitHub: https://github.com/CryoByte33/steam-deck-utilities"
+  ],
+  "useCases": [
+    "Visit https://github.com/CryoByte33/steam-deck-utilities"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/CryoByte33/steam-deck-utilities.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

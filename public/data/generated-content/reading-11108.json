@@ -1,0 +1,21 @@
+{
+  "id": "reading-11108",
+  "description": "Arduino / ESP32 Board Simulators",
+  "introduction": "Arduino / ESP32 Board Simulators",
+  "features": [],
+  "useCases": [
+    "Visit https://wokwi.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://wokwi.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.428Z"
+}

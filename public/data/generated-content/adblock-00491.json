@@ -1,23 +1,21 @@
 {
   "id": "adblock-00491",
   "description": "Encrypted Private Network Layer / [Client](https://i2pd.website/) / [GitLab](https://i2pgit.org/)",
-  "introduction": "Encrypted Private Network Layer / [Client](https://i2pd.website/) / [GitLab](https://i2pgit.org/)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Encrypted Private Network Layer / [Client](https://i2pd",
+  "features": [],
+  "useCases": [
+    "Visit https://geti2p.net/en/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://geti2p.net/en/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:37.687Z"
+  "quickStart": "Visit https://geti2p.net/en/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.384Z"
 }

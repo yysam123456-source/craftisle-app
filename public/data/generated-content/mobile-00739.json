@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00739",
+  "description": "** - FOSS App Installer / [GitHub](https://github.com/Droid-ify/client)",
+  "introduction": "** - FOSS App Installer / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/Droid-ify/client"
+  ],
+  "useCases": [
+    "Visit https://droidify.app/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Droid-ify/client.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.390Z"
+}

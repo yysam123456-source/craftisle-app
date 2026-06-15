@@ -1,0 +1,23 @@
+{
+  "id": "storage-15738",
+  "description": "/ [GitHub](https://github.com/AdguardTeam/AdguardSDNSFilter)",
+  "introduction": "/ [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/AdguardTeam/AdguardSDNSFilter"
+  ],
+  "useCases": [
+    "Visit https://adguard-dns.io/en/public-dns.html"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/AdguardTeam/AdguardSDNSFilter.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.453Z"
+}

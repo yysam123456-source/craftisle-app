@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13249",
+  "description": "Rainmeter Game Launcher / Windows / [GitHub](https://github.com/callmeEthan/GameHUB2)",
+  "introduction": "Rainmeter Game Launcher / Windows / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/callmeEthan/GameHUB2"
+  ],
+  "useCases": [
+    "Visit https://www.deviantart.com/not-finch/art/GameHUB-launcher-2-for-Rainmeter-785369648"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/callmeEthan/GameHUB2.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.432Z"
+}

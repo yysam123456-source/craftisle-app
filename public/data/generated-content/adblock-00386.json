@@ -1,23 +1,21 @@
 {
   "id": "adblock-00386",
   "description": "DNS Adblocking / [GitLab](https://gitlab.com/libreops/libredns)",
-  "introduction": "DNS Adblocking / [GitLab](https://gitlab.com/libreops/libredns)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "DNS Adblocking / [GitLab](https://gitlab",
+  "features": [],
+  "useCases": [
+    "Visit https://libredns.gr/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://libredns.gr/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:30.638Z"
+  "quickStart": "Visit https://libredns.gr/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.379Z"
 }

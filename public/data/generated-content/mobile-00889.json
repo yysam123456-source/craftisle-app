@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00889",
+  "description": "** - Privacy-Focused Keyboard / [Discord](https://discord.gg/ENYRubhTRw) / [GitHub](https://github.com/futo-org/android-keyboard)",
+  "introduction": "** - Privacy-Focused Keyboard / [Discord](https://discord",
+  "features": [
+    "GitHub: https://github.com/futo-org/android-keyboard"
+  ],
+  "useCases": [
+    "Visit https://keyboard.futo.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/futo-org/android-keyboard.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.397Z"
+}

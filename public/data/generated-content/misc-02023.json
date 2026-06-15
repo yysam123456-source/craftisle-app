@@ -1,0 +1,23 @@
+{
+  "id": "misc-02023",
+  "description": "** - Spotify Themes & Plugins / [Improved Lyrics](https://spicylyrics.org/) / [Discord](https://discord.gg/VnevqPp2Rr) / [GitHub](https://github.com/spicetify/cli) / [Notes](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/spicetify-note.md)",
+  "introduction": "** - Spotify Themes & Plugins / [Improved Lyrics](https://spicylyrics",
+  "features": [
+    "GitHub: https://github.com/spicetify/cli"
+  ],
+  "useCases": [
+    "Visit https://spicetify.app/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/spicetify/cli.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.409Z"
+}

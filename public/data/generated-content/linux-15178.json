@@ -1,0 +1,23 @@
+{
+  "id": "linux-15178",
+  "description": "Headset Settings Manager",
+  "introduction": "Headset Settings Manager",
+  "features": [
+    "GitHub: https://github.com/Sapd/HeadsetControl"
+  ],
+  "useCases": [
+    "Visit https://github.com/Sapd/HeadsetControl"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Sapd/HeadsetControl.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

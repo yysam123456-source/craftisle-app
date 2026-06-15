@@ -3,25 +3,21 @@
   "description": "Command-Line Interface",
   "introduction": "Command-Line Interface",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/aandrew-me/tgpt"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/aandrew-me/tgpt"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/aandrew-me/tgpt.git && cd tgpt",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:35.277Z",
-  "updatedAt": "2026-06-15T03:28:08.839Z"
+  "quickStart": "git clone https://github.com/aandrew-me/tgpt.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.343Z"
 }

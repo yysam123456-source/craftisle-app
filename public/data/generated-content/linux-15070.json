@@ -1,0 +1,23 @@
+{
+  "id": "linux-15070",
+  "description": "or [typer](https://github.com/maaslalani/typer) - Typing Practice",
+  "introduction": "or [typer](https://github",
+  "features": [
+    "GitHub: https://github.com/maaslalani/typer"
+  ],
+  "useCases": [
+    "Visit https://apps.kde.org/ktouch/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/maaslalani/typer.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

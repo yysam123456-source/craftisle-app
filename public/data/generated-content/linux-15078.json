@@ -1,0 +1,21 @@
+{
+  "id": "linux-15078",
+  "description": "** - Multi-Site Software Search",
+  "introduction": "** - Multi-Site Software Search",
+  "features": [],
+  "useCases": [
+    "Visit https://cse.google.com/cse?cx=81bd91729fe2a412b"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://cse.google.com/cse?cx=81bd91729fe2a412b",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

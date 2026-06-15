@@ -1,0 +1,23 @@
+{
+  "id": "storage-15800",
+  "description": ", [KavitaReader](https://www.kavitareader.com/), [Komga](https://komga.org/) / [GitHub](https://github.com/gotson/komga) / [Discord](https://discord.gg/TdRpkDu), [atsumeru](https://atsumeru.xyz/)",
+  "introduction": ", [KavitaReader](https://www",
+  "features": [
+    "GitHub: https://github.com/gotson/komga"
+  ],
+  "useCases": [
+    "Visit https://happypandax.github.io/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/gotson/komga.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.456Z"
+}

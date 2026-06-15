@@ -1,0 +1,21 @@
+{
+  "id": "reading-11087",
+  "description": "** - Engineering Student Resources",
+  "introduction": "** - Engineering Student Resources",
+  "features": [],
+  "useCases": [
+    "Visit https://www.reddit.com/r/EngineeringStudents/wiki/resources"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.reddit.com/r/EngineeringStudents/wiki/resources",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.427Z"
+}

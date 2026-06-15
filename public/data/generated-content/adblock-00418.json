@@ -1,25 +1,23 @@
 {
   "id": "adblock-00418",
   "description": "Convert Malicious PDFs to Safe Files / [GitHub](https://github.com/freedomofpress/dangerzone)",
-  "introduction": "Convert Malicious PDFs to Safe Files / [GitHub](https://github.com/freedomofpress/dangerzone)",
+  "introduction": "Convert Malicious PDFs to Safe Files / [GitHub](https://github",
   "features": [
-    "Take potentially dangerous PDFs, office documents, or images and convert them to a safe PDF."
+    "GitHub: https://github.com/freedomofpress/dangerzone"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://dangerzone.rocks/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/freedomofpress/dangerzone.git && cd dangerzone",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:56.682Z"
+  "quickStart": "git clone https://github.com/freedomofpress/dangerzone.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.380Z"
 }

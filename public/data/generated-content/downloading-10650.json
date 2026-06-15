@@ -1,23 +1,21 @@
 {
   "id": "downloading-10650",
   "description": "** before installation or run it in a sandboxed environment like **[Triage](https://tria.ge/)** to prevent system compromise. Note that any apps with fake names are generally not worth using. Keep in mind some file hosts have fake popups, real downloads happen within the download pages themselves, not redirected pages, or popup tabs.",
-  "introduction": "** before installation or run it in a sandboxed environment like **[Triage](https://tria.ge/)** to prevent system compromise. Note that any apps with fake names are generally not worth using. Keep in mind some file hosts have fake popups, real downloads happen within the download pages themselves, not redirected pages, or popup tabs.",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** before installation or run it in a sandboxed environment like **[Triage](https://tria",
+  "features": [],
+  "useCases": [
+    "Visit https://www.virustotal.com/gui/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.virustotal.com/gui/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:47:16.517Z"
+  "quickStart": "Visit https://www.virustotal.com/gui/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.410Z"
 }

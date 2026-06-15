@@ -1,0 +1,23 @@
+{
+  "id": "linux-15003",
+  "description": "Offline Linux Documentation Search",
+  "introduction": "Offline Linux Documentation Search",
+  "features": [
+    "GitHub: https://github.com/filiparag/wikiman"
+  ],
+  "useCases": [
+    "Visit https://github.com/filiparag/wikiman"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/filiparag/wikiman.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.441Z"
+}

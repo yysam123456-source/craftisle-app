@@ -1,25 +1,23 @@
 {
   "id": "adblock-00451",
   "description": "/ [Subreddit](https://www.reddit.com/r/ispyconnect/), [Frigate](https://frigate.video/) / [GitHub](https://github.com/blakeblackshear/frigate), [Smart Sec Cam](https://github.com/scottbarnesg/smart-sec-cam) or [ZoneMinder](https://zoneminder.com/) / [Discord](https://discord.gg/tHYyP9k66q) / [GitHub](https://github.com/ZoneMinder/ZoneMinder/) - Security Camera Systems",
-  "introduction": "/ [Subreddit](https://www.reddit.com/r/ispyconnect/), [Frigate](https://frigate.video/) / [GitHub](https://github.com/blakeblackshear/frigate), [Smart Sec Cam](https://github.com/scottbarnesg/smart-sec-cam) or [ZoneMinder](https://zoneminder.com/) / [Discord](https://discord.gg/tHYyP9k66q) / [GitHub](https://github.com/ZoneMinder/ZoneMinder/) - Security Camera Systems",
+  "introduction": "/ [Subreddit](https://www",
   "features": [
-    "<p align=\"center\">"
+    "GitHub: https://github.com/blakeblackshear/frigate"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://www.ispyconnect.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/blakeblackshear/frigate.git && cd frigate",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:09.112Z"
+  "quickStart": "git clone https://github.com/blakeblackshear/frigate.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.382Z"
 }

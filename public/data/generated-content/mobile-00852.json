@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00852",
+  "description": "Adjust Flashlight Brightness",
+  "introduction": "Adjust Flashlight Brightness",
+  "features": [
+    "GitHub: https://github.com/cyb3rko/flashdim"
+  ],
+  "useCases": [
+    "Visit https://github.com/cyb3rko/flashdim"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/cyb3rko/flashdim.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.395Z"
+}

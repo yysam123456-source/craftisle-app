@@ -1,25 +1,23 @@
 {
   "id": "adblock-00372",
   "description": "** / [2](https://gitlab.com/hagezi/mirror) - Blocklist Collection / Use Mini Edition / [Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/hagezi.md)",
-  "introduction": "** / [2](https://gitlab.com/hagezi/mirror) - Blocklist Collection / Use Mini Edition / [Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/hagezi.md)",
+  "introduction": "** / [2](https://gitlab",
   "features": [
-    "Privacy is not a crime, protect yourself. Privacy matters. Privacy is what allows us to determine who we are and who we "
+    "GitHub: https://github.com/hagezi/dns-blocklists"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/hagezi/dns-blocklists"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/hagezi/dns-blocklists.git && cd dns-blocklists",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:16.484Z"
+  "quickStart": "git clone https://github.com/hagezi/dns-blocklists.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "linux-15098",
+  "description": "** or [s-tui](https://github.com/amanusk/s-tui) - System Resource Monitors",
+  "introduction": "** or [s-tui](https://github",
+  "features": [
+    "GitHub: https://github.com/aristocratos/btop"
+  ],
+  "useCases": [
+    "Visit https://github.com/aristocratos/btop"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/aristocratos/btop.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.445Z"
+}

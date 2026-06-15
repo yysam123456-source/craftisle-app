@@ -1,0 +1,23 @@
+{
+  "id": "storage-15751",
+  "description": "Shadowsocks / [GitHub](https://github.com/unredacted/freesocks-control-plane)",
+  "introduction": "Shadowsocks / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/unredacted/freesocks-control-plane"
+  ],
+  "useCases": [
+    "Visit https://freesocks.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/unredacted/freesocks-control-plane.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.454Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13235",
+  "description": "Game Wikis / [Redirector](https://support.wiki.gg/wiki/Redirect_to_wiki.gg)",
+  "introduction": "Game Wikis / [Redirector](https://support",
+  "features": [],
+  "useCases": [
+    "Visit https://wiki.gg/wikis/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://wiki.gg/wikis/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.431Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "mobile-00923",
+  "description": "** - Run Docker on Android",
+  "introduction": "** - Run Docker on Android",
+  "features": [],
+  "useCases": [
+    "Visit https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.398Z"
+}

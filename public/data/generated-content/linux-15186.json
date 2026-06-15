@@ -1,0 +1,23 @@
+{
+  "id": "linux-15186",
+  "description": "Console Audio Visualizer",
+  "introduction": "Console Audio Visualizer",
+  "features": [
+    "GitHub: https://github.com/karlstav/cava"
+  ],
+  "useCases": [
+    "Visit https://github.com/karlstav/cava"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/karlstav/cava.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

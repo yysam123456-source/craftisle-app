@@ -2,22 +2,20 @@
   "id": "artificial-intelligence-00050",
   "description": "Sci-Hub Research Chatbot",
   "introduction": "Sci-Hub Research Chatbot",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://sci-bot.ru/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://sci-bot.ru/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:11.279Z"
+  "quickStart": "Visit https://sci-bot.ru/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.341Z"
 }

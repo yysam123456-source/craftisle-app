@@ -1,0 +1,21 @@
+{
+  "id": "reading-10941",
+  "description": "Lectures / [YouTube](https://www.youtube.com/@YaleCourses/)",
+  "introduction": "Lectures / [YouTube](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://oyc.yale.edu/courses"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://oyc.yale.edu/courses",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.421Z"
+}

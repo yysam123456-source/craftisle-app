@@ -1,0 +1,23 @@
+{
+  "id": "storage-15799",
+  "description": ", [Houdoku](https://houdoku.org/) / [GitHub](https://github.com/xgi/houdoku), [Adolla](https://github.com/AdollaApp/Adolla), [OpenComic](https://github.com/ollm/OpenComic), [Tachidesk-Sorayomi](https://github.com/Suwayomi/Tachidesk-Sorayomi), [Manga-Organizer](https://gitgud.io/Nagru/Manga-Organizer), [MangaOnlineViewer](https://github.com/TagoDR/MangaOnlineViewer), [LANraragi](https://github.com/Difegue/LANraragi), [Unyo](https://github.com/K3vinb5/Unyo)",
+  "introduction": ", [Houdoku](https://houdoku",
+  "features": [
+    "GitHub: https://github.com/xgi/houdoku"
+  ],
+  "useCases": [
+    "Visit https://allmangasreader.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/xgi/houdoku.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.456Z"
+}

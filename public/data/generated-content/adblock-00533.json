@@ -2,22 +2,20 @@
   "id": "adblock-00533",
   "description": "2FA / Mac, Android, iOS",
   "introduction": "2FA / Mac, Android, iOS",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://getsentinel.io/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://getsentinel.io/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:40.107Z"
+  "quickStart": "Visit https://getsentinel.io/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.385Z"
 }

@@ -2,22 +2,20 @@
   "id": "artificial-intelligence-00179",
   "description": "Plugin-Based / Self-Hosted / NVIDIA Required",
   "introduction": "Plugin-Based / Self-Hosted / NVIDIA Required",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://pinokio.co/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://pinokio.co/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:10.998Z"
+  "quickStart": "Visit https://pinokio.co/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.370Z"
 }

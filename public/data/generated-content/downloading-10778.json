@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10778",
+  "description": "** / [GitHub](https://github.com/fynks/debrid-services-comparison)",
+  "introduction": "** / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/fynks/debrid-services-comparison"
+  ],
+  "useCases": [
+    "Visit https://debridcompare.pages.dev/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/fynks/debrid-services-comparison.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.414Z"
+}

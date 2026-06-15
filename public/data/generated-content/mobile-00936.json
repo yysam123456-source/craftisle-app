@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00936",
+  "description": "Magisk — Free online tool",
+  "introduction": "Magisk — Free online tool",
+  "features": [
+    "GitHub: https://github.com/topjohnwu/Magisk"
+  ],
+  "useCases": [
+    "Visit https://github.com/topjohnwu/Magisk"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/topjohnwu/Magisk.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.398Z"
+}

@@ -1,23 +1,21 @@
 {
   "id": "adblock-00382",
   "description": "** - DNS Adblocking / Filtering / [Extension](https://mullvad.net/en/download/browser/extension) / [GitHub](https://github.com/mullvad)",
-  "introduction": "** - DNS Adblocking / Filtering / [Extension](https://mullvad.net/en/download/browser/extension) / [GitHub](https://github.com/mullvad)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - DNS Adblocking / Filtering / [Extension](https://mullvad",
+  "features": [],
+  "useCases": [
+    "Visit https://mullvad.net/en/help/dns-over-https-and-dns-over-tls/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://mullvad.net/en/help/dns-over-https-and-dns-over-tls/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:25.205Z"
+  "quickStart": "Visit https://mullvad.net/en/help/dns-over-https-and-dns-over-tls/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.379Z"
 }

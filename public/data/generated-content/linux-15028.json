@@ -1,0 +1,21 @@
+{
+  "id": "linux-15028",
+  "description": "Fast Distro Downloads",
+  "introduction": "Fast Distro Downloads",
+  "features": [],
+  "useCases": [
+    "Visit https://os.click/en"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://os.click/en",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.442Z"
+}

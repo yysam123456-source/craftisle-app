@@ -1,0 +1,23 @@
+{
+  "id": "linux-15243",
+  "description": "Linux Game Package Downloader",
+  "introduction": "Linux Game Package Downloader",
+  "features": [
+    "GitHub: https://github.com/Ahmed-Al-Balochi/LibreGaming"
+  ],
+  "useCases": [
+    "Visit https://github.com/Ahmed-Al-Balochi/LibreGaming"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Ahmed-Al-Balochi/LibreGaming.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

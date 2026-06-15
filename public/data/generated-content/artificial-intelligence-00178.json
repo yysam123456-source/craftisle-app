@@ -3,23 +3,21 @@
   "description": "ComfyUI-Zluda — Free online tool",
   "introduction": "ComfyUI-Zluda — Free online tool",
   "features": [
-    "<div align=\"center\">"
+    "GitHub: https://github.com/patientx/ComfyUI-Zluda"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/patientx/ComfyUI-Zluda"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/patientx/ComfyUI-Zluda.git && cd ComfyUI-Zluda",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:10.996Z"
+  "quickStart": "git clone https://github.com/patientx/ComfyUI-Zluda.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.370Z"
 }

@@ -1,27 +1,23 @@
 {
   "id": "artificial-intelligence-00084",
   "description": "Self-Hosted / [Discord](https://discord.gg/MNQqqKg) / [GitHub](https://github.com/leon-ai/leon)",
-  "introduction": "Self-Hosted / [Discord](https://discord.gg/MNQqqKg) / [GitHub](https://github.com/leon-ai/leon)",
+  "introduction": "Self-Hosted / [Discord](https://discord",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/leon-ai/leon"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://getleon.ai/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/leon-ai/leon.git && cd leon",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:43.410Z",
-  "updatedAt": "2026-06-15T03:28:08.839Z"
+  "quickStart": "git clone https://github.com/leon-ai/leon.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.343Z"
 }

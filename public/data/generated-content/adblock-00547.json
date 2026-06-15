@@ -1,23 +1,21 @@
 {
   "id": "adblock-00547",
   "description": "All Platforms / [GitHub](https://github.com/session-foundation)",
-  "introduction": "All Platforms / [GitHub](https://github.com/session-foundation)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "All Platforms / [GitHub](https://github",
+  "features": [],
+  "useCases": [
+    "Visit https://getsession.org/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://getsession.org/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:52.833Z"
+  "quickStart": "Visit https://getsession.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

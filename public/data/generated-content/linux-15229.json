@@ -1,0 +1,23 @@
+{
+  "id": "linux-15229",
+  "description": "Launch Games w/ ⁠Online-Fix Patches",
+  "introduction": "Launch Games w/ ⁠Online-Fix Patches",
+  "features": [
+    "GitHub: https://github.com/ZzEdovec/onlinefix-linux"
+  ],
+  "useCases": [
+    "Visit https://github.com/ZzEdovec/onlinefix-linux"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ZzEdovec/onlinefix-linux.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

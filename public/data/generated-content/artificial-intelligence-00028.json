@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00028",
   "description": ", [2](https://canaryarena.ai/text/direct) - Multiple Models / Sign-Up / [OpenAI Bridge](https://github.com/CloudWaddie/LMArenaBridge) / [X](https://x.com/arena) / [Discord](https://discord.com/invite/lmarena)",
-  "introduction": ", [2](https://canaryarena.ai/text/direct) - Multiple Models / Sign-Up / [OpenAI Bridge](https://github.com/CloudWaddie/LMArenaBridge) / [X](https://x.com/arena) / [Discord](https://discord.com/invite/lmarena)",
+  "introduction": ", [2](https://canaryarena",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/CloudWaddie/LMArenaBridge"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://arena.ai/text/direct"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/CloudWaddie/LMArenaBridge.git && cd LMArenaBridge",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:05.461Z"
+  "quickStart": "git clone https://github.com/CloudWaddie/LMArenaBridge.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.340Z"
 }

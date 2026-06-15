@@ -1,23 +1,21 @@
 {
   "id": "adblock-00541",
   "description": "**, [SecuChart](https://bkil.gitlab.io/secuchart/), [Messenger-Matrix](https://www.messenger-matrix.de/messenger-matrix-en.html) or [Secure Messaging Apps](https://www.securemessagingapps.com/) - Chat App Indexes / Comparisons",
-  "introduction": "**, [SecuChart](https://bkil.gitlab.io/secuchart/), [Messenger-Matrix](https://www.messenger-matrix.de/messenger-matrix-en.html) or [Secure Messaging Apps](https://www.securemessagingapps.com/) - Chat App Indexes / Comparisons",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "**, [SecuChart](https://bkil",
+  "features": [],
+  "useCases": [
+    "Visit https://eylenburg.github.io/im_comparison.htm"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://eylenburg.github.io/im_comparison.htm to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:48.618Z"
+  "quickStart": "Visit https://eylenburg.github.io/im_comparison.htm",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.386Z"
 }

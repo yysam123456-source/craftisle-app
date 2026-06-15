@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00818",
+  "description": "View Discord Data / Self-Host for Privacy / [Discord](https://androz2091.fr/discord)",
+  "introduction": "View Discord Data / Self-Host for Privacy / [Discord](https://androz2091",
+  "features": [
+    "GitHub: https://github.com/dumpus-app/dumpus-app"
+  ],
+  "useCases": [
+    "Visit https://github.com/dumpus-app/dumpus-app"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/dumpus-app/dumpus-app.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.394Z"
+}

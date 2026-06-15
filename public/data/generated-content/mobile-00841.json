@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00841",
+  "description": "**,  **[Shizuku](https://shizuku.rikka.app/)** / [Tools](https://github.com/legendsayantan/ShizuTools) / [GitHub](https://github.com/RikkaApps/Shizuku) or [Dhizuku](https://github.com/iamr0s/Dhizuku) - Let Apps Use System API",
+  "introduction": "**,  **[Shizuku](https://shizuku",
+  "features": [
+    "GitHub: https://github.com/thedjchi/Shizuku"
+  ],
+  "useCases": [
+    "Visit https://github.com/thedjchi/Shizuku"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/thedjchi/Shizuku.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.395Z"
+}

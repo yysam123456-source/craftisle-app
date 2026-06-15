@@ -1,0 +1,21 @@
+{
+  "id": "misc-01840",
+  "description": "Concert Recordings / Bootlegs",
+  "introduction": "Concert Recordings / Bootlegs",
+  "features": [],
+  "useCases": [
+    "Visit https://www.guitars101.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.guitars101.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.402Z"
+}

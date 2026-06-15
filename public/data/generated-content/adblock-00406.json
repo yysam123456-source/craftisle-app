@@ -1,25 +1,23 @@
 {
   "id": "adblock-00406",
   "description": "/ [2](https://badmojr.github.io/1Hosts/) / [GitHub](https://github.com/badmojr/1Hosts)",
-  "introduction": "/ [2](https://badmojr.github.io/1Hosts/) / [GitHub](https://github.com/badmojr/1Hosts)",
+  "introduction": "/ [2](https://badmojr",
   "features": [
-    "***Safeguard your device(s) against pesky ads, trackers, and malware.***<br>"
+    "GitHub: https://github.com/badmojr/1Hosts"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://o0.pages.dev/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/badmojr/1Hosts.git && cd 1Hosts",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:49.821Z"
+  "quickStart": "git clone https://github.com/badmojr/1Hosts.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.380Z"
 }

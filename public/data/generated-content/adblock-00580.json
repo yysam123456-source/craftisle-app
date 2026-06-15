@@ -1,23 +1,21 @@
 {
   "id": "adblock-00580",
   "description": "or [Blacklight](https://themarkup.org/blacklight) - Site Tracking Info",
-  "introduction": "or [Blacklight](https://themarkup.org/blacklight) - Site Tracking Info",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "or [Blacklight](https://themarkup",
+  "features": [],
+  "useCases": [
+    "Visit https://webbkoll.5july.net/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://webbkoll.5july.net/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:46:08.707Z"
+  "quickStart": "Visit https://webbkoll.5july.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.388Z"
 }

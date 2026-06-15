@@ -1,0 +1,21 @@
+{
+  "id": "reading-10949",
+  "description": "** - Course Busters Access",
+  "introduction": "** - Course Busters Access",
+  "features": [],
+  "useCases": [
+    "Visit https://www.cbusters.com/home"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.cbusters.com/home",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.421Z"
+}

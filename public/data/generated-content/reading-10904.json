@@ -2,22 +2,20 @@
   "id": "reading-10904",
   "description": "Top Documentary Films — Free online tool",
   "introduction": "Top Documentary Films — Free online tool",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://topdocumentaryfilms.com/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://topdocumentaryfilms.com/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:47:23.797Z"
+  "quickStart": "Visit https://topdocumentaryfilms.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.420Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "linux-15122",
+  "description": ", [Heads](https://osresearch.net/) / [GitHub](https://github.com/linuxboot/heads), [⁠Canoeboot](https://canoeboot.org/) or [Libreboot](https://libreboot.org/) - Replace Proprietary BIOS/UEFI Firmware",
+  "introduction": ", [Heads](https://osresearch",
+  "features": [
+    "GitHub: https://github.com/linuxboot/heads"
+  ],
+  "useCases": [
+    "Visit https://coreboot.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/linuxboot/heads.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.446Z"
+}

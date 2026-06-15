@@ -1,23 +1,21 @@
 {
   "id": "adblock-00470",
   "description": "** (.onion), [2](https://bible.beginnerprivacy.com/opsec/) - Online Anonymity Guide / [SimpleX Chat](http://nowherejezfoltodf4jiyl6r56jnzintap5vyjlia7fkirfsnfizflqd.onion/simplex.html)",
-  "introduction": "** (.onion), [2](https://bible.beginnerprivacy.com/opsec/) - Online Anonymity Guide / [SimpleX Chat](http://nowherejezfoltodf4jiyl6r56jnzintap5vyjlia7fkirfsnfizflqd.onion/simplex.html)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** (",
+  "features": [],
+  "useCases": [
+    "Visit http://opbible7nans45sg33cbyeiwqmlp5fu7lklu6jd6f3mivrjeqadco5yd.onion/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit http://opbible7nans45sg33cbyeiwqmlp5fu7lklu6jd6f3mivrjeqadco5yd.onion/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:22.516Z"
+  "quickStart": "Visit http://opbible7nans45sg33cbyeiwqmlp5fu7lklu6jd6f3mivrjeqadco5yd.onion/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.383Z"
 }

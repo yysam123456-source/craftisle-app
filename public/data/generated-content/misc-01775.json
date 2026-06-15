@@ -1,0 +1,23 @@
+{
+  "id": "misc-01775",
+  "description": "Streaming / [Discord](https://discord.com/invite/JqPjKxE) / [GitHub](https://github.com/NuclearPlayer/nuclear-xrd)",
+  "introduction": "Streaming / [Discord](https://discord",
+  "features": [
+    "GitHub: https://github.com/NuclearPlayer/nuclear-xrd"
+  ],
+  "useCases": [
+    "Visit https://nuclearplayer.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/NuclearPlayer/nuclear-xrd.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.399Z"
+}

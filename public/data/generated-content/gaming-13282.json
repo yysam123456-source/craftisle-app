@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13282",
+  "description": ", [Borderless Gaming](https://legacy.borderlessgam.ing/) / [Discord](https://discord.gg/8UvpR5UgX3) / [GitHub](https://github.com/andrewmd5/Borderless-Gaming) or [FullScreenizer](http://runtimeterror.com/tools/fullscreenizer/) - Borderless Windows for All Games / Windows",
+  "introduction": ", [Borderless Gaming](https://legacy",
+  "features": [
+    "GitHub: https://github.com/andrewmd5/Borderless-Gaming"
+  ],
+  "useCases": [
+    "Visit https://westechsolutions.net/sites/WindowedBorderlessGaming/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/andrewmd5/Borderless-Gaming.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.434Z"
+}

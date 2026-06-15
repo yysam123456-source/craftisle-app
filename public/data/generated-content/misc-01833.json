@@ -1,0 +1,21 @@
+{
+  "id": "misc-01833",
+  "description": "** - BBC Radio 1 Essential Mix Archive + Guide / [Downloader](https://rentry.co/bbcemdl)",
+  "introduction": "** - BBC Radio 1 Essential Mix Archive + Guide / [Downloader](https://rentry",
+  "features": [],
+  "useCases": [
+    "Visit https://rentry.co/musicdiscovery/#bbc-radio-1-essential-mix"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://rentry.co/musicdiscovery/#bbc-radio-1-essential-mix",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.401Z"
+}

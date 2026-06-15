@@ -1,0 +1,21 @@
+{
+  "id": "mobile-00784",
+  "description": "Private APK Downloader",
+  "introduction": "Private APK Downloader",
+  "features": [],
+  "useCases": [
+    "Visit https://raccoon.onyxbits.de/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://raccoon.onyxbits.de/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

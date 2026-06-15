@@ -1,0 +1,21 @@
+{
+  "id": "reading-11115",
+  "description": "or [Instrumentacion](http://instrumentacion.qi.fcen.uba.ar/libro.html) - Electronic Guides",
+  "introduction": "or [Instrumentacion](http://instrumentacion",
+  "features": [],
+  "useCases": [
+    "Visit https://www.electronics-tutorials.ws/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.electronics-tutorials.ws/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.428Z"
+}

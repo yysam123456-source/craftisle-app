@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13247",
+  "description": "Unofficial Game Launcher / Torrent Client / Windows, Linux / [Discord](https://discord.gg/cXaBWdcUSF)",
+  "introduction": "Unofficial Game Launcher / Torrent Client / Windows, Linux / [Discord](https://discord",
+  "features": [
+    "GitHub: https://github.com/CarrotRub/Fit-Launcher"
+  ],
+  "useCases": [
+    "Visit https://github.com/CarrotRub/Fit-Launcher/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/CarrotRub/Fit-Launcher.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.432Z"
+}

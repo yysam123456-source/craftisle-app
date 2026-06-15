@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00878",
+  "description": ", [⁠Wallpapers Clan](https://wallpapers-clan.com/), [Arcticons](https://arcticons.com/) or [Alembicons](https://f-droid.org/packages/com.kaanelloed.iconeration/) - Custom Icon Packs",
+  "introduction": ", [⁠Wallpapers Clan](https://wallpapers-clan",
+  "features": [
+    "GitHub: https://github.com/zixpo/candybar"
+  ],
+  "useCases": [
+    "Visit https://github.com/zixpo/candybar"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/zixpo/candybar.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.396Z"
+}

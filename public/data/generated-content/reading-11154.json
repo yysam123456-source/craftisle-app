@@ -1,0 +1,23 @@
+{
+  "id": "reading-11154",
+  "description": "/ [GitHub](https://github.com/matt765/atom-animation), [Graph Overflow](https://graphoverflow.com/graphs/3d-periodic-table.html) or [3D Periodic Table](https://artsexperiments.withgoogle.com/periodic-table/) - 3D Visualizations of Atoms",
+  "introduction": "/ [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/matt765/atom-animation"
+  ],
+  "useCases": [
+    "Visit https://atomanimation.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/matt765/atom-animation.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.430Z"
+}

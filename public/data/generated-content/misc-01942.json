@@ -1,0 +1,21 @@
+{
+  "id": "misc-01942",
+  "description": "Online Radio Player / Directory",
+  "introduction": "Online Radio Player / Directory",
+  "features": [],
+  "useCases": [
+    "Visit https://www.radiodeck.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.radiodeck.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.406Z"
+}

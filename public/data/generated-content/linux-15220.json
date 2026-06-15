@@ -1,0 +1,23 @@
+{
+  "id": "linux-15220",
+  "description": "Steamclient Mod w/ DLC Unlocker and Emulated Achievements / [Generate Achievements](https://github.com/xamionex/SLScheevo)",
+  "introduction": "Steamclient Mod w/ DLC Unlocker and Emulated Achievements / [Generate Achievements](https://github",
+  "features": [
+    "GitHub: https://github.com/xamionex/SLScheevo"
+  ],
+  "useCases": [
+    "Visit https://cs.rin.ru/forum/search.php?st=0&sk=t&sd=d&sr=topics&keywords=SLSsteam"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/xamionex/SLScheevo.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.449Z"
+}

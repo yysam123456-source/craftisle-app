@@ -2,22 +2,20 @@
   "id": "adblock-00449",
   "description": "Privacy and Data Protection Tools",
   "introduction": "Privacy and Data Protection Tools",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://www.w10privacy.de/english-home/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.w10privacy.de/english-home/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:06.480Z"
+  "quickStart": "Visit https://www.w10privacy.de/english-home/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.382Z"
 }

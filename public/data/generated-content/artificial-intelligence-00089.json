@@ -1,27 +1,23 @@
 {
   "id": "artificial-intelligence-00089",
   "description": "Self-Hosted Models / [GitHub](https://github.com/mudler/LocalAI)",
-  "introduction": "Self-Hosted Models / [GitHub](https://github.com/mudler/LocalAI)",
+  "introduction": "Self-Hosted Models / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/mudler/LocalAI"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://localai.io/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/mudler/LocalAI.git && cd LocalAI",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:48.296Z",
-  "updatedAt": "2026-06-15T03:28:08.840Z"
+  "quickStart": "git clone https://github.com/mudler/LocalAI.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.343Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "linux-15192",
+  "description": "Use Device as Linux Virtual Pen",
+  "introduction": "Use Device as Linux Virtual Pen",
+  "features": [
+    "GitHub: https://github.com/androidvirtualpen/virtualpen"
+  ],
+  "useCases": [
+    "Visit https://github.com/androidvirtualpen/virtualpen"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/androidvirtualpen/virtualpen.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

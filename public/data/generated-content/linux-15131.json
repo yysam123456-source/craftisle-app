@@ -1,0 +1,21 @@
+{
+  "id": "linux-15131",
+  "description": "Kernel Developer Guides",
+  "introduction": "Kernel Developer Guides",
+  "features": [],
+  "useCases": [
+    "Visit https://kernelnewbies.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://kernelnewbies.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.446Z"
+}

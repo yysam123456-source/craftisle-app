@@ -1,0 +1,21 @@
+{
+  "id": "reading-11097",
+  "description": "Engineering Magazine / News",
+  "introduction": "Engineering Magazine / News",
+  "features": [],
+  "useCases": [
+    "Visit https://spectrum.ieee.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://spectrum.ieee.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.427Z"
+}

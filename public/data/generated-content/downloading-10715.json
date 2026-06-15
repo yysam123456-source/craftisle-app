@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10715",
+  "description": "Open Directory Indexer",
+  "introduction": "Open Directory Indexer",
+  "features": [
+    "GitHub: https://github.com/KoalaBear84/OpenDirectoryDownloader"
+  ],
+  "useCases": [
+    "Visit https://github.com/KoalaBear84/OpenDirectoryDownloader"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/KoalaBear84/OpenDirectoryDownloader.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.412Z"
+}

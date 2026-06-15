@@ -1,0 +1,23 @@
+{
+  "id": "linux-15038",
+  "description": "** or [GearLever](https://github.com/mijorus/gearlever) - Integrate AppImages to App Launchers",
+  "introduction": "** or [GearLever](https://github",
+  "features": [
+    "GitHub: https://github.com/TheAssassin/AppImageLauncher"
+  ],
+  "useCases": [
+    "Visit https://github.com/TheAssassin/AppImageLauncher"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/TheAssassin/AppImageLauncher.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

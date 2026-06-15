@@ -1,29 +1,23 @@
 {
   "id": "artificial-intelligence-00048",
   "description": "FOSS AI Search Engine / Self-Hosted / [Discord](https://discord.gg/26aArMy8tT)",
-  "introduction": "FOSS AI Search Engine / Self-Hosted / [Discord](https://discord.gg/26aArMy8tT)",
+  "introduction": "FOSS AI Search Engine / Self-Hosted / [Discord](https://discord",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/ItzCrazyKns/Vane"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/ItzCrazyKns/Vane"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/ItzCrazyKns/Vane.git && cd Vane",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:10.116Z",
-  "license": "MIT",
-  "tech": "Docker",
-  "updatedAt": "2026-06-15T03:28:08.838Z"
+  "quickStart": "git clone https://github.com/ItzCrazyKns/Vane.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.341Z"
 }

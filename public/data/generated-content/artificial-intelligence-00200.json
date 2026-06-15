@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00200",
   "description": "/ No Sign-Up / [GitHub](https://github.com/ace-step/ACE-Step-1.5)",
-  "introduction": "/ No Sign-Up / [GitHub](https://github.com/ace-step/ACE-Step-1.5)",
+  "introduction": "/ No Sign-Up / [GitHub](https://github",
   "features": [
-    "<h1 align=\"center\">ACE-Step 1.5</h1>"
+    "GitHub: https://github.com/ace-step/ACE-Step-1.5"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://huggingface.co/spaces/ACE-Step/Ace-Step-v1.5"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/ace-step/ACE-Step-1.5.git && cd ACE-Step-1.5",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:20.828Z"
+  "quickStart": "git clone https://github.com/ace-step/ACE-Step-1.5.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.377Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10791",
+  "description": "IRC Client / Windows, Linux / [GitHub](https://github.com/KDE/konversation)",
+  "introduction": "IRC Client / Windows, Linux / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/KDE/konversation"
+  ],
+  "useCases": [
+    "Visit https://konversation.kde.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/KDE/konversation.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.415Z"
+}

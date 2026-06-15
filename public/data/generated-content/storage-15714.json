@@ -1,0 +1,23 @@
+{
+  "id": "storage-15714",
+  "description": "/ [GitHub](https://github.com/DigitalPlatDev/FreeDomain), [is-a.dev](https://www.is-a.dev/), [JS.ORG](https://js.org/), [TheDev](https://thedev.id/), [GetFreeDomain](https://www.getfreedomain.name/)",
+  "introduction": "/ [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/DigitalPlatDev/FreeDomain"
+  ],
+  "useCases": [
+    "Visit https://domain.digitalplat.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/DigitalPlatDev/FreeDomain.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.452Z"
+}

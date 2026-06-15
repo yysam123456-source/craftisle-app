@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00921",
+  "description": "** - Rooted App Index / Guides / [GitHub](https://github.com/awesome-android-root/awesome-android-root)",
+  "introduction": "** - Rooted App Index / Guides / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/awesome-android-root/awesome-android-root"
+  ],
+  "useCases": [
+    "Visit https://awesome-android-root.pages.dev/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/awesome-android-root/awesome-android-root.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.398Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "storage-15817",
+  "description": "bateristaspt — Free online tool",
+  "introduction": "bateristaspt — Free online tool",
+  "features": [],
+  "useCases": [
+    "Visit https://www.bateristaspt.com/membros/drumscores/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.bateristaspt.com/membros/drumscores/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.457Z"
+}

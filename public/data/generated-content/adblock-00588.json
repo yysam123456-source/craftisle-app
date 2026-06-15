@@ -1,23 +1,21 @@
 {
   "id": "adblock-00588",
   "description": "** - Privacy Search Engine Comparisons / [GitLab](https://gitlab.com/nitrohorse/search-engines-compare)",
-  "introduction": "** - Privacy Search Engine Comparisons / [GitLab](https://gitlab.com/nitrohorse/search-engines-compare)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - Privacy Search Engine Comparisons / [GitLab](https://gitlab",
+  "features": [],
+  "useCases": [
+    "Visit https://searchengine.party/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://searchengine.party/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:46:11.326Z"
+  "quickStart": "Visit https://searchengine.party/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.388Z"
 }

@@ -1,25 +1,23 @@
 {
   "id": "adblock-00460",
   "description": "Self-Contained HTML Files that Decrypt Locally in Browser / [GitHub](https://github.com/alcazarsec/portable-secret)",
-  "introduction": "Self-Contained HTML Files that Decrypt Locally in Browser / [GitHub](https://github.com/alcazarsec/portable-secret)",
+  "introduction": "Self-Contained HTML Files that Decrypt Locally in Browser / [GitHub](https://github",
   "features": [
-    "Portable Secret lets you encrypt text and files into a single HTML file that can be opened in any modern browser."
+    "GitHub: https://github.com/alcazarsec/portable-secret"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://alcazarsec.github.io/portable-secret/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/alcazarsec/portable-secret.git && cd portable-secret",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:19.123Z"
+  "quickStart": "git clone https://github.com/alcazarsec/portable-secret.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.382Z"
 }

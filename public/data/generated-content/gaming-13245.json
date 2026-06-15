@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13245",
+  "description": "** / Windows / [GitHub](https://github.com/Y0URD34TH/Project-GLD/) or **[GOG Galaxy](https://www.gog.com/galaxy)** (closed source) - Game Libraries / Launchers",
+  "introduction": "** / Windows / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/Y0URD34TH/Project-GLD"
+  ],
+  "useCases": [
+    "Visit https://y0urd34th.github.io/Project-GLD/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Y0URD34TH/Project-GLD.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.432Z"
+}

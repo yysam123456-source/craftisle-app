@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00163",
   "description": "** / [Discord](https://discord.com/invite/TUrgfECxHz) / [GitHub](https://github.com/LykosAI/StabilityMatrix)",
-  "introduction": "** / [Discord](https://discord.com/invite/TUrgfECxHz) / [GitHub](https://github.com/LykosAI/StabilityMatrix)",
+  "introduction": "** / [Discord](https://discord",
   "features": [
-    "Multi-Platform Package Manager and Inference UI for Stable Diffusion"
+    "GitHub: https://github.com/LykosAI/StabilityMatrix"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://lykos.ai/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/LykosAI/StabilityMatrix.git && cd StabilityMatrix",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:51.665Z"
+  "quickStart": "git clone https://github.com/LykosAI/StabilityMatrix.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.369Z"
 }

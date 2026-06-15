@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13449",
+  "description": "Generate Steam 2FA Codes",
+  "introduction": "Generate Steam 2FA Codes",
+  "features": [
+    "GitHub: https://github.com/dyc3/steamguard-cli"
+  ],
+  "useCases": [
+    "Visit https://github.com/dyc3/steamguard-cli"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/dyc3/steamguard-cli.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.441Z"
+}

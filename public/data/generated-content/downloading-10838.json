@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10838",
+  "description": "Torrent Client / Windows, Mac, Linux, Android",
+  "introduction": "Torrent Client / Windows, Mac, Linux, Android",
+  "features": [],
+  "useCases": [
+    "Visit https://www.biglybt.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.biglybt.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.417Z"
+}

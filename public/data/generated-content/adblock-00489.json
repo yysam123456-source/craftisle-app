@@ -3,23 +3,21 @@
   "description": "Vehicle Security Resources",
   "introduction": "Vehicle Security Resources",
   "features": [
-    "*A curated list of awesome resources, books, hardware, software, applications, people to follow, and more cool stuff abo"
+    "GitHub: https://github.com/jaredthecoder/awesome-vehicle-security"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/jaredthecoder/awesome-vehicle-security"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/jaredthecoder/awesome-vehicle-security.git && cd awesome-vehicle-security",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:37.685Z"
+  "quickStart": "git clone https://github.com/jaredthecoder/awesome-vehicle-security.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.384Z"
 }

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01861",
+  "description": "Phish Live Archive / [Mobile](https://play.google.com/store/apps/details?id=never.ending.splendor) / [Discord](https://discord.gg/KZWFsNN)",
+  "introduction": "Phish Live Archive / [Mobile](https://play",
+  "features": [],
+  "useCases": [
+    "Visit https://phish.in/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://phish.in/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.403Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "reading-11148",
+  "description": "Chemical Equation Balance Calculator",
+  "introduction": "Chemical Equation Balance Calculator",
+  "features": [],
+  "useCases": [
+    "Visit https://webqc.org/balance.php"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://webqc.org/balance.php",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.430Z"
+}

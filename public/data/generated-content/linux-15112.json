@@ -1,0 +1,23 @@
+{
+  "id": "linux-15112",
+  "description": "Mouse & Keyboard Sharing",
+  "introduction": "Mouse & Keyboard Sharing",
+  "features": [
+    "GitHub: https://github.com/feschber/lan-mouse"
+  ],
+  "useCases": [
+    "Visit https://github.com/feschber/lan-mouse"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/feschber/lan-mouse.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.445Z"
+}

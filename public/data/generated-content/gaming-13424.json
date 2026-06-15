@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13424",
+  "description": "** - Engineering Games",
+  "introduction": "** - Engineering Games",
+  "features": [
+    "GitHub: https://github.com/arcataroger/awesome-engineering-games"
+  ],
+  "useCases": [
+    "Visit https://github.com/arcataroger/awesome-engineering-games"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/arcataroger/awesome-engineering-games.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.439Z"
+}

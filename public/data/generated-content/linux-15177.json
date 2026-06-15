@@ -1,0 +1,23 @@
+{
+  "id": "linux-15177",
+  "description": "Podcast / Radio Player",
+  "introduction": "Podcast / Radio Player",
+  "features": [
+    "GitHub: https://github.com/ubuntu-flutter-community/musicpod"
+  ],
+  "useCases": [
+    "Visit https://github.com/ubuntu-flutter-community/musicpod"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ubuntu-flutter-community/musicpod.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

@@ -1,30 +1,23 @@
 {
   "id": "artificial-intelligence-00103",
   "description": "Roleplaying / Story Chatbot / [Colab](https://colab.research.google.com/github/vrihatgan/TavernAI/blob/main/colab/colab.ipynb) / [Discord](https://discord.gg/zmK2gmr45t) / [GitHub](https://github.com/TavernAI/TavernAI)",
-  "introduction": "Roleplaying / Story Chatbot / [Colab](https://colab.research.google.com/github/vrihatgan/TavernAI/blob/main/colab/colab.ipynb) / [Discord](https://discord.gg/zmK2gmr45t) / [GitHub](https://github.com/TavernAI/TavernAI)",
+  "introduction": "Roleplaying / Story Chatbot / [Colab](https://colab",
   "features": [
-    "Character creation",
-    "Online character database",
-    "Group chat with multiple characters at the same time",
-    "Story mode",
-    "World info",
-    "Message swiping"
+    "GitHub: https://github.com/TavernAI/TavernAI"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://tavernai.net/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/TavernAI/TavernAI.git && cd TavernAI",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:34.534Z"
+  "quickStart": "git clone https://github.com/TavernAI/TavernAI.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.346Z"
 }

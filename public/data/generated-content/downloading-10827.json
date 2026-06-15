@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10827",
+  "description": "Magnet Search Web App",
+  "introduction": "Magnet Search Web App",
+  "features": [
+    "GitHub: https://github.com/sergiotapia/magnetissimo"
+  ],
+  "useCases": [
+    "Visit https://github.com/sergiotapia/magnetissimo"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/sergiotapia/magnetissimo.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.416Z"
+}

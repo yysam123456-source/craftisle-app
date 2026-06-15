@@ -1,0 +1,21 @@
+{
+  "id": "storage-15849",
+  "description": "** or [Searx Index](https://www.startpage.com/sp/search?q=%22powered%20by%20Searx%22) - Searx Instance Indexes",
+  "introduction": "** or [Searx Index](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://searx.neocities.org/instancescores"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://searx.neocities.org/instancescores",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.459Z"
+}

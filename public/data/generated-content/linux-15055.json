@@ -1,0 +1,23 @@
+{
+  "id": "linux-15055",
+  "description": "Display Manager with Console UI",
+  "introduction": "Display Manager with Console UI",
+  "features": [
+    "GitHub: https://github.com/fairyglade/ly"
+  ],
+  "useCases": [
+    "Visit https://github.com/fairyglade/ly"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/fairyglade/ly.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00779",
+  "description": "** - Merge Split APKs",
+  "introduction": "** - Merge Split APKs",
+  "features": [
+    "GitHub: https://github.com/AbdurazaaqMohammed/AntiSplit-M"
+  ],
+  "useCases": [
+    "Visit https://github.com/AbdurazaaqMohammed/AntiSplit-M"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/AbdurazaaqMohammed/AntiSplit-M.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

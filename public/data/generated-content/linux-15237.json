@@ -1,0 +1,23 @@
+{
+  "id": "linux-15237",
+  "description": "Vulkan-Based D3D7/6/5 for Linux / Wine",
+  "introduction": "Vulkan-Based D3D7/6/5 for Linux / Wine",
+  "features": [
+    "GitHub: https://github.com/WinterSnowfall/d7vk"
+  ],
+  "useCases": [
+    "Visit https://github.com/WinterSnowfall/d7vk"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/WinterSnowfall/d7vk.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

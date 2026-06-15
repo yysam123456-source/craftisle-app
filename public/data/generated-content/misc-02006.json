@@ -1,0 +1,21 @@
+{
+  "id": "misc-02006",
+  "description": "Lofi Radio + Simple Games",
+  "introduction": "Lofi Radio + Simple Games",
+  "features": [],
+  "useCases": [
+    "Visit https://lofiandgames.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://lofiandgames.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.409Z"
+}

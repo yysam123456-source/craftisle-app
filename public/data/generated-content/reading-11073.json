@@ -1,0 +1,21 @@
+{
+  "id": "reading-11073",
+  "description": "Math Practice / Quizzes",
+  "introduction": "Math Practice / Quizzes",
+  "features": [],
+  "useCases": [
+    "Visit https://au.ixl.com/math/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://au.ixl.com/math/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.426Z"
+}

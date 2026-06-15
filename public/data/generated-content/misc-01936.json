@@ -1,0 +1,23 @@
+{
+  "id": "misc-01936",
+  "description": "Online Radio w/ Multi-Platform Scrobbling / [GitHub](https://github.com/jbwharris/scrobblerad.io)",
+  "introduction": "Online Radio w/ Multi-Platform Scrobbling / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/jbwharris/scrobblerad.io"
+  ],
+  "useCases": [
+    "Visit https://scrobblerad.io/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/jbwharris/scrobblerad.io.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.406Z"
+}

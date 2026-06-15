@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00054",
   "description": "Document Chatbot / Note-Taking / [Discord](https://discord.com/invite/bK6mRVpErU) / [GitHub](https://github.com/zylon-ai/private-gpt)",
-  "introduction": "Document Chatbot / Note-Taking / [Discord](https://discord.com/invite/bK6mRVpErU) / [GitHub](https://github.com/zylon-ai/private-gpt)",
+  "introduction": "Document Chatbot / Note-Taking / [Discord](https://discord",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/zylon-ai/private-gpt"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://privategpt.dev/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/zylon-ai/private-gpt.git && cd private-gpt",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:12.435Z"
+  "quickStart": "git clone https://github.com/zylon-ai/private-gpt.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.341Z"
 }

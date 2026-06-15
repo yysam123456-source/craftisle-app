@@ -1,0 +1,23 @@
+{
+  "id": "linux-15041",
+  "description": "** / [GitHub](https://github.com/FreeRDP/FreeRDP), [⁠Remmina](https://remmina.org/) or [⁠Apache Guacamole](https://guacamole.apache.org/) - Remote Desktop Clients",
+  "introduction": "** / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/FreeRDP/FreeRDP"
+  ],
+  "useCases": [
+    "Visit https://www.freerdp.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/FreeRDP/FreeRDP.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

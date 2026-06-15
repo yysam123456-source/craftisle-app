@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00887",
+  "description": "Battery Monitor / Manager / [GitHub](https://github.com/ni554n/battarang-notifier-android)",
+  "introduction": "Battery Monitor / Manager / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/ni554n/battarang-notifier-android"
+  ],
+  "useCases": [
+    "Visit https://battarang.anissan.com"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ni554n/battarang-notifier-android.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.396Z"
+}

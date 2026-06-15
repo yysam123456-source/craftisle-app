@@ -1,0 +1,23 @@
+{
+  "id": "linux-15240",
+  "description": "Game Post Processing Layer",
+  "introduction": "Game Post Processing Layer",
+  "features": [
+    "GitHub: https://github.com/DadSchoorse/vkBasalt"
+  ],
+  "useCases": [
+    "Visit https://github.com/DadSchoorse/vkBasalt"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/DadSchoorse/vkBasalt.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

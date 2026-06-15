@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00020",
   "description": "Trinity Large Thinking / Unlimited / [Discord](https://discord.com/invite/arceeai)",
-  "introduction": "Trinity Large Thinking / Unlimited / [Discord](https://discord.com/invite/arceeai)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Trinity Large Thinking / Unlimited / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://chat.arcee.ai/chat"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://chat.arcee.ai/chat to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:03.108Z"
+  "quickStart": "Visit https://chat.arcee.ai/chat",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.339Z"
 }

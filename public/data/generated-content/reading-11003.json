@@ -1,0 +1,21 @@
+{
+  "id": "reading-11003",
+  "description": "Explore Real Places Digitally",
+  "introduction": "Explore Real Places Digitally",
+  "features": [],
+  "useCases": [
+    "Visit https://matterport.com/discover"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://matterport.com/discover",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.423Z"
+}

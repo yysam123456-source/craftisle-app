@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00007",
   "description": "** - Kimi K2.6 (Thinking) / Slides / Google Login or Phone # Required / [Subreddit](https://www.reddit.com/r/kimi/) / [Discord](https://discord.gg/TYU2fdJykW) / [GitHub](https://github.com/MoonshotAI)",
-  "introduction": "** - Kimi K2.6 (Thinking) / Slides / Google Login or Phone # Required / [Subreddit](https://www.reddit.com/r/kimi/) / [Discord](https://discord.gg/TYU2fdJykW) / [GitHub](https://github.com/MoonshotAI)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - Kimi K2",
+  "features": [],
+  "useCases": [
+    "Visit https://www.kimi.com/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.kimi.com/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:37:59.628Z"
+  "quickStart": "Visit https://www.kimi.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.338Z"
 }

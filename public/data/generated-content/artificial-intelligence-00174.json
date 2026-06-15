@@ -3,23 +3,21 @@
   "description": "Dione — Free online tool",
   "introduction": "Dione — Free online tool",
   "features": [
-    "Dione had an amazing 2025, with **25k+ downloads** and **10k+ users**."
+    "GitHub: https://github.com/dioneapp/dioneapp"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/dioneapp/dioneapp"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/dioneapp/dioneapp.git && cd dioneapp",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:06.610Z"
+  "quickStart": "git clone https://github.com/dioneapp/dioneapp.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.370Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "misc-01778",
+  "description": "Self-Hosted P2P Lossless Music Player / [Web App](https://sonosano.krshh.com/) / [Discord](https://discord.gg/Np7YYEVPhR)",
+  "introduction": "Self-Hosted P2P Lossless Music Player / [Web App](https://sonosano",
+  "features": [
+    "GitHub: https://github.com/KRSHH/Sonosano"
+  ],
+  "useCases": [
+    "Visit https://github.com/KRSHH/Sonosano"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/KRSHH/Sonosano.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

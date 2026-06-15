@@ -1,25 +1,23 @@
 {
   "id": "adblock-00469",
   "description": "** - Online Anonymity Guide / [GitHub](https://github.com/Anon-Planet/thgtoa)",
-  "introduction": "** - Online Anonymity Guide / [GitHub](https://github.com/Anon-Planet/thgtoa)",
+  "introduction": "** - Online Anonymity Guide / [GitHub](https://github",
   "features": [
-    "Welcome."
+    "GitHub: https://github.com/Anon-Planet/thgtoa"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://anonymousplanet.net/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Anon-Planet/thgtoa.git && cd thgtoa",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:22.514Z"
+  "quickStart": "git clone https://github.com/Anon-Planet/thgtoa.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.383Z"
 }

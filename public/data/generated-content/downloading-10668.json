@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10668",
+  "description": "**, [⁠definitive-opensource](https://github.com/mustbeperfect/definitive-opensource), [Awesome Useful Projects](https://github.com/Furthir/awesome-useful-projects) or [Awesome OSS](https://github.com/RunaCapital/awesome-oss-alternatives) - FOSS Indexes",
+  "introduction": "**, [⁠definitive-opensource](https://github",
+  "features": [
+    "GitHub: https://github.com/mustbeperfect/definitive-opensource"
+  ],
+  "useCases": [
+    "Visit https://awesomeopensource.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/mustbeperfect/definitive-opensource.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.410Z"
+}

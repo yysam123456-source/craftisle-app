@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00063",
   "description": "** - Desktop App / Self-Hosted Models Only / [Discord](https://discord.gg/aPQfnNkxGC) / [GitHub](https://github.com/lmstudio-ai)",
-  "introduction": "** - Desktop App / Self-Hosted Models Only / [Discord](https://discord.gg/aPQfnNkxGC) / [GitHub](https://github.com/lmstudio-ai)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - Desktop App / Self-Hosted Models Only / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://lmstudio.ai/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://lmstudio.ai/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:18.342Z"
+  "quickStart": "Visit https://lmstudio.ai/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.342Z"
 }

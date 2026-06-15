@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10857",
+  "description": "Manager / Automation Tool",
+  "introduction": "Manager / Automation Tool",
+  "features": [
+    "GitHub: https://github.com/StuffAnThings/qbit_manage"
+  ],
+  "useCases": [
+    "Visit https://github.com/StuffAnThings/qbit_manage"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/StuffAnThings/qbit_manage.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.418Z"
+}

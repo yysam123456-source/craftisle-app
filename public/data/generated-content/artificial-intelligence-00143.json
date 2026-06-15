@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00143",
   "description": "Hunyuan Image 3.0 / Z-Image Turbo / 1500 Credits Per Day / Sign-Up / [Discord](https://discord.gg/W4Svx2QhHb)",
-  "introduction": "Hunyuan Image 3.0 / Z-Image Turbo / 1500 Credits Per Day / Sign-Up / [Discord](https://discord.gg/W4Svx2QhHb)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Hunyuan Image 3",
+  "features": [],
+  "useCases": [
+    "Visit https://opensourcegen.com/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://opensourcegen.com/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:44.186Z"
+  "quickStart": "Visit https://opensourcegen.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.368Z"
 }

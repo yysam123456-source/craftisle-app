@@ -1,0 +1,21 @@
+{
+  "id": "misc-01957",
+  "description": "Independent Internet Radio",
+  "introduction": "Independent Internet Radio",
+  "features": [],
+  "useCases": [
+    "Visit https://wfmu.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://wfmu.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.407Z"
+}

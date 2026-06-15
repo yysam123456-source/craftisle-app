@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00825",
+  "description": "or [Telegram Monet](https://github.com/mi-g-alex/Telegram-Monet) / [Telegram](https://t.me/tgmonet) - Telegram Theme Creators",
+  "introduction": "or [Telegram Monet](https://github",
+  "features": [
+    "GitHub: https://github.com/therxmv/Telegram-Themer"
+  ],
+  "useCases": [
+    "Visit https://github.com/therxmv/Telegram-Themer"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/therxmv/Telegram-Themer.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.394Z"
+}

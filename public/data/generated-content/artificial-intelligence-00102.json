@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00102",
   "description": "Roleplaying + Images / Unlimited / [Discord](https://discord.gg/verba)",
-  "introduction": "Roleplaying + Images / Unlimited / [Discord](https://discord.gg/verba)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Roleplaying + Images / Unlimited / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://verba.ink/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://verba.ink/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:32.692Z"
+  "quickStart": "Visit https://verba.ink/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.346Z"
 }

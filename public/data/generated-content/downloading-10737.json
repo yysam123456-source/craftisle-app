@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10737",
+  "description": "Audio / Books / Magazines / ROMs",
+  "introduction": "Audio / Books / Magazines / ROMs",
+  "features": [],
+  "useCases": [
+    "Visit https://www.tehparadox.net/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.tehparadox.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.413Z"
+}

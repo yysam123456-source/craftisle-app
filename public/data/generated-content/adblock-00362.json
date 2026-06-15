@@ -1,25 +1,23 @@
 {
   "id": "adblock-00362",
   "description": "**, [AdGuard](https://github.com/AdguardTeam/AdguardBrowserExtension) or [uBO Lite](https://github.com/uBlockOrigin/uBOL-home) (MV3) / [Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/ubo-lite.md) - Adblockers / [Redundant Extensions](https://github.com/arkenfox/user.js/wiki/4.1-Extensions/#-dont-bother)",
-  "introduction": "**, [AdGuard](https://github.com/AdguardTeam/AdguardBrowserExtension) or [uBO Lite](https://github.com/uBlockOrigin/uBOL-home) (MV3) / [Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/ubo-lite.md) - Adblockers / [Redundant Extensions](https://github.com/arkenfox/user.js/wiki/4.1-Extensions/#-dont-bother)",
+  "introduction": "**, [AdGuard](https://github",
   "features": [
-    "***"
+    "GitHub: https://github.com/gorhill/uBlock"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/gorhill/uBlock"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/gorhill/uBlock.git && cd uBlock",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:07.017Z"
+  "quickStart": "git clone https://github.com/gorhill/uBlock.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

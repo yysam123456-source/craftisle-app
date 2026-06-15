@@ -1,27 +1,23 @@
 {
   "id": "artificial-intelligence-00064",
   "description": "** - Web UI / Self-Hosted Models Only / [Colab](https://colab.research.google.com/github/pcrii/Philo-Colab-Collection/blob/main/4bit_TextGen_Gdrive.ipynb) / [Subreddit](https://www.reddit.com/r/Oobabooga/) / [Discord](https://discord.gg/jwZCF2dPQN)",
-  "introduction": "** - Web UI / Self-Hosted Models Only / [Colab](https://colab.research.google.com/github/pcrii/Philo-Colab-Collection/blob/main/4bit_TextGen_Gdrive.ipynb) / [Subreddit](https://www.reddit.com/r/Oobabooga/) / [Discord](https://discord.gg/jwZCF2dPQN)",
+  "introduction": "** - Web UI / Self-Hosted Models Only / [Colab](https://colab",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/oobabooga/textgen"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/oobabooga/textgen"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/oobabooga/textgen.git && cd textgen",
-  "source": "fmhy+github+selfhosted",
-  "generatedAt": "2026-06-15T02:38:19.522Z",
-  "updatedAt": "2026-06-15T03:28:08.839Z"
+  "quickStart": "git clone https://github.com/oobabooga/textgen.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.342Z"
 }

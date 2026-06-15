@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13261",
+  "description": "** or [AutoActions](https://github.com/Codectory/AutoActions) - Per-Game Display Profiles / Windows",
+  "introduction": "** or [AutoActions](https://github",
+  "features": [
+    "GitHub: https://github.com/Codectory/AutoActions"
+  ],
+  "useCases": [
+    "Visit https://displaymagician.littlebitbig.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Codectory/AutoActions.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.433Z"
+}

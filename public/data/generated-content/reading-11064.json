@@ -1,0 +1,23 @@
+{
+  "id": "reading-11064",
+  "description": "or [⁠Learn Mathematics](https://donkuri.github.io/learn-mathematics/) - Mathematics Book Recommendations",
+  "introduction": "or [⁠Learn Mathematics](https://donkuri",
+  "features": [
+    "GitHub: https://github.com/TalalAlrawajfeh/mathematics-roadmap"
+  ],
+  "useCases": [
+    "Visit https://github.com/TalalAlrawajfeh/mathematics-roadmap"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/TalalAlrawajfeh/mathematics-roadmap.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.426Z"
+}

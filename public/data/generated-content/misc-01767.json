@@ -3,24 +3,21 @@
   "description": "** - YouTube Music Client w/ Adblock",
   "introduction": "** - YouTube Music Client w/ Adblock",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/pear-devs/pear-desktop"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/pear-devs/pear-desktop"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/pear-devs/pear-desktop.git && cd pear-desktop",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:47:10.651Z"
+  "quickStart": "git clone https://github.com/pear-devs/pear-desktop.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.399Z"
 }

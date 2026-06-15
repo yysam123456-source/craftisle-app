@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13279",
+  "description": "Generic Post-Processing Injector / [Easy Installer](https://github.com/OopyDoopy/ReShade-Centralized) / [Shaders](https://github.com/BlueSkyDefender/Depth3D) / [HDR](https://github.com/clshortfuse/renodx) / [DX11 Improvement](https://github.com/Filoppi/Luma-Framework) / [Discord](https://discord.com/invite/PrwndfH) / [GitHub](https://github.com/crosire/reshade) / Windows, Linux",
+  "introduction": "Generic Post-Processing Injector / [Easy Installer](https://github",
+  "features": [
+    "GitHub: https://github.com/OopyDoopy/ReShade-Centralized"
+  ],
+  "useCases": [
+    "Visit https://reshade.me/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/OopyDoopy/ReShade-Centralized.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.433Z"
+}

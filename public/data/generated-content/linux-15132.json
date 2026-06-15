@@ -1,0 +1,21 @@
+{
+  "id": "linux-15132",
+  "description": "or [Super Grub2 Disk](https://www.supergrubdisk.org/super-grub2-disk/) - Bootable System Rescue Toolkits",
+  "introduction": "or [Super Grub2 Disk](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://www.system-rescue.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.system-rescue.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.446Z"
+}

@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00043",
   "description": "AI Search Engine / [Enhancements](https://www.cplx.app/) / [Discord](https://discord.com/invite/perplexity-ai)",
-  "introduction": "AI Search Engine / [Enhancements](https://www.cplx.app/) / [Discord](https://discord.com/invite/perplexity-ai)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "AI Search Engine / [Enhancements](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://www.perplexity.ai/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.perplexity.ai/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:07.798Z"
+  "quickStart": "Visit https://www.perplexity.ai/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.341Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "misc-02029",
+  "description": "Fetching, Romanization & Translation for Web Player Lyrics",
+  "introduction": "Fetching, Romanization & Translation for Web Player Lyrics",
+  "features": [
+    "GitHub: https://github.com/haroldalan/spotify-karaoke"
+  ],
+  "useCases": [
+    "Visit https://github.com/haroldalan/spotify-karaoke"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/haroldalan/spotify-karaoke.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.409Z"
+}

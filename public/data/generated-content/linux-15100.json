@@ -1,0 +1,23 @@
+{
+  "id": "linux-15100",
+  "description": "**, [Archey4](https://github.com/HorlogeSkynet/archey4), [Hyfetch](https://github.com/hykilpikonna/hyfetch), [Macchina](https://github.com/Macchina-CLI/macchina) or [CPU-X](https://github.com/TheTumultuousUnicornOfDarkness/CPU-X) - System Info Displays",
+  "introduction": "**, [Archey4](https://github",
+  "features": [
+    "GitHub: https://github.com/fastfetch-cli/fastfetch"
+  ],
+  "useCases": [
+    "Visit https://github.com/fastfetch-cli/fastfetch"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/fastfetch-cli/fastfetch.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.445Z"
+}

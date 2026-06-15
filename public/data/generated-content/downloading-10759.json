@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10759",
+  "description": "Newznab — Free online tool",
+  "introduction": "Newznab — Free online tool",
+  "features": [],
+  "useCases": [
+    "Visit https://www.newznab.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.newznab.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.413Z"
+}

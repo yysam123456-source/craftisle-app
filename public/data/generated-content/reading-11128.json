@@ -1,0 +1,21 @@
+{
+  "id": "reading-11128",
+  "description": "Chemistry Calculator",
+  "introduction": "Chemistry Calculator",
+  "features": [],
+  "useCases": [
+    "Visit https://play.google.com/store/apps/details?id=com.map.michael.chemistry"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://play.google.com/store/apps/details?id=com.map.michael.chemistry",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.429Z"
+}

@@ -3,23 +3,21 @@
   "description": "StableStudio — Free online tool",
   "introduction": "StableStudio — Free online tool",
   "features": [
-    "<div align=\"center\" style=\"display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1em; margi"
+    "GitHub: https://github.com/Stability-AI/StableStudio"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/Stability-AI/StableStudio"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Stability-AI/StableStudio.git && cd StableStudio",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:02.284Z"
+  "quickStart": "git clone https://github.com/Stability-AI/StableStudio.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.369Z"
 }

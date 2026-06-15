@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13297",
+  "description": "Decrease DS4/5 Input Lag / [Video](https://youtu.be/x0wcJM4FtXQ)",
+  "introduction": "Decrease DS4/5 Input Lag / [Video](https://youtu",
+  "features": [
+    "GitHub: https://github.com/LordOfMice/hidusbf"
+  ],
+  "useCases": [
+    "Visit https://github.com/LordOfMice/hidusbf"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/LordOfMice/hidusbf.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.434Z"
+}

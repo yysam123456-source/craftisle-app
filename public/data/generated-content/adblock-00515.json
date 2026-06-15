@@ -1,26 +1,23 @@
 {
   "id": "adblock-00515",
   "description": "Firefox Privacy Tweak / [GitHub](https://github.com/celenityy/Phoenix) / [Warning](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/general-tweak-warning.md)",
-  "introduction": "Firefox Privacy Tweak / [GitHub](https://github.com/celenityy/Phoenix) / [Warning](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/general-tweak-warning.md)",
+  "introduction": "Firefox Privacy Tweak / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/celenityy/Phoenix"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://codeberg.org/celenity/Phoenix"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/celenityy/Phoenix.git && cd Phoenix",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:19.716Z"
+  "quickStart": "git clone https://github.com/celenityy/Phoenix.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.385Z"
 }

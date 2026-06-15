@@ -1,0 +1,21 @@
+{
+  "id": "reading-10928",
+  "description": "Multi-Site Course Search",
+  "introduction": "Multi-Site Course Search",
+  "features": [],
+  "useCases": [
+    "Visit https://cse.google.com/cse?cx=67ed14bf7b99643e3"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://cse.google.com/cse?cx=67ed14bf7b99643e3",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.421Z"
+}

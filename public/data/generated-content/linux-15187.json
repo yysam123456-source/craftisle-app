@@ -1,0 +1,23 @@
+{
+  "id": "linux-15187",
+  "description": "Ambient Sound Mixer for Linux",
+  "introduction": "Ambient Sound Mixer for Linux",
+  "features": [
+    "GitHub: https://github.com/rafaelmardojai/blanket"
+  ],
+  "useCases": [
+    "Visit https://github.com/rafaelmardojai/blanket"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/rafaelmardojai/blanket.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

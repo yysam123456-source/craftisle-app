@@ -1,0 +1,21 @@
+{
+  "id": "reading-11078",
+  "description": "Mathematical Research",
+  "introduction": "Mathematical Research",
+  "features": [],
+  "useCases": [
+    "Visit https://terrytao.wordpress.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://terrytao.wordpress.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.427Z"
+}

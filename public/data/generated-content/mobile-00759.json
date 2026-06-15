@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00759",
+  "description": "** - Pixel-Based Launcher / [Feed](https://github.com/LawnchairLauncher/lawnfeed) / [Icons](https://github.com/LawnchairLauncher/lawnicons) / [Telegram](https://t.me/lawnchairci) / [Discord](https://discord.gg/3x8qNWxgGZ) / [GitHub](https://github.com/LawnchairLauncher/lawnchair)",
+  "introduction": "** - Pixel-Based Launcher / [Feed](https://github",
+  "features": [
+    "GitHub: https://github.com/LawnchairLauncher/lawnfeed"
+  ],
+  "useCases": [
+    "Visit https://lawnchair.app/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/LawnchairLauncher/lawnfeed.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.391Z"
+}

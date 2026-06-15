@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00915",
+  "description": "/ [GUI](https://github.com/nicorac/bcr-gui) or [⁠TTSLexx](https://play.google.com/store/apps/details?id=sia.netttsengine.ttslexx) - Call Recorder",
+  "introduction": "/ [GUI](https://github",
+  "features": [
+    "GitHub: https://github.com/chenxiaolong/BCR"
+  ],
+  "useCases": [
+    "Visit https://github.com/chenxiaolong/BCR"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/chenxiaolong/BCR.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.397Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "linux-15004",
+  "description": "** - Searchable Linux Command Index / [GitHub](https://github.com/SimonSchubert/LinuxCommandLibrary)",
+  "introduction": "** - Searchable Linux Command Index / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/SimonSchubert/LinuxCommandLibrary"
+  ],
+  "useCases": [
+    "Visit https://linuxcommandlibrary.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/SimonSchubert/LinuxCommandLibrary.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.441Z"
+}

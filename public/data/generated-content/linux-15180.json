@@ -1,0 +1,23 @@
+{
+  "id": "linux-15180",
+  "description": "Use AirPod Features on Linux",
+  "introduction": "Use AirPod Features on Linux",
+  "features": [
+    "GitHub: https://github.com/kavishdevar/librepods"
+  ],
+  "useCases": [
+    "Visit https://github.com/kavishdevar/librepods"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/kavishdevar/librepods.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

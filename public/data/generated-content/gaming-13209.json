@@ -1,23 +1,21 @@
 {
   "id": "gaming-13209",
   "description": "**, [2](https://hl2b.com/) - Find Average Game Lengths / [Discord](https://discord.gg/v5F26Dk)",
-  "introduction": "**, [2](https://hl2b.com/) - Find Average Game Lengths / [Discord](https://discord.gg/v5F26Dk)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "**, [2](https://hl2b",
+  "features": [],
+  "useCases": [
+    "Visit https://howlongtobeat.com/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://howlongtobeat.com/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:47:23.819Z"
+  "quickStart": "Visit https://howlongtobeat.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.430Z"
 }

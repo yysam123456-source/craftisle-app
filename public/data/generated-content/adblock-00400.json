@@ -3,23 +3,21 @@
   "description": "hBlock — Free online tool",
   "introduction": "hBlock — Free online tool",
   "features": [
-    "<p align=\"center\">"
+    "GitHub: https://github.com/hectorm/hblock"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/hectorm/hblock"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/hectorm/hblock.git && cd hblock",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:41.428Z"
+  "quickStart": "git clone https://github.com/hectorm/hblock.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.380Z"
 }

@@ -1,0 +1,21 @@
+{
+  "id": "misc-02004",
+  "description": "** or [Japan Walkaround](https://thatguyedd.github.io/) - Lofi Radio / City Walks",
+  "introduction": "** or [Japan Walkaround](https://thatguyedd",
+  "features": [],
+  "useCases": [
+    "Visit https://www.cityhop.cafe/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.cityhop.cafe/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.409Z"
+}

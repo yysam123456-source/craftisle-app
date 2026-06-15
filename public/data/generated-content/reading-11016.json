@@ -1,0 +1,21 @@
+{
+  "id": "reading-11016",
+  "description": "**, [Isaac Physics](https://isaacphysics.org/), [PhysicsClassroom](https://www.physicsclassroom.com/), [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/), [MotionMountain](https://www.motionmountain.net/index.html) or [Splung](https://www.splung.com/) - Physics Lessons / Learning",
+  "introduction": "**, [Isaac Physics](https://isaacphysics",
+  "features": [],
+  "useCases": [
+    "Visit https://ciechanow.ski/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://ciechanow.ski/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.424Z"
+}

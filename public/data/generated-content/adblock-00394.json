@@ -1,23 +1,21 @@
 {
   "id": "adblock-00394",
   "description": "DNS Adblocking Client / [Source Code](https://codeberg.org/tblock/tblock)",
-  "introduction": "DNS Adblocking Client / [Source Code](https://codeberg.org/tblock/tblock)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "DNS Adblocking Client / [Source Code](https://codeberg",
+  "features": [],
+  "useCases": [
+    "Visit https://tblock.me/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://tblock.me/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:34.981Z"
+  "quickStart": "Visit https://tblock.me/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.379Z"
 }

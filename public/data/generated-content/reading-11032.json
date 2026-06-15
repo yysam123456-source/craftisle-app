@@ -1,0 +1,21 @@
+{
+  "id": "reading-11032",
+  "description": "or [CFDTool](https://www.cfdtool.com/) - Fluid Dynamics & Heat Transfer",
+  "introduction": "or [CFDTool](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://www.simscale.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.simscale.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.425Z"
+}

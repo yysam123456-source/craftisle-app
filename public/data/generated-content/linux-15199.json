@@ -1,0 +1,23 @@
+{
+  "id": "linux-15199",
+  "description": "or [Planify](https://github.com/alainm23/planify) - To-Do Apps",
+  "introduction": "or [Planify](https://github",
+  "features": [
+    "GitHub: https://github.com/sioodmy/todo"
+  ],
+  "useCases": [
+    "Visit https://github.com/sioodmy/todo/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/sioodmy/todo.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.449Z"
+}

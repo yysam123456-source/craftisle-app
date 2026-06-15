@@ -1,0 +1,23 @@
+{
+  "id": "linux-15133",
+  "description": "Dual-Boot Bluetooth Sync Tool",
+  "introduction": "Dual-Boot Bluetooth Sync Tool",
+  "features": [
+    "GitHub: https://github.com/x2es/bt-dualboot"
+  ],
+  "useCases": [
+    "Visit https://github.com/x2es/bt-dualboot"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/x2es/bt-dualboot.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.446Z"
+}

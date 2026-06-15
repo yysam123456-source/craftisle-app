@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00114",
   "description": "Wan 2.7 / Image to Video / 10 Credits Daily (Fast Credit Based, Slow Unlimited) / [GitHub](https://github.com/Wan-Video/Wan2.1)",
-  "introduction": "Wan 2.7 / Image to Video / 10 Credits Daily (Fast Credit Based, Slow Unlimited) / [GitHub](https://github.com/Wan-Video/Wan2.1)",
+  "introduction": "Wan 2",
   "features": [
-    "<p align=\"center\">"
+    "GitHub: https://github.com/Wan-Video/Wan2.1"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://create.wan.video/explore/video/generate?model=wan2.7"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Wan-Video/Wan2.1.git && cd Wan2.1",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:37.319Z"
+  "quickStart": "git clone https://github.com/Wan-Video/Wan2.1.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.366Z"
 }

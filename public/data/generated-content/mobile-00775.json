@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00775",
+  "description": "** / [GitHub](https://github.com/MuntashirAkon/AppManager), [Inure](https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/android#wiki_.25B7_modded_apks) (search), [⁠Universal Installer](https://github.com/pass-with-high-score/universal-installer) or [Package Manager](https://smartpack.github.io/PackageManager/) / [GitHub](https://github.com/SmartPack/PackageManager) - Package Managers",
+  "introduction": "** / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/MuntashirAkon/AppManager"
+  ],
+  "useCases": [
+    "Visit https://muntashirakon.github.io/AppManager/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/MuntashirAkon/AppManager.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

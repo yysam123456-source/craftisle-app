@@ -1,0 +1,23 @@
+{
+  "id": "linux-15190",
+  "description": "Create Virtual Cameras",
+  "introduction": "Create Virtual Cameras",
+  "features": [
+    "GitHub: https://github.com/v4l2loopback/v4l2loopback"
+  ],
+  "useCases": [
+    "Visit https://github.com/v4l2loopback/v4l2loopback"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/v4l2loopback/v4l2loopback.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

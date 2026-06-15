@@ -1,0 +1,23 @@
+{
+  "id": "reading-11084",
+  "description": "Introduction to Modern Statistics",
+  "introduction": "Introduction to Modern Statistics",
+  "features": [
+    "GitHub: https://github.com/OpenIntroStat/ims"
+  ],
+  "useCases": [
+    "Visit https://github.com/OpenIntroStat/ims"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/OpenIntroStat/ims.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.427Z"
+}

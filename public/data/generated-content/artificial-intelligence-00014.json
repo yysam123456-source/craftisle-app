@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00014",
   "description": "Claude Sonnet 4.6 / Require Sign-Up + Phone # / [Resources](https://awesomeclaude.ai/) / [Learning](https://github.com/ComposioHQ/awesome-claude-skills), [2](https://github.com/BehiSecc/awesome-claude-skills) / [Usage Tracker](https://github.com/lugia19/Claude-Usage-Extension) / [Subreddit](https://www.reddit.com/r/ClaudeAI/) / [Discord](https://discord.com/invite/6PPFFzqPDZ)",
-  "introduction": "Claude Sonnet 4.6 / Require Sign-Up + Phone # / [Resources](https://awesomeclaude.ai/) / [Learning](https://github.com/ComposioHQ/awesome-claude-skills), [2](https://github.com/BehiSecc/awesome-claude-skills) / [Usage Tracker](https://github.com/lugia19/Claude-Usage-Extension) / [Subreddit](https://www.reddit.com/r/ClaudeAI/) / [Discord](https://discord.com/invite/6PPFFzqPDZ)",
+  "introduction": "Claude Sonnet 4",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/ComposioHQ/awesome-claude-skills"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://claude.ai/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/ComposioHQ/awesome-claude-skills.git && cd awesome-claude-skills",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:03.105Z"
+  "quickStart": "git clone https://github.com/ComposioHQ/awesome-claude-skills.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.338Z"
 }

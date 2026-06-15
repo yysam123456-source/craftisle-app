@@ -1,0 +1,21 @@
+{
+  "id": "reading-10989",
+  "description": "Join Learning Groups Using Free Courses",
+  "introduction": "Join Learning Groups Using Free Courses",
+  "features": [],
+  "useCases": [
+    "Visit https://www.p2pu.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.p2pu.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.423Z"
+}

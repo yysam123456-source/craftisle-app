@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00822",
+  "description": "](https://t.me/pikopatches) / [GitHub](https://github.com/crimera/piko) or [⁠Instafel](https://instafel.app/) / [GitHub](https://github.com/mamiiblt/instafel/) / [Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/instaeclipse-note.md) - Modded Instagram Clients",
+  "introduction": "](https://t",
+  "features": [
+    "GitHub: https://github.com/crimera/piko"
+  ],
+  "useCases": [
+    "Visit https://t.me/pikopatches"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/crimera/piko.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.394Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10688",
+  "description": "**, **[store.rg](https://store.rg-adguard.net/)** or [StoreWeb](https://msft-store.tplant.com.au/) / [GitHub](https://github.com/StoreDev) - Microsoft Store WebUIs / [Guide](https://rentry.co/paidAppsMsStore)",
+  "introduction": "**, **[store",
+  "features": [],
+  "useCases": [
+    "Visit https://danstore-ms.vercel.app/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://danstore-ms.vercel.app/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.411Z"
+}

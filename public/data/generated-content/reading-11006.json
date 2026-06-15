@@ -1,0 +1,21 @@
+{
+  "id": "reading-11006",
+  "description": "Smithsonian 3D Digitization Museum",
+  "introduction": "Smithsonian 3D Digitization Museum",
+  "features": [],
+  "useCases": [
+    "Visit https://3d.si.edu/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://3d.si.edu/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.424Z"
+}

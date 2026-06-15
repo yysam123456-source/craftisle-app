@@ -1,0 +1,21 @@
+{
+  "id": "misc-01819",
+  "description": "Script to Clear Uploaded Songs",
+  "introduction": "Script to Clear Uploaded Songs",
+  "features": [],
+  "useCases": [
+    "Visit https://rentry.co/tv4uo"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://rentry.co/tv4uo",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.401Z"
+}

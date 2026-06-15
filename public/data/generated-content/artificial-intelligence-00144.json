@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00144",
   "description": "30 Daily / Sign-Up / [Discord](https://discord.gg/recraft)",
-  "introduction": "30 Daily / Sign-Up / [Discord](https://discord.gg/recraft)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "30 Daily / Sign-Up / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://www.recraft.ai/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.recraft.ai/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:44.186Z"
+  "quickStart": "Visit https://www.recraft.ai/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.368Z"
 }

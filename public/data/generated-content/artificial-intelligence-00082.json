@@ -1,26 +1,23 @@
 {
   "id": "artificial-intelligence-00082",
   "description": "** - Serve LLMs at Scale with Kobold & OpenAI APIs / [Colab](https://colab.research.google.com/github/AlpinDale/misc-scripts/blob/main/Aphrodite.ipynb) / [GitHub](https://github.com/PygmalionAI/aphrodite-engine)",
-  "introduction": "** - Serve LLMs at Scale with Kobold & OpenAI APIs / [Colab](https://colab.research.google.com/github/AlpinDale/misc-scripts/blob/main/Aphrodite.ipynb) / [GitHub](https://github.com/PygmalionAI/aphrodite-engine)",
+  "introduction": "** - Serve LLMs at Scale with Kobold & OpenAI APIs / [Colab](https://colab",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/PygmalionAI/aphrodite-engine"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://aphrodite.pygmalion.chat/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/PygmalionAI/aphrodite-engine.git && cd aphrodite-engine",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:41.100Z"
+  "quickStart": "git clone https://github.com/PygmalionAI/aphrodite-engine.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.343Z"
 }

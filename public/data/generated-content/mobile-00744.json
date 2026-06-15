@@ -1,0 +1,21 @@
+{
+  "id": "mobile-00744",
+  "description": "FOSS Apps / [GitHub](https://github.com/you-apps)",
+  "introduction": "FOSS Apps / [GitHub](https://github",
+  "features": [],
+  "useCases": [
+    "Visit https://you-apps.net/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://you-apps.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.390Z"
+}

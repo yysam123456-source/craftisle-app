@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00129",
   "description": "** - Nano Banana Pro / 20+ Per Day (Varies) / Nano Banana 2 / Unlimited / Google Login / [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.labs.whisk) / [Discord](https://discord.com/invite/googlelabs) / [Remove Watermarks](https://banana.ovo.re/)",
-  "introduction": "** - Nano Banana Pro / 20+ Per Day (Varies) / Nano Banana 2 / Unlimited / Google Login / [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.labs.whisk) / [Discord](https://discord.com/invite/googlelabs) / [Remove Watermarks](https://banana.ovo.re/)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - Nano Banana Pro / 20+ Per Day (Varies) / Nano Banana 2 / Unlimited / Google Login / [Android](https://play",
+  "features": [],
+  "useCases": [
+    "Visit https://labs.google/fx/tools/flow"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://labs.google/fx/tools/flow to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:41.672Z"
+  "quickStart": "Visit https://labs.google/fx/tools/flow",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.367Z"
 }

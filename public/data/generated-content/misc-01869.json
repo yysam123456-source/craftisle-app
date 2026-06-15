@@ -1,0 +1,21 @@
+{
+  "id": "misc-01869",
+  "description": "Apple Podcasts — Free online tool",
+  "introduction": "Apple Podcasts — Free online tool",
+  "features": [],
+  "useCases": [
+    "Visit https://podcasts.apple.com/us/home"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://podcasts.apple.com/us/home",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.403Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "linux-15153",
+  "description": "Anime Streaming Terminal",
+  "introduction": "Anime Streaming Terminal",
+  "features": [
+    "GitHub: https://github.com/pystardust/ani-cli"
+  ],
+  "useCases": [
+    "Visit https://github.com/pystardust/ani-cli"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/pystardust/ani-cli.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.447Z"
+}

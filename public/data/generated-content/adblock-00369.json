@@ -1,25 +1,23 @@
 {
   "id": "adblock-00369",
   "description": "Skip Sponsored Bilibili Ads / [GitHub](https://github.com/hanydd/BilibiliSponsorBlock)",
-  "introduction": "Skip Sponsored Bilibili Ads / [GitHub](https://github.com/hanydd/BilibiliSponsorBlock)",
+  "introduction": "Skip Sponsored Bilibili Ads / [GitHub](https://github",
   "features": [
-    "<p align=\"center\">"
+    "GitHub: https://github.com/hanydd/BilibiliSponsorBlock"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://www.bsbsb.top/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/hanydd/BilibiliSponsorBlock.git && cd BilibiliSponsorBlock",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:14.598Z"
+  "quickStart": "git clone https://github.com/hanydd/BilibiliSponsorBlock.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

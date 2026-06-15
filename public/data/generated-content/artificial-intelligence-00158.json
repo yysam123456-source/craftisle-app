@@ -2,22 +2,20 @@
   "id": "artificial-intelligence-00158",
   "description": "Compare Generators / Unlimited / No Direct Mode",
   "introduction": "Compare Generators / Unlimited / No Direct Mode",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://imgsys.org/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://imgsys.org/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:46.673Z"
+  "quickStart": "Visit https://imgsys.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.369Z"
 }

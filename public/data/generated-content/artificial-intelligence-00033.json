@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00033",
   "description": "GLM-5.1 / Kimi K2.6 / Deepseek-V4 / Multiple Models / Up To 110 Daily / [Discord](https://discord.gg/9Rk6sSeWEG)",
-  "introduction": "GLM-5.1 / Kimi K2.6 / Deepseek-V4 / Multiple Models / Up To 110 Daily / [Discord](https://discord.gg/9Rk6sSeWEG)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "GLM-5",
+  "features": [],
+  "useCases": [
+    "Visit https://chat.together.ai/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://chat.together.ai/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:05.464Z"
+  "quickStart": "Visit https://chat.together.ai/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.340Z"
 }

@@ -1,25 +1,23 @@
 {
   "id": "artificial-intelligence-00211",
   "description": ", [Ebook2Audiobook](https://github.com/DrewThomasson/ebook2audiobook) / [2](https://huggingface.co/spaces/drewThomasson/ebook2audiobook), [ElevenReader](https://elevenreader.io/), [⁠Paper2Audio](https://www.paper2audio.com/) or [ReadWise](https://readwise.io/read) (reset trial) - Convert Books / Documents to Audiobooks",
-  "introduction": ", [Ebook2Audiobook](https://github.com/DrewThomasson/ebook2audiobook) / [2](https://huggingface.co/spaces/drewThomasson/ebook2audiobook), [ElevenReader](https://elevenreader.io/), [⁠Paper2Audio](https://www.paper2audio.com/) or [ReadWise](https://readwise.io/read) (reset trial) - Convert Books / Documents to Audiobooks",
+  "introduction": ", [Ebook2Audiobook](https://github",
   "features": [
-    "Audiblez generates `.m4b` audiobooks from regular `.epub` e-books,"
+    "GitHub: https://github.com/santinic/audiblez"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/santinic/audiblez"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/santinic/audiblez.git && cd audiblez",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:28.024Z"
+  "quickStart": "git clone https://github.com/santinic/audiblez.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.377Z"
 }

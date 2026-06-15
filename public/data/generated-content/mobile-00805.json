@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00805",
+  "description": "** - Modded Discord Client / [Discord](https://discord.gg/qkdPGunwjW) / [Source Code](https://codeberg.org/cocobo1/Kettu) / [GitHub](https://github.com/C0C0B01/Kettu)",
+  "introduction": "** - Modded Discord Client / [Discord](https://discord",
+  "features": [
+    "GitHub: https://github.com/C0C0B01/Kettu"
+  ],
+  "useCases": [
+    "Visit https://www.raincord.dev/kettu"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/C0C0B01/Kettu.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.393Z"
+}

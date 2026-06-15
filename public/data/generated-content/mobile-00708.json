@@ -1,26 +1,23 @@
 {
   "id": "mobile-00708",
   "description": "/ [App](https://liteapks.com/app.html) / [Telegram](https://t.me/liteapks) / [Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/liteapk-modyolo-note.md)",
-  "introduction": "/ [App](https://liteapks.com/app.html) / [Telegram](https://t.me/liteapks) / [Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/liteapk-modyolo-note.md)",
+  "introduction": "/ [App](https://liteapks",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/fmhy/edit"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://liteapks.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/fmhy/edit.git && cd edit",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:47:09.257Z"
+  "quickStart": "git clone https://github.com/fmhy/edit.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.389Z"
 }

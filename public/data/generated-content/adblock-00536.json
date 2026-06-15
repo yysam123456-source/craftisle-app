@@ -1,26 +1,23 @@
 {
   "id": "adblock-00536",
   "description": "2FA Browser Extension / [GitHub](https://github.com/Authenticator-Extension/Authenticator)",
-  "introduction": "2FA Browser Extension / [GitHub](https://github.com/Authenticator-Extension/Authenticator)",
+  "introduction": "2FA Browser Extension / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/Authenticator-Extension/Authenticator"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://authenticator.cc/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/Authenticator-Extension/Authenticator.git && cd Authenticator",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:42.747Z"
+  "quickStart": "git clone https://github.com/Authenticator-Extension/Authenticator.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.385Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "reading-11038",
+  "description": "** or [Math Resources](https://docs.google.com/document/d/1rtokzhpvkUPnymudl_ZVmfAA7H33VIyLQUpujNGwrTo/) - Math Resources",
+  "introduction": "** or [Math Resources](https://docs",
+  "features": [
+    "GitHub: https://github.com/rossant/awesome-math"
+  ],
+  "useCases": [
+    "Visit https://github.com/rossant/awesome-math"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/rossant/awesome-math.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.425Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00827",
+  "description": "(root) - WhatsApp Patcher / [Telegram](https://t.me/waenhancer)",
+  "introduction": "(root) - WhatsApp Patcher / [Telegram](https://t",
+  "features": [
+    "GitHub: https://github.com/Dev4Mod/WaEnhancer"
+  ],
+  "useCases": [
+    "Visit https://github.com/Dev4Mod/WaEnhancer"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Dev4Mod/WaEnhancer.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.394Z"
+}

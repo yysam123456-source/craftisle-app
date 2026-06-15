@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00763",
+  "description": "Desktop App Launcher / [GitHub](https://github.com/axel358/smartdock)",
+  "introduction": "Desktop App Launcher / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/axel358/smartdock"
+  ],
+  "useCases": [
+    "Visit https://f-droid.org/packages/cu.axel.smartdock/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/axel358/smartdock.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.391Z"
+}

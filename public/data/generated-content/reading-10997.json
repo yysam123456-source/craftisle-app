@@ -1,0 +1,21 @@
+{
+  "id": "reading-10997",
+  "description": "Explore Persepolis Recreation",
+  "introduction": "Explore Persepolis Recreation",
+  "features": [],
+  "useCases": [
+    "Visit https://persepolis.getty.edu/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://persepolis.getty.edu/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.423Z"
+}

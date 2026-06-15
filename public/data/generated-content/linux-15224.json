@@ -1,0 +1,21 @@
+{
+  "id": "linux-15224",
+  "description": "Emulator for Steam Deck",
+  "introduction": "Emulator for Steam Deck",
+  "features": [],
+  "useCases": [
+    "Visit https://retrodeck.net/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://retrodeck.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

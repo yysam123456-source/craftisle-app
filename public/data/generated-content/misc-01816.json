@@ -1,0 +1,23 @@
+{
+  "id": "misc-01816",
+  "description": "Library Manager / Deleter / Windows, Mac, Linux",
+  "introduction": "Library Manager / Deleter / Windows, Mac, Linux",
+  "features": [
+    "GitHub: https://github.com/apastel/ytmusic-deleter"
+  ],
+  "useCases": [
+    "Visit https://github.com/apastel/ytmusic-deleter"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/apastel/ytmusic-deleter.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.401Z"
+}

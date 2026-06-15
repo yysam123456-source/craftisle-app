@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00022",
   "description": ", [2](https://chat.publicai.co/) - Apertus 70B",
-  "introduction": ", [2](https://chat.publicai.co/) - Apertus 70B",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": ", [2](https://chat",
+  "features": [],
+  "useCases": [
+    "Visit https://publicai.co/chat"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://publicai.co/chat to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:03.108Z"
+  "quickStart": "Visit https://publicai.co/chat",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.339Z"
 }

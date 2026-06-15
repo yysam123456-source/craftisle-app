@@ -1,0 +1,21 @@
+{
+  "id": "storage-15732",
+  "description": "/ [X](https://x.com/controldns) / [Subreddit](https://reddit.com/r/ControlD/) / [Discord](https://discord.gg/dns)",
+  "introduction": "/ [X](https://x",
+  "features": [],
+  "useCases": [
+    "Visit https://controld.com/free-dns"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://controld.com/free-dns",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.453Z"
+}

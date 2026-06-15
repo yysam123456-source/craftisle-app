@@ -1,23 +1,21 @@
 {
   "id": "adblock-00482",
   "description": "Educational Guide / [GitHub](https://github.com/PrivSec-dev)",
-  "introduction": "Educational Guide / [GitHub](https://github.com/PrivSec-dev)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Educational Guide / [GitHub](https://github",
+  "features": [],
+  "useCases": [
+    "Visit https://privsec.dev/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://privsec.dev/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:33.104Z"
+  "quickStart": "Visit https://privsec.dev/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.383Z"
 }

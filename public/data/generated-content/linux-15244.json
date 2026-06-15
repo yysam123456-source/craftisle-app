@@ -1,0 +1,21 @@
+{
+  "id": "linux-15244",
+  "description": "Port Games to Linux Handheld Devices / [Discord](https://discord.gg/JxYBp9HTAY)",
+  "introduction": "Port Games to Linux Handheld Devices / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://portmaster.games/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://portmaster.games/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

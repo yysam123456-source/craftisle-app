@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00755",
+  "description": "/ [Telegram](https://t.me/materialyouapps)",
+  "introduction": "/ [Telegram](https://t",
+  "features": [
+    "GitHub: https://github.com/nyas1/Material-You-app-list"
+  ],
+  "useCases": [
+    "Visit https://github.com/nyas1/Material-You-app-list"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/nyas1/Material-You-app-list.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.391Z"
+}

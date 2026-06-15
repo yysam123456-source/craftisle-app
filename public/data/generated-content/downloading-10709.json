@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10709",
+  "description": "**, [ODCrawler](https://odcrawler.xyz/) / [GitHub](https://github.com/MCOfficer/odcrawler-discovery) or [mmnt](https://www.mmnt.net/) - Open Directory Search Engines",
+  "introduction": "**, [ODCrawler](https://odcrawler",
+  "features": [
+    "GitHub: https://github.com/MCOfficer/odcrawler-discovery"
+  ],
+  "useCases": [
+    "Visit https://www.eyedex.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/MCOfficer/odcrawler-discovery.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.411Z"
+}

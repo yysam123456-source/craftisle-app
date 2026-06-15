@@ -2,22 +2,20 @@
   "id": "adblock-00570",
   "description": "Security Mailing List Archive",
   "introduction": "Security Mailing List Archive",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://seclists.org/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://seclists.org/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:46:04.747Z"
+  "quickStart": "Visit https://seclists.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.387Z"
 }

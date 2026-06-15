@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00821",
+  "description": "or [Chan](https://github.com/moffatman/chan) - 4chan Apps",
+  "introduction": "or [Chan](https://github",
+  "features": [
+    "GitHub: https://github.com/Adamantcheese/Kuroba"
+  ],
+  "useCases": [
+    "Visit https://github.com/Adamantcheese/Kuroba"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Adamantcheese/Kuroba.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.394Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01866",
+  "description": "or [⁠Podstatus](https://podstatus.com/charts) - Podcast Charts / Databases",
+  "introduction": "or [⁠Podstatus](https://podstatus",
+  "features": [],
+  "useCases": [
+    "Visit https://www.podchaser.com/charts"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.podchaser.com/charts",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.403Z"
+}

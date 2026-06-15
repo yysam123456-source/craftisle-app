@@ -1,0 +1,21 @@
+{
+  "id": "linux-15015",
+  "description": "Linux Discord Server",
+  "introduction": "Linux Discord Server",
+  "features": [],
+  "useCases": [
+    "Visit https://linuxdiscord.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://linuxdiscord.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.442Z"
+}

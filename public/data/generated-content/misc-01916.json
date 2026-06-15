@@ -1,0 +1,21 @@
+{
+  "id": "misc-01916",
+  "description": "News / Classic Radio / Podcasts",
+  "introduction": "News / Classic Radio / Podcasts",
+  "features": [],
+  "useCases": [
+    "Visit https://archive.org/details/audio?&sort=-downloads&page=1"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://archive.org/details/audio?&sort=-downloads&page=1",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.405Z"
+}

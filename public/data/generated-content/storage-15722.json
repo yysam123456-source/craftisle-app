@@ -1,0 +1,21 @@
+{
+  "id": "storage-15722",
+  "description": "Sega Genesis Browser Emulator / EmulatorJS",
+  "introduction": "Sega Genesis Browser Emulator / EmulatorJS",
+  "features": [],
+  "useCases": [
+    "Visit https://www.letsplaysega.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.letsplaysega.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.453Z"
+}

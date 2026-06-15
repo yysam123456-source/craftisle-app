@@ -1,0 +1,21 @@
+{
+  "id": "reading-11129",
+  "description": ", [MOTM](https://www.chm.bris.ac.uk/motm/motm.htm) or [NIST](https://webbook.nist.gov/chemistry/) - Chemistry Wikis",
+  "introduction": ", [MOTM](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://pubchem.ncbi.nlm.nih.gov/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://pubchem.ncbi.nlm.nih.gov/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.429Z"
+}

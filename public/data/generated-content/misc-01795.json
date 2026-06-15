@@ -1,0 +1,21 @@
+{
+  "id": "misc-01795",
+  "description": "MTV Style User-Submitted Music Video Feed / [Discord](https://discord.gg/KT2Dht4zcZ)",
+  "introduction": "MTV Style User-Submitted Music Video Feed / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://bsky.app/profile/feed.ballsack.tv"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://bsky.app/profile/feed.ballsack.tv",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

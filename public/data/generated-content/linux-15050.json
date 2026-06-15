@@ -1,0 +1,23 @@
+{
+  "id": "linux-15050",
+  "description": "or [nb](https://xwmx.github.io/nb) / [GitHub](https://github.com/xwmx/nb) - Note Apps",
+  "introduction": "or [nb](https://xwmx",
+  "features": [
+    "GitHub: https://github.com/klaudiosinani/taskbook"
+  ],
+  "useCases": [
+    "Visit https://github.com/klaudiosinani/taskbook"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/klaudiosinani/taskbook.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

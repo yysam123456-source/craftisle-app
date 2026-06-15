@@ -1,0 +1,23 @@
+{
+  "id": "reading-11031",
+  "description": ", [PC Progress](https://www.pc-progress.com/), [Fluid Simulation WebGL](https://paveldogreat.github.io/WebGL-Fluid-Simulation/), [WebGL Fluid Experiment](https://haxiomic.github.io/GPU-Fluid-Experiments/html5/), [OpenFOAM](https://www.openfoam.com/) / [GitHub](https://github.com/OpenFOAM/OpenFOAM-dev) or [Sim Flow](https://sim-flow.com/) - Fluid Dynamics Simulators",
+  "introduction": ", [PC Progress](https://www",
+  "features": [
+    "GitHub: https://github.com/OpenFOAM/OpenFOAM-dev"
+  ],
+  "useCases": [
+    "Visit https://openfoam.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/OpenFOAM/OpenFOAM-dev.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.425Z"
+}

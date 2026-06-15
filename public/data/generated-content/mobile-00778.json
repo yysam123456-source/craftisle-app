@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00778",
+  "description": "** / [Configs](https://apps.obtainium.imranr.dev/) / [GitHub](https://github.com/ImranR98/Obtainium), [UpgradeAll](https://github.com/DUpdateSystem/UpgradeAll) or [APKUpdater](https://github.com/rumboalla/apkupdater) - APK Installers / Updaters",
+  "introduction": "** / [Configs](https://apps",
+  "features": [
+    "GitHub: https://github.com/ImranR98/Obtainium"
+  ],
+  "useCases": [
+    "Visit https://obtainium.imranr.dev/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ImranR98/Obtainium.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

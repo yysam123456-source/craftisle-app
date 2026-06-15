@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13260",
+  "description": "** - GPU Benchmark Test / Windows",
+  "introduction": "** - GPU Benchmark Test / Windows",
+  "features": [],
+  "useCases": [
+    "Visit https://www.geeks3d.com/furmark/kombustor/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.geeks3d.com/furmark/kombustor/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.433Z"
+}

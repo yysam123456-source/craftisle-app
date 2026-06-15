@@ -1,0 +1,23 @@
+{
+  "id": "linux-15241",
+  "description": ", [Xanmod](https://xanmod.org/) or [Frogging](https://github.com/Frogging-Family/linux-tkg) - Linux Gaming Kernels",
+  "introduction": ", [Xanmod](https://xanmod",
+  "features": [
+    "GitHub: https://github.com/Frogging-Family/linux-tkg"
+  ],
+  "useCases": [
+    "Visit https://liquorix.net/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Frogging-Family/linux-tkg.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.450Z"
+}

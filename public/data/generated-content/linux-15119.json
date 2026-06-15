@@ -1,0 +1,23 @@
+{
+  "id": "linux-15119",
+  "description": "Windows, Mac & Linux Bootloader / [Config](https://mackie100projects.altervista.org/)",
+  "introduction": "Windows, Mac & Linux Bootloader / [Config](https://mackie100projects",
+  "features": [
+    "GitHub: https://github.com/CloverHackyColor/CloverBootloader"
+  ],
+  "useCases": [
+    "Visit https://github.com/CloverHackyColor/CloverBootloader/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/CloverHackyColor/CloverBootloader.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.446Z"
+}

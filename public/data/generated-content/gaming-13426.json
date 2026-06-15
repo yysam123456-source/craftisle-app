@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13426",
+  "description": "** - Critic Game Reviews / Ratings",
+  "introduction": "** - Critic Game Reviews / Ratings",
+  "features": [],
+  "useCases": [
+    "Visit https://opencritic.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://opencritic.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.439Z"
+}

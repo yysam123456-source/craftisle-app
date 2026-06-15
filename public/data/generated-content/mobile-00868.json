@@ -1,0 +1,21 @@
+{
+  "id": "mobile-00868",
+  "description": "Wallpapers / Live Wallpapers",
+  "introduction": "Wallpapers / Live Wallpapers",
+  "features": [],
+  "useCases": [
+    "Visit https://www.wallpaperengine.io/android/en"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.wallpaperengine.io/android/en",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.396Z"
+}

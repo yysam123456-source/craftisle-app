@@ -1,0 +1,23 @@
+{
+  "id": "storage-15691",
+  "description": "** / [GitHub](https://github.com/jgraph/drawio)",
+  "introduction": "** / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/jgraph/drawio"
+  ],
+  "useCases": [
+    "Visit https://www.drawio.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/jgraph/drawio.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.451Z"
+}

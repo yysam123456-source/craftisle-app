@@ -1,0 +1,21 @@
+{
+  "id": "reading-11033",
+  "description": "or [Balls Simulation](https://phydemo.app/balls-simulation/) - Ball Physics Simulator",
+  "introduction": "or [Balls Simulation](https://phydemo",
+  "features": [],
+  "useCases": [
+    "Visit https://bouncyballs.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://bouncyballs.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.425Z"
+}

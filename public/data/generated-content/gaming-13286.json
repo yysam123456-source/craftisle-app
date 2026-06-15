@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13286",
+  "description": "Patch x86 executables to use 4GB / Windows",
+  "introduction": "Patch x86 executables to use 4GB / Windows",
+  "features": [],
+  "useCases": [
+    "Visit https://ntcore.com/?page_id=371"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://ntcore.com/?page_id=371",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.434Z"
+}

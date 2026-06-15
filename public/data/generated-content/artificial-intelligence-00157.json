@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00157",
   "description": "Seadream 4.0 / 50 Daily / Sign-Up with Phone / US Select CA",
-  "introduction": "Seadream 4.0 / 50 Daily / Sign-Up with Phone / US Select CA",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Seadream 4",
+  "features": [],
+  "useCases": [
+    "Visit https://space.coze.cn/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://space.coze.cn/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:28:46.673Z"
+  "quickStart": "Visit https://space.coze.cn/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.369Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "misc-01863",
+  "description": "** - Podcasts / [SponsorBlock](https://spotsponsorblock.org/), [GitHub](https://github.com/Spot-SponsorBlock/Spot-SponsorBlock-Extension) / [Companion](https://sebschaef.bitbucket.io/podify/) / [RSS](https://github.com/Yetangitu/Spodcast) / [Video Download](https://rentry.co/spotifypodcast) / [Audio Download](https://rentry.co/dlspotifypodcast)",
+  "introduction": "** - Podcasts / [SponsorBlock](https://spotsponsorblock",
+  "features": [
+    "GitHub: https://github.com/Spot-SponsorBlock/Spot-SponsorBlock-Extension"
+  ],
+  "useCases": [
+    "Visit https://open.spotify.com/browse/podcasts"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Spot-SponsorBlock/Spot-SponsorBlock-Extension.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.403Z"
+}

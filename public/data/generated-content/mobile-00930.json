@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00930",
+  "description": "Zygote Injection Engine",
+  "introduction": "Zygote Injection Engine",
+  "features": [
+    "GitHub: https://github.com/PerformanC/ReZygisk"
+  ],
+  "useCases": [
+    "Visit https://github.com/PerformanC/ReZygisk"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/PerformanC/ReZygisk.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.398Z"
+}

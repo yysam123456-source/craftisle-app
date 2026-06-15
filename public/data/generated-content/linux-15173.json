@@ -1,0 +1,23 @@
+{
+  "id": "linux-15173",
+  "description": ", [ytermusic](https://github.com/ccgauche/ytermusic/) or [Monophony](https://gitlab.com/zehkira/monophony) - YouTube Music Clients",
+  "introduction": ", [ytermusic](https://github",
+  "features": [
+    "GitHub: https://github.com/ccgauche/ytermusic"
+  ],
+  "useCases": [
+    "Visit https://invent.kde.org/multimedia/audiotube"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ccgauche/ytermusic.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.447Z"
+}

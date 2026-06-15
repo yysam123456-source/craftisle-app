@@ -1,25 +1,23 @@
 {
   "id": "adblock-00434",
   "description": "Identify Anything / [Discord](https://discord.com/invite/zYTM3rZM4T)",
-  "introduction": "Identify Anything / [Discord](https://discord.com/invite/zYTM3rZM4T)",
+  "introduction": "Identify Anything / [Discord](https://discord",
   "features": [
-    "<p align='center'>"
+    "GitHub: https://github.com/bee-san/pyWhat"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/bee-san/pyWhat"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/bee-san/pyWhat.git && cd pyWhat",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:05.103Z"
+  "quickStart": "git clone https://github.com/bee-san/pyWhat.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.381Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00832",
+  "description": "** / [Telegram](https://t.me/nagram_channel), [⁠NagramX](https://t.me/NagramX) / [GitHub](https://github.com/risin42/NagramX) or [Momogram](https://github.com/dic1911/Momogram) - NekoX Forks",
+  "introduction": "** / [Telegram](https://t",
+  "features": [
+    "GitHub: https://github.com/nextalone/nagram"
+  ],
+  "useCases": [
+    "Visit https://github.com/nextalone/nagram"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/nextalone/nagram.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.394Z"
+}

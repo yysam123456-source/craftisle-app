@@ -1,0 +1,21 @@
+{
+  "id": "downloading-10730",
+  "description": "Audio / Magazines / Comics / Books / Courses",
+  "introduction": "Audio / Magazines / Comics / Books / Courses",
+  "features": [],
+  "useCases": [
+    "Visit https://novanon.net/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://novanon.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.412Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "reading-10970",
+  "description": "Inspiring and Educational Talks",
+  "introduction": "Inspiring and Educational Talks",
+  "features": [],
+  "useCases": [
+    "Visit https://www.ted.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.ted.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.422Z"
+}

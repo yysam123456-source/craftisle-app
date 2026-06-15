@@ -1,0 +1,23 @@
+{
+  "id": "storage-15807",
+  "description": "** / [Downloader](https://github.com/LibreScore/dl-librescore)",
+  "introduction": "** / [Downloader](https://github",
+  "features": [
+    "GitHub: https://github.com/LibreScore/dl-librescore"
+  ],
+  "useCases": [
+    "Visit https://musescore.com/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/LibreScore/dl-librescore.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.457Z"
+}

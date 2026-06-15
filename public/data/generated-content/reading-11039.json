@@ -1,0 +1,23 @@
+{
+  "id": "reading-11039",
+  "description": "** - Index of Math + Science Video Courses",
+  "introduction": "** - Index of Math + Science Video Courses",
+  "features": [
+    "GitHub: https://github.com/Developer-Y/math-science-video-lectures"
+  ],
+  "useCases": [
+    "Visit https://github.com/Developer-Y/math-science-video-lectures"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/Developer-Y/math-science-video-lectures.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.425Z"
+}

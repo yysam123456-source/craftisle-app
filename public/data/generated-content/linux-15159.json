@@ -1,0 +1,23 @@
+{
+  "id": "linux-15159",
+  "description": "** / [GitLab](https://gitlab.gnome.org/World/Shortwave) or [QMPlay2](https://github.com/zaps166/QMPlay2) - Radio Players",
+  "introduction": "** / [GitLab](https://gitlab",
+  "features": [
+    "GitHub: https://github.com/zaps166/QMPlay2"
+  ],
+  "useCases": [
+    "Visit https://flathub.org/en/apps/de.haeckerfelix.Shortwave"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/zaps166/QMPlay2.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.447Z"
+}

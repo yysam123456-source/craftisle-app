@@ -1,27 +1,23 @@
 {
   "id": "adblock-00367",
   "description": "](https://github.com/schomery/popup-blocker), [Popupblocker All](https://addons.mozilla.org/firefox/addon/popupblockerall/) / [2](https://chromewebstore.google.com/detail/popupblocker/doklmegfghlnanggfgligimnnikiekde) or [PopUpOFF](https://popupoff.org/) - Popup Blockers / [Userscript](https://github.com/AdguardTeam/PopupBlocker)",
-  "introduction": "](https://github.com/schomery/popup-blocker), [Popupblocker All](https://addons.mozilla.org/firefox/addon/popupblockerall/) / [2](https://chromewebstore.google.com/detail/popupblocker/doklmegfghlnanggfgligimnnikiekde) or [PopUpOFF](https://popupoff.org/) - Popup Blockers / [Userscript](https://github.com/AdguardTeam/PopupBlocker)",
+  "introduction": "](https://github",
   "features": [
-    "Popup blockage triggered by the window.open method",
-    "Popup prevention through the about:blank linking technique",
-    "Previewing popup links via a notification box"
+    "GitHub: https://github.com/schomery/popup-blocker"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/schomery/popup-blocker"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/schomery/popup-blocker.git && cd popup-blocker",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:12.040Z"
+  "quickStart": "git clone https://github.com/schomery/popup-blocker.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.378Z"
 }

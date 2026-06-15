@@ -1,0 +1,23 @@
+{
+  "id": "linux-15069",
+  "description": "or [DidYouMean](https://github.com/hisbaan/didyoumean) - Grammar Check Apps",
+  "introduction": "or [DidYouMean](https://github",
+  "features": [
+    "GitHub: https://github.com/sonnyp/Eloquent"
+  ],
+  "useCases": [
+    "Visit https://github.com/sonnyp/Eloquent"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/sonnyp/Eloquent.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "misc-01804",
+  "description": "Music Sharing Community / [Chrome](https://chromewebstore.google.com/detail/openwhyd-%E2%9C%9A-track/foohaghobcolamikniehcnnijdjehfjk)",
+  "introduction": "Music Sharing Community / [Chrome](https://chromewebstore",
+  "features": [],
+  "useCases": [
+    "Visit https://openwhyd.org/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://openwhyd.org/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

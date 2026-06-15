@@ -1,26 +1,23 @@
 {
   "id": "adblock-00502",
   "description": ", [OpenPhish](https://openphish.com/), [Netcraft Report](https://report.netcraft.com/report), [isitPhishing](https://isitphishing.org/), [PhishStats](https://phishstats.info/) / [Telegram](https://t.me/joinchat/AAAAAElZRwd0aBrYTaHHcQ) / [GitHub](https://github.com/eschultze/phishstats-api-network) or [PhishTank](https://phishtank.org/) - Report Phishing Sites",
-  "introduction": ", [OpenPhish](https://openphish.com/), [Netcraft Report](https://report.netcraft.com/report), [isitPhishing](https://isitphishing.org/), [PhishStats](https://phishstats.info/) / [Telegram](https://t.me/joinchat/AAAAAElZRwd0aBrYTaHHcQ) / [GitHub](https://github.com/eschultze/phishstats-api-network) or [PhishTank](https://phishtank.org/) - Report Phishing Sites",
+  "introduction": ", [OpenPhish](https://openphish",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/eschultze/phishstats-api-network"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://phish.report/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/eschultze/phishstats-api-network.git && cd phishstats-api-network",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:45:08.540Z"
+  "quickStart": "git clone https://github.com/eschultze/phishstats-api-network.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.384Z"
 }

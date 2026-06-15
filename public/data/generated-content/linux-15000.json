@@ -1,0 +1,21 @@
+{
+  "id": "linux-15000",
+  "description": "Linux Learning Roadmap",
+  "introduction": "Linux Learning Roadmap",
+  "features": [],
+  "useCases": [
+    "Visit https://roadmap.sh/linux"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://roadmap.sh/linux",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.441Z"
+}

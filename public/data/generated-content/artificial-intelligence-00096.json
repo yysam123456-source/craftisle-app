@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00096",
   "description": "** - Roleplaying Chatbots / Sign-Up / Some NSFW / [Subreddit](https://www.reddit.com/r/Chub_AI/) / [Discord](https://discord.gg/chubai) / [GitHub](https://github.com/CharHubAI)",
-  "introduction": "** - Roleplaying Chatbots / Sign-Up / Some NSFW / [Subreddit](https://www.reddit.com/r/Chub_AI/) / [Discord](https://discord.gg/chubai) / [GitHub](https://github.com/CharHubAI)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** - Roleplaying Chatbots / Sign-Up / Some NSFW / [Subreddit](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://chub.ai/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://chub.ai/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:49.465Z"
+  "quickStart": "Visit https://chub.ai/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.346Z"
 }

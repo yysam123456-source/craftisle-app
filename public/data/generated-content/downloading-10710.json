@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10710",
+  "description": "** / [GitHub](https://github.com/nicotine-plus/nicotine-plus) or [Soulseek](https://slsknet.org/) - File Sharing App / Windows, Mac, Linux / [Stats](https://github.com/mrusse/Slsk-Upload-Stats-Tracker) / [Server App](https://github.com/slskd/slskd) / [Batch DDL](https://github.com/fiso64/sldl)",
+  "introduction": "** / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/nicotine-plus/nicotine-plus"
+  ],
+  "useCases": [
+    "Visit https://nicotine-plus.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/nicotine-plus/nicotine-plus.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.411Z"
+}

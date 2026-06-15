@@ -1,0 +1,23 @@
+{
+  "id": "linux-15048",
+  "description": "Multi-Touch Gesture Recognizer",
+  "introduction": "Multi-Touch Gesture Recognizer",
+  "features": [
+    "GitHub: https://github.com/JoseExposito/touchegg"
+  ],
+  "useCases": [
+    "Visit https://github.com/JoseExposito/touchegg"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/JoseExposito/touchegg.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.443Z"
+}

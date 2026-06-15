@@ -1,0 +1,21 @@
+{
+  "id": "linux-15072",
+  "description": "** - FOSS Linux Software",
+  "introduction": "** - FOSS Linux Software",
+  "features": [],
+  "useCases": [
+    "Visit https://luong-komorebi.github.io/Awesome-Linux-Software/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://luong-komorebi.github.io/Awesome-Linux-Software/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

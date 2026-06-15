@@ -1,0 +1,21 @@
+{
+  "id": "misc-01779",
+  "description": "** - YouTube Music WebUIs / [Tools](https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/audio#wiki_.25B7_youtube_music_tools)",
+  "introduction": "** - YouTube Music WebUIs / [Tools](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://music.youtube.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://music.youtube.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

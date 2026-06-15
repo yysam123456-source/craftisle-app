@@ -1,0 +1,21 @@
+{
+  "id": "gaming-13230",
+  "description": "Online Buzzer System",
+  "introduction": "Online Buzzer System",
+  "features": [],
+  "useCases": [
+    "Visit https://buzzin.live/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://buzzin.live/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.431Z"
+}

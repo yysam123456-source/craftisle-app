@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00214",
   "description": "Whisper Large V3 / AssemblyAI Universal-2 / Qwen3-TTS Flash / [Limits and Models](https://enter.pollinations.ai/sign-in##models) / [Discord](https://discord.com/invite/pollinations-ai-885844321461485618)",
-  "introduction": "Whisper Large V3 / AssemblyAI Universal-2 / Qwen3-TTS Flash / [Limits and Models](https://enter.pollinations.ai/sign-in##models) / [Discord](https://discord.com/invite/pollinations-ai-885844321461485618)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "Whisper Large V3 / AssemblyAI Universal-2 / Qwen3-TTS Flash / [Limits and Models](https://enter",
+  "features": [],
+  "useCases": [
+    "Visit https://pollinations.ai/play"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://pollinations.ai/play to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:28.026Z"
+  "quickStart": "Visit https://pollinations.ai/play",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.377Z"
 }

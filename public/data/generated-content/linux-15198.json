@@ -1,0 +1,21 @@
+{
+  "id": "linux-15198",
+  "description": "Quick Linux Photo Importer",
+  "introduction": "Quick Linux Photo Importer",
+  "features": [],
+  "useCases": [
+    "Visit https://damonlynch.net/rapid/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://damonlynch.net/rapid/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.448Z"
+}

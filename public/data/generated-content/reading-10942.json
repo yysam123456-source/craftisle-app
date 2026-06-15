@@ -1,0 +1,21 @@
+{
+  "id": "reading-10942",
+  "description": "Lectures / [YouTube](https://www.youtube.com/@GreshamCollege/videos)",
+  "introduction": "Lectures / [YouTube](https://www",
+  "features": [],
+  "useCases": [
+    "Visit https://www.gresham.ac.uk/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.gresham.ac.uk/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.421Z"
+}

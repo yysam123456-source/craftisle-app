@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00098",
   "description": "/ [Live Demo](https://bots.miku.gg/) / Open-Source / Roleplaying / Some NSFW / [Discord](https://discord.gg/3XPdpUdGgV)",
-  "introduction": "/ [Live Demo](https://bots.miku.gg/) / Open-Source / Roleplaying / Some NSFW / [Discord](https://discord.gg/3XPdpUdGgV)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "/ [Live Demo](https://bots",
+  "features": [],
+  "useCases": [
+    "Visit https://docs.miku.gg/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://docs.miku.gg/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T02:38:49.465Z"
+  "quickStart": "Visit https://docs.miku.gg/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.346Z"
 }

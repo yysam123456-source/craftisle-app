@@ -1,0 +1,21 @@
+{
+  "id": "storage-15792",
+  "description": "Kanji Character Identifier",
+  "introduction": "Kanji Character Identifier",
+  "features": [],
+  "useCases": [
+    "Visit https://kanjitomo.net/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://kanjitomo.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.456Z"
+}

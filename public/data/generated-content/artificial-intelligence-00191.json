@@ -1,23 +1,21 @@
 {
   "id": "artificial-intelligence-00191",
   "description": "/ Unlimited / [Discord](https://discord.gg/pfXar3ChH8)",
-  "introduction": "/ Unlimited / [Discord](https://discord.gg/pfXar3ChH8)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "/ Unlimited / [Discord](https://discord",
+  "features": [],
+  "useCases": [
+    "Visit https://treblo.com/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://treblo.com/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:29:16.674Z"
+  "quickStart": "Visit https://treblo.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.373Z"
 }

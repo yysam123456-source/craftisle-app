@@ -1,0 +1,21 @@
+{
+  "id": "misc-01798",
+  "description": "Free Music Release Platform",
+  "introduction": "Free Music Release Platform",
+  "features": [],
+  "useCases": [
+    "Visit https://bandcamp.com/discover/free-music"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://bandcamp.com/discover/free-music",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.400Z"
+}

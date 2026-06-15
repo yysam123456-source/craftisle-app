@@ -1,30 +1,23 @@
 {
   "id": "adblock-00459",
   "description": ", [PrivateBin](https://privatebin.net/), [SafeNote](https://safenote.co/) / [GitHub](https://github.com/devrolabs), [Burn.Link](https://burn.link/), [ThisLinkWillSelfDestruct](https://thislinkwillselfdestruct.com/), [s.cr](https://s.cr/), [Yopass](https://yopass.se/) / [GitHub](https://github.com/jhaals/yopass), [Hemmelig](https://hemmelig.app/) / [GitHub](https://github.com/HemmeligOrg/Hemmelig.app), [Burn My Note](https://www.burnmynote.link/) or [OneTimeSecret](https://onetimesecret.com/) / [GitHub](https://github.com/onetimesecret/onetimesecret) - Self-Destructing Messages / Private Notes",
-  "introduction": ", [PrivateBin](https://privatebin.net/), [SafeNote](https://safenote.co/) / [GitHub](https://github.com/devrolabs), [Burn.Link](https://burn.link/), [ThisLinkWillSelfDestruct](https://thislinkwillselfdestruct.com/), [s.cr](https://s.cr/), [Yopass](https://yopass.se/) / [GitHub](https://github.com/jhaals/yopass), [Hemmelig](https://hemmelig.app/) / [GitHub](https://github.com/HemmeligOrg/Hemmelig.app), [Burn My Note](https://www.burnmynote.link/) or [OneTimeSecret](https://onetimesecret.com/) / [GitHub](https://github.com/onetimesecret/onetimesecret) - Self-Destructing Messages / Private Notes",
+  "introduction": ", [PrivateBin](https://privatebin",
   "features": [
-    "End-to-end encryption using OpenPGP",
-    "One-time secret viewing",
-    "No accounts or user management",
-    "Configurable expiration (hours, days, or weeks)",
-    "Optional custom password protection",
-    "File upload with streaming encryption"
+    "GitHub: https://github.com/jhaals/yopass"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://privnote.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/jhaals/yopass.git && cd yopass",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:17.802Z"
+  "quickStart": "git clone https://github.com/jhaals/yopass.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.382Z"
 }

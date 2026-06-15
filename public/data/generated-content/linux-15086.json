@@ -1,0 +1,23 @@
+{
+  "id": "linux-15086",
+  "description": "Sandboxed Package Manager / [App Repository](https://flathub.org) / [Manage Permissions](https://github.com/tchx84/flatseal)",
+  "introduction": "Sandboxed Package Manager / [App Repository](https://flathub",
+  "features": [
+    "GitHub: https://github.com/tchx84/flatseal"
+  ],
+  "useCases": [
+    "Visit https://flatpak.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/tchx84/flatseal.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.444Z"
+}

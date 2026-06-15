@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13287",
+  "description": "**, [AntiMicroX](https://github.com/AntiMicroX/antimicroX), [DualSenseX](https://github.com/Paliverse/DualSenseX), [DualSenseY](https://github.com/WujekFoliarz/DualSenseY-v2), [PCXSense](https://github.com/Denellyne/PCXSense) or [Input Remapper](https://github.com/sezanzeb/input-remapper) - Gamepad Input Tools / [Steam Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/steam-controller-support.md)",
+  "introduction": "**, [AntiMicroX](https://github",
+  "features": [
+    "GitHub: https://github.com/schmaldeo/DS4Windows"
+  ],
+  "useCases": [
+    "Visit https://github.com/schmaldeo/DS4Windows"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/schmaldeo/DS4Windows.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.434Z"
+}

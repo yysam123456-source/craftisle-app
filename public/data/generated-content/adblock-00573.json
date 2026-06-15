@@ -1,26 +1,23 @@
 {
   "id": "adblock-00573",
   "description": "Data Breach Check / Requires Sign-Up / [GitHub](https://github.com/mozilla/blurts-server)",
-  "introduction": "Data Breach Check / Requires Sign-Up / [GitHub](https://github.com/mozilla/blurts-server)",
+  "introduction": "Data Breach Check / Requires Sign-Up / [GitHub](https://github",
   "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+    "GitHub: https://github.com/mozilla/blurts-server"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://monitor.mozilla.org/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/mozilla/blurts-server.git && cd blurts-server",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:46:06.237Z"
+  "quickStart": "git clone https://github.com/mozilla/blurts-server.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.387Z"
 }

@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10773",
+  "description": "** / Windows, Mac, Linux / [Grabber](https://github.com/lem6ns/sabgrab)",
+  "introduction": "** / Windows, Mac, Linux / [Grabber](https://github",
+  "features": [
+    "GitHub: https://github.com/lem6ns/sabgrab"
+  ],
+  "useCases": [
+    "Visit https://sabnzbd.org/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/lem6ns/sabgrab.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.414Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "misc-02027",
+  "description": "or [Skiley](https://skiley.net/) - Spotify Library Managers",
+  "introduction": "or [Skiley](https://skiley",
+  "features": [
+    "GitHub: https://github.com/dzirbel/kotify"
+  ],
+  "useCases": [
+    "Visit https://github.com/dzirbel/kotify"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/dzirbel/kotify.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.409Z"
+}

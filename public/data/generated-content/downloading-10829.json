@@ -1,0 +1,23 @@
+{
+  "id": "downloading-10829",
+  "description": "or [BitMagnet](https://bitmagnet.io/) - Self-Hosted Torrent Search Engines",
+  "introduction": "or [BitMagnet](https://bitmagnet",
+  "features": [
+    "GitHub: https://github.com/sergiotapia/torrentinim"
+  ],
+  "useCases": [
+    "Visit https://github.com/sergiotapia/torrentinim"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/sergiotapia/torrentinim.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.417Z"
+}

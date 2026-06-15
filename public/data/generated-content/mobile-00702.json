@@ -1,23 +1,21 @@
 {
   "id": "mobile-00702",
   "description": "** / [Telegram](https://t.me/RBMods)",
-  "introduction": "** / [Telegram](https://t.me/RBMods)",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "introduction": "** / [Telegram](https://t",
+  "features": [],
+  "useCases": [
+    "Visit https://www.rockmods.net/"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.rockmods.net/ to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T04:47:06.954Z"
+  "quickStart": "Visit https://www.rockmods.net/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.389Z"
 }

@@ -3,24 +3,21 @@
   "description": "Container Images Vulnerability Scanner",
   "introduction": "Container Images Vulnerability Scanner",
   "features": [
-    "Supports Docker, OCI, and [Singularity](https://github.com/sylabs/singularity) image formats",
-    "[OpenVEX](https://github.com/openvex) support for filtering and augmenting scan results"
+    "GitHub: https://github.com/anchore/grype"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://github.com/anchore/grype"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/anchore/grype.git && cd grype",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:32:06.472Z"
+  "quickStart": "git clone https://github.com/anchore/grype.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.381Z"
 }

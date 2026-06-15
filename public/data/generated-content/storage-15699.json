@@ -1,0 +1,23 @@
+{
+  "id": "storage-15699",
+  "description": "Convert ASCII Diagrams to SVG Images / [GitHub](https://github.com/ivanceras/svgbob)",
+  "introduction": "Convert ASCII Diagrams to SVG Images / [GitHub](https://github",
+  "features": [
+    "GitHub: https://github.com/ivanceras/svgbob"
+  ],
+  "useCases": [
+    "Visit https://ivanceras.github.io/svgbob-editor/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/ivanceras/svgbob.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.452Z"
+}

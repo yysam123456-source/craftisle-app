@@ -1,0 +1,21 @@
+{
+  "id": "reading-11077",
+  "description": "Interactive Fourier Transform Guide",
+  "introduction": "Interactive Fourier Transform Guide",
+  "features": [],
+  "useCases": [
+    "Visit https://www.jezzamon.com/fourier/index.html"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.jezzamon.com/fourier/index.html",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.427Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "gaming-13258",
+  "description": "** - Game Optimization Tool / [Discord](https://discord.gg/specialk) / [GitHub](https://github.com/SpecialKO/SpecialK) / Windows, Linux",
+  "introduction": "** - Game Optimization Tool / [Discord](https://discord",
+  "features": [
+    "GitHub: https://github.com/SpecialKO/SpecialK"
+  ],
+  "useCases": [
+    "Visit https://www.special-k.info/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/SpecialKO/SpecialK.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.433Z"
+}

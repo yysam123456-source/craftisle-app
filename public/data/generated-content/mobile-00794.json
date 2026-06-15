@@ -1,0 +1,23 @@
+{
+  "id": "mobile-00794",
+  "description": "** - Android App Patcher / [X](https://x.com/MorpheApp) / [Resources](https://xdaforums.com/t/app-guides-unofficial-morphe-megathread.4774994/) / [Subreddit](https://reddit.com/r/MorpheApp) / [GitHub](https://github.com/MorpheApp/morphe-manager)",
+  "introduction": "** - Android App Patcher / [X](https://x",
+  "features": [
+    "GitHub: https://github.com/MorpheApp/morphe-manager"
+  ],
+  "useCases": [
+    "Visit https://morphe.software/"
+  ],
+  "pricing": "Free / Open Source",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "git clone https://github.com/MorpheApp/morphe-manager.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.392Z"
+}

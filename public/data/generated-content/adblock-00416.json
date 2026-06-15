@@ -1,25 +1,23 @@
 {
   "id": "adblock-00416",
   "description": "Sandbox Environment / [Guide](https://clarasguide.valeena.workers.dev/Guides/sandboxie-guide/) / [GitHub](https://github.com/sandboxie-plus/Sandboxie)",
-  "introduction": "Sandbox Environment / [Guide](https://clarasguide.valeena.workers.dev/Guides/sandboxie-guide/) / [GitHub](https://github.com/sandboxie-plus/Sandboxie)",
+  "introduction": "Sandbox Environment / [Guide](https://clarasguide",
   "features": [
-    "<p align='center'>"
+    "GitHub: https://github.com/sandboxie-plus/Sandboxie"
   ],
   "useCases": [
-    "Self-hosted deployment",
-    "Replacing proprietary software"
+    "Visit https://sandboxie-plus.com/"
   ],
   "pricing": "Free / Open Source",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "git clone https://github.com/sandboxie-plus/Sandboxie.git && cd Sandboxie",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:55.313Z"
+  "quickStart": "git clone https://github.com/sandboxie-plus/Sandboxie.git",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.380Z"
 }

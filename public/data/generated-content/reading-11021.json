@@ -1,0 +1,21 @@
+{
+  "id": "reading-11021",
+  "description": "Learn Basic Quantum Terms",
+  "introduction": "Learn Basic Quantum Terms",
+  "features": [],
+  "useCases": [
+    "Visit https://qpaths.deqart.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://qpaths.deqart.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.424Z"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "storage-15700",
+  "description": "or [JDL Studio](https://start.jhipster.tech/jdl-studio/) - UML Diagrams Generators / Creators",
+  "introduction": "or [JDL Studio](https://start",
+  "features": [],
+  "useCases": [
+    "Visit https://www.umlet.com/"
+  ],
+  "pricing": "Free",
+  "pros": [
+    "Free and open-source"
+  ],
+  "cons": [
+    "May require technical setup",
+    "Community support only"
+  ],
+  "alternatives": [],
+  "quickStart": "Visit https://www.umlet.com/",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.452Z"
+}

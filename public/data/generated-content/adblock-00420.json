@@ -2,22 +2,20 @@
   "id": "adblock-00420",
   "description": "Ransomware Decryption Tools",
   "introduction": "Ransomware Decryption Tools",
-  "features": [
-    "A powerful alternative to commercial tools",
-    "Open-source and community-driven"
+  "features": [],
+  "useCases": [
+    "Visit https://www.nomoreransom.org/en/decryption-tools.html"
   ],
-  "useCases": [],
   "pricing": "Free",
   "pros": [
-    "Free and open-source",
-    "Community-driven"
+    "Free and open-source"
   ],
   "cons": [
     "May require technical setup",
     "Community support only"
   ],
   "alternatives": [],
-  "quickStart": "Visit https://www.nomoreransom.org/en/decryption-tools.html to get started",
-  "source": "fmhy+github",
-  "generatedAt": "2026-06-15T03:31:56.684Z"
+  "quickStart": "Visit https://www.nomoreransom.org/en/decryption-tools.html",
+  "source": "fmhy-real",
+  "generatedAt": "2026-06-15T05:04:02.381Z"
 }
