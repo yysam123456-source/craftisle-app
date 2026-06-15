@@ -783,7 +783,8 @@ export default async function ResourceDetailPage({
                                 </div>
                               )}
                             </div>
-                            <p className="text-xs text-muted-foreground line-clamp-2">
+                            <StarRating resourceId={r.id} size="sm" />
+                            <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
                               {r.description?.slice(0, 80) || "No description"}
                             </p>
                           </div>
