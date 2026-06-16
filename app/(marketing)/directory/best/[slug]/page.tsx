@@ -352,7 +352,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                     <div className="min-w-0">
                       <h3 className="font-medium text-sm truncate">{r.name}</h3>
                       <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                        {getEnhancedDescription(r.name, r.description, r.category) || r.categoryName + " tool"}
+                        {getEnhancedDescription(r.name, r.description, r.category) || r.description || `${r.categoryName || r.category || "Free"} tool`}
                       </p>
                       <div className="flex gap-1 mt-2 flex-wrap items-center">
                         {r.isFree !== false && (
@@ -406,7 +406,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium">{r.name}</h3>
                       <p className="text-sm text-gray-500 truncate">
-                        {getEnhancedDescription(r.name, r.description, r.category) || r.categoryName + " tool"}
+                        {getEnhancedDescription(r.name, r.description, r.category) || r.description || `${r.categoryName || r.category || "Free"} tool`}
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
