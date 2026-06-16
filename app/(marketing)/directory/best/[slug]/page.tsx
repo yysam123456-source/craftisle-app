@@ -121,8 +121,9 @@ function buildSlugMaps() {
 // ── 读取 home-blocks.json（Server-side）─────────────────────────
 function getHomeBlocks(): any[] {
   try {
-    const DATA_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..", "public", "data");
-    const filePath = join(DATA_DIR, "home-blocks.json");
+    // 用 process.cwd() 获取项目根目录（Next.js 服务端代码此值即为项目根）
+    const PROJECT_ROOT = process.cwd();
+    const filePath = join(PROJECT_ROOT, "public", "data", "home-blocks.json");
     if (!existsSync(filePath)) return [];
     const raw = readFileSync(filePath, "utf-8");
     const data = JSON.parse(raw);
