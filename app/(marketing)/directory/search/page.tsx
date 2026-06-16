@@ -7,6 +7,15 @@ import { ResourceCard } from "@/components/resources/resource-card";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { SlidersHorizontal, X, ChevronDown, Sparkles, Star, Clock, Code2, Filter } from "lucide-react";
 import { searchResources, formatStars, highlightTextSimple, type ScoredResource } from "@/lib/search-utils";
 
 // 热门搜索建议
@@ -458,137 +467,222 @@ function SearchResultsContent() {
           {loading && <SearchSkeleton />}
           {!loading && query && (
             <motion.div
-              className="mb-6 space-y-3"
+              className="mb-8"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <p className="text-muted-foreground">
-                  <span className="font-semibold text-foreground">{results.length}</span> results
-                  {query && <span> for &quot;{query}&quot;</span>}
-                  {/* 显示匹配原因统计 */}
+              {/* 结果统计 + 排序 */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-foreground">{results.length.toLocaleString()}</span>
+                  <span className="text-muted-foreground">results for</span>
+                  <span className="font-semibold text-primary bg-primary/10 px-2.5 py-0.5 rounded-md text-sm">&quot;{query}&quot;</span>
                   {results.length > 0 && (
-                    <span className="text-xs ml-2 text-muted-foreground">
-                      ({results.filter(r => r._matchReason?.includes("Exact name match")).length} exact,{" "}
-                      {results.filter(r => r._matchReason?.includes("Name contains query")).length} name,{" "}
-                      {results.filter(r => r._matchReason?.includes("Description match")).length} description)
+                    <span className="hidden sm:inline-flex ml-1 text-xs text-muted-foreground bg-muted/60 px-2 py-0.5 rounded-full">
+                      {results.filter(r => r._matchReason?.includes("Exact name match")).length} exact · {results.filter(r => r._matchReason?.includes("Name contains query")).length} name · {results.filter(r => r._matchReason?.includes("Description match")).length} desc
                     </span>
                   )}
-                </p>
-                {/* 排序下拉 */}
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as "relevance" | "stars" | "name")}
-                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
-                >
-                  <option value="relevance">Relevance</option>
-                  <option value="stars">GitHub Stars</option>
-                  <option value="name">Name A-Z</option>
-                </select>
+                </div>
+
+                {/* 排序选择器 */}
+                <Select value={sortBy} onValueChange={(v) => setSortBy(v as typeof sortBy)}>
+                  <SelectTrigger className="w-[150px] h-9 text-sm border-dashed hover:border-solid transition-colors">
+                    {sortBy === "relevance" && <Sparkles className="mr-1.5 h-3.5 w-3.5 text-amber-500" />}
+                    {sortBy === "stars" && <Star className="mr-1.5 h-3.5 w-3.5 text-yellow-500" />}
+                    {sortBy === "name" && <span className="mr-1.5 font-serif italic text-sm">A-Z</span>}
+                    <SelectValue placeholder="Sort by" />
+                  </SelectTrigger>
+                  <SelectContent align="end">
+                    <SelectItem value="relevance">
+                      <span className="flex items-center gap-2"><Sparkles className="h-3.5 w-3.5 text-amber-500" />Relevance</span>
+                    </SelectItem>
+                    <SelectItem value="stars">
+                      <span className="flex items-center gap-2"><Star className="h-3.5 w-3.5 text-yellow-500" />GitHub Stars</span>
+                    </SelectItem>
+                    <SelectItem value="name">
+                      <span className="flex items-center gap-2"><span className="font-serif italic">A-Z</span>Name A-Z</span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              {/* 过滤控件 */}
-              <div className="flex gap-2 flex-wrap">
-                {/* 数据源过滤 */}
-                {Object.keys(sourceCounts).length > 1 ? (
-                  <div className="flex gap-2 flex-wrap">
-                    <Badge
-                      variant={sourceFilter === null ? "default" : "outline"}
-                      className="cursor-pointer"
+
+              {/* 筛选栏 */}
+              <div className="bg-card/50 backdrop-blur-sm rounded-xl border p-4 space-y-3.5 shadow-sm">
+
+                {/* 第一行：数据源 + 基础筛选 */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                  {/* 数据源标签组 */}
+                  <div className="flex items-center gap-1 flex-wrap">
+                    <Filter className="h-3.5 w-3.5 text-muted-foreground mr-0.5 hidden sm:inline" />
+                    <button
                       onClick={() => setSourceFilter(null)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                        sourceFilter === null
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "bg-background border hover:border-primary/40 hover:text-foreground"
+                      }`}
                     >
                       All ({results.length})
-                    </Badge>
-                    {Object.entries(sourceCounts).map(([src, count]) => (
-                      <Badge
-                        key={src}
-                        variant={sourceFilter === src ? "default" : "outline"}
-                        className="cursor-pointer"
-                        onClick={() => setSourceFilter(src)}
-                      >
-                        {sourceIcons[src] || "📦"} {sourceLabels[src] || src} ({count})
-                      </Badge>
-                    ))}
+                    </button>
+                    {Object.entries(sourceCounts).map(([src, count]) => {
+                      const isSelected = sourceFilter === src;
+                      return (
+                        <button
+                          key={src}
+                          onClick={() => setSourceFilter(isSelected ? null : src)}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                            isSelected
+                              ? "bg-primary text-primary-foreground shadow-sm"
+                              : "bg-background border hover:border-primary/40 hover:text-foreground"
+                          }`}
+                        >
+                          <span>{sourceIcons[src] || "📦"}</span>
+                          <span>{sourceLabels[src] || src}</span>
+                          <span className={`rounded-full px-1.5 py-0 ${isSelected ? "bg-white/20" : "bg-muted"}`}>{count}</span>
+                        </button>
+                      );
+                    })}
                   </div>
-                ) : null}
-                {/* 分类过滤 */}
-                {categories.length > 0 && (
-                  <select
-                    value={categoryFilter || ""}
-                    onChange={(e) => setCategoryFilter(e.target.value || null)}
-                    className="px-3 py-1.5 text-sm border rounded-lg bg-background"
-                  >
-                    <option value="">All Categories</option>
-                    {categories.map((cat) => (
-                      <option key={cat.id} value={cat.id}>{cat.icon || "📁"} {cat.name}</option>
-                    ))}
-                  </select>
-                )}
-                {/* GitHub 数据过滤 */}
-                <select
-                  value={githubFilter}
-                  onChange={(e) => setGithubFilter(e.target.value as "all" | "hasgithub" | "nogithub")}
-                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
-                >
-                  <option value="all">All Resources</option>
-                  <option value="hasgithub">Has GitHub Data</option>
-                  <option value="nogithub">No GitHub Data</option>
-                </select>
-                {/* 开源过滤 */}
-                <select
-                  value={openSourceFilter}
-                  onChange={(e) => setOpenSourceFilter(e.target.value as "all" | "opensource" | "commercial")}
-                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
-                >
-                  <option value="all">All Types</option>
-                  <option value="opensource">Open Source Only</option>
-                  <option value="commercial">Commercial Only</option>
-                </select>
-                {/* 更新频率过滤 */}
-                <select
-                  value={updateFrequencyFilter}
-                  onChange={(e) => setUpdateFrequencyFilter(e.target.value as "all" | "recent" | "active" | "maintained")}
-                  className="px-3 py-1.5 text-sm border rounded-lg bg-background"
-                >
-                  <option value="all">Any Update Date</option>
-                  <option value="recent">Recently Updated (30 days)</option>
-                  <option value="active">Actively Maintained (90 days)</option>
-                  <option value="maintained">Maintained (1 year)</option>
-                </select>
-              </div>
-              {/* 标签过滤 */}
-              {topTags.length > 0 && (
-                <div className="mt-3">
-                  <p className="text-xs text-muted-foreground mb-2">Filter by tags:</p>
-                  <div className="flex gap-1.5 flex-wrap">
-                    {topTags.map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant={selectedTags.includes(tag) ? "default" : "outline"}
-                        className="cursor-pointer text-xs"
-                        onClick={() => {
-                          setSelectedTags(prev => 
-                            prev.includes(tag) 
-                              ? prev.filter(t => t !== tag) 
-                              : [...prev, tag]
+
+                  {/* 分隔线（桌面端） */}
+                  <div className="hidden sm:block h-6 w-px bg-border mx-1" />
+
+                  {/* GitHub 筛选 */}
+                  <Select value={githubFilter} onValueChange={(v) => setGithubFilter(v as typeof githubFilter)}>
+                    <SelectTrigger className="w-auto min-w-[140px] h-8 text-xs border-dashed hover:border-solid">
+                      <Code2 className="mr-1.5 h-3.5 w-3.5 shrink-0" />
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all"><span className="text-muted-foreground">All Resources</span></SelectItem>
+                      <SelectItem value="hasgithub">✓ Has GitHub Data</SelectItem>
+                      <SelectItem value="nogithub">✗ No GitHub Data</SelectItem>
+                    </SelectContent>
+                  </Select>
+
+                  {/* 开源筛选 */}
+                  <Select value={openSourceFilter} onValueChange={(v) => setOpenSourceFilter(v as typeof openSourceFilter)}>
+                    <SelectTrigger className="w-auto min-w-[130px] h-8 text-xs border-dashed hover:border-solid">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all"><span className="text-muted-foreground">All Types</span></SelectItem>
+                      <SelectItem value="opensource">🌓 Open Source Only</SelectItem>
+                      <SelectItem value="commercial">💰 Commercial Only</SelectItem>
+                    </SelectContent>
+                  </Select>
+
+                  {/* 更新频率筛选 */}
+                  <Select value={updateFrequencyFilter} onValueChange={(v) => setUpdateFrequencyFilter(v as typeof updateFrequencyFilter)}>
+                    <SelectTrigger className="w-auto min-w-[160px] h-8 text-xs border-dashed hover:border-solid">
+                      <Clock className="mr-1.5 h-3.5 w-3.5 shrink-0" />
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all"><span className="text-muted-foreground">Any Update Date</span></SelectItem>
+                      <SelectItem value="recent">🟢 Recently Updated (30d)</SelectItem>
+                      <SelectItem value="active">🔵 Active (90d)</SelectItem>
+                      <SelectItem value="maintained">⚪ Maintained (1y)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* 第二行：标签过滤 */}
+                {topTags.length > 0 && (
+                  <div className="pt-2 border-t border-border/50">
+                    <div className="flex items-start gap-2">
+                      <span className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium pt-1 whitespace-nowrap shrink-0">Tags</span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {topTags.map((tag) => {
+                          const isActive = selectedTags.includes(tag);
+                          return (
+                            <Badge
+                              key={tag}
+                              variant={isActive ? "default" : "secondary"}
+                              className={`cursor-pointer text-[11px] px-2.5 py-0.5 rounded-full transition-all ${
+                                isActive ? "shadow-sm" : "hover:bg-primary/10 hover:text-foreground"
+                              }`}
+                              onClick={() => setSelectedTags(prev =>
+                                prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+                              )}
+                            >
+                              {tag}
+                            </Badge>
                           );
+                        })}
+                        {selectedTags.length > 0 && (
+                          <button
+                            onClick={() => setSelectedTags([])}
+                            className="inline-flex items-center gap-1 text-[11px] text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 px-2.5 py-0.5 rounded-full border border-red-200 dark:border-red-800 transition-colors cursor-pointer"
+                          >
+                            <X className="h-3 w-3" />
+                            Clear
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* 活跃筛选提示条 */}
+                {(sourceFilter !== null || githubFilter !== "all" || openSourceFilter !== "all" || updateFrequencyFilter !== "all" || selectedTags.length > 0) && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    className="pt-2 border-t border-border/50"
+                  >
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <SlidersHorizontal className="h-3.5 w-3.5 text-muted-foreground" />
+                      <span className="text-xs text-muted-foreground">Active filters:</span>
+                      {sourceFilter && (
+                        <Badge variant="default" className="text-[11px] px-2 py-0 gap-1">
+                          {sourceIcons[sourceFilter]} {sourceLabels[sourceFilter]}
+                          <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => setSourceFilter(null)} />
+                        </Badge>
+                      )}
+                      {githubFilter !== "all" && (
+                        <Badge variant="secondary" className="text-[11px] px-2 py-0 gap-1">
+                          {githubFilter === "hasgithub" ? "Has GitHub" : "No GitHub"}
+                          <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => setGithubFilter("all")} />
+                        </Badge>
+                      )}
+                      {openSourceFilter !== "all" && (
+                        <Badge variant="secondary" className="text-[11px] px-2 py-0 gap-1">
+                          {openSourceFilter === "opensource" ? "Open Source" : "Commercial"}
+                          <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => setOpenSourceFilter("all")} />
+                        </Badge>
+                      )}
+                      {updateFrequencyFilter !== "all" && (
+                        <Badge variant="secondary" className="text-[11px] px-2 py-0 gap-1">
+                          {updateFrequencyFilter}
+                          <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => setUpdateFrequencyFilter("all")} />
+                        </Badge>
+                      )}
+                      {selectedTags.map(tag => (
+                        <Badge key={tag} variant="secondary" className="text-[11px] px-2 py-0 gap-1">
+                          #{tag}
+                          <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => setSelectedTags(prev => prev.filter(t => t !== tag))} />
+                        </Badge>
+                      ))}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 text-xs text-muted-foreground hover:text-foreground ml-auto"
+                        onClick={() => {
+                          setSourceFilter(null);
+                          setGithubFilter("all");
+                          setOpenSourceFilter("all");
+                          setUpdateFrequencyFilter("all");
+                          setSelectedTags([]);
                         }}
                       >
-                        {tag}
-                      </Badge>
-                    ))}
-                    {selectedTags.length > 0 && (
-                      <Badge
-                        variant="outline"
-                        className="cursor-pointer text-xs text-red-600 border-red-300"
-                        onClick={() => setSelectedTags([])}
-                      >
-                        Clear Tags
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-              )}
+                        Reset All
+                      </Button>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
             </motion.div>
           )}
           {!loading && query && results.length === 0 && (
