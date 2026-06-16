@@ -1,12 +1,14 @@
 export const revalidate = 86400;
 export const dynamicParams = true;
+
 /**
  * /directory/best/[slug]
  * "Best X Tools 2026" - 程序化 SEO 页面
  *
- * 支持两类分类：
+ * 支持三类 slug：
  * 1. fmhy-index.json 中的分类（AI Tools, Education 等）
  * 2. alternatives 数据中的分类（Design, Productivity 等）
+ * 3. home-blocks.json 中的 block ID（weekly-hottest, rising-stars 等）
  */
 import { notFound } from "next/navigation";
 import { getAllResources, getAllCategories, type Resource, type Category } from "@/lib/fmhy-data";
@@ -17,6 +19,9 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { readFileSync, existsSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 interface BestPageProps {
   params: Promise<{ slug: string }>;
@@ -42,10 +47,10 @@ const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
   "CRM": "CRM & Sales",
 };
 
-// ── 展示名 → 原始分类名 映射表 ────────────────────────────
+// ── 展示名 → 原始分类名 映射表 ──────────────────────────
 const DISPLAY_TO_ORIGINAL: Record<string, string> = {};
 
-// ── slug 工具函数 ──────────────────────────
+// ── slug 工具函数 ─────────────────────────
 function toSlug(name: string): string {
   return name
     .toLowerCase()
@@ -73,7 +78,7 @@ function getAlternativesCategories(): Category[] {
   return cats;
 }
 
-// ── 构建 slug → Category 映射 ──────────────────────────
+// ── 构建 slug → Category 映射 ─────────────────────────
 function buildSlugMaps() {
   const categories = getAllCategories();
   const slugToCat: Record<string, Category> = {};
@@ -113,7 +118,94 @@ function buildSlugMaps() {
   return { slugToCat, slugToCat2026 };
 }
 
-// ── 静态生成参数 ──────────────────────────
+// ── 读取 home-blocks.json（Server-side）─────────────────────────
+function getHomeBlocks(): any[] {
+  try {
+    const DATA_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..", "public", "data");
+    const filePath = join(DATA_DIR, "home-blocks.json");
+    if (!existsSync(filePath)) return [];
+    const raw = readFileSync(filePath, "utf-8");
+    const data = JSON.parse(raw);
+    return data.blocks || [];
+  } catch {
+    return [];
+  }
+}
+
+// ── 根据 slug 查找分类（大小写不敏感） ─────────────────────────
+function findCategory(slug: string): Category | null {
+  const { slugToCat, slugToCat2026 } = buildSlugMaps();
+  const lowerSlug = slug.toLowerCase();
+  return slugToCat[lowerSlug] || slugToCat2026[lowerSlug] || slugToCat[slug] || slugToCat2026[slug] || null;
+}
+
+// ── 根据 slug 查找 home-blocks.json 中的 block ─────────────────────────
+function findBlock(slug: string): any | null {
+  const blocks = getHomeBlocks();
+  return blocks.find((b: any) => b.id === slug) || null;
+}
+
+// ── 获取 block 对应的资源详情 ─────────────────────────
+function getBlockResources(blockId: string): Resource[] {
+  const blocks = getHomeBlocks();
+  const block = blocks.find((b: any) => b.id === blockId);
+  if (!block || !block.resources) return [];
+
+  // 从 block 中的资源摘要，去 fmhy 数据里找完整信息
+  const all = getAllResources();
+  const result: Resource[] = [];
+  for (const summary of block.resources) {
+    const full = all.find((r: Resource) => r.id === summary.id);
+    if (full) {
+      // 合并摘要信息（保留 githubStars 等）
+      result.push({
+        ...full,
+        githubStars: summary.githubStars || full.githubStars || 0,
+      });
+    } else {
+      // 找不到完整信息，用摘要凑合
+      result.push({
+        id: summary.id,
+        name: summary.name,
+        description: summary.description || "",
+        url: summary.url || "",
+        category: summary.category || "",
+        categoryName: summary.categoryName || "",
+        githubStars: summary.githubStars || 0,
+        isFree: summary.isFree !== false,
+        isOpenSource: summary.isOpenSource || false,
+      } as Resource);
+    }
+  }
+  return result;
+}
+
+// ── 获取分类下的资源（fmhy 数据）──────────────────────────
+function getResourcesByCategory(categoryId: string): Resource[] {
+  const all = getAllResources();
+  return all
+    .filter((r) => r.category === categoryId || r.categoryName === categoryId)
+    .slice(0, 12);
+}
+
+// ── 获取分类下的替代品条目（alternatives 数据）──────────────────────────
+function getAlternativesByCategory(categoryName: string): AlternativeEntry[] {
+  const originalName = DISPLAY_TO_ORIGINAL[categoryName] || categoryName;
+  const map = getCombinedMap();
+  return Object.values(map).filter(
+    (e) => (e.category || "Other") === originalName
+  ) as AlternativeEntry[];
+}
+
+// ── 判断是否是 alternatives 虚拟分类 ─────────────────────────
+function isAlternativesCategory(categoryName: string): boolean {
+  const fmhyCats = getAllCategories();
+  return !fmhyCats.some(
+    (c) => c.name === categoryName || c.id === toSlug(categoryName)
+  );
+}
+
+// ── 静态生成参数 ─────────────────────────
 export async function generateStaticParams() {
   const categories = getAllCategories();
   const altCats = getAlternativesCategories();
@@ -135,6 +227,13 @@ export async function generateStaticParams() {
     params.push({ slug: `${toolsSlug}-2026` });
   }
 
+  // ✅ 新增：也生成 home-blocks.json 中的 block ID
+  const blocks = getHomeBlocks();
+  for (const block of blocks) {
+    params.push({ slug: block.id });
+    params.push({ slug: `${block.id}-2026` });
+  }
+
   // 去重：FMHY 和 alternatives 可能产生相同 slug
   const unique = params.filter(
     (p, i, arr) => arr.findIndex((x) => x.slug === p.slug) === i
@@ -142,43 +241,30 @@ export async function generateStaticParams() {
   return unique;
 }
 
-// ── 根据 slug 查找分类（大小写不敏感） ──────────────────────────
-function findCategory(slug: string): Category | null {
-  const { slugToCat, slugToCat2026 } = buildSlugMaps();
-  const lowerSlug = slug.toLowerCase();
-  return slugToCat[lowerSlug] || slugToCat2026[lowerSlug] || slugToCat[slug] || slugToCat2026[slug] || null;
-}
-
-// ── 描述清洗（使用 tool-descriptions 增强系统） ──────
-
-// ── 获取分类下的资源（fmhy 数据）──────────────────────────
-function getResourcesByCategory(categoryId: string): Resource[] {
-  const all = getAllResources();
-  return all
-    .filter((r) => r.category === categoryId || r.categoryName === categoryId)
-    .slice(0, 12);
-}
-
-// ── 获取分类下的替代品条目（alternatives 数据）──────────────────────────
-function getAlternativesByCategory(categoryName: string): AlternativeEntry[] {
-  const originalName = DISPLAY_TO_ORIGINAL[categoryName] || categoryName;
-  const map = getCombinedMap();
-  return Object.values(map).filter(
-    (e) => (e.category || "Other") === originalName
-  ) as AlternativeEntry[];
-}
-
-// ── 判断是否是 alternatives 虚拟分类 ──────────────────────────
-function isAlternativesCategory(categoryName: string): boolean {
-  const fmhyCats = getAllCategories();
-  return !fmhyCats.some(
-    (c) => c.name === categoryName || c.id === toSlug(categoryName)
-  );
-}
-
-// ── Metadata ──────────────────────────
+// ── Metadata ─────────────────────────
 export async function generateMetadata(props: BestPageProps): Promise<Metadata> {
   const { slug } = await props.params;
+
+  // 先检查是不是 block ID
+  const block = findBlock(slug);
+  if (block) {
+    const is2026 = slug.endsWith("-2026");
+    const title = `${block.title} ${is2026 ? "2026" : ""} | Craftisle`;
+    const description = block.subtitle || `Discover the best ${block.title} tools.`;
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `https://craftisle.com/directory/best/${slug}`,
+      },
+      openGraph: {
+        title: `${block.title} ${is2026 ? "2026" : ""}`,
+        description,
+        url: `https://craftisle.com/directory/best/${slug}`,
+      },
+    };
+  }
+
   const category = findCategory(slug);
   if (!category) return {};
 
@@ -200,11 +286,18 @@ export async function generateMetadata(props: BestPageProps): Promise<Metadata> 
   };
 }
 
-// ── 页面组件 ──────────────────────────
+// ── 页面组件 ─────────────────────────
 export default async function BestToolsPage(props: BestPageProps) {
   const { slug } = await props.params;
-  const category = findCategory(slug);
 
+  // ✅ 先检查是不是 home-blocks.json 中的 block ID
+  const block = findBlock(slug);
+  if (block) {
+    return <BlockBestPage block={block} slug={slug} />;
+  }
+
+  // 否则按原来的分类逻辑
+  const category = findCategory(slug);
   if (!category) notFound();
 
   const is2026 = slug.endsWith("-2026");
@@ -367,7 +460,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                         )}
                         {r.githubStars && (
                           <span className="text-xs text-muted-foreground ml-auto">
-                            {"\u2B50"}{r.githubStars > 1000 ? `${(r.githubStars / 1000).toFixed(1)}k` : r.githubStars}
+                            {"⭐"}{r.githubStars > 1000 ? `${(r.githubStars / 1000).toFixed(1)}k` : r.githubStars}
                           </span>
                         )}
                       </div>
@@ -436,6 +529,99 @@ export default async function BestToolsPage(props: BestPageProps) {
           </div>
         </div>
       </Card>
+    </div>
+  );
+}
+
+// ── Block 专属页面组件 ─────────────────────────
+function BlockBestPage({ block, slug }: { block: any; slug: string }) {
+  const resources = getBlockResources(block.id);
+  const is2026 = slug.endsWith("-2026");
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      {/* 面包屑 */}
+      <nav className="text-sm text-gray-500 mb-6">
+        <a href="/directory" className="hover:underline">Directory</a>
+        <span className="mx-2">/</span>
+        <a href="/directory" className="hover:underline">Trending Now</a>
+        <span className="mx-2">/</span>
+        <span className="text-gray-900">
+          {block.title} {is2026 ? "2026" : ""}
+        </span>
+      </nav>
+
+      <h1 className="text-3xl font-bold mb-2">
+        {block.title} {is2026 ? "2026" : ""}
+      </h1>
+      <p className="text-gray-600 mb-8 max-w-2xl">
+        {block.subtitle || `Discover the best ${block.title} tools.`}
+      </p>
+
+      {/* 资源列表 */}
+      {resources.length > 0 ? (
+        <div className="mb-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {resources.map((r: Resource) => (
+              <Link
+                key={r.id}
+                href={`/directory/resource/${r.id}`}
+                className="no-underline"
+              >
+                <Card className="p-4 hover:shadow-md transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-lg font-bold text-primary">
+                      {(r.icon || r.name?.charAt(0) || "?").toUpperCase()}
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-medium text-sm truncate">{r.name}</h3>
+                      <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                        {getEnhancedDescription(r.name, r.description, r.category) || r.description || ""}
+                      </p>
+                      <div className="flex gap-1 mt-2 flex-wrap items-center">
+                        {r.isFree !== false && (
+                          <Badge className="bg-green-50 text-green-700 border-green-200 text-xs px-1.5 py-0">
+                            Free
+                          </Badge>
+                        )}
+                        {r.isOpenSource && (
+                          <Badge variant="outline" className="text-xs px-1.5 py-0">
+                            OSS
+                          </Badge>
+                        )}
+                        {r.githubStars && (
+                          <span className="text-xs text-muted-foreground ml-auto">
+                            {"⭐"}{r.githubStars > 1000 ? `${(r.githubStars / 1000).toFixed(1)}k` : r.githubStars}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="text-center py-12 text-muted-foreground">
+          <p>No resources found in this block yet.</p>
+          <Link href="/directory" className="text-primary hover:underline">
+            Browse all categories →
+          </Link>
+        </div>
+      )}
+
+      {/* CTA */}
+      <section className="mt-12 text-center border-t pt-8">
+        <p className="text-gray-600 mb-4">
+          Looking for more? Browse all directory.
+        </p>
+        <Link href="/directory">
+          <span className="inline-flex items-center gap-1 text-primary hover:underline font-medium">
+            Browse Directory <ArrowRight className="h-4 w-4" />
+          </span>
+        </Link>
+      </section>
     </div>
   );
 }

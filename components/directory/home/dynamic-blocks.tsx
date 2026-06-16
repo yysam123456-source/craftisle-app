@@ -43,6 +43,7 @@ interface HomeBlock {
   resources?: ResourceSummary[];
   comparisons?: ComparisonItem[];
   sortOrder: number;
+  viewAllLink?: string;
 }
 
 interface DynamicHomeBlocksProps {

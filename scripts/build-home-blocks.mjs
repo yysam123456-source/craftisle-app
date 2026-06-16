@@ -362,16 +362,34 @@ function main() {
 
   // Block 7: 🎨 Design & Creative  
   {
-    // 改进：先匹配，再排除 AI 工具
-    let designTools = matchByKeywords(allResources, [
-      "figma", "sketch", "ui", "ux", "graphic", "photo", "video", "adobe", "canva", "photoshop", "illustrator", "design",
-    ]);
-    // 排除明显的 AI 聊天工具（名称含 AI, GPT, Claude, Gemini 等）
-    designTools = designTools.filter((r) => {
-      const n = (r.name || "").toLowerCase();
-      const aiKeywords = ["ai", "gpt", "claude", "gemini", "deepseek", "qwen", "llm", "chatbot"];
-      return !aiKeywords.some((k) => n.includes(k));
-    });
+    // FMHY 数据里传统设计工具太少，直接用常见开源设计工具列表
+    const knownDesignTools = [
+      "Figma", "Sketch", "Adobe XD", "Inkscape", "GIMP", "Krita", "Blender", "Penpot", "Gravit Designer", "Canva",
+      "Scribus", "Darktable", "RawTherapee", "Invision", "Marvel", "Framer", "Principle", "Origami", "Figma Community", "Coolors",
+      "Paletton", "Material Design", "Ant Design", "Bootstrap", "Tailwind CSS", "DaisyUI", "Heroicons", "Feather Icons", "Unsplash", "Pexels",
+    ];
+    
+    // 在 allResources 中模糊匹配这些名称
+    let designTools = [];
+    for (const name of knownDesignTools) {
+      const found = allResources.find((r) => (r.name || "").toLowerCase().includes(name.toLowerCase()));
+      if (found && !designTools.some(d => d.id === found.id)) {
+        designTools.push(found);
+      }
+    }
+    
+    // 如果匹配太少，fallback 到关键词匹配（但排除 AI 工具）
+    if (designTools.length < 4) {
+      const fallback = allResources.filter((r) => {
+        const n = (r.name || "").toLowerCase();
+        const c = (r.categoryName || "").toLowerCase();
+        const hasDesign = n.includes("design") || n.includes("figma") || n.includes("sketch") || c.includes("design") || c.includes("graphic");
+        const isAI = n.includes("ai") || n.includes("gpt") || n.includes("llm") || n.includes("video") || n.includes("comfy");
+        return hasDesign && !isAI;
+      }).slice(0, 8);
+      designTools.push(...fallback.filter(f => !designTools.some(d => d.id === f.id)));
+    }
+    
     designTools = designTools.slice(0, 8);
     
     blocks.push({
