@@ -122,14 +122,20 @@ function loadFmhyResources(): Resource[] {
     const all: Resource[] = [];
     for (const catData of Object.values(data.categories || {}) as any[]) {
       for (const r of (catData as any).resources || []) {
-        if (r.id && r.name && r.url) {
-          all.push({
-            ...r,
-            source: "fmhy",
-            category: r.category || "uncategorized",
-            hasReview: hasReviewFor(r),
-          });
-        }
+        // ✅ 过滤垃圾数据（FMHY 格式噪音）
+        const name = r.name || "";
+        if (!name || name.length < 2) continue;
+        if (name.startsWith("◄") || /Back to Wiki/i.test(name)) continue;
+        if (/^[=\-—_]{2,}$/.test(name)) continue;
+        if (/wiki\s*index/i.test(name)) continue;
+        if (/^===/.test(name)) continue;
+        if (!r.id || !r.url) continue;
+        all.push({
+          ...r,
+          source: "fmhy",
+          category: r.category || "uncategorized",
+          hasReview: hasReviewFor(r),
+        });
       }
     }
     return all;
