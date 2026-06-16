@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T11:52:47.263Z",
+  "lastUpdated": "2026-06-16T11:55:09.902Z",
   "totalResources": 18675,
   "blocks": [
     {
@@ -295,12 +295,27 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "linux-09169",
-          "name": "Waycheck",
-          "description": "Lists Protocols Implemented by a Wayland Compositor",
-          "url": "https://gitlab.freedesktop.org/serebit/waycheck",
-          "category": "Linux",
-          "categoryName": "Linux",
+          "id": "public-apis--graphs-for-coronavirus",
+          "name": "Graphs for Coronavirus",
+          "description": "Each Country separately and Worldwide Graphs for Coronavirus. Daily updates",
+          "url": "https://corona.dnsforfamily.com/api.txt",
+          "category": "pa-news",
+          "categoryName": "pa-news",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": true,
+          "isOpenSource": false,
+          "tags": [
+            "No Auth"
+          ]
+        },
+        {
+          "id": "mobile-01299",
+          "name": "Perfect Viewer",
+          "description": "(search) - Manga File Viewer",
+          "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/android#wiki_.25B7_modded_apks",
+          "category": "Mobile",
+          "categoryName": "Mobile",
           "githubStars": 0,
           "icon": null,
           "isFree": false,
@@ -308,10 +323,10 @@
           "tags": []
         },
         {
-          "id": "misc-13132",
-          "name": "dsc.gg",
-          "description": "Create Custom Discord Invites",
-          "url": "https://dsc.gg/",
+          "id": "misc-10872",
+          "name": "JUST SCREAM!",
+          "description": "Screams into the Universe / Archive",
+          "url": "https://justscream.baby/listen/",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -321,10 +336,10 @@
           "tags": []
         },
         {
-          "id": "misc-02437",
-          "name": "Lyricify",
-          "description": "Lyrics Desktop App",
-          "url": "https://github.com/WXRIW/Lyricify-App",
+          "id": "misc-11385",
+          "name": "TamilMV",
+          "description": "Movies / TV / Anime / Sub / Dub / 4K / 1080p / Indian Languages",
+          "url": "https://www.1tamilmv.farm/",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -334,10 +349,10 @@
           "tags": []
         },
         {
-          "id": "misc-05415",
-          "name": "Awesome File Hosts",
-          "description": "** , **[Awesome Free File Hosting](https://github.com/Nick088Official/awesome-free-file-hosting)** or **[PolyUpload File Hosts](https://github.com/spel987/PolyUploader?tab=readme-ov-file#-hosts)** - File Host Indexes",
-          "url": "https://fhhy.vercel.app/",
+          "id": "misc-12228",
+          "name": "Non-English Ebook & Audiobook Sites",
+          "description": "**",
+          "url": "https://redd.it/gehkl0",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -347,10 +362,23 @@
           "tags": []
         },
         {
-          "id": "misc-02825",
-          "name": "Wyzie Subs",
-          "description": "Subtitle Scraping API",
-          "url": "https://sub.wyzie.ru/",
+          "id": "mobile-01239",
+          "name": "Android on Linux",
+          "description": "**",
+          "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/linux#wiki_.25B7_android_on_linux",
+          "category": "Mobile",
+          "categoryName": "Mobile",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-09562",
+          "name": "Epicurious",
+          "description": "Recipe Search / Index",
+          "url": "https://www.epicurious.com/",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -360,36 +388,10 @@
           "tags": []
         },
         {
-          "id": "misc-03352",
-          "name": "Crayon",
-          "description": "or [SVGArtista](https://svgartista.net/) - SVG Animation Tools",
-          "url": "https://designstripe.com/crayon",
-          "category": "Misc",
-          "categoryName": "Misc",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "misc-03139",
-          "name": "React SVG",
-          "description": "Convert SVG to React Components",
-          "url": "https://react-svgr.com/playground/",
-          "category": "Misc",
-          "categoryName": "Misc",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "misc-07377",
-          "name": "Tom's Editor",
-          "description": "Multi-Tool",
-          "url": "https://tomseditor.com/editor/",
+          "id": "misc-10919",
+          "name": "al-fann",
+          "description": "Music",
+          "url": "https://www.al-fann.net/",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -562,19 +564,6 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00120",
-          "name": "AIFreeVideo",
-          "description": "Unlimited / MiniMax Video-01 / Sign-Up",
-          "url": "https://aifreevideo.com/",
-          "category": "Artificial-Intelligence",
-          "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
           "id": "artificial-intelligence-00121",
           "name": "ModelScope Video",
           "description": "Wan 2.2 14B / 3 Daily",
@@ -601,10 +590,10 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00147",
-          "name": "⁠PhotoGPT",
-          "description": "8 Daily / Multiple Generators / Reset Limits w/ VPN",
-          "url": "https://photogpt.io/",
+          "id": "artificial-intelligence-00165",
+          "name": "ComfyUI",
+          "description": "** / [Subreddit](https://www.reddit.com/r/comfyui/) / [Discord](https://discord.gg/comfyorg) / [GitH",
+          "url": "https://www.comfy.org/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -614,10 +603,23 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00165",
-          "name": "ComfyUI",
-          "description": "",
-          "url": "https://www.comfy.org/",
+          "id": "artificial-intelligence-00175",
+          "name": "Sygil WebUI",
+          "description": "/ [Colab](https://colab.research.google.com/github/Sygil-Dev/sygil-webui/blob/main/Web_based_UI_for_",
+          "url": "https://sygil-dev.github.io/sygil-webui/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00177",
+          "name": "SD WebUI Forge",
+          "description": "SD WebUI Forge — Free online tool",
+          "url": "https://github.com/lllyasviel/stable-diffusion-webui-forge",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -766,7 +768,7 @@
         {
           "id": "artificial-intelligence-00269",
           "name": "AI API Tools",
-          "description": "",
+          "description": "**",
           "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/dev-tools/#wiki_.25B7_api_tools",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
@@ -779,7 +781,7 @@
         {
           "id": "adblock-00425",
           "name": "CLI",
-          "description": "",
+          "description": "/ [Uploader](https://github.com/SamuelTulach/VirusTotalUploader) / [Lite Version](https://www.virust",
           "url": "https://github.com/VirusTotal/vt-cli",
           "category": "Adblock",
           "categoryName": "Adblock",
@@ -880,7 +882,7 @@
         {
           "id": "storage-13857",
           "name": "Udemy Download Guide",
-          "description": "",
+          "description": "/ [Discord](https://discord.gg/tMzrSxQ)",
           "url": "https://docs.google.com/document/d/1W91OS9rj7h9DBp5UwR68lA2zMEtqNmxdGaNVmBktIaw/",
           "category": "Storage",
           "categoryName": "Storage",
@@ -945,7 +947,7 @@
         {
           "id": "storage-13852",
           "name": "CouponScorpion",
-          "description": "",
+          "description": "**",
           "url": "https://couponscorpion.com/",
           "category": "Storage",
           "categoryName": "Storage",
@@ -958,7 +960,7 @@
         {
           "id": "storage-13851",
           "name": "Coursevania",
-          "description": "",
+          "description": "** / [Telegram](https://t.me/Coursevania)",
           "url": "https://coursevania.com/",
           "category": "Storage",
           "categoryName": "Storage",

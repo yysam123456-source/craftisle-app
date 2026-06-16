@@ -113,14 +113,10 @@ function loadAllAlternatives() {
 // ── 资源摘要（写入 JSON）───────────────────────────────────────────────────────
 function cleanDescription(desc) {
   if (!desc) return "";
-  // 去掉 FMHY 格式的 ** 前缀（如 "** - Qwen3.7-Max / ..."）
   let cleaned = desc.replace(/^\*\*\s*-\s*/, "").trim();
-  // 去掉末尾的 Markdown 链接（如 " / [Subreddit](...) / [Discord](...)"）
   cleaned = cleaned.replace(/\s*\/\s*\[[^\]]+\]\([^)]+\)\s*/g, " ");
-  // 去掉多余空格
   cleaned = cleaned.replace(/\s{2,}/g, " ").trim();
-  // 如果清理后太短或全是符号，返回空
-  if (cleaned.length < 3) return "";
+  if (cleaned.length < 3) return desc.slice(0, 100);  // 清理后太短，保留原始前100字
   return cleaned;
 }
 
@@ -366,10 +362,18 @@ function main() {
 
   // Block 7: 🎨 Design & Creative  
   {
-    // 改进关键词：去掉宽泛词，添加具体设计工具名
-    const designTools = matchByKeywords(allResources, [
+    // 改进：先匹配，再排除 AI 工具
+    let designTools = matchByKeywords(allResources, [
       "figma", "sketch", "ui", "ux", "graphic", "photo", "video", "adobe", "canva", "photoshop", "illustrator", "design",
-    ]).slice(0, 8);
+    ]);
+    // 排除明显的 AI 聊天工具（名称含 AI, GPT, Claude, Gemini 等）
+    designTools = designTools.filter((r) => {
+      const n = (r.name || "").toLowerCase();
+      const aiKeywords = ["ai", "gpt", "claude", "gemini", "deepseek", "qwen", "llm", "chatbot"];
+      return !aiKeywords.some((k) => n.includes(k));
+    });
+    designTools = designTools.slice(0, 8);
+    
     blocks.push({
       id: "design-tools",
       title: "🎨 Design & Creative",
