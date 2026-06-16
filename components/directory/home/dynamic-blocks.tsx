@@ -163,7 +163,7 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
           </div>
 
           {/* View all */}
-          <Link href="/directory/compare" className="no-underline mt-3 pt-2 border-t">
+          <Link href={block.viewAllLink || "/directory/compare"} className="no-underline mt-3 pt-2 border-t">
             <span className="text-[11px] font-medium text-primary flex items-center gap-1 hover:underline">
               Compare all tools <ArrowRight className="h-3 w-3" />
             </span>
@@ -177,12 +177,15 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
   const resources = (block.resources || []).slice(0, MAX_ITEMS_PER_BLOCK);
   if (resources.length === 0) return null;
 
-  // 根据板块类型决定 View all 链接
+  // 根据 block.viewAllLink 或 block 类型决定 View all 链接
   const getViewAllHref = () => {
+    // 优先使用数据中的 viewAllLink
+    if (block.viewAllLink) return block.viewAllLink;
+    // fallback：根据 block id 生成
     switch (block.id) {
       case "weekly-hottest":
       case "rising-stars":
-        return `/directory/best/${block.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+        return `/directory/best/${block.id}`;
       case "most-compared":
         return "/directory/compare";
       case "best-free-alternatives":

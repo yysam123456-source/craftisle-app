@@ -21,7 +21,20 @@ const DATA_DIR = join(__dirname, "..", "public", "data");
 const SNAPSHOT_FILE = join(DATA_DIR, "star-snapshot.json");
 const BLOCKS_FILE = join(DATA_DIR, "home-blocks.json");
 
-// ── 加载资源 ────────────────────────────────────────────────────────────────────
+// ── 判断资源是否合法（过滤垃圾数据）────────────────────────────────────
+function isGoodResource(r) {
+  const n = r?.name || "";
+  if (n.length < 2) return false;
+  if (n.startsWith("◄") || /Back to Wiki/i.test(n)) return false;
+  if (/^[=\-—_]{2,}$/.test(n)) return false;
+  if (/^\s*$/.test(n)) return false;
+  // 过滤 FMHY 的导航条目（如 "◄◄ Back to Wiki Index"）
+  if (/wiki\s*index/i.test(n)) return false;
+  if (/^===/.test(n)) return false;
+  return true;
+}
+
+// ── 加载资源 ───────────────────────────────────────────────────────────────────
 function loadAllResources() {
   const resources = [];
   const files = [
@@ -43,20 +56,21 @@ function loadAllResources() {
         for (const [catName, catData] of Object.entries(cats)) {
           if (catData && Array.isArray(catData.resources)) {
             for (const r of catData.resources) {
+              if (!isGoodResource(r)) continue;
               items.push({ ...r, _categoryName: catName, categoryName: catName });
             }
           }
         }
       } else {
         // 其他文件：顶层 resources 数组  
-        items = data.resources || [];
+        items = (data.resources || []).filter(isGoodResource);
       }
 
       for (const r of items) {
         r._sourceFile = f;
         resources.push(r);
       }
-      console.log(`   ✓ ${f}: ${items.length} resources`);
+      console.log(`   ✓ ${f}: ${items.length} resources (after filter)`);
     } catch (e) {
       console.warn(`  ⚠️  Failed to load ${f}:`, e.message);
     }
@@ -97,12 +111,25 @@ function loadAllAlternatives() {
 }
 
 // ── 资源摘要（写入 JSON）───────────────────────────────────────────────────────
+function cleanDescription(desc) {
+  if (!desc) return "";
+  // 去掉 FMHY 格式的 ** 前缀（如 "** - Qwen3.7-Max / ..."）
+  let cleaned = desc.replace(/^\*\*\s*-\s*/, "").trim();
+  // 去掉末尾的 Markdown 链接（如 " / [Subreddit](...) / [Discord](...)"）
+  cleaned = cleaned.replace(/\s*\/\s*\[[^\]]+\]\([^)]+\)\s*/g, " ");
+  // 去掉多余空格
+  cleaned = cleaned.replace(/\s{2,}/g, " ").trim();
+  // 如果清理后太短或全是符号，返回空
+  if (cleaned.length < 3) return "";
+  return cleaned;
+}
+
 function resourceSummary(r) {
   if (!r) return null;
   return {
     id: r.id,
     name: r.name,
-    description: r.description,
+    description: cleanDescription(r.description),
     url: r.url,
     category: r.category,
     categoryName: r.categoryName || r.category,
@@ -114,12 +141,23 @@ function resourceSummary(r) {
   };
 }
 
-// ── 按关键词匹配资源 ──────────────────────────────────────────────────────────
+// ── 按关键词匹配资源（改进版：要求关键词在 name 中，或 tags/category 中至少匹配2个）───
 function matchByKeywords(resources, keywords) {
   const lowerKeywords = keywords.map((k) => k.toLowerCase());
   return resources.filter((r) => {
-    const text = `${r.name} ${(r.tags || []).join(" ")} ${(r.categoryName || "")}`.toLowerCase();
-    return lowerKeywords.some((k) => text.includes(k));
+    const nameText = (r.name || "").toLowerCase();
+    const tagsText = (r.tags || []).join(" ").toLowerCase();
+    const catText = (r.categoryName || "").toLowerCase();
+    const fullText = `${nameText} ${tagsText} ${catText}`;
+    
+    // 至少匹配一个关键词
+    const matchedKeywords = lowerKeywords.filter((k) => fullText.includes(k));
+    if (matchedKeywords.length === 0) return false;
+    
+    // 如果有 name 匹配，直接通过；否则需要至少匹配2个关键词
+    const nameMatch = lowerKeywords.some((k) => nameText.includes(k));
+    if (nameMatch) return true;
+    return matchedKeywords.length >= 2;
   });
 }
 
@@ -205,6 +243,7 @@ function main() {
         : "Fresh picks from our directory",
       type: "resource-list",
       resources: hottest.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/best/weekly-hottest",
       sortOrder: 1,
     });
     console.log(`   Block 1 "Hottest": ${hottest.length} items`);
@@ -243,6 +282,7 @@ function main() {
       subtitle: "Paid tools people most want alternatives for",
       type: "comparison-list",
       comparisons: comparisonItems,
+      viewAllLink: "/directory/compare",
       sortOrder: 3,
     });
     console.log(`   Block 3 "Most Compared": ${comparisonItems.length} items`);
@@ -281,6 +321,7 @@ function main() {
       subtitle: "Top-rated free alternatives to popular paid tools",
       type: "resource-list",
       resources: bestFree.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/alternatives/notion",
       sortOrder: 4,
     });
     console.log(`   Block 4 "Best Free Alts": ${bestFree.length} items`);
@@ -300,6 +341,7 @@ function main() {
         : "Tools you should check out this week",
       type: "resource-list",
       resources: rising.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/best/rising-stars",
       sortOrder: 5,
     });
     console.log(`   Block 5 "Rising Stars": ${rising.length} items`);
@@ -316,6 +358,7 @@ function main() {
       subtitle: "The best AI-powered developer tools",
       type: "resource-list",
       resources: aiTools.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/search?q=ai+coding+tools",
       sortOrder: 6,
     });
     console.log(`   Block 6 "AI Tools": ${aiTools.length} items`);
@@ -323,8 +366,9 @@ function main() {
 
   // Block 7: 🎨 Design & Creative  
   {
+    // 改进关键词：去掉宽泛词，添加具体设计工具名
     const designTools = matchByKeywords(allResources, [
-      "design", "figma", "sketch", "ui", "ux", "graphic", "photo", "video", "art",
+      "figma", "sketch", "ui", "ux", "graphic", "photo", "video", "adobe", "canva", "photoshop", "illustrator", "design",
     ]).slice(0, 8);
     blocks.push({
       id: "design-tools",
@@ -332,6 +376,7 @@ function main() {
       subtitle: "Top open-source design and creative tools",
       type: "resource-list",
       resources: designTools.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/search?q=design+creative",
       sortOrder: 7,
     });
     console.log(`   Block 7 "Design": ${designTools.length} items`);
@@ -348,6 +393,7 @@ function main() {
       subtitle: "Tools to organize your work and life",
       type: "resource-list",
       resources: prodTools.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/search?q=productivity",
       sortOrder: 8,
     });
     console.log(`   Block 8 "Productivity": ${prodTools.length} items`);
@@ -364,6 +410,7 @@ function main() {
       subtitle: "Self-hosted and developer-first tools",
       type: "resource-list",
       resources: devTools.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/search?q=developer+tools",
       sortOrder: 9,
     });
     console.log(`   Block 9 "Dev Tools": ${devTools.length} items`);
@@ -372,10 +419,17 @@ function main() {
   // Block 10: 🆕 Newly Added  
   {
     let newlyAdded = [...allResources];
+    // 优先用 dateAdded 排序
     if (newlyAdded[0]?.dateAdded) {
-      newlyAdded.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+      newlyAdded.sort((a, b) => {
+        const da = new Date(b.dateAdded || 0) - new Date(a.dateAdded || 0);
+        if (da !== 0) return da;
+        // dateAdded 相同时，按 id 降序（假设新添加的 id 更大）
+        return (b.id || "").localeCompare(a.id || "");
+      });
     } else {
-      newlyAdded = pickRandom(newlyAdded, newlyAdded.length);
+      // 没有 dateAdded，按 id 降序
+      newlyAdded.sort((a, b) => (b.id || "").localeCompare(a.id || ""));
     }
     newlyAdded = newlyAdded.slice(0, 8);
 
@@ -385,6 +439,7 @@ function main() {
       subtitle: "Fresh tools just added to Craftisle",
       type: "resource-list",
       resources: newlyAdded.map((r) => resourceSummary(r)),
+      viewAllLink: "/directory/best/newly-added",
       sortOrder: 10,
     });
     console.log(`   Block 10 "Newly Added": ${newlyAdded.length} items`);
