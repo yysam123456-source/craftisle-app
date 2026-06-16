@@ -155,9 +155,9 @@ export function ByUseCase() {
                   })}
                 </div>
 
-                {/* View All Link — 指向搜索页+关键词预填 */}
+                {/* View All Link — 用关键词搜索（标题在数据里不存在，用关键词才能命中） */}
                 <Link
-                  href={`/directory/search?q=${encodeURIComponent(useCase.title)}`}
+                  href={`/directory/search?q=${encodeURIComponent(useCase.keywords.join(" "))}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline mt-3"
                 >
                   View All

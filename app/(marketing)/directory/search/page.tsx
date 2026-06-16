@@ -83,24 +83,11 @@ function SearchResultsContent() {
     const q = searchParams.get("q") || "";
     setQuery(q);
     setSourceFilter(null);
-  
-    // 从 API 搜索
-    if (q.trim()) {
-      setLoading(true);
-      fetch(`/api/directory/search?q=${encodeURIComponent(q)}&limit=100`)
-        .then(res => res.json())
-        .then(data => {
-          setAllResources(data.results || []);
-          setLoading(false);
-        })
-        .catch(() => {
-          setAllResources([]);
-          setLoading(false);
-        });
-    } else {
-      setAllResources([]);
-    }
-  
+
+    // 注意：不再调用 API 覆盖 allResources！
+    // 搜索过滤由 useMemo(results) 基于 allResources 客户端完成
+    // 这里只设置查询词，不触发额外请求
+
     // 保存到最近搜索
     if (q.trim()) {
       setRecentSearches(prev => {
