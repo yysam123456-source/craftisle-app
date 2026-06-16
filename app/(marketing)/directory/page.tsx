@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, GitCompareArrows, Shuffle, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
@@ -109,7 +110,74 @@ export default async function ResourcesPage() {
       {/* ===== 5. By Use Case ===== */}
       <ByUseCase />
 
-      {/* ===== 6. Social Proof ===== */}
+      {/* ===== 6. Tool Comparisons（产品对比入口） ===== */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold tracking-tight mb-3">
+              Compare & Find Alternatives
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Can't decide between tools? Side-by-side comparisons to help you pick the right one.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-5">
+            <Link href="/directory/compare" className="no-underline group">
+              <Card className="hover:border-primary/50 hover:shadow-md transition-all h-full">
+                <CardContent className="p-6 flex flex-col items-start gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                    <GitCompareArrows className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-semibold text-base">Tool Comparisons</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    Browse all paid tools and their free alternatives side by side
+                  </p>
+                  <span className="mt-auto text-sm font-medium text-primary flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View all comparisons <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/directory/best/development-2026" className="no-underline group">
+              <Card className="hover:border-primary/50 hover:shadow-md transition-all h-full">
+                <CardContent className="p-6 flex flex-col items-start gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                    <TrendingUp className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-semibold text-base">Best of 2026</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    Curated lists of top free & open-source tools by category
+                  </p>
+                  <span className="mt-auto text-sm font-medium text-primary flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    Explore categories <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/directory/search?q=notion+alternative" className="no-underline group">
+              <Card className="hover:border-primary/50 hover:shadow-md transition-all h-full">
+                <CardContent className="p-6 flex flex-col items-start gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform">
+                    <Shuffle className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-semibold text-base">Find Alternatives</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    Search for free alternatives to any paid tool you're using
+                  </p>
+                  <span className="mt-auto text-sm font-medium text-primary flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    Start searching <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 7. Social Proof ===== */}
       <SocialProof />
 
       {/* ===== Footer CTA (简化) ===== */}

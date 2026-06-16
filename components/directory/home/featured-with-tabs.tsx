@@ -152,9 +152,9 @@ export function FeaturedWithTabs() {
                       {index + 1}
                     </span>
 
-                    {/* Icon */}
-                    <span className="flex-shrink-0 text-base">
-                      {resource.icon || "🔧"}
+                    {/* Icon — 首字母头像（无 icon 时用首字母）*/}
+                    <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">
+                      {(resource.icon && resource.icon.length <= 2) ? resource.icon : (resource.name?.charAt(0) || "?").toUpperCase()}
                     </span>
 
                     {/* Name + Desc */}
@@ -179,7 +179,8 @@ export function FeaturedWithTabs() {
                       </div>
                       <p className="text-xs text-muted-foreground truncate">
                         {getEnhancedDescription(resource.name, resource.description, resource.category) ||
-                          "Popular open-source tool"}
+                          `${resource.categoryName || resource.category || "Free"} ${resource.isOpenSource ? "open-source" : ""} tool`.replace(/\s+/g, " ").trim() ||
+                          "Free tool"}
                       </p>
                     </div>
 
@@ -232,8 +233,8 @@ export function FeaturedWithTabs() {
                       </span>
 
                       {/* Icon */}
-                      <span className="flex-shrink-0 text-base">
-                        {resource.icon || "🔧"}
+                      <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">
+                        {(resource.icon && resource.icon.length <= 2) ? resource.icon : (resource.name?.charAt(0) || "?").toUpperCase()}
                       </span>
 
                       {/* Name + Desc */}
@@ -250,7 +251,8 @@ export function FeaturedWithTabs() {
                         </div>
                         <p className="text-xs text-muted-foreground truncate">
                           {getEnhancedDescription(resource.name, resource.description, resource.category) ||
-                          "Editor recommended tool"}
+                          `${resource.categoryName || resource.category || "Free"} tool`.trim() ||
+                          "Curated tool"}
                         </p>
                       </div>
 
@@ -317,7 +319,7 @@ export function FeaturedWithTabs() {
                     {/* Desc */}
                     <p className="flex-1 text-xs text-muted-foreground truncate hidden md:block">
                       {resource
-                        ? (getEnhancedDescription(resource.name, resource.description, resource.category) || "Free alternative")
+                        ? (getEnhancedDescription(resource.name, resource.description, resource.category) || `${resource.categoryName || resource.category || "Free"} tool`.trim() || `Free alternative`)
                         : `Free alternative to ${alt.paidTool}`}
                     </p>
 

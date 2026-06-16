@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Globe } from "lucide-react";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
+import { getEnhancedDescription } from "@/lib/tool-descriptions";
 
 interface Resource {
   id: string;
@@ -103,8 +104,16 @@ function hasRichInfo(resource: Resource): boolean {
 function buildRichDescription(resource: Resource): string {
   const parts: string[] = [];
 
-  // 基础描述
-  if (resource.description && resource.description.trim().length > 5) {
+  // 优先使用增强描述（清洗+字典匹配，避免显示原始垃圾内容）
+  const enhanced = getEnhancedDescription(
+    resource.name,
+    resource.description,
+    resource.category || resource.categoryName
+  );
+  if (enhanced && enhanced.trim().length > 2) {
+    parts.push(enhanced.trim());
+  } else if (resource.description && resource.description.trim().length > 5) {
+    // fallback：原始描述（仅当增强描述为空时）
     parts.push(resource.description.trim());
   }
 
