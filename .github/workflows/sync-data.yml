@@ -13,43 +13,38 @@ jobs:
   # ── Job 1: 同步 FMHY 数据 ──────────────────────────
   sync-fmhy:
     runs-on: ubuntu-latest
+    continue-on-error: true  # 单个 job 失败不阻塞其他
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Restore FMHY cache
-        uses: actions/cache@v4
-        with:
-          path: public/data/fmhy-raw.json
-          key: fmhy-raw-${{ hashFiles('scripts/sync-fmhy.mjs') }}
-          restore-keys: fmhy-raw-
-
       - name: Sync FMHY data
         run: node scripts/sync-fmhy.mjs
         timeout-minutes: 10
 
       - name: Commit & push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/fmhy-*.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): auto-sync FMHY ($(date +'%Y-%m-%d'))" && git push)
+          git diff --staged --quiet || (git commit -m "chore(data): auto-sync FMHY ($(date +'%Y-%m-%d'))" && git push origin main)
 
   # ── Job 2: 更新 GitHub Stars（增量，快） ─────────
   update-stars:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -63,47 +58,66 @@ jobs:
         timeout-minutes: 30
 
       - name: Commit & push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
-          git add public/data/fmhy-resources.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update GitHub stars ($(date +'%Y-%m-%d'))" && git push)
+          git add public/data/fmhy-resources.json github-stars-checkpoint.json || true
+          git diff --staged --quiet || (git commit -m "chore(data): update GitHub stars ($(date +'%Y-%m-%d'))" && git push origin main)
 
-  # ── Job 3: 生成替代品映射（从 FMHY 数据） ──────
+  # ── Job 3: 生成替代品映射（从 batch 文件合并） ──
   update-alternatives:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Generate alternatives from FMHY data
-        run: node scripts/generate-alternatives-from-fmhy.mjs
-        timeout-minutes: 5
+      - name: Merge alternatives from batch files
+        run: |
+          node -e "
+          const fs = require('fs');
+          const files = fs.readdirSync('public/data')
+            .filter(f => f.startsWith('alternatives-batch') && f.endsWith('.json') && !f.includes('sample'))
+            .sort();
+          const merged = {};
+          for(const f of files) {
+            const data = JSON.parse(fs.readFileSync('public/data/'+f,'utf-8'));
+            for(const [key, entry] of Object.entries(data)) {
+              if(entry.paidTool && Array.isArray(entry.alternatives) && entry.alternatives.length > 0) {
+                const freeNames = entry.alternatives.map(a => a.name).filter(Boolean);
+                if(!merged[entry.paidTool] && freeNames.length > 0) {
+                  merged[entry.paidTool] = freeNames;
+                }
+              }
+            }
+          }
+          console.log('Merged:', Object.keys(merged).length, 'alternatives');
+          fs.writeFileSync('public/data/alternatives.json', JSON.stringify(merged, null, 2));
+          "
 
       - name: Commit & push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/alternatives.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update alternatives ($(date +'%Y-%m-%d'))" && git push)
+          git diff --staged --quiet || (git commit -m "chore(data): update alternatives ($(date +'%Y-%m-%d'))" && git push origin main)
 
   # ── Job 4: 抓取 Awesome Lists ─────────────────────
   update-awesome:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -115,23 +129,23 @@ jobs:
         timeout-minutes: 10
 
       - name: Commit & push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/awesome-*.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update Awesome Lists ($(date +'%Y-%m-%d'))" && git push)
+          git diff --staged --quiet || (git commit -m "chore(data): update Awesome Lists ($(date +'%Y-%m-%d'))" && git push origin main)
 
   # ── Job 5: 抓取 Product Hunt（需要 API Key） ─────
   update-producthunt:
     runs-on: ubuntu-latest
+    continue-on-error: true
     # 跳过如果没配置 API Key
     if: ${{ secrets.PRODUCTHUNT_API_KEY != '' }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -143,14 +157,10 @@ jobs:
         env:
           PRODUCTHUNT_API_KEY: ${{ secrets.PRODUCTHUNT_API_KEY }}
         timeout-minutes: 5
-        continue-on-error: true  # 失败不阻塞其他任务
 
       - name: Commit & push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/producthunt-*.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update Product Hunt ($(date +'%Y-%m-%d'))" && git push)
-        continue-on-error: true
+          git diff --staged --quiet || (git commit -m "chore(data): update Product Hunt ($(date +'%Y-%m-%d'))" && git push origin main)

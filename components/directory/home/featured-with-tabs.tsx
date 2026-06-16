@@ -27,19 +27,38 @@ function shouldBlock(name: string): boolean {
   return BLOCKED_NAMES.some((b) => lower.includes(b));
 }
 
-// 获取 Trending 资源（按 GitHub Stars 排序）
+// 获取 Trending 资源（优先按 GitHub Stars，无 stars 数据时按综合评分）
 function getTrendingResources(limit = 8) {
   const resources = getAllResources();
   const richSet = getRichInfoResourceIds();
 
+  // 先尝试按 stars 排序
+  const withStars = resources.filter(
+    (r) =>
+      r.githubStars &&
+      r.githubStars > 100 &&
+      !shouldBlock(r.name)
+  );
+
+  if (withStars.length >= limit) {
+    return withStars
+      .sort((a, b) => (b.githubStars || 0) - (a.githubStars || 0))
+      .slice(0, limit)
+      .map((r) => ({ ...r, _hasRichInfo: richSet.has(r.id) }));
+  }
+
+  // 兜底：无 stars 数据时，按综合评分 + 有描述过滤
   return resources
-    .filter(
-      (r) =>
-        r.githubStars &&
-        r.githubStars > 100 &&
-        !shouldBlock(r.name)
-    )
-    .sort((a, b) => (b.githubStars || 0) - (a.githubStars || 0))
+    .filter((r) => !shouldBlock(r.name) && r.description && r.description.length > 10)
+    .sort((a, b) => {
+      // 描述越长越好（说明信息越丰富）
+      const aDesc = (a.description || "").length;
+      const bDesc = (b.description || "").length;
+      if (bDesc !== aDesc) return bDesc - aDesc;
+      // 同等长度时看是否有 URL
+      if (!!a.url !== !!b.url) return !!b.url ? 1 : -1;
+      return 0;
+    })
     .slice(0, limit)
     .map((r) => ({ ...r, _hasRichInfo: richSet.has(r.id) }));
 }
@@ -263,18 +282,19 @@ export function FeaturedWithTabs() {
           <TabsContent value="alternatives">
             <div className="rounded-xl border bg-card divide-y overflow-hidden">
               {alternatives.map((alt, index) => {
-                if (!alt.freeToolResource) return null;
-
+                // Show even if no exact FMHY resource match — still useful info
                 const resource = alt.freeToolResource;
-                if (shouldBlock(resource.name)) return null;
-
-                const href = `/directory/resource/${resource.id}`;
+                if (!alt.freeTool || alt.freeTool === "N/A") return null;
+                const blocked = resource && shouldBlock(resource.name);
+                if (blocked) return null;
 
                 return (
                   <Link
                     key={index}
-                    href={href}
+                    href={resource ? `/directory/resource/${resource.id}` : "#"}
                     className="group flex items-center gap-3 px-4 py-3 hover:bg-muted/50 transition-colors"
+                    target={resource ? undefined : "_blank"}
+                    rel={resource ? undefined : "noopener noreferrer"}
                   >
                     {/* Rank */}
                     <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center">
@@ -296,7 +316,9 @@ export function FeaturedWithTabs() {
 
                     {/* Desc */}
                     <p className="flex-1 text-xs text-muted-foreground truncate hidden md:block">
-                      {getEnhancedDescription(resource.name, resource.description, resource.category) || "Free alternative"}
+                      {resource
+                        ? (getEnhancedDescription(resource.name, resource.description, resource.category) || "Free alternative")
+                        : `Free alternative to ${alt.paidTool}`}
                     </p>
 
                     {/* Arrow */}
@@ -304,7 +326,7 @@ export function FeaturedWithTabs() {
                   </Link>
                 );
               })}
-              {alternatives.filter((a) => a.freeToolResource && !shouldBlock(a.freeToolResource.name)).length === 0 && (
+              {alternatives.filter((a) => a.freeTool && a.freeTool !== "N/A" && !(a.freeToolResource && shouldBlock(a.freeToolResource.name))).length === 0 && (
                 <div className="px-4 py-8 text-center text-muted-foreground text-sm">
                   No alternatives available yet.
                 </div>

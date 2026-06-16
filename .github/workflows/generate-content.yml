@@ -12,15 +12,15 @@ permissions:
 jobs:
   generate-content:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull latest data
-        run: git pull origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git pull origin main --ff-only || true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -52,7 +52,6 @@ jobs:
         continue-on-error: true
 
       # ── 步骤 5：AI 生成内容（需要 OPENAI_API_KEY） ─────
-      # 如果没配置 API Key，此步骤会跳过（continue-on-error）
       - name: AI generate content (FMHY + GitHub README)
         run: node scripts/populate-content-v2.mjs 200
         env:
@@ -63,12 +62,10 @@ jobs:
 
       # ── 提交并推送 ────────────────────────────────────────
       - name: Commit & push generated content
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/generated-content/ || true
           git add .contentlayer/ || true
-          git diff --staged --quiet || (git commit -m "chore(content): weekly auto-generate ($(date +'%Y-%m-%d'))" && git push)
+          git diff --staged --quiet || (git commit -m "chore(content): weekly auto-generate ($(date +'%Y-%m-%d'))" && git push origin main)
         continue-on-error: true

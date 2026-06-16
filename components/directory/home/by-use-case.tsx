@@ -155,9 +155,9 @@ export function ByUseCase() {
                   })}
                 </div>
 
-                {/* View All Link */}
+                {/* View All Link — 指向搜索页+关键词预填 */}
                 <Link
-                  href={`/directory/use-case/${useCase.id}`}
+                  href={`/directory/search?q=${encodeURIComponent(useCase.title)}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline mt-3"
                 >
                   View All

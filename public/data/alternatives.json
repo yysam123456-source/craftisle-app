@@ -1,0 +1,813 @@
+{
+  "Camtasia": [
+    "OBS Studio",
+    "Loom (free plan)",
+    "ScreenFlow (Mac only)"
+  ],
+  "Snagit": [
+    "Shutter (Linux) / Greenshot (Windows)",
+    "Loom (free plan)",
+    "Monosnap"
+  ],
+  "Norton Antivirus": [
+    "Windows Defender (built-in, free)",
+    "Malwarebytes (free version)",
+    "ClamAV (open-source)"
+  ],
+  "ExpressVPN": [
+    "ProtonVPN (free plan)",
+    "Windscribe (free plan: 10GB/month)",
+    "NordVPN ($3.29/month for 2-year plan)"
+  ],
+  "Zoom": [
+    "Google Meet",
+    "Microsoft Teams",
+    "Jitsi Meet"
+  ],
+  "Slack": [
+    "Discord",
+    "Microsoft Teams",
+    "Mattermost"
+  ],
+  "Trello": [
+    "Notion",
+    "Asana",
+    "ClickUp"
+  ],
+  "Adobe Premiere Pro": [
+    "DaVinci Resolve",
+    "Final Cut Pro",
+    "CapCut"
+  ],
+  "Salesforce": [
+    "HubSpot",
+    "Zoho CRM",
+    "Pipedrive"
+  ],
+  "Oracle Database": [
+    "PostgreSQL",
+    "MySQL",
+    "Amazon RDS"
+  ],
+  "SAP": [
+    "Oracle ERP Cloud",
+    "Microsoft Dynamics 365",
+    "Odoo"
+  ],
+  "Tableau": [
+    "Power BI",
+    "Looker Studio",
+    "Grafana"
+  ],
+  "Jira": [
+    "Linear",
+    "Asana",
+    "ClickUp"
+  ],
+  "Confluence": [
+    "Notion",
+    "GitBook",
+    "BookStack"
+  ],
+  "Bitbucket": [
+    "GitHub",
+    "GitLab",
+    "Codeberg"
+  ],
+  "BambooHR": [
+    "Gusto",
+    "Rippling",
+    "Zenefits"
+  ],
+  "Shopify": [
+    "WooCommerce",
+    "BigCommerce",
+    "Wix eCommerce"
+  ],
+  "WordPress": [
+    "Webflow",
+    "Ghost",
+    "Squarespace"
+  ],
+  "Mailchimp": [
+    "ConvertKit",
+    "Substack",
+    "Beehiiv"
+  ],
+  "Adobe Photoshop": [
+    "GIMP",
+    "Photopea",
+    "Affinity Photo"
+  ],
+  "Microsoft Azure": [
+    "AWS Free Tier",
+    "Google Cloud Platform",
+    "Oracle Cloud Free Tier",
+    "Hetzner Cloud",
+    "Vultr"
+  ],
+  "Docker Desktop": [
+    "Podman",
+    "Rancher Desktop",
+    "Colima",
+    "Lima"
+  ],
+  "Kubernetes (Managed)": [
+    "k3s",
+    "minikube",
+    "k3d",
+    "kind"
+  ],
+  "QuickBooks": [
+    "GnuCash",
+    "Wave",
+    "Invoice Ninja",
+    "Akaunting"
+  ],
+  "Grammarly": [
+    "LanguageTool",
+    "Hemingway Editor",
+    "ProWritingAid",
+    "Writefull"
+  ],
+  "Microsoft 365": [
+    "LibreOffice",
+    "OnlyOffice",
+    "Google Workspace",
+    "WPS Office"
+  ],
+  "Google Workspace": [
+    "Zoho Workplace",
+    "Nextcloud Hub",
+    "Microsoft 365 Business",
+    "Fastmail"
+  ],
+  "Spotify Premium": [
+    "YouTube Music",
+    "Tidal",
+    "Bandcamp",
+    "SoundCloud Go"
+  ],
+  "Netflix": [
+    "Tubi",
+    "Plex",
+    "Kodi",
+    "Disney+"
+  ],
+  "YouTube Premium": [
+    "YouTube Free (with ads)",
+    "NewPipe (Android)",
+    "Invidious",
+    "Vimeo"
+  ],
+  "Disney+": [
+    "Tubi",
+    "Plex",
+    "HBO Max (now Max)",
+    "Amazon Prime Video"
+  ],
+  "NordVPN": [
+    "ProtonVPN",
+    "WireGuard (self-hosted)",
+    "Tailscale",
+    "Mullvad VPN"
+  ],
+  "1Password": [
+    "Bitwarden",
+    "KeePassXC",
+    "Proton Pass",
+    "Dashlane"
+  ],
+  "Wrike": [
+    "ClickUp",
+    "Trello",
+    "OpenProject",
+    "Taiga"
+  ],
+  "Amazon Prime Video": [
+    "Tubi",
+    "Plex",
+    "Hulu",
+    "Kanopy (free with library card)"
+  ],
+  "Apple TV+": [
+    "Tubi",
+    "Plex",
+    "Netflix",
+    "HBO Max (now Max)"
+  ],
+  "Hulu": [
+    "Tubi",
+    "Plex",
+    "Netflix",
+    "Disney+"
+  ],
+  "Bitdefender": [
+    "Windows Defender (built-in)",
+    "ClamAV (open-source)",
+    "Malwarebytes",
+    "Sophos Home"
+  ],
+  "McAfee": [
+    "Windows Defender (built-in)",
+    "Malwarebytes",
+    "ClamAV (open-source)",
+    "Sophos Home"
+  ],
+  "Paramount+": [
+    "Tubi",
+    "Plex",
+    "Netflix",
+    "Peacock"
+  ],
+  "Peacock": [
+    "Tubi",
+    "Plex",
+    "Netflix",
+    "Hulu"
+  ],
+  "Max (HBO)": [
+    "Tubi",
+    "Plex",
+    "Netflix",
+    "Disney+"
+  ],
+  "Adobe Creative Cloud": [
+    "Affinity Suite (Photo, Designer, Publisher)",
+    "GIMP (free Photoshop alternative)",
+    "Inkscape (free Ilustrator alternative)",
+    "DaVinci Resolve (free Premiere alternative)"
+  ],
+  "Sony Vegas Pro": [
+    "DaVinci Resolve",
+    "Kdenlive (open-source)",
+    "Shotcut (open-source)",
+    "HitFilm Express"
+  ],
+  "CorelDRAW": [
+    "Inkscape (open-source)",
+    "Affinity Designer",
+    "Adobe Ilustrator (subscription)",
+    "Boxy SVG (web-based)"
+  ],
+  "Affinity Photo": [
+    "GIMP (open-source)",
+    "Photopea (web-based)",
+    "Krita (open-source)",
+    "Pixelmator Pro"
+  ],
+  "Procreate": [
+    "Autodesk SketchBook (free)",
+    "Infinite Painter (Android/iOS)",
+    "MediBang Paint (free)",
+    "Adobe Fresco (freemium)"
+  ],
+  "Clip Studio Paint": [
+    "Krita (open-source)",
+    "MediBang Paint (free)",
+    "FireAlpaca (free)",
+    "Procreate (iPad)"
+  ],
+  "InVision": [
+    "Figma",
+    "Penpot"
+  ],
+  "Framer": [
+    "Webflow",
+    "React + Tailwind CSS"
+  ],
+  "Final Cut Pro": [
+    "DaVinci Resolve",
+    "Blender (Video Editor)"
+  ],
+  "After Effects": [
+    "Blender",
+    "DaVinci Resolve (Fusion)"
+  ],
+  "Power BI": [
+    "Google Data Studio (Looker Studio)",
+    "Apache Superset"
+  ],
+  "Kaspersky": [
+    "Windows Defender (built-in)",
+    "ClamAV (open-source)",
+    "Malwarebytes",
+    "ESET NOD32"
+  ],
+  "Malwarebytes Premium": [
+    "Windows Defender (built-in)",
+    "ClamAV (open-source)",
+    "Sophos Home Free"
+  ],
+  "Surfshark": [
+    "ProtonVPN",
+    "WireGuard (self-hosted)",
+    "Tailscale",
+    "Mullvad VPN"
+  ],
+  "Bitwarden Premium": [
+    "Bitwarden Free",
+    "KeePassXC",
+    "Proton Pass"
+  ],
+  "Affinity Publisher": [
+    "Scribus (open-source)",
+    "Inkscape + extensions",
+    "Canva (free tier)"
+  ],
+  "Rebelle": [
+    "Krita (open-source)",
+    "MediBang Paint (free)",
+    "FireAlpaca (free)"
+  ],
+  "TVPaint": [
+    "OpenToonz (open-source)",
+    "Krita (free animation)",
+    "Blender (free 2D animation)"
+  ],
+  "Cinema 4D": [
+    "Blender (open-source)",
+    "Houdini Apprentice (free)",
+    "Wings 3D (open-source)"
+  ],
+  "Maya": [
+    "Blender (open-source)",
+    "Houdini Apprentice (free)",
+    "3ds Max (Autodesk subscription)"
+  ],
+  "ZBrush": [
+    "Blender (open-source sculpting)",
+    "Sculptris (free)",
+    "Mudbox (Autodesk subscription)"
+  ],
+  "KeyShot": [
+    "Blender Cycles (open-source)",
+    "LuxCoreRender (open-source)",
+    "POV-Ray (open-source)"
+  ],
+  "Mari": [
+    "Blender (open-source texture painting)",
+    "Substance Painter (subscription)",
+    "ArmorPaint (open-source)"
+  ],
+  "Sketch": [
+    "Figma (free tier)",
+    "Penpot (open-source)",
+    "Lunacy (free)"
+  ],
+  "Axure RP": [
+    "Figma (free tier)",
+    "Balsamiq (one-time)",
+    "Miro (free tier)"
+  ],
+  "Marvel": [
+    "Figma (free tier)",
+    "Penpot (open-source)",
+    "Miro (free tier)"
+  ],
+  "Justinmind": [
+    "Figma (free tier)",
+    "Penpot (open-source)",
+    "Balsamiq (one-time)"
+  ],
+  "Obsidian Premium": [
+    "Obsidian Free",
+    "Logseq (open-source)",
+    "Notion Free"
+  ],
+  "Logseq": [
+    "Obsidian Free",
+    "Notion Free",
+    "Roam Research"
+  ],
+  "SEMrush": [
+    "Ahrefs",
+    "Ubersuggest",
+    "Google Search Console",
+    "Moz Pro",
+    "SE Ranking"
+  ],
+  "Adobe Lightroom": [
+    "Darktable",
+    "RawTherapee",
+    "Capture One",
+    "Luminar Neo",
+    "Affinity Photo"
+  ],
+  "AutoCAD": [
+    "FreeCAD",
+    "LibreCAD",
+    "BricsCAD",
+    "DraftSight",
+    "nanoCAD"
+  ],
+  "SolidWorks": [
+    "FreeCAD",
+    "Fusion 360",
+    "Onshape",
+    "Solid Edge Community Edition",
+    "Blender (for conceptual modeling)"
+  ],
+  "Microsoft Project": [
+    "GanttProject",
+    "ProjectLibre",
+    "Asana",
+    "Trello",
+    "Monday.com"
+  ],
+  "MATLAB": [
+    "Python (NumPy, SciPy, Matplotlib)",
+    "GNU Octave",
+    "Julia",
+    "R",
+    "Scilab"
+  ],
+  "Microsoft Visio": [
+    "Draw.io (diagrams.net)",
+    "Lucidchart",
+    "yEd",
+    "Excalidraw",
+    "Pencil Project"
+  ],
+  "TeamViewer": [
+    "RustDesk",
+    "AnyDesk",
+    "Chrome Remote Desktop",
+    "TightVNC",
+    "DWService"
+  ],
+  "Parallels Desktop": [
+    "VMware Fusion",
+    "UTM",
+    "VirtualBox",
+    "Boot Camp (Intel Macs only)",
+    "CrossOver"
+  ],
+  "Microsoft Office (Microsoft 365)": [
+    "LibreOffice",
+    "Google Workspace (Google Docs, Sheets, Slides)",
+    "OnlyOffice",
+    "WPS Office",
+    "Apple iWork (Pages, Numbers, Keynote)"
+  ],
+  "WinRAR": [
+    "7-Zip",
+    "PeaZip",
+    "Windows built-in ZIP support",
+    "The Unarchiver",
+    "Keka"
+  ],
+  "Adobe Acrobat Pro": [
+    "PDF24",
+    "Foxit PDF Editor",
+    "Sumatra PDF",
+    "PDF-XChange Editor",
+    "LibreOffice Draw"
+  ],
+  "IDM (Internet Download Manager)": [
+    "Free Download Manager",
+    "JDownloader2",
+    "XDM (Xtreme Download Manager)",
+    "EagleGet",
+    "aria2 (command-line)"
+  ],
+  "CCleaner": [
+    "BleachBit",
+    "Windows Disk Cleanup (cleanmgr.exe)",
+    "Storage Sense (Windows 10/11)",
+    "Wise Disk Cleaner",
+    "Glary Utilities"
+  ],
+  "EaseUS Data Recovery": [
+    "TestDisk / PhotoRec",
+    "Recuva",
+    "Disk Drill",
+    "Windows File History (built-in)",
+    "R-Linux (for Linux users)"
+  ],
+  "Stelar Data Recovery": [
+    "TestDisk / PhotoRec",
+    "Recuva",
+    "Disk Drill",
+    "EaseUS Data Recovery",
+    "R-Linux (for Linux users)"
+  ],
+  "Disk Drill": [
+    "TestDisk / PhotoRec",
+    "Recuva",
+    "EaseUS Data Recovery",
+    "Stelar Data Recovery (free trial)",
+    "R-Linux (for Linux users)"
+  ],
+  "Rosetta Stone": [
+    "Duolingo",
+    "Anki (SRS flashcards)",
+    "Language Transfer",
+    "Memrise",
+    "Busuu"
+  ],
+  "Headspace": [
+    "Insight Timer",
+    "Smiling Mind",
+    "UCLA Mindful Awareness Research Center",
+    "YouTube (free guided meditations)",
+    "Ten Percent Happier"
+  ],
+  "Duolingo Plus": [
+    "Duolingo (Free version)",
+    "Anki (SRS flashcards)",
+    "Language Transfer",
+    "Memrise (Free tier)",
+    "Busuu (Free tier)"
+  ],
+  "Ancestry.com": [
+    "FamilySearch",
+    "WikiTree",
+    "FindAGrave",
+    "National Archives (NARA) - Free access",
+    "MyHeritage (Free tier)"
+  ],
+  "SiriusXM": [
+    "Spotify",
+    "Pandora (Free tier)",
+    "YouTube Music",
+    "Apple Music",
+    "iHeartRadio (Free tier)"
+  ],
+  "Ableton Live": [
+    "LMMS",
+    "Cakewalk by BandLab",
+    "Reaper"
+  ],
+  "FL Studio": [
+    "LMMS",
+    "Waveform Free (Tracktion)",
+    "Reaper"
+  ],
+  "Pro Tools": [
+    "Reaper",
+    "Cakewalk by BandLab",
+    "Studio One Artist"
+  ],
+  "Adobe Illustrator": [
+    "Affinity Designer",
+    "Inkscape",
+    "Figma",
+    "Sketch",
+    "Canva Pro (for simple vector work)"
+  ],
+  "Adobe After Effects": [
+    "Blender (Compositing & Video Editor)",
+    "DaVinci Resolve (Fusion page)",
+    "Natron",
+    "OpenToonz (for 2D animation & motion graphics)",
+    "Krita (for 2D animation & motion graphics)"
+  ],
+  "Evernote": [
+    "Obsidian",
+    "Joplin",
+    "Notion (free tier)",
+    "Simplenote",
+    "Microsoft OneNote"
+  ],
+  "Microsoft OneNote": [
+    "Obsidian",
+    "Notion",
+    "Apple Notes",
+    "Logseq",
+    "Google Keep"
+  ],
+  "Cubase": [
+    "Reaper",
+    "Cakewalk by BandLab",
+    "LMMS (Linux MultiMedia Studio)",
+    "Audacity",
+    "Bitwig Studio (modern alternative, cheaper than Cubase Pro)"
+  ],
+  "VMware Workstation / Fusion": [
+    "VirtualBox (free, open-source)",
+    "UTM (macOS, free and open-source)",
+    "KVM/QEMU (Linux, free and open-source)",
+    "Parallels Desktop (macOS, cheaper than Fusion Pro)",
+    "Docker (containers — not VMs, but replaces many VM use cases)"
+  ],
+  "Autodesk Maya": [
+    "Blender (free, open-source)",
+    "Blender (free) + Unreal Engine (free for most uses)",
+    "Cinema 4D (cheaper than Maya for many use cases)",
+    "Houdini (free Apprentice version for learning)",
+    "Wings 3D (free, open-source, simpler than Maya)"
+  ],
+  "Adobe InDesign": [
+    "Affinity Publisher (one-time purchase, no subscription)",
+    "Scribus (free, open-source)",
+    "Canva (free tier for simple layouts)",
+    "VivaDesigner (free version available)",
+    "LaTeX (Scribtex, Overleaf) — for technical documents"
+  ],
+  "X (Twitter) Premium": [
+    "Mastodon (free, open-source, decentralized)",
+    "Bluesky (free, open protocol)",
+    "LinkedIn (free tier for professional networking)",
+    "Just use X without Premium (free tier is still functional)",
+    "Cohost (free tier, no ads, creative-focused)"
+  ],
+  "LinkedIn Premium": [
+    "LinkedIn Free Tier (yes, the free tier is already good)",
+    "Coursera (for learning, cheaper than LinkedIn Learning)",
+    "Udemy (for learning, much cheaper than LinkedIn Learning)",
+    "Apolo.io (for sales/lead generation, cheaper than Sales Navigator)",
+    "Indeed / Glassdoor (for job searching, free)"
+  ],
+  "DxO PhotoLab": [
+    "Darktable (free, open-source)",
+    "RawTherapee (free, open-source, excellent denoising)",
+    "GIMP (free, open-source, advanced editing)",
+    "Capture One (cheaper than DxO Elite for some plans)",
+    "Affinity Photo (one-time purchase, no subscription)"
+  ],
+  "Capture One": [
+    "Darktable (free, open-source)",
+    "RawTherapee (free, open-source, excellent denoising)",
+    "Affinity Photo (one-time purchase, no subscription)",
+    "DxO PhotoLab (one-time purchase option)",
+    "GIMP (free, open-source, advanced editing)"
+  ],
+  "Luminar Neo": [
+    "Darktable (free, open-source)",
+    "RawTherapee (free, open-source, excellent denoising)",
+    "Affinity Photo (one-time purchase, no subscription)",
+    "GIMP (free, open-source, advanced editing)",
+    "Photopea (free, browser-based Photoshop alternative)"
+  ],
+  "Asana": [
+    "Trello (Free)",
+    "ClickUp (Free)",
+    "Taiga",
+    "Notion (Free)",
+    "OpenProject"
+  ],
+  "Monday.com": [
+    "ClickUp (Free)",
+    "Trello (Free)",
+    "Airtable (Free)",
+    "Notion (Free)",
+    "Smartsheet (Free Trial)"
+  ],
+  "Unity": [
+    "Unreal Engine (Free + Royalty)",
+    "Godot Engine (Free, Open-Source)",
+    "Defold (Free, Open-Source)",
+    "Bevy (Free, Open-Source, Rust)",
+    "Blender (Free, Open-Source)"
+  ],
+  "Unreal Engine": [
+    "Godot Engine (Free, Open-Source)",
+    "Unity (Free Personal)",
+    "CryEngine (Free)",
+    "Bevy (Free, Open-Source, Rust)",
+    "Amazon Lumberyard (Now Open 3D Engine)"
+  ],
+  "Figma": [
+    "Penpot (Free, Open-Source)",
+    "Sketch (One-time purchase)",
+    "Adobe XD (Part of Creative Cloud)",
+    "InVision (Free tier)",
+    "Gravit Designer (Free)"
+  ],
+  "Canva Pro": [
+    "Penpot (Free, Open-Source)",
+    "Photopea (Free, Browser-based)",
+    "GIMP (Free, Open-Source)",
+    "Figma (Free tier)",
+    "Gravit Designer (Free)"
+  ],
+  "Notion (Paid Tier)": [
+    "Obsidian (Free for Personal Use)",
+    "ClickUp (Free)",
+    "AppFlowy (Free, Open-Source)",
+    "Trello (Free)",
+    "Trilium Notes (Free, Open-Source)"
+  ],
+  "Miro (Paid Tier)": [
+    "FigJam (Figma Free Tier)",
+    "Excalidraw (Free, Open-Source)",
+    "tldraw (Free, Open-Source)",
+    "Microsoft Whiteboard (Free with Office 365)",
+    "InVision Freehand (Free Tier)"
+  ],
+  "Zapier": [
+    "Make (formerly Integromat) (Free Tier)",
+    "n8n (Free, Open-Source, Self-hosted)",
+    "IFTTT (Free Tier)",
+    "Microsoft Power Automate (Free with Office 365)",
+    "Huginn (Free, Open-Source, Self-hosted)"
+  ],
+  "HubSpot Sales Hub": [
+    "Zoho CRM (Free for 3 Users)",
+    "Freshworks CRM (Free Tier)",
+    "Agile CRM (Free for 10 Users)",
+    "SuiteCRM (Free, Open-Source, Self-hosted)",
+    "Odoo (Free, Open-Source, Self-hosted)"
+  ],
+  "Descript": [
+    "Audacity (Free, Open-Source)",
+    "DaVinci Resolve (Free Version)",
+    "Whisper (Free, Open-Source)",
+    "ffmpeg (Free, Open-Source)",
+    "Apple Logic Pro (One-time Purchase, Mac)"
+  ],
+  "CleanMyMac": [
+    "Built-in macOS Tools (Free)",
+    "AppCleaner (Free)",
+    "OnyX (Free)",
+    "Malwarebytes (Free Version)",
+    "CCleaner for Mac (Free Version)"
+  ],
+  "Norton 360": [
+    "Windows Defender (Free, Built-in)",
+    "macOS XProtect (Free, Built-in)",
+    "Avast Free Antivirus (Free)",
+    "AVG Free Antivirus (Free)",
+    "Bitwarden Free (Free Password Manager)"
+  ],
+  "LastPass": [
+    "Bitwarden (Free, Open-Source)",
+    "Apple Keychain (Free, Built-in)",
+    "KeePass (Free, Open-Source)",
+    "1Password (Paid, No Free Tier)",
+    "Passbolt (Free, Open-Source, Self-hosted)"
+  ],
+  "Duolingo Super": [
+    "Duolingo Free (Very Capable)",
+    "Memrise Free",
+    "Language Transfer (Completely Free, Non-Profit)",
+    "Anki (Free, Open-Source Flashcards)",
+    "LibreLingo (Free, Open-Source)"
+  ],
+  "Substack (Paid Newsletters)": [
+    "Ghost (Free, Open-Source, Self-hosted)",
+    "Beehiiv (Free Tier for Writers)",
+    "Medium (Free Tier for Readers)",
+    "RSS Reader (Free, Open-Source)",
+    "Mirror (Free, Web3 Publishing)"
+  ],
+  "Squarespace": [
+    "WordPress.com (Free Tier)",
+    "Wix (Free Tier)",
+    "Google Sites (Completely Free)",
+    "Carrd (One-time Payment)",
+    "WordPress.org (Free, Self-hosted)"
+  ],
+  "Webflow": [
+    "WordPress.org (Free, Self-hosted)",
+    "Wix (Free Tier)",
+    "Squarespace (Paid, but easier than Webflow)",
+    "Google Sites (Completely Free)",
+    "Framer (Free Tier)"
+  ],
+  "WordPress.com (Paid Plans)": [
+    "WordPress.org (Free, Self-hosted)",
+    "Google Sites (Completely Free)",
+    "Wix (Free Tier)",
+    "Hostinger (Cheap Hosting + WordPress)",
+    "Squarespace (Easier than WordPress)"
+  ],
+  "ConvertKit": [
+    "EmailOctopus (Free Tier)",
+    "Substack (Free for Newsletters)",
+    "Sender (Free Tier)",
+    "MailerLite (Free Tier)",
+    "Mautic (Free, Open-Source, Self-hosted)"
+  ],
+  "Hootsuite": [
+    "Buffer",
+    "Later",
+    "Publer"
+  ],
+  "Sublime Text": [
+    "VS Code",
+    "Vim",
+    "Notepad++"
+  ],
+  "JetBrains IntelliJ IDEA": [
+    "IntelliJ IDEA Community Edition",
+    "Eclipse",
+    "VS Code + Java Extension Pack"
+  ],
+  "Discord Nitro": [
+    "Matrix (Element)",
+    "Signal",
+    "Mattermost"
+  ],
+  "AnyDesk": [
+    "RustDesk",
+    "TeamViewer",
+    "TightVNC"
+  ],
+  "MindManager": [
+    "FreeMind",
+    "MindMeister (free plan)",
+    "XMind (free version)"
+  ]
+}
