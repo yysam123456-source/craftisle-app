@@ -10,6 +10,7 @@ export const dynamicParams = true;
  */
 import { notFound } from "next/navigation";
 import { getAllResources, getAllCategories, type Resource, type Category } from "@/lib/fmhy-data";
+import { getEnhancedDescription } from "@/lib/tool-descriptions";
 import { getCombinedMap, type AlternativeEntry } from "@/lib/alternatives";
 import { Metadata } from "next";
 import { Card } from "@/components/ui/card";
@@ -148,25 +149,7 @@ function findCategory(slug: string): Category | null {
   return slugToCat[lowerSlug] || slugToCat2026[lowerSlug] || slugToCat[slug] || slugToCat2026[slug] || null;
 }
 
-// ── 清洗 FMHY 原始描述文字 ──────────────────────────
-function cleanDescription(desc: string | undefined): string {
-  if (!desc) return "";
-  const lastDash = desc.lastIndexOf("- ");
-  if (lastDash > desc.length * 0.4) {
-    let result = desc.slice(lastDash + 2).trim();
-    result = result.replace(/\[.*?\]\(.*?\)/g, " ").trim();
-    result = result.replace(/\s{2,}/g, " ").trim();
-    if (result.length >= 3)
-      return result.length > 120 ? result.slice(0, 117) + "..." : result;
-  }
-  let cleaned = desc
-    .replace(/\[.*?\]\(.*?\)/g, "")
-    .replace(/^\*+\s*/, "")
-    .replace(/^[\/,\s]+/g, "")
-    .replace(/\s{2,}/g, " ")
-    .trim();
-  return cleaned.length > 120 ? cleaned.slice(0, 117) + "..." : cleaned;
-}
+// ── 描述清洗（使用 tool-descriptions 增强系统） ──────
 
 // ── 获取分类下的资源（fmhy 数据）──────────────────────────
 function getResourcesByCategory(categoryId: string): Resource[] {
@@ -369,7 +352,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                     <div className="min-w-0">
                       <h3 className="font-medium text-sm truncate">{r.name}</h3>
                       <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                        {cleanDescription(r.description) || `${r.categoryName} tool`}
+                        {getEnhancedDescription(r.name, r.description, r.category) || r.categoryName + " tool"}
                       </p>
                       <div className="flex gap-1 mt-2 flex-wrap items-center">
                         {r.isFree !== false && (
@@ -423,7 +406,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium">{r.name}</h3>
                       <p className="text-sm text-gray-500 truncate">
-                        {cleanDescription(r.description) || `${r.categoryName} tool`}
+                        {getEnhancedDescription(r.name, r.description, r.category) || r.categoryName + " tool"}
                       </p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />

@@ -6,6 +6,7 @@ import {
   getEditorsPicks,
   getRichInfoResourceIds,
 } from "@/lib/fmhy-data";
+import { getEnhancedDescription } from "@/lib/tool-descriptions";
 import { Sparkles, Flame, ArrowRightLeft, ArrowRight, Star, ExternalLink } from "lucide-react";
 
 /**
@@ -24,36 +25,6 @@ const BLOCKED_NAMES = [
 function shouldBlock(name: string): boolean {
   const lower = name.toLowerCase();
   return BLOCKED_NAMES.some((b) => lower.includes(b));
-}
-
-/** 清洗 FMHY 原始描述文字
- *
- * FMHY 原始格式：'**, [link1](url), [link2](url) or [link3](url) - 实际描述'
- * 核心策略：取最后一个 "- " 之后的内容，那是真正有意义的分类/主题描述
- */
-function cleanDescription(desc: string | undefined): string {
-  if (!desc) return "";
-
-  // 取最后一个 "- " 之后的内容（FMHY 的真正描述总在末尾）
-  const lastDash = desc.lastIndexOf("- ");
-  if (lastDash > desc.length * 0.4) {
-    let result = desc.slice(lastDash + 2).trim();
-    result = result.replace(/\[.*?\]\(.*?\)/g, " ").trim();
-    result = result.replace(/\s{2,}/g, " ").trim();
-    if (result.length >= 3)
-      return result.length > 80 ? result.slice(0, 77) + "..." : result;
-  }
-
-  // 兜底：去掉所有链接和噪音符号
-  let cleaned = desc
-    .replace(/\[.*?\]\(.*?\)/g, "")
-    .replace(/^\*+\s*/, "")
-    .replace(/^[\/,\s]+/g, "")
-    .replace(/\\/g, " ")
-    .replace(/\s{2,}/g, " ")
-    .trim();
-
-  return cleaned.length > 80 ? cleaned.slice(0, 77) + "..." : cleaned;
 }
 
 // 获取 Trending 资源（按 GitHub Stars 排序）
@@ -188,7 +159,7 @@ export function FeaturedWithTabs() {
                         )}
                       </div>
                       <p className="text-xs text-muted-foreground truncate">
-                        {cleanDescription(resource.description) ||
+                        {getEnhancedDescription(resource.name, resource.description, resource.category) ||
                           "Popular open-source tool"}
                       </p>
                     </div>
@@ -259,8 +230,8 @@ export function FeaturedWithTabs() {
                           )}
                         </div>
                         <p className="text-xs text-muted-foreground truncate">
-                          {cleanDescription(resource.description) ||
-                            "Editor recommended tool"}
+                          {getEnhancedDescription(resource.name, resource.description, resource.category) ||
+                          "Editor recommended tool"}
                         </p>
                       </div>
 
@@ -325,7 +296,7 @@ export function FeaturedWithTabs() {
 
                     {/* Desc */}
                     <p className="flex-1 text-xs text-muted-foreground truncate hidden md:block">
-                      {cleanDescription(resource.description) || "Free alternative"}
+                      {getEnhancedDescription(resource.name, resource.description, resource.category) || "Free alternative"}
                     </p>
 
                     {/* Arrow */}
