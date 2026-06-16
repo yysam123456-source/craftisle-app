@@ -121,8 +121,10 @@ function buildSlugMaps() {
 // ── 读取 home-blocks.json（Server-side）─────────────────────────
 function getHomeBlocks(): any[] {
   try {
-    // 用 process.cwd() 获取项目根目录（Next.js 服务端代码此值即为项目根）
-    const PROJECT_ROOT = process.cwd();
+    // ESM __dirname：app/(marketing)/directory/best/[slug]/page.tsx → 向上 5 层到项目根
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    const PROJECT_ROOT = join(__dirname, "..", "..", "..", "..", "..");
     const filePath = join(PROJECT_ROOT, "public", "data", "home-blocks.json");
     if (!existsSync(filePath)) return [];
     const raw = readFileSync(filePath, "utf-8");
