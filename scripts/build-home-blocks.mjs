@@ -201,16 +201,29 @@ function main() {
   // ── Step 4: 生成 10 个板块 ──────────────────────────────────────────────
   console.log("\n🧱 Generating 10 homepage blocks...");
   const blocks = [];
+  const usedIds = new Set(); // 跟踪已使用的资源 ID，避免跨 block 重复
+
+  // 辅助：过滤掉已使用的资源
+  function excludeUsed(arr) {
+    return arr.filter((r) => !usedIds.has(r.id));
+  }
+
+  // 辅助：记录使用的资源 ID
+  function markUsed(arr) {
+    arr.forEach((r) => usedIds.add(r.id));
+  }
 
   // 辅助：随机取 n 个  
   function pickRandom(arr, n) {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    const filtered = excludeUsed(arr);
+    const shuffled = [...filtered].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, n);
   }
 
-  // 辅助：按 stars 排序取前 n 个（没有 stars 则按名称排序）  
+  // 辅助：按 stars 排序取前 n 个（没有 stars 则按名称排序）
   function pickTopByStars(arr, n) {
-    return [...arr]
+    const filtered = excludeUsed(arr);
+    return [...filtered]
       .sort((a, b) => {
         const sa = a._currentStars ?? a.githubStars ?? 0;
         const sb = b._currentStars ?? b.githubStars ?? 0;
@@ -223,13 +236,14 @@ function main() {
   // Block 1: 🔥 Weekly Hottest（最新添加的，或按 stars 排）  
   {
     // 优先用 dateAdded 排序，没有则用 stars，都没有则随机  
-    let hottest = [...allResources];
+    let hottest = excludeUsed(allResources);
     if (hottest[0]?.dateAdded) {
       hottest.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
     } else if (hasStars) {
-      hottest = pickTopByStars(hottest, hottest.length);
+      hottest = pickTopByStars(allResources, hottest.length);
     }
     hottest = hottest.slice(0, 8);
+    markUsed(hottest);
 
     blocks.push({
       id: "weekly-hottest",
@@ -294,10 +308,10 @@ function main() {
       }
     }
 
-    // 在资源中匹配这些名称  
+    // 在资源中匹配这些名称（排除已使用的）
     const freeAltResources = [];
     for (const name of freeAltNames) {
-      const found = allResources.find(
+      const found = excludeUsed(allResources).find(
         (r) =>
           r.name?.toLowerCase().includes(name.toLowerCase().split(" ")[0]) ||
           name.toLowerCase().includes((r.name || "").toLowerCase().split(" ")[0])
@@ -310,6 +324,7 @@ function main() {
     const bestFree = hasStars
       ? pickTopByStars(freeAltResources, 8)
       : freeAltResources.slice(0, 8);
+    markUsed(bestFree);
 
     blocks.push({
       id: "best-free-alternatives",
@@ -323,11 +338,12 @@ function main() {
     console.log(`   Block 4 "Best Free Alts": ${bestFree.length} items`);
   }
 
-  // Block 5: ⭐ Rising Stars（随机取 8 个，或按 stars 排）  
+  // Block 5: ⭐ Rising Stars（排除已使用的，或按 stars 排）  
   {
     const rising = hasStars
       ? pickTopByStars(allResources, 8)
       : pickRandom(allResources, 8);
+    markUsed(rising);
 
     blocks.push({
       id: "rising-stars",
@@ -345,9 +361,10 @@ function main() {
 
   // Block 6: 🤖 AI Coding Tools  
   {
-    const aiTools = matchByKeywords(allResources, [
+    const aiTools = matchByKeywords(excludeUsed(allResources), [
       "ai", "llm", "gpt", "claude", "cursor", "code", "copilot", "coding",
     ]).slice(0, 8);
+    markUsed(aiTools);
     blocks.push({
       id: "ai-coding-tools",
       title: "🤖 AI Coding Tools",
@@ -369,10 +386,10 @@ function main() {
       "Paletton", "Material Design", "Ant Design", "Bootstrap", "Tailwind CSS", "DaisyUI", "Heroicons", "Feather Icons", "Unsplash", "Pexels",
     ];
     
-    // 在 allResources 中模糊匹配这些名称
+    // 在 allResources 中模糊匹配这些名称（排除已使用的）
     let designTools = [];
     for (const name of knownDesignTools) {
-      const found = allResources.find((r) => (r.name || "").toLowerCase().includes(name.toLowerCase()));
+      const found = excludeUsed(allResources).find((r) => (r.name || "").toLowerCase().includes(name.toLowerCase()));
       if (found && !designTools.some(d => d.id === found.id)) {
         designTools.push(found);
       }
@@ -380,7 +397,7 @@ function main() {
     
     // 如果匹配太少，fallback 到关键词匹配（但排除 AI 工具）
     if (designTools.length < 4) {
-      const fallback = allResources.filter((r) => {
+      const fallback = excludeUsed(allResources).filter((r) => {
         const n = (r.name || "").toLowerCase();
         const c = (r.categoryName || "").toLowerCase();
         const hasDesign = n.includes("design") || n.includes("figma") || n.includes("sketch") || c.includes("design") || c.includes("graphic");
@@ -391,6 +408,7 @@ function main() {
     }
     
     designTools = designTools.slice(0, 8);
+    markUsed(designTools);
     
     blocks.push({
       id: "design-tools",
@@ -406,9 +424,10 @@ function main() {
 
   // Block 8: 📝 Productivity Picks  
   {
-    const prodTools = matchByKeywords(allResources, [
+    const prodTools = matchByKeywords(excludeUsed(allResources), [
       "productivity", "note", "task", "calendar", "markdown", "todo", "project", "wiki",
     ]).slice(0, 8);
+    markUsed(prodTools);
     blocks.push({
       id: "productivity-tools",
       title: "📝 Productivity Picks",
@@ -423,9 +442,10 @@ function main() {
 
   // Block 9: 🔧 Developer Tools  
   {
-    const devTools = matchByKeywords(allResources, [
+    const devTools = matchByKeywords(excludeUsed(allResources), [
       "docker", "kubernetes", "api", "database", "self-hosted", "devops", "cli", "terminal",
     ]).slice(0, 8);
+    markUsed(devTools);
     blocks.push({
       id: "dev-tools",
       title: "🔧 Developer Tools",
@@ -440,7 +460,7 @@ function main() {
 
   // Block 10: 🆕 Newly Added  
   {
-    let newlyAdded = [...allResources];
+    let newlyAdded = excludeUsed(allResources);
     // 优先用 dateAdded 排序
     if (newlyAdded[0]?.dateAdded) {
       newlyAdded.sort((a, b) => {
@@ -454,6 +474,7 @@ function main() {
       newlyAdded.sort((a, b) => (b.id || "").localeCompare(a.id || ""));
     }
     newlyAdded = newlyAdded.slice(0, 8);
+    markUsed(newlyAdded);
 
     blocks.push({
       id: "newly-added",

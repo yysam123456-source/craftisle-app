@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T13:06:26.425Z",
+  "lastUpdated": "2026-06-16T13:36:41.481Z",
   "totalResources": 18675,
   "blocks": [
     {
@@ -172,8 +172,7 @@
         }
       ],
       "viewAllLink": "/directory/compare",
-      "sortOrder": 3,
-      "resources": []
+      "sortOrder": 3
     },
     {
       "id": "best-free-alternatives",
@@ -267,6 +266,19 @@
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 15524,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-05242",
+          "name": "VERT",
+          "description": "Online for Videos / Offline for Other Formats / Web",
+          "url": "https://vert.sh/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 15143,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -372,6 +384,19 @@
           "isFree": false,
           "isOpenSource": false,
           "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00165",
+          "name": "ComfyUI",
+          "description": "** / [Subreddit](https://www.reddit.com/r/comfyui/) / [Discord](https://discord.gg/comfyorg) / [GitH",
+          "url": "https://www.comfy.org/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 117211,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
         }
       ],
       "viewAllLink": "/directory/best/rising-stars",
@@ -440,6 +465,45 @@
           "name": "⁠Ai2 Playground",
           "description": "Olmo 3.1 32B (Think) / No Sign-Up / Unlimited",
           "url": "https://playground.allenai.org/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00020",
+          "name": "ArceeAI",
+          "description": "Trinity Large Thinking / Unlimited",
+          "url": "https://chat.arcee.ai/chat",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00029",
+          "name": "⁠Indic LLM Arena",
+          "description": "Gemini 3.5 Flash / Multiple Models / Unlimited",
+          "url": "https://arena.ai4bharat.org/#/chat",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00033",
+          "name": "⁠Together.ai",
+          "description": "GLM-5.1 / Kimi K2.6 / Deepseek-V4 / Multiple Models / Up To 110 Daily",
+          "url": "https://chat.together.ai/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -544,6 +608,19 @@
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-08008",
+          "name": "darktable",
+          "description": ", [⁠RapidRAW](https://www.getrapidraw.com/) , [RawTherapee](https://www.rawtherapee.com/) or [⁠LightZone](https://github.com/ktgw0316/LightZone) - RAW Photo Editors / Windows, Mac, Linux",
+          "url": "https://www.darktable.org/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 12591,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
