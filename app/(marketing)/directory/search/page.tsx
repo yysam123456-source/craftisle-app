@@ -7,7 +7,7 @@ import { ResourceCard } from "@/components/resources/resource-card";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { searchResources, formatStars, highlightTextSimple } from "@/lib/search-utils";
+import { searchResources, formatStars, highlightTextSimple, type ScoredResource } from "@/lib/search-utils";
 
 // 热门搜索建议
 const POPULAR_SEARCHES = [
