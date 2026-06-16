@@ -358,7 +358,7 @@ jobs:
                 echo "❌ All push attempts failed"
                 exit 1
               }
-            fi
+            done
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
