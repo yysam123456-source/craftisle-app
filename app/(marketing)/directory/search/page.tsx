@@ -605,33 +605,41 @@ function SearchResultsContent() {
             </motion.div>
           )}
           {!loading && results.length > 0 && (
-            <motion.div
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-            >
-              {results.map((resource, index) => (
-                <motion.div
-                  key={resource.id}
-                  variants={itemVariants}
-                  custom={index}
-                  className="relative"
-                >
-                  <ResourceCard
-                    resource={{ ...resource, category: resource.category || "" } as Resource}
-                    showCategory={true}
-                    highlightQuery={query}
-                  />
-                  {/* 显示匹配原因 */}
-                  {resource._matchReason && (
-                    <div className="absolute top-2 right-2 text-xs text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                      {resource._matchReason}
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </motion.div>
+            <>
+              {/* 结果计数 */}
+              <div className="mb-4 text-sm text-muted-foreground">
+                Showing {results.length} results
+              </div>
+              
+              {/* 常规网格渲染（虚拟滚动暂时禁用） */}
+              <motion.div
+                className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                variants={containerVariants}
+                initial="hidden"
+                animate="show"
+              >
+                {results.map((resource, index) => (
+                  <motion.div
+                    key={resource.id}
+                    variants={itemVariants}
+                    custom={index}
+                    className="relative"
+                  >
+                    <ResourceCard
+                      resource={{ ...resource, category: resource.category || "" } as Resource}
+                      showCategory={true}
+                      highlightQuery={query}
+                    />
+                    {/* 显示匹配原因 */}
+                    {resource._matchReason && (
+                      <div className="absolute top-2 right-2 text-xs text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        {resource._matchReason}
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
+            </>
           )}
           {!loading && !query && (
             <motion.div
