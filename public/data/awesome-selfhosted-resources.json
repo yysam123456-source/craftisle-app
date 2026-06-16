@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-16T08:46:49.240Z",
-  "count": 1169,
+  "updatedAt": "2026-06-16T14:10:19.617Z",
+  "count": 1170,
   "resources": [
     {
       "name": "ANALOG",
@@ -552,6 +552,12 @@
       "name": "Espial",
       "url": "https://github.com/jonschoning/espial",
       "description": "An open-source, web-based bookmarking server. `AGPL-3.0` `Haskell`",
+      "category": "Bookmarks and Link Sharing"
+    },
+    {
+      "name": "Faved",
+      "url": "https://faved.dev/",
+      "description": "Handcrafted bookmark manager combining powerful tagging, instant search, and a clean, distraction-free interface. Built for large collections and advanced workflows, optimized for efficiency and ease-of-use. ([Demo](https://demo.faved.dev/), [Source Code](https://github.com/denho/faved)) `MIT` `Docker`",
       "category": "Bookmarks and Link Sharing"
     },
     {

@@ -1,5 +1,8 @@
 {
-  "updated": 41,
-  "total": 50,
-  "lastUpdate": "2026-06-16T08:47:45.147Z"
+  "updated": 300,
+  "total": 2000,
+  "currentIndex": 2000,
+  "lastUpdate": "2026-06-16T14:15:33.935Z",
+  "totalWithGitHubUrl": 3836,
+  "completed": false
 }

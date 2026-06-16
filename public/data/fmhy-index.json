@@ -19,14 +19,14 @@
       "name": "Mobile",
       "description": "Mobile resources",
       "icon": "📦",
-      "count": 1063
+      "count": 1064
     },
     {
       "id": "Misc",
       "name": "Misc",
       "description": "Misc resources",
       "icon": "📦",
-      "count": 8894
+      "count": 8897
     },
     {
       "id": "Downloading",
@@ -40,14 +40,14 @@
       "name": "Reading",
       "description": "Reading resources",
       "icon": "📦",
-      "count": 2309
+      "count": 2310
     },
     {
       "id": "Gaming",
       "name": "Gaming",
       "description": "Gaming resources",
       "icon": "📦",
-      "count": 1793
+      "count": 1794
     },
     {
       "id": "Linux",
@@ -61,7 +61,7 @@
       "name": "Storage",
       "description": "Storage resources",
       "icon": "📦",
-      "count": 222
+      "count": 221
     }
   ]
 }
