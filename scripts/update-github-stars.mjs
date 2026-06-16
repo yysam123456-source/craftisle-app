@@ -2,10 +2,12 @@
 
 /**
  * Update GitHub stars for resources with githubUrl
- * Reads fmhy-resources.json, fetches stars from GitHub API, writes back
+ * ⭐ 增量更新：只更新最近变更的资源 + checkpoint 续跑
+ * ⭐ 每次只跑一批（防止超时），下次从上次断点继续
  * 
  * Usage: node scripts/update-github-stars.mjs
  * Requires: GITHUB_TOKEN env variable (recommended for higher rate limit)
+ * Cron: 每次只处理 BATCH_SIZE 个，多次运行覆盖全部
  */
 
 import { readFileSync, writeFileSync, existsSync } from "fs";
@@ -17,16 +19,21 @@ const DATA_DIR = join(__dirname, "..", "public", "data");
 const RESOURCES_FILE = join(DATA_DIR, "fmhy-resources.json");
 const CHECKPOINT_FILE = join(DATA_DIR, "github-stars-checkpoint.json");
 
-// GitHub API token (from env or use unauthenticated with lower rate limit)
+// GitHub API token
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
 
-// Rate limit: unauthenticated = 60 req/hour, authenticated = 5000 req/hour
+// ⭐ 每次只处理这么多资源（防止 GitHub Actions 超时）
+// GitHub Actions timeout-minutes: 30，按 500ms/个 算，约能处理 3600 个
+// 保守一点，每次处理 2000 个
+const BATCH_SIZE = process.env.BATCH_SIZE ? parseInt(process.env.BATCH_SIZE) : 2000;
+
+// Authenticated: 5000 req/hour → ~1.4 req/s → 700ms delay safe
+// Unauthenticated: 60 req/hour → ~0.017 req/s → 60000ms delay
+const DELAY_MS = GITHUB_TOKEN ? 700 : 60000;
+
 const HEADERS = GITHUB_TOKEN
   ? { Authorization: `token ${GITHUB_TOKEN}`, "User-Agent": "craftisle-app" }
   : { "User-Agent": "craftisle-app" };
-
-// Delay between requests (500ms for authenticated, 1000ms for unauthenticated)
-const DELAY_MS = GITHUB_TOKEN ? 500 : 1000;
 
 function parseGitHubUrl(url) {
   try {
@@ -45,12 +52,13 @@ async function fetchStars(repo, retryCount = 0) {
   try {
     const resp = await fetch(url, { headers: HEADERS });
     
+    // Rate limited — wait and retry
     if (resp.status === 403) {
-      // Rate limited
-      if (retryCount < 3) {
-        const waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff
-        console.warn(`  ⚠️ Rate limited for ${repo}, waiting ${waitTime}ms...`);
-        await new Promise((r) => setTimeout(r, waitTime));
+      if (retryCount < 5) {
+        const resetTime = parseInt(resp.headers.get("x-ratelimit-reset") || "0") * 1000;
+        const waitMs = Math.max(resetTime - Date.now(), 60000); // at least 60s
+        console.warn(`  ⚠️ Rate limited for ${repo}, waiting ${Math.round(waitMs/1000)}s...`);
+        await new Promise((r) => setTimeout(r, waitMs));
         return fetchStars(repo, retryCount + 1);
       } else {
         console.warn(`  ⚠️ Rate limit exceeded for ${repo}, skipping...`);
@@ -59,8 +67,7 @@ async function fetchStars(repo, retryCount = 0) {
     }
     
     if (resp.status === 404) {
-      console.warn(`  ⚠️ Repository not found: ${repo}`);
-      return null;
+      return null; // repo not found, skip permanently
     }
     
     if (!resp.ok) {
@@ -71,6 +78,10 @@ async function fetchStars(repo, retryCount = 0) {
     const data = await resp.json();
     return data.stargazers_count || 0;
   } catch (err) {
+    if (retryCount < 3) {
+      await new Promise((r) => setTimeout(r, 2000));
+      return fetchStars(repo, retryCount + 1);
+    }
     console.warn(`  ⚠️ Error fetching ${repo}: ${err.message}`);
     return null;
   }
@@ -84,7 +95,16 @@ function loadCheckpoint() {
   } catch {
     // Ignore errors
   }
-  return { updated: 0, total: 0, lastUpdate: null };
+  return { 
+    updated: 0, 
+    total: 0, 
+    lastUpdate: null,
+    completed: false,
+    // ⭐ 新增：记录上次处理到的索引位置
+    currentIndex: 0,
+    // ⭐ 新增：记录总资源数（用于判断是否需要重新扫描）
+    totalWithGitHubUrl: 0,
+  };
 }
 
 function saveCheckpoint(checkpoint) {
@@ -92,9 +112,10 @@ function saveCheckpoint(checkpoint) {
 }
 
 async function main() {
-  console.log("🔄 Updating GitHub stars...\n");
-  console.log(`  Using ${GITHUB_TOKEN ? "authenticated" : "unauthenticated"} mode`);
-  console.log(`  Delay between requests: ${DELAY_MS}ms\n`);
+  console.log("🔄 Updating GitHub stars (incremental + batch)...\n");
+  console.log(`  Batch size: ${BATCH_SIZE}`);
+  console.log(`  Delay: ${DELAY_MS}ms between requests`);
+  console.log(`  Using ${GITHUB_TOKEN ? "authenticated (5000 req/h)" : "unauthenticated (60 req/h)"} mode\n`);
 
   if (!existsSync(RESOURCES_FILE)) {
     console.error("❌ fmhy-resources.json not found. Run sync-fmhy first.");
@@ -103,17 +124,10 @@ async function main() {
 
   const data = JSON.parse(readFileSync(RESOURCES_FILE, "utf-8"));
   
-  // Load checkpoint
-  const checkpoint = loadCheckpoint();
-  
-  let updated = checkpoint.updated || 0;
-  let total = checkpoint.total || 0;
-  let skipped = 0;
-  let errors = 0;
-  
   // Collect all resources with GitHub URLs
   const resourcesToUpdate = [];
   for (const [catId, catData] of Object.entries(data.categories)) {
+    if (!catData || !Array.isArray(catData.resources)) continue;
     for (const resource of catData.resources) {
       const repo = parseGitHubUrl(resource.githubUrl || resource.url);
       if (repo) {
@@ -124,17 +138,38 @@ async function main() {
   
   console.log(`  📊 Total resources with GitHub URLs: ${resourcesToUpdate.length}\n`);
   
-  // Process resources
-  for (let i = total; i < resourcesToUpdate.length; i++) {
+  // Load checkpoint
+  const checkpoint = loadCheckpoint();
+  
+  // ⭐ 如果总资源数变了（新增了资源），从头开始
+  let startIndex = 0;
+  if (checkpoint.totalWithGitHubUrl === resourcesToUpdate.length) {
+    startIndex = checkpoint.currentIndex || 0;
+    console.log(`  📍 Resuming from index ${startIndex} (checkpoint)\n`);
+  } else {
+    console.log(`  🔄 Total count changed, starting from beginning\n`);
+    checkpoint.updated = 0;
+    checkpoint.total = 0;
+    checkpoint.currentIndex = 0;
+  }
+  
+  let updated = checkpoint.updated || 0;
+  let processed = startIndex;
+  let skipped = 0;
+  let errors = 0;
+  
+  // ⭐ 只处理 BATCH_SIZE 个（防止超时）
+  const endIndex = Math.min(startIndex + BATCH_SIZE, resourcesToUpdate.length);
+  
+  console.log(`  🔨 Processing indices ${startIndex} ~ ${endIndex - 1} (of ${resourcesToUpdate.length} total)...\n`);
+  
+  for (let i = startIndex; i < endIndex; i++) {
     const { resource, repo } = resourcesToUpdate[i];
-    total++;
+    processed = i + 1;
     
     // Skip if already has stars (incremental update)
     if (resource.githubStars !== undefined && resource.githubStars !== null) {
       skipped++;
-      if (total % 100 === 0) {
-        console.log(`  ⏭️  Skipped ${skipped} (already have stars), processed ${total}/${resourcesToUpdate.length}...`);
-      }
       continue;
     }
     
@@ -142,19 +177,29 @@ async function main() {
     if (stars !== null) {
       resource.githubStars = stars;
       updated++;
-      if (updated % 10 === 0) {
-        console.log(`  ✓ ${updated} updated, ${total}/${resourcesToUpdate.length} processed...`);
+      if (updated % 50 === 0) {
+        console.log(`  ✓ ${updated} updated, ${processed}/${resourcesToUpdate.length} processed...`);
       }
     } else {
+      // ⭐ 即使获取失败也设置一个标记，避免下次重复请求同一个 404 repo
+      resource.githubStars = 0;
       errors++;
     }
     
-    // Save checkpoint every 50 resources
-    if (total % 50 === 0) {
-      saveCheckpoint({ updated, total, lastUpdate: new Date().toISOString() });
+    // Save checkpoint every 100 resources
+    if (processed % 100 === 0) {
+      saveCheckpoint({ 
+        ...checkpoint, 
+        updated, 
+        total: processed, 
+        currentIndex: processed,
+        lastUpdate: new Date().toISOString(),
+        totalWithGitHubUrl: resourcesToUpdate.length,
+      });
       
       // Also save progress to main file
       writeFileSync(RESOURCES_FILE, JSON.stringify(data, null, 2));
+      console.log(`  💾 Checkpoint saved at index ${processed}/${resourcesToUpdate.length}`);
     }
     
     // Rate limiting
@@ -163,13 +208,24 @@ async function main() {
   
   // Final save
   writeFileSync(RESOURCES_FILE, JSON.stringify(data, null, 2));
-  saveCheckpoint({ updated, total, lastUpdate: new Date().toISOString(), completed: true });
+  const isComplete = endIndex >= resourcesToUpdate.length;
+  saveCheckpoint({ 
+    updated, 
+    total: processed, 
+    currentIndex: processed,
+    lastUpdate: new Date().toISOString(),
+    totalWithGitHubUrl: resourcesToUpdate.length,
+    completed: isComplete,
+  });
   
-  console.log(`\n✅ Done!`);
+  console.log(`\n${isComplete ? "✅ Complete!" : "⏭️ Batch complete, will resume next run"}`);
   console.log(`   Updated: ${updated} resources with GitHub stars`);
   console.log(`   Skipped: ${skipped} (already had stars)`);
   console.log(`   Errors: ${errors}`);
-  console.log(`   Total processed: ${total}/${resourcesToUpdate.length}`);
+  console.log(`   Progress: ${processed}/${resourcesToUpdate.length}`);
+  if (!isComplete) {
+    console.log(`   ▶️  Next run will resume from index ${processed}`);
+  }
 }
 
 main().catch((err) => {

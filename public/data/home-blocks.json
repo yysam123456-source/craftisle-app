@@ -1,79 +1,39 @@
 {
-  "lastUpdated": "2026-06-16T08:17:07.239Z",
+  "lastUpdated": "2026-06-16T08:54:36.209Z",
   "totalResources": 18686,
   "blocks": [
     {
-      "id": "most-compared",
-      "title": "🆚 Most Compared",
-      "subtitle": "Paid tools people most want alternatives for",
-      "type": "comparison-list",
-      "comparisons": [
-        {
-          "paidTool": "Zoom",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 3,
-          "freeResource": null
-        },
-        {
-          "paidTool": "Framer",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 2,
-          "freeResource": null
-        },
-        {
-          "paidTool": "Final Cut Pro",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 2,
-          "freeResource": null
-        },
-        {
-          "paidTool": "AutoCAD",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 2,
-          "freeResource": null
-        },
-        {
-          "paidTool": "SolidWorks",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 2,
-          "freeResource": null
-        },
-        {
-          "paidTool": "MATLAB",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 2,
-          "freeResource": null
-        },
-        {
-          "paidTool": "Microsoft Office (Microsoft 365)",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 2,
-          "freeResource": null
-        },
-        {
-          "paidTool": "Microsoft Project",
-          "freeAlternativeId": null,
-          "freeAlternativeName": null,
-          "count": 2,
-          "freeResource": null
-        }
-      ],
-      "sortOrder": 3
-    },
-    {
-      "id": "ai-coding-tools",
-      "title": "🤖 AI Coding Tools",
-      "subtitle": "The best AI-powered developer tools, ranked by community",
+      "id": "weekly-hottest",
+      "title": "🔥 This Week's Hottest",
+      "subtitle": "Fresh picks from our directory",
       "type": "resource-list",
-      "sortOrder": 6,
       "resources": [
+        {
+          "id": "artificial-intelligence-00001",
+          "name": "◄◄ Back to Wiki Index",
+          "description": "**",
+          "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/index",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00002",
+          "name": "Qwen",
+          "description": "** - Qwen3.7-Max / Qwen3.7-Plus / Sign-Up / [Subreddit](https://www.reddit.com/r/Qwen_AI/) / [Discord](https://discord.com/invite/CV4E9rpNSD) / [GitHub](https://github.com/QwenLM)",
+          "url": "https://chat.qwen.ai/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
         {
           "id": "artificial-intelligence-00003",
           "name": "DeepSeek",
@@ -94,7 +54,477 @@
           "url": "https://aistudio.google.com/app/prompts/new_chat",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
+          "githubStars": 18769,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00005",
+          "name": "⁠Z.ai",
+          "description": "** - GLM-5.1 / GLM-5-Turbo / Slides / Sign-Up / [Discord](https://discord.gg/QR7SARHRxK)",
+          "url": "https://chat.z.ai/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00006",
+          "name": "Gemini",
+          "description": "** - Gemini 3.1 Pro Preview (5 daily) / Gemini 3.1 Flash / Gemini 3.5 Flash  / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Limits](https://support.google.com/gemini/answer/16275805) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+          "url": "https://gemini.google.com/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 18769,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00007",
+          "name": "Kimi",
+          "description": "** - Kimi K2.6 (Thinking) / Slides / Google Login or Phone # Required / [Subreddit](https://www.reddit.com/r/kimi/) / [Discord](https://discord.gg/TYU2fdJykW) / [GitHub](https://github.com/MoonshotAI)",
+          "url": "https://www.kimi.com/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00008",
+          "name": "Meta AI",
+          "description": "Muse Spark / Meta Sign-Up / Unlimited",
+          "url": "https://www.meta.ai/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        }
+      ],
+      "sortOrder": 1
+    },
+    {
+      "id": "hn-discussed",
+      "title": "💬 Community Favorites",
+      "subtitle": "Hand-picked tools our community loves",
+      "type": "resource-list",
+      "resources": [
+        {
+          "id": "misc-12211",
+          "name": "Danet",
+          "description": "Live TV / Movies / TV / Anime / Sub / 720p",
+          "url": "https://danet.vn/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "adblock-00412",
+          "name": "Security / Antivirus Multireddit",
+          "description": "** - Reddit Communities",
+          "url": "https://www.reddit.com/user/goretsky/m/security/",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-13453",
+          "name": "Screenshot Twitch",
+          "description": "Add Screenshot Button to Twitch",
+          "url": "https://github.com/eramdam/userscripts/blob/main/Screenshot%20Twitch.user.js",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "storage-13850",
+          "name": "tRPC",
+          "description": "Build Typesafe TypeScript APIs",
+          "url": "https://trpc.io/",
+          "category": "Storage",
+          "categoryName": "Storage",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-07598",
+          "name": "Gift4Designer",
+          "description": "Gift4Designer — Free online tool",
+          "url": "https://gift4designer.net/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "adblock-00462",
+          "name": "SurveillanceWatch",
+          "description": "Surveillance Company Connections",
+          "url": "https://www.surveillancewatch.io/",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-11918",
+          "name": "bookscafe",
+          "description": "Books / Some NSFW",
+          "url": "https://bookscafe.net/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "adblock-00425",
+          "name": "CLI",
+          "description": "/ [Uploader](https://github.com/SamuelTulach/VirusTotalUploader) / [Lite Version](https://www.virustotal.com/old-browsers/)",
+          "url": "https://github.com/VirusTotal/vt-cli",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        }
+      ],
+      "sortOrder": 2
+    },
+    {
+      "id": "most-compared",
+      "title": "🆚 Most Compared",
+      "subtitle": "Paid tools people most want alternatives for",
+      "type": "comparison-list",
+      "comparisons": [
+        {
+          "paidTool": "Zoom",
+          "freeAlternativeId": "artificial-intelligence-00004",
+          "freeAlternativeName": "Google Meet",
+          "count": 12
+        },
+        {
+          "paidTool": "QuickBooks",
+          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeName": "GnuCash",
+          "count": 9
+        },
+        {
+          "paidTool": "Grammarly",
+          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeName": "LanguageTool",
+          "count": 9
+        },
+        {
+          "paidTool": "Microsoft 365",
+          "freeAlternativeId": "mobile-00953",
+          "freeAlternativeName": "LibreOffice",
+          "count": 9
+        },
+        {
+          "paidTool": "NordVPN",
+          "freeAlternativeId": "adblock-00564",
+          "freeAlternativeName": "ProtonVPN",
+          "count": 9
+        },
+        {
+          "paidTool": "1Password",
+          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeName": "Bitwarden",
+          "count": 9
+        },
+        {
+          "paidTool": "AutoCAD",
+          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeName": "FreeCAD",
+          "count": 8
+        },
+        {
+          "paidTool": "SolidWorks",
+          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeName": "FreeCAD",
+          "count": 8
+        }
+      ],
+      "sortOrder": 3
+    },
+    {
+      "id": "best-free-alternatives",
+      "title": "🏆 Best Free Alternatives",
+      "subtitle": "Top-rated free alternatives to popular paid tools",
+      "type": "resource-list",
+      "resources": [
+        {
+          "id": "artificial-intelligence-00184",
+          "name": "A Traveler's Guide to the Latent Space",
+          "description": "** - AI Art Guide",
+          "url": "https://sweet-hall-e72.notion.site/A-Traveler-s-Guide-to-the-Latent-Space-85efba7e5e6a40e5bd3cae980f30235f",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-07543",
+          "name": "Penpot",
+          "description": "Design App & Prototyping Platform / [GitHub](https://github.com/penpot/penpot)",
+          "url": "https://penpot.app/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-02145",
+          "name": "We Need Match",
+          "description": "Metal / FLAC / M4A",
+          "url": "https://we-need-match.ru/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00034",
+          "name": "AI Assistant",
+          "description": "Deepseek V3.2 / GLM-4.7 / Kimi K2.5 / Multiple Models / No Sign-Up",
+          "url": "https://aiassistantbot.pages.dev/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "adblock-00421",
+          "name": "ID Ransomware",
+          "description": "Ransomware Identification Tool",
+          "url": "https://id-ransomware.malwarehunterteam.com/",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-07743",
+          "name": "BlenderKit",
+          "description": "3D Model Library Integrated into Blender",
+          "url": "https://www.blenderkit.com/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00004",
+          "name": "Google AI Studio",
+          "description": "** - Gemini 3.1 Pro / Gemini 3.5 Flash / Google Sign-Up / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+          "url": "https://aistudio.google.com/app/prompts/new_chat",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 18769,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00063",
+          "name": "LM Studio",
+          "description": "** - Desktop App / Self-Hosted Models Only / [Discord](https://discord.gg/aPQfnNkxGC) / [GitHub](https://github.com/lmstudio-ai)",
+          "url": "https://lmstudio.ai/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        }
+      ],
+      "sortOrder": 4
+    },
+    {
+      "id": "rising-stars",
+      "title": "⭐ Rising Stars",
+      "subtitle": "Tools you should check out this week",
+      "type": "resource-list",
+      "resources": [
+        {
+          "id": "misc-10739",
+          "name": "Chirper",
+          "description": "AI Generated X.com",
+          "url": "https://chirper.ai/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "free-for-dev--zilore-com",
+          "name": "zilore.com",
+          "description": "",
+          "url": "https://zilore.com/en/dns",
+          "category": "ffd-dns",
+          "categoryName": "ffd-dns",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": true,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-01931",
+          "name": "Worldwide Radio",
+          "description": "Radio Extension",
+          "url": "https://addons.mozilla.org/en-US/firefox/addon/worldwide-radio/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-10914",
+          "name": "animezid",
+          "description": "Anime / Cartoons",
+          "url": "https://animezid.net/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-11994",
+          "name": "DW Anime",
+          "description": "Anime",
+          "url": "https://dw-anime.net/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-08680",
+          "name": "Kiwix",
+          "description": "** / [Library](https://browse.library.kiwix.org/) / [Zim Reader](https://zimit.kiwix.org/) / [Wiki DL Guide](https://practicalbetterments.com/download-all-of-wikipedia-on-your-phone/) / [Subreddit](https://www.reddit.com/r/Kiwix/) / [GitHub](https://github.com/kiwix/) or [DownloadNet (dn)](https://github.com/DO-SAY-GO/dn) - Offline Website Readers",
+          "url": "https://get.kiwix.org/en/solutions/applications/download-options/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-08189",
+          "name": "ImportYeti",
+          "description": "Search U.S. Customs Shipment Records",
+          "url": "https://www.importyeti.com/",
+          "category": "Misc",
+          "categoryName": "Misc",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "adblock-00359",
+          "name": "Twitch Adblockers",
+          "description": "**",
+          "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/social-media#wiki_.25B7_twitch_adblockers",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        }
+      ],
+      "sortOrder": 5
+    },
+    {
+      "id": "ai-coding-tools",
+      "title": "🤖 AI Coding Tools",
+      "subtitle": "The best AI-powered developer tools",
+      "type": "resource-list",
+      "resources": [
+        {
+          "id": "artificial-intelligence-00004",
+          "name": "Google AI Studio",
+          "description": "** - Gemini 3.1 Pro / Gemini 3.5 Flash / Google Sign-Up / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+          "url": "https://aistudio.google.com/app/prompts/new_chat",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 18769,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -133,7 +563,7 @@
           "url": "https://chatgpt.com/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
+          "githubStars": 10173,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -146,7 +576,7 @@
           "url": "https://copilot.microsoft.com",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
+          "githubStars": 10173,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -159,7 +589,7 @@
           "url": "https://claude.ai/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
+          "githubStars": 64776,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -177,21 +607,34 @@
           "isFree": false,
           "isOpenSource": false,
           "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00017",
+          "name": "⁠Ai2 Playground",
+          "description": "Olmo 3.1 32B (Think) / No Sign-Up / Unlimited / [Discord](https://discord.gg/NE5xPufNwu)",
+          "url": "https://playground.allenai.org/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
         }
-      ]
+      ],
+      "sortOrder": 6
     },
     {
       "id": "design-tools",
       "title": "🎨 Design & Creative",
       "subtitle": "Top open-source design and creative tools",
       "type": "resource-list",
-      "sortOrder": 7,
       "resources": [
         {
-          "id": "artificial-intelligence-00061",
-          "name": "Open WebUI",
-          "description": "** - Web UI / [Discord](https://discord.gg/5rJgQTnV4s) / [GitHub](https://github.com/open-webui/open-webui)",
-          "url": "https://openwebui.com/",
+          "id": "artificial-intelligence-00001",
+          "name": "◄◄ Back to Wiki Index",
+          "description": "**",
+          "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/index",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -201,10 +644,10 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00113",
-          "name": "Design Arena",
-          "description": "Multiple Models / Video Editing / Random Models / Reset Limits / w Temp Mail / [X](https://x.com/designarena) / [Discord](https://discord.com/invite/Bw9Ajcb3pR)",
-          "url": "https://www.designarena.ai/",
+          "id": "artificial-intelligence-00002",
+          "name": "Qwen",
+          "description": "** - Qwen3.7-Max / Qwen3.7-Plus / Sign-Up / [Subreddit](https://www.reddit.com/r/Qwen_AI/) / [Discord](https://discord.com/invite/CV4E9rpNSD) / [GitHub](https://github.com/QwenLM)",
+          "url": "https://chat.qwen.ai/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -214,10 +657,10 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00128",
-          "name": "Arena Text to Image",
-          "description": "** or **[Arena Editing](https://arena.ai/leaderboard/image-edit)** - Image Gen Benchmarks / 15 Daily / Leaderboards",
-          "url": "https://arena.ai/leaderboard/text-to-image",
+          "id": "artificial-intelligence-00003",
+          "name": "DeepSeek",
+          "description": "** - V4-Pro (Expert) / V4-Flash (Instant) / Sign-Up / Unlimited / [Subreddit](https://www.reddit.com/r/DeepSeek/) / [Discord](https://discord.com/invite/Tc7c45Zzu5) / [GitHub](https://github.com/deepseek-ai)",
+          "url": "https://chat.deepseek.com/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -227,10 +670,23 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00131",
-          "name": "⁠Hunyuan Image Generation",
-          "description": "** - Generating / Editing / 3D / Sign-Up / Unlimited",
-          "url": "https://aistudio.tencent.com/chat/HunyuanDefault?modelId=Hunyuan-Image-3.0-Instruct",
+          "id": "artificial-intelligence-00004",
+          "name": "Google AI Studio",
+          "description": "** - Gemini 3.1 Pro / Gemini 3.5 Flash / Google Sign-Up / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+          "url": "https://aistudio.google.com/app/prompts/new_chat",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 18769,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00005",
+          "name": "⁠Z.ai",
+          "description": "** - GLM-5.1 / GLM-5-Turbo / Slides / Sign-Up / [Discord](https://discord.gg/QR7SARHRxK)",
+          "url": "https://chat.z.ai/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -240,10 +696,23 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00135",
-          "name": "Design Arena",
-          "description": "Multiple Generators / Editing / Sign-up / Random Models / Reset Limits / w Temp Mail / [Discord](https://discord.com/invite/Bw9Ajcb3pR)",
-          "url": "https://www.designarena.ai/",
+          "id": "artificial-intelligence-00006",
+          "name": "Gemini",
+          "description": "** - Gemini 3.1 Pro Preview (5 daily) / Gemini 3.1 Flash / Gemini 3.5 Flash  / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Limits](https://support.google.com/gemini/answer/16275805) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+          "url": "https://gemini.google.com/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 18769,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00007",
+          "name": "Kimi",
+          "description": "** - Kimi K2.6 (Thinking) / Slides / Google Login or Phone # Required / [Subreddit](https://www.reddit.com/r/kimi/) / [Discord](https://discord.gg/TYU2fdJykW) / [GitHub](https://github.com/MoonshotAI)",
+          "url": "https://www.kimi.com/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -253,36 +722,10 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00142",
-          "name": "Wan AI Image",
-          "description": "Wan 2.7 Pro / Wan 2.6 / 10 Credits Daily (Fast Credit Based, Slow Unlimited) / Sign-Up",
-          "url": "https://create.wan.video/explore/image/generate?model=wan2.7-pro",
-          "category": "Artificial-Intelligence",
-          "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "artificial-intelligence-00145",
-          "name": "Reve Image",
-          "description": "20 Daily / Editing / Sign-Up / [X](https://x.com/reve) / [Discord](https://discord.gg/Nedxp9fYUZ)",
-          "url": "https://app.reve.com",
-          "category": "Artificial-Intelligence",
-          "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "artificial-intelligence-00147",
-          "name": "⁠PhotoGPT",
-          "description": "8 Daily / Multiple Generators / Reset Limits w/ VPN",
-          "url": "https://photogpt.io/",
+          "id": "artificial-intelligence-00008",
+          "name": "Meta AI",
+          "description": "Muse Spark / Meta Sign-Up / Unlimited",
+          "url": "https://www.meta.ai/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -291,14 +734,14 @@
           "isOpenSource": false,
           "tags": []
         }
-      ]
+      ],
+      "sortOrder": 7
     },
     {
       "id": "productivity-tools",
       "title": "📝 Productivity Picks",
       "subtitle": "Tools to organize your work and life",
       "type": "resource-list",
-      "sortOrder": 8,
       "resources": [
         {
           "id": "artificial-intelligence-00001",
@@ -318,6 +761,19 @@
           "name": "NotebookLM",
           "description": "** - Document Chatbot / Note-Taking / Slides / [Anki Export](https://chromewebstore.google.com/detail/ankinlm/ecoealfdeebafjpmhjdlbdgpgegjeaem) / [X](https://x.com/NotebookLM) / [Subreddit](https://www.reddit.com/r/notebooklm/) / [Discord](https://discord.com/invite/notebooklm)",
           "url": "https://notebooklm.google.com/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00314",
+          "name": "Wolfram LLM Benchmarking Project",
+          "description": "Chatbot Leaderboards / Benchmarks",
+          "url": "https://www.wolfram.com/llm-benchmarking-project/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -390,28 +846,15 @@
           "isFree": false,
           "isOpenSource": false,
           "tags": []
-        },
-        {
-          "id": "adblock-00479",
-          "name": "⁠Whonix Wiki",
-          "description": "Educational Guide / [Forum](https://forums.whonix.org/)",
-          "url": "https://www.whonix.org/wiki",
-          "category": "Adblock",
-          "categoryName": "Adblock",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
         }
-      ]
+      ],
+      "sortOrder": 8
     },
     {
       "id": "dev-tools",
       "title": "🔧 Developer Tools",
       "subtitle": "Self-hosted and developer-first tools",
       "type": "resource-list",
-      "sortOrder": 9,
       "resources": [
         {
           "id": "artificial-intelligence-00087",
@@ -420,7 +863,7 @@
           "url": "https://github.com/Mirrowel/LLM-API-Key-Proxy",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
+          "githubStars": 508,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -433,19 +876,6 @@
           "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/dev-tools/#wiki_.25B7_api_tools",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "adblock-00371",
-          "name": "LegitimateURLShortener",
-          "description": "** - Query Parameter Cleaning Rules / Use w/ AdGuard URL Tracking Protection",
-          "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/refs/heads/master/LegitimateURLShortener.txt",
-          "category": "Adblock",
-          "categoryName": "Adblock",
           "githubStars": 0,
           "icon": null,
           "isFree": false,
@@ -466,45 +896,6 @@
           "tags": []
         },
         {
-          "id": "adblock-00440",
-          "name": "IsLegitSite",
-          "description": "9 Blocklist Engines Scan",
-          "url": "https://www.islegitsite.com/",
-          "category": "Adblock",
-          "categoryName": "Adblock",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "adblock-00454",
-          "name": "YourDigitalRights",
-          "description": "Get Organizations to Delete Your Personal Data",
-          "url": "https://yourdigitalrights.org/",
-          "category": "Adblock",
-          "categoryName": "Adblock",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "adblock-00477",
-          "name": "Digital Defense",
-          "description": "Personal Checklist for Privacy & Security / [GitHub](https://github.com/lissy93/personal-security-checklist)",
-          "url": "https://digital-defense.io/",
-          "category": "Adblock",
-          "categoryName": "Adblock",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
           "id": "adblock-00532",
           "name": "OTPClient",
           "description": "2FA / Linux",
@@ -516,15 +907,67 @@
           "isFree": false,
           "isOpenSource": false,
           "tags": []
+        },
+        {
+          "id": "adblock-00540",
+          "name": "steamguard-cli",
+          "description": "Generate Steam 2FA Codes",
+          "url": "https://github.com/dyc3/steamguard-cli",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "adblock-00542",
+          "name": "Matrix Clients",
+          "description": "** / [Mod Bot](https://github.com/matrix-org/mjolnir) / [Resources](https://matrix.org/ecosystem/) / [Servers](https://tatsumoto-ren.github.io/blog/list-of-matrix-servers.html), [2](https://tatsumoto.neocities.org/blog/list-of-matrix-servers.html), [3](https://gitlab.com/famedly/conduit), [4](https://joinmatrix.org/servers/), [5](https://archive.md/4xZE4), [6](https://wiki.asra.gr/en:public_servers)",
+          "url": "https://matrix.org/ecosystem/clients/",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "adblock-00570",
+          "name": "SecLists",
+          "description": "Security Mailing List Archive",
+          "url": "https://seclists.org/",
+          "category": "Adblock",
+          "categoryName": "Adblock",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "mobile-00798",
+          "name": "ReVanced CLI",
+          "description": "CLI Patcher / [Guide](https://rentry.org/Revanced_Guide)",
+          "url": "https://github.com/ReVanced/revanced-cli",
+          "category": "Mobile",
+          "categoryName": "Mobile",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
         }
-      ]
+      ],
+      "sortOrder": 9
     },
     {
       "id": "newly-added",
       "title": "🆕 Newly Added",
       "subtitle": "Fresh tools just added to Craftisle",
       "type": "resource-list",
-      "sortOrder": 10,
       "resources": [
         {
           "id": "artificial-intelligence-00001",
@@ -572,7 +1015,7 @@
           "url": "https://aistudio.google.com/app/prompts/new_chat",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
+          "githubStars": 18769,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -598,7 +1041,7 @@
           "url": "https://gemini.google.com/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
+          "githubStars": 18769,
           "icon": null,
           "isFree": false,
           "isOpenSource": false,
@@ -630,7 +1073,8 @@
           "isOpenSource": false,
           "tags": []
         }
-      ]
+      ],
+      "sortOrder": 10
     }
   ]
 }

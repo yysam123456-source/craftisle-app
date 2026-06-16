@@ -47,7 +47,8 @@
           "url": "https://aistudio.google.com/app/prompts/new_chat",
           "description": "** - Gemini 3.1 Pro / Gemini 3.5 Flash / Google Sign-Up / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager"
+          "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager",
+          "githubStars": 18769
         },
         {
           "id": "artificial-intelligence-00005",
@@ -68,7 +69,8 @@
           "url": "https://gemini.google.com/",
           "description": "** - Gemini 3.1 Pro Preview (5 daily) / Gemini 3.1 Flash / Gemini 3.5 Flash  / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Limits](https://support.google.com/gemini/answer/16275805) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager"
+          "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager",
+          "githubStars": 18769
         },
         {
           "id": "artificial-intelligence-00007",
@@ -109,7 +111,8 @@
           "url": "https://chatgpt.com/",
           "description": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use /think) / [r/OpenAI](https://www.reddit.com/r/OpenAI/) / [r/ChatGPT](https://www.reddit.com/r/ChatGPT/) / [Discord](https://discord.com/invite/openai) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/chatgpt-limits.md)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/fmhy/edit"
+          "githubUrl": "https://github.com/fmhy/edit",
+          "githubStars": 10173
         },
         {
           "id": "artificial-intelligence-00011",
@@ -140,7 +143,8 @@
           "url": "https://copilot.microsoft.com",
           "description": "GPT-5.1 / Unlimited / [Reasoning](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/better-reasoning.md)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/fmhy/edit"
+          "githubUrl": "https://github.com/fmhy/edit",
+          "githubStars": 10173
         },
         {
           "id": "artificial-intelligence-00014",
@@ -151,7 +155,8 @@
           "url": "https://claude.ai/",
           "description": "Claude Sonnet 4.6 / Require Sign-Up + Phone # / [Resources](https://awesomeclaude.ai/) / [Learning](https://github.com/ComposioHQ/awesome-claude-skills), [2](https://github.com/BehiSecc/awesome-claude-skills) / [Usage Tracker](https://github.com/lugia19/Claude-Usage-Extension) / [Subreddit](https://www.reddit.com/r/ClaudeAI/) / [Discord](https://discord.com/invite/6PPFFzqPDZ)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/ComposioHQ/awesome-claude-skills"
+          "githubUrl": "https://github.com/ComposioHQ/awesome-claude-skills",
+          "githubStars": 64776
         },
         {
           "id": "artificial-intelligence-00015",
@@ -282,7 +287,8 @@
           "url": "https://beta.ish.chat/",
           "description": "Claude Opus 4.8 / Claude Sonnet 4.6 / Multiple Models / Sign-Up (GitHub) / [Subreddit](https://www.reddit.com/r/Ishchat/) / [Discord](https://discord.gg/cwDTVKyKJz) / [Token Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/ish.md)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/fmhy/edit"
+          "githubUrl": "https://github.com/fmhy/edit",
+          "githubStars": 10173
         },
         {
           "id": "artificial-intelligence-00028",
@@ -293,7 +299,8 @@
           "url": "https://arena.ai/text/direct",
           "description": ", [2](https://canaryarena.ai/text/direct) - Multiple Models / Sign-Up / [OpenAI Bridge](https://github.com/CloudWaddie/LMArenaBridge) / [X](https://x.com/arena) / [Discord](https://discord.com/invite/lmarena)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/CloudWaddie/LMArenaBridge"
+          "githubUrl": "https://github.com/CloudWaddie/LMArenaBridge",
+          "githubStars": 366
         },
         {
           "id": "artificial-intelligence-00029",
@@ -394,7 +401,8 @@
           "url": "https://github.com/felladrin/awesome-ai-web-search",
           "description": ", [2](https://huggingface.co/spaces/Felladrin/awesome-ai-web-search)** - AI Search Engine Index",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/felladrin/awesome-ai-web-search"
+          "githubUrl": "https://github.com/felladrin/awesome-ai-web-search",
+          "githubStars": 1346
         },
         {
           "id": "artificial-intelligence-00039",
@@ -435,7 +443,8 @@
           "url": "https://textfx.withgoogle.com/",
           "description": "** / [GitHub](https://github.com/google/generative-ai-docs/tree/main/demos/palm/web/textfx), [NeverWrite](https://neverwrite.app/) / [GitHub](https://github.com/jsgrrchg/NeverWrite), [Toolbaz](https://toolbaz.com/) / [2](https://app.toolbaz.com/ai-tools/list) or [Rytr](https://rytr.me/) - AI Creative Writing Tools",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/google/generative-ai-docs"
+          "githubUrl": "https://github.com/google/generative-ai-docs",
+          "githubStars": 2248
         },
         {
           "id": "artificial-intelligence-00043",
@@ -456,7 +465,8 @@
           "url": "https://arena.ai/?mode=direct&chat-modality=search",
           "description": ", [2](https://canaryarena.ai/search/direct) - AI Search Engine / Sign-Up / [OpenAI Bridge](https://github.com/CloudWaddie/LMArenaBridge) / [X](https://x.com/arena) / [Discord](https://discord.com/invite/lmarena)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/CloudWaddie/LMArenaBridge"
+          "githubUrl": "https://github.com/CloudWaddie/LMArenaBridge",
+          "githubStars": 366
         },
         {
           "id": "artificial-intelligence-00045",
@@ -497,7 +507,8 @@
           "url": "https://github.com/ItzCrazyKns/Vane",
           "description": "FOSS AI Search Engine / Self-Hosted / [Discord](https://discord.gg/26aArMy8tT)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/ItzCrazyKns/Vane"
+          "githubUrl": "https://github.com/ItzCrazyKns/Vane",
+          "githubStars": 35306
         },
         {
           "id": "artificial-intelligence-00049",
@@ -508,7 +519,8 @@
           "url": "https://learning.google.com/experiments/learn-about",
           "description": "or [Learning Coach](https://gemini.google.com/gem/learning-coach) - Google's Educational Search AIs / [Add Features](https://github.com/Nagi-ovo/gemini-voyager)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager"
+          "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager",
+          "githubStars": 18769
         },
         {
           "id": "artificial-intelligence-00050",
@@ -559,7 +571,8 @@
           "url": "https://privategpt.dev/",
           "description": "Document Chatbot / Note-Taking / [Discord](https://discord.com/invite/bK6mRVpErU) / [GitHub](https://github.com/zylon-ai/private-gpt)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/zylon-ai/private-gpt"
+          "githubUrl": "https://github.com/zylon-ai/private-gpt",
+          "githubStars": 57276
         },
         {
           "id": "artificial-intelligence-00055",
@@ -570,7 +583,8 @@
           "url": "https://www.onyx.app/",
           "description": "Document Chatbot / Note-Taking / [Discord](https://discord.com/invite/jDnRGhWhg4) / [GitHub](https://github.com/onyx-dot-app/onyx)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/onyx-dot-app/onyx"
+          "githubUrl": "https://github.com/onyx-dot-app/onyx",
+          "githubStars": 30346
         },
         {
           "id": "artificial-intelligence-00056",
@@ -581,7 +595,8 @@
           "url": "https://www.docsgpt.cloud/",
           "description": "Document Chatbot / Note-Taking / [Discord](https://discord.com/invite/n5BX8dh8rU) / [GitHub](https://github.com/arc53/DocsGPT)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/arc53/DocsGPT"
+          "githubUrl": "https://github.com/arc53/DocsGPT",
+          "githubStars": 17939
         },
         {
           "id": "artificial-intelligence-00057",
@@ -622,7 +637,8 @@
           "url": "https://docs.sillytavern.app/",
           "description": "** - Desktop App / [Presets / Themes](https://discord.gg/MU5FKZvuT7) / [Subreddit](https://www.reddit.com/r/SillyTavernAI/) / [Discord](https://discord.gg/sillytavern) / [GitHub](https://github.com/SillyTavern/SillyTavern)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/SillyTavern/SillyTavern"
+          "githubUrl": "https://github.com/SillyTavern/SillyTavern",
+          "githubStars": 29455
         },
         {
           "id": "artificial-intelligence-00061",
@@ -633,7 +649,8 @@
           "url": "https://openwebui.com/",
           "description": "** - Web UI / [Discord](https://discord.gg/5rJgQTnV4s) / [GitHub](https://github.com/open-webui/open-webui)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/open-webui/open-webui"
+          "githubUrl": "https://github.com/open-webui/open-webui",
+          "githubStars": 141743
         },
         {
           "id": "artificial-intelligence-00062",
@@ -644,7 +661,8 @@
           "url": "https://jan.ai/",
           "description": "** - Desktop App / [Discord](https://discord.com/invite/FTk2MvZwJH) / [GitHub](https://github.com/menloresearch/jan)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/menloresearch/jan"
+          "githubUrl": "https://github.com/menloresearch/jan",
+          "githubStars": 43043
         },
         {
           "id": "artificial-intelligence-00063",
@@ -665,7 +683,8 @@
           "url": "https://github.com/oobabooga/textgen",
           "description": "** - Web UI / Self-Hosted Models Only / [Colab](https://colab.research.google.com/github/pcrii/Philo-Colab-Collection/blob/main/4bit_TextGen_Gdrive.ipynb) / [Subreddit](https://www.reddit.com/r/Oobabooga/) / [Discord](https://discord.gg/jwZCF2dPQN)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/oobabooga/textgen"
+          "githubUrl": "https://github.com/oobabooga/textgen",
+          "githubStars": 47320
         },
         {
           "id": "artificial-intelligence-00065",
@@ -676,7 +695,8 @@
           "url": "https://github.com/xtekky/gpt4free",
           "description": "Desktop App / [Web](https://g4f.dev/chat/) / [Telegram](https://telegram.me/g4f_channel) / [Discord](https://discord.com/invite/qXA4Wf4Fsm)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/xtekky/gpt4free"
+          "githubUrl": "https://github.com/xtekky/gpt4free",
+          "githubStars": 66332
         },
         {
           "id": "artificial-intelligence-00066",
@@ -697,7 +717,8 @@
           "url": "https://www.cherry-ai.com/",
           "description": "Desktop App / [Mobile](https://github.com/CherryHQ/cherry-studio-app) / [Discord](https://discord.gg/wez8HtpxqQ) / [GitHub](https://github.com/CherryHQ/cherry-studio)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/CherryHQ/cherry-studio-app"
+          "githubUrl": "https://github.com/CherryHQ/cherry-studio-app",
+          "githubStars": 3454
         },
         {
           "id": "artificial-intelligence-00068",
@@ -718,7 +739,8 @@
           "url": "https://chatboxai.app/",
           "description": "Desktop App / [GitHub](https://github.com/chatboxai/chatbox)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/chatboxai/chatbox"
+          "githubUrl": "https://github.com/chatboxai/chatbox",
+          "githubStars": 40495
         },
         {
           "id": "artificial-intelligence-00070",
@@ -729,7 +751,8 @@
           "url": "https://lobechat.com/chat",
           "description": "Desktop App / Requires Sign-Up / [Discord](https://discord.gg/AYFPHvv2jT) / [GitHub](https://github.com/lobehub/lobe-chat)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/lobehub/lobe-chat"
+          "githubUrl": "https://github.com/lobehub/lobe-chat",
+          "githubStars": 78725
         },
         {
           "id": "artificial-intelligence-00071",
@@ -740,7 +763,8 @@
           "url": "https://noib.app/",
           "description": "Desktop App / [Discord](https://discord.gg/kq2HXcpJSQ) / [GitHub](https://github.com/lencx/Noi)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/lencx/Noi"
+          "githubUrl": "https://github.com/lencx/Noi",
+          "githubStars": 8933
         },
         {
           "id": "artificial-intelligence-00072",
@@ -751,7 +775,8 @@
           "url": "https://pewdiepie-archdaemon.github.io/odysseus/",
           "description": "Web UI / [GitHub](https://github.com/pewdiepie-archdaemon/odysseus)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/pewdiepie-archdaemon/odysseus"
+          "githubUrl": "https://github.com/pewdiepie-archdaemon/odysseus",
+          "githubStars": 71968
         },
         {
           "id": "artificial-intelligence-00073",
@@ -762,7 +787,8 @@
           "url": "https://librechat.ai/",
           "description": "Web UI / [Discord](https://discord.com/invite/CEe6vDg9Ky) / [GitHub](https://github.com/danny-avila/LibreChat)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/danny-avila/LibreChat"
+          "githubUrl": "https://github.com/danny-avila/LibreChat",
+          "githubStars": 39255
         },
         {
           "id": "artificial-intelligence-00074",
@@ -773,7 +799,8 @@
           "url": "https://lollms.com/",
           "description": "Web UI / [GitHub](https://github.com/ParisNeo/lollms-webui)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/ParisNeo/lollms-webui"
+          "githubUrl": "https://github.com/ParisNeo/lollms-webui",
+          "githubStars": 4788
         },
         {
           "id": "artificial-intelligence-00075",
@@ -784,7 +811,8 @@
           "url": "https://anythingllm.com/",
           "description": "Desktop App / [Discord](https://discord.com/invite/YCtUYD5vBf) / [GitHub](https://github.com/Mintplex-Labs/anything-llm)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/Mintplex-Labs/anything-llm"
+          "githubUrl": "https://github.com/Mintplex-Labs/anything-llm",
+          "githubStars": 61653
         },
         {
           "id": "artificial-intelligence-00076",
@@ -795,7 +823,8 @@
           "url": "https://www.nomic.ai/gpt4all",
           "description": "Self-Hosted / [Discord](https://discord.com/invite/myY5YDR8z8) / [GitHub](https://github.com/nomic-ai/gpt4all)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/nomic-ai/gpt4all"
+          "githubUrl": "https://github.com/nomic-ai/gpt4all",
+          "githubStars": 77375
         },
         {
           "id": "artificial-intelligence-00077",
@@ -806,7 +835,8 @@
           "url": "https://github.com/aandrew-me/tgpt",
           "description": "Command-Line Interface",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/aandrew-me/tgpt"
+          "githubUrl": "https://github.com/aandrew-me/tgpt",
+          "githubStars": 3185
         },
         {
           "id": "artificial-intelligence-00078",
@@ -817,7 +847,8 @@
           "url": "https://github.com/Deep-ai-inc/ch.at",
           "description": "Language Model Bridge / Lightweight / Minimal",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/Deep-ai-inc/ch.at"
+          "githubUrl": "https://github.com/Deep-ai-inc/ch.at",
+          "githubStars": 1088
         },
         {
           "id": "artificial-intelligence-00079",
@@ -828,7 +859,8 @@
           "url": "https://github.com/rafska/awesome-local-llm/",
           "description": "** - Local LLM Platforms / Resources",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/rafska/awesome-local-llm"
+          "githubUrl": "https://github.com/rafska/awesome-local-llm",
+          "githubStars": 2273
         },
         {
           "id": "artificial-intelligence-00080",
@@ -839,7 +871,8 @@
           "url": "https://llama.app/",
           "description": "** - Self-Hosted Transformer-Based LLMs / [GitHub](https://github.com/ggml-org/llama.cpp)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/ggml-org/llama.cpp"
+          "githubUrl": "https://github.com/ggml-org/llama.cpp",
+          "githubStars": 116752
         },
         {
           "id": "artificial-intelligence-00081",
@@ -850,7 +883,8 @@
           "url": "https://github.com/LostRuins/koboldcpp",
           "description": "** - llama.cpp with API + GUI / [ROCm](https://github.com/YellowRoseCx/koboldcpp-rocm) / [Colab](https://colab.research.google.com/github/LostRuins/koboldcpp/blob/concedo/colab.ipynb)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/LostRuins/koboldcpp"
+          "githubUrl": "https://github.com/LostRuins/koboldcpp",
+          "githubStars": 10788
         },
         {
           "id": "artificial-intelligence-00082",
@@ -861,7 +895,8 @@
           "url": "https://aphrodite.pygmalion.chat/",
           "description": "** - Serve LLMs at Scale with Kobold & OpenAI APIs / [Colab](https://colab.research.google.com/github/AlpinDale/misc-scripts/blob/main/Aphrodite.ipynb) / [GitHub](https://github.com/PygmalionAI/aphrodite-engine)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/PygmalionAI/aphrodite-engine"
+          "githubUrl": "https://github.com/PygmalionAI/aphrodite-engine",
+          "githubStars": 1766
         },
         {
           "id": "artificial-intelligence-00083",
@@ -872,7 +907,8 @@
           "url": "https://petals.dev/",
           "description": "Self-Hosted / [Discord](https://discord.gg/D9MwApKgWa) / [GitHub](https://github.com/bigscience-workshop/petals)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/bigscience-workshop/petals"
+          "githubUrl": "https://github.com/bigscience-workshop/petals",
+          "githubStars": 10206
         },
         {
           "id": "artificial-intelligence-00084",
@@ -883,7 +919,8 @@
           "url": "https://getleon.ai/",
           "description": "Self-Hosted / [Discord](https://discord.gg/MNQqqKg) / [GitHub](https://github.com/leon-ai/leon)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/leon-ai/leon"
+          "githubUrl": "https://github.com/leon-ai/leon",
+          "githubStars": 17315
         },
         {
           "id": "artificial-intelligence-00085",
@@ -894,7 +931,8 @@
           "url": "https://ollama.com/",
           "description": "Self-Hosted / [Discord](https://discord.com/invite/ollama) / [GitHub](https://github.com/ollama/ollama)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/ollama/ollama"
+          "githubUrl": "https://github.com/ollama/ollama",
+          "githubStars": 174279
         },
         {
           "id": "artificial-intelligence-00086",
@@ -905,7 +943,8 @@
           "url": "https://github.com/Mozilla-Ocho/llamafile",
           "description": "Run LLM with Single Files / [Discord](https://discord.gg/YuMNeuKStr)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/Mozilla-Ocho/llamafile"
+          "githubUrl": "https://github.com/Mozilla-Ocho/llamafile",
+          "githubStars": 24972
         },
         {
           "id": "artificial-intelligence-00087",
@@ -916,7 +955,8 @@
           "url": "https://github.com/Mirrowel/LLM-API-Key-Proxy",
           "description": "LLM API Key Proxy",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/Mirrowel/LLM-API-Key-Proxy"
+          "githubUrl": "https://github.com/Mirrowel/LLM-API-Key-Proxy",
+          "githubStars": 508
         },
         {
           "id": "artificial-intelligence-00088",
@@ -937,7 +977,8 @@
           "url": "https://localai.io/",
           "description": "Self-Hosted Models / [GitHub](https://github.com/mudler/LocalAI)",
           "dateAdded": "2026-06-15",
-          "githubUrl": "https://github.com/mudler/LocalAI"
+          "githubUrl": "https://github.com/mudler/LocalAI",
+          "githubStars": 46885
         },
         {
           "id": "artificial-intelligence-00090",
