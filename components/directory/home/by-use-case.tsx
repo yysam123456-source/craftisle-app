@@ -8,7 +8,7 @@ import { ArrowRight, PenTool, Code, Palette, Megaphone, BookOpen } from "lucide-
  * 展示 5 个核心 Use Case，每个展示 3-4 个热门工具
  */
 
-// Use Case 配置
+// Use Case 配置 — 每个用例包含精确关键词 + 分类白名单
 const USE_CASES = [
   {
     id: "writing",
@@ -16,7 +16,12 @@ const USE_CASES = [
     icon: PenTool,
     color: "blue",
     description: "Notion alternatives, Markdown editors, note-taking apps",
-    keywords: ["notion", "obsidian", "logseq", "markdown", "notes", "writing"],
+    // 精确匹配：优先匹配这些具体工具名/产品名
+    primaryKeywords: ["notion", "obsidian", "logseq", "joplin", "standard notes", "appflowy", "siyuan", "affine"],
+    // 宽泛匹配：用于补充结果（需要更高的相关性）
+    secondaryKeywords: ["markdown editor", "note taking", "note-taking", "knowledge base", "wiki"],
+    // 偏好分类（来自 unified-categories 的 categoryId）
+    preferredCategories: [],
   },
   {
     id: "coding",
@@ -24,7 +29,9 @@ const USE_CASES = [
     icon: Code,
     color: "purple",
     description: "VS Code extensions, GitHub alternatives, self-hosted CI/CD",
-    keywords: ["vscode", "github", "gitlab", "docker", "kubernetes", "ide"],
+    primaryKeywords: ["vscode", "github", "gitlab", "docker", "kubernetes", "vs code", "cursor", "windsurf", "jetbrains", "intellij"],
+    secondaryKeywords: ["ide", "code editor", "ci/cd", "devops", "version control", "source control"],
+    preferredCategories: [],
   },
   {
     id: "design",
@@ -32,7 +39,9 @@ const USE_CASES = [
     icon: Palette,
     color: "pink",
     description: "Figma alternatives, open-source design tools, Image editors",
-    keywords: ["figma", "gimp", "inkscape", "design", "ui", "ux", "photo"],
+    primaryKeywords: ["figma", "gimp", "inkscape", "canva", "penpot", "photopea", "excalidraw", "tldraw"],
+    secondaryKeywords: ["design tool", "ui design", "image editor", "graphic design", "wireframe", "prototype"],
+    preferredCategories: [],
   },
   {
     id: "marketing",
@@ -40,7 +49,9 @@ const USE_CASES = [
     icon: Megaphone,
     color: "orange",
     description: "Free CRM, email marketing, SEO tools, social media management",
-    keywords: ["crm", "mailchimp", "hubspot", "marketing", "seo", "email"],
+    primaryKeywords: ["mailchimp", "hubspot", "crm", "mailchimp", "sendgrid", "hootsuite", "buffer", "zapier", "n8n", "metabase"],
+    secondaryKeywords: ["email marketing", "seo tool", "social media", "analytics", "automation", "newsletter"],
+    preferredCategories: [],
   },
   {
     id: "learning",
@@ -48,7 +59,10 @@ const USE_CASES = [
     icon: BookOpen,
     color: "green",
     description: "Free courses, tutorials, documentation, e-learning platforms",
-    keywords: ["freecodecamp", "coursera", "edx", "learning", "course", "tutorial"],
+    primaryKeywords: ["freecodecamp", "coursera", "edx", "khan academy", "udemy", "codecademy", "odin project", "brave browser"],
+    secondaryKeywords: ["e-learning", "online course", "programming tutorial", "mooc", "documentation platform"],
+    // 教育类资源在 FMHY 中主要分布在 Reading 和 Educational 分类
+    preferredCategories: ["Reading", "Educational"],
   },
 ];
 
@@ -66,25 +80,60 @@ export function ByUseCase() {
   const useCasesWithTools = USE_CASES.map(useCase => {
     const resources = getAllResources();
     const richSet = getRichInfoResourceIds();
-    
-    // 根据关键词匹配工具
-    const matchedTools = resources
-      .filter(r => {
+
+    // 改进的匹配逻辑：
+    // 1. primaryKeywords 精确匹配（产品名）— 高权重
+    // 2. secondaryKeywords 宽泛匹配（描述性词）— 低权重
+    // 3. preferredCategories 分类白名单 — 额外加权
+    const scored = resources
+      .map(r => {
         const searchText = `${r.name} ${r.description}`.toLowerCase();
-        return useCase.keywords.some(kw => searchText.includes(kw));
+        const catName = (r.categoryName || r.category || "").toLowerCase();
+        let score = 0;
+        let matchType = "";
+
+        // Primary keywords: 精确产品名匹配（高权重）
+        for (const kw of useCase.primaryKeywords) {
+          if (r.name.toLowerCase() === kw) { score += 100; matchType = "exact"; }
+          else if (r.name.toLowerCase().includes(kw)) { score += 60; matchType = "primary"; }
+          else if (searchText.includes(kw)) { score += 20; matchType = matchType || "primary-desc"; }
+        }
+
+        // Secondary keywords: 描述性匹配（低权重，避免误匹配）
+        if (score === 0) {
+          for (const kw of useCase.secondaryKeywords) {
+            if (searchText.includes(kw)) { score += 8; matchType = "secondary"; }
+            // 如果 secondary keyword 出现在名称中，稍微加一点分
+            if (r.name.toLowerCase().includes(kw.split(" ")[0])) { score += 5; }
+          }
+        }
+
+        // Preferred category bonus
+        if (useCase.preferredCategories.length > 0 && score > 0) {
+          for (const pc of useCase.preferredCategories) {
+            if (catName.includes(pc.toLowerCase())) { score += 15; break; }
+          }
+        }
+
+        return { resource: r, score, matchType };
       })
+      .filter(item => item.score > 0)
       .sort((a, b) => {
-        const aRich = richSet.has(a.id) ? 1 : 0;
-        const bRich = richSet.has(b.id) ? 1 : 0;
+        // 先按分数排序
+        if (b.score !== a.score) return b.score - a.score;
+        // 同分时优先有丰富信息的
+        const aRich = richSet.has(a.resource.id) ? 1 : 0;
+        const bRich = richSet.has(b.resource.id) ? 1 : 0;
         if (aRich !== bRich) return bRich - aRich;
-        return (b.githubStars || 0) - (a.githubStars || 0);
+        // 再按 GitHub Stars
+        return (b.resource.githubStars || 0) - (a.resource.githubStars || 0);
       })
       .slice(0, 4)
-      .map(r => ({ ...r, _hasRichInfo: richSet.has(r.id) }));
-    
+      .map(item => ({ ...item.resource, _hasRichInfo: richSet.has(item.resource.id) }));
+
     return {
       ...useCase,
-      tools: matchedTools,
+      tools: scored,
     };
   });
 
@@ -155,9 +204,9 @@ export function ByUseCase() {
                   })}
                 </div>
 
-                {/* View All Link — 用关键词搜索（标题在数据里不存在，用关键词才能命中） */}
+                {/* View All Link — 只用 primaryKeywords 搜索，避免太宽泛导致 0 结果 */}
                 <Link
-                  href={`/directory/search?q=${encodeURIComponent(useCase.keywords.join(" "))}`}
+                  href={`/directory/search?q=${encodeURIComponent(useCase.primaryKeywords.join(" "))}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline mt-3"
                 >
                   View All

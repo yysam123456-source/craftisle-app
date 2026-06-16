@@ -279,22 +279,37 @@ function SearchResultsContent() {
     loadAllData();
   }, []);
 
-  // Extract top tags from all resources
+  // 搜索结果（调用服务端 API）
+  const [apiResults, setApiResults] = useState<ScoredResource[]>([]);
+  const results = apiResults;  // 别名
+
+  // Extract top tags from **search results only** (not all resources)
   const topTags = useMemo(() => {
+    // Only show tags derived from current search results
+    if (results.length === 0) return [];
     const tagCounts: Record<string, number> = {};
-    for (const r of allResources) {
-      for (const tag of (r.tags || [])) {
-        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    for (const r of results) {
+      // Handle both array and object formats of tags
+      const tags = r.tags;
+      if (Array.isArray(tags)) {
+        for (const tag of tags) {
+          if (typeof tag === "string") {
+            tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+          }
+        }
+      } else if (tags && typeof tags === "object") {
+        for (const key of Object.keys(tags)) {
+          tagCounts[key] = (tagCounts[key] || 0) + 1;
+        }
       }
     }
     return Object.entries(tagCounts)
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 15)
-      .map(([tag]) => tag);
-  }, [allResources]);
-
-  // 搜索结果（调用服务端 API）
-  const [apiResults, setApiResults] = useState<ScoredResource[]>([]);
+      .slice(0, 12)
+      .map(([tag]) => tag)
+      // Filter out noisy/generic tags
+      .filter(tag => !tag.startsWith("Auth:") && tag !== "No Auth" && tag.length < 30);
+  }, [results]);
 
   useEffect(() => {
     if (!query.trim()) {
@@ -368,8 +383,6 @@ function SearchResultsContent() {
         setLoading(false);
       });
   }, [query, sourceFilter, categoryFilter, githubFilter, openSourceFilter, updateFrequencyFilter, selectedTags, sortBy]);
-
-  const results = apiResults;
 
   // Count by source
   const sourceCounts = useMemo(() => {

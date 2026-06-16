@@ -5,10 +5,25 @@ import { join } from "path";
 // 数据源列表
 const SOURCES = ["fmhy", "free-for-dev", "public-apis", "awesome-selfhosted"];
 
-// 搜索函数（简化版，直接在 API 中执行）
+/**
+ * 分词匹配搜索 — 将查询拆分为单词，每个单词独立匹配
+ * 解决 "freecodecamp coursera edx" 等多词查询返回 0 结果的问题
+ */
 function searchResources(resources: any[], query: string, limit = 200) {
   const q = query.toLowerCase().trim();
   if (!q) return [];
+
+  // 将查询拆分为有意义的单词（过滤掉单字符和停用词）
+  const stopWords = new Set(["the", "a", "an", "is", "are", "was", "were", "be", "been",
+    "being", "have", "has", "had", "do", "does", "did", "will", "would", "could",
+    "should", "may", "might", "must", "shall", "can", "need", "dare", "ought",
+    "used", "to", "of", "in", "for", "on", "with", "at", "by", "from", "as",
+    "into", "through", "during", "before", "after", "above", "below", "between",
+    "and", "or", "but", "not", "no", "it", "its", "this", "that", "these", "those",
+    "i", "you", "he", "she", "we", "they", "what", "which", "who", "how"]);
+  const queryWords = q.split(/\s+/).filter(w => w.length > 1 && !stopWords.has(w));
+
+  if (queryWords.length === 0) return [];
 
   const scored: any[] = [];
 
@@ -16,28 +31,52 @@ function searchResources(resources: any[], query: string, limit = 200) {
     const name = (r.name || "").toLowerCase();
     const desc = (r.description || "").toLowerCase();
     const url = (r.url || "").toLowerCase();
-    const text = `${name} ${desc} ${url}`;
+    const catName = (r.categoryName || r.category || "").toLowerCase();
+    const text = `${name} ${desc} ${url} ${catName}`;
 
-    if (!text.includes(q)) continue;
+    // 整串精确匹配（最高优先级）
+    const exactMatch = text.includes(q);
 
+    // 分词匹配：计算有多少个查询单词命中
+    let matchedWords = 0;
+    let matchedWordNames: string[] = [];
+    for (const w of queryWords) {
+      if (name.includes(w)) { matchedWords += 3; matchedWordNames.push(`name:${w}`); }
+      else if (desc.includes(w)) { matchedWords += 1.5; matchedWordNames.push(`desc:${w}`); }
+      else if (url.includes(w)) { matchedWords += 1; matchedWordNames.push(`url:${w}`); }
+      else if (catName.includes(w)) { matchedWords += 1; matchedWordNames.push(`cat:${w}`); }
+    }
+
+    // 必须至少命中一个单词（或整串匹配）
+    if (!exactMatch && matchedWords === 0) continue;
+
+    // 计算得分
     let score = 0;
     let matchReason = "";
 
-    // 名称精确匹配
-    if (name === q) {
+    if (exactMatch) {
       score += 50;
-      matchReason = "Exact name match";
+      matchReason = "Exact match";
     }
-    // 名称包含查询词
-    else if (name.includes(q)) {
-      score += 30;
-      matchReason = "Name contains query";
+
+    // 名称完全匹配某个查询词
+    for (const w of queryWords) {
+      if (name === w) { score += 40; matchReason += (matchReason ? " + " : "") + `Exact name "${w}"`; }
+      else if (name.startsWith(w)) { score += 25; matchReason += (matchReason ? " + " : "") + `Name starts "${w}"`; }
+      else if (name.includes(w)) { score += 15; matchReason += (matchReason ? " + " : "") + `Name contains "${w}"`; }
     }
+
+    // 所有查询词都命中名称（高相关）
+    const nameHitAll = queryWords.every(w => name.includes(w));
+    if (nameHitAll && queryWords.length > 1) { score += 30; matchReason += (matchReason ? " + " : "") + "All words in name"; }
+
     // 描述匹配
-    if (desc.includes(q)) {
-      score += 15;
-      matchReason = matchReason ? `${matchReason} + Description match` : "Description match";
+    for (const w of queryWords) {
+      if (desc.includes(w) && !name.includes(w)) { score += 5; }
     }
+
+    score += Math.floor(matchedWords * 2);
+    matchReason = matchReason || `${matchedWordNames.slice(0,3).join(", ")}${matchedWordNames.length > 3 ? "..." : ""}`;
 
     scored.push({ ...r, _score: score, _matchReason: matchReason });
   }
