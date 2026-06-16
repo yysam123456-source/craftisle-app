@@ -5,20 +5,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, X } from "lucide-react";
-
-// 搜索建议列表
-const SEARCH_SUGGESTIONS = [
-  "free AI tools",
-  "Figma alternatives",
-  "open source password manager",
-  "best Markdown editor",
-  "AI coding assistant",
-  "privacy browser",
-  "self-hosted email",
-  "free API service",
-  "GitHub stars top 100",
-  "open source design tools",
-];
+import { getSearchSuggestions, type SearchableResource } from "@/lib/search-utils";
 
 interface ResourceSearchClientProps {
   placeholder?: string;
@@ -27,6 +14,10 @@ interface ResourceSearchClientProps {
   value?: string;
   /** 搜索回调（可选，提供时用此回调代替直接 router.push） */
   onSearch?: (query: string) => void;
+  /** 输入框的 id（可选，用于外部聚焦） */
+  inputId?: string;
+  /** 所有资源数据（可选，用于生成搜索建议） */
+  resources?: SearchableResource[];
 }
 
 export function ResourceSearchClient({
@@ -34,6 +25,8 @@ export function ResourceSearchClient({
   className,
   value,
   onSearch,
+  inputId = "resource-search-input",
+  resources,
 }: ResourceSearchClientProps) {
   const [query, setQuery] = useState(value || "");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -48,18 +41,37 @@ export function ResourceSearchClient({
     }
   }, [value]);
 
-  // 根据输入生成搜索建议
+  // 根据输入生成搜索建议（动态，基于实际资源数据）
   useEffect(() => {
-    if (query.trim().length === 0) {
+    if (query.trim().length < 2) {
       setSuggestions([]);
       setShowSuggestions(false);
       return;
     }
-    const q = query.toLowerCase();
-    const matched = SEARCH_SUGGESTIONS.filter(s => s.toLowerCase().includes(q));
-    setSuggestions(matched.slice(0, 5)); // 最多显示 5 个建议
-    setShowSuggestions(matched.length > 0);
-  }, [query]);
+
+    // 防抖：延迟 150ms 再生成建议，避免每次按键都触发
+    const timer = setTimeout(() => {
+      // 如果有资源数据，使用动态建议
+      if (resources && resources.length > 0) {
+        const dynamicSuggestions = getSearchSuggestions(query, resources, 6);
+        setSuggestions(dynamicSuggestions);
+        setShowSuggestions(dynamicSuggestions.length > 0);
+      } else {
+        // 降级：使用热门搜索作为建议
+        const popularSearches = [
+          "image generator", "video editor", "code assistant", "free api",
+          "self-hosted", "github stars", "open source", "productivity",
+          "ai tools", "free tier", "docker", "react",
+        ];
+        const q = query.toLowerCase();
+        const matched = popularSearches.filter(s => s.toLowerCase().includes(q));
+        setSuggestions(matched.slice(0, 5));
+        setShowSuggestions(matched.length > 0);
+      }
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [query, resources]);
 
   const doSearch = useCallback(
     (q: string) => {
@@ -106,6 +118,7 @@ export function ResourceSearchClient({
       <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
       <Input
         ref={inputRef}
+        id={inputId}
         type="text"
         placeholder={placeholder}
         value={query}

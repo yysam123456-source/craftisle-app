@@ -1,10 +1,13 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback, Suspense } from "react";
+import { useState, useEffect, useMemo, useCallback, Suspense, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { ResourceCard } from "@/components/resources/resource-card";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { searchResources, formatStars, highlightTextSimple } from "@/lib/search-utils";
 
 // 热门搜索建议
 const POPULAR_SEARCHES = [
@@ -43,18 +46,78 @@ interface CategoryMeta {
 const sourceLabels: Record<string, string> = { fmhy: "FMHY", "free-for-dev": "Free for Dev", "public-apis": "Public APIs", "awesome-selfhosted": "Self-Hosted" };
 const sourceIcons: Record<string, string> = { fmhy: "📚", "free-for-dev": "🔧", "public-apis": "🔌", "awesome-selfhosted": "🏠" };
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const filtersVariants = {
+  hidden: { opacity: 0, height: 0 },
+  show: {
+    opacity: 1,
+    height: "auto",
+  },
+};
+
 
 // Loading skeleton for search results
 function SearchSkeleton() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {[1, 2, 3, 4, 5, 6].map((i) => (
-        <div key={i} className="p-4 rounded-lg border bg-card animate-pulse">
-          <div className="h-4 bg-muted rounded w-3/4 mb-2"></div>
-          <div className="h-3 bg-muted rounded w-1/2 mb-1"></div>
-          <div className="h-3 bg-muted rounded w-5/6"></div>
+        <div key={i} className="p-4 rounded-lg border bg-card overflow-hidden relative">
+          {/* Shimmer effect overlay */}
+          <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          
+          <div className="flex items-start gap-3 mb-3">
+            {/* Favicon placeholder */}
+            <div className="w-10 h-10 rounded-lg bg-muted animate-pulse flex-shrink-0" />
+            
+            <div className="flex-1 min-w-0">
+              {/* Title placeholder */}
+              <div className="h-4 bg-muted rounded w-3/4 mb-2 animate-pulse" />
+              {/* Category badge placeholder */}
+              <div className="h-3 bg-muted rounded w-1/4 animate-pulse" />
+            </div>
+          </div>
+          
+          {/* Description lines placeholder */}
+          <div className="space-y-1.5">
+            <div className="h-3 bg-muted rounded w-full animate-pulse" />
+            <div className="h-3 bg-muted rounded w-5/6 animate-pulse" />
+          </div>
+          
+          {/* Tags placeholder */}
+          <div className="flex gap-1.5 mt-3">
+            <div className="h-2 w-12 bg-muted rounded-full animate-pulse" />
+            <div className="h-2 w-16 bg-muted rounded-full animate-pulse" />
+            <div className="h-2 w-10 bg-muted rounded-full animate-pulse" />
+          </div>
         </div>
       ))}
+      
+      {/* Add shimmer animation keyframes */}
+      <style jsx>{`
+        @keyframes shimmer {
+          100% {
+            transform: translateX(100%);
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -190,43 +253,35 @@ function SearchResultsContent() {
       .map(([tag]) => tag);
   }, [allResources]);
 
+  // 搜索结果（使用 search-utils 评分算法）
   const results = useMemo(() => {
     if (!query.trim()) return [];
-    const q = query.toLowerCase();
     
-    let filtered = allResources.filter((r) => {
-      const text = `${r.name} ${r.url} ${r.description || ""} ${r.categoryName || ""} ${r.category || ""}`.toLowerCase();
-      return text.includes(q);
+    // 使用 searchResources 进行文本匹配 + 评分排序
+    let scored = searchResources(allResources, query, {
+      limit: 500,
+      sourceFilter,
+      categoryFilter,
     });
-
-    // 数据源过滤
-    if (sourceFilter) {
-      filtered = filtered.filter((r) => r.source === sourceFilter);
-    }
-
-    // 分类过滤
-    if (categoryFilter) {
-      filtered = filtered.filter((r) => r.category === categoryFilter || r.categoryName === categoryFilter);
-    }
 
     // GitHub 数据过滤
     if (githubFilter === "hasgithub") {
-      filtered = filtered.filter((r) => r.githubStars && r.githubStars > 0);
+      scored = scored.filter((r) => r.githubStars && r.githubStars > 0);
     } else if (githubFilter === "nogithub") {
-      filtered = filtered.filter((r) => !r.githubStars || r.githubStars === 0);
+      scored = scored.filter((r) => !r.githubStars || r.githubStars === 0);
     }
 
     // 开源过滤
     if (openSourceFilter === "opensource") {
-      filtered = filtered.filter((r) => r.isOpenSource === true);
+      scored = scored.filter((r) => r.isOpenSource === true);
     } else if (openSourceFilter === "commercial") {
-      filtered = filtered.filter((r) => r.isOpenSource !== true);
+      scored = scored.filter((r) => r.isOpenSource !== true);
     }
 
     // 更新频率过滤
     if (updateFrequencyFilter !== "all") {
-      filtered = filtered.filter((r) => {
-        if (!r.githubLastUpdated) return false;
+      scored = scored.filter((r) => {
+        if (!r.githubLastUpdated || typeof r.githubLastUpdated !== "string") return false;
         const lastUpdated = new Date(r.githubLastUpdated);
         const daysSince = Math.floor((Date.now() - lastUpdated.getTime()) / (1000 * 60 * 60 * 24));
         if (updateFrequencyFilter === "recent") return daysSince <= 30;
@@ -238,20 +293,21 @@ function SearchResultsContent() {
 
     // 标签过滤
     if (selectedTags.length > 0) {
-      filtered = filtered.filter((r) => 
-        r.tags && selectedTags.some(tag => r.tags?.includes(tag))
-      );
+      scored = scored.filter((r) => {
+        const tags = r.tags;
+        return tags && Array.isArray(tags) && selectedTags.some(tag => tags.includes(tag));
+      });
     }
 
-    // 排序
+    // 最终排序
     if (sortBy === "stars") {
-      filtered.sort((a, b) => (b.githubStars || 0) - (a.githubStars || 0));
+      scored.sort((a, b) => (b.githubStars || 0) - (a.githubStars || 0));
     } else if (sortBy === "name") {
-      filtered.sort((a, b) => a.name.localeCompare(b.name));
+      scored.sort((a, b) => a.name.localeCompare(b.name));
     }
-    // relevance 排序保持默认（按搜索匹配度）
+    // relevance：已按 score 排好序（searchResources 内部已排序）
 
-    return filtered;
+    return scored;
   }, [allResources, query, sourceFilter, categoryFilter, githubFilter, openSourceFilter, updateFrequencyFilter, selectedTags, sortBy]);
 
   // Count by source
@@ -270,6 +326,18 @@ function SearchResultsContent() {
     [router],
   );
 
+  // Ctrl+K / Cmd+K 快捷键聚焦搜索框
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        document.getElementById("main-search-input")?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <>
       <section className="border-b bg-muted/30 py-12">
@@ -286,6 +354,8 @@ function SearchResultsContent() {
               className="max-w-2xl"
               value={query}
               onSearch={handleSearch}
+              inputId="main-search-input"
+              resources={allResources}
             />
             {/* 最近搜索 */}
             {!loading && !query && recentSearches.length > 0 && (
@@ -335,11 +405,24 @@ function SearchResultsContent() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {loading && <SearchSkeleton />}
           {!loading && query && (
-            <div className="mb-6 space-y-3">
+            <motion.div
+              className="mb-6 space-y-3"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
               <div className="flex items-center justify-between gap-2 flex-wrap">
                 <p className="text-muted-foreground">
                   <span className="font-semibold text-foreground">{results.length}</span> results
                   {query && <span> for &quot;{query}&quot;</span>}
+                  {/* 显示匹配原因统计 */}
+                  {results.length > 0 && (
+                    <span className="text-xs ml-2 text-muted-foreground">
+                      ({results.filter(r => r._matchReason?.includes("Exact name match")).length} exact,{" "}
+                      {results.filter(r => r._matchReason?.includes("Name contains query")).length} name,{" "}
+                      {results.filter(r => r._matchReason?.includes("Description match")).length} description)
+                    </span>
+                  )}
                 </p>
                 {/* 排序下拉 */}
                 <select
@@ -454,17 +537,40 @@ function SearchResultsContent() {
                   </div>
                 </div>
               )}
-            </div>
+            </motion.div>
           )}
           {!loading && query && results.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground mb-4">No resources found for "{query}"</p>
-              <p className="text-sm text-muted-foreground mb-6">
-                Try different keywords or browse categories
+            <motion.div
+              className="text-center py-16"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              {/* 空状态图标 */}
+              <div className="mb-6 text-6xl">🔍</div>
+              
+              <h3 className="text-xl font-semibold mb-2">No results found</h3>
+              <p className="text-muted-foreground mb-2">
+                No resources found for "<span className="font-medium text-foreground">{query}</span>"
               </p>
-              {/* Show popular searches as suggestions */}
-              <div className="max-w-md mx-auto">
-                <p className="text-sm font-medium mb-3">Popular searches:</p>
+              <p className="text-sm text-muted-foreground mb-8">
+                Try adjusting your search or filters to find what you're looking for
+              </p>
+
+              {/* 搜索提示 */}
+              <div className="max-w-md mx-auto mb-8 text-left">
+                <p className="text-sm font-medium mb-3">💡 Search tips:</p>
+                <ul className="text-sm text-muted-foreground space-y-1.5">
+                  <li>• Try different or more general keywords</li>
+                  <li>• Check for typos in your search</li>
+                  <li>• Remove filters to broaden results</li>
+                  <li>• Search by category name or tool type</li>
+                </ul>
+              </div>
+              
+              {/* 热门搜索建议 */}
+              <div className="max-w-md mx-auto mb-6">
+                <p className="text-sm font-medium mb-3">🔥 Popular searches:</p>
                 <div className="flex gap-2 flex-wrap justify-center">
                   {POPULAR_SEARCHES.slice(0, 6).map((term) => (
                     <Badge
@@ -480,23 +586,63 @@ function SearchResultsContent() {
                   ))}
                 </div>
               </div>
-            </div>
+
+              {/* 浏览建议 */}
+              <div className="flex gap-3 justify-center">
+                <Button
+                  variant="outline"
+                  onClick={() => router.push("/directory/categories")}
+                >
+                  Browse Categories
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => router.push("/directory")}
+                >
+                  View All Resources
+                </Button>
+              </div>
+            </motion.div>
           )}
           {!loading && results.length > 0 && (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {results.map((resource) => (
-                <ResourceCard
+            <motion.div
+              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              variants={containerVariants}
+              initial="hidden"
+              animate="show"
+            >
+              {results.map((resource, index) => (
+                <motion.div
                   key={resource.id}
-                  resource={resource}
-                  showCategory={true}
-                />
+                  variants={itemVariants}
+                  custom={index}
+                  className="relative"
+                >
+                  <ResourceCard
+                    resource={{ ...resource, category: resource.category || "" } as Resource}
+                    showCategory={true}
+                    highlightQuery={query}
+                  />
+                  {/* 显示匹配原因 */}
+                  {resource._matchReason && (
+                    <div className="absolute top-2 right-2 text-xs text-muted-foreground bg-background/80 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                      {resource._matchReason}
+                    </div>
+                  )}
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
           {!loading && !query && (
-            <div className="text-center py-12 text-muted-foreground">
-              Enter keywords to search across all 10,000+ resources
-            </div>
+            <motion.div
+              className="text-center py-12 text-muted-foreground"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <p className="text-lg mb-2">🔍 Start searching</p>
+              <p className="text-sm">Enter keywords to search across all 10,000+ resources</p>
+            </motion.div>
           )}
         </div>
       </section>
