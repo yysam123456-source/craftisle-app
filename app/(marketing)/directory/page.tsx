@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
 import { ArrowRight, GitCompareArrows, TrendingUp, Shuffle } from "lucide-react";
