@@ -1,141 +1,166 @@
 import Link from "next/link";
-import { getAllResources, getRichInfoResourceIds } from "@/lib/fmhy-data";
-import { ArrowRight, PenTool, Code, Palette, Megaphone, BookOpen } from "lucide-react";
+import { getAllResources, getRichInfoResourceIds, getAllCategories } from "@/lib/fmhy-data";
+import { ArrowRight, PenTool, Code, Palette, Megaphone, BookOpen, Wrench, Music, Gamepad, Heart } from "lucide-react";
 
 /**
- * By Use Case — 任务导向的工具浏览
- * 对标 TAAFT (Thousands of AI Tools)
- * 展示 5 个核心 Use Case，每个展示 3-4 个热门工具
+ * By Use Case — 动态生成 Use Case 板块
+ * 从 getAllCategories() 自动归纳 Use Case，不再硬编码
  */
 
-// Use Case 配置 — 每个用例包含精确关键词 + 分类白名单
-const USE_CASES = [
+// Use Case 模板：只定义主题关键词，分类和工具都动态匹配
+const USE_CASE_TEMPLATES = [
   {
     id: "writing",
     title: "Writing & Notes",
     icon: PenTool,
     color: "blue",
-    description: "Notion alternatives, Markdown editors, note-taking apps",
-    // 精确匹配：优先匹配这些具体工具名/产品名
-    primaryKeywords: ["notion", "obsidian", "logseq", "joplin", "standard notes", "appflowy", "siyuan", "affine"],
-    // 宽泛匹配：用于补充结果（需要更高的相关性）
-    secondaryKeywords: ["markdown editor", "note taking", "note-taking", "knowledge base", "wiki"],
-    // 偏好分类（来自 unified-categories 的 categoryId）
-    preferredCategories: [],
+    keywords: ["note", "markdown", "wiki", "knowledge", "writing", "document", "notebook", "obsidian", "notion", "logseq", "joplin"],
   },
   {
     id: "coding",
     title: "Development & DevOps",
     icon: Code,
     color: "purple",
-    description: "VS Code extensions, GitHub alternatives, self-hosted CI/CD",
-    primaryKeywords: ["vscode", "github", "gitlab", "docker", "kubernetes", "vs code", "cursor", "windsurf", "jetbrains", "intellij"],
-    secondaryKeywords: ["ide", "code editor", "ci/cd", "devops", "version control", "source control"],
-    preferredCategories: [],
+    keywords: ["code", "ide", "editor", "git", "devops", "ci/cd", "docker", "kubernetes", "api", "sdk", "framework", "vscode", "jetbrains"],
   },
   {
     id: "design",
     title: "Design & Creative",
     icon: Palette,
     color: "pink",
-    description: "Figma alternatives, open-source design tools, Image editors",
-    primaryKeywords: ["figma", "gimp", "inkscape", "canva", "penpot", "photopea", "excalidraw", "tldraw"],
-    secondaryKeywords: ["design tool", "ui design", "image editor", "graphic design", "wireframe", "prototype"],
-    preferredCategories: [],
+    keywords: ["design", "ui", "ux", "figma", "graphic", "image", "photo", "video", "animation", "prototype", "wireframe", "draw"],
   },
   {
     id: "marketing",
     title: "Marketing & Growth",
     icon: Megaphone,
     color: "orange",
-    description: "Free CRM, email marketing, SEO tools, social media management",
-    primaryKeywords: ["mailchimp", "hubspot", "crm", "mailchimp", "sendgrid", "hootsuite", "buffer", "zapier", "n8n", "metabase"],
-    secondaryKeywords: ["email marketing", "seo tool", "social media", "analytics", "automation", "newsletter"],
-    preferredCategories: [],
+    keywords: ["marketing", "seo", "email", "crm", "analytics", "social", "newsletter", "automation", "zapier", "n8n", "hubspot"],
   },
   {
     id: "learning",
     title: "Learning & Education",
     icon: BookOpen,
     color: "green",
-    description: "Free courses, tutorials, documentation, e-learning platforms",
-    primaryKeywords: ["freecodecamp", "coursera", "edx", "khan academy", "udemy", "codecademy", "odin project", "brave browser"],
-    secondaryKeywords: ["e-learning", "online course", "programming tutorial", "mooc", "documentation platform"],
-    // 教育类资源在 FMHY 中主要分布在 Reading 和 Educational 分类
-    preferredCategories: ["Reading", "Educational"],
+    keywords: ["learn", "course", "tutorial", "education", "documentation", "ebook", "mooc", "freecodecamp", "coursera"],
+  },
+  {
+    id: "devops",
+    title: "Self-Hosting & DevOps",
+    icon: Wrench,
+    color: "slate",
+    keywords: ["self-host", "docker", "homelab", "server", "nas", "backup", "monitor", "dashboard", "linux", "deployment"],
+  },
+  {
+    id: "media",
+    title: "Media & Entertainment",
+    icon: Music,
+    color: "violet",
+    keywords: ["music", "video", "stream", "media", "player", "podcast", "audio", "movie", "game"],
+  },
+  {
+    id: "privacy",
+    title: "Privacy & Security",
+    icon: Heart,
+    color: "red",
+    keywords: ["privacy", "security", "encrypt", "password", "vpn", "auth", "2fa", "firewall", "antivirus"],
   },
 ];
 
-// 颜色映射
-const COLOR_CLASSES = {
+const COLOR_CLASSES: Record<string, string> = {
   blue: "border-blue-200 bg-blue-50/50 hover:bg-blue-100/50 dark:border-blue-800 dark:bg-blue-900/20",
   purple: "border-purple-200 bg-purple-50/50 hover:bg-purple-100/50 dark:border-purple-800 dark:bg-purple-900/20",
   pink: "border-pink-200 bg-pink-50/50 hover:bg-pink-100/50 dark:border-pink-800 dark:bg-pink-900/20",
   orange: "border-orange-200 bg-orange-50/50 hover:bg-orange-100/50 dark:border-orange-800 dark:bg-orange-900/20",
   green: "border-green-200 bg-green-50/50 hover:bg-green-100/50 dark:border-green-800 dark:bg-green-900/20",
+  slate: "border-slate-200 bg-slate-50/50 hover:bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/20",
+  violet: "border-violet-200 bg-violet-50/50 hover:bg-violet-100/50 dark:border-violet-800 dark:bg-violet-900/20",
+  red: "border-red-200 bg-red-50/50 hover:bg-red-100/50 dark:border-red-800 dark:bg-red-900/20",
 };
 
+/**
+ * 动态匹配：从实际分类中找出和模板关键词匹配的分类名称
+ */
+function matchCategoriesToTemplate(templateKeywords: string[], allCategories: any[]): string[] {
+  const matched: string[] = [];
+  const lowerKws = templateKeywords.map(k => k.toLowerCase());
+  
+  for (const cat of allCategories) {
+    const catName = (cat.name || cat.id || "").toLowerCase();
+    // 分类名称包含任意关键词即匹配
+    if (lowerKws.some(kw => catName.includes(kw))) {
+      matched.push(cat.name || cat.id);
+    }
+  }
+  return matched;
+}
+
+/**
+ * 动态生成 Use Case 列表（只保留有内容的）
+ */
+function generateUseCases() {
+  const allResources = getAllResources();
+  const allCategories = getAllCategories();
+  const richSet = new Set(getRichInfoResourceIds());
+
+  return USE_CASE_TEMPLATES
+    .map(template => {
+      // 动态匹配相关分类
+      const matchedCategories = matchCategoriesToTemplate(template.keywords, allCategories);
+      
+      // 动态匹配相关工具
+      const scored = allResources
+        .map(r => {
+          const searchText = `${r.name} ${(r.description || "")}`.toLowerCase();
+          const catName = (r.categoryName || r.category || "").toLowerCase();
+          let score = 0;
+
+          // 名称精确匹配关键词 → 高权重
+          for (const kw of template.keywords) {
+            if (r.name?.toLowerCase() === kw) { score += 100; break; }
+            if (r.name?.toLowerCase().includes(kw)) { score += 50; break; }
+          }
+          // 描述匹配
+          for (const kw of template.keywords) {
+            if (searchText.includes(kw)) { score += 15; break; }
+          }
+          // 分类匹配
+          if (matchedCategories.some(c => catName.includes(c.toLowerCase()))) {
+            score += 20;
+          }
+
+          return { resource: r, score };
+        })
+        .filter(item => item.score > 0)
+        .sort((a, b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          const aRich = richSet.has(a.resource.id) ? 1 : 0;
+          const bRich = richSet.has(b.resource.id) ? 1 : 0;
+          if (aRich !== bRich) return bRich - aRich;
+          return (b.resource.githubStars || 0) - (a.resource.githubStars || 0);
+        })
+        .slice(0, 4)
+        .map(item => ({
+          ...item.resource,
+          _hasRichInfo: richSet.has(item.resource.id),
+        }));
+
+      return {
+        ...template,
+        preferredCategories: matchedCategories,
+        tools: scored,
+      };
+    })
+    // 只保留有工具的 Use Case
+    .filter(uc => uc.tools.length > 0)
+    // 最多显示 6 个
+    .slice(0, 6);
+}
+
 export function ByUseCase() {
-  // 为每个 Use Case 获取相关工具
-  const useCasesWithTools = USE_CASES.map(useCase => {
-    const resources = getAllResources();
-    const richSet = getRichInfoResourceIds();
+  const useCases = generateUseCases();
 
-    // 改进的匹配逻辑：
-    // 1. primaryKeywords 精确匹配（产品名）— 高权重
-    // 2. secondaryKeywords 宽泛匹配（描述性词）— 低权重
-    // 3. preferredCategories 分类白名单 — 额外加权
-    const scored = resources
-      .map(r => {
-        const searchText = `${r.name} ${r.description}`.toLowerCase();
-        const catName = (r.categoryName || r.category || "").toLowerCase();
-        let score = 0;
-        let matchType = "";
-
-        // Primary keywords: 精确产品名匹配（高权重）
-        for (const kw of useCase.primaryKeywords) {
-          if (r.name.toLowerCase() === kw) { score += 100; matchType = "exact"; }
-          else if (r.name.toLowerCase().includes(kw)) { score += 60; matchType = "primary"; }
-          else if (searchText.includes(kw)) { score += 20; matchType = matchType || "primary-desc"; }
-        }
-
-        // Secondary keywords: 描述性匹配（低权重，避免误匹配）
-        if (score === 0) {
-          for (const kw of useCase.secondaryKeywords) {
-            if (searchText.includes(kw)) { score += 8; matchType = "secondary"; }
-            // 如果 secondary keyword 出现在名称中，稍微加一点分
-            if (r.name.toLowerCase().includes(kw.split(" ")[0])) { score += 5; }
-          }
-        }
-
-        // Preferred category bonus
-        if (useCase.preferredCategories.length > 0 && score > 0) {
-          for (const pc of useCase.preferredCategories) {
-            if (catName.includes(pc.toLowerCase())) { score += 15; break; }
-          }
-        }
-
-        return { resource: r, score, matchType };
-      })
-      .filter(item => item.score > 0)
-      .sort((a, b) => {
-        // 先按分数排序
-        if (b.score !== a.score) return b.score - a.score;
-        // 同分时优先有丰富信息的
-        const aRich = richSet.has(a.resource.id) ? 1 : 0;
-        const bRich = richSet.has(b.resource.id) ? 1 : 0;
-        if (aRich !== bRich) return bRich - aRich;
-        // 再按 GitHub Stars
-        return (b.resource.githubStars || 0) - (a.resource.githubStars || 0);
-      })
-      .slice(0, 4)
-      .map(item => ({ ...item.resource, _hasRichInfo: richSet.has(item.resource.id) }));
-
-    return {
-      ...useCase,
-      tools: scored,
-    };
-  });
+  if (!useCases.length) return null;
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8">
@@ -152,10 +177,13 @@ export function ByUseCase() {
 
         {/* Use Case Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {useCasesWithTools.map(useCase => {
+          {useCases.map(useCase => {
             const Icon = useCase.icon;
             const colorClass = COLOR_CLASSES[useCase.color] || COLOR_CLASSES.blue;
-            
+
+            // View All 链接：用第一个关键词搜索
+            const searchQuery = useCase.keywords.slice(0, 3).join(" ");
+
             return (
               <div
                 key={useCase.id}
@@ -172,18 +200,13 @@ export function ByUseCase() {
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {useCase.description}
-                </p>
-
                 {/* Tool List */}
                 <div className="space-y-2">
-                  {useCase.tools.slice(0, 3).map(tool => {
+                  {useCase.tools.slice(0, 4).map(tool => {
                     const href = tool._hasRichInfo
                       ? `/directory/resource/${tool.id}`
                       : tool.url || '#';
-                    
+
                     return (
                       <Link
                         key={tool.id}
@@ -204,9 +227,9 @@ export function ByUseCase() {
                   })}
                 </div>
 
-                {/* View All Link — 只用 primaryKeywords 搜索，避免太宽泛导致 0 结果 */}
+                {/* View All Link */}
                 <Link
-                  href={`/directory/search?q=${encodeURIComponent(useCase.primaryKeywords.join(" "))}`}
+                  href={`/directory/search?q=${encodeURIComponent(searchQuery)}`}
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline mt-3"
                 >
                   View All
