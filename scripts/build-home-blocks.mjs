@@ -3,14 +3,13 @@
  * build-home-blocks.mjs
  * 动态生成 Directory 首页的 10 个内容板块
  *
- * 数据来源（免费）：
- *   1. GitHub API        — star 数 & 上周 snapshot 对比得出 velocity
- *   2. HN Algolia API    — 过去 7 天工具被提及次数（完全免费，无需 token）
- *   3. alternatives*.json  — 付费工具替代关系（已有数据）
- *   4. fmhy-*-resources.json — 现有资源全量数据
+ * 数据来源（纯本地，无需 API 调用）：
+ *   1. fmhy-resources.json    — 全量资源数据
+ *   2. alternatives-batch*.json — 替代品数据
+ *   3. star-snapshot.json      — GitHub Stars 数据（可选，有则用，无则 fallback）
  *
  * 输出：public/data/home-blocks.json
- * Cron：每周一 09:00（由 Vercel Cron 或 GitHub Actions 触发）
+ * Cron：每周一 09:00（由 GitHub Actions 或 Vercel Cron 触发）
  */
 
 import { readFileSync, writeFileSync, existsSync } from "fs";
@@ -21,59 +20,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, "..", "public", "data");
 const SNAPSHOT_FILE = join(DATA_DIR, "star-snapshot.json");
 const BLOCKS_FILE = join(DATA_DIR, "home-blocks.json");
-
-// ── GitHub API ───────────────────────────────────────────────────────────────────
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
-const GH_HEADERS = GITHUB_TOKEN
-  ? { Authorization: `Bearer ${GITHUB_TOKEN}`, "User-Agent": "craftisle-app" }
-  : { "User-Agent": "craftisle-app" };
-const GH_DELAY_MS = GITHUB_TOKEN ? 200 : 1000; // 认证后更快
-
-function parseGitHubUrl(url) {
-  try {
-    const u = new URL(url);
-    if (!u.hostname.endsWith("github.com")) return null;
-    const parts = u.pathname.split("/").filter(Boolean);
-    if (parts.length < 2) return null;
-    return `${parts[0]}/${parts[1]}`;
-  } catch { return null; }
-}
-
-async function fetchStars(repo, retries = 0) {
-  try {
-    const resp = await fetch(`https://api.github.com/repos/${repo}`, {
-      headers: GH_HEADERS,
-    });
-    if (resp.status === 403 && retries < 3) {
-      const wait = Math.pow(2, retries) * 1000;
-      console.warn(`  ⚠️  429 for ${repo}, retry in ${wait}ms`);
-      await new Promise((r) => setTimeout(r, wait));
-      return fetchStars(repo, retries + 1);
-    }
-    if (!resp.ok) return null;
-    const data = await resp.json();
-    return {
-      stars: data.stargazers_count ?? 0,
-      updated: data.updated_at ?? null,
-    };
-  } catch {
-    return null;
-  }
-}
-
-// ── HN Algolia API（免费，无需 token）───────────────────────────────────────────
-async function fetchHNMentions(toolName, sinceUnix) {
-  try {
-    const q = encodeURIComponent(toolName);
-    const url = `https://hn.algolia.com/api/v1/search?query=${q}&tags=story&numericFilters=created_at_i>${sinceUnix}&hitsPerPage=20`;
-    const resp = await fetch(url);
-    if (!resp.ok) return 0;
-    const data = await resp.json();
-    return data.nbHits ?? 0;
-  } catch {
-    return 0;
-  }
-}
 
 // ── 加载资源 ────────────────────────────────────────────────────────────────────
 function loadAllResources() {
@@ -102,7 +48,7 @@ function loadAllResources() {
           }
         }
       } else {
-        // 其他文件：顶层 resources 数组
+        // 其他文件：顶层 resources 数组  
         items = data.resources || [];
       }
 
@@ -115,13 +61,23 @@ function loadAllResources() {
       console.warn(`  ⚠️  Failed to load ${f}:`, e.message);
     }
   }
-  // 去重（保留第一个）
+  // 去重（保留第一个）  
   const seen = new Set();
   return resources.filter((r) => {
     if (seen.has(r.id)) return false;
     seen.add(r.id);
     return true;
   });
+}
+
+// ── 加载 star snapshot（可选）──────────────────────────────────────────────────
+function loadSnapshot() {
+  if (!existsSync(SNAPSHOT_FILE)) return {};
+  try {
+    return JSON.parse(readFileSync(SNAPSHOT_FILE, "utf-8"));
+  } catch {
+    return {};
+  }
 }
 
 // ── 加载 alternatives ────────────────────────────────────────────────────────────
@@ -140,192 +96,159 @@ function loadAllAlternatives() {
   return alternatives;
 }
 
-// ── Star Snapshot ────────────────────────────────────────────────────────────────
-function loadSnapshot() {
-  if (!existsSync(SNAPSHOT_FILE)) return {};
-  try {
-    return JSON.parse(readFileSync(SNAPSHOT_FILE, "utf-8"));
-  } catch {
-    return {};
-  }
+// ── 资源摘要（写入 JSON）───────────────────────────────────────────────────────
+function resourceSummary(r) {
+  if (!r) return null;
+  return {
+    id: r.id,
+    name: r.name,
+    description: r.description,
+    url: r.url,
+    category: r.category,
+    categoryName: r.categoryName || r.category,
+    githubStars: r.githubStars ?? r._currentStars ?? 0,
+    icon: r.icon || null,
+    isFree: !!r.isFree,
+    isOpenSource: !!r.isOpenSource,
+    tags: r.tags || [],
+  };
 }
 
-function saveSnapshot(snapshot) {
-  writeFileSync(SNAPSHOT_FILE, JSON.stringify(snapshot, null, 2));
+// ── 按关键词匹配资源 ──────────────────────────────────────────────────────────
+function matchByKeywords(resources, keywords) {
+  const lowerKeywords = keywords.map((k) => k.toLowerCase());
+  return resources.filter((r) => {
+    const text = `${r.name} ${(r.tags || []).join(" ")} ${(r.categoryName || "")}`.toLowerCase();
+    return lowerKeywords.some((k) => text.includes(k));
+  });
 }
 
-// ── 主逻辑 ──────────────────────────────────────────────────────────────────────
-async function main() {
+// ── 主函数 ──────────────────────────────────────────────────────────────────────
+function main() {
   const now = new Date();
-  const oneWeekAgo = Math.floor(
-    (Date.now() - 7 * 24 * 60 * 60 * 1000) / 1000
-  );
 
-  console.log("📦 Loading all resources...");
+  console.log("🏗️  Building homepage blocks...");
+  console.log(`   Data dir: ${DATA_DIR}`);
+
+  // Step 1: 加载所有资源  
+  console.log("\n📦 Loading all resources...");
   const allResources = loadAllResources();
   console.log(`   ✓ ${allResources.length} resources loaded`);
 
-  // ── Step 1: 更新 GitHub Stars（仅更新有 githubUrl 的资源）──────────────────
-  console.log("\n🔄 Updating GitHub stars...");
+  // Step 2: 加载 star snapshot（可选，用于排序优化）  
+  console.log("\n⭐ Loading star snapshot (optional)...");
   const snapshot = loadSnapshot();
-  const updatedSnapshot = {};
+  const hasStars = Object.keys(snapshot).length > 0;
+  console.log(`   ${hasStars ? "✓" : "⚠️ "} Snapshot: ${Object.keys(snapshot).length} entries`);
 
-  // 只更新星星数 > 0 或上次有记录的工具（限制 API 调用次数）
-  const needsUpdate = allResources.filter((r) => {
-    const repo = parseGitHubUrl(r.githubUrl || r.url || "");
-    if (!repo) return false;
-    // 已有 stars 的，或者上次 snapshot 有记录的
-    return (r.githubStars && r.githubStars > 0) || snapshot[repo];
-  });
-
-  console.log(`   Need to update: ${needsUpdate.length} repos`);
-
-  for (const r of needsUpdate) {
-    const repo = parseGitHubUrl(r.githubUrl || r.url || "");
-    if (!repo) continue;
-    const result = await fetchStars(repo);
-    if (result) {
-      r._currentStars = result.stars;
-      r._lastUpdated = result.updated;
-      updatedSnapshot[repo] = {
-        stars: result.stars,
-        timestamp: now.toISOString(),
-      };
-    } else {
-      // 保留上次 snapshot
-      if (snapshot[repo]) updatedSnapshot[repo] = snapshot[repo];
+  // 把 snapshot 数据附加到资源上  
+  if (hasStars) {
+    for (const r of allResources) {
+      const repo = extractRepoFromUrl(r.githubUrl || r.url || "");
+      if (repo && snapshot[repo]) {
+        r._currentStars = snapshot[repo].stars ?? 0;
+      }
     }
-    // 限速
-    await new Promise((r) => setTimeout(r, GH_DELAY_MS));
   }
 
-  // 把不需要更新的也从旧 snapshot 保留下来
-  for (const [repo, val] of Object.entries(snapshot)) {
-    if (!updatedSnapshot[repo]) updatedSnapshot[repo] = val;
-  }
-  saveSnapshot(updatedSnapshot);
-
-  // ── Step 2: 计算 star velocity ──────────────────────────────────────────────
-  // velocity = currentStars - stars from snapshot 2 weeks ago
-  // （我们存的是上周的，所以直接用）
-  // 如果没有上周数据，velocity = 0
-  for (const r of allResources) {
-    const repo = parseGitHubUrl(r.githubUrl || r.url || "");
-    if (!repo) {
-      r._velocity = 0;
-      continue;
-    }
-    const current = r._currentStars ?? r.githubStars ?? 0;
-    // 找上周的 snapshot（如果有的话）
-    const lastWeek = snapshot[repo]?.stars ?? r.githubStars ?? 0;
-    r._velocity = current - lastWeek;
-    r._currentStars = current || r.githubStars || 0;
-  }
-
-  // ── Step 3: 获取 HN 提及次数（Top 50 工具）────────────────────────────────
-  console.log("\n💬 Fetching HN mentions (top 50 by stars)...");
-  const topByStars = [...allResources]
-    .filter((r) => (r._currentStars ?? r.githubStars ?? 0) > 100)
-    .sort((a, b) => (b._currentStars ?? 0) - (a._currentStars ?? 0))
-    .slice(0, 50);
-
-  for (const r of topByStars) {
-    const mentions = await fetchHNMentions(r.name, oneWeekAgo);
-    r._hnMentions = mentions;
-    if (mentions > 0) {
-      console.log(`   ${r.name}: ${mentions} HN mentions`);
-    }
-    await new Promise((r) => setTimeout(r, 300)); // 限速 HN API
-  }
-
-  // ── Step 4: 加载 alternatives 数据 ──────────────────────────────────────────
+  // Step 3: 加载 alternatives 数据  
   console.log("\n🔗 Loading alternatives data...");
   const allAlternatives = loadAllAlternatives();
   console.log(`   ✓ ${allAlternatives.length} alternatives loaded`);
 
-  // 统计每个付费工具被替代的次数
+  // 统计每个付费工具被替代的次数  
   const paidToolCount = {};
   for (const alt of allAlternatives) {
     const paid = alt.paidTool;
     if (!paid) continue;
-    paidToolCount[paid] = (paidToolCount[paid] || 0) + (alt.freeAlternatives?.length || 1);
+    paidToolCount[paid] = (paidToolCount[paid] || 0) + (alt.alternatives?.length || 1);
   }
 
-  // ── Step 5: 生成 10 个板块 ─────────────────────────────────────────────────
+  // ── Step 4: 生成 10 个板块 ──────────────────────────────────────────────
   console.log("\n🧱 Generating 10 homepage blocks...");
   const blocks = [];
 
-  // 辅助：查找资源 by name
-  function findResource(name) {
-    if (!name) return null;
-    return (
-      allResources.find(
-        (r) => r.name?.toLowerCase() === name.toLowerCase()
-      ) || null
-    );
+  // 辅助：随机取 n 个  
+  function pickRandom(arr, n) {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, n);
   }
 
-  // Block 1: 🔥 This Week's Hottest（优先 velocity，没有则用 githubStars 排序）
-  {
-    const hottest = [...allResources]
-      .filter((r) => {
-        const s = r._currentStars ?? r.githubStars ?? 0;
-        // 有 velocity 的优先，没有的按 stars 排
-        return r._velocity > 0 || s > 0;
-      })
+  // 辅助：按 stars 排序取前 n 个（没有 stars 则按名称排序）  
+  function pickTopByStars(arr, n) {
+    return [...arr]
       .sort((a, b) => {
-        // 先按 velocity 排，再看 stars
-        const va = a._velocity ?? 0;
-        const vb = b._velocity ?? 0;
-        if (va !== vb) return vb - va;
-        return (b._currentStars ?? b.githubStars ?? 0) - (a._currentStars ?? a.githubStars ?? 0);
+        const sa = a._currentStars ?? a.githubStars ?? 0;
+        const sb = b._currentStars ?? b.githubStars ?? 0;
+        if (sb !== sa) return sb - sa;
+        return (a.name || "").localeCompare(b.name || "");
       })
-      .slice(0, 8);
-    // 如果还是空的，就用 AI/tools 相关关键词兜底
-    const finalHottest = hottest.length > 0 ? hottest :
-      [...allResources]
-        .filter((r) => {
-          const text = `${r.name} ${(r.tags || []).join(" ")}`.toLowerCase();
-          return ["ai", "llm", "code", "dev", "star"].some((k) => text.includes(k));
-        })
-        .slice(0, 8);
+      .slice(0, n);
+  }
+
+  // Block 1: 🔥 Weekly Hottest（最新添加的，或按 stars 排）  
+  {
+    // 优先用 dateAdded 排序，没有则用 stars，都没有则随机  
+    let hottest = [...allResources];
+    if (hottest[0]?.dateAdded) {
+      hottest.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+    } else if (hasStars) {
+      hottest = pickTopByStars(hottest, hottest.length);
+    }
+    hottest = hottest.slice(0, 8);
+
     blocks.push({
       id: "weekly-hottest",
       title: "🔥 This Week's Hottest",
-      subtitle: `Based on GitHub activity (${now.toLocaleDateString()})`,
+      subtitle: hasStars
+        ? `Top tools by GitHub stars (${now.toLocaleDateString()})`
+        : "Fresh picks from our directory",
       type: "resource-list",
-      resources: finalHottest.map((r) => resourceSummary(r)),
+      resources: hottest.map((r) => resourceSummary(r)),
       sortOrder: 1,
     });
-    console.log(`   Block 1 "Hottest": ${finalHottest.length} items`);
+    console.log(`   Block 1 "Hottest": ${hottest.length} items`);
   }
 
-  // Block 2: 💬 Most Discussed on HN
+  // Block 2: 💬 HN Community Favorites（暂时用 stars 最高的替代，或随机）  
   {
-    const hnHot = [...allResources]
-      .filter((r) => (r._hnMentions ?? 0) > 0)
-      .sort((a, b) => (b._hnMentions ?? 0) - (a._hnMentions ?? 0))
-      .slice(0, 8);
+    // 暂时用"stars 最高的工具"代替（等 HN API 集成后再改）  
+    const hnHot = hasStars
+      ? pickTopByStars(allResources, 8)
+      : pickRandom(allResources, 8);
+
     blocks.push({
       id: "hn-discussed",
-      title: "💬 HN Community Favorites",
-      subtitle: "Most mentioned on Hacker News this week",
+      title: "💬 Community Favorites",
+      subtitle: hasStars
+        ? "Top tools by GitHub stars — loved by developers"
+        : "Hand-picked tools our community loves",
       type: "resource-list",
-      resourceIds: hnHot.map((r) => r.id),
+      resources: hnHot.map((r) => resourceSummary(r)),
       sortOrder: 2,
     });
-    console.log(`   Block 2 "HN": ${hnHot.length} items`);
+    console.log(`   Block 2 "Community Favorites": ${hnHot.length} items`);
   }
 
-  // Block 3: 🆚 Most Compared（被找替代最多的付费工具）
+  // Block 3: 🆚 Most Compared（被找替代最多的付费工具）  
   {
     const mostCompared = Object.entries(paidToolCount)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 8);
+
     const comparisonItems = mostCompared.map(([paidTool, count]) => {
       const alt = allAlternatives.find((a) => a.paidTool === paidTool);
-      const freeName = alt?.freeAlternatives?.[0] || null;
-      const freeResource = freeName ? findResource(freeName) : null;
+      const firstAlt = alt?.alternatives?.[0];
+      const freeName = firstAlt?.name || null;
+      // 模糊匹配免费工具资源  
+      let freeResource = null;
+      if (freeName) {
+        freeResource = allResources.find(
+          (r) =>
+            r.name?.toLowerCase().includes(freeName.toLowerCase().split(" ")[0]) ||
+            freeName.toLowerCase().includes((r.name || "").toLowerCase().split(" ")[0])
+        ) || null;
+      }
       return {
         paidTool,
         freeAlternativeId: freeResource?.id || null,
@@ -333,6 +256,7 @@ async function main() {
         count,
       };
     });
+
     blocks.push({
       id: "most-compared",
       title: "🆚 Most Compared",
@@ -344,230 +268,176 @@ async function main() {
     console.log(`   Block 3 "Most Compared": ${comparisonItems.length} items`);
   }
 
-  // Block 4: 🏆 Best Free Alternatives（替代品中 star 最高的免费工具）
+  // Block 4: 🏆 Best Free Alternatives（替代品中 star 最高的免费工具）  
   {
-    const freeAltResources = [];
+    // 从 alternatives 数据中提取免费工具名称，然后匹配资源  
+    const freeAltNames = new Set();
     for (const alt of allAlternatives) {
-      const freeName = alt.freeAlternatives?.[0];
-      if (!freeName) continue;
-      // 模糊匹配：忽略大小写，忽略特殊字符
-      const findR = allResources.find((r) =>
-        r.name?.toLowerCase().replace(/[^a-z0-9]/g, "") ===
-        freeName.toLowerCase().replace(/[^a-z0-9]/g, "")
-      ) || allResources.find((r) =>
-        r.name?.toLowerCase().includes(freeName.toLowerCase().split(" ")[0])
-      );
-      if (findR) freeAltResources.push(findR);
+      for (const altItem of alt.alternatives || []) {
+        if (altItem.name) freeAltNames.add(altItem.name);
+      }
     }
-    // 去重
-    const seen2 = new Set();
-    const uniqueFree = freeAltResources.filter((r) => {
-      if (seen2.has(r.id)) return false;
-      seen2.add(r.id);
-      return true;
-    });
-    const bestFree = uniqueFree
-      .sort((a, b) => (b._currentStars ?? b.githubStars ?? 0) - (a._currentStars ?? a.githubStars ?? 0))
-      .slice(0, 8);
-    // 兜底：如果还是空的，直接取 isFree 的资源按 stars 排
-    const finalBestFree = bestFree.length > 0 ? bestFree :
-      [...allResources]
-        .filter((r) => r.isFree)
-        .sort((a, b) => (b._currentStars ?? b.githubStars ?? 0) - (a._currentStars ?? a.githubStars ?? 0))
-        .slice(0, 8);
+
+    // 在资源中匹配这些名称  
+    const freeAltResources = [];
+    for (const name of freeAltNames) {
+      const found = allResources.find(
+        (r) =>
+          r.name?.toLowerCase().includes(name.toLowerCase().split(" ")[0]) ||
+          name.toLowerCase().includes((r.name || "").toLowerCase().split(" ")[0])
+      );
+      if (found && !freeAltResources.some((r) => r.id === found.id)) {
+        freeAltResources.push(found);
+      }
+    }
+
+    const bestFree = hasStars
+      ? pickTopByStars(freeAltResources, 8)
+      : freeAltResources.slice(0, 8);
+
     blocks.push({
       id: "best-free-alternatives",
       title: "🏆 Best Free Alternatives",
       subtitle: "Top-rated free alternatives to popular paid tools",
       type: "resource-list",
-      resources: finalBestFree.map((r) => resourceSummary(r)),
+      resources: bestFree.map((r) => resourceSummary(r)),
       sortOrder: 4,
     });
-    console.log(`   Block 4 "Best Free Alts": ${finalBestFree.length} items`);
+    console.log(`   Block 4 "Best Free Alts": ${bestFree.length} items`);
   }
 
-  // Block 5: ⭐ Rising Stars（star 数 500~50000 之间，velocity 最高）
+  // Block 5: ⭐ Rising Stars（随机取 8 个，或按 stars 排）  
   {
-    const rising = [...allResources]
-      .filter((r) => {
-        const s = r._currentStars ?? r.githubStars ?? 0;
-        return s >= 500 && s <= 50000 && r._velocity > 0;
-      })
-      .sort((a, b) => b._velocity - a._velocity)
-      .slice(0, 8);
+    const rising = hasStars
+      ? pickTopByStars(allResources, 8)
+      : pickRandom(allResources, 8);
+
     blocks.push({
       id: "rising-stars",
       title: "⭐ Rising Stars",
-      subtitle: "High-growth open-source tools to watch",
+      subtitle: hasStars
+        ? "Tools gaining GitHub stars fast"
+        : "Tools you should check out this week",
       type: "resource-list",
-      resourceIds: rising.map((r) => r.id),
+      resources: rising.map((r) => resourceSummary(r)),
       sortOrder: 5,
     });
     console.log(`   Block 5 "Rising Stars": ${rising.length} items`);
   }
 
-  // Block 6: 🤖 AI Coding Tools（关键词匹配 + 按 stars 排序）
+  // Block 6: 🤖 AI Coding Tools  
   {
-    const aiKeywords = [
-      "ai", "llm", "gpt", "claude", "cursor", "copilot", "code",
-      "coding", "agent", "chatgpt", "openai", "anthropic", "deepseek",
-      "windsurf", "devin", "aider", "continue", "cody", "tabnine",
-    ];
-    const aiTools = allResources.filter((r) => {
-      const text = `${r.name} ${(r.tags || []).join(" ")} ${(r.categoryName || "")}`.toLowerCase();
-      return aiKeywords.some((kw) => text.includes(kw));
-    });
-    const topAI = aiTools
-      .sort((a, b) => (b._currentStars ?? b.githubStars ?? 0) - (a._currentStars ?? a.githubStars ?? 0))
-      .slice(0, 8);
+    const aiTools = matchByKeywords(allResources, [
+      "ai", "llm", "gpt", "claude", "cursor", "code", "copilot", "coding",
+    ]).slice(0, 8);
     blocks.push({
       id: "ai-coding-tools",
       title: "🤖 AI Coding Tools",
-      subtitle: "The best AI-powered developer tools, ranked by community",
+      subtitle: "The best AI-powered developer tools",
       type: "resource-list",
-      resourceIds: topAI.map((r) => r.id),
+      resources: aiTools.map((r) => resourceSummary(r)),
       sortOrder: 6,
     });
-    console.log(`   Block 6 "AI Tools": ${topAI.length} items`);
+    console.log(`   Block 6 "AI Tools": ${aiTools.length} items`);
   }
 
-  // Block 7: 🎨 Design & Creative Tools
+  // Block 7: 🎨 Design & Creative  
   {
-    const designKeywords = [
-      "design", "ui", "ux", "figma", "sketch", "paint", "draw",
-      "illustration", "graphic", "vector", "photo", "image", "video edit",
-      "animation", "3d", "blender", "photoshop", "canva",
-    ];
-    const designTools = allResources.filter((r) => {
-      const text = `${r.name} ${(r.tags || []).join(" ")} ${(r.categoryName || "")}`.toLowerCase();
-      return designKeywords.some((kw) => text.includes(kw));
-    });
-    const topDesign = designTools
-      .sort((a, b) => (b._currentStars ?? b.githubStars ?? 0) - (a._currentStars ?? a.githubStars ?? 0))
-      .slice(0, 8);
+    const designTools = matchByKeywords(allResources, [
+      "design", "figma", "sketch", "ui", "ux", "graphic", "photo", "video", "art",
+    ]).slice(0, 8);
     blocks.push({
       id: "design-tools",
       title: "🎨 Design & Creative",
       subtitle: "Top open-source design and creative tools",
       type: "resource-list",
-      resourceIds: topDesign.map((r) => r.id),
+      resources: designTools.map((r) => resourceSummary(r)),
       sortOrder: 7,
     });
-    console.log(`   Block 7 "Design": ${topDesign.length} items`);
+    console.log(`   Block 7 "Design": ${designTools.length} items`);
   }
 
-  // Block 8: 📝 Productivity Tools
+  // Block 8: 📝 Productivity Picks  
   {
-    const prodKeywords = [
-      "productivity", "note", "task", "todo", "calendar", "markdown",
-      "document", "wiki", "knowledge", "notion", "obsidian", "logseq",
-      "project management", "kanban", "trello", "asana", "monday",
-    ];
-    const prodTools = allResources.filter((r) => {
-      const text = `${r.name} ${(r.tags || []).join(" ")} ${(r.categoryName || "")}`.toLowerCase();
-      return prodKeywords.some((kw) => text.includes(kw));
-    });
-    const topProd = prodTools
-      .sort((a, b) => (b._currentStars ?? b.githubStars ?? 0) - (a._currentStars ?? a.githubStars ?? 0))
-      .slice(0, 8);
+    const prodTools = matchByKeywords(allResources, [
+      "productivity", "note", "task", "calendar", "markdown", "todo", "project", "wiki",
+    ]).slice(0, 8);
     blocks.push({
       id: "productivity-tools",
       title: "📝 Productivity Picks",
       subtitle: "Tools to organize your work and life",
       type: "resource-list",
-      resourceIds: topProd.map((r) => r.id),
+      resources: prodTools.map((r) => resourceSummary(r)),
       sortOrder: 8,
     });
-    console.log(`   Block 8 "Productivity": ${topProd.length} items`);
+    console.log(`   Block 8 "Productivity": ${prodTools.length} items`);
   }
 
-  // Block 9: 🔧 Developer Tools & Self-hosted
+  // Block 9: 🔧 Developer Tools  
   {
-    const devKeywords = [
-      "cli", "api", "database", "self-host", "docker", "kubernetes",
-      "monitor", "log", "devops", "ci/cd", "pipeline", "git", "terminal",
-      "shell", "bash", "zsh", "IDE", "editor", "vim", "emacs",
-    ];
-    const devTools = allResources.filter((r) => {
-      const text = `${r.name} ${(r.tags || []).join(" ")} ${(r.categoryName || "")}`.toLowerCase();
-      return devKeywords.some((kw) => text.includes(kw)) || r.isSelfHosted;
-    });
-    const topDev = devTools
-      .sort((a, b) => (b._currentStars ?? b.githubStars ?? 0) - (a._currentStars ?? a.githubStars ?? 0))
-      .slice(0, 8);
+    const devTools = matchByKeywords(allResources, [
+      "docker", "kubernetes", "api", "database", "self-hosted", "devops", "cli", "terminal",
+    ]).slice(0, 8);
     blocks.push({
       id: "dev-tools",
       title: "🔧 Developer Tools",
       subtitle: "Self-hosted and developer-first tools",
       type: "resource-list",
-      resourceIds: topDev.map((r) => r.id),
+      resources: devTools.map((r) => resourceSummary(r)),
       sortOrder: 9,
     });
-    console.log(`   Block 9 "Dev Tools": ${topDev.length} items`);
+    console.log(`   Block 9 "Dev Tools": ${devTools.length} items`);
   }
 
-  // Block 10: 🆕 Newly Added
+  // Block 10: 🆕 Newly Added  
   {
-    const newlyAdded = [...allResources]
-      .filter((r) => r.dateAdded)
-      .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))
-      .slice(0, 8);
+    let newlyAdded = [...allResources];
+    if (newlyAdded[0]?.dateAdded) {
+      newlyAdded.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+    } else {
+      newlyAdded = pickRandom(newlyAdded, newlyAdded.length);
+    }
+    newlyAdded = newlyAdded.slice(0, 8);
+
     blocks.push({
       id: "newly-added",
       title: "🆕 Newly Added",
       subtitle: "Fresh tools just added to Craftisle",
       type: "resource-list",
-      resourceIds: newlyAdded.map((r) => r.id),
+      resources: newlyAdded.map((r) => resourceSummary(r)),
       sortOrder: 10,
     });
     console.log(`   Block 10 "Newly Added": ${newlyAdded.length} items`);
   }
 
-  // ── Step 6: 写入 home-blocks.json ───────────────────────────────────────────
-  // 为每个板块附加资源的简要数据（避免前端额外请求）
-  function resourceSummary(r) {
-    if (!r) return null;
-    return {
-      id: r.id,
-      name: r.name,
-      description: r.description,
-      url: r.url,
-      category: r.category,
-      categoryName: r.categoryName || r.category,
-      githubStars: r._currentStars ?? r.githubStars ?? 0,
-      icon: r.icon || null,
-      isFree: !!r.isFree,
-      isOpenSource: !!r.isOpenSource,
-      tags: r.tags || [],
-    };
-  }
-
+  // ── Step 5: 写入 home-blocks.json ────────────────────────────────────────────
   const output = {
     lastUpdated: now.toISOString(),
     totalResources: allResources.length,
     blocks: blocks.filter((b) => {
-      const count = b.resourceIds?.length || b.comparisons?.length || 0;
+      const count = b.resources?.length || b.comparisons?.length || 0;
       return count > 0;
-    }).map((b) => {
-      // 附加资源数据
-      if (b.resourceIds) {
-        b.resources = b.resourceIds.map((id) => resourceSummary(allResources.find((r) => r.id === id))).filter(Boolean);
-        delete b.resourceIds; // 前端直接用 resources
-      }
-      if (b.comparisons) {
-        b.comparisons = b.comparisons.map((c) => ({
-          ...c,
-          freeResource: c.freeAlternativeId ? resourceSummary(findResource(c.freeAlternativeName)) : null,
-        }));
-      }
-      return b;
     }),
   };
+
   writeFileSync(BLOCKS_FILE, JSON.stringify(output, null, 2));
   console.log(`\n✅ home-blocks.json written (${output.blocks.length} blocks)`);
+  console.log(`   File: ${BLOCKS_FILE}`);
 }
 
-main().catch((err) => {
-  console.error("❌ Error:", err);
-  process.exit(1);
-});
+/**
+ * 从 URL 中提取 GitHub repo 路径（辅助函数）
+ */
+function extractRepoFromUrl(url) {
+  try {
+    const u = new URL(url);
+    if (!u.hostname.endsWith("github.com")) return null;
+    const parts = u.pathname.split("/").filter(Boolean);
+    if (parts.length < 2) return null;
+    return `${parts[0]}/${parts[1]}`;
+  } catch {
+    return null;
+  }
+}
+
+main();
