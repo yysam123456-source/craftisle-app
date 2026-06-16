@@ -1,17 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
-import { ArrowRight, Star, GitCompareArrows, Shuffle, TrendingUp } from "lucide-react";
+import { ArrowRight, GitCompareArrows, TrendingUp, Shuffle } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
-import { getAllCategories, getStats } from "@/lib/fmhy-data";
+import { getAllCategories, getStats, getAllResources } from "@/lib/fmhy-data";
 import { TopCategories } from "@/components/directory/home/top-categories";
-import { FeaturedWithTabs } from "@/components/directory/home/featured-with-tabs";
-import { ScenarioCardsDynamic } from "@/components/directory/home/scenario-cards-dynamic";
-import { ByUseCase } from "@/components/directory/home/by-use-case";
 import { SocialProof } from "@/components/directory/home/social-proof";
+import { DynamicHomeBlocks } from "@/components/directory/home/dynamic-blocks";
+import { readFileSync, existsSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const HOME_BLOCKS_FILE = join(__dirname, "../../..", "public", "data", "home-blocks.json");
 
 export const metadata: Metadata = constructMetadata({
   title: "Find Free Tools for Any Task | Craftisle Directory",
@@ -28,11 +31,65 @@ export const metadata: Metadata = constructMetadata({
   ],
 });
 
+/**
+ * 尝试读取 home-blocks.json（服务端）
+ * 如果文件不存在，返回 null（客户端会显示 fallback）
+ */
+function loadHomeBlocks() {
+  try {
+    if (!existsSync(HOME_BLOCKS_FILE)) return null;
+    const raw = readFileSync(HOME_BLOCKS_FILE, "utf-8");
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * 从 home-blocks.json 中提取所有资源 ID，
+ * 然后从 getAllResources() 中查找完整数据
+ */
+function enrichBlocksWithResources(blocksData: any) {
+  if (!blocksData?.blocks) return { blocks: [], resourceMap: {} };
+
+  const allResources = getAllResources();
+  const resourceMap: Record<string, any> = {};
+  for (const r of allResources) {
+    resourceMap[r.id] = r;
+  }
+
+  // 如果 JSON 里已经有 resources/comparisons 数据，直接用
+  const blocks = blocksData.blocks.map((b: any) => {
+    if (b.resources && b.resources.length > 0) {
+      // 用 JSON 里的数据（已经包含 name/description 等）
+      return b;
+    }
+    // 否则按 ID 查找
+    if (b.resourceIds) {
+      b.resources = b.resourceIds.map((id: string) => resourceMap[id]).filter(Boolean);
+    }
+    if (b.comparisons) {
+      b.comparisons = b.comparisons.map((c: any) => ({
+        ...c,
+        freeResource: c.freeAlternativeId ? resourceMap[c.freeAlternativeId] || null : null,
+      }));
+    }
+    return b;
+  });
+
+  return { blocks, resourceMap };
+}
+
 export default async function ResourcesPage() {
   const categories = getAllCategories();
   const stats = getStats();
-  
   const totalCount = stats.total || 16000;
+
+  // 读取动态板块数据
+  const homeBlocksData = loadHomeBlocks();
+  const { blocks, resourceMap } = enrichBlocksWithResources(homeBlocksData);
+
+  const hasDynamicBlocks = blocks && blocks.length > 0;
 
   return (
     <>
@@ -40,12 +97,10 @@ export default async function ResourcesPage() {
       <section className="relative overflow-hidden border-b bg-gradient-to-b from-background to-muted/20 py-20 md:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            {/* Badge */}
             <Badge variant="secondary" className="mb-6 px-4 py-1">
               🔧 100% Free & Open-Source
             </Badge>
-            
-            {/* Title */}
+
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Find the best{" "}
               <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -53,26 +108,22 @@ export default async function ResourcesPage() {
               </span>{" "}
               for any task
             </h1>
-            
-            {/* Subtitle */}
+
             <p className="mt-6 text-lg text-muted-foreground md:text-xl max-w-2xl mx-auto">
               {totalCount.toLocaleString()}+ curated tools across 200+ categories.
               Always free, no signup required.
             </p>
-            
-            {/* Social Proof Numbers */}
+
             <div className="mt-6 flex items-center justify-center gap-6 text-sm text-muted-foreground">
               <span>📦 {totalCount.toLocaleString()}+ tools</span>
               <span>📁 {categories.length}+ categories</span>
-              <span>🔄 Updated daily</span>
+              <span>🔄 Updated weekly</span>
             </div>
 
-            {/* Search Box — 视觉焦点 */}
             <div className="mt-10 max-w-2xl mx-auto">
               <ResourceSearchClient />
             </div>
 
-            {/* Quick Category Pills */}
             <div className="mt-8 flex flex-wrap justify-center gap-2">
               {["AI Tools", "Development", "Design", "Privacy", "Learning", "DevOps"].map((cat) => (
                 <Link key={cat} href={`/directory/best/${cat.toLowerCase().replace(" ", "-")}`}>
@@ -89,28 +140,27 @@ export default async function ResourcesPage() {
       {/* ===== 2. Top Categories ===== */}
       <TopCategories />
 
-      {/* ===== 3. Featured This Week (合并3个推荐板块) ===== */}
-      <FeaturedWithTabs />
-
-      {/* ===== 4. Scenario Finder (简化到6个场景) ===== */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold tracking-tight mb-3">
-              What are you looking for?
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Find free tools by task — curated for your specific needs
+      {/* ===== 3. 动态板块（10 个，数据驱动）===== */}
+      {hasDynamicBlocks ? (
+        <DynamicHomeBlocks
+          blocks={blocks}
+          lastUpdated={homeBlocksData.lastUpdated}
+        />
+      ) : (
+        // Fallback：还没生成 home-blocks.json 时显示提示
+        <section className="py-16 px-4 sm:px-6 lg:px-8 text-center">
+          <div className="container mx-auto max-w-6xl">
+            <p className="text-muted-foreground mb-4">
+              📊 Dynamic homepage blocks are being generated...
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Run <code className="bg-muted px-1 py-0.5 rounded">node scripts/build-home-blocks.mjs</code> to generate.
             </p>
           </div>
-          <ScenarioCardsDynamic />
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* ===== 5. By Use Case ===== */}
-      <ByUseCase />
-
-      {/* ===== 6. Tool Comparisons（产品对比入口） ===== */}
+      {/* ===== 4. Tool Comparisons CTA ===== */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-10">
@@ -177,10 +227,10 @@ export default async function ResourcesPage() {
         </div>
       </section>
 
-      {/* ===== 7. Social Proof ===== */}
+      {/* ===== 5. Social Proof ===== */}
       <SocialProof />
 
-      {/* ===== Footer CTA (简化) ===== */}
+      {/* ===== 6. Footer CTA ===== */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 border-t">
         <div className="container mx-auto max-w-6xl text-center">
           <h2 className="text-2xl font-bold tracking-tight mb-3">
