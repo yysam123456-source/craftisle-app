@@ -210,27 +210,7 @@ function main() {
     console.log(`   Block 1 "Hottest": ${hottest.length} items`);
   }
 
-  // Block 2: 💬 HN Community Favorites（暂时用 stars 最高的替代，或随机）  
-  {
-    // 暂时用"stars 最高的工具"代替（等 HN API 集成后再改）  
-    const hnHot = hasStars
-      ? pickTopByStars(allResources, 8)
-      : pickRandom(allResources, 8);
-
-    blocks.push({
-      id: "hn-discussed",
-      title: "💬 Community Favorites",
-      subtitle: hasStars
-        ? "Top tools by GitHub stars — loved by developers"
-        : "Hand-picked tools our community loves",
-      type: "resource-list",
-      resources: hnHot.map((r) => resourceSummary(r)),
-      sortOrder: 2,
-    });
-    console.log(`   Block 2 "Community Favorites": ${hnHot.length} items`);
-  }
-
-  // Block 3: 🆚 Most Compared（被找替代最多的付费工具）  
+  // Block 2: 🆚 Most Compared（被找替代最多的付费工具）  
   {
     const mostCompared = Object.entries(paidToolCount)
       .sort((a, b) => b[1] - a[1])

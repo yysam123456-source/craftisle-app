@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T08:54:36.209Z",
+  "lastUpdated": "2026-06-16T11:36:11.538Z",
   "totalResources": 18686,
   "blocks": [
     {
@@ -114,119 +114,6 @@
         }
       ],
       "sortOrder": 1
-    },
-    {
-      "id": "hn-discussed",
-      "title": "💬 Community Favorites",
-      "subtitle": "Hand-picked tools our community loves",
-      "type": "resource-list",
-      "resources": [
-        {
-          "id": "misc-12211",
-          "name": "Danet",
-          "description": "Live TV / Movies / TV / Anime / Sub / 720p",
-          "url": "https://danet.vn/",
-          "category": "Misc",
-          "categoryName": "Misc",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "adblock-00412",
-          "name": "Security / Antivirus Multireddit",
-          "description": "** - Reddit Communities",
-          "url": "https://www.reddit.com/user/goretsky/m/security/",
-          "category": "Adblock",
-          "categoryName": "Adblock",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "misc-13453",
-          "name": "Screenshot Twitch",
-          "description": "Add Screenshot Button to Twitch",
-          "url": "https://github.com/eramdam/userscripts/blob/main/Screenshot%20Twitch.user.js",
-          "category": "Misc",
-          "categoryName": "Misc",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "storage-13850",
-          "name": "tRPC",
-          "description": "Build Typesafe TypeScript APIs",
-          "url": "https://trpc.io/",
-          "category": "Storage",
-          "categoryName": "Storage",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "misc-07598",
-          "name": "Gift4Designer",
-          "description": "Gift4Designer — Free online tool",
-          "url": "https://gift4designer.net/",
-          "category": "Misc",
-          "categoryName": "Misc",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "adblock-00462",
-          "name": "SurveillanceWatch",
-          "description": "Surveillance Company Connections",
-          "url": "https://www.surveillancewatch.io/",
-          "category": "Adblock",
-          "categoryName": "Adblock",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "misc-11918",
-          "name": "bookscafe",
-          "description": "Books / Some NSFW",
-          "url": "https://bookscafe.net/",
-          "category": "Misc",
-          "categoryName": "Misc",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "adblock-00425",
-          "name": "CLI",
-          "description": "/ [Uploader](https://github.com/SamuelTulach/VirusTotalUploader) / [Lite Version](https://www.virustotal.com/old-browsers/)",
-          "url": "https://github.com/VirusTotal/vt-cli",
-          "category": "Adblock",
-          "categoryName": "Adblock",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        }
-      ],
-      "sortOrder": 2
     },
     {
       "id": "most-compared",
@@ -405,10 +292,10 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "misc-10739",
-          "name": "Chirper",
-          "description": "AI Generated X.com",
-          "url": "https://chirper.ai/",
+          "id": "misc-08343",
+          "name": "scr.im",
+          "description": "Email Captcha Protection",
+          "url": "http://scr.im/",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -418,23 +305,10 @@
           "tags": []
         },
         {
-          "id": "free-for-dev--zilore-com",
-          "name": "zilore.com",
-          "description": "",
-          "url": "https://zilore.com/en/dns",
-          "category": "ffd-dns",
-          "categoryName": "ffd-dns",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": true,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
-          "id": "misc-01931",
-          "name": "Worldwide Radio",
-          "description": "Radio Extension",
-          "url": "https://addons.mozilla.org/en-US/firefox/addon/worldwide-radio/",
+          "id": "misc-02713",
+          "name": "Awesome MySQL",
+          "description": "** - MySQL Resources",
+          "url": "https://github.com/shlomi-noach/awesome-mysql",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -444,10 +318,10 @@
           "tags": []
         },
         {
-          "id": "misc-10914",
-          "name": "animezid",
-          "description": "Anime / Cartoons",
-          "url": "https://animezid.net/",
+          "id": "misc-02897",
+          "name": "VSCodium",
+          "description": "** or **[Visual Studio Code](https://code.visualstudio.com/)**, [2](https://vscode.dev/), [3](https://cs50.dev/) - Code Editor / [Tools / Extensions](https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/dev-tools#wiki_.25B7_vscode_tools)",
+          "url": "https://vscodium.com/",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -457,10 +331,10 @@
           "tags": []
         },
         {
-          "id": "misc-11994",
-          "name": "DW Anime",
-          "description": "Anime",
-          "url": "https://dw-anime.net/",
+          "id": "misc-02711",
+          "name": "Awesome Opensource Data Engineering",
+          "description": "** - Data Engineering Tools",
+          "url": "https://github.com/gunnarmorling/awesome-opensource-data-engineering",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -470,10 +344,23 @@
           "tags": []
         },
         {
-          "id": "misc-08680",
-          "name": "Kiwix",
-          "description": "** / [Library](https://browse.library.kiwix.org/) / [Zim Reader](https://zimit.kiwix.org/) / [Wiki DL Guide](https://practicalbetterments.com/download-all-of-wikipedia-on-your-phone/) / [Subreddit](https://www.reddit.com/r/Kiwix/) / [GitHub](https://github.com/kiwix/) or [DownloadNet (dn)](https://github.com/DO-SAY-GO/dn) - Offline Website Readers",
-          "url": "https://get.kiwix.org/en/solutions/applications/download-options/",
+          "id": "mobile-01541",
+          "name": "Types of Jailbreak",
+          "description": "** - List of Jailbreak Types",
+          "url": "https://ios.cfw.guide/types-of-jailbreak/",
+          "category": "Mobile",
+          "categoryName": "Mobile",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "misc-02811",
+          "name": "open",
+          "description": "Open URLs, Files, Executables in CLI or Scripts",
+          "url": "https://github.com/sindresorhus/open",
           "category": "Misc",
           "categoryName": "Misc",
           "githubStars": 0,
@@ -483,12 +370,12 @@
           "tags": []
         },
         {
-          "id": "misc-08189",
-          "name": "ImportYeti",
-          "description": "Search U.S. Customs Shipment Records",
-          "url": "https://www.importyeti.com/",
-          "category": "Misc",
-          "categoryName": "Misc",
+          "id": "reading-03879",
+          "name": "Mathispower4u",
+          "description": ", [⁠Andy Math](https://andymath.com/), [SchoolYourself](https://schoolyourself.org/), [mathhelp](https://www.mathhelp.com/), [MathPortal](https://www.mathportal.org/), [⁠MadAsMaths](https://www.madasmaths.com/), [Math Planet](https://www.mathplanet.com/) or [CoolMath](https://www.coolmath.com/) - Math Lessons / Practice",
+          "url": "https://www.mathispower4u.com/",
+          "category": "Reading",
+          "categoryName": "Reading",
           "githubStars": 0,
           "icon": null,
           "isFree": false,
@@ -496,12 +383,12 @@
           "tags": []
         },
         {
-          "id": "adblock-00359",
-          "name": "Twitch Adblockers",
-          "description": "**",
-          "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/social-media#wiki_.25B7_twitch_adblockers",
-          "category": "Adblock",
-          "categoryName": "Adblock",
+          "id": "misc-02876",
+          "name": "S2V",
+          "description": "Source 2 Viewer & Decompiler / [GitHub](https://github.com/ValveResourceFormat/ValveResourceFormat)",
+          "url": "https://s2v.app/",
+          "category": "Misc",
+          "categoryName": "Misc",
           "githubStars": 0,
           "icon": null,
           "isFree": false,
