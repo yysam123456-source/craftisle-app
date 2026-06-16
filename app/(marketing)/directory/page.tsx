@@ -237,28 +237,6 @@ export default async function ResourcesPage() {
 
       {/* ===== 8. Social Proof ===== */}
       <SocialProof />
-
-      {/* ===== 9. Footer CTA ===== */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 border-t">
-        <div className="container mx-auto max-w-6xl text-center">
-          <h2 className="text-2xl font-bold tracking-tight mb-3">
-            Know a great free tool?
-          </h2>
-          <p className="text-muted-foreground text-lg mb-6">
-            Help us grow the directory — recommend a tool via GitHub Issues
-          </p>
-          <a
-            href="https://github.com/yysam123456-source/craftisle-app/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button size="lg">
-              Recommend a Tool
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </a>
-        </div>
-      </section>
     </>
   );
 }
