@@ -13,6 +13,8 @@ jobs:
   # ── Job 1: 同步 FMHY 数据 ──────────────────────────
   sync-fmhy:
     runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,19 +30,35 @@ jobs:
         run: node scripts/sync-fmhy.mjs
         timeout-minutes: 10
 
-      - name: Commit & push FMHY data
+      - id: commit
+        name: Check & stage FMHY changes
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/fmhy-*.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): auto-sync FMHY ($(date +'%Y-%m-%d'))" && git push origin main)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No FMHY changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git commit -m "chore(data): auto-sync FMHY ($(date +'%Y-%m-%d'))"
+            echo "FMHY changes committed"
+          fi
+
+      - name: Upload FMHY artifact
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fmhy-data
+          path: public/data/fmhy-*.json
+          retention-days: 1
 
   # ── Job 2: 更新 GitHub Stars（增量，分批跑） ─────────
   update-stars:
     runs-on: ubuntu-latest
     needs: sync-fmhy
+    outputs:
+      has_changes: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,27 +70,46 @@ jobs:
         with:
           node-version: 22
 
-      - name: Update GitHub Stars（增量分批，跑 2000 个/次）
+      - name: Update GitHub Stars（增量分批）
         run: node scripts/update-github-stars.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BATCH_SIZE: "2000"
         timeout-minutes: 30
 
-      - name: Commit & push stars data
+      - id: commit
+        name: Check & stage stars changes
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
-          git add public/data/fmhy-resources.json public/data/github-stars-checkpoint.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update GitHub stars ($(date +'%Y-%m-%d'))" && git push origin main)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git add public/data/fmhy-resources.json public/data/github-stars-checkpoint.json public/data/star-snapshot.json || true
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No stars changes"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git commit -m "chore(data): update GitHub stars ($(date +'%Y-%m-%d'))"
+            echo "Stars changes committed"
+          fi
 
-  # ── Job 3: 生成首页动态板块（每周一） ─────────────
+      - name: Upload stars artifact
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: stars-data
+          path: |
+            public/data/fmhy-resources.json
+            public/data/github-stars-checkpoint.json
+            public/data/star-snapshot.json
+          retention-days: 1
+
+  # ── Job 3: 生成首页动态板块 ────────────────────────
   build-home-blocks:
     runs-on: ubuntu-latest
-    # 每周一北京时间 09:00（UTC 周一 01:00）
-    if: github.event.schedule == '0 18 * * *' && github.event.schedule != '' || github.event_name == 'workflow_dispatch'
+    # 每周一北京时间 09:00（UTC 周一 01:00）或手动触发时才跑
+    if: github.event_name == 'workflow_dispatch' || (github.event.schedule != '')
+    outputs:
+      has_changes: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -88,18 +125,34 @@ jobs:
         run: node scripts/build-home-blocks.mjs
         timeout-minutes: 5
 
-      - name: Commit & push home-blocks.json
+      - id: commit
+        name: Check & stage home-blocks changes
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/home-blocks.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update homepage blocks ($(date +'%Y-%m-%d'))" && git push origin main)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No home-blocks changes"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git commit -m "chore(data): update homepage blocks ($(date +'%Y-%m-%d'))"
+            echo "Home-blocks changes committed"
+          fi
 
-  # ── Job 4: 生成替代品映射（从 batch 文件合并） ──
+      - name: Upload home-blocks artifact
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: home-blocks-data
+          path: public/data/home-blocks.json
+          retention-days: 1
+
+  # ── Job 4: 生成替代品映射 ──────────────────────────
   update-alternatives:
     runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -134,18 +187,34 @@ jobs:
           fs.writeFileSync('public/data/alternatives.json', JSON.stringify(merged, null, 2));
           "
 
-      - name: Commit & push alternatives
+      - id: commit
+        name: Check & stage alternatives changes
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/alternatives.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update alternatives ($(date +'%Y-%m-%d'))" && git push origin main)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No alternatives changes"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git commit -m "chore(data): update alternatives ($(date +'%Y-%m-%d'))"
+            echo "Alternatives changes committed"
+          fi
 
-  # ── Job 5: 抓取 Awesome Lists ─────────────────────
+      - name: Upload alternatives artifact
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: alternatives-data
+          path: public/data/alternatives.json
+          retention-days: 1
+
+  # ── Job 5: 抓取 Awesome Lists ───────────────────────
   update-awesome:
     runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -161,11 +230,89 @@ jobs:
         run: node scripts/scrape-awesome-lists.mjs
         timeout-minutes: 10
 
-      - name: Commit & push awesome data
+      - id: commit
+        name: Check & stage awesome changes
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/awesome-*.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update Awesome Lists ($(date +'%Y-%m-%d'))" && git push origin main)
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No awesome changes"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git commit -m "chore(data): update Awesome Lists ($(date +'%Y-%m-%d'))"
+            echo "Awesome changes committed"
+          fi
+
+      - name: Upload awesome artifact
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: awesome-data
+          path: public/data/awesome-*.json
+          retention-days: 1
+
+  # ═══════════════════════════════════════════════════════
+  #  统一推送 Job：收集所有变更 → 单次 push（解决并发冲突）
+  # ═══════════════════════════════════════════════════════
+  push-all:
+    runs-on: ubuntu-latest
+    needs: [sync-fmhy, update-stars, build-home-blocks, update-alternatives, update-awesome]
+    # 至少有一个 job 有变更时才执行 push
+    if: |
+      needs.sync-fmhy.outputs.has_changes == 'true' ||
+      needs.update-stars.outputs.has_changes == 'true' ||
+      needs.build-home-blocks.outputs.has_changes == 'true' ||
+      needs.update-alternatives.outputs.has_changes == 'true' ||
+      needs.update-awesome.outputs.has_changes == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: '*-data'
+          merge-multiple: true
+
+      - name: Move artifacts to public/data
+        run: |
+          set -x
+          if [ -d "artifacts" ]; then
+            cp -rfv artifacts/* public/data/ 2>/dev/null || true
+            ls -la artifacts/ 2>/dev/null || echo "No artifacts directory"
+          else
+            echo "No artifacts to deploy"
+          fi
+
+      - name: Unified commit & push (single push = no conflicts)
+        run: |
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add -A public/data/ || true
+          if git diff --staged --quiet; then
+            echo "✅ No changes to push (all up-to-date)"
+          else
+            echo "📦 Pushing unified data update..."
+            git commit -m "chore(data): daily sync ($(date +'%Y-%m-%d %H:%M'))"
+
+            # 重试机制：最多尝试 3 次（处理极端竞态）
+            for i in 1 2 3; do
+              echo "Push attempt $i..."
+              if git push origin main; then
+                echo "✅ Push succeeded on attempt $i"
+                break
+              fi
+              echo "⚠️ Push failed, pulling latest and rebasing..."
+              git pull --rebase origin main || git pull origin main --allow-unrelated-histories || {
+                echo "❌ All push attempts failed"
+                exit 1
+              }
+            fi
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
