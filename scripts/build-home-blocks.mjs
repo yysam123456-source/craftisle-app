@@ -332,7 +332,7 @@ function main() {
       subtitle: "Top-rated free alternatives to popular paid tools",
       type: "resource-list",
       resources: bestFree.map((r) => resourceSummary(r)),
-      viewAllLink: "/directory/alternatives/notion",
+      viewAllLink: "/directory/best/best-free-alternatives",
       sortOrder: 4,
     });
     console.log(`   Block 4 "Best Free Alts": ${bestFree.length} items`);
@@ -371,7 +371,7 @@ function main() {
       subtitle: "The best AI-powered developer tools",
       type: "resource-list",
       resources: aiTools.map((r) => resourceSummary(r)),
-      viewAllLink: "/directory/search?q=ai+coding+tools",
+      viewAllLink: "/directory/best/ai-coding-tools",
       sortOrder: 6,
     });
     console.log(`   Block 6 "AI Tools": ${aiTools.length} items`);
@@ -416,7 +416,7 @@ function main() {
       subtitle: "Top open-source design and creative tools",
       type: "resource-list",
       resources: designTools.map((r) => resourceSummary(r)),
-      viewAllLink: "/directory/search?q=design+creative",
+      viewAllLink: "/directory/best/design-tools",
       sortOrder: 7,
     });
     console.log(`   Block 7 "Design": ${designTools.length} items`);
@@ -434,7 +434,7 @@ function main() {
       subtitle: "Tools to organize your work and life",
       type: "resource-list",
       resources: prodTools.map((r) => resourceSummary(r)),
-      viewAllLink: "/directory/search?q=productivity",
+      viewAllLink: "/directory/best/productivity-tools",
       sortOrder: 8,
     });
     console.log(`   Block 8 "Productivity": ${prodTools.length} items`);
@@ -452,7 +452,7 @@ function main() {
       subtitle: "Self-hosted and developer-first tools",
       type: "resource-list",
       resources: devTools.map((r) => resourceSummary(r)),
-      viewAllLink: "/directory/search?q=developer+tools",
+      viewAllLink: "/directory/best/dev-tools",
       sortOrder: 9,
     });
     console.log(`   Block 9 "Dev Tools": ${devTools.length} items`);

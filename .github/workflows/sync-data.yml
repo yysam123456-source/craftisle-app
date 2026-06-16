@@ -253,19 +253,65 @@ jobs:
           path: public/data/awesome-*.json
           retention-days: 1
 
+  # ── Job 6: 抓取 ProductHunt 热门产品 ──────────────────
+  update-producthunt:
+    runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch ProductHunt trending products
+        run: node scripts/update-producthunt.mjs
+        env:
+          PRODUCTHUNT_API_KEY: ${{ secrets.PRODUCTHUNT_API_KEY }}
+        timeout-minutes: 10
+
+      - id: commit
+        name: Check & stage ProductHunt changes
+        run: |
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add public/data/fmhy-resources.json || true
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No ProductHunt changes (no API key or no new products)"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git commit -m "chore(data): update ProductHunt products ($(date +'%Y-%m-%d'))"
+            echo "ProductHunt changes committed"
+          fi
+
+      - name: Upload producthunt artifact
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: producthunt-data
+          path: public/data/fmhy-resources.json
+          retention-days: 1
+
   # ═══════════════════════════════════════════════════════
   #  统一推送 Job：收集所有变更 → 单次 push（解决并发冲突）
   # ═══════════════════════════════════════════════════════
   push-all:
     runs-on: ubuntu-latest
-    needs: [sync-fmhy, update-stars, build-home-blocks, update-alternatives, update-awesome]
+    needs: [sync-fmhy, update-stars, build-home-blocks, update-alternatives, update-awesome, update-producthunt]
     # 至少有一个 job 有变更时才执行 push
     if: |
       needs.sync-fmhy.outputs.has_changes == 'true' ||
       needs.update-stars.outputs.has_changes == 'true' ||
       needs.build-home-blocks.outputs.has_changes == 'true' ||
       needs.update-alternatives.outputs.has_changes == 'true' ||
-      needs.update-awesome.outputs.has_changes == 'true'
+      needs.update-awesome.outputs.has_changes == 'true' ||
+      needs.update-producthunt.outputs.has_changes == 'true'
     steps:
       - uses: actions/checkout@v4
         with:
