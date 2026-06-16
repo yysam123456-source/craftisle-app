@@ -13,7 +13,6 @@ jobs:
   # ── Job 1: 同步 FMHY 数据 ──────────────────────────
   sync-fmhy:
     runs-on: ubuntu-latest
-    continue-on-error: true  # 单个 job 失败不阻塞其他
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,17 +28,19 @@ jobs:
         run: node scripts/sync-fmhy.mjs
         timeout-minutes: 10
 
-      - name: Commit & push
+      - name: Commit & push FMHY data
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/fmhy-*.json || true
           git diff --staged --quiet || (git commit -m "chore(data): auto-sync FMHY ($(date +'%Y-%m-%d'))" && git push origin main)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # ── Job 2: 更新 GitHub Stars（增量，快） ─────────
+  # ── Job 2: 更新 GitHub Stars（增量，分批跑） ─────────
   update-stars:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    needs: sync-fmhy
     steps:
       - uses: actions/checkout@v4
         with:
@@ -51,23 +52,54 @@ jobs:
         with:
           node-version: 22
 
-      - name: Update GitHub Stars（增量，只更新变更）
+      - name: Update GitHub Stars（增量分批，跑 2000 个/次）
         run: node scripts/update-github-stars.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BATCH_SIZE: "2000"
         timeout-minutes: 30
 
-      - name: Commit & push
+      - name: Commit & push stars data
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
-          git add public/data/fmhy-resources.json github-stars-checkpoint.json || true
+          git add public/data/fmhy-resources.json public/data/github-stars-checkpoint.json || true
           git diff --staged --quiet || (git commit -m "chore(data): update GitHub stars ($(date +'%Y-%m-%d'))" && git push origin main)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # ── Job 3: 生成替代品映射（从 batch 文件合并） ──
+  # ── Job 3: 生成首页动态板块（每周一） ─────────────
+  build-home-blocks:
+    runs-on: ubuntu-latest
+    # 每周一北京时间 09:00（UTC 周一 01:00）
+    if: github.event.schedule == '0 18 * * *' && github.event.schedule != '' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build homepage blocks
+        run: node scripts/build-home-blocks.mjs
+        timeout-minutes: 5
+
+      - name: Commit & push home-blocks.json
+        run: |
+          git config user.name "craftisle-bot"
+          git config user.email "bot@craftisle.com"
+          git add public/data/home-blocks.json || true
+          git diff --staged --quiet || (git commit -m "chore(data): update homepage blocks ($(date +'%Y-%m-%d'))" && git push origin main)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Job 4: 生成替代品映射（从 batch 文件合并） ──
   update-alternatives:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
@@ -102,17 +134,18 @@ jobs:
           fs.writeFileSync('public/data/alternatives.json', JSON.stringify(merged, null, 2));
           "
 
-      - name: Commit & push
+      - name: Commit & push alternatives
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/alternatives.json || true
           git diff --staged --quiet || (git commit -m "chore(data): update alternatives ($(date +'%Y-%m-%d'))" && git push origin main)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # ── Job 4: 抓取 Awesome Lists ─────────────────────
+  # ── Job 5: 抓取 Awesome Lists ─────────────────────
   update-awesome:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
@@ -128,39 +161,11 @@ jobs:
         run: node scripts/scrape-awesome-lists.mjs
         timeout-minutes: 10
 
-      - name: Commit & push
+      - name: Commit & push awesome data
         run: |
           git config user.name "craftisle-bot"
           git config user.email "bot@craftisle.com"
           git add public/data/awesome-*.json || true
           git diff --staged --quiet || (git commit -m "chore(data): update Awesome Lists ($(date +'%Y-%m-%d'))" && git push origin main)
-
-  # ── Job 5: 抓取 Product Hunt（需要 API Key） ─────
-  update-producthunt:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    # 跳过如果没配置 API Key
-    if: ${{ secrets.PRODUCTHUNT_API_KEY != '' }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Update Product Hunt data
-        run: node scripts/update-producthunt.mjs
         env:
-          PRODUCTHUNT_API_KEY: ${{ secrets.PRODUCTHUNT_API_KEY }}
-        timeout-minutes: 5
-
-      - name: Commit & push
-        run: |
-          git config user.name "craftisle-bot"
-          git config user.email "bot@craftisle.com"
-          git add public/data/producthunt-*.json || true
-          git diff --staged --quiet || (git commit -m "chore(data): update Product Hunt ($(date +'%Y-%m-%d'))" && git push origin main)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
