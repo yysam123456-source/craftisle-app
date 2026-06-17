@@ -1,5 +1,5 @@
 /**
- * 搜索工具库 — 相关性评分 + 模糊匹配
+ * 搜索工具库 — 相关性评分 + 模糊匹配 + 查询扩展
  * 
  * 评分算法（满分 100）：
  *   - 名称精确匹配：+50
@@ -9,7 +9,13 @@
  *   - 有 GitHub Stars：+5 (对数缩放)
  *   - 有丰富描述：+5
  *   - 数据源奖励（FMHY 覆盖最广）：+3
+ * 
+ * 优化（v2）：
+ *   - 查询扩展：根据任务关键词映射扩展查询
+ *   - 同义词匹配：支持中英文同义词
  */
+
+import { expandQuery } from "./search-optimization";
 
 // LRU Cache for search results (max 100 entries)
 const searchCache = new Map<string, ScoredResource[]>();
@@ -168,10 +174,16 @@ export function searchResources(
     return cached.slice(0, limit);
   }
 
-  // 第一步：过滤
+  // 第一步：过滤（使用扩展关键词）
+  const expandedKeywords = expandQuery(q);
   let filtered = resources.filter(r => {
     const text = `${r.name} ${r.url} ${r.description || ""} ${r.categoryName || ""}`.toLowerCase();
-    return text.includes(q);
+    // Match if text contains original query OR any expanded keyword
+    if (text.includes(q)) return true;
+    for (const kw of expandedKeywords) {
+      if (text.includes(kw.toLowerCase())) return true;
+    }
+    return false;
   });
 
   // 数据源过滤

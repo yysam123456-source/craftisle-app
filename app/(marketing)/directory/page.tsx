@@ -11,7 +11,7 @@ import { TopCategories } from "@/components/directory/home/top-categories";
 import { SocialProof } from "@/components/directory/home/social-proof";
 import { DynamicHomeBlocks } from "@/components/directory/home/dynamic-blocks";
 import { FeaturedWithTabs } from "@/components/directory/home/featured-with-tabs";
-import { ScenarioCardsDynamic } from "@/components/directory/home/scenario-cards-dynamic";
+import { ScenarioCards } from "@/components/directory/home/scenario-cards";
 import { ByUseCase } from "@/components/directory/home/by-use-case";
 import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
@@ -140,7 +140,7 @@ export default async function ResourcesPage() {
               Find free tools by task — curated for your specific needs
             </p>
           </div>
-          <ScenarioCardsDynamic />
+          <ScenarioCards />
         </div>
       </section>
 
