@@ -290,44 +290,47 @@ export default async function ResourceDetailPage({
     },
   ];
 
-  // Structured Data: SoftwareApplication + FAQPage
+  // Structured Data: SoftwareApplication + BreadcrumbList + FAQPage
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: resource.name,
-    description: resource.description,
+    description: cleanDescription(resource.description),
     url: resource.url,
-    applicationCategory: resource.categoryName,
+    applicationCategory: resource.categoryName || "SoftwareApplication",
+    operatingSystem: "Web Browser",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+      description: "Free to use",
     },
-    isPartOf: {
-      "@type": "CollectionPage",
-      name: "Craftisle Free Resource Directory",
-      url: `${baseUrl}/directory`,
-    },
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
-        { "@type": "ListItem", position: 2, name: "Directory", item: `${baseUrl}/directory` },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: resource.categoryName,
-          item: `${baseUrl}/directory/${resource.category}`,
-        },
-        {
-          "@type": "ListItem",
-          position: 4,
-          name: resource.name,
-          item: `${baseUrl}/directory/resource/${resource.id}`,
-        },
-      ],
-    },
+    isFree: true,
+    license: "Free",
+    softwareVersion: "Latest",
+    screenshot: resource.url ? `https://screenshot.craftisle.com/${resource.url}` : undefined,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
+      { "@type": "ListItem", position: 2, name: "Directory", item: `${baseUrl}/directory` },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: resource.categoryName || "Category",
+        item: `${baseUrl}/directory/${resource.category}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: resource.name,
+        item: `${baseUrl}/directory/resource/${resource.id}`,
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -346,6 +349,10 @@ export default async function ResourceDetailPage({
   return (
     <>
       {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

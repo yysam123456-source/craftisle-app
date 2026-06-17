@@ -169,15 +169,46 @@ export default function IndexPage() {
       target: "https://craftisle.com/directory/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
+    publisher: {
+      "@type": "Organization",
+      name: "Craftisle",
+      url: "https://craftisle.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://craftisle.com/logo.png",
+        width: 512,
+        height: 512,
+      },
+      sameAs: [
+        "https://github.com/craftisle",
+        "https://twitter.com/craftisle",
+      ],
+    },
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Craftisle",
+    url: "https://craftisle.com",
+    logo: "https://craftisle.com/logo.png",
+    description: "Free software directory with 16,000+ open-source and free tools.",
+    sameAs: [
+      "https://github.com/craftisle",
+    ],
   };
 
   return (
-    <>
-      {/* JSON-LD 结构化数据 */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <>
+        {/* JSON-LD 结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
 
       {/* ── Hero 区 ────────────────────────────────── */}
       <section className="relative overflow-hidden bg-background py-20 sm:py-32">
