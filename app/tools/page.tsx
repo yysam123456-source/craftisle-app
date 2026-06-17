@@ -27,8 +27,49 @@ export default function ToolsPage() {
     ...imageToolIds.filter(id => !Object.keys(toolMeta).includes(id)),
   ];
 
+  const baseUrl = "https://craftisle.com";
+
+  // JSON-LD: CollectionPage + ItemList (top 20 tools)
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Free Online Tools — Craftisle",
+    description: "60+ free online tools for developers and creators",
+    url: `${baseUrl}/tools`,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Craftisle",
+      url: baseUrl,
+    },
+  };
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    numberOfItems: toolDirs.length,
+    itemListElement: toolDirs.slice(0, 20).map((toolId, index) => {
+      const meta = toolMeta[toolId];
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: meta?.title || toolId,
+        description: meta?.desc || "Free online tool",
+        url: `${baseUrl}/tools/${toolId}`,
+      };
+    }),
+  };
+
   return (
     <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <ToolsClient toolDirs={toolDirs} />
       {/* Ad slot hidden until AdSense is configured */}
       {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (

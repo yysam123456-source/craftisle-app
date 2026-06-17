@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
+import { type Metadata } from "next";
 
 const COMPETITORS = [
   {
@@ -56,8 +57,47 @@ export const metadata = {
 };
 
 export default function CompareIndexPage() {
+  const baseUrl = "https://craftisle.com";
+
+  // JSON-LD: WebPage + ItemList
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Tool Comparisons — Craftisle vs Popular Tools",
+    description: "Comparing Craftisle free online tools with popular alternatives.",
+    url: `${baseUrl}/compare`,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Craftisle",
+      url: baseUrl,
+    },
+  };
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    numberOfItems: COMPETITORS.length,
+    itemListElement: COMPETITORS.map((c, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${c.name} Alternative`,
+      description: c.description,
+      url: `${baseUrl}/compare/${c.id}`,
+    })),
+  };
+
   return (
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
       <header className="space-y-4 mb-10">
         <Badge variant="secondary">Comparisons</Badge>
         <h1 className="text-3xl font-bold tracking-tight">
@@ -107,5 +147,6 @@ export default function CompareIndexPage() {
         </Link>
       </section>
     </div>
-  );
+  </>
+);
 }
