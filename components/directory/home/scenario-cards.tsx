@@ -223,32 +223,31 @@ const colorMap: Record<string, string> = {
 export function ScenarioCards() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
-          {SCENARIO_ENTRIES.map((entry) => (
-            <Link key={entry.href} href={entry.href} className="group">
-              <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-                <CardContent className="p-3 md:p-5">
-                  <div className="flex items-start gap-4">
-                    <div className={`rounded-lg p-3 text-2xl ${colorMap[entry.color]?.split(" ").slice(0, 2).join(" ")}`}>
-                      {entry.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-base mb-1">
-                        {entry.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        {entry.description}
-                      </p>
-                      <span className="inline-flex items-center gap-1 text-sm text-primary font-medium group-hover:gap-2 transition-all">
-                        {entry.cta}
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
+      {SCENARIO_ENTRIES.map((entry) => (
+        <Link key={entry.href} href={entry.href} className="group">
+          <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
+            <CardContent className="p-3 md:p-5">
+              <div className="flex items-start gap-4">
+                <div
+                  className={`rounded-lg p-3 text-2xl ${
+                    colorMap[entry.color]?.split(" ").slice(0, 2).join(" ")
+                  }`}
+                >
+                  {entry.icon}
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-base mb-1">{entry.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{entry.description}</p>
+                  <span className="inline-flex items-center gap-1 text-sm text-primary font-medium group-hover:gap-2 transition-all">
+                    {entry.cta}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
     </div>
   );
 }
