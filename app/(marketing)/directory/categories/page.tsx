@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { getAllCategories } from "@/lib/fmhy-data";
 import { ArrowRight, LayoutGrid } from "lucide-react";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "All Categories — Craftisle Directory",
   description:
     "Browse 200+ categories of free and open-source tools. Find exactly what you need.",
-};
+  canonical: "https://craftisle.com/directory/categories",
+});
 
 /** 分类图标映射 */
 const CATEGORY_ICONS: Record<string, string> = {

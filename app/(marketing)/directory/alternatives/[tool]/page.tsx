@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -12,6 +11,7 @@ import {
   AlternativeEntry,
   AlternativeTool,
 } from "@/lib/alternatives";
+import { constructMetadata } from "@/lib/utils";
 
 const baseUrl = "https://craftisle.com";
 
@@ -34,21 +34,12 @@ export async function generateMetadata({
   const title = `Best Free ${entry.paidTool} Alternatives in 2026 | Craftisle`;
   const description = `Looking for free ${entry.paidTool} alternatives? We've curated ${entry.alternatives.length} free options that can replace ${entry.paidTool} — no subscription required.`;
 
-  return {
+  return constructMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${baseUrl}/directory/alternatives/${tool}`,
-    },
-    openGraph: {
-      type: "article",
-      url: `${baseUrl}/directory/alternatives/${tool}`,
-      title,
-      description,
-      siteName: "Craftisle",
-    },
     keywords: entry.seoKeywords,
-  };
+    canonical: `${baseUrl}/directory/alternatives/${tool}`,
+  });
 }
 
 function RatingStars({ rating }: { rating?: number }) {
