@@ -258,10 +258,7 @@ export default async function ResourceDetailPage({
   const resource = getResourceById(id);
   if (!resource) notFound();
 
-  // 质量优先：无实质内容的资源直接跳转外链
-  const richInfoIds = getRichInfoResourceIds();
-  if (!richInfoIds.has(id)) redirect(resource.url);
-
+  // 所有资源都显示站内详情页（即使没有丰富信息也显示基本信息）
   const related = getRelatedResources(resource, 6);
   const faviconUrl = getFaviconUrl(resource.url);
   const hostname = getHostname(resource.url);

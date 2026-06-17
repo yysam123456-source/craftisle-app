@@ -99,7 +99,7 @@ export function DynamicHomeBlocks({ blocks, lastUpdated }: DynamicHomeBlocksProp
               )}
             </p>
           </div>
-          <Link href="/directory/best/development-2026">
+          <Link href="/directory/categories">
             <Button variant="ghost" size="sm" className="gap-1 hidden sm:flex">
               View all categories <ArrowRight className="h-3.5 w-3.5" />
             </Button>
