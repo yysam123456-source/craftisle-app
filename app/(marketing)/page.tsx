@@ -8,24 +8,14 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Search,
-  Gamepad2,
-  FileText,
-  Eye,
-  Code2,
-  PenTool,
-  Pencil,
-  FileEdit,
-  Layout,
-  QrCode,
-} from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import { RandomRecommendations } from "@/components/home/random-recommendations";
+import { FeaturedTools } from "@/components/home/featured-tools";
+import { FeaturedSites } from "@/components/home/featured-sites";
 
 // ── 静态数据（build 时读取）────────────────────────────
 interface CategoryInfo {
@@ -189,7 +179,7 @@ export default function IndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* ── Hero 区 ─────────────────────────────────── */}
+      {/* ── Hero 区 ────────────────────────────────── */}
       <section className="relative overflow-hidden bg-background py-20 sm:py-32">
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
@@ -266,7 +256,22 @@ export default function IndexPage() {
         />
       </section>
 
-      {/* ── 板块 1：热门分类 ───────────────────────────── */}
+      {/* ── 板块 1：站内工具（最显眼位置，放大版）──────────── */}
+      <FeaturedTools />
+
+      {/* ── 板块 2：子站入口（紧跟站内工具，放大版）────── */}
+      <FeaturedSites />
+
+      {/* ── 广告：站内工具与分类之间 ───────────────────── */}
+      <section className="flex justify-center py-6">
+        <AdSlot
+          slotId="homepage-between-sections"
+          size="leaderboard"
+          label="Homepage Between Sections"
+        />
+      </section>
+
+      {/* ── 板块 3：热门分类 ───────────────────────────── */}
       <section className="border-t py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-center justify-between">
@@ -314,16 +319,7 @@ export default function IndexPage() {
         </div>
       </section>
 
-      {/* ── 广告：分类与 Trending 之间 ────────────────── */}
-      <section className="flex justify-center py-6">
-        <AdSlot
-          slotId="homepage-between-sections"
-          size="leaderboard"
-          label="Homepage Between Sections"
-        />
-      </section>
-
-      {/* ── 板块 2：Trending This Week ─────────────────── */}
+      {/* ── 板块 4：Trending This Week ─────────────────── */}
       {trendingResources.length > 0 && (
         <section className="border-t bg-muted/30 py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -369,137 +365,8 @@ export default function IndexPage() {
         </section>
       )}
 
-      {/* ── 板块 3：随机推荐（客户端组件）───────────────── */}
+      {/* ── 板块 5：随机推荐（客户端组件）───────────────── */}
       <RandomRecommendations />
-
-      {/* ── 板块 4：子站入口 ───────────────────────────── */}
-      <section className="border-t py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight">
-              More Free Tools
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              Explore our other free tools & services
-            </p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {[
-              {
-                title: "PDF Tools",
-                desc: "Merge, split, compress, convert PDF files",
-                href: "https://pdf.craftisle.com",
-                icon: FileText,
-              },
-              {
-                title: "Resume Builder",
-                desc: "Build ATS-friendly resume in minutes",
-                href: "https://resume.craftisle.com",
-                icon: FileEdit,
-              },
-              {
-                title: "File Viewer",
-                desc: "View PDF/DOCX/PPT online, no download",
-                href: "https://viewer.craftisle.com",
-                icon: Eye,
-              },
-              {
-                title: "Online Games",
-                desc: "Free HTML5 games, no download",
-                href: "https://games.craftisle.com",
-                icon: Gamepad2,
-              },
-              {
-                title: "Online Whiteboard",
-                desc: "Collaborative whiteboard for teams",
-                href: "https://draw.craftisle.com",
-                icon: Layout,
-              },
-            ].map((site) => (
-              <a
-                key={site.href}
-                href={site.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-                  <CardContent className="p-5 text-center">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                      <site.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-base mb-1">
-                      {site.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {site.desc}
-                    </p>
-                  </CardContent>
-                </Card>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 板块 5：内置工具快捷入口 ──────────────────── */}
-      <section className="border-t bg-muted/30 py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Online Utilities
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              Free online tools, no installation
-            </p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: "Regex Visualizer",
-                desc: "Visualize & test regex patterns",
-                href: "/tools/regex-vis",
-                icon: Code2,
-              },
-              {
-                title: "Handwriting Animation",
-                desc: "Convert text to handwriting animation",
-                href: "/tools/handwriting-animation",
-                icon: PenTool,
-              },
-              {
-                title: "HTML Visual Editor",
-                desc: "WYSIWYG HTML editor with live preview",
-                href: "/tools/html-visual-editor",
-                icon: Pencil,
-              },
-              {
-                title: "QR Code Generator",
-                desc: "Generate QR codes for free",
-                href: "/tools/qr",
-                icon: QrCode,
-              },
-            ].map((tool) => (
-              <Link key={tool.href} href={tool.href}>
-                <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-                  <CardContent className="p-5 text-center">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                      <tool.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-base mb-1">
-                      {tool.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {tool.desc}
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── SEO 内容块 ─────────────────────────────────── */}
       <section className="border-t py-20">
