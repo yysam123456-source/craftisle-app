@@ -87,12 +87,64 @@ export default async function ComparePage({ params }: Props) {
   const data = COMPETITOR_MAP[competitor];
   if (!data) notFound();
 
+  const baseUrl = "https://craftisle.com";
+  const pageUrl = `${baseUrl}/compare/${competitor}`;
+
+  // JSON-LD: WebPage + FAQPage
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${data.name} Alternative — Free Online Tools`,
+    description: data.description,
+    url: pageUrl,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Craftisle",
+      url: baseUrl,
+    },
+    mainEntity: {
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: `Is ${data.name} free to use?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `${data.name} has partial free features, but Craftisle offers all 60+ tools completely free with no signup required.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `Why choose Craftisle over ${data.name}?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `Craftisle is 100% free, no signup required, 100% browser-based (your data never leaves your machine), and offers 60+ tools in one place.`,
+          },
+        },
+        {
+          "@type": "Question",
+          name: `Does Craftisle have file size limits?`,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: `Craftisle has no artificial file size limits. The only limit is your browser's available memory.`,
+          },
+        },
+      ],
+    },
+  };
+
   const matchedTools = data.tools
     .map((id) => ({ id, meta: toolMeta[id] }))
     .filter((t) => t.meta) as { id: string; meta: ToolMeta }[];
 
   return (
-    <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1 text-sm text-muted-foreground mb-6">
         <Link href="/" className="hover:text-foreground">Home</Link>
@@ -203,5 +255,6 @@ export default async function ComparePage({ params }: Props) {
         </Link>
       </section>
     </div>
-  );
+  </>
+);
 }

@@ -8,6 +8,7 @@ import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
+import { getRelatedTools } from "@/lib/related-tools";
 
 interface ToolPageProps {
   params: Promise<{ tool: string }>;
@@ -101,6 +102,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
   }
 
   const categorySlug = getCategorySlug(meta.category);
+  const relatedTools = getRelatedTools(tool);
 
   // Image tools: use ImageToolPage
   if (definition) {
@@ -110,7 +112,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
       maxFileSize: definition.maxFileSize,
     };
     return (
-      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
+      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team" relatedTools={relatedTools}>
         <ImageToolPage toolId={tool} definition={clientDef} />
         <ToolDetailSections toolId={tool} />
       </ToolDetailLayout>
@@ -119,7 +121,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   // Non-image tools: try ToolLoader first, fallback to ToolDetailSections
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
+    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team" relatedTools={relatedTools}>
       <ToolLoader toolId={tool} />
       <ToolDetailSections toolId={tool} />
     </ToolDetailLayout>
