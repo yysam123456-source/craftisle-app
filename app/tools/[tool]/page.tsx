@@ -7,6 +7,7 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 
 interface ToolPageProps {
   params: Promise<{ tool: string }>;
@@ -21,44 +22,11 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
-  const ogImage = `https://craftisle.com/og-image.png`;
-
-  const toolUrl = `https://craftisle.com/tools/${tool}`;
-
-  return {
+  return constructMetadata({
     title,
     description,
     keywords: meta.seoKeywords,
-    // ── GEO: E-E-A-T 信号 ──────────────────────────────
-    authors: [{ name: "Craftisle Team", url: "https://craftisle.com/about" }],
-    creator: "Craftisle Team",
-    publisher: "Craftisle",
-    metadataBase: new URL(toolUrl),
-    alternates: { canonical: url },
-    openGraph: {
-      type: "website",
-      title,
-      description,
-      url: toolUrl,
-      siteName: "Craftisle",
-      locale: "en_US",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${meta.title} — Free Online Tool`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-      creator: "@craftisle",
-    },
-  };
+  });
 }
 
 function getCategorySlug(categoryLabel: string): string {

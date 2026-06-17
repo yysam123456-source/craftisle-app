@@ -28,8 +28,9 @@ import {
   Clock,
 } from "lucide-react";
 import { CATEGORIES, CATEGORY_LIST } from "@/lib/tools";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata = {
+export const metadata = constructMetadata({
   title: "Craftisle Tools — Free Online Tools for Developers & Creators | Craftisle Blog",
   description:
     "Discover 135+ free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more. No signup, 100% browser-based.",
@@ -39,7 +40,7 @@ export const metadata = {
     "encryption tools", "formatter tools", "converter tools",
     "craftisle tools", "online utility tools",
   ],
-};
+});
 
 // Product definitions for subdomain tools
 const ECOSYSTEM_PRODUCTS = [
