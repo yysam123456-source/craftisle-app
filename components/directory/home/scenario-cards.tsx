@@ -222,18 +222,7 @@ const colorMap: Record<string, string> = {
 
 export function ScenarioCards() {
   return (
-    <section className="py-12 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold tracking-tight">
-            What do you want to do?
-          </h2>
-          <p className="mt-1 text-muted-foreground">
-            Not categories, but scenarios — click one to quickly find the tool you need
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {SCENARIO_ENTRIES.map((entry) => (
             <Link key={entry.href} href={entry.href} className="group">
               <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
@@ -260,7 +249,6 @@ export function ScenarioCards() {
             </Link>
           ))}
         </div>
-      </div>
-    </section>
+    </div>
   );
 }
