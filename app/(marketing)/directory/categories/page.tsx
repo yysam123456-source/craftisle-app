@@ -69,7 +69,7 @@ export default function CategoriesPage() {
         {categories.map((cat) => (
           <Link
             key={cat.id}
-            href={`/directory/best/${cat.id}`}
+            href={`/directory/${cat.id}`}
             className="group flex items-center gap-2.5 rounded-lg border bg-card p-3.5 transition-all hover:border-primary/40 hover:shadow-sm"
           >
             <span className="text-xl flex-shrink-0">{getIcon(cat.name)}</span>
