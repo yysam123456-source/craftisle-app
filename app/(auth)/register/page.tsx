@@ -5,11 +5,13 @@ import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/shared/icons"
 import { UserAuthForm } from "@/components/forms/user-auth-form"
 import { Suspense } from "react"
+import { constructMetadata } from "@/lib/utils"
 
-export const metadata = {
-  title: "Create an account",
+export const metadata = constructMetadata({
+  title: "Create an account | Craftisle",
   description: "Create an account to get started.",
-}
+  noIndex: true, // 认证页面不应该被索引
+})
 
 export default function RegisterPage() {
   return (

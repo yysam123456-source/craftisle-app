@@ -1,18 +1,17 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { ToolMeta } from "@/lib/tools";
 import RegexVisClient from "./client";
+import { constructMetadata } from "@/lib/utils";
 
 // Force dynamic rendering for useSearchParams
 export const dynamic = "force-dynamic";
 
 // ---------- Static metadata ----------
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Regex Visualizer Free — Online AST Graph | Craftisle",
-  description:
-    "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JS/Python/PCRE. 100% browser-based.",
+  description: "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JS/Python/PCRE. 100% browser-based.",
   keywords: [
     "regex visualizer online free",
     "regex AST graph",
@@ -21,7 +20,8 @@ export const metadata: Metadata = {
     "regex visual tester",
     "Craftisle regex tool",
   ],
-};
+  canonical: "https://craftisle.com/tools/regex-vis",
+});
 
 const meta: ToolMeta = {
   title: "Regex Visualizer",
