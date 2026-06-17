@@ -13,9 +13,8 @@ import {
   PenTool,
   Pencil,
   QrCode,
-  Wand2,
-  FileJson,
-  Type,
+  Image,
+  RefreshCcw,
 } from "lucide-react";
 
 // ── 站内工具数据（详细说明）────────────────────────────
@@ -51,6 +50,22 @@ const BUILT_IN_TOOLS = [
     icon: QrCode,
     color: "from-green-500 to-emerald-500",
     tags: ["QR Code", "Generator", "Free"],
+  },
+  {
+    title: "Image Compress",
+    desc: "Compress images online for free. Reduce file size without losing quality. Supports JPG, PNG, WebP. Adjustable quality slider (10-100%).",
+    href: "/tools/image-compress",
+    icon: Image,
+    color: "from-rose-500 to-pink-500",
+    tags: ["Image", "Compress", "Optimize"],
+  },
+  {
+    title: "Image Converter",
+    desc: "Convert images to different formats online for free. JPG, PNG, WebP, GIF, BMP. All processing happens in your browser — private & secure.",
+    href: "/tools/image-convert",
+    icon: RefreshCcw,
+    color: "from-teal-500 to-cyan-500",
+    tags: ["Image", "Convert", "Format"],
   },
 ];
 

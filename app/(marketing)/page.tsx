@@ -256,11 +256,11 @@ export default function IndexPage() {
         />
       </section>
 
-      {/* ── 板块 1：站内工具（最显眼位置，放大版）──────────── */}
-      <FeaturedTools />
-
-      {/* ── 板块 2：子站入口（紧跟站内工具，放大版）────── */}
+      {/* ── 板块 1：子站入口（最上方，紧跟 Hero）──────── */}
       <FeaturedSites />
+
+      {/* ── 板块 2：站内工具（子站下方）────────────────── */}
+      <FeaturedTools />
 
       {/* ── 广告：站内工具与分类之间 ───────────────────── */}
       <section className="flex justify-center py-6">
