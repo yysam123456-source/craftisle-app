@@ -4,13 +4,13 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Globe, ExternalLink } from "lucide-react";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Contact | Craftisle",
-  description:
-    "Get in touch with Craftisle — suggestions, bug reports, or collaboration inquiries.",
-};
+  description: "Get in touch with Craftisle — suggestions, bug reports, or collaboration inquiries.",
+  canonical: "https://craftisle.com/contact",
+});
 
 export default function ContactPage() {
   return (

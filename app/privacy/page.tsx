@@ -1,12 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Privacy Policy | Craftisle",
-  description:
-    "Craftisle Privacy Policy — how we collect, use, and protect your information.",
-};
+  description: "Craftisle Privacy Policy — how we collect, use, and protect your information.",
+  canonical: "https://craftisle.com/privacy",
+});
 
 export default function PrivacyPage() {
   return (
