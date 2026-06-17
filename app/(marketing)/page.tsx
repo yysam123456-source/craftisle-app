@@ -10,43 +10,104 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import {
   ArrowRight,
+  Search,
   Gamepad2,
-  Wrench,
-  ShieldCheck,
-  Gift,
-  Zap,
-  QrCode,
   FileText,
-  Image,
-  Calculator,
-  Play,
   Eye,
   Code2,
   PenTool,
   Pencil,
   FileEdit,
   Layout,
+  QrCode,
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
+import fs from "fs";
+import path from "path";
+import { RandomRecommendations } from "@/components/home/random-recommendations";
 
+// ── 静态数据（build 时读取）────────────────────────────
+interface CategoryInfo {
+  name: string;
+  count: number;
+}
+
+interface ResourceInfo {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+}
+
+function getHomepageData() {
+  const basePath = path.join(process.cwd(), "public", "data");
+
+  // 1. 读取 fmhy-resources.json → 按资源数取 Top 10 分类
+  let topCategories: CategoryInfo[] = [];
+  try {
+    const fmhyRaw = fs.readFileSync(
+      path.join(basePath, "fmhy-resources.json"),
+      "utf-8"
+    );
+    const fmhyData = JSON.parse(fmhyRaw);
+    const categories = fmhyData.categories || {};
+
+    topCategories = Object.entries(categories)
+      .map(([name, cat]: [string, any]) => ({
+        name,
+        count: (cat.resources || []).length,
+      }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10);
+  } catch (err) {
+    console.error("Failed to load fmhy-resources.json:", err);
+  }
+
+  // 2. 读取 home-blocks.json → weekly-hottest 块（取前 6 个）
+  let trendingResources: ResourceInfo[] = [];
+  try {
+    const blocksRaw = fs.readFileSync(
+      path.join(basePath, "home-blocks.json"),
+      "utf-8"
+    );
+    const blocksData = JSON.parse(blocksRaw);
+    const weeklyBlock = (blocksData.blocks || []).find(
+      (b: any) => b.id === "weekly-hottest"
+    );
+    trendingResources = (weeklyBlock?.resources || []).slice(0, 6).map(
+      (r: any) => ({
+        id: r.id || "",
+        name: r.name || "Unnamed",
+        description: r.description || "",
+        url: r.url || "",
+      })
+    );
+  } catch (err) {
+    console.error("Failed to load home-blocks.json:", err);
+  }
+
+  return { topCategories, trendingResources };
+}
+
+// ── Metadata ───────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "Craftisle — Play Free HTML5 Games & Use 100+ Free Online Tools",
-  description: "Play free HTML5 games online — no download required. Use 100+ free online tools including QR generator, JSON formatter, Base64 encoder. Start instantly in your browser.",
+  title: "Craftisle — Free Software Directory & Online Tools",
+  description:
+    "Search 16,000+ free & open-source software. Find alternatives, compare tools. Plus: play free HTML5 games & use 100+ online tools.",
   keywords: [
-    "free HTML5 games",
-    "browser games no download",
+    "free software directory",
+    "open source software",
     "free online tools",
-    "QR code generator free",
-    "JSON formatter online",
-    "Base64 encoder",
-    "play survival games online",
-    "free web tools no signup",
+    "software alternatives",
+    "free games online",
     "Craftisle",
+    "fmhy",
+    "free tools",
   ],
   openGraph: {
-    title: "Craftisle — Free HTML5 Games & Online Tools",
-    description: "Play free HTML5 games online. Use 100+ free online tools. No download, no signup.",
+    title: "Craftisle — Free Software Directory & Online Tools",
+    description: "Search 16,000+ free & open-source software.",
     url: "https://craftisle.com",
     type: "website",
     locale: "en_US",
@@ -55,14 +116,14 @@ export const metadata: Metadata = {
         url: "https://craftisle.com/_static/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Craftisle — Free HTML5 Games & Online Tools",
+        alt: "Craftisle — Free Software Directory & Online Tools",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Craftisle — Free HTML5 Games & Online Tools",
-    description: "Play free HTML5 games. Use 100+ free online tools. No download.",
+    title: "Craftisle — Free Software Directory & Online Tools",
+    description: "Search 16,000+ free & open-source software.",
     images: ["https://craftisle.com/_static/og.jpg"],
   },
   alternates: {
@@ -75,455 +136,418 @@ export const metadata: Metadata = {
   },
 };
 
+// ── 分类图标映射（用函数避免编码问题）────────────────
+function getCategoryIcon(name: string): string {
+  const icons: Record<string, string> = {
+    "Artificial-Intelligence": "🤖",
+    "AI-Horde": "🤖",
+    "AI-Text": "✍️",
+    "AI-Image": "🖼️",
+    Gaming: "🎮",
+    Reading: "📚",
+    Mobile: "📱",
+    Linux: "🐧",
+    Adblock: "🔒",
+    Downloading: "📥",
+    Storage: "💾",
+    Misc: "🔧",
+    Video: "🎬",
+    Music: "🎵",
+    Images: "🖼️",
+    Development: "💻",
+    Design: "🎨",
+    Privacy: "🔒",
+    VPN: "🌐",
+    Streaming: "📺",
+  };
+  return icons[name] || "🔧";
+}
+
+// ── 首页主组件 ─────────────────────────────────────────
 export default function IndexPage() {
+  const { topCategories, trendingResources } = getHomepageData();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Craftisle",
     url: "https://craftisle.com",
-    description: "Play free HTML5 games online. Use 100+ free online tools. No download, no signup.",
+    description:
+      "Free software directory with 16,000+ tools. Play free HTML5 games. Use 100+ free online tools.",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://craftisle.com/tools?q={search_term_string}",
+      target: "https://craftisle.com/directory/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
 
   return (
     <>
+      {/* JSON-LD 结构化数据 */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div>
-      {/* Hero Section */}
+
+      {/* ── Hero 区 ─────────────────────────────────── */}
       <section className="relative overflow-hidden bg-background py-20 sm:py-32">
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
+            {/* 标签 */}
             <Badge variant="secondary" className="mb-6">
-              🎮 Free Game Platform & Tools
+              🔥 16,000+ Free & Open-Source Software
             </Badge>
+
+            {/* 主标题 */}
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Discover Fun
+              Find Free & Open-Source{" "}
               <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                {" "}Mini Games
-              </span>
-              {" "}& Useful Tools
+                Software
+              </span>{" "}
+              for Any Task
             </h1>
+
+            {/* 副标题 */}
             <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Play curated mini games, use 100+ free online tools. No download required, no registration, play instantly.
+              Search 16,000+ free tools, find alternatives, compare software.
+              Plus: play free games & use 100+ online tools.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-4">
-              <Link href="/games">
-                <Button size="lg">
-                  <Gamepad2 className="mr-2 h-5 w-5" />
-                  Start Playing
+
+            {/* 搜索框 */}
+            <div className="mx-auto mt-10 max-w-2xl">
+              <form action="/directory/search" method="GET" className="flex gap-2">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                  <input
+                    type="text"
+                    name="q"
+                    placeholder='Try: "video downloader", "adblock", "AI chat"'
+                    className="w-full rounded-lg border border-input bg-background py-3 pl-10 pr-4 text-sm placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  />
+                </div>
+                <Button type="submit" size="lg">
+                  Search
                 </Button>
-              </Link>
-              <Link href="/tools">
-                <Button size="lg" variant="outline">
-                  <Wrench className="mr-2 h-5 w-5" />
-                  Free Tools
-                </Button>
-              </Link>
+              </form>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Hot searches: video downloader, adblock, AI tools, manga, games
+              </p>
+            </div>
+
+            {/* 快捷入口 */}
+            <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-2">
+              {[
+                { label: "AI Tools", href: "/directory/best/artificial-intelligence" },
+                { label: "Adblock", href: "/directory/best/adblock" },
+                { label: "Video Editing", href: "/directory/search?q=video+editing" },
+                { label: "Games", href: "/games" },
+                { label: "Linux", href: "/directory/Linux" },
+                { label: "Development", href: "/directory/best/development" },
+                { label: "Storage", href: "/directory/Storage" },
+                { label: "Downloading", href: "/directory/Downloading" },
+              ].map((entry) => (
+                <Link key={entry.href} href={entry.href}>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
+                    {entry.label}
+                  </Badge>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Three Selling Points */}
-      <section className="border-t bg-muted/30 py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl">
-            <div className="grid gap-8 md:grid-cols-3">
-              {/* Point 1 */}
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <ShieldCheck className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle>100% Free</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    No registration, no limits, no hidden costs. All tools are completely free to use.
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              {/* Point 2 */}
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <Gift className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle>No Installation</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    All tools run in your browser. No download, no installation, use instantly.
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              {/* Point 3 */}
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <Zap className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle>100+ Tools</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    PDF tools, image tools, developer tools, converters, generators, and more.
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Ad: below selling points */}
+      {/* ── 广告：Hero 下方 ───────────────────────────── */}
       <section className="flex justify-center py-6">
-        <AdSlot slotId="homepage-below-points" size="leaderboard" label="Homepage Below Points" />
+        <AdSlot
+          slotId="homepage-below-hero"
+          size="leaderboard"
+          label="Homepage Below Hero"
+        />
       </section>
 
-      {/* Popular Tools */}
+      {/* ── 板块 1：热门分类 ───────────────────────────── */}
       <section className="border-t py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-center justify-between">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight">Popular Tools</h2>
-              <p className="mt-2 text-muted-foreground">Most used tools by our users</p>
+              <h2 className="text-3xl font-bold tracking-tight">
+                Browse by Category
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Top categories by resource count
+              </p>
             </div>
-            <Link href="/tools">
+            <Link href="/directory/categories">
               <Button variant="ghost">
                 View All <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <FileEdit className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Resume Builder</CardTitle>
-                <CardDescription>Create professional resumes with AI</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="https://resume.craftisle.com" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool ↗
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <FileText className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">PDF Tools</CardTitle>
-                <CardDescription>Merge, split, compress, convert PDF files</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="https://pdf.craftisle.com" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Eye className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">File Viewer</CardTitle>
-                <CardDescription>Preview 135+ file formats online</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <a href="https://viewer.craftisle.com" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool ↗
-                  </Button>
-                </a>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Code2 className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Regex Visualizer</CardTitle>
-                <CardDescription>Visual AST graph editor for regex</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/regex-vis">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <PenTool className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Handwriting Animation</CardTitle>
-                <CardDescription>Generate handwriting animation videos</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/handwriting-animation">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            {/* Draw - Whiteboard */}
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Layout className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Online Whiteboard</CardTitle>
-                <CardDescription>Collaborative online whiteboard for brainstorming</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <a href="https://draw.craftisle.com" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool ↗
-                  </Button>
-                </a>
-              </CardContent>
-            </Card>
 
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Pencil className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">HTML Visual Editor</CardTitle>
-                <CardDescription>Edit HTML visually with live preview</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/html-visual-editor">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Code2 className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">HTML Formatter</CardTitle>
-                <CardDescription>Format and beautify HTML code</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/html-formatter">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Image className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Image Compress</CardTitle>
-                <CardDescription>Compress images with quality control</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/image-compress">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Calculator className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Base64 Encode/Decode</CardTitle>
-                <CardDescription>Base64 string encoding and decoding</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/base64">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <QrCode className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Regex Tester</CardTitle>
-                <CardDescription>Test regular expressions online</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/regex">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <FileText className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Timestamp Converter</CardTitle>
-                <CardDescription>Convert between timestamps and dates</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/timestamp">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <Image className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Image to Base64</CardTitle>
-                <CardDescription>Convert images to/from Base64</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/image-base64">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="transition-shadow hover:shadow-lg">
-              <CardHeader>
-                <FileText className="h-8 w-8 text-primary" />
-                <CardTitle className="mt-2 text-lg">Markdown Preview</CardTitle>
-                <CardDescription>Real-time Markdown preview</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/tools/markdown">
-                  <Button variant="ghost" size="sm" className="w-full">
-                    Open Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Ad: between tools and games */}
-      <section className="flex justify-center py-6">
-        <AdSlot slotId="homepage-tools-to-games" size="leaderboard" label="Homepage Between Tools & Games" />
-      </section>
-
-      {/* Featured Games */}
-      <section className="border-t bg-muted/30 py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 flex items-center justify-between">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight">Popular Games</h2>
-              <p className="mt-2 text-muted-foreground">Curated mini games, play instantly</p>
-            </div>
-            <Link href="/games">
-              <Button variant="ghost">
-                View All <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-              <div className="aspect-video bg-gradient-to-br from-green-400 to-blue-500 relative flex items-center justify-center">
-                <Gamepad2 className="h-16 w-16 text-white/80" />
-                <Badge className="absolute top-3 right-3">Hot</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle>Mykos Island Builder</CardTitle>
-                <CardDescription>Build your dream island, explore endless possibilities</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/play/island-builder">
-                  <Button className="w-full">
-                    <Play className="mr-2 h-4 w-4" />
-                    Play Now
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-              <div className="aspect-video bg-gradient-to-br from-amber-400 to-orange-500 relative flex items-center justify-center">
-                <Gamepad2 className="h-16 w-16 text-white/80" />
-                <Badge className="absolute top-3 right-3" variant="secondary">New</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle>Tiny World Builder</CardTitle>
-                <CardDescription>Build your mini world, unleash creativity</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href="/play/tiny-world-builder">
-                  <Button className="w-full">
-                    <Play className="mr-2 h-4 w-4" />
-                    Play Now
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-              <div className="aspect-video bg-gradient-to-br from-gray-300 to-gray-400 relative flex items-center justify-center">
-                <Gamepad2 className="h-16 w-16 text-white/60" />
-                <Badge className="absolute top-3 right-3" variant="secondary">Coming Soon</Badge>
-              </div>
-              <CardHeader>
-                <CardTitle>More Games Coming</CardTitle>
-                <CardDescription>Stay tuned for updates</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" variant="secondary" disabled>
-                  Coming Soon
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Tool Categories */}
-      <section className="border-t py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight">Tool Categories</h2>
-            <p className="mt-2 text-muted-foreground">Browse all 9 categories</p>
-          </div>
-          <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
-            {[
-              { emoji: "🔐", title: "Encryption & Hashing", desc: "AES, DES, Bcrypt, Hash", slug: "encryption" },
-              { emoji: "📝", title: "Formatters", desc: "JSON, HTML, SQL, YAML", slug: "formatter" },
-              { emoji: "🔄", title: "Converters", desc: "Base64, CSV, IP, Radix", slug: "converter" },
-              { emoji: "💻", title: "Developer Tools", desc: "Regex, File Viewer, Cron", slug: "dev" },
-              { emoji: "🎲", title: "Generators", desc: "QR, UUID, Lorem Ipsum", slug: "generator" },
-              { emoji: "📄", title: "Text Tools", desc: "Diff, Case, Word Count", slug: "text" },
-              { emoji: "🌐", title: "Network Tools", desc: "IP, Subnet, Port Check", slug: "network" },
-              { emoji: "🖼️", title: "Image Tools", desc: "Resize, Compress, Crop", slug: "image" },
-              { emoji: "⚙️", title: "Utilities", desc: "Password, Stopwatch, JSON", slug: "utility" },
-              { emoji: "📦", title: "Other", desc: "Miscellaneous tools", slug: "other" },
-            ].map((cat) => (
-              <Card key={cat.slug} className="transition-shadow hover:shadow-lg">
-                <CardHeader className="pb-2">
-                  <div className="text-3xl mb-1">{cat.emoji}</div>
-                  <CardTitle className="text-base">{cat.title}</CardTitle>
-                  <CardDescription className="text-xs">{cat.desc}</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <Link href={`/tools?category=${cat.slug}`}>
-                    <Button variant="ghost" size="sm" className="w-full text-xs">
-                      Browse
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {topCategories.map((cat) => (
+              <Link
+                key={cat.name}
+                href={`/directory/${encodeURIComponent(cat.name)}`}
+              >
+                <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
+                  <CardContent className="p-5">
+                    <div className="flex items-center gap-3">
+                      <div className="text-3xl">
+                        {getCategoryIcon(cat.name)}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-sm">
+                          {cat.name.replace(/-/g, " ")}
+                        </h3>
+                        <p className="text-xs text-muted-foreground">
+                          {cat.count.toLocaleString()} resources
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-    </div>
+
+      {/* ── 广告：分类与 Trending 之间 ────────────────── */}
+      <section className="flex justify-center py-6">
+        <AdSlot
+          slotId="homepage-between-sections"
+          size="leaderboard"
+          label="Homepage Between Sections"
+        />
+      </section>
+
+      {/* ── 板块 2：Trending This Week ─────────────────── */}
+      {trendingResources.length > 0 && (
+        <section className="border-t bg-muted/30 py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 flex items-center justify-between">
+              <div>
+                <h2 className="text-3xl font-bold tracking-tight">
+                  🔥 Trending This Week
+                </h2>
+                <p className="mt-2 text-muted-foreground">
+                  Most popular resources this week
+                </p>
+              </div>
+              <Link href="/directory/trending">
+                <Button variant="ghost">
+                  View All <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {trendingResources.map((res) => (
+                <Card
+                  key={res.id}
+                  className="transition-all hover:border-primary/40 hover:shadow-md"
+                >
+                  <CardHeader>
+                    <CardTitle className="text-lg">{res.name}</CardTitle>
+                    <CardDescription className="line-clamp-2">
+                      {res.description || "No description available"}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Link href={`/directory/resource/${encodeURIComponent(res.id)}`}>
+                      <Button variant="ghost" size="sm" className="w-full">
+                        View Details <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── 板块 3：随机推荐（客户端组件）───────────────── */}
+      <RandomRecommendations />
+
+      {/* ── 板块 4：子站入口 ───────────────────────────── */}
+      <section className="border-t py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold tracking-tight">
+              More Free Tools
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Explore our other free tools & services
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              {
+                title: "PDF Tools",
+                desc: "Merge, split, compress, convert PDF files",
+                href: "https://pdf.craftisle.com",
+                icon: FileText,
+              },
+              {
+                title: "Resume Builder",
+                desc: "Build ATS-friendly resume in minutes",
+                href: "https://resume.craftisle.com",
+                icon: FileEdit,
+              },
+              {
+                title: "File Viewer",
+                desc: "View PDF/DOCX/PPT online, no download",
+                href: "https://viewer.craftisle.com",
+                icon: Eye,
+              },
+              {
+                title: "Online Games",
+                desc: "Free HTML5 games, no download",
+                href: "https://games.craftisle.com",
+                icon: Gamepad2,
+              },
+              {
+                title: "Online Whiteboard",
+                desc: "Collaborative whiteboard for teams",
+                href: "https://draw.craftisle.com",
+                icon: Layout,
+              },
+            ].map((site) => (
+              <a
+                key={site.href}
+                href={site.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
+                  <CardContent className="p-5 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                      <site.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-base mb-1">
+                      {site.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {site.desc}
+                    </p>
+                  </CardContent>
+                </Card>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 板块 5：内置工具快捷入口 ──────────────────── */}
+      <section className="border-t bg-muted/30 py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold tracking-tight">
+              Online Utilities
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Free online tools, no installation
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Regex Visualizer",
+                desc: "Visualize & test regex patterns",
+                href: "/tools/regex-vis",
+                icon: Code2,
+              },
+              {
+                title: "Handwriting Animation",
+                desc: "Convert text to handwriting animation",
+                href: "/tools/handwriting-animation",
+                icon: PenTool,
+              },
+              {
+                title: "HTML Visual Editor",
+                desc: "WYSIWYG HTML editor with live preview",
+                href: "/tools/html-visual-editor",
+                icon: Pencil,
+              },
+              {
+                title: "QR Code Generator",
+                desc: "Generate QR codes for free",
+                href: "/tools/qr",
+                icon: QrCode,
+              },
+            ].map((tool) => (
+              <Link key={tool.href} href={tool.href}>
+                <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
+                  <CardContent className="p-5 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                      <tool.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-base mb-1">
+                      {tool.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {tool.desc}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SEO 内容块 ─────────────────────────────────── */}
+      <section className="border-t py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-3xl font-bold tracking-tight">
+              What is Craftisle?
+            </h2>
+            <div className="mt-6 space-y-4 text-muted-foreground">
+              <p>
+                Craftisle is a free software directory with 16,000+ open-source
+                and free tools. We help you find the best free alternatives to
+                expensive software, compare similar tools, and discover new
+                software for any task.
+              </p>
+              <p>
+                Our directory covers AI tools, privacy tools, development tools,
+                design tools, gaming tools, and more. All resources are carefully
+                curated and regularly updated.
+              </p>
+              <p>
+                In addition to our software directory, we also provide free
+                online tools (PDF tools, regex visualizer, handwriting animation,
+                etc.) and free HTML5 games. No download, no signup — use
+                instantly in your browser.
+              </p>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-bold tracking-tight">
+                Popular Categories
+              </h3>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {topCategories.slice(0, 10).map((cat) => (
+                  <Link
+                    key={cat.name}
+                    href={`/directory/${encodeURIComponent(cat.name)}`}
+                  >
+                    <Badge variant="secondary" className="cursor-pointer">
+                      {cat.name.replace(/-/g, " ")} ({cat.count})
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
