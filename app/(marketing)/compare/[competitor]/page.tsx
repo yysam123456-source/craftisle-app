@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, ArrowLeft, Check, X } from "lucide-react";
+import { DynamicFAQ } from "@/components/shared/DynamicFAQ";
 
 // Competitor data: which Craftisle tools compete with which competitor
 const COMPETITOR_MAP: Record<string, { name: string; url: string; tools: string[]; description: string }> = {
@@ -137,6 +138,22 @@ export default async function ComparePage({ params }: Props) {
     .map((id) => ({ id, meta: toolMeta[id] }))
     .filter((t) => t.meta) as { id: string; meta: ToolMeta }[];
 
+  // FAQ items for DynamicFAQ component
+  const faqItems = [
+    {
+      q: `Is ${data.name} free to use?`,
+      a: `${data.name} has partial free features, but Craftisle offers all 60+ tools completely free with no signup required.`,
+    },
+    {
+      q: `Why choose Craftisle over ${data.name}?`,
+      a: `Craftisle is 100% free, no signup required, 100% browser-based (your data never leaves your machine), and offers 60+ tools in one place.`,
+    },
+    {
+      q: `Does Craftisle have file size limits?`,
+      a: `Craftisle has no artificial file size limits. The only limit is your browser's available memory.`,
+    },
+  ];
+
   return (
     <>
       {/* JSON-LD Structured Data */}
@@ -254,6 +271,13 @@ export default async function ComparePage({ params }: Props) {
           <Button size="lg">Browse All Tools →</Button>
         </Link>
       </section>
+
+      {/* FAQ Section (SEO optimization) */}
+      {faqItems && faqItems.length > 0 && (
+        <section className="mt-12 border-t pt-12">
+          <DynamicFAQ items={faqItems} />
+        </section>
+      )}
     </div>
   </>
 );
