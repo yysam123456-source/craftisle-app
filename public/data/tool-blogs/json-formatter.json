@@ -37,5 +37,12 @@
       }
     ],
     "conclusion": "A good JSON formatter is like a spellchecker for data. It catches errors before they cause bugs, and makes complex data structures instantly understandable. Bookmark Craftisle's JSON Formatter — you'll use it every day."
-  }
+  },
+  "keyTakeaways": [
+    "JSON Formatter formats and validates JSON in real-time with line-number error reporting.",
+    "Three view modes: Formatted (indented), Minified (single-line), Tree View (collapsible).",
+    "Supports 2/4 space indentation and handles API responses over 10,000 lines.",
+    "Catches common JSON errors: trailing commas, single quotes, unescaped characters.",
+    "100% browser-based, no upload, works offline after first load."
+  ]
 }

@@ -33,5 +33,12 @@
       }
     ],
     "conclusion": "PDF merging shouldn't cost money or compromise privacy. Craftisle's Merger is free, fast, and secure — everything stays in your browser. Bookmark it for your next document assembly task."
-  }
+  },
+  "keyTakeaways": [
+    "PDF Merge combines multiple PDF files into one in your browser.",
+    "Supports drag-and-drop reordering of pages before merging.",
+    "Handles password-protected PDFs (enter password in tool).",
+    "No file size limits, but large files (>100MB) may be slow.",
+    "100% free, no watermarks, no registration."
+  ]
 }

@@ -6,7 +6,12 @@
   "category": "Image Tools",
   "date": "2026-06-08",
   "readTime": 5,
-  "tags": ["image compression", "optimize images", "reduce file size", "web performance"],
+  "tags": [
+    "image compression",
+    "optimize images",
+    "reduce file size",
+    "web performance"
+  ],
   "content": {
     "intro": "Large images are the #1 cause of slow websites. According to HTTP Archive, images make up over 50% of the average web page's total weight. Compressing them is the single most effective optimization you can make — and with Craftisle's free Image Compressor, it takes just seconds.",
     "sections": [
@@ -32,5 +37,12 @@
       }
     ],
     "conclusion": "Image compression is a one-time investment that pays off in faster load times, better SEO rankings, and happier visitors. Try Craftisle's Image Compressor — it's free, private (everything stays in your browser), and takes less than 5 seconds."
-  }
+  },
+  "keyTakeaways": [
+    "Image Compress reduces image file size by 60-80% without visible quality loss.",
+    "Supports JPEG, PNG, WebP, and AVIF formats.",
+    "Adjustable compression level (1-100) with real-time preview.",
+    "Batch compress up to 20 images at once.",
+    "All processing happens in-browser — images never leave your device."
+  ]
 }

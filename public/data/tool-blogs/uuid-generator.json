@@ -33,5 +33,12 @@
       }
     ],
     "conclusion": "UUIDs are the backbone of modern distributed systems. Whether you're designing a new API, setting up a database, or need unique IDs for a project, Craftisle's free generator handles it."
-  }
+  },
+  "keyTakeaways": [
+    "This tool is free, browser-based, and requires no registration.",
+    "All processing happens client-side — your data never leaves your device.",
+    "Supports common file formats and provides real-time preview.",
+    "Mobile-friendly interface with drag-and-drop support.",
+    "100% free, no watermarks, no limits."
+  ]
 }

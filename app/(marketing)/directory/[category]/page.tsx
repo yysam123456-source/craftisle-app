@@ -7,7 +7,7 @@ import { CATEGORY_H2_CONTENT } from "@/lib/category-h2";
 import { getAllCategories, getResourcesByCategory } from "@/lib/fmhy-data";
 import { getDomainForCategory } from "@/lib/category-domains";
 import { formatCategoryName } from "@/lib/unified-categories";
-import { Breadcrumb, type BreadcrumbItem } from "@/components/Breadcrumb";
+import { ChevronRight, Home } from "lucide-react";
 
 interface Category {
   id: string;
@@ -130,13 +130,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const domainName = getDomainForCategory(category);
   const displayName = cat.name || formatCategoryName(cat.id);
 
-  // Breadcrumb items
-  const breadcrumbItems: BreadcrumbItem[] = [
-    { name: "Home", url: "https://craftisle.com" },
-    { name: "Directory", url: "https://craftisle.com/directory" },
-    { name: displayName, url: `https://craftisle.com/directory/${category}` },
-  ];
-
   // JSON-LD
   const jsonLd = {
     "@context": "https://schema.org",
@@ -151,29 +144,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       url: "https://craftisle.app",
     },
     numberOfItems: resources.length,
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://craftisle.app",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Directory",
-          item: "https://craftisle.app/directory",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: displayName,
-          item: `https://craftisle.app/directory/${category}`,
-        },
-      ],
-    },
   };
 
   return (
@@ -186,7 +156,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <Breadcrumb items={breadcrumbItems} />
+          <nav aria-label="breadcrumb" className="flex items-center gap-1 text-sm text-muted-foreground mb-6">
+            <Link href="/" className="hover:text-foreground flex items-center gap-1">
+              <Home className="h-4 w-4" /> Home
+            </Link>
+            <ChevronRight className="h-3 w-3" />
+            <Link href="/directory" className="hover:text-foreground">
+              Directory
+            </Link>
+            <ChevronRight className="h-3 w-3" />
+            <span className="text-foreground font-medium">{displayName}</span>
+          </nav>
 
           {/* Category Header */}
           <div className="mb-8">

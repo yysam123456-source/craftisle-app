@@ -6,7 +6,6 @@ import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import type { ToolMeta } from "@/lib/tools";
 import { toolMeta } from "@/lib/tools";
-import { Breadcrumb, type BreadcrumbItem } from "@/components/Breadcrumb";
 
 interface ToolDetailLayoutProps {
   toolId: string;
@@ -33,13 +32,6 @@ export function ToolDetailLayout({
   author,
   relatedTools,
 }: ToolDetailLayoutProps) {
-  // Generate breadcrumb items
-  const breadcrumbItems: BreadcrumbItem[] = [
-    { name: "Home", url: "https://craftisle.com" },
-    { name: "Tools", url: "https://craftisle.com/tools" },
-    { name: meta.title, url: `https://craftisle.com/tools/${toolId}` },
-  ];
-
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-10">
       {/* === JsonLD === */}
@@ -70,9 +62,6 @@ export function ToolDetailLayout({
           }}
         />
       )}
-
-      {/* === Breadcrumb === */}
-      <Breadcrumb items={breadcrumbItems} />
 
       {/* === Tool Header === */}
       <div className="space-y-3">
@@ -113,49 +102,6 @@ export function ToolDetailLayout({
 
       {/* === Content (children) === */}
       <div>{children}</div>
-
-      {/* === FAQ Section (SEO optimization) === */}
-      {meta.faq && meta.faq.length > 0 && (
-        <section className="pt-8 border-t">
-          <h2 className="text-xl font-semibold mb-4">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {meta.faq.map((item, index) => (
-              <div key={index} className="border rounded-lg p-4">
-                <h3 className="font-medium text-base mb-2">{item.q}</h3>
-                <p className="text-sm text-muted-foreground">{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* === Related Tools === */}
-      {relatedTools && relatedTools.length > 0 && (
-        <section className="pt-8 border-t">
-          <h2 className="text-xl font-semibold mb-4">Related Tools</h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedTools.map((relatedId) => {
-              const relatedMeta = toolMeta[relatedId];
-              if (!relatedMeta) return null;
-              return (
-                <Link
-                  key={relatedId}
-                  href={`/tools/${relatedId}`}
-                  className="block rounded-lg border bg-card p-4 hover:border-primary/40 hover:shadow-sm transition-all"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg">{relatedMeta.icon}</span>
-                    <h3 className="font-medium text-sm">{relatedMeta.title}</h3>
-                  </div>
-                  <p className="text-xs text-muted-foreground line-clamp-2">
-                    {relatedMeta.desc}
-                  </p>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      )}
     </div>
   );
 }

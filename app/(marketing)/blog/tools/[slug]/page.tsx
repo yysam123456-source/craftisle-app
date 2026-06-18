@@ -15,6 +15,7 @@ interface ToolBlogContent {
   date: string;
   readTime: number;
   tags: string[];
+  keyTakeaways?: string[];
   content: {
     intro: string;
     sections: { heading: string; body: string }[];
@@ -192,6 +193,21 @@ export default async function ToolBlogPage({ params }: PageProps) {
                   <p className="text-muted-foreground leading-relaxed">{section.body}</p>
                 </section>
               ))}
+
+              {/* Key Takeaways */}
+              {blog.keyTakeaways && blog.keyTakeaways.length > 0 && (
+                <div className="mt-12 p-6 rounded-2xl border bg-amber-50">
+                  <h3 className="text-lg font-semibold mb-3">📝 Key Takeaways</h3>
+                  <ul className="space-y-2">
+                    {blog.keyTakeaways.map((takeaway, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="text-primary mt-0.5">✓</span>
+                        <span>{takeaway}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Conclusion */}
               <div className="mt-12 p-6 rounded-xl border bg-muted/30">

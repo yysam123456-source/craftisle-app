@@ -1,151 +1,143 @@
+// contentlayer.config.ts
 import {
-  ComputedFields,
   defineDocumentType,
-  makeSource,
+  makeSource
 } from "contentlayer2/source-files";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
-
-const defaultComputedFields: ComputedFields = {
+var defaultComputedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => `/${doc._raw.flattenedPath}`,
+    resolve: (doc) => `/${doc._raw.flattenedPath}`
   },
   slugAsParams: {
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/")
   },
   images: {
     type: "list",
     resolve: (doc) => {
-      return (
-        doc.body.raw.match(/(?<=<Image[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g) || []
-      );
-    },
-  },
+      return doc.body.raw.match(/(?<=<Image[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g) || [];
+    }
+  }
 };
-
-export const Doc = defineDocumentType(() => ({
+var Doc = defineDocumentType(() => ({
   name: "Doc",
   filePathPattern: `docs/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
       type: "string",
-      required: true,
+      required: true
     },
     description: {
-      type: "string",
+      type: "string"
     },
     published: {
       type: "boolean",
-      default: true,
-    },
+      default: true
+    }
   },
-  computedFields: defaultComputedFields,
+  computedFields: defaultComputedFields
 }));
-
-export const Guide = defineDocumentType(() => ({
+var Guide = defineDocumentType(() => ({
   name: "Guide",
   filePathPattern: `guides/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
       type: "string",
-      required: true,
+      required: true
     },
     description: {
-      type: "string",
+      type: "string"
     },
     date: {
       type: "date",
-      required: true,
+      required: true
     },
     published: {
       type: "boolean",
-      default: true,
+      default: true
     },
     featured: {
       type: "boolean",
-      default: false,
-    },
+      default: false
+    }
   },
-  computedFields: defaultComputedFields,
+  computedFields: defaultComputedFields
 }));
-
-export const Post = defineDocumentType(() => ({
+var Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: `blog/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
       type: "string",
-      required: true,
+      required: true
     },
     description: {
-      type: "string",
+      type: "string"
     },
     date: {
       type: "date",
-      required: true,
+      required: true
     },
     published: {
       type: "boolean",
-      default: true,
+      default: true
     },
     image: {
       type: "string",
-      required: true,
+      required: true
     },
     authors: {
       type: "list",
       of: { type: "string" },
-      required: true,
+      required: true
     },
     categories: {
       type: "list",
       of: {
         type: "enum",
         options: ["news", "education"],
-        default: "news",
+        default: "news"
       },
-      required: true,
+      required: true
     },
     related: {
       type: "list",
       of: {
-        type: "string",
-      },
+        type: "string"
+      }
     },
     keyTakeaways: {
       type: "list",
       of: { type: "string" },
-      required: false,
-    },
+      required: false
+    }
   },
-  computedFields: defaultComputedFields,
+  computedFields: defaultComputedFields
 }));
-
-export const Page = defineDocumentType(() => ({
+var Page = defineDocumentType(() => ({
   name: "Page",
   filePathPattern: `pages/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: {
       type: "string",
-      required: true,
+      required: true
     },
     description: {
-      type: "string",
-    },
+      type: "string"
+    }
   },
-  computedFields: defaultComputedFields,
+  computedFields: defaultComputedFields
 }));
-
-export default makeSource({
+var contentlayer_config_default = makeSource({
   contentDirPath: "./content",
   documentTypes: [Page, Doc, Guide, Post],
   mdx: {
@@ -156,9 +148,7 @@ export default makeSource({
         visit(tree, (node) => {
           if (node?.type === "element" && node?.tagName === "pre") {
             const [codeEl] = node.children;
-
             if (codeEl.tagName !== "code") return;
-
             node.__rawString__ = codeEl.children?.[0].value;
           }
         });
@@ -169,12 +159,11 @@ export default makeSource({
           theme: "github-dark",
           keepBackground: false,
           onVisitLine(node) {
-            // Prevent lines from collapsing in `display: grid` mode, and allow empty lines to be copy/pasted
             if (node.children.length === 0) {
               node.children = [{ type: "text", value: " " }];
             }
-          },
-        },
+          }
+        }
       ],
       () => (tree) => {
         visit(tree, (node) => {
@@ -182,12 +171,10 @@ export default makeSource({
             if (!("data-rehype-pretty-code-figure" in node.properties)) {
               return;
             }
-
             const preElement = node.children.at(-1);
             if (preElement.tagName !== "pre") {
               return;
             }
-
             preElement.properties["__rawString__"] = node.__rawString__;
           }
         });
@@ -197,10 +184,18 @@ export default makeSource({
         {
           properties: {
             className: ["subheading-anchor"],
-            ariaLabel: "Link to section",
-          },
-        },
-      ],
-    ],
-  },
+            ariaLabel: "Link to section"
+          }
+        }
+      ]
+    ]
+  }
 });
+export {
+  Doc,
+  Guide,
+  Page,
+  Post,
+  contentlayer_config_default as default
+};
+//# sourceMappingURL=compiled-contentlayer-config-AZTL5HAR.mjs.map
