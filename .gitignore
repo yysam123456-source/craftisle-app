@@ -40,9 +40,8 @@ next-env.d.ts
 /.react-email/
 
 .vscode
-# contentlayer: track generated files, ignore only cache
-.contentlayer/cache
-!.contentlayer/
+# contentlayer: ignore entire build cache directory
+.contentlayer/
 
 # temp / debug files (never commit)
 dev-server.log
