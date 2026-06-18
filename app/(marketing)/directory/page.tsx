@@ -13,6 +13,7 @@ import { DynamicHomeBlocks } from "@/components/directory/home/dynamic-blocks";
 import { FeaturedWithTabs } from "@/components/directory/home/featured-with-tabs";
 import { ScenarioCards } from "@/components/directory/home/scenario-cards";
 import { ByUseCase } from "@/components/directory/home/by-use-case";
+import { DirectoryFAQ } from "@/components/directory/DirectoryFAQ";
 import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -260,6 +261,8 @@ export default async function ResourcesPage() {
           </div>
         </div>
       </section>
+      {/* ===== 8. FAQ Section (SEO optimization) ===== */}
+      <DirectoryFAQ />
 
       {/* ===== 8. Social Proof ===== */}
       <SocialProof />

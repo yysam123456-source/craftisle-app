@@ -7,6 +7,7 @@ import { CATEGORY_H2_CONTENT } from "@/lib/category-h2";
 import { getAllCategories, getResourcesByCategory } from "@/lib/fmhy-data";
 import { getDomainForCategory } from "@/lib/category-domains";
 import { formatCategoryName } from "@/lib/unified-categories";
+import { Breadcrumb, type BreadcrumbItem } from "@/components/Breadcrumb";
 
 interface Category {
   id: string;
@@ -129,6 +130,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const domainName = getDomainForCategory(category);
   const displayName = cat.name || formatCategoryName(cat.id);
 
+  // Breadcrumb items
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { name: "Home", url: "https://craftisle.com" },
+    { name: "Directory", url: "https://craftisle.com/directory" },
+    { name: displayName, url: `https://craftisle.com/directory/${category}` },
+  ];
+
   // JSON-LD
   const jsonLd = {
     "@context": "https://schema.org",
@@ -178,24 +186,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
-          <nav className="mb-6 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-primary">Home</Link>
-            <span className="mx-2">/</span>
-            <Link href="/directory" className="hover:text-primary">Directory</Link>
-            {domainName ? (
-              <>
-                <span className="mx-2">/</span>
-                <Link
-                  href={`/directory/domain/${cat.id.split("-")[0] === "ffd" ? "development" : cat.id.split("-")[0] === "sh" ? "productivity" : cat.id.split("-")[0] === "pa" ? "misc" : "misc"}`}
-                  className="hover:text-primary"
-                >
-                  {domainName}
-                </Link>
-              </>
-            ) : null}
-            <span className="mx-2">/</span>
-            <span className="text-foreground">{displayName}</span>
-          </nav>
+          <Breadcrumb items={breadcrumbItems} />
 
           {/* Category Header */}
           <div className="mb-8">
