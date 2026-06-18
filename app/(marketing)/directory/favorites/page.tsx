@@ -1,17 +1,12 @@
-import type { Metadata } from "next";
 import { FavoritesClient } from "@/components/resources/favorites-client";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "My Favorite Resources | Craftisle Directory",
   description: "Your saved and bookmarked free tools and resources from the Craftisle directory.",
-    alternates: {
-      canonical: "https://craftisle.app/directory/favorites",
-    },
-  robots: {
-    index: false, // 收藏页是个人化的，不适合被索引
-    follow: true,
-  },
-};
+  canonical: "https://craftisle.app/directory/favorites",
+  noIndex: true, // 收藏页是个人化的，不适合被索引
+});
 
 export default function FavoritesPage() {
   return (

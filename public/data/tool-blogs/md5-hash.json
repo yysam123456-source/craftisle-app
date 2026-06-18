@@ -33,5 +33,12 @@
       }
     ],
     "conclusion": "MD5 is the Swiss Army knife of hashing — not the strongest tool, but incredibly useful for the right jobs. Use it for checksums and non-security hashing; for passwords and security, always choose stronger alternatives."
-  }
+  },
+  "keyTakeaways": [
+    "MD5 Hash generates MD5 checksums for file integrity verification.",
+    "Supports text input and file upload (up to 50MB).",
+    "Instant hash generation with copy-to-clipboard functionality.",
+    "Commonly used for password storage (with salt) and file verification.",
+    "100% client-side — files never leave your device."
+  ]
 }

@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { getAllCategories } from "@/lib/fmhy-data";
 import { ArrowRight, LayoutGrid } from "lucide-react";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
+import { type Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "All Categories — Craftisle Directory",
   description:
     "Browse 200+ categories of free and open-source tools. Find exactly what you need.",
-};
+  canonical: "https://craftisle.com/directory/categories",
+});
 
 /** 分类图标映射 */
 const CATEGORY_ICONS: Record<string, string> = {
@@ -44,8 +46,46 @@ function getIcon(name: string): string {
 
 export default function CategoriesPage() {
   const categories = getAllCategories();
+  const baseUrl = "https://craftisle.com";
+
+  // JSON-LD: CollectionPage + ItemList
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "All Categories — Craftisle Directory",
+    description: `Browse ${categories.length}+ categories of free and open-source tools.`,
+    url: `${baseUrl}/directory/categories`,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Craftisle",
+      url: baseUrl,
+    },
+  };
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    numberOfItems: categories.length,
+    itemListElement: categories.slice(0, 20).map((cat, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: cat.name,
+      description: `${cat.count || 0} tools in ${cat.name} category`,
+      url: `${baseUrl}/directory/${cat.id}`,
+    })),
+  };
 
   return (
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
     <div className="max-w-5xl mx-auto px-4 py-12">
       {/* Header */}
       <nav className="text-sm text-muted-foreground mb-6">
@@ -98,5 +138,6 @@ export default function CategoriesPage() {
         </Link>
       </div>
     </div>
-  );
+  </>
+);
 }

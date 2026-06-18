@@ -5,14 +5,14 @@ import {
   Image, Key, Mail, BarChart3, Cloud, Video, Music, Palette, Bot, Table,
 } from "lucide-react";
 import Link from "next/link";
-import { Metadata } from "next";
 import { getCombinedMap, toSlug, type AlternativeEntry } from "@/lib/alternatives";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Tool Alternatives Comparison | Craftisle",
-  description:
-    "Compare popular paid tools with their free & open-source alternatives. Notion vs Obsidian, Figma vs Penpot, Slack vs Mattermost, and more.",
-};
+  description: "Compare popular paid tools with their free & open-source alternatives. Notion vs Obsidian, Figma vs Penpot, Slack vs Mattermost, and more.",
+  canonical: "https://craftisle.com/directory/compare",
+});
 
 // ── 图标映射 ─────────────────────────────
 const ICON_MAP: Record<string, React.ReactNode> = {

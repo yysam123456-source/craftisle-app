@@ -14,7 +14,8 @@ import { notFound } from "next/navigation";
 import { getAllResources, getAllCategories, type Resource, type Category } from "@/lib/fmhy-data";
 import { getEnhancedDescription } from "@/lib/tool-descriptions";
 import { getCombinedMap, type AlternativeEntry } from "@/lib/alternatives";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
@@ -254,18 +255,11 @@ export async function generateMetadata(props: BestPageProps): Promise<Metadata> 
     const is2026 = slug.endsWith("-2026");
     const title = `${block.title} ${is2026 ? "2026" : ""} | Craftisle`;
     const description = block.subtitle || `Discover the best ${block.title} tools.`;
-    return {
+    return constructMetadata({
       title,
       description,
-      alternates: {
-        canonical: `https://craftisle.com/directory/best/${slug}`,
-      },
-      openGraph: {
-        title: `${block.title} ${is2026 ? "2026" : ""}`,
-        description,
-        url: `https://craftisle.com/directory/best/${slug}`,
-      },
-    };
+      canonical: `https://craftisle.com/directory/best/${slug}`,
+    });
   }
 
   const category = findCategory(slug);
@@ -275,18 +269,11 @@ export async function generateMetadata(props: BestPageProps): Promise<Metadata> 
   const title = `Best ${category.name} Tools ${is2026 ? "2026" : ""} — Free & Open Source | Craftisle`;
   const description = `Discover the best free and open-source ${category.name.toLowerCase()} tools. Curated list with alternatives and reviews.`;
 
-  return {
+  return constructMetadata({
     title,
     description,
-    alternates: {
-      canonical: `https://craftisle.com/directory/best/${slug}`,
-    },
-    openGraph: {
-      title: `Best ${category.name} Tools ${is2026 ? "2026" : ""}`,
-      description,
-      url: `https://craftisle.com/directory/best/${slug}`,
-    },
-  };
+    canonical: `https://craftisle.com/directory/best/${slug}`,
+  });
 }
 
 // ── 页面组件 ─────────────────────────

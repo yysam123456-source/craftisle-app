@@ -7,6 +7,8 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
+import { getRelatedTools } from "@/lib/related-tools";
 
 interface ToolPageProps {
   params: Promise<{ tool: string }>;
@@ -21,44 +23,11 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
-  const ogImage = `https://craftisle.com/og-image.png`;
-
-  const toolUrl = `https://craftisle.com/tools/${tool}`;
-
-  return {
+  return constructMetadata({
     title,
     description,
     keywords: meta.seoKeywords,
-    // ── GEO: E-E-A-T 信号 ──────────────────────────────
-    authors: [{ name: "Craftisle Team", url: "https://craftisle.com/about" }],
-    creator: "Craftisle Team",
-    publisher: "Craftisle",
-    metadataBase: new URL(toolUrl),
-    alternates: { canonical: url },
-    openGraph: {
-      type: "website",
-      title,
-      description,
-      url: toolUrl,
-      siteName: "Craftisle",
-      locale: "en_US",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${meta.title} — Free Online Tool`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-      creator: "@craftisle",
-    },
-  };
+  });
 }
 
 function getCategorySlug(categoryLabel: string): string {
@@ -133,6 +102,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
   }
 
   const categorySlug = getCategorySlug(meta.category);
+  const relatedTools = getRelatedTools(tool);
 
   // Image tools: use ImageToolPage
   if (definition) {
@@ -142,7 +112,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
       maxFileSize: definition.maxFileSize,
     };
     return (
-      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
+      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team" relatedTools={relatedTools}>
         <ImageToolPage toolId={tool} definition={clientDef} />
         <ToolDetailSections toolId={tool} />
       </ToolDetailLayout>
@@ -151,7 +121,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   // Non-image tools: try ToolLoader first, fallback to ToolDetailSections
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
+    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team" relatedTools={relatedTools}>
       <ToolLoader toolId={tool} />
       <ToolDetailSections toolId={tool} />
     </ToolDetailLayout>

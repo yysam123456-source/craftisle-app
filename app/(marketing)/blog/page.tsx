@@ -28,8 +28,9 @@ import {
   Clock,
 } from "lucide-react";
 import { CATEGORIES, CATEGORY_LIST } from "@/lib/tools";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata = {
+export const metadata = constructMetadata({
   title: "Craftisle Tools — Free Online Tools for Developers & Creators | Craftisle Blog",
   description:
     "Discover 135+ free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more. No signup, 100% browser-based.",
@@ -39,7 +40,7 @@ export const metadata = {
     "encryption tools", "formatter tools", "converter tools",
     "craftisle tools", "online utility tools",
   ],
-};
+});
 
 // Product definitions for subdomain tools
 const ECOSYSTEM_PRODUCTS = [
@@ -100,8 +101,34 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 export default function BlogPage() {
   const currentYear = new Date().getFullYear();
 
+  // Structured Data: CollectionPage + ItemList
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Craftisle Free Online Tools",
+    description: "135+ free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more.",
+    url: "https://craftisle.com/blog",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: ECOSYSTEM_PRODUCTS.length,
+      itemListElement: ECOSYSTEM_PRODUCTS.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: product.name,
+        url: product.url,
+        description: product.tagline,
+      })),
+    },
+  };
+
   return (
-    <div>
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="border-b bg-gradient-to-b from-muted/50 to-background py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -386,6 +413,6 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

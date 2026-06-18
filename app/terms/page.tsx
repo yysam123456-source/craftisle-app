@@ -1,13 +1,11 @@
-import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Terms of Service | Craftisle",
   description: "Craftisle Terms of Service — the rules and guidelines for using our website and services.",
-  alternates: {
-    canonical: "https://craftisle.com/terms",
-  },
-};
+  canonical: "https://craftisle.com/terms",
+});
 
 export default function TermsPage() {
   return (

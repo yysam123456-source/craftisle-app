@@ -120,6 +120,11 @@ export const Post = defineDocumentType(() => ({
         type: "string",
       },
     },
+    keyTakeaways: {
+      type: "list",
+      of: { type: "string" },
+      required: false,
+    },
   },
   computedFields: defaultComputedFields,
 }));

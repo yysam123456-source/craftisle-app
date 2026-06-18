@@ -2,13 +2,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Gamepad2, Wrench, Globe, Zap, ShieldCheck } from "lucide-react";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "About | Craftisle",
-  description:
-    "Learn about Craftisle — free online tools and HTML5 games platform, built for creators and gamers.",
-};
+  description: "Learn about Craftisle — free online tools and HTML5 games platform, built for creators and gamers.",
+  canonical: "https://craftisle.com/about",
+});
 
 export default function AboutPage() {
   return (

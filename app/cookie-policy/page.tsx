@@ -1,13 +1,11 @@
-import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Cookie Policy | Craftisle",
   description: "Craftisle Cookie Policy — how we use cookies and similar tracking technologies.",
-  alternates: {
-    canonical: "https://craftisle.com/cookie-policy",
-  },
-};
+  canonical: "https://craftisle.com/cookie-policy",
+});
 
 export default function CookiePolicyPage() {
   return (

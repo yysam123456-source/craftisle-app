@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { Metadata } from "next";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
@@ -7,11 +6,13 @@ import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/forms/user-auth-form";
 import { AuthErrorDisplay } from "@/components/forms/auth-error-display";
 import { Icons } from "@/components/shared/icons";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to your account",
-};
+export const metadata = constructMetadata({
+  title: "Login | Craftisle",
+  description: "Login to your Craftisle account",
+  noIndex: true, // 认证页面不应该被索引
+});
 
 export default function LoginPage() {
   return (

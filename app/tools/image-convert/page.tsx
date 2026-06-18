@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import ImageConvertClient from "./client";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Image Converter - Craftisle Tools",
-  description:
-    "Convert images to different formats online for free. JPG, PNG, WebP, GIF, BMP. No upload needed.",
-};
+  description: "Convert images to different formats online for free. JPG, PNG, WebP, GIF, BMP. No upload needed.",
+  canonical: "https://craftisle.com/tools/image-convert",
+});
 
 export default function ImageConvertPage() {
   return (

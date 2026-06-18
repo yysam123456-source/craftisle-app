@@ -33,5 +33,12 @@
       }
     ],
     "conclusion": "Whether you're writing a tweet, a blog post, or a thesis, word count matters. Craftisle's free Text Counter gives you all the metrics you need in one clean, real-time interface."
-  }
+  },
+  "keyTakeaways": [
+    "Text Counter provides real-time character, word, sentence, and paragraph counts.",
+    "Supports multiple languages including Chinese, Japanese, and Korean.",
+    "Useful for social media character limits (Twitter, Instagram, etc.).",
+    "Export statistics as JSON or copy to clipboard.",
+    "100% free, no ads, works offline after first load."
+  ]
 }

@@ -17,6 +17,9 @@ export function constructMetadata({
   icons = "/favicon.ico",
   noIndex = false,
   keywords: customKeywords,
+  authors: customAuthors,
+  publisher: customPublisher,
+  canonical,
 }: {
   title?: string;
   description?: string;
@@ -24,6 +27,9 @@ export function constructMetadata({
   icons?: string;
   noIndex?: boolean;
   keywords?: string[];
+  authors?: { name: string; url?: string }[];
+  publisher?: string;
+  canonical?: string;
 } = {}): Metadata {
   const defaultKeywords = [
     "free online games",
@@ -44,16 +50,19 @@ export function constructMetadata({
     title,
     description,
     keywords: customKeywords || defaultKeywords,
-    authors: [
+    authors: customAuthors || [
       {
         name: "Craftisle",
       },
     ],
-    creator: "Craftisle",
+    creator: customPublisher || "Craftisle",
+    publisher: customPublisher || "Craftisle",
+    metadataBase: new URL(siteConfig.url),
+    alternates: canonical ? { canonical } : undefined,
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: siteConfig.url,
+      url: canonical || siteConfig.url,
       title,
       description,
       siteName: siteConfig.name,
@@ -67,7 +76,6 @@ export function constructMetadata({
       creator: "@craftisle",
     },
     icons,
-    metadataBase: new URL(siteConfig.url),
     manifest: `${siteConfig.url}/site.webmanifest`,
     ...(noIndex && {
       robots: {

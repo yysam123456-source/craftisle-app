@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import ImageCompressClient from "./client";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Image Compress - Craftisle Tools",
-  description:
-    "Compress images online for free. Reduce image file size without losing quality. Supports JPG, PNG, WebP.",
-};
+  description: "Compress images online for free. Reduce image file size without losing quality. Supports JPG, PNG, WebP.",
+  canonical: "https://craftisle.com/tools/image-compress",
+});
 
 export default function ImageCompressPage() {
   return (

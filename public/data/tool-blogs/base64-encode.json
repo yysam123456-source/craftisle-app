@@ -6,7 +6,12 @@
   "category": "Developer Tools",
   "date": "2026-06-08",
   "readTime": 6,
-  "tags": ["base64", "encoding", "developer tools", "data URI"],
+  "tags": [
+    "base64",
+    "encoding",
+    "developer tools",
+    "data URI"
+  ],
   "content": {
     "intro": "Base64 encoding converts binary data into ASCII text. It's the bridge between raw bytes and text-based systems — used everywhere from email attachments to data URIs, API authentication, and inline images. Craftisle's free Base64 Encoder makes it effortless.",
     "sections": [
@@ -32,5 +37,12 @@
       }
     ],
     "conclusion": "Base64 is a simple but powerful tool every developer should understand. Whether you're embedding images, sending binary data over text protocols, or debugging API responses, Craftisle's free encoder/decoder has you covered."
-  }
+  },
+  "keyTakeaways": [
+    "Base64 Encode/Decode converts binary data to text format for safe transmission.",
+    "Supports files up to 10MB with real-time preview.",
+    "Useful for embedding images in CSS/HTML or API payloads.",
+    "No server processing — all encoding/decoding happens in-browser.",
+    "Supports URL-safe Base64 variant for web-safe encoding."
+  ]
 }

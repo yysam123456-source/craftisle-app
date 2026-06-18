@@ -1,0 +1,303 @@
+---
+title: "Self-Hosted Alternatives Guide — 12 Open-Source Tools to Replace SaaS"
+description: "Complete guide to self-hosted alternatives: 12 open-source tools to replace SaaS (Notion, Google Docs, Trello). Step-by-step Docker setup."
+date: "2026-06-18"
+authors:
+  - craftisle
+categories:
+  - education
+image: /_static/blog/self-hosted.jpg
+keyTakeaways:
+  - "12 open-source tools to replace popular SaaS products."
+  - "Self-hosting gives you full data ownership and privacy."
+  - "Docker-based setup: 5-minute deployment for most tools."
+  - "Cost comparison: SaaS vs Self-hosted (3-year TCO)."
+  - "Security best practices: backups, updates, access control."
+---
+
+# Self-Hosted Alternatives Guide — Replace SaaS with Open-Source
+
+SaaS products are convenient — but they come with trade-offs: **vendor lock-in, recurring costs, and data privacy concerns**.
+
+Self-hosting gives you **full control, one-time infrastructure cost, and 100% data ownership**.
+
+## Why Self-Host?
+
+### 1. Data Ownership
+
+When you use Notion, your notes live on their servers. When you use Google Docs, your documents are in their cloud.
+
+**Self-hosted alternative**: Your data stays on **your server**, under **your control**.
+
+### 2. Cost Over Time
+
+| Product | SaaS Cost (3 yrs) | Self-Hosted Cost (3 yrs) |
+|---------|-------------------|---------------------------|
+| Notion (Team) | $1,800 | $60 (VPS) |
+| Google Workspace | $720 | $60 (VPS) |
+| Trello (Gold) | $540 | $60 (VPS) |
+| **Total** | **$3,060** | **$180** |
+
+### 3. Privacy & Compliance
+
+- **GDPR**: Self-hosted tools can be hosted in EU.
+- **HIPAA**: Self-hosted tools can run on-premise.
+- **No vendor surveillance**: Your data isn't mined for AI training.
+
+---
+
+## 12 Best Self-Hosted Alternatives (2026)
+
+### 1. Notion → Outline / AppFlowy
+
+**Outline** (open-source Notion alternative):
+- Real-time collaboration.
+- Markdown-based.
+- Docker deployment: `docker-compose up -d`.
+- **Setup time**: 10 minutes.
+
+**AppFlowy** (open-source):
+- Infinite canvas + nested pages.
+- Self-hosted with Docker.
+- **Setup time**: 5 minutes.
+
+[Self-hosted alternative: **Craftisle Notes** (free, browser-based)] →
+
+---
+
+### 2. Google Docs → OnlyOfices / Collabora
+
+**OnlyOfices** (open-source office suite):
+- Word, Excel, PowerPoint alternatives.
+- Real-time co-editing.
+- **Setup**: Docker + Nginx reverse proxy.
+
+**Collabora Online** (LibreOffice in browser):
+- Fully open-source.
+- Integrates with Nextcloud.
+
+---
+
+### 3. Trello → Kanboard / Restyaboard
+
+**Kanbird** (open-source Kanban board):
+- Trello-like interface.
+- Docker deployment: `docker run -d -p 8080:80 kanbird/kanbird`.
+- **Setup time**: 2 minutes.
+
+**Restyaboard** (Trello alternative):
+- Multiple board views (Kanban, Gantt, Calendar).
+- **Setup**: Docker Compose.
+
+---
+
+### 4. Slack → Mattermost / Rocket.Chat
+
+**Mattermost** (open-source Slack alternative):
+- Channels, threads, file sharing.
+- Mobile apps (iOS/Android).
+- **Setup**: Docker + PostgreSQL.
+
+**Rocket.Chat** (feature-rich):
+- Video calls, screen sharing.
+- LDAP/AD integration.
+
+---
+
+### 5. Google Drive → Nextcloud
+
+**Nextcloud** (open-source cloud storage):
+- File sync, calendar, contacts.
+- End-to-end encryption (EE2E app).
+- **Setup**: Docker + Redis + PostgreSQL.
+
+**Cost**: Free (except VPS cost).
+
+---
+
+### 6. Grammarly → LanguageTool
+
+**LanguageTool** (open-source grammar checker):
+- 20+ languages.
+- Self-hosted with Docker.
+- **Setup time**: 5 minutes.
+
+**Privacy**: Your text never leaves your server.
+
+---
+
+### 7. Zapier → n8n / Apache Airflow
+
+**n8n** (open-source workflow automation):
+- Visual workflow builder.
+- 200+ integrations.
+- **Setup**: `docker run -it --rm n8nio/n8n`.
+
+**Apache Airflow** (advanced):
+- Python-based DAGs.
+- For data pipeline automation.
+
+---
+
+### 8. Surveymonkey → LimeSurvey
+
+**LimeSurvey** (open-source survey tool):
+- Unlimited surveys, unlimited responses.
+- Conditional logic, branching.
+- **Setup**: Docker + MySQL.
+
+---
+
+### 9. Google Analytics → Plausible / Matomo
+
+**Plausible** (privacy-first analytics):
+- GDPR-compliant (no cookies).
+- Lightweight script (1KB).
+- **Setup**: Docker + Nginx.
+
+**Matomo** (feature-rich):
+- Heatmaps, session recordings.
+- WooCommerce/Shopify integrations.
+
+---
+
+### 10. Firebase → Supabase
+
+**Supabase** (open-source Firebase alternative):
+- PostgreSQL database, real-time subscriptions.
+- Authentication, storage, edge functions.
+- **Setup**: Docker Compose (self-hosted) or Supabase Cloud.
+
+---
+
+### 11. Heroku → Coolify / CapRover
+
+**Coolify** (open-source Heroku alternative):
+- Deploy apps, databases, and services with one click.
+- Self-hosted on your own VPS.
+- **Setup**: One-line installer script.
+
+**CapRover** (lightweight):
+- Docker Swarm-based PaS.
+- **Setup**: `npm install -g caprover`.
+
+---
+
+### 12. CloudFlare → Nginx + Let's Encrypt
+
+**Self-hosted CDN**:
+- Nginx as reverse proxy.
+- Let's Encrypt for free SSL.
+- **Setup**: Certbot + Nginx config.
+
+**Cost**: Free (except VPS cost).
+
+---
+
+## Step-by-Step: Self-Host Outline (Notion Alternative)
+
+### Prerequisites
+
+- VPS (DigitalOcean, Hetzner, Linode) — $5/month.
+- Domain name pointed to VPS IP.
+- Docker + Docker Compose installed.
+
+### Step 1: Clone Outline Repo
+
+```bash
+git clone https://github.com/outline/outline.git
+cd outline
+```
+
+### Step 2: Configure Environment
+
+Create `.env` file:
+
+```env
+SECRET_KEY=your-random-secret
+UTL=https://outline.yourdomain.com
+```
+
+### Step 3: Start Services
+
+```bash
+docker-compose up -d
+```
+
+Wait 2-3 minutes for all services to start.
+
+### Step 4: Access Outline
+
+Open `https://outline.yourdomain.com` in your browser.
+
+### Step 5: Create Admin Account
+
+Follow the onboarding wizard.
+
+**Total setup time**: 15 minutes.
+
+---
+
+## Cost Comparison (3-Year TCO)
+
+| Approach | Year 1 | Year 2 | Year 3 | Total |
+|----------|-------|-------|-------|-------|
+| **SaaS (Notion + Google + Trello)** | $1,020 | $1,020 | $1,020 | **$3,060** |
+| **Self-Hosted (VPS + Domains)** | $80 | $80 | $80 | **$240** |
+| **Savings** | $940 | $940 | $940 | **$2,820** |
+
+---
+
+## Security Best Practices
+
+### 1. Regular Backups
+
+- **Database**: Daily automated backups to S3/R2.
+- **Files**: Weekly rsync to secondary VPS.
+- **Config**: Version-control with Git.
+
+### 2. Automated Updates
+
+- **OS**: `unattended-upgrades` (Debian/Ubuntu).
+- **Docker images**: Watchtower (auto-update containers).
+- **App code**: Renovate Bot (dependency updates).
+
+### 3. Access Control
+
+- **SSH**: Key-based auth, disable password login.
+- **Firewall**: UFW (allow only ports 80, 443, 22).
+- **2FA**: Enforce 2FA for all user accounts.
+
+---
+
+## FAQ
+
+### Is self-hosting dificult?
+
+No. Most tools provide **Docker Compose** files. One command: `docker-compose up -d`.
+
+### What about uptime?
+
+Use a **VPS provider** with 99.9% uptime SLA (DigitalOcean, Hetzner).
+
+### Can I self-host on a Raspberry Pi?
+
+Yes. Most tools provide **ARM64 Docker images**.
+
+### What if I'm not technical?
+
+Use **managed self-hosted platforms**:
+- **Coolify** (one-click deploy).
+- **Elestio** (managed open-source apps).
+
+---
+
+## Conclusion
+
+Self-hosting gives you **freedom, privacy, and long-term cost savings**.
+
+Start with **one tool** (e.g., Outline for notes). Once comfortable, expand to other tools.
+
+**Recommended first self-hosted tool**: [Outline](https://github.com/outline/outline) (Notion alternative).
+
+[**Browse free browser-based tools (no self-hosting needed) →**](/tools)

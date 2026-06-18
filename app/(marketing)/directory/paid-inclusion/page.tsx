@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check, Zap, Star } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { constructMetadata } from "@/lib/utils";
 
 const TIERS = [
   {
@@ -32,10 +33,11 @@ const TIERS = [
   },
 ];
 
-export const metadata = {
+export const metadata = constructMetadata({
   title: "Paid Inclusion | Craftisle Directory",
   description: "Get your resource listed faster with paid inclusion options.",
-};
+  canonical: "https://craftisle.com/directory/paid-inclusion",
+});
 
 export default function PaidInclusionPage() {
   return (

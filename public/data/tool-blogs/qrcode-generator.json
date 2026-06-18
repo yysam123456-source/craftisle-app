@@ -33,5 +33,12 @@
       }
     ],
     "conclusion": "QR codes are everywhere — restaurant menus, product packaging, event tickets, payment systems. With Craftisle's generator, you can create professional QR codes in any color, with your logo, for any purpose. Free, no signup, instant download."
-  }
+  },
+  "keyTakeaways": [
+    "QR Code Generator creates custom QR codes for URLs, text, WiFi, and vCards.",
+    "Supports custom colors, logos, and error correction levels.",
+    "High-resolution output (PNG/SVG) suitable for print and digital use.",
+    "No registration required, 100% free, no watermarks.",
+    "Batch generate up to 10 QR codes at once."
+  ]
 }

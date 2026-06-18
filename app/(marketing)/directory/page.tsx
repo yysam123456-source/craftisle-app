@@ -13,6 +13,7 @@ import { DynamicHomeBlocks } from "@/components/directory/home/dynamic-blocks";
 import { FeaturedWithTabs } from "@/components/directory/home/featured-with-tabs";
 import { ScenarioCards } from "@/components/directory/home/scenario-cards";
 import { ByUseCase } from "@/components/directory/home/by-use-case";
+import { DirectoryFAQ } from "@/components/directory/DirectoryFAQ";
 import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -64,8 +65,34 @@ export default async function ResourcesPage() {
   const bestBlock = allBlocks.find((b: any) => b.id === "weekly-hottest" || b.id === "rising-stars") || null;
   const alternativesBlock = allBlocks.find((b: any) => b.id === "best-free-alternatives") || null;
 
+  // Structured Data: CollectionPage + ItemList
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Craftisle Free Tools Directory",
+    description: `Discover ${totalCount.toLocaleString()}+ curated free & open-source tools across ${categories.length}+ categories.`,
+    url: "https://craftisle.com/directory",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: totalCount,
+      itemListElement: categories.slice(0, 10).map((cat: any, index: number) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: cat.name,
+        url: `https://craftisle.com/directory/${encodeURIComponent(cat.name)}`,
+        description: `${cat.count} resources`,
+      })),
+    },
+  };
+
   return (
     <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* ===== 1. Hero Section ===== */}
       <section className="relative overflow-hidden border-b bg-gradient-to-b from-background to-muted/20 py-20 md:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -234,6 +261,8 @@ export default async function ResourcesPage() {
           </div>
         </div>
       </section>
+      {/* ===== 8. FAQ Section (SEO optimization) ===== */}
+      <DirectoryFAQ />
 
       {/* ===== 8. Social Proof ===== */}
       <SocialProof />

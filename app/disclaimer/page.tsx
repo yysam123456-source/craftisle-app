@@ -1,11 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Disclaimer | Craftisle",
-  description:
-    "Craftisle Disclaimer — legal notices, affiliate disclosure, and third-party content policies.",
-};
+  description: "Craftisle Disclaimer — legal notices, affiliate disclosure, and third-party content policies.",
+  canonical: "https://craftisle.com/disclaimer",
+});
 
 export default function DisclaimerPage() {
   return (
