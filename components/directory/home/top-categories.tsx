@@ -131,7 +131,10 @@ export function TopCategories() {
                     <div className="mb-4 flex items-start gap-3.5">
                       {/* 图标容器 — 渐变圆形背景 */}
                       <div
-                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-muted/50 shadow-lg ring-1 ring-black/[0.06] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-xl group-hover:ring-black/[0.08]"
+                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-lg ring-1 ring-black/[0.04] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-xl group-hover:ring-black/[0.08]"
+                        style={{
+                          background: `linear-gradient(135deg, ${gradient.from}10, ${gradient.to}10)`,
+                        }}
                       >
                         <Icon
                           className="h-5 w-5 transition-transform duration-500 group-hover:scale-110"
@@ -143,13 +146,18 @@ export function TopCategories() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text sm:text-lg"
-                          style={{
-                            "--hover-from": gradient.from,
-                            "--hover-to": gradient.to,
-                          } as React.CSSProperties}
-                        >
-                          {cat.name}
+                        <h3 className="text-base font-bold tracking-tight text-foreground transition-all duration-300 sm:text-lg">
+                          <span className="group-hover:hidden">{cat.name}</span>
+                          <span
+                            className="hidden group-hover:inline-block bg-gradient-to-r bg-clip-text text-transparent"
+                            style={{
+                              backgroundImage: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
+                              WebkitBackgroundClip: "text",
+                              WebkitTextFillColor: "transparent",
+                            }}
+                          >
+                            {cat.name}
+                          </span>
                         </h3>
                       </div>
                     </div>

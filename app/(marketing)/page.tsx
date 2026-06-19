@@ -8,7 +8,10 @@ import {
 } from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowRight, Search, Sparkles, Zap, TrendingUp } from "lucide-react";
+import {
+  ArrowRight, Search, Sparkles, Zap, TrendingUp,
+  Bot, Shield, Film, Gamepad2, Terminal, Code, Lock
+} from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 import fs from "fs";
@@ -126,31 +129,31 @@ export const metadata: Metadata = {
   },
 };
 
-// ── 分类图标映射（用函数避免编码问题）────────────────
-function getCategoryIcon(name: string): string {
-  const icons: Record<string, string> = {
-    "Artificial-Intelligence": "🤖",
-    "AI-Horde": "🤖",
-    "AI-Text": "✍️",
-    "AI-Image": "🖼️",
-    Gaming: "🎮",
-    Reading: "📚",
-    Mobile: "📱",
-    Linux: "🐧",
-    Adblock: "🔒",
-    Downloading: "📥",
-    Storage: "💾",
-    Misc: "🔧",
-    Video: "🎬",
-    Music: "🎵",
-    Images: "🖼️",
-    Development: "💻",
-    Design: "🎨",
-    Privacy: "🔒",
-    VPN: "🌐",
-    Streaming: "📺",
+// ── 分类图标映射（lucide-react 图标 + 渐变色）────────
+function getCategoryStyle(name: string): { icon: string; from: string; to: string } {
+  const map: Record<string, { icon: string; from: string; to: string }> = {
+    "Artificial-Intelligence": { icon: "🤖", from: "#3b82f6", to: "#8b5cf6" },
+    "AI-Horde": { icon: "🤖", from: "#3b82f6", to: "#8b5cf6" },
+    "AI-Text": { icon: "✍️", from: "#a855f7", to: "#ec4899" },
+    "AI-Image": { icon: "🖼️", from: "#3b82f6", to: "#06b6d4" },
+    Gaming: { icon: "🎮", from: "#ec4899", to: "#a855f7" },
+    Reading: { icon: "📚", from: "#eab308", to: "#f59e0b" },
+    Mobile: { icon: "📱", from: "#22c55e", to: "#10b981" },
+    Linux: { icon: "🐧", from: "#f97316", to: "#ef4444" },
+    Adblock: { icon: "🔒", from: "#ef4444", to: "#dc2626" },
+    Downloading: { icon: "📥", from: "#f97316", to: "#eab308" },
+    Storage: { icon: "💾", from: "#6366f1", to: "#3b82f6" },
+    Misc: { icon: "🔧", from: "#6b7280", to: "#9ca3af" },
+    Video: { icon: "🎬", from: "#ec4899", to: "#f43f5e" },
+    Music: { icon: "🎵", from: "#22c55e", to: "#10b981" },
+    Images: { icon: "🖼️", from: "#3b82f6", to: "#06b6d4" },
+    Development: { icon: "💻", from: "#3b82f6", to: "#06b6d4" },
+    Design: { icon: "🎨", from: "#ec4899", to: "#a855f7" },
+    Privacy: { icon: "🔒", from: "#22c55e", to: "#10b981" },
+    VPN: { icon: "🌐", from: "#3b82f6", to: "#6366f1" },
+    Streaming: { icon: "📺", from: "#ef4444", to: "#f97316" },
   };
-  return icons[name] || "🔧";
+  return map[name] || { icon: "🔧", from: "#6b7280", to: "#9ca3af" };
 }
 
 // ── 首页主组件 ─────────────────────────────────────────
@@ -212,11 +215,17 @@ export default function IndexPage() {
 
       {/* ═══ Hero 区 ══════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-background py-20 sm:py-28 lg:py-32">
-        {/* ─ 动态背景：渐变光斑 ─ */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px]" />
-          <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[120px]" />
-          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[100px]" />
+        {/* ─ 动态背景：渐变光斑 + 浮动动画 ─ */}
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px] animate-pulse-slow" />
+          <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[120px] animate-pulse-slow animation-delay-2000" />
+          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[100px] animate-float" />
+          {/* 浮动粒子光点 */}
+          <div className="absolute top-1/4 left-1/4 h-3 w-3 rounded-full bg-blue-400/30 blur-sm animate-float-delayed" />
+          <div className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-purple-400/25 blur-sm animate-float animation-delay-3000" />
+          <div className="absolute bottom-1/3 left-1/3 h-2.5 w-2.5 rounded-full bg-cyan-400/25 blur-sm animate-float-delayed animation-delay-1500" />
+          <div className="absolute top-1/2 right-1/3 h-2 w-2 rounded-full bg-fuchsia-400/20 blur-sm animate-float animation-delay-4000" />
+          <div className="absolute bottom-1/4 right-1/2 h-3 w-3 rounded-full bg-indigo-400/20 blur-sm animate-float-delayed animation-delay-2500" />
         </div>
 
         {/* 网格背景纹理（极淡） */}
@@ -292,24 +301,37 @@ export default function IndexPage() {
               </div>
             </div>
 
-            {/* 快速入口标签云 */}
+            {/* 快速入口标签云 — 渐变图标圆球 */}
             <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-2.5">
               {[
-                { label: "AI Tools", href: "/directory/best/artificial-intelligence", icon: "🤖" },
-                { label: "Adblock", href: "/directory/best/adblock", icon: "🔒" },
-                { label: "Video Editing", href: "/directory/search?q=video+editing", icon: "🎬" },
-                { label: "Games", href: "/game", icon: "🎮" },
-                { label: "Linux", href: "/directory/Linux", icon: "🐧" },
-                { label: "Dev Tools", href: "/directory/best/development", icon: "💻" },
-                { label: "Privacy", href: "/directory/best/privacy", icon: "🛡️" },
-              ].map((entry) => (
-                <Link key={entry.href} href={entry.href}>
-                  <span className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-4 py-1.5 text-sm font-medium shadow-sm backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md">
-                    <span>{entry.icon}</span>
-                    {entry.label}
-                  </span>
-                </Link>
-              ))}
+                { label: "AI Tools", href: "/directory/best/artificial-intelligence", icon: Bot, gradientFrom: "#3b82f6", gradientTo: "#8b5cf6", bgLight: "bg-blue-50 dark:bg-blue-950/30" },
+                { label: "Adblock", href: "/directory/best/adblock", icon: Shield, gradientFrom: "#ef4444", gradientTo: "#f97316", bgLight: "bg-red-50 dark:bg-red-950/30" },
+                { label: "Video Editing", href: "/directory/search?q=video+editing", icon: Film, gradientFrom: "#ec4899", gradientTo: "#a855f7", bgLight: "bg-pink-50 dark:bg-pink-950/30" },
+                { label: "Games", href: "https://game.craftisle.com", icon: Gamepad2, gradientFrom: "#a855f7", gradientTo: "#ec4899", bgLight: "bg-purple-50 dark:bg-purple-950/30" },
+                { label: "Linux", href: "/directory/Linux", icon: Terminal, gradientFrom: "#f97316", gradientTo: "#eab308", bgLight: "bg-orange-50 dark:bg-orange-950/30" },
+                { label: "Dev Tools", href: "/directory/best/development", icon: Code, gradientFrom: "#3b82f6", gradientTo: "#06b6d4", bgLight: "bg-cyan-50 dark:bg-cyan-950/30" },
+                { label: "Privacy", href: "/directory/best/privacy", icon: Lock, gradientFrom: "#22c55e", gradientTo: "#10b981", bgLight: "bg-green-50 dark:bg-green-950/30" },
+              ].map((entry) => {
+                const Icon = entry.icon;
+                return (
+                  <Link key={entry.href} href={entry.href}>
+                    <span className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-border/60 bg-background/80 px-4 py-2 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/25 hover:bg-background hover:shadow-md hover:-translate-y-0.5">
+                      {/* 渐变图标圆球 */}
+                      <span className={`flex h-7 w-7 items-center justify-center rounded-xl ${entry.bgLight} shadow-sm ring-1 ring-black/[0.04] transition-all duration-300 group-hover:scale-110 group-hover:shadow-md`}>
+                        <Icon
+                          className="h-3.5 w-3.5"
+                          style={{
+                            background: `linear-gradient(135deg, ${entry.gradientFrom}, ${entry.gradientTo})`,
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                          }}
+                        />
+                      </span>
+                      <span className="text-sm font-semibold text-foreground/80 group-hover:text-foreground transition-colors">{entry.label}</span>
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -373,28 +395,49 @@ export default function IndexPage() {
           {/* 分类卡片网格 — 更现代的样式 */}
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {topCategories.map((cat) => {
-              const icon = getCategoryIcon(cat.name);
+              const style = getCategoryStyle(cat.name);
               return (
                 <Link
                   key={cat.name}
                   href={`/directory/${encodeURIComponent(cat.name)}`}
                   className="group"
                 >
-                  <div className="relative overflow-hidden rounded-xl border border-border/60 bg-card/80 p-5 backdrop-blur-sm transition-all duration-300 hover:border-primary/25 hover:bg-card hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5">
-                    {/* hover 时顶部出现渐变条 */}
-                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100" />
+                  <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl transition-all duration-500 ease-out dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20 group-hover:-translate-y-1.5 group-hover:shadow-2xl group-hover:shadow-black/10 dark:group-hover:shadow-black/30 group-hover:border-white/30">
+                    {/* hover 光晕 */}
+                    <div
+                      className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                      style={{
+                        background: `linear-gradient(135deg, ${style.from}15, transparent 40%, transparent 60%, ${style.to}15)`,
+                        filter: "blur(8px)",
+                      }}
+                    />
+                    {/* hover 顶部渐变条 */}
+                    <div
+                      className="h-1 w-full transition-all duration-500 group-hover:h-1.5"
+                      style={{
+                        background: `linear-gradient(90deg, ${style.from}, ${style.to})`,
+                      }}
+                    />
 
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted/80 text-xl shadow-sm transition-transform duration-300 group-hover:scale-110">
-                        {icon}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <h3 className="truncate text-sm font-semibold group-hover:text-primary transition-colors">
-                          {cat.name.replace(/-/g, " ")}
-                        </h3>
-                        <p className="text-xs text-muted-foreground tabular-nums">
-                          {cat.count.toLocaleString()} resources
-                        </p>
+                    <div className="p-5">
+                      <div className="flex items-center gap-3">
+                        {/* 渐变图标圆球 */}
+                        <span
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg shadow-md ring-1 ring-black/[0.04] transition-transform duration-300 group-hover:scale-110"
+                          style={{
+                            background: `linear-gradient(135deg, ${style.from}12, ${style.to}12)`,
+                          }}
+                        >
+                          {style.icon}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="truncate text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                            {cat.name.replace(/-/g, " ")}
+                          </h3>
+                          <p className="text-xs text-muted-foreground tabular-nums mt-0.5">
+                            {cat.count.toLocaleString()} resources
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>

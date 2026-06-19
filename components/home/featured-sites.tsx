@@ -191,13 +191,23 @@ export function FeaturedSites() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text sm:text-xl"
+                        <h3
+                          className="text-lg font-bold tracking-tight text-foreground transition-all duration-300 sm:text-xl"
                           style={{
-                            "--hover-from": site.gradientFrom,
-                            "--hover-to": site.gradientTo,
-                          } as React.CSSProperties}
+                            color: "inherit",
+                          }}
                         >
-                          {site.title}
+                          <span className="group-hover:hidden">{site.title}</span>
+                          <span
+                            className="hidden group-hover:inline-block bg-gradient-to-r bg-clip-text text-transparent"
+                            style={{
+                              backgroundImage: `linear-gradient(135deg, ${site.gradientFrom}, ${site.gradientTo})`,
+                              WebkitBackgroundClip: "text",
+                              WebkitTextFillColor: "transparent",
+                            }}
+                          >
+                            {site.title}
+                          </span>
                         </h3>
                         <p className="mt-0.5 text-sm font-medium text-primary/60 transition-colors group-hover:text-primary/80">
                           {site.slogan}

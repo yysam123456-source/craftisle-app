@@ -4,253 +4,196 @@ import {
   GlassCard,
   GlassCardContent
 } from "@/components/ui/glass-card";
+import {
+  Bot, Palette, Code, Shield, BookOpen, Gamepad2,
+  PenLine, DollarSign, Globe, BarChart3, Home, Wrench,
+  Download, Image as ImageIcon, Film, Sparkles, Paintbrush,
+  Library, Gamepad2 as GameIcon, ShieldCheck, Server
+} from "lucide-react";
 
 /**
  * Scenario-based entry points
  * User-centric view, not category view
  * "What do you want to do?" → Click a scenario → See curated recommendations
- *
- * ⚠️ 每个链接必须指向真实存在的、有内容的页面！
- * 可用路由：
- *   /directory/best/[slug]     → best/[slug]/page.tsx（支持 FMHY 分类 + alternatives 虚拟分类）
- *   /directory/[category]     → [category]/page.tsx（FMHY 原始分类，如 Gaming）
- *   /directory/alternatives/[tool] → alternatives/[tool]/page.tsx（替代工具页）
- *   /directory/compare/[...slug]    → compare/[...slug]/page.tsx（对比页）
- *   /directory/compare         → compare/page.tsx（对比首页）
- *   /directory/search?q=xxx    → search/page.tsx（搜索页，支持预填查询）
  */
 
 const SCENARIO_ENTRIES = [
   // ── Row 1 ──────────────────────────────────────
   {
-    icon: "🤖",
-    title: "Find AI Assistant",
+    icon: Bot, title: "Find AI Assistant",
     description: "ChatGPT, Claude, Gemini - which one fits you?",
     href: "/directory/compare/chatgpt/claude",
-    cta: "View Comparison",
-    color: "blue",
+    cta: "View Comparison", gradientFrom: "#3b82f6", gradientTo: "#8b5cf6",
   },
   {
-    icon: "🎨",
-    title: "Find Design Tools",
+    icon: Palette, title: "Find Design Tools",
     description: "Figma alternatives, free design tools",
     href: "/directory/alternatives/figma",
-    cta: "View Alternatives",
-    color: "purple",
+    cta: "View Alternatives", gradientFrom: "#ec4899", gradientTo: "#a855f7",
   },
   {
-    icon: "💻",
-    title: "Find Dev Tools",
+    icon: Code, title: "Find Dev Tools",
     description: "APIs, databases, deployment tools",
     href: "/directory/best/development",
-    cta: "View Rankings",
-    color: "green",
+    cta: "View Rankings", gradientFrom: "#22c55e", gradientTo: "#10b981",
   },
 
   // ── Row 2 ──────────────────────────────────────
   {
-    icon: "🔒",
-    title: "Find Privacy Tools",
+    icon: Shield, title: "Find Privacy Tools",
     description: "Ad blocking, encrypted messaging, anonymous browsing",
     href: "/directory/best/adblock",
-    cta: "View Recommendations",
-    color: "red",
+    cta: "View Recommendations", gradientFrom: "#ef4444", gradientTo: "#dc2626",
   },
   {
-    icon: "📚",
-    title: "Find Learning Resources",
+    icon: BookOpen, title: "Find Learning Resources",
     description: "Free courses, tutorials, documentation, e-books",
     href: "/directory/best/reading",
-    cta: "View Resources",
-    color: "yellow",
+    cta: "View Resources", gradientFrom: "#eab308", gradientTo: "#f59e0b",
   },
   {
-    icon: "🎮",
-    title: "Find Entertainment Tools",
+    icon: Gamepad2, title: "Find Entertainment Tools",
     description: "Games, media, streaming, entertainment",
     href: "/directory/Gaming",
-    cta: "View Recommendations",
-    color: "pink",
+    cta: "View Recommendations", gradientFrom: "#ec4899", gradientTo: "#f43f5e",
   },
 
   // ── Row 3 ──────────────────────────────────────
   {
-    icon: "📝",
-    title: "Find Productivity Tools",
+    icon: PenLine, title: "Find Productivity Tools",
     description: "Notion alternatives, task managers, note-taking apps",
     href: "/directory/alternatives/notion",
-    cta: "View Alternatives",
-    color: "indigo",
+    cta: "View Alternatives", gradientFrom: "#6366f1", gradientTo: "#8b5cf6",
   },
   {
-    icon: "💰",
-    title: "Find Free Alternatives",
+    icon: DollarSign, title: "Find Free Alternatives",
     description: "Free alternatives to popular paid tools",
     href: "/directory/compare",
-    cta: "View Free Tools",
-    color: "emerald",
+    cta: "View Free Tools", gradientFrom: "#10b981", gradientTo: "#059669",
   },
   {
-    icon: "🌐",
-    title: "Find Open Source Tools",
+    icon: Globe, title: "Find Open Source Tools",
     description: "Self-hosted, customizable, privacy-friendly",
     href: "/directory/best/linux",
-    cta: "View Open Source",
-    color: "orange",
+    cta: "View Open Source", gradientFrom: "#f97316", gradientTo: "#ea580c",
   },
 
-  // ── Row 4 ──────────────────────────────────────
+  // ── Task-oriented scenarios ───────────────────────
   {
-    icon: "📊",
-    title: "Find Marketing Tools",
-    description: "SEO, social media, email marketing, analytics",
-    href: "/directory/search?q=marketing+tools",
-    cta: "Explore Tools",
-    color: "cyan",
-  },
-  {
-    icon: "🏠",
-    title: "Find Remote Work Tools",
-    description: "Video calls, collaboration, project management",
-    href: "/directory/best/productivity",
-    cta: "View Remote Tools",
-    color: "teal",
-  },
-  {
-    icon: "🔧",
-    title: "Find Browser Extensions",
-    description: "Productivity, privacy, developer tools for your browser",
-    href: "/directory/search?q=browser+extensions",
-    cta: "Explore Extensions",
-    color: "slate",
-  },
-
-  // ── Task-oriented scenarios (new) ───────────────────────────────
-  {
-    icon: "📥",
-    title: "Download Videos",
+    icon: Download, title: "Download Videos",
     description: "Download YouTube, TikTok, Twitch videos for offline viewing",
     href: "/directory/search?q=video+download+youtube+tiktok",
-    cta: "Find Downloaders",
-    color: "red",
+    cta: "Find Downloaders", gradientFrom: "#ef4444", gradientTo: "#f97316",
   },
   {
-    icon: "🖼️",
-    title: "Remove Background",
+    icon: ImageIcon, title: "Remove Background",
     description: "Remove image backgrounds for product photos, avatars, designs",
     href: "/directory/search?q=background+removal+image+transparent",
-    cta: "Find Tools",
-    color: "purple",
+    cta: "Find Tools", gradientFrom: "#a855f7", gradientTo: "#6366f1",
   },
   {
-    icon: "📄",
-    title: "Convert Files",
+    icon: Wrench, title: "Convert Files",
     description: "Convert PDF, Word, video, audio files between formats",
     href: "/directory/search?q=file+converter+pdf+word+video",
-    cta: "Find Converters",
-    color: "blue",
+    cta: "Find Converters", gradientFrom: "#3b82f6", gradientTo: "#06b6d4",
   },
   {
-    icon: "🎬",
-    title: "Edit Videos",
+    icon: Film, title: "Edit Videos",
     description: "Trim, cut, add effects to videos for YouTube, TikTok, Reels",
     href: "/directory/search?q=video+editing+editor+trim+cut",
-    cta: "Find Editors",
-    color: "pink",
+    cta: "Find Editors", gradientFrom: "#ec4899", gradientTo: "#f43f5e",
   },
   {
-    icon: "🤖",
-    title: "Chat with AI Free",
+    icon: Bot, title: "Chat with AI Free",
     description: "Free AI chatbots for writing, coding, learning, brainstorming",
     href: "/directory/search?q=ai+chat+free+gpt+claude+gemini",
-    cta: "Find AI Chats",
-    color: "green",
+    cta: "Find AI Chats", gradientFrom: "#22c55e", gradientTo: "#10b981",
   },
   {
-    icon: "🎨",
-    title: "Design without Photoshop",
+    icon: Paintbrush, title: "Design without Photoshop",
     description: "Free alternatives to Photoshop, Illustrator, Canva for graphic design",
     href: "/directory/search?q=design+free+photoshop+alternative+graphic",
-    cta: "Find Design Tools",
-    color: "orange",
+    cta: "Find Design Tools", gradientFrom: "#f97316", gradientTo: "#ea580c",
   },
   {
-    icon: "📚",
-    title: "Watch Anime & Manga",
+    icon: Library, title: "Watch Anime & Manga",
     description: "Free streaming sites and apps for anime, manga, manhwa",
     href: "/directory/search?q=anime+manga+free+stream+read",
-    cta: "Find Sites & Apps",
-    color: "indigo",
+    cta: "Find Sites & Apps", gradientFrom: "#6366f1", gradientTo: "#8b5cf6",
   },
   {
-    icon: "🎮",
-    title: "Free Games & Emulators",
+    icon: GameIcon, title: "Free Games & Emulators",
     description: "Free PC games, Android games, emulators, ROMs",
     href: "/directory/search?q=game+free+emulator+rom+android",
-    cta: "Find Games",
-    color: "cyan",
+    cta: "Find Games", gradientFrom: "#06b6d4", gradientTo: "#22d3ee",
   },
   {
-    icon: "🔒",
-    title: "Block Ads Everywhere",
+    icon: ShieldCheck, title: "Block Ads Everywhere",
     description: "Ad blockers for browser, Android, iOS, smart TV, router",
     href: "/directory/search?q=adblock+blocker+ads+browser+android",
-    cta: "Find Blockers",
-    color: "emerald",
+    cta: "Find Blockers", gradientFrom: "#10b981", gradientTo: "#059669",
   },
   {
-    icon: "🌐",
-    title: "Self-Host Services",
+    icon: Server, title: "Self-Host Services",
     description: "Host your own cloud, media server, VPN, password manager",
     href: "/directory/search?q=self-hosted+homelab+server+docker+cloud",
-    cta: "Find Self-Hosted",
-    color: "teal",
+    cta: "Find Self-Hosted", gradientFrom: "#14b8a6", gradientTo: "#0d9488",
   },
 ];
-
-const colorMap: Record<string, string> = {
-  blue: "bg-blue-500/10 text-blue-600 border-blue-200",
-  purple: "bg-purple-500/10 text-purple-600 border-purple-200",
-  green: "bg-green-500/10 text-green-600 border-green-200",
-  red: "bg-red-500/10 text-red-600 border-red-200",
-  yellow: "bg-yellow-500/10 text-yellow-600 border-yellow-200",
-  pink: "bg-pink-500/10 text-pink-600 border-pink-200",
-  indigo: "bg-indigo-500/10 text-indigo-600 border-indigo-200",
-  emerald: "bg-emerald-500/10 text-emerald-600 border-emerald-200",
-  orange: "bg-orange-500/10 text-orange-600 border-orange-200",
-  cyan: "bg-cyan-500/10 text-cyan-600 border-cyan-200",
-  teal: "bg-teal-500/10 text-teal-600 border-teal-200",
-  slate: "bg-slate-500/10 text-slate-600 border-slate-200",
-};
 
 export function ScenarioGlassCards() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
-      {SCENARIO_ENTRIES.map((entry) => (
-        <Link key={entry.href} href={entry.href} className="group">
-          <GlassCard className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-            <GlassCardContent className="p-3 md:p-5">
-              <div className="flex items-start gap-4">
-                <div
-                  className={`rounded-lg p-3 text-2xl ${
-                    colorMap[entry.color]?.split(" ").slice(0, 2).join(" ")
-                  }`}
-                >
-                  {entry.icon}
+      {SCENARIO_ENTRIES.map((entry) => {
+        const Icon = entry.icon;
+        return (
+          <Link key={entry.href} href={entry.href} className="group">
+            <GlassCard
+              className="h-full transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-white/30 dark:hover:border-white/15"
+              gradientFrom={entry.gradientFrom}
+              gradientTo={entry.gradientTo}
+            >
+              <GlassCardContent className="p-4 md:p-5">
+                <div className="flex items-start gap-3.5">
+                  {/* 渐变图标圆球 */}
+                  <div
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl shadow-md ring-1 ring-black/[0.04] transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                    style={{
+                      background: `linear-gradient(135deg, ${entry.gradientFrom}12, ${entry.gradientTo}12)`,
+                    }}
+                  >
+                    <Icon
+                      className="h-5 w-5"
+                      style={{
+                        background: `linear-gradient(135deg, ${entry.gradientFrom}, ${entry.gradientTo})`,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-base mb-1 text-foreground leading-tight">{entry.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2 leading-relaxed">{entry.description}</p>
+
+                    {/* CTA — 渐变色文字 + 滑动箭头 */}
+                    <span
+                      className="inline-flex items-center gap-1 text-sm font-bold opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:gap-2"
+                      style={{
+                        background: `linear-gradient(135deg, ${entry.gradientFrom}, ${entry.gradientTo})`,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      {entry.cta}
+                      <ArrowRight className="h-3.5 w-3.5" style={{ color: entry.gradientFrom }} />
+                    </span>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-base mb-1">{entry.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{entry.description}</p>
-                  <span className="inline-flex items-center gap-1 text-sm text-primary font-medium group-hover:gap-2 transition-all">
-                    {entry.cta}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </div>
-              </div>
-            </GlassCardContent>
-          </GlassCard>
-        </Link>
-      ))}
+              </GlassCardContent>
+            </GlassCard>
+          </Link>
+        );
+      })}
     </div>
   );
 }

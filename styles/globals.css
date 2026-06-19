@@ -124,3 +124,40 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ── Hero 动画 Keyframes ──────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-20px) translateX(10px); }
+  50% { transform: translateY(-10px) translateX(-5px); }
+  75% { transform: translateY(-30px) translateX(-10px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-15px) translateX(-8px); }
+  66% { transform: translateY(-25px) translateX(12px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 10s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.animation-delay-1500 { animation-delay: 1.5s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-2500 { animation-delay: 2.5s; }
+.animation-delay-3000 { animation-delay: 3s; }
+.animation-delay-4000 { animation-delay: 4s; }
