@@ -14,7 +14,35 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import {
   Search, X, Star, ArrowRight,
-  FileText, Image, Palette, Cpu, Shield, Code, Type, Layers
+  FileText, Image, ImageIcon, Palette, Cpu, Shield, Code, Type, Layers,
+  // Image tools - unique icons
+  Minus, ArrowRightLeft, RotateCw, Palette as ColorPalette, ScanLine,
+  Fingerprint, FileImage, Info, Frame, Droplets, Sun, Scissors, Sparkles,
+  User, Camera, ImagePlus, Grid3X3, Wand2, Eye, Contrast, Crop, ZoomIn,
+  Download, LockOpen, Hash, FileSearch, PenTool, Stamp, CircleDot,
+  Copy, AlertTriangle, PlusCircle, Volume2, TrendingUp,
+  // Encryption
+  KeyRound,
+  // Formatters
+  Braces, FileJson, GitCompare, ListOrdered, Quote, CodeXml,
+  // Converters
+  ArrowLeftRight, Binary, FileCode, Globe,
+  // Generators
+  QrCode, TextCursorInput, Shuffle, Box, AtSign,
+  // Text
+  AlignLeft, CaseUpper, FlipHorizontal, BarChart3,
+  Quote as QuoteIcon, Link2Off, MinusCircle, RefreshCw, Split, WrapText, Repeat,
+  // Network
+  Calculator, Wifi, Radio, Monitor,
+  // Utilities
+  Timer, Clock, AlarmClock, TimerOff, Gamepad2, Keyboard, MousePointer,
+  Dice1, Trophy,
+  // Time
+  CalendarDays, Clock4, Hourglass, CalendarRange,
+  // Other
+  FileDiff, CheckSquare, ArrowDownUp, ArrowUpCircle, ArrowDownCircle,
+  ArrowRightCircle, ArrowLeftCircle, ListChecks, SortAsc, Filter,
+  FileSpreadsheet, Table, FileOutput, Play, Pencil, Database,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toolMeta, CATEGORY_LIST } from "@/lib/tools";
@@ -29,20 +57,192 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const { favorites, toggle, isFavorited } = useFavorites();
 
-  // 分类 → 渐变色映射
-  const CATEGORY_GRADIENT: Record<string, { from: string; to: string; icon: React.FC<any> }> = {
-    "PDF": { from: "#ef4444", to: "#f97316", icon: FileText },
-    "Image": { from: "#3b82f6", to: "#8b5cf6", icon: Image },
-    "Design": { from: "#ec4899", to: "#a855f7", icon: Palette },
-    "Developer": { from: "#3b82f6", to: "#06b6d4", icon: Code },
-    "Text": { from: "#f97316", to: "#eab308", icon: Type },
-    "Converter": { from: "#22c55e", to: "#10b981", icon: Layers },
-    "Security": { from: "#ef4444", to: "#dc2626", icon: Shield },
-    "AI": { from: "#8b5cf6", to: "#ec4899", icon: Cpu },
+  // ── 每个工具独立的图标 + 渐变色映射 ──
+  const TOOL_STYLE_MAP: Record<string, { from: string; to: string; icon: React.FC<any> }> = {
+    // === Encryption & Hashing ===
+    "aes-des":       { from: "#ef4444", to: "#f97316", icon: Shield },
+    "bcrypt":        { from: "#ef4444", to: "#dc2626", icon: KeyRound },
+    "hash":          { from: "#8b5cf6", to: "#a855f7", icon: Hash },
+    "jwt":           { from: "#f97316", to: "#ef4444", icon: LockOpen },
+
+    // === Formatters ===
+    "json-formatter":  { from: "#f59e0b", to: "#eab308", icon: FileJson },
+    "json-minify":     { from: "#f59e0b", to: "#d97706", icon: Braces },
+    "json-comparison": { from: "#f59e0b", to: "#eab308", icon: GitCompare },
+    "json-sort":       { from: "#d97706", to: "#b45309", icon: SortAsc },
+    "json-escape":     { from: "#d97706", to: "#b45309", icon: Quote },
+    "json-stringify":  { from: "#f59e0b", to: "#eab308", icon: Braces },
+    "html-formatter":  { from: "#f97316", to: "#ea580c", icon: CodeXml },
+    "sql-formatter":   { from: "#3b82f6", to: "#2563eb", icon: Code },
+    "yaml-formatter":  { from: "#ea580c", to: "#dc2626", icon: FileText },
+    "html-escape":     { from: "#f97316", to: "#ea580c", icon: CodeXml },
+
+    // === Converters / Encoders ===
+    "base64":         { from: "#22c55e", to: "#10b981", icon: ArrowLeftRight },
+    "base32":         { from: "#22c55e", to: "#16a34a", icon: Binary },
+    "base58":         { from: "#22c55e", to: "#15803d", icon: Hash },
+    "radix-converter":{ from: "#22c55e", to: "#10b981", icon: Binary },
+    "csv-json":       { from: "#22c55e", to: "#10b981", icon: FileSpreadsheet },
+    "url-encode":     { from: "#22c55e", to: "#10b981", icon: Globe },
+    "image-base64":   { from: "#3b82f6", to: "#8b5cf6", icon: ImageIcon },
+    "png-to-svg":     { from: "#3b82f6", to: "#06b6d4", icon: PenTool },
+    "ip-radix":       { from: "#3b82f6", to: "#06b6d4", icon: Wifi },
+    "byte-converter": { from: "#22c55e", to: "#10b981", icon: ArrowLeftRight },
+
+    // === Generators ===
+    "sum":              { from: "#ec4899", to: "#a855f7", icon: Calculator },
+    "cron":             { from: "#ec4899", to: "#db2777", icon: Timer },
+    "regex":            { from: "#ec4899", to: "#a855f7", icon: Code },
+    "regex-vis":        { from: "#ec4899", to: "#c026d3", icon: Eye },
+    "mermaid":          { from: "#ec4899", to: "#a855f7", icon: GitCompare },
+    "svg-editor":       { from: "#ec4899", to: "#c026d3", icon: PenTool },
+    "qrcode":           { from: "#8b5cf6", to: "#7c3aed", icon: QrCode },
+    "lorem-ipsum":      { from: "#ec4899", to: "#db2777", icon: TextCursorInput },
+    "random-string":    { from: "#ec4899", to: "#a855f7", icon: Shuffle },
+    "random-group":     { from: "#ec4899", to: "#c026d3", icon: Dice1 },
+    "uuid":             { from: "#8b5cf6", to: "#7c3aed", icon: Fingerprint },
+    "image-to-pixel":   { from: "#3b82f6", to: "#06b6d4", icon: Grid3X3 },
+    "password-generator":{from:"#ef4444",to:"#dc2626",icon:Shield},
+
+    // === Text Tools ===
+    "case-converter":      { from: "#f97316", to: "#ea580c", icon: CaseUpper },
+    "text-formatter":      { from: "#f97316", to: "#eab308", icon: AlignLeft },
+    "diff":                { from: "#ef4444", to: "#dc2626", icon: FileDiff },
+    "unicode":             { from: "#8b5cf6", to: "#7c3aed", icon: Hash },
+    "string-reverse":      { from: "#f97316", to: "#ea580c", icon: FlipHorizontal },
+    "string-statistic":    { from: "#3b82f6", to: "#06b6d4", icon: BarChart3 },
+    "slug-generator":      { from: "#22c55e", to: "#10b981", icon: AtSign },
+    "rot13":               { from: "#f97316", to: "#ea580c", icon: Shuffle },
+    "string-randomize-case":{from:"#f59e0b",to:"#d97706",icon:Shuffle},
+    "quote":               { from: "#f59e0b", to: "#eab308", icon: QuoteIcon },
+    "censor":              { from: "#ef4444", to: "#dc2626", icon: MinusCircle },
+    "palindrome":          { from: "#8b5cf6", to: "#7c3aed", icon: RefreshCw },
+    "tts":                 { from: "#ec4899", to: "#a855f7", icon: Volume2 },
+    "remove-duplicate-lines":{from:"#ef4444",to:"#dc2626",icon:MinusCircle},
+    "string-rotate":       { from: "#f97316", to: "#ea580c", icon: RefreshCw },
+    "string-split":        { from: "#22c55e", to: "#10b981", icon: Split },
+    "string-join":         { from: "#22c55e", to: "#10b981", icon: WrapText },
+    "string-repeat":       { from: "#f59e0b", to: "#eab308", icon: Repeat },
+    "text-replacer":       { from: "#f97316", to: "#ea580c", icon: Type },
+    "morse-code":         { from: "#8b5cf6", to: "#7c3aed", icon: Radio },
+    "extract-substring":   { from: "#f97316", to: "#ea580c", icon: Scissors },
+    "hidden-character-detector":{from:"#8b5cf6",to:"#7c3aed",icon:Eye},
+    "check-leap-years":    { from: "#3b82f6", to: "#06b6d4", icon: CalendarDays },
+    "convert-days-to-hours":{from:"#22c55e",to:"#10b981",icon:Calculator},
+    "convert-hours-to-days":{from:"#22c55e",to:"#10b981",icon:Calculator},
+    "convert-seconds-to-time":{from:"#22c55e",to:"#10b981",icon:Clock4},
+    "convert-time-to-seconds":{from:"#22c55e",to:"#10b981",icon:Clock4},
+    "convert-time-to-decimal":{from:"#f59e0b",to:"#eab308",icon:Calculator},
+    "convert-unix-to-date":{from:"#3b82f6",to:"#06b6d4",icon:CalendarDays},
+    "crontab-guru":       { from: "#ec4899", to: "#a855f7", icon: Timer },
+    "truncate-clock-time":{from:"#f59e0b",to:"#eab308",icon:Clock4},
+    "list-reverse":       { from: "#f97316", to: "#ea580c", icon: FlipHorizontal },
+    "list-shuffle":       { from: "#ec4899", to: "#a855f7", icon: Shuffle },
+    "list-sort":          { from: "#22c55e", to: "#10b981", icon: SortAsc },
+    "list-duplicate":     { from: "#ef4444", to: "#dc2626", icon: Copy },
+    "list-unique":        { from: "#22c55e", to: "#10b981", icon: CheckSquare },
+    "list-wrap":          { from: "#22c55e", to: "#10b981", icon: WrapText },
+    "list-unwrap":        { from: "#f97316", to: "#ea580c", icon: MinusCircle },
+    "list-truncate":      { from: "#ef4444", to: "#dc2626", icon: Scissors },
+    "list-rotate":        { from: "#f97316", to: "#ea580c", icon: RefreshCw },
+    "string-uppercase":   { from: "#f97316", to: "#ea580c", icon: CaseUpper },
+    "randomize-case":     { from: "#f59e0b", to: "#d97706", icon: Shuffle },
+    "string-remove-duplicates":{from:"#ef4444",to:"#dc2626",icon:MinusCircle},
+    "string-truncate":    { from: "#ef4444", to: "#dc2626", icon: Scissors },
+    "string-quote":       { from: "#f59e0b", to: "#eab308", icon: QuoteIcon },
+    "string-palindrome":  { from: "#8b5cf6", to: "#7c3aed", icon: RefreshCw },
+
+    // === Image Tools (每个工具独立图标!) ===
+    "image-resize":            { from: "#3b82f6", to: "#06b6d4", icon: ZoomIn },
+    "image-crop":              { from: "#3b82f6", to: "#06b6d4", icon: Crop },
+    "image-change-opacity":     { from: "#8b5cf6", to: "#a855f7", icon: Droplets },
+    "image-create-transparent": { from: "#ec4899", to: "#c026d3", icon: Wand2 },
+    "image-split":             { from: "#3b82f6", to: "#06b6d4", icon: Split },
+    "image-compress":          { from: "#3b82f6", to: "#8b5cf6", icon: Minus },
+    "image-convert":           { from: "#3b82f6", to: "#06b6d4", icon: ArrowRightLeft },
+    "image-rotate":            { from: "#3b82f6", to: "#06b6d4", icon: RotateCw },
+    "image-color-palette":     { from: "#ec4899", to: "#a855f7", icon: ColorPalette },
+    "image-favicon":           { from: "#3b82f6", to: "#06b6d4", icon: Fingerprint },
+    "image-strip-metadata":    { from: "#ef4444", to: "#dc2626", icon: LockOpen },
+    "image-info":              { from: "#3b82f6", to: "#06b6d4", icon: Info },
+    "image-border":            { from: "#3b82f6", to: "#06b6d4", icon: Frame },
+    "image-watermark":         { from: "#3b82f6", to: "#8b5cf6", icon: Stamp },
+    "image-color-adjust":      { from: "#ec4899", to: "#a855f7", icon: Contrast },
+    "id-photo":                { from: "#3b82f6", to: "#06b6d4", icon: User },
+    "image-passport-photo":    { from: "#3b82f6", to: "#06b6d4", icon: Camera },
+    "image-generate-memes":    { from: "#ec4899", to: "#a855f7", icon: Sparkles },
+    "image-beautify-screenshots":{from:"#3b82f6",to:"#06b6d4",icon:Wand2},
+    "find-duplicates":         { from: "#3b82f6", to: "#8b5cf6", icon: Grid3X3 },
+    "file-viewer":             { from: "#6366f1", to: "#8b5cf6", icon: FileText },
+    "create-gif":              { from: "#ec4899", to: "#a855f7", icon: Play },
+    "handwriting-animation":   { from: "#ec4899", to: "#a855f7", icon: Pencil },
+    "html-visual-editor":      { from: "#f97316", to: "#ea580c", icon: CodeXml },
+
+    // === Time Tools ===
+    "unix-to-date":        { from: "#3b82f6", to: "#06b6d4", icon: CalendarDays },
+    "discord-timestamp":   { from: "#8b5cf6", to: "#7c3aed", icon: Clock4 },
+    "seconds-to-time":     { from: "#22c55e", to: "#10b981", icon: Clock4 },
+    "time-between-dates":  { from: "#3b82f6", to: "#06b6d4", icon: CalendarRange },
+    "cron-parser":         { from: "#ec4899", to: "#a855f7", icon: Timer },
+    "leap-year":           { from: "#3b82f6", to: "#06b6d4", icon: CalendarDays },
+
+    // === Line Tools ===
+    "shuffle-lines":       { from: "#ec4899", to: "#a855f7", icon: Shuffle },
+    "sort-lines":          { from: "#22c55e", to: "#10b981", icon: SortAsc },
+    "unique-lines":        { from: "#22c55e", to: "#10b981", icon: CheckSquare },
+    "csv-to-json":         { from: "#22c55e", to: "#10b981", icon: FileSpreadsheet },
+    "json-to-csv":         { from: "#22c55e", to: "#10b981", icon: Table },
+    "days-to-hours":       { from: "#22c55e", to: "#10b981", icon: Calculator },
+    "hours-to-days":       { from: "#22c55e", to: "#10b981", icon: Calculator },
+    "time-to-seconds":     { from: "#22c55e", to: "#10b981", icon: Clock4 },
+    "truncate-time":       { from: "#f59e0b", to: "#eab308", icon: Clock4 },
+    "duplicate-lines":     { from: "#ef4444", to: "#dc2626", icon: Copy },
+    "find-popular":        { from: "#ec4899", to: "#a855f7", icon: TrendingUp },
+    "reverse-lines":       { from: "#f97316", to: "#ea580c", icon: FlipHorizontal },
+    "rotate-lines":        { from: "#f97316", to: "#ea580c", icon: RefreshCw },
+    "wrap-lines":          { from: "#22c55e", to: "#10b981", icon: WrapText },
+    "xml-beautifier":      { from: "#f97316", to: "#ea580c", icon: CodeXml },
+    "xml-validator":       { from: "#f97316", to: "#ef4444", icon: CheckSquare },
+    "escape-json":         { from: "#f59e0b", to: "#eab308", icon: Braces },
+    "csv-to-xml":          { from: "#22c55e", to: "#10b981", icon: FileCode },
+    "truncate-lines":      { from: "#ef4444", to: "#dc2626", icon: Scissors },
+    "unwrap-lines":        { from: "#f97316", to: "#ea580c", icon: MinusCircle },
+    "csv-to-yaml":         { from: "#22c55e", to: "#10b981", icon: FileText },
+    "tsv-to-json":         { from: "#22c55e", to: "#10b981", icon: FileSpreadsheet },
+    "transpose-csv":       { from: "#22c55e", to: "#10b981", icon: ArrowDownUp },
+    "json-to-xml":         { from: "#f97316", to: "#ea580c", icon: FileCode },
+    "sort-json":           { from: "#22c55e", to: "#10b981", icon: SortAsc },
+    "stringify-json":      { from: "#f59e0b", to: "#eab308", icon: Braces },
+    "find-incomplete-csv": { from: "#ef4444", to: "#dc2626", icon: AlertTriangle },
+    "insert-csv-column":   { from: "#22c55e", to: "#10b981", icon: PlusCircle },
+    "swap-csv-columns":    { from: "#f97316", to: "#ea580c", icon: ArrowLeftRight },
+    "csv-rows-to-columns": { from: "#22c55e", to: "#10b981", icon: Grid3X3 },
+    "group-lines":         { from: "#22c55e", to: "#10b981", icon: Layers },
+    "text-compare":        { from: "#ef4444", to: "#dc2626", icon: FileDiff },
+    "arithmetic-sequence": { from: "#22c55e", to: "#10b981", icon: Calculator },
+    "random-number-generator":{from:"#ec4899",to:"#a855f7",icon:Dice1},
+
+    // === Network ===
+    "ip-calc":             { from: "#3b82f6", to: "#06b6d4", icon: Calculator },
+    "random-port-generator":{from:"#22c55e",to:"#10b981",icon:Radio},
+    "user-agent":          { from: "#6366f1", to: "#8b5cf6", icon: Monitor },
+
+    // === Utility ===
+    "coin-flip":           { from: "#ec4899", to: "#a855f7", icon: Dice1 },
+    "counter":             { from: "#22c55e", to: "#10b981", icon: Hash },
+    "countdown":           { from: "#ef4444", to: "#dc2626", icon: AlarmClock },
+    "stopwatch":           { from: "#22c55e", to: "#10b981", icon: Timer },
+    "pomodoro":            { from: "#ef4444", to: "#dc2626", icon: Timer },
+    "wheel":               { from: "#ec4899", to: "#a855f7", icon: Gamepad2 },
+    "scoreboard":          { from: "#f59e0b", to: "#eab308", icon: Trophy },
+    "keyboard":            { from: "#6366f1", to: "#8b5cf6", icon: Keyboard },
+
+    // PDF
+    "pdf-tools":           { from: "#ef4444", to: "#f97316", icon: FileText },
   };
 
-  function getToolGradient(category: string) {
-    return CATEGORY_GRADIENT[category] || { from: "#6366f1", to: "#a855f7", icon: Cpu };
+  function getToolStyle(toolId: string) {
+    return TOOL_STYLE_MAP[toolId] || { from: "#6366f1", to: "#a855f7", icon: Cpu };
   }
 
   const filtered = useMemo(() => {
@@ -225,7 +425,7 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
               {filtered.map((dirName) => {
                 const meta = toolMeta[dirName];
                 if (!meta) return null;
-                const grad = getToolGradient(meta.category);
+                const grad = getToolStyle(dirName);
                 const ToolIcon = grad.icon;
 
                 return (
