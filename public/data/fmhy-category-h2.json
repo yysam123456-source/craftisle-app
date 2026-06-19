@@ -12,7 +12,7 @@
       "name": "Adblock",
       "description": "Adblock resources",
       "icon": "📦",
-      "count": 343
+      "count": 342
     },
     {
       "id": "Mobile",
@@ -26,7 +26,7 @@
       "name": "Misc",
       "description": "Misc resources",
       "icon": "📦",
-      "count": 8897
+      "count": 8906
     },
     {
       "id": "Downloading",
@@ -40,14 +40,14 @@
       "name": "Reading",
       "description": "Reading resources",
       "icon": "📦",
-      "count": 2312
+      "count": 2314
     },
     {
       "id": "Gaming",
       "name": "Gaming",
       "description": "Gaming resources",
       "icon": "📦",
-      "count": 1797
+      "count": 1796
     },
     {
       "id": "Linux",
@@ -61,7 +61,7 @@
       "name": "Storage",
       "description": "Storage resources",
       "icon": "📦",
-      "count": 221
+      "count": 222
     }
   ]
 }
