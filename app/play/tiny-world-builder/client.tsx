@@ -11,7 +11,7 @@ export default function TinyWorldBuilderPage() {
       <div className="border-b bg-muted/30 px-4 py-3">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/games">
+            <Link href="https://game.craftisle.com">
               <Button variant="ghost" size="sm">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Games

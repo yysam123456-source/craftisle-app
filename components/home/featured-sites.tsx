@@ -63,7 +63,7 @@ const SUB_SITES = [
     title: "HTML5 Games",
     slogan: "Free games, no download",
     desc: "Play 500+ free HTML5 games: puzzles, arcade, strategy, and idle games. Save progress in the cloud, compete on leaderboards, and discover new games weekly.",
-    href: "/games",
+    href: "https://game.craftisle.com",
     icon: Gamepad2,
     gradient: "from-purple-500 to-pink-500",
     gradientFrom: "#a855f7",
