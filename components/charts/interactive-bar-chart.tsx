@@ -4,12 +4,12 @@ import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import {
   ChartConfig,
   ChartContainer,
@@ -138,13 +138,13 @@ export function InteractiveBarChart() {
   );
 
   return (
-    <Card>
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
+    <GlassCard>
+      <GlassCardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Bar Chart - Interactive</CardTitle>
-          <CardDescription>
+          <GlassCardTitle>Bar Chart - Interactive</GlassCardTitle>
+          <GlassCardDescription>
             Showing total visitors for the last 3 months
-          </CardDescription>
+          </GlassCardDescription>
         </div>
         <div className="flex">
           {["desktop", "mobile"].map((key) => {
@@ -166,8 +166,8 @@ export function InteractiveBarChart() {
             );
           })}
         </div>
-      </CardHeader>
-      <CardContent className="px-2 sm:p-6">
+      </GlassCardHeader>
+      <GlassCardContent className="px-2 sm:p-6">
         <ChartContainer
           config={chartConfig}
           className="aspect-auto h-[250px] w-full"
@@ -213,7 +213,7 @@ export function InteractiveBarChart() {
             <Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} />
           </BarChart>
         </ChartContainer>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }

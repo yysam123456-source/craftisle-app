@@ -1,8 +1,8 @@
 import Link from "next/link";
 import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent
+} from "@/components/ui/glass-card";
 import {
   ArrowRight,
   Code2,
@@ -154,7 +154,7 @@ export function FeaturedTools() {
                     style={{ boxShadow: `0 1px 12px ${tool.gradientFrom}40` }}
                   />
 
-                  <CardContent className="relative p-6 sm:p-7">
+                  <GlassCardContent className="relative p-6 sm:p-7">
                     {/* 图标 + 标题行 */}
                     <div className="mb-4 flex items-start gap-3.5">
                       {/* 图标容器 — 渐变圆形背景 */}
@@ -211,7 +211,7 @@ export function FeaturedTools() {
                         <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
                       </span>
                     </div>
-                  </CardContent>
+                  </GlassCardContent>
                 </div>
               </Link>
             );

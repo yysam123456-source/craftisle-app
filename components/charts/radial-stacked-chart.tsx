@@ -4,13 +4,13 @@ import { TrendingUp } from "lucide-react";
 import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardFooter,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import {
   ChartConfig,
   ChartContainer,
@@ -35,12 +35,12 @@ export function RadialStackedChart() {
   const totalVisitors = chartData[0].desktop + chartData[0].mobile;
 
   return (
-    <Card className="flex flex-col">
-      {/* <CardHeader className="items-center pb-0">
-        <CardTitle>Radial Chart - Stacked</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader> */}
-      <CardContent className="flex flex-1 items-center pb-0">
+    <GlassCard className="flex flex-col">
+      {/* <GlassCardHeader className="items-center pb-0">
+        <GlassCardTitle>Radial Chart - Stacked</GlassCardTitle>
+        <GlassCardDescription>January - June 2024</GlassCardDescription>
+      </GlassCardHeader> */}
+      <GlassCardContent className="flex flex-1 items-center pb-0">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square w-full max-w-[250px]"
@@ -97,15 +97,15 @@ export function RadialStackedChart() {
             />
           </RadialBarChart>
         </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col gap-2 text-pretty text-center text-sm">
+      </GlassCardContent>
+      <GlassCardFooter className="flex-col gap-2 text-pretty text-center text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="size-4" />
         </div>
         <div className="leading-none text-muted-foreground">
           Showing total visitors for the last 6 months
         </div>
-      </CardFooter>
-    </Card>
+      </GlassCardFooter>
+    </GlassCard>
   );
 }

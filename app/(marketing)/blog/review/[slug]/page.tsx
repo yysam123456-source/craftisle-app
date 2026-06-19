@@ -5,7 +5,12 @@ import { join } from "path";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Separator } from "@/components/ui/separator";
 import { GiscusComments } from "@/components/giscus-comments";
 import { ExternalLink, ArrowLeft, CalendarDays, Clock, ThumbsUp, ThumbsDown, Lightbulb } from "lucide-react";
@@ -233,14 +238,14 @@ export default async function ReviewArticlePage({
 
               {/* Pros & Cons */}
               <div className="grid gap-6 md:grid-cols-2 mb-10">
-                <Card className="border-green-200 bg-green-50/40">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2 text-green-700">
+                <GlassCard className="border-green-200 bg-green-50/40">
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="flex items-center gap-2 text-green-700">
                       <ThumbsUp className="h-5 w-5" />
                       Pros
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <ul className="space-y-2.5">
                       {content.pros.map((pro, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
@@ -249,17 +254,17 @@ export default async function ReviewArticlePage({
                         </li>
                       ))}
                     </ul>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
 
-                <Card className="border-red-200 bg-red-50/40">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2 text-red-700">
+                <GlassCard className="border-red-200 bg-red-50/40">
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="flex items-center gap-2 text-red-700">
                       <ThumbsDown className="h-5 w-5" />
                       Cons
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <ul className="space-y-2.5">
                       {content.cons.map((con, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
@@ -268,20 +273,20 @@ export default async function ReviewArticlePage({
                         </li>
                       ))}
                     </ul>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               </div>
 
               {/* Best Use Cases */}
               <section className="mb-10">
-                <Card className="border-blue-200 bg-blue-50/40">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center gap-2 text-blue-700">
+                <GlassCard className="border-blue-200 bg-blue-50/40">
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="flex items-center gap-2 text-blue-700">
                       <Lightbulb className="h-5 w-5" />
                       Best Use Cases
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <ul className="space-y-2">
                       {content.bestUseCases.map((useCase, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm">
@@ -290,8 +295,8 @@ export default async function ReviewArticlePage({
                         </li>
                       ))}
                     </ul>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               </section>
 
               {/* Alternatives */}

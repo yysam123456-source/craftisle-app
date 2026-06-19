@@ -18,7 +18,12 @@ import {
 } from "@/lib/alternatives";
 import { Metadata } from "next";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -217,14 +222,14 @@ export default async function ComparePage(props: ComparePageProps) {
             {/* 快速概览卡片 */}
             <div className="grid sm:grid-cols-2 gap-4 mt-8">
               {/* 付费工具卡片 */}
-              <Card className="border-2 hover:shadow-md transition-all">
-                <CardHeader className="pb-3">
+              <GlassCard className="border-2 hover:shadow-md transition-all">
+                <GlassCardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl">{paidTool.name}</CardTitle>
+                    <GlassCardTitle className="text-xl">{paidTool.name}</GlassCardTitle>
                     <Badge variant="secondary">Paid</Badge>
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
+                </GlassCardHeader>
+                <GlassCardContent className="space-y-3">
                   <p className="text-sm text-muted-foreground line-clamp-3">{paidTool.description}</p>
                   <div className="flex flex-wrap gap-1.5">
                     <Badge variant="outline" className="text-xs">
@@ -238,14 +243,14 @@ export default async function ComparePage(props: ComparePageProps) {
                     <p className="text-xs text-muted-foreground mb-1">PRICING</p>
                     <p className="text-sm font-medium text-amber-700">{entry.pricing}</p>
                   </div>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
 
               {/* 替代品卡片 */}
-              <Card className="border-2 border-green-200 dark:border-green-800 hover:shadow-md transition-all bg-green-50/30 dark:bg-green-950/10">
-                <CardHeader className="pb-3">
+              <GlassCard className="border-2 border-green-200 dark:border-green-800 hover:shadow-md transition-all bg-green-50/30 dark:bg-green-950/10">
+                <GlassCardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl text-green-700 dark:text-green-400">{alt.name}</CardTitle>
+                    <GlassCardTitle className="text-xl text-green-700 dark:text-green-400">{alt.name}</GlassCardTitle>
                     <div className="flex gap-1.5">
                       {alt.isFree && <Badge className="bg-green-600 text-xs">Free</Badge>}
                       {alt.isOpenSource && (
@@ -255,8 +260,8 @@ export default async function ComparePage(props: ComparePageProps) {
                       )}
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
+                </GlassCardHeader>
+                <GlassCardContent className="space-y-3">
                   <p className="text-sm text-muted-foreground line-clamp-3">{alt.description || alt.reason}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {alt.isOpenSource ? (
@@ -282,8 +287,8 @@ export default async function ComparePage(props: ComparePageProps) {
                     <p className="text-xs text-muted-foreground mb-1">RATING</p>
                     <RatingStars rating={alt.rating} />
                   </div>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </div>
           </div>
         </div>
@@ -304,11 +309,11 @@ export default async function ComparePage(props: ComparePageProps) {
               <div className="grid sm:grid-cols-2 gap-4">
                 {/* Paid Tool Live Data */}
                 {paidToolLive.source === "fmhy" && (
-                  <Card className="border-blue-200 dark:border-blue-800">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-medium">{paidTool.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
+                  <GlassCard className="border-blue-200 dark:border-blue-800">
+                    <GlassCardHeader className="pb-2">
+                      <GlassCardTitle className="text-sm font-medium">{paidTool.name}</GlassCardTitle>
+                    </GlassCardHeader>
+                    <GlassCardContent>
                       <div className="grid grid-cols-2 gap-3 text-sm">
                         {paidToolLive.githubStars !== undefined && (
                           <div>
@@ -354,16 +359,16 @@ export default async function ComparePage(props: ComparePageProps) {
                           View on GitHub <ExternalLink className="h-3 w-3" />
                         </a>
                       )}
-                    </CardContent>
-                  </Card>
+                    </GlassCardContent>
+                  </GlassCard>
                 )}
 
                 {/* Alternative Live Data */}
-                <Card className={altLive.source === "fmhy" ? "border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/10" : ""}>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium">{alt.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <GlassCard className={altLive.source === "fmhy" ? "border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/10" : ""}>
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="text-sm font-medium">{alt.name}</GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     {altLive.source === "fmhy" ? (
                       <div className="grid grid-cols-2 gap-3 text-sm">
                         {altLive.githubStars !== undefined && (
@@ -413,8 +418,8 @@ export default async function ComparePage(props: ComparePageProps) {
                         {altLive.githubUrl ? <>View on GitHub <ExternalLink className="h-3 w-3" /></> : <>Visit Website <ExternalLink className="h-3 w-3" /></>}
                       </a>
                     )}
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               </div>
 
               <p className="text-xs text-muted-foreground mt-4">
@@ -536,8 +541,8 @@ export default async function ComparePage(props: ComparePageProps) {
               <h2 className="text-2xl font-bold">Why Choose {alt.name} Over {paidTool.name}?</h2>
             </div>
 
-            <Card className="border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/10">
-              <CardContent className="p-6">
+            <GlassCard className="border-green-200 dark:border-green-800 bg-green-50/30 dark:bg-green-950/10">
+              <GlassCardContent className="p-6">
                 <p className="text-lg leading-relaxed mb-6">{alt.reason}</p>
 
                 {alt.features && alt.features.length > 0 && (
@@ -560,8 +565,8 @@ export default async function ComparePage(props: ComparePageProps) {
                     </div>
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
           </div>
         </div>
       </section>
@@ -573,11 +578,11 @@ export default async function ComparePage(props: ComparePageProps) {
             <h2 className="text-2xl font-bold mb-8">Pros & Cons</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {/* Paid Tool Pros/Cons */}
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">{paidTool.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
+              <GlassCard>
+                <GlassCardHeader className="pb-3">
+                  <GlassCardTitle className="text-lg">{paidTool.name}</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="space-y-4">
                   <div>
                     <p className="text-xs font-semibold text-muted-foreground mb-2">KNOWN FOR</p>
                     <p className="text-sm text-muted-foreground">{entry.description?.slice(0, 150)}...</p>
@@ -597,15 +602,15 @@ export default async function ComparePage(props: ComparePageProps) {
                       <p className="text-sm text-muted-foreground">Premium features and support come at a cost.</p>
                     )}
                   </div>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
 
               {/* Alternative Pros/Cons */}
-              <Card className="border-green-200 dark:border-green-800">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-green-700 dark:text-green-400">{alt.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
+              <GlassCard className="border-green-200 dark:border-green-800">
+                <GlassCardHeader className="pb-3">
+                  <GlassCardTitle className="text-lg text-green-700 dark:text-green-400">{alt.name}</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="space-y-4">
                   {alt.pros && alt.pros.length > 0 && (
                     <div>
                       <p className="text-xs font-semibold text-green-600 dark:text-green-400 mb-2">PROS</p>
@@ -632,8 +637,8 @@ export default async function ComparePage(props: ComparePageProps) {
                       </ul>
                     </div>
                   )}
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </div>
           </div>
         </div>
@@ -747,14 +752,14 @@ export default async function ComparePage(props: ComparePageProps) {
               </div>
               <div className="space-y-4">
                 {entry.faqs.map((faq, i) => (
-                  <Card key={i} className="hover:shadow-sm transition-shadow">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base font-semibold">{faq.question}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
+                  <GlassCard key={i} className="hover:shadow-sm transition-shadow">
+                    <GlassCardHeader className="pb-2">
+                      <GlassCardTitle className="text-base font-semibold">{faq.question}</GlassCardTitle>
+                    </GlassCardHeader>
+                    <GlassCardContent>
                       <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
-                    </CardContent>
-                  </Card>
+                    </GlassCardContent>
+                  </GlassCard>
                 ))}
               </div>
             </div>
@@ -773,8 +778,8 @@ export default async function ComparePage(props: ComparePageProps) {
               </p>
               <div className="space-y-4">
                 {otherAlts.map((otherAlt) => (
-                  <Card key={otherAlt.name} className="hover:shadow-sm transition-all">
-                    <CardContent className="p-5">
+                  <GlassCard key={otherAlt.name} className="hover:shadow-sm transition-all">
+                    <GlassCardContent className="p-5">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
@@ -807,8 +812,8 @@ export default async function ComparePage(props: ComparePageProps) {
                           )}
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </GlassCardContent>
+                  </GlassCard>
                 ))}
               </div>
             </div>

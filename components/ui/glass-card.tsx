@@ -44,7 +44,7 @@ export function GlassCard({
 
 // ─── 子组件（匹配 shadcn Card API）────────────────────────────────────
 
-export function GlassCardHeader({ className = "", children }: { className?: string; children: ReactNode }) {
+export function GlassCardHeader({ className = "", children }: { className?: string; children?: ReactNode }) {
   return (
     <div className={`flex flex-col space-y-1.5 p-6 pb-3 ${className}`}>
       {children}
@@ -52,7 +52,7 @@ export function GlassCardHeader({ className = "", children }: { className?: stri
   );
 }
 
-export function GlassCardContent({ className = "", children }: { className?: string; children: ReactNode }) {
+export function GlassCardContent({ className = "", children }: { className?: string; children?: ReactNode }) {
   return (
     <div className={`p-6 pt-0 ${className}`}>
       {children}
@@ -74,10 +74,18 @@ export function GlassCardTitle({ className = "", children, gradientFrom, gradien
   );
 }
 
-export function GlassCardDescription({ className = "", children }: { className?: string; children: ReactNode }) {
+export function GlassCardDescription({ className = "", children }: { className?: string; children?: ReactNode }) {
   return (
     <p className={`text-sm text-muted-foreground ${className}`}>
       {children}
     </p>
+  );
+}
+
+export function GlassCardFooter({ className = "", children }: { className?: string; children?: ReactNode }) {
+  return (
+    <div className={`flex items-center p-6 pt-0 ${className}`}>
+      {children}
+    </div>
   );
 }

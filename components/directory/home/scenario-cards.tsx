@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent
+} from "@/components/ui/glass-card";
 
 /**
  * Scenario-based entry points
@@ -220,13 +223,13 @@ const colorMap: Record<string, string> = {
   slate: "bg-slate-500/10 text-slate-600 border-slate-200",
 };
 
-export function ScenarioCards() {
+export function ScenarioGlassCards() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
       {SCENARIO_ENTRIES.map((entry) => (
         <Link key={entry.href} href={entry.href} className="group">
-          <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-            <CardContent className="p-3 md:p-5">
+          <GlassCard className="h-full transition-all hover:border-primary/40 hover:shadow-md">
+            <GlassCardContent className="p-3 md:p-5">
               <div className="flex items-start gap-4">
                 <div
                   className={`rounded-lg p-3 text-2xl ${
@@ -244,8 +247,8 @@ export function ScenarioCards() {
                   </span>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </GlassCardContent>
+          </GlassCard>
         </Link>
       ))}
     </div>

@@ -4,13 +4,13 @@ import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardFooter,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import {
   ChartConfig,
   ChartContainer,
@@ -40,14 +40,14 @@ const chartConfig = {
 
 export function AreaChartStacked() {
   return (
-    <Card className="flex flex-col">
-      <CardHeader>
-        {/* <CardTitle>Area Chart - Stacked</CardTitle>
-        <CardDescription>
+    <GlassCard className="flex flex-col">
+      <GlassCardHeader>
+        {/* <GlassCardTitle>Area Chart - Stacked</GlassCardTitle>
+        <GlassCardDescription>
           Showing total visitors for the last 6 months
-        </CardDescription> */}
-      </CardHeader>
-      <CardContent className="flex-1">
+        </GlassCardDescription> */}
+      </GlassCardHeader>
+      <GlassCardContent className="flex-1">
         <ChartContainer config={chartConfig}>
           <AreaChart
             accessibilityLayer
@@ -87,15 +87,15 @@ export function AreaChartStacked() {
             />
           </AreaChart>
         </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col gap-2 text-pretty text-center text-sm">
+      </GlassCardContent>
+      <GlassCardFooter className="flex-col gap-2 text-pretty text-center text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="size-4" />
         </div>
         <div className="leading-none text-muted-foreground">
           January - June 2024
         </div>
-      </CardFooter>
-    </Card>
+      </GlassCardFooter>
+    </GlassCard>
   );
 }

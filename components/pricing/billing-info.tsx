@@ -4,13 +4,13 @@ import * as React from "react";
 import { CustomerPortalButton } from "@/components/forms/customer-portal-button";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardFooter,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { cn, formatDate } from "@/lib/utils";
 import { UserSubscriptionPlan } from "types";
 
@@ -29,15 +29,15 @@ export function BillingInfo({ userSubscriptionPlan }: BillingInfoProps) {
   } = userSubscriptionPlan;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Subscription Plan</CardTitle>
-        <CardDescription>
+    <GlassCard>
+      <GlassCardHeader>
+        <GlassCardTitle>Subscription Plan</GlassCardTitle>
+        <GlassCardDescription>
           You are currently on the <strong>{title}</strong> plan.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>{description}</CardContent>
-      <CardFooter className="flex flex-col items-center space-y-2 border-t bg-accent py-2 md:flex-row md:justify-between md:space-y-0">
+        </GlassCardDescription>
+      </GlassCardHeader>
+      <GlassCardContent>{description}</GlassCardContent>
+      <GlassCardFooter className="flex flex-col items-center space-y-2 border-t bg-accent py-2 md:flex-row md:justify-between md:space-y-0">
         {isPaid ? (
           <p className="text-sm font-medium text-muted-foreground">
             {isCanceled
@@ -54,7 +54,7 @@ export function BillingInfo({ userSubscriptionPlan }: BillingInfoProps) {
             Choose a plan
           </Link>
         )}
-      </CardFooter>
-    </Card>
+      </GlassCardFooter>
+    </GlassCard>
   );
 }

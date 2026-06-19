@@ -5,7 +5,13 @@ import { join } from "path";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle,
+  GlassCardDescription,
+} from "@/components/ui/glass-card";
 import { ExternalLink, ArrowLeft, ArrowRight, Globe, Tag, BookOpen, ThumbsUp, ThumbsDown, Lightbulb, Sparkles, Star, HelpCircle, BarChart2 } from "lucide-react";
 import { ResourceCard } from "@/components/resources/resource-card";
 import { GiscusComments } from "@/components/giscus-comments";
@@ -156,9 +162,9 @@ function TutorialsSection({ tutorials }: { tutorials: Tutorial[] }) {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tutorials.map((tut, i) => (
-          <Card key={i} className="hover:shadow-md transition-shadow">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">
+          <GlassCard key={i} gradientFrom="#3b82f6" gradientTo="#8b5cf6" className="hover:shadow-md transition-all duration-500 ease-out">
+            <GlassCardHeader className="pb-2">
+              <GlassCardTitle className="text-base">
                 <a
                   href={tut.url}
                   target="_blank"
@@ -172,14 +178,14 @@ function TutorialsSection({ tutorials }: { tutorials: Tutorial[] }) {
                   )}
                   <span>{tut.title || tut.url}</span>
                 </a>
-              </CardTitle>
+              </GlassCardTitle>
               {tut.description && (
-                <CardDescription className="text-sm line-clamp-3 mt-1">
+                <GlassCardDescription className="text-sm line-clamp-3 mt-1">
                   {tut.description.replace(/<[^>]+>/g, "").slice(0, 200)}
-                </CardDescription>
+                </GlassCardDescription>
               )}
-            </CardHeader>
-          </Card>
+            </GlassCardHeader>
+          </GlassCard>
         ))}
       </div>
     </div>
@@ -631,7 +637,7 @@ export default async function ResourceDetailPage({
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:border-primary/40 hover:shadow-sm transition-all group"
+                          className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30 hover:border-primary/40 hover:shadow-sm transition-all group"
                         >
                           <span className="text-2xl">{link.icon}</span>
                           <div className="flex-1 min-w-0">
@@ -726,7 +732,7 @@ export default async function ResourceDetailPage({
                           }`} />
                           
                           {/* Content */}
-                          <div className="flex items-start gap-3 p-3 rounded-lg border bg-card hover:shadow-sm transition-all">
+                          <div className="flex items-start gap-3 p-3 rounded-lg border bg-muted/30 hover:shadow-sm transition-all">
                             <div className="flex-shrink-0 w-20 text-xs text-muted-foreground font-mono">
                               {update.date}
                             </div>
@@ -800,7 +806,7 @@ export default async function ResourceDetailPage({
                     <div className="grid gap-3 sm:grid-cols-2">
                       {similar.map((r) => (
                         <Link key={r.id} href={`/directory/resource/${r.id}`} className="group">
-                          <div className="p-4 rounded-lg border bg-card hover:border-primary/40 hover:shadow-sm transition-all">
+                          <div className="p-4 rounded-lg border bg-muted/30 hover:border-primary/40 hover:shadow-sm transition-all">
                             <div className="flex items-center justify-between mb-2">
                               <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
                                 {r.name}
@@ -923,38 +929,38 @@ export default async function ResourceDetailPage({
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="grid gap-4 sm:grid-cols-3">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-muted-foreground">
+                <GlassCard>
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                       Category
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <Link
                       href={`/directory/${resource.category}`}
                       className="font-medium hover:text-primary transition-colors"
                     >
                       {resource.categoryIcon} {resource.categoryName}
                     </Link>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-muted-foreground">
+                  </GlassCardContent>
+                </GlassCard>
+                <GlassCard>
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                       Cost
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <span className="font-medium text-green-600">100% Free</span>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-muted-foreground">
+                  </GlassCardContent>
+                </GlassCard>
+                <GlassCard>
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                       Website
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <a
                       href={resource.url}
                       target="_blank"
@@ -964,79 +970,79 @@ export default async function ResourceDetailPage({
                       {hostname}
                       <ExternalLink className="h-3 w-3 flex-shrink-0" />
                     </a>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               </div>
 
               {/* GitHub / Tech Stack Info Cards (only shown when data exists) */}
               {(resource.githubStars !== undefined || resource.githubLicense || resource.isSelfHosted || resource.techStack?.length) && (
                 <div className="grid gap-4 sm:grid-cols-3 mt-4 animate-fade-up">
                   {resource.githubStars !== undefined && resource.githubStars !== null && (
-                    <Card>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                    <GlassCard>
+                      <GlassCardHeader className="pb-2">
+                        <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                           GitHub Stars
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
+                        </GlassCardTitle>
+                      </GlassCardHeader>
+                      <GlassCardContent>
                         <span className="font-medium">
                           ⭐ {resource.githubStars >= 1000
                             ? (resource.githubStars / 1000).toFixed(1) + "k"
                             : resource.githubStars}
                         </span>
-                      </CardContent>
-                    </Card>
+                      </GlassCardContent>
+                    </GlassCard>
                   )}
                   {resource.githubLicense && (
-                    <Card>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                    <GlassCard>
+                      <GlassCardHeader className="pb-2">
+                        <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                           License
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
+                        </GlassCardTitle>
+                      </GlassCardHeader>
+                      <GlassCardContent>
                         <Badge variant="outline" className="text-xs font-mono">
                           {resource.githubLicense}
                         </Badge>
-                      </CardContent>
-                    </Card>
+                      </GlassCardContent>
+                    </GlassCard>
                   )}
                   {resource.isSelfHosted && (
-                    <Card>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                    <GlassCard>
+                      <GlassCardHeader className="pb-2">
+                        <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                           Self-Hosted
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
+                        </GlassCardTitle>
+                      </GlassCardHeader>
+                      <GlassCardContent>
                         <span className="font-medium text-green-600">✓ Available</span>
-                      </CardContent>
-                    </Card>
+                      </GlassCardContent>
+                    </GlassCard>
                   )}
                   {resource.githubLastUpdated && (
-                    <Card>
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                    <GlassCard>
+                      <GlassCardHeader className="pb-2">
+                        <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                           Last Updated
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
+                        </GlassCardTitle>
+                      </GlassCardHeader>
+                      <GlassCardContent>
                         <span className="font-medium">
                           {new Date(resource.githubLastUpdated).toLocaleDateString("en-US", {
                             year: "numeric", month: "short", day: "numeric"
                           })}
                         </span>
-                      </CardContent>
-                    </Card>
+                      </GlassCardContent>
+                    </GlassCard>
                   )}
                   {resource.techStack && resource.techStack.length > 0 && (
-                    <Card className="sm:col-span-3">
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">
+                    <GlassCard gradientFrom="#10b981" gradientTo="#3b82f6" className="sm:col-span-3">
+                      <GlassCardHeader className="pb-2">
+                        <GlassCardTitle className="text-sm font-medium text-muted-foreground">
                           Tech Stack
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
+                        </GlassCardTitle>
+                      </GlassCardHeader>
+                      <GlassCardContent>
                         <div className="flex flex-wrap gap-2">
                           {resource.techStack.map((tech) => (
                             <Badge key={tech} variant="secondary" className="text-xs">
@@ -1044,8 +1050,8 @@ export default async function ResourceDetailPage({
                             </Badge>
                           ))}
                         </div>
-                      </CardContent>
-                    </Card>
+                      </GlassCardContent>
+                    </GlassCard>
                   )}
                 </div>
               )}
@@ -1182,14 +1188,14 @@ function GeneratedContentSection({ content }: { content: GeneratedContent }) {
         {(pros && pros.length > 0) || (cons && cons.length > 0) ? (
           <div className="grid md:grid-cols-2 gap-4">
             {pros && pros.length > 0 && (
-              <Card className="border-green-200 bg-green-50/40 dark:bg-green-950/20">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2 text-green-700 dark:text-green-400">
+              <GlassCard gradientFrom="#10b981" gradientTo="#059669" className="border-green-200 bg-green-50/40 dark:bg-green-950/20">
+                <GlassCardHeader className="pb-2">
+                  <GlassCardTitle className="text-base flex items-center gap-2 text-green-700 dark:text-green-400">
                     <ThumbsUp className="h-4 w-4" />
                     Pros
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
+                  </GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent>
                   <ul className="space-y-1">
                     {pros.map((p, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
@@ -1198,18 +1204,18 @@ function GeneratedContentSection({ content }: { content: GeneratedContent }) {
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             )}
             {cons && cons.length > 0 && (
-              <Card className="border-red-200 bg-red-50/40 dark:bg-red-950/20">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2 text-red-700 dark:text-red-400">
+              <GlassCard gradientFrom="#ef4444" gradientTo="#dc2626" className="border-red-200 bg-red-50/40 dark:bg-red-950/20">
+                <GlassCardHeader className="pb-2">
+                  <GlassCardTitle className="text-base flex items-center gap-2 text-red-700 dark:text-red-400">
                     <ThumbsDown className="h-4 w-4" />
                     Cons
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
+                  </GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent>
                   <ul className="space-y-1">
                     {cons.map((c, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
@@ -1218,8 +1224,8 @@ function GeneratedContentSection({ content }: { content: GeneratedContent }) {
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             )}
           </div>
         ) : null}
@@ -1256,12 +1262,12 @@ function GeneratedContentSection({ content }: { content: GeneratedContent }) {
             </h3>
             <div className="grid gap-3 sm:grid-cols-2">
               {alternatives.map((alt, i) => (
-                <Card key={i} className="border-purple-200">
-                  <CardContent className="p-4">
+                <GlassCard key={i} gradientFrom="#8b5cf6" gradientTo="#a855f7" className="border-purple-200">
+                  <GlassCardContent className="p-4">
                     <h4 className="font-medium text-sm">{alt.name}</h4>
                     <p className="text-xs text-muted-foreground mt-1">{alt.reason}</p>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               ))}
             </div>
           </div>
@@ -1294,14 +1300,14 @@ function FAQSection({ faq }: { faq: { question: string; answer: string }[] }) {
       </div>
       <div className="max-w-3xl space-y-4">
         {faq.map((item, i) => (
-          <Card key={i} className="hover:shadow-sm transition-shadow">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold">{item.question}</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <GlassCard key={i} gradientFrom="#3b82f6" gradientTo="#06b6d4" className="hover:shadow-sm transition-all duration-500 ease-out">
+            <GlassCardHeader className="pb-2">
+              <GlassCardTitle className="text-base font-semibold">{item.question}</GlassCardTitle>
+            </GlassCardHeader>
+            <GlassCardContent>
               <p className="text-sm text-muted-foreground leading-relaxed">{item.answer}</p>
-            </CardContent>
-          </Card>
+            </GlassCardContent>
+          </GlassCard>
         ))}
       </div>
     </div>

@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 
@@ -41,7 +47,7 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
           href={`/directory/${cat.id}`}
           className="group block"
         >
-          <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          <GlassCard className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
             <div
               className={`aspect-[3/1] bg-gradient-to-r ${colorMap[i % Object.keys(colorMap).length]} relative flex items-center justify-center p-6`}
             >
@@ -56,13 +62,13 @@ export function CategoryGrid({ categories }: CategoryGridProps) {
                 Browse
               </Badge>
             </div>
-            <CardHeader>
-              <CardTitle className="group-hover:text-primary transition-colors">
+            <GlassCardHeader>
+              <GlassCardTitle className="group-hover:text-primary transition-colors">
                 {cat.name}
-              </CardTitle>
-              <CardDescription>{cat.description}</CardDescription>
-            </CardHeader>
-          </Card>
+              </GlassCardTitle>
+              <GlassCardDescription>{cat.description}</GlassCardDescription>
+            </GlassCardHeader>
+          </GlassCard>
         </Link>
       ))}
     </div>

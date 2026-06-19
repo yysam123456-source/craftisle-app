@@ -3,12 +3,12 @@
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle,
+  GlassCardDescription,
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -207,13 +207,15 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
                 const meta = toolMeta[dirName];
                 if (!meta) return null;
                 return (
-                  <Card
+                  <GlassCard
                     key={dirName}
-                    className="transition-shadow hover:shadow-lg flex flex-col"
+                    gradientFrom="#3b82f6"
+                    gradientTo="#8b5cf6"
+                    className="transition-all duration-500 ease-out hover:shadow-lg flex flex-col"
                   >
-                    <CardHeader>
+                    <GlassCardHeader>
                       <div className="flex items-start justify-between">
-                        <div className="rounded-lg bg-primary/10 p-3 text-2xl">
+                        <div className="rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-3 text-2xl">
                           {meta.icon}
                         </div>
                         <div className="flex items-center gap-1">
@@ -226,17 +228,17 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
                           />
                         </div>
                       </div>
-                      <CardTitle className="mt-4 text-base">
+                      <GlassCardTitle className="mt-4 text-base">
                         {meta.title}
-                      </CardTitle>
-                      <CardDescription>{meta.desc}</CardDescription>
+                      </GlassCardTitle>
+                      <GlassCardDescription>{meta.desc}</GlassCardDescription>
                       <div className="mt-1">
-                        <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">
+                        <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-0.5 rounded">
                           {meta.category}
                         </span>
                       </div>
-                    </CardHeader>
-                    <CardContent className="mt-auto">
+                    </GlassCardHeader>
+                    <GlassCardContent className="mt-auto">
                       {meta.external && meta.url ? (
                         <a href={meta.url} target="_blank" rel="noopener noreferrer">
                           <Button className="w-full" variant="outline">
@@ -250,8 +252,8 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
                           </Button>
                         </Link>
                       )}
-                    </CardContent>
-                  </Card>
+                    </GlassCardContent>
+                  </GlassCard>
                 );
               })}
             </div>

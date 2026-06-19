@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowRight, Search, Sparkles, Zap, TrendingUp } from "lucide-react";
@@ -452,8 +452,8 @@ export default function IndexPage() {
                   href={`/directory/resource/${encodeURIComponent(res.id)}`}
                   className="group block"
                 >
-                  <Card className="h-full overflow-hidden border-2 border-transparent bg-card/80 backdrop-blur-sm transition-all duration-300 hover:border-orange-500/20 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-0.5">
-                    <CardContent className="p-6">
+                  <GlassCard className="h-full overflow-hidden border-2 border-transparent bg-card/80 backdrop-blur-sm transition-all duration-300 hover:border-orange-500/20 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-0.5">
+                    <GlassCardContent className="p-6">
                       {/* 编号 + 标题 */}
                       <div className="mb-3 flex items-start gap-3">
                         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-red-500 text-xs font-bold text-white shadow-md shadow-orange-500/20">
@@ -470,8 +470,8 @@ export default function IndexPage() {
                         View Details
                         <ArrowRight className="h-3 w-3" />
                       </span>
-                    </CardContent>
-                  </Card>
+                    </GlassCardContent>
+                  </GlassCard>
                 </a>
               ))}
             </div>

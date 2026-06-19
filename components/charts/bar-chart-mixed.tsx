@@ -4,13 +4,13 @@ import { TrendingUp } from "lucide-react";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardFooter,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import {
   ChartConfig,
   ChartContainer,
@@ -54,12 +54,12 @@ const chartConfig = {
 
 export function BarChartMixed() {
   return (
-    <Card className="flex flex-col">
-      <CardHeader>
-        {/* <CardTitle>Bar Chart - Mixed</CardTitle>
-        <CardDescription>January - June 2024</CardDescription> */}
-      </CardHeader>
-      <CardContent className="flex-1">
+    <GlassCard className="flex flex-col">
+      <GlassCardHeader>
+        {/* <GlassCardTitle>Bar Chart - Mixed</GlassCardTitle>
+        <GlassCardDescription>January - June 2024</GlassCardDescription> */}
+      </GlassCardHeader>
+      <GlassCardContent className="flex-1">
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
@@ -87,15 +87,15 @@ export function BarChartMixed() {
             <Bar dataKey="visitors" layout="vertical" radius={5} />
           </BarChart>
         </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col gap-2 text-pretty text-center text-sm">
+      </GlassCardContent>
+      <GlassCardFooter className="flex-col gap-2 text-pretty text-center text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="size-4" />
         </div>
         <div className="leading-none text-muted-foreground">
           Results for the top 5 browsers
         </div>
-      </CardFooter>
-    </Card>
+      </GlassCardFooter>
+    </GlassCard>
   );
 }

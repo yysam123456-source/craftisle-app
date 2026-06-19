@@ -1,4 +1,6 @@
-import { Card } from "@/components/ui/card";
+import {
+  GlassCard
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { Check, Zap, Star } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
@@ -57,7 +59,7 @@ export default function PaidInclusionPage() {
       {/* 价格卡片 */}
       <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-3xl mx-auto">
         {TIERS.map((tier) => (
-          <Card
+          <GlassCard
             key={tier.name}
             className={`p-8 relative ${tier.featured ? "border-primary shadow-lg" : ""}`}
           >
@@ -94,7 +96,7 @@ export default function PaidInclusionPage() {
             >
               Get Started
             </a>
-          </Card>
+          </GlassCard>
         ))}
       </div>
 
@@ -102,24 +104,24 @@ export default function PaidInclusionPage() {
       <div className="max-w-2xl mx-auto">
         <h2 className="text-xl font-semibold mb-6 text-center">Frequently Asked</h2>
         <div className="space-y-4">
-          <Card className="p-6">
+          <GlassCard className="p-6">
             <h3 className="font-medium mb-2">How long does review take?</h3>
             <p className="text-sm text-gray-600">
               Basic: within 2 business days. Featured: within 24 hours.
             </p>
-          </Card>
-          <Card className="p-6">
+          </GlassCard>
+          <GlassCard className="p-6">
             <h3 className="font-medium mb-2">What if my resource is rejected?</h3>
             <p className="text-sm text-gray-600">
               We'll refund in full if your resource doesn't meet our guidelines.
             </p>
-          </Card>
-          <Card className="p-6">
+          </GlassCard>
+          <GlassCard className="p-6">
             <h3 className="font-medium mb-2">Can I upgrade later?</h3>
             <p className="text-sm text-gray-600">
               Yes! Contact us after submitting and we'll help you upgrade to Featured.
             </p>
-          </Card>
+          </GlassCard>
         </div>
       </div>
     </div>

@@ -4,13 +4,13 @@ import { TrendingUp } from "lucide-react"
 import { PolarGrid, RadialBar, RadialBarChart } from "recharts"
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardFooter,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import {
   ChartConfig,
   ChartContainer,
@@ -53,12 +53,12 @@ const chartConfig = {
 
 export function RadialChartGrid() {
   return (
-    <Card className="flex flex-col">
-      {/* <CardHeader className="items-center pb-0">
-        <CardTitle>Radial Chart - Grid</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader> */}
-      <CardContent className="flex-1 pb-0">
+    <GlassCard className="flex flex-col">
+      {/* <GlassCardHeader className="items-center pb-0">
+        <GlassCardTitle>Radial Chart - Grid</GlassCardTitle>
+        <GlassCardDescription>January - June 2024</GlassCardDescription>
+      </GlassCardHeader> */}
+      <GlassCardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
@@ -72,15 +72,15 @@ export function RadialChartGrid() {
             <RadialBar dataKey="visitors" />
           </RadialBarChart>
         </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
+      </GlassCardContent>
+      <GlassCardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="size-4" />
         </div>
         <div className="leading-none text-muted-foreground">
           Showing total visitors for the last 6 months
         </div>
-      </CardFooter>
-    </Card>
+      </GlassCardFooter>
+    </GlassCard>
   )
 }

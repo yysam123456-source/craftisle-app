@@ -1,7 +1,7 @@
 import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent
+} from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -174,7 +174,7 @@ export function FeaturedSites() {
                     style={{ boxShadow: `0 1px 12px ${site.gradientFrom}40` }}
                   />
 
-                  <CardContent className={`relative p-6 sm:p-7 ${isFeatured ? "lg:p-8" : ""}`}>
+                  <GlassCardContent className={`relative p-6 sm:p-7 ${isFeatured ? "lg:p-8" : ""}`}>
                     {/* 图标 + 标题行 */}
                     <div className="mb-4 flex items-start gap-3.5">
                       {/* 图标容器 — 渐变圆形背景 */}
@@ -242,7 +242,7 @@ export function FeaturedSites() {
                         <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" style={{ color: site.gradientFrom }} />
                       </span>
                     </div>
-                  </CardContent>
+                  </GlassCardContent>
                 </div>
               </a>
             );

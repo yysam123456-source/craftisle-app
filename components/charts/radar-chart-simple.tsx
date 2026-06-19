@@ -4,13 +4,13 @@ import { TrendingUp } from "lucide-react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardFooter,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import {
   ChartConfig,
   ChartContainer,
@@ -36,14 +36,14 @@ const chartConfig = {
 
 export function RadarChartSimple() {
   return (
-    <Card>
-      {/* <CardHeader className="items-center pb-4">
-        <CardTitle>Radar Chart</CardTitle>
-        <CardDescription>
+    <GlassCard>
+      {/* <GlassCardHeader className="items-center pb-4">
+        <GlassCardTitle>Radar Chart</GlassCardTitle>
+        <GlassCardDescription>
           Showing total visitors for the last 6 months
-        </CardDescription>
-      </CardHeader> */}
-      <CardContent className="pb-0">
+        </GlassCardDescription>
+      </GlassCardHeader> */}
+      <GlassCardContent className="pb-0">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[350px] 2xl:max-h-[250px]"
@@ -59,15 +59,15 @@ export function RadarChartSimple() {
             />
           </RadarChart>
         </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col gap-2 text-pretty text-center text-sm">
+      </GlassCardContent>
+      <GlassCardFooter className="flex-col gap-2 text-pretty text-center text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
           Trending up by 5.2% this month <TrendingUp className="size-4" />
         </div>
         <div className="leading-none text-muted-foreground">
           January - June 2024
         </div>
-      </CardFooter>
-    </Card>
+      </GlassCardFooter>
+    </GlassCard>
   );
 }

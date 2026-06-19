@@ -1,4 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
@@ -23,11 +28,11 @@ export default function DisclaimerPage() {
 
           <div className="prose prose-gray max-w-none dark:prose-invert">
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">1. General Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">1. General Information</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   The information provided on Craftisle ("the Site") is for general
                   informational and entertainment purposes only. While we strive to keep the
@@ -36,14 +41,14 @@ export default function DisclaimerPage() {
                   suitability, or availability of the information, products, services, or related
                   graphics contained on the Site.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">2. Third-Party Resources & Links</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">2. Third-Party Resources & Links</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   The Craftisle Resource Directory curates links to third-party websites,
                   tools, and services. We do not control, endorse, or assume responsibility for
@@ -57,27 +62,27 @@ export default function DisclaimerPage() {
                   lists. We make reasonable efforts to verify descriptions but cannot guarantee
                   their accuracy.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">3. No Professional Advice</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">3. No Professional Advice</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   Nothing on the Site constitutes professional advice of any kind (legal,
                   financial, medical, or otherwise). Always consult a qualified professional
                   for advice specific to your situation.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">4. Advertising & Affiliate Disclosure</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">4. Advertising & Affiliate Disclosure</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-3 text-sm text-muted-foreground">
                 <p>
                   Craftisle displays advertisements through Google AdSense, Monetag, and
                   other third-party advertising networks. These ads are clearly marked or
@@ -95,14 +100,14 @@ export default function DisclaimerPage() {
                   As an Amazon Associate and participant in other affiliate programs, we may
                   earn from qualifying purchases.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">5. Tool & Game Disclaimer</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">5. Tool & Game Disclaimer</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   Tools provided on the Site (PDF processing, image conversion, HTML5 games,
                   etc.) are offered "as is" without warranty. Most tools run client-side in
@@ -113,14 +118,14 @@ export default function DisclaimerPage() {
                   Users are advised to back up important files before using our tools and to
                   avoid uploading sensitive data.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">6. Copyright & Intellectual Property</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">6. Copyright & Intellectual Property</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   All trademarks, logos, and brand names displayed on the Site are the property
                   of their respective owners. The mention of any company, product, or service
@@ -134,14 +139,14 @@ export default function DisclaimerPage() {
                   </a>.{" "}
                   We will respond promptly to valid DMCA notices.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">7. Limitation of Liability</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">7. Limitation of Liability</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   In no event shall Craftisle, its owners, or contributors be liable for any
                   direct, indirect, incidental, special, consequential, or punitive damages
@@ -153,21 +158,21 @@ export default function DisclaimerPage() {
                   Your use of the Site is at your sole risk. The Site is provided on an "AS IS"
                   and "AS AVAILABLE" basis.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">8. Changes to This Disclaimer</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard>
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">8. Changes to This Disclaimer</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   We reserve the right to update this Disclaimer at any time. Changes will be
                   posted on this page with a revised date. Continued use of the Site after
                   changes constitutes acceptance of the updated Disclaimer.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
           </div>
         </div>

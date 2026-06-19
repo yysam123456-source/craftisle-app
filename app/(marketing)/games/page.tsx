@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Gamepad2, Play, ArrowRight } from "lucide-react";
@@ -69,43 +69,43 @@ export default function GamesPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {games.map((game) => (
-              <Card key={game.id} className="overflow-hidden transition-shadow hover:shadow-lg">
+              <GlassCard key={game.id} className="overflow-hidden transition-shadow hover:shadow-lg">
                 <div className={`aspect-video bg-gradient-to-br ${game.gradient} relative flex items-center justify-center`}>
                   <Gamepad2 className="h-16 w-16 text-white/80" />
                   <Badge className="absolute top-3 right-3" variant={game.badgeVariant}>
                     {game.badge}
                   </Badge>
                 </div>
-                <CardHeader>
-                  <CardTitle>{game.title}</CardTitle>
-                  <CardDescription>{game.desc}</CardDescription>
-                </CardHeader>
-                <CardContent>
+                <GlassCardHeader>
+                  <GlassCardTitle>{game.title}</GlassCardTitle>
+                  <GlassCardDescription>{game.desc}</GlassCardDescription>
+                </GlassCardHeader>
+                <GlassCardContent>
                   <Link href={`/play/${game.id}`}>
                     <Button className="w-full">
                       <Play className="mr-2 h-4 w-4" />
                       Play Now
                     </Button>
                   </Link>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             ))}
 
-            <Card className="overflow-hidden transition-shadow hover:shadow-lg">
+            <GlassCard className="overflow-hidden transition-shadow hover:shadow-lg">
               <div className="aspect-video bg-gradient-to-br from-gray-300 to-gray-400 relative flex items-center justify-center">
                 <Gamepad2 className="h-16 w-16 text-white/60" />
                 <Badge className="absolute top-3 right-3" variant="secondary">Coming Soon</Badge>
               </div>
-              <CardHeader>
-                <CardTitle>More Games Coming</CardTitle>
-                <CardDescription>Stay tuned for updates</CardDescription>
-              </CardHeader>
-              <CardContent>
+              <GlassCardHeader>
+                <GlassCardTitle>More Games Coming</GlassCardTitle>
+                <GlassCardDescription>Stay tuned for updates</GlassCardDescription>
+              </GlassCardHeader>
+              <GlassCardContent>
                 <Button className="w-full" variant="secondary" disabled>
                   Coming Soon
                 </Button>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
           </div>
         </div>
       </section>

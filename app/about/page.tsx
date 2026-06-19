@@ -1,4 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Gamepad2, Wrench, Globe, Zap, ShieldCheck } from "lucide-react";
@@ -46,59 +51,59 @@ export default function AboutPage() {
           <section className="mb-12">
             <h2 className="mb-6 text-2xl font-bold">What We Offer</h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <Card>
-                <CardHeader>
+              <GlassCard>
+                <GlassCardHeader>
                   <Wrench className="h-8 w-8 text-primary" />
-                  <CardTitle className="mt-2">100+ Free Tools</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
+                  <GlassCardTitle className="mt-2">100+ Free Tools</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="text-sm text-muted-foreground">
                   PDF tools, image converters, developer utilities, text processors, and
                   more. All free, all in your browser.
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
 
-              <Card>
-                <CardHeader>
+              <GlassCard>
+                <GlassCardHeader>
                   <Gamepad2 className="h-8 w-8 text-primary" />
-                  <CardTitle className="mt-2">HTML5 Games</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
+                  <GlassCardTitle className="mt-2">HTML5 Games</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="text-sm text-muted-foreground">
                   Curated mini games that run instantly. No download, no install — just
                   play.
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
 
-              <Card>
-                <CardHeader>
+              <GlassCard>
+                <GlassCardHeader>
                   <Globe className="h-8 w-8 text-primary" />
-                  <CardTitle className="mt-2">Multi-Language</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
+                  <GlassCardTitle className="mt-2">Multi-Language</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="text-sm text-muted-foreground">
                   Available in English and Chinese. We are expanding to more languages
                   to serve users worldwide.
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
 
-              <Card>
-                <CardHeader>
+              <GlassCard>
+                <GlassCardHeader>
                   <Zap className="h-8 w-8 text-primary" />
-                  <CardTitle className="mt-2">No Signup Required</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
+                  <GlassCardTitle className="mt-2">No Signup Required</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="text-sm text-muted-foreground">
                   Every tool works instantly. We believe in zero-friction productivity.
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
 
-              <Card>
-                <CardHeader>
+              <GlassCard>
+                <GlassCardHeader>
                   <ShieldCheck className="h-8 w-8 text-primary" />
-                  <CardTitle className="mt-2">Privacy First</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
+                  <GlassCardTitle className="mt-2">Privacy First</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="text-sm text-muted-foreground">
                   Most tools process data entirely in your browser. Your files never leave
                   your device.
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </div>
           </section>
 

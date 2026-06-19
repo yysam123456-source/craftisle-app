@@ -1,26 +1,26 @@
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 
 export function UpgradeCard() {
   return (
-    <Card className="md:max-xl:rounded-none md:max-xl:border-none md:max-xl:shadow-none">
-      <CardHeader className="md:max-xl:px-4">
-        <CardTitle>Upgrade to Pro</CardTitle>
-        <CardDescription>
+    <GlassCard className="md:max-xl:rounded-none md:max-xl:border-none md:max-xl:shadow-none">
+      <GlassCardHeader className="md:max-xl:px-4">
+        <GlassCardTitle>Upgrade to Pro</GlassCardTitle>
+        <GlassCardDescription>
           Unlock all features and get unlimited access to our support team.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="md:max-xl:px-4">
+        </GlassCardDescription>
+      </GlassCardHeader>
+      <GlassCardContent className="md:max-xl:px-4">
         <Button size="sm" className="w-full">
           Upgrade
         </Button>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }

@@ -4,7 +4,13 @@ import { join } from "path";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { CalendarDays, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 
@@ -104,8 +110,8 @@ export default function ReviewsPage() {
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {reviews.map((review) => (
-                  <Card key={review.slug} className="hover:shadow-md transition-shadow">
-                    <CardHeader>
+                  <GlassCard key={review.slug} className="hover:shadow-md transition-shadow">
+                    <GlassCardHeader>
                       <div className="flex items-center justify-between mb-2">
                         <Badge variant="outline" className="text-xs">
                           {review.category}
@@ -115,16 +121,16 @@ export default function ReviewsPage() {
                           {formatDate(review.date)}
                         </span>
                       </div>
-                      <CardTitle className="text-lg">
+                      <GlassCardTitle className="text-lg">
                         <Link href={`/blog/review/${review.slug}`} className="hover:text-primary">
                           {review.resourceName} Review
                         </Link>
-                      </CardTitle>
-                      <CardDescription className="line-clamp-3 text-sm">
+                      </GlassCardTitle>
+                      <GlassCardDescription className="line-clamp-3 text-sm">
                         {review.excerpt}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex items-center justify-between">
+                      </GlassCardDescription>
+                    </GlassCardHeader>
+                    <GlassCardContent className="flex items-center justify-between">
                       <Link href={`/blog/review/${review.slug}`}>
                         <Button variant="ghost" size="sm" className="gap-1">
                           Read Review <ArrowRight className="h-3.5 w-3.5" />
@@ -135,8 +141,8 @@ export default function ReviewsPage() {
                           <ExternalLink className="h-3.5 w-3.5" />
                         </Button>
                       </a>
-                    </CardContent>
-                  </Card>
+                    </GlassCardContent>
+                  </GlassCard>
                 ))}
               </div>
             </>

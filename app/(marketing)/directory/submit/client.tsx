@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Card } from "@/components/ui/card";
+import {
+  GlassCard
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Send, CheckCircle } from "lucide-react";
 
@@ -107,7 +109,7 @@ export default function SubmitResourcePage() {
         Know a great free or open-source tool? Share it with the Craftisle community.
       </p>
 
-      <Card className="p-8">
+      <GlassCard className="p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* 资源名称 */}
           <div>
@@ -210,7 +212,7 @@ export default function SubmitResourcePage() {
             {loading ? "Submitting..." : <>Submit Resource <Send className="w-4 h-4" /></>}
           </button>
         </form>
-      </Card>
+      </GlassCard>
 
       {/* 说明 */}
       <p className="text-xs text-gray-400 mt-6 text-center">

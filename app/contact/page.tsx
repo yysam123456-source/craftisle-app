@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -30,14 +36,14 @@ export default function ContactPage() {
           <div className="grid gap-8 md:grid-cols-3">
             {/* Contact form */}
             <div className="md:col-span-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Send us a message</CardTitle>
-                  <CardDescription>
+              <GlassCard>
+                <GlassCardHeader>
+                  <GlassCardTitle>Send us a message</GlassCardTitle>
+                  <GlassCardDescription>
                     We typically reply within 2 business days.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
+                  </GlassCardDescription>
+                </GlassCardHeader>
+                <GlassCardContent>
                   <form
                     action="https://formspree.io/f/{your-formspree-id}"
                     method="POST"
@@ -93,17 +99,17 @@ export default function ContactPage() {
                       </a>.
                     </p>
                   </form>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </div>
 
             {/* Sidebar — contact info */}
             <div className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Contact Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <GlassCard>
+                <GlassCardHeader>
+                  <GlassCardTitle className="text-base">Contact Information</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="space-y-3 text-sm text-muted-foreground">
                   <div className="flex items-start gap-3">
                     <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                     <div>
@@ -149,14 +155,14 @@ export default function ContactPage() {
                       </a>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Report a Bug</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
+              <GlassCard>
+                <GlassCardHeader>
+                  <GlassCardTitle className="text-base">Report a Bug</GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="text-sm text-muted-foreground">
                   <p>
                     Found a broken tool or a bug in a game? Email us directly at{" "}
                     <a
@@ -167,8 +173,8 @@ export default function ContactPage() {
                     </a>{" "}
                     with steps to reproduce.
                   </p>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </div>
           </div>
         </div>

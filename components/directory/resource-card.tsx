@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent
+} from "@/components/ui/glass-card";
 import { Star, ExternalLink } from "lucide-react";
 import type { Resource } from "@/lib/fmhy-data";
 
@@ -43,8 +46,8 @@ export function ResourceCard({
       rel={rel}
       className="group block"
     >
-      <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-        <CardContent className="p-3 md:p-5">
+      <GlassCard className="h-full transition-all hover:border-primary/40 hover:shadow-md">
+        <GlassCardContent className="p-3 md:p-5">
           {/* Rank badge (optional) */}
           {rank !== undefined && (
             <div className={`rounded-lg w-8 h-8 md:w-10 md:h-10 flex items-center justify-center font-bold text-sm md:text-lg mb-2 md:mb-3 ${
@@ -110,8 +113,8 @@ export function ResourceCard({
               </Badge>
             )}
           </div>
-        </CardContent>
-      </Card>
+        </GlassCardContent>
+      </GlassCard>
     </Link>
   );
 }

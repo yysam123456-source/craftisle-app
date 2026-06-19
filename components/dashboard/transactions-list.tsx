@@ -4,12 +4,12 @@ import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import {
   Table,
   TableBody,
@@ -21,13 +21,13 @@ import {
 
 export default function TransactionsList() {
   return (
-    <Card className="xl:col-span-2">
-      <CardHeader className="flex flex-row items-center">
+    <GlassCard className="xl:col-span-2">
+      <GlassCardHeader className="flex flex-row items-center">
         <div className="grid gap-2">
-          <CardTitle>Transactions</CardTitle>
-          <CardDescription className="text-balance">
+          <GlassCardTitle>Transactions</GlassCardTitle>
+          <GlassCardDescription className="text-balance">
             Recent transactions from your store.
-          </CardDescription>
+          </GlassCardDescription>
         </div>
         <Button size="sm" className="ml-auto shrink-0 gap-1 px-4">
           <Link href="#" className="flex items-center gap-2">
@@ -35,8 +35,8 @@ export default function TransactionsList() {
             <ArrowUpRight className="hidden size-4 sm:block" />
           </Link>
         </Button>
-      </CardHeader>
-      <CardContent>
+      </GlassCardHeader>
+      <GlassCardContent>
         <Table>
           <TableHeader>
             <TableRow>
@@ -142,7 +142,7 @@ export default function TransactionsList() {
             </TableRow>
           </TableBody>
         </Table>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }

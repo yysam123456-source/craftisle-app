@@ -1,4 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
@@ -18,22 +23,22 @@ export default function CookiePolicyPage() {
           </div>
 
           <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">What Are Cookies?</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm leading-relaxed">
+            <GlassCard>
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">What Are Cookies?</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="text-muted-foreground text-sm leading-relaxed">
                 <p>
                   Cookies are small text files placed on your device when you visit a website. They help websites remember your preferences and improve your experience. This policy explains how Craftisle uses cookies and similar technologies.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Cookies We Use</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm leading-relaxed space-y-4">
+            <GlassCard>
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">Cookies We Use</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="text-muted-foreground text-sm leading-relaxed space-y-4">
                 <div>
                   <p className="font-medium text-foreground mb-1">1. Essential Cookies</p>
                   <p>
@@ -85,14 +90,14 @@ export default function CookiePolicyPage() {
                     </a>.
                   </p>
                 </div>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Managing Cookies</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm leading-relaxed space-y-2">
+            <GlassCard>
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">Managing Cookies</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="text-muted-foreground text-sm leading-relaxed space-y-2">
                 <p>You can control cookies through your browser settings:</p>
                 <ul className="list-disc list-inside space-y-1 mt-2">
                   <li><strong>Chrome:</strong> Settings → Privacy and Security → Cookies</li>
@@ -103,14 +108,14 @@ export default function CookiePolicyPage() {
                 <p className="mt-3">
                   Note: Disabling essential cookies may prevent some features from working correctly.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">GDPR &amp; CCPA Rights</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm leading-relaxed space-y-2">
+            <GlassCard>
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">GDPR &amp; CCPA Rights</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="text-muted-foreground text-sm leading-relaxed space-y-2">
                 <p>
                   If you are in the EU/EEA (GDPR) or California (CCPA), you have the right to:
                 </p>
@@ -124,19 +129,19 @@ export default function CookiePolicyPage() {
                   To exercise these rights, contact us via our{" "}
                   <a href="/contact" className="text-primary underline">Contact page</a>.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Changes to This Policy</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm leading-relaxed">
+            <GlassCard>
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">Changes to This Policy</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="text-muted-foreground text-sm leading-relaxed">
                 <p>
                   We may update this Cookie Policy from time to time. Changes will be posted on this page with an updated revision date.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
           </div>
         </div>
       </main>

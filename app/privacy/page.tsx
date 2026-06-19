@@ -1,4 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Separator } from "@/components/ui/separator";
 import { constructMetadata } from "@/lib/utils";
 
@@ -25,25 +30,25 @@ export default function PrivacyPage() {
           </div>
 
           <div className="prose prose-gray max-w-none dark:prose-invert">
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">1. Information We Do Not Collect</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">1. Information We Do Not Collect</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   Craftisle is a collection of client-side tools and games. Most tools run
                   entirely in your browser. We do <strong>not</strong> collect, store, or transmit
                   the files you process (PDFs, images, text, etc.) to any server. Your data
                   stays on your device.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">2. Information We Do Collect</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">2. Information We Do Collect</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-3 text-sm text-muted-foreground">
                 <p>
                   We collect limited data necessary to operate and improve the site:
                 </p>
@@ -60,28 +65,28 @@ export default function PrivacyPage() {
                     email address and message content.
                   </li>
                 </ul>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">3. How We Use Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">3. How We Use Information</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <ul className="list-disc pl-5 space-y-1">
                   <li>To operate and maintain the site;</li>
                   <li>To understand how users interact with tools and games;</li>
                   <li>To detect and prevent technical abuse;</li>
                   <li>To display contextual advertisements (see Section 5).</li>
                 </ul>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">4. Cookies</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">4. Cookies</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   We use cookies for basic site functionality and analytics. Third-party
                   advertising partners (including Google AdSense and Media.net) may set cookies
@@ -92,14 +97,14 @@ export default function PrivacyPage() {
                   For EU/UK users: we request consent before loading non-essential cookies.
                   You may withdraw consent at any time.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">5. Advertising Partners</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">5. Advertising Partners</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   We use third-party advertising networks to serve ads on Craftisle:
                 </p>
@@ -140,53 +145,53 @@ export default function PrivacyPage() {
                     aboutads.info/choices
                   </a>.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">6. Data Security</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">6. Data Security</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   Because most data processing happens client-side, your files are never
                   uploaded to our servers. We follow industry-standard practices to secure
                   any data we do collect.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">7. Children&apos;s Privacy</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">7. Children&apos;s Privacy</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   Craftisle is not directed at children under 13. We do not knowingly
                   collect personal information from children under 13. If you believe we
                   have inadvertently collected such information, please contact us.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle className="text-lg">8. Changes to This Policy</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard className="mb-6">
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">8. Changes to This Policy</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   We may update this Privacy Policy from time to time. The latest version
                   will always be posted on this page with a revised &quot;Last updated&quot;
                   date.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">9. Contact</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <GlassCard>
+              <GlassCardHeader>
+                <GlassCardTitle className="text-lg">9. Contact</GlassCardTitle>
+              </GlassCardHeader>
+              <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
                   If you have any questions about this Privacy Policy, please contact us at{" "}
                   <a
@@ -196,8 +201,8 @@ export default function PrivacyPage() {
                     privacy@craftisle.com
                   </a>.
                 </p>
-              </CardContent>
-            </Card>
+              </GlassCardContent>
+            </GlassCard>
           </div>
         </div>
       </main>

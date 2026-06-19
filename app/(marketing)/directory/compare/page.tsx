@@ -1,4 +1,6 @@
-import { Card } from "@/components/ui/card";
+import {
+  GlassCard
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import {
   ArrowRight, GitFork, Figma, MessageSquare, Database, Code2, ListTodo,
@@ -106,7 +108,7 @@ export default function CompareListPage() {
                 href={`/directory/compare/${slugA}/${slugB}`}
                 className="no-underline"
               >
-                <Card className="p-4 hover:shadow-md transition-shadow h-full">
+                <GlassCard className="p-4 hover:shadow-md transition-shadow h-full">
                   <div className="flex items-center gap-3">
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
                       {ICON_MAP[entry.paidTool] || <ArrowRight className="h-5 w-5" />}
@@ -120,7 +122,7 @@ export default function CompareListPage() {
                       </p>
                     </div>
                   </div>
-                </Card>
+                </GlassCard>
               </Link>
             );
           })}
@@ -140,7 +142,7 @@ export default function CompareListPage() {
                 const slugA = toSlug(entry.paidTool);
                 return (
                   <div key={entry.paidTool}>
-                    <Card className="p-4">
+                    <GlassCard className="p-4">
                       <div className="flex items-start gap-3 mb-3">
                         <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-muted flex items-center justify-center">
                           {ICON_MAP[entry.paidTool] || <ArrowRight className="h-4 w-4" />}
@@ -184,7 +186,7 @@ export default function CompareListPage() {
                           View {entry.alternatives.length} alternative{entry.alternatives.length > 1 ? 's' : ''} →
                         </Link>
                       </div>
-                    </Card>
+                    </GlassCard>
                   </div>
                 );
               })}

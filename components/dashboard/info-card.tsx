@@ -1,23 +1,23 @@
 import { Users } from "lucide-react"
 
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 
 export default function InfoCard() {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
+    <GlassCard>
+      <GlassCardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <GlassCardTitle className="text-sm font-medium">Subscriptions</GlassCardTitle>
         <Users className="size-4 text-muted-foreground" />
-      </CardHeader>
-      <CardContent>
+      </GlassCardHeader>
+      <GlassCardContent>
         <div className="text-2xl font-bold">+2350</div>
         <p className="text-xs text-muted-foreground">+180.1% from last month</p>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   )
 }

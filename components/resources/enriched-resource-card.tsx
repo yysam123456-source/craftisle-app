@@ -1,7 +1,12 @@
 "use client"
 
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Globe, Zap, Shield, Clock, Users, Code, Sparkles, CheckCircle, HelpCircle } from "lucide-react";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
@@ -202,12 +207,12 @@ export function EnrichedResourceCard({ resource, showCategory = true, variant = 
   const badges = getFeatureBadges(resource);
 
   return (
-    <Card
+    <GlassCard
       className={`group overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border-border/60 ${
         isLarge ? "h-full" : ""
       }`}
     >
-      <CardHeader className={`${isLarge ? "pb-4 pt-6" : "pb-3 pt-5"}`}>
+      <GlassCardHeader className={`${isLarge ? "pb-4 pt-6" : "pb-3 pt-5"}`}>
         <div className="flex items-start gap-3">
           {/* Favicon */}
           <div
@@ -239,7 +244,7 @@ export function EnrichedResourceCard({ resource, showCategory = true, variant = 
           {/* Title & Link */}
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
-              <CardTitle
+              <GlassCardTitle
                 className={`leading-tight ${
                   isLarge ? "text-lg" : "text-base"
                 }`}
@@ -250,7 +255,7 @@ export function EnrichedResourceCard({ resource, showCategory = true, variant = 
                 >
                   {resource.name}
                 </Link>
-              </CardTitle>
+              </GlassCardTitle>
               <div className="flex items-center flex-shrink-0 gap-0.5 mt-0.5">
                 <StarButtonWrapper resourceId={resource.id} />
                 <a
@@ -273,9 +278,9 @@ export function EnrichedResourceCard({ resource, showCategory = true, variant = 
             )}
           </div>
         </div>
-      </CardHeader>
+      </GlassCardHeader>
 
-      <CardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"}`}>
+      <GlassCardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"}`}>
         {/* Rich Description */}
         <p
           className={`text-muted-foreground leading-relaxed ${
@@ -329,7 +334,7 @@ export function EnrichedResourceCard({ resource, showCategory = true, variant = 
             Visit <ExternalLink className="h-3 w-3" />
           </a>
         </div>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }

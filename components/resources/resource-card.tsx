@@ -1,7 +1,12 @@
 "use client"
 
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Globe } from "lucide-react";
 import { StarButtonWrapper } from "@/components/resources/star-button-wrapper";
@@ -238,7 +243,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
   const categoryGradient = getCategoryGradient(resource.category || resource.categoryName || "");
 
   return (
-    <Card
+    <GlassCard
       className={`group overflow-hidden transition-all duration-500 ease-out border-white/15 bg-white/[0.65] shadow-md shadow-black/[0.05] backdrop-blur-xl dark:border-white/8 dark:bg-white/[0.04] dark:shadow-black/20 ${
         isLarge ? "h-full" : ""
       } ${!hasDetail ? "cursor-pointer" : ""} hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 hover:border-white/30 dark:hover:border-white/12`}
@@ -253,7 +258,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
         }}
       />
 
-      <CardHeader className={`${isLarge ? "pb-4 pt-6" : "pb-3 pt-5"} relative z-10`}>
+      <GlassCardHeader className={`${isLarge ? "pb-4 pt-6" : "pb-3 pt-5"} relative z-10`}>
         <div className="flex items-start gap-3">
           {/* Favicon */}
           <div
@@ -285,7 +290,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
           {/* Title & Link */}
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
-              <CardTitle
+              <GlassCardTitle
                 className={`leading-tight ${
                   isLarge ? "text-lg" : "text-base"
                 }`}
@@ -307,7 +312,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
                     {highlightText(resource.name, highlightQuery)}
                   </a>
                 )}
-              </CardTitle>
+              </GlassCardTitle>
               <div className="flex items-center flex-shrink-0 gap-0.5 mt-0.5">
                 {/* Star button */}
                 <StarButtonWrapper resourceId={resource.id} />
@@ -332,9 +337,9 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
             )}
           </div>
         </div>
-      </CardHeader>
+      </GlassCardHeader>
 
-      <CardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"} relative z-10`}>
+      <GlassCardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"} relative z-10`}>
         {/* Rich Description */}
         {(resource.description || resource.source) && (
           <p
@@ -380,7 +385,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
             <ExternalLink className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" style={{ color: categoryGradient.from }} />
           </a>
         </div>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }

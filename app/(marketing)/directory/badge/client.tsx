@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
+import {
+  GlassCard
+} from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 
@@ -67,16 +69,16 @@ export default function BadgePage() {
       </p>
 
       {/* 预览 */}
-      <Card className="p-6 mb-8 text-center">
+      <GlassCard className="p-6 mb-8 text-center">
         <p className="text-sm text-gray-500 mb-3">Badge Preview</p>
         <div className="inline-flex items-center gap-2 px-4 py-2 border rounded-lg bg-muted/20">
           <span className="text-green-600">✓</span>
           <span className="text-sm font-medium">Listed on Craftisle</span>
         </div>
-      </Card>
+      </GlassCard>
 
       {/* 资源信息 */}
-      <Card className="p-6 mb-8">
+      <GlassCard className="p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4">Your Resource</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
@@ -100,10 +102,10 @@ export default function BadgePage() {
             />
           </div>
         </div>
-      </Card>
+      </GlassCard>
 
       {/* HTML 代码 */}
-      <Card className="p-6 mb-6">
+      <GlassCard className="p-6 mb-6">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold">HTML</h2>
           <Button
@@ -122,10 +124,10 @@ export default function BadgePage() {
         <pre className="bg-muted/30 p-4 rounded-lg overflow-x-auto text-sm">
           <code>{htmlCode}</code>
         </pre>
-      </Card>
+      </GlassCard>
 
       {/* Markdown 代码 */}
-      <Card className="p-6 mb-8">
+      <GlassCard className="p-6 mb-8">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold">Markdown</h2>
           <Button
@@ -144,7 +146,7 @@ export default function BadgePage() {
         <pre className="bg-muted/30 p-4 rounded-lg overflow-x-auto text-sm">
           <code>{mdCode}</code>
         </pre>
-      </Card>
+      </GlassCard>
 
       <p className="text-xs text-gray-400 text-center">
         The badge image is hosted by Craftisle. By using this badge, you agree to link back to Craftisle.

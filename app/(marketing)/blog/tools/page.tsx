@@ -3,7 +3,13 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { CalendarDays, Clock, ArrowRight, Wrench } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 
@@ -73,21 +79,21 @@ export default function ToolBlogsPage() {
                   href={`/blog/tools/${blog.slug}`}
                   className="group block"
                 >
-                  <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                    <CardHeader>
+                  <GlassCard className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <GlassCardHeader>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge variant="outline" className="text-xs">
                           {blog.category}
                         </Badge>
                       </div>
-                      <CardTitle className="group-hover:text-primary transition-colors line-clamp-2">
+                      <GlassCardTitle className="group-hover:text-primary transition-colors line-clamp-2">
                         {blog.title}
-                      </CardTitle>
-                      <CardDescription className="line-clamp-2">
+                      </GlassCardTitle>
+                      <GlassCardDescription className="line-clamp-2">
                         {blog.excerpt}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
+                      </GlassCardDescription>
+                    </GlassCardHeader>
+                    <GlassCardContent>
                       <div className="flex items-center gap-4 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <CalendarDays className="h-3 w-3" />
@@ -105,8 +111,8 @@ export default function ToolBlogsPage() {
                           </Badge>
                         ))}
                       </div>
-                    </CardContent>
-                  </Card>
+                    </GlassCardContent>
+                  </GlassCard>
                 </Link>
               ))}
             </div>

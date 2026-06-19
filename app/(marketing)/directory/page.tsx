@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { ResourceSearchClient } from "@/components/resources/resource-search-client";
 import { ArrowRight, GitCompareArrows, TrendingUp, Shuffle } from "lucide-react";
@@ -11,7 +14,7 @@ import { TopCategories } from "@/components/directory/home/top-categories";
 import { SocialProof } from "@/components/directory/home/social-proof";
 import { DynamicHomeBlocks } from "@/components/directory/home/dynamic-blocks";
 import { FeaturedWithTabs } from "@/components/directory/home/featured-with-tabs";
-import { ScenarioCards } from "@/components/directory/home/scenario-cards";
+import { ScenarioGlassCards } from "@/components/directory/home/scenario-cards";
 import { ByUseCase } from "@/components/directory/home/by-use-case";
 import { DirectoryFAQ } from "@/components/directory/DirectoryFAQ";
 import { readFileSync, existsSync } from "fs";
@@ -167,7 +170,7 @@ export default async function ResourcesPage() {
               Find free tools by task — curated for your specific needs
             </p>
           </div>
-          <ScenarioCards />
+          <ScenarioGlassCards />
         </div>
       </section>
 
@@ -190,13 +193,13 @@ export default async function ResourcesPage() {
           </div>
 
           <div className="grid sm:grid-cols-3 gap-5">
-            {/* Card 1: Tool Comparisons — 数据驱动 */}
+            {/* GlassCard 1: Tool Comparisons — 数据驱动 */}
             <Link
               href={comparisonsBlock ? "/directory/compare" : "/directory/compare"}
               className="no-underline group"
             >
-              <Card className="hover:border-primary/50 hover:shadow-md transition-all h-full">
-                <CardContent className="p-6 flex flex-col items-start gap-3">
+              <GlassCard className="hover:border-primary/50 hover:shadow-md transition-all h-full">
+                <GlassCardContent className="p-6 flex flex-col items-start gap-3">
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
                     <GitCompareArrows className="h-6 w-6" />
                   </div>
@@ -209,17 +212,17 @@ export default async function ResourcesPage() {
                   <span className="mt-auto text-sm font-medium text-primary flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     View all comparisons <ArrowRight className="h-3.5 w-3.5" />
                   </span>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </Link>
 
-            {/* Card 2: Best of 2026 — 数据驱动（链接到动态板块中的热门分类） */}
+            {/* GlassCard 2: Best of 2026 — 数据驱动（链接到动态板块中的热门分类） */}
             <Link
               href={bestBlock ? `/directory/best/${bestBlock.title?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "development-2026"}` : "/directory/best/development-2026"}
               className="no-underline group"
             >
-              <Card className="hover:border-primary/50 hover:shadow-md transition-all h-full">
-                <CardContent className="p-6 flex flex-col items-start gap-3">
+              <GlassCard className="hover:border-primary/50 hover:shadow-md transition-all h-full">
+                <GlassCardContent className="p-6 flex flex-col items-start gap-3">
                   <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
                     <TrendingUp className="h-6 w-6" />
                   </div>
@@ -232,17 +235,17 @@ export default async function ResourcesPage() {
                   <span className="mt-auto text-sm font-medium text-primary flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     Explore categories <ArrowRight className="h-3.5 w-3.5" />
                   </span>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </Link>
 
-            {/* Card 3: Find Alternatives — 数据驱动 */}
+            {/* GlassCard 3: Find Alternatives — 数据驱动 */}
             <Link
               href={alternativesBlock ? "/directory/search?q=notion+alternative" : "/directory/search?q=notion+alternative"}
               className="no-underline group"
             >
-              <Card className="hover:border-primary/50 hover:shadow-md transition-all h-full">
-                <CardContent className="p-6 flex flex-col items-start gap-3">
+              <GlassCard className="hover:border-primary/50 hover:shadow-md transition-all h-full">
+                <GlassCardContent className="p-6 flex flex-col items-start gap-3">
                   <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform">
                     <Shuffle className="h-6 w-6" />
                   </div>
@@ -255,8 +258,8 @@ export default async function ResourcesPage() {
                   <span className="mt-auto text-sm font-medium text-primary flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     Start searching <ArrowRight className="h-3.5 w-3.5" />
                   </span>
-                </CardContent>
-              </Card>
+                </GlassCardContent>
+              </GlassCard>
             </Link>
           </div>
         </div>

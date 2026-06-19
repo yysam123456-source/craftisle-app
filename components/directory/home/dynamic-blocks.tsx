@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent
+} from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import {
   Flame, Star, TrendingUp, GitCompareArrows,
@@ -134,7 +137,7 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
     if (items.length === 0) return null;
 
     return (
-      <Card className="group relative h-full overflow-hidden rounded-2xl border border-white/20 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl transition-all duration-500 ease-out dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/30 hover:border-white/30 dark:hover:border-white/15">
+      <GlassCard className="group relative h-full overflow-hidden rounded-2xl border border-white/20 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl transition-all duration-500 ease-out dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/30 hover:border-white/30 dark:hover:border-white/15">
         {/* Hover 光晕效果 */}
         <div
           className="pointer-events-none absolute inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -144,7 +147,7 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
           }}
         />
 
-        <CardContent className="relative z-10 p-4 flex flex-col h-full">
+        <GlassCardContent className="relative z-10 p-4 flex flex-col h-full">
           {/* 卡片标题栏 */}
           <div className="flex items-center gap-2.5 mb-3">
             <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${gradient} text-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
@@ -189,8 +192,8 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
               Compare all tools <ArrowRight className="h-3 w-3" />
             </span>
           </Link>
-        </CardContent>
-      </Card>
+        </GlassCardContent>
+      </GlassCard>
     );
   }
 
@@ -217,7 +220,7 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
   };
 
   return (
-    <Card className="group relative h-full overflow-hidden rounded-2xl border border-white/20 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl transition-all duration-500 ease-out dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/30 hover:border-white/30 dark:hover:border-white/15">
+    <GlassCard className="group relative h-full overflow-hidden rounded-2xl border border-white/20 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl transition-all duration-500 ease-out dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-black/30 hover:border-white/30 dark:hover:border-white/15">
       {/* Hover 光晕效果 */}
       <div
         className="pointer-events-none absolute inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -227,7 +230,7 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
         }}
       />
 
-      <CardContent className="relative z-10 p-4 flex flex-col h-full">
+      <GlassCardContent className="relative z-10 p-4 flex flex-col h-full">
         {/* 卡片标题栏 */}
         <div className="flex items-center gap-2.5 mb-3">
           <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${gradient} text-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
@@ -282,7 +285,7 @@ function MiniBlockCard({ block }: { block: HomeBlock }) {
             View all {block.resources?.length || ""} &rarr; <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }

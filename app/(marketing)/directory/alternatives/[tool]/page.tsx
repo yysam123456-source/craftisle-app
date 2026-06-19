@@ -3,7 +3,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle,
+  GlassCardDescription
+} from "@/components/ui/glass-card";
 import { ExternalLink, ArrowLeft, CheckCircle2, XCircle, HelpCircle, Star, ArrowRight, Download, Users, DollarSign, Shield, Globe } from "lucide-react";
 import {
   getAlternativeBySlug,
@@ -460,18 +466,18 @@ export default async function AlternativesPage({
                 </div>
                 <div className="space-y-4">
                   {entry.faqs.map((faq, i) => (
-                    <Card key={i} className="hover:shadow-sm transition-shadow">
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-base font-semibold">
+                    <GlassCard key={i} className="hover:shadow-sm transition-shadow">
+                      <GlassCardHeader className="pb-2">
+                        <GlassCardTitle className="text-base font-semibold">
                           {faq.question}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
+                        </GlassCardTitle>
+                      </GlassCardHeader>
+                      <GlassCardContent>
                         <p className="text-muted-foreground text-sm leading-relaxed">
                           {faq.answer}
                         </p>
-                      </CardContent>
-                    </Card>
+                      </GlassCardContent>
+                    </GlassCard>
                   ))}
                 </div>
               </div>
@@ -525,13 +531,13 @@ function AlternativeCard({
   paidTool: string;
 }) {
   return (
-    <Card className="hover:shadow-lg transition-all border-2 hover:border-primary/20 overflow-hidden">
-      <CardHeader className="pb-3">
+    <GlassCard className="hover:shadow-lg transition-all border-2 hover:border-primary/20 overflow-hidden">
+      <GlassCardHeader className="pb-3">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
               <span className="text-2xl font-bold text-muted-foreground/40">#{index + 1}</span>
-              <CardTitle className="text-xl">
+              <GlassCardTitle className="text-xl">
                 <a
                   href={alt.url || "#"}
                   target="_blank"
@@ -540,7 +546,7 @@ function AlternativeCard({
                 >
                   {alt.name}
                 </a>
-              </CardTitle>
+              </GlassCardTitle>
               {alt.featured && (
                 <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
                   <Star className="h-3 w-3 mr-1 fill-amber-500 text-amber-500" />
@@ -583,8 +589,8 @@ function AlternativeCard({
             </a>
           </div>
         </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
+      </GlassCardHeader>
+      <GlassCardContent className="space-y-4">
         {/* Description */}
         <p className="text-muted-foreground leading-relaxed text-sm">{alt.description}</p>
 
@@ -643,8 +649,8 @@ function AlternativeCard({
             </div>
           )}
         </div>
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }
 

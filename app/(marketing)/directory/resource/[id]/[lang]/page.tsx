@@ -5,7 +5,12 @@ import { join, dirname } from "path";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle
+} from "@/components/ui/glass-card";
 import { ArrowLeft, Globe, Star } from "lucide-react";
 import { ResourceContentTemplate } from "@/lib/ai-content-template";
 
@@ -216,13 +221,13 @@ export default async function ResourceDetailLangPage({
             {/* Pros & Cons */}
             <div className="mt-6 grid gap-6 md:grid-cols-2">
               {content.pros && content.pros.length > 0 && (
-                <Card className="border-green-200 dark:border-green-900 bg-green-50/40 dark:bg-green-950/20">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base flex items-center gap-2 text-green-700 dark:text-green-400">
+                <GlassCard className="border-green-200 dark:border-green-900 bg-green-50/40 dark:bg-green-950/20">
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="text-base flex items-center gap-2 text-green-700 dark:text-green-400">
                       ✓ Pros
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <ul className="space-y-2">
                       {content.pros.map((pro, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -231,17 +236,17 @@ export default async function ResourceDetailLangPage({
                         </li>
                       ))}
                     </ul>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               )}
               {content.cons && content.cons.length > 0 && (
-                <Card className="border-red-200 dark:border-red-900 bg-red-50/40 dark:bg-red-950/20">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base flex items-center gap-2 text-red-700 dark:text-red-400">
+                <GlassCard className="border-red-200 dark:border-red-900 bg-red-50/40 dark:bg-red-950/20">
+                  <GlassCardHeader className="pb-2">
+                    <GlassCardTitle className="text-base flex items-center gap-2 text-red-700 dark:text-red-400">
                       ✗ Cons
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </GlassCardTitle>
+                  </GlassCardHeader>
+                  <GlassCardContent>
                     <ul className="space-y-2">
                       {content.cons.map((con, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -250,8 +255,8 @@ export default async function ResourceDetailLangPage({
                         </li>
                       ))}
                     </ul>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               )}
             </div>
 

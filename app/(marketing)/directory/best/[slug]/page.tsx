@@ -16,7 +16,9 @@ import { getEnhancedDescription } from "@/lib/tool-descriptions";
 import { getCombinedMap, type AlternativeEntry } from "@/lib/alternatives";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
+import {
+  GlassCard
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -338,7 +340,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                     href={`/directory/alternatives/${toSlug(entry.paidTool)}`}
                     className="no-underline"
                   >
-                    <Card className="p-4 hover:shadow-md transition-shadow h-full">
+                    <GlassCard className="p-4 hover:shadow-md transition-shadow h-full">
                       <h3 className="font-medium text-sm mb-1">{alt.name}</h3>
                       <p className="text-xs text-gray-500 line-clamp-2">
                         {alt.reason}
@@ -360,7 +362,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                           </Badge>
                         )}
                       </div>
-                    </Card>
+                    </GlassCard>
                   </Link>
                 ))}
               </div>
@@ -427,7 +429,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                 href={`/directory/resource/${r.id}`}
                 className="no-underline"
               >
-                <Card className="p-4 hover:shadow-md transition-shadow h-full">
+                <GlassCard className="p-4 hover:shadow-md transition-shadow h-full">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-lg font-bold text-primary">
                       {(r.icon || r.name?.charAt(0) || "?").toUpperCase()}
@@ -456,7 +458,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                       </div>
                     </div>
                   </div>
-                </Card>
+                </GlassCard>
               </Link>
             ))}
           </div>
@@ -481,7 +483,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                 href={`/directory/resource/${r.id}`}
                 className="no-underline"
               >
-                <Card className="p-4 hover:bg-muted/30 transition-colors">
+                <GlassCard className="p-4 hover:bg-muted/30 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="text-lg font-bold text-gray-300 w-6 text-right">
                       {i + 7}
@@ -494,7 +496,7 @@ export default async function BestToolsPage(props: BestPageProps) {
                     </div>
                     <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                   </div>
-                </Card>
+                </GlassCard>
               </Link>
             ))}
           </div>
@@ -502,7 +504,7 @@ export default async function BestToolsPage(props: BestPageProps) {
       )}
 
       {/* FAQ */}
-      <Card className="p-6">
+      <GlassCard className="p-6">
         <h2 className="text-lg font-semibold mb-4">FAQ</h2>
         <div className="space-y-4">
           <div>
@@ -518,7 +520,7 @@ export default async function BestToolsPage(props: BestPageProps) {
             </p>
           </div>
         </div>
-      </Card>
+      </GlassCard>
     </div>
   );
 }
@@ -558,7 +560,7 @@ function BlockBestPage({ block, slug }: { block: any; slug: string }) {
                 href={`/directory/resource/${r.id}`}
                 className="no-underline"
               >
-                <Card className="p-4 hover:shadow-md transition-shadow h-full">
+                <GlassCard className="p-4 hover:shadow-md transition-shadow h-full">
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-lg font-bold text-primary">
                       {(r.icon || r.name?.charAt(0) || "?").toUpperCase()}
@@ -587,7 +589,7 @@ function BlockBestPage({ block, slug }: { block: any; slug: string }) {
                       </div>
                     </div>
                   </div>
-                </Card>
+                </GlassCard>
               </Link>
             ))}
           </div>
