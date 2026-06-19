@@ -5,7 +5,7 @@
       "name": "Artificial Intelligence",
       "description": "Artificial-Intelligence resources",
       "icon": "📦",
-      "count": 355
+      "count": 356
     },
     {
       "id": "Adblock",
@@ -26,7 +26,7 @@
       "name": "Misc",
       "description": "Misc resources",
       "icon": "📦",
-      "count": 8892
+      "count": 8897
     },
     {
       "id": "Downloading",
@@ -40,21 +40,21 @@
       "name": "Reading",
       "description": "Reading resources",
       "icon": "📦",
-      "count": 2308
+      "count": 2312
     },
     {
       "id": "Gaming",
       "name": "Gaming",
       "description": "Gaming resources",
       "icon": "📦",
-      "count": 1796
+      "count": 1797
     },
     {
       "id": "Linux",
       "name": "Linux",
       "description": "Linux resources",
       "icon": "📦",
-      "count": 687
+      "count": 688
     },
     {
       "id": "Storage",
