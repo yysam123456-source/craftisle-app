@@ -2658,6 +2658,46 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["image-compress", "image-border", "image-watermark"],
   },
 
+  "id-photo": {
+    title: "AI 证件照制作",
+    desc: "AI 智能抠图换底，支持多种证件照尺寸",
+    icon: "📷",
+    category: CATEGORIES.image,
+    stars: 5,
+    seoTitle: "免费证件照制作 - AI 智能抠图换底 | Craftisle",
+    seoDesc: "免费在线证件照制作工具，AI 自动抠图、换背景底色、调整尺寸。支持1寸、2寸、护照等多种规格，100% 浏览器本地处理，照片不上传服务器。",
+    seoKeywords: [
+      "证件照",
+      "证件照制作",
+      "AI 抠图",
+      "证件照换底",
+      "免费证件照",
+      "1寸照片",
+      "2寸照片",
+      "护照照片",
+    ],
+    description: "使用 AI 自动抠图并更换证件照背景底色，支持多种标准证件照尺寸。所有处理均在浏览器本地完成——您的照片不会上传到任何服务器。",
+    howToUse: [
+      { heading: "上传照片", text: "点击上方区域上传正面免冠照片，JPG 或 PNG 格式均可。" },
+      { heading: "选择尺寸", text: "选择证件照尺寸：1寸、2寸、护照照片、美国签证等。" },
+      { heading: "选择底色", text: "点击颜色按钮选择背景底色：白色、蓝色、红色等。" },
+      { heading: "开始制作", text: "点击「开始制作证件照」按钮，AI 将自动处理。" },
+      { heading: "下载证件照", text: "处理完成后，点击「下载证件照」保存 JPG 文件。" },
+    ],
+    useCases: [
+      { title: "护照申请", text: "生成符合规范的护照照片，省去照相馆费用。" },
+      { title: "签证申请", text: "生成符合美国、申根、英国等签证规范的证件照。" },
+      { title: "考试报名", text: "生成符合公务员考试、高考等报名要求的证件照。" },
+    ],
+    faq: [
+      { q: "这个证件照工具真的免费吗？", a: "是的，完全免费。无需注册，无水印，无使用次数限制。" },
+      { q: "我的照片会被上传到服务器吗？", a: "不会。所有处理均在您的浏览器本地完成，使用 AI 模型。您的照片不会离开您的设备。" },
+      { q: "支持哪些证件照尺寸？", a: "1寸、2寸、护照照片、美国签证照片，以及自定义尺寸。" },
+      { q: "可以更换背景底色吗？", a: "可以，您可以选择白色、蓝色、红色或任何自定义 HEX 颜色。" },
+    ],
+    relatedTools: ["image-passport-photo", "image-resize", "image-convert"],
+  },
+
   "image-passport-photo": {
     title: "Passport Photo",
     desc: "Generate passport and visa photos",
