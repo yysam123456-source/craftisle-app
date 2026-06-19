@@ -211,7 +211,7 @@ export default function IndexPage() {
         />
 
       {/* ═══ Hero 区 ══════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-background py-24 sm:py-32 lg:py-40">
+      <section className="relative overflow-hidden bg-background py-20 sm:py-28 lg:py-32">
         {/* ─ 动态背景：渐变光斑 ─ */}
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px]" />
@@ -315,7 +315,8 @@ export default function IndexPage() {
         </div>
       </section>
 
-      {/* ── 广告：Hero 下方 ───────────────────────────── */}
+      {/* ── 广告：Hero 下方（仅生产环境渲染占位）───────── */}
+      {process.env.NODE_ENV === "production" && (
       <section className="flex justify-center py-6">
         <AdSlot
           slotId="homepage-below-hero"
@@ -323,6 +324,7 @@ export default function IndexPage() {
           label="Homepage Below Hero"
         />
       </section>
+      )}
 
       {/* ── 板块 1：子站入口（最上方，紧跟 Hero）──────── */}
       <FeaturedSites />
@@ -330,7 +332,8 @@ export default function IndexPage() {
       {/* ── 板块 2：站内工具（子站下方）────────────────── */}
       <FeaturedTools />
 
-      {/* ── 广告：站内工具与分类之间 ───────────────────── */}
+      {/* ── 广告：站内工具与分类之间（仅生产环境）────────── */}
+      {process.env.NODE_ENV === "production" && (
       <section className="flex justify-center py-6">
         <AdSlot
           slotId="homepage-between-sections"
@@ -338,9 +341,10 @@ export default function IndexPage() {
           label="Homepage Between Sections"
         />
       </section>
+      )}
 
       {/* ═══ 板块：Browse by Category ══════════════════════ */}
-      <section className="relative border-t border-border/40 py-24 bg-muted/20">
+      <section className="relative border-t border-border/40 py-16 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* 标题区 */}
           <div className="mb-14 flex items-end justify-between">
@@ -412,7 +416,7 @@ export default function IndexPage() {
 
       {/* ═══ 板块：Trending This Week ═════════════════════ */}
       {trendingResources.length > 0 && (
-        <section className="relative border-t border-border/40 py-24">
+        <section className="relative border-t border-border/40 py-16">
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute left-1/2 top-0 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-orange-500/5 blur-[100px]" />
           </div>
@@ -488,7 +492,7 @@ export default function IndexPage() {
       <RandomRecommendations />
 
       {/* ═══ SEO 内容块 ══════════════════════════════════ */}
-      <section className="border-t border-border/40 py-24 bg-muted/20">
+      <section className="border-t border-border/40 py-16 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-500/15 bg-indigo-500/5 px-4 py-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400">
