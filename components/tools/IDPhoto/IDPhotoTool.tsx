@@ -2,49 +2,47 @@
 
 import { useState, useCallback, useRef } from "react";
 import {
-  loadModel,
-  runInference,
-  applyMatting,
-  resizeToTarget,
+  removeBackground,
+  applyBackground,
+  cropToSize,
   ID_PHOTO_SIZES,
   BG_COLORS,
 } from "@/lib/idphoto/inference";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 export function IDPhotoTool() {
   const [stage, setStage] = useState<
-    "idle" | "loading-model" | "ready" | "processing" | "done"
+    "idle" | "ready" | "processing" | "done"
   >("idle");
   const [progress, setProgress] = useState(0);
-  const [modelProgress, setModelProgress] = useState(0);
-  const [sourceImage, setSourceImage] = useState<ImageData | null>(null);
-  const [resultImage, setResultImage] = useState<ImageData | null>(null);
+  const [sourceImage, setSourceImage] = useState<HTMLImageElement | null>(null);
+  const [sourceImageData, setSourceImageData] =
+    useState<ImageData | null>(null);
+  const [resultUrl, setResultUrl] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Processing options
   const [selectedSize, setSelectedSize] = useState(0);
   const [selectedBg, setSelectedBg] = useState(0);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [resultUrl, setResultUrl] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [tolerance, setTolerance] = useState(40);
+  const [autoDetectBg, setAutoDetectBg] = useState(true);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
-
-  // Load model on first use
-  const handleLoadModel = useCallback(async () => {
-    setStage("loading-model");
-    setModelProgress(0);
-    try {
-      await loadModel((p) => setModelProgress(p));
-      setStage("ready");
-    } catch (e) {
-      console.error(e);
-      setError(
-        "Failed to load AI model. Please refresh the page and try again."
-      );
-      setStage("idle");
-    }
-  }, []);
 
   // Handle file upload
   const handleFileSelect = useCallback(
@@ -57,56 +55,54 @@ export function IDPhotoTool() {
       reader.onload = (ev) => {
         const img = new Image();
         img.onload = () => {
+          setSourceImage(img);
           const canvas = document.createElement("canvas");
           canvas.width = img.width;
           canvas.height = img.height;
           const ctx = canvas.getContext("2d")!;
           ctx.drawImage(img, 0, 0);
-          setSourceImage(ctx.getImageData(0, 0, img.width, img.height));
-          if (stage === "idle") {
-            handleLoadModel();
-          } else {
-            setStage("ready");
-          }
+          setSourceImageData(ctx.getImageData(0, 0, img.width, img.height));
+          setStage("ready");
         };
         img.src = ev.target?.result as string;
       };
       reader.readAsDataURL(file);
     },
-    [stage, handleLoadModel]
+    []
   );
 
-  // Run inference
+  // Run processing
   const handleProcess = useCallback(async () => {
-    if (!sourceImage) return;
+    if (!sourceImageData) return;
     setStage("processing");
     setProgress(0);
     setError(null);
 
     try {
-      const mask = await runInference(sourceImage, (stage, p) => {
-        if (stage === "preprocess") setProgress(Math.round(p * 0.3));
-        if (stage === "inference") setProgress(Math.round(30 + p * 0.5));
-        if (stage === "postprocess")
-          setProgress(30 + 50 + Math.round(p * 0.2));
+      // Step 1: Remove background
+      const withAlpha = removeBackground(sourceImageData, {
+        tolerance,
+        onProgress: (p) => setProgress(Math.round(p * 0.4)),
       });
 
-      setProgress(80);
-
+      // Step 2: Apply new background
+      setProgress(45);
       const bgColor = BG_COLORS[selectedBg].value;
-      const result = applyMatting(mask, sourceImage, bgColor);
-      setResultImage(result);
+      const composited = applyBackground(withAlpha, bgColor);
 
-      // Create preview URL
+      // Step 3: Create preview (full size)
+      setProgress(70);
       const previewCanvas = previewCanvasRef.current!;
-      previewCanvas.width = result.width;
-      previewCanvas.height = result.height;
-      previewCanvas.getContext("2d")!.putImageData(result, 0, 0);
+      previewCanvas.width = composited.width;
+      previewCanvas.height = composited.height;
+      previewCanvas.getContext("2d")!.putImageData(composited, 0, 0);
       setPreviewUrl(previewCanvas.toDataURL("image/jpeg", 0.92));
 
-      // Create final cropped ID photo
+      // Step 4: Crop to target size
+      setProgress(80);
       const size = ID_PHOTO_SIZES[selectedSize];
-      const cropped = resizeToTarget(result, size.width, size.height);
+      const cropped = cropToSize(composited, size.width, size.height);
+
       const resultCanvas = canvasRef.current!;
       resultCanvas.width = size.width;
       resultCanvas.height = size.height;
@@ -120,7 +116,7 @@ export function IDPhotoTool() {
       setError(`Processing failed: ${(e as Error).message}`);
       setStage("ready");
     }
-  }, [sourceImage, selectedBg, selectedSize]);
+  }, [sourceImageData, tolerance, selectedBg, selectedSize]);
 
   // Download result
   const handleDownload = useCallback(() => {
@@ -137,8 +133,9 @@ export function IDPhotoTool() {
     <div className="space-y-8">
       {/* Error Banner */}
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">
-          ⚠️ {error}
+        <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm flex items-start gap-2">
+          <span>⚠️</span>
+          <span>{error}</span>
         </div>
       )}
 
@@ -161,13 +158,14 @@ export function IDPhotoTool() {
                 ✓ Photo Selected
               </div>
               <p className="text-sm text-gray-500">
-                {sourceImage.width} × {sourceImage.height} pixels
+                {sourceImage.naturalWidth} × {sourceImage.naturalHeight} pixels
               </p>
               <button
                 className="mt-3 text-sm text-blue-600 hover:underline"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSourceImage(null);
+                  setSourceImageData(null);
                   setPreviewUrl(null);
                   setResultUrl(null);
                   setStage("idle");
@@ -198,51 +196,19 @@ export function IDPhotoTool() {
                 Click or drag to upload a photo
               </p>
               <p className="text-sm text-gray-500">
-                JPG or PNG recommended · Front-facing photo works best
+                JPG or PNG · Plain background works best
               </p>
             </div>
           )}
         </div>
       </Card>
 
-      {/* Model Loading */}
-      {stage === "loading-model" && (
-        <Card className="p-6">
-          <p className="font-medium mb-3 flex items-center gap-2">
-            <svg
-              className="animate-spin h-5 w-5 text-blue-600"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-              />
-            </svg>
-            Loading AI model (~25 MB)...
-          </p>
-          <Progress value={modelProgress} />
-          <p className="text-sm text-gray-500 mt-2">
-            {modelProgress}% — This only happens once (model is cached after first load)
-          </p>
-        </Card>
-      )}
-
       {/* Settings Panel */}
-      {stage !== "idle" && stage !== "loading-model" && (
+      {stage !== "idle" && (
         <Card className="p-6 space-y-6">
           {/* Size Selection */}
           <div>
-            <h3 className="font-semibold mb-3">Photo Size</h3>
+            <Label className="font-semibold mb-3 block">Photo Size</Label>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
               {ID_PHOTO_SIZES.map((s, i) => (
                 <button
@@ -267,12 +233,12 @@ export function IDPhotoTool() {
 
           {/* Background Color Selection */}
           <div>
-            <h3 className="font-semibold mb-3">Background Color</h3>
-            <div className="flex gap-3">
+            <Label className="font-semibold mb-3 block">Background Color</Label>
+            <div className="flex gap-3 items-center">
               {BG_COLORS.map((c, i) => (
                 <button
                   key={c.value}
-                  className={`w-11 h-11 rounded-full border-2 transition-all hover:scale-110 ${
+                  className={`w-11 h-11 rounded-full border-2 transition-all hover:scale-110 relative ${
                     selectedBg === i
                       ? "border-blue-500 shadow-md ring-2 ring-blue-100"
                       : "border-gray-300 hover:border-gray-400"
@@ -281,35 +247,67 @@ export function IDPhotoTool() {
                   onClick={() => setSelectedBg(i)}
                   title={c.name}
                   aria-label={`Background: ${c.name}`}
-                >
-                  {selectedBg === i && (
-                    <svg
-                      className="absolute inset-0 m-auto h-5 w-5 text-white drop-shadow-md"
-                      style={{ margin: "7px" }}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={3}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  )}
-                </button>
+                />
               ))}
+              <span className="text-sm text-gray-500 ml-2">
+                {BG_COLORS[selectedBg].name}
+              </span>
             </div>
-            <p className="text-xs text-gray-500 mt-2">
-              Selected: <strong>{BG_COLORS[selectedBg].name}</strong>
-            </p>
           </div>
+
+          {/* Advanced Options */}
+          <details className="group">
+            <summary className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 select-none">
+              Advanced Options
+              <svg
+                className="ml-1 inline h-4 w-4 transition-transform group-open:rotate-90"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </summary>
+            <div className="mt-4 space-y-4 pl-2 border-l-2 border-gray-100">
+              {/* Tolerance Slider */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <Label className="text-sm">Background Sensitivity</Label>
+                  <span className="text-sm text-gray-500">{tolerance}</span>
+                </div>
+                <Slider
+                  value={[tolerance]}
+                  onValueChange={([v]) => setTolerance(v)}
+                  min={10}
+                  max={100}
+                  step={5}
+                  className="w-full max-w-sm"
+                />
+                <p className="text-xs text-gray-400">
+                  Lower = more aggressive removal · Higher = keep more detail
+                </p>
+              </div>
+
+              {/* Auto-detect toggle */}
+              <div className="flex items-center gap-3">
+                <Switch
+                  checked={autoDetectBg}
+                  onCheckedChange={setAutoDetectBg}
+                />
+                <div>
+                  <Label className="text-sm">Auto-detect background color</Label>
+                  <p className="text-xs text-gray-400">
+                    Analyzes corners to find background color automatically
+                  </p>
+                </div>
+              </div>
+            </div>
+          </details>
 
           {/* Process Button */}
           <Button
             onClick={handleProcess}
-            disabled={!sourceImage || stage === "processing"}
+            disabled={!sourceImageData || stage === "processing"}
             size="lg"
             className="w-full text-base py-6"
           >
@@ -337,14 +335,31 @@ export function IDPhotoTool() {
                 Generating your ID photo...
               </span>
             ) : (
-              "Generate ID Photo"
+              <>
+                <svg
+                  className="mr-2 h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+                Generate ID Photo
+              </>
             )}
           </Button>
 
           {stage === "processing" && (
             <div>
               <Progress value={progress} />
-              <p className="text-xs text-gray-500 mt-1.5 text-center">{progress}%</p>
+              <p className="text-xs text-gray-500 mt-1.5 text-center">
+                {progress}%
+              </p>
             </div>
           )}
         </Card>
@@ -362,13 +377,17 @@ export function IDPhotoTool() {
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <p className="text-sm text-gray-500 font-medium">Original</p>
-              <div className="rounded-lg border overflow-hidden bg-gray-50">
-                <img
-                  src={previewUrl}
-                  alt="Original uploaded photo"
-                  className="max-w-full mx-auto"
-                />
+              <p className="text-sm text-gray-500 font-medium">
+                Original
+              </p>
+              <div className="rounded-lg border overflow-hidden bg-gray-50 p-1">
+                {sourceImage && (
+                  <img
+                    src={sourceImage.src}
+                    alt="Original uploaded photo"
+                    className="max-w-full mx-auto rounded"
+                  />
+                )}
               </div>
             </div>
             <div className="space-y-2">
@@ -377,17 +396,17 @@ export function IDPhotoTool() {
                 {ID_PHOTO_SIZES[selectedSize].label &&
                   ` — ${ID_PHOTO_SIZES[selectedSize].label}`})
               </p>
-              <div className="rounded-lg border-2 border-blue-200 overflow-hidden bg-white">
+              <div className="rounded-lg border-2 border-blue-200 overflow-hidden bg-white p-1">
                 <img
                   src={resultUrl}
                   alt="Generated ID photo result"
-                  className="max-w-full mx-auto"
+                  className="max-w-full mx-auto rounded"
                 />
               </div>
             </div>
           </div>
 
-          {/* Download + Reset Actions */}
+          {/* Actions */}
           <div className="flex gap-3">
             <Button onClick={handleDownload} size="lg" className="flex-1">
               <svg
@@ -409,15 +428,33 @@ export function IDPhotoTool() {
               variant="outline"
               size="lg"
               onClick={() => {
+                setPreviewUrl(null);
+                setResultUrl(null);
+                setStage("ready");
+              }}
+            >
+              Regenerate
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
                 setSourceImage(null);
+                setSourceImageData(null);
                 setPreviewUrl(null);
                 setResultUrl(null);
                 setStage("idle");
                 if (fileInputRef.current) fileInputRef.current.value = "";
               }}
             >
-              Start Over
+              New Photo
             </Button>
+          </div>
+
+          {/* Print tip */}
+          <div className="bg-blue-50 rounded-lg p-4 text-sm text-blue-800">
+            💡 <strong>Tip:</strong> For best results, print on high-quality glossy paper at 300 DPI or higher.
+            Most photo labs accept digital files — just download and bring it to any store.
           </div>
         </Card>
       )}
@@ -428,8 +465,8 @@ export function IDPhotoTool() {
 
       {/* Privacy Note */}
       <p className="text-center text-xs text-gray-400 max-w-md mx-auto">
-        🔒 All processing happens in your browser. Your photos are never uploaded
-        to any server.
+        🔒 All processing happens in your browser using Canvas API.
+        Your photos are never uploaded to any server.
       </p>
     </div>
   );
