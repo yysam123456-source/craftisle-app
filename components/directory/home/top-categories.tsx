@@ -1,7 +1,17 @@
 import Link from "next/link";
 import { getAllCategories, getAllResources } from "@/lib/fmhy-data";
-import { ArrowRight, LayoutGrid, Sparkles, type LucideProps } from "lucide-react";
-import { cn } from "@/lib/utils";
+import {
+  ArrowRight, LayoutGrid, Sparkles, TrendingUp,
+  BotMessageSquare, ShieldQuestion, Smartphone, Download,
+  BookOpen, Gamepad2, Terminal, HardDrive, Tv, Lock,
+  Code2, Globe, Wrench, Film, Music, Image as ImageIcon,
+  Palette, Cloud, Cpu, Database, MapPin, ShieldCheck,
+  GraduationCap, ShoppingCart, Car, Plane, UtensilsCrossed,
+  HeartPulse, Scale, Landmark, Microscope, Fingerprint,
+  Server, Workflow, FileCode, Monitor, Briefcase, Coins,
+  Users, MessageSquare, Mail,
+  type LucideProps
+} from "lucide-react";
 
 /**
  * Top Categories — 简化版分类浏览
@@ -9,57 +19,161 @@ import { cn } from "@/lib/utils";
  * 升级：玻璃拟态 + 渐变图标 + hover 动效
  */
 
-// 分类图标映射（使用 lucide-react 图标）
-import {
-  BotMessageSquare,
-  ShieldQuestion,
-  Smartphone,
-  Download,
-  BookOpen,
-  Gamepad2,
-  Terminal,
-  HardDrive,
-  Tv,
-  Lock,
-  Code2,
-  Globe,
-} from "lucide-react";
-
+// ── 分类图标映射（覆盖所有常见分类，避免 fallback 到 Globe）───
 const CATEGORY_ICON_MAP: Record<string, React.FC<LucideProps>> = {
+  // ─ AI & Tech ─
   'Artificial-Intelligence': BotMessageSquare,
+  'AI-Horde': Cpu,
+  'AI-Text': Code2,
+  'AI-Image': ImageIcon,
+
+  // ─ Privacy & Security ─
   'Adblock': ShieldQuestion,
-  'Mobile': Smartphone,
-  'Misc': Globe,
-  'Downloading': Download,
-  'Reading': BookOpen,
-  'Gaming': Gamepad2,
-  'Linux': Terminal,
-  'Storage': HardDrive,
-  'Media': Tv,
   'Privacy': Lock,
+  'VPN': Globe,
+  'Security': Fingerprint,
+
+  // ─ Development ─
   'Development': Code2,
+  'APIs,-Data,-and-ML': Database,
+  'DevOps': Server,
+  'Programming': FileCode,
+  'Tools-for-Teams-and-Collaboration': Workflow,
+
+  // ─ Media ─
+  'Video': Film,
+  'Music': Music,
+  'Streaming': Tv,
+  'Images': ImageIcon,
+  'Design': Palette,
+  'Media': Tv,
+
+  // ─ Downloads & Files ─
+  'Downloading': Download,
+  'Storage': HardDrive,
+  'File-Sharing': Cloud,
+  'Hosting': Cloud,
+
+  // ─ Gaming ─
+  'Gaming': Gamepad2,
+  'Games-&-Comics': Gamepad2,
+
+  // ─ Reading & Learning ─
+  'Reading': BookOpen,
+  'Education': GraduationCap,
+  'Academic': GraduationCap,
+
+  // ─ Systems & OS ─
+  'Linux': Terminal,
+  'Mobile': Smartphone,
+  'Android': Smartphone,
+  'iOS': Smartphone,
+  'Windows': Monitor,
+
+  // ─ Utilities ─
+  'Misc': Wrench,
+  'Utilities': Wrench,
+
+  // ─ Lifestyle ─
+  'Shopping': ShoppingCart,
+  'Automotive': Car,
+  'Travel': Plane,
+  'Food': UtensilsCrossed,
+  'Health': HeartPulse,
+  'Legal': Scale,
+  'Government': Landmark,
+  'Science': Microscope,
+
+  // ─ Business & Finance ─
+  'Finance': TrendingUp,
+  'Business': Briefcase,
+  'Cryptocurrency': Coins,
+
+  // ─ Internet & Web ─
+  'Internet': Globe,
+  'Social': Users,
+  'Communication': MessageSquare,
+  'Email': Mail,
+
+  // ─ Geography & Infrastructure ─
+  'Geocoding': MapPin,
+  'Transportation': MapPin,
+  'Major-Cloud-Providers': Cloud,
 };
 
-// 渐变色映射
+// ── 渐变色映射（每个分类独立配色）─────────────────────────────
 const CATEGORY_GRADIENT_MAP: Record<string, { from: string; to: string }> = {
   'Artificial-Intelligence': { from: "#3b82f6", to: "#8b5cf6" },
-  'Adblock': { from: "#ef4444", to: "#f97316" },
-  'Mobile': { from: "#22c55e", to: "#10b981" },
-  'Misc': { from: "#6b7280", to: "#9ca3af" },
-  'Downloading': { from: "#f97316", to: "#eab308" },
-  'Reading': { from: "#eab308", to: "#f59e0b" },
-  'Gaming': { from: "#ec4899", to: "#a855f7" },
-  'Linux': { from: "#f97316", to: "#ef4444" },
-  'Storage': { from: "#6366f1", to: "#3b82f6" },
-  'Media': { from: "#a855f7", to: "#ec4899" },
-  'Privacy': { from: "#22c55e", to: "#10b981" },
-  'Development': { from: "#3b82f6", to: "#06b6d4" },
+  'AI-Horde':                { from: "#6366f1", to: "#a855f7" },
+  'AI-Text':                 { from: "#a855f7", to: "#ec4899" },
+  'AI-Image':                { from: "#06b6d4", to: "#3b82f6" },
+
+  'Adblock':                 { from: "#ef4444", to: "#f97316" },
+  'Privacy':                 { from: "#22c55e", to: "#10b981" },
+  'VPN':                     { from: "#3b82f6", to: "#6366f1" },
+  'Security':                { from: "#dc2626", to: "#ef4444" },
+
+  'Development':             { from: "#3b82f6", to: "#06b6d4" },
+  'APIs,-Data,-and-ML':      { from: "#8b5cf6", to: "#ec4899" },
+  'DevOps':                  { from: "#f97316", to: "#ef4444" },
+  'Programming':             { from: "#14b8a6", to: "#06b6d4" },
+  'Tools-for-Teams-and-Collaboration': { from: "#6366f1", to: "#8b5cf6" },
+
+  'Video':                   { from: "#ec4899", to: "#f43f5e" },
+  'Music':                   { from: "#22c55e", to: "#84cc16" },
+  'Streaming':               { from: "#ef4444", to: "#f97316" },
+  'Images':                  { from: "#3b82f6", to: "#06b6d4" },
+  'Design':                  { from: "#ec4899", to: "#a855f7" },
+  'Media':                   { from: "#a855f7", to: "#ec4899" },
+
+  'Downloading':             { from: "#f97316", to: "#eab308" },
+  'Storage':                 { from: "#6366f1", to: "#3b82f6" },
+  'File-Sharing':            { from: "#0ea5e9", to: "#38bdf8" },
+  'Hosting':                 { from: "#64748b", to: "#94a3b8" },
+
+  'Gaming':                  { from: "#ec4899", to: "#a855f7" },
+  'Games-&-Comics':          { from: "#f43f5e", to: "#ec4899" },
+
+  'Reading':                 { from: "#eab308", to: "#f59e0b" },
+  'Education':               { from: "#2563eb", to: "#3b82f6" },
+  'Academic':                { from: "#7c3aed", to: "#8b5cf6" },
+
+  'Linux':                   { from: "#f97316", to: "#ef4444" },
+  'Mobile':                  { from: "#22c55e", to: "#10b981" },
+  'Android':                 { from: "#22c55e", to: "#84cc16" },
+  'iOS':                     { from: "#6366f1", to: "#8b5cf6" },
+  'Windows':                 { from: "#0ea5e9", to: "#38bdf8" },
+
+  'Misc':                    { from: "#6b7280", to: "#9ca3af" },
+  'Utilities':               { from: "#78716c", to: "#a8a29e" },
+
+  'Shopping':                { from: "#f59e0b", to: "#f97316" },
+  'Automotive':              { from: "#78716c", to: "#a8a29e" },
+  'Travel':                  { from: "#0891b2", to: "#06b6d4" },
+  'Food':                    { from: "#ea580c", to: "#dc2626" },
+  'Health':                  { from: "#ef4444", to: "#f97316" },
+  'Legal':                   { from: "#1e40af", to: "#3b82f6" },
+  'Government':              { from: "#1e3a5f", to: "#334155" },
+  'Science':                 { from: "#059669", to: "#10b981" },
+
+  'Finance':                 { from: "#059669", to: "#34d399" },
+  'Business':                { from: "#4f46e5", to: "#7c3aed" },
+  'Cryptocurrency':          { from: "#f7931a", to: "#fbbf24" },
+
+  'Internet':                { from: "#3b82f6", to: "#60a5fa" },
+  'Social':                  { from: "#ec4899", to: "#f43f5e" },
+  'Communication':           { from: "#06b6d4", to: "#22d3ee" },
+  'Email':                   { from: "#ea580c", to: "#f97316" },
+
+  'Geocoding':               { from: "#10b981", to: "#34d399" },
+  'Transportation':          { from: "#78716c", to: "#a8a29e" },
+  'Major-Cloud-Providers':   { from: "#f97316", to: "#fb923c" },
 };
 
 export function TopCategories() {
   const categories = getAllCategories();
   const resources = getAllResources();
-  
+
   // 按资源数量排序，取前 8 个
   const topCategories = categories
     .map(cat => ({
@@ -70,15 +184,19 @@ export function TopCategories() {
     }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
-  
+
   if (topCategories.length === 0) return null;
-  
+
   return (
     <section className="relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8 border-t border-border/40">
       {/* 背景装饰 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-20 top-1/4 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-[100px]" />
         <div className="absolute -right-20 bottom-1/4 h-[300px] w-[300px] rounded-full bg-purple-500/5 blur-[80px]" />
+        {/* 浮动粒子 */}
+        <div className="absolute top-1/3 left-1/4 h-2 w-2 rounded-full bg-blue-400/25 blur-sm animate-float-delayed" />
+        <div className="absolute top-1/2 right-1/3 h-2.5 w-2.5 rounded-full bg-purple-400/20 blur-sm animate-float animation-delay-3000" />
+        <div className="absolute bottom-1/3 left-1/3 h-2 w-2 rounded-full bg-cyan-400/20 blur-sm animate-float-delayed animation-delay-1500" />
       </div>
 
       <div className="container mx-auto max-w-6xl">
@@ -99,16 +217,16 @@ export function TopCategories() {
             Explore 200+ categories of free and open-source tools
           </p>
         </div>
-        
+
         {/* Category Grid — 2 rows x 4 cols */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
           {topCategories.map((cat) => {
-            const href = cat.slug 
-              ? `/directory/best/${cat.slug}` 
+            const href = cat.slug
+              ? `/directory/best/${cat.slug}`
               : `/directory/best/${cat.id.toLowerCase()}`;
             const Icon = cat.icon;
             const gradient = cat.gradient;
-            
+
             return (
               <Link
                 key={cat.id}
@@ -126,23 +244,26 @@ export function TopCategories() {
                     }}
                   />
 
+                  {/* 顶部渐变条 */}
+                  <div
+                    className="h-1 w-full transition-all duration-500 group-hover:h-1.5"
+                    style={{
+                      background: `linear-gradient(90deg, ${gradient.from}, ${gradient.to})`,
+                    }}
+                  />
+
                   <div className="relative p-5 sm:p-6">
                     {/* 图标 + 标题行 */}
                     <div className="mb-4 flex items-start gap-3.5">
-                      {/* 图标容器 — 渐变圆形背景 */}
+                      {/* 图标容器 — 实色渐变圆形背景 + 白色图标 */}
                       <div
                         className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-lg ring-1 ring-black/[0.04] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-xl group-hover:ring-black/[0.08]"
                         style={{
-                          background: `linear-gradient(135deg, ${gradient.from}10, ${gradient.to}10)`,
+                          background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
                         }}
                       >
                         <Icon
-                          className="h-5 w-5 transition-transform duration-500 group-hover:scale-110"
-                          style={{
-                            background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                          }}
+                          className="h-5 w-5 text-white transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -193,7 +314,7 @@ export function TopCategories() {
             );
           })}
         </div>
-        
+
         {/* View All Button */}
         <div className="text-center">
           <Link

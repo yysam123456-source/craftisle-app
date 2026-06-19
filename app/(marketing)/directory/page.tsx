@@ -98,7 +98,29 @@ export default async function ResourcesPage() {
 
       {/* ===== 1. Hero Section ===== */}
       <section className="relative overflow-hidden border-b bg-gradient-to-b from-background to-muted/20 py-20 md:py-28">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ─ 动态背景：渐变光斑 + 浮动粒子动画 ─ */}
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px] animate-pulse-slow" />
+          <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[120px] animate-pulse-slow animation-delay-2000" />
+          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[100px] animate-float" />
+          {/* 浮动粒子光点 */}
+          <div className="absolute top-1/4 left-1/4 h-3 w-3 rounded-full bg-blue-400/30 blur-sm animate-float-delayed" />
+          <div className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-purple-400/25 blur-sm animate-float animation-delay-3000" />
+          <div className="absolute bottom-1/3 left-1/3 h-2.5 w-2.5 rounded-full bg-cyan-400/25 blur-sm animate-float-delayed animation-delay-1500" />
+          <div className="absolute top-1/2 right-1/3 h-2 w-2 rounded-full bg-fuchsia-400/20 blur-sm animate-float animation-delay-4000" />
+          <div className="absolute bottom-1/4 right-1/2 h-3 w-3 rounded-full bg-indigo-400/20 blur-sm animate-float-delayed animation-delay-2500" />
+        </div>
+        {/* 网格背景纹理（极淡） */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0,0,0,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.1) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-6 px-4 py-1">
               🔧 100% Free & Open-Source

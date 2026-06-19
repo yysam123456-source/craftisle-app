@@ -10,7 +10,11 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import {
   ArrowRight, Search, Sparkles, Zap, TrendingUp,
-  Bot, Shield, Film, Gamepad2, Terminal, Code, Lock
+  Bot, Shield, Film, Gamepad2, Terminal, Code, Lock,
+  BotMessageSquare, ShieldQuestion, Smartphone, Download,
+  BookOpen, HardDrive, Tv, Code2, Globe,
+  Wrench, Music, Image as ImgIcon, Palette,
+  Cloud, Cpu
 } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
@@ -129,31 +133,32 @@ export const metadata: Metadata = {
   },
 };
 
-// ── 分类图标映射（lucide-react 图标 + 渐变色）────────
-function getCategoryStyle(name: string): { icon: string; from: string; to: string } {
-  const map: Record<string, { icon: string; from: string; to: string }> = {
-    "Artificial-Intelligence": { icon: "🤖", from: "#3b82f6", to: "#8b5cf6" },
-    "AI-Horde": { icon: "🤖", from: "#3b82f6", to: "#8b5cf6" },
-    "AI-Text": { icon: "✍️", from: "#a855f7", to: "#ec4899" },
-    "AI-Image": { icon: "🖼️", from: "#3b82f6", to: "#06b6d4" },
-    Gaming: { icon: "🎮", from: "#ec4899", to: "#a855f7" },
-    Reading: { icon: "📚", from: "#eab308", to: "#f59e0b" },
-    Mobile: { icon: "📱", from: "#22c55e", to: "#10b981" },
-    Linux: { icon: "🐧", from: "#f97316", to: "#ef4444" },
-    Adblock: { icon: "🔒", from: "#ef4444", to: "#dc2626" },
-    Downloading: { icon: "📥", from: "#f97316", to: "#eab308" },
-    Storage: { icon: "💾", from: "#6366f1", to: "#3b82f6" },
-    Misc: { icon: "🔧", from: "#6b7280", to: "#9ca3af" },
-    Video: { icon: "🎬", from: "#ec4899", to: "#f43f5e" },
-    Music: { icon: "🎵", from: "#22c55e", to: "#10b981" },
-    Images: { icon: "🖼️", from: "#3b82f6", to: "#06b6d4" },
-    Development: { icon: "💻", from: "#3b82f6", to: "#06b6d4" },
-    Design: { icon: "🎨", from: "#ec4899", to: "#a855f7" },
-    Privacy: { icon: "🔒", from: "#22c55e", to: "#10b981" },
-    VPN: { icon: "🌐", from: "#3b82f6", to: "#6366f1" },
-    Streaming: { icon: "📺", from: "#ef4444", to: "#f97316" },
+// ── 分类图标映射（lucide-react 图标组件 + 渐变色）────────
+function getCategoryStyle(name: string): { icon: React.FC<any>; from: string; to: string } {
+  const map: Record<string, { icon: React.FC<any>; from: string; to: string }> = {
+    "Artificial-Intelligence": { icon: BotMessageSquare, from: "#3b82f6", to: "#8b5cf6" },
+    "AI-Horde": { icon: Cpu, from: "#3b82f6", to: "#8b5cf6" },
+    "AI-Text": { icon: Code2, from: "#a855f7", to: "#ec4899" },
+    "AI-Image": { icon: ImgIcon, from: "#3b82f6", to: "#06b6d4" },
+    Gaming: { icon: Gamepad2, from: "#ec4899", to: "#a855f7" },
+    Reading: { icon: BookOpen, from: "#eab308", to: "#f59e0b" },
+    Mobile: { icon: Smartphone, from: "#22c55e", to: "#10b981" },
+    Linux: { icon: Terminal, from: "#f97316", to: "#ef4444" },
+    Adblock: { icon: ShieldQuestion, from: "#ef4444", to: "#dc2626" },
+    Downloading: { icon: Download, from: "#f97316", to: "#eab308" },
+    Storage: { icon: HardDrive, from: "#6366f1", to: "#3b82f6" },
+    Misc: { icon: Wrench, from: "#6b7280", to: "#9ca3af" },
+    Video: { icon: Film, from: "#ec4899", to: "#f43f5e" },
+    Music: { icon: Music, from: "#22c55e", to: "#10b981" },
+    Images: { icon: ImgIcon, from: "#3b82f6", to: "#06b6d4" },
+    Development: { icon: Code2, from: "#3b82f6", to: "#06b6d4" },
+    Design: { icon: Palette, from: "#ec4899", to: "#a855f7" },
+    Privacy: { icon: Lock, from: "#22c55e", to: "#10b981" },
+    VPN: { icon: Globe, from: "#3b82f6", to: "#6366f1" },
+    Streaming: { icon: Tv, from: "#ef4444", to: "#f97316" },
+    Media: { icon: Tv, from: "#a855f7", to: "#ec4899" },
   };
-  return map[name] || { icon: "🔧", from: "#6b7280", to: "#9ca3af" };
+  return map[name] || { icon: Globe, from: "#6b7280", to: "#9ca3af" };
 }
 
 // ── 首页主组件 ─────────────────────────────────────────
@@ -422,14 +427,14 @@ export default function IndexPage() {
                     <div className="p-5">
                       <div className="flex items-center gap-3">
                         {/* 渐变图标圆球 */}
-                        <span
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg shadow-md ring-1 ring-black/[0.04] transition-transform duration-300 group-hover:scale-110"
+                        <div
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl shadow-md ring-1 ring-black/[0.04] transition-transform duration-300 group-hover:scale-110"
                           style={{
-                            background: `linear-gradient(135deg, ${style.from}12, ${style.to}12)`,
+                            background: `linear-gradient(135deg, ${style.from}, ${style.to})`,
                           }}
                         >
-                          {style.icon}
-                        </span>
+                          <style.icon className="h-5 w-5 text-white" />
+                        </div>
                         <div className="min-w-0 flex-1">
                           <h3 className="truncate text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                             {cat.name.replace(/-/g, " ")}

@@ -240,23 +240,14 @@ export function ToolsClient({ toolDirs }: { toolDirs: string[] }) {
                       <div className="flex items-start justify-between">
                         {/* 渐变图标圆球 */}
                         <div
-                          className="flex h-11 w-11 items-center justify-center rounded-xl shadow-md ring-1 ring-black/[0.04] transition-transform duration-300 group-hover:scale-110"
+                          className="flex h-11 w-11 items-center justify-center rounded-xl shadow-md ring-1 ring-black/[0.04] transition-all duration-300 group-hover:scale-110"
                           style={{
-                            background: `linear-gradient(135deg, ${grad.from}15, ${grad.to}15)`,
+                            background: `linear-gradient(135deg, ${grad.from}, ${grad.to})`,
                           }}
                         >
-                          {meta.icon && !meta.icon.startsWith("<") ? (
-                            <span className="text-lg">{meta.icon}</span>
-                          ) : (
-                            <ToolIcon
-                              className="h-5 w-5"
-                              style={{
-                                background: `linear-gradient(135deg, ${grad.from}, ${grad.to})`,
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                              }}
-                            />
-                          )}
+                          <ToolIcon
+                            className="h-5 w-5 text-white"
+                          />
                         </div>
 
                         {/* Badge + Star */}
