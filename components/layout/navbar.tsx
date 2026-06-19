@@ -41,8 +41,8 @@ export function NavBar({ scroll = false }: NavBarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all ${
-        scroll ? (scrolled ? "border-b" : "bg-transparent") : "border-b"
+      className={`sticky top-0 z-50 flex w-full justify-center backdrop-blur-xl bg-background/70 border-b border-border/40 transition-all duration-300 ${
+        scroll ? (scrolled ? "shadow-sm border-border/60" : "bg-transparent border-transparent") : "border-border/60 shadow-sm"
       }`}
     >
       <MaxWidthWrapper
@@ -55,29 +55,37 @@ export function NavBar({ scroll = false }: NavBarProps) {
           </Link>
 
           {links && links.length > 0 ? (
-            <nav className="hidden gap-6 md:flex">
+            <nav className="hidden md:flex items-center gap-1">
               {links.map((item, index) => (
                 <Link
                   key={index}
                   href={item.disabled ? "#" : item.href}
                   prefetch={true}
                   className={cn(
-                    "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+                    "relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 group",
                     item.href.startsWith(`/${selectedLayout}`)
-                      ? "text-foreground"
-                      : "text-foreground/60",
-                    item.disabled && "cursor-not-allowed opacity-80",
+                      ? "text-primary bg-primary/8"
+                      : "text-foreground/70 hover:text-foreground hover:bg-muted/50",
+                    item.disabled && "cursor-not-allowed opacity-50",
                   )}
                 >
-                  {item.title}
+                  <span className="relative z-10">{item.title}</span>
+                  {/* Hover 滑条 */}
+                  <span
+                    className={`absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-300 group-hover:w-3/4 ${
+                      item.href.startsWith(`/${selectedLayout}`) ? "w-3/4" : ""
+                    }`}
+                  />
                 </Link>
               ))}
             </nav>
           ) : null}
         </div>
 
-        <div className="flex items-center space-x-3">
-          <LanguageSwitcher />
+        <div className="flex items-center gap-2">
+          <div className="rounded-lg px-2 py-1.5 hover:bg-muted/50 transition-colors">
+            <LanguageSwitcher />
+          </div>
 
           {/* right header for docs */}
           {documentation ? (
@@ -86,15 +94,16 @@ export function NavBar({ scroll = false }: NavBarProps) {
                 <DocsSearch />
               </div>
               <div className="flex lg:hidden">
-                <Icons.search className="size-6 text-muted-foreground" />
+                <Icons.search className="size-5 text-muted-foreground" />
               </div>
               <div className="flex space-x-4">
                 <Link
                   href={siteConfig.links.github}
                   target="_blank"
                   rel="noreferrer"
+                  className="rounded-lg p-2 hover:bg-muted/50 transition-colors"
                 >
-                  <Icons.gitHub className="size-7" />
+                  <Icons.gitHub className="size-6" />
                   <span className="sr-only">GitHub</span>
                 </Link>
               </div>
@@ -107,24 +116,23 @@ export function NavBar({ scroll = false }: NavBarProps) {
               className="hidden md:block"
             >
               <Button
-                className="gap-2 px-5"
+                className="gap-2 px-5 rounded-full bg-gradient-to-r from-primary to-primary/80 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
                 variant="default"
                 size="sm"
-                rounded="full"
               >
                 <span>Dashboard</span>
               </Button>
             </Link>
           ) : status === "unauthenticated" ? (
             <Button
-              className="hidden gap-2 px-5 md:flex"
+              className="hidden gap-2 px-5 md:flex rounded-full bg-gradient-to-r from-primary to-primary/80 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
               variant="default"
               size="sm"
               rounded="full"
               onClick={() => setShowSignInModal(true)}
             >
               <span>Sign In</span>
-              <Icons.arrowRight className="size-4" />
+              <Icons.arrowRight className="size-3.5" />
             </Button>
           ) : (
             <Skeleton className="hidden h-9 w-28 rounded-full lg:flex" />

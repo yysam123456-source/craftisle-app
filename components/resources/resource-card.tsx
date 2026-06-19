@@ -40,6 +40,25 @@ interface ResourceCardProps {
   highlightQuery?: string;
 }
 
+// 分类渐变色映射（与 TopCategories 保持一致）
+function getCategoryGradient(categoryName?: string): { from: string; to: string } {
+  const GRADIENT_MAP: Record<string, { from: string; to: string }> = {
+    'Artificial-Intelligence': { from: "#3b82f6", to: "#8b5cf6" },
+    'Adblock': { from: "#ef4444", to: "#f97316" },
+    'Mobile': { from: "#22c55e", to: "#10b981" },
+    'Misc': { from: "#6b7280", to: "#9ca3af" },
+    'Downloading': { from: "#f97316", to: "#eab308" },
+    'Reading': { from: "#eab308", to: "#f59e0b" },
+    'Gaming': { from: "#ec4899", to: "#a855f7" },
+    'Linux': { from: "#f97316", to: "#ef4444" },
+    'Storage': { from: "#6366f1", to: "#3b82f6" },
+    'Media': { from: "#a855f7", to: "#ec4899" },
+    'Privacy': { from: "#22c55e", to: "#10b981" },
+    'Development': { from: "#3b82f6", to: "#06b6d4" },
+  };
+  return GRADIENT_MAP[categoryName || ''] || { from: "#6b7280", to: "#9ca3af" };
+}
+
 function getHostname(url: string): string {
   try {
     return new URL(url).hostname.replace(/^www\./, "");
@@ -216,14 +235,25 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
   const isLarge = variant === "large";
   const hasDetail = hasRichInfo(resource);
 
+  const categoryGradient = getCategoryGradient(resource.category || resource.categoryName || "");
+
   return (
     <Card
-      className={`group overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border-border/60 ${
+      className={`group overflow-hidden transition-all duration-500 ease-out border-white/15 bg-white/[0.65] shadow-md shadow-black/[0.05] backdrop-blur-xl dark:border-white/8 dark:bg-white/[0.04] dark:shadow-black/20 ${
         isLarge ? "h-full" : ""
-      } ${!hasDetail ? "cursor-pointer" : ""}`}
+      } ${!hasDetail ? "cursor-pointer" : ""} hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/30 hover:border-white/30 dark:hover:border-white/12`}
       onClick={!hasDetail ? () => window.open(resource.url, "_blank", "noopener,noreferrer") : undefined}
     >
-      <CardHeader className={`${isLarge ? "pb-4 pt-6" : "pb-3 pt-5"}`}>
+      {/* Hover 光晕效果 */}
+      <div
+        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background: `linear-gradient(135deg, ${categoryGradient.from}12, transparent 50%, ${categoryGradient.to}12)`,
+          filter: "blur(6px)",
+        }}
+      />
+
+      <CardHeader className={`${isLarge ? "pb-4 pt-6" : "pb-3 pt-5"} relative z-10`}>
         <div className="flex items-start gap-3">
           {/* Favicon */}
           <div
@@ -304,7 +334,7 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
         </div>
       </CardHeader>
 
-      <CardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"}`}>
+      <CardContent className={`${isLarge ? "pb-6 pt-0" : "pb-5 pt-0"} relative z-10`}>
         {/* Rich Description */}
         {(resource.description || resource.source) && (
           <p
@@ -331,17 +361,23 @@ export function ResourceCard({ resource, showCategory = true, variant = "default
         })()}
 
         {/* Footer: URL + Visit button */}
-        <div className="mt-4 flex items-center justify-between gap-2">
-          <p className="text-xs text-muted-foreground truncate flex-1">
+        <div className="mt-4 flex items-center justify-between gap-2 pt-3 border-t border-border/30">
+          <p className="text-xs text-muted-foreground/70 truncate flex-1 group-hover:text-muted-foreground/90 transition-colors">
             {getHostname(resource.url)}
           </p>
           <a
             href={resource.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1 flex-shrink-0"
+            className="inline-flex items-center gap-1 text-xs font-bold transition-all duration-300 group-hover:gap-1.5"
+            style={{
+              background: `linear-gradient(135deg, ${categoryGradient.from}, ${categoryGradient.to})`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
           >
-            Visit <ExternalLink className="h-3 w-3" />
+            Visit
+            <ExternalLink className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" style={{ color: categoryGradient.from }} />
           </a>
         </div>
       </CardContent>
