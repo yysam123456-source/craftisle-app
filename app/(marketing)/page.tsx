@@ -219,34 +219,45 @@ export default function IndexPage() {
         />
 
       {/* ═══ Hero 区 ══════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-background py-20 sm:py-28 lg:py-32">
-        {/* ─ 动态背景：高可见度渐变光斑 + 浮动粒子动画 ─ */}
+      <section
+        className="relative overflow-hidden py-20 sm:py-28 lg:py-32 animate-gradient-shift"
+        style={{
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #0f172a 50%, #312e81 75%, #0f172a 100%)',
+          backgroundSize: '400% 400%',
+        }}
+      >
+        {/* ── 动画背景层（保证可见）──────────────────── */}
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          {/* 主光斑 — 大且明亮 */}
-          <div className="absolute -left-40 -top-40 h-[550px] w-[550px] rounded-full bg-blue-500/25 blur-[120px] animate-pulse-slow" />
-          <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-violet-500/22 blur-[120px] animate-pulse-slow animation-delay-2000" />
-          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/15 blur-[100px] animate-float" />
-          <div className="absolute right-1/4 top-1/4 h-[280px] w-[280px] rounded-full bg-fuchsia-500/12 blur-[100px] animate-float-delayed animation-delay-1500" />
 
-          {/* 浮动粒子光点（大、亮、带发光阴影） */}
-          <div className="absolute top-[15%] left-[18%] h-4 w-4 rounded-full bg-blue-400/60 blur-[1px] animate-float shadow-lg shadow-blue-400/40" />
-          <div className="absolute top-[28%] right-[20%] h-3.5 w-3.5 rounded-full bg-violet-400/55 blur-[1px] animate-float-delayed animation-delay-3000 shadow-lg shadow-violet-400/35" />
-          <div className="absolute bottom-[28%] left-[25%] h-3.5 w-3.5 rounded-full bg-cyan-400/55 blur-[1px] animate-float-delayed animation-delay-1500 shadow-lg shadow-cyan-400/35" />
-          <div className="absolute top-[48%] right-[28%] h-3 w-3 rounded-full bg-fuchsia-400/50 blur-[1px] animate-float animation-delay-4000 shadow-lg shadow-fuchsia-400/30" />
-          <div className="absolute bottom-[18%] right-[42%] h-4 w-4 rounded-full bg-indigo-400/55 blur-[1px] animate-float-delayed animation-delay-2500 shadow-lg shadow-indigo-400/35" />
-          <div className="absolute top-[58%] left-[12%] h-3 w-3 rounded-full bg-emerald-400/50 blur-[1px] animate-float animation-delay-3500 shadow-lg shadow-emerald-400/30" />
-          <div className="absolute bottom-[38%] right-[12%] h-3.5 w-3.5 rounded-full bg-rose-400/45 blur-[1px] animate-float-delayed animation-delay-1000 shadow-lg shadow-rose-400/25" />
+          {/* 1. 渐变叠加层 — 保证有颜色 */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/15 to-cyan-600/20" />
 
-          {/* 流动光线 */}
-          <div className="absolute top-0 left-[15%] h-full w-px bg-gradient-to-b from-transparent via-blue-400/30 to-transparent animate-float" style={{animationDuration: '12s'}} />
-          <div className="absolute top-0 right-[15%] h-full w-px bg-gradient-to-b from-transparent via-violet-400/30 to-transparent animate-float-delayed" style={{animationDuration: '14s', animationDelay: '3s'}} />
+          {/* 2. 大号旋转圆环 — 明显可见 */}
+          <div className="absolute -left-32 top-10 h-72 w-72 rounded-full border-2 border-blue-400/30 animate-spin-slow" />
+          <div className="absolute -right-24 bottom-10 h-56 w-56 rounded-full border-2 border-violet-400/25 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '25s'}} />
+
+          {/* 3. 浮动实心圆点 — 高亮色，绝对可见 */}
+          <div className="absolute top-[10%] left-[8%] h-5 w-5 rounded-full bg-blue-400 shadow-[0_0_20px_8px_rgba(96,165,250,0.5)] animate-bounce-soft" />
+          <div className="absolute top-[20%] right-[10%] h-4 w-4 rounded-full bg-violet-400 shadow-[0_0_20px_8px_rgba(167,139,250,0.5)] animate-bounce-soft" style={{animationDelay: '2s'}} />
+          <div className="absolute bottom-[15%] left-[15%] h-6 w-6 rounded-full bg-cyan-400 shadow-[0_0_24px_10px_rgba(34,211,238,0.5)] animate-bounce-soft" style={{animationDelay: '3s'}} />
+          <div className="absolute bottom-[25%] right-[8%] h-4 w-4 rounded-full bg-fuchsia-400 shadow-[0_0_20px_8px_rgba(232,121,249,0.5)] animate-bounce-soft" style={{animationDelay: '1s'}} />
+          <div className="absolute top-[50%] left-[5%] h-3 w-3 rounded-full bg-emerald-400 shadow-[0_0_16px_6px_rgba(52,211,153,0.5)] animate-bounce-soft" style={{animationDelay: '4s'}} />
+
+          {/* 4. 水平浮动方块 — 明显可见 */}
+          <div className="absolute top-[30%] left-[20%] h-3 w-3 rotate-45 bg-blue-400/70 shadow-[0_0_12px_4px_rgba(96,165,250,0.4)] animate-slide-x" />
+          <div className="absolute bottom-[40%] right-[20%] h-2.5 w-2.5 rotate-45 bg-violet-400/70 shadow-[0_0_12px_4px_rgba(167,139,250,0.4)] animate-slide-x" style={{animationDelay: '2s', animationDirection: 'reverse'}} />
+
+          {/* 5. 中心光晕 — 不用 blur，用径向渐变 */}
+          <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30"
+            style={{background: 'radial-gradient(circle, rgba(99,102,241,0.4) 0%, transparent 70%)'}} />
         </div>
-        {/* 网格背景纹理 */}
+
+        {/* 网格背景 — 提高可见度 */}
         <div
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]"
+          className="pointer-events-none absolute inset-0 -z-10 opacity-20"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(99,102,241,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,.2) 1px, transparent 1px)",
+              "linear-gradient(rgba(148,163,184,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.3) 1px, transparent 1px)",
             backgroundSize: "50px 50px",
           }}
         />
