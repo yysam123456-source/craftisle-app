@@ -28,7 +28,7 @@ export const footerLinks: SidebarNavItem[] = [
   {
     title: "Resources",
     items: [
-      { title: "Games", href: "/games" },
+      { title: "Games", href: "/game" },
       { title: "Tools", href: "/tools" },
       { title: "Directory", href: "/directory" },
       { title: "Blog", href: "/blog" },

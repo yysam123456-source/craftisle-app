@@ -8,7 +8,7 @@ export const marketingConfig: MarketingConfig = {
     },
     {
       title: "Games",
-      href: "/games",
+      href: "/game",
     },
     {
       title: "Tools",
