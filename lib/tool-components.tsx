@@ -229,6 +229,7 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "image-favicon": () => import("@/components/tools/ImageFaviconTool"),
   "image-generate-memes": () => import("@/components/tools/ImageGenerateMemesTool"),
   "image-passport-photo": () => import("@/components/tools/ImagePassportPhotoTool"),
+  "id-photo": () => import("@/components/tools/IDPhoto/IDPhotoTool").then(m => ({ default: m.IDPhotoTool })),
   "image-strip-metadata": () => import("@/components/tools/ImageStripMetadataTool"),
   "image-watermark": () => import("@/components/tools/ImageWatermarkTool"),
   "check-leap-years": () => import("@/components/tools/CheckLeapYearTool"),
