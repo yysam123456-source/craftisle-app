@@ -11,6 +11,7 @@ import {
   Eye,
   Gamepad2,
   Layout,
+  Image,
   Sparkles,
 } from "lucide-react";
 
@@ -62,7 +63,7 @@ const SUB_SITES = [
     title: "HTML5 Games",
     slogan: "Free games, no download",
     desc: "Play 500+ free HTML5 games: puzzles, arcade, strategy, and idle games. Save progress in the cloud, compete on leaderboards, and discover new games weekly.",
-    href: "https://games.craftisle.com",
+    href: "/games",
     icon: Gamepad2,
     gradient: "from-purple-500 to-pink-500",
     gradientFrom: "#a855f7",
@@ -85,6 +86,20 @@ const SUB_SITES = [
     features: ["Real-time Collab", "Infinite Canvas", "Video Integration"],
     users: "100K+ teams using",
     featured: false,
+  },
+  {
+    title: "Image Prompt",
+    slogan: "AI image prompt generator & optimizer",
+    desc: "Generate, optimize, and enhance AI image prompts for Midjourney, DALL-E, Stable Diffusion. Built-in prompt templates, style presets, and one-click enhancement.",
+    href: "https://imgprompt.craftisle.com",
+    icon: Image,
+    gradient: "from-fuchsia-500 to-pink-500",
+    gradientFrom: "#d946ef",
+    gradientTo: "#ec4899",
+    bgLight: "bg-fuchsia-50 dark:bg-fuchsia-950/30",
+    features: ["Prompt Templates", "Style Presets", "One-tap Enhance"],
+    users: "50K+ prompts generated",
+    featured: true,
   },
 ];
 
