@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Search, Sparkles, Zap, TrendingUp } from "lucide-react";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 import fs from "fs";
@@ -210,67 +210,104 @@ export default function IndexPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
 
-      {/* ── Hero 区 ────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-background py-20 sm:py-32">
+      {/* ═══ Hero 区 ══════════════════════════════════════ */}
+      <section className="relative overflow-hidden bg-background py-24 sm:py-32 lg:py-40">
+        {/* ─ 动态背景：渐变光斑 ─ */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px]" />
+          <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[120px]" />
+          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[100px]" />
+        </div>
+
+        {/* 网格背景纹理（极淡） */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0,0,0,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.1) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            {/* 标签 */}
-            <Badge variant="secondary" className="mb-6">
-              🔥 16,000+ Free & Open-Source Software
-            </Badge>
-
-            {/* 主标题 */}
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Find Free & Open-Source{" "}
-              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                Software
-              </span>{" "}
-              for Any Task
-            </h1>
-
-            {/* 副标题 */}
-            <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Search 16,000+ free tools, find alternatives, compare software.
-              Plus: play free games & use 100+ online tools.
-            </p>
-
-            {/* 搜索框 */}
-            <div className="mx-auto mt-10 max-w-2xl">
-              <form action="/directory/search" method="GET" className="flex gap-2">
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-                  <input
-                    type="text"
-                    name="q"
-                    placeholder='Try: "video downloader", "adblock", "AI chat"'
-                    className="w-full rounded-lg border border-input bg-background py-3 pl-10 pr-4 text-sm placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  />
-                </div>
-                <Button type="submit" size="lg">
-                  Search
-                </Button>
-              </form>
-              <p className="mt-2 text-xs text-muted-foreground">
-                Hot searches: video downloader, adblock, AI tools, manga, games
-              </p>
+          <div className="mx-auto max-w-4xl text-center">
+            {/* 标签 — 带图标动画感 */}
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-5 py-2 text-sm font-medium text-primary backdrop-blur-sm">
+              <Sparkles className="h-4 w-4" />
+              16,000+ Free &amp; Open-Source Software
+              <Zap className="h-3.5 w-3.5" />
             </div>
 
-            {/* 快捷入口 */}
-            <div className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-2">
+            {/* 主标题 — 渐变强调 */}
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
+              Find Free &amp;{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
+                Open-Source
+              </span>{" "}
+              Software
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              Search 16,000+ free tools, find alternatives, compare software — all in one place.
+              <span className="font-medium text-foreground"> Free games &amp; online tools included.</span>
+            </p>
+
+            {/* 搜索框 — 发光效果 */}
+            <div className="mx-auto mt-12 max-w-2xl">
+              <form action="/directory/search" method="GET" className="group relative">
+                <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 opacity-25 blur-sm transition-opacity group-focus-within:opacity-50" />
+                <div className="relative flex gap-2 rounded-xl border border-border bg-background/80 p-1.5 shadow-lg shadow-black/5 backdrop-blur-md">
+                  <div className="relative flex-1">
+                    <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground transition-colors group-focus-within:text-primary" />
+                    <input
+                      type="text"
+                      name="q"
+                      placeholder='Try: "video downloader", "adblock", "AI chat"...'
+                      className="w-full rounded-lg bg-transparent py-3 pl-11 pr-4 text-sm outline-none placeholder:text-muted-foreground/60"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 px-8 font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:shadow-xl hover:shadow-blue-500/30 hover:brightness-110"
+                  >
+                    Search
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              </form>
+
+              {/* Hot searches */}
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                <TrendingUp className="h-3.5 w-3.5" />
+                <span>Trending:</span>
+                {["video downloader", "adblock", "AI tools", "games"].map((term) => (
+                  <Link
+                    key={term}
+                    href={`/directory/search?q=${encodeURIComponent(term)}`}
+                    className="rounded-full bg-muted/60 px-2.5 py-0.5 font-medium transition-colors hover:bg-primary/10 hover:text-primary"
+                  >
+                    {term}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* 快速入口标签云 */}
+            <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-2.5">
               {[
-                { label: "AI Tools", href: "/directory/best/artificial-intelligence" },
-                { label: "Adblock", href: "/directory/best/adblock" },
-                { label: "Video Editing", href: "/directory/search?q=video+editing" },
-                { label: "Games", href: "/game" },
-                { label: "Linux", href: "/directory/Linux" },
-                { label: "Development", href: "/directory/best/development" },
-                { label: "Storage", href: "/directory/Storage" },
-                { label: "Downloading", href: "/directory/Downloading" },
+                { label: "AI Tools", href: "/directory/best/artificial-intelligence", icon: "🤖" },
+                { label: "Adblock", href: "/directory/best/adblock", icon: "🔒" },
+                { label: "Video Editing", href: "/directory/search?q=video+editing", icon: "🎬" },
+                { label: "Games", href: "/game", icon: "🎮" },
+                { label: "Linux", href: "/directory/Linux", icon: "🐧" },
+                { label: "Dev Tools", href: "/directory/best/development", icon: "💻" },
+                { label: "Privacy", href: "/directory/best/privacy", icon: "🛡️" },
               ].map((entry) => (
                 <Link key={entry.href} href={entry.href}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">
+                  <span className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-4 py-1.5 text-sm font-medium shadow-sm backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-md">
+                    <span>{entry.icon}</span>
                     {entry.label}
-                  </Badge>
+                  </span>
                 </Link>
               ))}
             </div>
@@ -302,141 +339,200 @@ export default function IndexPage() {
         />
       </section>
 
-      {/* ── 板块 3：热门分类 ───────────────────────────── */}
-      <section className="border-t py-20">
+      {/* ═══ 板块：Browse by Category ══════════════════════ */}
+      <section className="relative border-t border-border/40 py-24 bg-muted/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 flex items-center justify-between">
+          {/* 标题区 */}
+          <div className="mb-14 flex items-end justify-between">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight">
-                Browse by Category
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-500/15 bg-emerald-500/5 px-4 py-1.5 text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                Browse &amp; Discover
+              </div>
+              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+                Browse by{" "}
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
+                  Category
+                </span>
               </h2>
-              <p className="mt-2 text-muted-foreground">
+              <p className="mt-3 text-muted-foreground">
                 Top categories by resource count
               </p>
             </div>
             <Link href="/directory/categories">
-              <Button variant="ghost">
-                View All <ArrowRight className="ml-2 h-4 w-4" />
+              <Button variant="ghost" className="hidden sm:inline-flex group">
+                View All{" "}
+                <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Button>
             </Link>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {topCategories.map((cat) => (
-              <Link
-                key={cat.name}
-                href={`/directory/${encodeURIComponent(cat.name)}`}
-              >
-                <Card className="h-full transition-all hover:border-primary/40 hover:shadow-md">
-                  <CardContent className="p-5">
+          {/* 分类卡片网格 — 更现代的样式 */}
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {topCategories.map((cat) => {
+              const icon = getCategoryIcon(cat.name);
+              return (
+                <Link
+                  key={cat.name}
+                  href={`/directory/${encodeURIComponent(cat.name)}`}
+                  className="group"
+                >
+                  <div className="relative overflow-hidden rounded-xl border border-border/60 bg-card/80 p-5 backdrop-blur-sm transition-all duration-300 hover:border-primary/25 hover:bg-card hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5">
+                    {/* hover 时顶部出现渐变条 */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100" />
+
                     <div className="flex items-center gap-3">
-                      <div className="text-3xl">
-                        {getCategoryIcon(cat.name)}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-sm">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted/80 text-xl shadow-sm transition-transform duration-300 group-hover:scale-110">
+                        {icon}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="truncate text-sm font-semibold group-hover:text-primary transition-colors">
                           {cat.name.replace(/-/g, " ")}
                         </h3>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-muted-foreground tabular-nums">
                           {cat.count.toLocaleString()} resources
                         </p>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* 移动端 View All */}
+          <div className="mt-6 text-center sm:hidden">
+            <Link href="/directory/categories">
+              <Button variant="outline" size="sm">
+                View All Categories <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── 板块 4：Trending This Week ─────────────────── */}
+      {/* ═══ 板块：Trending This Week ═════════════════════ */}
       {trendingResources.length > 0 && (
-        <section className="border-t bg-muted/30 py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 flex items-center justify-between">
+        <section className="relative border-t border-border/40 py-24">
+          <div className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute left-1/2 top-0 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-orange-500/5 blur-[100px]" />
+          </div>
+          <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 flex items-end justify-between">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight">
-                  🔥 Trending This Week
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-orange-500/15 bg-orange-500/5 px-4 py-1.5 text-sm font-medium text-orange-600 dark:text-orange-400">
+                  <TrendingUp className="h-4 w-4" />
+                  Hot Right Now
+                </div>
+                <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+                  Trending This{" "}
+                  <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+                    Week
+                  </span>
                 </h2>
-                <p className="mt-2 text-muted-foreground">
+                <p className="mt-3 text-muted-foreground">
                   Most popular resources this week
                 </p>
               </div>
               <Link href="/directory/trending">
-                <Button variant="ghost">
-                  View All <ArrowRight className="ml-2 h-4 w-4" />
+                <Button variant="ghost" className="hidden sm:inline-flex group">
+                  View All{" "}
+                  <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Button>
               </Link>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {trendingResources.map((res) => (
-                <Card
+                <a
                   key={res.id}
-                  className="transition-all hover:border-primary/40 hover:shadow-md"
+                  href={`/directory/resource/${encodeURIComponent(res.id)}`}
+                  className="group block"
                 >
-                  <CardHeader>
-                    <CardTitle className="text-lg">{res.name}</CardTitle>
-                    <CardDescription className="line-clamp-2">
-                      {res.description || "No description available"}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Link href={`/directory/resource/${encodeURIComponent(res.id)}`}>
-                      <Button variant="ghost" size="sm" className="w-full">
-                        View Details <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
+                  <Card className="h-full overflow-hidden border-2 border-transparent bg-card/80 backdrop-blur-sm transition-all duration-300 hover:border-orange-500/20 hover:shadow-xl hover:shadow-orange-500/5 hover:-translate-y-0.5">
+                    <CardContent className="p-6">
+                      {/* 编号 + 标题 */}
+                      <div className="mb-3 flex items-start gap-3">
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-red-500 text-xs font-bold text-white shadow-md shadow-orange-500/20">
+                          #
+                        </span>
+                        <h3 className="flex-1 text-base font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                          {res.name}
+                        </h3>
+                      </div>
+                      <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                        {res.description || "No description available"}
+                      </p>
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-orange-600 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                        View Details
+                        <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </a>
               ))}
+            </div>
+
+            {/* 移动端 View All */}
+            <div className="mt-8 text-center sm:hidden">
+              <Link href="/directory/trending">
+                <Button variant="outline" size="sm">
+                  View All Trending <ArrowRight className="ml-1.5 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
       )}
 
-      {/* ── 板块 5：随机推荐（客户端组件）───────────────── */}
+      {/* ═══ 随机推荐（客户端组件）═══════════════════════ */}
       <RandomRecommendations />
 
-      {/* ── SEO 内容块 ─────────────────────────────────── */}
-      <section className="border-t py-20">
+      {/* ═══ SEO 内容块 ══════════════════════════════════ */}
+      <section className="border-t border-border/40 py-24 bg-muted/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <h2 className="text-3xl font-bold tracking-tight">
-              What is Craftisle?
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-500/15 bg-indigo-500/5 px-4 py-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400">
+              About Us
+            </div>
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              What is{" "}
+              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Craftisle
+              </span>
+              ?
             </h2>
-            <div className="mt-6 space-y-4 text-muted-foreground">
+            <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
               <p>
-                Craftisle is a free software directory with 16,000+ open-source
-                and free tools. We help you find the best free alternatives to
-                expensive software, compare similar tools, and discover new
-                software for any task.
+                Craftisle is a free software directory with{" "}
+                <strong className="text-foreground">16,000+ open-source and free tools</strong>.
+                We help you find the best free alternatives to expensive software, compare similar tools,
+                and discover new software for any task.
               </p>
               <p>
-                Our directory covers AI tools, privacy tools, development tools,
-                design tools, gaming tools, and more. All resources are carefully
-                curated and regularly updated.
+                Our directory covers AI tools, privacy tools, development tools, design tools,
+                gaming tools, and more. All resources are carefully curated and regularly updated.
               </p>
               <p>
-                In addition to our software directory, we also provide free
-                online tools (PDF tools, regex visualizer, handwriting animation,
-                etc.) and free HTML5 games. No download, no signup — use
-                instantly in your browser.
+                In addition to our software directory, we also provide free online tools
+                (PDF tools, regex visualizer, handwriting animation, ID photo maker, etc.)
+                and free HTML5 games. No download, no signup — use instantly in your browser.
               </p>
             </div>
 
             <div className="mt-12">
-              <h3 className="text-2xl font-bold tracking-tight">
+              <h3 className="text-2xl font-bold tracking-tight mb-5">
                 Popular Categories
               </h3>
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2">
                 {topCategories.slice(0, 10).map((cat) => (
                   <Link
                     key={cat.name}
                     href={`/directory/${encodeURIComponent(cat.name)}`}
                   >
-                    <Badge variant="secondary" className="cursor-pointer">
+                    <Badge
+                      variant="secondary"
+                      className="cursor-pointer px-3 py-1 text-sm font-normal hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
                       {cat.name.replace(/-/g, " ")} ({cat.count})
                     </Badge>
                   </Link>
