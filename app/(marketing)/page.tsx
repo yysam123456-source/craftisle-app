@@ -261,7 +261,7 @@ export default function IndexPage() {
                 { label: "AI Tools", href: "/directory/best/artificial-intelligence" },
                 { label: "Adblock", href: "/directory/best/adblock" },
                 { label: "Video Editing", href: "/directory/search?q=video+editing" },
-                { label: "Games", href: "/games" },
+                { label: "Games", href: "/game" },
                 { label: "Linux", href: "/directory/Linux" },
                 { label: "Development", href: "/directory/best/development" },
                 { label: "Storage", href: "/directory/Storage" },

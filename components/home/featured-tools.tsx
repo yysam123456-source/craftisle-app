@@ -12,7 +12,7 @@ import {
   Code2,
   PenTool,
   Pencil,
-  QrCode,
+  Camera,
   Image,
   RefreshCcw,
 } from "lucide-react";
@@ -44,12 +44,12 @@ const BUILT_IN_TOOLS = [
     tags: ["HTML", "Editor", "WYSIWYG"],
   },
   {
-    title: "QR Code Generator",
-    desc: "Generate QR codes for URLs, text, WiFi, or contact info. Customize colors, add logos, and export in PNG/SVG. Free, no signup.",
-    href: "/tools/qr",
-    icon: QrCode,
+    title: "AI ID Photo Maker",
+    desc: "Create professional ID photos online for free. AI background removal, multiple sizes (1-inch, 2-inch, passport, visa), custom colors. 100% browser-based — your photos never upload.",
+    href: "/tools/id-photo",
+    icon: Camera,
     color: "from-green-500 to-emerald-500",
-    tags: ["QR Code", "Generator", "Free"],
+    tags: ["ID Photo", "Passport", "AI", "Free"],
   },
   {
     title: "Image Compress",
