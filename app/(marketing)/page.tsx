@@ -220,26 +220,34 @@ export default function IndexPage() {
 
       {/* ═══ Hero 区 ══════════════════════════════════════ */}
       <section className="relative overflow-hidden bg-background py-20 sm:py-28 lg:py-32">
-        {/* ─ 动态背景：渐变光斑 + 浮动动画 ─ */}
+        {/* ─ 动态背景：高可见度渐变光斑 + 浮动粒子动画 ─ */}
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[120px] animate-pulse-slow" />
-          <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[120px] animate-pulse-slow animation-delay-2000" />
-          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/5 blur-[100px] animate-float" />
-          {/* 浮动粒子光点 */}
-          <div className="absolute top-1/4 left-1/4 h-3 w-3 rounded-full bg-blue-400/30 blur-sm animate-float-delayed" />
-          <div className="absolute top-1/3 right-1/4 h-2 w-2 rounded-full bg-purple-400/25 blur-sm animate-float animation-delay-3000" />
-          <div className="absolute bottom-1/3 left-1/3 h-2.5 w-2.5 rounded-full bg-cyan-400/25 blur-sm animate-float-delayed animation-delay-1500" />
-          <div className="absolute top-1/2 right-1/3 h-2 w-2 rounded-full bg-fuchsia-400/20 blur-sm animate-float animation-delay-4000" />
-          <div className="absolute bottom-1/4 right-1/2 h-3 w-3 rounded-full bg-indigo-400/20 blur-sm animate-float-delayed animation-delay-2500" />
-        </div>
+          {/* 主光斑 — 大且明亮 */}
+          <div className="absolute -left-40 -top-40 h-[550px] w-[550px] rounded-full bg-blue-500/25 blur-[120px] animate-pulse-slow" />
+          <div className="absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-violet-500/22 blur-[120px] animate-pulse-slow animation-delay-2000" />
+          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/15 blur-[100px] animate-float" />
+          <div className="absolute right-1/4 top-1/4 h-[280px] w-[280px] rounded-full bg-fuchsia-500/12 blur-[100px] animate-float-delayed animation-delay-1500" />
 
-        {/* 网格背景纹理（极淡） */}
+          {/* 浮动粒子光点（大、亮、带发光阴影） */}
+          <div className="absolute top-[15%] left-[18%] h-4 w-4 rounded-full bg-blue-400/60 blur-[1px] animate-float shadow-lg shadow-blue-400/40" />
+          <div className="absolute top-[28%] right-[20%] h-3.5 w-3.5 rounded-full bg-violet-400/55 blur-[1px] animate-float-delayed animation-delay-3000 shadow-lg shadow-violet-400/35" />
+          <div className="absolute bottom-[28%] left-[25%] h-3.5 w-3.5 rounded-full bg-cyan-400/55 blur-[1px] animate-float-delayed animation-delay-1500 shadow-lg shadow-cyan-400/35" />
+          <div className="absolute top-[48%] right-[28%] h-3 w-3 rounded-full bg-fuchsia-400/50 blur-[1px] animate-float animation-delay-4000 shadow-lg shadow-fuchsia-400/30" />
+          <div className="absolute bottom-[18%] right-[42%] h-4 w-4 rounded-full bg-indigo-400/55 blur-[1px] animate-float-delayed animation-delay-2500 shadow-lg shadow-indigo-400/35" />
+          <div className="absolute top-[58%] left-[12%] h-3 w-3 rounded-full bg-emerald-400/50 blur-[1px] animate-float animation-delay-3500 shadow-lg shadow-emerald-400/30" />
+          <div className="absolute bottom-[38%] right-[12%] h-3.5 w-3.5 rounded-full bg-rose-400/45 blur-[1px] animate-float-delayed animation-delay-1000 shadow-lg shadow-rose-400/25" />
+
+          {/* 流动光线 */}
+          <div className="absolute top-0 left-[15%] h-full w-px bg-gradient-to-b from-transparent via-blue-400/30 to-transparent animate-float" style={{animationDuration: '12s'}} />
+          <div className="absolute top-0 right-[15%] h-full w-px bg-gradient-to-b from-transparent via-violet-400/30 to-transparent animate-float-delayed" style={{animationDuration: '14s', animationDelay: '3s'}} />
+        </div>
+        {/* 网格背景纹理 */}
         <div
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.03]"
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(0,0,0,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.1) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
+              "linear-gradient(rgba(99,102,241,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,.2) 1px, transparent 1px)",
+            backgroundSize: "50px 50px",
           }}
         />
 
