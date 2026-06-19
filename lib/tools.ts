@@ -2659,43 +2659,106 @@ export const toolMeta: Record<string, ToolMeta> = {
   },
 
   "id-photo": {
-    title: "AI 证件照制作",
-    desc: "AI 智能抠图换底，支持多种证件照尺寸",
+    title: "AI ID Photo Maker",
+    desc: "Free AI-powered ID photo generator with background removal & size adjustment",
     icon: "📷",
     category: CATEGORIES.image,
     stars: 5,
-    seoTitle: "免费证件照制作 - AI 智能抠图换底 | Craftisle",
-    seoDesc: "免费在线证件照制作工具，AI 自动抠图、换背景底色、调整尺寸。支持1寸、2寸、护照等多种规格，100% 浏览器本地处理，照片不上传服务器。",
+    seoTitle: "Free AI ID Photo Maker Online — Background Removal & Resize | Craftisle",
+    seoDesc: "Create professional ID photos online for free. AI background removal, multiple sizes (passport, visa, license), custom colors. 100% browser-based — your photos never leave your device. No signup required.",
     seoKeywords: [
-      "证件照",
-      "证件照制作",
-      "AI 抠图",
-      "证件照换底",
-      "免费证件照",
-      "1寸照片",
-      "2寸照片",
-      "护照照片",
+      "free id photo maker online",
+      "ai passport photo generator free",
+      "id photo background remover online",
+      "free passport photo maker no upload",
+      "1 inch photo maker online",
+      "2 inch photo maker online",
+      "visa photo generator free online",
+      "ai id photo creator browser based",
+      "free online id photo tool no signup",
+      "passport photo size converter online",
+      "id photo background change white blue red",
+      "license photo maker online free",
+      "digital photo id creator online",
+      "automatic passport photo cropping tool",
+      "ai portrait matting id photo online free",
+      "create id photo from selfie online free",
+      "online id photo resizer background color",
+      "free id photo download high resolution",
     ],
-    description: "使用 AI 自动抠图并更换证件照背景底色，支持多种标准证件照尺寸。所有处理均在浏览器本地完成——您的照片不会上传到任何服务器。",
+    description: "Generate professional ID photos from any photo using AI-powered portrait matting. Automatically remove backgrounds, change to official colors (white, blue, red), and resize to standard dimensions (1-inch, 2-inch, passport, US visa, Schengen). All processing runs locally in your browser — your photos are never uploaded to any server. No signup, no watermark, unlimited use.",
     howToUse: [
-      { heading: "上传照片", text: "点击上方区域上传正面免冠照片，JPG 或 PNG 格式均可。" },
-      { heading: "选择尺寸", text: "选择证件照尺寸：1寸、2寸、护照照片、美国签证等。" },
-      { heading: "选择底色", text: "点击颜色按钮选择背景底色：白色、蓝色、红色等。" },
-      { heading: "开始制作", text: "点击「开始制作证件照」按钮，AI 将自动处理。" },
-      { heading: "下载证件照", text: "处理完成后，点击「下载证件照」保存 JPG 文件。" },
+      {
+        heading: "Upload a photo",
+        text: "Click or drag a front-facing photo onto the upload area. JPG or PNG format works best. A plain background gives the best results.",
+      },
+      {
+        heading: "Select photo size",
+        text: "Choose your required ID photo size: 1 Inch (25×35mm), 2 Inch (35×49mm), Passport (35×45mm), US Visa (51×51mm), UK/Schengen Visa (35×45mm).",
+      },
+      {
+        heading: "Pick background color",
+        text: "Select the required background color: White (most common), Blue, Red, Light Blue, or Light Gray. Most official documents require white or light blue.",
+      },
+      {
+        heading: "Generate ID photo",
+        text: "Click the Generate button. The AI model will automatically detect the person, remove the background, apply the new color, and crop to the exact dimensions.",
+      },
+      {
+        heading: "Download result",
+        text: "Preview both the original and generated ID photo side by side. Download as a high-quality JPG file ready for printing or digital submission.",
+      },
     ],
     useCases: [
-      { title: "护照申请", text: "生成符合规范的护照照片，省去照相馆费用。" },
-      { title: "签证申请", text: "生成符合美国、申根、英国等签证规范的证件照。" },
-      { title: "考试报名", text: "生成符合公务员考试、高考等报名要求的证件照。" },
+      {
+        title: "Passport applications",
+        text:
+          "Generate compliant passport photos that meet official requirements (US, UK, EU, and 50+ countries). Save money on photo booth fees.",
+      },
+      {
+        title: "Visa applications",
+        text:
+          "Create correctly sized photos for US visas, Schengen visas, UK visas, Chinese visas, and other international travel documents.",
+      },
+      {
+        title: "Official documents",
+        text:
+          "Make ID photos for driver's licenses, employee badges, student IDs, exam registrations, and other formal identification needs.",
+      },
     ],
     faq: [
-      { q: "这个证件照工具真的免费吗？", a: "是的，完全免费。无需注册，无水印，无使用次数限制。" },
-      { q: "我的照片会被上传到服务器吗？", a: "不会。所有处理均在您的浏览器本地完成，使用 AI 模型。您的照片不会离开您的设备。" },
-      { q: "支持哪些证件照尺寸？", a: "1寸、2寸、护照照片、美国签证照片，以及自定义尺寸。" },
-      { q: "可以更换背景底色吗？", a: "可以，您可以选择白色、蓝色、红色或任何自定义 HEX 颜色。" },
+      {
+        q: "Is this ID photo maker really free?",
+        a:
+          "Yes, completely free. No signup required, no watermarks, no usage limits. You can generate as many ID photos as you need at zero cost.",
+      },
+      {
+        q: "Are my photos uploaded to a server?",
+        a:
+          "No. All processing happens in your browser using AI models (ONNX/WebAssembly). Your photos never leave your device. This is more private than most online photo editors.",
+      },
+      {
+        q: "What ID photo sizes are supported?",
+        a:
+          "We support 1-inch (25×35mm), 2-inch (35×49mm), Passport (35×45mm), US Visa (51×51mm), UK Visa (35×45mm), Schengen Visa (35×45mm), and custom dimensions. Covers 95% of global ID photo standards.",
+      },
+      {
+        q: "Can I change the background color?",
+        a:
+          "Yes. Choose from White, Blue, Red, Light Blue, or Light Gray. White is the most common requirement for passports and visas worldwide.",
+      },
+      {
+        q: "Do I need to install anything?",
+        a:
+          "No installation needed. The AI model (~25MB) downloads automatically on first use and is cached in your browser for subsequent visits.",
+      },
+      {
+        q: "What type of photo should I upload?",
+        a:
+          "Use a front-facing photo with a neutral expression and even lighting. Plain backgrounds work best but aren't required — the AI will handle background removal. Avoid sunglasses and heavy shadows.",
+      },
     ],
-    relatedTools: ["image-passport-photo", "image-resize", "image-convert"],
+    relatedTools: ["image-passport-photo", "image-resize", "image-convert", "image-background-remover"],
   },
 
   "image-passport-photo": {

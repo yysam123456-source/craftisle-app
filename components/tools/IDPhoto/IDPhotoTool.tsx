@@ -1,11 +1,17 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import { loadModel, runInference, applyMatting, resizeToTarget, ID_PHOTO_SIZES, BG_COLORS } from "@/lib/idphoto/inference";
+import {
+  loadModel,
+  runInference,
+  applyMatting,
+  resizeToTarget,
+  ID_PHOTO_SIZES,
+  BG_COLORS,
+} from "@/lib/idphoto/inference";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
-import { constructMetadata } from "@/lib/utils";
 
 export function IDPhotoTool() {
   const [stage, setStage] = useState<
@@ -19,6 +25,7 @@ export function IDPhotoTool() {
   const [selectedBg, setSelectedBg] = useState(0);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [resultUrl, setResultUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -32,7 +39,9 @@ export function IDPhotoTool() {
       setStage("ready");
     } catch (e) {
       console.error(e);
-      alert("模型加载失败，请刷新重试");
+      setError(
+        "Failed to load AI model. Please refresh the page and try again."
+      );
       setStage("idle");
     }
   }, []);
@@ -42,6 +51,8 @@ export function IDPhotoTool() {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (!file) return;
+      setError(null);
+
       const reader = new FileReader();
       reader.onload = (ev) => {
         const img = new Image();
@@ -70,12 +81,14 @@ export function IDPhotoTool() {
     if (!sourceImage) return;
     setStage("processing");
     setProgress(0);
+    setError(null);
 
     try {
       const mask = await runInference(sourceImage, (stage, p) => {
         if (stage === "preprocess") setProgress(Math.round(p * 0.3));
         if (stage === "inference") setProgress(Math.round(30 + p * 0.5));
-        if (stage === "postprocess") setProgress(30 + 50 + Math.round(p * 0.2));
+        if (stage === "postprocess")
+          setProgress(30 + 50 + Math.round(p * 0.2));
       });
 
       setProgress(80);
@@ -104,7 +117,7 @@ export function IDPhotoTool() {
       setStage("done");
     } catch (e) {
       console.error(e);
-      alert("处理失败：" + (e as Error).message);
+      setError(`Processing failed: ${(e as Error).message}`);
       setStage("ready");
     }
   }, [sourceImage, selectedBg, selectedSize]);
@@ -114,16 +127,25 @@ export function IDPhotoTool() {
     if (!resultUrl) return;
     const a = document.createElement("a");
     a.href = resultUrl;
-    a.download = `id-photo-${ID_PHOTO_SIZES[selectedSize].name}.jpg`;
+    a.download = `id-photo-${ID_PHOTO_SIZES[selectedSize]
+      .name.toLowerCase()
+      .replace(/\s+/g, "-")}.jpg`;
     a.click();
   }, [resultUrl, selectedSize]);
 
   return (
     <div className="space-y-8">
+      {/* Error Banner */}
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">
+          ⚠️ {error}
+        </div>
+      )}
+
       {/* Upload Area */}
       <Card className="p-6">
         <div
-          className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 transition"
+          className="border-2 border-dashed border-gray-300 rounded-lg p-10 text-center cursor-pointer hover:border-blue-400 transition-colors group"
           onClick={() => fileInputRef.current?.click()}
         >
           <input
@@ -135,15 +157,49 @@ export function IDPhotoTool() {
           />
           {sourceImage ? (
             <div>
-              <p className="text-green-600 font-medium">✅ 已选择照片</p>
-              <p className="text-sm text-gray-500 mt-1">
-                {sourceImage.width} × {sourceImage.height}px
+              <div className="text-green-600 font-semibold text-lg mb-1">
+                ✓ Photo Selected
+              </div>
+              <p className="text-sm text-gray-500">
+                {sourceImage.width} × {sourceImage.height} pixels
               </p>
+              <button
+                className="mt-3 text-sm text-blue-600 hover:underline"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSourceImage(null);
+                  setPreviewUrl(null);
+                  setResultUrl(null);
+                  setStage("idle");
+                  if (fileInputRef.current) fileInputRef.current.value = "";
+                }}
+              >
+                Choose a different photo
+              </button>
             </div>
           ) : (
             <div>
-              <p className="text-lg font-medium text-gray-700">点击上传照片</p>
-              <p className="text-sm text-gray-500 mt-1">支持 JPG / PNG，正面免冠照片效果最佳</p>
+              <div className="mb-3">
+                <svg
+                  className="mx-auto h-12 w-12 text-gray-400 group-hover:text-blue-400 transition-colors"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <p className="text-lg font-medium text-gray-700 mb-1">
+                Click or drag to upload a photo
+              </p>
+              <p className="text-sm text-gray-500">
+                JPG or PNG recommended · Front-facing photo works best
+              </p>
             </div>
           )}
         </div>
@@ -152,103 +208,231 @@ export function IDPhotoTool() {
       {/* Model Loading */}
       {stage === "loading-model" && (
         <Card className="p-6">
-          <p className="font-medium mb-2">正在加载 AI 模型...</p>
+          <p className="font-medium mb-3 flex items-center gap-2">
+            <svg
+              className="animate-spin h-5 w-5 text-blue-600"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              />
+            </svg>
+            Loading AI model (~25 MB)...
+          </p>
           <Progress value={modelProgress} />
-          <p className="text-sm text-gray-500 mt-2">{modelProgress}% （仅首次需要，~25MB）</p>
+          <p className="text-sm text-gray-500 mt-2">
+            {modelProgress}% — This only happens once (model is cached after first load)
+          </p>
         </Card>
       )}
 
-      {/* Settings */}
+      {/* Settings Panel */}
       {stage !== "idle" && stage !== "loading-model" && (
         <Card className="p-6 space-y-6">
+          {/* Size Selection */}
           <div>
-            <h3 className="font-medium mb-3">证件照尺寸</h3>
-            <div className="grid grid-cols-3 gap-2">
+            <h3 className="font-semibold mb-3">Photo Size</h3>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
               {ID_PHOTO_SIZES.map((s, i) => (
                 <button
                   key={s.name}
-                  className={`px-3 py-2 rounded-lg border text-sm ${
+                  className={`px-3 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                     selectedSize === i
-                      ? "border-blue-500 bg-blue-50 text-blue-700"
-                      : "border-gray-200 hover:border-blue-300"
+                      ? "border-blue-500 bg-blue-50 text-blue-700 shadow-sm"
+                      : "border-gray-200 hover:border-blue-300 hover:bg-gray-50 text-gray-700"
                   }`}
                   onClick={() => setSelectedSize(i)}
                 >
                   {s.name}
-                  <br />
-                  <span className="text-xs text-gray-500">
-                    {s.width}×{s.height}
-                  </span>
+                  {s.label && (
+                    <span className="block text-xs text-gray-400 font-normal mt-0.5">
+                      {s.label}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
           </div>
 
+          {/* Background Color Selection */}
           <div>
-            <h3 className="font-medium mb-3">背景颜色</h3>
-            <div className="flex gap-2">
+            <h3 className="font-semibold mb-3">Background Color</h3>
+            <div className="flex gap-3">
               {BG_COLORS.map((c, i) => (
                 <button
                   key={c.value}
-                  className={`w-10 h-10 rounded-full border-2 ${
-                    selectedBg === i ? "border-blue-500" : "border-gray-300"
+                  className={`w-11 h-11 rounded-full border-2 transition-all hover:scale-110 ${
+                    selectedBg === i
+                      ? "border-blue-500 shadow-md ring-2 ring-blue-100"
+                      : "border-gray-300 hover:border-gray-400"
                   }`}
                   style={{ backgroundColor: c.value }}
                   onClick={() => setSelectedBg(i)}
                   title={c.name}
-                />
+                  aria-label={`Background: ${c.name}`}
+                >
+                  {selectedBg === i && (
+                    <svg
+                      className="absolute inset-0 m-auto h-5 w-5 text-white drop-shadow-md"
+                      style={{ margin: "7px" }}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  )}
+                </button>
               ))}
             </div>
+            <p className="text-xs text-gray-500 mt-2">
+              Selected: <strong>{BG_COLORS[selectedBg].name}</strong>
+            </p>
           </div>
 
           {/* Process Button */}
           <Button
             onClick={handleProcess}
             disabled={!sourceImage || stage === "processing"}
-            className="w-full"
+            size="lg"
+            className="w-full text-base py-6"
           >
-            {stage === "processing" ? "处理中..." : "开始制作证件照"}
+            {stage === "processing" ? (
+              <span className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
+                </svg>
+                Generating your ID photo...
+              </span>
+            ) : (
+              "Generate ID Photo"
+            )}
           </Button>
 
           {stage === "processing" && (
-            <Progress value={progress} />
+            <div>
+              <Progress value={progress} />
+              <p className="text-xs text-gray-500 mt-1.5 text-center">{progress}%</p>
+            </div>
           )}
         </Card>
       )}
 
-      {/* Result Preview */}
+      {/* Result Preview & Download */}
       {stage === "done" && previewUrl && resultUrl && (
-        <Card className="p-6 space-y-4">
-          <h3 className="font-medium">制作完成！</h3>
+        <Card className="p-6 space-y-5">
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold text-lg">Your ID Photo is Ready!</h3>
+            <span className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
+              ✓ Done
+            </span>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <p className="text-sm text-gray-500 mb-2">原始照片</p>
-              <img
-                src={previewUrl}
-                alt="preview"
-                className="rounded-lg border max-w-full"
-              />
+            <div className="space-y-2">
+              <p className="text-sm text-gray-500 font-medium">Original</p>
+              <div className="rounded-lg border overflow-hidden bg-gray-50">
+                <img
+                  src={previewUrl}
+                  alt="Original uploaded photo"
+                  className="max-w-full mx-auto"
+                />
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-500 mb-2">
-                证件照 ({ID_PHOTO_SIZES[selectedSize].name})
+            <div className="space-y-2">
+              <p className="text-sm text-gray-500 font-medium">
+                ID Photo ({ID_PHOTO_SIZES[selectedSize].name}
+                {ID_PHOTO_SIZES[selectedSize].label &&
+                  ` — ${ID_PHOTO_SIZES[selectedSize].label}`})
               </p>
-              <img
-                src={resultUrl}
-                alt="result"
-                className="rounded-lg border max-w-full"
-              />
+              <div className="rounded-lg border-2 border-blue-200 overflow-hidden bg-white">
+                <img
+                  src={resultUrl}
+                  alt="Generated ID photo result"
+                  className="max-w-full mx-auto"
+                />
+              </div>
             </div>
           </div>
-          <Button onClick={handleDownload} className="w-full">
-            下载证件照
-          </Button>
+
+          {/* Download + Reset Actions */}
+          <div className="flex gap-3">
+            <Button onClick={handleDownload} size="lg" className="flex-1">
+              <svg
+                className="mr-2 h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
+              </svg>
+              Download JPG
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                setSourceImage(null);
+                setPreviewUrl(null);
+                setResultUrl(null);
+                setStage("idle");
+                if (fileInputRef.current) fileInputRef.current.value = "";
+              }}
+            >
+              Start Over
+            </Button>
+          </div>
         </Card>
       )}
 
-      {/* Hidden canvases */}
-      <canvas ref={canvasRef} className="hidden" />
-      <canvas ref={previewCanvasRef} className="hidden" />
+      {/* Hidden canvases for processing */}
+      <canvas ref={canvasRef} className="hidden" aria-hidden="true" />
+      <canvas ref={previewCanvasRef} className="hidden" aria-hidden="true" />
+
+      {/* Privacy Note */}
+      <p className="text-center text-xs text-gray-400 max-w-md mx-auto">
+        🔒 All processing happens in your browser. Your photos are never uploaded
+        to any server.
+      </p>
     </div>
   );
 }
+
+export default IDPhotoTool;

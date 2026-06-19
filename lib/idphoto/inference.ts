@@ -1,19 +1,52 @@
 // ONNX model loader and inference engine for MODNet portrait matting
 // Runs entirely in the browser via ONNX Runtime Web
 // Must be used in a "use client" component (browser only)
+//
+// NOTE: onnxruntime-web is lazy-imported to avoid blocking component rendering
 
-import { InferenceSession, Tensor } from "onnxruntime-web";
+let session: any = null;
+let modelLoaded = false;
+
+// Lazy loader for onnxruntime-web (avoids top-level import that blocks component)
+async function getORT() {
+  const ort = await import("onnxruntime-web");
+  return ort;
+}
+
+// ID photo size presets (pixels)
+export interface IDPhotoSize {
+  name: string;      // e.g. "1 Inch"
+  width: number;
+  height: number;
+  label?: string;    // e.g. "25×35 mm" for display
+}
+
+export const ID_PHOTO_SIZES: IDPhotoSize[] = [
+  { name: "1 Inch", width: 295, height: 413, label: "25×35 mm" },
+  { name: "2 Inch", width: 413, height: 579, label: "35×49 mm" },
+  { name: "Passport", width: 330, height: 453, label: "35×45 mm" },
+  { name: "US Visa", width: 600, height: 600, label: "51×51 mm" },
+  { name: "UK Visa", width: 350, height: 450, label: "35×45 mm" },
+  { name: "Schengen", width: 350, height: 450, label: "35×45 mm" },
+];
+
+export const BG_COLORS: { name: string; value: string }[] = [
+  { name: "White", value: "#ffffff" },
+  { name: "Blue", value: "#438edb" },
+  { name: "Red", value: "#d9001b" },
+  { name: "Light Blue", value: "#1a73e8" },
+  { name: "Light Gray", value: "#f0f0f0" },
+];
 
 const MODEL_URL = "/models/modnet.onnx";
-
-let session: InferenceSession | null = null;
-let modelLoaded = false;
 
 // Load ONNX model (called once, cached)
 export async function loadModel(
   progressCallback?: (percent: number) => void
 ): Promise<void> {
   if (modelLoaded && session) return;
+
+  const ort = await getORT();
 
   const response = await fetch(MODEL_URL);
   const contentLength =
@@ -39,7 +72,7 @@ export async function loadModel(
     offset += chunk.length;
   }
 
-  session = await InferenceSession.create(modelData, {
+  session = await ort.InferenceSession.create(modelData, {
     executionProviders: ["wasm"],
   });
   modelLoaded = true;
@@ -85,14 +118,16 @@ export async function runInference(
   if (!session) throw new Error("Model not loaded");
 
   if (onProgress) onProgress("preprocess", 0);
-  const { data, originalWidth, originalHeight } = preprocess(imageData);
+  const { data } = preprocess(imageData);
   if (onProgress) onProgress("inference", 0);
+
+  const ort = await getORT();
 
   const inputTensor = new Float32Array(data.length);
   inputTensor.set(data);
 
-  const feeds: Record<string, Tensor> = {};
-  feeds[session.inputNames[0]] = new Tensor(
+  const feeds: Record<string, any> = {};
+  feeds[session.inputNames[0]] = new ort.Tensor(
     "float32",
     inputTensor,
     [1, 3, 512, 512]
@@ -177,25 +212,3 @@ export function resizeToTarget(
   ctx.drawImage(tmp, 0, 0, targetWidth, targetHeight);
   return ctx.getImageData(0, 0, targetWidth, targetHeight);
 }
-
-export type IDPhotoSize = {
-  name: string;
-  width: number;
-  height: number;
-};
-
-export const ID_PHOTO_SIZES: IDPhotoSize[] = [
-  { name: "1寸", width: 295, height: 413 },
-  { name: "2寸", width: 413, height: 579 },
-  { name: "护照照片", width: 330, height: 453 },
-  { name: "美国签证", width: 600, height: 600 },
-  { name: "公务员", width: 295, height: 413 },
-  { name: "自定义", width: 295, height: 413 },
-];
-
-export const BG_COLORS: { name: string; value: string }[] = [
-  { name: "白色", value: "#ffffff" },
-  { name: "蓝色", value: "#438edb" },
-  { name: "红色", value: "#d9001b" },
-  { name: "渐变蓝", value: "#1a73e8" },
-];
