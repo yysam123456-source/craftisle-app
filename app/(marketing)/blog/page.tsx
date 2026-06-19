@@ -1,11 +1,11 @@
 import { allPosts } from "contentlayer/generated";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle,
+} from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import {
@@ -179,20 +179,20 @@ export default function BlogPage() {
             {ECOSYSTEM_PRODUCTS.map((product) => {
               const IconComponent = product.icon;
               return (
-                <Card
+                <GlassCard
                   key={product.id}
                   className="group relative overflow-hidden border-2 transition-all hover:border-primary/50 hover:shadow-lg"
                 >
-                  <CardHeader>
+                  <GlassCardHeader>
                     <div className={`mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl ${product.bg}`}>
                       <IconComponent className={`h-6 w-6 ${product.color}`} />
                     </div>
-                    <CardTitle className="text-xl">{product.name}</CardTitle>
-                    <CardDescription className="text-sm font-medium text-primary">
+                    <GlassCardTitle className="text-xl">{product.name}</GlassCardTitle>
+                    <GlassCardDescription className="text-sm font-medium text-primary">
                       {product.tagline}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
+                    </GlassCardDescription>
+                  </GlassCardHeader>
+                  <GlassCardContent className="space-y-4">
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {product.description}
                     </p>
@@ -215,8 +215,8 @@ export default function BlogPage() {
                     >
                       Open {product.name} <ExternalLink className="ml-1 h-3 w-3" />
                     </a>
-                  </CardContent>
-                </Card>
+                  </GlassCardContent>
+                </GlassCard>
               );
             })}
           </div>
@@ -239,14 +239,14 @@ export default function BlogPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {CATEGORY_LIST.map((cat) => (
               <Link key={cat.key} href={`/tools?category=${cat.key}`}>
-                <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md hover:-translate-y-0.5">
-                  <CardHeader className="pb-3">
+                <GlassCard className="h-full transition-all hover:border-primary/50 hover:shadow-md hover:-translate-y-0.5">
+                  <GlassCardHeader className="pb-3">
                     <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       {CATEGORY_ICONS[cat.key] || <Wrench className="h-5 w-5" />}
                     </div>
-                    <CardTitle className="text-base">{cat.label}</CardTitle>
-                  </CardHeader>
-                </Card>
+                    <GlassCardTitle className="text-base">{cat.label}</GlassCardTitle>
+                  </GlassCardHeader>
+                </GlassCard>
               </Link>
             ))}
           </div>
@@ -268,45 +268,45 @@ export default function BlogPage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             <Link href="/blog/how-to">
-              <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
-                <CardHeader>
+              <GlassCard className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                <GlassCardHeader>
                   <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10">
                     <Sparkles className="h-5 w-5 text-purple-500" />
                   </div>
-                  <CardTitle className="text-lg">How-To Guides</CardTitle>
-                  <CardDescription>
+                  <GlassCardTitle className="text-lg">How-To Guides</GlassCardTitle>
+                  <GlassCardDescription>
                     Detailed walkthroughs for every tool — from image compression to AES encryption.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+                  </GlassCardDescription>
+                </GlassCardHeader>
+              </GlassCard>
             </Link>
 
             <Link href="/blog/tools">
-              <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
-                <CardHeader>
+              <GlassCard className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                <GlassCardHeader>
                   <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/10">
                     <Wrench className="h-5 w-5 text-orange-500" />
                   </div>
-                  <CardTitle className="text-lg">Tool Spotlights</CardTitle>
-                  <CardDescription>
+                  <GlassCardTitle className="text-lg">Tool Spotlights</GlassCardTitle>
+                  <GlassCardDescription>
                     In-depth articles covering tool features, use cases, and pro tips.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+                  </GlassCardDescription>
+                </GlassCardHeader>
+              </GlassCard>
             </Link>
 
             <Link href="/blog/review">
-              <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
-                <CardHeader>
+              <GlassCard className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                <GlassCardHeader>
                   <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
                     <Eye className="h-5 w-5 text-green-500" />
                   </div>
-                  <CardTitle className="text-lg">Tool Reviews</CardTitle>
-                  <CardDescription>
+                  <GlassCardTitle className="text-lg">Tool Reviews</GlassCardTitle>
+                  <GlassCardDescription>
                     Honest comparisons and alternatives for popular developer and productivity tools.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+                  </GlassCardDescription>
+                </GlassCardHeader>
+              </GlassCard>
             </Link>
           </div>
         </div>
@@ -333,7 +333,7 @@ export default function BlogPage() {
                 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
                 return (
                   <Link key={post.slugAsParams} href={`/blog/${post.slugAsParams}`}>
-                    <Card className="h-full group transition-all hover:border-primary/50 hover:shadow-md overflow-hidden">
+                    <GlassCard className="h-full group transition-all hover:border-primary/50 hover:shadow-md overflow-hidden">
                       {post.image && (
                         <div className="aspect-[16/9] overflow-hidden">
                           <img
@@ -343,7 +343,7 @@ export default function BlogPage() {
                           />
                         </div>
                       )}
-                      <CardHeader>
+                      <GlassCardHeader>
                         <div className="mb-2 flex items-center gap-4 text-xs text-muted-foreground">
                           <span className="flex items-center gap-1">
                             <CalendarDays className="h-3 w-3" />
@@ -358,15 +358,15 @@ export default function BlogPage() {
                             {readingTime} min read
                           </span>
                         </div>
-                        <CardTitle className="text-lg leading-snug group-hover:text-primary transition-colors">
+                        <GlassCardTitle className="text-lg leading-snug group-hover:text-primary transition-colors">
                           {post.title}
-                        </CardTitle>
-                        <CardDescription className="line-clamp-2">
+                        </GlassCardTitle>
+                        <GlassCardDescription className="line-clamp-2">
                           {post.description}
-                        </CardDescription>
-                      </CardHeader>
+                        </GlassCardDescription>
+                      </GlassCardHeader>
                       {post.categories && post.categories.length > 0 && (
-                        <CardContent className="pt-0">
+                        <GlassCardContent className="pt-0">
                           <div className="flex flex-wrap gap-1.5">
                             {post.categories.map((cat) => (
                               <Badge key={cat} variant="secondary" className="text-xs">
@@ -374,9 +374,9 @@ export default function BlogPage() {
                               </Badge>
                             ))}
                           </div>
-                        </CardContent>
+                        </GlassCardContent>
                       )}
-                    </Card>
+                    </GlassCard>
                   </Link>
                 );
               })}
