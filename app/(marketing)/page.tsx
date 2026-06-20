@@ -247,7 +247,7 @@ export default function IndexPage() {
         </div>
 
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="mx-auto max-w-4xl text-center animate-fade-in-up">
             {/* 标签 */}
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2 text-sm font-medium text-emerald-700">
               <Sparkles className="h-4 w-4" />
@@ -360,10 +360,14 @@ export default function IndexPage() {
       )}
 
       {/* ── 板块 1：子站入口（最上方，紧跟 Hero）──────── */}
-      <FeaturedSites />
+      <div>
+        <FeaturedSites />
+      </div>
 
       {/* ── 板块 2：站内工具（子站下方）────────────────── */}
-      <FeaturedTools />
+      <div>
+        <FeaturedTools />
+      </div>
 
       {/* ── 广告：站内工具与分类之间（仅生产环境）────────── */}
       {process.env.NODE_ENV === "production" && (
@@ -377,7 +381,7 @@ export default function IndexPage() {
       )}
 
       {/* ═══ 板块：Browse by Category ══════════════════════ */}
-      <section className="relative border-t border-border/40 py-16 bg-muted/30">
+      <section className="relative border-t border-border/40 py-16 bg-slate-50/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* 标题区 */}
           <div className="mb-14 flex items-end justify-between">
@@ -470,9 +474,9 @@ export default function IndexPage() {
 
       {/* ═══ 板块：Trending This Week ═════════════════════ */}
       {trendingResources.length > 0 && (
-        <section className="relative border-t border-border/40 py-16">
+        <section className="relative border-t border-border/40 py-16 bg-slate-50/50">
           <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute left-1/2 top-0 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-orange-500/5 blur-[100px]" />
+            <div className="absolute left-1/2 top-0 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-orange-200/20 blur-[100px]" />
           </div>
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-14 flex items-end justify-between">
@@ -542,11 +546,12 @@ export default function IndexPage() {
         </section>
       )}
 
-      {/* ═══ 随机推荐（客户端组件）═══════════════════════ */}
-      <RandomRecommendations />
+      <div>
+        <RandomRecommendations />
+      </div>
 
       {/* ═══ SEO 内容块 ══════════════════════════════════ */}
-      <section className="border-t border-border/40 py-16 bg-muted/30">
+      <section className="border-t border-border/40 py-16 bg-slate-50/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-500/15 bg-indigo-500/5 px-4 py-1.5 text-sm font-medium text-indigo-600 dark:text-indigo-400">

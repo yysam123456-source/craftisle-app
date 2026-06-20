@@ -126,7 +126,7 @@ export function FeaturedSites() {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         {/* 标题区 */}
-        <div className="mb-12 text-center">
+        <div className="mb-12 text-center animate-fade-in-up stagger-1">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-gradient-to-r from-violet-500/10 to-purple-500/10 px-5 py-2 text-sm font-semibold text-violet-600 dark:text-violet-400 backdrop-blur-sm">
             <Sparkles className="h-4 w-4" />
             Our Free Sub-Sites

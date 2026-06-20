@@ -114,7 +114,7 @@ export function FeaturedTools() {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         {/* 标题区 */}
-        <div className="mb-12 text-center">
+        <div className="mb-12 text-center animate-fade-in-up stagger-1">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 px-5 py-2 text-sm font-semibold text-blue-600 dark:text-blue-400 backdrop-blur-sm">
             <Wrench className="h-4 w-4" />
             Built-in Online Tools
