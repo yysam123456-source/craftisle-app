@@ -2854,6 +2854,84 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["id-photo", "image-resize", "image-crop", "image-compress"],
   },
 
+  "ai-image-editor": {
+    title: "AI Image Editor",
+    desc: "All-in-one AI image editor — background removal, adjustments, crop, and filters in one tool",
+    icon: "🪄",
+    category: CATEGORIES.image,
+    stars: 5,
+    seoTitle: "Free AI Image Editor Online — BG Remove, Adjust, Crop, Filters | Craftisle",
+    seoDesc:
+      "Free all-in-one AI image editor. Remove backgrounds (ISNet 5MB or RMBG-1.4 170MB), adjust brightness/contrast/saturation, crop to any ratio, and apply filters — all in your browser. No upload, no signup, no watermark.",
+    seoKeywords: [
+      "free ai image editor online",
+      "ai background removal",
+      "image brightness contrast adjustment online",
+      "crop image free online",
+      "image filters grayscale sepia",
+      "all in one image editor free",
+      "photo editor no upload",
+      "browser based image editing ai",
+    ],
+    description:
+      "A comprehensive AI-powered image editor that combines multiple editing features in one tool. Remove backgrounds using ISNet (fast, 5MB) or RMBG-1.4 (HD quality, 170MB), adjust brightness/contrast/saturation with real-time preview, crop to any aspect ratio (freeform, 1:1, 4:3, 16:9), and apply creative filters (grayscale, sepia, invert, vintage). All processing runs 100% in your browser — your images never leave your device.",
+    howToUse: [
+      {
+        heading: "Upload an image",
+        text: "Click or drag any image (JPG, PNG, WebP) onto the upload area. The image loads instantly for editing.",
+      },
+      {
+        heading: "Choose editing module",
+        text: "Switch between BG Remove (AI background removal), Adjust (brightness/contrast/saturation/sharpen), Crop (aspect ratio + scale), and Filters (grayscale/sepia/invert/vintage) using the tabs.",
+      },
+      {
+        heading: "Adjust settings",
+        text: "Use the sliders to fine-tune each effect. Changes are previewed in real-time before you apply them.",
+      },
+      {
+        heading: "Apply and download",
+        text: "Click 'Apply' to process the image, then download the result as PNG. No watermarks, no limits, completely free.",
+      },
+    ],
+    useCases: [
+      {
+        title: "Social media content",
+        text: "Remove backgrounds and apply filters to create eye-catching posts for Instagram, Twitter, LinkedIn, and TikTok.",
+      },
+      {
+        title: "E-commerce product photos",
+        text: "Remove busy backgrounds, adjust lighting, and crop to platform specifications — all without expensive software.",
+      },
+      {
+        title: "Personal photo enhancement",
+        text: "Fix lighting issues with brightness/contrast adjustments, apply vintage filters for aesthetic edits, and crop to perfect composition.",
+      },
+      {
+        title: "Design and marketing materials",
+        text: "Extract subjects with transparent backgrounds, adjust colors to match brand guidelines, and export ready-to-use assets.",
+      },
+    ],
+    faq: [
+      {
+        q: "Is this really free? Any limits?",
+        a: "Completely free, no signup, no watermark, unlimited usage. All processing runs in your browser using ML models cached locally after first download.",
+      },
+      {
+        q: "Which background removal model should I use?",
+        a: "Use Fast (ISNet, 5MB) for quick results on simple backgrounds. Use HD Quality (RMBG-1.4, 170MB) for complex backgrounds where you need 98.7% edge accuracy — worth the one-time download.",
+      },
+      {
+        q: "Can I use multiple features on the same image?",
+        a: "Yes! Process with one feature (e.g., BG Remove), download or keep the result, then continue editing with other features. Each feature creates a new result you can build on.",
+      },
+      {
+        q: "Is my image data private?",
+        a: "100% private. All processing happens in your browser. No images are uploaded to any server. The AI models (ISNet, RMBG-1.4) run locally via ONNX Runtime.",
+      },
+    ],
+    relatedTools: ["remove-bg", "image-upscale", "ocr-text", "image-crop", "image-color-adjust"],
+  },
+
   "image-upscale": {
     title: "AI Image Upscaler",
     desc: "Enlarge and enhance images with AI super-resolution — 2× and 4× upscaling in your browser",
