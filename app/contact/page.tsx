@@ -164,7 +164,7 @@ export default function ContactPage() {
                 </GlassCardHeader>
                 <GlassCardContent className="text-sm text-muted-foreground">
                   <p>
-                    Found a broken tool or a bug in a game? Email us directly at{" "}
+                    Found a broken tool? Email us directly at{" "}
                     <a
                       href="mailto:hello@craftisle.com?subject=Bug%20Report"
                       className="text-primary underline"

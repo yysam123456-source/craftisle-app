@@ -122,19 +122,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const playPages = [
-    { url: `${baseUrl}/play/island-builder`, priority: 0.8, changeFreq: "monthly" as const },
-    { url: `${baseUrl}/play/tiny-world-builder`, priority: 0.8, changeFreq: "monthly" as const },
-    { url: `${baseUrl}/play/the-last-glimmer`, priority: 0.7, changeFreq: "monthly" as const },
-  ].map((r) => ({
-    url: r.url,
-    lastModified: now,
-    changeFrequency: r.changeFreq,
-    priority: r.priority,
-  }));
-
-  // 12个领域中转页
-  const domainPages = DOMAINS.map((d) => ({
+  const otherPages = [
     url: `${baseUrl}/directory/domain/${d.id}`,
     lastModified: now,
     changeFrequency: "weekly" as const,

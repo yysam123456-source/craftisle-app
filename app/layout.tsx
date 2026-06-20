@@ -25,10 +25,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Craftisle — Play Free HTML5 Games & Tools",
+    default: "Craftisle — Free Online Tools & Software Directory",
     template: "%s | Craftisle",
   },
-  description: "Craftisle is your ultimate island for creative tools and free HTML5 games. Play instantly, no downloads required.",
+  description: "Craftisle is your ultimate island for creative tools and free software directory. 100+ free online tools, no signup required.",
   icons: {
     icon: [
       { url: "/favicon.png", sizes: "32x32", type: "image/png" },
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://craftisle.com",
     siteName: "Craftisle",
-    title: "Craftisle — Play Free HTML5 Games & Tools",
-    description: "Craftisle is your ultimate island for creative tools and free HTML5 games. Play instantly, no downloads required.",
+    title: "Craftisle — Free Online Tools & Software Directory",
+    description: "Craftisle is your ultimate island for creative tools and free software directory. 100+ free online tools.",
     images: ["https://craftisle.com/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Craftisle — Play Free HTML5 Games & Tools",
-    description: "Craftisle is your ultimate island for creative tools and free HTML5 games.",
+    title: "Craftisle — Free Online Tools & Software Directory",
+    description: "Craftisle is your ultimate island for creative tools and free software directory.",
     images: ["https://craftisle.com/og-image.png"],
     creator: "@craftisle",
   },

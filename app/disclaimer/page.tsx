@@ -105,12 +105,11 @@ export default function DisclaimerPage() {
 
             <GlassCard className="mb-6">
               <GlassCardHeader>
-                <GlassCardTitle className="text-lg">5. Tool & Game Disclaimer</GlassCardTitle>
+                <GlassCardTitle className="text-lg">5. Tool Disclaimer</GlassCardTitle>
               </GlassCardHeader>
               <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
-                  Tools provided on the Site (PDF processing, image conversion, HTML5 games,
-                  etc.) are offered "as is" without warranty. Most tools run client-side in
+                  Tools provided on the Site (PDF processing, image conversion, etc.) are offered "as is" without warranty. Most tools run client-side in
                   your browser; however, we are not responsible for any data loss, corruption,
                   or damage that may occur during use.
                 </p>

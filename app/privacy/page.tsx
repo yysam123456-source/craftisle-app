@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               </GlassCardHeader>
               <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
-                  Craftisle is a collection of client-side tools and games. Most tools run
+                  Craftisle is a collection of client-side tools. Most tools run
                   entirely in your browser. We do <strong>not</strong> collect, store, or transmit
                   the files you process (PDFs, images, text, etc.) to any server. Your data
                   stays on your device.
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
               <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <ul className="list-disc pl-5 space-y-1">
                   <li>To operate and maintain the site;</li>
-                  <li>To understand how users interact with tools and games;</li>
+                  <li>To understand how users interact with tools;</li>
                   <li>To detect and prevent technical abuse;</li>
                   <li>To display contextual advertisements (see Section 5).</li>
                 </ul>

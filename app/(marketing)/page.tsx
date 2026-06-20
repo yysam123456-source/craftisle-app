@@ -11,7 +11,7 @@ import Link from "next/link";
 import AnimatedGradientText from "@/components/animata/text/animated-gradient-text";
 import {
   ArrowRight, Search, Sparkles, Zap, TrendingUp,
-  Bot, Shield, Film, Gamepad2, Terminal, Code, Lock,
+  Bot, Shield, Film, Terminal, Code, Lock,
   Package, FolderOpen, RefreshCw,
   BotMessageSquare, ShieldQuestion, Smartphone, Download,
   BookOpen, HardDrive, Tv, Code2, Globe,
@@ -93,13 +93,12 @@ function getHomepageData() {
 export const metadata: Metadata = {
   title: "Craftisle — Free Software Directory & Online Tools",
   description:
-    "Search 16,000+ free & open-source software. Find alternatives, compare tools. Plus: play free HTML5 games & use 100+ online tools.",
+    "Search 16,000+ free & open-source software. Find alternatives, compare tools. Plus: use 100+ online tools.",
   keywords: [
     "free software directory",
     "open source software",
     "free online tools",
     "software alternatives",
-    "free games online",
     "Craftisle",
     "fmhy",
     "free tools",
@@ -142,7 +141,6 @@ function getCategoryStyle(name: string): { icon: React.FC<any>; from: string; to
     "AI-Horde": { icon: Cpu, from: "#3b82f6", to: "#8b5cf6" },
     "AI-Text": { icon: Code2, from: "#a855f7", to: "#ec4899" },
     "AI-Image": { icon: ImgIcon, from: "#3b82f6", to: "#06b6d4" },
-    Gaming: { icon: Gamepad2, from: "#ec4899", to: "#a855f7" },
     Reading: { icon: BookOpen, from: "#eab308", to: "#f59e0b" },
     Mobile: { icon: Smartphone, from: "#22c55e", to: "#10b981" },
     Linux: { icon: Terminal, from: "#f97316", to: "#ef4444" },
@@ -173,7 +171,7 @@ export default function IndexPage() {
     name: "Craftisle",
     url: "https://craftisle.com",
     description:
-      "Free software directory with 16,000+ tools. Play free HTML5 games. Use 100+ free online tools.",
+      "Free software directory with 16,000+ tools. Use 100+ free online tools.",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://craftisle.com/directory/search?q={search_term_string}",
@@ -328,7 +326,6 @@ export default function IndexPage() {
                 { label: "AI Tools", href: "/directory/best/artificial-intelligence", icon: Bot, color: "bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100" },
                 { label: "Adblock", href: "/directory/best/adblock", icon: Shield, color: "bg-red-50 text-red-600 border-red-200 hover:bg-red-100" },
                 { label: "Video Editing", href: "/directory/search?q=video+editing", icon: Film, color: "bg-pink-50 text-pink-600 border-pink-200 hover:bg-pink-100" },
-                { label: "Games", href: "https://game.craftisle.com", icon: Gamepad2, color: "bg-violet-50 text-violet-600 border-violet-200 hover:bg-violet-100" },
                 { label: "Linux", href: "/directory/Linux", icon: Terminal, color: "bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100" },
                 { label: "Dev Tools", href: "/directory/best/development", icon: Code, color: "bg-cyan-50 text-cyan-600 border-cyan-200 hover:bg-cyan-100" },
                 { label: "Privacy", href: "/directory/best/privacy", icon: Lock, color: "bg-green-50 text-green-600 border-green-200 hover:bg-green-100" },
@@ -578,7 +575,7 @@ export default function IndexPage() {
               <p>
                 In addition to our software directory, we also provide free online tools
                 (PDF tools, regex visualizer, handwriting animation, ID photo maker, etc.)
-                and free HTML5 games. No download, no signup — use instantly in your browser.
+                No download, no signup — use instantly in your browser.
               </p>
             </div>
 

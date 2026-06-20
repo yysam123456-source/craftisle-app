@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://craftisle.com/sitemap.xml
-
-# Crawl-delay: 1

@@ -40,7 +40,7 @@ export default function TermsPage() {
               </GlassCardHeader>
               <GlassCardContent className="text-muted-foreground text-sm leading-relaxed space-y-2">
                 <p>
-                  Craftisle provides a curated directory of free online tools and resources, free browser-based HTML5 games, and productivity tools. The Service is provided &quot;as is&quot; without warranties of any kind.
+                  Craftisle provides a curated directory of free online tools and resources, and productivity tools. The Service is provided "as is" without warranties of any kind.
                 </p>
               </GlassCardContent>
             </GlassCard>

@@ -6,12 +6,12 @@ import {
 } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Gamepad2, Wrench, Globe, Zap, ShieldCheck } from "lucide-react";
+import { Wrench, Globe, Zap, ShieldCheck } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
   title: "About | Craftisle",
-  description: "Learn about Craftisle — free online tools and HTML5 games platform, built for creators and gamers.",
+  description: "Learn about Craftisle — free online tools platform, built for creators and developers.",
   canonical: "https://craftisle.com/about",
 });
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
               About Craftisle
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-              Free tools and games, built for the web — no downloads, no signup.
+              Free tools, built for the web — no downloads, no signup.
             </p>
           </div>
 
@@ -36,12 +36,12 @@ export default function AboutPage() {
             <div className="prose prose-gray max-w-none dark:prose-invert text-muted-foreground">
               <p>
                 Craftisle is a free online platform that brings together 100+ useful
-                web-based tools and casual HTML5 games. Everything runs directly in your
+                web-based tools. Everything runs directly in your
                 browser — no installation, no registration, no hidden costs.
               </p>
               <p>
-                Whether you need to compress an image, convert a PDF, format JSON, or
-                take a quick gaming break, Craftisle is built to be fast, accessible,
+                Whether you need to compress an image, convert a PDF, format JSON,
+                Craftisle is built to be fast, accessible,
                 and distraction-free.
               </p>
             </div>
@@ -59,17 +59,6 @@ export default function AboutPage() {
                 <GlassCardContent className="text-sm text-muted-foreground">
                   PDF tools, image converters, developer utilities, text processors, and
                   more. All free, all in your browser.
-                </GlassCardContent>
-              </GlassCard>
-
-              <GlassCard>
-                <GlassCardHeader>
-                  <Gamepad2 className="h-8 w-8 text-primary" />
-                  <GlassCardTitle className="mt-2">HTML5 Games</GlassCardTitle>
-                </GlassCardHeader>
-                <GlassCardContent className="text-sm text-muted-foreground">
-                  Curated mini games that run instantly. No download, no install — just
-                  play.
                 </GlassCardContent>
               </GlassCard>
 
@@ -113,8 +102,8 @@ export default function AboutPage() {
             <div className="prose prose-gray max-w-none dark:prose-invert text-muted-foreground">
               <p>
                 We believe powerful tools should be accessible to everyone. Craftisle
-                exists to remove barriers — between you and the tool you need, between
-                you and a quick gaming break. No accounts, no paywalls, no nonsense.
+                exists to remove barriers — between you and the tool you need.
+                No accounts, no paywalls, no nonsense.
               </p>
             </div>
           </section>
