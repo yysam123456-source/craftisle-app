@@ -2758,7 +2758,100 @@ export const toolMeta: Record<string, ToolMeta> = {
           "Use a front-facing photo with a neutral expression and even lighting. Plain backgrounds work best but aren't required — the AI will handle background removal. Avoid sunglasses and heavy shadows.",
       },
     ],
-    relatedTools: ["image-passport-photo", "image-resize", "image-convert", "image-background-remover"],
+    relatedTools: ["image-passport-photo", "image-resize", "image-convert", "remove-bg"],
+  },
+
+  "remove-bg": {
+    title: "AI Background Remover",
+    desc: "Free AI-powered background remover — remove image backgrounds instantly in your browser",
+    icon: "✂️",
+    category: CATEGORIES.image,
+    stars: 5,
+    seoTitle: "Free AI Background Remover Online — Remove Image Backgrounds Instantly | Craftisle",
+    seoDesc:
+      "Remove backgrounds from any image free using AI. Download as transparent PNG or replace with solid color (white, blue, red). 100% browser-based ONNX model — your images never leave your device. No signup required.",
+    seoKeywords: [
+      "free background remover online",
+      "ai remove background from image",
+      "remove bg online free no signup",
+      "transparent png maker online",
+      "remove image background automatically",
+      "ai background eraser free",
+      "make image transparent online",
+      "remove background without uploading",
+      "browser based background removal ai",
+      "free online background remover tool",
+    ],
+    description:
+      "Remove backgrounds from any photo or image in seconds using AI-powered segmentation. The ISNet ML model runs entirely in your browser via ONNX Runtime — no server upload needed. Export results as transparent PNG (perfect for design work) or composite onto white/blue/red/green/black backgrounds for product photos and profile pictures.",
+    howToUse: [
+      {
+        heading: "Upload an image",
+        text: "Click or drag any image (JPG, PNG, WebP) onto the upload area. Works with portraits, products, objects, pets — anything with a distinguishable subject.",
+      },
+      {
+        heading: "Choose output style",
+        text: "Select Transparent PNG to get a clean cutout with alpha channel (ideal for graphic design), or pick a solid color background (white, blue, red, gray, green, black) for immediate use.",
+      },
+      {
+        heading: "Select output format",
+        text: "Choose PNG for lossless quality (recommended for transparent outputs) or WebP for smaller file sizes with near-identical visual quality.",
+      },
+      {
+        heading: "Remove Background",
+        text: "Click 'Remove Background'. The AI model (~5MB, downloaded once) segments the foreground from the background. Processing takes 2–5 seconds depending on image size.",
+      },
+      {
+        heading: "Download result",
+        text: "Preview original vs result side-by-side. Download the processed image instantly. No watermarks, no limits.",
+      },
+    ],
+    useCases: [
+      {
+        title: "Product photos",
+        text: "E-commerce sellers can remove busy backgrounds and replace with clean white or custom colors for Amazon, Shopify, Etsy listings.",
+      },
+      {
+        title: "Profile pictures & avatars",
+        text: "Create professional profile pics with transparent or solid backgrounds for LinkedIn, CVs, social media, and business cards.",
+      },
+      {
+        title: "Design & presentations",
+        text: "Extract subjects as transparent PNGs for compositing into designs, slides, marketing materials, and creative projects.",
+      },
+      {
+        title: "ID documents & passports",
+        text: "Quickly strip backgrounds from photos taken anywhere and replace with official document colors. Pair with our ID Photo Maker for full workflow.",
+      },
+    ],
+    faq: [
+      {
+        q: "How does the AI background removal work?",
+        a:
+          "It uses the ISNet semantic segmentation model running on ONNX Runtime in your browser. The model identifies foreground objects (people, products, etc.) pixel-by-pixel and separates them from the background. No data is sent to any server.",
+      },
+      {
+        q: "Is it really free? Any limits?",
+        a:
+          "Completely free, no signup, no watermark, unlimited usage. The AI model downloads once (~5MB) and is cached locally for all future uses.",
+      },
+      {
+        q: "What images work best?",
+        a:
+          "The AI works well with clear foreground subjects against any background — solid color, complex scenes, indoor/outdoor lighting. Results are best when the subject is well-lit and in focus. Very low-resolution or heavily compressed images may have edge artifacts.",
+      },
+      {
+        q: "What if the AI doesn't work well on my image?",
+        a:
+          "You can toggle off 'AI' mode to use the legacy color-key algorithm, which lets you adjust sensitivity manually. For best results, use AI mode first — it handles complex backgrounds much better than traditional methods.",
+      },
+      {
+        q: "Can I use this commercially?",
+        a:
+          "Yes! All processing is client-side. There are no API calls or third-party services involved. Use the output however you need — personal or commercial.",
+      },
+    ],
+    relatedTools: ["id-photo", "image-resize", "image-crop", "image-compress"],
   },
 
   "image-passport-photo": {

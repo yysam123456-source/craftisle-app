@@ -230,6 +230,7 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "image-generate-memes": () => import("@/components/tools/ImageGenerateMemesTool"),
   "image-passport-photo": () => import("@/components/tools/ImagePassportPhotoTool"),
   "id-photo": () => import("@/components/tools/IDPhoto/IDPhotoTool").then(m => ({ default: m.IDPhotoTool })),
+  "remove-bg": () => import("@/components/tools/BackgroundRemovalTool"),
   "image-strip-metadata": () => import("@/components/tools/ImageStripMetadataTool"),
   "image-watermark": () => import("@/components/tools/ImageWatermarkTool"),
   "check-leap-years": () => import("@/components/tools/CheckLeapYearTool"),

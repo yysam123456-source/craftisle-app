@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 
 // TegakiRenderer props — matched to tegaki docs
@@ -22,9 +22,21 @@ interface TegakiRendererProps {
   onTextChange?: (text: string) => void;
 }
 
+/** Imperative handle exposed by TegakiRenderer */
+interface TegakiRendererHandle {
+  readonly engine: {
+    element: HTMLElement | null;
+    duration: number;
+    isPlaying: boolean;
+    play(): void;
+    pause(): void;
+    seek(time: number | `${number}%`): void;
+  } | null;
+  readonly element: HTMLElement | null;
+}
+
 // Use local TypeScript source (lib/tegaki/) to bypass tegaki's "exports" field issue.
-// This is a direct import from project source — Next.js TypeScript compiler handles it natively.
-const TegakiRenderer = dynamic<TegakiRendererProps>(
+const TegakiRenderer = dynamic<TegakiRendererProps & { ref?: React.Ref<TegakiRendererHandle> }>(
   () => import("../../lib/tegaki/react").then((m: any) => ({ default: m.TegakiRenderer })),
   { ssr: false, loading: () => <p className="text-sm text-muted-foreground">Loading renderer...</p> }
 );
@@ -71,6 +83,11 @@ export default function HandwritingAnimationTool() {
   const [fontBundle, setFontBundle] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
+  // Export state
+  const [exporting, setExporting] = useState(false);
+  const [exportProgress, setExportProgress] = useState("");
+  const tegakiRef = useRef<TegakiRendererHandle>(null);
+
   const speedMap: Record<SpeedMode, number> = { slow: 0.5, normal: 1, fast: 2 };
 
   const replay = useCallback(() => setKey((k) => k + 1), []);
@@ -106,6 +123,85 @@ export default function HandwritingAnimationTool() {
     setFontSize(Number(e.target.value));
     replay();
   };
+
+  // ── Export as WebM video using MediaRecorder + canvas.captureStream() ──
+  const handleExport = useCallback(async () => {
+    const handle = tegakiRef.current;
+    if (!handle?.engine) return;
+
+    setExporting(true);
+    setExportProgress("Preparing…");
+
+    try {
+      // Get canvas from Tegaki container (data-tegaki="canvas")
+      const engine = handle.engine;
+      if (!engine) return;
+
+      const container = engine.element;
+      if (!container) throw new Error("Canvas not found");
+      const canvas = container.querySelector<HTMLCanvasElement>('[data-tegaki="canvas"]');
+      if (!canvas) throw new Error("Canvas element not found");
+
+      const duration = engine.duration;
+      if (!duration || duration <= 0) throw new Error("Animation has no duration");
+
+      setExportProgress("Recording animation…");
+
+      // Capture stream from canvas at 30fps
+      const stream = canvas.captureStream(30);
+      const recorder = new MediaRecorder(stream, {
+        mimeType: "video/webm;codecs=vp9",
+        videoBitsPerSecond: 5_000_000,
+      });
+
+      const chunks: Blob[] = [];
+      recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+
+      await new Promise<void>((resolve, reject) => {
+        recorder.onstop = () => resolve();
+        recorder.onerror = () => reject(new Error("MediaRecorder error"));
+
+        // Seek to start, ensure loop is off for clean recording, then play
+        engine.pause();
+        engine.seek("0%");
+
+        // Small delay to let seek take effect
+        setTimeout(() => {
+          recorder.start();
+          engine.play();
+
+          // Stop recording after animation completes (+ buffer)
+          const recordDuration = duration * 1000 + 500;
+          setTimeout(() => {
+            try { recorder.stop(); } catch {}
+            engine.pause();
+            // Restore original state
+            if (loop) engine.seek("0%");
+          }, recordDuration);
+        }, 100);
+      });
+
+      setExportProgress("Generating file…");
+
+      // Assemble blob and download
+      const blob = new Blob(chunks, { type: "video/webm" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `handwriting-${FONT_NAMES[fontIdx] || "animation"}.webm`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      setExportProgress("✅ Downloaded!");
+      setTimeout(() => setExportProgress(""), 2000);
+    } catch (err) {
+      console.error("Export failed:", err);
+      setExportProgress(`❌ Export failed: ${(err as Error).message}`);
+      setTimeout(() => setExportProgress(""), 3000);
+    } finally {
+      setExporting(false);
+    }
+  }, [fontIdx]);
 
   return (
     <div className="space-y-6">
@@ -191,13 +287,38 @@ export default function HandwritingAnimationTool() {
 
         <div className="space-y-1">
           <p className="text-sm font-medium">Export</p>
-          <p className="text-xs text-muted-foreground">
-            To save as video, use your browser&apos;s screen recorder (Cmd+Shift+5 on
-            Mac).
-          </p>
-          <p className="text-xs text-muted-foreground mt-2">
-            <strong>Tip:</strong> Increase font size for better export quality.
-          </p>
+          <button
+            onClick={handleExport}
+            disabled={exporting || loading || !fontBundle}
+            className="w-full rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+          >
+            {exporting ? (
+              <>
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                </svg>
+                Exporting…
+              </>
+            ) : (
+              <>
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Download WebM Video
+              </>
+            )}
+          </button>
+          {exportProgress && (
+            <p className={`text-xs ${exportProgress.startsWith("✅") ? "text-green-600" : exportProgress.startsWith("❌") ? "text-red-600" : "text-muted-foreground"}`}>
+              {exportProgress}
+            </p>
+          )}
+          {!exportProgress && (
+            <p className="text-xs text-muted-foreground mt-1">
+              Records canvas animation as WebM video (30fps).
+            </p>
+          )}
         </div>
       </div>
 
@@ -209,6 +330,7 @@ export default function HandwritingAnimationTool() {
           <div key={key}>
             {fontBundle && (
               <TegakiRenderer
+                ref={tegakiRef}
                 font={fontBundle}
                 text={text || " "}
                 time={{ mode: "uncontrolled", speed: speedMap[speed], loop }}
