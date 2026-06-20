@@ -74,12 +74,14 @@ function Background() {
 export default function AnimatedBeam({
   children,
   className,
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
-    <div className={cn("full-content relative w-full overflow-hidden", className)}>
+    <div className={cn("full-content relative w-full overflow-hidden", className)} style={style}>
       <Background />
       <div className="relative h-full w-full">{children}</div>
     </div>

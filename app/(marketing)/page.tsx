@@ -9,6 +9,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import AnimatedBeam from "@/components/animata/background/animated-beam";
+import AnimatedGradientText from "@/components/animata/text/animated-gradient-text";
+import TypingText from "@/components/animata/text/typing-text";
 import {
   ArrowRight, Search, Sparkles, Zap, TrendingUp,
   Bot, Shield, Film, Gamepad2, Terminal, Code, Lock,
@@ -220,16 +222,14 @@ export default function IndexPage() {
         />
 
       {/* ═══ Hero 区 ══════════════════════════════════════ */}
-      <section
-        className="relative overflow-hidden py-20 sm:py-28 lg:py-32 animate-gradient-shift"
+      {/* Animata AnimatedBeam 作为背景 + 包裹 Hero 内容 */}
+      <AnimatedBeam
+        className="relative overflow-hidden py-20 sm:py-28 lg:py-32"
         style={{
           background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #0f172a 50%, #312e81 75%, #0f172a 100%)',
           backgroundSize: '400% 400%',
         }}
       >
-        {/* ── Animata AnimatedBeam 背景 ─────────────────── */}
-        <AnimatedBeam className="absolute inset-0 -z-10" />
-
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             {/* 标签 — 带图标动画感 */}
@@ -239,18 +239,25 @@ export default function IndexPage() {
               <Zap className="h-3.5 w-3.5" />
             </div>
 
-            {/* 主标题 — 渐变强调 */}
+            {/* 主标题 — Animata 渐变动效 */}
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
               Find Free &amp;{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
+              <AnimatedGradientText className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
                 Open-Source
-              </span>{" "}
+              </AnimatedGradientText>{" "}
               Software
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              Search 16,000+ free tools, find alternatives, compare software — all in one place.
+
+            {/* 副标题 — TypingText 打字动效 */}
+            <div className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              <TypingText
+                text="Search 16,000+ free tools, find alternatives, compare software — all in one place."
+                smooth={true}
+                delay={80}
+                className="text-lg sm:text-xl text-muted-foreground"
+              />
               <span className="font-medium text-foreground"> Free games &amp; online tools included.</span>
-            </p>
+            </div>
 
             {/* 搜索框 — 发光效果 */}
             <div className="mx-auto mt-12 max-w-2xl">
@@ -327,7 +334,7 @@ export default function IndexPage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedBeam>
 
       {/* ── 广告：Hero 下方（仅生产环境渲染占位）───────── */}
       {process.env.NODE_ENV === "production" && (
