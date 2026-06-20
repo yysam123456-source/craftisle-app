@@ -217,24 +217,61 @@ export async function removeBackgroundRMBG(
  * Convenience wrapper: takes ImageData, runs RMBG-1.4, returns ImageData.
  * Creates an intermediate canvas internally.
  */
+export type MLModel = "isnet" | "rmbg";
+
+interface RemoveBackgroundOptionsML {
+  /** Progress callback: (percent 0–100) */
+  onProgress?: (percent: number) => void;
+  /** Which ML model to use (default: "isnet" for speed) */
+  model?: MLModel;
+}
+
+/**
+ * Convenience wrapper: takes ImageData, runs background removal, returns ImageData.
+ * Creates an intermediate canvas internally.
+ *
+ * Default model: "isnet" (5MB, fast, good for ID photos).
+ * Use model="rmbg" for best quality (170MB, ~98.7% edge accuracy).
+ */
 export async function removeBackgroundML(
   imageData: ImageData,
   options: RemoveBackgroundOptionsML = {}
 ): Promise<ImageData> {
-  const { onProgress } = options;
+  const { onProgress, model = "isnet" } = options;
 
   onProgress?.(5);
 
-  // Convert ImageData → canvas → pass to RMBG
+  // Convert ImageData → canvas
   const srcCanvas = document.createElement("canvas");
   srcCanvas.width = imageData.width;
   srcCanvas.height = imageData.height;
   srcCanvas.getContext("2d")!.putImageData(imageData, 0, 0);
 
-  const resultCanvas = await removeBackgroundRMBG(srcCanvas, {
-    onProgress: (pct) => onProgress?.(5 + Math.round(pct * 0.95)),
-    onStatus: undefined,
-  });
+  // Choose engine based on model preference
+  let resultCanvas: HTMLCanvasElement;
+  if (model === "rmbg") {
+    // High-quality: RMBG-1.4 (170MB, best-in-class)
+    resultCanvas = await removeBackgroundRMBG(srcCanvas, {
+      onProgress: (pct) => onProgress?.(5 + Math.round(pct * 0.95)),
+      onStatus: undefined,
+    });
+  } else {
+    // Fast: ISNet (5MB) — try ML first, fall back to color-keying
+    const mlResult = await removeBackgroundISNet(srcCanvas, {
+      onProgress: (pct) => onProgress?.(5 + Math.round(pct * 0.85)),
+      onStatus: undefined,
+    });
+    if (mlResult) {
+      resultCanvas = mlResult;
+    } else {
+      // Tertiary fallback: color-keying
+      onProgress?.(88);
+      const fbResult = removeBackground(imageData, {
+        onProgress: (pct) => onProgress?.(88 + Math.round(pct * 0.1)),
+      });
+      resultCanvas = imageDataToCanvas(fbResult);
+    }
+  }
 
   onProgress?.(100);
   return resultCanvas.getContext("2d")!.getImageData(
@@ -242,18 +279,22 @@ export async function removeBackgroundML(
   );
 }
 
-interface RemoveBackgroundOptionsML {
-  /** Progress callback: (percent 0–100) */
-  onProgress?: (percent: number) => void;
+/** Convert ImageData to offscreen canvas (helper) */
+function imageDataToCanvas(imageData: ImageData): HTMLCanvasElement {
+  const c = document.createElement("canvas");
+  c.width = imageData.width; c.height = imageData.height;
+  c.getContext("2d")!.putImageData(imageData, 0, 0);
+  return c;
 }
 
 // ─── Fallback: ISNet (@imgly/background-removal) ─────────────────────────
 
 /**
- * Try to use the older ISNet-based removal if RMBG fails.
- * Dynamically imported to avoid loading the library unless needed.
+ * Remove background using ISNet model (@imgly/background-removal).
+ * Fast (~5MB download), good for simple backgrounds.
+ * Exported so ID Photo tool can use it as primary engine.
  */
-async function removeBackgroundISNet(
+export async function removeBackgroundISNet(
   source: HTMLImageElement | HTMLCanvasElement | Blob,
   options: BgRemovalProgress = {}
 ): Promise<HTMLCanvasElement | null> {

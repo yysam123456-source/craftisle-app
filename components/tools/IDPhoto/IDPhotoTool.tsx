@@ -37,6 +37,7 @@ export function IDPhotoTool() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [useML, setUseML] = useState(true);
+  const [useHighQuality, setUseHighQuality] = useState(false);
 
   // Processing options
   const [selectedSize, setSelectedSize] = useState(0);
@@ -87,6 +88,7 @@ export function IDPhotoTool() {
 
       if (useML) {
         // ── Primary: ML-based background removal ──
+        // Default: ISNet (5MB, fast). Optionally use RMBG-1.4 (170MB) for best quality.
         try {
           setProgressLabel("Loading AI model…");
           withAlpha = await removeBackgroundML(sourceImageData, {
@@ -96,6 +98,7 @@ export function IDPhotoTool() {
               else if (p < 85) setProgressLabel("Processing with AI…");
               else setProgressLabel("Finalizing…");
             },
+            model: useHighQuality ? "rmbg" : "isnet",
           });
         } catch (mlErr) {
           console.warn("ML background removal failed, falling back:", mlErr);
