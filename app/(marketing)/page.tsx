@@ -222,13 +222,9 @@ export default function IndexPage() {
         />
 
       {/* ═══ Hero 区 ══════════════════════════════════════ */}
-      {/* Animata AnimatedBeam 作为背景 + 包裹 Hero 内容 */}
+      {/* Animata AnimatedBeam 背景 + 包裹 Hero 内容 */}
       <AnimatedBeam
-        className="relative overflow-hidden py-20 sm:py-28 lg:py-32"
-        style={{
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #0f172a 50%, #312e81 75%, #0f172a 100%)',
-          backgroundSize: '400% 400%',
-        }}
+        className="py-20 sm:py-28 lg:py-32"
       >
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">

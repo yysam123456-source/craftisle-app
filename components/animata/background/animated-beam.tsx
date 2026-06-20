@@ -28,19 +28,15 @@ function Beam({ index }: { index: number }) {
   return (
     <div
       className="ab-beam h-full"
-      style={
-        {
-          "--duration": `${duration.toFixed(2)}s`,
-          "--delay": `${delay.toFixed(2)}s`,
-          "--length": `${length}px`,
-          "--opacity": opacity.toFixed(2),
-          width: `${width}px`,
-          transform: "translateY(-20%)",
-          // `backwards` shows the 0% keyframe (opacity 0) during the delay, so a
-          // beam never peeks at its resting position before its run begins.
-          animation: "meteor var(--duration) var(--delay) ease-in-out infinite backwards",
-        } as React.CSSProperties
-      }
+      style={{
+        "--duration": `${duration.toFixed(2)}s`,
+        "--delay": `${delay.toFixed(2)}s`,
+        "--length": `${length}px`,
+        "--opacity": opacity.toFixed(2),
+        width: `${width}px`,
+        transform: "translateY(-20%)",
+        animation: `meteor var(--duration) var(--delay) ease-in-out infinite backwards`,
+      } as React.CSSProperties}
     >
       <div
         className="w-full"
@@ -49,7 +45,9 @@ function Beam({ index }: { index: number }) {
           clipPath: "polygon(54% 0, 54% 0, 60% 100%, 40% 100%)",
         }}
       >
-        <div className="h-full w-full bg-linear-to-b from-blue-400/80 via-violet-400/70 via-75% to-blue-500/80" />
+        <div className="h-full w-full" style={{
+          background: "linear-gradient(to bottom, rgba(96,165,250,0.8), rgba(167,139,250,0.7) 75%, rgba(96,165,250,0.8))",
+        }} />
       </div>
     </div>
   );
@@ -57,12 +55,28 @@ function Beam({ index }: { index: number }) {
 
 function Background() {
   return (
-    <div className="relative w-full flex flex-row justify-center overflow-hidden">
-      {/* fixed-width lanes → constant 40px spacing, clipped to whatever fits */}
+    <div className="absolute inset-0 z-0 flex flex-row justify-center overflow-hidden">
+      {/* 深色背景 */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #0f172a 50%, #312e81 75%, #0f172a 100%)",
+          backgroundSize: "400% 400%",
+        }}
+      />
+      {/* 柔和光晕 */}
+      <div
+        className="absolute inset-0 top-1/2 h-full w-full rounded-full opacity-30"
+        style={{
+          background: "radial-gradient(50% 50% at 50% 50%, #1e1b4b 0%, transparent 100%)",
+        }}
+      />
+
+      {/* 网格线 + 光束 */}
       {Array.from({ length: LANES }, (_, i) => (
         <div key={i} className="flex h-full w-10 shrink-0 justify-center">
-          <div className="relative h-full w-px rotate-12 bg-blue-400/10">
-            {/* beam rides this diagonal line; ~30% of lanes get one */}
+          <div className="relative h-full w-px rotate-12 bg-blue-400/15">
+            {/* ~30% 的网格线有光束 */}
             {prand(i + 7) < 0.3 && <Beam index={i + 1} />}
           </div>
         </div>
@@ -74,16 +88,14 @@ function Background() {
 export default function AnimatedBeam({
   children,
   className,
-  style,
 }: {
   children: React.ReactNode;
   className?: string;
-  style?: React.CSSProperties;
 }) {
   return (
-    <div className={cn("full-content relative w-full overflow-hidden", className)} style={style}>
+    <div className={cn("relative w-full overflow-hidden", className)}>
       <Background />
-      <div className="relative h-full w-full">{children}</div>
+      <div className="relative z-10 h-full w-full">{children}</div>
     </div>
   );
 }
