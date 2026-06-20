@@ -56,8 +56,8 @@ const nextConfig = {
   // Enable compression for smaller transfer size
   compress: true,
 
-  // Standalone output for smaller deployment size (reduces node_modules)
-  output: 'standalone',
+  // output: 'standalone', // 禁用：standalone 会把所有服务端依赖打进一个包，容易超 Vercel 250MB 限制
+  // 让 Vercel 用自己的函数拆分（每个动态路由独立 Lambda）
 
   // Incremental Static Regeneration (ISR) global config
   // Individual pages can override with their own revalidate
