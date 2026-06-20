@@ -111,8 +111,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <SessionProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
+            enableSystem={false}
             disableTransitionOnChange
           >
             <ModalProvider>{children}</ModalProvider>
