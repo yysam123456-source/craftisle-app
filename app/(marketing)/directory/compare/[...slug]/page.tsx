@@ -55,15 +55,19 @@ export async function generateStaticParams() {
   const map = getCombinedMap();
   const entries = Object.values(map) as AlternativeEntry[];
   const params: { slug: string[] }[] = [];
+  let count = 0;
 
   for (const entry of entries) {
+    if (count >= 10) break;
     for (const alt of entry.alternatives) {
+      if (count >= 10) break;
       params.push({
         slug: [toSlug(entry.paidTool), toSlug(alt.name)],
       });
+      count++;
     }
   }
-  return params; // Generate ALL comparison pages (no limit)
+  return params; // Only pre-render top 10 comparisons
 }
 
 // ── 查找对比数据（增强版）─────────────────────────
