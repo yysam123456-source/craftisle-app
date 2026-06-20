@@ -79,10 +79,12 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.externals = config.externals || [];
-      // Mark ML packages as external — they are only used in client components via dynamic import()
+      // Mark ML packages + their heavy native deps as external
       const mlPackages = [
         "@huggingface/transformers",
         "@imgly/background-removal",
+        "onnxruntime-node",
+        "onnxruntime-web",
       ];
       for (const pkg of mlPackages) {
         config.externals.push(({ request }, callback) => {
