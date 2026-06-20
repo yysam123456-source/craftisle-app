@@ -11,15 +11,15 @@
     --card-foreground: 215 25% 27%;
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 27%;
-    
+
     /* 主色：深蓝 */
     --primary: 211 64% 23%;             /* #1E3A5F */
     --primary-foreground: 0 0% 98%;
-    
+
     /* 强调色：青绿 */
     --secondary: 168 100% 39%;          /* #00C9A7 */
     --secondary-foreground: 0 0% 98%;
-    
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215 20% 65.1%; /* #94A3B8 */
     --accent: 168 100% 95%;            /* 青绿极浅 */
@@ -30,14 +30,14 @@
     --input: 210 20% 89.8%;
     --ring: 168 100% 39%;               /* 聚焦环用青绿 */
     --radius: 0.5rem;
-    
+
     /* Chart色：使用品牌色系 */
     --chart-1: 211 64% 23%;             /* 深蓝 */
     --chart-2: 168 100% 39%;            /* 青绿 */
     --chart-3: 210 40% 56%;             /* 中蓝 */
     --chart-4: 43 96% 56%;              /* 琥珀（游戏强调） */
     --chart-5: 262 83% 58%;             /* 紫色（辅助） */
-    
+
     --graph: #1E3A5F;
     --graph-group: #00C9A7;
     --graph-bg: #F8FAFC;
@@ -73,6 +73,9 @@
     --chart-3: 43 96% 56%;              /* 琥珀 */
     --chart-4: 262 83% 68%;             /* 紫色 */
     --chart-5: 210 40% 76%;             /* 浅蓝 */
+  }
+  .theme {
+    --animate-bg-position: bg-position 3s infinite alternate;
   }
 }
 
@@ -162,4 +165,15 @@
 
 .animate-slide-x {
   animation: slide-x 6s ease-in-out infinite;
+}
+
+@theme inline {
+  @keyframes bg-position {
+  0% {
+    background-position: 0% 50%;
+    }
+  100% {
+    background-position: 100% 50%;
+    }
+  }
 }
