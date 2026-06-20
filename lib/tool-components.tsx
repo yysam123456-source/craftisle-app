@@ -231,6 +231,8 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "image-passport-photo": () => import("@/components/tools/ImagePassportPhotoTool"),
   "id-photo": () => import("@/components/tools/IDPhoto/IDPhotoTool").then(m => ({ default: m.IDPhotoTool })),
   "remove-bg": () => import("@/components/tools/BackgroundRemovalTool"),
+  "image-upscale": () => import("@/components/tools/ImageUpscaleTool").then(m => ({ default: m.default })),
+  "ocr-text": () => import("@/components/tools/OCRTool").then(m => ({ default: m.default })),
   "image-strip-metadata": () => import("@/components/tools/ImageStripMetadataTool"),
   "image-watermark": () => import("@/components/tools/ImageWatermarkTool"),
   "check-leap-years": () => import("@/components/tools/CheckLeapYearTool"),

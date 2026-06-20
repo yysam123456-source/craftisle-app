@@ -2854,6 +2854,92 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["id-photo", "image-resize", "image-crop", "image-compress"],
   },
 
+  "image-upscale": {
+    title: "AI Image Upscaler",
+    desc: "Enlarge and enhance images with AI super-resolution — 2× and 4× upscaling in your browser",
+    icon: "🔍",
+    category: CATEGORIES.image,
+    stars: 5,
+    seoTitle: "Free AI Image Upscaler Online — 2× 4× Super Resolution | Craftisle",
+    seoDesc:
+      "Upscale images to 2× or 4× resolution using AI. Enhance details, reduce blur, and restore quality. Supports photos, anime, illustrations. 100% browser-based ML — no upload needed.",
+    seoKeywords: [
+      "free image upscaler online",
+      "ai image enlargement 2x 4x",
+      "super resolution online free",
+      "upscale image without losing quality",
+      "ai photo enhancer browser",
+      "increase image resolution online",
+      "real-esrgan online",
+      "anime upscale online",
+      "image enlarger ai free",
+      "browser based image upscaling",
+    ],
+    description:
+      "Enlarge images by 2× or 4× using AI-powered super-resolution. The SwinIR neural network (or Real-ESRGAN for anime) runs entirely in your browser via Transformers.js + ONNX Runtime — no server upload needed. Perfect for restoring old photos, upscaling product images, or enhancing low-resolution screenshots.",
+    howToUse: [
+      { heading: "Upload an image", text: "Click or drag any image onto the upload area. JPG, PNG, WebP formats supported." },
+      { heading: "Choose scale factor", text: "Select 2× for fast doubling, or 4× for maximum quality improvement." },
+      { heading: "Choose quality mode", text: "General mode works best for real-world photos. Anime mode is optimized for illustrations. Fast mode uses no ML model for instant results." },
+      { heading: "Upscale & download", text: "Click 'Upscale Image' and wait for the AI model to process. Preview original vs upscaled side-by-side, then download the enhanced result as PNG." },
+    ],
+    useCases: [
+      { title: "Restore old photos", text: "Bring new life to low-resolution family photos and scanned images by intelligently adding detail and reducing compression artifacts." },
+      { title: "E-commerce enhancement", text: "Upscale product images to higher resolutions for print catalogs, large displays, or zoomed-in web views without visible quality loss." },
+      { title: "Anime & illustration", text: "Specialized model trained on line art and manga produces crisp edges and clean upscaling of drawings, comics, and vector-style graphics." },
+      { title: "Screenshot cleanup", text: "Make blurry small screenshots readable again by upscaling them 2× or 4× while preserving text clarity." },
+    ],
+    faq: [
+      { q: "How does AI upscaling work?", a: "It uses a SwinIR super-resolution neural network that learns to reconstruct high-frequency details from low-resolution input. Unlike simple resizing which just interpolates pixels, the AI actually generates plausible new detail based on what it learned from millions of training images." },
+      { q: "How long does it take?", a: "Depends on image size and scale factor. A 500px image at 2× takes ~5-15 seconds. At 4× it can take 30-60 seconds. First use downloads the ML model (~80MB), cached after that." },
+      { q: "What's the difference between General and Anime mode?", a: "General is trained on natural photographs (photos of people, objects, scenes). Anime mode is trained on line art, illustrations, and Japanese animation — it preserves clean lines better but may look odd on photos." },
+    ],
+    relatedTools: ["image-remove-bg", "image-enhance", "image-compress", "image-denoise"],
+  },
+
+  "ocr-text": {
+    title: "AI OCR Text Extractor",
+    desc: "Extract text from any image using AI — supports English, Chinese, Japanese, Korean and 100+ languages",
+    icon: "📝",
+    category: CATEGORIES.image,
+    stars: 5,
+    seoTitle: "Free Online OCR — Extract Text from Images AI Powered | Craftisle",
+    seoDesc:
+      "Extract text from images using AI OCR. Supports English, Chinese, Japanese, Korean, and 100+ languages. Copy or download extracted text. 100% browser-based — no uploads.",
+    seoKeywords: [
+      "free ocr online",
+      "extract text from image ai",
+      "ocr chinese japanese korean",
+      "handwriting recognition online",
+      "text from image extractor",
+      "ai ocr no upload",
+      "browser based ocr",
+      "screenshot to text converter",
+      "online ocr multilingual",
+      "trocr online free",
+    ],
+    description:
+      "Extract text from any image using state-of-the-art AI OCR models. Uses TrOCR (Transformer-based OCR) for Latin scripts and PaddleOCR for CJK languages. Runs entirely in your browser via Transformers.js + ONNX Runtime — your images are never uploaded. Supports printed text, handwriting, screenshots, documents, signs, and more.",
+    howToUse: [
+      { heading: "Upload an image", text: "Upload a screenshot, document scan, photo of text, sign, or any image containing readable text." },
+      { heading: "Select language", text: "Choose the primary language in the image: English, Chinese, Japanese, Korean, or Multilingual (100+ languages)." },
+      { heading: "Extract text", text: "Click 'Extract Text'. The AI model will analyze the image and output all recognized text." },
+      { heading: "Copy or download", text: "Copy the extracted text to clipboard with one click, or download it as a .txt file for later use." },
+    ],
+    useCases: [
+      { title: "Digitize documents", text: "Convert scanned documents, PDFs (as images), receipts, and invoices into editable text without manual retyping." },
+      { title: "Extract text from screenshots", text: "Pull text out of error messages, code snippets, chat logs, or UI elements captured in screenshots." },
+      { title: "Translate foreign text", text: "Extract text from images in other languages, then paste into a translation tool for quick understanding." },
+      { title: "Accessibility", text: "Convert text from inaccessible images (like alt-text missing images) into readable format." },
+    ],
+    faq: [
+      { q: "Which languages are supported?", a: "English (best accuracy via TrOCR), Chinese Simplified/Traditional, Japanese, Korean, plus 100+ additional languages in multilingual mode via mTrOCR. Handwriting support varies — printed text gives best results." },
+      { q: "How accurate is the AI OCR?", a: "TrOCR achieves near-human accuracy on clear printed text (>98%). Results degrade slightly with handwriting, low contrast, heavy distortion, or very small fonts. For best results, use well-lit, high-resolution images." },
+      { q: "Does this work offline after first use?", a: "Yes! The ML model downloads once (~250MB for TrOCR, varies for others) and is cached in your browser's IndexedDB. All subsequent extractions work fully offline." },
+    ],
+    relatedTools: ["image-to-pdf", "image-compress", "qrcode-generator", "translate-text"],
+  },
+
   "image-passport-photo": {
     title: "Passport Photo",
     desc: "Generate passport and visa photos",

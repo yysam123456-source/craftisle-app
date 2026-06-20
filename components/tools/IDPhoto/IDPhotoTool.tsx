@@ -312,8 +312,9 @@ export function IDPhotoTool() {
                     ✨ AI Background Removal
                   </Label>
                   <p className="text-xs text-gray-500 max-w-xs">
-                    Uses an ML model for professional-quality results with any
-                    photo. First use downloads ~5MB model.
+                    Uses <strong>RMBG-1.4</strong> (98.7% edge accuracy) for
+                    professional-quality results with any photo. First use downloads
+                    ~170MB model, cached locally.
                   </p>
                 </div>
               </div>
@@ -506,7 +507,9 @@ export function IDPhotoTool() {
         🔒{" "}
         {useML ? (
           <>
-            AI processing runs in your browser using ONNX Runtime. Your photos are never uploaded to any server. A ~5MB model is downloaded once and cached locally.
+            AI processing runs in your browser using the RMBG-1.4 ML model
+            (Transformers.js + ONNX Runtime). Your photos are never uploaded to any server.
+            A ~170MB model is downloaded once and cached locally.
           </>
         ) : (
           <>
