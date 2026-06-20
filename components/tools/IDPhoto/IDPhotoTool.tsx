@@ -2,6 +2,8 @@
 
 import { useState, useCallback, useRef } from "react";
 import {
+  removeBackgroundML,
+  preloadModel,
   removeBackground,
   applyBackground,
   cropToSize,
@@ -27,18 +29,19 @@ export function IDPhotoTool() {
     "idle" | "ready" | "processing" | "done"
   >("idle");
   const [progress, setProgress] = useState(0);
+  const [progressLabel, setProgressLabel] = useState("");
   const [sourceImage, setSourceImage] = useState<HTMLImageElement | null>(null);
   const [sourceImageData, setSourceImageData] =
     useState<ImageData | null>(null);
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [useML, setUseML] = useState(true);
 
   // Processing options
   const [selectedSize, setSelectedSize] = useState(0);
   const [selectedBg, setSelectedBg] = useState(0);
   const [tolerance, setTolerance] = useState(40);
-  const [autoDetectBg, setAutoDetectBg] = useState(true);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -71,27 +74,57 @@ export function IDPhotoTool() {
     []
   );
 
-  // Run processing
+  // Run processing — ML primary, fallback to legacy
   const handleProcess = useCallback(async () => {
     if (!sourceImageData) return;
     setStage("processing");
     setProgress(0);
+    setProgressLabel("");
     setError(null);
 
     try {
-      // Step 1: Remove background
-      const withAlpha = removeBackground(sourceImageData, {
-        tolerance,
-        onProgress: (p) => setProgress(Math.round(p * 0.4)),
-      });
+      let withAlpha: ImageData;
 
-      // Step 2: Apply new background
-      setProgress(45);
+      if (useML) {
+        // ── Primary: ML-based background removal ──
+        try {
+          setProgressLabel("Loading AI model…");
+          withAlpha = await removeBackgroundML(sourceImageData, {
+            onProgress: (p) => {
+              setProgress(p);
+              if (p < 30) setProgressLabel("Loading AI model…");
+              else if (p < 85) setProgressLabel("Processing with AI…");
+              else setProgressLabel("Finalizing…");
+            },
+          });
+        } catch (mlErr) {
+          console.warn("ML background removal failed, falling back:", mlErr);
+          // Fall back to legacy algorithm
+          setProgressLabel("AI unavailable, using fast mode…");
+          withAlpha = removeBackground(sourceImageData, {
+            tolerance,
+            onProgress: (p) =>
+              setProgress(Math.round(10 + p * 0.3)),
+          });
+        }
+      } else {
+        // ── Fallback: Legacy color-keying ──
+        setProgressLabel("Removing background…");
+        withAlpha = removeBackground(sourceImageData, {
+          tolerance,
+          onProgress: (p) => setProgress(Math.round(p * 0.4)),
+        });
+      }
+
+      // Step 2: Apply new background color
+      setProgress(50);
+      setProgressLabel("Applying background…");
       const bgColor = BG_COLORS[selectedBg].value;
       const composited = applyBackground(withAlpha, bgColor);
 
       // Step 3: Create preview (full size)
       setProgress(70);
+      setProgressLabel("Generating preview…");
       const previewCanvas = previewCanvasRef.current!;
       previewCanvas.width = composited.width;
       previewCanvas.height = composited.height;
@@ -100,6 +133,7 @@ export function IDPhotoTool() {
 
       // Step 4: Crop to target size
       setProgress(80);
+      setProgressLabel("Cropping to format…");
       const size = ID_PHOTO_SIZES[selectedSize];
       const cropped = cropToSize(composited, size.width, size.height);
 
@@ -110,13 +144,14 @@ export function IDPhotoTool() {
       setResultUrl(resultCanvas.toDataURL("image/jpeg", 0.95));
 
       setProgress(100);
+      setProgressLabel("Done!");
       setStage("done");
     } catch (e) {
       console.error(e);
       setError(`Processing failed: ${(e as Error).message}`);
       setStage("ready");
     }
-  }, [sourceImageData, tolerance, selectedBg, selectedSize]);
+  }, [sourceImageData, tolerance, selectedBg, selectedSize, useML]);
 
   // Download result
   const handleDownload = useCallback(() => {
@@ -196,7 +231,7 @@ export function IDPhotoTool() {
                 Click or drag to upload a photo
               </p>
               <p className="text-sm text-gray-500">
-                JPG or PNG · Plain background works best
+                JPG or PNG · Works with any background
               </p>
             </div>
           )}
@@ -255,7 +290,7 @@ export function IDPhotoTool() {
             </div>
           </div>
 
-          {/* Advanced Options */}
+          {/* AI Engine Toggle + Advanced Options */}
           <details className="group">
             <summary className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 select-none">
               Advanced Options
@@ -269,38 +304,41 @@ export function IDPhotoTool() {
               </svg>
             </summary>
             <div className="mt-4 space-y-4 pl-2 border-l-2 border-gray-100">
-              {/* Tolerance Slider */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <Label className="text-sm">Background Sensitivity</Label>
-                  <span className="text-sm text-gray-500">{tolerance}</span>
-                </div>
-                <Slider
-                  value={[tolerance]}
-                  onValueChange={([v]) => setTolerance(v)}
-                  min={10}
-                  max={100}
-                  step={5}
-                  className="w-full max-w-sm"
-                />
-                <p className="text-xs text-gray-400">
-                  Lower = more aggressive removal · Higher = keep more detail
-                </p>
-              </div>
-
-              {/* Auto-detect toggle */}
-              <div className="flex items-center gap-3">
-                <Switch
-                  checked={autoDetectBg}
-                  onCheckedChange={setAutoDetectBg}
-                />
+              {/* AI Toggle */}
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-violet-50 rounded-lg border border-blue-100">
+                <Switch checked={useML} onCheckedChange={setUseML} />
                 <div>
-                  <Label className="text-sm">Auto-detect background color</Label>
-                  <p className="text-xs text-gray-400">
-                    Analyzes corners to find background color automatically
+                  <Label className="text-sm font-medium">
+                    ✨ AI Background Removal
+                  </Label>
+                  <p className="text-xs text-gray-500 max-w-xs">
+                    Uses an ML model for professional-quality results with any
+                    photo. First use downloads ~5MB model.
                   </p>
                 </div>
               </div>
+
+              {/* Tolerance Slider (only for legacy mode) */}
+              {!useML && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <Label className="text-sm">Background Sensitivity</Label>
+                    <span className="text-sm text-gray-500">{tolerance}</span>
+                  </div>
+                  <Slider
+                    value={[tolerance]}
+                    onValueChange={([v]) => setTolerance(v)}
+                    min={10}
+                    max={100}
+                    step={5}
+                    className="w-full max-w-sm"
+                  />
+                  <p className="text-xs text-gray-400">
+                    Lower = more aggressive removal · Higher = keep more detail.
+                    Only applies when AI is off.
+                  </p>
+                </div>
+              )}
             </div>
           </details>
 
@@ -332,7 +370,7 @@ export function IDPhotoTool() {
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                   />
                 </svg>
-                Generating your ID photo...
+                {progressLabel || "Processing…"}
               </span>
             ) : (
               <>
@@ -349,7 +387,7 @@ export function IDPhotoTool() {
                     d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
                 </svg>
-                Generate ID Photo
+                Generate ID Photo{useML ? " (AI)" : ""}
               </>
             )}
           </Button>
@@ -358,7 +396,7 @@ export function IDPhotoTool() {
             <div>
               <Progress value={progress} />
               <p className="text-xs text-gray-500 mt-1.5 text-center">
-                {progress}%
+                {progress}% — {progressLabel}
               </p>
             </div>
           )}
@@ -465,8 +503,16 @@ export function IDPhotoTool() {
 
       {/* Privacy Note */}
       <p className="text-center text-xs text-gray-400 max-w-md mx-auto">
-        🔒 All processing happens in your browser using Canvas API.
-        Your photos are never uploaded to any server.
+        🔒{" "}
+        {useML ? (
+          <>
+            AI processing runs in your browser using ONNX Runtime. Your photos are never uploaded to any server. A ~5MB model is downloaded once and cached locally.
+          </>
+        ) : (
+          <>
+            All processing happens in your browser using Canvas API. Your photos are never uploaded to any server.
+          </>
+        )}
       </p>
     </div>
   );
