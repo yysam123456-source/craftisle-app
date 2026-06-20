@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "preview": "next build && next start",
-    "postinstall": "prisma generate && node -e \"const fs=require('fs');const p='node_modules/tegaki/package.json';const d=JSON.parse(fs.readFileSync(p,'utf8'));d.main='./dist/index.mjs';delete d.exports;fs.writeFileSync(p,JSON.stringify(d,null,2));console.log('[postinstall] patched tegaki: set main, removed exports')\"",
+    "postinstall": "node -e \"try { require.resolve('prisma'); require('child_process').execSync('npx prisma generate', { stdio: 'inherit' }); } catch(e) { console.log('[postinstall] prisma not found, skipping prisma generate'); } if (require('fs').existsSync('node_modules/tegaki/package.json')) { const fs=require('fs'); const p='node_modules/tegaki/package.json'; const d=JSON.parse(fs.readFileSync(p,'utf8')); d.main='./dist/index.mjs'; delete d.exports; fs.writeFileSync(p, JSON.stringify(d,null,2)); console.log('[postinstall] patched tegaki'); }\"",
     "kill-node": "taskkill /F /IM node.exe",
     "sync:fmhy": "node scripts/sync-fmhy.mjs",
     "sync:sources": "node scripts/scrape-sources.mjs",
