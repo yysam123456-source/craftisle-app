@@ -74,13 +74,27 @@ const nextConfig = {
   // Transpile ESM packages for webpack
   transpilePackages: ["@prisma/client", "tegaki"],
 
-  // Exclude heavy ML libraries from ALL server-side bundles
-  // These are only loaded dynamically in client components via import()
-  // Without this, Vercel Serverless Functions exceed 250MB limit
-  serverExternalPackages: [
-    "@huggingface/transformers",
-    "@imgly/background-removal",
-  ],
+  // Exclude heavy ML libraries from server-side bundles (Vercel 250MB limit)
+  // webpack.externals is the most reliable way to keep ML libs out of serverless functions
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = config.externals || [];
+      // Mark ML packages as external — they are only used in client components via dynamic import()
+      const mlPackages = [
+        "@huggingface/transformers",
+        "@imgly/background-removal",
+      ];
+      for (const pkg of mlPackages) {
+        config.externals.push(({ request }, callback) => {
+          if (request === pkg || request?.startsWith(pkg + "/")) {
+            return callback(null, `commonjs ${pkg}`);
+          }
+          callback();
+        });
+      }
+    }
+    return config;
+  },
 
   // Env vars required for build (Ghost CMS)
   env: {
