@@ -2,15 +2,9 @@
 // Primary:   RMBG-1.4 via @huggingface/transformers (best quality, 98.7% edge accuracy)
 // Fallback:  @imgly/background-removal ISNet (degraded quality)
 // Tertiary:  Canvas color-keying algorithm (pure heuristic)
-
-import {
-  env,
-  AutoModel,
-  AutoProcessor,
-  RawImage,
-  PreTrainedModel,
-  Processor,
-} from "@huggingface/transformers";
+//
+// IMPORTANT: @huggingface/transformers is ONLY imported dynamically inside functions.
+// Static import would bundle 143MB into every serverless function and break Vercel deployment.
 
 // ─── Types ──────────────────────────────────────────────────────────────
 
@@ -47,8 +41,8 @@ export interface BgRemovalProgress {
 
 const MODEL_ID = "briaai/RMBG-1.4";
 
-let rmbgModel: PreTrainedModel | null = null;
-let rmbgProcessor: Processor | null = null;
+let rmbgModel: any = null;       // PreTrainedModel from transformers.js
+let rmbgProcessor: any = null;    // Processor from transformers.js
 let modelLoading: Promise<boolean> | null = null;
 
 /**
@@ -66,6 +60,9 @@ export async function preloadModel(
 
   modelLoading = (async () => {
     try {
+      // DYNAMIC IMPORT — avoids bundling 143MB at build time
+      const { AutoModel, AutoProcessor, env } = await import("@huggingface/transformers");
+
       onProgress?.("Loading AI model (RMBG-1.4)…", 5);
       // Configure transformers.js environment
       env.allowLocalModels = false;
@@ -96,7 +93,7 @@ export async function preloadModel(
           do_rescale: true,
           do_resize: true,
           image_mean: [0.5, 0.5, 0.5],
-          image_std: [0.5, 0.5, 0.5],  // Note: std=0.5 for better contrast
+          image_std: [0.5, 0.5, 0.5],
           resample: 2,
           rescale_factor: 0.00392156862745098,
           size: { width: 1024, height: 1024 },
@@ -143,6 +140,9 @@ export async function removeBackgroundRMBG(
   source: HTMLImageElement | HTMLCanvasElement | File | Blob,
   options: BgRemovalProgress = {}
 ): Promise<HTMLCanvasElement> {
+  // DYNAMIC IMPORT — avoid static dependency on transformers.js
+  const { RawImage } = await import("@huggingface/transformers");
+
   const { onProgress, onStatus } = options;
 
   onStatus?.("Initializing AI engine…");
@@ -161,7 +161,7 @@ export async function removeBackgroundRMBG(
   onProgress?.(28);
 
   // Read input image
-  let img: InstanceType<typeof RawImage>;
+  let img: any; // InstanceType<typeof RawImage>
   if (source instanceof File || source instanceof Blob) {
     img = await RawImage.fromURL(URL.createObjectURL(source));
   } else if (source instanceof HTMLCanvasElement) {

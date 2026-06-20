@@ -74,6 +74,14 @@ const nextConfig = {
   // Transpile ESM packages for webpack
   transpilePackages: ["@prisma/client", "tegaki"],
 
+  // Exclude heavy ML libraries from ALL server-side bundles
+  // These are only loaded dynamically in client components via import()
+  // Without this, Vercel Serverless Functions exceed 250MB limit
+  serverExternalPackages: [
+    "@huggingface/transformers",
+    "@imgly/background-removal",
+  ],
+
   // Env vars required for build (Ghost CMS)
   env: {
     GHOST_URL: process.env.GHOST_URL || "",
