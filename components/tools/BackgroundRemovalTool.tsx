@@ -2,36 +2,45 @@
 
 import { useState, useCallback, useRef } from "react";
 import {
-  removeBackgroundRMBG,
-  removeBackgroundISNet,
+  removeBackgroundML,
   preloadModel,
+  removeBackground,
+  applyBackground,
 } from "@/lib/idphoto/inference";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
-type OutputFormat = "png" | "webp";
-type BgMode = "transparent" | "solid" | "custom";
+const BG_COLORS = [
+  { name: "Transparent", value: null },
+  { name: "White", value: "#ffffff" },
+  { name: "Blue", value: "#438edb" },
+  { name: "Red", value: "#d9001b" },
+  { name: "Light Blue", value: "#1a73e8" },
+  { name: "Light Gray", value: "#f0f0f0" },
+  { name: "Black", value: "#000000" },
+  { name: "Green", value: "#22c55e" },
+];
 
-export function BackgroundRemovalTool() {
+export default function BackgroundRemovalTool() {
   const [stage, setStage] = useState<"idle" | "ready" | "processing" | "done">("idle");
   const [progress, setProgress] = useState(0);
   const [progressLabel, setProgressLabel] = useState("");
   const [sourceImage, setSourceImage] = useState<HTMLImageElement | null>(null);
+  const [sourceImageData, setSourceImageData] = useState<ImageData | null>(null);
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // Options
-  const [useHighQuality, setUseHighQuality] = useState(true);
-  const [outputFormat, setOutputFormat] = useState<OutputFormat>("png");
-  const [bgMode, setBgMode] = useState<BgMode>("transparent");
-  const [solidColor, setSolidColor] = useState("#ffffff");
-  const [customColor, setCustomColor] = useState("#1a73e8");
+  const [useAI, setUseAI] = useState(true);
+  const [selectedBg, setSelectedBg] = useState(0); // default transparent
+  const [tolerance, setTolerance] = useState(40);
+  const [outputFormat, setOutputFormat] = useState<"png" | "webp">("png");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Handle file upload
   const handleFileSelect = useCallback(
@@ -39,12 +48,20 @@ export function BackgroundRemovalTool() {
       const file = e.target.files?.[0];
       if (!file) return;
       setError(null);
+
       const reader = new FileReader();
       reader.onload = (ev) => {
         const img = new Image();
         img.onload = () => {
           setSourceImage(img);
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d")!;
+          ctx.drawImage(img, 0, 0);
+          setSourceImageData(ctx.getImageData(0, 0, img.width, img.height));
           setStage("ready");
+          setResultUrl(null); // Clear previous result
         };
         img.src = ev.target?.result as string;
       };
@@ -53,66 +70,69 @@ export function BackgroundRemovalTool() {
     []
   );
 
-  // Main processing
+  // Process image
   const handleProcess = useCallback(async () => {
-    if (!sourceImage) return;
+    if (!sourceImageData) return;
     setStage("processing");
     setProgress(0);
     setProgressLabel("");
     setError(null);
 
     try {
-      let resultCanvas: HTMLCanvasElement;
+      let withAlpha: ImageData;
 
-      if (useHighQuality) {
-        // RMBG-1.4 (~170MB, 98.7% edge accuracy)
-        setProgressLabel("Loading high-quality AI model (RMBG-1.4)…");
-        resultCanvas = await removeBackgroundRMBG(sourceImage, {
-          onProgress: (pct) => {
-            setProgress(pct);
-            if (pct < 20) setProgressLabel("Loading AI model (~170MB first time)…");
-            else if (pct < 90) setProgressLabel("Running AI segmentation…");
-            else setProgressLabel("Refining edges…");
-          },
-          onStatus: (msg) => setProgressLabel(msg),
-        });
+      if (useAI) {
+        try {
+          setProgressLabel("Loading AI model…");
+          withAlpha = await removeBackgroundML(sourceImageData, {
+            onProgress: (p) => {
+              setProgress(p);
+              if (p < 30) setProgressLabel("Loading AI model…");
+              else if (p < 85) setProgressLabel("Removing background with AI…");
+              else setProgressLabel("Finalizing…");
+            },
+          });
+        } catch (mlErr) {
+          console.warn("ML background removal failed, falling back:", mlErr);
+          setProgressLabel("AI unavailable, using fast mode…");
+          withAlpha = removeBackground(sourceImageData, {
+            tolerance,
+            onProgress: (p) => setProgress(Math.round(10 + p * 0.3)),
+          });
+        }
       } else {
-        // ISNet (5MB, fast)
-        setProgressLabel("Loading fast AI model (ISNet)…");
-        const canvas = await removeBackgroundISNet(sourceImage, {
-          onProgress: (pct) => {
-            setProgress(pct);
-            if (pct < 80) setProgressLabel("Processing with ISNet…");
-            else setProgressLabel("Finalizing…");
-          },
+        setProgressLabel("Removing background…");
+        withAlpha = removeBackground(sourceImageData, {
+          tolerance,
+          onProgress: (p) => setProgress(Math.round(p * 0.5)),
         });
-        if (!canvas) throw new Error("ISNet processing failed");
-        resultCanvas = canvas;
       }
 
-      // Apply background if not transparent
-      let finalCanvas = resultCanvas;
-      if (bgMode === "solid") {
-        setProgressLabel("Applying background color…");
-        finalCanvas = applySolidBackground(resultCanvas, solidColor);
-      } else if (bgMode === "custom") {
-        setProgressLabel("Applying custom background…");
-        finalCanvas = applySolidBackground(resultCanvas, customColor);
+      // Apply background or keep transparent
+      setProgress(88);
+      setProgressLabel("Compositing result…");
+
+      const bgColor = BG_COLORS[selectedBg].value;
+      let finalData: ImageData;
+
+      if (bgColor === null) {
+        // Transparent output — keep alpha channel
+        finalData = withAlpha;
+      } else {
+        finalData = applyBackground(withAlpha, bgColor);
       }
 
+      // Render to canvas and create download URL
       setProgress(95);
-      setProgressLabel("Encoding output…");
+      const outCanvas = document.createElement("canvas");
+      outCanvas.width = finalData.width;
+      outCanvas.height = finalData.height;
+      const ctx = outCanvas.getContext("2d")!;
+      ctx.putImageData(finalData, 0, 0);
 
-      // Export
-      const canvas = canvasRef.current!;
-      canvas.width = finalCanvas.width;
-      canvas.height = finalCanvas.height;
-      canvas.getContext("2d")!.drawImage(finalCanvas, 0, 0);
-
-      const mimeType = outputFormat === "webp" ? "image/webp" : "image/png";
+      const mimeType = outputFormat === "png" ? "image/png" : "image/webp";
       const quality = outputFormat === "webp" ? 0.92 : undefined;
-      const url = canvas.toDataURL(mimeType, quality);
-      setResultUrl(url);
+      setResultUrl(outCanvas.toDataURL(mimeType, quality));
 
       setProgress(100);
       setProgressLabel("Done!");
@@ -122,31 +142,31 @@ export function BackgroundRemovalTool() {
       setError(`Processing failed: ${(e as Error).message}`);
       setStage("ready");
     }
-  }, [sourceImage, useHighQuality, outputFormat, bgMode, solidColor, customColor]);
+  }, [sourceImageData, useAI, selectedBg, tolerance, outputFormat]);
 
   // Download
   const handleDownload = useCallback(() => {
     if (!resultUrl) return;
     const a = document.createElement("a");
     a.href = resultUrl;
-    const ext = outputFormat === "webp" ? "webp" : "png";
-    a.download = `removed-bg-${Date.now()}.${ext}`;
+    a.download = `no-background.${outputFormat}`;
     a.click();
   }, [resultUrl, outputFormat]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Error */}
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">
-          ⚠️ {error}
+        <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm flex items-start gap-2">
+          <span>⚠️</span>
+          <span>{error}</span>
         </div>
       )}
 
-      {/* Upload */}
+      {/* Upload Area */}
       <Card className="p-6">
         <div
-          className="border-2 border-dashed border-gray-300 rounded-lg p-10 text-center cursor-pointer hover:border-blue-400 transition-colors group"
+          className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 transition-colors group"
           onClick={() => fileInputRef.current?.click()}
         >
           <input
@@ -157,161 +177,233 @@ export function BackgroundRemovalTool() {
             onChange={handleFileSelect}
           />
           {sourceImage ? (
-            <div>
+            <div className="space-y-3">
               <img
                 src={sourceImage.src}
-                alt="Uploaded"
-                className="max-h-48 mx-auto rounded-lg shadow-sm mb-3"
+                alt="Uploaded image"
+                className="max-h-48 mx-auto rounded-lg shadow-sm"
               />
-              <p className="text-green-600 font-semibold">✓ Image Loaded</p>
-              <p className="text-xs text-gray-500 mt-1">
-                {sourceImage.naturalWidth} × {sourceImage.naturalHeight} · Click to replace
+              <p className="text-sm text-green-600 font-medium">
+                ✓ {sourceImage.naturalWidth} × {sourceImage.naturalHeight}px — Click to replace
               </p>
             </div>
           ) : (
-            <div>
-              <div className="mb-3">
-                <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <p className="text-lg font-medium text-gray-700">Upload Image</p>
-              <p className="text-sm text-gray-500">JPG / PNG / WebP · Any background</p>
+            <div className="py-4">
+              <svg
+                className="mx-auto h-12 w-12 text-gray-400 group-hover:text-blue-400 transition-colors mb-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <p className="text-lg font-medium text-gray-700">Upload an image</p>
+              <p className="text-sm text-gray-500 mt-1">JPG, PNG, WebP — Any background works</p>
             </div>
           )}
         </div>
       </Card>
 
-      {/* Settings */}
+      {/* Settings + Process Button */}
       {stage !== "idle" && (
-        <Card className="p-6 space-y-6">
-          <Tabs value={useHighQuality ? "hd" : "fast"} onValueChange={(v) => setUseHighQuality(v === "hd")}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="fast">⚡ Fast (ISNet, 5MB)</TabsTrigger>
-              <TabsTrigger value="hd">✨ HD Quality (RMBG-1.4, 170MB)</TabsTrigger>
-            </TabsList>
-          </Tabs>
-
-          {/* Background options */}
+        <Card className="p-6 space-y-5">
+          {/* Output Background Color */}
           <div>
             <Label className="font-semibold mb-3 block">Output Background</Label>
-            <Tabs value={bgMode} onValueChange={(v) => setBgMode(v as BgMode)}>
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="transparent">Transparent</TabsTrigger>
-                <TabsTrigger value="solid">Solid Color</TabsTrigger>
-                <TabsTrigger value="custom">Custom Color</TabsTrigger>
-              </TabsList>
-            </Tabs>
-            {bgMode === "solid" && (
-              <div className="mt-3 flex gap-2 items-center">
-                {["#ffffff","#438edb","#d9001b","#1a73e8","#f0f0f0","#000000"].map(c => (
-                  <button
-                    key={c}
-                    className={`w-9 h-9 rounded-full border-2 ${solidColor === c ? "border-blue-500" : "border-gray-300"}`}
-                    style={{ backgroundColor: c }}
-                    onClick={() => setSolidColor(c)}
-                  />
-                ))}
-              </div>
-            )}
-            {bgMode === "custom" && (
-              <div className="mt-3 flex gap-2 items-center">
-                <input type="color" value={customColor} onChange={(e) => setCustomColor(e.target.value)} className="w-12 h-9 rounded border cursor-pointer" />
-                <span className="text-sm text-gray-500">{customColor}</span>
-              </div>
-            )}
+            <div className="flex flex-wrap gap-3 items-center">
+              {BG_COLORS.map((c, i) => (
+                <button
+                  key={c.name}
+                  className={`w-11 h-11 rounded-full border-2 transition-all hover:scale-110 relative flex items-center justify-center ${
+                    selectedBg === i
+                      ? "border-blue-500 shadow-md ring-2 ring-blue-100"
+                      : c.value === null
+                        ? "border-gray-300 bg-gradient-to-br from-white via-gray-100 to-gray-300 hover:border-gray-400"
+                        : "border-gray-300 hover:border-gray-400"
+                  }`}
+                  style={c.value !== null ? { backgroundColor: c.value } : undefined}
+                  onClick={() => setSelectedBg(i)}
+                  title={c.name}
+                  aria-label={`Background: ${c.name}`}
+                >
+                  {c.value === null && (
+                    <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-gray-500 mt-1.5">{BG_COLORS[selectedBg].name}</p>
           </div>
 
-          {/* Output format */}
+          {/* Format Selection */}
           <div>
-            <Label className="font-semibold mb-3 block">Output Format</Label>
-            <Tabs value={outputFormat} onValueChange={(v) => setOutputFormat(v as OutputFormat)}>
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="png">PNG (Lossless)</TabsTrigger>
-                <TabsTrigger value="webp">WebP (Smaller)</TabsTrigger>
-              </TabsList>
-            </Tabs>
+            <Label className="font-semibold mb-2 block">Output Format</Label>
+            <div className="flex gap-2">
+              {(["png", "webp"] as const).map((fmt) => (
+                <button
+                  key={fmt}
+                  onClick={() => setOutputFormat(fmt)}
+                  className={`px-4 py-1.5 rounded-md border text-sm font-medium transition-all ${
+                    outputFormat === fmt
+                      ? "border-blue-500 bg-blue-50 text-blue-700"
+                      : "border-gray-200 hover:bg-gray-50 text-gray-600"
+                  }`}
+                >
+                  {fmt.toUpperCase()}{fmt === "png" && selectedBg === 0 ? " (transparent)" : ""}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Process */}
-          <Button onClick={handleProcess} disabled={stage === "processing"} size="lg" className="w-full text-base py-6">
+          {/* Advanced Options */}
+          <details className="group">
+            <summary className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 select-none">
+              Advanced Options
+              <svg className="ml-1 inline h-4 w-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </summary>
+            <div className="mt-3 space-y-3 pl-2 border-l-2 border-gray-100">
+              {/* AI Toggle */}
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-lg border border-purple-100">
+                <Switch checked={useAI} onCheckedChange={setUseAI} />
+                <div>
+                  <Label className="text-sm font-medium">✨ AI Background Removal</Label>
+                  <p className="text-xs text-gray-500 max-w-xs">
+                    Uses ML model for professional results with any photo.
+                    First use downloads ~5MB model (~once).
+                  </p>
+                </div>
+              </div>
+
+              {!useAI && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <Label className="text-sm">Sensitivity (legacy mode)</Label>
+                    <span className="text-xs text-gray-500">{tolerance}</span>
+                  </div>
+                  <Slider
+                    value={[tolerance]}
+                    onValueChange={([v]) => setTolerance(v)}
+                    min={10}
+                    max={100}
+                    step={5}
+                    className="w-full max-w-sm"
+                  />
+                </div>
+              )}
+            </div>
+          </details>
+
+          {/* Process Button */}
+          <Button
+            onClick={handleProcess}
+            disabled={!sourceImageData || stage === "processing"}
+            size="lg"
+            className="w-full text-base py-5"
+          >
             {stage === "processing" ? (
               <span className="flex items-center gap-2">
                 <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                 </svg>
                 {progressLabel || "Processing…"}
               </span>
             ) : (
-              <>🪄 Remove Background</>
+              <>
+                <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121M16 4H4a2 2 0 00-2 2v12a2 2 0 002 2h12" />
+                </svg>
+                Remove Background{useAI ? " (AI)" : ""}
+              </>
             )}
           </Button>
 
           {stage === "processing" && (
             <div>
               <Progress value={progress} />
-              <p className="text-xs text-gray-500 mt-1.5 text-center">{progress}% — {progressLabel}</p>
+              <p className="text-xs text-gray-500 mt-1.5 text-center">
+                {progress}% — {progressLabel}
+              </p>
             </div>
           )}
         </Card>
       )}
 
-      {/* Result */}
+      {/* Result Preview & Download */}
       {stage === "done" && resultUrl && (
         <Card className="p-6 space-y-5">
-          <h3 className="font-semibold text-lg">✅ Background Removed!</h3>
-          <div className="rounded-lg border overflow-hidden bg-[repeating-conic-gradient(#ccc_0%_25%,#fff_0%_50%)] p-4">
-            <img src={resultUrl} alt="Result" className="max-w-full mx-auto" style={{ imageRendering: "auto" }} />
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold text-lg">Background Removed!</h3>
+            <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
+              ✓ Done
+            </span>
           </div>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-500 font-medium">Original</p>
+              <div className="rounded-lg border overflow-hidden bg-gray-50 p-1">
+                {sourceImage && (
+                  <img src={sourceImage.src} alt="Original" className="max-w-full mx-auto rounded" />
+                )}
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-500 font-medium">Result ({outputFormat.toUpperCase()})</p>
+              <div
+                className="rounded-lg border-2 border-green-200 overflow-hidden p-1 min-h-[120px] flex items-center justify-center"
+                style={
+                  BG_COLORS[selectedBg]?.value === null
+                    ? { backgroundImage: "repeating-conic-gradient(#ddd 0% 25%, #eee 0% 50%) 50% / 16px 16px" }
+                    : { backgroundColor: "#fff" }
+                }
+              >
+                <img src={resultUrl} alt="Result" className="max-w-full mx-auto rounded" />
+              </div>
+            </div>
+          </div>
+
           <div className="flex gap-3">
-            <Button onClick={handleDownload} size="lg" className="flex-1">⬇ Download</Button>
+            <Button onClick={handleDownload} size="lg" className="flex-1">
+              <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download {outputFormat.toUpperCase()}
+            </Button>
             <Button variant="outline" size="lg" onClick={() => { setResultUrl(null); setStage("ready"); }}>
-              Process Another
+              Try Again
+            </Button>
+            <Button variant="outline" size="lg" onClick={() => {
+              setSourceImage(null);
+              setSourceImageData(null);
+              setResultUrl(null);
+              setStage("idle");
+              if (fileInputRef.current) fileInputRef.current.value = "";
+            }}>
+              New Image
             </Button>
           </div>
         </Card>
       )}
 
-      <canvas ref={canvasRef} className="hidden" aria-hidden="true" />
-
+      {/* Privacy note */}
       <p className="text-center text-xs text-gray-400 max-w-md mx-auto">
-        🔒 All processing runs in your browser.{" "}
-        {useHighQuality
-          ? "RMBG-1.4 model (~170MB) is downloaded once and cached locally."
-          : "ISNet model (~5MB) downloads quickly on first use."}
+        🔒{" "}
+        {useAI ? (
+          <>AI processing runs in your browser using ONNX Runtime. Your images are never uploaded. A ~5MB model is downloaded once and cached locally.</>
+        ) : (
+          <>All processing happens in your browser using Canvas API. Your images are never uploaded.</>
+        )}
       </p>
     </div>
   );
-}
-
-export default BackgroundRemovalTool;
-
-// ─── Helpers ───────────────────────────────────────────────────────────────
-
-/** Apply solid background color to canvas with alpha */
-function applySolidBackground(
-  canvasWithAlpha: HTMLCanvasElement,
-  hexColor: string
-): HTMLCanvasElement {
-  const ctx = canvasWithAlpha.getContext("2d")!;
-  const W = canvasWithAlpha.width;
-  const H = canvasWithAlpha.height;
-  const imgData = ctx.getImageData(0, 0, W, H);
-  const bgR = parseInt(hexColor.slice(1, 3), 16);
-  const bgG = parseInt(hexColor.slice(3, 5), 16);
-  const bgB = parseInt(hexColor.slice(5, 7), 16);
-  const result = new ImageData(W, H);
-  for (let i = 0; i < W * H; i++) {
-    const idx = i * 4;
-    const a = imgData.data[idx + 3] / 255;
-    result.data[idx]     = Math.round(a * imgData.data[idx]     + (1 - a) * bgR);
-    result.data[idx + 1] = Math.round(a * imgData.data[idx + 1] + (1 - a) * bgG);
-    result.data[idx + 2] = Math.round(a * imgData.data[idx + 2] + (1 - a) * bgB);
-    result.data[idx + 3] = 255;
-  }
-  const out = document.createElement("canvas");
-  out.width = W; out.height = H;
-  out.getContext("2d")!.putImageData(result, 0, 0);
-  return out;
 }

@@ -37,7 +37,6 @@ export function IDPhotoTool() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [useML, setUseML] = useState(true);
-  const [useHighQuality, setUseHighQuality] = useState(false);
 
   // Processing options
   const [selectedSize, setSelectedSize] = useState(0);
@@ -88,7 +87,6 @@ export function IDPhotoTool() {
 
       if (useML) {
         // ── Primary: ML-based background removal ──
-        // Default: ISNet (5MB, fast). Optionally use RMBG-1.4 (170MB) for best quality.
         try {
           setProgressLabel("Loading AI model…");
           withAlpha = await removeBackgroundML(sourceImageData, {
@@ -98,7 +96,6 @@ export function IDPhotoTool() {
               else if (p < 85) setProgressLabel("Processing with AI…");
               else setProgressLabel("Finalizing…");
             },
-            model: useHighQuality ? "rmbg" : "isnet",
           });
         } catch (mlErr) {
           console.warn("ML background removal failed, falling back:", mlErr);
@@ -315,9 +312,8 @@ export function IDPhotoTool() {
                     ✨ AI Background Removal
                   </Label>
                   <p className="text-xs text-gray-500 max-w-xs">
-                    Uses <strong>RMBG-1.4</strong> (98.7% edge accuracy) for
-                    professional-quality results with any photo. First use downloads
-                    ~170MB model, cached locally.
+                    Uses an ML model for professional-quality results with any
+                    photo. First use downloads ~5MB model.
                   </p>
                 </div>
               </div>
@@ -510,9 +506,7 @@ export function IDPhotoTool() {
         🔒{" "}
         {useML ? (
           <>
-            AI processing runs in your browser using the RMBG-1.4 ML model
-            (Transformers.js + ONNX Runtime). Your photos are never uploaded to any server.
-            A ~170MB model is downloaded once and cached locally.
+            AI processing runs in your browser using ONNX Runtime. Your photos are never uploaded to any server. A ~5MB model is downloaded once and cached locally.
           </>
         ) : (
           <>

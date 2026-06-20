@@ -213,16 +213,38 @@ function isAlternativesCategory(categoryName: string): boolean {
 
 // ── 静态生成参数 ─────────────────────────
 export async function generateStaticParams() {
-  // Only pre-render top 5 categories (reduce build volume, rest via ISR)
-  const categories = getAllCategories().slice(0, 5);
+  const categories = getAllCategories();
+  const altCats = getAlternativesCategories();
   const params: { slug: string }[] = [];
-  
+
   for (const cat of categories) {
     params.push({ slug: toSlug(cat.name) });
     params.push({ slug: `${toSlug(cat.name)}-2026` });
+    params.push({ slug: toSlug(cat.id) });
+    params.push({ slug: `${toSlug(cat.id)}-2026` });
   }
-  
-  return params;
+
+  for (const cat of altCats) {
+    params.push({ slug: toSlug(cat.name) });
+    params.push({ slug: `${toSlug(cat.name)}-2026` });
+    // 同时生成 "{Name} Tools" 风格 slug（用户自然访问方式）
+    const toolsSlug = toSlug(cat.name + " Tools");
+    params.push({ slug: toolsSlug });
+    params.push({ slug: `${toolsSlug}-2026` });
+  }
+
+  // ✅ 新增：也生成 home-blocks.json 中的 block ID
+  const blocks = getHomeBlocks();
+  for (const block of blocks) {
+    params.push({ slug: block.id });
+    params.push({ slug: `${block.id}-2026` });
+  }
+
+  // 去重：FMHY 和 alternatives 可能产生相同 slug
+  const unique = params.filter(
+    (p, i, arr) => arr.findIndex((x) => x.slug === p.slug) === i
+  );
+  return unique;
 }
 
 // ── Metadata ─────────────────────────

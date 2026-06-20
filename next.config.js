@@ -56,8 +56,8 @@ const nextConfig = {
   // Enable compression for smaller transfer size
   compress: true,
 
-  // output: 'standalone', // 禁用：standalone 会把所有服务端依赖打进一个包，容易超 Vercel 250MB 限制
-  // 让 Vercel 用自己的函数拆分（每个动态路由独立 Lambda）
+  // Standalone output for smaller deployment size (reduces node_modules)
+  output: 'standalone',
 
   // Incremental Static Regeneration (ISR) global config
   // Individual pages can override with their own revalidate
@@ -73,30 +73,6 @@ const nextConfig = {
 
   // Transpile ESM packages for webpack
   transpilePackages: ["@prisma/client", "tegaki"],
-
-  // Exclude heavy ML libraries from server-side bundles (Vercel 250MB limit)
-  // webpack.externals is the most reliable way to keep ML libs out of serverless functions
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.externals = config.externals || [];
-      // Mark ML packages + their heavy native deps as external
-      const mlPackages = [
-        "@huggingface/transformers",
-        "@imgly/background-removal",
-        "onnxruntime-node",
-        "onnxruntime-web",
-      ];
-      for (const pkg of mlPackages) {
-        config.externals.push(({ request }, callback) => {
-          if (request === pkg || request?.startsWith(pkg + "/")) {
-            return callback(null, `commonjs ${pkg}`);
-          }
-          callback();
-        });
-      }
-    }
-    return config;
-  },
 
   // Env vars required for build (Ghost CMS)
   env: {

@@ -37,8 +37,7 @@ const DATE_MODIFIED = "2026-06-09";
 
 export async function generateStaticParams() {
   const categories = getAllCategories();
-  // 只预渲染前 20 个热门分类（减少 build 体积）
-  return categories.slice(0, 20).map((cat) => ({ category: cat.id }));
+  return categories.map((cat) => ({ category: cat.id }));
 }
 
 export async function generateMetadata({

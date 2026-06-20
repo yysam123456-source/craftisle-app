@@ -56,8 +56,8 @@ const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', '
 export const revalidate = 21600; // 6小时 ISR
 export const dynamicParams = true;
 export async function generateStaticParams() {
-  // 只预渲染前 10 个热门资源（减少 build 体积，其余 ISR）
-  const top = getHotResourcesByScore(10);
+  // 按综合评分取 TOP 50 预渲染（覆盖首页各板块展示的资源）
+  const top = getHotResourcesByScore(50);
   return top.map((r) => ({ id: r.id }));
 }
 
