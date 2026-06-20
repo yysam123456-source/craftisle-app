@@ -26,7 +26,6 @@ function loadReviewSlugs(): string[] {
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     { url: `${baseUrl}/`, priority: 1.0, changeFreq: "daily" as const },
-    { url: `${baseUrl}/games`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/tools`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/search`, priority: 0.6, changeFreq: "weekly" as const },
@@ -123,13 +122,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const otherPages = [
-    url: `${baseUrl}/directory/domain/${d.id}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
-
-  const otherPages = [
     { url: `${baseUrl}/compare`, priority: 0.6, changeFreq: "monthly" as const },
   ].map((r) => ({
     url: r.url,
@@ -169,7 +161,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...categoryPages,
-    ...domainPages,
     ...resourceDetailPages,
     ...multiLangPages,
     ...alternativePages,
@@ -178,7 +169,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...guidePages,
     ...reviewPages,
     ...toolBlogPages,
-    ...playPages,
     ...otherPages,
     ...toolPages,
   ];
