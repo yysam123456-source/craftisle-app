@@ -150,6 +150,13 @@
   50%      { transform: translateX(20px); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+  25%      { transform: translateY(-12px) translateX(6px); opacity: 0.7; }
+  50%      { transform: translateY(-20px) translateX(-4px); opacity: 0.5; }
+  75%      { transform: translateY(-8px) translateX(8px); opacity: 0.6; }
+}
+
 .animate-gradient-shift {
   animation: gradient-shift 8s ease infinite;
   background-size: 200% 200%;

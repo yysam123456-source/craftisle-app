@@ -8,12 +8,11 @@ import {
 } from "@/components/ui/glass-card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import AnimatedBeam from "@/components/animata/background/animated-beam";
 import AnimatedGradientText from "@/components/animata/text/animated-gradient-text";
-import TypingText from "@/components/animata/text/typing-text";
 import {
   ArrowRight, Search, Sparkles, Zap, TrendingUp,
   Bot, Shield, Film, Gamepad2, Terminal, Code, Lock,
+  Package, FolderOpen, RefreshCw,
   BotMessageSquare, ShieldQuestion, Smartphone, Download,
   BookOpen, HardDrive, Tv, Code2, Globe,
   Wrench, Music, Image as ImgIcon, Palette,
@@ -221,74 +220,101 @@ export default function IndexPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
 
-      {/* ═══ Hero 区 ══════════════════════════════════════ */}
-      {/* Animata AnimatedBeam 背景 + 包裹 Hero 内容 */}
-      <AnimatedBeam
-        className="py-20 sm:py-28 lg:py-32"
-      >
+      {/* ═══ Hero 区（浅色系） ═══════════════════════════════ */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/40 py-20 sm:py-28 lg:py-32">
+        {/* 装饰性浮动圆点 */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div className="absolute left-[10%] top-[15%] h-72 w-72 rounded-full bg-blue-200/20 blur-3xl animate-pulse" />
+          <div className="absolute right-[15%] top-[25%] h-96 w-96 rounded-full bg-violet-200/20 blur-3xl animate-pulse [animation-delay:2s]" />
+          <div className="absolute bottom-[10%] left-[20%] h-64 w-64 rounded-full bg-cyan-200/20 blur-3xl animate-pulse [animation-delay:4s]" />
+          <div className="absolute right-[30%] bottom-[20%] h-48 w-48 rounded-full bg-pink-200/15 blur-3xl animate-pulse [animation-delay:3s]" />
+          {/* 散落小点 */}
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full opacity-40"
+              style={{
+                width: `${Math.random() * 6 + 3}px`,
+                height: `${Math.random() * 6 + 3}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                background: ["#93c5fd", "#c4b5fd", "#67e8f9", "#f9a8d4", "#a78bfa"][i % 5],
+                animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 5}s`,
+              }}
+            />
+          ))}
+        </div>
+
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            {/* 标签 — 带图标动画感 */}
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/5 px-5 py-2 text-sm font-medium text-primary backdrop-blur-sm">
+            {/* 标签 */}
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-5 py-2 text-sm font-medium text-emerald-700">
               <Sparkles className="h-4 w-4" />
-              16,000+ Free &amp; Open-Source Software
+              100% Free &amp; Open-Source
               <Zap className="h-3.5 w-3.5" />
             </div>
 
-            {/* 主标题 — Animata 渐变动效 */}
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
-              Find Free &amp;{" "}
+            {/* 主标题 */}
+            <h1 className="text-4xl font-extrabold tracking-tight text-slate-800 sm:text-5xl lg:text-7xl">
+              Find the best{" "}
               <AnimatedGradientText className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
-                Open-Source
+                free tools
               </AnimatedGradientText>{" "}
-              Software
+              for any task
             </h1>
 
-            {/* 副标题 — TypingText 打字动效 */}
-            <div className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              <TypingText
-                text="Search 16,000+ free tools, find alternatives, compare software — all in one place."
-                smooth={true}
-                delay={80}
-                className="text-lg sm:text-xl text-muted-foreground"
-              />
-              <span className="font-medium text-foreground"> Free games &amp; online tools included.</span>
+            {/* 副标题 */}
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-500 sm:text-xl">
+              Search 16,000+ curated tools across 200+ categories.
+              Always free, no signup required.
+            </p>
+
+            {/* 统计数字 */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+              <span className="inline-flex items-center gap-1.5">
+                <Package className="h-4 w-4 text-amber-500" /> 16,000+ tools
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <FolderOpen className="h-4 w-4 text-blue-500" /> 200+ categories
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <RefreshCw className="h-4 w-4 text-green-500" /> Updated weekly
+              </span>
             </div>
 
-            {/* 搜索框 — 发光效果 */}
-            <div className="mx-auto mt-12 max-w-2xl">
+            {/* 搜索框 */}
+            <div className="mx-auto mt-10 max-w-2xl">
               <form action="/directory/search" method="GET" className="group relative">
-                <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500 opacity-25 blur-sm transition-opacity group-focus-within:opacity-50" />
-                <div className="relative flex gap-2 rounded-xl border border-border bg-background/80 p-1.5 shadow-lg shadow-black/5 backdrop-blur-md">
+                <div className="relative flex gap-2 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50 transition-shadow group-focus-within:ring-2 group-focus-within:ring-blue-400/20 group-focus-within:border-blue-300 group-focus-within:shadow-md">
                   <div className="relative flex-1">
-                    <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground transition-colors group-focus-within:text-primary" />
+                    <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400 transition-colors group-focus-within:text-blue-500" />
                     <input
                       type="text"
                       name="q"
-                      placeholder='Try: "video downloader", "adblock", "AI chat"...'
-                      className="w-full rounded-lg bg-transparent py-3 pl-11 pr-4 text-sm outline-none placeholder:text-muted-foreground/60"
+                      placeholder='Search resources by name, description, or URL...'
+                      className="w-full rounded-xl bg-transparent py-3.5 pl-11 pr-4 text-sm text-slate-800 outline-none placeholder:text-slate-400"
                     />
                   </div>
                   <Button
                     type="submit"
                     size="lg"
-                    className="rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 px-8 font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:shadow-xl hover:shadow-blue-500/30 hover:brightness-110"
+                    className="rounded-xl bg-slate-800 px-7 font-semibold text-white shadow-sm transition-all hover:bg-slate-900 hover:shadow-md"
                   >
                     Search
-                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </form>
 
-              {/* Hot searches */}
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+              {/* Hot searches — 浅色可见 */}
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
                 <TrendingUp className="h-3.5 w-3.5" />
-                <span>Trending:</span>
-                {["video downloader", "adblock", "AI tools", "games"].map((term) => (
+                <span>Popular:</span>
+                {["AI Tools", "Development", "Design", "Privacy", "Learning", "DevOps"].map((term) => (
                   <Link
                     key={term}
-                    href={`/directory/search?q=${encodeURIComponent(term)}`}
-                    className="rounded-full bg-muted/60 px-2.5 py-0.5 font-medium transition-colors hover:bg-primary/10 hover:text-primary"
+                    href={`/directory/search?q=${encodeURIComponent(term.toLowerCase())}`}
+                    className="rounded-full border border-slate-200 bg-white px-3 py-1 font-medium text-slate-600 shadow-xs transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
                   >
                     {term}
                   </Link>
@@ -296,33 +322,23 @@ export default function IndexPage() {
               </div>
             </div>
 
-            {/* 快速入口标签云 — 渐变图标圆球 */}
+            {/* 快速入口标签 */}
             <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-2.5">
               {[
-                { label: "AI Tools", href: "/directory/best/artificial-intelligence", icon: Bot, gradientFrom: "#3b82f6", gradientTo: "#8b5cf6", bgLight: "bg-blue-50 dark:bg-blue-950/30" },
-                { label: "Adblock", href: "/directory/best/adblock", icon: Shield, gradientFrom: "#ef4444", gradientTo: "#f97316", bgLight: "bg-red-50 dark:bg-red-950/30" },
-                { label: "Video Editing", href: "/directory/search?q=video+editing", icon: Film, gradientFrom: "#ec4899", gradientTo: "#a855f7", bgLight: "bg-pink-50 dark:bg-pink-950/30" },
-                { label: "Games", href: "https://game.craftisle.com", icon: Gamepad2, gradientFrom: "#a855f7", gradientTo: "#ec4899", bgLight: "bg-purple-50 dark:bg-purple-950/30" },
-                { label: "Linux", href: "/directory/Linux", icon: Terminal, gradientFrom: "#f97316", gradientTo: "#eab308", bgLight: "bg-orange-50 dark:bg-orange-950/30" },
-                { label: "Dev Tools", href: "/directory/best/development", icon: Code, gradientFrom: "#3b82f6", gradientTo: "#06b6d4", bgLight: "bg-cyan-50 dark:bg-cyan-950/30" },
-                { label: "Privacy", href: "/directory/best/privacy", icon: Lock, gradientFrom: "#22c55e", gradientTo: "#10b981", bgLight: "bg-green-50 dark:bg-green-950/30" },
+                { label: "AI Tools", href: "/directory/best/artificial-intelligence", icon: Bot, color: "bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100" },
+                { label: "Adblock", href: "/directory/best/adblock", icon: Shield, color: "bg-red-50 text-red-600 border-red-200 hover:bg-red-100" },
+                { label: "Video Editing", href: "/directory/search?q=video+editing", icon: Film, color: "bg-pink-50 text-pink-600 border-pink-200 hover:bg-pink-100" },
+                { label: "Games", href: "https://game.craftisle.com", icon: Gamepad2, color: "bg-violet-50 text-violet-600 border-violet-200 hover:bg-violet-100" },
+                { label: "Linux", href: "/directory/Linux", icon: Terminal, color: "bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100" },
+                { label: "Dev Tools", href: "/directory/best/development", icon: Code, color: "bg-cyan-50 text-cyan-600 border-cyan-200 hover:bg-cyan-100" },
+                { label: "Privacy", href: "/directory/best/privacy", icon: Lock, color: "bg-green-50 text-green-600 border-green-200 hover:bg-green-100" },
               ].map((entry) => {
                 const Icon = entry.icon;
                 return (
                   <Link key={entry.href} href={entry.href}>
-                    <span className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-border/60 bg-background/80 px-4 py-2 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/25 hover:bg-background hover:shadow-md hover:-translate-y-0.5">
-                      {/* 渐变图标圆球 */}
-                      <span className={`flex h-7 w-7 items-center justify-center rounded-xl ${entry.bgLight} shadow-sm ring-1 ring-black/[0.04] transition-all duration-300 group-hover:scale-110 group-hover:shadow-md`}>
-                        <Icon
-                          className="h-3.5 w-3.5"
-                          style={{
-                            background: `linear-gradient(135deg, ${entry.gradientFrom}, ${entry.gradientTo})`,
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                          }}
-                        />
-                      </span>
-                      <span className="text-sm font-semibold text-foreground/80 group-hover:text-foreground transition-colors">{entry.label}</span>
+                    <span className={`group inline-flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md ${entry.color}`}>
+                      <Icon className="h-4 w-4" />
+                      {entry.label}
                     </span>
                   </Link>
                 );
@@ -330,7 +346,7 @@ export default function IndexPage() {
             </div>
           </div>
         </div>
-      </AnimatedBeam>
+      </section>
 
       {/* ── 广告：Hero 下方（仅生产环境渲染占位）───────── */}
       {process.env.NODE_ENV === "production" && (

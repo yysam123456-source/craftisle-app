@@ -170,11 +170,14 @@ export function FeaturedTools() {
                           }}
                         />
                       </div>
-                      <h3 className="flex-1 text-lg font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text sm:text-xl"
+                      <h3
+                        className="flex-1 text-lg font-bold tracking-tight text-slate-800 transition-all duration-300 sm:text-xl group-hover:text-transparent"
                         style={{
-                          "--hover-from": tool.gradientFrom,
-                          "--hover-to": tool.gradientTo,
-                        } as React.CSSProperties}
+                          background: `linear-gradient(135deg, ${tool.gradientFrom}, ${tool.gradientTo})`,
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }}
                       >
                         {tool.title}
                       </h3>

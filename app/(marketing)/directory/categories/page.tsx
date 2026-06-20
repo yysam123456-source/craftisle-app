@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { getAllCategories, getAllResources } from "@/lib/fmhy-data";
-import { ArrowRight, LayoutGrid, FolderOpen } from "lucide-react";
+import { ArrowRight, LayoutGrid, FolderOpen,
+  BotMessageSquare, ShieldQuestion, Smartphone, Download,
+  BookOpen, Gamepad2, Terminal, HardDrive, Tv, Lock,
+  Code2, Globe, Wrench, Film, Music, Image as ImgIcon,
+  Palette, Cloud, Cpu, Database, MapPin, Landmark,
+  GraduationCap, Workflow,
+  type LucideProps
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -8,22 +15,36 @@ import { cn } from "@/lib/utils";
  * 升级：玻璃拟态 + 渐变图标 + hover 动效
  */
 
-// 分类图标映射（使用 lucide-react）
-import type { LucideProps } from "lucide-react";
-import {
-  BotMessageSquare,
-  ShieldQuestion,
-  Smartphone,
-  Download,
-  BookOpen,
-  Gamepad2,
-  Terminal,
-  HardDrive,
-  Tv,
-  Lock,
-  Code2,
-  Globe,
-} from "lucide-react";
+// ── 智能图标匹配（与 top-categories.tsx 保持一致）────────
+function normalizeForMatch(id: string): string {
+  return id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function getCategoryIcon(id: string, name: string): React.FC<LucideProps> {
+  if (CATEGORY_ICON_MAP[id]) return CATEGORY_ICON_MAP[id];
+  const norm = normalizeForMatch(id);
+  for (const [key, icon] of Object.entries(CATEGORY_ICON_MAP)) {
+    if (normalizeForMatch(key) === norm) return icon;
+  }
+  const lower = (id + ' ' + name).toLowerCase();
+  if (/ai|ml|machine|learning/.test(lower)) return BotMessageSquare;
+  if (/api|data/.test(lower)) return Database;
+  if (/dev|program|code/.test(lower)) return Code2;
+  if (/game|comic/.test(lower)) return Gamepad2;
+  if (/gov|government|law|legal/.test(lower)) return Landmark;
+  if (/cloud|host|server/.test(lower)) return Cloud;
+  if (/team|collab|communic/.test(lower)) return Workflow;
+  if (/geo|map|location|transport/.test(lower)) return MapPin;
+  if (/security|priv|vpn|block/.test(lower)) return ShieldQuestion;
+  if (/video|stream|movie/.test(lower)) return Film;
+  if (/music|audio/.test(lower)) return Music;
+  if (/image|photo|design/.test(lower)) return ImgIcon;
+  if (/book|read|edu|learn/.test(lower)) return BookOpen;
+  if (/download|file|storage/.test(lower)) return HardDrive;
+  if (/mobile|phone|android|ios/.test(lower)) return Smartphone;
+  if (/linux|terminal|shell/.test(lower)) return Terminal;
+  return Globe;
+}
 
 const CATEGORY_ICON_MAP: Record<string, React.FC<LucideProps>> = {
   'Artificial-Intelligence': BotMessageSquare,
@@ -65,7 +86,7 @@ export default function CategoriesPage() {
     .map(cat => ({
       ...cat,
       count: resources.filter(r => r.category === cat.id).length,
-      icon: CATEGORY_ICON_MAP[cat.id] || Globe,
+      icon: getCategoryIcon(cat.id, cat.name || cat.id),
       gradient: CATEGORY_GRADIENT_MAP[cat.id] || { from: "#6b7280", to: "#9ca3af" },
     }))
     .sort((a, b) => b.count - a.count);
@@ -142,11 +163,14 @@ export default function CategoriesPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text sm:text-lg"
+                        <h3
+                          className="flex-1 text-base font-bold tracking-tight text-slate-800 transition-all duration-300 sm:text-lg"
                           style={{
-                            "--hover-from": gradient.from,
-                            "--hover-to": gradient.to,
-                          } as React.CSSProperties}
+                            background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text",
+                          }}
                         >
                           {cat.name}
                         </h3>
