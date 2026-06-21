@@ -245,11 +245,17 @@ export default function HandwritingAnimationTool() {
       } else {
         // ── GIF export (canvas → frames → gif.js) ──
         setExportProgress("Loading GIF encoder...");
+        // gif.js is UMD — must handle both ESM import and global fallback
         // @ts-ignore — CDN import, no local types
-        const Gif = (await import(/* webpackIgnore: true */ "https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js")).default;
+        const gifModule = await import(/* webpackIgnore: true */ "https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js");
+        // UMD libraries may export as .default, .GIF, or attach to window
+        const GifCtor = (gifModule.default || gifModule.GIF || (window as any).GIF || gifModule);
+        if (typeof GifCtor !== "function") {
+          throw new Error("GIF encoder failed to load (CDN unavailable?)");
+        }
         setExportProgress("Capturing frames...");
 
-        const gif = new Gif({
+        const gif = new GifCtor({
           workers: 2,
           quality: 10,
           width: canvas.width / (window.devicePixelRatio || 1),
