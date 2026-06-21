@@ -150,7 +150,7 @@ export async function preloadRMBG(
 
   const tf = await getTFModule();
   const { AutoModel, AutoProcessor, RawImage } = tf;
-  const modelId = "Xenova/u2net-human-seg";
+  const modelId = "briaai/RMBG-1.4";
 
   onProgress?.("Downloading model weights…", 10);
   const processor = await AutoProcessor.from_pretrained(modelId, {
@@ -189,6 +189,7 @@ export async function removeBackgroundRMBG(
 ): Promise<ImageData> {
   const { onProgress } = options;
   onProgress?.(5);
+  console.log("[RMBG] Starting high-precision background removal");
 
   if (!_rmbgPreloaded) {
     await preloadRMBG((msg, pct) => onProgress?.(Math.round(pct * 0.4)));

@@ -115,9 +115,17 @@ export function IDPhotoTool() {
               },
             });
           }
-        } catch (mlErr) {
+        } catch (mlErr: any) {
+          console.error("ML background removal failed:", mlErr);
+          // If user explicitly chose high-precision, show error instead of silent fallback
+          if (bgModel === "high-precision") {
+            throw new Error(
+              `High-precision model failed to load: ${mlErr?.message || mlErr}. ` +
+              `Try selecting "Standard" model instead.`
+            );
+          }
+          // For standard model, fall back silently
           console.warn("ML background removal failed, falling back:", mlErr);
-          // Fall back to legacy algorithm
           setProgressLabel("AI unavailable, using fast mode…");
           withAlpha = removeBackground(sourceImageData, {
             tolerance,

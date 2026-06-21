@@ -107,8 +107,15 @@ export default function BackgroundRemovalTool() {
               },
             });
           }
-        } catch (mlErr) {
-          console.warn("ML background removal failed, falling back:", mlErr);
+        } catch (mlErr: any) {
+          console.warn("ML background removal failed:", mlErr);
+          // If user explicitly chose high-prec, show error instead of silent fallback
+          if (selectedModel === "high-prec") {
+            throw new Error(
+              `High-precision model failed to load: ${mlErr?.message || mlErr}. ` +
+              `Try selecting "Standard" model instead.`
+            );
+          }
           setProgressLabel("AI unavailable, using fast mode…");
           withAlpha = removeBackground(sourceImageData, {
             tolerance,
