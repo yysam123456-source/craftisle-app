@@ -6,6 +6,8 @@ import {
   preloadModel,
   removeBackground,
   applyBackground,
+  removeBackgroundRMBG,
+  preloadRMBG,
 } from "@/lib/idphoto/inference";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -36,6 +38,7 @@ export default function BackgroundRemovalTool() {
 
   // Options
   const [useAI, setUseAI] = useState(true);
+  const [selectedModel, setSelectedModel] = useState<"standard" | "high-prec">("standard");
   const [selectedBg, setSelectedBg] = useState(0); // default transparent
   const [tolerance, setTolerance] = useState(40);
   const [outputFormat, setOutputFormat] = useState<"png" | "webp">("png");
@@ -83,15 +86,27 @@ export default function BackgroundRemovalTool() {
 
       if (useAI) {
         try {
-          setProgressLabel("Loading AI model…");
-          withAlpha = await removeBackgroundML(sourceImageData, {
-            onProgress: (p) => {
-              setProgress(p);
-              if (p < 30) setProgressLabel("Loading AI model…");
-              else if (p < 85) setProgressLabel("Removing background with AI…");
-              else setProgressLabel("Finalizing…");
-            },
-          });
+          if (selectedModel === "high-prec") {
+            setProgressLabel("Loading high-precision model…");
+            withAlpha = await removeBackgroundRMBG(sourceImageData, {
+              onProgress: (p) => {
+                setProgress(p);
+                if (p < 30) setProgressLabel("Loading high-precision model (RMBG-1.4)…");
+                else if (p < 85) setProgressLabel("Removing background with high precision…");
+                else setProgressLabel("Finalizing…");
+              },
+            });
+          } else {
+            setProgressLabel("Loading AI model…");
+            withAlpha = await removeBackgroundML(sourceImageData, {
+              onProgress: (p) => {
+                setProgress(p);
+                if (p < 30) setProgressLabel("Loading AI model…");
+                else if (p < 85) setProgressLabel("Removing background with AI…");
+                else setProgressLabel("Finalizing…");
+              },
+            });
+          }
         } catch (mlErr) {
           console.warn("ML background removal failed, falling back:", mlErr);
           setProgressLabel("AI unavailable, using fast mode…");
@@ -142,7 +157,7 @@ export default function BackgroundRemovalTool() {
       setError(`Processing failed: ${(e as Error).message}`);
       setStage("ready");
     }
-  }, [sourceImageData, useAI, selectedBg, tolerance, outputFormat]);
+  }, [sourceImageData, useAI, selectedModel, selectedBg, tolerance, outputFormat]);
 
   // Download
   const handleDownload = useCallback(() => {
@@ -271,6 +286,36 @@ export default function BackgroundRemovalTool() {
               </svg>
             </summary>
             <div className="mt-3 space-y-3 pl-2 border-l-2 border-gray-100">
+
+              {/* Model Selection */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">AI Model</Label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => setSelectedModel("standard")}
+                    className={`px-3 py-2 rounded-lg border text-sm text-left transition-all ${
+                      selectedModel === "standard"
+                        ? "border-blue-500 bg-blue-50 text-blue-700"
+                        : "border-gray-200 hover:bg-gray-50 text-gray-600"
+                    }`}
+                  >
+                    <div className="font-medium">Standard</div>
+                    <div className="text-xs text-gray-500">ISNet · ~5MB · Fast</div>
+                  </button>
+                  <button
+                    onClick={() => setSelectedModel("high-prec")}
+                    className={`px-3 py-2 rounded-lg border text-sm text-left transition-all ${
+                      selectedModel === "high-prec"
+                        ? "border-purple-500 bg-purple-50 text-purple-700"
+                        : "border-gray-200 hover:bg-gray-50 text-gray-600"
+                    }`}
+                  >
+                    <div className="font-medium">High Precision</div>
+                    <div className="text-xs text-gray-500">RMBG-1.4 · ~170MB · Best quality</div>
+                  </button>
+                </div>
+              </div>
+
               {/* AI Toggle */}
               <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-lg border border-purple-100">
                 <Switch checked={useAI} onCheckedChange={setUseAI} />
@@ -399,7 +444,11 @@ export default function BackgroundRemovalTool() {
       <p className="text-center text-xs text-gray-400 max-w-md mx-auto">
         🔒{" "}
         {useAI ? (
-          <>AI processing runs in your browser using ONNX Runtime. Your images are never uploaded. A ~5MB model is downloaded once and cached locally.</>
+          selectedModel === "high-prec" ? (
+            <>High-precision processing uses <strong>RMBG-1.4</strong> model (~170MB, downloaded once, cached locally). Your images are never uploaded.</>
+          ) : (
+            <>AI processing runs in your browser using ONNX Runtime. Your images are never uploaded. A ~5MB model is downloaded once and cached locally.</>
+          )
         ) : (
           <>All processing happens in your browser using Canvas API. Your images are never uploaded.</>
         )}

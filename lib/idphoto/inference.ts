@@ -1,22 +1,30 @@
 // ID Photo processing engine
-// Primary: @imgly/background-removal (ISNet ML model, browser-side ONNX)
-// Fallback: Canvas color-keying algorithm (for when ML fails or user prefers speed)
-//
-// IMPORTANT: @imgly/background-removal is imported dynamically to prevent
-// webpack from bundling it into the server chunk (would exceed Vercel 250MB limit).
+// Models:
+//   - ISNet (via @imgly/background-removal): fast, general purpose, ~5MB
+//   - RMBG-1.4 (via @huggingface/transformers): high precision, human-focused, ~170MB
+//   - Canvas fallback: color-keying, instant, no quality
 
-// ─── Dynamic module loader (runtime only, webpack cannot statically resolve) ──
+// ─── Dynamic module loaders (runtime only, webpack cannot statically resolve) ──
 
 let _mlModule: typeof import("@imgly/background-removal") | null = null;
+let _tfModule: any = null;
 
 async function getMLModule() {
   if (!_mlModule) {
-    // Variable indirect import — webpack skips this at build time
     const _pkg = "@imgly/background-removal";
     // @ts-ignore — dynamic import, runtime-only
     _mlModule = await import(/* webpackIgnore: true */ _pkg);
   }
   return _mlModule;
+}
+
+async function getTFModule() {
+  if (!_tfModule) {
+    const _pkg = "@huggingface/transformers";
+    // @ts-ignore — dynamic import, runtime-only
+    _tfModule = await import(/* webpackIgnore: true */ _pkg);
+  }
+  return _tfModule;
 }
 
 export interface IDPhotoSize {
@@ -117,6 +125,174 @@ export async function removeBackgroundML(
   const result = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
   onProgress?.(100);
+  return result;
+}
+
+// ─── High-precision model: RMBG-1.4 via transformers.js ──────────────────
+
+/**
+ * Model options for background removal.
+ * - "standard": ISNet (~5MB, fast, general purpose)
+ * - "high-prec": RMBG-1.4 (~170MB, high precision, human-focused)
+ */
+export type BGRemovalModel = "standard" | "high-prec";
+
+let _rmbgModel: { model: any; processor: any } | null = null;
+let _rmbgPreloaded = false;
+
+/** Preload RMBG-1.4 model */
+export async function preloadRMBG(
+  onProgress?: (msg: string, pct: number) => void
+): Promise<void> {
+  if (_rmbgPreloaded) return;
+  onProgress?.("Loading high-precision model (RMBG-1.4)…", 5);
+
+  const tf = await getTFModule();
+  const { AutoModel, AutoProcessor, RawImage } = tf;
+  const modelId = "Xenova/u2net-human-seg";
+
+  onProgress?.("Downloading model weights…", 10);
+  const processor = await AutoProcessor.from_pretrained(modelId, {
+    progress_callback: (p: any) => {
+      if (p.status === "downloading") {
+        onProgress?.(`Downloading ${modelId}…`, 10 + Math.round((p.loaded / Math.max(p.total, 1)) * 40));
+      }
+    },
+  });
+
+  const model = await AutoModel.from_pretrained(modelId, {
+    progress_callback: (p: any) => {
+      if (p.status === "downloading") {
+        onProgress?.(`Downloading ${modelId}…`, 50 + Math.round((p.loaded / Math.max(p.total, 1)) * 35));
+      }
+      if (p.status === "ready") onProgress?.("Model loaded, warming up…", 88);
+    },
+  });
+
+  _rmbgModel = { model, processor };
+  _rmbgPreloaded = true;
+  onProgress?.("High-precision model ready", 100);
+}
+
+interface RemoveBackgroundRMBGOptions {
+  onProgress?: (percent: number) => void;
+}
+
+/**
+ * Remove background using high-precision model (Xenova/u2net-human-seg).
+ * Human-focused, much better edge quality (hair, shoulders, glasses).
+ */
+export async function removeBackgroundRMBG(
+  imageData: ImageData,
+  options: RemoveBackgroundRMBGOptions = {}
+): Promise<ImageData> {
+  const { onProgress } = options;
+  onProgress?.(5);
+
+  if (!_rmbgPreloaded) {
+    await preloadRMBG((msg, pct) => onProgress?.(Math.round(pct * 0.4)));
+  }
+  onProgress?.(45);
+
+  // ImageData → Blob → RawImage
+  const tmpCanvas = document.createElement("canvas");
+  tmpCanvas.width = imageData.width;
+  tmpCanvas.height = imageData.height;
+  tmpCanvas.getContext("2d")!.putImageData(imageData, 0, 0);
+  const blob = await new Promise<Blob>((res) => tmpCanvas.toBlob((b) => res(b!), "image/png"));
+  const imgUrl = URL.createObjectURL(blob);
+
+  onProgress?.(50);
+  const tf = await getTFModule();
+  const { RawImage } = tf;
+  const rawImg = await RawImage.fromURL(imgUrl);
+  URL.revokeObjectURL(imgUrl);
+
+  onProgress?.(55);
+  const { model, processor } = _rmbgModel!;
+  const inputs = await processor(rawImg);
+
+  onProgress?.(65);
+  const outputs = await model(inputs);
+
+  onProgress?.(80);
+
+  // Postprocess: u2net outputs [1,1,H,W] — sigmoid → mask
+  // Extract mask tensor and resize to original image dimensions
+  let maskTensor: any;
+  if (outputs.logits) {
+    maskTensor = outputs.logits;
+  } else if (outputs[0]) {
+    maskTensor = outputs[0];
+  } else {
+    throw new Error("Unknown model output format");
+  }
+
+  // Apply sigmoid to get probability mask
+  const { Tensor } = tf;
+  const sigmoidMask = new Tensor(
+    maskTensor.dims,
+    new Float32Array(maskTensor.data.length).map((_, i) => {
+      const x = maskTensor.data[i];
+      return 1 / (1 + Math.exp(-x));
+    })
+  );
+
+  // Resize mask to original image size using bilinear interpolation
+  const maskData = resizeMaskBilinear(
+    sigmoidMask.data as Float32Array,
+    maskTensor.dims[2], // model output height
+    maskTensor.dims[3], // model output width
+    imageData.height,
+    imageData.width
+  );
+
+  onProgress?.(92);
+
+  // Apply mask as alpha channel
+  const result = new ImageData(imageData.width, imageData.height);
+  for (let i = 0; i < imageData.width * imageData.height; i++) {
+    const idx = i * 4;
+    const alpha = Math.round(maskData[i] * 255);
+    result.data[idx] = imageData.data[idx];
+    result.data[idx + 1] = imageData.data[idx + 1];
+    result.data[idx + 2] = imageData.data[idx + 2];
+    result.data[idx + 3] = alpha;
+  }
+
+  onProgress?.(100);
+  return result;
+}
+
+/** Bilinear resize mask tensor to original image size */
+function resizeMaskBilinear(
+  mask: Float32Array,
+  srcH: number,
+  srcW: number,
+  dstH: number,
+  dstW: number
+): Uint8ClampedArray {
+  const result = new Uint8ClampedArray(dstH * dstW);
+  for (let dy = 0; dy < dstH; dy++) {
+    for (let dx = 0; dx < dstW; dx++) {
+      const sx = (dx + 0.5) * (srcW / dstW) - 0.5;
+      const sy = (dy + 0.5) * (srcH / dstH) - 0.5;
+      const x0 = Math.floor(sx);
+      const y0 = Math.floor(sy);
+      const x1 = Math.min(x0 + 1, srcW - 1);
+      const y1 = Math.min(y0 + 1, srcH - 1);
+      const wx = sx - x0;
+      const wy = sy - y0;
+
+      const v00 = mask[y0 * srcW + x0];
+      const v10 = mask[y1 * srcW + x0];
+      const v01 = mask[y0 * srcW + x1];
+      const v11 = mask[y1 * srcW + x1];
+
+      const val = (1 - wy) * ((1 - wx) * v00 + wx * v01) + wy * ((1 - wx) * v10 + wx * v11);
+      result[dy * dstW + dx] = Math.round(Math.max(0, Math.min(1, val)) * 255);
+    }
+  }
   return result;
 }
 
