@@ -138,41 +138,57 @@ export async function removeBackgroundML(
  */
 export type BGRemovalModel = "standard" | "high-prec";
 
-let _rmbgModel: { model: any; processor: any } | null = null;
+/** Preloaded image-segmentation pipeline for RMBG-1.4 */
+let _rmbgPipeline: any = null;
 let _rmbgPreloaded = false;
 
-/** Preload RMBG-1.4 model */
+/**
+ * Preload RMBG-1.4 high-precision model.
+ * Uses transformers.js pipeline API (handles preprocessing/postprocessing automatically).
+ */
 export async function preloadRMBG(
   onProgress?: (msg: string, pct: number) => void
 ): Promise<void> {
   if (_rmbgPreloaded) return;
+  console.log("[RMBG] Loading briaai/RMBG-1.4 from HuggingFace...");
   onProgress?.("Loading high-precision model (RMBG-1.4)…", 5);
 
-  const tf = await getTFModule();
-  const { AutoModel, AutoProcessor, RawImage } = tf;
-  const modelId = "briaai/RMBG-1.4";
+  try {
+    const tf = await getTFModule();
+    const { pipeline } = tf;
 
-  onProgress?.("Downloading model weights…", 10);
-  const processor = await AutoProcessor.from_pretrained(modelId, {
-    progress_callback: (p: any) => {
-      if (p.status === "downloading") {
-        onProgress?.(`Downloading ${modelId}…`, 10 + Math.round((p.loaded / Math.max(p.total, 1)) * 40));
-      }
-    },
-  });
+    console.log("[RMBG] Creating image-segmentation pipeline...");
+    onProgress?.("Downloading model weights…", 10);
 
-  const model = await AutoModel.from_pretrained(modelId, {
-    progress_callback: (p: any) => {
-      if (p.status === "downloading") {
-        onProgress?.(`Downloading ${modelId}…`, 50 + Math.round((p.loaded / Math.max(p.total, 1)) * 35));
-      }
-      if (p.status === "ready") onProgress?.("Model loaded, warming up…", 88);
-    },
-  });
+    _rmbgPipeline = await pipeline("image-segmentation", "briaai/RMBG-1.4", {
+      device: "wasm",
+      progress_callback: (p: any) => {
+        console.log(`[RMBG] Pipeline: status=${p.status} file=${p.file || "N/A"} ${p.loaded ?? "?"}/${p.total ?? "?"}`);
+        if (p.status === "downloading") {
+          const pct = p.total > 0 ? Math.round((p.loaded / p.total) * 80) : 10;
+          onProgress?.(`Downloading RMBG-1.4 (${formatBytes(p.loaded)})…`, 10 + pct);
+        } else if (p.status === "ready") {
+          onProgress?.("Model loaded, initializing…", 92);
+        }
+      },
+    });
 
-  _rmbgModel = { model, processor };
-  _rmbgPreloaded = true;
-  onProgress?.("High-precision model ready", 100);
+    _rmbgPreloaded = true;
+    console.log("[RMBG] Pipeline ready!");
+    onProgress?.("High-precision model ready ✓", 100);
+  } catch (err) {
+    console.error("[RMBG] preload FAILED:", err);
+    throw new Error(
+      `Failed to load RMBG-1.4 model: ${err instanceof Error ? err.message : String(err)}`
+    );
+  }
+}
+
+/** Format bytes to human-readable string */
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes}B`;
+  if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)}KB`;
+  return `${(bytes / 1048576).toFixed(1)}MB`;
 }
 
 interface RemoveBackgroundRMBGOptions {
@@ -180,8 +196,9 @@ interface RemoveBackgroundRMBGOptions {
 }
 
 /**
- * Remove background using high-precision model (Xenova/u2net-human-seg).
- * Human-focused, much better edge quality (hair, shoulders, glasses).
+ * Remove background using RMBG-1.4 high-precision model.
+ * Uses transformers.js pipeline API — much more reliable than manual AutoModel calls.
+ * Optimized for human portraits: hair edges, shoulders, side profiles, complex lighting.
  */
 export async function removeBackgroundRMBG(
   imageData: ImageData,
@@ -191,84 +208,131 @@ export async function removeBackgroundRMBG(
   onProgress?.(5);
   console.log("[RMBG] Starting high-precision background removal");
 
-  if (!_rmbgPreloaded) {
-    await preloadRMBG((msg, pct) => onProgress?.(Math.round(pct * 0.4)));
+  // Ensure model is loaded
+  if (!_rmbgPreloaded || !_rmbgPipeline) {
+    console.log("[RMBG] Model not preloaded, loading now...");
+    await preloadRMBG((msg, pct) => onProgress?.(Math.round(pct * 0.45)));
   }
-  onProgress?.(45);
 
-  // ImageData → Blob → RawImage
+  if (!_rmbgPipeline) {
+    throw new Error("RMBG-1.4 pipeline not initialized after preload");
+  }
+
+  onProgress?.(50);
+  console.log("[RMBG] Converting ImageData to RawImage...");
+
+  // ImageData → Canvas → Blob → URL → RawImage
   const tmpCanvas = document.createElement("canvas");
   tmpCanvas.width = imageData.width;
   tmpCanvas.height = imageData.height;
   tmpCanvas.getContext("2d")!.putImageData(imageData, 0, 0);
-  const blob = await new Promise<Blob>((res) => tmpCanvas.toBlob((b) => res(b!), "image/png"));
+  const blob = await new Promise<Blob>((res) =>
+    tmpCanvas.toBlob((b) => res(b!), "image/png")
+  );
   const imgUrl = URL.createObjectURL(blob);
 
-  onProgress?.(50);
-  const tf = await getTFModule();
-  const { RawImage } = tf;
-  const rawImg = await RawImage.fromURL(imgUrl);
-  URL.revokeObjectURL(imgUrl);
+  try {
+    onProgress?.(55);
+    const tf = await getTFModule();
+    const { RawImage } = tf;
 
-  onProgress?.(55);
-  const { model, processor } = _rmbgModel!;
-  const inputs = await processor(rawImg);
+    const rawImg = await RawImage.fromURL(imgUrl);
+    console.log(`[RMBG] RawImage: ${rawImg.width}x${rawImg.height}`);
 
-  onProgress?.(65);
-  const outputs = await model(inputs);
+    URL.revokeObjectURL(imgUrl);
+    onProgress?.(60);
 
-  onProgress?.(80);
+    // Run the segmentation pipeline
+    console.log("[RMBG] Running inference...");
+    const result = await _rmbgPipeline(rawImg);
+    onProgress?.(85);
+    console.log("[RMBG] Inference done:", typeof result, Array.isArray(result) ? `array[${result.length}]` : "object");
 
-  // Postprocess: u2net outputs [1,1,H,W] — sigmoid → mask
-  // Extract mask tensor and resize to original image dimensions
-  let maskTensor: any;
-  if (outputs.logits) {
-    maskTensor = outputs.logits;
-  } else if (outputs[0]) {
-    maskTensor = outputs[0];
-  } else {
-    throw new Error("Unknown model output format");
+    // ── Parse pipeline output into alpha mask ──
+    let maskData: Float32Array | Uint8Array;
+    let maskH: number;
+    let maskW: number;
+
+    if (Array.isArray(result) && result.length > 0) {
+      const best = result.reduce((a: any, b: any) =>
+        (a.score || 0) > (b.score || 0) ? a : b
+      );
+      const maskTensor = best.mask || best;
+
+      if (!maskTensor || !maskTensor.dims || !maskTensor.data) {
+        throw new Error(`Unexpected output item: keys=${Object.keys(best).join(",")}`);
+      }
+
+      const rawData = maskTensor.data;
+      const len = rawData.length;
+      const probs = new Float32Array(len);
+      for (let i = 0; i < len; i++) probs[i] = 1 / (1 + Math.exp(-rawData[i]));
+
+      const dims = maskTensor.dims;
+      if (dims.length === 3) { maskH = dims[1]; maskW = dims[2]; }
+      else if (dims.length === 2) { maskH = dims[0]; maskW = dims[1]; }
+      else if (dims.length === 4 && dims[0] === 1 && dims[1] === 1) { maskH = dims[2]; maskW = dims[3]; }
+      else { maskH = imageData.height; maskW = imageData.width; }
+      maskData = probs;
+
+    } else if (result && typeof result === "object") {
+      const outputKey = Object.keys(result).find(k =>
+        result[k]?.data instanceof Float32Array || result[k]?.data instanceof Uint8Array
+      ) || "output";
+      const t = result[outputKey];
+      if (!t?.data) throw new Error(`No tensor in output. Keys: ${Object.keys(result).join(",")}`);
+
+      const rawData = t.data;
+      const len = rawData.length;
+      const probs = new Float32Array(len);
+      for (let i = 0; i < len; i++) probs[i] = 1 / (1 + Math.exp(-rawData[i]));
+      const dims = t.dims;
+      if (dims?.length === 4) { maskH = dims[2]; maskW = dims[3]; }
+      else if (dims?.length === 3) { maskH = dims[1]; maskW = dims[2]; }
+      else { maskH = imageData.height; maskW = imageData.width; }
+      maskData = probs;
+    } else {
+      throw new Error(`Unexpected output: ${typeof result}`);
+    }
+
+    console.log(`[RMBG] Mask: ${maskW}x${maskH}, Image: ${imageData.width}x${imageData.height}`);
+
+    onProgress?.(88);
+
+    // Resize + apply as alpha
+    let finalMask: Uint8ClampedArray;
+    if (maskW !== imageData.width || maskH !== imageData.height) {
+      finalMask = resizeMaskBilinear(maskData, maskH, maskW, imageData.height, imageData.width);
+    } else {
+      finalMask = new Uint8ClampedArray(imageData.width * imageData.height);
+      for (let i = 0; i < maskData.length; i++) {
+        finalMask[i] = Math.round(Math.max(0, Math.min(1, maskData[i])) * 255);
+      }
+    }
+
+    onProgress?.(95);
+
+    const out = new ImageData(imageData.width, imageData.height);
+    for (let i = 0; i < imageData.width * imageData.height; i++) {
+      const idx = i * 4;
+      out.data[idx]     = imageData.data[idx];
+      out.data[idx + 1] = imageData.data[idx + 1];
+      out.data[idx + 2] = imageData.data[idx + 2];
+      out.data[idx + 3] = finalMask[i];
+    }
+
+    onProgress?.(100);
+    console.log("[RMBG] Success!");
+    return out;
+  } finally {
+    if (imgUrl.startsWith("blob:")) URL.revokeObjectURL(imgUrl);
   }
-
-  // Apply sigmoid to get probability mask
-  const { Tensor } = tf;
-  const sigmoidMask = new Tensor(
-    maskTensor.dims,
-    new Float32Array(maskTensor.data.length).map((_, i) => {
-      const x = maskTensor.data[i];
-      return 1 / (1 + Math.exp(-x));
-    })
-  );
-
-  // Resize mask to original image size using bilinear interpolation
-  const maskData = resizeMaskBilinear(
-    sigmoidMask.data as Float32Array,
-    maskTensor.dims[2], // model output height
-    maskTensor.dims[3], // model output width
-    imageData.height,
-    imageData.width
-  );
-
-  onProgress?.(92);
-
-  // Apply mask as alpha channel
-  const result = new ImageData(imageData.width, imageData.height);
-  for (let i = 0; i < imageData.width * imageData.height; i++) {
-    const idx = i * 4;
-    const alpha = Math.round(maskData[i] * 255);
-    result.data[idx] = imageData.data[idx];
-    result.data[idx + 1] = imageData.data[idx + 1];
-    result.data[idx + 2] = imageData.data[idx + 2];
-    result.data[idx + 3] = alpha;
-  }
-
-  onProgress?.(100);
-  return result;
 }
+
 
 /** Bilinear resize mask tensor to original image size */
 function resizeMaskBilinear(
-  mask: Float32Array,
+  mask: Float32Array | Uint8Array,
   srcH: number,
   srcW: number,
   dstH: number,
@@ -297,7 +361,6 @@ function resizeMaskBilinear(
   }
   return result;
 }
-
 // ─── Fallback: Canvas color-keying algorithm ───────────────────────────
 
 /**
