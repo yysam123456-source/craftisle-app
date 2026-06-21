@@ -3,15 +3,14 @@
 import { useState, useCallback, useRef } from "react";
 import {
   removeBackgroundML,
-  removeBackgroundRMBG,
   preloadModel,
-  preloadRMBG,
   removeBackground,
   applyBackground,
   cropToSize,
   ID_PHOTO_SIZES,
   BG_COLORS,
 } from "@/lib/idphoto/inference";
+import type { BGRemovalModel } from "@/lib/idphoto/inference";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
@@ -41,7 +40,7 @@ export function IDPhotoTool() {
   const [useML, setUseML] = useState(true);
 
   // Model selection for AI background removal
-  const [bgModel, setBgModel] = useState<"standard" | "high-precision">("standard");
+  const [bgModel, setBgModel] = useState<BGRemovalModel>("standard");
 
   // Processing options
   const [selectedSize, setSelectedSize] = useState(0);
@@ -93,38 +92,18 @@ export function IDPhotoTool() {
       if (useML) {
         // ── Primary: ML-based background removal ──
         try {
-          setProgressLabel("Loading AI model…");
-          if (bgModel === "high-precision") {
-            // High-precision RMBG model (~170MB, better edge quality)
-            withAlpha = await removeBackgroundRMBG(sourceImageData, {
-              onProgress: (p) => {
-                setProgress(p);
-                if (p < 20) setProgressLabel("Downloading high-precision model…");
-                else if (p < 80) setProgressLabel("Removing background (High Precision)…");
-                else setProgressLabel("Finalizing…");
-              },
-            });
-          } else {
-            // Standard ISNet model (~5MB, fast)
-            withAlpha = await removeBackgroundML(sourceImageData, {
-              onProgress: (p) => {
-                setProgress(p);
-                if (p < 30) setProgressLabel("Loading AI model…");
-                else if (p < 85) setProgressLabel("Processing with AI…");
-                else setProgressLabel("Finalizing…");
-              },
-            });
-          }
+          setProgressLabel(bgModel === "enhanced" ? "Loading enhanced AI model…" : "Loading AI model…");
+          withAlpha = await removeBackgroundML(sourceImageData, {
+            model: bgModel,
+            onProgress: (p) => {
+              setProgress(p);
+              if (p < 20) setProgressLabel(`Loading ${bgModel === "enhanced" ? "enhanced " : ""}AI model…`);
+              else if (p < 80) setProgressLabel("Removing background with AI…");
+              else setProgressLabel("Finalizing…");
+            },
+          });
         } catch (mlErr: any) {
           console.error("ML background removal failed:", mlErr);
-          // If user explicitly chose high-precision, show error instead of silent fallback
-          if (bgModel === "high-precision") {
-            throw new Error(
-              `High-precision model failed to load: ${mlErr?.message || mlErr}. ` +
-              `Try selecting "Standard" model instead.`
-            );
-          }
-          // For standard model, fall back silently
           console.warn("ML background removal failed, falling back:", mlErr);
           setProgressLabel("AI unavailable, using fast mode…");
           withAlpha = removeBackground(sourceImageData, {
@@ -264,7 +243,7 @@ export function IDPhotoTool() {
         </div>
       </Card>
 
-      {/* Settings Panel */}
+      {/* Settings Panel — always visible */}
       {stage !== "idle" && (
         <Card className="p-6 space-y-6">
           {/* Size Selection */}
@@ -316,94 +295,70 @@ export function IDPhotoTool() {
             </div>
           </div>
 
-          {/* AI Engine Toggle + Advanced Options */}
-          <details className="group">
-            <summary className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 select-none">
-              Advanced Options
-              <svg
-                className="ml-1 inline h-4 w-4 transition-transform group-open:rotate-90"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </summary>
-            <div className="mt-4 space-y-4 pl-2 border-l-2 border-gray-100">
-              {/* AI Toggle */}
-              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-violet-50 rounded-lg border border-blue-100">
-                <Switch checked={useML} onCheckedChange={setUseML} />
-                <div>
-                  <Label className="text-sm font-medium">
-                    ✨ AI Background Removal
-                  </Label>
-                  <p className="text-xs text-gray-500 max-w-xs">
-                    Uses an ML model for professional-quality results with any
-                    photo. First use downloads ~5MB model.
-                  </p>
-                </div>
-              </div>
+          {/* ── AI Model Quality Selection (always visible) ── */}
+          <div className="space-y-2 p-3 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border border-amber-200">
+            <Label className="text-sm font-medium flex items-center gap-2">
+              🧠 AI Model Quality
+            </Label>
+            <Select
+              value={bgModel}
+              onValueChange={(v) =>
+                setBgModel(v as BGRemovalModel)
+              }
+            >
+              <SelectTrigger className="w-full max-w-sm">
+                <SelectValue placeholder="Select model" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="standard">
+                  ⚡ Standard (ISNet) — Fast · ~5MB
+                </SelectItem>
+                <SelectItem value="enhanced">
+                  🎯 Enhanced (ISNet FP16) — Slightly better edges · ~3MB
+                </SelectItem>
+              </SelectContent>
+            </Select>
+            <p className="text-xs text-gray-500 leading-relaxed">
+              <strong>Standard:</strong> Fast ISNet model, good for simple backgrounds.
+              {" "}<strong>Enhanced:</strong> Same ISNet architecture with FP16 weights for slightly better edge precision on hair and shoulders.
+            </p>
+          </div>
 
-              {/* Model Selection (only when AI is ON) */}
-              {useML && (
-                <div className="space-y-2 p-3 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border border-amber-200">
-                  <Label className="text-sm font-medium flex items-center gap-2">
-                    🧠 AI Model Quality
-                    <span className="text-[10px] px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded font-normal">
-                      NEW
-                    </span>
-                  </Label>
-                  <Select
-                    value={bgModel}
-                    onValueChange={(v) =>
-                      setBgModel(v as "standard" | "high-precision")
-                    }
-                  >
-                    <SelectTrigger className="w-full max-w-sm">
-                      <SelectValue placeholder="Select model" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="standard">
-                        ⚡ Standard (ISNet) — Fast · ~5MB
-                      </SelectItem>
-                      <SelectItem value="high-precision">
-                        🎯 High Precision (RMBG-1.4) — Best edge quality · ~170MB
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <p className="text-xs text-gray-500 leading-relaxed">
-                    <strong>Standard:</strong> Fast ISNet model, good for simple
-                    backgrounds.{" "}
-                    <strong>High Precision:</strong> RMBG-1.4 model optimized for
-                    human portraits — better hair/shoulder edges, handles complex
-                    lighting & side profiles.
-                  </p>
-                </div>
-              )}
-
-              {/* Tolerance Slider (only for legacy mode) */}
-              {!useML && (
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <Label className="text-sm">Background Sensitivity</Label>
-                    <span className="text-sm text-gray-500">{tolerance}</span>
-                  </div>
-                  <Slider
-                    value={[tolerance]}
-                    onValueChange={([v]) => setTolerance(v)}
-                    min={10}
-                    max={100}
-                    step={5}
-                    className="w-full max-w-sm"
-                  />
-                  <p className="text-xs text-gray-400">
-                    Lower = more aggressive removal · Higher = keep more detail.
-                    Only applies when AI is off.
-                  </p>
-                </div>
-              )}
+          {/* AI Engine Toggle */}
+          <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-violet-50 rounded-lg border border-blue-100">
+            <Switch checked={useML} onCheckedChange={setUseML} />
+            <div>
+              <Label className="text-sm font-medium">
+                ✨ AI Background Removal
+              </Label>
+              <p className="text-xs text-gray-500 max-w-xs">
+                Uses an ML model for professional-quality results with any
+                photo. First use downloads ~5MB model.
+              </p>
             </div>
-          </details>
+          </div>
+
+          {/* Tolerance Slider (only when AI is off) */}
+          {!useML && (
+            <div className="space-y-2 pl-2 border-l-2 border-gray-100">
+              <div className="flex justify-between items-center">
+                <Label className="text-sm">Background Sensitivity</Label>
+                <span className="text-sm text-gray-500">{tolerance}</span>
+              </div>
+              <Slider
+                value={[tolerance]}
+                onValueChange={([v]) => setTolerance(v)}
+                min={10}
+                max={100}
+                step={5}
+                className="w-full max-w-sm"
+              />
+              <p className="text-xs text-gray-400">
+                Lower = more aggressive removal · Higher = keep more detail.
+                Only applies when AI is off.
+              </p>
+            </div>
+          )}
 
           {/* Process Button */}
           <Button
@@ -450,7 +405,7 @@ export function IDPhotoTool() {
                     d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
                 </svg>
-                Generate ID Photo{useML ? (bgModel === "high-precision" ? " (AI Pro)" : " (AI)") : ""}
+                Generate ID Photo{useML ? (bgModel === "enhanced" ? " (AI Enhanced)" : " (AI)") : ""}
               </>
             )}
           </Button>
@@ -570,8 +525,8 @@ export function IDPhotoTool() {
         {useML ? (
           <>
             AI processing runs in your browser using ONNX Runtime. Your photos are never uploaded to any server.{" "}
-            {bgModel === "high-precision" ? (
-              <>A ~170MB high-precision RMBG-1.4 model is downloaded once and cached locally.</>
+            {bgModel === "enhanced" ? (
+              <>A ~3–5MB enhanced ISNet FP16 model is downloaded once and cached locally.</>
             ) : (
               <>A ~5MB ISNet model is downloaded once and cached locally.</>
             )}

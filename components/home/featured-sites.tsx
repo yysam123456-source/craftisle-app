@@ -12,6 +12,7 @@ import {
   Layout,
   Image,
   Sparkles,
+  Gamepad2,
 } from "lucide-react";
 
 // ── 子站数据（详细说明）────────────────────────────
@@ -85,6 +86,20 @@ const SUB_SITES = [
     features: ["Prompt Templates", "Style Presets", "One-tap Enhance"],
     users: "50K+ prompts generated",
     featured: true,
+  },
+  {
+    title: "Games",
+    slogan: "Free browser games, no download",
+    desc: "Play 13+ free games directly in your browser — puzzle, arcade, card, strategy and more. No downloads, no installs, no ads. Just open and play instantly.",
+    href: "https://game.craftisle.com",
+    icon: Gamepad2,
+    gradient: "from-emerald-500 to-teal-500",
+    gradientFrom: "#10b981",
+    gradientTo: "#14b8a6",
+    bgLight: "bg-emerald-50 dark:bg-emerald-950/30",
+    features: ["13+ Free Games", "No Download", "Play Instantly"],
+    users: "10K+ games played",
+    featured: false,
   },
 ];
 

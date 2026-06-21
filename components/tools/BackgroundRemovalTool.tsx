@@ -6,8 +6,6 @@ import {
   preloadModel,
   removeBackground,
   applyBackground,
-  removeBackgroundRMBG,
-  preloadRMBG,
 } from "@/lib/idphoto/inference";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -15,6 +13,7 @@ import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import type { BGRemovalModel } from "@/lib/idphoto/inference";
 
 const BG_COLORS = [
   { name: "Transparent", value: null },
@@ -36,9 +35,9 @@ export default function BackgroundRemovalTool() {
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Options
+  // Options — always visible
   const [useAI, setUseAI] = useState(true);
-  const [selectedModel, setSelectedModel] = useState<"standard" | "high-prec">("standard");
+  const [selectedModel, setSelectedModel] = useState<BGRemovalModel>("standard");
   const [selectedBg, setSelectedBg] = useState(0); // default transparent
   const [tolerance, setTolerance] = useState(40);
   const [outputFormat, setOutputFormat] = useState<"png" | "webp">("png");
@@ -86,36 +85,18 @@ export default function BackgroundRemovalTool() {
 
       if (useAI) {
         try {
-          if (selectedModel === "high-prec") {
-            setProgressLabel("Loading high-precision model…");
-            withAlpha = await removeBackgroundRMBG(sourceImageData, {
-              onProgress: (p) => {
-                setProgress(p);
-                if (p < 30) setProgressLabel("Loading high-precision model (RMBG-1.4)…");
-                else if (p < 85) setProgressLabel("Removing background with high precision…");
-                else setProgressLabel("Finalizing…");
-              },
-            });
-          } else {
-            setProgressLabel("Loading AI model…");
-            withAlpha = await removeBackgroundML(sourceImageData, {
-              onProgress: (p) => {
-                setProgress(p);
-                if (p < 30) setProgressLabel("Loading AI model…");
-                else if (p < 85) setProgressLabel("Removing background with AI…");
-                else setProgressLabel("Finalizing…");
-              },
-            });
-          }
+          setProgressLabel(selectedModel === "enhanced" ? "Loading enhanced AI model…" : "Loading AI model…");
+          withAlpha = await removeBackgroundML(sourceImageData, {
+            model: selectedModel,
+            onProgress: (p) => {
+              setProgress(p);
+              if (p < 30) setProgressLabel(`Loading ${selectedModel === "enhanced" ? "enhanced" : ""} AI model…`);
+              else if (p < 85) setProgressLabel("Removing background with AI…");
+              else setProgressLabel("Finalizing…");
+            },
+          });
         } catch (mlErr: any) {
           console.warn("ML background removal failed:", mlErr);
-          // If user explicitly chose high-prec, show error instead of silent fallback
-          if (selectedModel === "high-prec") {
-            throw new Error(
-              `High-precision model failed to load: ${mlErr?.message || mlErr}. ` +
-              `Try selecting "Standard" model instead.`
-            );
-          }
           setProgressLabel("AI unavailable, using fast mode…");
           withAlpha = removeBackground(sourceImageData, {
             tolerance,
@@ -234,6 +215,35 @@ export default function BackgroundRemovalTool() {
       {/* Settings + Process Button */}
       {stage !== "idle" && (
         <Card className="p-6 space-y-5">
+          {/* ── Model Quality Selection ── */}
+          <div>
+            <Label className="font-semibold mb-3 block">AI Model Quality</Label>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => setSelectedModel("standard")}
+                className={`px-3 py-2.5 rounded-lg border text-sm text-left transition-all ${
+                  selectedModel === "standard"
+                    ? "border-blue-500 bg-blue-50 text-blue-700"
+                    : "border-gray-200 hover:bg-gray-50 text-gray-600"
+                }`}
+              >
+                <div className="font-medium">⚡ Standard</div>
+                <div className="text-xs text-gray-500 mt-0.5">ISNet · Fast · ~5MB</div>
+              </button>
+              <button
+                onClick={() => setSelectedModel("enhanced")}
+                className={`px-3 py-2.5 rounded-lg border text-sm text-left transition-all ${
+                  selectedModel === "enhanced"
+                    ? "border-purple-500 bg-purple-50 text-purple-700"
+                    : "border-gray-200 hover:bg-gray-50 text-gray-600"
+                }`}
+              >
+                <div className="font-medium">🎯 Enhanced</div>
+                <div className="text-xs text-gray-500 mt-0.5">ISNet FP16 · Slightly better edges · ~3MB</div>
+              </button>
+            </div>
+          </div>
+
           {/* Output Background Color */}
           <div>
             <Label className="font-semibold mb-3 block">Output Background</Label>
@@ -284,75 +294,34 @@ export default function BackgroundRemovalTool() {
             </div>
           </div>
 
-          {/* Advanced Options */}
-          <details className="group">
-            <summary className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 select-none">
-              Advanced Options
-              <svg className="ml-1 inline h-4 w-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </summary>
-            <div className="mt-3 space-y-3 pl-2 border-l-2 border-gray-100">
-
-              {/* Model Selection */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium">AI Model</Label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setSelectedModel("standard")}
-                    className={`px-3 py-2 rounded-lg border text-sm text-left transition-all ${
-                      selectedModel === "standard"
-                        ? "border-blue-500 bg-blue-50 text-blue-700"
-                        : "border-gray-200 hover:bg-gray-50 text-gray-600"
-                    }`}
-                  >
-                    <div className="font-medium">Standard</div>
-                    <div className="text-xs text-gray-500">ISNet · ~5MB · Fast</div>
-                  </button>
-                  <button
-                    onClick={() => setSelectedModel("high-prec")}
-                    className={`px-3 py-2 rounded-lg border text-sm text-left transition-all ${
-                      selectedModel === "high-prec"
-                        ? "border-purple-500 bg-purple-50 text-purple-700"
-                        : "border-gray-200 hover:bg-gray-50 text-gray-600"
-                    }`}
-                  >
-                    <div className="font-medium">High Precision</div>
-                    <div className="text-xs text-gray-500">RMBG-1.4 · ~170MB · Best quality</div>
-                  </button>
-                </div>
-              </div>
-
-              {/* AI Toggle */}
-              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-lg border border-purple-100">
-                <Switch checked={useAI} onCheckedChange={setUseAI} />
-                <div>
-                  <Label className="text-sm font-medium">✨ AI Background Removal</Label>
-                  <p className="text-xs text-gray-500 max-w-xs">
-                    Uses ML model for professional results with any photo.
-                    First use downloads ~5MB model (~once).
-                  </p>
-                </div>
-              </div>
-
-              {!useAI && (
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <Label className="text-sm">Sensitivity (legacy mode)</Label>
-                    <span className="text-xs text-gray-500">{tolerance}</span>
-                  </div>
-                  <Slider
-                    value={[tolerance]}
-                    onValueChange={([v]) => setTolerance(v)}
-                    min={10}
-                    max={100}
-                    step={5}
-                    className="w-full max-w-sm"
-                  />
-                </div>
-              )}
+          {/* AI Toggle */}
+          <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-violet-50 to-blue-50 rounded-lg border border-purple-100">
+            <Switch checked={useAI} onCheckedChange={setUseAI} />
+            <div>
+              <Label className="text-sm font-medium">✨ AI Background Removal</Label>
+              <p className="text-xs text-gray-500 max-w-xs">
+                Uses ML model for professional results with any photo.
+                First use downloads model (~once).
+              </p>
             </div>
-          </details>
+          </div>
+
+          {!useAI && (
+            <div className="space-y-2 pl-2 border-l-2 border-gray-100">
+              <div className="flex justify-between items-center">
+                <Label className="text-sm">Sensitivity (legacy mode)</Label>
+                <span className="text-xs text-gray-500">{tolerance}</span>
+              </div>
+              <Slider
+                value={[tolerance]}
+                onValueChange={([v]) => setTolerance(v)}
+                min={10}
+                max={100}
+                step={5}
+                className="w-full max-w-sm"
+              />
+            </div>
+          )}
 
           {/* Process Button */}
           <Button
@@ -374,7 +343,7 @@ export default function BackgroundRemovalTool() {
                 <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121M16 4H4a2 2 0 00-2 2v12a2 2 0 002 2h12" />
                 </svg>
-                Remove Background{useAI ? " (AI)" : ""}
+                Remove Background{useAI ? ` (${selectedModel === "enhanced" ? "Enhanced AI" : "AI"})` : ""}
               </>
             )}
           </Button>
@@ -451,11 +420,7 @@ export default function BackgroundRemovalTool() {
       <p className="text-center text-xs text-gray-400 max-w-md mx-auto">
         🔒{" "}
         {useAI ? (
-          selectedModel === "high-prec" ? (
-            <>High-precision processing uses <strong>RMBG-1.4</strong> model (~170MB, downloaded once, cached locally). Your images are never uploaded.</>
-          ) : (
-            <>AI processing runs in your browser using ONNX Runtime. Your images are never uploaded. A ~5MB model is downloaded once and cached locally.</>
-          )
+          <>AI processing runs in your browser using ONNX Runtime. Your images are never uploaded. A ~{selectedModel === "enhanced" ? "3–5" : "5"}MB model is downloaded once and cached locally.</>
         ) : (
           <>All processing happens in your browser using Canvas API. Your images are never uploaded.</>
         )}
