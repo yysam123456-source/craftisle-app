@@ -248,23 +248,19 @@ export default function HandwritingAnimationTool() {
         // gif.js is UMD — must handle both ESM import and global fallback
         // @ts-ignore — CDN import, no local types
         const gifModule = await import(/* webpackIgnore: true */ "https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js");
-        // UMD libraries may export as .default, .GIF, or attach to window
         const GifCtor = (gifModule.default || gifModule.GIF || (window as any).GIF || gifModule);
         if (typeof GifCtor !== "function") {
           throw new Error("GIF encoder failed to load (CDN unavailable?)");
         }
         setExportProgress("Capturing frames...");
 
-        const gif = new GifCtor({
-          workers: 2,
-          quality: 10,
-          width: canvas.width / (window.devicePixelRatio || 1),
-          height: canvas.height / (window.devicePixelRatio || 1),
-          workerScript: "https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js",
-        });
+        const W = canvas.width / (window.devicePixelRatio || 1);
+        const H = canvas.height / (window.devicePixelRatio || 1);
 
+        // ── Collect frames on main thread (no workers = avoid CDN worker script CORS issues) ──
         const fps = 10;
         const totalFrames = Math.ceil(dur * fps);
+        const frames: ImageData[] = [];
         engine.pause();
         for (let i = 0; i <= totalFrames; i++) {
           const t = (i / totalFrames) * dur;
@@ -272,33 +268,48 @@ export default function HandwritingAnimationTool() {
           await new Promise((r) => setTimeout(r, 30));
           const ctx = canvas.getContext("2d");
           if (ctx) {
-            const w = canvas.width / (window.devicePixelRatio || 1);
-            const h = canvas.height / (window.devicePixelRatio || 1);
-            const tmpCanvas = document.createElement("canvas");
-            tmpCanvas.width = w;
-            tmpCanvas.height = h;
-            const tmpCtx = tmpCanvas.getContext("2d");
+            const tmp = document.createElement("canvas");
+            tmp.width = W; tmp.height = H;
+            const tmpCtx = tmp.getContext("2d");
             if (tmpCtx) {
-              tmpCtx.drawImage(canvas, 0, 0, w, h);
-              const imgData = tmpCtx.getImageData(0, 0, w, h);
-              gif.addFrame(imgData, { delay: 1000 / fps });
+              tmpCtx.drawImage(canvas, 0, 0, W, H);
+              frames.push(tmpCtx.getImageData(0, 0, W, H));
             }
           }
           if (i % 5 === 0) setExportProgress(`Capturing... ${Math.round((i / totalFrames) * 100)}%`);
         }
 
-        setExportProgress("Encoding GIF...");
-        gif.on("finished", (blob: Blob) => {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = `handwriting-${FONT_NAMES[fontIdx] || "animation"}.gif`;
-          a.click();
-          URL.revokeObjectURL(url);
-          setExportProgress("✅ Downloaded!");
-          setTimeout(() => { setExportProgress(""); setExporting(false); }, 2000);
+        setExportProgress("Encoding GIF (single-thread)...");
+        // Run GIF encoding in a setTimeout to avoid blocking UI
+        await new Promise<void>((resolve, reject) => {
+          const gif = new GifCtor({
+            workers: 0,   // ← disable workers (CDN worker script fails silently in workers)
+            quality: 10,
+            width: W,
+            height: H,
+          });
+          for (const f of frames) gif.addFrame(f, { delay: 1000 / fps });
+          gif.on("finished", (blob: Blob) => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `handwriting-${FONT_NAMES[fontIdx] || "animation"}.gif`;
+            a.click();
+            URL.revokeObjectURL(url);
+            setExportProgress("✅ Downloaded!");
+            setTimeout(() => { setExportProgress(""); setExporting(false); }, 2000);
+            resolve();
+          });
+          // Timeout: if encoding takes > 60s, abort
+          const to = setTimeout(() => {
+            reject(new Error("GIF encoding timed out (>60s)"));
+          }, 60000);
+          gif.on("error", (err: any) => {
+            clearTimeout(to);
+            reject(new Error("GIF encoding error: " + String(err)));
+          });
+          gif.render();
         });
-        gif.render();
         return; // async finish
       }
 
