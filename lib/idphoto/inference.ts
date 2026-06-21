@@ -20,9 +20,10 @@ async function getMLModule() {
 
 async function getTFModule() {
   if (!_tfModule) {
-    const _pkg = "@huggingface/transformers";
-    // @ts-ignore — dynamic import, runtime-only
-    _tfModule = await import(/* webpackIgnore: true */ _pkg);
+    // Load @huggingface/transformers from CDN — not bundled by webpack
+    const _url = "https://esm.sh/@huggingface/transformers@4.2.0";
+    // @ts-ignore — dynamic import from CDN, runtime-only
+    _tfModule = await import(/* webpackIgnore: true */ _url);
   }
   return _tfModule;
 }
