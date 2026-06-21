@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import NextImage, { ImageProps } from "next/image";
 import Link from "next/link";

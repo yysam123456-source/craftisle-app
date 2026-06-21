@@ -1,8 +1,23 @@
 // ID Photo processing engine
 // Primary: @imgly/background-removal (ISNet ML model, browser-side ONNX)
 // Fallback: Canvas color-keying algorithm (for when ML fails or user prefers speed)
+//
+// IMPORTANT: @imgly/background-removal is imported dynamically to prevent
+// webpack from bundling it into the server chunk (would exceed Vercel 250MB limit).
 
-import { removeBackground as mlRemoveBackground, preload } from "@imgly/background-removal";
+// ─── Dynamic module loader (runtime only, webpack cannot statically resolve) ──
+
+let _mlModule: typeof import("@imgly/background-removal") | null = null;
+
+async function getMLModule() {
+  if (!_mlModule) {
+    // Variable indirect import — webpack skips this at build time
+    const _pkg = "@imgly/background-removal";
+    // @ts-ignore — dynamic import, runtime-only
+    _mlModule = await import(/* webpackIgnore: true */ _pkg);
+  }
+  return _mlModule;
+}
 
 export interface IDPhotoSize {
   name: string;
@@ -38,7 +53,9 @@ export async function preloadModel(
 ): Promise<void> {
   if (modelPreloaded) return;
   onProgress?.("Loading AI model…", 10);
-  await preload({
+  const ml = await getMLModule();
+  if (!ml) throw new Error("ML module not loaded");
+  await ml.preload({
     progress: (key, current, total) => {
       if (key.includes("downloading") || key.includes("computing")) {
         onProgress?.("Loading AI model…", Math.round((current / total) * 90));
@@ -73,7 +90,9 @@ export async function removeBackgroundML(
   onProgress?.(30);
 
   // Run ML inference — output as PNG with transparency
-  const blob: Blob = await mlRemoveBackground(imageData, {
+  const ml = await getMLModule();
+  if (!ml) throw new Error("ML module not loaded");
+  const blob: Blob = await ml.removeBackground(imageData, {
     model: "isnet",
     output: {
       format: "image/png",
