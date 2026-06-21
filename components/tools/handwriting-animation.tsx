@@ -254,61 +254,88 @@ export default function HandwritingAnimationTool() {
         }
         setExportProgress("Capturing frames...");
 
-        const W = canvas.width / (window.devicePixelRatio || 1);
-        const H = canvas.height / (window.devicePixelRatio || 1);
+        const dpr = window.devicePixelRatio || 1;
+        const W = Math.round(canvas.width / dpr);
+        const H = Math.round(canvas.height / dpr);
 
-        // ── Collect frames on main thread (no workers = avoid CDN worker script CORS issues) ──
+        // ── Collect frames as canvas elements (gif.js needs real <canvas>, not ImageData) ──
         const fps = 10;
         const totalFrames = Math.ceil(dur * fps);
-        const frames: ImageData[] = [];
+        const frameCanvases: HTMLCanvasElement[] = [];
         engine.pause();
         for (let i = 0; i <= totalFrames; i++) {
           const t = (i / totalFrames) * dur;
           engine.seek(t);
-          await new Promise((r) => setTimeout(r, 30));
-          const ctx = canvas.getContext("2d");
-          if (ctx) {
-            const tmp = document.createElement("canvas");
-            tmp.width = W; tmp.height = H;
-            const tmpCtx = tmp.getContext("2d");
-            if (tmpCtx) {
-              tmpCtx.drawImage(canvas, 0, 0, W, H);
-              frames.push(tmpCtx.getImageData(0, 0, W, H));
-            }
+          // Allow render to settle
+          await new Promise((r) => setTimeout(r, 50));
+          // Create an off-screen canvas at logical size
+          const tmp = document.createElement("canvas");
+          tmp.width = W;
+          tmp.height = H;
+          const tmpCtx = tmp.getContext("2d")!;
+          tmpCtx.drawImage(canvas, 0, 0, W, H);
+          frameCanvases.push(tmp);
+          if (i % 5 === 0) {
+            const pct = Math.round((i / totalFrames) * 100);
+            setExportProgress(`Capturing frames... ${pct}% (${i}/${totalFrames})`);
           }
-          if (i % 5 === 0) setExportProgress(`Capturing... ${Math.round((i / totalFrames) * 100)}%`);
         }
 
-        setExportProgress("Encoding GIF (single-thread)...");
-        // Run GIF encoding in a setTimeout to avoid blocking UI
+        setExportProgress(`Encoding GIF... (${frameCanvases.length} frames, single-thread)`);
         await new Promise<void>((resolve, reject) => {
           const gif = new GifCtor({
-            workers: 0,   // ← disable workers (CDN worker script fails silently in workers)
+            workers: 0,   // no web workers (CDN worker script fails silently)
             quality: 10,
             width: W,
             height: H,
+            workerScript: null, // extra safety: don't load worker script
           });
-          for (const f of frames) gif.addFrame(f, { delay: 1000 / fps });
+
+          // gif.js addFrame expects a <canvas> element or a CanvasRenderingContext2D
+          for (let i = 0; i < frameCanvases.length; i++) {
+            gif.addFrame(frameCanvases[i], { delay: Math.round(1000 / fps) });
+          }
+
+          // ── Progress: gif.js calls onProgress with (currentFrame, totalFrames) ──
+          gif.on("progress", (pct: number) => {
+            setExportProgress(`Encoding GIF... ${Math.round(pct * 100)}%`);
+          });
+
           gif.on("finished", (blob: Blob) => {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `handwriting-${FONT_NAMES[fontIdx] || "animation"}.gif`;
-            a.click();
-            URL.revokeObjectURL(url);
-            setExportProgress("✅ Downloaded!");
-            setTimeout(() => { setExportProgress(""); setExporting(false); }, 2000);
-            resolve();
+            try {
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = `handwriting-${FONT_NAMES[fontIdx] || "animation"}.gif`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+              setExportProgress("✅ Downloaded!");
+              setTimeout(() => { setExportProgress(""); setExporting(false); }, 3000);
+              resolve();
+            } catch (e) {
+              reject(e);
+            }
           });
-          // Timeout: if encoding takes > 60s, abort
+
+          // Timeout: if encoding takes > 90s, abort
           const to = setTimeout(() => {
-            reject(new Error("GIF encoding timed out (>60s)"));
-          }, 60000);
+            reject(new Error(`GIF encoding timed out (>90s). Try shorter text or lower FPS.`));
+          }, 90000);
+
           gif.on("error", (err: any) => {
             clearTimeout(to);
             reject(new Error("GIF encoding error: " + String(err)));
           });
-          gif.render();
+
+          // ── Start rendering ──
+          try {
+            gif.render();
+          } catch (e) {
+            clearTimeout(to);
+            reject(new Error("GIF render() failed: " + String(e)));
+          }
         });
         return; // async finish
       }
