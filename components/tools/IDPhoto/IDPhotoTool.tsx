@@ -3,7 +3,9 @@
 import { useState, useCallback, useRef } from "react";
 import {
   removeBackgroundML,
+  removeBackgroundRMBG,
   preloadModel,
+  preloadRMBG,
   removeBackground,
   applyBackground,
   cropToSize,
@@ -37,6 +39,9 @@ export function IDPhotoTool() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [useML, setUseML] = useState(true);
+
+  // Model selection for AI background removal
+  const [bgModel, setBgModel] = useState<"standard" | "high-precision">("standard");
 
   // Processing options
   const [selectedSize, setSelectedSize] = useState(0);
@@ -89,14 +94,27 @@ export function IDPhotoTool() {
         // ── Primary: ML-based background removal ──
         try {
           setProgressLabel("Loading AI model…");
-          withAlpha = await removeBackgroundML(sourceImageData, {
-            onProgress: (p) => {
-              setProgress(p);
-              if (p < 30) setProgressLabel("Loading AI model…");
-              else if (p < 85) setProgressLabel("Processing with AI…");
-              else setProgressLabel("Finalizing…");
-            },
-          });
+          if (bgModel === "high-precision") {
+            // High-precision RMBG model (~170MB, better edge quality)
+            withAlpha = await removeBackgroundRMBG(sourceImageData, {
+              onProgress: (p) => {
+                setProgress(p);
+                if (p < 20) setProgressLabel("Downloading high-precision model…");
+                else if (p < 80) setProgressLabel("Removing background (High Precision)…");
+                else setProgressLabel("Finalizing…");
+              },
+            });
+          } else {
+            // Standard ISNet model (~5MB, fast)
+            withAlpha = await removeBackgroundML(sourceImageData, {
+              onProgress: (p) => {
+                setProgress(p);
+                if (p < 30) setProgressLabel("Loading AI model…");
+                else if (p < 85) setProgressLabel("Processing with AI…");
+                else setProgressLabel("Finalizing…");
+              },
+            });
+          }
         } catch (mlErr) {
           console.warn("ML background removal failed, falling back:", mlErr);
           // Fall back to legacy algorithm
@@ -151,7 +169,7 @@ export function IDPhotoTool() {
       setError(`Processing failed: ${(e as Error).message}`);
       setStage("ready");
     }
-  }, [sourceImageData, tolerance, selectedBg, selectedSize, useML]);
+  }, [sourceImageData, tolerance, selectedBg, selectedSize, useML, bgModel]);
 
   // Download result
   const handleDownload = useCallback(() => {
@@ -318,6 +336,43 @@ export function IDPhotoTool() {
                 </div>
               </div>
 
+              {/* Model Selection (only when AI is ON) */}
+              {useML && (
+                <div className="space-y-2 p-3 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border border-amber-200">
+                  <Label className="text-sm font-medium flex items-center gap-2">
+                    🧠 AI Model Quality
+                    <span className="text-[10px] px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded font-normal">
+                      NEW
+                    </span>
+                  </Label>
+                  <Select
+                    value={bgModel}
+                    onValueChange={(v) =>
+                      setBgModel(v as "standard" | "high-precision")
+                    }
+                  >
+                    <SelectTrigger className="w-full max-w-sm">
+                      <SelectValue placeholder="Select model" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="standard">
+                        ⚡ Standard (ISNet) — Fast · ~5MB
+                      </SelectItem>
+                      <SelectItem value="high-precision">
+                        🎯 High Precision (RMBG-1.4) — Best edge quality · ~170MB
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    <strong>Standard:</strong> Fast ISNet model, good for simple
+                    backgrounds.{" "}
+                    <strong>High Precision:</strong> RMBG-1.4 model optimized for
+                    human portraits — better hair/shoulder edges, handles complex
+                    lighting & side profiles.
+                  </p>
+                </div>
+              )}
+
               {/* Tolerance Slider (only for legacy mode) */}
               {!useML && (
                 <div className="space-y-2">
@@ -387,7 +442,7 @@ export function IDPhotoTool() {
                     d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
                 </svg>
-                Generate ID Photo{useML ? " (AI)" : ""}
+                Generate ID Photo{useML ? (bgModel === "high-precision" ? " (AI Pro)" : " (AI)") : ""}
               </>
             )}
           </Button>
@@ -506,7 +561,12 @@ export function IDPhotoTool() {
         🔒{" "}
         {useML ? (
           <>
-            AI processing runs in your browser using ONNX Runtime. Your photos are never uploaded to any server. A ~5MB model is downloaded once and cached locally.
+            AI processing runs in your browser using ONNX Runtime. Your photos are never uploaded to any server.{" "}
+            {bgModel === "high-precision" ? (
+              <>A ~170MB high-precision RMBG-1.4 model is downloaded once and cached locally.</>
+            ) : (
+              <>A ~5MB ISNet model is downloaded once and cached locally.</>
+            )}
           </>
         ) : (
           <>
