@@ -258,7 +258,7 @@ export default function HandwritingAnimationTool() {
         // ── Capture frames as ImageData ──
         const frames: ImageData[] = [];
         engine.pause();
-        for (let i = 0; i <= totalFrames; i++) {
+        for (let i = 0; i < totalFrames; i++) {
           const t = (i / totalFrames) * dur;
           engine.seek(t);
           // Wait for render to settle

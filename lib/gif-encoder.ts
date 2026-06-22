@@ -1,334 +1,297 @@
 /**
  * Zero-dependency async GIF89a encoder.
  *
- * - No external libraries, no CDN, no web workers
- * - Encodes frame-by-frame with setTimeout(0) yields → UI stays responsive, progress callbacks fire
- * - Supports transparency (index 0 = transparent)
- * - LZW compression (min code size 8)
+ * Palette:  global 256-entry, built from ALL frames.
+ *   index 0 = transparent (any alpha < 128).
+ *   index 1-255 = top-frequency opaque-pixel RGB values.
+ * Quantisation:  5-bit-per-channel LUT (32³ = 32768 entries).
+ * LZW:  correct bit-packing via Uint8Array, correct code-size expansion.
+ * Yields to UI every ~5% of frames via setTimeout(0).
  */
 
-// ── Types ──
 export interface GIFEncodeOptions {
-  /** Frame delay in centiseconds (1 cs = 10ms) */
-  delay: number;
-  /** Number of times to repeat; 0 = infinite */
-  repeat: number;
-  /** Called after each frame with progress 0..1 */
+  delay: number;      // centiseconds
+  repeat: number;      // 0 = infinite
   onProgress?: (pct: number) => void;
 }
 
-// ── Binary helpers ──
-function writeBytes(buf: number[], ...vals: number[]): void {
-  for (const v of vals) buf.push(v & 0xff);
-}
+// ── Helpers ────────────────────────────────────────────────────────────────
 
 function writeShort(buf: number[], v: number): void {
   buf.push(v & 0xff, (v >> 8) & 0xff);
 }
 
-function writeString(buf: number[], s: string): void {
+function writeStr(buf: number[], s: string): void {
   for (let i = 0; i < s.length; i++) buf.push(s.charCodeAt(i));
 }
 
-/** Sub-block: length byte + data */
-function subBlock(buf: number[], data: number[]): void {
-  buf.push(data.length & 0xff);
-  for (const b of data) buf.push(b & 0xff);
-}
+// ── 3D LUT for fast nearest-neighbour lookup ───────────────────────────
 
-// ── Color quantization (simple popularity / median-cut hybrid) ──
-
-interface ColorNode {
-  r: number; g: number; b: number; a: number;
-  count: number;
-}
-
-function quantizeTo256(pixels: Uint8ClampedArray): { palette: Uint8Array; indices: Uint8Array } {
-  const len = pixels.length >> 2; // number of pixels
-  const colorMap = new Map<number, ColorNode>();
-
-  // Collect unique colors
-  for (let i = 0; i < len; i++) {
-    const off = i << 2;
-    // Round to 4-level per channel to merge similar colors
-    const key =
-      ((pixels[off]     & 0xfc) << 16) |
-      ((pixels[off + 1] & 0xfc) << 8) |
-      (pixels[off + 2]  & 0xfc) |
-      ((pixels[off + 3] > 128 ? 1 : 0) << 24); // alpha threshold
-    let node = colorMap.get(key);
-    if (!node) {
-      node = { r: 0, g: 0, b: 0, a: 0, count: 0 };
-      colorMap.set(key, node);
+function buildPalette(
+  frames: ImageData[],
+): { palette: Uint8Array; lut: Uint8Array } {
+  // 1. Collect opaque-pixel RGB frequencies
+  const freq = new Map<number, number>();
+  for (const fd of frames) {
+    const d = fd.data;
+    for (let i = 0; i < d.length; i += 4) {
+      if (d[i + 3] < 128) continue;
+      const key = (d[i] << 16) | (d[i + 1] << 8) | d[i + 2];
+      freq.set(key, (freq.get(key) ?? 0) + 1);
     }
-    node.r += pixels[off];
-    node.g += pixels[off + 1];
-    node.b += pixels[off + 2];
-    node.a += pixels[off + 3];
-    node.count++;
   }
 
-  const colors = Array.from(colorMap.values());
-  const totalColors = colors.length;
+  // 2. Sort by frequency desc, pick top-255 (index 0 reserved)
+  const sorted = Array.from(freq.entries()).sort((a, b) => b[1] - a[1]);
+  const used = Math.min(255, sorted.length);
 
-  // If <= 256 colors, use directly (sorted by frequency, transparent first)
-  if (totalColors <= 256) {
-    colors.sort((a, b) => {
-      // Transparent-ish colors first (low alpha)
-      const aAvgA = a.a / a.count;
-      const bAvgA = b.b / b.count;
-      if (aAvgA < 128 && bAvgA >= 128) return -1;
-      if (aAvgA >= 128 && bAvgA < 128) return 1;
-      return b.count - a.count; // most frequent first
-    });
-    const palette = new Uint8Array(256 * 3); // RGB only for GIF
-    const indexMap = new Map<number, number>();
-    for (let i = 0; i < totalColors; i++) {
-      const c = colors[i];
-      palette[i * 3]     = Math.round(c.r / c.count);
-      palette[i * 3 + 1] = Math.round(c.g / c.count);
-      palette[i * 3 + 2] = Math.round(c.b / c.count);
-
-      // Rebuild key from averaged values
-      const key =
-        ((Math.round(c.r / c.count) & 0xfc) << 16) |
-        ((Math.round(c.g / c.count) & 0xfc) << 8) |
-        (Math.round(c.b / c.count) & 0xfc) |
-        ((Math.round(c.a / c.count) > 128 ? 1 : 0) << 24);
-      indexMap.set(key, i);
-    }
-    // Fill remaining palette slots with black
-    for (let i = totalColors; i < 256; i++) {
-      palette[i * 3] = 0; palette[i * 3 + 1] = 0; palette[i * 3 + 2] = 0;
-    }
-
-    // Build index array
-    const indices = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-      const off = i << 2;
-      const key =
-        ((pixels[off]     & 0xfc) << 16) |
-        ((pixels[off + 1] & 0xfc) << 8) |
-        (pixels[off + 2]  & 0xfc) |
-        ((pixels[off + 3] > 128 ? 1 : 0) << 24);
-      indices[i] = indexMap.get(key) ?? 0;
-    }
-
-    return { palette, indices };
-  }
-
-  // > 256 colors: simple box quantization (divide space into 8x8x8 grid)
-  const palette = new Uint8Array(256 * 3);
-  const indices = new Uint8Array(len);
-  const grid = new Map<number, { r: number; g: number; b: number; count: number }>();
-
-  for (let i = 0; i < len; i++) {
-    const off = i << 2;
-    const ri = Math.floor(pixels[off] / 32);       // 0..7
-    const gi = Math.floor(pixels[off + 1] / 32);
-    const bi = Math.floor(pixels[off + 2] / 32);
-    const key = (ri << 6) | (gi << 3) | bi;
-    let entry = grid.get(key);
-    if (!entry) { entry = { r: 0, g: 0, b: 0, count: 0 }; grid.set(key, entry); }
-    entry.r += pixels[off]; entry.g += pixels[off + 1]; entry.b += pixels[off + 2]; entry.count++;
-  }
-
-  const sortedGrid = Array.from(grid.entries()).sort((a, b) => b[1].count - a[1].count);
-  const used = Math.min(256, sortedGrid.length);
-  const gridIdx = new Map<number, number>();
+  const palette = new Uint8Array(256 * 3);   // index 0 = black (transparent)
+  const keyToIdx = new Map<number, number>();
 
   for (let i = 0; i < used; i++) {
-    const [key, val] = sortedGrid[i];
-    gridIdx.set(key, i);
-    palette[i * 3]     = Math.round(val.r / val.count);
-    palette[i * 3 + 1] = Math.round(val.g / val.count);
-    palette[i * 3 + 2] = Math.round(val.b / val.count);
-  }
-  for (let i = used; i < 256; i++) { palette[i * 3] = 0; palette[i * 3 + 1] = 0; palette[i * 3 + 2] = 0; }
-
-  for (let i = 0; i < len; i++) {
-    const off = i << 2;
-    const ri = Math.min(7, Math.floor(pixels[off] / 32));
-    const gi = Math.min(7, Math.floor(pixels[off + 1] / 32));
-    const bi = Math.min(7, Math.floor(pixels[off + 2] / 32));
-    const key = (ri << 6) | (gi << 3) | bi;
-    indices[i] = gridIdx.get(key) ?? 0;
+    const [key] = sorted[i];
+    const idx = i + 1;
+    palette[idx * 3]     = (key >> 16) & 0xff;
+    palette[idx * 3 + 1] = (key >> 8)  & 0xff;
+    palette[idx * 3 + 2] =  key        & 0xff;
+    keyToIdx.set(key, idx);
   }
 
-  return { palette, indices };
-}
+  // 3. Build 5-bit-per-channel LUT (32 levels per channel)
+  const lut = new Uint8Array(32 * 32 * 32);
 
-// ── LZW compression ──
-
-function lzwEncode(indices: Uint8Array, minCodeSize: number): number[] {
-  const clearCode = 1 << minCodeSize;
-  const eoiCode = clearCode + 1;
-
-  let codeSize = minCodeSize + 1;
-  let nextCode = eoiCode + 1;
-  const table = new Map<string, number>();
-
-  // Initialize table with single-byte entries
-  for (let i = 0; i < clearCode; i++) {
-    table.set(String.fromCharCode(i), i);
+  // Pre-extract palette RGBs (skip index 0 = transparent)
+  const pRgb: [number, number, number][] = [[0, 0, 0]];
+  for (let i = 0; i < used; i++) {
+    const [key] = sorted[i];
+    pRgb.push([(key >> 16) & 0xff, (key >> 8) & 0xff, key & 0xff]);
   }
 
-  const outputBits: number[] = [];
-  let bitBuffer = 0;
-  let bitsInBuffer = 0;
-
-  function emit(code: number, codeLen: number): void {
-    bitBuffer |= code << bitsInBuffer;
-    bitsInBuffer += codeLen;
-    while (bitsInBuffer >= 8) {
-      outputBits.push(bitBuffer & 0xff);
-      bitBuffer >>= 8;
-      bitsInBuffer -= 8;
+  for (let ri = 0; ri < 32; ri++) {
+    const pr = (ri * 255 + 16) >> 5;
+    for (let gi = 0; gi < 32; gi++) {
+      const pg = (gi * 255 + 16) >> 5;
+      for (let bi = 0; bi < 32; bi++) {
+        const pb = (bi * 255 + 16) >> 5;
+        let best = 1, bestD = Infinity;
+        for (let j = 1; j < pRgb.length; j++) {
+          const dr = pr - pRgb[j][0];
+          const dg = pg - pRgb[j][1];
+          const db = pb - pRgb[j][2];
+          const d = dr * dr + dg * dg + db * db;
+          if (d < bestD) { bestD = d; best = j; }
+        }
+        lut[(ri << 10) | (gi << 5) | bi] = best;
+      }
     }
   }
 
-  emit(clearCode, codeSize);
+  return { palette, lut };
+}
 
-  let buffer = "";
-  for (let i = 0; i < indices.length; i++) {
-    const ch = String.fromCharCode(indices[i]);
-    const combined = buffer + ch;
-    if (table.has(combined)) {
-      buffer = combined;
+// ── LZW Compression (correct bit-packing) ─────────────────────────────
+
+/**
+ * GIF LZW with correct variable-width codes.
+ *
+ * Bit packing: write bits LSB-first into Uint8Array.
+ * codeSize expansion: bump when nextCode > (1 << codeSize).
+ * Table reset: when nextCode > 4095, emit CLEAR, reinitialise.
+ */
+function lzwCompress(indices: Uint8Array, minLZW: number): number[] {
+  const CLEAR = 1 << minLZW;
+  const EOI   = CLEAR + 1;
+
+  let codeSize = minLZW + 1;
+  let nextCode = EOI + 1;
+  const MAX_CODE = 4096;
+
+  // Trie: each code maps to a Map<nextByte, childCode>
+  // code 0..255: implicit (single byte, no trie entry needed)
+  const trie: (Map<number, number> | undefined)[] = new Array(MAX_CODE);
+  for (let i = 0; i < 256; i++) trie[i] = new Map<number, number>();
+
+  // Bit-packing state
+  const out: number[] = [];
+  let curByte = 0, curBit = 0;
+
+  function emit(code: number): void {
+    let c = code;
+    for (let i = 0; i < codeSize; i++) {
+      if (c & 1) curByte |= (1 << curBit);
+      c >>= 1;
+      curBit++;
+      if (curBit === 8) {
+        out.push(curByte);
+        curByte = 0;
+        curBit = 0;
+      }
+    }
+  }
+
+  function resetTable(): void {
+    // Clear ALL trie entries (root + extended)
+    for (let i = 0; i < MAX_CODE; i++) {
+      trie[i]?.clear();
+    }
+    // Re-initialize root entries (codes 0..255 = single pixels)
+    for (let i = 0; i < 256; i++) {
+      if (!trie[i]) trie[i] = new Map<number, number>();
+    }
+    codeSize = minLZW + 1;
+    nextCode = EOI + 1;
+  }
+
+  emit(CLEAR);
+
+  let w = indices[0];  // current code (starts as first pixel)
+
+  for (let i = 1; i < indices.length; i++) {
+    const px = indices[i];
+    const children = trie[w];
+    if (children && children.has(px)) {
+      w = children.get(px)!;
     } else {
-      emit(table.get(buffer)!, codeSize);
-      if (nextCode < 4096) {
-        table.set(combined, nextCode++);
+      emit(w);
+
+      if (children && nextCode < MAX_CODE) {
+        children.set(px, nextCode);
+        trie[nextCode] = new Map<number, number>();
+        nextCode++;
         if (nextCode > (1 << codeSize) && codeSize < 12) {
           codeSize++;
         }
-      } else {
-        // Table full — emit clear code and reset
-        emit(clearCode, codeSize);
-        codeSize = minCodeSize + 1;
-        nextCode = eoiCode + 1;
-        table.clear();
-        for (let j = 0; j < clearCode; j++) {
-          table.set(String.fromCharCode(j), j);
-        }
+      } else if (nextCode >= MAX_CODE) {
+        emit(CLEAR);
+        resetTable();
+        // Re-initialise root entries for w and px
+        trie[w] = trie[w] || new Map<number, number>();
+        trie[px] = trie[px] || new Map<number, number>();
       }
-      buffer = ch;
+
+      w = px;
     }
   }
 
-  if (buffer.length > 0) {
-    emit(table.get(buffer)!, codeSize);
-  }
-
-  emit(eoiCode, codeSize);
+  emit(w);
+  emit(EOI);
 
   // Flush remaining bits
-  if (bitsInBuffer > 0) {
-    outputBits.push(bitBuffer & 0xff);
+  if (curBit > 0) {
+    out.push(curByte);
   }
 
-  return outputBits;
+  return out;
 }
 
-function packIntoSubBlocks(data: number[]): number[] {
-  const result: number[] = [];
-  let maxSubBlock = 255;
-  for (let i = 0; i < data.length; i += maxSubBlock) {
-    const chunk = data.slice(i, Math.min(i + maxSubBlock, data.length));
-    result.push(chunk.length);
-    for (const b of chunk) result.push(b);
+// ── Sub-block packing ───────────────────────────────────────────────────
+
+function packSubBlocks(bits: number[]): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < bits.length; i += 255) {
+    const end = Math.min(i + 255, bits.length);
+    out.push(end - i);
+    for (let j = i; j < end; j++) out.push(bits[j]);
   }
-  result.push(0); // block terminator
-  return result;
+  out.push(0);   // block terminator
+  return out;
 }
 
-// ── Main encode function ──
+// ── Main entry point ─────────────────────────────────────────────────────
 
 export async function encodeGIF(
   frames: ImageData[],
   width: number,
   height: number,
-  options: GIFEncodeOptions = { delay: 10, repeat: 0 },
+  opts: GIFEncodeOptions = { delay: 10, repeat: 0 },
 ): Promise<Blob> {
-
-  const { delay, repeat, onProgress } = options;
+  const { delay, repeat, onProgress } = opts;
   const out: number[] = [];
 
-  // ── Header ──
-  writeString(out, "GIF89a");
+  // 1. Build global palette + LUT
+  const { palette, lut } = buildPalette(frames);
 
-  // ── Logical Screen Descriptor ──
+  // 2. GIF Header + Logical Screen Descriptor
+  writeStr(out, "GIF89a");
   writeShort(out, width);
   writeShort(out, height);
-  // Packed byte: global color table flag=1, color resolution=1, sort=0, size of GCT=7 (256 entries)
-  out.push(0xf0); // 11110000
-  out.push(0x00); // background color index
-  out.push(0x00); // pixel aspect ratio
+  // Packed: GCT flag=1, color res=7 (8 bits), sort=0, GCT size=7 (256 entries)
+  out.push(0b1111_0111);
+  out.push(0x00);   // bg color index
+  out.push(0x00);   // pixel aspect ratio
 
-  // ── Global Color Table (will be overwritten by first frame's palette) ──
-  // Placeholder — filled in after first frame quantization
-  const gctOffset = out.length;
-  for (let i = 0; i < 256 * 3; i++) out.push(0);
+  // 3. Global Color Table (768 bytes)
+  for (let i = 0; i < 256 * 3; i++) out.push(palette[i]);
 
-  // ── Netscape Extension (looping) ──
+  // 4. Netscape Extension (looping)
   if (repeat !== 1) {
-    out.push(0x21); // extension introducer
-    out.push(0xFF); // application extension label
-    writeString(out, "NETSCAPE");
-    out.push(0x02); // block size
-    out.push(0x03); // sub-block ID
-    writeShort(out, repeat === 0 ? 0 : repeat); // loop count
-    out.push(0x00); // terminator
-  }
-
-  // ── Encode frames one by one with yielding ──
-  let firstPalette: Uint8Array | null = null;
-
-  for (let f = 0; f < frames.length; f++) {
-    const imgData = frames[f];
-
-    // Quantize
-    const { palette, indices } = quantizeTo256(imgData.data);
-
-    // Update GCT with first frame's palette
-    if (!firstPalette) {
-      firstPalette = palette;
-      for (let i = 0; i < 256 * 3; i++) out[gctOffset + i] = palette[i];
-    }
-
-    // ── Graphic Control Extension ──
-    out.push(0x21); // extension introducer
-    out.push(0xF9); // GCE label
-    out.push(0x04); // block size
-    // Packed: disposal=1 (do not dispose), user input=0, transparent color=1
-    out.push(0x01); // disposal method + transparent flag
-    writeShort(out, delay); // delay time
-    out.push(0x00); // transparent color index (index 0)
-    out.push(0x00); // terminator
-
-    // ── Image Descriptor ──
-    out.push(0x2C); // image separator
-    writeShort(out, 0); // left position
-    writeShort(out, 0); // top position
-    writeShort(out, width); // image width
-    writeShort(out, height); // image height
-    // Packed: no local color table (use GCT), not interlaced, not sorted
+    out.push(0x21, 0xFF, 0x0B);
+    writeStr(out, "NETSCAPE2.0");
+    out.push(0x03, 0x01);
+    writeShort(out, repeat === 0 ? 0 : repeat);
     out.push(0x00);
+  }
 
-    // ── LZW Compressed Image Data ──
-    out.push(0x08); // minimum LZW code size
-    const compressed = lzwEncode(indices, 8);
-    const subBlocks = packIntoSubBlocks(compressed);
-    for (const b of subBlocks) out.push(b);
+  // 5. Encode frames
+  const totalFrames = frames.length;
+  const MIN_LZW = 8;
 
-    // ── Yield control back to browser every frame so UI updates ──
-    if (onProgress && (f % Math.max(1, Math.floor(frames.length / 20)) === 0 || f === frames.length - 1)) {
-      onProgress((f + 1) / frames.length);
-      await new Promise<void>((r) => setTimeout(() => r(), 0));
+  for (let f = 0; f < totalFrames; f++) {
+    const fd = frames[f];
+    const px = fd.data;
+    const numPx = px.length >> 2;
+
+    // Quantise each pixel via LUT
+    const indices = new Uint8Array(numPx);
+    for (let i = 0; i < numPx; i++) {
+      const off = i << 2;
+      if (px[off + 3] < 128) {
+        indices[i] = 0;   // transparent
+      } else {
+        const ri = px[off]     >> 3;   // 8-bit → 5-bit
+        const gi = px[off + 1] >> 3;
+        const bi = px[off + 2] >> 3;
+        indices[i] = lut[(ri << 10) | (gi << 5) | bi];
+      }
+    }
+
+    // Graphic Control Extension
+    out.push(0x21, 0xF9);
+    out.push(0x04);
+    // disposal=2 (restore to bg), transparent=1
+    // disposal=1 (do not dispose) also works for cumulative frames;
+    // disposal=2 is safer for transparent-background animation.
+    out.push(0x29);              // 0010_1001 = disposal=2, transparent=1
+    writeShort(out, delay);     // delay in centiseconds
+    out.push(0x00);           // transparent color index
+    out.push(0x00);           // block terminator
+
+    // Image Descriptor
+    out.push(0x2C);
+    writeShort(out, 0);        // left
+    writeShort(out, 0);        // top
+    writeShort(out, width);
+    writeShort(out, height);
+    out.push(0x00);           // no local color table
+
+    // LZW-compressed image data
+    out.push(MIN_LZW);
+    const compressed = lzwCompress(indices, MIN_LZW);
+    const packed = packSubBlocks(compressed);
+    for (const b of packed) out.push(b);
+
+    // Yield to UI
+    if (
+      onProgress &&
+      (f % Math.max(1, Math.floor(totalFrames / 20)) === 0 ||
+       f === totalFrames - 1)
+    ) {
+      onProgress((f + 1) / totalFrames);
+      await new Promise<void>((r) => setTimeout(r, 0));
     }
   }
 
-  // ── Trailer ──
+  // 6. Trailer
   out.push(0x3B);
 
   return new Blob([new Uint8Array(out)], { type: "image/gif" });
