@@ -33,6 +33,7 @@
     "@imgly/background-removal": "^1.7.0",
     "@monaco-editor/react": "^4.7.0",
     "@phosphor-icons/react": "^2.1.10",
+    "@pilio/gemini-watermark-remover": "^1.0.27",
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-accessible-icon": "^1.1.0",
     "@radix-ui/react-accordion": "^1.2.0",
