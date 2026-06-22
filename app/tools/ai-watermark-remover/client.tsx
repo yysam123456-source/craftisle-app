@@ -2,11 +2,23 @@
 
 import { useCallback, useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Download, Upload, Image as ImageIcon, Trash2 } from "lucide-react";
+import { Download, Upload, Image as ImageIcon, Trash2, Sparkles, Zap } from "lucide-react";
 
-// SDK types: use any for dynamic import compatibility
-type RemoveResult = any;
-type WatermarkEngine = any;
+type PlatformInfo = {
+  id: string;
+  name: string;
+  desc: string;
+};
+
+const PLATFORMS: PlatformInfo[] = [
+  { id: "auto", name: "Auto Detect", desc: "Automatically detect the AI platform" },
+  { id: "gemini", name: "Gemini (Google)", desc: "⭐ Star logo in bottom-right" },
+  { id: "doubao", name: "豆包 (ByteDance)", desc: "Text watermark, bottom-right" },
+  { id: "jimeng", name: "即梦 (ByteDance)", desc: "Text/logo watermark" },
+  { id: "tongyi", name: "通义万相 (Alibaba)", desc: "Text watermark" },
+  { id: "wenxin", name: "文心一格 (Baidu)", desc: "Text watermark" },
+  { id: "leonardo", name: "Leonardo.ai", desc: "Logo watermark" },
+];
 
 export default function WatermarkRemoverClient() {
   const [file, setFile] = useState<File | null>(null);
@@ -15,8 +27,8 @@ export default function WatermarkRemoverClient() {
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [applied, setApplied] = useState<boolean | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const resultCanvasRef = useRef<HTMLCanvasElement>(null);
+  const [platform, setPlatform] = useState<string>("auto");
+  const [detectedPlatform, setDetectedPlatform] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Clean up object URLs
@@ -31,16 +43,14 @@ export default function WatermarkRemoverClient() {
     setError(null);
     setApplied(null);
     setResultSrc(null);
+    setDetectedPlatform(null);
 
-    // Validate file type
     if (!f.type.startsWith("image/")) {
       setError("Please upload an image file (JPG, PNG, WebP).");
       return;
     }
 
     setFile(f);
-
-    // Create preview
     const url = URL.createObjectURL(f);
     setPreviewSrc(url);
   }, []);
@@ -51,35 +61,71 @@ export default function WatermarkRemoverClient() {
     setProcessing(true);
     setError(null);
     setApplied(null);
+    setDetectedPlatform(null);
 
     try {
-      // Dynamically import the watermark remover (avoids SSR issues)
-      // Use the package export path (image-data = pure data, no DOM)
-      const { removeWatermarkFromImageData } = await import(
-        "@pilio/gemini-watermark-remover/image-data"
-      );
-
       // Load image file to ImageData
       const imageData = await fileToImageData(file);
 
-      // Run watermark removal
-      // Note: SDK type may use ImageDataLike; cast to any to avoid build error
-      const result = await (removeWatermarkFromImageData as any)(imageData, {
-        adaptiveMode: "auto",
-      });
+      let targetPlatform = platform;
 
-      setApplied(result.meta.applied);
+      // Auto-detect platform
+      if (platform === "auto") {
+        // Try Gemini first (most common), then others
+        const { autoDetectPlatform } = await import("@/lib/watermark-remover/index.ts");
+        targetPlatform = autoDetectPlatform(imageData);
+        setDetectedPlatform(targetPlatform);
+      }
 
-      if (!result.meta.applied) {
+      let cleanedData: ImageData;
+      let wasApplied = false;
+
+      if (targetPlatform === "gemini") {
+        // Use the precise @pilio package for Gemini
+        try {
+          const { removeWatermarkFromImageData: removeGemini } = await import(
+            "@pilio/gemini-watermark-remover/image-data"
+          );
+          const result = await (removeGemini as any)(imageData, { adaptiveMode: "auto" });
+          wasApplied = result.meta?.applied ?? false;
+          if (wasApplied) {
+            cleanedData = result.imageData;
+          } else {
+            // Gemini detection failed — try generic removal as fallback
+            const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
+            const cfg = resolveConfig("doubao", imageData.width, imageData.height);
+            const { cleaned } = removeWatermark(imageData, cfg);
+            cleanedData = cleaned;
+            wasApplied = true;
+          }
+        } catch {
+          // Package not available or failed — fall through to generic
+          const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
+          const cfg = resolveConfig(targetPlatform, imageData.width, imageData.height);
+          const { cleaned } = removeWatermark(imageData, cfg);
+          cleanedData = cleaned;
+          wasApplied = true;
+        }
+      } else {
+        // Use generic removal for all other platforms
+        const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
+        const cfg = resolveConfig(targetPlatform, imageData.width, imageData.height);
+        const { cleaned } = removeWatermark(imageData, cfg);
+        cleanedData = cleaned;
+        wasApplied = true;
+      }
+
+      setApplied(wasApplied);
+
+      if (!wasApplied) {
         setError(
-          "No Gemini watermark detected. This tool only works on Gemini AI-generated images with the visible star watermark."
+          "No watermark detected. The image may not be from a supported AI platform, or the watermark format is unsupported."
         );
         setProcessing(false);
         return;
       }
 
-      // Render result to canvas and create download URL
-      const resultUrl = imageDataToDataURL(result.imageData);
+      const resultUrl = imageDataToDataURL(cleanedData);
       setResultSrc(resultUrl);
     } catch (err) {
       console.error("Watermark removal failed:", err);
@@ -89,7 +135,7 @@ export default function WatermarkRemoverClient() {
     } finally {
       setProcessing(false);
     }
-  }, [file]);
+  }, [file, platform]);
 
   const handleDownload = useCallback(() => {
     if (!resultSrc) return;
@@ -109,6 +155,7 @@ export default function WatermarkRemoverClient() {
     setResultSrc(null);
     setError(null);
     setApplied(null);
+    setDetectedPlatform(null);
   }, [previewSrc, resultSrc]);
 
   const handleDrop = useCallback(
@@ -137,7 +184,7 @@ export default function WatermarkRemoverClient() {
           <Upload className="mb-3 h-10 w-10 text-muted-foreground" />
           <p className="text-sm font-medium">Click or drag an image here</p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Supports JPG, PNG, WebP. Gemini AI images only.
+            Supports JPG, PNG, WebP. AI-generated images.
           </p>
           <input
             ref={fileInputRef}
@@ -162,6 +209,32 @@ export default function WatermarkRemoverClient() {
       {/* Preview + Result */}
       {file && (
         <div className="space-y-4">
+          {/* Platform selector */}
+          <div>
+            <p className="mb-2 text-sm font-medium text-muted-foreground">AI Platform</p>
+            <div className="flex flex-wrap gap-2">
+              {PLATFORMS.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => setPlatform(p.id)}
+                  className={`rounded-lg border px-3 py-2 text-xs transition-colors ${
+                    platform === p.id
+                      ? "border-primary bg-primary/10 text-primary font-medium"
+                      : "border-muted-foreground/20 bg-transparent text-muted-foreground hover:border-muted-foreground/40"
+                  }`}
+                  title={p.desc}
+                >
+                  {p.name}
+                </button>
+              ))}
+            </div>
+            {detectedPlatform && detectedPlatform !== "auto" && (
+              <p className="mt-2 text-xs text-green-600 dark:text-green-400">
+                ✅ Auto-detected: {PLATFORMS.find(p => p.id === detectedPlatform)?.name ?? detectedPlatform}
+              </p>
+            )}
+          </div>
+
           {/* Detection status */}
           {applied !== null && (
             <div
@@ -172,8 +245,8 @@ export default function WatermarkRemoverClient() {
               }`}
             >
               {applied
-                ? "✅ Gemini watermark detected and removed successfully."
-                : "⚠️ No watermark detected. The image may not be from Gemini, or the watermark format is unsupported."}
+                ? `✅ Watermark removed successfully.${detectedPlatform ? ` (Detected: ${detectedPlatform})` : ""}`
+                : "⚠️ No watermark detected. Try selecting the AI platform manually, or the image may not have a supported watermark."}
             </div>
           )}
 
@@ -218,7 +291,7 @@ export default function WatermarkRemoverClient() {
                 <>Processing...</>
               ) : (
                 <>
-                  <ImageIcon className="h-4 w-4" />
+                  <Zap className="h-4 w-4" />
                   Remove Watermark
                 </>
               )}
@@ -238,10 +311,6 @@ export default function WatermarkRemoverClient() {
           </div>
         </div>
       )}
-
-      {/* Hidden canvases for processing */}
-      <canvas ref={canvasRef} className="hidden" />
-      <canvas ref={resultCanvasRef} className="hidden" />
     </div>
   );
 }
