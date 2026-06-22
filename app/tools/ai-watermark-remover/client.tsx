@@ -2,7 +2,7 @@
 
 import { useCallback, useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Download, Upload, Image as ImageIcon, Trash2, Sparkles, Zap } from "lucide-react";
+import { Download, Upload, Image as ImageIcon, Trash2, Zap } from "lucide-react";
 
 type PlatformInfo = {
   id: string;
@@ -13,8 +13,8 @@ type PlatformInfo = {
 const PLATFORMS: PlatformInfo[] = [
   { id: "auto", name: "Auto Detect", desc: "Automatically detect the AI platform" },
   { id: "gemini", name: "Gemini (Google)", desc: "⭐ Star logo in bottom-right" },
+  { id: "jimeng", name: "即梦 (ByteDance)", desc: "⭐ Text/logo watermark (recommended for Chinese AI)" },
   { id: "doubao", name: "豆包 (ByteDance)", desc: "Text watermark, bottom-right" },
-  { id: "jimeng", name: "即梦 (ByteDance)", desc: "Text/logo watermark" },
   { id: "tongyi", name: "通义万相 (Alibaba)", desc: "Text watermark" },
   { id: "wenxin", name: "文心一格 (Baidu)", desc: "Text watermark" },
   { id: "leonardo", name: "Leonardo.ai", desc: "Logo watermark" },
@@ -26,9 +26,13 @@ export default function WatermarkRemoverClient() {
   const [resultSrc, setResultSrc] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [applied, setApplied] = useState<boolean | null>(null);
+  const [status, setStatus] = useState<{
+    applied: boolean;
+    platform?: string;
+    pixels?: number;
+    confidence?: number;
+  } | null>(null);
   const [platform, setPlatform] = useState<string>("auto");
-  const [detectedPlatform, setDetectedPlatform] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Clean up object URLs
@@ -41,9 +45,8 @@ export default function WatermarkRemoverClient() {
 
   const processFile = useCallback(async (f: File) => {
     setError(null);
-    setApplied(null);
+    setStatus(null);
     setResultSrc(null);
-    setDetectedPlatform(null);
 
     if (!f.type.startsWith("image/")) {
       setError("Please upload an image file (JPG, PNG, WebP).");
@@ -60,66 +63,65 @@ export default function WatermarkRemoverClient() {
 
     setProcessing(true);
     setError(null);
-    setApplied(null);
-    setDetectedPlatform(null);
+    setStatus(null);
 
     try {
-      // Load image file to ImageData
       const imageData = await fileToImageData(file);
-
       let targetPlatform = platform;
+      let cleanedData: ImageData;
+      let applied = false;
+      let resultInfo: { pixels?: number; confidence?: number } = {};
 
-      // Auto-detect platform
+      // Auto-detect
       if (platform === "auto") {
-        // Try Gemini first (most common), then others
         const { autoDetectPlatform } = await import("@/lib/watermark-remover/index.ts");
         targetPlatform = autoDetectPlatform(imageData);
-        setDetectedPlatform(targetPlatform);
       }
 
-      let cleanedData: ImageData;
-      let wasApplied = false;
-
       if (targetPlatform === "gemini") {
-        // Use the precise @pilio package for Gemini
+        // Use @pilio's precise engine for Gemini
         try {
           const { removeWatermarkFromImageData: removeGemini } = await import(
             "@pilio/gemini-watermark-remover/image-data"
           );
           const result = await (removeGemini as any)(imageData, { adaptiveMode: "auto" });
-          wasApplied = result.meta?.applied ?? false;
-          if (wasApplied) {
+          applied = result.meta?.applied ?? false;
+          if (applied) {
             cleanedData = result.imageData;
           } else {
-            // Gemini detection failed — try generic removal as fallback
+            // Gemini not detected — try generic engine with jimeng config
             const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
-            const cfg = resolveConfig("doubao", imageData.width, imageData.height);
-            const { cleaned } = removeWatermark(imageData, cfg);
-            cleanedData = cleaned;
-            wasApplied = true;
+            const cfg = resolveConfig("jimeng", imageData.width, imageData.height);
+            const res = removeWatermark(imageData, cfg);
+            cleanedData = res.cleaned;
+            applied = res.pixelCount > 20 && res.confidence > 0.1;
+            targetPlatform = "jimeng";
+            resultInfo = { pixels: res.pixelCount, confidence: Math.round(res.confidence * 100) };
           }
         } catch {
-          // Package not available or failed — fall through to generic
+          // @pilio failed → fall back to generic
           const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
           const cfg = resolveConfig(targetPlatform, imageData.width, imageData.height);
-          const { cleaned } = removeWatermark(imageData, cfg);
-          cleanedData = cleaned;
-          wasApplied = true;
+          const res = removeWatermark(imageData, cfg);
+          cleanedData = res.cleaned;
+          applied = res.pixelCount > 20 && res.confidence > 0.1;
+          resultInfo = { pixels: res.pixelCount, confidence: Math.round(res.confidence * 100) };
         }
       } else {
-        // Use generic removal for all other platforms
+        // Generic detection + inpainting for all other platforms
         const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
         const cfg = resolveConfig(targetPlatform, imageData.width, imageData.height);
-        const { cleaned } = removeWatermark(imageData, cfg);
-        cleanedData = cleaned;
-        wasApplied = true;
+        const res = removeWatermark(imageData, cfg);
+        cleanedData = res.cleaned;
+        applied = res.pixelCount > 20 && res.confidence > 0.1;
+        resultInfo = { pixels: res.pixelCount, confidence: Math.round(res.confidence * 100) };
       }
 
-      setApplied(wasApplied);
+      setStatus({ applied, platform: targetPlatform, ...resultInfo });
 
-      if (!wasApplied) {
+      if (!applied) {
         setError(
-          "No watermark detected. The image may not be from a supported AI platform, or the watermark format is unsupported."
+          "No watermark detected. Try selecting the AI platform manually, or this image may not have a supported watermark type."
         );
         setProcessing(false);
         return;
@@ -129,9 +131,7 @@ export default function WatermarkRemoverClient() {
       setResultSrc(resultUrl);
     } catch (err) {
       console.error("Watermark removal failed:", err);
-      setError(
-        `Processing failed: ${err instanceof Error ? err.message : "Unknown error"}`
-      );
+      setError(`Processing failed: ${err instanceof Error ? err.message : "Unknown error"}`);
     } finally {
       setProcessing(false);
     }
@@ -154,8 +154,7 @@ export default function WatermarkRemoverClient() {
     setPreviewSrc(null);
     setResultSrc(null);
     setError(null);
-    setApplied(null);
-    setDetectedPlatform(null);
+    setStatus(null);
   }, [previewSrc, resultSrc]);
 
   const handleDrop = useCallback(
@@ -184,7 +183,7 @@ export default function WatermarkRemoverClient() {
           <Upload className="mb-3 h-10 w-10 text-muted-foreground" />
           <p className="text-sm font-medium">Click or drag an image here</p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Supports JPG, PNG, WebP. AI-generated images.
+            Supports JPG, PNG, WebP. Works best with images from Gemini, 即梦, 豆包, 通义万相, 文心一格.
           </p>
           <input
             ref={fileInputRef}
@@ -228,25 +227,20 @@ export default function WatermarkRemoverClient() {
                 </button>
               ))}
             </div>
-            {detectedPlatform && detectedPlatform !== "auto" && (
-              <p className="mt-2 text-xs text-green-600 dark:text-green-400">
-                ✅ Auto-detected: {PLATFORMS.find(p => p.id === detectedPlatform)?.name ?? detectedPlatform}
-              </p>
-            )}
           </div>
 
-          {/* Detection status */}
-          {applied !== null && (
-            <div
-              className={`rounded-lg p-3 text-sm ${
-                applied
-                  ? "border border-green-200 bg-green-50 text-green-700 dark:border-green-800 dark:bg-green-950/30 dark:text-green-400"
-                  : "border border-yellow-200 bg-yellow-50 text-yellow-700 dark:border-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-400"
-              }`}
-            >
-              {applied
-                ? `✅ Watermark removed successfully.${detectedPlatform ? ` (Detected: ${detectedPlatform})` : ""}`
-                : "⚠️ No watermark detected. Try selecting the AI platform manually, or the image may not have a supported watermark."}
+          {/* Status */}
+          {status && status.applied && (
+            <div className="rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-700 dark:border-green-800 dark:bg-green-950/30 dark:text-green-400">
+              ✅ Watermark removed
+              {status.platform && status.platform !== "auto" && (
+                <span className="ml-1">— {PLATFORMS.find(p => p.id === status.platform)?.name ?? status.platform}</span>
+              )}
+              {status.pixels != null && (
+                <span className="ml-2 text-xs opacity-75">
+                  ({status.pixels} pixels repaired, {status.confidence}% confidence)
+                </span>
+              )}
             </div>
           )}
 
@@ -309,6 +303,12 @@ export default function WatermarkRemoverClient() {
               Clear
             </Button>
           </div>
+
+          {/* Disclaimer */}
+          <p className="text-[11px] text-muted-foreground/60 leading-relaxed">
+            This tool removes semi-transparent watermarks added by AI image generators.
+            For personal use only. Results may vary depending on image quality and watermark type.
+          </p>
         </div>
       )}
     </div>

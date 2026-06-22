@@ -1,145 +1,107 @@
 /**
- * Generic AI watermark remover — multi-platform support.
+ * Generic AI Watermark Remover — multi-platform support.
  *
- * Principle: most AI image tools add a semi-transparent logo/text in the
- * bottom-right corner using alpha blending:
- *   watermarked = α·logo + (1−α)·original
+ * v2: Detection + Inpainting approach (replaces broken synthetic-alpha approach).
  *
- * Given the watermark alpha map (pre-calibrated per platform), we recover:
- *   original = (watermarked − α·logo) / (1−α)
+ * Most AI image tools add a semi-transparent text/logo in the bottom-right corner.
+ * Instead of reverse-alpha-blending (which requires precise per-platform templates),
+ * this engine:
  *
- * Supported platforms (add more by extending PLATFORMS below):
- *   - gemini      (Google Gemini, ⭐ star logo)
- *   - doubao     (字节豆包, 文字水印)
- *   - jimeng     (即梦, 文字/logo 水印)
- *   - tongyi     (通义万相, 文字水印)
- *   - wenxin     (文心一格, 文字水印)
- *   - leonardo   (Leonardo.ai, logo)
- *   - playground  (OpenAI Playground, DALL-E 2/3)
+ *   1. DETECTS watermark pixels as local brightness/color outliers in the corner region
+ *   2. BUILDS a tight binary mask around actual watermark strokes
+ *   3. INPAINTS masked pixels from surrounding non-watermark neighbors
+ *
+ * For Gemini images, we still delegate to @pilio's precise alpha-map engine.
+ * For everything else, detection + inpainting produces visibly clean results
+ * without needing platform-specific calibration data.
  */
 
-// ── Platform database ────────────────────────────────────────────────────────
+// ── Types ───────────────────────────────────────────────────────────────────
 
 export interface PlatformConfig {
   name: string;
   displayName: string;
-  /**
-   * Known output sizes → watermark config.
-   * key = "WxH"  or  "maxDim"  (max dimension, for flexible sizes)
-   * value = { logoSize, marginRight, marginBottom, alpha (0-1) }
-   */
-  sizeRules: SizeRule[];
-  /**
-   * Fallback: if no size rule matches, use this config.
-   * logoSize: watermark logo/tex size in px
-   * marginRight: pixels from right edge
-   * marginBottom: pixels from bottom edge
-   * alpha: estimated max alpha (0-1), used to generate a synthetic alpha map
-   * textColor: [R,G,B] of the watermark text/logo (for synthetic map)
-   */
-  fallback: FallbackConfig;
-  /**
-   * If true, the watermark is a known logo image (not just text).
-   * We'll need an alpha map image for best results.
-   */
-  hasLogoImage: boolean;
+  /** Search region in bottom-right corner. */
+  searchRegion: {
+    widthRatio: number; // fraction of image width to search
+    heightRatio: number; // fraction of image height to search
+    marginX: number;     // px from right edge
+    marginY: number;     // px from bottom edge
+  };
+  /** Expected watermark characteristics for detection tuning. */
+  characteristics: {
+    /** Is watermark typically lighter or darker than background? */
+    lighter: boolean;
+    /** Min brightness difference to consider a pixel "watermarked". */
+    minBrightnessDelta: number;
+    /** How many standard deviations above local mean counts as outlier. */
+    outlierSigma: number;
+  };
 }
 
-export interface SizeRule {
-  minWidth?: number;
-  minHeight?: number;
-  maxWidth?: number;
-  maxHeight?: number;
-  logoSize: number;
-  marginRight: number;
-  marginBottom: number;
-  alpha?: number; // override fallback alpha
+export interface ResolvedConfig {
+  platform: string;
+  searchX: number;
+  searchY: number;
+  searchW: number;
+  searchH: number;
+  lighter: boolean;
+  minBrightnessDelta: number;
+  outlierSigma: number;
 }
 
-export interface FallbackConfig {
-  logoSize: number;
-  marginRight: number;
-  marginBottom: number;
-  alpha: number;
-  textColor: [number, number, number]; // RGB
+export interface RemovalResult {
+  cleaned: ImageData;
+  mask: Uint8ClampedArray;       // binary mask (255 = watermark pixel, 0 = clean)
+  region: { x: number; y: number; w: number; h: number };
+  pixelCount: number;            // how many pixels were inpainted
+  confidence: number;            // 0-1, how confident we are this is a real watermark
 }
 
-// ── Built-in platform configs ──────────────────────────────────────────────
+// ── Platform configs ────────────────────────────────────────────────────────
 
 const PLATFORMS: Record<string, PlatformConfig> = {
   gemini: {
     name: "gemini",
     displayName: "Gemini (Google)",
-    hasLogoImage: true,
-    sizeRules: [
-      // Gemini's known output sizes
-      { minWidth: 1024, minHeight: 1024, logoSize: 96, marginRight: 64, marginBottom: 64, alpha: 0.25 },
-      { minWidth: 0,    minHeight: 0,    logoSize: 48, marginRight: 32, marginBottom: 32, alpha: 0.20 },
-    ],
-    fallback: { logoSize: 48, marginRight: 32, marginBottom: 32, alpha: 0.20, textColor: [255, 255, 255] },
+    searchRegion: { widthRatio: 0.15, heightRatio: 0.15, marginX: 20, marginY: 20 },
+    characteristics: { lighter: true, minBrightnessDelta: 8, outlierSigma: 1.5 },
   },
-
   doubao: {
     name: "doubao",
     displayName: "豆包 (ByteDance)",
-    hasLogoImage: false, // text watermark
-    sizeRules: [
-      { minWidth: 1024, minHeight: 1024, logoSize: 80, marginRight: 40, marginBottom: 40, alpha: 0.18 },
-      { minWidth: 0,    minHeight: 0,    logoSize: 60, marginRight: 24, marginBottom: 24, alpha: 0.15 },
-    ],
-    fallback: { logoSize: 60, marginRight: 24, marginBottom: 24, alpha: 0.15, textColor: [255, 255, 255] },
+    searchRegion: { widthRatio: 0.18, heightRatio: 0.12, marginX: 16, marginY: 16 },
+    characteristics: { lighter: true, minBrightnessDelta: 6, outlierSigma: 1.2 },
   },
-
   jimeng: {
     name: "jimeng",
     displayName: "即梦 (ByteDance)",
-    hasLogoImage: false,
-    sizeRules: [
-      { minWidth: 1024, minHeight: 1024, logoSize: 72, marginRight: 48, marginBottom: 48, alpha: 0.16 },
-      { minWidth: 0,    minHeight: 0,    logoSize: 56, marginRight: 28, marginBottom: 28, alpha: 0.14 },
-    ],
-    fallback: { logoSize: 56, marginRight: 28, marginBottom: 28, alpha: 0.14, textColor: [255, 255, 255] },
+    searchRegion: { widthRatio: 0.18, heightRatio: 0.12, marginX: 16, marginY: 16 },
+    characteristics: { lighter: true, minBrightnessDelta: 6, outlierSigma: 1.2 },
   },
-
   tongyi: {
     name: "tongyi",
     displayName: "通义万相 (Alibaba)",
-    hasLogoImage: false,
-    sizeRules: [
-      { minWidth: 1024, minHeight: 1024, logoSize: 88, marginRight: 44, marginBottom: 44, alpha: 0.17 },
-      { minWidth: 0,    minHeight: 0,    logoSize: 64, marginRight: 32, marginBottom: 32, alpha: 0.15 },
-    ],
-    fallback: { logoSize: 64, marginRight: 32, marginBottom: 32, alpha: 0.15, textColor: [255, 255, 255] },
+    searchRegion: { widthRatio: 0.18, heightRatio: 0.12, marginX: 16, marginY: 16 },
+    characteristics: { lighter: true, minBrightnessDelta: 6, outlierSigma: 1.2 },
   },
-
   wenxin: {
     name: "wenxin",
     displayName: "文心一格 (Baidu)",
-    hasLogoImage: false,
-    sizeRules: [
-      { minWidth: 1024, minHeight: 1024, logoSize: 80, marginRight: 40, marginBottom: 40, alpha: 0.16 },
-      { minWidth: 0,    minHeight: 0,    logoSize: 60, marginRight: 30, marginBottom: 30, alpha: 0.14 },
-    ],
-    fallback: { logoSize: 60, marginRight: 30, marginBottom: 30, alpha: 0.14, textColor: [255, 255, 255] },
+    searchRegion: { widthRatio: 0.18, heightRatio: 0.12, marginX: 16, marginY: 16 },
+    characteristics: { lighter: true, minBrightnessDelta: 6, outlierSigma: 1.2 },
   },
-
   leonardo: {
     name: "leonardo",
     displayName: "Leonardo.ai",
-    hasLogoImage: true,
-    sizeRules: [
-      { minWidth: 1024, minHeight: 1024, logoSize: 64, marginRight: 48, marginBottom: 48, alpha: 0.22 },
-      { minWidth: 0,    minHeight: 0,    logoSize: 48, marginRight: 32, marginBottom: 32, alpha: 0.20 },
-    ],
-    fallback: { logoSize: 48, marginRight: 32, marginBottom: 32, alpha: 0.20, textColor: [255, 255, 255] },
+    searchRegion: { widthRatio: 0.14, heightRatio: 0.14, marginX: 24, marginY: 24 },
+    characteristics: { lighter: true, minBrightnessDelta: 10, outlierSigma: 1.8 },
   },
-
   auto: {
     name: "auto",
     displayName: "Auto Detect",
-    hasLogoImage: false,
-    sizeRules: [],
-    fallback: { logoSize: 48, marginRight: 32, marginBottom: 32, alpha: 0.18, textColor: [255, 255, 255] },
+    searchRegion: { widthRatio: 0.20, heightRatio: 0.15, marginX: 12, marginY: 12 },
+    characteristics: { lighter: true, minBrightnessDelta: 5, outlierSigma: 1.0 },
   },
 };
 
@@ -153,15 +115,6 @@ export function getPlatformConfig(name: string): PlatformConfig | null {
 
 // ── Config resolution ──────────────────────────────────────────────────────
 
-export interface ResolvedConfig {
-  platform: string;
-  logoSize: number;
-  marginRight: number;
-  marginBottom: number;
-  alpha: number;
-  textColor: [number, number, number];
-}
-
 export function resolveConfig(
   platform: string,
   width: number,
@@ -170,231 +123,324 @@ export function resolveConfig(
   const cfg = PLATFORMS[platform];
   if (!cfg) return resolveConfig("auto", width, height);
 
-  // Try size rules (first match wins)
-  for (const rule of cfg.sizeRules) {
-    const wOk = (rule.minWidth ?? 0) <= width && width <= (rule.maxWidth ?? Infinity);
-    const hOk = (rule.minHeight ?? 0) <= height && height <= (rule.maxHeight ?? Infinity);
-    if (wOk && hOk) {
-      return {
-        platform: cfg.name,
-        logoSize: rule.logoSize,
-        marginRight: rule.marginRight,
-        marginBottom: rule.marginBottom,
-        alpha: rule.alpha ?? cfg.fallback.alpha,
-        textColor: cfg.fallback.textColor,
-      };
-    }
-  }
+  const sr = cfg.searchRegion;
+  const ch = cfg.characteristics;
+
+  const searchW = Math.max(60, Math.min(width, Math.round(width * sr.widthRatio)));
+  const searchH = Math.max(40, Math.min(height, Math.round(height * sr.heightRatio)));
+  const searchX = width - searchW - sr.marginX;
+  const searchY = height - searchH - sr.marginY;
 
   return {
     platform: cfg.name,
-    logoSize: cfg.fallback.logoSize,
-    marginRight: cfg.fallback.marginRight,
-    marginBottom: cfg.fallback.marginBottom,
-    alpha: cfg.fallback.alpha,
-    textColor: cfg.fallback.textColor,
+    searchX,
+    searchY,
+    searchW,
+    searchH,
+    lighter: ch.lighter,
+    minBrightnessDelta: ch.minBrightnessDelta,
+    outlierSigma: ch.outlierSigma,
   };
 }
 
-// ── Synthetic alpha map generation ─────────────────────────────────────────
-// For platforms without a pre-calibrated alpha map image,
-// generate a synthetic one based on typical watermark appearance.
-//
-// Typical AI watermark: semi-transparent text/logo in bottom-right corner.
-// The alpha map is usually:
-//   - high alpha at the watermark logo/text pixels
-//   - 0 (or very low) elsewhere
-//
-// We approximate with a soft radial gradient + rectangular region.
-
-export function generateSyntheticAlphaMap(
-  logoSize: number,
-  alphaMax: number, // 0-1
-  type: "logo" | "text" = "text",
-): Float32Array {
-  const map = new Float32Array(logoSize * logoSize);
-  const cx = logoSize / 2;
-  const cy = logoSize / 2;
-  const maxR = logoSize / 2;
-
-  for (let y = 0; y < logoSize; y++) {
-    for (let x = 0; x < logoSize; x++) {
-      if (type === "logo") {
-        // Radial gradient: strongest at center
-        const dx = x - cx;
-        const dy = y - cy;
-        const r = Math.sqrt(dx * dx + dy * dy) / maxR;
-        const a = r < 1 ? alphaMax * (1 - r * r) : 0;
-        map[y * logoSize + x] = Math.max(0, Math.min(1, a));
-      } else {
-        // Text-like: assume full opacity in most of the region, with soft edges
-        const edgeDist = Math.min(x, y, logoSize - 1 - x, logoSize - 1 - y);
-        const softEdge = 4;
-        const edgeAlpha = edgeDist < softEdge
-          ? (alphaMax * edgeDist) / softEdge
-          : alphaMax;
-        // Slightly lower alpha in center to simulate text being not fully opaque
-        const dx = x - cx;
-        const dy = y - cy;
-        const centerBoost = 1 - 0.3 * Math.exp(-(dx * dx + dy * dy) / (2 * (logoSize / 6) ** 2));
-        map[y * logoSize + x] = Math.max(0, Math.min(1, edgeAlpha * centerBoost));
-      }
-    }
-  }
-
-  return map;
-}
-
-// ── Actual watermark removal ───────────────────────────────────────────────
+// ── Core: Detection + Inpainting ───────────────────────────────────────────
 
 /**
- * Remove watermark from an ImageData using reverse alpha blending.
- *
- * @param imageData - The input image (RGBA)
- * @param config    - Resolved platform config
- * @returns         - The cleaned ImageData (new object, original not mutated)
+ * Remove watermark using detection + inpainting.
  *
  * Algorithm:
- *   For each pixel in the watermark region:
- *     w = alphaMap[i]
- *     wP = watermarked pixel (R,G,B)
- *     logoColor = textColor (or average of watermark region if we could extract it)
- *
- *     originalR = (wP_R - w * logoColor_R) / (1 - w)
- *     ... similarly for G, B
- *
- *   Clamp to [0, 255].
- *
- * Limitation: this assumes the logo color is known and uniform.
- * For text watermarks, the actual text color varies slightly but is usually
- * near white (255,255,255) or light gray.
+ *   1. Compute local average brightness in the search region (excluding outliers)
+ *   2. Flag pixels that are significant brightness outliers → binary mask
+ *   3. Morphologically dilate mask slightly (catch semi-transparent edges)
+ *   4. Inpaint masked pixels via weighted neighbor averaging
  */
 export function removeWatermark(
   imageData: ImageData,
   config: ResolvedConfig,
-  options: { useGeminiEngine?: boolean } = {},
-): { cleaned: ImageData; region: { x: number; y: number; w: number; h: number } } {
+): RemovalResult {
   const { width, height, data } = imageData;
-  const cleaned = new ImageData(new Uint8ClampedArray(data), width, height);
+  const { searchX, searchY, searchW, searchH, lighter, minBrightnessDelta, outlierSigma } = config;
 
-  // Watermark region
-  const rx = width - config.marginRight - config.logoSize;
-  const ry = height - config.marginBottom - config.logoSize;
-  const rw = config.logoSize;
-  const rh = config.logoSize;
+  // Clamp search region
+  const sx = Math.max(0, searchX);
+  const sy = Math.max(0, searchY);
+  const ex = Math.min(width, sx + searchW);
+  const ey = Math.min(height, sy + searchH);
+  const rw = ex - sx;
+  const rh = ey - sy;
 
-  // Generate synthetic alpha map
-  const alphaMap = generateSyntheticAlphaMap(
-    config.logoSize,
-    config.alpha,
-    PLATFORMS[config.platform]?.hasLogoImage ? "logo" : "text",
-  );
+  if (rw < 10 || rh < 10) {
+    return {
+      cleaned: new ImageData(new Uint8ClampedArray(data), width, height),
+      mask: new Uint8ClampedArray(rw * rh),
+      region: { x: sx, y: sy, w: rw, h: rh },
+      pixelCount: 0,
+      confidence: 0,
+    };
+  }
 
-  const [lr, lg, lb] = config.textColor;
+  // Step 1: Compute brightness map of search region
+  const brightness = new Float32Array(rw * rh);
+  let sumB = 0;
+  let count = 0;
 
-  for (let y = ry; y < ry + rh; y++) {
-    if (y < 0 || y >= height) continue;
-    for (let x = rx; x < rx + rw; x++) {
-      if (x < 0 || x >= width) continue;
-
+  for (let y = sy; y < ey; y++) {
+    for (let x = sx; x < ex; x++) {
       const pi = y * width + x;
-      const si = (y - ry) * rw + (x - rx);
-
-      const w = alphaMap[si];
-      if (w < 0.01) continue; // Nearly transparent, skip
-
-      const denom = 1 - w;
-      if (denom < 0.01) {
-        // Fully opaque watermark pixel — can't recover, try to inpaint from neighbors later
-        continue;
-      }
-
-      for (let c = 0; c < 3; c++) {
-        const wp = data[pi * 4 + c];
-        const logoC = c === 0 ? lr : c === 1 ? lg : lb;
-        const recovered = (wp - w * logoC) / denom;
-        cleaned.data[pi * 4 + c] = Math.max(0, Math.min(255, Math.round(recovered)));
-      }
-      // Keep original alpha
+      const b = (data[pi * 4] + data[pi * 4 + 1] + data[pi * 4 + 2]) / 3;
+      const si = (y - sy) * rw + (x - sx);
+      brightness[si] = b;
+      sumB += b;
+      count++;
     }
   }
 
+  const globalMean = sumB / count;
+
+  // Step 2: Iterative outlier detection
+  // First pass: compute robust mean (excluding extremes)
+  let robustSum = 0;
+  let robustCount = 0;
+  for (let i = 0; i < brightness.length; i++) {
+    const d = Math.abs(brightness[i] - globalMean);
+    if (d < 60) { // exclude extreme outliers from robust mean
+      robustSum += brightness[i];
+      robustCount++;
+    }
+  }
+  const robustMean = robustCount > 0 ? robustSum / robustCount : globalMean;
+
+  // Compute std dev from robust mean
+  let sumSq = 0;
+  for (let i = 0; i < brightness.length; i++) {
+    const d = brightness[i] - robustMean;
+    sumSq += d * d;
+  }
+  const stdDev = Math.sqrt(sumSq / count);
+
+  // Step 3: Build binary mask of watermark pixels
+  const rawMask = new Uint8ClampedArray(rw * rh);
+  const threshold = Math.max(minBrightnessDelta, outlierSigma * stdDev);
+
+  for (let si = 0; si < brightness.length; si++) {
+    const diff = lighter
+      ? brightness[si] - robustMean  // watermark is LIGHTER than bg
+      : robustMean - brightness[si]; // watermark is DARKER than bg
+    if (diff > threshold) {
+      rawMask[si] = 255;
+    }
+  }
+
+  // Step 4: Morphological cleanup
+  // 4a: Dilate slightly to catch semi-transparent edges (radius=1)
+  const dilatedMask = morphDilate(rawMask, rw, rh, 1);
+
+  // 4b: Erode to remove isolated noise pixels (radius=1), then dilate back
+  // This cleans up salt-and-pepper noise while keeping real watermark shapes
+  const cleanedMask = morphErode(dilatedMask, rw, rh, 1);
+  const finalMask = morphDilate(cleanedMask, rw, rh, 1);
+
+  // Count masked pixels
+  let pixelCount = 0;
+  for (let i = 0; i < finalMask.length; i++) {
+    if (finalMask[i]) pixelCount++;
+  }
+
+  // Confidence: based on what fraction of region is watermarked and clustering
+  const density = pixelCount / (rw * rh);
+  const confidence = computeConfidence(finalMask, rw, rh, density);
+
+  // If too few pixels or too low confidence, return original
+  if (pixelCount < 20 || confidence < 0.1) {
+    return {
+      cleaned: new ImageData(new Uint8ClampedArray(data), width, height),
+      mask: finalMask,
+      region: { x: sx, y: sy, w: rw, h: rh },
+      pixelCount: 0,
+      confidence,
+    };
+  }
+
+  // Step 5: Inpaint masked pixels
+  const output = new ImageData(new Uint8ClampedArray(data), width, height);
+  inpaint(output.data, finalMask, sx, sy, rw, rh, width, height);
+
   return {
-    cleaned,
-    region: { x: rx, y: ry, w: rw, h: rh },
+    cleaned: output,
+    mask: finalMask,
+    region: { x: sx, y: sy, w: rw, h: rh },
+    pixelCount,
+    confidence,
   };
 }
 
+// ── Morphological operations ───────────────────────────────────────────────
+
+function morphDilate(mask: Uint8ClampedArray, w: number, h: number, radius: number): Uint8ClampedArray {
+  const out = new Uint8ClampedArray(w * h);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let val = 0;
+      for (let dy = -radius; dy <= radius && !val; dy++) {
+        for (let dx = -radius; dx <= radius && !val; dx++) {
+          const nx = x + dx, ny = y + dy;
+          if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
+            val = mask[ny * w + nx];
+          }
+        }
+      }
+      out[y * w + x] = val;
+    }
+  }
+  return out;
+}
+
+function morphErode(mask: Uint8ClampedArray, w: number, h: number, radius: number): Uint8ClampedArray {
+  const out = new Uint8ClampedArray(w * h);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let val = 255; // assume ON unless all neighbors are OFF
+      for (let dy = -radius; dy <= radius && val; dy++) {
+        for (let dx = -radius; dx <= radius && val; dx++) {
+          const nx = x + dx, ny = y + dy;
+          if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
+            if (!mask[ny * w + nx]) val = 0;
+          }
+        }
+      }
+      out[y * w + x] = val;
+    }
+  }
+  return out;
+}
+
+// ── Inpainting ─────────────────────────────────────────────────────────────
+
 /**
- * Try to auto-detect which platform by checking watermark region characteristics.
- * This is a heuristic: check if the bottom-right corner region has
- * consistent "watermark-like" pixels (slightly more white-ish, semi-transparent).
+ * Replace masked pixels with weighted average of valid (unmasked) neighbors.
+ * Uses a larger kernel (radius=5) for smoother results on text watermarks.
+ */
+function inpaint(
+  data: Uint8ClampedArray,
+  mask: Uint8ClampedArray,
+  ox: number, oy: number,   // origin of mask in image coords
+  mw: number, mh: number,   // mask dimensions
+  imgW: number, imgH: number,
+): void {
+  const RADIUS = 5;
+  const tmp = new Float32Array(mw * mh * 3); // accumulated R,G,B sums
+  const tmpW = new Float32Array(mw *mh);      // weight sums
+
+  // Pass 1: accumulate neighbor contributions into masked pixels
+  for (let my = 0; my < mh; my++) {
+    for (let mx = 0; mx < mw; mx++) {
+      if (!mask[my * mw + mx]) continue; // only process masked pixels
+
+      let wr = 0, wg = 0, wb = 0, wt = 0;
+
+      for (let dy = -RADIUS; dy <= RADIUS; dy++) {
+        for (let dx = -RADIUS; dx <= RADIUS; dx++) {
+          const nx = mx + dx;
+          const ny = my + dy;
+          if (nx < 0 || nx >= mw || ny < 0 || ny >= mh) continue;
+          if (mask[ny * mw + nx]) continue; // skip other masked pixels
+
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist > RADIUS) continue;
+          const weight = 1.0 - dist / RADIUS; // linear falloff
+
+          const pix = (oy + ny) * imgW + (ox + nx);
+          wr += data[pix * 4] * weight;
+          wg += data[pix * 4 + 1] * weight;
+          wb += data[pix * 4 + 2] * weight;
+          wt += weight;
+        }
+      }
+
+      const idx = (my * mw + mx) * 3;
+      if (wt > 0) {
+        tmp[idx] = wr / wt;
+        tmp[idx + 1] = wg / wt;
+        tmp[idx + 2] = wb / wt;
+        tmpW[my * mw + mx] = 1;
+      }
+    }
+  }
+
+  // Pass 2: write back inpainted values
+  for (let my = 0; my < mh; my++) {
+    for (let mx = 0; mx < mw; mx++) {
+      if (!tmpW[my * mw + mx]) continue;
+      const pix = (oy + my) * imgW + (ox + mx);
+      const idx = (my * mw + mx) * 3;
+      data[pix * 4] = Math.max(0, Math.min(255, Math.round(tmp[idx])));
+      data[pix * 4 + 1] = Math.max(0, Math.min(255, Math.round(tmp[idx + 1])));
+      data[pix * 4 + 2] = Math.max(0, Math.min(255, Math.round(tmp[idx + 2])));
+      // Alpha unchanged
+    }
+  }
+}
+
+// ── Confidence scoring ────────────────────────────────────────────────────
+
+function computeConfidence(
+  mask: Uint8ClampedArray, w: number, h: number, density: number,
+): number {
+  if (density < 0.005 || density > 0.8) return 0; // too sparse or too dense = not a watermark
+
+  // Check spatial clustering: real watermarks form connected regions
+  let connected = 0;
+  const visited = new Uint8Array(w * h);
+  for (let i = 0; i < mask.length; i++) {
+    if (mask[i] && !visited[i]) {
+      floodCount(mask, visited, w, h, i % w, Math.floor(i / w));
+      connected++;
+    }
+  }
+
+  // Real watermarks: few connected components (text strokes), moderate density
+  const clusterScore = Math.min(1, connected / 30); // fewer clusters = higher score (capped at ~30 chars worth)
+  const densityScore = 1 - Math.abs(density - 0.08) * 5; // ideal ~8% coverage
+  return Math.max(0, Math.min(1, clusterScore * 0.4 + Math.max(0, densityScore) * 0.6));
+}
+
+function floodCount(
+  mask: Uint8ClampedArray, visited: Uint8Array, w: number, h: number, startX: number, startY: number,
+): number {
+  const stack: [number, number][] = [[startX, startY]];
+  let size = 0;
+  while (stack.length > 0) {
+    const [x, y] = stack.pop()!;
+    if (x < 0 || x >= w || y < 0 || y >= h) continue;
+    const i = y * w + x;
+    if (!mask[i] || visited[i]) continue;
+    visited[i] = 1;
+    size++;
+    stack.push([x+1, y], [x-1, y], [x, y+1], [x, y-1]);
+  }
+  return size;
+}
+
+// ── Auto-detection ────────────────────────────────────────────────────────
+
+/**
+ * Try each platform config and pick the one that detects the most plausible watermark.
  */
 export function autoDetectPlatform(
   imageData: ImageData,
   platforms: string[] = ["gemini", "doubao", "jimeng", "tongyi", "wenxin"],
 ): string {
-  const { width, height, data } = imageData;
+  const { width, height } = imageData;
 
-  let bestPlatform = "auto";
+  let bestPlatform = "doubao"; // default for Chinese AI tools (most likely)
   let bestScore = -Infinity;
 
   for (const p of platforms) {
-    const cfg = PLATFORMS[p];
-    if (!cfg) continue;
-
-    const resolved = resolveConfig(p, width, height);
-    const rx = width - resolved.marginRight - resolved.logoSize;
-    const ry = height - resolved.marginBottom - resolved.logoSize;
-    const rw = resolved.logoSize;
-    const rh = resolved.logoSize;
-
-    // Score: how "watermark-like" is this region?
-    // Watermark pixels tend to be:
-    //   - lighter than surrounding (white-ish logo on dark-ish image)
-    //   - or darker on light image (dark logo)
-    // Heuristic: compute avg brightness of region vs. region just outside it
-    let regionBrightness = 0;
-    let outerBrightness = 0;
-    let regionCount = 0;
-    let outerCount = 0;
-
-    for (let y = Math.max(0, ry - 10); y < Math.min(height, ry + rh + 10); y++) {
-      for (let x = Math.max(0, rx - 10); x < Math.min(width, rx + rw + 10); x++) {
-        const pi = y * width + x;
-        const b = (data[pi * 4] + data[pi * 4 + 1] + data[pi * 4 + 2]) / 3;
-        if (y >= ry && y < ry + rh && x >= rx && x < rx + rw) {
-          regionBrightness += b;
-          regionCount++;
-        } else {
-          outerBrightness += b;
-          outerCount++;
-        }
-      }
-    }
-
-    if (regionCount === 0) continue;
-
-    const regionAvg = regionBrightness / regionCount;
-    const outerAvg = outerBrightness / outerCount;
-    const diff = Math.abs(regionAvg - outerAvg);
-
-    // Also check if region has "white-ish" pixels (typical of AI watermarks)
-    let whitePixels = 0;
-    for (let y = ry; y < ry + rh && y < height; y++) {
-      for (let x = rx; x < rx + rw && x < width; x++) {
-        const pi = y * width + x;
-        const r = data[pi * 4];
-        const g = data[pi * 4 + 1];
-        const b = data[pi * 4 + 2];
-        if (r > 200 && g > 200 && b > 200) whitePixels++;
-      }
-    }
-    const whiteRatio = whitePixels / (rw * rh);
-
-    const score = diff * 0.5 + whiteRatio * 255 * 0.5;
-
-    if (score > bestScore) {
+    const cfg = resolveConfig(p, width, height);
+    const result = removeWatermark(imageData, cfg);
+    // Score: balance between pixel count (more = more likely real watermark) and confidence
+    const score = result.pixelCount * result.confidence;
+    if (score > bestScore && result.confidence > 0.15) {
       bestScore = score;
       bestPlatform = p;
     }
