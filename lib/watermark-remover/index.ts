@@ -1,11 +1,13 @@
 /**
- * Generic AI Watermark Remover — v7
+ * Generic AI Watermark Remover — v8
  *
- * ROOT CAUSE FIX: v3-v6 all broke because they changed the proven v2 detection.
+ * ROOT CAUSE FIX (v7): v3-v6 all broke because they changed the proven v2 detection.
  * v2 worked because it searched bottom-right of FULL IMAGE using simple brightness
  * average with robust statistics and a minBrightnessDelta safety floor.
  *
- * v7 = v2's exact detection algorithm + FMM (Telea) inpainting for better repair quality.
+ * REPAIR UPGRADE (v8): Replaced FMM (Telea) inpainting with Background Fill.
+ * FMM failed on dark-background watermarks because it propagated contaminated edge values.
+ * Background Fill samples only non-masked neighbors → clean repair.
  *
  * Algorithm:
  *   1. Search bottom-right corner of IMAGE (not "content region" — that was the bug!)
@@ -13,8 +15,8 @@
  *   3. Robust mean (exclude |diff|>60 outliers) + stdDev
  *   4. Threshold = max(minBrightnessDelta, sigma*stdDev)
  *   5. Morphological cleanup (dilate/erode/dilate)
- *   6. FMM (Telea) inpainting for edge-preserving repair
- *   7. Multi-pass up to 3 iterations
+ *   6. Background Fill: sample non-masked neighbors with inverse-distance weighting
+ *   7. Multi-pass up to 3 iterations (pass 2+ catches residuals)
  */
 
 // ── Types ───────────────────────────────────────────────────────────────────
@@ -319,10 +321,10 @@ function detectAndInpaint(
     return { cleaned: source, mask: finalMask, pixelCount: 0, confidence: 0 };
   }
 
-  // ═══ STEP 5: FMM Inpainting (upgrade from v2's naive averaging) ═══
+  // ═══ STEP 5: Background Fill Repair (v8: replaces FMM for better results) ═══
 
   const outputImage = new ImageData(new Uint8ClampedArray(data), imgW, imgH);
-  fmmInpaint(outputImage.data, finalMask, sx, sy, rw, rh, imgW, imgH);
+  backgroundFill(outputImage.data, finalMask, sx, sy, rw, rh, imgW);
 
   const density = pixelCount / (rw * rh);
   const confidence = computeConfidence(finalMask, rw, rh, density);
@@ -339,168 +341,83 @@ function makeEmptyResult(source: ImageData, config: ResolvedConfig): PassResult 
   };
 }
 
-// ── Fast Marching Method (Telea) Inpainting ──────────────────────────────────
+// ── Background Fill Repair (v8: replaces FMM for more aggressive watermark removal) ──
+// For each masked pixel, sample nearby non-masked pixels with inverse-distance weighting.
+// Works much better than FMM on uniform backgrounds where watermark text is brighter/darker than surroundings.
 
-function fmmInpaint(
+function backgroundFill(
   imgData: Uint8ClampedArray,
   mask: Uint8ClampedArray,
   ox: number, oy: number,
   mw: number, mh: number,
-  imgW: number, _imgH: number,
+  imgW: number,
+  sampleRadius = 20,
 ): void {
-  const state = new Int8Array(mw * mh);
-  const dist = new Float32Array(mw * mh);
+  const filled = new Set<number>();
+  type QueueEntry = [number, number, number];
+  const queue: QueueEntry[] = [];
+  const inQueue = new Uint8Array(mw * mh);
 
-  for (let i = 0; i < state.length; i++) {
-    state[i] = mask[i] ? 0 : 2;
-    dist[i] = mask[i] ? Infinity : 0;
-  }
-
-  type Entry = { dist: number; mx: number; my: number };
-  const heap: Entry[] = [];
-  const inHeap = new Uint8Array(mw * mh);
-
-  function push(e: Entry): void {
-    heap.push(e);
-    inHeap[e.my * mw + e.mx] = 1;
-    let i = heap.length - 1;
-    while (i > 0) {
-      const p = (i - 1) >> 1;
-      if (heap[p].dist <= heap[i].dist) break;
-      [heap[p], heap[i]] = [heap[i], heap[p]];
-      i = p;
-    }
-  }
-
-  function pop(): Entry | undefined {
-    if (heap.length === 0) return undefined;
-    const top = heap[0];
-    const last = heap.pop()!;
-    if (heap.length > 0) {
-      heap[0] = last;
-      let i = 0;
-      while (true) {
-        const left = i * 2 + 1;
-        const right = i * 2 + 2;
-        let smallest = i;
-        if (left < heap.length && heap[left].dist < heap[smallest].dist) smallest = left;
-        if (right < heap.length && heap[right].dist < heap[smallest].dist) smallest = right;
-        if (smallest === i) break;
-        [heap[i], heap[smallest]] = [heap[smallest], heap[i]];
-        i = smallest;
-      }
-    }
-    inHeap[top.my * mw + top.mx] = 0;
-    return top;
-  }
-
-  // Seed narrow band
+  // Seed: find mask border pixels (masked + adjacent to unmasked)
   for (let my = 0; my < mh; my++) {
     for (let mx = 0; mx < mw; mx++) {
-      if (state[my * mw + mx] !== 0) continue;
+      if (!mask[my * mw + mx]) continue;
+      let hasUnmaskedNeighbor = false;
       for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
         const nx = mx + dx, ny = my + dy;
-        if (nx < 0 || nx >= mw || ny < 0 || ny >= mh) continue;
-        if (state[ny * mw + nx] === 2) {
-          state[my * mw + mx] = 1;
-          dist[my * mw + mx] = 1.0;
-          push({ dist: 1.0, mx, my });
+        if (nx >= 0 && nx < mw && ny >= 0 && ny < mh && !mask[ny * mw + nx]) {
+          hasUnmaskedNeighbor = true;
           break;
         }
       }
-    }
-  }
-
-  const dirs4 = [[-1, 0], [1, 0], [0, -1], [0, 1]];
-
-  while (true) {
-    const cur = pop();
-    if (!cur) break;
-    const { mx, my } = cur;
-    const idx = my * mw + mx;
-    if (state[idx] !== 1) continue;
-
-    const val = computeFMMValue(imgData, ox, oy, mw, mh, imgW, mx, my);
-    const pixIdx = (oy + my) * imgW + (ox + mx);
-    imgData[pixIdx * 4] = val.r;
-    imgData[pixIdx * 4 + 1] = val.g;
-    imgData[pixIdx * 4 + 2] = val.b;
-
-    state[idx] = 2;
-    mask[idx] = 0;
-
-    for (const [dx, dy] of dirs4) {
-      const nx = mx + dx, ny = my + dy;
-      if (nx < 0 || nx >= mw || ny < 0 || ny >= mh) continue;
-      const nidx = ny * mw + nx;
-      if (state[nidx] !== 0) continue;
-      const newDist = dist[idx] + 1;
-      if (newDist < dist[nidx]) {
-        dist[nidx] = newDist;
-        state[nidx] = 1;
-        push({ dist: newDist, mx: nx, my: ny });
+      if (hasUnmaskedNeighbor) {
+        queue.push([mx, my, 0]);
+        inQueue[my * mw + mx] = 1;
       }
     }
   }
-}
 
-function computeFMMValue(
-  imgData: Uint8ClampedArray,
-  ox: number, oy: number,
-  mw: number, mh: number,
-  imgW: number,
-  mx: number, my: number,
-): { r: number; g: number; b: number } {
-  const RADIUS = 12;
-  let wr = 0, wg = 0, wb = 0, wTotal = 0;
+  while (queue.length > 0) {
+    const [mx, my, _dist] = queue.shift()!;
+    const idx = my * mw + mx;
+    if (!mask[idx] || filled.has(idx)) continue;
+    filled.add(idx);
 
-  for (const [dx, dy] of [
-    [-1, -1], [-1, 0], [-1, 1],
-    [0, -1],           [0, 1],
-    [1, -1],  [1, 0],  [1, 1],
-  ]) {
-    for (let step = 1; step <= RADIUS; step++) {
-      const qx = mx + dx * step;
-      const qy = my + dy * step;
-      if (qx < 0 || qx >= mw || qy < 0 || qy >= mh) continue;
+    const pixIdx = (oy + my) * imgW + (ox + mx);
 
-      const pixQ = (oy + qy) * imgW + (ox + qx);
-      const qr = imgData[pixQ * 4];
-      const qg = imgData[pixQ * 4 + 1];
-      const qb = imgData[pixQ * 4 + 2];
+    // Sample non-masked neighbors within radius
+    let sr = 0, sg = 0, sb = 0, sc = 0;
+    const r2 = sampleRadius * sampleRadius;
 
-      const distSq = dx * dx * step * step + dy * dy * step * step;
-      if (distSq < 1) continue;
-      const weight = 1.0 / distSq;
+    for (let cy = Math.max(0, my - sampleRadius); cy <= Math.min(mh - 1, my + sampleRadius); cy++) {
+      for (let cx = Math.max(0, mx - sampleRadius); cx <= Math.min(mw - 1, mx + sampleRadius); cx++) {
+        if (mask[cy * mw + cx]) continue; // skip masked pixels
+        const d2 = (cx - mx) ** 2 + (cy - my) ** 2;
+        if (d2 > r2) continue;
+        const w = 1.0 / (1 + d2); // inverse distance weighting
+        const p = (oy + cy) * imgW + (ox + cx);
+        sr += imgData[p * 4] * w;
+        sg += imgData[p * 4 + 1] * w;
+        sb += imgData[p * 4 + 2] * w;
+        sc += w;
+      }
+    }
 
-      wr += qr * weight;
-      wg += qg * weight;
-      wb += qb * weight;
-      wTotal += weight;
+    if (sc > 0) {
+      imgData[pixIdx * 4] = clamp(Math.round(sr / sc));
+      imgData[pixIdx * 4 + 1] = clamp(Math.round(sg / sc));
+      imgData[pixIdx * 4 + 2] = clamp(Math.round(sb / sc));
+    }
+
+    // Enqueue masked neighbors
+    for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+      const nx = mx + dx, ny = my + dy, nidx = ny * mw + nx;
+      if (nx >= 0 && nx < mw && ny >= 0 && ny < mh && mask[nidx] && !inQueue[nidx] && !filled.has(nidx)) {
+        queue.push([nx, ny, _dist + 1]);
+        inQueue[nidx] = 1;
+      }
     }
   }
-
-  if (wTotal > 0) {
-    return {
-      r: clamp(Math.round(wr / wTotal)),
-      g: clamp(Math.round(wg / wTotal)),
-      b: clamp(Math.round(wb / wTotal)),
-    };
-  }
-
-  let sr = 0, sg = 0, sb = 0, sc = 0;
-  for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
-    const nx = mx + dx, ny = my + dy;
-    if (nx < 0 || nx >= mw || ny < 0 || ny >= mh) continue;
-    const pix = (oy + ny) * imgW + (ox + nx);
-    sr += imgData[pix * 4];
-    sg += imgData[pix * 4 + 1];
-    sb += imgData[pix * 4 + 2];
-    sc++;
-  }
-  return sc > 0
-    ? { r: clamp(Math.round(sr / sc)), g: clamp(Math.round(sg / sc)), b: clamp(Math.round(sb / sc)) }
-    : { r: 0, g: 0, b: 0 };
 }
 
 function clamp(v: number): number {
