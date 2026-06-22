@@ -243,101 +243,66 @@ export default function HandwritingAnimationTool() {
         URL.revokeObjectURL(url);
         setExportProgress("✅ Downloaded!");
       } else {
-        // ── GIF export (canvas → frames → gif.js) ──
-        setExportProgress("Loading GIF encoder...");
-        // gif.js is UMD — must handle both ESM import and global fallback
-        // @ts-ignore — CDN import, no local types
-        const gifModule = await import(/* webpackIgnore: true */ "https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js");
-        const GifCtor = (gifModule.default || gifModule.GIF || (window as any).GIF || gifModule);
-        if (typeof GifCtor !== "function") {
-          throw new Error("GIF encoder failed to load (CDN unavailable?)");
-        }
-        setExportProgress("Capturing frames...");
+        // ── GIF export (zero-dependency encoder: lib/gif-encoder.ts) ──
+        setExportProgress("Initializing encoder...");
 
         const dpr = window.devicePixelRatio || 1;
         const W = Math.round(canvas.width / dpr);
         const H = Math.round(canvas.height / dpr);
-
-        // ── Collect frames as canvas elements (gif.js needs real <canvas>, not ImageData) ──
         const fps = 10;
         const totalFrames = Math.ceil(dur * fps);
-        const frameCanvases: HTMLCanvasElement[] = [];
+
+        // Import the zero-dependency GIF encoder (bundled locally)
+        const { encodeGIF } = await import("../../lib/gif-encoder");
+
+        // ── Capture frames as ImageData ──
+        const frames: ImageData[] = [];
         engine.pause();
         for (let i = 0; i <= totalFrames; i++) {
           const t = (i / totalFrames) * dur;
           engine.seek(t);
-          // Allow render to settle
+          // Wait for render to settle
           await new Promise((r) => setTimeout(r, 50));
-          // Create an off-screen canvas at logical size
+          // Capture at logical resolution
           const tmp = document.createElement("canvas");
-          tmp.width = W;
-          tmp.height = H;
-          const tmpCtx = tmp.getContext("2d")!;
-          tmpCtx.drawImage(canvas, 0, 0, W, H);
-          frameCanvases.push(tmp);
-          if (i % 5 === 0) {
+          tmp.width = W; tmp.height = H;
+          const ctx = tmp.getContext("2d")!;
+          ctx.drawImage(canvas, 0, 0, W, H);
+          frames.push(ctx.getImageData(0, 0, W, H));
+          // Report progress every 5 frames
+          if (i % 5 === 0 || i === totalFrames) {
             const pct = Math.round((i / totalFrames) * 100);
-            setExportProgress(`Capturing frames... ${pct}% (${i}/${totalFrames})`);
+            setExportProgress(`Capturing frame ${i}/${totalFrames}... (${pct}%)`);
           }
         }
 
-        setExportProgress(`Encoding GIF... (${frameCanvases.length} frames, single-thread)`);
-        await new Promise<void>((resolve, reject) => {
-          const gif = new GifCtor({
-            workers: 0,   // no web workers (CDN worker script fails silently)
-            quality: 10,
-            width: W,
-            height: H,
-            workerScript: null, // extra safety: don't load worker script
+        setExportProgress(`Encoding GIF... (${frames.length} frames)`);
+
+        try {
+          const blob = await encodeGIF(frames, W, H, {
+            delay: Math.round(100 / fps), // centiseconds per frame
+            repeat: loop ? 0 : 1,
+            onProgress: (pct) => {
+              setExportProgress(`Encoding GIF... ${Math.round(pct * 100)}%`);
+            },
           });
 
-          // gif.js addFrame expects a <canvas> element or a CanvasRenderingContext2D
-          for (let i = 0; i < frameCanvases.length; i++) {
-            gif.addFrame(frameCanvases[i], { delay: Math.round(1000 / fps) });
-          }
+          // Trigger download
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `handwriting-${FONT_NAMES[fontIdx] || "animation"}.gif`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          setExportProgress("✅ Downloaded!");
+          setTimeout(() => { setExportProgress(""); setExporting(false); }, 3000);
+        } catch (encErr) {
+          throw new Error(`GIF encoding failed: ${(encErr as Error).message}`);
+        }
 
-          // ── Progress: gif.js calls onProgress with (currentFrame, totalFrames) ──
-          gif.on("progress", (pct: number) => {
-            setExportProgress(`Encoding GIF... ${Math.round(pct * 100)}%`);
-          });
-
-          gif.on("finished", (blob: Blob) => {
-            try {
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement("a");
-              a.href = url;
-              a.download = `handwriting-${FONT_NAMES[fontIdx] || "animation"}.gif`;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-              setExportProgress("✅ Downloaded!");
-              setTimeout(() => { setExportProgress(""); setExporting(false); }, 3000);
-              resolve();
-            } catch (e) {
-              reject(e);
-            }
-          });
-
-          // Timeout: if encoding takes > 90s, abort
-          const to = setTimeout(() => {
-            reject(new Error(`GIF encoding timed out (>90s). Try shorter text or lower FPS.`));
-          }, 90000);
-
-          gif.on("error", (err: any) => {
-            clearTimeout(to);
-            reject(new Error("GIF encoding error: " + String(err)));
-          });
-
-          // ── Start rendering ──
-          try {
-            gif.render();
-          } catch (e) {
-            clearTimeout(to);
-            reject(new Error("GIF render() failed: " + String(e)));
-          }
-        });
-        return; // async finish
+        return; // async finish — done via onProgress callbacks
       }
 
       setTimeout(() => { setExportProgress(""); setExporting(false); }, 2000);
