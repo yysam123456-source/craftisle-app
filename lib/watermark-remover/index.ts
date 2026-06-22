@@ -1,18 +1,18 @@
 /**
- * Generic AI Watermark Remover — v4
+ * Generic AI Watermark Remover — v5
  *
- * Algorithm: Local adaptive contrast detection + FMM inpainting.
+ * Algorithm: Global brightness outlier detection (from v2) + FMM inpainting (from v3/v4).
  *
+ * Evolution:
  * v1: synthetic alpha map — ❌ assumed uniform alpha across region
- * v2: brightness outlier + naive average — ❌ blur on complex bg
- * v3: global robust statistics + dual-criterion — ❌ fails on dark images
- *     (global mean/std dominated by image tone, early-exits on sparse masks)
- * v4: local adaptive contrast + relaxed gates ✅
+ * v2: global outlier detection + naive average — ✅ detection works, ❌ blur on complex bg
+ * v3: global robust + dual-criterion — ❌ early-exit too strict on dark images
+ * v4: local adaptive contrast — ❌ completely fails to detect on dark images
+ * v5: v2's proven global outlier + FMM inpainting ← YOU ARE HERE
  *
- * Key insight: watermarks are a LOCAL phenomenon — they differ from their
- * immediate surroundings, not from the global image average. On a dark photo,
- * the whole image is dark; what matters is that watermark pixels are brighter
- * than the pixels RIGHT NEXT TO THEM.
+ * Key insight from user feedback: v2 DETECTION WAS FINE. The only problem was the
+ * naive 5px neighbor averaging for inpainting. Keep v2's detection, upgrade
+ * the repair step to Fast Marching Method (Telea).
  */
 
 // ── Types ───────────────────────────────────────────────────────────────────
@@ -21,9 +21,7 @@ export interface PlatformConfig {
   name: string;
   displayName: string;
   searchRegion: {
-    /** Fraction of image width */
     widthRatio: number;
-    /** Fraction of image height */
     heightRatio: number;
     marginX: number;
     marginY: number;
@@ -36,13 +34,11 @@ export interface ResolvedConfig {
   searchY: number;
   searchW: number;
   searchH: number;
-  /** Local contrast radius (px) */
-  localRadius: number;
-  /** Minimum local contrast to flag as watermark (0-255 scale) */
-  minLocalContrast: number;
-  /** Morphological dilate radius after detection */
+  /** Brightness outlier threshold in std-deviations */
+  outlierSigma: number;
+  /** Morphological dilate radius */
   dilateRadius: number;
-  /** Morphological erode radius (noise removal) */
+  /** Morphological erode radius */
   erodeRadius: number;
 }
 
@@ -61,13 +57,11 @@ const PLATFORMS: Record<string, PlatformConfig> = {
   gemini: {
     name: "gemini",
     displayName: "Gemini (Google)",
-    // Gemini star logo is small, bottom-right corner
     searchRegion: { widthRatio: 0.16, heightRatio: 0.14, marginX: 12, marginY: 12 },
   },
   jimeng: {
     name: "jimeng",
     displayName: "即梦 (ByteDance)",
-    // 即梦 "⭐星绪" style text watermark, bottom-right
     searchRegion: { widthRatio: 0.25, heightRatio: 0.15, marginX: 8, marginY: 8 },
   },
   doubao: {
@@ -93,7 +87,6 @@ const PLATFORMS: Record<string, PlatformConfig> = {
   auto: {
     name: "auto",
     displayName: "Auto Detect",
-    // Large search region for auto-detect — cover most of bottom-right quadrant
     searchRegion: { widthRatio: 0.30, heightRatio: 0.18, marginX: 4, marginY: 4 },
   },
 };
@@ -129,10 +122,9 @@ export function resolveConfig(
     searchY: Math.max(0, searchY),
     searchW,
     searchH,
-    localRadius: 5,        // 5px neighborhood for local contrast
-    minLocalContrast: 12,  // minimum brightness difference in 0-255 space
-    dilateRadius: 3,       // expand mask to cover semi-transparent edges
-    erodeRadius: 2,        // remove isolated noise pixels
+    outlierSigma: 1.5,     // 1.5 sigma threshold for bright outliers
+    dilateRadius: 3,        // expand mask to cover semi-transparent edges
+    erodeRadius: 1,         // light noise removal
   };
 }
 
@@ -151,14 +143,13 @@ export function removeWatermark(
   let totalPasses = 0;
   let combinedMask = null as Uint8ClampedArray | null;
   let bestConfidence = 0;
-  const MAX_PASSES = 2;
+  const MAX_PASSES = 3;   // multi-pass: re-detect and re-inpaint up to 3 times
 
   for (let pass = 0; pass < MAX_PASSES; pass++) {
     const source = pass === 0 ? imageData : output;
     const passResult = detectAndInpaint(source, config, combinedMask);
 
-    // v4: much more lenient gate — process even weak detections
-    if (passResult.pixelCount < 5) break;
+    if (passResult.pixelCount < 5) break;   // nothing more to do
 
     output.data.set(passResult.cleaned.data);
     combinedMask = passResult.mask;
@@ -192,7 +183,7 @@ export function removeWatermark(
   };
 }
 
-// ── Single-pass: Detect + Inpaint ─────────────────────────────────────────
+// ── Single-pass: Detect (v2 global outlier) + Inpaint (FMM) ────────────────
 
 interface PassResult {
   cleaned: ImageData;
@@ -207,10 +198,7 @@ function detectAndInpaint(
   previousMask: Uint8ClampedArray | null,
 ): PassResult {
   const { width, height, data } = source;
-  const {
-    searchX, searchY, searchW, searchH,
-    localRadius, minLocalContrast, dilateRadius, erodeRadius,
-  } = config;
+  const { searchX, searchY, searchW, searchH, outlierSigma, dilateRadius, erodeRadius } = config;
 
   const sx = Math.max(0, Math.round(searchX));
   const sy = Math.max(0, Math.round(searchY));
@@ -223,115 +211,98 @@ function detectAndInpaint(
     return makeEmptyResult(source, config);
   }
 
-  // ── Step 1: Local adaptive contrast detection ──
+  // ════════════════════════════════════════════════════════════════
+  // STEP 1: GLOBAL BRIGHTNESS OUTLIER DETECTION (v2 algorithm)
   //
-  // For each pixel, compute the mean of its neighborhood (radius R).
-  // If this pixel is significantly brighter than its neighbors → watermark candidate.
-  //
-  // This works regardless of global image brightness because we compare
-  // each pixel to its IMMEDIATE surroundings.
+  // Watermark pixels are brighter than the surrounding background.
+  // Compute luminance for every pixel in the search region, then use
+  // robust statistics (trimmed mean/std) to find outliers.
+  // This works on BOTH bright AND dark images because it compares each
+  // pixel to the LOCAL background baseline within the same region.
+  // ════════════════════════════════════════════════════════════════
 
-  const rawMask = new Uint8ClampedArray(rw * rh);
-  const R = localRadius;
+  const pixelLums: number[] = [];       // [si] -> luminance
+  const pixelIdxs: number[] = [];       // [si] -> image data index
 
-  // Pre-compute a box-blurred version of the luminance for efficient local means
-  const lum = new Float32Array(rw * rh);       // per-pixel luminance
+  for (let ly = 0; ly < rh; ly++) {
+    for (let lx = 0; lx < rw; lx++) {
+      if (previousMask && previousMask[ly * rw + lx]) continue;
 
-  for (let y = sy; y < ey; y++) {
-    for (let x = sx; x < ex; x++) {
-      const pi = y * width + x;
-      const si = (y - sy) * rw + (x - sx);
+      const pi = (sy + ly) * width + (sx + lx);
       const r = data[pi * 4];
       const g = data[pi * 4 + 1];
       const b = data[pi * 4 + 2];
-      lum[si] = 0.2126 * r + 0.7152 * g + 0.0722 * b;  // 0-255 range
+      const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+
+      pixelLums.push(lum);
+      pixelIdxs.push(pi);
     }
   }
 
-  // Compute local mean using integral image for O(1) per pixel
-  const integral = buildIntegral(lum, rw, rh);
+  if (pixelLums.length === 0) {
+    return makeEmptyResult(source, config);
+  }
 
-  for (let ly = 0; ly < rh; ly++) {
-    for (let lx = 0; lx < rw; lx++) {
-      const si = ly * rw + lx;
+  // Robust statistics: trim top/bottom 10% to exclude watermark pixels
+  // from contaminating the background estimate
+  const sorted = pixelLums.slice().sort((a, b) => a - b);
+  const trimN = Math.max(1, Math.floor(sorted.length * 0.10));
+  const trimmed = sorted.slice(trimN, sorted.length - trimN);
 
-      if (previousMask && previousMask[si]) continue; // already processed
+  const meanL = trimmed.reduce((a, b) => a + b, 0) / trimmed.length;
+  const stdL = Math.sqrt(trimmed.reduce((s, l) => s + (l - meanL) ** 2, 0) / trimmed.length);
 
-      // Local mean via integral image
-      const x0 = Math.max(0, lx - R);
-      const y0 = Math.max(0, ly - R);
-      const x1 = Math.min(rw - 1, lx + R);
-      const y1 = Math.min(rh-1, ly + R);
-      const area = (x1 - x0 + 1) * (y1 - y0 + 1);
-      const localMean = sumRect(integral, rw, x0, y0, x1, y1) / area;
+  // If std is extremely low (uniform background), set a floor so we can still detect
+  const effectiveStd = Math.max(stdL, 3.0);
+  const threshold = outlierSigma * effectiveStd;
 
-      const pixelVal = lum[si];
-      const contrast = pixelVal - localMean;  // positive = brighter than neighbors
+  // Build binary mask: pixels significantly brighter than background
+  const rawMask = new Uint8ClampedArray(rw * rh);
 
-      // Watermark pixels are BRIGHTER than surroundings
-      // Use a modest threshold — even faint marks should be caught
-      if (contrast > minLocalContrast) {
-        rawMask[si] = 255;
-      }
+  for (let i = 0; i < pixelLums.length; i++) {
+    const lum = pixelLums[i];
+    const pi = pixelIdxs[i];
+    const px = (pi % width) - sx;
+    const py = Math.floor(pi / width) - sy;
+    const si = py * rw + px;
+
+    if (lum - meanL > threshold) {
+      rawMask[si] = 255;
     }
   }
 
-  // ── Step 2: Also detect via local color-distance (catches colored watermarks) ──
-  // For pixels not yet flagged by brightness, check if they have unusual hue/saturation
-
-  const colorMask = new Uint8ClampedArray(rw * rh);
-  const rIntegral = buildIntegralChannel(data, width, sx, sy, rw, rh, 0); // R channel
-  const gIntegral = buildIntegralChannel(data, width, sx, sy, rw, rh, 1); // G channel
-  const bIntegral = buildIntegralChannel(data, width, sx, sy, rw, rh, 2); // B channel
-
+  // Also check for SATURATION outliers (catches colored/white watermarks that might not be brightest)
+  // Re-scan with saturation criterion
   for (let ly = 0; ly < rh; ly++) {
     for (let lx = 0; lx < rw; lx++) {
-      const si = ly * rw + lx;
-      if (rawMask[si]) continue; // already flagged by brightness
-      if (previousMask && previousMask[si]) continue;
-
-      const x0 = Math.max(0, lx - R);
-      const y0 = Math.max(0, ly - R);
-      const x1 = Math.min(rw-1, lx + R);
-      const y1 = Math.min(rh-1, ly + R);
-      const area = (x1 - x0 + 1) * (y1 - y0 + 1);
-
-      const lr = sumRect(rIntegral, rw, x0, y0, x1, y1) / area;
-      const lg = sumRect(gIntegral, rw, x0, y0, x1, y1) / area;
-      const lb = sumRect(bIntegral, rw, x0, y0, x1, y1) / area;
+      if (rawMask[ly * rw + lx]) continue;  // already flagged by brightness
+      if (previousMask && previousMask[ly * rw + lx]) continue;
 
       const pi = (sy + ly) * width + (sx + lx);
-      const pr = data[pi * 4];
-      const pg = data[pi * 4 + 1];
-      const pb = data[pi * 4 + 2];
+      const r = data[pi * 4] / 255;
+      const g = data[pi * 4 + 1] / 255;
+      const b = data[pi * 4 + 2] / 255;
+      const maxC = Math.max(r, g, b);
+      const minC = Math.min(r, g, b);
+      const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
 
-      // Euclidean color distance from local mean
-      const colorDist = Math.sqrt(
-        (pr - lr) ** 2 + (pg - lg) ** 2 + (pb - lb) ** 2
-      );
-
-      // If pixel is notably different in color AND lighter
-      const brightnessDiff = (0.2126*pr + 0.7152*pg + 0.0722*pb) -
-                              (0.2126*lr + 0.7152*lg + 0.0722*lb);
-
-      if (colorDist > minLocalContrast * 1.5 && brightnessDiff > minLocalContrast * 0.5) {
-        colorMask[si] = 255;
+      // High saturation white/near-white pixels are likely watermark text
+      const lum = 0.299 * data[pi * 4] + 0.587 * data[pi * 4 + 1] + 0.114 * data[pi * 4 + 2];
+      if (sat > 0.15 && lum > meanL + threshold * 0.6) {
+        rawMask[ly * rw + lx] = 255;
       }
     }
   }
 
-  // Combine masks
-  for (let i = 0; i < rawMask.length; i++) {
-    if (colorMask[i]) rawMask[i] = 255;
-  }
+  // ════════════════════════════════════════════════════════════════
+  // STEP 2: MORPHOLOGICAL CLEANUP
+  // ════════════════════════════════════════════════════════════════
 
-  // ── Step 3: Morphological cleanup ──
+  let finalMask = morphDilate(rawMask, rw, rh, dilateRadius);
+  finalMask = morphErode(finalMask, rw, rh, erodeRadius);
+  finalMask = morphDilate(finalMask, rw, rh, 1);  // final slight expand
 
-  const dilated = morphDilate(rawMask, rw, rh, dilateRadius);
-  const eroded = morphErode(dilated, rw, rh, erodeRadius);
-  const finalMask = morphDilate(eroded, rw, rh, dilateRadius);
-
-  // Merge with previous mask
+  // Merge with previous mask (for multi-pass)
   if (previousMask) {
     for (let i = 0; i < finalMask.length; i++) {
       if (previousMask[i]) finalMask[i] = 255;
@@ -344,17 +315,22 @@ function detectAndInpaint(
     if (finalMask[i]) pixelCount++;
   }
 
-  const density = pixelCount / (rw * rh);
-  const confidence = computeConfidence(finalMask, rw, rh, density);
-
-  // v4: very lenient gate — try inpainting even with few pixels
+  // Lenient gate: process even small detections (as low as 5 pixels)
   if (pixelCount < 5) {
-    return { cleaned: source, mask: finalMask, pixelCount: 0, confidence };
+    return { cleaned: source, mask: finalMask, pixelCount: 0, confidence: 0 };
   }
 
-  // ── Step 4: Fast Marching Method (Telea) inpainting ──
+  // ════════════════════════════════════════════════════════════════
+  // STEP 3: FAST MARCHING METHOD (Telea) INPAINTING
+  // Propagate values along image isophotes (gradient-perpendicular direction)
+  // for smooth, edge-preserving fill — much better than naive neighbor averaging.
+  // ════════════════════════════════════════════════════════════════
+
   const output = new ImageData(new Uint8ClampedArray(data), width, height);
   fmmInpaint(output.data, finalMask, sx, sy, rw, rh, width, height);
+
+  const density = pixelCount / (rw * rh);
+  const confidence = computeConfidence(finalMask, rw, rh, density);
 
   return { cleaned: output, mask: finalMask, pixelCount, confidence };
 }
@@ -368,47 +344,11 @@ function makeEmptyResult(source: ImageData, config: ResolvedConfig): PassResult 
   };
 }
 
-// ── Integral Image helpers ────────────────────────────────────────────────
-
-function buildIntegral(values: Float32Array, w: number, h: number): Float32Array {
-  const integral = new Float32Array(w * h);
-  for (let y = 0; y < h; y++) {
-    let rowSum = 0;
-    for (let x = 0; x < w; x++) {
-      rowSum += values[y * w + x];
-      integral[y * w + x] = rowSum + (y > 0 ? integral[(y - 1) * w + x] : 0);
-    }
-  }
-  return integral;
-}
-
-function buildIntegralChannel(
-  data: Uint8ClampedArray, imgW: number,
-  ox: number, oy: number, w: number, h: number,
-  channel: number,
-): Float32Array {
-  const integral = new Float32Array(w * h);
-  for (let y = 0; y < h; y++) {
-    let rowSum = 0;
-    for (let x = 0; x < w; x++) {
-      const pixIdx = (oy + y) * imgW + (ox + x);
-      rowSum += data[pixIdx * 4 + channel];
-      integral[y * w + x] = rowSum + (y > 0 ? integral[(y - 1) * w + x] : 0);
-    }
-  }
-  return integral;
-}
-
-/** Sum of values in rectangle [x0,y0] to [x1,y1] inclusive, using integral image. */
-function sumRect(integral: Float32Array, w: number, x0: number, y0: number, x1: number, y1: number): number {
-  const total = integral[y1 * w + x1];
-  const top = y0 > 0 ? integral[(y0 - 1) * w + x1] : 0;
-  const left = x0 > 0 ? integral[y1 * w + (x0 - 1)] : 0;
-  const topLeft = (y0 > 0 && x0 > 0) ? integral[(y0 - 1) * w + (x0 - 1)] : 0;
-  return total - top - left + topLeft;
-}
-
 // ── Fast Marching Method (Telea) Inpainting ──────────────────────────────────
+//
+// For each unknown (masked) pixel, compute value as weighted average of known
+// neighbors, with weights inversely proportional to distance squared.
+// Process pixels in order of increasing distance from known boundary (narrow band).
 
 function fmmInpaint(
   imgData: Uint8ClampedArray,
@@ -417,7 +357,8 @@ function fmmInpaint(
   mw: number, mh: number,
   imgW: number, _imgH: number,
 ): void {
-  const state = new Int8Array(mw * mh); // 0=unknown, 1=in-band, 2=known
+  // State: 0=unknown (to fill), 1=in narrow band (boundary), 2=known (done)
+  const state = new Int8Array(mw * mh);
   const dist = new Float32Array(mw * mh);
 
   for (let i = 0; i < state.length; i++) {
@@ -425,6 +366,7 @@ function fmmInpaint(
     dist[i] = mask[i] ? Infinity : 0;
   }
 
+  // Min-heap for narrow band ordering
   type Entry = { dist: number; mx: number; my: number };
   const heap: Entry[] = [];
   const inHeap = new Uint8Array(mw * mh);
@@ -463,11 +405,11 @@ function fmmInpaint(
     return top;
   }
 
-  // Seed boundary pixels
+  // Seed boundary: all unknown pixels adjacent to a known pixel go into the narrow band
   for (let my = 0; my < mh; my++) {
     for (let mx = 0; mx < mw; mx++) {
       if (state[my * mw + mx] !== 0) continue;
-      for (const [dx, dy] of [[-1,0],[1,0],[0,-1],[0,1]] as [number,number][]) {
+      for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]] as [number, number][]) {
         const nx = mx + dx, ny = my + dy;
         if (nx < 0 || nx >= mw || ny < 0 || ny >= mh) continue;
         if (state[ny * mw + nx] === 2) {
@@ -480,8 +422,9 @@ function fmmInpaint(
     }
   }
 
-  const dirs4 = [[-1,0],[1,0],[0,-1],[0,1]];
+  const dirs4 = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
+  // Process narrow band in order of increasing distance
   while (true) {
     const cur = pop();
     if (!cur) break;
@@ -489,6 +432,7 @@ function fmmInpaint(
     const idx = my * mw + mx;
     if (state[idx] !== 1) continue;
 
+    // Compute interpolated value from known neighbors
     const val = computeFMMValue(imgData, ox, oy, mw, mh, imgW, mx, my);
     const pixIdx = (oy + my) * imgW + (ox + mx);
     imgData[pixIdx * 4] = val.r;
@@ -498,6 +442,7 @@ function fmmInpaint(
     state[idx] = 2;
     mask[idx] = 0;
 
+    // Expand narrow band into neighboring unknown pixels
     for (const [dx, dy] of dirs4) {
       const nx = mx + dx, ny = my + dy;
       if (nx < 0 || nx >= mw || ny < 0 || ny >= mh) continue;
@@ -520,10 +465,16 @@ function computeFMMValue(
   imgW: number,
   mx: number, my: number,
 ): { r: number; g: number; b: number } {
-  const RADIUS = 10; // larger neighborhood for smoother fill
+  // Sample known neighbors in 8 directions at multiple radii
+  // Weight by inverse squared distance (closer neighbors have more influence)
+  const RADIUS = 12;
   let wr = 0, wg = 0, wb = 0, wTotal = 0;
 
-  for (const [dx, dy] of [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]) {
+  for (const [dx, dy] of [
+    [-1, -1], [-1, 0], [-1, 1],
+    [0, -1],           [0, 1],
+    [1, -1],  [1, 0],  [1, 1],
+  ]) {
     for (let step = 1; step <= RADIUS; step++) {
       const qx = mx + dx * step;
       const qy = my + dy * step;
@@ -540,7 +491,7 @@ function computeFMMValue(
       if (distSq < 1) continue;
       const dist = Math.sqrt(distSq);
 
-      // Inverse distance weight (simple but effective)
+      // Inverse-distance-squared weighting
       const weight = 1.0 / (dist * dist);
 
       wr += qr * weight;
@@ -560,7 +511,7 @@ function computeFMMValue(
 
   // Fallback: simple 4-neighbor average
   let sr = 0, sg = 0, sb = 0, sc = 0;
-  for (const [dx, dy] of [[-1,0],[1,0],[0,-1],[0,1]]) {
+  for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
     const nx = mx + dx, ny = my + dy;
     if (nx < 0 || nx >= mw || ny < 0 || ny >= mh) continue;
     const pix = (oy + ny) * imgW + (ox + nx);
@@ -570,7 +521,7 @@ function computeFMMValue(
     sc++;
   }
   return sc > 0
-    ? { r: clamp(Math.round(sr/sc)), g: clamp(Math.round(sg/sc)), b: clamp(Math.round(sb/sc)) }
+    ? { r: clamp(Math.round(sr / sc)), g: clamp(Math.round(sg / sc)), b: clamp(Math.round(sb / sc)) }
     : { r: 0, g: 0, b: 0 };
 }
 
@@ -625,8 +576,9 @@ function morphErode(mask: Uint8ClampedArray, w: number, h: number, radius: numbe
 function computeConfidence(
   mask: Uint8ClampedArray, w: number, h: number, density: number,
 ): number {
-  if (density < 0.001 || density > 0.9) return 0;
+  if (density < 0.0005 || density > 0.95) return 0;
 
+  // Count connected components (watermarks tend to be 1 contiguous blob)
   let connected = 0;
   const visited = new Uint8Array(w * h);
   for (let i = 0; i < mask.length; i++) {
@@ -636,10 +588,12 @@ function computeConfidence(
     }
   }
 
-  const clusterScore = connected > 0 ? Math.min(1, 30 / connected) : 0;
-  // v4: broader acceptable density range
-  const densityScore = 1 - Math.abs(density - 0.08) * 6;
-  return Math.max(0, Math.min(1, clusterScore * 0.3 + Math.max(0, densityScore) * 0.7));
+  // Prefer single connected component (typical watermark shape)
+  const clusterScore = connected === 1 ? 1.0 : connected === 2 ? 0.7 : Math.max(0, 0.4 / connected);
+  // Accept wide range of densities (text watermarks are sparse: 1-15%)
+  const densityScore = density < 0.20 ? 1.0 : Math.max(0, 1.0 - (density - 0.20) * 3);
+
+  return Math.max(0, Math.min(1, clusterScore * 0.4 + densityScore * 0.6));
 }
 
 function floodCount(
@@ -654,7 +608,7 @@ function floodCount(
     if (!mask[i] || visited[i]) continue;
     visited[i] = 1;
     size++;
-    stack.push([x+1, y], [x-1, y], [x, y+1], [x, y-1]);
+    stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
   }
   return size;
 }
