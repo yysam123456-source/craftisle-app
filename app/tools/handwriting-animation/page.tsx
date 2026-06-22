@@ -34,42 +34,66 @@ export default function ToolPage() {
   const meta = getToolMeta("handwriting-animation");
   if (!meta) return null;
 
-  const jsonLd: Record<string, unknown> = {
+  const faqSchema = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: meta.title,
-    description: meta.desc,
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
+    "@type": "FAQPage",
+    mainEntity: (meta.faq || []).map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   };
 
-  if (meta.faq && meta.faq.length > 0) {
-    jsonLd.mainEntity = {
-      "@type": "FAQPage",
-      mainEntity: meta.faq.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    };
-  }
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Create Handwriting Animation Free Online",
+    description:
+      "Step-by-step guide to create beautiful handwriting animations from any text using Craftisle free online tool.",
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Enter your text",
+        text: "Type or paste any text into the text area. Supports all languages and Unicode characters including Chinese, Japanese, Korean.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Choose a handwriting font",
+        text: "Select from 8 beautiful handwriting fonts: Caveat, Italianno, Tangerine, Parisienne, Suez One, Klee One, Amiri, Tilana. Each animates with authentic stroke order.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Adjust animation settings",
+        text: "Set animation speed (slow/normal/fast), font size, and loop mode. Click Replay to preview the animation.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Export as GIF (optional)",
+        text: "Click the GIF Export button to render the animation as a downloadable GIF file. Supports custom frame rate and loop settings.",
+      },
+    ],
+  };
 
   const categorySlug = getCategorySlug(meta.category);
 
   return (
-    <ToolDetailLayout
-      toolId="handwriting-animation"
-      categorySlug={categorySlug}
-      meta={meta}
-      jsonLd={jsonLd}
-    >
-      <HandwritingAnimationTool />
-      <ToolDetailSections toolId="handwriting-animation" />
-    </ToolDetailLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <ToolDetailLayout
+        toolId="handwriting-animation"
+        categorySlug={categorySlug}
+        meta={meta}
+      >
+        <HandwritingAnimationTool />
+        <ToolDetailSections toolId="handwriting-animation" />
+      </ToolDetailLayout>
+    </>
   );
 }

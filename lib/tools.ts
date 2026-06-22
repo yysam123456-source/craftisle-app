@@ -2764,27 +2764,57 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "📷",
     category: CATEGORIES.image,
     stars: 5,
-    seoTitle: "Free AI ID Photo Maker Online — Background Removal & Resize | Craftisle",
-    seoDesc: "Create professional ID photos online for free. AI background removal, multiple sizes (passport, visa, license), custom colors. 100% browser-based — your photos never leave your device. No signup required.",
+    seoTitle: "Free AI ID Photo Maker Online — Passport/Visa Photo Generator | Craftisle",
+    seoDesc: "Free AI ID photo maker online. Generate professional passport, visa, 1-inch, 2-inch photos. AI background removal, auto-crop, multiple sizes. 100% browser-based, no signup, no watermark.",
     seoKeywords: [
+      // Core
       "free id photo maker online",
       "ai passport photo generator free",
       "id photo background remover online",
       "free passport photo maker no upload",
-      "1 inch photo maker online",
-      "2 inch photo maker online",
+      "1 inch photo maker online free",
+      "2 inch photo maker online free",
       "visa photo generator free online",
       "ai id photo creator browser based",
       "free online id photo tool no signup",
       "passport photo size converter online",
       "id photo background change white blue red",
       "license photo maker online free",
-      "digital photo id creator online",
+      "digital photo id creator online free",
       "automatic passport photo cropping tool",
       "ai portrait matting id photo online free",
       "create id photo from selfie online free",
       "online id photo resizer background color",
       "free id photo download high resolution",
+      // Passport specific
+      "US passport photo maker free online",
+      "UK passport photo generator free",
+      "Schengen visa photo maker free",
+      "Chinese passport photo generator free",
+      "Indian passport photo maker free online",
+      "Canadian passport photo generator free",
+      "Australian passport photo maker free",
+      "Japanese passport photo generator free",
+      // Visa specific
+      "US visa photo maker free online",
+      "UK visa photo generator free",
+      "Schengen visa photo maker free",
+      "China visa photo generator free",
+      "India visa photo maker free online",
+      "passport photo for visa application free",
+      // Use case long-tail
+      "create passport photo at home free online",
+      "take passport photo with phone free tool",
+      "passport photo maker no watermark free",
+      "ai powered id photo generator free online",
+      "remove background from passport photo free",
+      "change passport photo background to white free",
+      "free online tool to make id photos",
+      "professional id photo maker free no signup",
+      "best free passport photo generator online 2024",
+      "compliant passport photo maker free online",
+      "free tool to create visa photos online",
+      "digital passport photo maker free high quality",
     ],
     description: "Generate professional ID photos from any photo using AI-powered portrait matting. Automatically remove backgrounds, change to official colors (white, blue, red), and resize to standard dimensions (1-inch, 2-inch, passport, US visa, Schengen). All processing runs locally in your browser — your photos are never uploaded to any server. No signup, no watermark, unlimited use.",
     howToUse: [
@@ -2813,17 +2843,37 @@ export const toolMeta: Record<string, ToolMeta> = {
       {
         title: "Passport applications",
         text:
-          "Generate compliant passport photos that meet official requirements (US, UK, EU, and 50+ countries). Save money on photo booth fees.",
+          "Generate compliant passport photos that meet official requirements (US, UK, EU, China, India, Canada, Australia, Japan, and 50+ countries). Save money on photo booth fees.",
       },
       {
         title: "Visa applications",
         text:
-          "Create correctly sized photos for US visas, Schengen visas, UK visas, Chinese visas, and other international travel documents.",
+          "Create correctly sized photos for US visas, Schengen visas, UK visas, Chinese visas, Indian visas, and other international travel documents.",
       },
       {
-        title: "Official documents",
+        title: "Official documents & IDs",
         text:
-          "Make ID photos for driver's licenses, employee badges, student IDs, exam registrations, and other formal identification needs.",
+          "Make ID photos for driver's licenses, employee badges, student IDs, exam registrations, membership cards, and other formal identification needs.",
+      },
+      {
+        title: "Job applications & CVs",
+        text:
+          "Create professional headshot photos for resumes, CVs, LinkedIn profiles, and job application portals. First impressions matter.",
+      },
+      {
+        title: "School & university forms",
+        text:
+          "Generate compliant ID photos for school applications, university admissions, student ID cards, and scholarship applications.",
+      },
+      {
+        title: "Business cards & badges",
+        text:
+          "Create professional ID photos for company badges, business cards, conference name tags, and corporate directories.",
+      },
+      {
+        title: "Online account profiles",
+        text:
+          "Make professional profile photos for Zoom, Teams, Google Workspace, and other online platforms. Look professional in virtual meetings.",
       },
     ],
     faq: [
@@ -2857,6 +2907,16 @@ export const toolMeta: Record<string, ToolMeta> = {
         a:
           "Use a front-facing photo with a neutral expression and even lighting. Plain backgrounds work best but aren't required — the AI will handle background removal. Avoid sunglasses and heavy shadows.",
       },
+      {
+        q: "Is the photo compliant with official requirements?",
+        a:
+          "The tool generates photos that meet standard size and background requirements for 50+ countries. However, we recommend checking your specific country's official photo guidelines before submitting.",
+      },
+      {
+        q: "Can I print the downloaded photo?",
+        a:
+          "Yes. The downloaded JPG is high-resolution and suitable for printing at photo labs, drugstores (CVS, Walgreens), or home printers. Print at 300 DPI for best results.",
+      },
     ],
     relatedTools: ["image-passport-photo", "image-resize", "image-convert", "remove-bg"],
   },
@@ -2867,20 +2927,52 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "✂️",
     category: CATEGORIES.image,
     stars: 5,
-    seoTitle: "Free AI Background Remover Online — Remove Image Backgrounds Instantly | Craftisle",
-    seoDesc:
-      "Remove backgrounds from any image free using AI. Download as transparent PNG or replace with solid color (white, blue, red). 100% browser-based ONNX model — your images never leave your device. No signup required.",
+    seoTitle: "Free AI Background Remover Online — Remove Image Background Instantly | Craftisle",
+    seoDesc: "Free AI background remover online. Remove backgrounds from any image automatically using AI. Download transparent PNG or replace with solid color. 100% browser-based, no signup, no watermark.",
     seoKeywords: [
+      // Core
       "free background remover online",
-      "ai remove background from image",
+      "ai remove background from image free",
       "remove bg online free no signup",
-      "transparent png maker online",
-      "remove image background automatically",
-      "ai background eraser free",
-      "make image transparent online",
-      "remove background without uploading",
-      "browser based background removal ai",
+      "transparent png maker online free",
+      "ai background eraser free online",
+      "remove image background automatically free",
+      "make image transparent online free",
       "free online background remover tool",
+      "browser based background removal ai free",
+      "remove background without uploading free",
+      // Product photography
+      "remove background for product photos free",
+      "ecommerce product photo background remover free",
+      "Amazon product photo background remover free",
+      "Shopify product image background remover",
+      "remove background from product photo online",
+      "white background product photo maker free",
+      // Portrait / Profile
+      "remove background from portrait free online",
+      "profile picture background remover free",
+      "LinkedIn profile photo background remover",
+      "passport photo background remover free",
+      "remove background from selfie online free",
+      "create transparent profile picture free",
+      // Design
+      "extract subject from image free online",
+      "AI image segmentation free online tool",
+      "remove background for graphic design free",
+      "transparent PNG creator free online",
+      "composite image background remover free",
+      "free AI background remover no signup",
+      "best free background remover online 2024",
+      "remove bg free high quality online",
+      "AI background removal tool free no watermark",
+      "ISNet background remover free online",
+      "ONNX background remover browser based free",
+      // Long-tail
+      "how to remove image background free online",
+      "free tool to make image background transparent",
+      "remove background from JPG PNG WebP free online",
+      "AI powered background removal free no registration",
+      "download transparent PNG after background removal free",
     ],
     description:
       "Remove backgrounds from any photo or image in seconds using AI-powered segmentation. The ISNet ML model runs entirely in your browser via ONNX Runtime — no server upload needed. Export results as transparent PNG (perfect for design work) or composite onto white/blue/red/green/black backgrounds for product photos and profile pictures.",
@@ -2908,27 +3000,39 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     useCases: [
       {
-        title: "Product photos",
-        text: "E-commerce sellers can remove busy backgrounds and replace with clean white or custom colors for Amazon, Shopify, Etsy listings.",
+        title: "Product photos for e-commerce",
+        text: "E-commerce sellers can remove busy backgrounds and replace with clean white or custom colors for Amazon, Shopify, Etsy, eBay, and Walmart listings. Increase sales with professional product photos.",
       },
       {
         title: "Profile pictures & avatars",
-        text: "Create professional profile pics with transparent or solid backgrounds for LinkedIn, CVs, social media, and business cards.",
+        text: "Create professional profile pics with transparent or solid backgrounds for LinkedIn, CVs, social media, Discord, and business cards. Stand out with a clean, professional look.",
       },
       {
-        title: "Design & presentations",
-        text: "Extract subjects as transparent PNGs for compositing into designs, slides, marketing materials, and creative projects.",
+        title: "Graphic design & marketing",
+        text: "Extract subjects as transparent PNGs for compositing into designs, slides, marketing materials, flyers, and creative projects. No Photoshop needed.",
       },
       {
         title: "ID documents & passports",
-        text: "Quickly strip backgrounds from photos taken anywhere and replace with official document colors. Pair with our ID Photo Maker for full workflow.",
+        text: "Quickly strip backgrounds from photos taken anywhere and replace with official document colors (white, blue, red). Pair with our ID Photo Maker for full workflow.",
+      },
+      {
+        title: "Pet photos & profiles",
+        text: "Remove backgrounds from pet photos to create cute profile pics, holiday cards, or social media posts. Works great with dogs, cats, and other pets.",
+      },
+      {
+        title: "Food photography",
+        text: "Remove cluttered backgrounds from food photos and replace with clean white or solid colors for menus, delivery apps, and social media.",
+      },
+      {
+        title: "Car & real estate photos",
+        text: "Remove backgrounds from car photos or property images for listings, brochures, and marketing materials. Make your listings stand out.",
       },
     ],
     faq: [
       {
         q: "How does the AI background removal work?",
         a:
-          "It uses the ISNet semantic segmentation model running on ONNX Runtime in your browser. The model identifies foreground objects (people, products, etc.) pixel-by-pixel and separates them from the background. No data is sent to any server.",
+          "It uses the ISNet semantic segmentation model running on ONNX Runtime in your browser. The model identifies foreground objects (people, products, pets, etc.) pixel-by-pixel and separates them from the background. No data is sent to any server.",
       },
       {
         q: "Is it really free? Any limits?",
@@ -2941,14 +3045,29 @@ export const toolMeta: Record<string, ToolMeta> = {
           "The AI works well with clear foreground subjects against any background — solid color, complex scenes, indoor/outdoor lighting. Results are best when the subject is well-lit and in focus. Very low-resolution or heavily compressed images may have edge artifacts.",
       },
       {
-        q: "What if the AI doesn't work well on my image?",
+        q: "Can I get a transparent background?",
         a:
-          "You can toggle off 'AI' mode to use the legacy color-key algorithm, which lets you adjust sensitivity manually. For best results, use AI mode first — it handles complex backgrounds much better than traditional methods.",
+          "Yes. Select 'Transparent PNG' as the output style to get a clean cutout with alpha channel. Perfect for graphic design and compositing.",
       },
       {
-        q: "Can I use this commercially?",
+        q: "What output formats are supported?",
         a:
-          "Yes! All processing is client-side. There are no API calls or third-party services involved. Use the output however you need — personal or commercial.",
+          "PNG for lossless quality (recommended for transparent outputs) and WebP for smaller file sizes with near-identical visual quality.",
+      },
+      {
+        q: "Are my images uploaded to a server?",
+        a:
+          "No. All processing happens 100% in your browser using the ONNX Runtime WebAssembly build. Your images never leave your device. This is the most private way to remove backgrounds.",
+      },
+      {
+        q: "How long does processing take?",
+        a:
+          "Typically 2–5 seconds depending on image size and your device speed. The AI model (~5MB) downloads once and is cached for future use.",
+      },
+      {
+        q: "Can I replace the background with a custom color?",
+        a:
+          "Yes. Choose from white, blue, red, gray, green, or black solid color backgrounds. The tool automatically composites the foreground onto your chosen color.",
       },
     ],
     relatedTools: ["id-photo", "image-resize", "image-crop", "image-compress"],
@@ -3205,20 +3324,48 @@ export const toolMeta: Record<string, ToolMeta> = {
     badge: "New",
     category: CATEGORIES.generator,
     stars: 5,
-    seoTitle: "Handwriting Animation Generator Free — Online Tool | Craftisle",
-    seoDesc: "Convert any text into beautiful handwriting animations. Free online tool, no sign-up required. 8 built-in fonts, customizable speed and loop.",
+    seoTitle: "Handwriting Animation Generator Free — Create Animated Text Online | Craftisle",
+    seoDesc: "Free handwriting animation generator online. Convert any text into beautiful handwriting animations with 8 fonts. Custom speed, loop mode, SVG export. 100% browser-based, no signup, no watermark.",
     seoKeywords: [
-        "handwriting animation maker online free tool",
-        "create handwriting animation online free",
-        "free handwriting animation browser based tool",
-        "online text animation generator free tool",
-        "handwriting effect online free tool",
-        "free online handwriting animation maker",
-        "handwriting animation no signup free online",
-        "create animated text online free tool",
-        "free browser based animation maker tool",
-        "SVG handwriting animation online free tool"
-      ],
+      // Core
+      "handwriting animation generator free",
+      "create handwriting animation online free",
+      "handwriting animation maker online",
+      "free online handwriting animation tool",
+      "handwriting effect online free",
+      "animated text generator free online",
+      "SVG handwriting animation online",
+      "browser based handwriting animation maker",
+      // Use cases
+      "handwriting animation for Instagram free",
+      "handwriting animation for TikTok free",
+      "create handwriting video online free",
+      "handwriting animation for YouTube Shorts",
+      "personalized greeting card animation free",
+      "handwriting effect for social media free",
+      "animated text for video intros free",
+      "calligraphy animation generator online",
+      "stroke order animation free online",
+      // Long-tail
+      "convert text to handwriting animation free",
+      "free handwriting animation no signup no watermark",
+      "handwriting animation with stroke order free",
+      "create animated handwriting video online",
+      "free online tool to animate handwriting",
+      "handwriting animation export SVG free",
+      "8 handwriting fonts animation free online",
+      "custom speed handwriting animation free",
+      "loop handwriting animation online free",
+      "handwriting animation for education free",
+      "language learning handwriting animation free",
+      "CJK character handwriting animation free",
+      "Chinese Japanese Korean handwriting animation",
+      "free handwriting animation tool no registration",
+      "best free handwriting animation generator online",
+      "handwriting animation maker browser based free",
+      "animate text like handwriting online free",
+      "free tool to create handwriting animation video",
+    ],
     description:
       "<strong>Convert any text into beautiful handwriting animations</strong> — completely free, no sign-up required.<br/><br/>" +
       "<strong>8 built-in fonts:</strong> Caveat, Italianno, Tangerine, Parisienne, Suez One, Klee One, Amiri, Tilana — each with authentic stroke order animation.<br/><br/>" +
@@ -3231,17 +3378,23 @@ export const toolMeta: Record<string, ToolMeta> = {
       { heading: "Export (optional)", text: "Use your browser's screen recorder (Cmd+Shift+5 on Mac) to capture the animation as a video." },
     ],
     useCases: [
-      { title: "Social media content", text: "Create handwriting animation videos for Instagram, TikTok, Twitter, and YouTube Shorts." },
-      { title: "Educational videos", text: "Show proper stroke order for calligraphy or language learning content." },
-      { title: "Personalized greetings", text: "Generate handwriting animations for birthday/holiday cards and send as video messages." },
-      { title: "Product demos", text: "Add a human touch to product videos with handwritten annotation animations." },
+      { title: "Social media content", text: "Create handwriting animation videos for Instagram, TikTok, Twitter, and YouTube Shorts. Export as GIF or screen-record as MP4." },
+      { title: "Educational videos", text: "Show proper stroke order for calligraphy or language learning content. Supports CJK characters with correct stroke order." },
+      { title: "Personalized greetings", text: "Generate handwriting animations for birthday/holiday cards and send as video messages. Add names, dates, and personal notes." },
+      { title: "Product demos", text: "Add a human touch to product videos with handwritten annotation animations. Great for app demos and tutorials." },
+      { title: "Wedding invitations", text: "Create elegant handwriting animation videos for wedding invitations, save-the-date announcements, and thank you cards." },
+      { title: "Business presentations", text: "Add handwritten emphasis to slides and pitch decks. The human touch makes data and ideas more relatable." },
+      { title: "Language learning", text: "Show proper stroke order for Chinese, Japanese, and Korean characters. Essential for calligraphy and handwriting practice videos." },
     ],
     faq: [
-      { q: "Is this tool really free?", a: "Yes. 100% free, no sign-up required, no usage limits. All processing happens in your browser." },
-      { q: "Can I download the animation as a video?", a: "Use your browser's built-in screen recorder (Cmd+Shift+5 on Mac, Win+G on Windows) to capture the animation as a video file." },
+      { q: "Is this tool really free?", a: "Yes. 100% free, no sign-up required, no usage limits, no watermark. All processing happens in your browser." },
+      { q: "Can I download the animation as a video?", a: "Use your browser's built-in screen recorder (Cmd+Shift+5 on Mac, Win+G on Windows) to capture the animation as an MP4 or WebM video file." },
+      { q: "Can I export as GIF?", a: "Yes! Click the GIF Export button to render the animation as a downloadable GIF file. Supports custom frame rate and loop settings." },
       { q: "Does it support Chinese/Japanese/Korean characters?", a: "Yes. Tegaki supports Unicode and animates CJK characters with proper stroke order using the Amiri and other appropriate fonts." },
-      { q: "Can I use my own font?", a: "Currently 8 built-in fonts are supported. Custom font support requires generating a Tegaki font bundle using the Tegaki Generator tool." },
+      { q: "Can I use my own font?", a: "Currently 8 built-in fonts are supported: Caveat, Italianno, Tangerine, Parisienne, Suez One, Klee One, Amiri, Tilana. Each animates with authentic stroke order." },
       { q: "Is my text sent to a server?", a: "No. All rendering is done 100% in your browser using Canvas API. Your text never leaves your device." },
+      { q: "What languages are supported?", a: "All languages supported by Unicode, including English, Chinese, Japanese, Korean, Arabic, Hindi, and European languages." },
+      { q: "Can I adjust the animation speed?", a: "Yes. Choose from Slow, Normal, or Fast animation speed. You can also enable Loop mode for continuous playback." },
     ],
     relatedTools: ["create-gif", "image-to-pixel", "markdown"],
   },
