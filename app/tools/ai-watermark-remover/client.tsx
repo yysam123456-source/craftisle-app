@@ -72,9 +72,11 @@ export default function WatermarkRemoverClient() {
       let applied = false;
       let resultInfo: { pixels?: number; confidence?: number } = {};
 
-      // Auto-detect
+      // Load watermark remover
+      const { removeWatermark, resolveConfig, autoDetectPlatform } = await import("@/lib/watermark-remover/index.ts");
+
+      // Auto-detect platform
       if (platform === "auto") {
-        const { autoDetectPlatform } = await import("@/lib/watermark-remover/index.ts");
         targetPlatform = autoDetectPlatform(imageData);
       }
 
@@ -90,30 +92,27 @@ export default function WatermarkRemoverClient() {
             cleanedData = result.imageData;
           } else {
             // Gemini not detected — try generic engine with jimeng config
-            const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
             const cfg = resolveConfig("jimeng", imageData.width, imageData.height);
             const res = removeWatermark(imageData, cfg);
             cleanedData = res.cleaned;
-            applied = res.pixelCount > 20 && res.confidence > 0.1;
+            applied = res.pixelCount > 3 && res.passes > 0;
             targetPlatform = "jimeng";
             resultInfo = { pixels: res.pixelCount, confidence: Math.round(res.confidence * 100) };
           }
         } catch {
           // @pilio failed → fall back to generic
-          const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
           const cfg = resolveConfig(targetPlatform, imageData.width, imageData.height);
           const res = removeWatermark(imageData, cfg);
           cleanedData = res.cleaned;
-          applied = res.pixelCount > 20 && res.confidence > 0.1;
+          applied = res.pixelCount > 3 && res.passes > 0;
           resultInfo = { pixels: res.pixelCount, confidence: Math.round(res.confidence * 100) };
         }
       } else {
         // Generic detection + inpainting for all other platforms
-        const { removeWatermark, resolveConfig } = await import("@/lib/watermark-remover/index.ts");
         const cfg = resolveConfig(targetPlatform, imageData.width, imageData.height);
         const res = removeWatermark(imageData, cfg);
         cleanedData = res.cleaned;
-        applied = res.pixelCount > 20 && res.confidence > 0.1;
+        applied = res.pixelCount > 3 && res.passes > 0;
         resultInfo = { pixels: res.pixelCount, confidence: Math.round(res.confidence * 100) };
       }
 

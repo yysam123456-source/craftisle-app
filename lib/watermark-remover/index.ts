@@ -1,16 +1,20 @@
 /**
- * Generic AI Watermark Remover — v6
+ * Generic AI Watermark Remover — v7
  *
- * CRITICAL FIX from local validation:
- *   Users upload SCREENSHOTS of browser pages, not original images.
- *   The old algorithm searched bottom-right of the FULL image (white UI background).
- *   Now we auto-detect the content/photo area first, then search within THAT.
+ * ROOT CAUSE FIX: v3-v6 all broke because they changed the proven v2 detection.
+ * v2 worked because it searched bottom-right of FULL IMAGE using simple brightness
+ * average with robust statistics and a minBrightnessDelta safety floor.
+ *
+ * v7 = v2's exact detection algorithm + FMM (Telea) inpainting for better repair quality.
  *
  * Algorithm:
- *   1. Auto-detect content region (find largest non-white rectangle)
- *   2. Within content's bottom-right corner: global brightness outlier detection
- *   3. FMM (Telea) inpainting for edge-preserving repair
- *   4. Multi-pass up to 3 iterations
+ *   1. Search bottom-right corner of IMAGE (not "content region" — that was the bug!)
+ *   2. Simple brightness average (R+G+B)/3 — not ITU-R luminance
+ *   3. Robust mean (exclude |diff|>60 outliers) + stdDev
+ *   4. Threshold = max(minBrightnessDelta, sigma*stdDev)
+ *   5. Morphological cleanup (dilate/erode/dilate)
+ *   6. FMM (Telea) inpainting for edge-preserving repair
+ *   7. Multi-pass up to 3 iterations
  */
 
 // ── Types ───────────────────────────────────────────────────────────────────
@@ -18,12 +22,21 @@
 export interface PlatformConfig {
   name: string;
   displayName: string;
-  /** Search region as ratio of CONTENT area (not full image) */
-  contentSearchRegion: {
-    widthRatio: number;   // fraction of content width
-    heightRatio: number;  // fraction of content height
-    marginX: number;
-    marginY: number;
+  /** Search region in bottom-right corner of the FULL image */
+  searchRegion: {
+    widthRatio: number; // fraction of image width to search
+    heightRatio: number; // fraction of image height to search
+    marginX: number;     // px from right edge
+    marginY: number;     // px from bottom edge
+  };
+  /** Detection tuning parameters */
+  characteristics: {
+    /** Is watermark typically lighter or darker than background? */
+    lighter: boolean;
+    /** Minimum absolute brightness difference to consider pixel watermarked */
+    minBrightnessDelta: number;
+    /** How many standard deviations above local mean counts as outlier */
+    outlierSigma: number;
   };
 }
 
@@ -33,6 +46,8 @@ export interface ResolvedConfig {
   searchY: number;
   searchW: number;
   searchH: number;
+  lighter: boolean;
+  minBrightnessDelta: number;
   outlierSigma: number;
   dilateRadius: number;
   erodeRadius: number;
@@ -47,50 +62,50 @@ export interface RemovalResult {
   passes: number;
 }
 
-export interface ContentRegion {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-}
-
 // ── Platform configs ────────────────────────────────────────────────────────
 
 const PLATFORMS: Record<string, PlatformConfig> = {
   gemini: {
     name: "gemini",
     displayName: "Gemini (Google)",
-    contentSearchRegion: { widthRatio: 0.18, heightRatio: 0.16, marginX: 12, marginY: 12 },
+    searchRegion: { widthRatio: 0.15, heightRatio: 0.15, marginX: 20, marginY: 20 },
+    characteristics: { lighter: true, minBrightnessDelta: 8, outlierSigma: 1.5 },
   },
   jimeng: {
     name: "jimeng",
     displayName: "即梦 (ByteDance)",
-    contentSearchRegion: { widthRatio: 0.30, heightRatio: 0.22, marginX: 6, marginY: 6 },
+    searchRegion: { widthRatio: 0.22, heightRatio: 0.16, marginX: 12, marginY: 12 },
+    characteristics: { lighter: true, minBrightnessDelta: 5, outlierSigma: 1.2 },
   },
   doubao: {
     name: "doubao",
     displayName: "豆包 (ByteDance)",
-    contentSearchRegion: { widthRatio: 0.30, heightRatio: 0.22, marginX: 6, marginY: 6 },
+    searchRegion: { widthRatio: 0.22, heightRatio: 0.16, marginX: 12, marginY: 12 },
+    characteristics: { lighter: true, minBrightnessDelta: 5, outlierSigma: 1.2 },
   },
   tongyi: {
     name: "tongyi",
     displayName: "通义万相 (Alibaba)",
-    contentSearchRegion: { widthRatio: 0.30, heightRatio: 0.22, marginX: 6, marginY: 6 },
+    searchRegion: { widthRatio: 0.22, heightRatio: 0.16, marginX: 12, marginY: 12 },
+    characteristics: { lighter: true, minBrightnessDelta: 5, outlierSigma: 1.2 },
   },
   wenxin: {
     name: "wenxin",
     displayName: "文心一格 (Baidu)",
-    contentSearchRegion: { widthRatio: 0.30, heightRatio: 0.22, marginX: 6, marginY: 6 },
+    searchRegion: { widthRatio: 0.22, heightRatio: 0.16, marginX: 12, marginY: 12 },
+    characteristics: { lighter: true, minBrightnessDelta: 5, outlierSigma: 1.2 },
   },
   leonardo: {
     name: "leonardo",
     displayName: "Leonardo.ai",
-    contentSearchRegion: { widthRatio: 0.20, heightRatio: 0.18, marginX: 10, marginY: 10 },
+    searchRegion: { widthRatio: 0.14, heightRatio: 0.14, marginX: 24, marginY: 24 },
+    characteristics: { lighter: true, minBrightnessDelta: 10, outlierSigma: 1.8 },
   },
   auto: {
     name: "auto",
     displayName: "Auto Detect",
-    contentSearchRegion: { widthRatio: 0.35, heightRatio: 0.25, marginX: 4, marginY: 4 },
+    searchRegion: { widthRatio: 0.25, heightRatio: 0.18, marginX: 10, marginY: 10 },
+    characteristics: { lighter: true, minBrightnessDelta: 5, outlierSigma: 1.0 },
   },
 };
 
@@ -102,139 +117,35 @@ export function getPlatformConfig(name: string): PlatformConfig | null {
   return PLATFORMS[name] ?? null;
 }
 
-// ── Content Region Detection ───────────────────────────────────────────────
-//
-// Finds the main content/photo area within an image using connected-component
-// analysis on a coarse grid. Handles screenshots where the photo is surrounded
-// by white/gray UI chrome or has thin dark borders.
-//
-// Algorithm:
-//   1. Sample image at STEPpx intervals → coarse grid
-//   2. Mark cell as "content" if it's not pure white (L < 0.80)
-//   3. Find connected components (4-neighbor flood fill) of content cells
-//   4. The largest component is the main photo/content
-//   5. Return bounding box of that component
-//
-
-const CONTENT_LUM_MAX = 0.80; // above this = white/background, below = content
-const GRID_STEP = 6;          // sampling step (balance speed vs accuracy)
-
-export function detectContentRegion(imageData: ImageData): ContentRegion {
-  const { width: W, height: H, data } = imageData;
-
-  const step = GRID_STEP;
-  const cols = Math.ceil(W / step);
-  const rows = Math.ceil(H / step);
-
-  // Build binary grid: 1 = content pixel (not pure white), 0 = background
-  const isContent = new Uint8Array(cols * rows);
-
-  for (let gy = 0; gy < rows; gy++) {
-    for (let gx = 0; gx < cols; gx++) {
-      const px = Math.min(gx * step, W - 1);
-      const py = Math.min(gy * step, H - 1);
-      const i = (py * W + px) * 4;
-      const lum = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
-
-      // Content if not pure white (exclude both white background AND pure black borders)
-      if (lum < CONTENT_LUM_MAX && lum > 0.02) {
-        isContent[gy * cols + gx] = 1;
-      }
-    }
-  }
-
-  // Connected component labeling (flood fill)
-  const visited = new Uint8Array(cols * rows);
-  let bestComponent: number[] | null = null;
-  let bestSize = 0;
-
-  for (let start = 0; start < isContent.length; start++) {
-    if (!isContent[start] || visited[start]) continue;
-
-    // Flood fill this component
-    const stack: number[] = [start];
-    const component: number[] = [];
-    visited[start] = 1;
-
-    while (stack.length > 0) {
-      const idx = stack.pop()!;
-      component.push(idx);
-      const gx = idx % cols;
-      const gy = Math.floor(idx / cols);
-
-      for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
-        const nx = gx + dx, ny = gy + dy;
-        if (nx < 0 || nx >= cols || ny < 0 || ny >= rows) continue;
-        const nidx = ny * cols + nx;
-        if (isContent[nidx] && !visited[nidx]) {
-          visited[nidx] = 1;
-          stack.push(nidx);
-        }
-      }
-    }
-
-    if (component.length > bestSize) {
-      bestSize = component.length;
-      bestComponent = component;
-    }
-  }
-
-  // If no significant content found, return full image
-  if (!bestComponent || bestSize < 20) {
-    return { x: 0, y: 0, w: W, h: H };
-  }
-
-  // Compute bounding box of the largest component
-  let minX = cols, maxX = 0, minY = rows, maxY = 0;
-  for (const idx of bestComponent) {
-    const gx = idx % cols;
-    const gy = Math.floor(idx / cols);
-    minX = Math.min(minX, gx); maxX = Math.max(maxX, gx);
-    minY = Math.min(minY, gy); maxY = Math.max(maxY, gy);
-  }
-
-  // Convert back to pixel coordinates with margin
-  const margin = step * 2;
-  const cx = Math.max(0, minX * step - margin);
-  const cy = Math.max(0, minY * step - margin);
-  const cw = Math.min(W - cx, (maxX - minX + 3) * step);
-  const ch = Math.min(H - cy, (maxY - minY + 3) * step);
-
-  return { x: cx, y: cy, w: cw, h: ch };
-}
-
-// ── Config resolution (relative to content region) ─────────────────────────
+// ── Config resolution (v2-style: relative to FULL image) ──────────────────
 
 export function resolveConfig(
   platform: string,
   width: number,
   height: number,
-  contentRegion?: ContentRegion,
-): ResolvedConfig & { contentRegion: ContentRegion } {
+): ResolvedConfig {
   const cfg = PLATFORMS[platform];
-  if (!cfg) return resolveConfig("auto", width, height, contentRegion);
+  if (!cfg) return resolveConfig("auto", width, height);
 
-  // Auto-detect content if not provided
-  const cr = contentRegion ?? { x: 0, y: 0, w: width, h: height };
+  const sr = cfg.searchRegion;
+  const ch = cfg.characteristics;
 
-  const sr = cfg.contentSearchRegion;
-
-  // Search region is relative to CONTENT area's bottom-right
-  const searchW = Math.max(80, Math.min(cr.w - 20, Math.round(cr.w * sr.widthRatio)));
-  const searchH = Math.max(50, Math.min(cr.h - 20, Math.round(cr.h * sr.heightRatio)));
-  const searchX = cr.x + cr.w - searchW - sr.marginX;
-  const searchY = cr.y + cr.h - searchH - sr.marginY;
+  const searchW = Math.max(60, Math.min(width, Math.round(width * sr.widthRatio)));
+  const searchH = Math.max(40, Math.min(height, Math.round(height * sr.heightRatio)));
+  const searchX = width - searchW - sr.marginX;
+  const searchY = height - searchH - sr.marginY;
 
   return {
     platform: cfg.name,
-    searchX: Math.max(0, searchX),
-    searchY: Math.max(0, searchY),
+    searchX,
+    searchY,
     searchW,
     searchH,
-    outlierSigma: 1.5,       // lowered from 2.0 for better low-contrast detection
+    lighter: ch.lighter,
+    minBrightnessDelta: ch.minBrightnessDelta,
+    outlierSigma: ch.outlierSigma,
     dilateRadius: 2,
     erodeRadius: 1,
-    contentRegion: cr,
   };
 }
 
@@ -242,7 +153,7 @@ export function resolveConfig(
 
 export function removeWatermark(
   imageData: ImageData,
-  config: ResolvedConfig & { contentRegion: ContentRegion },
+  config: ResolvedConfig,
 ): RemovalResult {
   const output = new ImageData(
     new Uint8ClampedArray(imageData.data),
@@ -259,7 +170,7 @@ export function removeWatermark(
     const source = pass === 0 ? imageData : output;
     const passResult = detectAndInpaint(source, config, combinedMask);
 
-    if (passResult.pixelCount < 3) break;
+    if (passResult.pixelCount < 20) break;
 
     output.data.set(passResult.cleaned.data);
     combinedMask = passResult.mask;
@@ -293,217 +204,7 @@ export function removeWatermark(
   };
 }
 
-// ── Detection Methods ─────────────────────────────────────────────────────
-
-/** Count non-zero pixels in mask */
-function countMaskPixels(mask: Uint8ClampedArray, w: number, h: number): number {
-  let count = 0;
-  for (let i = 0; i < mask.length; i++) {
-    if (mask[i]) count++;
-  }
-  return count;
-}
-
-/**
- * Method 1: Global brightness outlier detection
- * Works well for high-contrast watermarks (Gemini, light watermark on dark bg)
- */
-function detectByBrightnessOutlier(
-  data: Uint8ClampedArray,
-  imgW: number,
-  sx: number, sy: number,
-  rw: number, rh: number,
-  outlierSigma: number,
-  previousMask: Uint8ClampedArray | null,
-): Uint8ClampedArray {
-  const pixelLums: number[] = [];
-  const pixelCoords: [number, number][] = [];
-
-  for (let ly = 0; ly < rh; ly++) {
-    for (let lx = 0; lx < rw; lx++) {
-      if (previousMask && previousMask[ly * rw + lx]) continue;
-
-      const pi = (sy + ly) * imgW + (sx + lx);
-      const r = data[pi * 4];
-      const g = data[pi * 4 + 1];
-      const b = data[pi * 4 + 2];
-      pixelLums.push(r * 0.299 + g * 0.587 + b * 0.114);
-      pixelCoords.push([lx, ly]);
-    }
-  }
-
-  if (pixelLums.length === 0) {
-    return new Uint8ClampedArray(rw * rh);
-  }
-
-  // Robust statistics: trim top/bottom 8%
-  const sorted = pixelLums.slice().sort((a, b) => a - b);
-  const trimN = Math.max(1, Math.floor(sorted.length * 0.08));
-  const trimmed = sorted.slice(trimN, sorted.length - trimN);
-
-  const meanL = trimmed.reduce((a, b) => a + b, 0) / trimmed.length;
-  const stdL = Math.sqrt(trimmed.reduce((s, l) => s + (l - meanL) ** 2, 0) / trimmed.length);
-  // Use true stdL (no floor) so low-contrast watermarks remain detectable
-  const threshold = outlierSigma * stdL;
-
-  const rawMask = new Uint8ClampedArray(rw * rh);
-  for (let i = 0; i < pixelLums.length; i++) {
-    if (pixelLums[i] - meanL > threshold) {
-      const [lx, ly] = pixelCoords[i];
-      rawMask[ly * rw + lx] = 255;
-    }
-  }
-
-  return rawMask;
-}
-
-/**
- * Method 2: Edge-based detection (Sobel + adaptive threshold)
- * Works for low-contrast watermarks where text has edges but similar brightness
- */
-function detectByEdge(
-  data: Uint8ClampedArray,
-  imgW: number,
-  sx: number, sy: number,
-  rw: number, rh: number,
-  previousMask: Uint8ClampedArray | null,
-): Uint8ClampedArray {
-  // Build grayscale array for search region
-  const gray = new Float32Array(rw * rh);
-  for (let ly = 0; ly < rh; ly++) {
-    for (let lx = 0; lx < rw; lx++) {
-      if (previousMask && previousMask[ly * rw + lx]) continue;
-      const pi = (sy + ly) * imgW + (sx + lx);
-      gray[ly * rw + lx] = (data[pi * 4] * 0.299 + data[pi * 4 + 1] * 0.587 + data[pi * 4 + 2] * 0.114) / 255;
-    }
-  }
-
-  // Compute Sobel gradient magnitude
-  const gradMag = new Float32Array(rw * rh);
-  let maxGrad = 0;
-
-  for (let ly = 1; ly < rh - 1; ly++) {
-    for (let lx = 1; lx < rw - 1; lx++) {
-      if (previousMask && previousMask[ly * rw + lx]) continue;
-
-      const gx = 
-        -gray[(ly - 1) * rw + (lx - 1)] + gray[(ly - 1) * rw + (lx + 1)] +
-        -2 * gray[ly * rw + (lx - 1)] + 2 * gray[ly * rw + (lx + 1)] +
-        -gray[(ly + 1) * rw + (lx - 1)] + gray[(ly + 1) * rw + (lx + 1)];
-
-      const gy = 
-        -gray[(ly - 1) * rw + (lx - 1)] - 2 * gray[(ly - 1) * rw + lx] - gray[(ly - 1) * rw + (lx + 1)] +
-        gray[(ly + 1) * rw + (lx - 1)] + 2 * gray[(ly + 1) * rw + lx] + gray[(ly + 1) * rw + (lx + 1)];
-
-      const mag = Math.sqrt(gx * gx + gy * gy);
-      gradMag[ly * rw + lx] = mag;
-      if (mag > maxGrad) maxGrad = mag;
-    }
-  }
-
-  // Adaptive threshold: median + 3 * MAD (Median Absolute Deviation)
-  const validGrad: number[] = [];
-  for (let i = 0; i < gradMag.length; i++) {
-    if (gradMag[i] > 0 && !(previousMask && previousMask[i])) {
-      validGrad.push(gradMag[i]);
-    }
-  }
-
-  if (validGrad.length === 0) {
-    return new Uint8ClampedArray(rw * rh);
-  }
-
-  const sortedGrad = validGrad.slice().sort((a, b) => a - b);
-  const median = sortedGrad[Math.floor(sortedGrad.length / 2)];
-  const mad = validGrad.reduce((s, g) => s + Math.abs(g - median), 0) / validGrad.length;
-  const edgeThreshold = median + 3 * mad;
-
-  // Build edge mask
-  const edgeMask = new Uint8ClampedArray(rw * rh);
-  for (let i = 0; i < gradMag.length; i++) {
-    if (gradMag[i] > edgeThreshold) {
-      edgeMask[i] = 255;
-    }
-  }
-
-  // Dilate heavily to fill text regions (edges → filled text)
-  let filledMask = morphDilate(edgeMask, rw, rh, 4);
-  filledMask = morphDilate(filledMask, rw, rh, 3);
-  filledMask = morphErode(filledMask, rw, rh, 2);
-
-  return filledMask;
-}
-
-/**
- * Method 3: Local standard deviation detection
- * Detects textured regions (watermark text) vs smooth background
- */
-function detectByLocalStdDev(
-  data: Uint8ClampedArray,
-  imgW: number,
-  sx: number, sy: number,
-  rw: number, rh: number,
-  previousMask: Uint8ClampedArray | null,
-): Uint8ClampedArray {
-  // Build grayscale array
-  const gray = new Float32Array(rw * rh);
-  for (let ly = 0; ly < rh; ly++) {
-    for (let lx = 0; lx < rw; lx++) {
-      if (previousMask && previousMask[ly * rw + lx]) continue;
-      const pi = (sy + ly) * imgW + (sx + lx);
-      gray[ly * rw + lx] = (data[pi * 4] * 0.299 + data[pi * 4 + 1] * 0.587 + data[pi * 4 + 2] * 0.114) / 255;
-    }
-  }
-
-  // Compute local standard deviation (5x5 window)
-  const localStd = new Float32Array(rw * rh);
-  let maxStd = 0;
-
-  for (let ly = 2; ly < rh - 2; ly++) {
-    for (let lx = 2; lx < rw - 2; lx++) {
-      if (previousMask && previousMask[ly * rw + lx]) continue;
-
-      const vals: number[] = [];
-      for (let dy = -2; dy <= 2; dy++) {
-        for (let dx = -2; dx <= 2; dx++) {
-          vals.push(gray[(ly + dy) * rw + (lx + dx)]);
-        }
-      }
-      const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
-      const std = Math.sqrt(vals.reduce((s, v) => s + (v - mean) ** 2, 0) / vals.length);
-      localStd[ly * rw + lx] = std;
-      if (std > maxStd) maxStd = std;
-    }
-  }
-
-  // Adaptive threshold: use a percentile-based approach
-  const validStd: number[] = [];
-  for (let i = 0; i < localStd.length; i++) {
-    if (localStd[i] > 0 && !(previousMask && previousMask[i])) {
-      validStd.push(localStd[i]);
-    }
-  }
-
-  if (validStd.length === 0) {
-    return new Uint8ClampedArray(rw * rh);
-  }
-
-  const sortedStd = validStd.slice().sort((a, b) => a - b);
-  // Use 80th percentile as threshold (textured regions are in top 20%)
-  const percentile80 = sortedStd[Math.floor(sortedStd.length * 0.80)];
-  const threshold = Math.max(percentile80, 0.002); // minimum threshold
-
-  const rawMask = new Uint8ClampedArray(rw * rh);
-  for (let i = 0; i < localStd.length; i++) {
-    if (localStd[i] > threshold) {
-      rawMask[i] = 255;
-    }
-  }
-
-  return rawMask;
-}
-
-// ── Single-pass: Detect + Inpaint ─────────────────────────────────────────
+// ── Single-pass: v2 Detection + FMM Inpainting ─────────────────────────────
 
 interface PassResult {
   cleaned: ImageData;
@@ -514,11 +215,11 @@ interface PassResult {
 
 function detectAndInpaint(
   source: ImageData,
-  config: ResolvedConfig & { contentRegion: ContentRegion },
+  config: ResolvedConfig,
   previousMask: Uint8ClampedArray | null,
 ): PassResult {
   const { width: imgW, height: imgH, data } = source;
-  const { searchX, searchY, searchW, searchH, outlierSigma, dilateRadius, erodeRadius } = config;
+  const { searchX, searchY, searchW, searchH, lighter, minBrightnessDelta, outlierSigma, dilateRadius, erodeRadius } = config;
 
   const sx = Math.max(0, Math.round(searchX));
   const sy = Math.max(0, Math.round(searchY));
@@ -531,35 +232,77 @@ function detectAndInpaint(
     return makeEmptyResult(source, config);
   }
 
-  // ═══ STEP 1: Try brightness outlier detection first ═══
+  // ═══ STEP 1: Compute brightness map of search region (v2: simple average) ═══
 
-  let rawMask = detectByBrightnessOutlier(data, imgW, sx, sy, rw, rh, outlierSigma, previousMask);
+  const brightness = new Float32Array(rw * rh);
+  let sumB = 0;
+  let count = 0;
 
-  // ═══ STEP 2: If too few pixels, try edge-based detection (for low-contrast watermarks) ═══
+  for (let ly = 0; ly < rh; ly++) {
+    for (let lx = 0; lx < rw; lx++) {
+      if (previousMask && previousMask[ly * rw + lx]) continue;
 
-  let pixelCount = countMaskPixels(rawMask, rw, rh);
-  if (pixelCount < 5) {
-    const edgeMask = detectByEdge(data, imgW, sx, sy, rw, rh, previousMask);
-    if (countMaskPixels(edgeMask, rw, rh) > pixelCount) {
-      rawMask = edgeMask;
+      const pi = (sy + ly) * imgW + (sx + lx);
+      const b = (data[pi * 4] + data[pi * 4 + 1] + data[pi * 4 + 2]) / 3; // v2: simple average
+      brightness[ly * rw + lx] = b;
+      sumB += b;
+      count++;
     }
   }
 
-  // ═══ STEP 3: If still too few, try local std dev detection ═══
+  if (count === 0) {
+    return makeEmptyResult(source, config);
+  }
 
-  pixelCount = countMaskPixels(rawMask, rw, rh);
-  if (pixelCount < 5) {
-    const stdMask = detectByLocalStdDev(data, imgW, sx, sy, rw, rh, previousMask);
-    if (countMaskPixels(stdMask, rw, rh) > pixelCount) {
-      rawMask = stdMask;
+  // ═══ STEP 2: Robust statistics (v2: exclude |diff|>60 from mean) ═══
+
+  const globalMean = sumB / count;
+
+  // First pass: compute robust mean (excluding extreme outliers)
+  let robustSum = 0;
+  let robustCount = 0;
+  for (let i = 0; i < brightness.length; i++) {
+    if (previousMask && previousMask[i]) continue;
+    const d = Math.abs(brightness[i] - globalMean);
+    if (d < 60) { // exclude extreme outliers (>60 away from mean)
+      robustSum += brightness[i];
+      robustCount++;
+    }
+  }
+  const robustMean = robustCount > 0 ? robustSum / robustCount : globalMean;
+
+  // Compute std dev from robust mean
+  let sumSq = 0;
+  let stdCount = 0;
+  for (let i = 0; i < brightness.length; i++) {
+    if (previousMask && previousMask[i]) continue;
+    const d = brightness[i] - robustMean;
+    sumSq += d * d;
+    stdCount++;
+  }
+  const stdDev = stdCount > 0 ? Math.sqrt(sumSq / stdCount) : 0;
+
+  // ═══ STEP 3: Build binary mask (v2: threshold = max(minDelta, sigma*std)) ═══
+
+  const threshold = Math.max(minBrightnessDelta, outlierSigma * stdDev);
+
+  const rawMask = new Uint8ClampedArray(rw * rh);
+  for (let si = 0; si < brightness.length; si++) {
+    if (previousMask && previousMask[si]) continue;
+
+    const diff = lighter
+      ? brightness[si] - robustMean  // watermark is LIGHTER than bg
+      : robustMean - brightness[si]; // watermark is DARKER than bg
+    if (diff > threshold) {
+      rawMask[si] = 255;
     }
   }
 
-  // ═══ STEP 4: Morphological Cleanup ═══
+  // ═══ STEP 4: Morphological cleanup ═══
 
-  let finalMask = morphDilate(rawMask, rw, rh, dilateRadius);
-  finalMask = morphErode(finalMask, rw, rh, erodeRadius);
-  finalMask = morphDilate(finalMask, rw, rh, 1);
+  let finalMask = morphDilate(rawMask, rw, rh, 1);  // catch semi-transparent edges
+  finalMask = morphErode(finalMask, rw, rh, 1);       // remove noise pixels
+  finalMask = morphDilate(finalMask, rw, rh, 1);       // restore text thickness
 
   if (previousMask) {
     for (let i = 0; i < finalMask.length; i++) {
@@ -567,24 +310,24 @@ function detectAndInpaint(
     }
   }
 
-  let totalPixelCount = 0;
+  let pixelCount = 0;
   for (let i = 0; i < finalMask.length; i++) {
-    if (finalMask[i]) totalPixelCount++;
+    if (finalMask[i]) pixelCount++;
   }
 
-  if (totalPixelCount < 3) {
+  if (pixelCount < 20) {
     return { cleaned: source, mask: finalMask, pixelCount: 0, confidence: 0 };
   }
 
-  // ═══ STEP 5: FMM Inpainting ═══
+  // ═══ STEP 5: FMM Inpainting (upgrade from v2's naive averaging) ═══
 
-  const output = new ImageData(new Uint8ClampedArray(data), imgW, imgH);
-  fmmInpaint(output.data, finalMask, sx, sy, rw, rh, imgW, imgH);
+  const outputImage = new ImageData(new Uint8ClampedArray(data), imgW, imgH);
+  fmmInpaint(outputImage.data, finalMask, sx, sy, rw, rh, imgW, imgH);
 
-  const density = totalPixelCount / (rw * rh);
+  const density = pixelCount / (rw * rh);
   const confidence = computeConfidence(finalMask, rw, rh, density);
 
-  return { cleaned: output, mask: finalMask, pixelCount: totalPixelCount, confidence };
+  return { cleaned: outputImage, mask: finalMask, pixelCount, confidence };
 }
 
 function makeEmptyResult(source: ImageData, config: ResolvedConfig): PassResult {
@@ -809,7 +552,7 @@ function morphErode(mask: Uint8ClampedArray, w: number, h: number, radius: numbe
 function computeConfidence(
   mask: Uint8ClampedArray, w: number, h: number, density: number,
 ): number {
-  if (density < 0.0003 || density > 0.95) return 0;
+  if (density < 0.005 || density > 0.8) return 0;
 
   let connected = 0;
   const visited = new Uint8Array(w * h);
@@ -843,20 +586,19 @@ function floodCount(
   return size;
 }
 
-// ── Auto-detection ────────────────────────────────────────────────────────
+// ── Auto-detection (v2-style: no content region) ─────────────────────────
 
 export function autoDetectPlatform(
   imageData: ImageData,
   platforms: string[] = ["jimeng", "doubao", "gemini"],
 ): string {
   const { width, height } = imageData;
-  const contentRegion = detectContentRegion(imageData);
 
   let bestPlatform = "jimeng";
   let bestScore = -Infinity;
 
   for (const p of platforms) {
-    const cfg = resolveConfig(p, width, height, contentRegion);
+    const cfg = resolveConfig(p, width, height);
     const result = removeWatermark(imageData, cfg);
     const score = result.pixelCount * result.confidence;
     if (score > bestScore && result.passes > 0) {
