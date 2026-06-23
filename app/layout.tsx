@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import "@/styles/globals.css";
 import { fontGeist, fontHeading, fontSans, fontUrban } from "@/assets/fonts";
 
@@ -12,6 +11,8 @@ import { Analytics } from "@/components/analytics";
 import CookieConsent from "@/components/cookie-consent";
 import ModalProvider from "@/components/modals/providers";
 import { ServiceWorkerRegistration } from "@/components/sw-registration";
+import { AdLoader } from "@/components/AdLoader";
+import { AdSenseLoader } from "@/components/AdSenseLoader";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -90,14 +91,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
         {/* Monetag site verification */}
         <meta name="monetag" content="95c89403a193eef38bbc05e97d7c067c" />
-        {/* Google AdSense - only loads when NEXT_PUBLIC_ADSENSE_CLIENT is set */}
-        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        {/* Google AdSense script is loaded dynamically by AdSenseLoader component */}
       </head>
       <body
         className={cn(
@@ -118,14 +112,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <ModalProvider>{children}</ModalProvider>
             <Analytics />
             <Toaster richColors closeButton />
-            {/* Monetag Vignette Banner — controlled by ADVER_ENABLE */}
-            {process.env.NEXT_PUBLIC_ADVER_ENABLE === 'true' && (
-              <Script
-                  id="monetag-vignette"
-                  src="/monetag-vignette.js"
-                  strategy="afterInteractive"
-                />
-            )}
+            {/* Dynamic ad loading via centralized config */}
+            <AdLoader />
+            <AdSenseLoader />
           </ThemeProvider>
         </SessionProvider>
         <CookieConsent />

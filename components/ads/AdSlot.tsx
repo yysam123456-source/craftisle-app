@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { isAdsenseEnabled } from '@/lib/config/ads';
 
 export type AdSlotSize =
   | 'leaderboard'    // 728x90 - banner
@@ -22,24 +23,29 @@ const sizeConfig: Record<AdSlotSize, { width: number | string; height: number | 
   responsive:   { width: '100%', height: 90, className: 'w-full min-h-[90px]' },
 };
 
+const ADSENSE_CLIENT_ID = 'ca-pub-XXXXXXXXXX'; // Replace with actual client ID
+
 export function AdSlot({ slotId, size = 'responsive', className = '', label }: AdSlotProps) {
   const adRef = useRef<HTMLDivElement>(null);
-  const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
-  const isDev = process.env.NODE_ENV === 'development';
+  const [enabled, setEnabled] = useState(false);
   const config = sizeConfig[size];
 
   useEffect(() => {
-    if (!adsenseClient || isDev) return;
+    isAdsenseEnabled().then(setEnabled);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     try {
       // @ts-ignore
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
       // AdSense not loaded yet — ok
     }
-  }, [adsenseClient, isDev]);
+  }, [enabled]);
 
-  if (isDev || !adsenseClient) {
-    return null; // Hide until AdSense is configured
+  if (!enabled) {
+    return null; // AdSense disabled via centralized config
   }
 
   return (
@@ -47,7 +53,7 @@ export function AdSlot({ slotId, size = 'responsive', className = '', label }: A
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
-        data-ad-client={adsenseClient}
+        data-ad-client={ADSENSE_CLIENT_ID}
         data-ad-slot={slotId}
         data-ad-format={size === 'responsive' ? 'auto' : undefined}
         data-full-width-responsive={size === 'responsive' ? 'true' : undefined}
