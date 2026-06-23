@@ -1,0 +1,352 @@
+[
+  {
+    "id": "free-for-dev--google-cloud-platform",
+    "name": "Google Cloud Platform",
+    "url": "https://cloud.google.com",
+    "category": "",
+    "freeTier": "App Engine - 28 frontend instance hours per day, nine backend instance hours per day | Cloud Firestore - 1GB storage, 50,000 reads, 20,000 writes, 20,000 deletes per day | Compute Engine - 1 non-preem"
+  },
+  {
+    "id": "free-for-dev--google-colab",
+    "name": "Google Colab",
+    "url": "https://colab.research.google.com/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--kaggle",
+    "name": "Kaggle",
+    "url": "https://www.kaggle.com/",
+    "category": "",
+    "freeTier": "Full, detailed list - https://cloud.google.com/free"
+  },
+  {
+    "id": "free-for-dev--amazon-web-services",
+    "name": "Amazon Web Services",
+    "url": "https://aws.amazon.com",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--cloudfront",
+    "name": "CloudFront",
+    "url": "https://aws.amazon.com/cloudfront/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--cloudwatch",
+    "name": "CloudWatch",
+    "url": "https://aws.amazon.com/cloudwatch/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--codebuild",
+    "name": "CodeBuild",
+    "url": "https://aws.amazon.com/codebuild/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--codecommit",
+    "name": "CodeCommit",
+    "url": "https://aws.amazon.com/codecommit/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--codepipeline",
+    "name": "CodePipeline",
+    "url": "https://aws.amazon.com/codepipeline/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--dynamodb",
+    "name": "DynamoDB",
+    "url": "https://aws.amazon.com/dynamodb/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--ec2",
+    "name": "EC2",
+    "url": "https://aws.amazon.com/ec2/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--ebs",
+    "name": "EBS",
+    "url": "https://aws.amazon.com/ebs/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--elastic-load-balancing",
+    "name": "Elastic Load Balancing",
+    "url": "https://aws.amazon.com/elasticloadbalancing/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--rds",
+    "name": "RDS",
+    "url": "https://aws.amazon.com/rds/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--s3",
+    "name": "S3",
+    "url": "https://aws.amazon.com/s3/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--glacier",
+    "name": "Glacier",
+    "url": "https://aws.amazon.com/glacier/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--lambda",
+    "name": "Lambda",
+    "url": "https://aws.amazon.com/lambda/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--sns",
+    "name": "SNS",
+    "url": "https://aws.amazon.com/sns/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--ses",
+    "name": "SES",
+    "url": "https://aws.amazon.com/ses/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--sqs",
+    "name": "SQS",
+    "url": "https://aws.amazon.com/sqs/",
+    "category": "",
+    "freeTier": "Full, detailed list - https://aws.amazon.com/free/"
+  },
+  {
+    "id": "free-for-dev--microsoft-azure",
+    "name": "Microsoft Azure",
+    "url": "https://azure.microsoft.com",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--virtual-machines",
+    "name": "Virtual Machines",
+    "url": "https://azure.microsoft.com/services/virtual-machines/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--app-service",
+    "name": "App Service",
+    "url": "https://azure.microsoft.com/services/app-service/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--functions",
+    "name": "Functions",
+    "url": "https://azure.microsoft.com/services/functions/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--devtest-labs",
+    "name": "DevTest Labs",
+    "url": "https://azure.microsoft.com/services/devtest-lab/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--active-directory",
+    "name": "Active Directory",
+    "url": "https://azure.microsoft.com/services/active-directory/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--active-directory-b2c",
+    "name": "Active Directory B2C",
+    "url": "https://azure.microsoft.com/services/active-directory/external-identities/b2c/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--azure-devops",
+    "name": "Azure DevOps",
+    "url": "https://azure.microsoft.com/services/devops/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--azure-pipelines",
+    "name": "Azure Pipelines",
+    "url": "https://azure.microsoft.com/services/devops/pipelines/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--microsoft-iot-hub",
+    "name": "Microsoft IoT Hub",
+    "url": "https://azure.microsoft.com/services/iot-hub/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--load-balancer",
+    "name": "Load Balancer",
+    "url": "https://azure.microsoft.com/services/load-balancer/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--notification-hubs",
+    "name": "Notification Hubs",
+    "url": "https://azure.microsoft.com/services/notification-hubs/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--bandwidth",
+    "name": "Bandwidth",
+    "url": "https://azure.microsoft.com/pricing/details/bandwidth/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--cosmos-db",
+    "name": "Cosmos DB",
+    "url": "https://azure.microsoft.com/services/cosmos-db/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--static-web-apps",
+    "name": "Static Web Apps",
+    "url": "https://azure.microsoft.com/pricing/details/app-service/static/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--storage",
+    "name": "Storage",
+    "url": "https://azure.microsoft.com/services/storage/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--cognitive-services",
+    "name": "Cognitive Services",
+    "url": "https://azure.microsoft.com/services/cognitive-services/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--cognitive-search",
+    "name": "Cognitive Search",
+    "url": "https://azure.microsoft.com/services/search/#features",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--azure-kubernetes-service",
+    "name": "Azure Kubernetes Service",
+    "url": "https://azure.microsoft.com/services/kubernetes-service/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--event-grid",
+    "name": "Event Grid",
+    "url": "https://azure.microsoft.com/services/event-grid/",
+    "category": "",
+    "freeTier": "Full, detailed list - https://azure.microsoft.com/free/"
+  },
+  {
+    "id": "free-for-dev--oracle-cloud",
+    "name": "Oracle Cloud",
+    "url": "https://www.oracle.com/cloud/",
+    "category": "",
+    "freeTier": "Compute | 2 AMD-based Compute VMs with 1/8 OCPU and 1 GB memory each | 4 Arm-based Ampere A1 cores and 24 GB of memory usable as one VM or up to 4 VMs | Instances will be reclaimed when [deemed idle]("
+  },
+  {
+    "id": "free-for-dev--ibm-cloud",
+    "name": "IBM Cloud",
+    "url": "https://www.ibm.com/cloud/free/",
+    "category": "",
+    "freeTier": "Cloudant database - 1 GB of data storage | Db2 database - 100MB of data storage | API Connect - 50,000 API calls per month | Availability Monitoring - 3 million data points per month | Log Analysis - "
+  },
+  {
+    "id": "free-for-dev--cloudflare",
+    "name": "Cloudflare",
+    "url": "https://www.cloudflare.com/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--application-services",
+    "name": "Application Services",
+    "url": "https://www.cloudflare.com/plans/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--zero-trust-sase",
+    "name": "Zero Trust & SASE",
+    "url": "https://www.cloudflare.com/plans/zero-trust-services/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--cloudflare-tunnel",
+    "name": "Cloudflare Tunnel",
+    "url": "https://www.cloudflare.com/products/tunnel/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--workers",
+    "name": "Workers",
+    "url": "https://developers.cloudflare.com/workers/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--workers-kv",
+    "name": "Workers KV",
+    "url": "https://developers.cloudflare.com/kv",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--r2",
+    "name": "R2",
+    "url": "https://developers.cloudflare.com/r2/",
+    "category": "",
+    "freeTier": ""
+  },
+  {
+    "id": "free-for-dev--d1",
+    "name": "D1",
+    "url": "https://developers.cloudflare.com/d1/",
+    "category": "",
+    "freeTier": ""
+  }
+]
