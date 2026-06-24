@@ -86,7 +86,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
 
       {/* Bottom Bar */}
       <div className="relative z-10 border-t border-border/30 bg-muted/30 py-4">
-        <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 sm:px-6 lg:px-8 md:flex-row">
           <p className="text-xs text-muted-foreground/60">
             &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </p>
@@ -95,6 +95,20 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             <Link href="/terms" className="transition-colors hover:text-primary">Terms</Link>
             <Link href="/sitemap.xml" className="transition-colors hover:text-primary">Sitemap</Link>
           </div>
+          <a
+            href="https://www.swaplink.run"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
+            <img
+              src="https://www.swaplink.run/badge/badge_dark.svg"
+              alt="Listed on SwapLink"
+              width={120}
+              height={32}
+              className="opacity-70 transition-opacity hover:opacity-100"
+            />
+          </a>
         </div>
       </div>
     </footer>
