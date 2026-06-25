@@ -1284,6 +1284,34 @@ export const toolMeta: Record<string, ToolMeta> = {
   },
 
   // ==================== Text Tools ====================
+  "text-translator": {
+    title: "Text Translator",
+    desc: "Translate between 30+ languages instantly",
+    icon: "\u{1F4AB}",
+    category: CATEGORIES.text,
+    seoTitle: "Free Online Text Translator — 30+ Languages | Craftisle",
+    seoDesc: "Free online text translator supporting 30+ languages. Auto-detect source, real-time translation, text-to-speech, copy results. No signup required. English, Chinese, Japanese, Korean and more.",
+    seoKeywords: ['free online translator', 'text translator online', 'translate english chinese', 'auto language detection', 'text to speech translation', 'Craftisle translator'],
+    description: "Translate text instantly between 30+ languages including English, Chinese (Simplified & Traditional), Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, Thai, Vietnamese, Italian, Dutch, Polish, Turkish, Hindi, Indonesian and more. Features auto-detection of the source language, real-time translation as you type, browser-based text-to-speech for pronunciation, and one-click copy. All translation is powered by MyMemory API with no data stored on our servers.",
+    howToUse: [
+      { heading: "Select languages", text: "Choose your source language or leave it on auto-detect. Pick your target language from 30+ options." },
+      { heading: "Enter your text", text: "Type or paste text into the left panel. Enable Auto for instant results, or press Ctrl+Enter / click Translate." },
+      { heading: "Copy or listen", text: "Use the copy button to save the result, or click the speaker icon to hear pronunciation." },
+    ],
+    useCases: [
+      { title: "Learning a new language", text: "Translate words and sentences while studying, then use TTS to hear correct pronunciation." },
+      { title: "Reading foreign content", text: "Quickly translate articles, emails, or documents from any supported language." },
+      { title: "Cross-border communication", text: "Compose messages in another language for international clients, friends, or colleagues." },
+    ],
+    faq: [
+      { q: "How many languages are supported?", a: "Over 30 languages including English, Chinese, Japanese, Korean, French, German, Spanish, Russian, Arabic, and more." },
+      { q: "Is my data private?", a: "Yes. Your text is sent directly to the translation API and is never stored on our servers." },
+      { q: "Can it detect the source language automatically?", a: "Yes. Set the source language to 'Detect Language' and the tool will identify the input language automatically." },
+      { q: "Does it work offline?", a: "No, this tool requires an internet connection to call the translation API." },
+    ],
+    relatedTools: ["case-converter", "text-formatter", "unicode"],
+  },
+
   "case-converter": {
     title: "Case Converter",
     desc: "Convert between naming conventions",
