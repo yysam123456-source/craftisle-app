@@ -49,6 +49,66 @@ const languages = [
 
 const targetLanguages = languages.filter(l => l.code !== 'auto');
 
+/**
+ * Client-side language detection using Unicode character ranges.
+ * MyMemory API does NOT support "auto" as source, so we detect here.
+ */
+function detectLanguage(text: string): string {
+  if (!text.trim()) return 'auto';
+
+  const trimmed = text.replace(/\s/g, '');
+
+  // CJK Unified Ideographs (Chinese/Japanese/Kanji) — check first for coverage
+  const cjkRange = /[\u{4E00}-\u{9FFF}\u{3400}-\u{4DBF}\u{20000}-\u{2A6DF}]/u;
+  if (cjkRange.test(trimmed)) {
+    // Distinguish Chinese from Japanese by checking Hiragana/Katakana presence
+    const hasHiragana = /[\u3040-\u309F]/.test(trimmed);
+    const hasKatakana = /[\u30A0-\u30FF]/.test(trimmed);
+    if (hasHiragana || (hasKatakana && !cjkRange.test(trimmed.replace(/[\u30A0-\u30FF]/g, '')))) {
+      return 'ja'; // Japanese
+    }
+    // Simplified vs Traditional heuristic: common simplified chars
+    const simplifiedChars = /[\u7684-\u76EE}\u4E48]/; // 的/是/了/在 etc.
+    return 'zh-CN'; // Default to Simplified Chinese for CJK
+  }
+
+  // Hangul (Korean)
+  if (/[\uAC00-\uD7AF\u1100-\u11FF]/.test(trimmed)) return 'ko';
+
+  // Cyrillic (Russian, Ukrainian, etc.)
+  if (/[\u0400-\u04FF]/.test(trimmed)) return 'ru';
+
+  // Arabic script (Arabic, Persian, Urdu)
+  if (/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(trimmed)) return 'ar';
+
+  // Thai
+  if (/[\u0E00-\u0E7F]/.test(trimmed)) return 'th';
+
+  // Devanagari (Hindi)
+  if (/[\u0900-\u097F]/.test(trimmed)) return 'hi';
+
+  // Hebrew
+  if (/[\u0590-\u05FF]/.test(trimmed)) return 'he';
+
+  // Bengali
+  if (/[\u0980-\u09FF]/.test(trimmed)) return 'bn';
+
+  // Tamil
+  if (/[\u0B80-\u0BFF]/.test(trimmed)) return 'ta';
+
+  // Telugu
+  if (/[\u0C00-\u0C7F]/.test(trimmed)) return 'te';
+
+  // Greek
+  if (/[\u0370-\u03FF]/.test(trimmed)) return 'el';
+
+  // Vietnamese (Latin + diacritics)
+  if (/[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i.test(trimmed)) return 'vi';
+
+  // Default: Latin-based scripts → English
+  return 'en';
+}
+
 export default function TextTranslatorClient() {
   const [sourceText, setSourceText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
@@ -71,6 +131,24 @@ export default function TextTranslatorClient() {
       return;
     }
 
+    // Client-side language detection — MyMemory does not support "auto" source
+    let resolvedSource = source;
+    if (source === 'auto') {
+      resolvedSource = detectLanguage(text);
+      // Show detected language badge
+      const detected = languages.find(l => l.code === resolvedSource);
+      if (detected) setDetectedLang(detected.name);
+    } else {
+      setDetectedLang('');
+    }
+
+    // Don't translate if source and target are the same
+    if (resolvedSource === target) {
+      setTranslatedText(text);
+      setError('');
+      return;
+    }
+
     // Cancel previous request
     if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
@@ -83,7 +161,7 @@ export default function TextTranslatorClient() {
       const response = await fetch('/api/translate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, source, target }),
+        body: JSON.stringify({ text, source: resolvedSource, target }),
         signal: controller.signal,
       });
 
@@ -92,10 +170,6 @@ export default function TextTranslatorClient() {
       if (!response.ok) throw new Error(data.error || 'Translation failed');
 
       setTranslatedText(data.translatedText);
-      if (data.detectedLanguage && data.detectedLanguage !== source && source === 'auto') {
-        const detected = languages.find(l => l.code === data.detectedLanguage);
-        setDetectedLang(detected?.name || data.detectedLanguage);
-      }
     } catch (err: any) {
       if (err.name === 'AbortError') return; // Debounce cancel, not an error
       console.error('Translation error:', err);
