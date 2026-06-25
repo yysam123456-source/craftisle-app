@@ -11,23 +11,29 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Copy, Volume2 } from 'lucide-react';
-import { toast } from '@/components/ui/use-toast';
+import { Loader2, Copy, ArrowUpDown, X, Volume2 } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
-// 支持的语言列表
 const languages = [
-  { code: 'zh', name: '中文' },
+  { code: 'auto', name: 'Auto Detect' },
   { code: 'en', name: 'English' },
-  { code: 'ja', name: '日本語' },
-  { code: 'ko', name: '한국어' },
-  { code: 'fr', name: 'Français' },
-  { code: 'de', name: 'Deutsch' },
-  { code: 'es', name: 'Español' },
-  { code: 'pt', name: 'Português' },
-  { code: 'ru', name: 'Русский' },
-  { code: 'ar', name: 'العربية' },
-  { code: 'th', name: 'ไทย' },
-  { code: 'vi', name: 'Tiếng Việt' },
+  { code: 'zh-CN', name: 'Chinese (Simplified)' },
+  { code: 'zh-TW', name: 'Chinese (Traditional)' },
+  { code: 'ja', name: 'Japanese' },
+  { code: 'ko', name: 'Korean' },
+  { code: 'fr', name: 'French' },
+  { code: 'de', name: 'German' },
+  { code: 'es', name: 'Spanish' },
+  { code: 'pt', name: 'Portuguese' },
+  { code: 'ru', name: 'Russian' },
+  { code: 'ar', name: 'Arabic' },
+  { code: 'th', name: 'Thai' },
+  { code: 'vi', name: 'Vietnamese' },
+  { code: 'it', name: 'Italian' },
+  { code: 'nl', name: 'Dutch' },
+  { code: 'pl', name: 'Polish' },
+  { code: 'tr', name: 'Turkish' },
+  { code: 'hi', name: 'Hindi' },
 ];
 
 export default function TextTranslatorClient() {
@@ -36,11 +42,12 @@ export default function TextTranslatorClient() {
   const [sourceLang, setSourceLang] = useState('auto');
   const [targetLang, setTargetLang] = useState('en');
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleTranslate = async () => {
     if (!sourceText.trim()) {
       toast({
-        title: '请输入要翻译的文本',
+        title: 'Please enter text to translate',
         variant: 'destructive',
       });
       return;
@@ -52,32 +59,30 @@ export default function TextTranslatorClient() {
     try {
       const response = await fetch('/api/translate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           text: sourceText,
-          source: sourceLang === 'auto' ? 'auto' : sourceLang,
+          source: sourceLang,
           target: targetLang,
         }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Translation failed');
+        throw new Error(data.error || 'Translation failed');
       }
 
-      const data = await response.json();
       setTranslatedText(data.translatedText);
-      
       toast({
-        title: '翻译完成',
-        description: '文本已成功翻译',
+        title: 'Translation complete',
+        description: 'Text has been successfully translated.',
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Translation error:', error);
       toast({
-        title: '翻译失败',
-        description: '请稍后重试或检查网络连接',
+        title: 'Translation failed',
+        description: error.message || 'Please try again later.',
         variant: 'destructive',
       });
     } finally {
@@ -87,28 +92,17 @@ export default function TextTranslatorClient() {
 
   const handleCopy = async () => {
     if (!translatedText) return;
-    
     try {
       await navigator.clipboard.writeText(translatedText);
-      toast({
-        title: '已复制',
-        description: '翻译结果已复制到剪贴板',
-      });
-    } catch (error) {
-      toast({
-        title: '复制失败',
-        variant: 'destructive',
-      });
+      toast({ title: 'Copied to clipboard' });
+    } catch {
+      toast({ title: 'Failed to copy', variant: 'destructive' });
     }
   };
 
-  const handleSwapLanguages = () => {
+  const handleSwap = () => {
     if (sourceLang === 'auto') {
-      toast({
-        title: '无法交换',
-        description: '自动检测语言时无法交换',
-        variant: 'destructive',
-      });
+      toast({ title: 'Cannot swap when auto-detect is on', variant: 'destructive' });
       return;
     }
     setSourceLang(targetLang);
@@ -117,22 +111,26 @@ export default function TextTranslatorClient() {
     setTranslatedText('');
   };
 
+  const handleClear = () => {
+    setSourceText('');
+    setTranslatedText('');
+  };
+
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-2xl">文本翻译工具</CardTitle>
+        <CardTitle className="text-2xl">Text Translator</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/* 语言选择 */}
-        <div className="flex items-center gap-4">
+        {/* Language selectors */}
+        <div className="flex items-center gap-3">
           <div className="flex-1">
-            <label className="text-sm font-medium mb-2 block">源语言</label>
+            <label className="text-sm font-medium mb-1 block">From</label>
             <Select value={sourceLang} onValueChange={setSourceLang}>
               <SelectTrigger>
-                <SelectValue placeholder="选择源语言" />
+                <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="auto">自动检测</SelectItem>
                 {languages.map((lang) => (
                   <SelectItem key={lang.code} value={lang.code}>
                     {lang.name}
@@ -145,20 +143,21 @@ export default function TextTranslatorClient() {
           <Button
             variant="outline"
             size="icon"
-            onClick={handleSwapLanguages}
-            className="mt-8"
+            onClick={handleSwap}
+            className="mt-6 shrink-0"
+            title="Swap languages"
           >
-            ⇄
+            <ArrowUpDown className="h-4 w-4" />
           </Button>
 
           <div className="flex-1">
-            <label className="text-sm font-medium mb-2 block">目标语言</label>
+            <label className="text-sm font-medium mb-1 block">To</label>
             <Select value={targetLang} onValueChange={setTargetLang}>
               <SelectTrigger>
-                <SelectValue placeholder="选择目标语言" />
+                <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {languages.map((lang) => (
+                {languages.filter(l => l.code !== 'auto').map((lang) => (
                   <SelectItem key={lang.code} value={lang.code}>
                     {lang.name}
                   </SelectItem>
@@ -168,50 +167,54 @@ export default function TextTranslatorClient() {
           </div>
         </div>
 
-        {/* 源文本输入 */}
+        {/* Input area */}
         <div>
-          <label className="text-sm font-medium mb-2 block">输入文本</label>
+          <div className="flex items-center justify-between mb-1">
+            <label className="text-sm font-medium">Input</label>
+            <span className="text-xs text-muted-foreground">
+              {sourceText.length} characters
+            </span>
+          </div>
           <Textarea
-            placeholder="请输入要翻译的文本..."
+            placeholder="Type or paste text here..."
             value={sourceText}
             onChange={(e) => setSourceText(e.target.value)}
-            className="min-h-[150px]"
+            className="min-h-[140px] text-base"
           />
         </div>
 
-        {/* 翻译按钮 */}
-        <Button
-          onClick={handleTranslate}
-          disabled={isLoading || !sourceText.trim()}
-          className="w-full"
-        >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              翻译中...
-            </>
-          ) : (
-            '翻译'
-          )}
-        </Button>
+        {/* Action buttons */}
+        <div className="flex gap-2">
+          <Button
+            onClick={handleTranslate}
+            disabled={isLoading || !sourceText.trim()}
+            className="flex-1"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Translating...
+              </>
+            ) : (
+              'Translate'
+            )}
+          </Button>
+          <Button variant="outline" onClick={handleClear} disabled={!sourceText && !translatedText}>
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
 
-        {/* 翻译结果 */}
+        {/* Output area */}
         {translatedText && (
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium">翻译结果</label>
-              <div className="flex gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCopy}
-                >
-                  <Copy className="h-4 w-4 mr-1" />
-                  复制
-                </Button>
-              </div>
+            <div className="flex items-center justify-between mb-1">
+              <label className="text-sm font-medium">Translation</label>
+              <Button variant="ghost" size="sm" onClick={handleCopy}>
+                <Copy className="h-4 w-4 mr-1" />
+                Copy
+              </Button>
             </div>
-            <div className="p-4 bg-muted rounded-lg min-h-[150px] whitespace-pre-wrap">
+            <div className="p-4 bg-muted/50 rounded-lg min-h-[140px] whitespace-pre-wrap text-base border">
               {translatedText}
             </div>
           </div>
