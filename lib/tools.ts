@@ -5333,6 +5333,36 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["string-reverse", "randomize-case"],
   },
 
+  // ==================== Text Tools (Batch N) ====================
+  "text-translator": {
+    title: "Text Translator",
+    desc: "Free online text translator with 12+ languages",
+    icon: "🌐",
+    badge: "New",
+    category: CATEGORIES.text,
+    seoTitle: "Free Text Translator — Online Translation Tool | Craftisle",
+    seoDesc: "Free online text translator. Translate text between 12+ languages including Chinese, English, Japanese, Korean, French, German, Spanish. No signup, instant results.",
+    seoKeywords: ["free text translator", "online translation tool", "translate text free", "Chinese to English translator", "multilingual translator"],
+    description: "Free online text translator supporting 12+ languages. Features auto language detection, copy to clipboard, and language swap. No signup required, instant results.",
+    howToUse: [
+      { heading: "Select languages", text: "Choose source language (or use Auto Detect) and target language." },
+      { heading: "Enter text", text: "Type or paste the text you want to translate." },
+      { heading: "Translate", text: "Click the Translate button to get instant results." },
+      { heading: "Copy result", text: "Use the Copy button to copy the translated text to clipboard." },
+    ],
+    useCases: [
+      { title: "Language learning", text: "Translate text to practice reading in target language." },
+      { title: "Travel preparation", text: "Translate phrases before traveling to foreign countries." },
+      { title: "Cross-language communication", text: "Bridge language barriers in international communication." },
+    ],
+    faq: [
+      { q: "Is this translator free?", a: "Yes, 100% free with no signup required." },
+      { q: "How many languages are supported?", a: "12+ languages including Chinese, English, Japanese, Korean, French, German, Spanish and more." },
+      { q: "Is my text stored?", a: "No, text is processed securely and not stored on our servers." },
+    ],
+    relatedTools: ["string-reverse", "string-uppercase", "unicode"],
+  },
+
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
     title: "PDF Tools",
