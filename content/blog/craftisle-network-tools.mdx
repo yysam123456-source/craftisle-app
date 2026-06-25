@@ -21,6 +21,27 @@ Handles IPv4 only. No IPv6 support yet — IPv6 subnet math is different and isn
 
 If you're designing VLANs or planning address allocation for a new office network, this gives you the numbers in one view instead of doing the bit math by hand.
 
+### Practical Example: Office Network Planning
+
+Suppose you're setting up a new office network and need to allocate IP ranges for different departments:
+
+- **HR Department**: 192.168.10.0/26 (64 IPs, 62 usable)
+- **Engineering**: 192.168.20.0/24 (256 IPs, 254 usable)
+- **Guest WiFi**: 192.168.30.0/28 (16 IPs, 14 usable)
+
+Our calculator shows you exactly how many devices can fit in each subnet, and what the usable IP range is.
+
+### Common Subnet Masks Quick Reference
+
+| CIDR | Subnet Mask | Usable Hosts | Use Case |
+|------|-------------|--------------|----------|
+| /30 | 255.255.255.252 | 2 | Point-to-point links |
+| /29 | 255.255.255.248 | 6 | Small network segment |
+| /28 | 255.255.255.240 | 14 | Small department |
+| /27 | 255.255.255.224 | 30 | Medium department |
+| /26 | 255.255.255.192 | 62 | Large department |
+| /24 | 255.255.255.0 | 254 | Standard office network |
+
 ## User-Agent Parser
 
 Paste a user-agent string, get a structured breakdown: browser name and version, OS, device type (mobile/desktop/tablet), rendering engine.
@@ -33,17 +54,47 @@ Output: Chrome 131 on macOS, desktop, WebKit engine.
 
 The parser uses a regex-based UA detection library. Modern browsers are increasingly freezing or faking their UA strings (Chrome's UA reduction), so the output is a best guess, not ground truth.
 
+### Why User-Agent Parsing Matters
+
+1. **Analytics**: Understand what browsers your visitors use
+2. **Debugging**: Identify if a bug is browser-specific
+3. **Compatibility**: Check if your site works on mobile devices
+4. **Security**: Detect suspicious or outdated browsers
+
+### Limitations of UA Parsing
+
+- **UA Reduction**: Chrome now sends less detailed UA strings
+- **Spoofing**: Some browsers fake their UA for compatibility
+- **Edge Cases**: Rare browsers or crawlers may not be detected correctly
+
+## IP Info Lookup
+
+Enter an IP address, get geolocation data, ISP information, and abuse contact.
+
+Useful for:
+- Checking where a visitor is from
+- Identifying suspicious traffic
+- Debugging CDN or geo-blocking issues
+
 ## FAQ: Free Network Tools Online
 
-### Best free IP subnet calculator online?
-Craftisle IP Subnet Calculator — input IP + CIDR (e.g. 192.168.1.0/24), get network address, broadcast, host range, total hosts. IPv4 only.
+### Free IP subnet calculator online?
+Craftisle IP Subnet Calculator — input IP + CIDR (e.g. 192.168.1.0/24), get network address, broadcast, host range, total hosts. IPv4 only. Includes practical examples for office network planning.
 
 ### How to parse user-agent string free?
-Use User-Agent Parser — paste UA string, get browser/OS/device type. Regex-based detection. Modern browsers fake UA strings, so output is best guess.
+Use User-Agent Parser — paste UA string, get browser/OS/device type. Regex-based detection. Modern browsers fake UA strings, so output is best guess. Good for debugging browser-specific issues.
 
 ### Free network tools no terminal needed?
-Craftisle Network Tools run in browser — no need to install ipcalc or nmap. Good for quick checks on machines without dev tools.
+Craftisle Network Tools run in browser — no need to install ipcalc or nmap. Good for quick checks on machines without dev tools. All processing is client-side for privacy.
+
+### What is CIDR and why use it?
+CIDR (Classless Inter-Domain Routing) is a method for allocating IP addresses and routing. It replaces the old class-based system (Class A, B, C) with flexible prefix lengths (e.g., /24, /26). CIDR allows more efficient use of IP address space.
+
+### How to calculate usable hosts in a subnet?
+Formula: `2^(32 - CIDR) - 2`. For example, /24 has `2^(32-24) - 2 = 254` usable hosts. The `-2` is because the network address and broadcast address are not usable for hosts.
 
 ---
 
 Try the [User-Agent Parser](/tools/user-agent-parser) — paste your own browser's UA string and see what it reports.
+
+For more networking tools, check our [IP Subnet Calculator](/tools/ip-subnet-calculator) and [IP Info Lookup](/tools/ip-info-lookup).

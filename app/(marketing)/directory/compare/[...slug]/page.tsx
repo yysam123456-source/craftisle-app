@@ -424,7 +424,7 @@ export default async function ComparePage(props: ComparePageProps) {
 
               <p className="text-xs text-muted-foreground mt-4">
                 💡 Data sourced from{" "}
-                <a href="https://fmhy.net" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+                <a href="https://fmhy.net" target="_blank" rel="noopener noreferrer nofollow" className="underline hover:text-foreground">
                   FMHY (Free Media Heck Yeah)
                 </a>{" "}
                 and updated regularly. GitHub stars reflect real-time community adoption.

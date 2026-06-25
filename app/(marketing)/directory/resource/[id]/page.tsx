@@ -4,6 +4,62 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
+
+// ── JSON-LD Structured Data (Google Rich Results) ──
+function generateSoftwareApplicationJsonLd(resource: Resource, baseUrl: string) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": resource.name,
+    "description": resource.description || `${resource.name} — free ${resource.categoryName || "online"} tool`,
+    "url": resource.url || `${baseUrl}/directory/resource/${resource.id}`,
+    "applicationCategory": "WebApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    ...(resource.url && {
+      "sameAs": [resource.url]
+    })
+  };
+  return JSON.stringify(jsonLd);
+}
+
+function generateBreadcrumbJsonLd(resource: Resource, baseUrl: string) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": baseUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Directory",
+        "item": `${baseUrl}/directory`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": resource.categoryName || "Tools",
+        "item": `${baseUrl}/directory/${resource.category || ""}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": resource.name,
+        "item": `${baseUrl}/directory/resource/${resource.id}`
+      }
+    ]
+  };
+  return JSON.stringify(jsonLd);
+}
 import { Button } from "@/components/ui/button";
 import {
   GlassCard,
@@ -1096,7 +1152,7 @@ export default async function ResourceDetailPage({
                 <a
                   href="https://fmhy.net"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="underline hover:text-foreground"
                 >
                   FMHY
@@ -1135,8 +1191,20 @@ function GeneratedContentSection({ content }: { content: GeneratedContent }) {
         <Sparkles className="h-5 w-5 text-green-500" />
         <h2 className="text-xl font-bold">Resource Overview</h2>
         <Badge variant="outline" className="text-xs text-green-600 border-green-300">
-          Auto-generated from real data
+          AI-assisted overview
         </Badge>
+      </div>
+
+      {/* AI Content Disclosure — Google Spam Update 合规 */}
+      <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-400">
+        <p className="font-medium">📝 Content Notice</p>
+        <p className="mt-1">
+          The overview, features, pros/cons, and use cases on this page are generated with AI assistance based on publicly available information. 
+          We review and edit AI-generated content for accuracy, but if you spot an error, please{" "}
+          <a href="/contact" className="underline hover:text-amber-900 dark:hover:text-amber-300">
+            let us know
+          </a>.
+        </p>
       </div>
 
       <div className="max-w-3xl space-y-6">

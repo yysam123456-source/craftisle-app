@@ -10,7 +10,7 @@ import { Check, Copy } from "lucide-react";
 const BADGE_HTML = (
   resourceSlug: string,
   resourceName: string,
-) => `<a href="https://craftisle.com/directory/resource/${resourceSlug}" target="_blank" rel="dofollow">
+) => `<a href="https://craftisle.com/directory/resource/${resourceSlug}" target="_blank" rel="nofollow ugc">
   <img
     src="https://craftisle.com/badges/listed-on-craftisle.svg"
     alt="Listed on Craftisle"
