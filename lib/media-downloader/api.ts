@@ -20,7 +20,8 @@ export class MediaDownloaderError extends Error {
 
 export async function requestParse(url: string): Promise<UnifiedParseResult['data']> {
   const params = new URLSearchParams({ url });
-  const requestUrl = `${API_ENDPOINTS.unified.parse}?${params.toString()}`;
+  // Use local proxy to avoid CORS issues with the third-party API
+  const requestUrl = `/api/media-downloader/parse?${params.toString()}`;
 
   const response = await fetch(requestUrl, {
     method: 'GET',
