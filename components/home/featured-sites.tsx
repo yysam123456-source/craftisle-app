@@ -13,6 +13,7 @@ import {
   Image,
   Sparkles,
   Gamepad2,
+  Code2,
 } from "lucide-react";
 
 // ── 子站数据（详细说明）────────────────────────────
@@ -99,6 +100,20 @@ const SUB_SITES = [
     bgLight: "bg-emerald-50 dark:bg-emerald-950/30",
     features: ["13+ Free Games", "No Download", "Play Instantly"],
     users: "10K+ games played",
+    featured: false,
+  },
+  {
+    title: "FX Lab",
+    slogan: "Frontend dev tools & code utilities",
+    desc: "A collection of frontend development tools — code formatters, CSS generators, regex testers, and more. Boost your productivity with our developer-first toolkit.",
+    href: "https://fxlab.craftisle.com",
+    icon: Code2,
+    gradient: "from-amber-500 to-orange-500",
+    gradientFrom: "#f59e0b",
+    gradientTo: "#f97316",
+    bgLight: "bg-amber-50 dark:bg-amber-950/30",
+    features: ["Code Formatter", "CSS Generator", "Regex Tester"],
+    users: "New Site",
     featured: false,
   },
 ];
