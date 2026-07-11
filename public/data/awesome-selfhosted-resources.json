@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-21T19:13:22.502Z",
-  "count": 1172,
+  "updatedAt": "2026-07-11T18:43:12.482Z",
+  "count": 1176,
   "resources": [
     {
       "name": "ANALOG",
@@ -556,8 +556,8 @@
     },
     {
       "name": "Faved",
-      "url": "https://faved.dev/",
-      "description": "Handcrafted bookmark manager combining powerful tagging, instant search, and a clean, distraction-free interface. Built for large collections and advanced workflows, optimized for efficiency and ease-of-use. ([Demo](https://demo.faved.dev/), [Source Code](https://github.com/denho/faved)) `MIT` `Docker`",
+      "url": "https://faved.to/",
+      "description": "Handcrafted bookmark manager combining powerful tagging, instant search, and a clean, distraction-free interface. Built for large collections and advanced workflows, optimized for efficiency and ease-of-use. ([Demo](https://demo.faved.to/), [Source Code](https://github.com/denho/faved)) `MIT` `Docker`",
       "category": "Bookmarks and Link Sharing"
     },
     {
@@ -1653,12 +1653,6 @@
       "category": "Community-Supported Agriculture (CSA)"
     },
     {
-      "name": "E-Label",
-      "url": "https://filipecarneiro.github.io/ELabel/",
-      "description": "Solution for electronic labels, with QR Codes, on wine bottles sold within the European Union. ([Source Code](https://github.com/filipecarneiro/ELabel)) `MIT` `Docker`",
-      "category": "Community-Supported Agriculture (CSA)"
-    },
-    {
       "name": "FoodCoopShop",
       "url": "https://www.foodcoopshop.com/",
       "description": "User-friendly software for food-coops. ([Source Code](https://github.com/foodcoopshop/foodcoopshop)) `AGPL-3.0` `PHP/Docker`",
@@ -2058,12 +2052,6 @@
       "name": "Evidence",
       "url": "https://evidence.dev",
       "description": "Code-based BI tool. Write reports using SQL and markdown and they render as a website. ([Source Code](https://github.com/evidence-dev/evidence)) `MIT` `Nodejs`",
-      "category": "Database Management"
-    },
-    {
-      "name": "Kottster",
-      "url": "https://kottster.app/",
-      "description": "Low-code admin panel that connects to your database and automatically generates pages to view and manage your data. ([Demo](https://demo.kottster.app/), [Source Code](https://github.com/kottster/kottster)) `Apache-2.0` `Nodejs/Docker`",
       "category": "Database Management"
     },
     {
@@ -2865,6 +2853,12 @@
       "category": "File Transfer - Single-click & Drag-n-drop Upload"
     },
     {
+      "name": "sE2EEnd",
+      "url": "https://github.com/sE2EEnd/sE2EEnd",
+      "description": "End-to-end encrypted file sharing with password protection, download limits, and auto-expiration, integrated with Keycloak for authentication. `AGPL-3.0` `Docker`",
+      "category": "File Transfer - Single-click & Drag-n-drop Upload"
+    },
+    {
       "name": "Sharry",
       "url": "https://github.com/eikek/sharry",
       "description": "Share files easily over the internet between authenticated and anonymous users (both ways) with resumable up- and downloads. `GPL-3.0` `Scala/Java/deb/Docker`",
@@ -3263,7 +3257,7 @@
     {
       "name": "LLMKube",
       "url": "https://llmkube.com",
-      "description": "Kubernetes operator for llama.cpp-native LLM inference with GPU scheduling, Apple Silicon Metal support, and OpenAI-compatible API. ([Source Code](https://github.com/defilantech/LLMKube)) `Apache-2.0` `Go/Docker/K8S`",
+      "description": "Kubernetes operator for self-hosted LLM inference with pluggable runtimes (llama.cpp, vLLM, TGI, Ollama, vllm-swift), multi-GPU sharding, NVIDIA CUDA + Apple Silicon Metal support, and OpenAI-compatible API. ([Source Code](https://github.com/defilantech/LLMKube)) `Apache-2.0` `Go/Docker/K8S`",
       "category": "Generative Artificial Intelligence (GenAI)"
     },
     {
@@ -3732,6 +3726,12 @@
       "name": "Fluidd",
       "url": "https://docs.fluidd.xyz/",
       "description": "Lightweight & responsive user interface for Klipper, the 3D printer firmware. ([Source Code](https://github.com/fluidd-core/fluidd)) `GPL-3.0` `Docker/Nodejs`",
+      "category": "Manufacturing"
+    },
+    {
+      "name": "LinuxCNC",
+      "url": "https://www.linuxcnc.org/",
+      "description": "Linux based CNC machine controller. It can drive milling machines, lathes, 3D printers, laser cutters, plasma cutters, robot arms, hexapods, and more. ([Source Code](https://github.com/LinuxCNC/linuxcnc)) `GPL-2.0/LGPL-3.0` `C/deb`",
       "category": "Manufacturing"
     },
     {
@@ -4527,6 +4527,12 @@
       "category": "Miscellaneous"
     },
     {
+      "name": "re:Director",
+      "url": "https://re-director.github.io/",
+      "description": "Simple domain redirection management tool. ([Source Code](https://github.com/re-Director/re-director)) `Apache-2.0` `Java/Docker`",
+      "category": "Miscellaneous"
+    },
+    {
       "name": "Reactive Resume",
       "url": "https://rxresu.me/",
       "description": "One-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. ([Demo](https://rxresu.me/), [Source Code](https://github.com/AmruthPillai/Reactive-Resume)) `MIT` `Docker/Nodejs`",
@@ -4644,6 +4650,12 @@
       "name": "BTCPay Server",
       "url": "https://btcpayserver.org/",
       "description": "Bitcoin and other cryptocurrencies payment processor. ([Demo](https://mainnet.demo.btcpayserver.org/), [Source Code](https://github.com/btcpayserver/btcpayserver)) `MIT` `C#`",
+      "category": "Money, Budgeting & Management"
+    },
+    {
+      "name": "Budget Board",
+      "url": "https://budgetboard.net/",
+      "description": "Simple app for tracking monthly spending and working towards financial goals. ([Source Code](https://github.com/teelur/budget-board)) `GPL-3.0` `Docker`",
       "category": "Money, Budgeting & Management"
     },
     {
@@ -5163,6 +5175,12 @@
       "category": "Pastebins"
     },
     {
+      "name": "Snipo",
+      "url": "https://github.com/MohamedElashri/snipo",
+      "description": "Lightweight, self‑hosted snippet manager for saving and organizing code and text snippets with folders, tags, API, and GitHub Gist sync. ([Demo](https://snipo.melashri.dev/)) `AGPL-3.0` `Go/Docker`",
+      "category": "Pastebins"
+    },
+    {
       "name": "SnyPy",
       "url": "https://snypy.com",
       "description": "Open source on-prem code snippet manager. ([Demo](https://app.snypy.com), [Source Code](https://github.com/snypy)) `MIT` `Docker`",
@@ -5314,8 +5332,8 @@
     },
     {
       "name": "Ente",
-      "url": "https://ente.io/",
-      "description": "An end-to-end encrypted photo-sharing platform (alternative to Google Photos, Apple Photos). ([Source Code](https://github.com/ente-io/ente)) `AGPL-3.0` `Docker/Nodejs/Go`",
+      "url": "https://ente.com/",
+      "description": "An end-to-end encrypted photo-sharing platform (alternative to Google Photos, Apple Photos). ([Source Code](https://github.com/ente/ente)) `AGPL-3.0` `Docker/Nodejs/Go`",
       "category": "Photo Galleries"
     },
     {
@@ -5460,6 +5478,12 @@
       "name": "docassemble",
       "url": "https://docassemble.org/",
       "description": "A free, open-source expert system for guided interviews and document assembly, based on Python, YAML, and Markdown. ([Demo](https://demo.docassemble.org/run/legal), [Source Code](https://github.com/jhpyle/docassemble)) `MIT` `Docker/Python`",
+      "category": "Polls and Events"
+    },
+    {
+      "name": "EventSchedule",
+      "url": "https://eventschedule.com/",
+      "description": "Share events, sell tickets, and bring communities together. ([Source Code](https://github.com/eventschedule/eventschedule)) `AAL` `PHP/Docker`",
       "category": "Polls and Events"
     },
     {
@@ -5699,7 +5723,7 @@
     {
       "name": "Warpgate",
       "url": "https://github.com/warp-tech/warpgate",
-      "description": "Smart SSH and HTTPS bastion that works with any SSH client. `Apache-2.0` `Rust/Docker`",
+      "description": "Fully transparent SSH, HTTPS, Kubernetes, MySQL and Postgres bastion/PAM that doesn't need additional client-side software. `Apache-2.0` `Rust/Docker`",
       "category": "Remote Access"
     },
     {
@@ -5903,7 +5927,7 @@
     {
       "name": "StartOS",
       "url": "https://start9.com",
-      "description": "Browser-based, graphical Operating System (OS) that makes running a personal server as easy as running a personal computer. ([Source Code](https://github.com/Start9Labs/start-os)) `MIT` `Rust`",
+      "description": "Browser-based, graphical Operating System (OS) that makes running a personal server as easy as running a personal computer. ([Source Code](https://github.com/Start9Labs/start-technologies)) `MIT` `Rust`",
       "category": "Self-hosting Solutions"
     },
     {
@@ -6132,12 +6156,6 @@
       "name": "Appwrite",
       "url": "https://appwrite.io",
       "description": "End to end backend server for web, native, and mobile developers 🚀. ([Source Code](https://github.com/appwrite/appwrite)) `BSD-3-Clause` `Docker`",
-      "category": "Software Development - Low Code"
-    },
-    {
-      "name": "autokitteh",
-      "url": "https://autokitteh.com/",
-      "description": "Durable workflow automation in just a few lines of code. ([Source Code](https://github.com/autokitteh/autokitteh)) `Apache-2.0` `Go/Docker`",
       "category": "Software Development - Low Code"
     },
     {
@@ -6441,6 +6459,12 @@
       "category": "Task Management & To-do Lists"
     },
     {
+      "name": "Kan",
+      "url": "https://kan.bn/",
+      "description": "Flexible kanban app that helps you organise work, track progress, and deliver results (alternative to Trello). ([Source Code](https://github.com/kanbn/kan)) `AGPL-3.0` `Docker`",
+      "category": "Task Management & To-do Lists"
+    },
+    {
       "name": "Kanboard",
       "url": "https://kanboard.org/",
       "description": "Simple visual task board. ([Source Code](https://github.com/kanboard/kanboard)) `MIT` `PHP`",
@@ -6652,8 +6676,8 @@
     },
     {
       "name": "Chhoto URL",
-      "url": "https://github.com/SinTan1729/chhoto-url",
-      "description": "Simple, lightning-fast URL shortener with no bloat (fork of simply-shorten). ([Demo](https://github.com/SinTan1729/chhoto-url?tab=readme-ov-file#demo), [Clients](https://github.com/SinTan1729/chhoto-url/blob/main/TOOLS.md)) `MIT` `Rust/Docker`",
+      "url": "https://chhoto.link",
+      "description": "Simple, lightning-fast URL shortener with no bloat (fork of simply-shorten). ([Demo](https://github.com/SinTan1729/chhoto-url?tab=readme-ov-file#demo), [Source Code](https://github.com/SinTan1729/chhoto-url), [Clients](https://github.com/SinTan1729/chhoto-url/blob/main/TOOLS.md)) `MIT` `Rust/Docker`",
       "category": "URL Shorteners"
     },
     {
@@ -6885,7 +6909,7 @@
       "category": "Wikis"
     },
     {
-      "name": "docmost",
+      "name": "docmost Community Edition",
       "url": "https://docmost.com/",
       "description": "Collaborative wiki and documentation software (alternative to Confluence, Notion). ([Source Code](https://github.com/docmost/docmost)) `AGPL-3.0` `Docker/Nodejs`",
       "category": "Wikis"

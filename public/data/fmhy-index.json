@@ -5,63 +5,63 @@
       "name": "Artificial Intelligence",
       "description": "Artificial-Intelligence resources",
       "icon": "📦",
-      "count": 356
+      "count": 354
     },
     {
       "id": "Adblock",
       "name": "Adblock",
       "description": "Adblock resources",
       "icon": "📦",
-      "count": 342
+      "count": 343
     },
     {
       "id": "Mobile",
       "name": "Mobile",
       "description": "Mobile resources",
       "icon": "📦",
-      "count": 1066
+      "count": 1083
     },
     {
       "id": "Misc",
       "name": "Misc",
       "description": "Misc resources",
       "icon": "📦",
-      "count": 8921
+      "count": 9059
     },
     {
       "id": "Downloading",
       "name": "Downloading",
       "description": "Downloading resources",
       "icon": "📦",
-      "count": 247
+      "count": 245
     },
     {
       "id": "Reading",
       "name": "Reading",
       "description": "Reading resources",
       "icon": "📦",
-      "count": 2316
+      "count": 2343
     },
     {
       "id": "Gaming",
       "name": "Gaming",
       "description": "Gaming resources",
       "icon": "📦",
-      "count": 1798
+      "count": 1831
     },
     {
       "id": "Linux",
       "name": "Linux",
       "description": "Linux resources",
       "icon": "📦",
-      "count": 688
+      "count": 698
     },
     {
       "id": "Storage",
       "name": "Storage",
       "description": "Storage resources",
       "icon": "📦",
-      "count": 222
+      "count": 224
     }
   ]
 }
