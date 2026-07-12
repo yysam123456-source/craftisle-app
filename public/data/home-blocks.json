@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-07-11T18:43:11.855Z",
-  "totalResources": 18718,
+  "lastUpdated": "2026-07-12T18:48:30.960Z",
+  "totalResources": 18942,
   "blocks": [
     {
       "id": "weekly-hottest",
       "title": "🔥 This Week's Hottest",
-      "subtitle": "Top tools by GitHub stars (7/11/2026)",
+      "subtitle": "Top tools by GitHub stars (7/12/2026)",
       "type": "resource-list",
       "resources": [
         {
@@ -89,7 +89,7 @@
         {
           "id": "artificial-intelligence-00008",
           "name": "Meta AI",
-          "description": "Muse Spark / Meta Sign-Up / Unlimited",
+          "description": "Muse Spark 1.1 / Meta Sign-Up / Unlimited",
           "url": "https://www.meta.ai/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
@@ -101,9 +101,9 @@
         },
         {
           "id": "artificial-intelligence-00009",
-          "name": "⁠Ernie",
-          "description": "Ernie 5.1 Thinking / 5.1 Instant",
-          "url": "https://ernie.baidu.com/",
+          "name": "ChatGPT",
+          "description": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use `/think`)",
+          "url": "https://chatgpt.com/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -220,43 +220,43 @@
         },
         {
           "paidTool": "QuickBooks",
-          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeId": "artificial-intelligence-00182",
           "freeAlternativeName": "GnuCash",
           "count": 9
         },
         {
           "paidTool": "Grammarly",
-          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeId": "artificial-intelligence-00182",
           "freeAlternativeName": "LanguageTool",
           "count": 9
         },
         {
           "paidTool": "Microsoft 365",
-          "freeAlternativeId": "mobile-00955",
+          "freeAlternativeId": "mobile-00954",
           "freeAlternativeName": "LibreOffice",
           "count": 9
         },
         {
           "paidTool": "NordVPN",
-          "freeAlternativeId": "adblock-00564",
+          "freeAlternativeId": "adblock-00563",
           "freeAlternativeName": "ProtonVPN",
           "count": 9
         },
         {
           "paidTool": "1Password",
-          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeId": "artificial-intelligence-00182",
           "freeAlternativeName": "Bitwarden",
           "count": 9
         },
         {
           "paidTool": "AutoCAD",
-          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeId": "artificial-intelligence-00182",
           "freeAlternativeName": "FreeCAD",
           "count": 8
         },
         {
           "paidTool": "SolidWorks",
-          "freeAlternativeId": "artificial-intelligence-00184",
+          "freeAlternativeId": "artificial-intelligence-00182",
           "freeAlternativeName": "FreeCAD",
           "count": 8
         }
@@ -271,7 +271,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "misc-02882",
+          "id": "misc-02905",
           "name": "3D Models / Modeling Tools",
           "description": "**",
           "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/image-tools#wiki_.25B7_3d_models",
@@ -284,7 +284,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00184",
+          "id": "artificial-intelligence-00182",
           "name": "A Traveler's Guide to the Latent Space",
           "description": "AI Art Guide",
           "url": "https://sweet-hall-e72.notion.site/A-Traveler-s-Guide-to-the-Latent-Space-85efba7e5e6a40e5bd3cae980f30235f",
@@ -297,7 +297,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00034",
+          "id": "artificial-intelligence-00033",
           "name": "AI Assistant",
           "description": "Deepseek V3.2 / GLM-4.7 / Kimi K2.5 / Multiple Models / No Sign-Up",
           "url": "https://aiassistantbot.pages.dev/",
@@ -310,7 +310,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00038",
+          "id": "artificial-intelligence-00035",
           "name": "Awesome AI Web Search",
           "description": ", [2](https://huggingface.co/spaces/Felladrin/awesome-ai-web-search)** - AI Search Engine Index",
           "url": "https://github.com/felladrin/awesome-ai-web-search",
@@ -323,7 +323,7 @@
           "tags": []
         },
         {
-          "id": "misc-09539",
+          "id": "misc-09644",
           "name": "Be My Eyes",
           "description": "Assist the Visually Impaired",
           "url": "https://www.bemyeyes.com/",
@@ -336,9 +336,9 @@
           "tags": []
         },
         {
-          "id": "adblock-00456",
+          "id": "adblock-00454",
           "name": "Big Ass Data Broker Opt-Out List",
-          "description": "or [⁠Data Broker Watch](https://databrokerswatch.org/) - Data Broker Removal & Opt-Out Methods",
+          "description": ", [⁠Serus](https://www.serus.ai/) or [⁠Data Broker Watch](https://databrokerswatch.org/) - Data Broker Removal & Opt-Out Methods",
           "url": "https://github.com/yaelwrites/Big-Ass-Data-Broker-Opt-Out-List",
           "category": "Adblock",
           "categoryName": "Adblock",
@@ -349,7 +349,7 @@
           "tags": []
         },
         {
-          "id": "misc-07763",
+          "id": "misc-07837",
           "name": "BlenderKit",
           "description": "3D Model Library Integrated into Blender",
           "url": "https://www.blenderkit.com/",
@@ -362,7 +362,7 @@
           "tags": []
         },
         {
-          "id": "mobile-01365",
+          "id": "mobile-01372",
           "name": "BloomeeTunes",
           "description": "YouTube Music Player",
           "url": "https://github.com/HemantKArya/BloomeeTunes",
@@ -385,7 +385,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "misc-02840",
+          "id": "misc-02862",
           "name": "{JSON} Placeholder",
           "description": ", [jsoning](https://jsoning.com/api/) or [WireMmock Cloud](https://www.wiremock.io/) - Mock APIs",
           "url": "https://jsonplaceholder.typicode.com/",
@@ -398,7 +398,7 @@
           "tags": []
         },
         {
-          "id": "gaming-05732",
+          "id": "gaming-05773",
           "name": "/codmeta/",
           "description": "Call of Duty Loadouts / Meta",
           "url": "https://rentry.co/codmeta",
@@ -411,7 +411,7 @@
           "tags": []
         },
         {
-          "id": "misc-09596",
+          "id": "misc-09702",
           "name": "/coffee/",
           "description": "** or [Coffee Time General](https://pastebin.com/UEzwuyLz) - Coffee Brewing Masterlists / Guides",
           "url": "https://rentry.co/coffeeguide",
@@ -424,7 +424,7 @@
           "tags": []
         },
         {
-          "id": "reading-04483",
+          "id": "reading-04510",
           "name": "/m/Chess",
           "description": "** or [r/Chess](https://reddit.com/r/chess) - Chess Subreddits",
           "url": "https://www.reddit.com/user/korfor/m/chess/",
@@ -437,7 +437,7 @@
           "tags": []
         },
         {
-          "id": "reading-03934",
+          "id": "reading-03955",
           "name": "/m/engineering",
           "description": "Engineering Multireddit",
           "url": "https://www.reddit.com/user/nbatman/m/engineering/",
@@ -450,7 +450,7 @@
           "tags": []
         },
         {
-          "id": "misc-09547",
+          "id": "misc-09652",
           "name": "/m/food",
           "description": "Food Multireddit",
           "url": "https://www.reddit.com/user/Siryonkee/m/food/",
@@ -463,7 +463,7 @@
           "tags": []
         },
         {
-          "id": "misc-09968",
+          "id": "misc-10093",
           "name": "/mental health/",
           "description": "Mental Help Tips",
           "url": "https://rentry.co/mentalhealthy",
@@ -476,7 +476,7 @@
           "tags": []
         },
         {
-          "id": "misc-02314",
+          "id": "misc-02332",
           "name": "/music discovery/",
           "description": "Music Discovery Guide",
           "url": "https://rentry.co/musicdiscovery",
@@ -499,19 +499,6 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "artificial-intelligence-00010",
-          "name": "ChatGPT",
-          "description": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use `/think`)",
-          "url": "https://chatgpt.com/",
-          "category": "Artificial-Intelligence",
-          "categoryName": "Artificial-Intelligence",
-          "githubStars": 0,
-          "icon": null,
-          "isFree": false,
-          "isOpenSource": false,
-          "tags": []
-        },
-        {
           "id": "artificial-intelligence-00013",
           "name": "Microsoft Copilot",
           "description": "GPT-5.1 / Unlimited",
@@ -527,7 +514,7 @@
         {
           "id": "artificial-intelligence-00014",
           "name": "Claude",
-          "description": "Claude Sonnet 4.6 / Require Sign-Up + Phone # , [2](https://github.com/BehiSecc/awesome-claude-skills)",
+          "description": "Claude Sonnet 5.0 / Requires Sign-Up + Phone # , [2](https://github.com/BehiSecc/awesome-claude-skills)",
           "url": "https://claude.ai/",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
@@ -551,7 +538,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00017",
+          "id": "artificial-intelligence-00018",
           "name": "⁠Ai2 Playground",
           "description": "Olmo 3.1 32B (Think) / No Sign-Up / Unlimited",
           "url": "https://playground.allenai.org/",
@@ -577,9 +564,9 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00029",
+          "id": "artificial-intelligence-00028",
           "name": "⁠Indic LLM Arena",
-          "description": "Gemini 3.5 Flash / Multiple Models / Unlimited",
+          "description": "GPT-5.5 / Gemini 3.5 Flash / Multiple Models / Unlimited",
           "url": "https://arena.ai4bharat.org/#/chat",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
@@ -590,10 +577,23 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00033",
+          "id": "artificial-intelligence-00032",
           "name": "⁠Together.ai",
-          "description": "GLM-5.1 / Kimi K2.6 / Deepseek-V4 / Multiple Models / Up To 110 Daily",
+          "description": "GLM-5.2 / Kimi K2.6 / Deepseek-V4 Pro / Multiple Models / Up To 110 Daily",
           "url": "https://chat.together.ai/",
+          "category": "Artificial-Intelligence",
+          "categoryName": "Artificial-Intelligence",
+          "githubStars": 0,
+          "icon": null,
+          "isFree": false,
+          "isOpenSource": false,
+          "tags": []
+        },
+        {
+          "id": "artificial-intelligence-00037",
+          "name": "Google AI Mode",
+          "description": "AI Search Engine / Pro (Google Sign-Up) / Fast (No Sign-Up)",
+          "url": "https://google.com/aimode",
           "category": "Artificial-Intelligence",
           "categoryName": "Artificial-Intelligence",
           "githubStars": 0,
@@ -613,7 +613,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "misc-07559",
+          "id": "misc-07632",
           "name": "Figma",
           "description": "Design Collab App / Web",
           "url": "https://www.figma.com/",
@@ -626,7 +626,7 @@
           "tags": []
         },
         {
-          "id": "misc-07441",
+          "id": "misc-07512",
           "name": "Fotosketcher",
           "description": "Turn Photos into Artwork / Windows",
           "url": "https://fotosketcher.com/",
@@ -639,9 +639,9 @@
           "tags": []
         },
         {
-          "id": "misc-07458",
+          "id": "misc-07530",
           "name": "Inkscape",
-          "description": "Drawing / Sketching / Windows, Mac, Linux",
+          "description": "Drawing / Sketching / Windows, macOS, Linux",
           "url": "https://inkscape.org/",
           "category": "Misc",
           "categoryName": "Misc",
@@ -652,9 +652,9 @@
           "tags": []
         },
         {
-          "id": "misc-07378",
+          "id": "misc-07449",
           "name": "GIMP",
-          "description": "** / Windows, Mac, Linux",
+          "description": "** / Windows, macOS, Linux",
           "url": "https://www.gimp.org/",
           "category": "Misc",
           "categoryName": "Misc",
@@ -665,9 +665,9 @@
           "tags": []
         },
         {
-          "id": "misc-07452",
+          "id": "misc-07523",
           "name": "Krita",
-          "description": "Painting App / Windows, Mac, Linux, Android",
+          "description": "Painting App / Windows, macOS, Linux, Android",
           "url": "https://krita.org/en/",
           "category": "Misc",
           "categoryName": "Misc",
@@ -678,7 +678,7 @@
           "tags": []
         },
         {
-          "id": "misc-07771",
+          "id": "misc-07845",
           "name": "Blender",
           "description": "FOSS 3D Modeling App",
           "url": "https://www.blender.org/",
@@ -691,7 +691,7 @@
           "tags": []
         },
         {
-          "id": "misc-07563",
+          "id": "misc-07636",
           "name": "Penpot",
           "description": "Design App & Prototyping Platform",
           "url": "https://penpot.app/",
@@ -704,7 +704,7 @@
           "tags": []
         },
         {
-          "id": "misc-01909",
+          "id": "misc-01924",
           "name": "CanvasCycle",
           "description": "8-bit Scenes with Ambient Sounds",
           "url": "http://www.effectgames.com/demos/canvascycle/",
@@ -727,7 +727,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "artificial-intelligence-00039",
+          "id": "artificial-intelligence-00036",
           "name": "NotebookLM",
           "description": "Document Chatbot / Note-Taking / Slides",
           "url": "https://notebooklm.google.com/",
@@ -740,7 +740,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00315",
+          "id": "artificial-intelligence-00314",
           "name": "Wolfram LLM Benchmarking Project",
           "description": "Chatbot Leaderboards / Benchmarks",
           "url": "https://www.wolfram.com/llm-benchmarking-project/",
@@ -753,7 +753,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00347",
+          "id": "artificial-intelligence-00345",
           "name": "ML Course Notes",
           "description": "Machine Learning Course Notes",
           "url": "https://github.com/dair-ai/ML-Course-Notes",
@@ -766,7 +766,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00351",
+          "id": "artificial-intelligence-00349",
           "name": "Markdown Web Browser",
           "description": "Webpage > Markdown Converter",
           "url": "https://github.com/Dicklesworthstone/markdown_web_browser",
@@ -779,7 +779,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00460",
+          "id": "adblock-00458",
           "name": "PrivNote",
           "description": ", [PrivateBin](https://privatebin.net/), [SafeNote](https://safenote.co/) , [Burn.Link](https://burn.link/), [ThisLinkWillSelfDestruct](https://thislinkwillselfdestruct.com/), [s.cr](https://s.cr/), [Yopass](https://yopass.se/) , [Hemmelig](https://hemmelig.app/) , [Burn My Note](https://www.burnmynote.link/) or [OneTimeSecret](https://onetimesecret.com/) - Self-Destructing Messages / Private Notes",
           "url": "https://privnote.com/",
@@ -792,7 +792,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00477",
+          "id": "adblock-00475",
           "name": "Consumer Rights Wiki",
           "description": "Documents Practices That Impact Consumer Rights",
           "url": "https://consumerrights.wiki/",
@@ -805,7 +805,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00480",
+          "id": "adblock-00478",
           "name": "⁠Whonix Wiki",
           "description": "Educational Guide",
           "url": "https://www.whonix.org/wiki",
@@ -818,7 +818,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00481",
+          "id": "adblock-00479",
           "name": "⁠Kicksecure Wiki",
           "description": "Educational Guide",
           "url": "https://www.kicksecure.com/wiki",
@@ -841,7 +841,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "artificial-intelligence-00087",
+          "id": "artificial-intelligence-00084",
           "name": "LLM-API-Key-Proxy",
           "description": "LLM API Key Proxy",
           "url": "https://github.com/Mirrowel/LLM-API-Key-Proxy",
@@ -854,7 +854,7 @@
           "tags": []
         },
         {
-          "id": "artificial-intelligence-00269",
+          "id": "artificial-intelligence-00268",
           "name": "AI API Tools",
           "description": "**",
           "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/dev-tools/#wiki_.25B7_api_tools",
@@ -867,7 +867,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00426",
+          "id": "adblock-00424",
           "name": "CLI",
           "description": "/ [Uploader](https://github.com/SamuelTulach/VirusTotalUploader) / [Lite Version](https://www.virust",
           "url": "https://github.com/VirusTotal/vt-cli",
@@ -880,7 +880,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00532",
+          "id": "adblock-00530",
           "name": "OTPClient",
           "description": "2FA / Linux",
           "url": "https://github.com/paolostivanin/OTPClient",
@@ -893,7 +893,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00540",
+          "id": "adblock-00538",
           "name": "steamguard-cli",
           "description": "Generate Steam 2FA Codes",
           "url": "https://github.com/dyc3/steamguard-cli",
@@ -906,7 +906,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00542",
+          "id": "adblock-00540",
           "name": "Matrix Clients",
           "description": "** , [2](https://tatsumoto.neocities.org/blog/list-of-matrix-servers.html), [3](https://gitlab.com/famedly/conduit), [4](https://joinmatrix.org/servers/), [5](https://archive.md/4xZE4), [6](https://wiki.asra.gr/en:public_servers)",
           "url": "https://matrix.org/ecosystem/clients/",
@@ -919,7 +919,7 @@
           "tags": []
         },
         {
-          "id": "adblock-00570",
+          "id": "adblock-00569",
           "name": "SecLists",
           "description": "Security Mailing List Archive",
           "url": "https://seclists.org/",
@@ -932,7 +932,7 @@
           "tags": []
         },
         {
-          "id": "mobile-00798",
+          "id": "mobile-00799",
           "name": "ReVanced CLI",
           "description": "CLI Patcher",
           "url": "https://github.com/ReVanced/revanced-cli",
@@ -955,7 +955,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "storage-13880",
+          "id": "storage-14083",
           "name": "discudemy",
           "description": ", [BARONIP COUPONS](https://baronip-coupons.blogspot.com/), [freebiesglobal](https://freebiesglobal.com/), [onlinecourses](https://www.onlinecourses.ooo/), [UdemyKing](https://t.me/udemyking1), [CourseArray](https://t.me/udemycoursesfree), [Udemy 24](https://coursesbag.com/), [UdemyFreeCourses](https://udemyfreecourses.org/), [Study Bullet](https://studybullet.com/) , [r/udemyfreebies](https://reddit.com/r/udemyfreebies), [Online Courses Tracker](https://comidoc.com/), [Real.Discount](https://www.real.discount/), [OnlineTutorials](https://www.onlinetutorials.org/), [Scroll Coupons](https://scrollcoupons.com/) , [UdemyXpert](https://udemyxpert.com/) , [⁠Forasm Free Courses](https://m.forasm.com/courses/), [FreeCourseSites](https://freecoursesites.com/)",
           "url": "https://www.discudemy.com/",
@@ -968,7 +968,7 @@
           "tags": []
         },
         {
-          "id": "storage-13879",
+          "id": "storage-14082",
           "name": "Udemy Download Guide",
           "description": "/ [Discord](https://discord.gg/tMzrSxQ)",
           "url": "https://docs.google.com/document/d/1W91OS9rj7h9DBp5UwR68lA2zMEtqNmxdGaNVmBktIaw/",
@@ -981,7 +981,7 @@
           "tags": []
         },
         {
-          "id": "storage-13878",
+          "id": "storage-14081",
           "name": "udemy-downloader",
           "description": "Udemy Downloader",
           "url": "https://github.com/Puyodead1/udemy-downloader",
@@ -994,7 +994,7 @@
           "tags": []
         },
         {
-          "id": "storage-13877",
+          "id": "storage-14080",
           "name": "UdemyPy",
           "description": "Udemy Course Bots",
           "url": "https://github.com/dylannalex/UdemyPy",
@@ -1007,7 +1007,7 @@
           "tags": []
         },
         {
-          "id": "storage-13876",
+          "id": "storage-14079",
           "name": "Udemy-Course-Enroller",
           "description": "Auto Course Enrollment",
           "url": "https://github.com/techtanic/Discounted-Udemy-Course-Enroller",
@@ -1020,7 +1020,7 @@
           "tags": []
         },
         {
-          "id": "storage-13875",
+          "id": "storage-14078",
           "name": "Udemy FREE",
           "description": ", [UdemyRip](https://t.me/udemyrip) or [CGPERS](https://t.me/CGPERS) - Udemy TG Channels",
           "url": "https://t.me/udemyforu",
@@ -1033,7 +1033,7 @@
           "tags": []
         },
         {
-          "id": "storage-13874",
+          "id": "storage-14077",
           "name": "CouponScorpion",
           "description": "**",
           "url": "https://couponscorpion.com/",
@@ -1046,7 +1046,7 @@
           "tags": []
         },
         {
-          "id": "storage-13873",
+          "id": "storage-14076",
           "name": "Coursevania",
           "description": "** / [Telegram](https://t.me/Coursevania)",
           "url": "https://coursevania.com/",
