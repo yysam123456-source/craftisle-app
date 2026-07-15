@@ -95,64 +95,20 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             <Link href="/terms" className="transition-colors hover:text-primary">Terms</Link>
             <Link href="/sitemap.xml" className="transition-colors hover:text-primary">Sitemap</Link>
           </div>
-          <div className="flex items-center gap-3 text-xs text-muted-foreground/60">
-            <a
-              href="https://www.swaplink.run"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-            >
-              <img
-                src="https://www.swaplink.run/badge/badge_dark.svg"
-                alt="Listed on SwapLink"
-                width={120}
-                height={32}
-                className="opacity-70 transition-opacity hover:opacity-100"
-              />
-            </a>
-            <a
-              href="https://www.freeai.run"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-            >
-              <img
-                src="https://www.freeai.run/badge/badge_light.svg"
-                alt="Featured on FreeAI"
-                width={100}
-                height={27}
-                className="opacity-70 transition-opacity hover:opacity-100"
-              />
-            </a>
-            <a
-              href="https://www.aiwebsite.run"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-            >
-              <img
-                src="https://www.aiwebsite.run/badge/badge_light.svg"
-                alt="Featured on AiWebsite.run"
-                width={100}
-                height={27}
-                className="opacity-70 transition-opacity hover:opacity-100"
-              />
-            </a>
-            <a
-              href="https://www.bestaitool.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center"
-            >
-              <img
-                src="https://www.bestaitool.co/badge/badge_light.svg"
-                alt="Featured on Best AI Tool"
-                width={100}
-                height={27}
-                className="opacity-70 transition-opacity hover:opacity-100"
-              />
-            </a>
-          </div>
+          <a
+            href="https://www.swaplink.run"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
+            <img
+              src="https://www.swaplink.run/badge/badge_dark.svg"
+              alt="Listed on SwapLink"
+              width={120}
+              height={32}
+              className="opacity-70 transition-opacity hover:opacity-100"
+            />
+          </a>
         </div>
       </div>
     </footer>
