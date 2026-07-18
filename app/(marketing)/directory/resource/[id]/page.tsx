@@ -2,6 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { readFileSync } from "fs";
 import { join } from "path";
+import { generatedContentMap } from "@/lib/generated-content-map";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 
@@ -267,28 +268,17 @@ interface GeneratedContent {
 }
 
 function loadGeneratedContent(resourceId: string, resourceName?: string): GeneratedContent | null {
-  const tryLoad = (id: string): GeneratedContent | null => {
-    try {
-      const filePath = join(process.cwd(), "public", "data", "generated-content", `${id}.json`);
-      return JSON.parse(readFileSync(filePath, "utf-8"));
-    } catch {
-      return null;
-    }
-  };
+  // Use import map (bundled at build time) instead of readFileSync
+  // readFileSync fails on Vercel serverless for deeply nested public/ files
+  const direct = generatedContentMap[resourceId];
+  if (direct) return direct;
 
-  // 1. Try direct ID (FMHY format: artificial-intelligence-00001)
-  let result = tryLoad(resourceId);
-  if (result) return result;
-
-  // 2. Try awesome-selfhosted format (if name available)
   if (resourceName) {
     const slug = resourceName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    result = tryLoad(`awesome-selfhosted--${slug}`);
-    if (result) return result;
-
-    // 3. Try free-for-dev format
-    result = tryLoad(`free-for-dev--${slug}`);
-    if (result) return result;
+    const ash = generatedContentMap[`awesome-selfhosted--${slug}`];
+    if (ash) return ash;
+    const ffd = generatedContentMap[`free-for-dev--${slug}`];
+    if (ffd) return ffd;
   }
 
   return null;
