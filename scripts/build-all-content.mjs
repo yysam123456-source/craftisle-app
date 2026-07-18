@@ -1,11 +1,20 @@
 #!/usr/bin/env node
 /**
  * build-all-content.mjs
- * 并行读取全部 4 个数据源，生成真实 generated-content/*.json
- * 不用模板造假，直接用各数据源的原始真实描述
+ * 
+ * Only generates generated-content/*.json for resources that will actually
+ * render a page — i.e. resources that are:
+ *   1. In the handwritten-resources.json list (manually written, indexable), OR
+ *   2. In the reviews/_manifest.json (have an AI review = rich content)
+ * 
+ * All other resources 302-redirect to their external URL and never read
+ * a generated-content file. Generating files for them wastes disk space
+ * and creates false impressions of "thin content" pages.
+ * 
+ * Previously this script generated ~29,000 files; now it generates ~80-100.
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -15,7 +24,29 @@ const OUTPUT_DIR = join(DATA_DIR, 'generated-content');
 
 if (!existsSync(OUTPUT_DIR)) mkdirSync(OUTPUT_DIR, { recursive: true });
 
-// ── 1. 并行加载全部 4 个数据源 ──────────────────────────────────────
+// ── 0. Build the "keep set" — IDs that should have content files ──────
+function loadHandwrittenIds() {
+  const p = join(DATA_DIR, 'handwritten-resources.json');
+  if (!existsSync(p)) return new Set();
+  const d = JSON.parse(readFileSync(p, 'utf8'));
+  return new Set(d.ids || []);
+}
+
+function loadReviewedIds() {
+  const p = join(DATA_DIR, 'reviews', '_manifest.json');
+  if (!existsSync(p)) return new Set();
+  const d = JSON.parse(readFileSync(p, 'utf8'));
+  const ids = new Set();
+  for (const entry of (d.reviews || [])) {
+    if (entry.resourceId) ids.add(entry.resourceId);
+  }
+  return ids;
+}
+
+const KEEP_IDS = new Set([...loadHandwrittenIds(), ...loadReviewedIds()]);
+console.log(`📋 Keep set: ${KEEP_IDS.size} IDs (handwritten + reviewed)`);
+
+// ── 1. Load data sources (only to find resources matching keep IDs) ──
 function loadFmhy() {
   const p = join(DATA_DIR, 'fmhy-resources.json');
   if (!existsSync(p)) return [];
@@ -24,6 +55,7 @@ function loadFmhy() {
   for (const [catId, cat] of Object.entries(d.categories || {})) {
     for (const r of (cat.resources || [])) {
       if (!r.id || !r.name) continue;
+      if (!KEEP_IDS.has(r.id)) continue; // ← KEY FILTER
       out.push({
         id: r.id,
         name: r.name,
@@ -34,17 +66,17 @@ function loadFmhy() {
       });
     }
   }
-  console.log(`  ✅ FMHY: ${out.length} 个资源`);
   return out;
 }
 
 function loadSource(file, sourceId) {
   const p = join(DATA_DIR, file);
-  if (!existsSync(p)) { console.log(`  ❌ ${file} 不存在`); return []; }
+  if (!existsSync(p)) return [];
   const d = JSON.parse(readFileSync(p, 'utf8'));
   const out = [];
   for (const r of (d.resources || [])) {
     if (!r.id || !r.name) continue;
+    if (!KEEP_IDS.has(r.id)) continue; // ← KEY FILTER
     out.push({
       id: r.id,
       name: r.name,
@@ -56,11 +88,10 @@ function loadSource(file, sourceId) {
       license: r.license || '',
     });
   }
-  console.log(`  ✅ ${sourceId}: ${out.length} 个资源`);
   return out;
 }
 
-console.log('📂 并行加载全部 4 个数据源...\n');
+console.log('📂 Loading data sources (filtered to keep set)...\n');
 const [fmhy, ffd, ash, pa] = [
   loadFmhy(),
   loadSource('free-for-dev-resources.json', 'free-for-dev'),
@@ -69,35 +100,31 @@ const [fmhy, ffd, ash, pa] = [
 ];
 
 const ALL = [...fmhy, ...ffd, ...ash, ...pa];
-console.log(`\n📊 总计: ${ALL.length} 个资源 (FMHY=${fmhy.length}, FFD=${ffd.length}, ASH=${ash.length}, PA=${pa.length})`);
+console.log(`\n📊 Resources to process: ${ALL.length} (FMHY=${fmhy.length}, FFD=${ffd.length}, ASH=${ash.length}, PA=${pa.length})`);
 
-// ── 2. 为每个资源生成真实内容文件 ─────────────────────────────────────
+// ── 2. Generate content files only for keep-set resources ───────────
 let generated = 0, skipped = 0, noDesc = 0;
 
 for (const r of ALL) {
   const outPath = join(OUTPUT_DIR, `${r.id}.json`);
   if (existsSync(outPath)) { skipped++; continue; }
 
-  // 取真实描述（不从模板造假）
+  // 取真实描述
   let introduction = '';
   const rawDesc = (r.description || '').trim();
 
   if (rawDesc && rawDesc !== '**' && rawDesc.length > 20) {
-    // 用原始真实描述（取前 300 字）
     introduction = rawDesc.slice(0, 300).trim();
-    // 去掉末尾的 markdown 残留
     introduction = introduction.replace(/\*\*$/, '').trim();
     if (introduction.length < 20) introduction = '';
   }
 
-  // 没有描述时，用 name + source 生成一句话（非模板）
   if (!introduction) {
     const srcMap = { fmhy: 'Free Media Heck', 'free-for-dev': 'Free for Developers', 'awesome-selfhosted': 'Awesome Self-Hosted', 'public-apis': 'Public APIs' };
     introduction = `${r.name} is listed in ${srcMap[r.source] || r.source}.`;
     noDesc++;
   }
 
-  // 从描述里提取 features（找 - 或 * 开头的列表项）
   const features = [];
   if (rawDesc && rawDesc !== '**') {
     const lines = rawDesc.split('\n');
@@ -111,14 +138,12 @@ for (const r of ALL) {
     }
   }
 
-  // pros（真实数据）
   const pros = [];
   if (r.url && r.url.includes('github.com')) pros.push('Open-source on GitHub');
   if (r.license) pros.push(`Licensed under ${r.license}`);
   if (r.freeTier && r.freeTier.length > 10) pros.push('Has free tier');
   if (pros.length === 0) pros.push('Free to use');
 
-  // 生成 contentHtml（真实内容，不造假）
   let contentHtml = `<h2>About ${r.name}</h2>`;
   contentHtml += `<p>${introduction.replace(/</g, '<').replace(/>/g, '>')}</p>`;
 
@@ -159,9 +184,20 @@ for (const r of ALL) {
   generated++;
 }
 
-console.log(`\n📊 生成完成:`);
-console.log(`  新生成: ${generated}`);
-console.log(`  已存在跳过: ${skipped}`);
-console.log(`  无描述(用name生成): ${noDesc}`);
-console.log(`  输出目录: ${OUTPUT_DIR}`);
-console.log(`\n✅ 全部 ${ALL.length} 个资源均有内容文件`);
+// ── 3. Clean up dead files (not in keep set) ────────────────────────
+let deleted = 0;
+const existingFiles = readdirSync(OUTPUT_DIR).filter(f => f.endsWith('.json'));
+for (const f of existingFiles) {
+  const id = f.replace('.json', '');
+  if (!KEEP_IDS.has(id)) {
+    unlinkSync(join(OUTPUT_DIR, f));
+    deleted++;
+  }
+}
+
+console.log(`\n📊 Done:`);
+console.log(`  New files generated: ${generated}`);
+console.log(`  Existing files skipped: ${skipped}`);
+console.log(`  Dead files deleted: ${deleted}`);
+console.log(`  Files remaining: ${existingFiles.length - deleted + generated}`);
+console.log(`  Output: ${OUTPUT_DIR}`);

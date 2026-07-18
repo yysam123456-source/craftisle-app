@@ -108,6 +108,72 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Who operates Craftisle — ownership & editorial transparency */}
+          <section className="mb-12">
+            <h2 className="mb-4 text-2xl font-bold">Who Operates Craftisle</h2>
+            <div className="prose prose-gray max-w-none dark:prose-invert text-muted-foreground">
+              <p>
+                Craftisle is an independently owned and operated website, published at{" "}
+                <a
+                  href="https://craftisle.com"
+                  className="font-medium underline underline-offset-2 hover:text-primary"
+                >
+                  craftisle.com
+                </a>
+                . The site is maintained by a small, independent team of developers and
+                editors responsible for building the tools, curating the resource
+                directory, and writing the reviews and guides published here.
+              </p>
+              <p>
+                We are solely responsible for the editorial content on this site. Our
+                tool reviews and directory listings are compiled from public sources and
+                hands-on testing; they reflect our own assessments and are not sponsored
+                placements. When a page contains advertising or affiliate links, it is
+                clearly served through standard ad networks and does not influence our
+                editorial ratings.
+              </p>
+              <p>
+                For any question about ownership, content, corrections, or business
+                inquiries, you can reach us directly at{" "}
+                <a
+                  href="mailto:hello@craftisle.com"
+                  className="font-medium underline underline-offset-2 hover:text-primary"
+                >
+                  hello@craftisle.com
+                </a>
+                , or for privacy matters at{" "}
+                <a
+                  href="mailto:privacy@craftisle.com"
+                  className="font-medium underline underline-offset-2 hover:text-primary"
+                >
+                  privacy@craftisle.com
+                </a>
+                . See our{" "}
+                <Link
+                  href="/contact"
+                  className="font-medium underline underline-offset-2 hover:text-primary"
+                >
+                  Contact
+                </Link>
+                ,{" "}
+                <Link
+                  href="/privacy"
+                  className="font-medium underline underline-offset-2 hover:text-primary"
+                >
+                  Privacy Policy
+                </Link>
+                , and{" "}
+                <Link
+                  href="/terms"
+                  className="font-medium underline underline-offset-2 hover:text-primary"
+                >
+                  Terms of Service
+                </Link>{" "}
+                for more details.
+              </p>
+            </div>
+          </section>
+
           {/* Team / Contact CTA */}
           <section className="rounded-lg bg-muted/40 px-6 py-10 text-center">
             <h2 className="text-2xl font-bold">Get in Touch</h2>

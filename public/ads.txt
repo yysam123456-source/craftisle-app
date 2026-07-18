@@ -1,0 +1,10 @@
+# ads.txt for craftisle.com
+# ---------------------------------------------------------------------------
+# This file authorizes digital sellers of this site's ad inventory (IAB spec).
+#
+# ACTION REQUIRED AFTER GOOGLE ADSENSE APPROVAL:
+#   1. Find your publisher ID in AdSense (Account > Settings, format: pub-XXXXXXXXXXXXXXXX).
+#   2. Uncomment the line below and replace pub-0000000000000000 with your real ID.
+#   3. Redeploy. Google will detect the authorized seller within ~24h.
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

@@ -15,4 +15,4 @@ Disallow: /register
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://craftisle.app/sitemap.xml
+Sitemap: https://craftisle.com/sitemap.xml

@@ -80,6 +80,8 @@ import {
   getResourceById,
   getRelatedResources,
   getRichInfoResourceIds,
+  isRichInfoResource,
+  isHandwrittenResource,
   getHotResourcesByScore,
   type Resource,
   calculateResourceScore,
@@ -149,10 +151,10 @@ export async function generateMetadata({
       ].filter(Boolean)
     : undefined;
 
-  // Selective noindex: low-quality pages (no generated content + short/empty description)
-  const isLowQuality =
-    !generatedContent &&
-    (!resource.description || resource.description.trim().length < 80);
+  // Indexation gate: ONLY hand-written, original pages are indexable.
+  // Everything else (thin templates, un-written rich pages) is noindexed so
+  // AdSense / search engines only ever see substantive, human-written content.
+  const isLowQuality = !isHandwrittenResource(resource.id);
 
   return {
     title,
@@ -320,9 +322,10 @@ export default async function ResourceDetailPage({
   const resource = getResourceById(id);
   if (!resource) notFound();
 
-  // 质量优先：无实质内容的资源直接跳转外链
+  // 质量优先：无实质内容且非手写的资源直接跳转外链（薄页不渲染）
   const richInfoIds = getRichInfoResourceIds();
-  if (!richInfoIds.has(id)) redirect(resource.url);
+  const handwritten = isHandwrittenResource(id);
+  if (!richInfoIds.has(id) && !handwritten) redirect(resource.url);
 
   const related = getRelatedResources(resource, 6);
   const faviconUrl = getFaviconUrl(resource.url);

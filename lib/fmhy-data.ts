@@ -383,6 +383,28 @@ export function isRichInfoResource(id: string): boolean {
   return getRichInfoResourceIds().has(id);
 }
 
+// ── Hand-written gate（AdSense 质量门禁）───────────────
+// 仅"人工手写的原创资源页"可被索引；其余一律 noindex。
+// 清单由人工维护：public/data/handwritten-resources.json
+let _handwrittenIdsCache: Set<string> | null = null;
+
+export function getHandwrittenResourceIds(): Set<string> {
+  if (_handwrittenIdsCache) return _handwrittenIdsCache;
+  _handwrittenIdsCache = new Set<string>();
+  try {
+    const p = join(process.cwd(), "public", "data", "handwritten-resources.json");
+    const d = JSON.parse(readFileSync(p, "utf-8"));
+    for (const id of d.ids || []) _handwrittenIdsCache.add(id);
+  } catch {
+    // 清单缺失时视为空集（全部 noindex）
+  }
+  return _handwrittenIdsCache;
+}
+
+export function isHandwrittenResource(id: string): boolean {
+  return getHandwrittenResourceIds().has(id);
+}
+
 /**
  * 服务端辅助：给资源列表中的每个资源设置 _hasRichInfo 标志
  * 供服务端组件（editor-picks.tsx、quick-rankings.tsx 等）在传递资源给 ResourceCard 前调用

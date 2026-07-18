@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { toolMeta } from "@/lib/tools";
-import { getAllCategories, getAllResources, getRichInfoResourceIds } from "@/lib/fmhy-data";
+import { getAllCategories, getAllResources, getHandwrittenResourceIds, isHandwrittenResource } from "@/lib/fmhy-data";
 import { ALTERNATIVES_MAP } from "@/lib/alternatives";
 import { DOMAINS } from "@/lib/unified-categories";
 import { BLOG_CATEGORIES } from "@/config/blog";
@@ -54,10 +54,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // 资源详情页：仅收录「有丰富信息」的资源（避免搜索引擎收录垃圾页面）
-  const richIds = getRichInfoResourceIds();
+  // 资源详情页：仅收录「人工手写的原创资源」（避免收录任何薄内容/模板页）
+  const handwrittenIds = getHandwrittenResourceIds();
   const resourceDetailPages = getAllResources()
-    .filter((r) => richIds.has(r.id))
+    .filter((r) => handwrittenIds.has(r.id))
     .map((r) => ({
       url: `${baseUrl}/directory/resource/${r.id}`,
       lastModified: now,
@@ -137,10 +137,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // ★ 新增：多语种资源详情页（14 种语言）
+  // ★ 多语种资源详情页（14 种语言）
+  // 仅收录「人工手写的原创资源」，与详情页 noindex 逻辑（isHandwrittenResource）完全对齐
   const contentDir = join(process.cwd(), "public", "data", "generated-content");
   const resourcesWithContent = existsSync(contentDir)
-    ? readdirSync(contentDir).filter(f => f.endsWith(".json")).slice(0, 100) // 限制前 100 个
+    ? readdirSync(contentDir)
+        .filter(f => f.endsWith(".json"))
+        .filter(f => isHandwrittenResource(f.replace(".json", ""))) // 只保留手写资源
     : [];
   const multiLangPages = resourcesWithContent.flatMap(slug => {
     const resourceId = slug.replace(".json", "");

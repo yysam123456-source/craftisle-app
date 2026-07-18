@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
-import { Loader2, Link2, Download, Play, Music, Image, X, Clipboard, AlertCircle } from 'lucide-react';
+import { Loader2, Link2, Download, Play, Music, Image, X, Clipboard, AlertCircle, Info } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -128,6 +128,21 @@ export default function MediaDownloaderClient() {
 
   return (
     <div className="space-y-4">
+      {/* Maintenance Notice */}
+      <div className="flex items-start gap-3 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
+        <Info className="h-5 w-5 shrink-0 text-amber-500 mt-0.5" />
+        <div className="space-y-1">
+          <h2 className="font-semibold text-amber-700 dark:text-amber-400">Service Maintenance</h2>
+          <p className="text-sm text-amber-700/80 dark:text-amber-400/80">
+            Our media download service is temporarily unavailable due to backend maintenance. 
+            We are working to restore full functionality. The tool interface is ready and will be fully operational once the upstream service recovers.
+          </p>
+          <p className="text-xs text-amber-600/60 dark:text-amber-400/60">
+            Status: Upstream API unavailable (503). Expected resolution: pending.
+          </p>
+        </div>
+      </div>
+
       {/* Input Section */}
       <Card>
         <CardHeader className="pb-2">

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   GlassCard,
   GlassCardContent,
@@ -6,11 +5,9 @@ import {
   GlassCardHeader,
   GlassCardTitle
 } from "@/components/ui/glass-card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Globe, ExternalLink } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
+import { ContactForm } from "@/components/contact-form";
 
 export const metadata = constructMetadata({
   title: "Contact | Craftisle",
@@ -44,61 +41,7 @@ export default function ContactPage() {
                   </GlassCardDescription>
                 </GlassCardHeader>
                 <GlassCardContent>
-                  <form
-                    action="https://formspree.io/f/{your-formspree-id}"
-                    method="POST"
-                    className="space-y-4"
-                  >
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div className="space-y-1.5">
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" name="name" placeholder="Your name" required />
-                      </div>
-                      <div className="space-y-1.5">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="you@example.com"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-1.5">
-                      <Label htmlFor="subject">Subject</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        placeholder="What is this about?"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <Label htmlFor="message">Message</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        placeholder="Type your message here..."
-                        rows={5}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" size="lg" className="w-full">
-                      Send Message
-                    </Button>
-                    <p className="text-xs text-muted-foreground">
-                      * This form uses Formspree. Replace <code>{`{your-formspree-id}`}</code> with your real ID after signing up at{" "}
-                      <a
-                        href="https://formspree.io"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary underline"
-                      >
-                        formspree.io
-                      </a>.
-                    </p>
-                  </form>
+                  <ContactForm />
                 </GlassCardContent>
               </GlassCard>
             </div>

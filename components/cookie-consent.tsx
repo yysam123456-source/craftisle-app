@@ -6,14 +6,41 @@ import { X } from "lucide-react"
 import Link from "next/link"
 
 const STORAGE_KEY = "craftisle-cookie-consent"
+const CONSENT_MAX_AGE = 60 * 60 * 24 * 365 // 1 年
 
 type ConsentValue = "accepted" | "denied" | null
 
+function readCookie(name: string): string | null {
+  if (typeof document === "undefined") return null
+  const match = document.cookie.match(
+    new RegExp("(?:^|; )" + name.replace(/([.$?*|{}()[\]\\/+^])/g, "\\$1") + "=([^;]*)")
+  )
+  return match ? decodeURIComponent(match[1]) : null
+}
+
+function writeCookie(name: string, value: string) {
+  if (typeof document === "undefined") return
+  const secure = window.location.protocol === "https:" ? "; Secure" : ""
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${CONSENT_MAX_AGE}; SameSite=Lax${secure}`
+}
+
 function getStoredConsent(): ConsentValue {
   if (typeof window === "undefined") return null
+  // 优先读 cookie（服务端 / 广告脚本也可读取），回退到 localStorage
+  const fromCookie = readCookie(STORAGE_KEY)
+  if (fromCookie === "accepted" || fromCookie === "denied") return fromCookie
   const stored = localStorage.getItem(STORAGE_KEY)
   if (stored === "accepted" || stored === "denied") return stored
   return null
+}
+
+function persistConsent(value: Exclude<ConsentValue, null>) {
+  try {
+    localStorage.setItem(STORAGE_KEY, value)
+  } catch {
+    // localStorage 不可用时忽略，cookie 仍会写入
+  }
+  writeCookie(STORAGE_KEY, value)
 }
 
 export default function CookieConsent() {
@@ -29,20 +56,21 @@ export default function CookieConsent() {
   }, [])
 
   function handleAccept() {
-    localStorage.setItem(STORAGE_KEY, "accepted")
+    persistConsent("accepted")
     setVisible(false)
     // Dispatch custom event so analytics can react
     window.dispatchEvent(new CustomEvent("cookie-consent-accepted"))
   }
 
   function handleDeny() {
-    localStorage.setItem(STORAGE_KEY, "denied")
+    persistConsent("denied")
     setVisible(false)
     window.dispatchEvent(new CustomEvent("cookie-consent-denied"))
   }
 
+  // 关闭（X）等同「仅必要 / 拒绝」：符合 GDPR，关闭不得被解读为同意
   function handleClose() {
-    setVisible(false)
+    handleDeny()
   }
 
   if (!visible) return null
