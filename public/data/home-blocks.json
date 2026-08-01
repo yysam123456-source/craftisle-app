@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-07-12T18:48:30.960Z",
-  "totalResources": 18942,
+  "lastUpdated": "2026-08-01T18:52:28.570Z",
+  "totalResources": 18950,
   "blocks": [
     {
       "id": "weekly-hottest",
       "title": "🔥 This Week's Hottest",
-      "subtitle": "Top tools by GitHub stars (7/12/2026)",
+      "subtitle": "Top tools by GitHub stars (8/1/2026)",
       "type": "resource-list",
       "resources": [
         {
@@ -271,7 +271,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "misc-02905",
+          "id": "misc-02907",
           "name": "3D Models / Modeling Tools",
           "description": "**",
           "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/image-tools#wiki_.25B7_3d_models",
@@ -323,7 +323,7 @@
           "tags": []
         },
         {
-          "id": "misc-09644",
+          "id": "misc-09651",
           "name": "Be My Eyes",
           "description": "Assist the Visually Impaired",
           "url": "https://www.bemyeyes.com/",
@@ -349,7 +349,7 @@
           "tags": []
         },
         {
-          "id": "misc-07837",
+          "id": "misc-07843",
           "name": "BlenderKit",
           "description": "3D Model Library Integrated into Blender",
           "url": "https://www.blenderkit.com/",
@@ -362,7 +362,7 @@
           "tags": []
         },
         {
-          "id": "mobile-01372",
+          "id": "mobile-01373",
           "name": "BloomeeTunes",
           "description": "YouTube Music Player",
           "url": "https://github.com/HemantKArya/BloomeeTunes",
@@ -385,7 +385,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "misc-02862",
+          "id": "misc-02864",
           "name": "{JSON} Placeholder",
           "description": ", [jsoning](https://jsoning.com/api/) or [WireMmock Cloud](https://www.wiremock.io/) - Mock APIs",
           "url": "https://jsonplaceholder.typicode.com/",
@@ -398,7 +398,7 @@
           "tags": []
         },
         {
-          "id": "gaming-05773",
+          "id": "gaming-05777",
           "name": "/codmeta/",
           "description": "Call of Duty Loadouts / Meta",
           "url": "https://rentry.co/codmeta",
@@ -411,7 +411,7 @@
           "tags": []
         },
         {
-          "id": "misc-09702",
+          "id": "misc-09709",
           "name": "/coffee/",
           "description": "** or [Coffee Time General](https://pastebin.com/UEzwuyLz) - Coffee Brewing Masterlists / Guides",
           "url": "https://rentry.co/coffeeguide",
@@ -424,7 +424,7 @@
           "tags": []
         },
         {
-          "id": "reading-04510",
+          "id": "reading-04512",
           "name": "/m/Chess",
           "description": "** or [r/Chess](https://reddit.com/r/chess) - Chess Subreddits",
           "url": "https://www.reddit.com/user/korfor/m/chess/",
@@ -437,7 +437,7 @@
           "tags": []
         },
         {
-          "id": "reading-03955",
+          "id": "reading-03957",
           "name": "/m/engineering",
           "description": "Engineering Multireddit",
           "url": "https://www.reddit.com/user/nbatman/m/engineering/",
@@ -450,7 +450,7 @@
           "tags": []
         },
         {
-          "id": "misc-09652",
+          "id": "misc-09659",
           "name": "/m/food",
           "description": "Food Multireddit",
           "url": "https://www.reddit.com/user/Siryonkee/m/food/",
@@ -463,7 +463,7 @@
           "tags": []
         },
         {
-          "id": "misc-10093",
+          "id": "misc-10101",
           "name": "/mental health/",
           "description": "Mental Help Tips",
           "url": "https://rentry.co/mentalhealthy",
@@ -476,7 +476,7 @@
           "tags": []
         },
         {
-          "id": "misc-02332",
+          "id": "misc-02334",
           "name": "/music discovery/",
           "description": "Music Discovery Guide",
           "url": "https://rentry.co/musicdiscovery",
@@ -613,7 +613,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "misc-07632",
+          "id": "misc-07638",
           "name": "Figma",
           "description": "Design Collab App / Web",
           "url": "https://www.figma.com/",
@@ -626,7 +626,7 @@
           "tags": []
         },
         {
-          "id": "misc-07512",
+          "id": "misc-07518",
           "name": "Fotosketcher",
           "description": "Turn Photos into Artwork / Windows",
           "url": "https://fotosketcher.com/",
@@ -639,7 +639,7 @@
           "tags": []
         },
         {
-          "id": "misc-07530",
+          "id": "misc-07536",
           "name": "Inkscape",
           "description": "Drawing / Sketching / Windows, macOS, Linux",
           "url": "https://inkscape.org/",
@@ -652,7 +652,7 @@
           "tags": []
         },
         {
-          "id": "misc-07449",
+          "id": "misc-07455",
           "name": "GIMP",
           "description": "** / Windows, macOS, Linux",
           "url": "https://www.gimp.org/",
@@ -665,7 +665,7 @@
           "tags": []
         },
         {
-          "id": "misc-07523",
+          "id": "misc-07529",
           "name": "Krita",
           "description": "Painting App / Windows, macOS, Linux, Android",
           "url": "https://krita.org/en/",
@@ -678,7 +678,7 @@
           "tags": []
         },
         {
-          "id": "misc-07845",
+          "id": "misc-07851",
           "name": "Blender",
           "description": "FOSS 3D Modeling App",
           "url": "https://www.blender.org/",
@@ -691,7 +691,7 @@
           "tags": []
         },
         {
-          "id": "misc-07636",
+          "id": "misc-07642",
           "name": "Penpot",
           "description": "Design App & Prototyping Platform",
           "url": "https://penpot.app/",
@@ -704,7 +704,7 @@
           "tags": []
         },
         {
-          "id": "misc-01924",
+          "id": "misc-01925",
           "name": "CanvasCycle",
           "description": "8-bit Scenes with Ambient Sounds",
           "url": "http://www.effectgames.com/demos/canvascycle/",
@@ -955,7 +955,7 @@
       "type": "resource-list",
       "resources": [
         {
-          "id": "storage-14083",
+          "id": "storage-14093",
           "name": "discudemy",
           "description": ", [BARONIP COUPONS](https://baronip-coupons.blogspot.com/), [freebiesglobal](https://freebiesglobal.com/), [onlinecourses](https://www.onlinecourses.ooo/), [UdemyKing](https://t.me/udemyking1), [CourseArray](https://t.me/udemycoursesfree), [Udemy 24](https://coursesbag.com/), [UdemyFreeCourses](https://udemyfreecourses.org/), [Study Bullet](https://studybullet.com/) , [r/udemyfreebies](https://reddit.com/r/udemyfreebies), [Online Courses Tracker](https://comidoc.com/), [Real.Discount](https://www.real.discount/), [OnlineTutorials](https://www.onlinetutorials.org/), [Scroll Coupons](https://scrollcoupons.com/) , [UdemyXpert](https://udemyxpert.com/) , [⁠Forasm Free Courses](https://m.forasm.com/courses/), [FreeCourseSites](https://freecoursesites.com/)",
           "url": "https://www.discudemy.com/",
@@ -968,7 +968,7 @@
           "tags": []
         },
         {
-          "id": "storage-14082",
+          "id": "storage-14092",
           "name": "Udemy Download Guide",
           "description": "/ [Discord](https://discord.gg/tMzrSxQ)",
           "url": "https://docs.google.com/document/d/1W91OS9rj7h9DBp5UwR68lA2zMEtqNmxdGaNVmBktIaw/",
@@ -981,7 +981,7 @@
           "tags": []
         },
         {
-          "id": "storage-14081",
+          "id": "storage-14091",
           "name": "udemy-downloader",
           "description": "Udemy Downloader",
           "url": "https://github.com/Puyodead1/udemy-downloader",
@@ -994,7 +994,7 @@
           "tags": []
         },
         {
-          "id": "storage-14080",
+          "id": "storage-14090",
           "name": "UdemyPy",
           "description": "Udemy Course Bots",
           "url": "https://github.com/dylannalex/UdemyPy",
@@ -1007,7 +1007,7 @@
           "tags": []
         },
         {
-          "id": "storage-14079",
+          "id": "storage-14089",
           "name": "Udemy-Course-Enroller",
           "description": "Auto Course Enrollment",
           "url": "https://github.com/techtanic/Discounted-Udemy-Course-Enroller",
@@ -1020,7 +1020,7 @@
           "tags": []
         },
         {
-          "id": "storage-14078",
+          "id": "storage-14088",
           "name": "Udemy FREE",
           "description": ", [UdemyRip](https://t.me/udemyrip) or [CGPERS](https://t.me/CGPERS) - Udemy TG Channels",
           "url": "https://t.me/udemyforu",
@@ -1033,7 +1033,7 @@
           "tags": []
         },
         {
-          "id": "storage-14077",
+          "id": "storage-14087",
           "name": "CouponScorpion",
           "description": "**",
           "url": "https://couponscorpion.com/",
@@ -1046,7 +1046,7 @@
           "tags": []
         },
         {
-          "id": "storage-14076",
+          "id": "storage-14086",
           "name": "Coursevania",
           "description": "** / [Telegram](https://t.me/Coursevania)",
           "url": "https://coursevania.com/",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T18:48:31.715Z",
+  "generatedAt": "2026-08-01T18:52:27.893Z",
   "resources": [
     {
       "id": "artificial-intelligence-00001",
@@ -9,49 +9,48 @@
       "name": "◄◄ Back to Wiki Index",
       "url": "https://www.reddit.com/r/FREEMEDIAHECKYEAH/wiki/index",
       "description": "**",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00002",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "DeepSeek",
-      "url": "https://chat.deepseek.com/",
-      "description": "** - V4-Pro (Expert) / V4-Flash (Instant) / Sign-Up / Unlimited / [Add Features](https://github.com/EdgeTypE/better-deepseek/) / [Subreddit](https://www.reddit.com/r/DeepSeek/) / [Discord](https://discord.com/invite/Tc7c45Zzu5) / [GitHub](https://github.com/deepseek-ai)",
-      "dateAdded": "2026-07-12",
-      "githubUrl": "https://github.com/EdgeTypE/better-deepseek"
+      "name": "Qwen Studio",
+      "url": "https://chat.qwen.ai/",
+      "description": "** - Qwen3.8 Max / Qwen3.7 Plus / Sign-Up / [Subreddit](https://www.reddit.com/r/Qwen_AI/) / [Discord](https://discord.com/invite/CV4E9rpNSD) / [GitHub](https://github.com/QwenLM)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00003",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Z.ai",
-      "url": "https://chat.z.ai/",
-      "description": "** - GLM-5.2 / GLM-5-Turbo / Slides / Sign-Up / [Discord](https://discord.gg/QR7SARHRxK) / [GitHub](https://github.com/zai-org)",
-      "dateAdded": "2026-07-12"
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com/",
+      "description": "** - DeepSeek V4 Pro (Expert) / DeepSeek V4 Flash (Instant) / Sign-Up / Unlimited / [Add Features](https://github.com/EdgeTypE/better-deepseek/) / [Subreddit](https://www.reddit.com/r/DeepSeek/) / [Discord](https://discord.com/invite/Tc7c45Zzu5) / [GitHub](https://github.com/deepseek-ai)",
+      "dateAdded": "2026-08-01",
+      "githubUrl": "https://github.com/EdgeTypE/better-deepseek"
     },
     {
       "id": "artificial-intelligence-00004",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Google AI Studio",
-      "url": "https://aistudio.google.com/app/prompts/new_chat",
-      "description": "** - Gemini 3.1 Pro / Gemini 3.5 Flash / Google Sign-Up / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
-      "dateAdded": "2026-07-12",
-      "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager"
+      "name": "⁠Z.ai",
+      "url": "https://chat.z.ai/",
+      "description": "** - GLM 5.2 / GLM 5 Turbo / Slides / Sign-Up / [Discord](https://discord.gg/QR7SARHRxK) / [GitHub](https://github.com/zai-org)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00005",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Gemini",
-      "url": "https://gemini.google.com/",
-      "description": "** - Gemini 3.1 Pro Preview (5 daily) / Gemini 3.1 Flash / Gemini 3.5 Flash / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Limits](https://support.google.com/gemini/answer/16275805) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
-      "dateAdded": "2026-07-12",
+      "name": "Google AI Studio",
+      "url": "https://aistudio.google.com/app/prompts/new_chat",
+      "description": "** - Gemini 3.1 Pro Preview / Gemini 3.5 Flash-Lite / 3.6 Flash / Google Sign-Up / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager"
     },
     {
@@ -59,30 +58,31 @@
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Kimi",
-      "url": "https://www.kimi.com/",
-      "description": "** - Kimi K2.6 (Thinking) / Slides / Google Login or Phone # Required / [Subreddit](https://www.reddit.com/r/kimi/) / [Discord](https://discord.gg/TYU2fdJykW) / [GitHub](https://github.com/MoonshotAI)",
-      "dateAdded": "2026-07-12"
+      "name": "Gemini",
+      "url": "https://gemini.google.com/",
+      "description": "** - Gemini 3.1 Pro Preview (5 daily) / Gemini 3.5 Flash-Lite / 3.6 Flash  / [Add Features](https://github.com/Nagi-ovo/gemini-voyager) / [Limits](https://support.google.com/gemini/answer/16275805) / [Subreddit](https://www.reddit.com/r/Bard/) / [Discord](https://discord.com/invite/gemini)",
+      "dateAdded": "2026-08-01",
+      "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager"
     },
     {
       "id": "artificial-intelligence-00007",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Qwen",
-      "url": "https://chat.qwen.ai/",
-      "description": "** - Qwen3.7-Max / Qwen3.7-Plus / Sign-Up / [Subreddit](https://www.reddit.com/r/Qwen_AI/) / [Discord](https://discord.com/invite/CV4E9rpNSD) / [GitHub](https://github.com/QwenLM)",
-      "dateAdded": "2026-07-12"
+      "name": "Meta AI",
+      "url": "https://www.meta.ai/",
+      "description": "Muse Spark 1.1 / Meta Sign-Up / Unlimited",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00008",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Meta AI",
-      "url": "https://www.meta.ai/",
-      "description": "Muse Spark 1.1 / Meta Sign-Up / Unlimited",
-      "dateAdded": "2026-07-12"
+      "name": "Kimi",
+      "url": "https://www.kimi.com/",
+      "description": "Kimi K2.6 / Slides / Google Login or Phone # Required / [Subreddit](https://www.reddit.com/r/kimi/) / [Discord](https://discord.gg/TYU2fdJykW) / [GitHub](https://github.com/MoonshotAI)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00009",
@@ -92,7 +92,7 @@
       "name": "ChatGPT",
       "url": "https://chatgpt.com/",
       "description": "GPT-5.5 Instant / GPT-5.4 Mini Thinking (use `/think`) / [r/OpenAI](https://www.reddit.com/r/OpenAI/) / [r/ChatGPT](https://www.reddit.com/r/ChatGPT/) / [Discord](https://discord.com/invite/openai) / [Limits](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/chatgpt-limits.md)",
-      "dateAdded": "2026-07-12",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/fmhy/edit"
     },
     {
@@ -103,7 +103,7 @@
       "name": "⁠LongCat",
       "url": "https://longcat.chat/",
       "description": "LongCat 2.0 / Sign-Up / Unlimited / [X](https://x.com/Meituan_LongCat)",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00011",
@@ -113,7 +113,7 @@
       "name": "⁠MiMo Studio",
       "url": "https://aistudio.xiaomimimo.com/",
       "description": "MiMo-V2.5-Pro / MiMo-V2.5 / Sign-Up",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00012",
@@ -122,8 +122,8 @@
       "categoryIcon": "📦",
       "name": "Grok",
       "url": "https://grok.com/",
-      "description": "Grok 4.2 Fast-Non-Reasoning / Grok 4.2 Fast-Reasoning / Traffic Based / [Rate Display](https://greasyfork.org/en/scripts/558017), [2](https://chromewebstore.google.com/detail/grok-rate-limit-display/fcoijmefliggikpeofhojmkpoooocifk) / [Subreddit](https://www.reddit.com/r/grok/) / [Discord](https://discord.com/invite/kqCc86jM55)",
-      "dateAdded": "2026-07-12"
+      "description": "Grok 4.5 Fast-Non-Reasoning / Grok 4.5 Fast-Reasoning / Traffic Based / [Rate Display](https://greasyfork.org/en/scripts/558017), [2](https://chromewebstore.google.com/detail/grok-rate-limit-display/fcoijmefliggikpeofhojmkpoooocifk) / [Subreddit](https://www.reddit.com/r/grok/) / [Discord](https://discord.com/invite/kqCc86jM55)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00013",
@@ -133,7 +133,7 @@
       "name": "Microsoft Copilot",
       "url": "https://copilot.microsoft.com",
       "description": "GPT-5.1 / Unlimited / [Reasoning](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/better-reasoning.md)",
-      "dateAdded": "2026-07-12",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/fmhy/edit"
     },
     {
@@ -143,8 +143,8 @@
       "categoryIcon": "📦",
       "name": "Claude",
       "url": "https://claude.ai/",
-      "description": "Claude Sonnet 5.0 / Requires Sign-Up + Phone # / [Resources](https://awesomeclaude.ai/) / [Learning](https://github.com/ComposioHQ/awesome-claude-skills), [2](https://github.com/BehiSecc/awesome-claude-skills) / [Usage Tracker](https://github.com/lugia19/Claude-Usage-Extension) / [Subreddit](https://www.reddit.com/r/ClaudeAI/) / [Discord](https://discord.com/invite/6PPFFzqPDZ)",
-      "dateAdded": "2026-07-12",
+      "description": "Claude Sonnet 5 / Requires Sign-Up + Phone # / [Resources](https://awesomeclaude.ai/) / [Learning](https://github.com/ComposioHQ/awesome-claude-skills), [2](https://github.com/BehiSecc/awesome-claude-skills) / [Usage Tracker](https://github.com/lugia19/Claude-Usage-Extension) / [Subreddit](https://www.reddit.com/r/ClaudeAI/) / [Discord](https://discord.com/invite/6PPFFzqPDZ)",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/ComposioHQ/awesome-claude-skills"
     },
     {
@@ -154,8 +154,8 @@
       "categoryIcon": "📦",
       "name": "MiniMax AI",
       "url": "https://agent.minimax.io/",
-      "description": "MiniMax-M3 / [GitHub](https://github.com/MiniMax-AI/)",
-      "dateAdded": "2026-07-12"
+      "description": "MiniMax M3 / Sign-Up / [GitHub](https://github.com/MiniMax-AI/)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00016",
@@ -164,78 +164,78 @@
       "categoryIcon": "📦",
       "name": "Mistral",
       "url": "https://chat.mistral.ai",
-      "description": "or [Mistral (console)](https://console.mistral.ai/home) - Mistral Large 3 / [Subreddit](https://www.reddit.com/r/MistralAI/) / [Discord](https://discord.gg/mistralai)",
-      "dateAdded": "2026-07-12"
+      "description": "or [Mistral Studio](https://console.mistral.ai/home) - Mistral Medium 3.5 / [Subreddit](https://www.reddit.com/r/MistralAI/) / [Discord](https://discord.gg/mistralai)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00017",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Lumo",
-      "url": "https://lumo.proton.me/",
-      "description": "Lumo 2.0 Lite (100 Daily) / Lumo 2.0 Max (20 Daily) / Sign-Up",
-      "dateAdded": "2026-07-12"
+      "name": "⁠Ai2 Playground",
+      "url": "https://playground.allenai.org/",
+      "description": "Olmo 3.1 32B Think / No Sign-Up / Unlimited / [Discord](https://discord.gg/NE5xPufNwu)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00018",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Ai2 Playground",
-      "url": "https://playground.allenai.org/",
-      "description": "Olmo 3.1 32B (Think) / No Sign-Up / Unlimited / [Discord](https://discord.gg/NE5xPufNwu)",
-      "dateAdded": "2026-07-12"
+      "name": "⁠Solar",
+      "url": "https://console.upstage.ai/playground/chat",
+      "description": "Solar Pro 3 / No Sign-Up / [Discord](https://discord.com/invite/Cge9FYjV4h)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00019",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Solar",
-      "url": "https://console.upstage.ai/playground/chat",
-      "description": "Solar Pro 3 / No Sign-Up / [Discord](https://discord.com/invite/Cge9FYjV4h)",
-      "dateAdded": "2026-07-12"
+      "name": "ArceeAI",
+      "url": "https://chat.arcee.ai/chat",
+      "description": "Trinity Large Thinking / Unlimited / [Discord](https://discord.com/invite/arceeai)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00020",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "ArceeAI",
-      "url": "https://chat.arcee.ai/chat",
-      "description": "Trinity Large Thinking / Unlimited / [Discord](https://discord.com/invite/arceeai)",
-      "dateAdded": "2026-07-12"
+      "name": "Sarvam",
+      "url": "https://dashboard.sarvam.ai/chat",
+      "description": "Sarvam-105b / Sarvam-30b / Unlimited / Sign-Up",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00021",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Sarvam",
-      "url": "https://dashboard.sarvam.ai/chat",
-      "description": "Sarvam-105b / Sarvam-30b / Unlimited / Sign-Up",
-      "dateAdded": "2026-07-12"
+      "name": "Apertus",
+      "url": "https://publicai.co/chat",
+      "description": ", [2](https://chat.publicai.co/) - Apertus 70B",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00022",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Apertus",
-      "url": "https://publicai.co/chat",
-      "description": ", [2](https://chat.publicai.co/) - Apertus 70B",
-      "dateAdded": "2026-07-12"
+      "name": "⁠Tinker",
+      "url": "https://tinker.thinkingmachines.ai/playground",
+      "description": "Inkling / Unlimited",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00023",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Hy3-preview",
-      "url": "https://huggingface.co/spaces/tencent/Hy3-preview",
-      "description": "⁠Hy3-preview / Unlimited",
-      "dateAdded": "2026-07-12"
+      "name": "⁠Poolside AI",
+      "url": "https://platform.poolside.ai/",
+      "description": "Laguna",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00024",
@@ -245,17 +245,17 @@
       "name": "⁠K2Think",
       "url": "https://www.k2think.ai/",
       "description": "LLM360 / MBZUAI (not Kimi) / Sign-Up",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00025",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Inception Chat",
+      "name": "⁠Inception",
       "url": "https://chat.inceptionlabs.ai/",
       "description": "Mercury 2 / Unlimited",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00026",
@@ -264,8 +264,8 @@
       "categoryIcon": "📦",
       "name": "⁠ISH",
       "url": "https://beta.ish.chat/",
-      "description": "Claude Opus 4.8 / Claude Sonnet 4.6 / Multiple Models / Sign-Up (GitHub) / [Subreddit](https://www.reddit.com/r/Ishchat/) / [Discord](https://discord.gg/cwDTVKyKJz) / [Token Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/ish.md)",
-      "dateAdded": "2026-07-12",
+      "description": "Claude Opus 4.8 / Claude Sonnet 5 / Multiple Models / Sign-Up (GitHub) / [Subreddit](https://www.reddit.com/r/Ishchat/) / [Discord](https://discord.gg/cwDTVKyKJz) / [Token Note](https://github.com/fmhy/edit/blob/main/docs/.vitepress/notes/ish.md)",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/fmhy/edit"
     },
     {
@@ -273,31 +273,31 @@
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Arena",
-      "url": "https://arena.ai/text/direct",
-      "description": ", [2](https://canaryarena.ai/text/direct) - Multiple Models / Sign-Up / [OpenAI Bridge](https://github.com/CloudWaddie/LMArenaBridge) / [X](https://x.com/arena) / [Discord](https://discord.com/invite/lmarena)",
-      "dateAdded": "2026-07-12",
-      "githubUrl": "https://github.com/CloudWaddie/LMArenaBridge"
+      "name": "⁠Together.ai",
+      "url": "https://chat.together.ai/",
+      "description": "GLM 5.2 / Kimi K2.6 / DeepSeek V4 Pro / Multiple Models / Up To 110 Daily / [Discord](https://discord.gg/9Rk6sSeWEG)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00028",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Indic LLM Arena",
-      "url": "https://arena.ai4bharat.org/#/chat",
-      "description": "GPT-5.5 / Gemini 3.5 Flash / Multiple Models / Unlimited / [Discord](https://discord.com/invite/HqJXnJNDaq)",
-      "dateAdded": "2026-07-12"
+      "name": "Arena",
+      "url": "https://arena.ai/text/direct",
+      "description": ", [2](https://canaryarena.ai/text/direct) - Multiple Models / Sign-Up / [OpenAI Bridge](https://github.com/CloudWaddie/LMArenaBridge) / [X](https://x.com/arena) / [Discord](https://discord.com/invite/lmarena)",
+      "dateAdded": "2026-08-01",
+      "githubUrl": "https://github.com/CloudWaddie/LMArenaBridge"
     },
     {
       "id": "artificial-intelligence-00029",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "Pollinations Chat",
-      "url": "https://pollinations.ai/play",
-      "description": ", [2](https://ai-studio.puter.site/index.html), [3](https://hey-hi.space/unified) - GPT-5.6 Sol / DeepSeek V4 Pro / GLM-5.2 / Grok 4.3 / Multiple Models / [Limits and Models](https://enter.pollinations.ai/sign-in##models) / [Discord](https://discord.com/invite/pollinations-ai-885844321461485618)",
-      "dateAdded": "2026-07-12"
+      "name": "⁠Indic LLM Arena",
+      "url": "https://arena.ai4bharat.org/#/chat",
+      "description": "GPT-5.5 / Gemini 3.5 Flash / Multiple Models / Unlimited / [Discord](https://discord.com/invite/HqJXnJNDaq)",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00030",
@@ -307,7 +307,7 @@
       "name": "⁠Woozlit",
       "url": "https://woozlit.com/",
       "description": "Multiple Models / ≈2000 Monthly / Sign-Up / [Discord](https://discord.gg/rdBN6TYf66)",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00031",
@@ -316,18 +316,19 @@
       "categoryIcon": "📦",
       "name": "NVIDIA NIM",
       "url": "https://build.nvidia.com/models",
-      "description": "GLM-5.2 / Deepseek-V4-Pro / Minimax M3 / Multiple Models / No Sign-Up / Unlimited",
-      "dateAdded": "2026-07-12"
+      "description": "GLM 5.2 / DeepSeek V4 Pro / Minimax M3 / Multiple Models / No Sign-Up / Unlimited",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00032",
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "⁠Together.ai",
-      "url": "https://chat.together.ai/",
-      "description": "GLM-5.2 / Kimi K2.6 / Deepseek-V4 Pro / Multiple Models / Up To 110 Daily / [Discord](https://discord.gg/9Rk6sSeWEG)",
-      "dateAdded": "2026-07-12"
+      "name": "⁠Lumo",
+      "url": "https://lumo.proton.me/",
+      "description": "Qwen3.5 397B A17B (Lite, 100 Daily) / GLM 5.2 (Max, 20 Daily) / Sign-Up / [OpenAI Bridge](https://github.com/KHROTU/lucky-cat-api)",
+      "dateAdded": "2026-08-01",
+      "githubUrl": "https://github.com/KHROTU/lucky-cat-api"
     },
     {
       "id": "artificial-intelligence-00033",
@@ -336,8 +337,8 @@
       "categoryIcon": "📦",
       "name": "AI Assistant",
       "url": "https://aiassistantbot.pages.dev/",
-      "description": "Deepseek V3.2 / GLM-4.7 / Kimi K2.5 / Multiple Models / No Sign-Up",
-      "dateAdded": "2026-07-12"
+      "description": "Deepseek V3.2 / GLM 4.7 / Kimi K2.5 / Multiple Models / No Sign-Up",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00034",
@@ -346,8 +347,8 @@
       "categoryIcon": "📦",
       "name": "Cerebras Chat",
       "url": "https://chat.cerebras.ai/",
-      "description": "GLM-4.7 / Multiple Models / Sign-Up",
-      "dateAdded": "2026-07-12"
+      "description": "GLM 4.7 / Multiple Models / Sign-Up",
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00035",
@@ -357,7 +358,7 @@
       "name": "Awesome AI Web Search",
       "url": "https://github.com/felladrin/awesome-ai-web-search",
       "description": ", [2](https://huggingface.co/spaces/Felladrin/awesome-ai-web-search)** - AI Search Engine Index",
-      "dateAdded": "2026-07-12",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/felladrin/awesome-ai-web-search"
     },
     {
@@ -365,10 +366,10 @@
       "category": "Artificial-Intelligence",
       "categoryName": "Artificial Intelligence",
       "categoryIcon": "📦",
-      "name": "NotebookLM",
+      "name": "Gemini Notebook",
       "url": "https://notebooklm.google.com/",
       "description": "** - Document Chatbot / Note-Taking / Slides / [Anki Export](https://chromewebstore.google.com/detail/ankinlm/ecoealfdeebafjpmhjdlbdgpgegjeaem) / [X](https://x.com/NotebookLM) / [Subreddit](https://www.reddit.com/r/notebooklm/) / [Discord](https://discord.com/invite/notebooklm)",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00037",
@@ -378,7 +379,7 @@
       "name": "Google AI Mode",
       "url": "https://google.com/aimode",
       "description": "** - AI Search Engine / Pro (Google Sign-Up) / Fast (No Sign-Up)",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00038",
@@ -388,7 +389,7 @@
       "name": "⁠Ask Brave",
       "url": "https://search.brave.com/ask",
       "description": "** - AI Search Engine",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00039",
@@ -398,7 +399,7 @@
       "name": "TextFX",
       "url": "https://textfx.withgoogle.com/",
       "description": "** / [GitHub](https://github.com/google/generative-ai-docs/tree/main/demos/palm/web/textfx), [NeverWrite](https://neverwrite.app/) / [GitHub](https://github.com/jsgrrchg/NeverWrite), [Toolbaz](https://toolbaz.com/) / [2](https://app.toolbaz.com/ai-tools/list) or [Rytr](https://rytr.me/) - AI Creative Writing Tools",
-      "dateAdded": "2026-07-12",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/google/generative-ai-docs"
     },
     {
@@ -409,7 +410,7 @@
       "name": "Perplexity",
       "url": "https://www.perplexity.ai/",
       "description": "AI Search Engine / [Enhancements](https://www.cplx.app/) / [Discord](https://discord.com/invite/perplexity-ai)",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00041",
@@ -419,7 +420,7 @@
       "name": "Arena",
       "url": "https://arena.ai/?mode=direct&chat-modality=search",
       "description": ", [2](https://canaryarena.ai/search/direct) - AI Search Engine / Sign-Up / [OpenAI Bridge](https://github.com/CloudWaddie/LMArenaBridge) / [X](https://x.com/arena) / [Discord](https://discord.com/invite/lmarena)",
-      "dateAdded": "2026-07-12",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/CloudWaddie/LMArenaBridge"
     },
     {
@@ -430,7 +431,7 @@
       "name": "⁠iAsk AI",
       "url": "https://iask.ai/",
       "description": "Research Chatbot",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00043",
@@ -440,7 +441,7 @@
       "name": "⁠Exa",
       "url": "https://exa.ai/search",
       "description": "AI Search Engine",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00044",
@@ -450,7 +451,7 @@
       "name": "Alphaxiv",
       "url": "https://www.alphaxiv.org/",
       "description": "Research Chatbot",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00045",
@@ -460,7 +461,7 @@
       "name": "Vane",
       "url": "https://github.com/ItzCrazyKns/Vane",
       "description": "FOSS AI Search Engine / Self-Hosted / [Discord](https://discord.gg/26aArMy8tT)",
-      "dateAdded": "2026-07-12",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/ItzCrazyKns/Vane"
     },
     {
@@ -471,7 +472,7 @@
       "name": "Learn About",
       "url": "https://learning.google.com/experiments/learn-about",
       "description": "or [Learning Coach](https://gemini.google.com/gem/learning-coach) - Google's Educational Search AIs / [Add Features](https://github.com/Nagi-ovo/gemini-voyager)",
-      "dateAdded": "2026-07-12",
+      "dateAdded": "2026-08-01",
       "githubUrl": "https://github.com/Nagi-ovo/gemini-voyager"
     },
     {
@@ -482,7 +483,7 @@
       "name": "⁠Sci-Bot",
       "url": "https://sci-bot.ru/",
       "description": "Sci-Hub Research Chatbot",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00048",
@@ -492,7 +493,7 @@
       "name": "SciSpace",
       "url": "https://scispace.com/",
       "description": "Research Chatbot / [Discord](https://discord.com/invite/cR3r8wP92C)",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00049",
@@ -502,7 +503,7 @@
       "name": "Scinito",
       "url": "https://ekb.scinito.ai/ai/chat",
       "description": "Research Chatbot",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     },
     {
       "id": "artificial-intelligence-00050",
@@ -512,7 +513,7 @@
       "name": "Elicit",
       "url": "https://elicit.com/",
       "description": "Research Chatbot / [GitHub](https://github.com/elicit)",
-      "dateAdded": "2026-07-12"
+      "dateAdded": "2026-08-01"
     }
   ]
 }

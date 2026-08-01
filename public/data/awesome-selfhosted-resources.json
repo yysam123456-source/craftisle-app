@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-07-12T18:48:29.574Z",
-  "count": 1176,
+  "updatedAt": "2026-08-01T18:52:27.554Z",
+  "count": 1184,
   "resources": [
     {
       "name": "ANALOG",
@@ -330,6 +330,12 @@
       "name": "Healthchecks",
       "url": "https://healthchecks.io/",
       "description": "Listen for pings and sends alerts when pings are late. ([Source Code](https://github.com/healthchecks/healthchecks)) `BSD-3-Clause` `Python/Docker`",
+      "category": "Automation"
+    },
+    {
+      "name": "HomeButler",
+      "url": "https://homebutler.dev",
+      "description": "Homelab management tool for monitoring hosts, Docker services, Wake-on-LAN, inventory, and remote operations, with a web dashboard and MCP integrations. ([Source Code](https://github.com/Higangssh/homebutler)) `MIT` `Docker/Go`",
       "category": "Automation"
     },
     {
@@ -1335,12 +1341,6 @@
       "category": "Communication - Social Networks and Forums"
     },
     {
-      "name": "Chirpy",
-      "url": "https://chirpy.dev",
-      "description": "Privacy-friendly and customizable Disqus (comment system) alternate. ([Demo](https://chirpy.dev/play), [Source Code](https://github.com/devrsi0n/chirpy)) `AGPL-3.0` `Docker/Nodejs`",
-      "category": "Communication - Social Networks and Forums"
-    },
-    {
       "name": "Coral",
       "url": "https://coralproject.net/",
       "description": "A better commenting experience from Vox Media. ([Source Code](https://github.com/coralproject/talk)) `Apache-2.0` `Docker/Nodejs`",
@@ -1386,6 +1386,12 @@
       "name": "GoToSocial",
       "url": "https://docs.gotosocial.org/en/latest/",
       "description": "ActivityPub federated social network server implementing the Mastodon client API. ([Source Code](https://codeberg.org/superseriousbusiness/gotosocial)) `AGPL-3.0` `Docker/Go`",
+      "category": "Communication - Social Networks and Forums"
+    },
+    {
+      "name": "Habitat",
+      "url": "https://gethabitat.org/",
+      "description": "A Platform for Local Communities. ([Source Code](https://github.com/carlnewton/habitat)) `AGPL-3.0` `Docker`",
       "category": "Communication - Social Networks and Forums"
     },
     {
@@ -2055,6 +2061,12 @@
       "category": "Database Management"
     },
     {
+      "name": "LibreDB Studio",
+      "url": "https://libredb.org",
+      "description": "Browser-based SQL IDE for PostgreSQL, MySQL, Oracle, SQL Server, SQLite, MongoDB and Redis, with an optional AI assistant that writes SQL from natural language (alternative to DataGrip, DBeaver). ([Source Code](https://github.com/libredb/libredb-studio)) `MIT` `Docker/K8S`",
+      "category": "Database Management"
+    },
+    {
       "name": "Limbas",
       "url": "https://www.limbas.com/en/",
       "description": "Database framework for creating database-driven business applications. As a graphical database frontend, it enables the efficient processing of data stocks and the flexible development of comfortable database applications. ([Source Code](https://github.com/limbas/limbas)) `GPL-2.0` `PHP`",
@@ -2190,6 +2202,12 @@
       "name": "Atsumeru",
       "url": "https://atsumeru.xyz",
       "description": "Manga/comic/light novel media server with clients for Windows, Linux, macOS and Android. ([Source Code](https://github.com/Atsumeru-xyz/Atsumeru), [Clients](https://atsumeru.xyz/guides/#how-does-it-work)) `MIT` `Java/Docker`",
+      "category": "Document Management - E-books"
+    },
+    {
+      "name": "Bindery",
+      "url": "https://github.com/jarynclouatre/bindery",
+      "description": "Folder-watching converter for e-books and comics. EPUB to Kobo KEPUB via kepubify, CBZ/CBR/PDF via Kindle Comic Converter, with per-device profiles, ComicInfo.xml naming, chapter-to-volume bundling and a web UI. `MIT` `Docker`",
       "category": "Document Management - E-books"
     },
     {
@@ -2457,6 +2475,12 @@
       "category": "Feed Readers"
     },
     {
+      "name": "Goeland",
+      "url": "https://github.com/slurdge/goeland",
+      "description": "Turns any RSS/Atom feed into a beautiful email digest. `MIT` `Go/Docker`",
+      "category": "Feed Readers"
+    },
+    {
       "name": "JARR",
       "url": "https://1pxsolidblack.pl/jarr-en.html",
       "description": "JARR (Just Another RSS Reader) is a web-based news aggregator and reader (fork of Newspipe). ([Demo](https://www.jarr.info/), [Source Code](https://github.com/jaesivsm/JARR)) `AGPL-3.0` `Docker/Python`",
@@ -2709,12 +2733,6 @@
       "category": "File Transfer - Peer-to-peer Filesharing"
     },
     {
-      "name": "Send",
-      "url": "https://gitlab.com/timvisee/send",
-      "description": "Simple, private, end to end encrypted temporary file sharing, originally built by Mozilla. ([Demo](https://send.vis.ee/), [Clients](https://gitlab.com/timvisee/send#clients)) `MPL-2.0` `Nodejs/Docker`",
-      "category": "File Transfer - Peer-to-peer Filesharing"
-    },
-    {
       "name": "Transmission",
       "url": "https://transmissionbt.com/",
       "description": "Fast, easy, free Bittorrent client. ([Source Code](https://github.com/transmission/transmission)) `GPL-3.0` `C++/deb`",
@@ -2748,12 +2766,6 @@
       "name": "elixire",
       "url": "https://gitlab.com/elixire/elixire",
       "description": "Simple yet advanced screenshot uploading and link shortening service. ([Clients](https://gitlab.com/elixire/elixiremanager)) `AGPL-3.0` `Python`",
-      "category": "File Transfer - Single-click & Drag-n-drop Upload"
-    },
-    {
-      "name": "Enclosed",
-      "url": "https://enclosed.cc/",
-      "description": "Minimalistic web application designed for sending private and secure notes. ([Demo](https://enclosed.cc/), [Source Code](https://github.com/CorentinTh/enclosed)) `Apache-2.0` `Docker/Nodejs`",
       "category": "File Transfer - Single-click & Drag-n-drop Upload"
     },
     {
@@ -2801,7 +2813,7 @@
     {
       "name": "PicoShare",
       "url": "https://github.com/mtlynch/picoshare",
-      "description": "Minimalist, easy-to-host service for sharing images and other files. `AGPL-3.0` `Go/Docker`",
+      "description": "Minimalist, easy-to-host service for sharing images and other files. ([Clients](https://github.com/mtlynch/picoshare#third-party-clients)) `AGPL-3.0` `Go/Docker`",
       "category": "File Transfer - Single-click & Drag-n-drop Upload"
     },
     {
@@ -2877,6 +2889,12 @@
       "category": "File Transfer - Single-click & Drag-n-drop Upload"
     },
     {
+      "name": "snowshare",
+      "url": "https://github.com/TuroYT/snowshare",
+      "description": "File and link sharing platform with URL shortening, code snippet sharing, and file uploads, featuring customizable expiration, privacy settings, and QR codes. ([Demo](https://s.romain-pinsolle.fr)) `CC0-1.0` `Nodejs/Docker`",
+      "category": "File Transfer - Single-click & Drag-n-drop Upload"
+    },
+    {
       "name": "transfer.sh",
       "url": "https://github.com/dutchcoders/transfer.sh",
       "description": "Easy file sharing from the command line. `MIT` `Go`",
@@ -2904,6 +2922,12 @@
       "name": "Apaxy",
       "url": "https://oupala.github.io/apaxy/",
       "description": "Theme built to enhance the experience of browsing web directories, using the mod_autoindex Apache module and some CSS to override the default style of a directory listing. ([Source Code](https://github.com/oupala/apaxy)) `GPL-3.0` `Javascript`",
+      "category": "File Transfer - Web-based File Managers"
+    },
+    {
+      "name": "ClyoCloud",
+      "url": "https://clyo.cloud/",
+      "description": "A personal, self-hosted cloud storage and media management application built for privacy, efficiency, and aesthetics. ([Source Code](https://code.weexnes.dev/ClyoCloud)) `AGPL-3.0` `Nodejs`",
       "category": "File Transfer - Web-based File Managers"
     },
     {
@@ -2940,12 +2964,6 @@
       "name": "Filestash",
       "url": "https://www.filestash.app/",
       "description": "Web file manager that lets you manage your data anywhere it is located: FTP, SFTP, WebDAV, Git, S3, Minio, Dropbox, or Google Drive. ([Demo](https://demo.filestash.app/), [Source Code](https://github.com/mickael-kerjean/filestash)) `AGPL-3.0` `Docker`",
-      "category": "File Transfer - Web-based File Managers"
-    },
-    {
-      "name": "Gossa",
-      "url": "https://github.com/pldubouilh/gossa",
-      "description": "Light and simple webserver for your files. `MIT` `Go`",
       "category": "File Transfer - Web-based File Managers"
     },
     {
@@ -3243,6 +3261,12 @@
       "category": "Generative Artificial Intelligence (GenAI)"
     },
     {
+      "name": "GoModel",
+      "url": "https://gomodel.enterpilot.io/",
+      "description": "AI gateway written in Go with a unified OpenAI-compatible API for multiple LLM providers, USD cost tracking, budgets, usage analytics, guardrails, caching, and an admin dashboard. ([Source Code](https://github.com/ENTERPILOT/GoModel)) `MIT` `Go/Docker`",
+      "category": "Generative Artificial Intelligence (GenAI)"
+    },
+    {
       "name": "Khoj",
       "url": "https://khoj.dev/",
       "description": "Your AI second brain. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI. ([Demo](https://app.khoj.dev/), [Source Code](https://github.com/khoj-ai/khoj)) `AGPL-3.0` `Python/Docker`",
@@ -3504,6 +3528,12 @@
       "name": "OpenRemote",
       "url": "https://openremote.io",
       "description": "IoT Asset management, Flow Rules and WHEN-THEN rules, Data visualization, Edge Gateway. ([Demo](https://demo.openremote.io/), [Source Code](https://github.com/openremote/openremote)) `AGPL-3.0` `Java`",
+      "category": "Internet of Things (IoT)"
+    },
+    {
+      "name": "polluSensWeb",
+      "url": "https://wespeakenglish.github.io/polluSensWeb/",
+      "description": "Web-based serial interface and charting tool for visualizing and logging data from UART pollution sensors (PM2.5, VOC, etc). Features live data acquisition, dynamic charts, CSV export, and webhook integration. ([Demo](https://wespeakenglish.github.io/polluSensWeb/), [Source Code](https://github.com/WeSpeakEnglish/polluSensWeb), [Clients](https://github.com/WeSpeakEnglish/polluSensWeb/releases)) `MIT` `Javascript`",
       "category": "Internet of Things (IoT)"
     },
     {
@@ -4221,6 +4251,12 @@
       "category": "Media Streaming - Video Streaming"
     },
     {
+      "name": "Tiramisu",
+      "url": "https://github.com/MrRobotoGit/tiramisu",
+      "description": "BitTorrent engine with a FUSE virtual filesystem that streams torrents live to Plex/Jellyfin without downloading (alternative to Real-Debrid). `GPL-2.0` `Go/Docker`",
+      "category": "Media Streaming - Video Streaming"
+    },
+    {
       "name": "Tube",
       "url": "https://git.mills.io/prologic/tube",
       "description": "Youtube-like (_without censorship and features you don't need!_) video sharing app written in Go which also supports automatic transcoding to MP4 H.265 AAC, multiple collections and RSS feed. ([Demo](https://tube.mills.io)) `MIT` `Go`",
@@ -4464,6 +4500,12 @@
       "name": "LubeLogger",
       "url": "https://lubelogger.com",
       "description": "Web-based vehicle maintenance and fuel mileage tracker. ([Demo](https://github.com/hargata/lubelog?tab=readme-ov-file#demo), [Source Code](https://github.com/hargata/lubelog)) `MIT` `Docker/K8S/C#`",
+      "category": "Miscellaneous"
+    },
+    {
+      "name": "Mirumoji",
+      "url": "https://svdc1.github.io/mirumoji/docs",
+      "description": "Japanese immersion toolkit providing clickable, tokenized subtitles with dictionary lookups and transcription generation. ([Demo](https://svdc1.github.io/mirumoji/), [Source Code](https://github.com/svdC1/mirumoji)) `MIT` `Docker/Python`",
       "category": "Miscellaneous"
     },
     {
@@ -4890,6 +4932,12 @@
       "name": "WatchYourLAN",
       "url": "https://github.com/aceberg/WatchYourLAN",
       "description": "Lightweight network IP scanner with notifications, history, export to Grafana. `MIT` `Docker/Go/deb`",
+      "category": "Network Utilities"
+    },
+    {
+      "name": "whois",
+      "url": "https://github.com/KincaidYang/whois",
+      "description": "WHOIS/RDAP query API for domains, IP addresses, CIDR prefixes and ASNs, with unified JSON output, caching, API key authentication, batch queries and MCP support for AI assistants. ([Demo](https://whois.ddnsip.cn/example.com)) `MIT` `Go/Docker`",
       "category": "Network Utilities"
     },
     {
@@ -5559,6 +5607,12 @@
       "category": "Proxy"
     },
     {
+      "name": "GitProxy",
+      "url": "https://git-proxy.finos.org/",
+      "description": "Proxy for Git that applies rules and workflows to all outgoing git push operations and ensures they are compliant. It supports both HTTP/HTTPS and SSH protocols with security scanning and validation. ([Source Code](https://github.com/finos/git-proxy)) `Apache-2.0` `Nodejs/Docker`",
+      "category": "Proxy"
+    },
+    {
       "name": "imgproxy",
       "url": "https://imgproxy.net/",
       "description": "Fast and secure standalone server for resizing and converting remote images. ([Source Code](https://github.com/imgproxy/imgproxy)) `MIT` `Go/Docker/K8S`",
@@ -5646,12 +5700,6 @@
       "name": "Recipya",
       "url": "https://recipes.musicavis.ca",
       "description": "Clean, simple and powerful recipe manager your whole family will enjoy. ([Demo](https://recipes.musicavis.ca/guide/login), [Source Code](https://github.com/reaper47/recipya)) `GPL-3.0` `Docker/Go`",
-      "category": "Recipe Management"
-    },
-    {
-      "name": "Specifically Clementines",
-      "url": "https://davideshay.github.io/groceries/",
-      "description": "Grocery shopping app (previously Groceries), providing reliable sync with multiple users/devices (web/Android/iOS), recipes and integration with Tandoor. ([Source Code](https://github.com/davideshay/groceries)) `MIT` `Docker`",
       "category": "Recipe Management"
     },
     {
@@ -5820,12 +5868,6 @@
       "name": "OpenSearch",
       "url": "https://opensearch.org",
       "description": "Distributed and RESTful search engine. ([Source Code](https://github.com/opensearch-project/OpenSearch)) `Apache-2.0` `Java/Docker/K8S/deb`",
-      "category": "Search Engines"
-    },
-    {
-      "name": "sist2",
-      "url": "https://github.com/sist2app/sist2",
-      "description": "Lightning-fast file system indexer and search tool. `GPL-3.0` `C/Docker`",
       "category": "Search Engines"
     },
     {
@@ -6549,6 +6591,12 @@
       "category": "Task Management & To-do Lists"
     },
     {
+      "name": "Will Be Done",
+      "url": "https://will-be-done.app/",
+      "description": "Offline-first task manager with weekly planning, project boards, real-time sync, Vim keybindings, desktop quick add, and import from popular task managers (alternative to TickTick, Todoist). ([Demo](https://demo.will-be-done.app/), [Source Code](https://github.com/will-be-done/will-be-done)) `AGPL-3.0` `Docker/Nodejs`",
+      "category": "Task Management & To-do Lists"
+    },
+    {
       "name": "Bugzilla",
       "url": "https://www.bugzilla.org/",
       "description": "General-purpose bugtracker and testing tool originally developed and used by the Mozilla project. ([Source Code](https://github.com/bugzilla/bugzilla)) `MPL-2.0` `Perl`",
@@ -6667,6 +6715,12 @@
       "url": "https://ziit.app",
       "description": "The Swiss army knife of code time tracking (alternative to WakaTime). ([Source Code](https://github.com/0pandadev/ziit)) `AGPL-3.0` `Docker`",
       "category": "Time Tracking"
+    },
+    {
+      "name": "Surmai",
+      "url": "https://surmai.app/",
+      "description": "Collaborative personal and family travel organizer. ([Demo](https://demo.surmai.app), [Source Code](https://github.com/rohitkumbhar/surmai)) `MIT` `Docker`",
+      "category": "Travel Organization"
     },
     {
       "name": "bit",
@@ -6960,12 +7014,6 @@
       "name": "Mycorrhiza Wiki",
       "url": "https://mycorrhiza.wiki/",
       "description": "Filesystem and git-based wiki engine written in Go using Mycomarkup as its primary markup language. ([Source Code](https://github.com/bouncepaw/mycorrhiza/)) `AGPL-3.0` `Go`",
-      "category": "Wikis"
-    },
-    {
-      "name": "Oddmuse",
-      "url": "https://oddmuse.org/",
-      "description": "Simple wiki engine written in Perl. No database required. ([Source Code](https://github.com/kensanata/oddmuse)) `GPL-3.0` `Perl`",
       "category": "Wikis"
     },
     {
