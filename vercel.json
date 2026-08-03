@@ -2,15 +2,5 @@
   "buildCommand": "npx next build --webpack",
   "devCommand": "npm run dev --webpack",
   "installCommand": "npm install",
-  "framework": "nextjs",
-  "crons": [
-    {
-      "path": "/api/cron/pull-gsc-data",
-      "schedule": "0 6 * * 1"
-    },
-    {
-      "path": "/api/cron/pull-trends",
-      "schedule": "0 8 1,15 * *"
-    }
-  ]
+  "framework": "nextjs"
 }

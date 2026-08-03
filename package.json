@@ -25,12 +25,7 @@
     "ai:generate-content": "node scripts/ai-generate-content.mjs --mock --limit 5",
     "ai:translate-content": "echo \"Translation script coming soon. Use --mock mode.\"",
     "fetch:tutorials": "node scripts/fetch-tutorials.mjs",
-    "generate:content:by-category": "node scripts/populate-content-by-category.mjs",
-    "seo:pull-gsc": "npx tsx app/api/cron/pull-gsc-data/route.ts",
-    "seo:pull-trends": "npx tsx app/api/cron/pull-trends/route.ts",
-    "seo:report": "node scripts/generate-seo-report.mjs",
-    "seo:report:json": "node scripts/generate-seo-report.mjs --output json",
-    "db:migrate:seo": "npx prisma migrate dev --name add_seo_monitoring"
+    "generate:content:by-category": "node scripts/populate-content-by-category.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
@@ -101,8 +96,6 @@
     "flexsearch": "^0.8.212",
     "framer-motion": "^12.40.0",
     "gif-encoder-2": "^1.0.5",
-    "google-trends-api": "^4.9.2",
-    "googleapis": "^173.0.0",
     "i18next": "^26.3.0",
     "i18next-browser-languagedetector": "^8.2.1",
     "i18next-http-backend": "^4.0.0",
