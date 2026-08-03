@@ -1,4 +1,6 @@
 {
+  "devCommand": "npm run dev --webpack",
+  "installCommand": "npm install",
   "framework": "nextjs",
   "crons": [
     {
