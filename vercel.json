@@ -1,5 +1,6 @@
 {
   "framework": "nextjs",
+  "installCommand": "npm install",
   "crons": [
     {
       "path": "/api/cron/pull-gsc-data",
