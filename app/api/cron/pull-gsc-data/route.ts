@@ -7,7 +7,7 @@
 
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { fetchGscData, classifyQueryType } from "../../../lib/seo/gsc-client";
+import { fetchGscData, classifyQueryType } from "@/lib/seo/gsc-client";
 
 const prisma = new PrismaClient();
 const CRON_SECRET = process.env.CRON_SECRET || "";
@@ -211,7 +211,7 @@ export async function GET(request: Request) {
     // 发现新词（上周不存在、本周出现的词）
     const previousWeekQueries = await prisma.searchQuery.findMany({
       where: { snapshotAt: lastWeek },
-      select: { query: true },
+      select: { query: true, impressions: true },
     });
     const previousSet = new Set(previousWeekQueries.map(q => q.query));
     const newQueries = queries

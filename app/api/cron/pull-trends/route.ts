@@ -5,7 +5,7 @@
 
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { fetchMultiKeywordTrends, TREND_SEED_QUERIES } from "../../../lib/seo/trends-client";
+import { fetchMultiKeywordTrends, TREND_SEED_QUERIES } from "@/lib/seo/trends-client";
 
 const prisma = new PrismaClient();
 const CRON_SECRET = process.env.CRON_SECRET || "";
