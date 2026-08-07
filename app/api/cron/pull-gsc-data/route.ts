@@ -29,6 +29,8 @@ export async function GET(request: Request) {
   }
 
   const snapshotAt = new Date();
+  const weekday = snapshotAt.getUTCDay();
+  snapshotAt.setUTCDate(snapshotAt.getUTCDate() - (weekday === 0 ? 6 : weekday - 1)); // 本周一
   snapshotAt.setUTCHours(0, 0, 0, 0);
   
   const results = {

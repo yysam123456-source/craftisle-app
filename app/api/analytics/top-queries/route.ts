@@ -17,7 +17,8 @@ export async function GET(request: Request) {
     const type = searchParams.get("type") || "all"; // all | tools | directory | blog
 
     const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    since.setUTCDate(since.getUTCDate() - since.getUTCDay());
+    const weekday2 = since.getUTCDay();
+    since.setUTCDate(since.getUTCDate() - (weekday2 === 0 ? 6 : weekday2 - 1));
     since.setUTCHours(0, 0, 0, 0);
 
     const queries = await prisma.searchQuery.findMany({

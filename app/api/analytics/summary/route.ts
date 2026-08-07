@@ -12,7 +12,8 @@ export async function GET() {
   try {
     const now = new Date();
     const weekStart = new Date(now);
-    weekStart.setUTCDate(now.getUTCDate() - now.getUTCDay());
+    const weekday = now.getUTCDay();
+    weekStart.setUTCDate(now.getUTCDate() - (weekday === 0 ? 6 : weekday - 1));
     weekStart.setUTCHours(0, 0, 0, 0);
     const lastWeekStart = new Date(weekStart.getTime() - 7 * 24 * 60 * 60 * 1000);
 
