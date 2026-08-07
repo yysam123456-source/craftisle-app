@@ -20,8 +20,8 @@ interface TypeStats {
 export async function GET() {
   try {
     const weekStart = new Date();
-    weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-    weekStart.setHours(0, 0, 0, 0);
+    weekStart.setUTCDate(weekStart.getUTCDate() - weekStart.getUTCDay());
+    weekStart.setUTCHours(0, 0, 0, 0);
 
     const lastWeekStart = new Date(weekStart.getTime() - 7 * 24 * 60 * 60 * 1000);
 

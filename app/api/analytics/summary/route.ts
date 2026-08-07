@@ -12,8 +12,8 @@ export async function GET() {
   try {
     const now = new Date();
     const weekStart = new Date(now);
-    weekStart.setDate(now.getDate() - now.getDay());
-    weekStart.setHours(0, 0, 0, 0);
+    weekStart.setUTCDate(now.getUTCDate() - now.getUTCDay());
+    weekStart.setUTCHours(0, 0, 0, 0);
     const lastWeekStart = new Date(weekStart.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     // 本周 GSC 汇总

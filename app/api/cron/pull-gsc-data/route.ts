@@ -29,7 +29,7 @@ export async function GET(request: Request) {
   }
 
   const snapshotAt = new Date();
-  snapshotAt.setHours(0, 0, 0, 0);
+  snapshotAt.setUTCHours(0, 0, 0, 0);
   
   const results = {
     queriesInserted: 0,
