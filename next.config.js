@@ -5,7 +5,12 @@ const { withContentlayer } = require("next-contentlayer2");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // trailingSlash: true, // disabled: causes Vercel 404 on homepage
+
+  // Prisma engine file tracing for standalone output on Vercel
+  outputFileTracingIncludes: {
+    "/api/analytics/*": ["../../node_modules/.prisma/client/**/*"],
+    "/api/cron/*": ["../../node_modules/.prisma/client/**/*"],
+  },
   
   // Disable the Next.js Dev Tools panel (bottom-left overlay in dev mode)
   devIndicators: false,
