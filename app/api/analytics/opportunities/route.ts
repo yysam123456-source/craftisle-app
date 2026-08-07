@@ -12,8 +12,9 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const weekStart = new Date();
-    weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-    weekStart.setHours(0, 0, 0, 0);
+    const weekday = weekStart.getUTCDay();
+    weekStart.setUTCDate(weekStart.getUTCDate() - (weekday === 0 ? 6 : weekday - 1));
+    weekStart.setUTCHours(0, 0, 0, 0);
 
     const queries = await prisma.searchQuery.findMany({
       where: { snapshotAt: weekStart },

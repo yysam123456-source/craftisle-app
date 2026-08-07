@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     const sort = searchParams.get("sort") || "impressions"; // impressions | clicks | ctr | position
     const type = searchParams.get("type") || "all"; // all | tools | directory | blog
 
-    const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const since = new Date();
     const weekday2 = since.getUTCDay();
     since.setUTCDate(since.getUTCDate() - (weekday2 === 0 ? 6 : weekday2 - 1));
     since.setUTCHours(0, 0, 0, 0);
