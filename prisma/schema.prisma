@@ -285,5 +285,5 @@ model AlertEvent {
 
   @@index([type])
   @@index([resolved])
-  @@unique([type, query, snapshotAt])
+  @@index([type, query])
 }

@@ -46,23 +46,18 @@ async function createAlertsIfAbsent(
 
   if (fresh.length === 0) return 0;
 
-  // 3. 插入（upsert 兜底唯一约束冲突）
-  await prisma.$transaction(
-    fresh.map(a =>
-      prisma.alertEvent.upsert({
-        where: { type_query_snapshotAt: { type: a.type, query: a.query, snapshotAt } },
-        create: {
-          type: a.type,
-          query: a.query,
-          severity: a.severity,
-          message: a.message,
-          data: a.data ?? undefined,
-          snapshotAt,
-        },
-        update: {},
-      })
-    )
-  );
+  // 3. 插入（应用层已去重；create 而非 upsert，避免依赖 DB 唯一约束）
+  await prisma.alertEvent.createMany({
+    data: fresh.map(a => ({
+      type: a.type,
+      query: a.query,
+      severity: a.severity,
+      message: a.message,
+      data: a.data ?? undefined,
+      snapshotAt,
+    })),
+    skipDuplicates: true,
+  });
   return fresh.length;
 }
 
