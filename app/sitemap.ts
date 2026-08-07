@@ -27,6 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     { url: `${baseUrl}/`, priority: 1.0, changeFreq: "daily" as const },
     { url: `${baseUrl}/tools`, priority: 0.8, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/tools/craftisle-image-tools`, priority: 0.8, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/tools/craftisle-dev-tools`, priority: 0.8, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/about/craftisle-vs-craft-island`, priority: 0.7, changeFreq: "monthly" as const },
     { url: `${baseUrl}/directory`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/search`, priority: 0.6, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/favorites`, priority: 0.5, changeFreq: "weekly" as const },

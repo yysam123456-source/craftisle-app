@@ -6,7 +6,7 @@
  */
 
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { fetchGscData, classifyQueryType } from "@/lib/seo/gsc-client";
 
 const prisma = new PrismaClient();
@@ -21,6 +21,49 @@ function isAuthorized(request: Request): boolean {
   if (CRON_SECRET && secret === CRON_SECRET) return true;
   
   return false;
+}
+
+/** 去重创建告警：同一 (type, query, snapshotAt) 只插入一次，避免重复 */
+async function createAlertsIfAbsent(
+  prisma: PrismaClient,
+  snapshotAt: Date,
+  alerts: Array<{ type: string; query: string; severity: string; message: string; data?: Prisma.InputJsonValue }>
+): Promise<number> {
+  if (alerts.length === 0) return 0;
+
+  // 1. 查询本周快照已存在的 (type, query) 组合
+  const existing = await prisma.alertEvent.findMany({
+    where: {
+      snapshotAt,
+      OR: alerts.map(a => ({ type: a.type, query: a.query })),
+    },
+    select: { type: true, query: true },
+  });
+  const existingKeys = new Set(existing.map(e => `${e.type}::${e.query}`));
+
+  // 2. 过滤出真正新增的告警
+  const fresh = alerts.filter(a => !existingKeys.has(`${a.type}::${a.query}`));
+
+  if (fresh.length === 0) return 0;
+
+  // 3. 插入（upsert 兜底唯一约束冲突）
+  await prisma.$transaction(
+    fresh.map(a =>
+      prisma.alertEvent.upsert({
+        where: { type_query_snapshotAt: { type: a.type, query: a.query, snapshotAt } },
+        create: {
+          type: a.type,
+          query: a.query,
+          severity: a.severity,
+          message: a.message,
+          data: a.data ?? undefined,
+          snapshotAt,
+        },
+        update: {},
+      })
+    )
+  );
+  return fresh.length;
 }
 
 export async function GET(request: Request) {
@@ -200,12 +243,9 @@ export async function GET(request: Request) {
     );
     results.rankingsUpdated = rankingResults.length;
 
-    // 创建告警
+    // 创建告警（去重：同一 type+query+snapshotAt 只插一次）
     const alertOps = rankingOps.filter(op => op.alert).map(op => op.alert!);
-    if (alertOps.length > 0) {
-      await prisma.alertEvent.createMany({ data: alertOps });
-      results.alertsCreated = alertOps.length;
-    }
+    results.alertsCreated = await createAlertsIfAbsent(prisma, snapshotAt, alertOps);
 
     // 更新搜索趋势聚合
     await aggregateSearchTrends(prisma, queries, snapshotAt);
@@ -221,16 +261,17 @@ export async function GET(request: Request) {
       .slice(0, 10);
 
     if (newQueries.length > 0) {
-      await prisma.alertEvent.createMany({
-        data: newQueries.map(q => ({
+      results.alertsCreated += await createAlertsIfAbsent(
+        prisma,
+        snapshotAt,
+        newQueries.map(q => ({
           type: "new_query",
           query: q.query,
           severity: "info",
           message: `新词进入 Top 10："${q.query}"，排名 ${Math.round(q.position)}，展示 ${q.impressions} 次`,
           data: { position: q.position, impressions: q.impressions, clicks: q.clicks },
-        })),
-      });
-      results.alertsCreated += newQueries.length;
+        }))
+      );
     }
 
     // 检测流失词（上周有、本周消失的高展示词）
@@ -241,16 +282,17 @@ export async function GET(request: Request) {
       .slice(0, 5);
 
     if (lostQueries.length > 0) {
-      await prisma.alertEvent.createMany({
-        data: lostQueries.map(q => ({
+      results.alertsCreated += await createAlertsIfAbsent(
+        prisma,
+        snapshotAt,
+        lostQueries.map(q => ({
           type: "lost_query",
           query: q.query,
           severity: "warning",
           message: `高展示词流失："${q.query}"（上周展示 ${q.impressions} 次）`,
           data: { previousImpressions: q.impressions },
-        })),
-      });
-      results.alertsCreated += lostQueries.length;
+        }))
+      );
     }
 
     console.log(`[GSC Cron] Complete — ${results.queriesInserted} queries, ${results.rankingsUpdated} rankings, ${results.alertsCreated} alerts`);

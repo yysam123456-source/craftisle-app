@@ -273,15 +273,17 @@ model SearchTrend {
 
 /// 告警事件（排名波动/新词/流失词等）
 model AlertEvent {
-  id        String   @id @default(cuid())
-  type      String                    // position_drop | position_rise | new_query | lost_query | low_ctr
-  query     String                    // 相关搜索词
-  severity  String   @default("warning")  // info | warning | critical
-  message   String                    // 告警描述
-  data      Json?                     // 额外上下文（变化量、历史数据等）
-  resolved  Boolean  @default(false)
-  createdAt DateTime @default(now())
+  id         String   @id @default(cuid())
+  type       String                    // position_drop | position_rise | new_query | lost_query | low_ctr
+  query      String                    // 相关搜索词
+  severity   String   @default("warning")  // info | warning | critical
+  message    String                    // 告警描述
+  data       Json?                     // 额外上下文（变化量、历史数据等）
+  resolved   Boolean  @default(false)
+  snapshotAt DateTime                  // 所属周快照
+  createdAt  DateTime @default(now())
 
   @@index([type])
   @@index([resolved])
+  @@unique([type, query, snapshotAt])
 }
