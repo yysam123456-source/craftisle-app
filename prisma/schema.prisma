@@ -280,7 +280,7 @@ model AlertEvent {
   message    String                    // 告警描述
   data       Json?                     // 额外上下文（变化量、历史数据等）
   resolved   Boolean  @default(false)
-  snapshotAt DateTime                  // 所属周快照
+  snapshotAt DateTime @default(now())   // 所属周快照
   createdAt  DateTime @default(now())
 
   @@index([type])
