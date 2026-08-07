@@ -57,6 +57,6 @@ export async function GET(request: Request) {
     });
   } catch (error: any) {
     console.error("[Analytics TopQueries] Error:", error);
-    return NextResponse.json({ error: "Internal error" }, { status: 500 });
+    return NextResponse.json({ error: error?.message || String(error) }, { status: 500 });
   }
 }

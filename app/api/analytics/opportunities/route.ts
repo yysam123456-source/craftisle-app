@@ -93,6 +93,6 @@ export async function GET() {
     });
   } catch (error: any) {
     console.error("[Analytics Opportunities] Error:", error);
-    return NextResponse.json({ error: "Internal error" }, { status: 500 });
+    return NextResponse.json({ error: error?.message || String(error) }, { status: 500 });
   }
 }
