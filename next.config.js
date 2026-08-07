@@ -8,8 +8,8 @@ const nextConfig = {
 
   // Prisma engine file tracing for standalone output on Vercel
   outputFileTracingIncludes: {
-    "/api/analytics/*": ["../../node_modules/.prisma/client/**/*"],
-    "/api/cron/*": ["../../node_modules/.prisma/client/**/*"],
+    "/api/**/*": ["./node_modules/.prisma/client/**/*"],
+    "/api/**": ["./node_modules/.prisma/client/**/*"],
   },
   
   // Disable the Next.js Dev Tools panel (bottom-left overlay in dev mode)
