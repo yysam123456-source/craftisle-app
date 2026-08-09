@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-01T18:52:27.554Z",
-  "count": 1184,
+  "updatedAt": "2026-08-09T18:23:06.271Z",
+  "count": 1191,
   "resources": [
     {
       "name": "ANALOG",
@@ -370,8 +370,8 @@
     },
     {
       "name": "Mylar3",
-      "url": "https://mylarcomics.com/",
-      "description": "Automated Comic Book (cbr/cbz) downloader program for use with NZB and torrents. ([Source Code](https://github.com/mylar3/mylar3)) `GPL-3.0` `Python/Docker`",
+      "url": "https://mylar.nerdfirehurricane.com/",
+      "description": "Automated Comic Book (cbr/cbz) downloader program for use with NZB and torrents. ([Source Code](https://github.com/MylarComics/mylar3)) `GPL-3.0` `Python/Docker`",
       "category": "Automation"
     },
     {
@@ -2079,6 +2079,12 @@
       "category": "Database Management"
     },
     {
+      "name": "StackRender",
+      "url": "https://stackrender.io/",
+      "description": "Database schema design and SQL migration generator supporting PostgreSQL, MySQL, MariaDB, SQLite, SQL Server, and Oracle. ([Demo](https://app.stackrender.io/), [Source Code](https://github.com/stackrender/stackrender)) `AGPL-3.0` `Nodejs/Docker`",
+      "category": "Database Management"
+    },
+    {
       "name": "AdGuard Home",
       "url": "https://adguard.com/en/adguard-home/overview.html",
       "description": "User-friendly ads & trackers blocking DNS server. ([Source Code](https://github.com/AdguardTeam/AdGuardHome)) `GPL-3.0` `Docker`",
@@ -2094,6 +2100,12 @@
       "name": "Maza ad blocking",
       "url": "https://maza-ad-blocking.andros.dev/",
       "description": "Local ad blocker. Like Pi-hole but local and using your operating system. ([Source Code](https://github.com/tanrax/maza-ad-blocking)) `Apache-2.0` `Shell`",
+      "category": "DNS"
+    },
+    {
+      "name": "Numa",
+      "url": "https://numa.rs/",
+      "description": "Ad-blocking DNS resolver with DNSSEC-validating recursive resolution, DoH/DoT/Oblivious DoH, ephemeral overrides, and local service domains, in a single Rust binary (alternative to Pi-hole, AdGuard Home, NextDNS). ([Source Code](https://github.com/razvandimescu/numa)) `MIT` `Rust/Docker/Nix`",
       "category": "DNS"
     },
     {
@@ -3819,6 +3831,12 @@
       "category": "Maps and Global Positioning System (GPS)"
     },
     {
+      "name": "NextGIS Web",
+      "url": "https://nextgis.com/nextgis-web/",
+      "description": "Web GIS server for geospatial data management, web map publishing, and QGIS-centered collaborative workflows. ([Demo](https://sandbox.nextgis.com), [Source Code](https://github.com/nextgis/nextgisweb)) `GPL-3.0` `Docker`",
+      "category": "Maps and Global Positioning System (GPS)"
+    },
+    {
       "name": "Nominatim",
       "url": "https://nominatim.org/",
       "description": "Server application for geocoding (address -> coordinates) and reverse geocoding (coordinates -> address) on OpenStreetMap data. ([Source Code](https://github.com/osm-search/Nominatim)) `GPL-2.0` `C`",
@@ -4905,6 +4923,12 @@
       "category": "Network Utilities"
     },
     {
+      "name": "PlugNPiN",
+      "url": "https://deepspace2.github.io/PlugNPiN",
+      "description": "Automatically scrapes containers with specific labels and creates local DNS/CNAME entries in Pi-Hole/AdGuard Home and proxy hosts in Nginx Proxy Manager. ([Source Code](https://github.com/deepspace2/plugnpin)) `GPL-3.0` `Docker`",
+      "category": "Network Utilities"
+    },
+    {
       "name": "Speed Test by OpenSpeedTest™",
       "url": "https://openspeedtest.com/",
       "description": "Free & Open-Source HTML5 Network Performance Estimation Tool. ([Source Code](https://github.com/openspeedtest/Speed-Test)) `MIT` `Docker`",
@@ -5131,6 +5155,12 @@
       "url": "https://github.com/dani-garcia/vaultwarden",
       "description": "Lightweight Bitwarden server API implementation written in Rust. `GPL-3.0` `Rust/Docker`",
       "category": "Password Managers"
+    },
+    {
+      "name": "1time",
+      "url": "https://1time.io",
+      "description": "Zero-knowledge one-time secret sharing. Create a one-time link for a password, API key, or file. Encrypted client-side in the browser, never reaches the server in plaintext, self-destructs after the allowed number of views (one by default). ([Demo](https://1time.io), [Source Code](https://github.com/shingrus/1time.io)) `MIT` `Docker`",
+      "category": "Pastebins"
     },
     {
       "name": "BinPastes",
@@ -6483,6 +6513,12 @@
       "category": "Task Management & To-do Lists"
     },
     {
+      "name": "dayGLANCE",
+      "url": "https://dayglance.app",
+      "description": "Day planner with drag-and-drop time blocking, inbox, recurring tasks, habits, routines, goals, projects and Pomodoro focus mode, plus iCal and CalDAV calendar sync. Data stays in the browser, with optional WebDAV or GLANCEvault sync. ([Source Code](https://github.com/krelltunez/dayGLANCE), [Clients](https://github.com/glance-apps/glance-vault)) `MIT` `Javascript/Docker`",
+      "category": "Task Management & To-do Lists"
+    },
+    {
       "name": "Donetick",
       "url": "https://donetick.com",
       "description": "Task and chore management tool for personal and family use, with advanced scheduling, flexible assignment, and group sharing capabilities, detailed history, automation via API, simple and modern design. ([Demo](https://app.donetick.com/), [Source Code](https://github.com/donetick/donetick)) `AGPL-3.0` `Go/Docker`",
@@ -6538,7 +6574,7 @@
     },
     {
       "name": "Our Shopping List",
-      "url": "https://github.com/nanawel/our-shopping-list",
+      "url": "https://codeberg.org/nanawel/our-shopping-list",
       "description": "Simple shared list application including shopping lists and any other small todo-list that needs to be used collaboratively. ([Demo](https://osl.lanterne-rouge.info/)) `AGPL-3.0` `Docker`",
       "category": "Task Management & To-do Lists"
     },
@@ -6595,6 +6631,12 @@
       "url": "https://will-be-done.app/",
       "description": "Offline-first task manager with weekly planning, project boards, real-time sync, Vim keybindings, desktop quick add, and import from popular task managers (alternative to TickTick, Todoist). ([Demo](https://demo.will-be-done.app/), [Source Code](https://github.com/will-be-done/will-be-done)) `AGPL-3.0` `Docker/Nodejs`",
       "category": "Task Management & To-do Lists"
+    },
+    {
+      "name": "BugPin",
+      "url": "https://bugpin.io",
+      "description": "Visual bug reporting and ticketing tool for web applications. ([Source Code](https://github.com/aranticlabs/bugpin)) `AGPL-3.0/MIT` `Docker`",
+      "category": "Ticketing"
     },
     {
       "name": "Bugzilla",
