@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-09T18:23:06.271Z",
-  "count": 1191,
+  "updatedAt": "2026-08-15T18:12:46.975Z",
+  "count": 1190,
   "resources": [
     {
       "name": "ANALOG",
@@ -5307,12 +5307,6 @@
       "category": "Personal Dashboards"
     },
     {
-      "name": "Hiccup",
-      "url": "https://designedbyashw.in/test/hiccup/",
-      "description": "Beautiful static homepage to get to your links and services quickly. It has built-in search, editing, PWA support and localstorage caching to easily organize your start page. ([Source Code](https://github.com/ashwin-pc/hiccup)) `MIT` `Javascript/Docker`",
-      "category": "Personal Dashboards"
-    },
-    {
       "name": "Homarr",
       "url": "https://homarr.dev",
       "description": "Sleek, modern dashboard with many integrations and web-based config. ([Source Code](https://github.com/homarr-labs/homarr)) `MIT` `Docker/Nodejs`",
@@ -5925,12 +5919,6 @@
       "category": "Search Engines"
     },
     {
-      "name": "CasaOS",
-      "url": "https://casaos.zimaspace.com/",
-      "description": "Simple, easy-to-use, elegant Home Cloud system. ([Source Code](https://github.com/IceWhaleTech/CasaOS)) `Apache-2.0` `Go/Docker`",
-      "category": "Self-hosting Solutions"
-    },
-    {
       "name": "DietPi",
       "url": "https://dietpi.com/",
       "description": "Minimal Debian OS optimized for single-board computers, which allows you to easily install and manage several services for selfhosting at home. ([Source Code](https://github.com/MichaIng/DietPi)) `GPL-2.0` `Shell`",
@@ -6156,6 +6144,12 @@
       "name": "Eclipse Che",
       "url": "https://www.eclipse.org/che/",
       "description": "Open source workspace server and cloud IDE. ([Source Code](https://github.com/eclipse-che/che)) `EPL-1.0` `Docker/Java`",
+      "category": "Software Development - IDE & Tools"
+    },
+    {
+      "name": "Hopp",
+      "url": "https://gethopp.app",
+      "description": "Remote pair programming app with low-latency 4K screen sharing, drawing, and remote control, with clients for macOS and Windows (alternative to Tuple, Pop, Drovio, Coscreen). ([Source Code](https://github.com/gethopp/hopp)) `AGPL-3.0` `Docker`",
       "category": "Software Development - IDE & Tools"
     },
     {
