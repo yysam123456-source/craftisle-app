@@ -287,3 +287,17 @@ model AlertEvent {
   @@index([resolved])
   @@index([type, query])
 }
+
+/// 数据管道健康状态（每次 cron 运行写入，供 summary 暴露「管道是否健康」）
+model PipelineStatus {
+  id             String    @id @default(cuid())
+  key            String    @unique            // 例如 "gsc_pull"
+  lastRunAt      DateTime?                   // 最近一次运行时间
+  lastSuccessAt  DateTime?                   // 最近一次成功拉取时间
+  lastConfigured Boolean?                    // GSC 凭证是否配置
+  lastQueryCount Int?                        // 最近一次拉取的查询词数
+  lastError      String?                     // 最近一次错误（成功则为 null）
+  updatedAt      DateTime  @updatedAt
+
+  @@index([key])
+}

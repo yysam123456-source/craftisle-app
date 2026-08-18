@@ -1,8 +1,8 @@
 /**
  * Google Search Console API 客户端
- * 
+ *
  * 使用 Service Account 认证，从 GSC 拉取搜索表现数据。
- * 如果未配置 GSC 凭证，优雅降级返回空数据。
+ * 设计目标：错误必须「可见」，不能静默吞掉 —— 否则定时抓取断流无人知晓。
  */
 
 const SITE_URL = "https://craftisle.com";
@@ -12,8 +12,21 @@ const CLIENT_EMAIL = process.env.GSC_SERVICE_ACCOUNT_EMAIL || "";
 const PRIVATE_KEY = (process.env.GSC_SERVICE_ACCOUNT_KEY || "").replace(/\\n/g, "\n");
 const IS_CONFIGURED = !!(CLIENT_EMAIL && PRIVATE_KEY);
 
-interface GscQueryRow {
+// 模块级可观测性状态（供 cron / summary 读取）
+let _lastError: string | null = null;
+let _lastSuccessAt: string | null = null;
+
+export function getGscStatus() {
+  return {
+    configured: IS_CONFIGURED,
+    lastError: _lastError,
+    lastSuccessAt: _lastSuccessAt,
+  };
+}
+
+interface GscRow {
   query: string;
+  country: string; // "global" 或 GSC 国家代码（如 us / gbr）
   clicks: number;
   impressions: number;
   ctr: number;
@@ -35,7 +48,7 @@ interface GscResponse {
  */
 async function getAccessToken(): Promise<string> {
   const header = Buffer.from(JSON.stringify({ alg: "RS256", typ: "JWT" })).toString("base64url");
-  
+
   const now = Math.floor(Date.now() / 1000);
   const claim = Buffer.from(JSON.stringify({
     iss: CLIENT_EMAIL,
@@ -68,16 +81,18 @@ async function getAccessToken(): Promise<string> {
 }
 
 /**
- * 从 GSC 拉取指定日期范围的搜索表现数据
+ * 通用拉取：支持任意 GSC 维度组合（query / country / device / page）。
+ * 返回 rows（已展开 country），并暴露错误，绝不静默吞掉。
  */
-export async function fetchGscData(
-  startDate: string, // "2026-07-01"
-  endDate: string,   // "2026-07-31"
-  rowLimit = 500,
-): Promise<{ queries: GscQueryRow[]; configured: boolean }> {
+export async function fetchGscPerformance(
+  startDate: string,
+  endDate: string,
+  dimensions: string[],
+  rowLimit = 5000,
+): Promise<{ rows: GscRow[]; configured: boolean; error?: string }> {
   if (!IS_CONFIGURED) {
     console.log("[GSC] No credentials configured — returning empty data");
-    return { queries: [], configured: false };
+    return { rows: [], configured: false };
   }
 
   try {
@@ -87,7 +102,7 @@ export async function fetchGscData(
     const body = {
       startDate,
       endDate,
-      dimensions: ["query"],
+      dimensions,
       rowLimit,
       aggregationType: "auto",
     };
@@ -103,25 +118,41 @@ export async function fetchGscData(
 
     if (!res.ok) {
       const err = await res.text();
-      throw new Error(`GSC query failed: ${res.status} ${err}`);
+      throw new Error(`GSC query failed (${dimensions.join(",")}): ${res.status} ${err}`);
     }
 
     const data = await res.json() as GscResponse;
-    const queries: GscQueryRow[] = (data.rows || []).map(row => ({
+    const rows: GscRow[] = (data.rows || []).map((row) => ({
       query: row.keys[0],
+      country: dimensions.includes("country") ? (row.keys[1] || "global") : "global",
       clicks: row.clicks,
       impressions: row.impressions,
       ctr: row.ctr,
       position: row.position,
     }));
 
-    console.log(`[GSC] Fetched ${queries.length} queries (${startDate} → ${endDate})`);
-    return { queries, configured: true };
-  } catch (error) {
+    _lastSuccessAt = new Date().toISOString();
+    _lastError = null;
+    console.log(`[GSC] Fetched ${rows.length} rows (${dimensions.join(",")} ${startDate} → ${endDate})`);
+    return { rows, configured: true };
+  } catch (error: any) {
+    _lastError = String(error?.message || error);
     console.error("[GSC] Fetch error:", error);
-    // 不抛异常，返回空数据让系统继续工作
-    return { queries: [], configured: true };
+    // 返回错误而非静默空数据，让调用方记录并告警
+    return { rows: [], configured: IS_CONFIGURED, error: _lastError };
   }
+}
+
+/**
+ * 兼容旧调用：仅按 query 维度拉取（country 固定 global）。
+ */
+export async function fetchGscData(
+  startDate: string,
+  endDate: string,
+  rowLimit = 500,
+): Promise<{ queries: GscRow[]; configured: boolean; error?: string }> {
+  const r = await fetchGscPerformance(startDate, endDate, ["query"], rowLimit);
+  return { queries: r.rows, configured: r.configured, error: r.error };
 }
 
 /**
@@ -137,15 +168,12 @@ export function isNonBrandQuery(query: string): boolean {
  */
 export function classifyQueryType(query: string): "tools" | "directory" | "blog" | "other" {
   const lower = query.toLowerCase();
-  // 工具类关键词模式
   if (/\b(online|free|tool|convert|generator|maker|creator|editor|download)\b/.test(lower)) {
     return "tools";
   }
-  // 目录类关键词模式
   if (/\b(best|top|alternative|review|list|directory|software|apps|website|open.source)\b/.test(lower)) {
     return "directory";
   }
-  // 教程类关键词模式
   if (/\b(how|tutorial|guide|tips|vs|compare|learn)\b/.test(lower)) {
     return "blog";
   }
