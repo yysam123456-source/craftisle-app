@@ -15,6 +15,7 @@ import { NextResponse } from "next/server";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { fetchGscData, fetchGscPerformance, classifyQueryType } from "@/lib/seo/gsc-client";
 import { computeCompetitorCoverage, CompetitorCoverageRow } from "@/lib/seo/competitors";
+import { SITES, resolveSiteSlug } from "@/lib/seo/sites";
 
 const prisma = new PrismaClient();
 const CRON_SECRET = process.env.CRON_SECRET || "";
@@ -312,6 +313,91 @@ export async function GET(request: Request) {
       );
       results.countryRowsInserted = countryRows.length;
       console.log(`[GSC Cron] Inserted ${countryRows.length} country-segmented rows`);
+    }
+
+    // ── 2.5 每子站周快照（page 维度，section 4 多子站监测）──
+    try {
+      const pageRes = await withRetry(() =>
+        fetchGscPerformance(startDate, endDate, ["query", "page"], 5000)
+      );
+      if (pageRes.error) {
+        results.errors.push(`site-metrics: ${pageRes.error}`);
+      } else if (pageRes.rows.length > 0) {
+        // 1) 确保 8 个站点都已存在
+        for (const s of SITES) {
+          await prisma.site.upsert({
+            where: { slug: s.slug },
+            create: { slug: s.slug, name: s.name, host: s.host, color: s.color, enabled: true },
+            update: { name: s.name, host: s.host, color: s.color, enabled: true },
+          });
+        }
+        // 2) 按主机名归类聚合
+        type Bucket = {
+          impressions: number; clicks: number; posSumImpressionWeighted: number;
+          ctrImpressionWeighted: number; queryCount: number;
+          pages: Set<string>;
+          queries: Map<string, { impressions: number; clicks: number; position: number }>;
+        };
+        const buckets = new Map<string, Bucket>();
+        for (const r of pageRes.rows) {
+          if (!r.page) continue;
+          const slug = resolveSiteSlug(r.page);
+          if (!slug) continue;
+          let b = buckets.get(slug);
+          if (!b) {
+            b = { impressions: 0, clicks: 0, posSumImpressionWeighted: 0, ctrImpressionWeighted: 0, queryCount: 0, pages: new Set(), queries: new Map() };
+            buckets.set(slug, b);
+          }
+          b.impressions += r.impressions;
+          b.clicks += r.clicks;
+          b.posSumImpressionWeighted += r.position * r.impressions;
+          b.ctrImpressionWeighted += r.ctr * r.impressions;
+          b.queryCount += 1;
+          b.pages.add(r.page);
+          const prevQ = b.queries.get(r.query);
+          if (!prevQ || r.impressions > prevQ.impressions) {
+            b.queries.set(r.query, { impressions: r.impressions, clicks: r.clicks, position: r.position });
+          }
+        }
+        // 3) 写入 SiteMetric
+        let sitesWritten = 0;
+        for (const [slug, b] of buckets) {
+          const site = await prisma.site.findUnique({ where: { slug } });
+          if (!site) continue;
+          const topQ = Array.from(b.queries.entries())
+            .map(([query, v]) => ({ query, ...v }))
+            .sort((a, c) => c.impressions - a.impressions)
+            .slice(0, 10);
+          await prisma.siteMetric.upsert({
+            where: { siteId_weekStart: { siteId: site.id, weekStart: snapshotAt } },
+            create: {
+              siteId: site.id,
+              weekStart: snapshotAt,
+              impressions: b.impressions,
+              clicks: b.clicks,
+              avgPosition: b.impressions > 0 ? b.posSumImpressionWeighted / b.impressions : 0,
+              avgCtr: b.impressions > 0 ? b.ctrImpressionWeighted / b.impressions : 0,
+              queryCount: b.queryCount,
+              uniquePages: b.pages.size,
+              topQueries: JSON.stringify(topQ),
+            },
+            update: {
+              impressions: b.impressions,
+              clicks: b.clicks,
+              avgPosition: b.impressions > 0 ? b.posSumImpressionWeighted / b.impressions : 0,
+              avgCtr: b.impressions > 0 ? b.ctrImpressionWeighted / b.impressions : 0,
+              queryCount: b.queryCount,
+              uniquePages: b.pages.size,
+              topQueries: JSON.stringify(topQ),
+            },
+          });
+          sitesWritten += 1;
+        }
+        console.log(`[GSC Cron] SiteMetric written for ${sitesWritten} sub-sites`);
+      }
+    } catch (e: any) {
+      console.error("[GSC Cron] Site-metrics failed:", e?.message ?? e);
+      results.errors.push(`site-metrics: ${e?.message ?? String(e)}`);
     }
 
     // ── 3. 排名快照 + 告警 ──

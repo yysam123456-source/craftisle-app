@@ -302,3 +302,40 @@ model PipelineStatus {
 
   @@index([key])
 }
+
+/// 受监测的站点（craftisle 主站 + 7 个子站）
+model Site {
+  id        String   @id @default(cuid())
+  slug      String   @unique          // craftisle | pdf | resume | viewer | whiteboard | imgprompt | games | fxlab
+  name      String                    // 展示名（如 "Craftisle (Main)" / "PDF Tools"）
+  host      String   @unique          // 主机名（如 craftisle.com / pdf.craftisle.com）
+  color     String?                   // UI 标识色（hex）
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  metrics SiteMetric[]
+
+  @@index([slug])
+  @@index([enabled])
+}
+
+/// 每站每周 GSC 聚合快照（由 cron 从 GSC 的 page 维度归类写入）
+model SiteMetric {
+  id          String   @id @default(cuid())
+  siteId      String
+  weekStart   DateTime
+  impressions Int      @default(0)
+  clicks      Int      @default(0)
+  avgPosition Float    @default(0)
+  avgCtr      Float    @default(0)
+  queryCount  Int      @default(0)
+  uniquePages Int      @default(0)
+  topQueries  String?                  // JSON 字符串 [{query,impressions,clicks,position},...] Top 10
+  updatedAt   DateTime @updatedAt
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([siteId, weekStart])
+  @@index([siteId])
+  @@index([weekStart])
+}

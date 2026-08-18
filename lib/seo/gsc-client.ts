@@ -27,6 +27,7 @@ export function getGscStatus() {
 interface GscRow {
   query: string;
   country: string; // "global" 或 GSC 国家代码（如 us / gbr）
+  page?: string;   // 当 dimensions 包含 "page" 时填入页面 URL；否则 undefined
   clicks: number;
   impressions: number;
   ctr: number;
@@ -122,14 +123,24 @@ export async function fetchGscPerformance(
     }
 
     const data = await res.json() as GscResponse;
-    const rows: GscRow[] = (data.rows || []).map((row) => ({
-      query: row.keys[0],
-      country: dimensions.includes("country") ? (row.keys[1] || "global") : "global",
-      clicks: row.clicks,
-      impressions: row.impressions,
-      ctr: row.ctr,
-      position: row.position,
-    }));
+    const rows: GscRow[] = (data.rows || []).map((row) => {
+      const base = {
+        query: row.keys[0],
+        clicks: row.clicks,
+        impressions: row.impressions,
+        ctr: row.ctr,
+        position: row.position,
+      };
+      // 按 dimensions 顺序把对应 key 映射到具名字段
+      if (dimensions.includes("country") && dimensions.includes("page")) {
+        return { ...base, country: row.keys[1] || "global", page: row.keys[2] };
+      } else if (dimensions.includes("page")) {
+        return { ...base, country: "global", page: row.keys[1] };
+      } else if (dimensions.includes("country")) {
+        return { ...base, country: row.keys[1] || "global" };
+      }
+      return { ...base, country: "global" };
+    });
 
     _lastSuccessAt = new Date().toISOString();
     _lastError = null;
