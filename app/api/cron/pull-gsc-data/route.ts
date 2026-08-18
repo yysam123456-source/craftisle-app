@@ -14,6 +14,7 @@
 import { NextResponse } from "next/server";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { fetchGscData, fetchGscPerformance, classifyQueryType } from "@/lib/seo/gsc-client";
+import { computeCompetitorCoverage, CompetitorCoverageRow } from "@/lib/seo/competitors";
 
 const prisma = new PrismaClient();
 const CRON_SECRET = process.env.CRON_SECRET || "";
@@ -34,6 +35,7 @@ async function recordPipelineStatus(prisma: PrismaClient, patch: {
   lastConfigured?: boolean;
   lastQueryCount?: number;
   lastError?: string | null;
+  competitor?: string | null;
 }) {
   try {
     await prisma.pipelineStatus.upsert({
@@ -44,6 +46,33 @@ async function recordPipelineStatus(prisma: PrismaClient, patch: {
   } catch (e) {
     console.error("[GSC Cron] Failed to record pipeline status:", e);
   }
+}
+
+/** 重试自愈：对瞬时失败（网络/超时/JWT 刷新）最多重试 attempts 次，指数退避 */
+async function withRetry<T>(fn: () => Promise<T>, attempts = 3, baseDelay = 1000): Promise<T> {
+  let lastErr: any;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      lastErr = e;
+      console.warn(`[GSC Cron] attempt ${i + 1}/${attempts} failed:`, e);
+      if (i < attempts - 1) await new Promise((r) => setTimeout(r, baseDelay * (i + 1)));
+    }
+  }
+  throw lastErr;
+}
+
+/** 管道告警：把 Cron 调度失败/失效转成 AlertEvent，使其在 /api/analytics/alerts 可见 */
+async function createPipelineAlert(
+  prisma: PrismaClient,
+  type: string,
+  message: string,
+  severity: string
+): Promise<number> {
+  return createAlertsIfAbsent(prisma, new Date(), [
+    { type, query: "__pipeline__", severity, message },
+  ]);
 }
 
 /** 自愈合：同一 (type, query) 只保留最新一条（createdAt 最大），删除其余历史/重复。
@@ -140,6 +169,28 @@ export async function GET(request: Request) {
   // 运行前先自愈合历史重复告警
   const deduped = await dedupeAlerts(prisma);
 
+  // 管道健康预检：若上一次成功拉取已超时或上次报错，立即生成告警（自愈 + 通知）
+  try {
+    const prev = await prisma.pipelineStatus.findUnique({ where: { key: PIPELINE_KEY } });
+    if (prev) {
+      const lastSuccess = prev.lastSuccessAt ? new Date(prev.lastSuccessAt).getTime() : 0;
+      const freshness = lastSuccess ? Math.floor((Date.now() - lastSuccess) / 86400000) : 999;
+      if (prev.lastError || freshness > 8) {
+        await createPipelineAlert(
+          prisma,
+          "pipeline_stale",
+          prev.lastError
+            ? `GSC 管道上次运行报错：${prev.lastError}。请检查 Cron 调度（Cloudflare 是否放行 /api/cron/*）。`
+            : `GSC 管道已 ${freshness} 天未成功拉取（lastSuccess=${prev.lastSuccessAt}）。请检查 Cron 调度是否正常执行。`,
+          "critical"
+        );
+        console.log(`[GSC Cron] Pipeline stale alert created (freshness=${freshness}, error=${prev.lastError})`);
+      }
+    }
+  } catch (e) {
+    console.error("[GSC Cron] Pipeline precheck failed:", e);
+  }
+
   const snapshotAt = new Date();
   const weekday = snapshotAt.getUTCDay();
   snapshotAt.setUTCDate(snapshotAt.getUTCDate() - (weekday === 0 ? 6 : weekday - 1)); // 本周一
@@ -164,8 +215,8 @@ export async function GET(request: Request) {
     const startDate = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
     console.log(`[GSC Cron] Pulling data: ${startDate} → ${endDate}`);
 
-    // ── 1. 全局（query 维度）──
-    const { queries, configured, error } = await fetchGscData(startDate, endDate, 500);
+    // ── 1. 全局（query 维度）──（带重试自愈）
+    const { queries, configured, error } = await withRetry(() => fetchGscData(startDate, endDate, 500));
     results.configured = configured;
 
     if (error) {
@@ -183,6 +234,9 @@ export async function GET(request: Request) {
         lastError: configured ? msg : null,
         lastQueryCount: 0,
       });
+      if (configured) {
+        await createPipelineAlert(prisma, "pipeline_stale", `GSC 返回 0 行：${msg}`, "warning");
+      }
       return NextResponse.json({
         success: !configured,
         message: msg,
@@ -212,8 +266,36 @@ export async function GET(request: Request) {
     results.queriesInserted = queries.length;
     console.log(`[GSC Cron] Inserted ${queries.length} global queries`);
 
-    // ── 2. 国家维度分群（出海）──
-    const countryRes = await fetchGscPerformance(startDate, endDate, ["query", "country"], 5000);
+    // ── 1.5 竞品覆盖度 + 流失检测（section 4「竞争」维度）──
+    const coverage = computeCompetitorCoverage(queries);
+    const coveredCount = coverage.filter((c) => c.covered).length;
+    let lostTerms: string[] = [];
+    try {
+      const prevPs = await prisma.pipelineStatus.findUnique({ where: { key: PIPELINE_KEY } });
+      const prevRows = prevPs?.competitor ? ((JSON.parse(prevPs.competitor) as any).rows as CompetitorCoverageRow[] | undefined) : undefined;
+      const prevCovered = new Set((prevRows ?? []).filter((r) => r.covered).map((r) => r.term));
+      lostTerms = coverage.filter((c) => !c.covered && prevCovered.has(c.term)).map((c) => c.term);
+      if (lostTerms.length > 0) {
+        await createAlertsIfAbsent(prisma, snapshotAt, [
+          {
+            type: "competitor_lost",
+            query: lostTerms.join(", "),
+            severity: "warning",
+            message: `竞品覆盖流失：以下竞品词本周 GSC 无曝光 ${lostTerms.join("、")}`,
+            data: { lost: lostTerms },
+          },
+        ]);
+      }
+    } catch (e) {
+      console.error("[GSC Cron] Competitor coverage failed:", e);
+    }
+    await recordPipelineStatus(prisma, {
+      competitor: JSON.stringify({ total: coverage.length, covered: coveredCount, lost: lostTerms, rows: coverage }),
+    });
+    console.log(`[GSC Cron] Competitor coverage: ${coveredCount}/${coverage.length} covered, lost=${lostTerms.length}`);
+
+    // ── 2. 国家维度分群（出海）──（带重试自愈）
+    const countryRes = await withRetry(() => fetchGscPerformance(startDate, endDate, ["query", "country"], 5000));
     if (countryRes.error) {
       results.errors.push(countryRes.error);
       runError = runError || countryRes.error;
@@ -365,6 +447,7 @@ export async function GET(request: Request) {
     results.errors.push(error.message);
     runError = error.message;
     await recordPipelineStatus(prisma, { lastError: error.message });
+    await createPipelineAlert(prisma, "pipeline_error", `GSC Cron 运行抛出异常：${error.message}。请检查调度与凭证。`, "critical");
     return NextResponse.json({ success: false, ...results, error: error.message }, { status: 500 });
   }
 }

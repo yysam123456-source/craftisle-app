@@ -61,6 +61,18 @@ export async function GET() {
     const pctChange = (current: number, previous: number) =>
       previous > 0 ? ((current - previous) / previous) * 100 : 0;
 
+    // 竞品覆盖度（section 4「竞争」维度）
+    const competitorCoverage = pipeline?.competitor
+      ? (() => {
+          try {
+            const r = JSON.parse(pipeline.competitor as string);
+            return { total: r.total ?? 0, covered: r.covered ?? 0, lost: r.lost ?? [] };
+          } catch {
+            return null;
+          }
+        })()
+      : null;
+
     // 管道健康：以 lastSuccessAt 为准；失败兜底用最新快照
     const lastSuccessAt = pipeline?.lastSuccessAt ?? null;
     const lastError = pipeline?.lastError ?? null;
@@ -97,6 +109,8 @@ export async function GET() {
         clicks: c._sum.clicks ?? 0,
         avgPosition: Math.round((c._avg.position ?? 0) * 10) / 10,
       })),
+      // ── 竞品覆盖度 ──
+      competitorCoverage,
     });
   } catch (error: any) {
     console.error("[Analytics Summary] Error:", error);

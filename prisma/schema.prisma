@@ -297,6 +297,7 @@ model PipelineStatus {
   lastConfigured Boolean?                    // GSC 凭证是否配置
   lastQueryCount Int?                        // 最近一次拉取的查询词数
   lastError      String?                     // 最近一次错误（成功则为 null）
+  competitor     String?                     // 竞品覆盖度快照（JSON 字符串）{total,covered,lost:[...]}
   updatedAt      DateTime  @updatedAt
 
   @@index([key])

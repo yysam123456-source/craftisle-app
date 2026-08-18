@@ -10,8 +10,9 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = constructMetadata({
-  title: "160+ Free Online Tools — No Signup, No Download | Craftisle",
-  description: "160+ free online tools for developers & creators. QR code generator, JSON/SQL/HTML formatter, Base64 encode/decode, hash tools, regex tester, image compress/resize/crop/upscale, AI background remover, PDF tools. 100% browser-based, no registration, no upload to server.",
+  title: "Free MS Project, Google Workspace & IntelliJ Alternatives + 160 Tools | Craftisle",
+  description:
+    "Looking for free MS Project, Google Workspace, or IntelliJ alternatives? Craftisle offers 160+ free browser-based tools — project planners, office & PDF utilities, dev tools, AI image editors, regex testers. No signup, no download, 100% client-side and private.",
 });
 
 export default function ToolsPage() {
