@@ -63,7 +63,8 @@ async function dedupeAlerts(prisma: PrismaClient): Promise<number> {
     const toDelete: string[] = [];
     for (const arr of groups.values()) {
       if (arr.length > 1) {
-        arr.sort((x, y) => x.createdAt.getTime() - y.createdAt.getTime());
+        // 保留最新一条（createdAt 最大），删除其余历史/重复
+        arr.sort((x, y) => y.createdAt.getTime() - x.createdAt.getTime());
         toDelete.push(...arr.slice(1).map((a) => a.id));
       }
     }
