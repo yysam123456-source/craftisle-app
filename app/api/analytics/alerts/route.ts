@@ -31,6 +31,7 @@ export async function GET(request: Request) {
         data: a.data,
         resolved: a.resolved,
         createdAt: a.createdAt.toISOString(),
+        snapshotAt: a.snapshotAt.toISOString(),
       })),
       total: alerts.length,
       unresolvedCount: await prisma.alertEvent.count({ where: { resolved: false } }),
