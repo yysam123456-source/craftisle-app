@@ -79,7 +79,14 @@ async function dedupeAlerts(prisma: PrismaClient): Promise<number> {
   }
 }
 
-/** 去重创建告警：同一 (type, query, snapshotAt) 只插入一次，避免重复 */
+/**
+ * 去重创建告警（v2.2 修正）：
+ *  1. 先清理「上一周遗留的未解决陈旧告警」(snapshotAt < 本周一 且 resolved:false)，
+ *     避免旧周告警占用 (type,query) key、永久挡住本周应生成的新鲜告警。
+ *  2. 仅当本周「未解决」同 (type,query) 告警不存在时才插入，避免重复。
+ *  说明：用户已解决 (resolved:true) 的历史告警保留为记录，不删除、也不挡本周新告警
+ *        —— 若同类问题本周复发会正常重新告警（符合周监控语义）。
+ */
 async function createAlertsIfAbsent(
   prisma: PrismaClient,
   snapshotAt: Date,
@@ -87,9 +94,21 @@ async function createAlertsIfAbsent(
 ): Promise<number> {
   if (alerts.length === 0) return 0;
 
+  // ── 1. 清理上一周遗留的未解决陈旧告警 ──
+  const stale = await prisma.alertEvent.findMany({
+    where: { snapshotAt: { lt: snapshotAt }, resolved: false },
+    select: { id: true },
+  });
+  if (stale.length > 0) {
+    await prisma.alertEvent.deleteMany({ where: { id: { in: stale.map((s) => s.id) } } });
+    console.log(`[GSC Cron] Cleared ${stale.length} stale unresolved alerts from previous weeks`);
+  }
+
+  // ── 2. 仅本周「未解决」同 (type,query) 不存在时才插入 ──
   const existing = await prisma.alertEvent.findMany({
     where: {
       snapshotAt,
+      resolved: false,
       OR: alerts.map((a) => ({ type: a.type, query: a.query })),
     },
     select: { type: true, query: true },
