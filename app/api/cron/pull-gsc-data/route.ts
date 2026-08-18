@@ -329,6 +329,9 @@ export async function GET(request: Request) {
 
     console.log(`[GSC Cron] Complete — ${results.queriesInserted} queries, ${results.countryRowsInserted} country rows, ${results.rankingsUpdated} rankings, ${results.alertsCreated} alerts`);
 
+    // 运行结束再自愈合一次：本次新创建的告警需与历史同 (type,query) 告警一并去重
+    results.alertsDeduped += await dedupeAlerts(prisma);
+
     await recordPipelineStatus(prisma, {
       lastSuccessAt: new Date(),
       lastConfigured: configured,
