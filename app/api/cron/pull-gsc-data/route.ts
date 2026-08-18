@@ -46,7 +46,17 @@ async function recordPipelineStatus(prisma: PrismaClient, patch: {
   }
 }
 
-/** 自愈合：同一 (type, query, snapshotAt) 只保留最早一条，删除其余重复 */
+/** 将快照时间归一化为「周一 00:00 UTC」，用于按周分组去重 */
+function mondayOf(d: Date): string {
+  const x = new Date(d);
+  const wd = x.getUTCDay();
+  x.setUTCDate(x.getUTCDate() - (wd === 0 ? 6 : wd - 1));
+  x.setUTCHours(0, 0, 0, 0);
+  return x.toISOString();
+}
+
+/** 自愈合：同一 (type, query, 所属周) 只保留最早一条，删除其余重复。
+ *  历史重复告警的 snapshotAt 可能是「运行精确时间」而非周一，故按周归一化分组。 */
 async function dedupeAlerts(prisma: PrismaClient): Promise<number> {
   try {
     const all = await prisma.alertEvent.findMany({
@@ -54,7 +64,7 @@ async function dedupeAlerts(prisma: PrismaClient): Promise<number> {
     });
     const groups = new Map<string, typeof all>();
     for (const a of all) {
-      const k = `${a.type}::${a.query}::${a.snapshotAt.toISOString()}`;
+      const k = `${a.type}::${a.query}::${mondayOf(a.snapshotAt)}`;
       if (!groups.has(k)) groups.set(k, []);
       groups.get(k)!.push(a);
     }
