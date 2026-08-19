@@ -5,6 +5,7 @@
   "framework": "nextjs",
   "crons": [
     { "path": "/api/cron/pull-gsc-data", "schedule": "0 6 * * 1" },
+    { "path": "/api/cron/auto-optimize", "schedule": "0 7 * * 1" },
     { "path": "/api/cron/pull-trends", "schedule": "0 8 1,15 * *" }
   ]
 }

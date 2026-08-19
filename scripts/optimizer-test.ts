@@ -4,10 +4,11 @@
  *       应用（备份+改写+tsc 校验+回滚）。
  *
  * 运行：esbuild 打包 → node
- *   npx esbuild scripts/optimizer-test.ts --bundle --platform=node --format=cjs --outfile=.opt.cjs && node .opt.cjs
+ *   npx esbuild scripts/optimizer-test.ts --bundle --platform=node --format=esm --outfile=.opt.mjs && node .opt.mjs
+ *   （注意：本文件含 top-level await，必须 ESM 打包，CJS 不被支持）
  */
 
-import { buildOptimizationPlan, applyOptimizationPlan, pageUrlToRoute, optimizeTitle, serializePageMeta } from "../lib/seo/optimizer";
+import { buildOptimizationPlan, applyOptimizationPlan, pageUrlToRoute, optimizeTitle, serializePageMeta, applyEditsToMeta } from "../lib/seo/optimizer";
 import { analyzeTopicalGaps, QueryPageRow } from "../lib/seo/topical-gaps";
 import { PAGE_META, PageMeta } from "../lib/seo/page-meta";
 
@@ -83,6 +84,20 @@ const r3 = await applyOptimizationPlan(applyPlan, {
 });
 assert(r3.rolledBack === true && r3.applied === 0, "tsc 失败时回滚且不应用");
 assert(mem3.store["meta.ts"].includes(PAGE_META["/tools"].title), "回滚后恢复原标题");
+
+// v3: applyEditsToMeta 纯函数（被 Vercel Cron 复用，不触碰文件系统）
+const { meta: m2, applied: a2 } = applyEditsToMeta(PAGE_META, plan.edits);
+const applicable = plan.edits.filter((e) => e.field !== "create").length;
+assert(a2 === applicable, `applyEditsToMeta 应用数 = 非 create 编辑数（${a2} vs ${applicable}）`);
+assert(m2["/tools"].title === titleEdit!.proposed, "applyEditsToMeta 改写 /tools 标题");
+assert(PAGE_META["/tools"].title !== m2["/tools"].title, "原注册表未被 mutate（纯函数）");
+
+// v3: serializePageMeta 自包含（修自我 import 循环依赖 bug）
+const src = serializePageMeta(m2);
+assert(!src.includes('import { PageMeta } from "./page-meta"'), "serializePageMeta 不再自我 import（避免循环依赖）");
+assert(src.includes("export interface PageMeta"), "serializePageMeta 内联定义 PageMeta 接口");
+assert(src.includes("export const PAGE_META"), "serializePageMeta 导出 PAGE_META");
+assert(src.includes("export function getPageMeta"), "serializePageMeta 保留 getPageMeta");
 
 console.log(`\n== 优化器结果：${pass} 通过 / ${fail} 失败 ==`);
 if (fail > 0) process.exit(1);

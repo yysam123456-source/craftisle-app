@@ -206,12 +206,18 @@ export function serializePageMeta(meta: Record<string, PageMeta>): string {
   },`;
   });
   return `/**
- * 集中式 SEO 元数据注册表（自动优化器的唯一可信源）
- * 本文件由 scripts/auto-optimize.ts 在 --apply 时整体重写；手工修改亦可。
- * 字段含义见 lib/seo/page-meta.ts 的 PageMeta 接口。
+ * 集中式 SEO 元数据注册表（自动优化器重写）
+ * 本文件由自动优化器（scripts/auto-optimize.ts / Vercel Cron /api/cron/auto-optimize）整体重写。
+ * 手工修改亦可；PageMeta 接口定义在本文件内，避免循环依赖（不自我 import）。
  */
 
-import { PageMeta } from "./page-meta";
+export interface PageMeta {
+  route: string;
+  title: string;
+  description: string;
+  provenance: "verified" | "recommended" | "generated";
+  lastOptimized: string | null;
+}
 
 export const PAGE_META: Record<string, PageMeta> = {
 ${blocks.join("\n")}
@@ -221,6 +227,36 @@ export function getPageMeta(route: string): PageMeta | undefined {
   return PAGE_META[route];
 }
 `;
+}
+
+/**
+ * 纯函数：把编辑应用到注册表副本，返回新注册表 + 应用计数 + 错误。
+ * 不触碰文件系统，便于测试，也被 applyOptimizationPlan 与 Vercel Cron 复用。
+ */
+export function applyEditsToMeta(
+  currentMeta: Record<string, PageMeta>,
+  edits: OptimizationEdit[],
+): { meta: Record<string, PageMeta>; applied: number; errors: string[] } {
+  const meta: Record<string, PageMeta> = JSON.parse(JSON.stringify(currentMeta));
+  let applied = 0;
+  const errors: string[] = [];
+  for (const e of edits) {
+    if (e.field === "create") {
+      errors.push(`create 类编辑「${e.route}」需生成页面文件，本次仅记录，未写入注册表。`);
+      continue;
+    }
+    const cur = meta[e.route];
+    if (!cur) {
+      errors.push(`路由 ${e.route} 不在注册表，跳过 ${e.field}。`);
+      continue;
+    }
+    if (e.field === "title") cur.title = e.proposed;
+    else if (e.field === "description") cur.description = e.proposed;
+    cur.lastOptimized = new Date().toISOString();
+    cur.provenance = "generated";
+    applied++;
+  }
+  return { meta, applied, errors };
 }
 
 /**
@@ -251,25 +287,9 @@ export async function applyOptimizationPlan(
   }
   if (plan.edits.length === 0) return { applied: 0, backupPath: null, rolledBack: false, errors: ["无编辑可应用。"] };
 
-  // 克隆当前注册表，应用编辑
-  const meta: Record<string, PageMeta> = JSON.parse(JSON.stringify(currentMeta));
-  let applied = 0;
-  for (const e of plan.edits) {
-    if (e.field === "create") {
-      errors.push(`create 类编辑「${e.route}」需生成页面文件，本次仅记录，未写入注册表。`);
-      continue;
-    }
-    const cur = meta[e.route];
-    if (!cur) {
-      errors.push(`路由 ${e.route} 不在注册表，跳过 ${e.field}。`);
-      continue;
-    }
-    if (e.field === "title") cur.title = e.proposed;
-    else if (e.field === "description") cur.description = e.proposed;
-    cur.lastOptimized = new Date().toISOString();
-    cur.provenance = "generated";
-    applied++;
-  }
+  // 复用纯函数应用编辑（克隆 + 改写），保留下方的备份/回滚/审计护栏
+  const { meta, applied, errors: applyErrors } = applyEditsToMeta(currentMeta, plan.edits);
+  if (applyErrors.length) errors.push(...applyErrors);
 
   if (applied === 0) {
     return { applied: 0, backupPath: null, rolledBack: false, errors: ["没有任何字段被改写。"].concat(errors) };
