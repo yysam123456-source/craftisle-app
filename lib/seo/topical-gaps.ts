@@ -151,6 +151,10 @@ export interface ClusterGap {
   capturedSeedCount: number;
   missingSeedCount: number;
   seedCoveragePct: number;
+  /** 已覆盖的种子词（全量） */
+  capturedSeeds: string[];
+  /** 缺失的种子词（全量，应覆盖但零曝光） */
+  missingSeeds: string[];
   rankingGapQueries: RankingGapQuery[];
   /** 前 10 名但 CTR 偏低的词（最大流量杠杆） */
   lowCtrQueries: ObservedQuery[];
@@ -373,6 +377,8 @@ export function analyzeTopicalGaps(
     const capturedSeedCount = capturedSeeds.size;
     const missingSeedCount = cluster.seeds.length - capturedSeedCount;
     const seedCoveragePct = cluster.seeds.length > 0 ? Math.round((capturedSeedCount / cluster.seeds.length) * 100) : 0;
+    const capturedSeedList = cluster.seeds.filter((s) => capturedSeeds.has(s.toLowerCase()));
+    const missingSeedList = cluster.seeds.filter((s) => !capturedSeeds.has(s.toLowerCase()));
 
     // 近失词 position ∈ [11,30]
     const rankingGapQueries: RankingGapQuery[] = observed
@@ -464,7 +470,7 @@ export function analyzeTopicalGaps(
       });
     }
     if (missingSeedCount > 0 && hasData) {
-      const seedsToBuild = cluster.seeds.filter((s) => !capturedSeeds.has(s.toLowerCase())).slice(0, 5);
+      const seedsToBuild = missingSeedList.slice(0, 5);
       const pc = Math.round(seedsToBuild.length * proxyImpPerSeed * benchmarkCtr(10, ctrFactor) * 0.4);
       actions.push({
         id: `${cluster.siteSlug}-build`,
@@ -547,6 +553,7 @@ export function analyzeTopicalGaps(
     results.push({
       siteSlug: cluster.siteSlug, siteName: name, color,
       demand, capturedSeedCount, missingSeedCount, seedCoveragePct,
+      capturedSeeds: capturedSeedList, missingSeeds: missingSeedList,
       rankingGapQueries, lowCtrQueries, newQueries,
       avgPosition: Math.round(avgPosition * 10) / 10,
       avgCtr: Math.round(avgCtr * 1000) / 1000,
