@@ -317,6 +317,9 @@ importers:
       resend:
         specifier: ^3.5.0
         version: 3.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      server-only:
+        specifier: 0.0.1
+        version: 0.0.1
       shiki:
         specifier: ^1.11.0
         version: 1.11.0
@@ -6735,9 +6738,6 @@ packages:
   psl@1.15.0:
     resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
 
-  punycode@1.4.1:
-    resolution: {integrity: sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==}
-
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -7424,10 +7424,6 @@ packages:
   stringify-entities@4.0.4:
     resolution: {integrity: sha512-IwfBptatlO+QCJUo19AqvrPNqlVMpW9YEL2LIVY+Rpv2qsjCGxaDLNRgeGsQWJhfItebuJhsGSLjaBbNSQ+ieg==}
 
-  strip-ansi@6.0.0:
-    resolution: {integrity: sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==}
-    engines: {node: '>=8'}
-
   strip-ansi@6.0.1:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
@@ -7698,10 +7694,6 @@ packages:
   totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
-
-  tough-cookie@2.3.3:
-    resolution: {integrity: sha512-WR9pjSY3qO0z3yC6g33CRcVt2Wbevh0gP1XiSFql0/xRioi9qbDs3C+g4Nv2N8jmv/BloIi/SYoy/mfw5vus2A==}
-    engines: {node: '>=0.8'}
 
   tough-cookie@2.5.0:
     resolution: {integrity: sha512-nlLsUzgm1kfLXSXfRZMc1KLAugd4hqJHDTvc2hDIwS3mZAfMEuMbc03SujMF+GEcpaX/qboeycw6iO8JwVv2+g==}
@@ -8953,7 +8945,7 @@ snapshots:
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
-      string-width-cjs: string-width@4.2.0
+      string-width-cjs: string-width@4.2.3
       strip-ansi: 7.2.0
       strip-ansi-cjs: strip-ansi@6.0.1
       wrap-ansi: 8.1.0
@@ -11818,14 +11810,14 @@ snapshots:
 
   cliui@6.0.0:
     dependencies:
-      string-width: 4.2.0
-      strip-ansi: 6.0.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
       wrap-ansi: 6.2.0
 
   cliui@7.0.4:
     dependencies:
-      string-width: 4.2.0
-      strip-ansi: 6.0.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
   cliui@8.0.1:
@@ -12507,7 +12499,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.10
       eslint-import-resolver-typescript: 3.5.2(eslint-plugin-import@2.32.0(@typescript-eslint/parser@7.17.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@5.5.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@5.5.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.5.2(eslint-plugin-import@2.32.0(@typescript-eslint/parser@7.17.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.0)
       eslint-plugin-react: 7.37.5(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.5.0(eslint@8.57.0)
@@ -12543,7 +12535,7 @@ snapshots:
       debug: 4.4.3
       enhanced-resolve: 5.24.0
       eslint: 8.57.0
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@5.5.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@5.5.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.5.2(eslint-plugin-import@2.32.0(@typescript-eslint/parser@7.17.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       get-tsconfig: 4.14.0
       globby: 13.1.2
       is-core-module: 2.16.2
@@ -12563,7 +12555,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.5.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.5.2)(eslint@8.57.0):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.5.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.5.2(eslint-plugin-import@2.32.0(@typescript-eslint/parser@7.17.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
@@ -14798,7 +14790,7 @@ snapshots:
       is-interactive: 1.0.0
       is-unicode-supported: 0.1.0
       log-symbols: 4.1.0
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
       wcwidth: 1.0.1
 
   own-keys@1.0.1:
@@ -15115,9 +15107,6 @@ snapshots:
   psl@1.15.0:
     dependencies:
       punycode: 2.3.1
-    optional: true
-
-  punycode@1.4.1:
     optional: true
 
   punycode@2.3.1: {}
@@ -15605,7 +15594,7 @@ snapshots:
       request: 2.88.2
       request-promise-core: 1.1.4(request@2.88.2)
       stealthy-require: 1.1.1
-      tough-cookie: 2.3.3
+      tough-cookie: 2.5.0
     optional: true
 
   request@2.88.2:
@@ -16049,7 +16038,7 @@ snapshots:
     dependencies:
       emoji-regex: 8.0.0
       is-fullwidth-code-point: 3.0.0
-      strip-ansi: 6.0.0
+      strip-ansi: 6.0.1
 
   string-width@4.2.3:
     dependencies:
@@ -16124,10 +16113,6 @@ snapshots:
     dependencies:
       character-entities-html4: 2.1.0
       character-entities-legacy: 3.0.0
-
-  strip-ansi@6.0.0:
-    dependencies:
-      ansi-regex: 5.0.1
 
   strip-ansi@6.0.1:
     dependencies:
@@ -16290,7 +16275,7 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
-  terser-webpack-plugin@5.6.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.19.11)(postcss@8.4.38)(webpack@5.107.2(esbuild@0.19.11)(postcss@8.4.38)):
+  terser-webpack-plugin@5.6.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.19.11)(postcss@8.4.38)(webpack@5.107.2(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.19.11)(postcss@8.4.38)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.4.5
@@ -16362,11 +16347,6 @@ snapshots:
   toml@3.0.0: {}
 
   totalist@3.0.1: {}
-
-  tough-cookie@2.3.3:
-    dependencies:
-      punycode: 1.4.1
-    optional: true
 
   tough-cookie@2.5.0:
     dependencies:
@@ -16810,7 +16790,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.19.11)(postcss@8.4.38)(webpack@5.107.2(esbuild@0.19.11)(postcss@8.4.38))
+      terser-webpack-plugin: 5.6.1(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.19.11)(postcss@8.4.38)(webpack@5.107.2(@swc/core@1.3.101(@swc/helpers@0.5.15))(esbuild@0.19.11)(postcss@8.4.38))
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     transitivePeerDependencies:
@@ -16905,8 +16885,8 @@ snapshots:
   wrap-ansi@6.2.0:
     dependencies:
       ansi-styles: 4.3.0
-      string-width: 4.2.0
-      strip-ansi: 6.0.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
 
   wrap-ansi@7.0.0:
     dependencies:
