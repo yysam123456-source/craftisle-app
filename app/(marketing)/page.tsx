@@ -25,6 +25,7 @@ import path from "path";
 import { RandomRecommendations } from "@/components/home/random-recommendations";
 import { FeaturedTools } from "@/components/home/featured-tools";
 import { FeaturedSites } from "@/components/home/featured-sites";
+import { PAGE_META } from "@/lib/seo/page-meta";
 
 // ── 静态数据（build 时读取）────────────────────────────
 interface CategoryInfo {
@@ -91,9 +92,8 @@ function getHomepageData() {
 
 // ── Metadata ───────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "Craftisle — Free Software Directory & Online Tools",
-  description:
-    "Search 16,000+ free & open-source software. Find alternatives, compare tools. Plus: use 100+ online tools.",
+  title: PAGE_META["/"].title,
+  description: PAGE_META["/"].description,
   keywords: [
     "free software directory",
     "open source software",
@@ -104,8 +104,8 @@ export const metadata: Metadata = {
     "free tools",
   ],
   openGraph: {
-    title: "Craftisle — Free Software Directory & Online Tools",
-    description: "Search 16,000+ free & open-source software.",
+    title: PAGE_META["/"].title,
+    description: PAGE_META["/"].description,
     url: "https://craftisle.com",
     type: "website",
     locale: "en_US",
@@ -120,8 +120,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Craftisle — Free Software Directory & Online Tools",
-    description: "Search 16,000+ free & open-source software.",
+    title: PAGE_META["/"].title,
+    description: PAGE_META["/"].description,
     images: ["https://craftisle.com/_static/og.jpg"],
   },
   alternates: {

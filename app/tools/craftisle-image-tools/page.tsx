@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { constructMetadata } from "@/lib/utils";
 import { toolMeta } from "@/lib/tools";
+import { PAGE_META } from "@/lib/seo/page-meta";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Craftisle Image Tools — Free Online Image Editor, Compressor & AI Background Remover",
-  description:
-    "Craftisle's free online image tools: AI background remover, watermark remover, image upscaler, compressor, converter and editor. All browser-based — no upload, no signup, no paywall. Your images never leave your device.",
+  title: PAGE_META["/tools/craftisle-image-tools"].title,
+  description: PAGE_META["/tools/craftisle-image-tools"].description,
   keywords: [
     "craftisle image tools",
     "free online image editor",

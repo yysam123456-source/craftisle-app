@@ -56,7 +56,128 @@ interface ByTypeData {
   other: any;
 }
 
-type Tab = "overview" | "queries" | "trends" | "alerts" | "compare";
+type Tab = "overview" | "queries" | "trends" | "alerts" | "compare" | "gaps";
+
+// ── Topical Gap Detector types ──
+interface RankingGapQuery {
+  query: string;
+  impressions: number;
+  position: number;
+}
+interface ObservedQuery {
+  query: string;
+  impressions: number;
+  position: number;
+  ctr: number;
+}
+interface ActionItem {
+  id: string;
+  kind: string;
+  siteSlug: string;
+  target: string;
+  detail: string;
+  effort: "S" | "M" | "L";
+  potentialClicks: number;
+  potentialValue: number;
+  isNonBrand: boolean;
+  pageUrl?: string;
+  tier: "quick_wins" | "foundation" | "authority";
+}
+interface GapCluster {
+  siteSlug: string;
+  siteName: string;
+  color: string;
+  demand: number;
+  capturedSeedCount: number;
+  missingSeedCount: number;
+  seedCoveragePct: number;
+  rankingGapQueries: RankingGapQuery[];
+  lowCtrQueries: ObservedQuery[];
+  newQueries: ObservedQuery[];
+  avgPosition: number;
+  avgCtr: number;
+  authorityScore: number;
+  trafficOpportunity: number;
+  gapScore: number;
+  priority: "critical" | "warning" | "info" | "ok";
+  gapType: "ranking" | "visibility" | "depth" | "healthy" | "no_data";
+  recommendation: string;
+  actions: ActionItem[];
+}
+interface TopicalSummary {
+  clusterCount: number;
+  zeroPresenceCount: number;
+  rankingGapCount: number;
+  lowCtrCount: number;
+  totalMissingSeeds: number;
+  totalNearMissQueries: number;
+  trafficOpportunityTotal: number;
+  potentialValueTotal: number;
+  newQueryCount: number;
+  actionCount: number;
+  brandImpressions: number;
+  nonBrandImpressions: number;
+}
+
+// ── v3 新增维度类型 ──
+interface TechIssue {
+  severity: "critical" | "warning" | "info";
+  check: string;
+  message: string;
+}
+interface SiteTechHealth {
+  siteSlug: string;
+  siteName: string;
+  host: string;
+  httpStatus: number | null;
+  noindex: boolean;
+  robotsAllowed: boolean | null;
+  sitemapOk: boolean | null;
+  score: number;
+  issues: TechIssue[];
+}
+interface TechnicalReport {
+  avgScore: number;
+  criticalCount: number;
+  sites: SiteTechHealth[];
+}
+interface PageContentAudit {
+  siteSlug: string;
+  url: string;
+  ok: boolean;
+  status: number | null;
+  textLength: number;
+  hasJsonLd: boolean;
+  hasAuthorOrOrg: boolean;
+  hasH1: boolean;
+  score: number;
+  issues: string[];
+}
+interface ContentAuditReport {
+  avgTextLength: number;
+  thinPages: number;
+  pages: PageContentAudit[];
+}
+interface CompetitorGapItem {
+  query: string;
+  competitors: string[];
+  ourPosition: number | null;
+  siteSlug: string;
+  competitorCount: number;
+}
+interface CompetitorReport {
+  available: boolean;
+  reason?: string;
+  missingQueryCount: number;
+  gaps: CompetitorGapItem[];
+  topCompetitors: Array<{ domain: string; count: number }>;
+}
+interface NetworkRec {
+  site?: string;
+  severity: "critical" | "warning" | "info";
+  title: string;
+  detail: string;
+}
 
 // ── Utils ──
 function formatNum(n: number): string {
@@ -167,6 +288,17 @@ export default function SeoMonitorPage() {
   const [topQueries, setTopQueries] = useState<TopQuery[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [byType, setByType] = useState<Record<string, any> | null>(null);
+  const [topical, setTopical] = useState<{
+    summary: TopicalSummary;
+    clusters: GapCluster[];
+    roadmap: Record<string, ActionItem[]>;
+    cannibalization: Array<{ query: string; sites: string[]; impressions: number }>;
+    technical: TechnicalReport | null;
+    content: ContentAuditReport | null;
+    competitor: CompetitorReport | null;
+    hasData: boolean;
+  } | null>(null);
+  const [networkRecs, setNetworkRecs] = useState<NetworkRec[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -175,18 +307,22 @@ export default function SeoMonitorPage() {
       setLoading(true);
       setError("");
       try {
-        const [sum, trend, top, alt, type] = await Promise.all([
+        const [sum, trend, top, alt, type, gap, net] = await Promise.all([
           fetch("/api/analytics/summary").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/trends?period=90").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/top-queries?limit=25").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/alerts?limit=30").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/by-type").then(r => r.ok ? r.json() : null),
+          fetch("/api/analytics/topical-gaps").then(r => r.ok ? r.json() : null),
+          fetch("/api/analytics/network/recommendations").then(r => r.ok ? r.json() : null),
         ]);
         if (sum) setSummary(sum);
         if (trend) setTrends(trend);
         if (top?.queries) setTopQueries(top.queries);
         if (alt?.alerts) setAlerts(alt.alerts);
         if (type) setByType(type.byType);
+        if (gap?.clusters) setTopical({ summary: gap.summary, clusters: gap.clusters, roadmap: gap.roadmap ?? {}, cannibalization: gap.cannibalization ?? [], technical: gap.technical ?? null, content: gap.content ?? null, competitor: gap.competitor ?? null, hasData: gap.hasData });
+        if (net?.recommendations) setNetworkRecs(net.recommendations);
       } catch (e: any) {
         setError(e.message);
       } finally {
@@ -234,12 +370,12 @@ export default function SeoMonitorPage() {
 
       {/* Tabs */}
       <nav className="border-b border-zinc-700/50 px-6 py-2 flex gap-2">
-        {(["overview", "queries", "trends", "alerts", "compare"] as Tab[]).map(t => (
+        {(["overview", "queries", "trends", "alerts", "compare", "gaps"] as Tab[]).map(t => (
           <TabButton
             key={t}
             active={tab === t}
             onClick={() => setTab(t)}
-            label={t === "overview" ? "概览" : t === "queries" ? "搜索词" : t === "trends" ? "趋势" : t === "alerts" ? `告警${alerts.filter(a => !a.resolved).length ? ` (${alerts.filter(a => !a.resolved).length})` : ""}` : "对比"}
+            label={t === "overview" ? "概览" : t === "queries" ? "搜索词" : t === "trends" ? "趋势" : t === "alerts" ? `告警${alerts.filter(a => !a.resolved).length ? ` (${alerts.filter(a => !a.resolved).length})` : ""}` : t === "compare" ? "对比" : "差距"}
           />
         ))}
       </nav>
@@ -258,6 +394,9 @@ export default function SeoMonitorPage() {
           <AlertsTab alerts={alerts} />
         ) : (
           <CompareTab byType={byType} />
+        )}
+        {tab === "gaps" && topical && (
+          <GapsTab topical={topical} networkRecs={networkRecs} />
         )}
       </main>
     </div>
@@ -514,6 +653,358 @@ function CompareTab({ byType }: { byType: Record<string, any> | null }) {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// ── Topical Gap Detector Tab ──
+
+function gapTypeLabel(t: string): string {
+  return t === "ranking" ? "排名近失" : t === "visibility" ? "可见性缺口" : t === "depth" ? "深度不足" : t === "healthy" ? "健康" : "无数据";
+}
+function gapTypeColor(t: string): string {
+  return t === "ranking" ? "bg-yellow-500/20 text-yellow-400"
+    : t === "visibility" ? "bg-red-500/20 text-red-400"
+    : t === "depth" ? "bg-orange-500/20 text-orange-400"
+    : t === "healthy" ? "bg-green-500/20 text-green-400"
+    : "bg-zinc-500/20 text-zinc-400";
+}
+function priorityColor(p: string): string {
+  return p === "critical" ? "text-red-400" : p === "warning" ? "text-yellow-400" : p === "info" ? "text-blue-400" : "text-green-400";
+}
+
+/** 0-100 分数条 */
+function ScoreBar({ label, value, color }: { label: string; value: number; color: string }) {
+  return (
+    <div>
+      <div className="flex justify-between text-xs text-zinc-400 mb-1">
+        <span>{label}</span>
+        <span className="text-zinc-300 font-mono">{value}</span>
+      </div>
+      <div className="h-2 bg-zinc-700/50 rounded-full overflow-hidden">
+        <div className="h-full rounded-full transition-all" style={{ width: `${Math.max(0, Math.min(100, value))}%`, background: color }} />
+      </div>
+    </div>
+  );
+}
+
+function GapsTab({ topical, networkRecs }: { topical: { summary: TopicalSummary; clusters: GapCluster[]; roadmap: Record<string, ActionItem[]>; cannibalization: Array<{ query: string; sites: string[]; impressions: number }>; technical: TechnicalReport | null; content: ContentAuditReport | null; competitor: CompetitorReport | null; hasData: boolean }; networkRecs: NetworkRec[] }) {
+  const { summary, clusters, roadmap, cannibalization, technical, content, competitor, hasData } = topical;
+
+  if (!hasData) {
+    return (
+      <div className="text-center py-16 text-zinc-500 space-y-3">
+        <div className="text-3xl">🧭</div>
+        <p className="text-lg font-medium">Gap Detector 待激活</p>
+        <p className="text-sm max-w-md mx-auto">GSC 数据尚未就绪。配置凭证后，Vercel Cron 每周拉取 query+page 维度，本页自动产出「排名近失 / 低 CTR / 可见性缺口 / 深度不足」四类话题差距、流量机会量化与可执行行动蓝图。</p>
+      </div>
+    );
+  }
+
+  const tierMeta: Array<{ key: string; label: string; desc: string; color: string }> = [
+    { key: "quick_wins", label: "Quick Wins（投入小·见效快）", desc: "近失词上首页 + 前 10 低 CTR 重写标题，立刻涨点击", color: "border-green-500/40" },
+    { key: "foundation", label: "Foundation（地基）", desc: "零曝光子站索引急救 + 缺失话题新建落地页", color: "border-blue-500/40" },
+    { key: "authority", label: "Authority（权威建设）", desc: "基石内容 + 内链 + 外链，拉整体排名", color: "border-purple-500/40" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* 汇总卡 */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+        <Card title="流量机会" value={formatNum(summary.trafficOpportunityTotal)} unit="点击/月" />
+        <Card title="潜在价值" value={"$" + formatNum(summary.potentialValueTotal)} unit="/月" />
+        <Card title="零曝光子站" value={String(summary.zeroPresenceCount)} unit="个" />
+        <Card title="近失词簇" value={String(summary.rankingGapCount)} unit="个" />
+        <Card title="低CTR词" value={String(summary.lowCtrCount)} unit="个" />
+        <Card title="待补话题" value={String(summary.totalMissingSeeds)} unit="个" />
+        <Card title="新词发现" value={String(summary.newQueryCount)} unit="个" />
+        <Card title="行动项" value={String(summary.actionCount)} unit="个" />
+      </div>
+
+      {/* 品牌 / 非品牌展示分拆 */}
+      {hasData && (summary.brandImpressions + summary.nonBrandImpressions) > 0 && (
+        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4">
+          <div className="flex justify-between text-sm mb-2">
+            <span className="text-zinc-300 font-medium">展示量构成：品牌 vs 非品牌</span>
+            <span className="text-zinc-500 text-xs">
+              非品牌占比 {Math.round((summary.nonBrandImpressions / (summary.brandImpressions + summary.nonBrandImpressions)) * 100)}%
+            </span>
+          </div>
+          <div className="h-3 rounded-full overflow-hidden flex bg-zinc-700/50">
+            <div
+              className="h-full bg-blue-500/70"
+              style={{ width: `${(summary.nonBrandImpressions / (summary.brandImpressions + summary.nonBrandImpressions)) * 100}%` }}
+              title={`非品牌 ${formatNum(summary.nonBrandImpressions)}`}
+            />
+            <div
+              className="h-full bg-zinc-500/70"
+              style={{ width: `${(summary.brandImpressions / (summary.brandImpressions + summary.nonBrandImpressions)) * 100}%` }}
+              title={`品牌 ${formatNum(summary.brandImpressions)}`}
+            />
+          </div>
+          <div className="flex justify-between text-xs mt-1.5 text-zinc-500">
+            <span>🔵 非品牌（增长盘）：{formatNum(summary.nonBrandImpressions)}</span>
+            <span>⚪ 品牌（存量盘）：{formatNum(summary.brandImpressions)}</span>
+          </div>
+          <p className="text-xs text-zinc-500 mt-2">路线图优先排非品牌高意图词——这是净增流量，而非消耗已有品牌词。</p>
+        </div>
+      )}
+
+      <p className="text-xs text-zinc-500">
+        按「差距/机会度」降序 —— 越靠前越该优先。<b className="text-zinc-300">流量机会</b> = 用 CTR-by-position 基准曲线把每个差距折算成的「月潜在新增点击」，
+        <b className="text-zinc-300">潜在价值</b> = 流量机会 × 该子站单点击业务价值（美元）。权威分 = 话题覆盖广度 × 排名质量（0-100）。
+      </p>
+
+      {/* 簇卡片 */}
+      <div className="grid md:grid-cols-2 gap-4">
+        {clusters.map((c, i) => (
+          <div key={c.siteSlug} className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4 space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="w-3 h-3 rounded-full shrink-0" style={{ background: c.color }} />
+                <span className="font-semibold text-white truncate">{c.siteName}</span>
+                <span className="text-xs text-zinc-500">#{i + 1}</span>
+              </div>
+              <div className="flex items-center gap-1.5 shrink-0">
+                <span className={`text-xs px-1.5 py-0.5 rounded ${gapTypeColor(c.gapType)}`}>{gapTypeLabel(c.gapType)}</span>
+                <span className={`text-xs font-medium ${priorityColor(c.priority)}`}>
+                  {c.priority === "critical" ? "🔴" : c.priority === "warning" ? "🟡" : c.priority === "info" ? "🔵" : "🟢"}
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <ScoreBar label="话题权威分" value={c.authorityScore} color="linear-gradient(90deg,#22c55e,#84cc16)" />
+              <ScoreBar label="差距/机会度" value={c.gapScore} color="linear-gradient(90deg,#ef4444,#f59e0b)" />
+            </div>
+
+            <div className="grid grid-cols-4 gap-2 text-center">
+              <div>
+                <div className="text-xs text-zinc-500">需求(曝光)</div>
+                <div className="font-bold text-zinc-200">{formatNum(c.demand)}</div>
+              </div>
+              <div>
+                <div className="text-xs text-zinc-500">话题覆盖</div>
+                <div className="font-bold text-zinc-200">{c.capturedSeedCount}/{c.capturedSeedCount + c.missingSeedCount}</div>
+              </div>
+              <div>
+                <div className="text-xs text-zinc-500">流量机会</div>
+                <div className="font-bold text-green-400">+{formatNum(c.trafficOpportunity)}</div>
+              </div>
+              <div>
+                <div className="text-xs text-zinc-500">平均排名</div>
+                <div className={`font-bold ${positionColor(c.avgPosition)}`}>{c.avgPosition > 0 ? (c.avgPosition > 100 ? "100+" : c.avgPosition.toFixed(1)) : "—"}</div>
+              </div>
+            </div>
+
+            {c.rankingGapQueries.length > 0 && (
+              <div>
+                <div className="text-xs text-yellow-400 mb-1">📈 近失词（推一把上首页）</div>
+                <div className="space-y-1">
+                  {c.rankingGapQueries.slice(0, 4).map((q, idx) => (
+                    <div key={idx} className="flex justify-between text-xs text-zinc-400 border-b border-zinc-700/30 last:border-0 py-0.5">
+                      <span className="truncate text-zinc-300" title={q.query}>{q.query}</span>
+                      <span className="text-zinc-500 ml-2 shrink-0">P{q.position} · {formatNum(q.impressions)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {c.lowCtrQueries.length > 0 && (
+              <div>
+                <div className="text-xs text-orange-400 mb-1">⚡ 前 10 低 CTR（重写标题即涨点击）</div>
+                <div className="space-y-1">
+                  {c.lowCtrQueries.slice(0, 4).map((q, idx) => (
+                    <div key={idx} className="flex justify-between text-xs text-zinc-400 border-b border-zinc-700/30 last:border-0 py-0.5">
+                      <span className="truncate text-zinc-300" title={q.query}>{q.query}</span>
+                      <span className="text-zinc-500 ml-2 shrink-0">P{q.position} · CTR{(q.ctr * 100).toFixed(1)}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {c.newQueries.length > 0 && (
+              <div>
+                <div className="text-xs text-sky-400 mb-1">🔎 新词（未纳入地图的真实查询）</div>
+                <div className="flex flex-wrap gap-1">
+                  {c.newQueries.slice(0, 6).map((q, idx) => (
+                    <span key={idx} className="text-[11px] px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-300">{q.query}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <p className="text-xs text-zinc-400 leading-relaxed bg-zinc-900/40 rounded p-2">{c.recommendation}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* 执行路线图（按投入×收益分档，非品牌优先·价值降序） */}
+      <div>
+        <h3 className="text-sm font-semibold text-zinc-200 mb-3">🗺️ 执行路线图（按投入×收益分档，已按「非品牌优先 + 价值降序」排列）</h3>
+        <div className="grid md:grid-cols-3 gap-4">
+          {tierMeta.map((t) => {
+            const items = roadmap[t.key] || [];
+            const tierClicks = items.reduce((s, a) => s + a.potentialClicks, 0);
+            const tierValue = items.reduce((s, a) => s + a.potentialValue, 0);
+            return (
+              <div key={t.key} className={`bg-zinc-800/50 border ${t.color} rounded-lg p-4`}>
+                <div className="text-sm font-medium text-zinc-100 mb-0.5">{t.label}</div>
+                <div className="text-xs text-zinc-500 mb-2">{t.desc}</div>
+                <div className="text-xs text-green-400 mb-2">预计 +{formatNum(tierClicks)} 点击/月 · 价值 ${formatNum(Math.round(tierValue * 100) / 100)} · {items.length} 项</div>
+                <div className="space-y-2 max-h-72 overflow-auto pr-1">
+                  {items.length === 0 && <div className="text-xs text-zinc-600">暂无</div>}
+                  {items.map((a) => (
+                    <div key={a.id} className="text-xs bg-zinc-900/40 rounded p-2">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="text-zinc-200 font-medium truncate">{a.target}</span>
+                        <span className="flex items-center gap-1 shrink-0">
+                          {a.isNonBrand && <span className="px-1 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-400">非品牌</span>}
+                          <span className={`px-1 py-0.5 rounded text-[10px] ${a.effort === "S" ? "bg-green-500/20 text-green-400" : a.effort === "M" ? "bg-yellow-500/20 text-yellow-400" : "bg-red-500/20 text-red-400"}`}>{a.effort}</span>
+                        </span>
+                      </div>
+                      <div className="text-zinc-400 leading-snug">{a.detail}</div>
+                      <div className="flex justify-between mt-1">
+                        {a.potentialClicks > 0 ? <span className="text-green-400">+{formatNum(a.potentialClicks)} 点击/月</span> : <span />}
+                        {a.potentialValue > 0 && <span className="text-emerald-400">${formatNum(Math.round(a.potentialValue * 100) / 100)}/月</span>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 技术 SEO / 索引健康 */}
+      {technical && (
+        <div>
+          <h3 className="text-sm font-semibold text-zinc-200 mb-3">🔧 技术 SEO / 索引健康（均分 {technical.avgScore}，critical {technical.criticalCount}）</h3>
+          <div className="grid md:grid-cols-2 gap-3">
+            {technical.sites.map((s) => (
+              <div key={s.siteSlug} className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-zinc-200 font-medium truncate">{s.siteName}</span>
+                  <span className={`text-xs font-mono ${s.score >= 80 ? "text-green-400" : s.score >= 50 ? "text-yellow-400" : "text-red-400"}`}>健康分 {s.score}</span>
+                </div>
+                <div className="grid grid-cols-4 gap-1 text-center text-[11px] mb-2">
+                  <div><div className="text-zinc-500">HTTP</div><div className={s.httpStatus === 200 ? "text-green-400" : "text-red-400"}>{s.httpStatus ?? "—"}</div></div>
+                  <div><div className="text-zinc-500">noindex</div><div className={s.noindex ? "text-red-400" : "text-green-400"}>{s.noindex ? "是" : "否"}</div></div>
+                  <div><div className="text-zinc-500">robots</div><div className={s.robotsAllowed === false ? "text-red-400" : "text-green-400"}>{s.robotsAllowed === null ? "未探" : s.robotsAllowed ? "允许" : "拦截"}</div></div>
+                  <div><div className="text-zinc-500">sitemap</div><div className={s.sitemapOk ? "text-green-400" : "text-yellow-400"}>{s.sitemapOk === null ? "未探" : s.sitemapOk ? "OK" : "缺"}</div></div>
+                </div>
+                {s.issues.length > 0 ? (
+                  <div className="space-y-1">
+                    {s.issues.slice(0, 4).map((iss, idx) => (
+                      <div key={idx} className="text-[11px] flex gap-1.5">
+                        <span className={`shrink-0 px-1 rounded ${severityColor(iss.severity)}`}>{iss.severity === "critical" ? "严重" : iss.severity === "warning" ? "警" : "提示"}</span>
+                        <span className="text-zinc-400">{iss.message}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-[11px] text-green-400">无问题 ✅</div>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-zinc-500 mt-2">探针真实抓取 robots.txt / sitemap.xml / 首页 HTTP 与 noindex 信号（无需 GSC 凭证）。critical 项会直接切断索引，优先修。</p>
+        </div>
+      )}
+
+      {/* 内容深度 / E-E-A-T 审计 */}
+      {content && (
+        <div>
+          <h3 className="text-sm font-semibold text-zinc-200 mb-3">📄 内容深度 / E-E-A-T 审计（均正文 {content.avgTextLength} 字符，薄弱页 {content.thinPages}）</h3>
+          <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4 space-y-1">
+            {content.pages.map((p) => (
+              <div key={p.siteSlug} className="flex items-center justify-between gap-3 text-xs border-b border-zinc-700/30 last:border-0 py-1.5">
+                <span className="text-zinc-300 truncate" title={p.url}>{p.url}</span>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className={p.textLength < 300 ? "text-red-400" : "text-green-400"}>正文 {p.textLength}</span>
+                  <span className={p.hasJsonLd ? "text-green-400" : "text-zinc-500"}>JSON-LD</span>
+                  <span className={p.hasAuthorOrOrg ? "text-green-400" : "text-zinc-500"}>作者/组织</span>
+                  <span className={p.hasH1 ? "text-green-400" : "text-zinc-500"}>H1</span>
+                  <span className={`font-mono ${p.score >= 80 ? "text-green-400" : p.score >= 50 ? "text-yellow-400" : "text-red-400"}`}>{p.score}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-zinc-500 mt-2">薄弱页（正文 &lt; 300 字符）与缺结构化数据/作者实体，是 E-E-A-T 信号缺口，影响富媒体展示与排名。</p>
+        </div>
+      )}
+
+      {/* 竞品差距（需 SERP API） */}
+      <div>
+        <h3 className="text-sm font-semibold text-zinc-200 mb-3">🥊 竞品差距（GSC 永远看不到的净增流量池）</h3>
+        {competitor?.available ? (
+          <div className="space-y-3">
+            <div className="text-xs text-zinc-400">缺失词（竞品进前 10 而我们没进）：<b className="text-zinc-200">{competitor.missingQueryCount}</b> 个</div>
+            {competitor.topCompetitors.length > 0 && (
+              <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3">
+                <div className="text-xs text-zinc-500 mb-2">最常出现的竞品域名（在抢我们的话题）</div>
+                <div className="flex flex-wrap gap-2">
+                  {competitor.topCompetitors.map((c) => (
+                    <span key={c.domain} className="text-[11px] px-2 py-0.5 rounded bg-red-500/10 text-red-300">{c.domain} ×{c.count}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3 space-y-1 max-h-60 overflow-auto">
+              {competitor.gaps.slice(0, 20).map((g, idx) => (
+                <div key={idx} className="flex justify-between text-xs border-b border-zinc-700/30 last:border-0 py-1">
+                  <span className="text-zinc-300 truncate">"{g.query}"</span>
+                  <span className="text-zinc-500 ml-2 shrink-0">{g.ourPosition ? `我们 P${g.ourPosition}` : "未进前10"} · {g.competitors.length} 竞品</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4 text-sm text-zinc-400">
+            <p>尚未接入 SERP API，竞品排名数据不可见。</p>
+            <p className="text-xs text-zinc-500 mt-1">{competitor?.reason ?? "配置 SERP_API_BASE + SERP_API_KEY 后自动启用——绝不返回编造的竞品排名。"}</p>
+          </div>
+        )}
+      </div>
+
+      {/* 跨子站 cannibalization */}
+      {cannibalization.length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-zinc-200 mb-3">🔀 跨子站关键词互打架（指定主承接站）</h3>
+          <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4 space-y-2">
+            {cannibalization.slice(0, 8).map((c, idx) => (
+              <div key={idx} className="flex justify-between text-sm border-b border-zinc-700/30 last:border-0 py-1">
+                <span className="text-zinc-300 truncate">"{c.query}"</span>
+                <span className="text-zinc-500 ml-2 shrink-0">{c.sites.join(" / ")} · {formatNum(c.impressions)}</span>
+              </div>
+            ))}
+            <p className="text-xs text-zinc-500 pt-1">建议选定一个主承接站，其它站用 canonical 指向主站，或合并内容，避免 Google 分散权重。</p>
+          </div>
+        </div>
+      )}
+
+      {/* 全网结构性建议（network recommendations） */}
+      {networkRecs.length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-zinc-200 mb-3">🏗️ 全网结构性建议</h3>
+          <div className="space-y-2">
+            {networkRecs.map((r, idx) => (
+              <div key={idx} className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className={`text-xs px-1.5 py-0.5 rounded ${severityColor(r.severity)}`}>
+                    {r.severity === "critical" ? "🔴" : r.severity === "warning" ? "🟡" : "🔵"}
+                  </span>
+                  <span className="text-sm text-zinc-100">{r.title}</span>
+                </div>
+                <p className="text-xs text-zinc-400 leading-relaxed">{r.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

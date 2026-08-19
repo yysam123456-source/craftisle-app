@@ -8,11 +8,11 @@ import { imageToolIds } from "@/lib/image-tools";
 import { constructMetadata } from "@/lib/utils";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
+import { PAGE_META } from "@/lib/seo/page-meta";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Free MS Project, Google Workspace & IntelliJ Alternatives + 160 Tools | Craftisle",
-  description:
-    "Looking for free MS Project, Google Workspace, or IntelliJ alternatives? Craftisle offers 160+ free browser-based tools — project planners, office & PDF utilities, dev tools, AI image editors, regex testers. No signup, no download, 100% client-side and private.",
+  title: PAGE_META["/tools"].title,
+  description: PAGE_META["/tools"].description,
 });
 
 export default function ToolsPage() {

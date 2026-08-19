@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { constructMetadata } from "@/lib/utils";
 import { toolMeta } from "@/lib/tools";
+import { PAGE_META } from "@/lib/seo/page-meta";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Craftisle vs Craft Island — We're a Free Tools Site, Not a Game",
-  description:
-    "Craftisle.com is a free online tools platform (image editors, PDF tools, developer utilities) — NOT the Craft Island Minecraft-style game. Learn the difference and browse our 160+ free browser-based tools.",
+  title: PAGE_META["/about/craftisle-vs-craft-island"].title,
+  description: PAGE_META["/about/craftisle-vs-craft-island"].description,
   keywords: [
     "craftisle vs craft island",
     "craftisle.com game",

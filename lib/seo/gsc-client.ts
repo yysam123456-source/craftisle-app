@@ -191,4 +191,6 @@ export function classifyQueryType(query: string): "tools" | "directory" | "blog"
   return "other";
 }
 
-export { IS_CONFIGURED as isGscConfigured };
+export function isGscConfigured(): boolean {
+  return IS_CONFIGURED;
+}

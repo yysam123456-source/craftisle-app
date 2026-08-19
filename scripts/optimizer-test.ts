@@ -1,0 +1,88 @@
+/**
+ * 离线单测：自动优化器 optimizer.ts
+ * 覆盖：pageUrl→route 解析 / 标题保守改写 / 计划生成（dry-run 不改文件）/
+ *       应用（备份+改写+tsc 校验+回滚）。
+ *
+ * 运行：esbuild 打包 → node
+ *   npx esbuild scripts/optimizer-test.ts --bundle --platform=node --format=cjs --outfile=.opt.cjs && node .opt.cjs
+ */
+
+import { buildOptimizationPlan, applyOptimizationPlan, pageUrlToRoute, optimizeTitle, serializePageMeta } from "../lib/seo/optimizer";
+import { analyzeTopicalGaps, QueryPageRow } from "../lib/seo/topical-gaps";
+import { PAGE_META, PageMeta } from "../lib/seo/page-meta";
+
+let pass = 0, fail = 0;
+function assert(cond: boolean, msg: string) {
+  if (cond) { pass++; console.log("  ✅ " + msg); }
+  else { fail++; console.error("  ❌ " + msg); }
+}
+
+// ── 基础工具 ──
+assert(pageUrlToRoute("https://craftisle.com/tools") === "/tools", "pageUrl→route 解析 /tools");
+assert(pageUrlToRoute("https://pdf.craftisle.com/merge") === "/merge", "pageUrl→route 解析子域路径");
+assert(pageUrlToRoute(undefined) === null, "无 pageUrl → null");
+
+assert(optimizeTitle("Free Tools | Craftisle", "ms project alternative", "Craftisle")
+  .toLowerCase().includes("ms project alternative"), "标题未含目标词时前置目标词");
+assert(optimizeTitle("ms project alternative Free Tools | Craftisle", "ms project alternative", "Craftisle")
+  === "ms project alternative Free Tools | Craftisle", "标题已含目标词则不改（避免重复）");
+
+// ── 构造含近失/低CTR 的分析结果 ──
+const rows: QueryPageRow[] = [
+  { query: "ms project alternative", page: "https://craftisle.com/tools", impressions: 10, clicks: 0, ctr: 0, position: 22 },
+  { query: "best free tools", page: "https://craftisle.com/tools", impressions: 40, clicks: 0, ctr: 0, position: 6 },
+];
+const clusters = analyzeTopicalGaps(rows, true);
+const plan = buildOptimizationPlan(clusters);
+
+assert(plan.dryRun === true, "计划默认 dry-run");
+assert(plan.edits.length > 0, `生成编辑项（实际 ${plan.edits.length}）`);
+const titleEdit = plan.edits.find((e) => e.route === "/tools" && e.field === "title");
+assert(!!titleEdit, "为 /tools 生成标题编辑");
+assert(titleEdit!.current === PAGE_META["/tools"].title, "编辑的 current 来自真实注册表值（未编造）");
+assert(titleEdit!.proposed !== titleEdit!.current, "建议值与当前值不同（确有优化）");
+
+// ── 应用层：用内存 fs 模拟，验证备份/改写/审计，且 dry-run 不写 ──
+function makeMemFs(initial: Record<string, string>) {
+  const store: Record<string, string> = { ...initial };
+  const audit: string[] = [];
+  return {
+    store,
+    readFileSync: (p: string) => store[p] ?? (() => { throw new Error("ENOENT " + p); })(),
+    writeFileSync: (p: string, c: string) => { store[p] = c; },
+    copyFileSync: (s: string, d: string) => { store[d] = store[s]; },
+    appendFileSync: (p: string, c: string) => { audit.push(c); },
+    audit,
+  };
+}
+
+// dry-run 不改文件（applyOptimizationPlan 自身尊重 plan.dryRun）
+const mem1 = makeMemFs({ "meta.ts": serializePageMeta(PAGE_META) });
+const r1 = await applyOptimizationPlan(plan, { filePath: "meta.ts", fs: mem1, currentMeta: PAGE_META });
+assert(r1.skippedDryRun === true, "dry-run 计划被 applyOptimizationPlan 拒绝写回");
+assert(mem1.store["meta.ts"].includes(PAGE_META["/tools"].title), "dry-run 后文件仍是原值（未写回）");
+
+// 真实应用：显式切到非 dry-run
+const applyPlan = { ...plan, dryRun: false };
+const mem2 = makeMemFs({ "meta.ts": serializePageMeta(PAGE_META) });
+const result = await applyOptimizationPlan(applyPlan, {
+  filePath: "meta.ts", fs: mem2, currentMeta: PAGE_META,
+  runTsc: async () => ({ ok: true, output: "" }),
+});
+assert(result.applied > 0, `应用了 ${result.applied} 项`);
+assert(!!result.backupPath, "生成了备份路径");
+assert(result.rolledBack === false, "未触发回滚");
+assert(mem2.store["meta.ts"].includes(titleEdit!.proposed), "文件已写入新标题");
+assert(!mem2.store["meta.ts"].includes(PAGE_META["/tools"].title) || mem2.store["meta.ts"].includes(titleEdit!.proposed), "新标题生效");
+
+// tsc 失败 → 回滚
+const mem3 = makeMemFs({ "meta.ts": serializePageMeta(PAGE_META) });
+const r3 = await applyOptimizationPlan(applyPlan, {
+  filePath: "meta.ts", fs: mem3, currentMeta: PAGE_META,
+  runTsc: async () => ({ ok: false, output: "error TS: mock" }),
+});
+assert(r3.rolledBack === true && r3.applied === 0, "tsc 失败时回滚且不应用");
+assert(mem3.store["meta.ts"].includes(PAGE_META["/tools"].title), "回滚后恢复原标题");
+
+console.log(`\n== 优化器结果：${pass} 通过 / ${fail} 失败 ==`);
+if (fail > 0) process.exit(1);

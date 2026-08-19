@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { constructMetadata } from "@/lib/utils";
+import { PAGE_META } from "@/lib/seo/page-meta";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Craftisle Developer Tools — Free Online JSON, Regex, Cron & Code Utilities",
-  description:
-    "Craftisle's free online developer tools: JSON formatter & validator, regex tester/visualizer, cron expression generator, JWT decoder, HTML/SQL/YAML formatter, Base64 encoder, byte converter and more. All browser-based, no signup, no upload.",
+  title: PAGE_META["/tools/craftisle-dev-tools"].title,
+  description: PAGE_META["/tools/craftisle-dev-tools"].description,
   keywords: [
     "craftisle developer tools",
     "free online json formatter",
