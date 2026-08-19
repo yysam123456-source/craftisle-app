@@ -1,9 +1,13 @@
 /**
- * 集中式 SEO 元数据注册表（自动优化器的唯一可信源）
+ * 集中式 SEO 元数据注册表（自动优化器的唯一静态可信源）
  * ───────────────────────────────────────────────
  * 当前值均提取自各页面真实 export const metadata（见各 page.tsx / META_RECOMMENDATIONS），
- * 不编造。自动优化器基于 gap 分析生成的 title/description 改写，会回写到本文件，
- * 相关页面改为从本注册表读取（见 optimizer.ts 的 apply 与脚本）。
+ * 不编造。
+ *
+ * 自动优化器基于 gap 分析生成的 title/description 改写，不再回写本文件（那样需要
+ * GitHub PAT 且 Vercel 的 GSC 密钥不可导出），而是写入 Postgres 覆盖层
+ * （见 page-meta-db.ts）。本文件的 `PAGE_META` 是一个 Proxy：页面照常读取
+ * `PAGE_META[route].title`，它会自动叠加数据库里的优化覆盖值；DB 不可用时回退静态值。
  *
  * 字段：
  *   route        页面路由（与 Next.js app 路由对应）
@@ -14,6 +18,8 @@
  *   lastOptimized 上次被优化器改写的时间（ISO），未改写则 null
  */
 
+import { getOverride } from "./page-meta-db";
+
 export interface PageMeta {
   route: string;
   title: string;
@@ -22,7 +28,7 @@ export interface PageMeta {
   lastOptimized: string | null;
 }
 
-export const PAGE_META: Record<string, PageMeta> = {
+export const PAGE_META_BASE: Record<string, PageMeta> = {
   "/tools": {
     route: "/tools",
     title: "Free MS Project, Google Workspace & IntelliJ Alternatives + 160 Tools | Craftisle",
@@ -66,5 +72,42 @@ export const PAGE_META: Record<string, PageMeta> = {
 };
 
 export function getPageMeta(route: string): PageMeta | undefined {
-  return PAGE_META[route];
+  return getResolvedMeta(route);
+}
+
+/**
+ * PAGE_META 是 PAGE_META_BASE 的 Proxy：读取某路由时自动叠加数据库覆盖层
+ * （自动优化器写入的标题/描述）。覆盖层加载失败或为空时，行为与静态注册表一致。
+ * 页面无需任何改动即可获得优化后的元数据。
+ */
+export const PAGE_META: Record<string, PageMeta> = new Proxy(PAGE_META_BASE, {
+  get(target, prop, receiver) {
+    if (typeof prop === "symbol") return Reflect.get(target, prop, receiver);
+    const key = String(prop);
+    const base = target[key];
+    if (!base) return Reflect.get(target, prop, receiver);
+    const ov = getOverride(key);
+    if (!ov) return base;
+    return {
+      ...base,
+      ...(ov.title !== undefined ? { title: ov.title } : {}),
+      ...(ov.description !== undefined ? { description: ov.description } : {}),
+      provenance: ov.provenance,
+      lastOptimized: ov.lastOptimized,
+    };
+  },
+  ownKeys(target) {
+    return Reflect.ownKeys(target);
+  },
+  getOwnPropertyDescriptor(target, prop) {
+    return Reflect.getOwnPropertyDescriptor(target, prop);
+  },
+  has(target, prop) {
+    return prop in target;
+  },
+});
+
+/** 解析某路由的最终元数据（静态 + 数据库覆盖）。 */
+export function getResolvedMeta(route: string): PageMeta | undefined {
+  return (PAGE_META as Record<string, PageMeta>)[route];
 }

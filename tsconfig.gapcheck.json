@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./*"],
+      "server-only": ["./scripts/_stub_server_only.ts"]
+    }
+  },
+  "include": [
+    "lib/seo/**/*.ts",
+    "lib/db.ts",
+    "app/api/cron/auto-optimize/route.ts",
+    "scripts/optimizer-test.ts",
+    "scripts/gap-test.ts"
+  ]
+}

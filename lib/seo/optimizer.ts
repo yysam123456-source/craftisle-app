@@ -39,6 +39,35 @@ export interface OptimizationPlan {
   totalPotentialValue: number;
 }
 
+/** 自动优化落地到数据库覆盖层所需的单条记录 */
+export interface PageMetaOverrideInput {
+  route: string;
+  title?: string;
+  description?: string;
+  provenance: "generated" | "verified" | "recommended";
+  lastOptimized: string;
+}
+
+/**
+ * 把优化计划中的编辑折叠成「按路由」的数据库覆盖记录。
+ * 同一路由的 title/description 编辑合并为一条（与 applyEditsToMeta 的去重逻辑一致）；
+ * build_page（field="create"）不回写现有注册表，跳过。
+ */
+export function buildOverridesFromEdits(edits: OptimizationEdit[]): PageMetaOverrideInput[] {
+  const map = new Map<string, PageMetaOverrideInput>();
+  for (const e of edits) {
+    if (e.field === "create") continue;
+    let o = map.get(e.route);
+    if (!o) {
+      o = { route: e.route, provenance: "generated", lastOptimized: new Date().toISOString() };
+      map.set(e.route, o);
+    }
+    if (e.field === "title") o.title = e.proposed;
+    else if (e.field === "description") o.description = e.proposed;
+  }
+  return [...map.values()];
+}
+
 /** 从 GSC page URL 解析本仓库路由（去 host，保留 path） */
 export function pageUrlToRoute(pageUrl?: string): string | null {
   if (!pageUrl) return null;

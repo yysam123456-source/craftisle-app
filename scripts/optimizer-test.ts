@@ -4,13 +4,16 @@
  *       应用（备份+改写+tsc 校验+回滚）。
  *
  * 运行：esbuild 打包 → node
- *   npx esbuild scripts/optimizer-test.ts --bundle --platform=node --format=esm --outfile=.opt.mjs && node .opt.mjs
- *   （注意：本文件含 top-level await，必须 ESM 打包，CJS 不被支持）
+ *   npx esbuild scripts/optimizer-test.ts --bundle --platform=node --format=esm \
+ *     --external:@prisma/client --alias:server-only=./scripts/_stub_server_only.ts --outfile=.opt.mjs && node .opt.mjs
+ *   （注意：本文件含 top-level await，必须 ESM 打包，CJS 不被支持；
+ *     @prisma/client 标 external 避免打包原生依赖；server-only 用测试桩替换）
  */
 
-import { buildOptimizationPlan, applyOptimizationPlan, pageUrlToRoute, optimizeTitle, serializePageMeta, applyEditsToMeta } from "../lib/seo/optimizer";
+import { buildOptimizationPlan, applyOptimizationPlan, pageUrlToRoute, optimizeTitle, serializePageMeta, applyEditsToMeta, buildOverridesFromEdits } from "../lib/seo/optimizer";
 import { analyzeTopicalGaps, QueryPageRow } from "../lib/seo/topical-gaps";
-import { PAGE_META, PageMeta } from "../lib/seo/page-meta";
+import { PAGE_META, PAGE_META_BASE, PageMeta, getResolvedMeta } from "../lib/seo/page-meta";
+import { __setOverrideForTest } from "../lib/seo/page-meta-db";
 
 let pass = 0, fail = 0;
 function assert(cond: boolean, msg: string) {
@@ -98,6 +101,27 @@ assert(!src.includes('import { PageMeta } from "./page-meta"'), "serializePageMe
 assert(src.includes("export interface PageMeta"), "serializePageMeta 内联定义 PageMeta 接口");
 assert(src.includes("export const PAGE_META"), "serializePageMeta 导出 PAGE_META");
 assert(src.includes("export function getPageMeta"), "serializePageMeta 保留 getPageMeta");
+
+// v3.5: buildOverridesFromEdits 折叠（同路由 title+description 合并为一条，create 跳过）
+const ovEdits = [
+  { actionId: "a1", kind: "push_position" as const, route: "/tools", field: "title" as const, current: "x", proposed: "New Title", rationale: "", potentialClicks: 1, potentialValue: 1 },
+  { actionId: "a2", kind: "optimize_ctr" as const, route: "/tools", field: "description" as const, current: "y", proposed: "New Desc", rationale: "", potentialClicks: 1, potentialValue: 1 },
+  { actionId: "a3", kind: "build_page" as const, route: "/l/foo", field: "create" as const, current: "(新页面)", proposed: "Foo", rationale: "", potentialClicks: 1, potentialValue: 1 },
+];
+const ovs = buildOverridesFromEdits(ovEdits);
+assert(ovs.length === 1, `buildOverridesFromEdits 合并同路由为 1 条（实际 ${ovs.length}）`);
+assert(ovs[0].route === "/tools" && ovs[0].title === "New Title" && ovs[0].description === "New Desc", "覆盖含合并后的 title+description");
+assert(ovs[0].provenance === "generated", "覆盖 provenance=generated");
+
+// v3.5: PAGE_META Proxy 叠加数据库覆盖层（用测试钩子注入，不触真实 DB）
+__setOverrideForTest("/tools", { title: "DB Override Title", description: "DB Override Desc" });
+assert(getResolvedMeta("/tools")!.title === "DB Override Title", "getResolvedMeta 叠加 DB 标题覆盖");
+assert(PAGE_META["/tools"].title === "DB Override Title", "PAGE_META Proxy 叠加 DB 标题覆盖");
+assert(PAGE_META["/tools"].description === "DB Override Desc", "PAGE_META Proxy 叠加 DB 描述覆盖");
+assert(PAGE_META["/tools"].provenance === "generated", "覆盖 provenance 生效");
+assert(getResolvedMeta("/about/craftisle-vs-craft-island")!.title === PAGE_META_BASE["/about/craftisle-vs-craft-island"].title, "无覆盖路由回退静态");
+__setOverrideForTest("/tools", null); // 清理
+assert(PAGE_META["/tools"].title === PAGE_META_BASE["/tools"].title, "清除覆盖后回退静态");
 
 console.log(`\n== 优化器结果：${pass} 通过 / ${fail} 失败 ==`);
 if (fail > 0) process.exit(1);
