@@ -46,11 +46,23 @@ function loadReviewedIds() {
 const KEEP_IDS = new Set([...loadHandwrittenIds(), ...loadReviewedIds()]);
 console.log(`📋 Keep set: ${KEEP_IDS.size} IDs (handwritten + reviewed)`);
 
+// 容错解析：数据源（尤其是 fmhy 等外部同步的大 JSON）偶发损坏，
+// 单文件解析失败不应炸掉整站构建——跳过该源并告警，其余源照常生成。
+function safeParseJson(file) {
+  const p = join(DATA_DIR, file);
+  if (!existsSync(p)) return null;
+  try {
+    return JSON.parse(readFileSync(p, 'utf8'));
+  } catch (e) {
+    console.warn(`⚠️  跳过损坏数据源 ${file}（JSON 解析失败：${e.message}）`);
+    return null;
+  }
+}
+
 // ── 1. Load data sources (only to find resources matching keep IDs) ──
 function loadFmhy() {
-  const p = join(DATA_DIR, 'fmhy-resources.json');
-  if (!existsSync(p)) return [];
-  const d = JSON.parse(readFileSync(p, 'utf8'));
+  const d = safeParseJson('fmhy-resources.json');
+  if (!d) return [];
   const out = [];
   for (const [catId, cat] of Object.entries(d.categories || {})) {
     for (const r of (cat.resources || [])) {
@@ -70,9 +82,8 @@ function loadFmhy() {
 }
 
 function loadSource(file, sourceId) {
-  const p = join(DATA_DIR, file);
-  if (!existsSync(p)) return [];
-  const d = JSON.parse(readFileSync(p, 'utf8'));
+  const d = safeParseJson(file);
+  if (!d) return [];
   const out = [];
   for (const r of (d.resources || [])) {
     if (!r.id || !r.name) continue;
