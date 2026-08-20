@@ -5,6 +5,7 @@ import { ALTERNATIVES_MAP } from "@/lib/alternatives";
 import { DOMAINS } from "@/lib/unified-categories";
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { allPosts, allGuides } from "contentlayer/generated";
+import { LANDING_PAGE_SLUGS } from "@/lib/seo/landing-pages";
 import { readFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 
@@ -140,6 +141,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // ★ 新增：T1 主题权威落地页（18 个零曝光种子：craftisle 9 + pdf 9）
+  const landingPages = LANDING_PAGE_SLUGS.map((slug) => ({
+    url: `${baseUrl}/l/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   // ★ 多语种资源详情页（14 种语言）
   // 仅收录「人工手写的原创资源」，与详情页 noindex 逻辑（isHandwrittenResource）完全对齐
   const contentDir = join(process.cwd(), "public", "data", "generated-content");
@@ -177,5 +186,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...toolBlogPages,
     ...otherPages,
     ...toolPages,
+    ...landingPages,
   ];
 }
