@@ -48,8 +48,9 @@ export async function generateMetadata({
   if (!entry) return { title: "Not Found | Craftisle" };
 
   // 把用户真实在搜的精确词前置进标题/描述，提升近失词（P17–28）排名与 CTR
+  // 注意：根 layout 已有 title.template "%s | Craftisle"，此处不再重复后缀，避免双 Craftisle
   const primaryKw = getPrimaryKw(entry);
-  const title = `${primaryKw} — Best Free ${entry.paidTool} Alternatives in 2026 | Craftisle`;
+  const title = `${primaryKw} — Best Free ${entry.paidTool} Alternatives in 2026`;
   const description = `Looking for ${primaryKw}? We've curated ${entry.alternatives.length} free options that can replace ${entry.paidTool} — no subscription required. Compare features, pricing & migration difficulty.`;
 
   return constructMetadata({
