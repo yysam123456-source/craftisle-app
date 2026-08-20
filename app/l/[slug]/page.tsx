@@ -18,6 +18,23 @@ export function generateStaticParams() {
   return LANDING_PAGE_SLUGS.map((slug) => ({ slug }));
 }
 
+/**
+ * 跨域 canonical —— 消除同品牌双子域的内容重复（cannibalization）。
+ * craftisle.com 的 6 个 PDF 工具页与 pdfcraft 的规范工具页同义，
+ * 指向 pdf.craftisle.com/tools/<slug> 以合并排名信号。
+ * 注意：仅对「与 pdfcraft 一对一同义」的页做 canonical；
+ * 其余 3 个品牌枢纽页（pdf-converter / pdf-editor-online / free-pdf-tools）
+ * 无 pdfcraft 单页等价物，保留为导流入口，不作 canonical。
+ */
+const PDFCRAFT_CANONICAL: Record<string, string> = {
+  "merge-pdf": "https://pdf.craftisle.com/tools/merge-pdf",
+  "split-pdf": "https://pdf.craftisle.com/tools/split-pdf",
+  "compress-pdf": "https://pdf.craftisle.com/tools/compress-pdf",
+  "rotate-pdf": "https://pdf.craftisle.com/tools/rotate-pdf",
+  "pdf-watermark": "https://pdf.craftisle.com/tools/add-watermark",
+  "unlock-pdf": "https://pdf.craftisle.com/tools/decrypt-pdf",
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const data = LANDING_PAGES[slug];
@@ -26,6 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: data.title,
       description: data.description,
       keywords: data.keywords,
+      canonical: PDFCRAFT_CANONICAL[slug],
     });
   }
   // 回退：Vercel Cron 经 DB 覆盖层生成的未来种子（本地尚未建丰富页）
