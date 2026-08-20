@@ -903,7 +903,7 @@ export async function generateMetadata(props: ComparePageProps): Promise<Metadat
   const { paidTool, alt } = data;
 
   return {
-    title: `${paidTool.name} vs ${alt.name}: Which is Better in 2026? | Craftisle`,
+    title: `${paidTool.name} vs ${alt.name}: Which is Better in 2026?`,
     description: `Compare ${paidTool.name} and ${alt.name}. ${(alt.reason || "").slice(0, 150)}`,
     alternates: {
       canonical: `https://craftisle.com/directory/compare/${slugA}/${slugB}`,

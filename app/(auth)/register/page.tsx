@@ -8,7 +8,7 @@ import { Suspense } from "react"
 import { constructMetadata } from "@/lib/utils"
 
 export const metadata = constructMetadata({
-  title: "Create an account | Craftisle",
+  title: "Create an account",
   description: "Create an account to get started.",
   noIndex: true, // 认证页面不应该被索引
 })

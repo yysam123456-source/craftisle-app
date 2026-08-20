@@ -44,7 +44,7 @@ const COMPETITORS = [
 ];
 
 export const metadata = {
-  title: "Tool Comparisons — Craftisle vs Popular Tools | Craftisle",
+  title: "Tool Comparisons — Craftisle vs Popular Tools",
   description: "Comparing Craftisle free online tools with popular alternatives. See why Craftisle is the best free alternative — no signup, no limits.",
   keywords: [
     "Smallpdf alternative",

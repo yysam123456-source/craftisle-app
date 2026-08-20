@@ -97,9 +97,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const review = loadReviewBySlug(slug);
-  if (!review) return { title: "Review Not Found | Craftisle" };
+  if (!review) return { title: "Review Not Found" };
 
-  const title = `${review.resourceName} Review 2026 — Pros, Cons & Best Alternatives | Craftisle`;
+  const title = `${review.resourceName} Review 2026 — Pros, Cons & Best Alternatives`;
   const description = review.content.overview.slice(0, 155) + "...";
 
   return {

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = `https://craftisle.com/blog/how-to/${tool}`;
   return {
-    title: `How to Use ${meta.title} — Free Online Tool Guide | Craftisle`,
+    title: `How to Use ${meta.title} — Free Online Tool Guide`,
     description: `Learn how to use ${meta.title} free online. Step-by-step guide, use cases, FAQ. No signup required — 100% browser-based.`,
     keywords: [
       `how to use ${meta.title.toLowerCase()}`,

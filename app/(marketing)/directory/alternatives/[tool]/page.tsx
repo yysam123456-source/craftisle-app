@@ -45,7 +45,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { tool } = await params;
   const entry = getAlternativeBySlug(tool);
-  if (!entry) return { title: "Not Found | Craftisle" };
+  if (!entry) return { title: "Not Found" };
 
   // 把用户真实在搜的精确词前置进标题/描述，提升近失词（P17–28）排名与 CTR
   // 注意：根 layout 已有 title.template "%s | Craftisle"，此处不再重复后缀，避免双 Craftisle

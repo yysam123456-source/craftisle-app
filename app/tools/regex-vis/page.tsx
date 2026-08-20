@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 // ---------- Static metadata ----------
 export const metadata = constructMetadata({
-  title: "Regex Visualizer Free — Online AST Graph | Craftisle",
+  title: "Regex Visualizer Free — Online AST Graph",
   description: "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JS/Python/PCRE. 100% browser-based.",
   keywords: [
     "regex visualizer online free",

@@ -14,7 +14,7 @@ import { CalendarDays, Clock, ArrowRight, Wrench } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Free Tool Guides & Tutorials | Learn How to Use Online Tools | Craftisle",
+  title: "Free Tool Guides & Tutorials | Learn How to Use Online Tools",
   description:
     "Comprehensive guides for every free online tool. Learn how to compress images, format JSON, generate QR codes, merge PDFs, and more — all free, all in your browser.",
 });

@@ -63,11 +63,11 @@ export const PAGE_META_BASE: Record<string, PageMeta> = {
   },
   "/": {
     route: "/",
-    title: "Craftisle — Free Software Directory & Online Tools",
+    title: "Craftisle — 16,000+ Free Tools & Open-Source Software Directory",
     description:
-      "Search 16,000+ free & open-source software. Find alternatives, compare tools. Plus: use 100+ online tools.",
+      "Browse 16,000+ free & open-source tools across 200+ categories. Find the best free alternatives to paid software, compare options, and use 100+ online tools — no signup, ever.",
     provenance: "verified",
-    lastOptimized: null,
+    lastOptimized: "2026-08-19",
   },
 };
 

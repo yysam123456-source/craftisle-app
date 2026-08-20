@@ -2,7 +2,7 @@ import ImageConvertClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Image Converter Free — Convert JPG/PNG/WebP/AVIF Online | Craftisle",
+  title: "Image Converter Free — Convert JPG/PNG/WebP/AVIF Online",
   description: "Free image converter online. Convert between JPG, PNG, WebP, AVIF, TIFF formats. Batch conversion supported. 100% browser-based, no signup required.",
   canonical: "https://craftisle.com/tools/image-convert",
 });

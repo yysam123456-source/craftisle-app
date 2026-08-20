@@ -29,11 +29,11 @@ export async function generateMetadata({
   const post = allPosts.find((p) => p.slugAsParams === slug);
 
   if (!post) {
-    return { title: "Article Not Found | Craftisle" };
+    return { title: "Article Not Found" };
   }
 
   return constructMetadata({
-    title: `${post.title} | Craftisle Blog`,
+    title: `${post.title}`,
     description: post.description,
     image: post.image ? `https://craftisle.com${post.image}` : undefined,
   });

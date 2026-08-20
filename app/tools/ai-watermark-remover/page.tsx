@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import WatermarkRemoverClient from "./client";
 
 export const metadata: Metadata = {
-  title: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online | Craftisle",
+  title: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online",
   description:
     "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng, Tongyi, Wenxin AI-generated images. Uses mathematically precise reverse alpha blending. 100% client-side, no upload, no signup required. Supports JPG, PNG, WebP formats.",
   keywords: [

@@ -15,7 +15,7 @@ import { CalendarDays, ExternalLink, Sparkles, ArrowRight } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Free Tool Reviews | In-Depth Analysis & Comparisons | Craftisle",
+  title: "Free Tool Reviews | In-Depth Analysis & Comparisons",
   description:
     "In-depth reviews of the best free tools for developers, creators, and businesses. Pros, cons, use cases, and alternatives for every tool. Updated regularly.",
 });

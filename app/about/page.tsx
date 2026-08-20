@@ -10,7 +10,7 @@ import { Wrench, Globe, Zap, ShieldCheck } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "About | Craftisle",
+  title: "About",
   description: "Learn about Craftisle — free online tools platform, built for creators and developers.",
   canonical: "https://craftisle.com/about",
 });

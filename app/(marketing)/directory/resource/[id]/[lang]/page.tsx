@@ -49,7 +49,7 @@ export async function generateMetadata({
   const { id, lang } = await params;
   const content = getContent(id, lang);
   if (!content) {
-    return { title: "Not Found | Craftisle" };
+    return { title: "Not Found" };
   }
 
   const langNames = {
@@ -59,7 +59,7 @@ export async function generateMetadata({
     'th': 'Thai', 'id': 'Indonesian', 'tr': 'Turkish',
   };
 
-  const title = `${getResourceName(id)} - ${langNames[lang] || lang} | Craftisle`;
+  const title = `${getResourceName(id)} - ${langNames[lang] || lang}`;
   const description = content.introduction?.slice(0, 160) || "";
 
   return {

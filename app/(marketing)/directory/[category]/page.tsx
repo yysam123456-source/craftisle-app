@@ -49,7 +49,7 @@ export async function generateMetadata({
 
   if (!cat) {
     return constructMetadata({
-      title: "Category Not Found | Resources | Craftisle",
+      title: "Category Not Found | Resources",
       description: "This resource category does not exist.",
     });
   }
@@ -87,11 +87,82 @@ export async function generateMetadata({
       "free open source operating systems",
       "best free terminal tools",
     ],
+    "Development": [
+      `best free developer tools ${year}`,
+      "free code formatter online",
+      "regex tester free no signup",
+      "free API testing tools",
+      "open source dev utilities",
+    ],
+    "Privacy": [
+      `best free privacy tools ${year}`,
+      "free VPN alternative no logs",
+      "free password manager open source",
+      "private browser alternative",
+      "anti-tracking tools free",
+    ],
+    "Design": [
+      `best free design tools ${year}`,
+      "free logo maker online",
+      "free UI kit resources",
+      "open source graphic design",
+      "free color palette generator",
+    ],
+    "Video": [
+      `best free video tools ${year}`,
+      "free video editor no watermark",
+      "free video downloader online",
+      "open source video converter",
+      "free screen recorder",
+    ],
+    "Music": [
+      `best free music tools ${year}`,
+      "free music downloader no signup",
+      "free audio editor online",
+      "open source music production",
+      "free royalty free music",
+    ],
+    "Storage": [
+      `best free cloud storage ${year}`,
+      "free file hosting no signup",
+      "open source self-hosted storage",
+      "free backup tools",
+      "free file sync",
+    ],
+    "Downloading": [
+      `best free download managers ${year}`,
+      "free torrent client open source",
+      "free youtube downloader",
+      "free file downloader no ads",
+      "open source download tools",
+    ],
+    "VPN": [
+      `best free VPN ${year}`,
+      "free VPN no logs no signup",
+      "open source VPN alternative",
+      "free privacy VPN",
+      "free proxy alternative",
+    ],
+    "Streaming": [
+      `best free streaming tools ${year}`,
+      "free media streaming no signup",
+      "open source streaming software",
+      "free IPTV player",
+      "free cast to TV tools",
+    ],
   };
 
+  const primaryLongTail = longTailKeywords[category]?.[0];
+  const description = primaryLongTail
+    ? `Looking for ${primaryLongTail}? We've curated ${count}+ free & open-source ${displayName.toLowerCase()} tools — no signup, no ads. Find the best paid alternative that costs you nothing.`
+    : `Looking for free ${displayName.toLowerCase()}? Browse ${count}+ hand-picked free & open-source ${displayName.toLowerCase()} tools and resources — no signup, no ads. The best paid alternative, for free.`;
+
   return constructMetadata({
-    title: `Best Free ${displayName} Resources ${year} (No Signup) | Craftisle`,
-    description: `Discover ${count}+ free ${displayName.toLowerCase()} tools and resources. 100% free, no signup. Best alternative to paid ${displayName.toLowerCase()} software.`,
+    title:
+      count > 0
+        ? `Best Free ${displayName} Resources ${year} — ${count}+ Listed (No Signup)`
+        : `Best Free ${displayName} Resources ${year} (No Signup)`,
+    description,
     keywords: longTailKeywords[category] || [
       `best free ${displayName.toLowerCase()} tools ${year}`,
       `free ${displayName.toLowerCase()} resources no signup`,

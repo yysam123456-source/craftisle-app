@@ -2,7 +2,7 @@ import OCRTool from "@/components/tools/OCRTool";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Free Online OCR — Extract Text from Images AI Powered | Craftisle",
+  title: "Free Online OCR — Extract Text from Images AI Powered",
   description: "Free AI OCR online. Extract text from images using AI. Supports English, Chinese, Japanese, Korean, and 100+ languages. Copy or download extracted text. 100% browser-based, no upload.",
   canonical: "https://craftisle.com/tools/ocr-text",
 });

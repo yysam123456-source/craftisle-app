@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Privacy Policy | Craftisle",
+  title: "Privacy Policy",
   description: "Craftisle Privacy Policy — how we collect, use, and protect your information.",
   canonical: "https://craftisle.com/privacy",
 });

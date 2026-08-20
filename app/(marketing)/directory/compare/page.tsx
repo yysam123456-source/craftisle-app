@@ -11,7 +11,7 @@ import { getCombinedMap, toSlug, type AlternativeEntry } from "@/lib/alternative
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Tool Alternatives Comparison | Craftisle",
+  title: "Tool Alternatives Comparison",
   description: "Compare popular paid tools with their free & open-source alternatives. Notion vs Obsidian, Figma vs Penpot, Slack vs Mattermost, and more.",
   canonical: "https://craftisle.com/directory/compare",
 });

@@ -9,7 +9,7 @@ import { Icons } from "@/components/shared/icons";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Login | Craftisle",
+  title: "Login",
   description: "Login to your Craftisle account",
   noIndex: true, // 认证页面不应该被索引
 });

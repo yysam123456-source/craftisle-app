@@ -2,7 +2,7 @@ import ImageCompressClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Image Compressor Free — Compress JPG/PNG/WebP Online | Craftisle",
+  title: "Image Compressor Free — Compress JPG/PNG/WebP Online",
   description: "Free image compressor online. Compress JPG, PNG, WebP, AVIF with quality control. Reduce image file size without losing quality. 100% browser-based, no signup.",
   canonical: "https://craftisle.com/tools/image-compress",
 });

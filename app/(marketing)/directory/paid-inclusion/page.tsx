@@ -36,7 +36,7 @@ const TIERS = [
 ];
 
 export const metadata = constructMetadata({
-  title: "Paid Inclusion | Craftisle Directory",
+  title: "Paid Inclusion",
   description: "Get your resource listed faster with paid inclusion options.",
   canonical: "https://craftisle.com/directory/paid-inclusion",
 });

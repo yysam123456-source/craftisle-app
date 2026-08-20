@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import MediaDownloaderClient from "./client";
 
 export const metadata: Metadata = {
-  title: "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram | Craftisle",
+  title: "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram",
   description:
     "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup required. Supports watermark-free downloads.",
   keywords: [

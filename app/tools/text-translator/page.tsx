@@ -2,7 +2,7 @@ import TextTranslatorClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Free Online Text Translator — 30+ Languages | Craftisle",
+  title: "Free Online Text Translator — 30+ Languages",
   description:
     "Translate text instantly between 30+ languages. Free online translator with auto-detect, real-time translation, text-to-speech, and copy. No signup required. Supports English, Chinese, Japanese, Korean, French, German, Spanish and more.",
   canonical: "https://craftisle.com/tools/text-translator",

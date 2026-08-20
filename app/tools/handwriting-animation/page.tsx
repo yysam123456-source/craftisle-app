@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!meta) return {};
 
   const url = `https://craftisle.com/tools/handwriting-animation`;
-  const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
+  const title = String(meta.seoTitle || `${meta.title}`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
   return {

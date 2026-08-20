@@ -255,7 +255,7 @@ export async function generateMetadata(props: BestPageProps): Promise<Metadata> 
   const block = findBlock(slug);
   if (block) {
     const is2026 = slug.endsWith("-2026");
-    const title = `${block.title} ${is2026 ? "2026" : ""} | Craftisle`;
+    const title = `${block.title} ${is2026 ? "2026" : ""}`;
     const description = block.subtitle || `Discover the best ${block.title} tools.`;
     return constructMetadata({
       title,
@@ -268,7 +268,7 @@ export async function generateMetadata(props: BestPageProps): Promise<Metadata> 
   if (!category) return {};
 
   const is2026 = slug.endsWith("-2026");
-  const title = `Best ${category.name} Tools ${is2026 ? "2026" : ""} — Free & Open Source | Craftisle`;
+  const title = `Best ${category.name} Tools ${is2026 ? "2026" : ""} — Free & Open Source`;
   const description = `Discover the best free and open-source ${category.name.toLowerCase()} tools. Curated list with alternatives and reviews.`;
 
   return constructMetadata({
@@ -397,7 +397,7 @@ export default async function BestToolsPage(props: BestPageProps) {
   }
 
   // ── Case 2: fmhy 原分类（原有逻辑）──
-  const pageTitle = `Best ${category.name} Tools (2026) | Craftisle`;
+  const pageTitle = `Best ${category.name} Tools (2026)`;
   const description = `Discover the best free and open-source ${category.name.toLowerCase()} tools. Curated list with alternatives and reviews.`;
 
   return (

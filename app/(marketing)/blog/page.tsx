@@ -31,7 +31,7 @@ import { CATEGORIES, CATEGORY_LIST } from "@/lib/tools";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Craftisle Tools — Free Online Tools for Developers & Creators | Craftisle Blog",
+  title: "Craftisle Tools — Free Online Tools for Developers & Creators",
   description:
     "Discover 135+ free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more. No signup, 100% browser-based.",
   keywords: [

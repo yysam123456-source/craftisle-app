@@ -7,7 +7,7 @@ import {
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Disclaimer | Craftisle",
+  title: "Disclaimer",
   description: "Craftisle Disclaimer — legal notices, affiliate disclosure, and third-party content policies.",
   canonical: "https://craftisle.com/disclaimer",
 });

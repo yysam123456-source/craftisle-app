@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   if (!meta) return {};
 
   const url = `https://craftisle.com/tools/${tool}`;
-  const title = String(meta.seoTitle || `${meta.title} | Craftisle Free Tools`);
+  const title = String(meta.seoTitle || `${meta.title}`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
   return constructMetadata({

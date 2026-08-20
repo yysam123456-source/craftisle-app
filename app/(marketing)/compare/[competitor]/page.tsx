@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = `https://craftisle.com/compare/${competitor}`;
   return {
-    title: `${data.name} Alternative — Free Online Tools | Craftisle`,
+    title: `${data.name} Alternative — Free Online Tools`,
     description: `Looking for a ${data.name} alternative? Craftisle offers 60+ free online tools — no signup, no file size limits, 100% browser-based.`,
     keywords: [
       `${data.name} alternative`,
@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Craftisle alternative",
     ],
     openGraph: {
-      title: `${data.name} Alternative — Free Online Tools | Craftisle`,
+      title: `${data.name} Alternative — Free Online Tools`,
       description: `Free ${data.name} alternative. No signup, no limits.`,
       url,
       type: "website",

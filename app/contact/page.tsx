@@ -10,7 +10,7 @@ import { constructMetadata } from "@/lib/utils";
 import { ContactForm } from "@/components/contact-form";
 
 export const metadata = constructMetadata({
-  title: "Contact | Craftisle",
+  title: "Contact",
   description: "Get in touch with Craftisle — suggestions, bug reports, or collaboration inquiries.",
   canonical: "https://craftisle.com/contact",
 });

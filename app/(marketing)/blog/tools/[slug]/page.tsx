@@ -54,7 +54,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const blog = loadToolBlog(slug);
-  if (!blog) return { title: "Guide Not Found | Craftisle" };
+  if (!blog) return { title: "Guide Not Found" };
 
   return constructMetadata({
     title: blog.title,

@@ -11,7 +11,7 @@ interface ToolEntry {
 }
 
 export const metadata = {
-  title: "How-to Guides — Free Online Tool Tutorials | Craftisle",
+  title: "How-to Guides — Free Online Tool Tutorials",
   description: "Step-by-step guides for using free online tools. Learn how to format JSON, generate QR codes, hash passwords, and more — no signup required.",
   keywords: [
     "how to use online tools",

@@ -7,7 +7,7 @@ import {
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata = constructMetadata({
-  title: "Cookie Policy | Craftisle",
+  title: "Cookie Policy",
   description: "Craftisle Cookie Policy — how we use cookies and similar tracking technologies.",
   canonical: "https://craftisle.com/cookie-policy",
 });

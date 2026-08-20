@@ -128,9 +128,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const resource = getResourceById(id);
-  if (!resource) return { title: "Resource Not Found | Craftisle" };
+  if (!resource) return { title: "Resource Not Found" };
 
-  const title = `${resource.name} Review — Free ${resource.categoryName || "Online"} Tool | Craftisle`;
+  const title = `${resource.name} Review — Free ${resource.categoryName || "Online"} Tool`;
     const cleanDesc = cleanDescription(resource.description);
   const generatedContent = loadGeneratedContent(id);
   const description = generatedContent?.introduction
@@ -172,7 +172,7 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       url: canonicalUrl,
-      title: generatedContent ? `${resource.name} — In-Depth Review | Craftisle` : title,
+      title: generatedContent ? `${resource.name} — In-Depth Review` : title,
       description,
       siteName: "Craftisle",
     },

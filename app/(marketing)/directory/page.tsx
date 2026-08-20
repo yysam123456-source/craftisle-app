@@ -25,7 +25,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const HOME_BLOCKS_FILE = join(__dirname, "../../..", "public", "data", "home-blocks.json");
 
 export const metadata: Metadata = constructMetadata({
-  title: "Find Free Tools for Any Task | Craftisle Directory",
+  title: "Find Free Tools for Any Task",
   description:
     "Discover 16,000+ curated free & open-source tools across 200+ categories. AI assistants, development tools, design software, and more. 100% free, no signup required.",
   keywords: [
