@@ -155,7 +155,7 @@ export async function generateMetadata({
   const primaryLongTail = longTailKeywords[category]?.[0];
   const description = primaryLongTail
     ? `Looking for ${primaryLongTail}? We've curated ${count}+ free & open-source ${displayName.toLowerCase()} tools — no signup, no ads. Find the best paid alternative that costs you nothing.`
-    : `Looking for free ${displayName.toLowerCase()}? Browse ${count}+ hand-picked free & open-source ${displayName.toLowerCase()} tools and resources — no signup, no ads. The best paid alternative, for free.`;
+    : `Looking for the best free ${displayName.toLowerCase()} tools? Browse ${count}+ hand-picked free & open-source ${displayName.toLowerCase()} tools and resources — no signup, no ads. The best paid alternative, for free.`;
 
   return constructMetadata({
     title:
