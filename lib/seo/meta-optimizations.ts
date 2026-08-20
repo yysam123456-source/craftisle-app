@@ -32,28 +32,28 @@ export const META_RECOMMENDATIONS: MetaRecommendation[] = [
       "g suite alternatives free",
       "intellij community edition",
     ],
-    title: "Free MS Project, Google Workspace & IntelliJ Alternatives + 160 Tools | Craftisle",
+    title: "Free MS Project, Google Workspace & IntelliJ Alternatives + 160 Tools",
     description:
       "Looking for free MS Project, Google Workspace, or IntelliJ alternatives? Craftisle offers 160+ free browser-based tools — project planners, office & PDF utilities, dev tools, AI image editors. No signup, no download, 100% client-side and private.",
   },
   {
     route: "/tools/craftisle-dev-tools",
     matchedQueries: ["intellij community", "intellij idea community edition", "idea community edition", "intellij version"],
-    title: "Free IntelliJ & IDE Alternatives — Online Dev Tools | Craftisle",
+    title: "Free IntelliJ & IDE Alternatives — Online Dev Tools",
     description:
       "Need a free IntelliJ / IDE alternative? Use Craftisle's browser-based developer tools — code formatters, regex testers, Base64, hash, JSON/SQL converters. No install, runs 100% in your browser.",
   },
   {
     route: "/tools/craftisle-image-tools",
     matchedQueries: ["svg manipulation", "image compress", "image upscale", "ai background remover"],
-    title: "Free Image Tools — Compress, Upscale, SVG Edit & BG Remover | Craftisle",
+    title: "Free Image Tools — Compress, Upscale, SVG Edit & BG Remover",
     description:
       "Edit images free in your browser: compress, upscale, crop, convert, remove background, manipulate SVG. No upload to server, no signup. 100% client-side privacy.",
   },
   {
     route: "/about/craftisle-vs-craft-island",
     matchedQueries: ["mykonos island voxels", "craftisle vs craft island"],
-    title: "Craftisle vs Craft Island — Free Tools Site, Not a Game | Craftisle",
+    title: "Craftisle vs Craft Island — Free Tools Site, Not a Game",
     description:
       "Craftisle.com is a free online tools platform (image, PDF, dev utilities) — NOT the Craft Island game. See the difference and browse 160+ free browser-based tools, no signup required.",
   },

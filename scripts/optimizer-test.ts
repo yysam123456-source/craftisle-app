@@ -29,7 +29,7 @@ assert(pageUrlToRoute(undefined) === null, "无 pageUrl → null");
 assert(optimizeTitle("Free Tools | Craftisle", "ms project alternative", "Craftisle")
   .toLowerCase().includes("ms project alternative"), "标题未含目标词时前置目标词");
 assert(optimizeTitle("ms project alternative Free Tools | Craftisle", "ms project alternative", "Craftisle")
-  === "ms project alternative Free Tools | Craftisle", "标题已含目标词则不改（避免重复）");
+  === "ms project alternative Free Tools", "标题已含目标词则不改，且剥离品牌后缀（避免与根 template 叠加成双 Craftisle）");
 
 // ── 构造含近失/低CTR 的分析结果 ──
 const rows: QueryPageRow[] = [

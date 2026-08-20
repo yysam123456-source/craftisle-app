@@ -79,16 +79,23 @@ export function pageUrlToRoute(pageUrl?: string): string | null {
   }
 }
 
-/** 保守改写标题：若目标词未出现在当前标题，则把「目标词」前置为卖点短语 */
+/**
+ * 保守改写标题：若目标词未出现在当前标题，则把「目标词」前置为卖点短语。
+ * 重要：返回的标题不含品牌后缀 —— 根 layout 的 title.template "%s | Craftisle"
+ * 会在渲染时统一追加；若此处带后缀，会与 template 叠加成双 " | Craftisle"。
+ * 防御性：先剥离 current 中可能残留的 " | <brand>" 后缀。
+ */
 export function optimizeTitle(current: string, query: string, siteName: string): string {
-  const c = current.trim();
+  const brandToken = `| ${siteName}`;
+  const c = current.includes(brandToken)
+    ? current.slice(0, current.indexOf(brandToken)).trim()
+    : current.replace(/\s*\|\s*.*$/, "").trim();
   const q = query.trim();
   if (!q || c.toLowerCase().includes(q.toLowerCase())) return c; // 已含该词则不改
   // 取查询中的核心名词短语，去掉语气词，构造自然标题
   const phrase = q.replace(/\b(free|online|best|the|a|an)\b/gi, "").replace(/\s+/g, " ").trim();
   if (!phrase) return c;
-  const brand = c.includes("|") ? c.slice(c.indexOf("|")) : `| ${siteName}`;
-  return `${capitalize(phrase)} ${brand}`.trim();
+  return capitalize(phrase); // 品牌由根 layout template 统一追加
 }
 
 /** 保守改写描述：在原文前补一句点题句（含目标词），不覆盖原文价值信息 */
@@ -135,7 +142,7 @@ export function buildOptimizationPlan(
         const seeds = extractSeedsFromTarget(a.target);
         for (const seed of seeds.slice(0, 3)) {
           const route = `/l/${slugify(seed)}`;
-          const proposedTitle = `${capitalize(seed)} — Free Online Tool | Craftisle`;
+          const proposedTitle = `${capitalize(seed)} — Free Online Tool`;
           const proposedDesc = `Free online ${seed}. No signup, 100% client-side, private.`;
           keepBest(`${route}|${a.id}|${seed}`, {
             actionId: `${a.id}-${slugify(seed)}`,

@@ -31,7 +31,7 @@ export interface PageMeta {
 export const PAGE_META_BASE: Record<string, PageMeta> = {
   "/tools": {
     route: "/tools",
-    title: "Free MS Project, Google Workspace & IntelliJ Alternatives + 160 Tools | Craftisle",
+    title: "Free MS Project, Google Workspace & IntelliJ Alternatives + 160 Tools",
     description:
       "Looking for free MS Project, Google Workspace, or IntelliJ alternatives? Craftisle offers 160+ free browser-based tools — project planners, office & PDF utilities, dev tools, AI image editors, regex testers. No signup, no download, 100% client-side and private.",
     provenance: "verified",
