@@ -22,6 +22,15 @@ import { constructMetadata } from "@/lib/utils";
 
 const baseUrl = "https://craftisle.com";
 
+/**
+ * 取该付费工具的首要 SEO 关键词（用于前置进标题/描述/H1）。
+ * 优先用数据里的 seoKeywords[0]（已含真实搜索词，如 "google workspace alternative"）；
+ * 缺失时按 paidTool 派生 "x alternative"，保证任何条目都能拿到一个精确匹配短语。
+ */
+function getPrimaryKw(entry: AlternativeEntry): string {
+  return entry.seoKeywords?.[0] || `${entry.paidTool.toLowerCase()} alternative`;
+}
+
 export const revalidate = 86400; // ISR: 24小时重新生成
 
 export async function generateStaticParams() {
@@ -38,8 +47,10 @@ export async function generateMetadata({
   const entry = getAlternativeBySlug(tool);
   if (!entry) return { title: "Not Found | Craftisle" };
 
-  const title = `Best Free ${entry.paidTool} Alternatives in 2026 | Craftisle`;
-  const description = `Looking for free ${entry.paidTool} alternatives? We've curated ${entry.alternatives.length} free options that can replace ${entry.paidTool} — no subscription required.`;
+  // 把用户真实在搜的精确词前置进标题/描述，提升近失词（P17–28）排名与 CTR
+  const primaryKw = getPrimaryKw(entry);
+  const title = `${primaryKw} — Best Free ${entry.paidTool} Alternatives in 2026 | Craftisle`;
+  const description = `Looking for ${primaryKw}? We've curated ${entry.alternatives.length} free options that can replace ${entry.paidTool} — no subscription required. Compare features, pricing & migration difficulty.`;
 
   return constructMetadata({
     title,
@@ -88,6 +99,7 @@ export default async function AlternativesPage({
   const entry = getAlternativeBySlug(tool);
   if (!entry) notFound();
 
+  const primaryKw = getPrimaryKw(entry);
   const featured = entry.alternatives.filter((a) => a.featured);
   const others = entry.alternatives.filter((a) => !a.featured);
 
@@ -175,7 +187,7 @@ export default async function AlternativesPage({
               </div>
 
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">
-                Best Free {entry.paidTool} Alternatives in 2026
+                {primaryKw ? `${entry.paidTool} Alternatives — ${primaryKw}` : `Best Free ${entry.paidTool} Alternatives in 2026`}
               </h1>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
@@ -202,7 +214,7 @@ export default async function AlternativesPage({
                 {entry.description ? entry.description.split("\n\n").map((para, i) => (
                   <p key={i} className="mb-3 leading-relaxed">{para}</p>
                 )) : (
-                  <p className="mb-3 leading-relaxed">Looking for free alternatives to {entry.paidTool}? We&apos;ve curated {entry.alternatives.length} free options that can replace {entry.paidTool} — no subscription required.</p>
+                  <p className="mb-3 leading-relaxed">Looking for {primaryKw}? We&apos;ve curated {entry.alternatives.length} free options that can replace {entry.paidTool} — no subscription required.</p>
                 )}
               </div>
 
