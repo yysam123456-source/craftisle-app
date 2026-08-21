@@ -2231,6 +2231,134 @@ export const ALTERNATIVES_MAP: Record<string, AlternativeEntry> = {
     ],
   },
 
+  // ============================================================
+  // 项目管理（捕获 GSC 真实查询：ms project alternative / free ms project alternative）
+  // ============================================================
+  "Microsoft Project": {
+    paidTool: "Microsoft Project",
+    paidToolUrl: "https://www.microsoft.com/en-us/microsoft-365/project/desktop-project-management-software",
+    tagline: "The enterprise desktop project management tool — powerful, but expensive and desktop-bound",
+    description:
+      "Microsoft Project is the long-standing enterprise standard for project scheduling, Gantt charts, and resource management. It's powerful for complex plans, but its licensing is costly (Project Plan 1 starts at $10/user/month, Plan 3 at $30/user/month) and it's largely desktop-bound with limited real-time collaboration. Many teams are moving to free or freemium alternatives that run in the browser, support real-time collaboration, and don't require a per-seat subscription.",
+    pricing: "Project Plan 1 $10/user/month; Plan 3 $30/user/month; Plan 5 $55/user/month (billed annually)",
+    painPoints: [
+      { problem: "High per-seat subscription cost", impact: "A 10-person team pays $1,200–$6,600/year" },
+      { problem: "Primarily desktop-bound (Windows-only for full features)", impact: "Mac and mobile users get a degraded experience" },
+      { problem: "Weak real-time collaboration", impact: "Teams can't co-edit a plan live without expensive add-ons" },
+      { problem: "Steep learning curve for Gantt/scheduling", impact: "New PMs take weeks to become productive" },
+      { problem: "No free tier — trial only", impact: "Casual users can't try it without paying" },
+    ],
+    whySwitch: [
+      "Save $1,200+/year for a 10-person team with free alternatives",
+      "Work in the browser with real-time collaboration on any OS",
+      "Use open-source tools (ProjectLibre, GanttProject, OpenProject) with no license",
+      "Self-host for complete data control and privacy",
+      "Get simpler onboarding with Kanban-style tools like Trello and ClickUp",
+    ],
+    alternatives: [
+      {
+        name: "ProjectLibre",
+        url: "https://www.projectlibre.com",
+        reason: "Open-source MS Project replacement that opens .mpp files and mirrors the desktop UI — 100% free",
+        description:
+          "ProjectLibre is the most direct free replacement for Microsoft Project. It opens native .mpp project files, supports Gantt charts, network diagrams, resource histograms, and earned value management. The desktop app is free and open-source, making it the go-to for users who just want Project without the license fee.",
+        features: ["Opens .mpp files", "Gantt charts & network diagrams", "Resource histograms", "Earned value management", "Cross-platform desktop (Windows/macOS/Linux)", "Cloud version (paid) available"],
+        pros: ["100% free and open-source", "Direct .mpp compatibility", "Familiar MS Project-like interface", "Runs fully offline", "No per-seat cost"],
+        cons: ["Desktop-only for the free version (cloud is paid)", "UI feels dated vs modern SaaS", "Limited real-time collaboration"],
+        bestFor: "Users who specifically need an MS Project desktop replacement that opens .mpp files",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Easy",
+        rating: 4.4,
+        featured: true,
+      },
+      {
+        name: "GanttProject",
+        url: "https://www.ganttproject.biz",
+        reason: "Free, open-source Gantt chart tool for scheduling and resource load — no license required",
+        description:
+          "GanttProject is a lightweight free desktop tool focused on Gantt charts, task scheduling, and resource assignment. It exports to PDF/PNG and can import/export Microsoft Project XML. It's ideal for simpler schedules that don't need Project's full enterprise feature set.",
+        features: ["Gantt charts", "Resource load charts", "MS Project XML import/export", "PDF/PNG export", "Cross-platform desktop"],
+        pros: ["Completely free and open-source", "Simple and fast for scheduling", "Good for small teams", "No account required"],
+        cons: ["No cloud/real-time collaboration", "Fewer advanced PM features", "Dated interface"],
+        bestFor: "Small teams and students who need straightforward Gantt scheduling for free",
+        isFree: true,
+        isOpenSource: true,
+        migrationDifficulty: "Easy",
+        rating: 4.2,
+      },
+      {
+        name: "OpenProject",
+        url: "https://www.openproject.org",
+        reason: "Open-source, self-hostable project management with Gantt, Agile boards, and time tracking — free to self-host",
+        description:
+          "OpenProject is a powerful open-source project management suite covering Gantt timelines, Agile/Scrum boards, work packages, time tracking, and cost reporting. The Community Edition is free to self-host (Docker), giving teams full data control. A managed cloud tier is also available.",
+        features: ["Gantt timelines", "Scrum/Agile boards", "Work packages", "Time & cost tracking", "Self-hosting (Docker)", "Baseline comparison"],
+        pros: ["Free open-source Community Edition", "Self-hostable for full privacy", "Covers both classic & Agile PM", "Strong permissions model"],
+        cons: ["Self-hosting needs technical setup", "Steeper learning curve", "Some features locked to Enterprise cloud"],
+        bestFor: "Engineering and product teams wanting a self-hosted, open-source Project replacement",
+        isFree: true,
+        isOpenSource: true,
+        isSelfHosted: true,
+        migrationDifficulty: "Medium",
+        rating: 4.5,
+      },
+      {
+        name: "ClickUp",
+        url: "https://clickup.com",
+        reason: "Freemium all-in-one work platform with Gantt, tasks, docs, and real-time collaboration",
+        description:
+          "ClickUp is a popular freemium work management platform. Its free plan includes tasks, docs, whiteboards, and limited Gantt views, with real-time collaboration across the team. It's a broader replacement than Project, suitable for teams that want one tool for planning and execution.",
+        features: ["Gantt view (paid on free tier limits)", "Tasks & subtasks", "Docs & whiteboards", "Real-time collaboration", "Automations", "Cross-platform"],
+        pros: ["Generous free plan", "Real-time collaboration built-in", "Very customizable", "All-in-one (tasks, docs, chat)"],
+        cons: ["Full Gantt/private views need paid plan", "Can feel overwhelming", "Notification overload without tuning"],
+        bestFor: "Teams wanting a collaborative, all-in-one replacement rather than just a scheduler",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Medium",
+        rating: 4.6,
+      },
+      {
+        name: "Trello",
+        url: "https://trello.com",
+        reason: "Free, visual Kanban board great for lightweight project tracking without Project's complexity",
+        description:
+          "Trello is a free, visual Kanban board tool owned by Atlassian. The free plan supports unlimited cards and up to 10 boards per workspace with Power-Ups. It's the easiest way to move a team off Microsoft Project when what you really need is simple, visual task tracking.",
+        features: ["Kanban boards", "Unlimited cards (free)", "Power-Ups & automation (Butler)", "Timeline view (paid)", "Cross-platform & mobile"],
+        pros: ["Free and instantly usable", "Visual and intuitive", "Great for small teams", "Mobile apps included"],
+        cons: ["No native Gantt on free plan (Timeline is paid)", "Weak for complex scheduling", "Limited reporting on free tier"],
+        bestFor: "Small teams and individuals who want simple visual task management for free",
+        isFree: true,
+        isOpenSource: false,
+        migrationDifficulty: "Easy",
+        rating: 4.3,
+      },
+    ],
+    migrationGuide: {
+      steps: [
+        "Export your Microsoft Project plan as XML (File → Save As → XML)",
+        "Import the XML into GanttProject or OpenProject to preserve tasks and dependencies",
+        "For a direct desktop replacement, install ProjectLibre and open the original .mpp file",
+        "If you prefer a collaborative tool, create a ClickUp or Trello workspace and recreate the task board",
+        "Invite your team and confirm the new plan renders before cancelling the Project license",
+      ],
+      tips: [
+        "ProjectLibre opens .mpp natively — use it first if you just need to view/edit existing plans",
+        "OpenProject is best if you need self-hosted, real-time, multi-user planning",
+        "ClickUp/Trello trade deep scheduling for collaboration — pick them only if your team doesn't need true Gantt",
+      ],
+    },
+    category: "Project Management",
+    seoKeywords: ["ms project alternative", "microsoft project alternative", "free ms project alternative", "microsoft project alternative free", "free project management software like ms project"],
+    faqs: [
+      { question: "Is there a free alternative to Microsoft Project?", answer: "Yes. ProjectLibre and GanttProject are 100% free and open-source desktop tools that open .mpp and Project XML files. OpenProject is free to self-host. ClickUp and Trello offer free tiers for collaborative planning." },
+      { question: "Which Microsoft Project alternative opens .mpp files?", answer: "ProjectLibre is the closest free replacement — it opens native Microsoft Project .mpp files and mirrors the desktop interface, so you can keep working on existing plans without a license." },
+      { question: "Can I self-host a Microsoft Project alternative?", answer: "Yes. OpenProject's Community Edition is free and self-hostable with Docker, giving you Gantt timelines, Agile boards, and time tracking with full data control." },
+      { question: "What's the best free alternative for real-time team collaboration?", answer: "ClickUp (free plan) and Trello (free plan) both support real-time collaboration in the browser. OpenProject also supports it if self-hosted. Microsoft Project itself has limited live collaboration without expensive add-ons." },
+      { question: "Do any free MS Project alternatives support Gantt charts?", answer: "Yes. ProjectLibre, GanttProject, and OpenProject (free/self-hosted) all support Gantt charts. ClickUp and Trello offer Gantt/Timeline views on their paid plans." },
+    ],
+  },
+
 
 // ============================================================
 };
