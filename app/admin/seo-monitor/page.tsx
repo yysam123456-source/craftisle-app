@@ -56,7 +56,7 @@ interface ByTypeData {
   other: any;
 }
 
-type Tab = "overview" | "queries" | "trends" | "alerts" | "compare" | "gaps";
+type Tab = "overview" | "queries" | "trends" | "alerts" | "compare" | "gaps" | "sites";
 
 // ── Topical Gap Detector types ──
 interface RankingGapQuery {
@@ -179,6 +179,43 @@ interface NetworkRec {
   detail: string;
 }
 
+// ── 子站 GSC 分站看板类型 ──
+interface NetworkSite {
+  slug: string;
+  name: string;
+  host: string;
+  color: string;
+  enabled: boolean;
+  impressions: number;
+  clicks: number;
+  avgPosition: number;
+  avgCtr: number;
+  queryCount: number;
+  uniquePages: number;
+  share: number;
+}
+interface NetworkData {
+  total: { impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number };
+  lastWeek: { impressions: number; clicks: number; avgPosition: number; avgCtr: number };
+  changes: { impressionsPct: number; clicksPct: number } | null;
+  sites: NetworkSite[];
+  siteConfig: any[];
+  snapshotAt: string;
+}
+interface SiteDetailTopQuery {
+  query: string;
+  impressions: number;
+  clicks: number;
+  position: number;
+}
+interface SiteDetail {
+  site: { slug: string; name: string; host: string; color: string };
+  thisWeek: any;
+  lastWeek: any;
+  changes: any;
+  topQueries: SiteDetailTopQuery[];
+}
+
 // ── Utils ──
 function formatNum(n: number): string {
   if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
@@ -299,6 +336,9 @@ export default function SeoMonitorPage() {
     hasData: boolean;
   } | null>(null);
   const [networkRecs, setNetworkRecs] = useState<NetworkRec[]>([]);
+  const [network, setNetwork] = useState<NetworkData | null>(null);
+  const [siteDetail, setSiteDetail] = useState<SiteDetail | null>(null);
+  const [detailSite, setDetailSite] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -307,7 +347,7 @@ export default function SeoMonitorPage() {
       setLoading(true);
       setError("");
       try {
-        const [sum, trend, top, alt, type, gap, net] = await Promise.all([
+        const [sum, trend, top, alt, type, gap, net, netData] = await Promise.all([
           fetch("/api/analytics/summary").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/trends?period=90").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/top-queries?limit=25").then(r => r.ok ? r.json() : null),
@@ -315,6 +355,7 @@ export default function SeoMonitorPage() {
           fetch("/api/analytics/by-type").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/topical-gaps").then(r => r.ok ? r.json() : null),
           fetch("/api/analytics/network/recommendations").then(r => r.ok ? r.json() : null),
+          fetch("/api/analytics/network").then(r => r.ok ? r.json() : null),
         ]);
         if (sum) setSummary(sum);
         if (trend) setTrends(trend);
@@ -323,6 +364,7 @@ export default function SeoMonitorPage() {
         if (type) setByType(type.byType);
         if (gap?.clusters) setTopical({ summary: gap.summary, clusters: gap.clusters, roadmap: gap.roadmap ?? {}, cannibalization: gap.cannibalization ?? [], technical: gap.technical ?? null, content: gap.content ?? null, competitor: gap.competitor ?? null, hasData: gap.hasData });
         if (net?.recommendations) setNetworkRecs(net.recommendations);
+        if (netData) setNetwork(netData);
       } catch (e: any) {
         setError(e.message);
       } finally {
@@ -331,6 +373,20 @@ export default function SeoMonitorPage() {
     }
     loadAll();
   }, []);
+
+  async function selectSite(slug: string) {
+    setDetailSite(slug);
+    try {
+      const r = await fetch(`/api/analytics/network?site=${slug}`);
+      if (r.ok) setSiteDetail(await r.json());
+    } catch (e) {
+      console.error("[SitesTab] detail fetch failed:", e);
+    }
+  }
+  function closeDetail() {
+    setSiteDetail(null);
+    setDetailSite(null);
+  }
 
   if (loading) {
     return (
@@ -370,12 +426,12 @@ export default function SeoMonitorPage() {
 
       {/* Tabs */}
       <nav className="border-b border-zinc-700/50 px-6 py-2 flex gap-2">
-        {(["overview", "queries", "trends", "alerts", "compare", "gaps"] as Tab[]).map(t => (
+        {(["overview", "queries", "trends", "alerts", "compare", "gaps", "sites"] as Tab[]).map(t => (
           <TabButton
             key={t}
             active={tab === t}
             onClick={() => setTab(t)}
-            label={t === "overview" ? "概览" : t === "queries" ? "搜索词" : t === "trends" ? "趋势" : t === "alerts" ? `告警${alerts.filter(a => !a.resolved).length ? ` (${alerts.filter(a => !a.resolved).length})` : ""}` : t === "compare" ? "对比" : "差距"}
+            label={t === "overview" ? "概览" : t === "queries" ? "搜索词" : t === "trends" ? "趋势" : t === "alerts" ? `告警${alerts.filter(a => !a.resolved).length ? ` (${alerts.filter(a => !a.resolved).length})` : ""}` : t === "compare" ? "对比" : t === "sites" ? "子站" : "差距"}
           />
         ))}
       </nav>
@@ -392,6 +448,8 @@ export default function SeoMonitorPage() {
           <TrendsTab trends={trends} />
         ) : tab === "alerts" ? (
           <AlertsTab alerts={alerts} />
+        ) : tab === "sites" ? (
+          <SitesTab network={network} siteDetail={siteDetail} onSelectSite={selectSite} onCloseDetail={closeDetail} />
         ) : (
           <CompareTab byType={byType} />
         )}
@@ -653,6 +711,121 @@ function CompareTab({ byType }: { byType: Record<string, any> | null }) {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// ── 子站 GSC 分站看板 Tab ──
+function SitesTab({ network, siteDetail, onSelectSite, onCloseDetail }: {
+  network: NetworkData | null;
+  siteDetail: SiteDetail | null;
+  onSelectSite: (slug: string) => void;
+  onCloseDetail: () => void;
+}) {
+  if (!network) {
+    return <div className="text-zinc-500 text-center py-10">子站数据加载中…</div>;
+  }
+  const t = network.total;
+  const ch = network.changes;
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <Card title="全网展示" value={formatNum(t.impressions)} change={ch?.impressionsPct} />
+        <Card title="全网点击" value={formatNum(t.clicks)} change={ch?.clicksPct} />
+        <Card title="平均排名" value={t.avgPosition.toFixed(1)} inverseChange />
+        <Card title="平均 CTR" value={t.avgCtr.toFixed(2)} unit="%" />
+        <Card title="搜索词" value={formatNum(t.queryCount)} />
+        <Card title="收录页" value={formatNum(t.uniquePages)} />
+      </div>
+
+      <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg overflow-hidden">
+        <div className="px-4 py-2 text-sm text-zinc-400 border-b border-zinc-700/50">各子站 GSC 表现（本周 · 点击行查看 Top 查询词）</div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-zinc-700/50 text-zinc-400 text-left">
+                <th className="p-3 font-medium">子站</th>
+                <th className="p-3 font-medium text-right">展示</th>
+                <th className="p-3 font-medium text-right">点击</th>
+                <th className="p-3 font-medium text-right">CTR</th>
+                <th className="p-3 font-medium text-right">排名</th>
+                <th className="p-3 font-medium text-right">词数</th>
+                <th className="p-3 font-medium text-right">收录页</th>
+                <th className="p-3 font-medium">占全网</th>
+              </tr>
+            </thead>
+            <tbody>
+              {network.sites.map((s) => (
+                <tr key={s.slug} onClick={() => onSelectSite(s.slug)} className="border-b border-zinc-700/20 hover:bg-zinc-700/20 transition-colors cursor-pointer">
+                  <td className="p-3">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: s.color }} />
+                      <span className="text-zinc-200 truncate">{s.name}</span>
+                    </div>
+                    <div className="text-[11px] text-zinc-500 ml-[18px] mt-0.5">{s.host}</div>
+                  </td>
+                  <td className="p-3 text-right text-zinc-300 font-mono">{formatNum(s.impressions)}</td>
+                  <td className="p-3 text-right text-zinc-300 font-mono">{formatNum(s.clicks)}</td>
+                  <td className="p-3 text-right text-zinc-300 font-mono">{s.avgCtr}%</td>
+                  <td className={`p-3 text-right font-mono ${positionColor(s.avgPosition)}`}>{s.avgPosition > 0 ? (s.avgPosition > 100 ? "100+" : s.avgPosition.toFixed(1)) : "—"}</td>
+                  <td className="p-3 text-right text-zinc-300 font-mono">{s.queryCount}</td>
+                  <td className="p-3 text-right text-zinc-300 font-mono">{s.uniquePages}</td>
+                  <td className="p-3">
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 h-1.5 bg-zinc-700/50 rounded-full overflow-hidden max-w-[80px]">
+                        <div className="h-full" style={{ width: `${s.share}%`, background: s.color }} />
+                      </div>
+                      <span className="text-xs text-zinc-400 w-10 text-right">{s.share}%</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {siteDetail && (
+        <SiteDetailPanel detail={siteDetail} onClose={onCloseDetail} />
+      )}
+
+      <p className="text-xs text-zinc-500">数据快照：{network.snapshotAt}。数据源：GSC Domain 属性 sc-domain:craftisle.com 的 page 维度，按子域名自动归类（无需各子站独立 property）。零曝光子站（imgprompt / resume / viewer）需在 GSC 验证收录 + 提交 sitemap + 主站内链导量。</p>
+    </div>
+  );
+}
+
+function SiteDetailPanel({ detail, onClose }: { detail: SiteDetail; onClose: () => void }) {
+  return (
+    <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-4 space-y-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full" style={{ background: detail.site.color }} />
+          <h3 className="font-semibold text-white">{detail.site.name}</h3>
+          <span className="text-xs text-zinc-500">{detail.site.host}</span>
+        </div>
+        <button onClick={onClose} className="text-xs px-2 py-1 bg-zinc-700 text-zinc-300 rounded hover:bg-zinc-600 transition-colors">关闭</button>
+      </div>
+      <div className="grid grid-cols-4 gap-3 text-center">
+        <div><div className="text-xs text-zinc-500">展示</div><div className="font-bold text-zinc-200">{formatNum(detail.thisWeek?.impressions ?? 0)}</div></div>
+        <div><div className="text-xs text-zinc-500">点击</div><div className="font-bold text-zinc-200">{formatNum(detail.thisWeek?.clicks ?? 0)}</div></div>
+        <div><div className="text-xs text-zinc-500">平均排名</div><div className={`font-bold ${positionColor(detail.thisWeek?.avgPosition ?? 0)}`}>{detail.thisWeek?.avgPosition ? detail.thisWeek.avgPosition.toFixed(1) : "—"}</div></div>
+        <div><div className="text-xs text-zinc-500">搜索词</div><div className="font-bold text-zinc-200">{detail.thisWeek?.queryCount ?? 0}</div></div>
+      </div>
+      {detail.topQueries && detail.topQueries.length > 0 ? (
+        <div>
+          <div className="text-xs text-zinc-400 mb-2">Top 查询词</div>
+          <div className="space-y-1">
+            {detail.topQueries.map((q, i) => (
+              <div key={i} className="flex justify-between text-xs text-zinc-400 border-b border-zinc-700/30 last:border-0 py-1">
+                <span className="truncate text-zinc-300" title={q.query}>{q.query}</span>
+                <span className="text-zinc-500 ml-2 shrink-0">P{q.position.toFixed(1)} · {formatNum(q.impressions)} 展示</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="text-xs text-zinc-500">暂无 Top 查询词（可能零曝光）</div>
+      )}
     </div>
   );
 }
