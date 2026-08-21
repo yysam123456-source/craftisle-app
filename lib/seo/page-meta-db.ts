@@ -119,6 +119,27 @@ export async function saveOverrides(list: PageMetaOverride[]): Promise<number> {
   }
 }
 
+/** 删除指定路由的覆盖(护栏路由自愈:清除历史坏覆盖,页面回退静态注册表)。返回删除条数。 */
+export async function deleteOverrides(routes: string[]): Promise<number> {
+  if (routes.length === 0 || !process.env.DATABASE_URL) return 0;
+  let deleted = 0;
+  try {
+    await ensureTable();
+    for (const r of routes) {
+      const rows = await prisma.$queryRawUnsafe<Array<{ route: string }>>(
+        `DELETE FROM ${TABLE} WHERE route = $1 RETURNING route`,
+        r,
+      );
+      deleted += rows.length;
+    }
+    if (deleted > 0) await refreshOverrides();
+    return deleted;
+  } catch (e: any) {
+    console.warn("[page-meta-db] 删除覆盖失败：", e?.message);
+    return 0;
+  }
+}
+
 /** 测试钩子：直接注入缓存，便于离线验证合并逻辑（不触 DB）。传 null 清除。 */
 export function __setOverrideForTest(route: string, ov: Partial<PageMetaOverride> | null): void {
   if (ov === null) overrideCache.delete(route);

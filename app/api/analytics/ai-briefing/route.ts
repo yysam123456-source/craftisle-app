@@ -14,6 +14,7 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { PAGE_META_BASE } from "@/lib/seo/page-meta";
 import { benchmarkCtr } from "@/lib/seo/topical-gaps";
+import { PROTECTED_ROUTES } from "@/lib/seo/optimizer";
 
 const prisma = new PrismaClient();
 
@@ -220,6 +221,7 @@ export async function GET(request: Request) {
       })),
       optimizer: {
         pageMetaBaseRoutes: Object.keys(PAGE_META_BASE),
+        protectedRoutes: Array.from(PROTECTED_ROUTES),
         autoApplyCron: true, // vercel.json: /api/cron/auto-optimize?apply=1 每周一 07:00 UTC
         overrideCount: overrides.length,
         overrides,
@@ -260,7 +262,7 @@ type Briefing = {
   lowCtrQueries: Array<{ query: string; position: number; ctr: number; benchmarkCtr: number; impressions: number; missedClicks: number }>;
   activeAlerts: Array<{ type: string; severity: string; query: string; message: string; createdAt: string }>;
   risingQueries: Array<{ query: string; count: number; previousCount: number | null; growthPct: number | null }>;
-  optimizer: { pageMetaBaseRoutes: string[]; autoApplyCron: boolean; overrideCount: number; overrides: Array<{ route: string; title: string | null; description: string | null; provenance: string; lastOptimized: string | null }> };
+  optimizer: { pageMetaBaseRoutes: string[]; protectedRoutes: string[]; autoApplyCron: boolean; overrideCount: number; overrides: Array<{ route: string; title: string | null; description: string | null; provenance: string; lastOptimized: string | null }> };
   focus: { zeroImpressionSites: string[]; biggestNearMiss: { query: string; position: number; impressions: number } | null; biggestCtrMiss: { query: string; position: number; ctr: number; benchmarkCtr: number; impressions: number; missedClicks: number } | null };
   endpoints: Record<string, string>;
 };
@@ -317,6 +319,7 @@ function renderMarkdown(b: Briefing): string {
   L.push(``);
   L.push(`## 优化器状态`);
   L.push(`- 可自动改写路由(${b.optimizer.pageMetaBaseRoutes.length}): ${b.optimizer.pageMetaBaseRoutes.join(", ")}`);
+  L.push(`- 护栏路由(永不自动改写): ${b.optimizer.protectedRoutes.join(", ") || "无"}`);
   L.push(`- 周一自动落库: ${b.optimizer.autoApplyCron ? "已启用(vercel.json ?apply=1)" : "未启用"}`);
   L.push(`- 已生效覆盖: ${b.optimizer.overrideCount} 条`);
   for (const ov of b.optimizer.overrides) {

@@ -80,10 +80,18 @@ export function pageUrlToRoute(pageUrl?: string): string | null {
 }
 
 /**
- * 保守改写标题：若目标词未出现在当前标题，则把「目标词」前置为卖点短语。
+ * 品牌门面路由:自动优化器永不改写其 title/description。
+ * 主页承载全站品牌与 200+ 查询的泛意图,为一个长尾查询改写门面标题必然净负
+ * (曾发生:主页标题被改写为仓库名 "Boona13/mykonos-island-voxels")。
+ */
+export const PROTECTED_ROUTES: ReadonlySet<string> = new Set(["/"]);
+
+/**
+ * 保守改写标题:目标词前置 + 保留原标题核心(而非整体替换)。
  * 重要：返回的标题不含品牌后缀 —— 根 layout 的 title.template "%s | Craftisle"
  * 会在渲染时统一追加；若此处带后缀，会与 template 叠加成双 " | Craftisle"。
  * 防御性：先剥离 current 中可能残留的 " | <brand>" 后缀。
+ * 长度:Google 展示约 60 字符且 template 还会追加 "| <brand>",超长时截断保留前缀。
  */
 export function optimizeTitle(current: string, query: string, siteName: string): string {
   const brandToken = `| ${siteName}`;
@@ -95,7 +103,10 @@ export function optimizeTitle(current: string, query: string, siteName: string):
   // 取查询中的核心名词短语，去掉语气词，构造自然标题
   const phrase = q.replace(/\b(free|online|best|the|a|an)\b/gi, "").replace(/\s+/g, " ").trim();
   if (!phrase) return c;
-  return capitalize(phrase); // 品牌由根 layout template 统一追加
+  // 前缀目标词 + 保留原标题核心价值主张(绝不整体替换标题)
+  const combined = `${capitalize(phrase)} — ${c}`;
+  if (combined.length <= 60) return combined;
+  return combined.slice(0, 57).replace(/[\s—–-]+$/, "") + "…"; // 品牌由根 layout template 统一追加
 }
 
 /** 保守改写描述：在原文前补一句点题句（含目标词），不覆盖原文价值信息 */
@@ -160,6 +171,10 @@ export function buildOptimizationPlan(
       }
       // optimize_ctr / push_position：改写承接页 title/description
       const route = pageUrlToRoute(a.pageUrl) ?? fallbackRoute(cluster.siteSlug);
+      if (PROTECTED_ROUTES.has(route)) {
+        deferred.push({ actionId: a.id, kind: a.kind, reason: `路由 ${route} 为品牌门面(PROTECTED_ROUTES),不参与自动改写。` });
+        continue;
+      }
       const current = meta[route];
       if (!current) {
         deferred.push({ actionId: a.id, kind: a.kind, reason: `路由 ${route} 不在 page-meta 注册表，需先接入集中元数据或人工指定页面。` });

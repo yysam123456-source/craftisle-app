@@ -20,9 +20,10 @@ import {
   buildOptimizationPlan,
   applyEditsToMeta,
   buildOverridesFromEdits,
+  PROTECTED_ROUTES,
 } from "@/lib/seo/optimizer";
 import { PAGE_META_BASE } from "@/lib/seo/page-meta";
-import { saveOverrides } from "@/lib/seo/page-meta-db";
+import { saveOverrides, deleteOverrides } from "@/lib/seo/page-meta-db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -93,11 +94,24 @@ export async function GET(req: NextRequest) {
       note: "dryRun 预览，未写入数据库。加 ?apply=1 真实落库（覆盖层 + 页面自动生效）。",
     });
   }
-  if (applied === 0) {
-    return NextResponse.json({ ...summary, note: "无字段被改写，跳过写入。" });
+
+  // 3) 护栏自愈:任何 apply 路径都先清除 PROTECTED_ROUTES(品牌门面)的历史覆盖,
+  //    避免坏覆盖滞留(如曾把首页标题改写为仓库名)。即使本周无新改写也应执行。
+  let cleanedOverrides = 0;
+  try {
+    cleanedOverrides = await deleteOverrides(Array.from(PROTECTED_ROUTES));
+  } catch (e: any) {
+    console.warn("[auto-optimize] 清理护栏路由覆盖失败：", e?.message);
   }
 
-  // 3) 把优化结果写入数据库覆盖层（幂等 upsert；页面经 PAGE_META Proxy 自动生效）
+  if (applied === 0) {
+    return NextResponse.json({
+      ...summary,
+      cleanedOverrides,
+      note: `无字段被改写，跳过写入。(已清理护栏覆盖 ${cleanedOverrides} 条)`,
+    });
+  }
+
   try {
     const overrides = buildOverridesFromEdits(plan.edits);
     const saved = await saveOverrides(overrides);
@@ -105,8 +119,11 @@ export async function GET(req: NextRequest) {
       ...summary,
       overrides: overrides.length,
       savedToDb: saved,
+      cleanedOverrides,
       committed: saved > 0,
-      note: saved > 0 ? "已写入数据库覆盖层，页面将在 5 分钟内自动生效。" : "DB 写入失败（见函数日志），未生效。",
+      note: saved > 0
+        ? `已写入数据库覆盖层(${saved} 条,清理护栏覆盖 ${cleanedOverrides} 条)。注:静态 metadata 页面在下次部署构建时生效。`
+        : `无新覆盖写入(清理护栏覆盖 ${cleanedOverrides} 条)。`,
     });
   } catch (e: any) {
     return NextResponse.json({ ...summary, ok: false, commitError: e?.message || String(e) });
