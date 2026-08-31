@@ -100,6 +100,27 @@ export async function GET(request: Request) {
     if (lastError && (freshnessDays === null || freshnessDays > 8)) pipelineHealth = "error";
     else if (freshnessDays === null || freshnessDays > 8) pipelineHealth = "stale";
 
+    // ── Cron 派发诊断 ──
+    // pull-gsc-data 在鉴权通过后立即写 lastRunAt（route.ts 第 213 行），lastSuccessAt 仅在完整成功后写。
+    // 因此两者差值可以区分两类完全不同的故障：
+    //   gap≈0  → handler 最后一次运行就是最后一次成功 ⇒ 此后没有任何调用到达函数 ⇒ 调度派发/Cloudflare 拦截问题
+    //   gap>0  → handler 运行过但没成功 ⇒ 代码或依赖问题（且 lastError 应为非 null，若为 null 说明失败路径漏记）
+    const lastRunAt = pipeline?.lastRunAt ?? null;
+    const runVsSuccessGapHours =
+      lastRunAt && lastSuccessAt
+        ? Math.round(((new Date(lastRunAt).getTime() - new Date(lastSuccessAt).getTime()) / 3600000) * 10) / 10
+        : null;
+    let cronDiagnosis: string;
+    if (!lastRunAt) {
+      cronDiagnosis = "lastRunAt 为空：handler 从未执行过（cron 与手动均未到达函数）";
+    } else if (!lastSuccessAt) {
+      cronDiagnosis = `handler 执行过(${new Date(lastRunAt).toISOString()})但从未成功`;
+    } else if (runVsSuccessGapHours !== null && runVsSuccessGapHours > 0.5) {
+      cronDiagnosis = `cron 已派发但执行失败：最近运行 ${new Date(lastRunAt).toISOString()} 比最后成功晚 ${runVsSuccessGapHours}h → 排查代码/依赖${lastError ? "" : "（注意 lastError 为 null，失败路径漏记了错误）"}`;
+    } else {
+      cronDiagnosis = `cron 未派发：最近运行(${new Date(lastRunAt).toISOString()})即最后成功 ⇒ 此后无调用到达函数 → 排查 Vercel cron 注册 / 生产域名 Cloudflare 是否拦截 /api/cron/*`;
+    }
+
     // ── 总览 + 环比 ──
     const tw = {
       impressions: thisWeekAgg._sum.impressions ?? 0,
@@ -183,6 +204,9 @@ export async function GET(request: Request) {
       pipeline: {
         health: pipelineHealth,
         lastSuccessAt: lastSuccessAt ? new Date(lastSuccessAt).toISOString() : null,
+        lastRunAt: lastRunAt ? new Date(lastRunAt).toISOString() : null,
+        runVsSuccessGapHours,
+        cronDiagnosis,
         lastError,
         freshnessDays,
         lastQueryCount: pipeline?.lastQueryCount ?? null,
@@ -255,7 +279,7 @@ export async function GET(request: Request) {
 type Briefing = {
   generatedAt: string;
   weekStart: string;
-  pipeline: { health: string; lastSuccessAt: string | null; lastError: string | null; freshnessDays: number | null; lastQueryCount: number | null; gscConfigured: boolean | null };
+  pipeline: { health: string; lastSuccessAt: string | null; lastRunAt: string | null; runVsSuccessGapHours: number | null; cronDiagnosis: string; lastError: string | null; freshnessDays: number | null; lastQueryCount: number | null; gscConfigured: boolean | null };
   overall: { impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; top3Count: number; changes: { impressionsPct: number; clicksPct: number; positionChange: number }; lastWeek: { impressions: number; clicks: number } };
   sites: Array<{ slug: string; name: string; host: string; impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number; share: number; topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }> }>;
   nearMissQueries: Array<{ query: string; position: number; impressions: number; clicks: number }>;
@@ -278,6 +302,8 @@ function renderMarkdown(b: Briefing): string {
   L.push(`# Craftisle SEO AI 简报`);
   L.push(``);
   L.push(`生成: ${b.generatedAt} | 数据周: ${b.weekStart.slice(0, 10)} | 管道: ${b.pipeline.health}${b.pipeline.freshnessDays != null ? `(${b.pipeline.freshnessDays}天前成功)` : "(从未成功)"}${b.pipeline.lastError ? ` | 上次错误: ${b.pipeline.lastError}` : ""}`);
+  L.push(``);
+  L.push(`- Cron 派发诊断: ${b.pipeline.cronDiagnosis}`);
   L.push(``);
   L.push(`## 总览(本周 GSC)`);
   const o = b.overall;
