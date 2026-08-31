@@ -60,18 +60,34 @@ export async function GET(request: Request) {
       }
       if (ageDays > 2) {
         heal.triggered = true;
-        const secret = process.env.CRON_SECRET || "";
-        const origin = new URL(request.url).origin;
+        // 关键：直接同进程调用 cron handler，绝不走公网。
+        // 2026-08-31 实测：服务端 fetch(`${origin}/api/cron/...`) 返回 HTTP 403 ——
+        // 请求出公网后绕回 Cloudflare，被机器人防护拦截（服务端请求没有浏览器特征头）。
+        // 这正是 Vercel Cron 静默失效 12 天的根因：cron 请求同样被 Cloudflare 403，
+        // 到不了函数，于是不产生任何日志，lastError 保持 null。
+        // 同进程调用可彻底绕开 Cloudflare，且比一次 HTTP 往返更快。
         try {
-          const res = await fetch(
-            `${origin}/api/cron/pull-gsc-data?secret=${encodeURIComponent(secret)}`,
-            { headers: { "x-vercel-cron": "1" }, cache: "no-store" },
-          );
+          const { GET: pullGscData } = await import("@/app/api/cron/pull-gsc-data/route");
+          const origin = new URL(request.url).origin;
+          const inner = new Request(`${origin}/api/cron/pull-gsc-data`, {
+            headers: { "x-vercel-cron": "1" },
+          });
+          const res = await pullGscData(inner as any);
           heal.status = res.status;
           heal.ok = res.ok;
+          let detail = "";
+          try {
+            const body = await res.clone().json();
+            if (body && typeof body === "object") {
+              detail = ` queries=${body.queriesInserted ?? "?"} country=${body.countryRowsInserted ?? "?"} rankings=${body.rankingsUpdated ?? "?"}`;
+              if (body.error) detail += ` error=${body.error}`;
+            }
+          } catch {
+            // body 非 JSON，忽略
+          }
           heal.note = res.ok
-            ? `补拉成功(此前陈旧 ${ageDays === Infinity ? "从未成功" : ageDays.toFixed(1) + " 天"})`
-            : `补拉失败 HTTP ${res.status}`;
+            ? `补拉成功(此前陈旧 ${ageDays === Infinity ? "从未成功" : ageDays.toFixed(1) + " 天"})${detail}`
+            : `补拉失败 HTTP ${res.status}${detail}`;
         } catch (e: any) {
           heal.ok = false;
           heal.note = `补拉异常: ${e?.message || String(e)}`;
