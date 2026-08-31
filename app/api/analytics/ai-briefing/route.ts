@@ -37,6 +37,50 @@ export async function GET(request: Request) {
     const { weekStart, lastWeekStart } = getWeekStarts();
     const now = new Date();
 
+    // ── 陈旧自愈：不依赖 Vercel cron 是否派发 ──
+    // Vercel cron delivery 是 best-effort：丢包时函数不执行且不产生任何日志（lastError 保持 null），
+    // 2026-08 曾因此静默失效 12 天。故读取侧必须具备自我修复能力，调度只是优化而非唯一路径。
+    // ?heal=1 时若数据陈旧(>2天)触发一次补拉；补拉发生在读取之前，后续查询自然拿到新数据。
+    const wantHeal = searchParams.get("heal") === "1";
+    let heal: { triggered: boolean; ok: boolean | null; status: number | null; note: string } = {
+      triggered: false,
+      ok: null,
+      status: null,
+      note: "未请求自愈(加 ?heal=1 启用)",
+    };
+    if (wantHeal) {
+      let ageDays: number = Infinity;
+      try {
+        const pre = await prisma.pipelineStatus.findUnique({ where: { key: "gsc_pull" } });
+        ageDays = pre?.lastSuccessAt
+          ? (now.getTime() - new Date(pre.lastSuccessAt).getTime()) / 86400000
+          : Infinity;
+      } catch {
+        // 查询失败按最坏情况处理，仍然尝试补拉
+      }
+      if (ageDays > 2) {
+        heal.triggered = true;
+        const secret = process.env.CRON_SECRET || "";
+        const origin = new URL(request.url).origin;
+        try {
+          const res = await fetch(
+            `${origin}/api/cron/pull-gsc-data?secret=${encodeURIComponent(secret)}`,
+            { headers: { "x-vercel-cron": "1" }, cache: "no-store" },
+          );
+          heal.status = res.status;
+          heal.ok = res.ok;
+          heal.note = res.ok
+            ? `补拉成功(此前陈旧 ${ageDays === Infinity ? "从未成功" : ageDays.toFixed(1) + " 天"})`
+            : `补拉失败 HTTP ${res.status}`;
+        } catch (e: any) {
+          heal.ok = false;
+          heal.note = `补拉异常: ${e?.message || String(e)}`;
+        }
+      } else {
+        heal.note = `数据新鲜(${ageDays.toFixed(1)} 天)，跳过补拉`;
+      }
+    }
+
     const [
       thisWeekAgg,
       lastWeekAgg,
@@ -119,6 +163,30 @@ export async function GET(request: Request) {
       cronDiagnosis = `cron 已派发但执行失败：最近运行 ${new Date(lastRunAt).toISOString()} 比最后成功晚 ${runVsSuccessGapHours}h → 排查代码/依赖${lastError ? "" : "（注意 lastError 为 null，失败路径漏记了错误）"}`;
     } else {
       cronDiagnosis = `cron 未派发：最近运行(${new Date(lastRunAt).toISOString()})即最后成功 ⇒ 此后无调用到达函数 → 排查 Vercel cron 注册 / 生产域名 Cloudflare 是否拦截 /api/cron/*`;
+    }
+
+    // ── 陈旧告警（读取侧）──
+    // 关键：告警不能只写在 cron job 内部。若 cron 不派发，job 内的告警永远不会执行——
+    // 2026-08 静默失效 12 天正是这个循环依赖造成的。陈旧检测必须放在每次读取都会走到的路径上。
+    if (freshnessDays === null || freshnessDays > 2) {
+      try {
+        const msg = `GSC 数据已 ${freshnessDays === null ? "从未" : freshnessDays + " 天"}未成功拉取(lastSuccess=${lastSuccessAt ? new Date(lastSuccessAt).toISOString() : "无"})。${cronDiagnosis}`;
+        const existing = await prisma.alertEvent.findFirst({
+          where: { type: "pipeline_stale", query: "__pipeline__", resolved: false },
+        });
+        if (existing) {
+          await prisma.alertEvent.update({
+            where: { id: existing.id },
+            data: { message: msg, severity: "critical", snapshotAt: weekStart },
+          });
+        } else {
+          await prisma.alertEvent.create({
+            data: { type: "pipeline_stale", query: "__pipeline__", severity: "critical", message: msg, snapshotAt: weekStart },
+          });
+        }
+      } catch (e) {
+        console.warn("[ai-briefing] 写入陈旧告警失败:", e);
+      }
     }
 
     // ── 总览 + 环比 ──
@@ -212,6 +280,7 @@ export async function GET(request: Request) {
         lastQueryCount: pipeline?.lastQueryCount ?? null,
         gscConfigured: pipeline?.lastConfigured ?? null,
       },
+      heal,
       overall: {
         ...tw,
         top3Count,
@@ -280,6 +349,7 @@ type Briefing = {
   generatedAt: string;
   weekStart: string;
   pipeline: { health: string; lastSuccessAt: string | null; lastRunAt: string | null; runVsSuccessGapHours: number | null; cronDiagnosis: string; lastError: string | null; freshnessDays: number | null; lastQueryCount: number | null; gscConfigured: boolean | null };
+  heal: { triggered: boolean; ok: boolean | null; status: number | null; note: string };
   overall: { impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; top3Count: number; changes: { impressionsPct: number; clicksPct: number; positionChange: number }; lastWeek: { impressions: number; clicks: number } };
   sites: Array<{ slug: string; name: string; host: string; impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number; share: number; topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }> }>;
   nearMissQueries: Array<{ query: string; position: number; impressions: number; clicks: number }>;
@@ -304,6 +374,7 @@ function renderMarkdown(b: Briefing): string {
   L.push(`生成: ${b.generatedAt} | 数据周: ${b.weekStart.slice(0, 10)} | 管道: ${b.pipeline.health}${b.pipeline.freshnessDays != null ? `(${b.pipeline.freshnessDays}天前成功)` : "(从未成功)"}${b.pipeline.lastError ? ` | 上次错误: ${b.pipeline.lastError}` : ""}`);
   L.push(``);
   L.push(`- Cron 派发诊断: ${b.pipeline.cronDiagnosis}`);
+  if (b.heal?.triggered) L.push(`- 本次自愈: ${b.heal.ok ? "成功" : "失败"} — ${b.heal.note}`);
   L.push(``);
   L.push(`## 总览(本周 GSC)`);
   const o = b.overall;
