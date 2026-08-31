@@ -182,7 +182,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
     site: "craftisle",
     title: "Figma Alternative — Free Online Design & SVG Tools",
     description:
-      "Need a free Figma alternative for quick edits? Craftisle's browser SVG editor and image tools let you tweak vectors and assets without installing design software.",
+      "Need a free Figma alternative for quick edits? Craftisle's browser SVG editor and image tools let you tweak vectors without installing design software.",
     keywords: ["figma alternative", "free design tools", "online svg editor", "vector editor"],
     h1: "Figma Alternative",
     intro: [
@@ -778,6 +778,567 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { q: "Can it crack unknown passwords?", a: "No. It only removes restrictions when you supply the correct password." },
     ],
     internalLinks: [L.pdfTools, L.tools, L.directory],
+  },
+
+  // ===================== P1-B1 分类聚合页（手写）=====================
+  "text-tools": {
+    slug: "text-tools",
+    site: "craftisle",
+    title: "Text Tools — 43 Free Browser Utilities, No Signup",
+    description:
+      "Free online text tools: case converter, text diff, word counter, slug generator, ROT13, Unicode lookup. Runs in your browser — no upload, no signup.",
+    keywords: ["text tools", "online text tools", "text utilities", "free text tools"],
+    h1: "Text Tools",
+    intro: [
+      "Text tools handle the string manipulations that come up constantly but never justify installing anything: reformatting a block of pasted text, comparing two versions of a paragraph, counting characters against a limit, or turning a headline into a URL slug. They are small jobs, but frequent enough that opening a tab beats writing a throwaway script.",
+      "Craftisle collects 43 text tools in this category. Each one runs client-side in your browser, so the text you paste is processed on your device rather than sent to a server — which matters when that text is a contract clause, a credential, or a draft you have not published yet.",
+    ],
+    sections: [
+      {
+        heading: "What the text tools cover",
+        paragraphs: [
+          "Case Converter switches between camelCase, snake_case, kebab-case, and title case in one pass, which is the fastest fix when code and copy disagree on naming. Text Diff lines up two versions and marks exactly what changed — faster than reading both side by side and guessing. Text Statistics gives character, word, line, and sentence counts when you are writing to a limit imposed by a form, a meta description, or an ad slot.",
+          "Slug Generator turns a headline into a URL-safe string. Reverse Text flips a string or each line independently. ROT13 applies the classic substitution cipher, and Unicode Tool inspects individual characters — genuinely useful when a pasted string carries an invisible character that is silently breaking your parser.",
+          "Text Translator covers 30+ languages, and Text Formatter handles the general cleaning and reshaping that does not fit neatly into the others.",
+        ],
+      },
+      {
+        heading: "Processed on your device",
+        paragraphs: [
+          "Every tool here executes in the browser. Nothing you type is transmitted, stored, or logged, and there is no queue to wait in — the result appears as soon as the computation finishes.",
+          "One consequence worth knowing in advance: because there is no account holding a history, your text is not retrievable later from another device. Copy what you need before closing the tab.",
+        ],
+      },
+      {
+        heading: "Choosing the right one",
+        paragraphs: [
+          "Start from the job, not the tool list. Reformatting wording means Case Converter or Text Formatter; investigating a change means Text Diff; writing to a constraint means Text Statistics. Anything involving encoding rather than wording belongs with the converter tools instead.",
+          "Each tool page states what it expects as input and what it returns, so you can tell within a few seconds whether it matches your task.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are these text tools free?", a: "Yes. All 43 tools are free with no account, no trial, and no cap on how much text you process." },
+      { q: "Is my text uploaded anywhere?", a: "No. Processing happens in your browser, so the text you paste is not sent to a server." },
+      { q: "Is there a character limit?", a: "There is no artificial limit. Practical limits come from your own device memory on very large inputs." },
+      { q: "Do these work on a phone?", a: "Yes. The tools are responsive and work in mobile browsers." },
+    ],
+    internalLinks: [
+      { label: "Case Converter", href: "/tools/case-converter" },
+      { label: "Text Diff", href: "/tools/diff" },
+      { label: "Text Statistics", href: "/tools/string-statistic" },
+      { label: "Slug Generator", href: "/tools/slug-generator" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "image-tools": {
+    slug: "image-tools",
+    site: "craftisle",
+    title: "Image Tools — 24 Free Browser Editors, No Upload",
+    description:
+      "Free online image tools: resize, crop, compress, convert, split, adjust opacity, remove watermarks. Runs in your browser — no upload, no signup.",
+    keywords: ["image tools", "online image tools", "free image editor", "browser image tools"],
+    h1: "Image Tools",
+    intro: [
+      "Most image work is not design work. It is resizing a screenshot to fit a form, cropping to exact pixel dimensions, compressing a photo until an upload stops rejecting it, or converting a WebP into something an older pipeline accepts. These are one-off jobs, and they are the reason image tools exist as single-purpose pages rather than as one large application.",
+      "Craftisle has 24 image tools that run entirely in your browser. Your files are not uploaded, which is the difference between editing a personal photo on a random website and editing it locally.",
+    ],
+    sections: [
+      {
+        heading: "Resizing, cropping, and compression",
+        paragraphs: [
+          "Image Resizer scales by width, height, or fit mode, so you can hit an exact dimension instead of guessing. Image Cropper takes precise pixel coordinates when a layout demands them. Image Compressor gives you a quality control to trade file size against visible artifacts, which is usually the last step before an upload limit stops rejecting you.",
+          "Image Converter handles the format churn between JPEG, PNG, WebP, AVIF, and TIFF — the practical fix when a service accepts one type and you have another.",
+        ],
+      },
+      {
+        heading: "Transparency, tiling, and watermarks",
+        paragraphs: [
+          "Change Image Opacity adjusts transparency in solid or gradient mode, and Create Transparent PNG makes a specific colour transparent — the usual requirement when you need a logo on a coloured background without a white box around it.",
+          "Image Split cuts one image into tiles, useful for slicing a large graphic for grids or print. AI Watermark Remover strips Gemini AI image watermarks in the browser, and Media Downloader pulls video from Bilibili, Douyin, TikTok, and Instagram.",
+        ],
+      },
+      {
+        heading: "Why editing in the browser matters here",
+        paragraphs: [
+          "Images are often more personal than text — photos of people, documents, receipts. Running the edit client-side means the file never leaves your device, so there is no server-side copy to worry about.",
+          "It is also faster: no upload progress bar, no processing queue, no download link that expires. The output is ready as soon as the operation completes.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Do I need to upload my images?", a: "No. Editing happens in your browser, so the files stay on your device." },
+      { q: "Are the image tools free?", a: "Yes. All 24 tools are free with no account and no watermark added to the output." },
+      { q: "Is there a file size limit?", a: "There is no artificial cap. Very large files depend on your device's available memory." },
+      { q: "Which formats are supported?", a: "The converter handles JPEG, PNG, WebP, AVIF, and TIFF. Individual tools state their supported inputs." },
+    ],
+    internalLinks: [
+      { label: "Image Resizer", href: "/tools/image-resize" },
+      { label: "Image Compressor", href: "/tools/image-compress" },
+      { label: "Image Converter", href: "/tools/image-convert" },
+      { label: "Create Transparent PNG", href: "/tools/image-create-transparent" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "converter-tools": {
+    slug: "converter-tools",
+    site: "craftisle",
+    title: "Online Converters — 18 Free Format Tools, No Signup",
+    description:
+      "Free online converters: Base64, Base32, Base58, radix, CSV to JSON, URL encode, image to Base64, byte units. Browser-based, no signup.",
+    keywords: ["online converters", "free converters", "format converter", "base64 converter"],
+    h1: "Online Converters",
+    intro: [
+      "Conversion tasks are the plumbing of technical work: a value arrives in one representation and has to leave in another. Base64 for a payload, a hexadecimal number as decimal, a CSV export as JSON, a URL with characters that need escaping. Each takes seconds to do and minutes to do badly by hand.",
+      "This category holds 18 converters on Craftisle. They run in the browser, so credentials, tokens, and payloads you paste are never transmitted to a server.",
+    ],
+    sections: [
+      {
+        heading: "Encodings and number bases",
+        paragraphs: [
+          "Base64 Encode/Decode is the workhorse for payloads, data URIs, and basic auth headers. Base32 and Base58 cover the encodings you meet in crypto and shortened identifiers. Radix Converter moves numbers between binary, octal, decimal, and hexadecimal in either direction.",
+          "URL Encode/Decode escapes the characters that break query strings, and Image to Base64 turns an image into a data URI — or back into a file, which is the quick way to inspect an embedded asset.",
+        ],
+      },
+      {
+        heading: "Data and units",
+        paragraphs: [
+          "CSV/JSON Converter translates between the two formats that refuse to agree, which is most of the friction in moving data between a spreadsheet and an API.",
+          "Byte Converter moves between bytes, KB, MB, GB, TB, and PB. It settles the recurring argument about whether a vendor means 1,000 or 1,024, because you can see both readings side by side. PNG to SVG handles the vector conversion case.",
+        ],
+      },
+      {
+        heading: "Accuracy over speed",
+        paragraphs: [
+          "Conversions are easy to get subtly wrong — an off-by-one in a base conversion, a padding character dropped from a Base64 string, a URL escaped twice. Doing them with a tool removes a class of bug that is genuinely tedious to debug after the fact.",
+          "Because these run locally, you can paste production tokens and real payloads without wondering who else can read them.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are these converters free?", a: "Yes. All 18 converters are free with no account and no limit on how many values you convert." },
+      { q: "Is anything I paste uploaded?", a: "No. Conversion runs in your browser; the values are not sent to a server." },
+      { q: "Can I convert in both directions?", a: "Most converters are bidirectional — encode and decode, or convert either way between units. Each tool page states its directions." },
+      { q: "Do they handle large inputs?", a: "Yes, within the limits of your device memory. There is no artificial size cap." },
+    ],
+    internalLinks: [
+      { label: "Base64 Encode/Decode", href: "/tools/base64" },
+      { label: "Radix Converter", href: "/tools/radix-converter" },
+      { label: "CSV/JSON Converter", href: "/tools/csv-json" },
+      { label: "URL Encode/Decode", href: "/tools/url-encode" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "dev-tools": {
+    slug: "dev-tools",
+    site: "craftisle",
+    title: "Developer Tools — 25 Free Online Utilities",
+    description:
+      "Free developer tools: regex tester and visualizer, cron builder, SVG editor, Mermaid diagrams, file viewer, HTML editor. No signup, runs in browser.",
+    keywords: ["developer tools", "online developer tools", "free dev tools", "web developer utilities"],
+    h1: "Developer Tools",
+    intro: [
+      "Developers reach for a browser tool when the alternative is spinning up a project or searching their shell history. Testing a regular expression, decoding a cron schedule someone else wrote, previewing a file without installing a viewer — these are interruptions, and the cost of context-switching to a heavyweight tool is higher than the task itself.",
+      "There are 25 developer tools here, all running client-side. You can paste real configuration, real tokens, and real files without sending them anywhere.",
+    ],
+    sections: [
+      {
+        heading: "Regular expressions",
+        paragraphs: [
+          "Regex Tester matches patterns against sample input with live highlighting, which turns guesswork into something you can watch. Regex Visualizer goes further and renders the pattern as a syntax tree — the fastest way to understand an expression someone else wrote, or to find the branch that is silently matching too much.",
+        ],
+      },
+      {
+        heading: "Schedules, diagrams, and markup",
+        paragraphs: [
+          "Cron Expression builds schedules from fields, and Cron Expression Parser does the reverse: paste a cron string and read what it actually means in plain language. Crontab Guru explains expressions the same way, which is worth doing before trusting a schedule you inherited.",
+          "Mermaid Chart renders flowcharts from text definitions. SVG Editor edits vector markup directly with a preview. HTML Visual Editor lets you paste or upload HTML and edit it visually — a fast way to mock up a change without a build step.",
+        ],
+      },
+      {
+        heading: "Inspecting files and input",
+        paragraphs: [
+          "File Viewer previews 135+ formats — PDF, Word, Excel, CAD, 3D models, and images — so you can look at an attachment instead of trusting the filename. Keyboard Test confirms that key events fire, which matters for shortcuts and accessibility work.",
+          "Everything here runs in the tab, which is what makes it safe to point at production artifacts.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are the developer tools free?", a: "Yes. All 25 tools are free with no account and no usage cap." },
+      { q: "Is my code or config uploaded?", a: "No. Processing happens in your browser; pasted content is not transmitted to a server." },
+      { q: "Can I test production regexes safely?", a: "Yes. Because matching runs locally, you can use real patterns and real sample data privately." },
+      { q: "Which file formats can I preview?", a: "File Viewer handles 135+ formats including PDF, Word, Excel, CAD, 3D, and common image types." },
+    ],
+    internalLinks: [
+      { label: "Regex Tester", href: "/tools/regex" },
+      { label: "Regex Visualizer", href: "/tools/regex-vis" },
+      { label: "Cron Expression", href: "/tools/cron" },
+      { label: "File Viewer", href: "/tools/file-viewer" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "utility-tools": {
+    slug: "utility-tools",
+    site: "craftisle",
+    title: "Utility Tools — 19 Free Everyday Helpers, No Signup",
+    description:
+      "Free utility tools: countdown, stopwatch, Pomodoro, spin wheel, counter, scoreboard, Unix timestamp converter. No signup, no install.",
+    keywords: ["utility tools", "online utilities", "free online tools", "everyday helper tools"],
+    h1: "Utility Tools",
+    intro: [
+      "Utility tools are the ones you open once and forget about until the next time: a countdown for a meeting that started late, a stopwatch for something you are timing by hand, a wheel to settle a decision nobody wants to make, a counter for the tally you keep losing track of.",
+      "Craftisle has 19 of them. They run in the browser with no account, so you can open one on a shared screen or a borrowed machine without signing into anything.",
+    ],
+    sections: [
+      {
+        heading: "Timers and focus",
+        paragraphs: [
+          "Countdown runs a timer to a target moment, Stopwatch measures elapsed time with lap splits, and Pomodoro Timer structures work into the usual focus and break intervals. They cover the three different questions people actually have: how much is left, how long did that take, and when should I stop.",
+          "Unix Timestamp Converter translates between epoch seconds and readable dates — the tool you need whenever logs and humans disagree about time.",
+        ],
+      },
+      {
+        heading: "Randomness and tallying",
+        paragraphs: [
+          "Spin Wheel picks between options you supply, Coin Flip settles the binary case, Counter keeps a running tally, and Scoreboard tracks points in real time. These replace the improvised alternatives — arguing, or counting on fingers.",
+          "Discord Timestamp Generator produces the formatted timestamp strings Discord renders per-viewer, which is otherwise a fiddly manual lookup.",
+        ],
+      },
+      {
+        heading: "Nothing to install, nothing to sign into",
+        paragraphs: [
+          "These are the tools most likely to be opened on a machine that is not yours — a classroom display, a meeting room screen, a shared laptop. No account means no cleanup afterwards.",
+          "They are also lightweight enough to keep open in a tab for a whole session without slowing anything down.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are these utility tools free?", a: "Yes. All 19 tools are free with no account and no usage limit." },
+      { q: "Do timers keep running in a background tab?", a: "They continue while the tab is open. Browsers throttle background tabs, so keep the tab visible for accurate timing." },
+      { q: "Is any data stored?", a: "No. These tools run client-side and do not store your input or results." },
+      { q: "Can I use them on a shared screen?", a: "Yes. There is no account to sign into, so nothing is left behind on a shared machine." },
+    ],
+    internalLinks: [
+      { label: "Countdown", href: "/tools/countdown" },
+      { label: "Stopwatch", href: "/tools/stopwatch" },
+      { label: "Pomodoro Timer", href: "/tools/pomodoro" },
+      { label: "Unix Timestamp Converter", href: "/tools/unix-to-date" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "json-tools": {
+    slug: "json-tools",
+    site: "craftisle",
+    title: "JSON Tools — Minify, Compare, Sort, Escape Online",
+    description:
+      "Free JSON tools: minify, compare two objects, sort keys alphabetically, escape strings, stringify objects. Runs client-side, no signup.",
+    keywords: ["json tools", "online json tools", "json minify", "json compare"],
+    h1: "JSON Tools",
+    intro: [
+      "JSON is the format developers touch most and trust least by eye. Minifying a payload before shipping it, comparing two responses to find what actually changed, sorting keys so a diff is readable, escaping a string that has to survive being embedded — all of it is mechanical, and all of it is error-prone when done by hand.",
+      "This category holds five JSON tools that each do one of those jobs. They run in your browser, so you can paste API responses and production payloads without sending them to a third party.",
+    ],
+    sections: [
+      {
+        heading: "Minify, sort, and escape",
+        paragraphs: [
+          "Minify JSON strips whitespace when payload size matters. Sort JSON orders keys alphabetically, which is the step that turns an unreadable diff into a readable one — two objects with the same keys in different orders stop looking different.",
+          "Escape JSON handles the case where a JSON string has to live inside another string, adding or removing the escaping as needed. Stringify JSON converts JavaScript objects into JSON text.",
+        ],
+      },
+      {
+        heading: "Comparing two objects",
+        paragraphs: [
+          "JSON Compare takes two documents and reports the differences, including nested ones. It is the fastest way to answer \"what changed between these two API responses\" without reading both carefully.",
+          "That is a genuinely common debugging situation: an endpoint behaves differently between environments, and the payload is too large to eyeball.",
+        ],
+      },
+      {
+        heading: "Safe for real payloads",
+        paragraphs: [
+          "Because these run client-side, it is safe to paste responses containing tokens, user identifiers, or commercially sensitive fields. Nothing is uploaded.",
+          "If you are also formatting rather than transforming, the code formatters cover pretty-printing JSON alongside HTML, SQL, and YAML.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are the JSON tools free?", a: "Yes. All five are free with no account and no size cap beyond your device memory." },
+      { q: "Is my JSON uploaded?", a: "No. Processing happens in your browser, so pasted payloads are not sent to a server." },
+      { q: "Is there a payload size limit?", a: "There is no artificial limit. Very large documents depend on your device's available memory." },
+      { q: "Can I pretty-print as well as minify?", a: "Yes. The JSON Formatter handles beautify and minify; see the code formatters category." },
+    ],
+    internalLinks: [
+      { label: "Minify JSON", href: "/tools/json-minify" },
+      { label: "JSON Compare", href: "/tools/json-comparison" },
+      { label: "Sort JSON", href: "/tools/json-sort" },
+      { label: "JSON Formatter", href: "/tools/json-formatter" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "time-tools": {
+    slug: "time-tools",
+    site: "craftisle",
+    title: "Time Tools — Convert and Calculate Time Online",
+    description:
+      "Free time tools: seconds to hours, days to hours, Unix timestamps, decimal hours, leap year checks, cron explained. No signup, browser-based.",
+    keywords: ["time tools", "time converter", "seconds to hours", "unix timestamp converter"],
+    h1: "Time Tools",
+    intro: [
+      "Time conversions appear in places where getting them wrong is expensive: timesheets, billing calculations, log correlation, and schedules. Turning 7,200 seconds into 02:00:00, converting decimal hours back into hours and minutes, or translating an epoch timestamp in a log into a date you can reason about.",
+      "Craftisle has nine time tools covering those conversions. They run in the browser with no account, so you can paste timestamps from production logs without hesitation.",
+    ],
+    sections: [
+      {
+        heading: "Duration conversions",
+        paragraphs: [
+          "Convert Seconds to Time turns a raw second count into HH:MM:SS, and Convert Time to Seconds does the reverse — the pair you need whenever one system stores durations and another displays them.",
+          "Convert Days to Hours and Convert Hours to Days handle the coarse cases that show up in planning. Convert Time to Decimal produces decimal hours, which is the format timesheet and invoicing systems usually want, and is the one most often miscalculated by hand.",
+        ],
+      },
+      {
+        heading: "Timestamps, calendars, and schedules",
+        paragraphs: [
+          "Unix Timestamp Converter moves between epoch values and human-readable dates in both directions. It is the standard first step when a log line does not line up with what a user reported.",
+          "Check Leap Years settles the question that quietly breaks date arithmetic. Truncate Clock Time rounds a time down to the hour, minute, or second, and Crontab Guru explains cron expressions in plain English before you rely on one.",
+        ],
+      },
+      {
+        heading: "Why use a tool for this",
+        paragraphs: [
+          "Time arithmetic is where off-by-one errors hide: a day boundary, a leap year, a timezone offset. Doing the conversion mechanically removes the class of mistake that survives review because the result looks plausible.",
+          "These tools are also fast enough to use mid-conversation, which is when the question usually comes up.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are the time tools free?", a: "Yes. All nine tools are free with no account and no usage limit." },
+      { q: "Do they handle timezones?", a: "The timestamp converter works with Unix timestamps, which are UTC-based. Each tool page states how it handles zones." },
+      { q: "Is my data uploaded?", a: "No. Conversion runs in your browser; pasted timestamps are not sent to a server." },
+      { q: "Can I convert decimal hours back to hours and minutes?", a: "Yes. Convert Time to Seconds accepts HH:MM:SS, and the decimal converter handles the reverse direction." },
+    ],
+    internalLinks: [
+      { label: "Convert Seconds to Time", href: "/tools/convert-seconds-to-time" },
+      { label: "Convert Time to Decimal", href: "/tools/convert-time-to-decimal" },
+      { label: "Unix Timestamp Converter", href: "/tools/convert-unix-to-date" },
+      { label: "Crontab Guru", href: "/tools/crontab-guru" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "generator-tools": {
+    slug: "generator-tools",
+    site: "craftisle",
+    title: "Generator Tools — QR Codes, UUIDs, Random Values",
+    description:
+      "Free generator tools: QR codes, UUIDs, random strings, lorem ipsum, random groups, pixel art, text to speech. No signup, browser-based.",
+    keywords: ["generator tools", "qr code generator", "uuid generator", "random string generator"],
+    h1: "Generator Tools",
+    intro: [
+      "Generators produce the values you would otherwise invent, copy from somewhere, or write a loop to create. A QR code for a URL, a UUID for a new record, a throwaway string for a test fixture, placeholder text for a layout, a random grouping for a workshop exercise.",
+      "There are eight generator tools here, all running client-side. Generated values are not stored or logged, which matters for identifiers you intend to use for real.",
+    ],
+    sections: [
+      {
+        heading: "Identifiers and codes",
+        paragraphs: [
+          "UUID Generator produces UUID/GUID values when you need an identifier that will not collide. Random String creates strings with the length and character set you specify, which is the usual requirement for test data or temporary tokens.",
+          "QR Code Generator builds styled codes from a URL or text — the fastest path from a link to something scannable on a poster or screen.",
+        ],
+      },
+      {
+        heading: "Placeholder text and creative output",
+        paragraphs: [
+          "Lorem Ipsum fills a layout with placeholder copy so you can judge spacing rather than content. Random Group splits a list into random teams, which is the tool that ends the arguments about who goes first.",
+          "Pixel Art Generator converts images into pixel style. Text to Speech reads text aloud, useful for checking how copy sounds. Handwriting Animation turns text into a handwriting animation, which is a common requirement for explainer and teaching videos.",
+        ],
+      },
+      {
+        heading: "Generated on your device",
+        paragraphs: [
+          "Randomness is only useful if it is not predictable. Generating client-side means values are produced locally rather than fetched from a service that might log them.",
+          "Nothing generated is retained, so identifiers you produce here are yours alone.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are the generator tools free?", a: "Yes. All eight are free with no account and no cap on how many values you generate." },
+      { q: "Are generated values stored or logged?", a: "No. Generation happens in your browser and nothing is retained." },
+      { q: "Can I customise the output?", a: "Yes. Most generators let you set length, character set, or styling — for example QR code appearance and random string composition." },
+      { q: "Are the UUIDs cryptographically random?", a: "They are generated using browser randomness suitable for identifiers. Do not use them as secrets or password material." },
+    ],
+    internalLinks: [
+      { label: "QR Code Generator", href: "/tools/qrcode" },
+      { label: "UUID Generator", href: "/tools/uuid" },
+      { label: "Random String", href: "/tools/random-string" },
+      { label: "Pixel Art Generator", href: "/tools/image-to-pixel" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "formatter-tools": {
+    slug: "formatter-tools",
+    site: "craftisle",
+    title: "Code Formatters — JSON, HTML, SQL, YAML Online",
+    description:
+      "Free code formatters: beautify and minify JSON, HTML, SQL, and YAML, plus HTML character escaping. Browser-based, no signup, no upload.",
+    keywords: ["code formatter", "json formatter", "html formatter", "sql formatter"],
+    h1: "Code Formatters",
+    intro: [
+      "Formatters do two jobs that sound contradictory and are both necessary: making code readable when you are trying to understand it, and making it compact when you are shipping it. Minified output is hostile to read; unformatted output is hostile to diff. You need both directions.",
+      "Craftisle has five formatters covering JSON, HTML, SQL, YAML, and HTML escaping. They run in the browser, so pasting configuration or queries containing real values is safe.",
+    ],
+    sections: [
+      {
+        heading: "Beautify and minify",
+        paragraphs: [
+          "JSON Formatter pretty-prints or compacts JSON, which is the first move when a single-line payload needs reading. HTML Formatter does the same for markup, SQL Formatter reindents statements that arrive as one line, and YAML Formatter tidies configuration where indentation is syntactically significant.",
+          "The minify direction is what you want before embedding a payload in a file or sending it somewhere with a size constraint.",
+        ],
+      },
+      {
+        heading: "Escaping",
+        paragraphs: [
+          "HTML Escape converts special characters into entities so that text renders literally instead of being interpreted as markup. It is the step people skip and then debug for twenty minutes when a snippet of code disappears from a page.",
+        ],
+      },
+      {
+        heading: "Safe for real configuration",
+        paragraphs: [
+          "Configuration is where credentials live. Because formatting runs client-side, you can paste a real config file or a production query without sending it to a third-party service.",
+          "If you need to inspect structure rather than reformat it, the JSON tools category covers comparison and sorting.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are the formatters free?", a: "Yes. All five are free with no account and no size cap beyond your device memory." },
+      { q: "Is my code uploaded?", a: "No. Formatting happens in your browser; pasted content is not transmitted." },
+      { q: "Can I minify as well as beautify?", a: "Yes. The JSON and HTML formatters both support beautify and minify." },
+      { q: "Does the SQL formatter validate my query?", a: "It reindents and tidies statements. It does not validate syntax against a database engine." },
+    ],
+    internalLinks: [
+      { label: "JSON Formatter", href: "/tools/json-formatter" },
+      { label: "HTML Formatter", href: "/tools/html-formatter" },
+      { label: "SQL Formatter", href: "/tools/sql-formatter" },
+      { label: "YAML Formatter", href: "/tools/yaml-formatter" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "encryption-tools": {
+    slug: "encryption-tools",
+    site: "craftisle",
+    title: "Encryption & Hashing Tools — Client-Side, No Upload",
+    description:
+      "Free encryption tools: AES/DES encrypt and decrypt, bcrypt hashing, multiple hash algorithms, JWT decoder. Runs in your browser, nothing uploaded.",
+    keywords: ["encryption tools", "online hashing", "jwt decoder", "bcrypt generator"],
+    h1: "Encryption & Hashing Tools",
+    intro: [
+      "Encryption and hashing are the tasks where using an online tool feels most uncomfortable — because the input is usually a secret. That discomfort is correct for most websites, which is why every tool in this category runs entirely in your browser and transmits nothing.",
+      "This category covers four jobs: symmetric encryption, password hashing, general-purpose hashing, and decoding JWTs. All four are client-side, so keys and tokens you paste never leave your device.",
+    ],
+    sections: [
+      {
+        heading: "Symmetric encryption and hashing",
+        paragraphs: [
+          "AES/DES Encrypt performs symmetric encryption and decryption with configurable key sizes and modes, which is what you want for encrypting a value you will decrypt later with the same key.",
+          "Hash Tool computes multiple hash algorithms for checksums and integrity checks, and Bcrypt Hash produces bcrypt hashes for password storage — the algorithm you should be using for passwords rather than a fast hash.",
+        ],
+      },
+      {
+        heading: "Decoding tokens",
+        paragraphs: [
+          "JWT Decoder splits a JSON Web Token into its header, payload, and signature so you can read the claims. This is a decode, not a verification: it shows you what the token says, not whether it is trustworthy.",
+          "That distinction matters. Never paste a production token into a service that verifies signatures server-side; here, decoding happens locally and nothing is stored.",
+        ],
+      },
+      {
+        heading: "What runs where",
+        paragraphs: [
+          "All cryptographic operations execute in your browser using standard libraries. Keys, plaintext, and tokens are not uploaded, logged, or retained.",
+          "The practical limit is your own device: very large inputs depend on available memory, and nothing is recoverable after you close the tab.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Is anything I encrypt uploaded?", a: "No. All operations run in your browser; keys, plaintext, and tokens are never transmitted." },
+      { q: "Can this verify whether a JWT signature is valid?", a: "The decoder shows the header, payload, and signature. It reads claims locally and does not verify trust." },
+      { q: "Should I use these for production secrets?", a: "Use them for inspection, testing, and development. For production key management, use your platform's secret store." },
+      { q: "Are these tools free?", a: "Yes. All four are free with no account and no usage limit." },
+    ],
+    internalLinks: [
+      { label: "AES/DES Encrypt", href: "/tools/aes-des" },
+      { label: "Bcrypt Hash", href: "/tools/bcrypt" },
+      { label: "Hash Tool", href: "/tools/hash" },
+      { label: "JWT Decoder", href: "/tools/jwt" },
+      L.tools,
+      L.directory,
+    ],
+  },
+
+  "network-tools": {
+    slug: "network-tools",
+    site: "craftisle",
+    title: "Network Tools — IP Calculator, Port & UA Parser",
+    description:
+      "Free network tools: IP radix conversion, IP address calculator, random port generator, user-agent parser. No signup, runs in browser.",
+    keywords: ["network tools", "ip calculator", "user agent parser", "port generator"],
+    h1: "Network Tools",
+    intro: [
+      "Network questions tend to arrive as small, specific puzzles: what range does this CIDR block actually cover, what is this IP in decimal, which port should a local service use, and what browser is really behind this user-agent string. Each has a definite answer and none of them justify a heavyweight toolkit.",
+      "Craftisle has four network tools answering those. They run in the browser, so you can inspect addresses and agent strings from your own traffic without uploading them.",
+    ],
+    sections: [
+      {
+        heading: "Addresses and ranges",
+        paragraphs: [
+          "IP Calculator takes an address and works out the network details around it — the calculation behind subnetting questions that are easy to get wrong in your head.",
+          "IP Radix Converter moves an address between representations, which is what you need when one system logs dotted decimal and another stores integers.",
+        ],
+      },
+      {
+        heading: "Ports and agent strings",
+        paragraphs: [
+          "Random Port Generator picks a port number, useful when you are standing up a local service and want to avoid the well-known ranges.",
+          "User-Agent Parser breaks a UA string into browser, version, and platform. This is more useful than it sounds: UA strings are deliberately misleading, and reading one by eye reliably produces the wrong answer.",
+        ],
+      },
+      {
+        heading: "Working locally",
+        paragraphs: [
+          "All four tools run client-side. Addresses, subnets, and agent strings you paste are not sent anywhere, which matters when they come from your own infrastructure or access logs.",
+          "Nothing is stored, so there is no history to clear afterwards.",
+        ],
+      },
+    ],
+    faq: [
+      { q: "Are the network tools free?", a: "Yes. All four are free with no account and no usage limit." },
+      { q: "Is the IP or user-agent data uploaded?", a: "No. Processing runs in your browser and nothing is transmitted." },
+      { q: "Can I parse a subnet range?", a: "Yes. IP Calculator handles the subnet arithmetic for a given address." },
+      { q: "Does the UA parser detect bots?", a: "It identifies the browser, version, and platform declared in the string. Well-disguised clients can still misreport." },
+    ],
+    internalLinks: [
+      { label: "IP Calculator", href: "/tools/ip-calc" },
+      { label: "IP Radix Converter", href: "/tools/ip-radix" },
+      { label: "User-Agent Parser", href: "/tools/user-agent" },
+      { label: "Random Port Generator", href: "/tools/random-port-generator" },
+      L.tools,
+      L.directory,
+    ],
   },
 };
 
