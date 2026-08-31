@@ -14,6 +14,8 @@
  * 每页 ≥3 条指向真实存在的工具/目录页内链，避免薄页。
  */
 
+import { buildAlternativeLinks } from "./alternative-links";
+
 export interface LandingSection {
   heading: string;
   paragraphs: string[];
@@ -830,6 +832,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "Slug Generator", href: "/tools/slug-generator" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("text"),
     ],
   },
 
@@ -881,6 +884,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "Create Transparent PNG", href: "/tools/image-create-transparent" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("image"),
     ],
   },
 
@@ -932,6 +936,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "URL Encode/Decode", href: "/tools/url-encode" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("converter"),
     ],
   },
 
@@ -982,6 +987,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "File Viewer", href: "/tools/file-viewer" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("dev"),
     ],
   },
 
@@ -1033,6 +1039,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "Unix Timestamp Converter", href: "/tools/unix-to-date" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("utility"),
     ],
   },
 
@@ -1186,6 +1193,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "Pixel Art Generator", href: "/tools/image-to-pixel" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("generator"),
     ],
   },
 
@@ -1287,6 +1295,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "JWT Decoder", href: "/tools/jwt" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("encryption"),
     ],
   },
 
@@ -1338,6 +1347,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "Random Port Generator", href: "/tools/random-port-generator" },
       L.tools,
       L.directory,
+      ...buildAlternativeLinks("network"),
     ],
   },
 };
