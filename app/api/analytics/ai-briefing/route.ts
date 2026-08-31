@@ -97,6 +97,40 @@ export async function GET(request: Request) {
       }
     }
 
+    // ── 陈旧告警生命周期（读取侧）—— 必须放在 Promise.all 之前 ──
+    // ① 告警不能只写在 cron job 内部：若 cron 不派发，job 内的告警永不执行。
+    //    2026-08 静默失效 12 天正是这个循环依赖造成的（cron 被 Cloudflare 403 拦下）。
+    // ② 必须早于 alertEvent.findMany，否则本次响应仍会返回「已经关闭」的告警。
+    try {
+      const ps = await prisma.pipelineStatus.findUnique({ where: { key: "gsc_pull" } });
+      const ls = ps?.lastSuccessAt ? new Date(ps.lastSuccessAt) : null;
+      const days = ls ? Math.max(0, Math.floor((now.getTime() - ls.getTime()) / 86400000)) : null;
+      if (days === null || days > 2) {
+        const msg = `GSC 数据已 ${days === null ? "从未" : days + " 天"}未成功拉取(lastSuccess=${ls ? ls.toISOString() : "无"})。`;
+        const existing = await prisma.alertEvent.findFirst({
+          where: { type: "pipeline_stale", query: "__pipeline__", resolved: false },
+        });
+        if (existing) {
+          await prisma.alertEvent.update({
+            where: { id: existing.id },
+            data: { message: msg, severity: "critical", snapshotAt: weekStart },
+          });
+        } else {
+          await prisma.alertEvent.create({
+            data: { type: "pipeline_stale", query: "__pipeline__", severity: "critical", message: msg, snapshotAt: weekStart },
+          });
+        }
+      } else {
+        // 数据已恢复 → 自动关闭陈旧告警，避免历史告警永久挂在日常告警列表里
+        await prisma.alertEvent.updateMany({
+          where: { type: "pipeline_stale", query: "__pipeline__", resolved: false },
+          data: { resolved: true },
+        });
+      }
+    } catch (e) {
+      console.warn("[ai-briefing] 陈旧告警生命周期处理失败:", e);
+    }
+
     const [
       thisWeekAgg,
       lastWeekAgg,
@@ -182,39 +216,8 @@ export async function GET(request: Request) {
       cronDiagnosis = `cron 未派发：最近运行(${new Date(lastRunAt).toISOString()})即最后成功 ⇒ 此后无调用到达函数 → 排查 Vercel cron 注册 / 生产域名 Cloudflare 是否拦截 /api/cron/*`;
     }
 
-    // ── 陈旧告警（读取侧）──
-    // 关键：告警不能只写在 cron job 内部。若 cron 不派发，job 内的告警永远不会执行——
-    // 2026-08 静默失效 12 天正是这个循环依赖造成的。陈旧检测必须放在每次读取都会走到的路径上。
-    if (freshnessDays === null || freshnessDays > 2) {
-      try {
-        const msg = `GSC 数据已 ${freshnessDays === null ? "从未" : freshnessDays + " 天"}未成功拉取(lastSuccess=${lastSuccessAt ? new Date(lastSuccessAt).toISOString() : "无"})。${cronDiagnosis}`;
-        const existing = await prisma.alertEvent.findFirst({
-          where: { type: "pipeline_stale", query: "__pipeline__", resolved: false },
-        });
-        if (existing) {
-          await prisma.alertEvent.update({
-            where: { id: existing.id },
-            data: { message: msg, severity: "critical", snapshotAt: weekStart },
-          });
-        } else {
-          await prisma.alertEvent.create({
-            data: { type: "pipeline_stale", query: "__pipeline__", severity: "critical", message: msg, snapshotAt: weekStart },
-          });
-        }
-      } catch (e) {
-        console.warn("[ai-briefing] 写入陈旧告警失败:", e);
-      }
-    } else {
-      // 数据已恢复 → 自动关闭陈旧告警，避免历史告警永久挂在告警列表里
-      try {
-        await prisma.alertEvent.updateMany({
-          where: { type: "pipeline_stale", query: "__pipeline__", resolved: false },
-          data: { resolved: true },
-        });
-      } catch (e) {
-        console.warn("[ai-briefing] 关闭陈旧告警失败:", e);
-      }
-    }
+    // 注：陈旧告警的生命周期处理已上移到 Promise.all 之前（见下方 heal 之后的告警块），
+    // 否则 alertEvent.findMany 会先于「关闭告警」执行，导致本次响应仍返回已过期告警。
 
     // ── 总览 + 环比 ──
     const tw = {
