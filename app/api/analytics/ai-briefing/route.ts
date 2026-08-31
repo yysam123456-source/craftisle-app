@@ -153,8 +153,9 @@ export async function GET(request: Request) {
     // ── 管道健康 ──
     const lastSuccessAt = pipeline?.lastSuccessAt ?? null;
     const lastError = pipeline?.lastError ?? null;
+    // 注意：?heal=1 补拉成功后 lastSuccessAt 会略晚于本次请求的 now，差值可能为负 → 夹到 0
     const freshnessDays = lastSuccessAt
-      ? Math.floor((now.getTime() - new Date(lastSuccessAt).getTime()) / 86400000)
+      ? Math.max(0, Math.floor((now.getTime() - new Date(lastSuccessAt).getTime()) / 86400000))
       : null;
     let pipelineHealth: "healthy" | "stale" | "error" = "healthy";
     if (lastError && (freshnessDays === null || freshnessDays > 8)) pipelineHealth = "error";
@@ -202,6 +203,16 @@ export async function GET(request: Request) {
         }
       } catch (e) {
         console.warn("[ai-briefing] 写入陈旧告警失败:", e);
+      }
+    } else {
+      // 数据已恢复 → 自动关闭陈旧告警，避免历史告警永久挂在告警列表里
+      try {
+        await prisma.alertEvent.updateMany({
+          where: { type: "pipeline_stale", query: "__pipeline__", resolved: false },
+          data: { resolved: true },
+        });
+      } catch (e) {
+        console.warn("[ai-briefing] 关闭陈旧告警失败:", e);
       }
     }
 
