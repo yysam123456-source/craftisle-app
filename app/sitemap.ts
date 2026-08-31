@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { toolMeta } from "@/lib/tools";
 import { getAllCategories, getAllResources, getHandwrittenResourceIds, isHandwrittenResource } from "@/lib/fmhy-data";
-import { ALTERNATIVES_MAP } from "@/lib/alternatives";
+import { getAllAlternativeSlugs } from "@/lib/alternatives";
 import { DOMAINS } from "@/lib/unified-categories";
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { allPosts, allGuides } from "contentlayer/generated";
@@ -69,9 +69,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     }));
 
-  // ★ 新增：替代品页面
-  const alternativePages = Object.keys(ALTERNATIVES_MAP).map((tool) => ({
-    url: `${baseUrl}/directory/alternatives/${encodeURIComponent(tool.toLowerCase().replace(/\s+/g, "-"))}`,
+  // 替代品页面
+  // 用 getAllAlternativeSlugs()（含 lib/alternatives.ts 里 39 个 batch JSON 的条目），
+  // 此前只遍历手写 ALTERNATIVES_MAP，导致 ~125 个已渲染页面从未进入 sitemap。
+  // 同时它的 toSlug() 与路由 getAlternativeBySlug() 的匹配规则一致，
+  // 旧的 tool.toLowerCase().replace(/\s+/g,"-") 对含特殊字符的名称会算出不一致的 slug。
+  const alternativePages = getAllAlternativeSlugs().map((slug) => ({
+    url: `${baseUrl}/directory/alternatives/${encodeURIComponent(slug)}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
