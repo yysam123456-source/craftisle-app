@@ -10,7 +10,10 @@ import { readFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 
 const baseUrl = "https://craftisle.com";
-const now = new Date();
+// 注意：不要给没有真实更新时间来源的页面补 `lastModified: now`。
+// 此前全站 578 个 URL 一律写构建时刻的 now，等于每次部署全站「同时更新」，
+// Google 无法据此识别真实变更，lastmod 信号完全失效。
+// 只有内容源自带日期（Post.date / Guide.date）时才输出 lastModified。
 const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
 
 function loadReviewSlugs(): string[] {
@@ -44,7 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/contact`, priority: 0.5, changeFreq: "monthly" as const },
   ].map((r) => ({
     url: r.url,
-    lastModified: now,
     changeFrequency: r.changeFreq,
     priority: r.priority,
   }));
@@ -53,7 +55,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const resourceCategories = getAllCategories();
   const categoryPages = resourceCategories.map((cat) => ({
     url: `${baseUrl}/directory/${cat.id}`,
-    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
@@ -64,7 +65,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((r) => handwrittenIds.has(r.id))
     .map((r) => ({
       url: `${baseUrl}/directory/resource/${r.id}`,
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.5,
     }));
@@ -76,7 +76,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 旧的 tool.toLowerCase().replace(/\s+/g,"-") 对含特殊字符的名称会算出不一致的 slug。
   const alternativePages = getAllAlternativeSlugs().map((slug) => ({
     url: `${baseUrl}/directory/alternatives/${encodeURIComponent(slug)}`,
-    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
@@ -84,7 +83,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ★ 新增：MDX 博客文章
   const mdxBlogPages = allPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slugAsParams}`,
-    lastModified: post.date ? new Date(post.date) : now,
+    ...(post.date ? { lastModified: new Date(post.date) } : {}),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -92,7 +91,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ★ 新增：博客分类页
   const blogCategoryPages = BLOG_CATEGORIES.map((cat) => ({
     url: `${baseUrl}/blog/category/${cat.slug}`,
-    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
@@ -100,7 +98,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ★ 新增：Guides 页面
   const guidePages = allGuides.map((guide) => ({
     url: `${baseUrl}/guides/${guide.slugAsParams}`,
-    lastModified: now,
+    ...(guide.date ? { lastModified: new Date(guide.date) } : {}),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
@@ -109,7 +107,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const reviewSlugs = loadReviewSlugs();
   const reviewPages = reviewSlugs.map((slug) => ({
     url: `${baseUrl}/blog/review/${slug}`,
-    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -124,7 +121,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })();
   const toolBlogPages = toolBlogSlugs.map((slug: string) => ({
     url: `${baseUrl}/blog/tools/${slug}`,
-    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -133,14 +129,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/compare`, priority: 0.6, changeFreq: "monthly" as const },
   ].map((r) => ({
     url: r.url,
-    lastModified: now,
     changeFrequency: r.changeFreq,
     priority: r.priority,
   }));
 
   const toolPages = Object.keys(toolMeta).map((id) => ({
     url: `${baseUrl}/tools/${id}`,
-    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
@@ -148,7 +142,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ★ 新增：T1 主题权威落地页（18 个零曝光种子：craftisle 9 + pdf 9）
   const landingPages = LANDING_PAGE_SLUGS.map((slug) => ({
     url: `${baseUrl}/l/${slug}`,
-    lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -165,7 +158,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const resourceId = slug.replace(".json", "");
     return LANGUAGES.map(lang => ({
       url: `${baseUrl}/directory/resource/${resourceId}${lang === "en" ? "" : `/${lang}`}`,
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.4,
       alternates: {

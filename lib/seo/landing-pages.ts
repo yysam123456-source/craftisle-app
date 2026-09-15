@@ -1353,3 +1353,83 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
 };
 
 export const LANDING_PAGE_SLUGS = Object.keys(LANDING_PAGES);
+
+// ── 落地页内链网络（消除孤儿页）─────────────────────────────
+// 背景：29 个 /l/ 页面此前在站内**零入链**，只有 sitemap 指向它们。
+// 结果是无 PageRank 传递、Google 发现优先级垫底，全部页面长期零曝光。
+// 修复：按主题分组做上下文互链，让每页稳定获得 N 个相关入站内链。
+// 分组内链接相关性强（同主题），权重传递效率远高于页脚全站链接。
+const LANDING_GROUPS: string[][] = [
+  // 分类聚合页（B1 手写 11 页）
+  [
+    "text-tools",
+    "image-tools",
+    "converter-tools",
+    "dev-tools",
+    "utility-tools",
+    "json-tools",
+    "time-tools",
+    "generator-tools",
+    "formatter-tools",
+    "encryption-tools",
+    "network-tools",
+  ],
+  // 主站主题页
+  [
+    "free-online-tools",
+    "all-in-one-tools",
+    "browser-based-tools",
+    "client-side-tools",
+    "open-source-tools",
+    "best-free-tools",
+    "free-software-alternatives",
+    "intellij-alternative",
+    "figma-alternative",
+  ],
+  // PDF 工具页
+  [
+    "merge-pdf",
+    "split-pdf",
+    "compress-pdf",
+    "pdf-converter",
+    "rotate-pdf",
+    "pdf-watermark",
+    "pdf-editor-online",
+    "free-pdf-tools",
+    "unlock-pdf",
+  ],
+];
+
+/** 分类聚合页（B1），供 /tools 等高权重页做分类入口 */
+export const CATEGORY_LANDING_SLUGS = LANDING_GROUPS[0].filter((s) => LANDING_PAGES[s]);
+
+const SLUG_TO_GROUP = new Map<string, number>(
+  LANDING_GROUPS.flatMap((g, i) => g.map((s) => [s, i] as [string, number])),
+);
+
+/**
+ * 取与指定落地页相关的其他落地页（用于 /l/[slug] 底部互链区块）。
+ * 同组优先（主题相关），不足时从其他组补齐；已过滤不存在的 slug，杜绝 404 内链。
+ */
+export function getRelatedLandingPages(
+  slug: string,
+  limit = 5,
+): { slug: string; label: string }[] {
+  const exists = (s: string) => s !== slug && Boolean(LANDING_PAGES[s]);
+  const gi = SLUG_TO_GROUP.get(slug);
+
+  const picked: string[] = [];
+  const push = (s: string) => {
+    if (exists(s) && !picked.includes(s) && picked.length < limit) picked.push(s);
+  };
+
+  if (gi !== undefined) LANDING_GROUPS[gi].forEach(push);
+  if (picked.length < limit) {
+    LANDING_GROUPS.forEach((g, i) => {
+      if (i === gi) return;
+      g.forEach(push);
+    });
+  }
+
+  return picked.slice(0, limit).map((s) => ({ slug: s, label: LANDING_PAGES[s].h1 }));
+}

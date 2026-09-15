@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   LANDING_PAGES,
   LANDING_PAGE_SLUGS,
+  getRelatedLandingPages,
   type LandingPage,
 } from "@/lib/seo/landing-pages";
 import { constructMetadata } from "@/lib/utils";
@@ -105,6 +106,8 @@ export default async function LandingPageRoute({ params }: PageProps) {
 
   const faqLd = buildFaqJsonLd(data);
   const softLd = buildSoftwareJsonLd(data, canonical);
+  // 同主题落地页互链：此前 /l/ 页面在站内零入链（孤儿页），导致长期零曝光
+  const relatedLanding = getRelatedLandingPages(slug);
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
@@ -167,6 +170,26 @@ export default async function LandingPageRoute({ params }: PageProps) {
           ))}
         </ul>
       </nav>
+
+      {relatedLanding.length > 0 && (
+        <nav className="mt-6 rounded-lg border border-border p-4" aria-label="Related guides">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+            Related guides
+          </h2>
+          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+            {relatedLanding.map((r) => (
+              <li key={r.slug}>
+                <Link
+                  href={`/l/${r.slug}`}
+                  className="text-primary underline underline-offset-2 hover:no-underline"
+                >
+                  {r.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </main>
   );
 }

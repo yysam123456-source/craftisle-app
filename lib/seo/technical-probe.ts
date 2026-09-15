@@ -43,11 +43,27 @@ export interface TechnicalReport {
 
 const DEFAULT_FETCH: typeof fetch = (...args: any[]) => (globalThis as any).fetch(...args);
 
+// 边缘防护（Cloudflare 机器人防护）会拦截无浏览器特征的服务端请求，返回 403 挑战页。
+// 挑战页自带 noindex 且无 H1，若不识别会把「探针被拦」误报成「整站 noindex」的 critical。
+// 带上浏览器特征头可显著降低被拦概率；仍被拦时按 edge_block 处理，不再误判为站点问题。
+const PROBE_UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+
+const EDGE_BLOCK_STATUSES = new Set([401, 403, 429, 503]);
+
 async function fetchText(url: string, f: typeof fetch, timeoutMs = 8000): Promise<{ ok: boolean; status: number; body: string; headers: Record<string, string> }> {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
-    const res = await f(url, { redirect: "follow", signal: ctrl.signal } as any);
+    const res = await f(url, {
+      redirect: "follow",
+      signal: ctrl.signal,
+      headers: {
+        "user-agent": PROBE_UA,
+        accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "accept-language": "en-US,en;q=0.9",
+      },
+    } as any);
     const body = await res.text();
     const headers: Record<string, string> = {};
     res.headers.forEach((v: string, k: string) => { headers[k.toLowerCase()] = v; });
@@ -77,10 +93,21 @@ async function probeSite(site: SiteConfig, f: typeof fetch): Promise<SiteTechHea
   const httpStatus = home.status;
   const noindex = detectNoindex(home.body, home.headers);
 
-  if (httpStatus !== 200) {
+  // 边缘防护拦截：不是站点配置问题，降级为 info，避免误报 critical
+  const edgeBlocked = EDGE_BLOCK_STATUSES.has(httpStatus);
+
+  if (edgeBlocked) {
+    issues.push({
+      severity: "info",
+      siteSlug: site.slug,
+      check: "edge_block",
+      message: `探针请求被边缘防护拦截（HTTP ${httpStatus}）：Cloudflare 机器人防护会拦截无浏览器特征的服务端请求，非站点配置问题，Googlebot 通常不受影响。`,
+    });
+  } else if (httpStatus !== 200) {
     issues.push({ severity: "critical", siteSlug: site.slug, check: "http_status", message: `首页 HTTP ${httpStatus}（应为 200），搜索引擎无法索引。` });
   }
-  if (noindex) {
+  // 只有真正取到页面时才判定 noindex —— 挑战页自带 noindex，直接判定会产生假阳性
+  if (!edgeBlocked && noindex) {
     issues.push({ severity: "critical", siteSlug: site.slug, check: "noindex", message: `首页带 noindex，整站从搜索结果消失。` });
   }
 
@@ -102,7 +129,16 @@ async function probeSite(site: SiteConfig, f: typeof fetch): Promise<SiteTechHea
   const sitemap = await fetchText(`https://${site.host}/sitemap.xml`, f);
   const sitemapOk = sitemap.ok && /<urlset|<?xml/i.test(sitemap.body);
   if (!sitemapOk) {
-    issues.push({ severity: "warning", siteSlug: site.slug, check: "sitemap", message: `sitemap.xml 不可访问或为空，新页面发现变慢。` });
+    // 同样可能是边缘拦截（robots.txt 能取到、页面取不到时基本可断定）
+    const blocked = EDGE_BLOCK_STATUSES.has(sitemap.status);
+    issues.push({
+      severity: blocked ? "info" : "warning",
+      siteSlug: site.slug,
+      check: "sitemap",
+      message: blocked
+        ? `sitemap.xml 同样被边缘防护拦截（HTTP ${sitemap.status}），无法判定真实可用性。`
+        : `sitemap.xml 不可访问或为空，新页面发现变慢。`,
+    });
   }
 
   // 评分：critical 扣 40，warning 扣 15，info 不扣；满分 100

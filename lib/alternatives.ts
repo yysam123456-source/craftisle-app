@@ -50,6 +50,19 @@ export interface AlternativeEntry {
   category: string;
   seoKeywords: string[];
   faqs: { question: string; answer: string }[];
+  /**
+   * 可选：手写覆盖 SEO title。
+   * 默认由 `${seoKeywords[0]} — Best Free ${paidTool} Alternatives in 2026` 自动拼接，
+   * 需要更自然的措辞或要同时覆盖多个近失词变体时，用此字段覆盖。
+   */
+  seoTitleOverride?: string;
+  /**
+   * 可选：手写覆盖 H1。
+   * 默认拼接为 `${paidTool} Alternatives — ${seoKeywords[0]}`，
+   * 对 "Microsoft Project Alternatives — ms project alternative" 这类
+   * 语义重复、像机器拼接的文案，必须用此字段覆盖为自然标题。
+   */
+  h1Override?: string;
 }
 
 // ============================================================
@@ -2350,6 +2363,14 @@ export const ALTERNATIVES_MAP: Record<string, AlternativeEntry> = {
     },
     category: "Project Management",
     seoKeywords: ["ms project alternative", "microsoft project alternative", "free ms project alternative", "microsoft project alternative free", "free project management software like ms project"],
+    // 近失词实测（GSC 2026-09）：ms project alternative online free P19、
+    // free ms project alternative P21.1、ms project alternative P23.6、
+    // microsoft project alternative P24.5、alternative ms project P28.1。
+    // 标题一次覆盖 free / ms project / microsoft project 三种变体。
+    seoTitleOverride: "Free MS Project Alternatives — Best Microsoft Project Replacements",
+    // 默认拼接会产生 "Microsoft Project Alternatives — ms project alternative"
+    // 这类语义重复、像机器堆砌的 H1，此处覆盖为自然标题。
+    h1Override: "Best Free MS Project Alternatives in 2026",
     faqs: [
       { question: "Is there a free alternative to Microsoft Project?", answer: "Yes. ProjectLibre and GanttProject are 100% free and open-source desktop tools that open .mpp and Project XML files. OpenProject is free to self-host. ClickUp and Trello offer free tiers for collaborative planning." },
       { question: "Which Microsoft Project alternative opens .mpp files?", answer: "ProjectLibre is the closest free replacement — it opens native Microsoft Project .mpp files and mirrors the desktop interface, so you can keep working on existing plans without a license." },

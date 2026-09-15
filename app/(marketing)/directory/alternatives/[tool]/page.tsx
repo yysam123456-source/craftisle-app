@@ -50,7 +50,8 @@ export async function generateMetadata({
   // 把用户真实在搜的精确词前置进标题/描述，提升近失词（P17–28）排名与 CTR
   // 注意：根 layout 已有 title.template "%s | Craftisle"，此处不再重复后缀，避免双 Craftisle
   const primaryKw = getPrimaryKw(entry);
-  const title = `${primaryKw} — Best Free ${entry.paidTool} Alternatives in 2026`;
+  const title =
+    entry.seoTitleOverride || `${primaryKw} — Best Free ${entry.paidTool} Alternatives in 2026`;
   const description = `Looking for ${primaryKw}? We've curated ${entry.alternatives.length} free options that can replace ${entry.paidTool} — no subscription required. Compare features, pricing & migration difficulty.`;
 
   return constructMetadata({
@@ -188,7 +189,10 @@ export default async function AlternativesPage({
               </div>
 
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">
-                {primaryKw ? `${entry.paidTool} Alternatives — ${primaryKw}` : `Best Free ${entry.paidTool} Alternatives in 2026`}
+                {entry.h1Override ||
+                  (primaryKw
+                    ? `${entry.paidTool} Alternatives — ${primaryKw}`
+                    : `Best Free ${entry.paidTool} Alternatives in 2026`)}
               </h1>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
