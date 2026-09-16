@@ -33,6 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tools`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/tools/craftisle-image-tools`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/tools/craftisle-dev-tools`, priority: 0.8, changeFreq: "weekly" as const },
+    // 以下 3 个是有独立静态路由的工具页，但不在 lib/tools.ts 的 toolMeta 中，
+    // 因此 toolPages 那段（Object.keys(toolMeta)）覆盖不到它们 —— 此前完全未被 sitemap 收录。
+    { url: `${baseUrl}/tools/ai-image-editor`, priority: 0.7, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/tools/image-upscale`, priority: 0.7, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/tools/ocr-text`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/about/craftisle-vs-craft-island`, priority: 0.7, changeFreq: "monthly" as const },
     { url: `${baseUrl}/directory`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/search`, priority: 0.6, changeFreq: "weekly" as const },

@@ -1,17 +1,21 @@
-import { getToolMeta, CATEGORY_LIST } from "@/lib/tools";
+import { getToolMeta } from "@/lib/tools";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 import HandwritingAnimationTool from "@/components/tools/handwriting-animation";
+import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
 // Static page — /tools/handwriting-animation (exact match)
 // NOT /tools/[tool] (dynamic catch-all)
+//
+// 静态段优先于动态段，所以本页不会经过 app/tools/[tool]/page.tsx 模板，
+// 模板提供的正文区块(FAQ/HowTo/UseCases/RelatedTools)与结构化数据都得自己补齐。
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = getToolMeta("handwriting-animation");
   if (!meta) return {};
 
-  const url = `https://craftisle.com/tools/handwriting-animation`;
+  const url = toolUrl("handwriting-animation");
   const title = String(meta.seoTitle || `${meta.title}`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
@@ -25,75 +29,24 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function getCategorySlug(categoryLabel: string): string {
-  const entry = CATEGORY_LIST.find((c) => c.label === categoryLabel);
-  return entry?.key ?? "other";
-}
-
 export default function ToolPage() {
   const meta = getToolMeta("handwriting-animation");
   if (!meta) return null;
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: (meta.faq || []).map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to Create Handwriting Animation Free Online",
-    description:
-      "Step-by-step guide to create beautiful handwriting animations from any text using Craftisle free online tool.",
-    step: [
-      {
-        "@type": "HowToStep",
-        name: "Enter your text",
-        text: "Type or paste any text into the text area. Supports all languages and Unicode characters including Chinese, Japanese, Korean.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Choose a handwriting font",
-        text: "Select from 8 beautiful handwriting fonts: Caveat, Italianno, Tangerine, Parisienne, Suez One, Klee One, Amiri, Tilana. Each animates with authentic stroke order.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Adjust animation settings",
-        text: "Set animation speed (slow/normal/fast), font size, and loop mode. Click Replay to preview the animation.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Export as GIF (optional)",
-        text: "Click the GIF Export button to render the animation as a downloadable GIF file. Supports custom frame rate and loop settings.",
-      },
-    ],
-  };
-
-  const categorySlug = getCategorySlug(meta.category);
-
+  // 此前本页手写了 FAQPage + HowTo 两个 schema，但缺 SoftwareApplication
+  // —— 而 SoftwareApplication 正是应用类富媒体结果所依赖的那个。
+  // 现统一走 buildToolJsonLd，与 app/tools/[tool]/ 模板同源，避免再次分叉。
+  // 注：原手写 HowTo 的步骤文案更细（点名了 8 个字体），如需保留应回填进
+  // lib/tools.ts 的 howToUse，而不是在这一页单独硬编码。
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
-      <ToolDetailLayout
-        toolId="handwriting-animation"
-        categorySlug={categorySlug}
-        meta={meta}
-      >
-        <HandwritingAnimationTool />
-        <ToolDetailSections toolId="handwriting-animation" />
-      </ToolDetailLayout>
-    </>
+    <ToolDetailLayout
+      toolId="handwriting-animation"
+      categorySlug={getToolCategorySlug(meta.category)}
+      meta={meta}
+      jsonLd={buildToolJsonLd("handwriting-animation", meta)}
+    >
+      <HandwritingAnimationTool />
+      <ToolDetailSections toolId="handwriting-animation" />
+    </ToolDetailLayout>
   );
 }

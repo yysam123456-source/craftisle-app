@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import WatermarkRemoverClient from "./client";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
+import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
 export const metadata: Metadata = {
   title: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online",
@@ -50,117 +52,12 @@ export const metadata: Metadata = {
 };
 
 export default function AIWatermarkRemoverPage() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What AI watermarks can this tool remove?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "This tool removes visible watermarks from Gemini (Google), Doubao (ByteDance), Jimeng (ByteDance), Tongyi (Alibaba), Wenxin (Baidu), and Leonardo.ai. It uses reverse alpha blending to mathematically restore the original pixels.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is the watermark removal lossless?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "For Gemini images, the removal is mathematically lossless because we use the exact alpha map from the official watermark. For other platforms, the result is near-lossless using an estimated alpha map.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is this tool free to use?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, completely free. No signup, no registration, no payment. All processing happens in your browser.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Are my images uploaded to a server?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. All processing happens entirely in your browser. Your images never leave your device.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I remove invisible watermarks like SynthID?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. This tool only removes visible watermarks (semi-transparent logos or text). Invisible watermarks like SynthID, StableSignature, or TreeRing require AI model inference and cannot be removed by this tool.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do I remove a Gemini AI watermark?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Simply upload your Gemini-generated image (with the star logo in the bottom-right corner), select 'Gemini' platform, and click 'Remove Watermark'. The tool will automatically detect and remove the watermark.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does removing AI watermarks violate Terms of Service?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Removing watermarks may violate the AI platform's Terms of Service. This tool is provided for educational and personal use only. Do not use watermark-removed images for commercial purposes without permission.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What image formats are supported?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "JPG/JPEG, PNG, and WebP formats are all supported. The output image will be in PNG format by default.",
-        },
-      },
-    ],
-  };
-
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to Remove AI Image Watermark Free Online",
-    description:
-      "Step-by-step guide to remove visible watermarks from AI-generated images using Craftisle free online tool.",
-    step: [
-      {
-        "@type": "HowToStep",
-        name: "Upload AI image",
-        text: "Drag and drop your AI-generated image (JPG, PNG, or WebP) onto the upload area, or click to browse and select your file.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Select AI platform",
-        text: "Choose the AI platform that generated the image (Gemini, Doubao, Jimeng, Tongyi, Wenxin, Leonardo.ai) or use 'Auto Detect' for automatic identification.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Remove watermark",
-        text: "Click the 'Remove Watermark' button. The tool will process the image in your browser using reverse alpha blending.",
-      },
-      {
-        "@type": "HowToStep",
-        name: "Download cleaned image",
-        text: "Preview the result, compare before and after, and click 'Download' to save the cleaned image to your device.",
-      },
-    ],
-  };
-
+  // 此前本页手写了 faqSchema + howToSchema，既缺 SoftwareApplication，又与其余工具页各写各的
+  // —— 这种分叉正是那 8 个静态页结构失控的根因。统一改用共享 ToolJsonLd：
+  // 一次产出 SoftwareApplication + FAQPage + HowTo，与 app/tools/[tool]/ 模板同源。
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
+      <ToolJsonLd toolId="ai-watermark-remover" />
       <main className="container mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight">
@@ -405,6 +302,9 @@ export default function AIWatermarkRemoverPage() {
             </ul>
           </section>
         </div>
+
+        {/* 补齐模板提供的正文区块：About / How-to / Use Cases / FAQ / Related Tools */}
+        <ToolDetailSections toolId="ai-watermark-remover" />
       </main>
     </>
   );

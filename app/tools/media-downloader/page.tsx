@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import MediaDownloaderClient from "./client";
+import ToolDetailSections from "@/components/tools/ToolDetailSections";
+import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
 export const metadata: Metadata = {
   title: "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram",
@@ -36,8 +38,11 @@ export const metadata: Metadata = {
 };
 
 export default function MediaDownloaderPage() {
+  // 本页是静态段，优先于 app/tools/[tool]/ 动态段 ⇒ 不经过模板，
+  // 此前完全没有结构化数据，也没有模板提供的 FAQ/How-to/Use Cases/RelatedTools 区块。
   return (
     <main className="container mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+      <ToolJsonLd toolId="media-downloader" />
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">
           📥 Free Media Downloader
@@ -187,6 +192,9 @@ export default function MediaDownloaderPage() {
           </div>
         </section>
       </div>
+
+      {/* 补齐模板提供的正文区块：About / How-to / Use Cases / FAQ / Related Tools */}
+      <ToolDetailSections toolId="media-downloader" />
     </main>
   );
 }

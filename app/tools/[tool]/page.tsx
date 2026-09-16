@@ -1,6 +1,5 @@
-import { getToolMeta, CATEGORY_LIST, type ToolMeta } from "@/lib/tools";
+import { toolMeta } from "@/lib/tools";
 import { getToolDefinition } from "@/lib/image-tools/registry";
-import type { ToolDefinition } from "@/lib/image-tools/types";
 import { ImageToolPage } from "@/components/tools/image-tool-page";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
@@ -9,17 +8,37 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
 import { getRelatedTools } from "@/lib/related-tools";
+import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
 interface ToolPageProps {
   params: Promise<{ tool: string }>;
 }
 
+/**
+ * 构建期预渲染全部工具页。
+ *
+ * 此前本页没有任何 generateStaticParams / dynamic / revalidate 声明，164 个工具页
+ * 全部走动态 SSR —— 每次请求都要在服务器渲染一遍，HTML 也不进 CDN 缓存。
+ * 页面数据全部来自构建期的 toolMeta，天然是静态的，没有理由不做预渲染。
+ *
+ * dynamicParams = false：未列出的 slug 直接 404。
+ * 这一点很重要 —— getToolMeta() 带有兜底 stub（`toolMeta[x] || {title: x, ...}`），
+ * 永远不返回 undefined，所以旧代码里的 `if (!meta) notFound()` 从来不会触发，
+ * 任意 /tools/<乱码> 都会返回一个 200 的桩页面，等于一台软 404 生成器。
+ * 已核对：17 个 imageToolIds 全部存在于 toolMeta，故收紧后不会误伤任何正常工具。
+ */
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return Object.keys(toolMeta).map((tool) => ({ tool }));
+}
+
 export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
   const { tool } = await params;
-  const meta = getToolMeta(tool);
+  // 直查 toolMeta，理由同下（getToolMeta 永不返回 undefined）
+  const meta = toolMeta[tool];
   if (!meta) return {};
 
-  const url = `https://craftisle.com/tools/${tool}`;
   const title = String(meta.seoTitle || `${meta.title}`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
@@ -27,81 +46,27 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     title,
     description,
     keywords: meta.seoKeywords,
+    // canonical 必须显式传入：constructMetadata 里写的是
+    //   alternates: canonical ? { canonical } : undefined
+    // 不传就完全没有 canonical，而且 openGraph.url 会回退到站点根
+    // ⇒ 此前 156 个走本模板的工具页既无 canonical，OG url 又全部指向首页。
+    canonical: toolUrl(tool),
   });
-}
-
-function getCategorySlug(categoryLabel: string): string {
-  const entry = CATEGORY_LIST.find((c) => c.label === categoryLabel);
-  return entry?.key ?? "utility";
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {
   const { tool } = await params;
   const definition = getToolDefinition(tool);
-  const meta = getToolMeta(tool);
+  // 必须直查 toolMeta —— getToolMeta() 带兜底 stub（永不返回 undefined），
+  // 会让下面这个 notFound() 永远不触发，任意 slug 都渲染成 200 的桩页面。
+  const meta = toolMeta[tool];
 
   if (!meta) {
     notFound();
   }
 
-  const toolUrl = `https://craftisle.com/tools/${tool}`;
-  const jsonLd: Record<string, unknown> = {
-    "@context": "https://schema.org",
-    "@type": ["SoftwareApplication", "WebApplication"],
-    name: meta.title,
-    description: meta.desc,
-    url: toolUrl,
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "Any",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    author: {
-      "@type": "Organization",
-      name: "Craftisle Team",
-      url: "https://craftisle.com/about",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Craftisle",
-      url: "https://craftisle.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://craftisle.com/logo.png",
-      },
-    },
-    inLanguage: "en-US",
-    isAccessibleForFree: true,
-  };
-
-  if (meta.faq && meta.faq.length > 0) {
-    jsonLd.mainEntity = {
-      "@type": "FAQPage",
-      mainEntity: meta.faq.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    };
-  }
-
-  if (meta.howToUse && meta.howToUse.length > 0) {
-    jsonLd.tutorial = {
-      "@type": "HowTo",
-      name: `How to Use ${meta.title}`,
-      description: meta.desc || `Step-by-step guide for using ${meta.title} free online.`,
-      step: meta.howToUse.map((s, i) => ({
-        "@type": "HowToStep",
-        position: i + 1,
-        name: s.heading,
-        text: s.text,
-      })),
-    };
-  }
-
-  const categorySlug = getCategorySlug(meta.category);
+  const jsonLd = buildToolJsonLd(tool, meta);
+  const categorySlug = getToolCategorySlug(meta.category);
   const relatedTools = getRelatedTools(tool);
 
   // Image tools: use ImageToolPage

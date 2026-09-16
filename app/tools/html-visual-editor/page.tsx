@@ -1,14 +1,15 @@
-import { getToolMeta, CATEGORY_LIST } from "@/lib/tools";
+import { getToolMeta } from "@/lib/tools";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 import HtmlVisualEditorTool from "@/components/tools/HtmlVisualEditorTool";
+import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = getToolMeta("html-visual-editor");
   if (!meta) return {};
 
-  const url = `https://craftisle.com/tools/html-visual-editor`;
+  const url = toolUrl("html-visual-editor");
   const title = String(meta.seoTitle || `${meta.title}`);
   const description = String(meta.seoDesc || meta.desc || "Free online tool");
 
@@ -22,48 +23,19 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function getCategorySlug(categoryLabel: string): string {
-  const entry = CATEGORY_LIST.find((c) => c.label === categoryLabel);
-  return entry?.key ?? "other";
-}
-
 export default function ToolPage() {
   const meta = getToolMeta("html-visual-editor");
   if (!meta) return null;
 
-  const jsonLd: Record<string, unknown> = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: meta.title,
-    description: meta.desc,
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "Any",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-  };
-
-  if (meta.faq && meta.faq.length > 0) {
-    jsonLd.mainEntity = {
-      "@type": "FAQPage",
-      mainEntity: meta.faq.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    };
-  }
-
-  const categorySlug = getCategorySlug(meta.category);
-
+  // 此前这里手写了精简版 JSON-LD：只有 SoftwareApplication + FAQPage，
+  // 缺 HowTo(tutorial)、url、author、publisher、inLanguage、isAccessibleForFree。
+  // 改用共享构建器后与 app/tools/[tool]/ 模板完全一致。
   return (
     <ToolDetailLayout
       toolId="html-visual-editor"
-      categorySlug={categorySlug}
+      categorySlug={getToolCategorySlug(meta.category)}
       meta={meta}
-      jsonLd={jsonLd}
+      jsonLd={buildToolJsonLd("html-visual-editor", meta)}
     >
       <HtmlVisualEditorTool />
       <ToolDetailSections toolId="html-visual-editor" />
