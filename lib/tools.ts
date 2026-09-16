@@ -94,8 +94,11 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "Is AES-256 secure?", a: "Yes. AES-256 is considered military-grade and is widely used by governments and financial institutions worldwide." },
+      { q: "Should I use AES or DES?", a: "AES. DES uses a 56-bit key, which modern hardware can brute-force, so it is only worth using for learning or for reading legacy data. AES at 128-bit or above is the right choice for anything real." },
+      { q: "Which key size should I choose — 128, 192 or 256 bit?", a: "128-bit is already sufficient for any practical purpose and is the fastest of the three. Pick 192 or 256-bit when a compliance rule or internal policy requires it. AES does not define key sizes beyond 256-bit." },
       { q: "What is the difference between ECB and CBC?", a: "ECB (Electronic Codebook) encrypts identical blocks identically — it leaks patterns. CBC (Cipher Block Chaining) XORs each block with the previous one, making it much more secure." },
       { q: "Does this tool store my data?", a: "No. All encryption and decryption happens entirely in your browser. Nothing is uploaded to any server." },
+      { q: "Is this encryption tool free, and do I need an account?", a: "It is free, with no account, no sign-up and no email required. Both encryption and decryption run locally in your browser, so there is no server processing to charge for or to limit." },
     ],
     relatedTools: ["base64", "hash", "bcrypt", "jwt"],
   },
@@ -136,8 +139,11 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What cost factor should I use?", a: "In 2026, a cost factor of 12-14 is recommended for new passwords. Test on your production hardware to balance security and latency." },
+      { q: "Can I verify a password against an existing bcrypt hash?", a: "Yes. Paste the stored hash together with the candidate password and the tool reports whether they match. The comparison runs locally, so the hash never leaves your machine." },
       { q: "Is bcrypt still secure?", a: "Yes. bcrypt is still considered secure when used with a proper cost factor. It is resistant to GPU-based brute force attacks." },
       { q: "Should I use salt?", a: "bcrypt automatically generates and embeds a secure random salt. You don't need to manage salts separately." },
+      { q: "Are the passwords I type uploaded anywhere?", a: "No. Hashing and verification both run in your browser using client-side JavaScript. No password, hash or plaintext is transmitted to a server." },
+      { q: "Is this bcrypt tool free, and do I need an account?", a: "It is free and needs no account or sign-up. Because hashing happens locally there is no server-side quota or usage limit." },
     ],
     relatedTools: ["hash", "aes-des", "jwt"],
   },
@@ -234,9 +240,12 @@ export const toolMeta: Record<string, ToolMeta> = {
       { title: "Data exploration", text: "Use tree view to explore complex nested JSON structures from APIs or databases." },
     ],
     faq: [
+      { q: "Should I beautify or minify my JSON?", a: "Beautify when a person needs to read it — debugging an API response, editing a config file, or reviewing a diff. Minify when a machine will consume it: stripping the indentation and line breaks that beautifying adds makes the payload smaller. You can switch between the two in one click." },
+      { q: "What kind of errors will it catch?", a: "Syntax errors — a missing comma, an unclosed brace or bracket, a trailing comma, a single-quoted string, or an unquoted key. The message includes the line number so you can jump straight to it. It does not check whether your data matches a schema." },
       { q: "Is there a size limit?", a: "The tool uses your browser's memory. For files over ~10 MB, consider splitting them first. Most JSON responses from APIs are well under this limit." },
       { q: "Does it validate JSON schema?", a: "It validates syntax (is this valid JSON?), but not schema (does it match a specific structure?). For schema validation, use a dedicated JSON Schema tool." },
       { q: "Is my data private?", a: "Yes. All formatting happens locally in your browser. Nothing is uploaded to any server." },
+      { q: "Is the JSON formatter free, and do I need an account?", a: "It is free, with no account, no sign-up and no email required. Formatting runs entirely in your browser, so nothing is uploaded and there is no server-side usage limit." },
     ],
     relatedTools: ["csv-json", "yaml-formatter", "sql-formatter"],
   },
@@ -2373,8 +2382,12 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What quality setting should I use for JPG?", a: "80-85 is a good balance between file size and visual quality. Below 70, artifacts become noticeable." },
+      { q: "How much smaller will my images get?", a: "It depends heavily on the source. A photo straight from a camera, or a screenshot saved as PNG, often shrinks to a fraction of its original size. A JPEG that has already been compressed saves much less — re-encoding it at a lower quality only helps so far before visible damage sets in." },
+      { q: "Are my images uploaded to a server?", a: "No. Compression runs locally in your browser using the canvas API, so the file never leaves your device — nothing is uploaded, queued or stored." },
+      { q: "What settings should I use for images on a website?", a: "Resize to the largest size your layout actually displays before compressing — downscaling usually saves more than compression alone does. Then compress to the highest quality at which you stop seeing a difference, typically around 80 for JPEG. Do it on your machine rather than on every request, so the bytes are already small before they reach your server." },
       { q: "Is WebP always smaller than JPG?", a: "Yes, for the same visual quality, WebP is typically 25-35% smaller. But not all browsers support WebP (very old Safari/Chrome)." },
       { q: "Should I compress PNG?", a: "PNG is lossless. Compression reduces the color palette (lossy) or re-compresses with Zlib (lossless). For photos, convert to JPG/WebP for better compression." },
+      { q: "Is the image compressor free, and do I need an account?", a: "It is free, with no account, no sign-up and no watermark. Because compression happens in your browser there is no server queue and no per-file charge." },
     ],
     relatedTools: ["image-resize", "image-convert", "image-strip-metadata"],
   },
@@ -2541,11 +2554,11 @@ export const toolMeta: Record<string, ToolMeta> = {
 
   "image-convert": {
     title: "Image Converter",
-    desc: "Convert between JPEG, PNG, WebP, AVIF, TIFF",
+    desc: "Convert between JPEG, PNG, WebP, GIF, BMP",
     icon: "🔄",
     category: CATEGORIES.image,
-    seoTitle: "Image Converter Free — Convert JPG/PNG/WebP/AVIF Online",
-    seoDesc: "Free image converter online. Convert between JPG, PNG, WebP, AVIF, TIFF formats. Batch conversion supported. 100% browser-based, no signup required.",
+    seoTitle: "Image Converter Free — Convert JPG/PNG/WebP Online",
+    seoDesc: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. Batch conversion supported. 100% browser-based, no signup required.",
     seoKeywords: [
         "image converter online free",
         "convert image online",
@@ -2567,7 +2580,7 @@ export const toolMeta: Record<string, ToolMeta> = {
         "jpg to webp converter free",
         "png to webp converter online"
       ],
-    description: "Convert images between JPG, PNG, WebP, AVIF, and TIFF formats. Supports batch conversion, quality settings for lossy formats, and transparency preservation for PNG/WebP. Server-side processing with Sharp for fast, high-quality conversion.",
+    description: "Convert images between JPG, PNG, WebP, GIF and BMP. Supports batch conversion, quality settings for lossy formats, and transparency preservation for PNG/WebP. Conversion runs entirely in your browser using the canvas API — images are never uploaded to a server.",
     howToUse: [
       { heading: "Upload images", text: "Drag and drop one or multiple images. Supports JPG, PNG, WebP, AVIF, TIFF, BMP, GIF." },
       { heading: "Choose output format", text: "Select target format: JPG, PNG, WebP, or AVIF." },
@@ -3174,6 +3187,16 @@ export const toolMeta: Record<string, ToolMeta> = {
         q: "Can I replace the background with a custom color?",
         a:
           "Yes. Choose from white, blue, red, gray, green, or black solid color backgrounds. The tool automatically composites the foreground onto your chosen color.",
+      },
+      {
+        q: "How do I make a product photo with a clean white background?",
+        a:
+          "Remove the background first, then pick white as the replacement colour. The cutout keeps soft, antialiased edges, so the result composites cleanly onto white — without the jagged halo you get from a magic-wand selection in a general image editor.",
+      },
+      {
+        q: "Can I use this to make a passport or ID photo?",
+        a:
+          "Removing the background is only the first step of an ID photo — you also need an exact crop size and head-to-frame ratio. Use the AI ID Photo Maker instead if you need a print-ready passport or visa photo; this tool is best for product shots, portraits and graphics.",
       },
     ],
     relatedTools: ["id-photo", "image-resize", "image-crop", "image-compress"],

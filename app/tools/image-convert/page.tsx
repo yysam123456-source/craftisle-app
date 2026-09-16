@@ -4,22 +4,24 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
 export const metadata = constructMetadata({
-  title: "Image Converter Free — Convert JPG/PNG/WebP/AVIF Online",
-  description: "Free image converter online. Convert between JPG, PNG, WebP, AVIF, TIFF formats. Batch conversion supported. 100% browser-based, no signup required.",
+  title: "Image Converter Free — Convert JPG/PNG/WebP Online",
+  description: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. Batch conversion supported. 100% browser-based, no signup required.",
   canonical: "https://craftisle.com/tools/image-convert",
 });
 
 // 静态段优先于 app/tools/[tool]/ 动态段，故需自行补齐模板提供的正文区块与结构化数据。
+// 注：本页与 lib/tools.ts 的 desc/seoTitle/seoDesc 原先都声称支持 AVIF/TIFF，
+// 但 app/tools/image-convert/client.tsx 的 Format 类型是 jpeg|png|webp|gif|bmp —— 已按代码对齐。
 export default function ImageConvertPage() {
   return (
     <main className="container mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <ToolJsonLd toolId="image-convert" />
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">
-          🔄 Image Converter — Convert JPG/PNG/WebP/AVIF Online
+          🔄 Image Converter — Convert JPG/PNG/WebP Online
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Free image converter online. Convert between JPG, PNG, WebP, AVIF, TIFF formats. 
+          Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP.
           Batch conversion supported. 100% browser-based, no signup.
         </p>
       </div>
