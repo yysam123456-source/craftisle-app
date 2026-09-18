@@ -1,0 +1,108 @@
+---
+title: "Image Converter: JPG, PNG, WebP — Which Format and When (2026)"
+description: "Convert between JPG, PNG, WebP, GIF and BMP free in your browser. Learn which format to pick for photos, logos, transparency and print — and why converting never adds quality."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - image-tools
+image: /_static/blog/blog-post-3.jpg
+keyTakeaways:
+  - "Converting a format never improves quality. JPG to PNG does not restore detail that JPEG already discarded — it only stops losing more."
+  - "Match the format to the content: photographs want JPEG or WebP, flat-colour graphics and transparency want PNG, logos want SVG."
+  - "WebP is typically 25–35% smaller than JPEG at matched quality and is supported by every current browser."
+  - "Transparency survives conversion only if the target format supports it — converting a transparent PNG to JPG fills the transparent areas."
+  - "Conversion runs entirely in your browser; nothing is uploaded."
+---
+
+# Image Converter: JPG, PNG, WebP — Which Format and When (2026)
+
+Most people convert a file because someone told them to, or because an upload was rejected. The format you pick matters more than the conversion step itself — and there is one rule that saves a lot of wasted effort: **converting a format never adds quality.** It can only preserve what is there, or lose more.
+
+Here is how to pick correctly, and what each format is actually for. The [image converter](/tools/image-convert) runs in your browser, so nothing is uploaded while you experiment.
+
+## The rule that prevents most mistakes
+
+A JPEG discards detail permanently when it is saved. Converting that JPEG to PNG produces a lossless file containing exactly the same pixels — including the damage. The file gets bigger; the image does not get better.
+
+This matters because "convert to PNG to improve quality" is one of the most common pieces of bad advice online. PNG is lossless, which means it does not *lose* quality going forward — it does not and cannot restore what was already lost.
+
+**So the question is never "which format is best?" It is "which format suits this content, going forward?"**
+
+## Which format for which job
+
+| Format | Use it for | Avoid it for |
+|---|---|---|
+| **JPEG** | Photographs, universal compatibility, email | Flat-colour graphics, anything needing transparency, text and line art |
+| **PNG** | Screenshots, UI graphics, logos, anything with transparency | Photographs — lossless storage of photos produces huge files |
+| **WebP** | Web images generally; the best default for photographs | Older desktop workflows that cannot open it |
+| **GIF** | Short simple animations, legacy compatibility | Photographs, anything needing more than 256 colours |
+| **BMP** | Legacy Windows tooling, uncompressed intermediate work | Delivering anything over a network — the files are enormous |
+
+The simplest rule that covers most cases: **photographs → WebP (or JPEG as a fallback); anything with hard edges or transparency → PNG; logos and icons → SVG.**
+
+## Why WebP is usually the right answer for the web
+
+For photographic content, WebP gives you roughly 25–35% smaller files than JPEG at matched visual quality, and every current browser supports it. That is a large saving for zero visible cost, which is why it has become the sensible default for images on a website. [Google's WebP documentation](https://developers.google.com/speed/webp) explains the compression approach, and [Can I Use](https://caniuse.com/webp) tracks live browser support.
+
+The usual caveat — "but older browsers" — has largely expired. The remaining gap is very old Safari and Chrome versions, and if your audience includes those, the standard pattern is to serve WebP with a JPEG fallback rather than abandoning WebP altogether.
+
+**AVIF** goes further still, compressing better than WebP. It is worth using when you control the delivery pipeline, but encoding is slower and support is newer, so it is usually paired with a fallback rather than used alone. [Support is now broad](https://caniuse.com/avif) among current browser versions.
+
+## Transparency: the detail that catches people out
+
+Transparency is not a property of the image — it is a capability of the format. Converting a transparent PNG to JPEG does not error; it silently fills the transparent areas, usually with white or black.
+
+Before converting a logo, icon, or cut-out product shot, check whether the target format supports an alpha channel:
+
+- **Supports transparency:** PNG, WebP, GIF (1-bit only), AVIF
+- **Does not support transparency:** JPEG, BMP
+
+If you need a JPEG of something with transparent areas, place it on the background colour you actually want first — that way you control what replaces the transparency instead of discovering it later.
+
+## A note on GIF
+
+GIF is limited to 256 colours, which is why photographs and gradients saved as GIF look banded and blotchy. It survives mainly because it is the one animation format everything can display. If you are converting a still image, there is almost always a better choice than GIF.
+
+## The practical workflow
+
+1. **Ask what the destination needs.** A web page, a print shop, an app store listing and an email client all have different format expectations.
+2. **Ask whether transparency is involved.** If yes, the format list narrows immediately.
+3. **Pick the smallest format that satisfies both**, then check the result rather than assuming.
+4. **Keep the original.** Conversion is cheap; re-exporting from the original is cheaper than repairing a converted file.
+
+For website images specifically, converting to WebP and then running the result through an [image compressor](/tools/image-compress) covers both format and size in two steps.
+
+## Frequently asked questions
+
+**Does converting JPG to PNG improve quality?**
+No. PNG is lossless, so it preserves what exists without degrading further — but the detail JPEG already discarded is gone. The PNG will simply be a larger file holding the same image.
+
+**Will converting to JPG lose my transparency?**
+Yes, if the source had any. JPEG has no alpha channel, so transparent regions are filled in during conversion. Composite the image onto your intended background first.
+
+**Can I convert several images at once?**
+The current converter works on one image at a time. Batch conversion is a planned feature; until it lands, the workflow is one file per pass.
+
+**Is AVIF safe to use in production?**
+It compresses better than WebP and is supported by current major browsers, but support is newer and encoding is slower. Use it with a fallback (or accept the narrower support) rather than as a sole format.
+
+**Are my images uploaded during conversion?**
+No. Conversion runs in your browser using the canvas API. The image is never sent to a server, which also means it works offline once the page has loaded.
+
+## Conclusion
+
+Format choice is the decision; conversion is just the mechanics. Match the format to the content, remember that converting cannot recover lost quality, and check transparency before you commit.
+
+**Try it now:** 👉 **[Open the Image Converter →](/tools/image-convert)**
+
+Free, no signup, and the image stays on your device.
+
+---
+
+**Related tools**
+- [Image Compressor](/tools/image-compress) — Squeeze the converted file down further
+- [PNG to SVG](/tools/png-to-svg) — Convert logos and icons into scalable vectors
+- [Image Cropper](/tools/image-crop) — Crop to exact coordinates or a fixed ratio
+- [Favicon Generator](/tools/image-favicon) — Produce a multi-size .ico from any image

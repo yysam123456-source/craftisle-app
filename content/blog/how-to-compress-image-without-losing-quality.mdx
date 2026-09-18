@@ -1,0 +1,116 @@
+---
+title: "How to Compress an Image Without Losing Quality (Free, 2026)"
+description: "Compress JPG, PNG and WebP images free in your browser. Learn the quality settings that actually matter, which format to pick, and how much smaller files get. No signup."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - image-tools
+image: /_static/blog/blog-post-2.jpg
+keyTakeaways:
+  - "The sweet spot for JPEG is quality 80–85. Below 70 artefacts become visible; above 90 you pay a lot of bytes for a difference nobody can see."
+  - "How much you save depends almost entirely on the source: a fresh camera photo or a PNG screenshot shrinks dramatically, an already-compressed JPEG saves far less."
+  - "Format choice matters more than the quality slider. WebP is typically 25–35% smaller than JPEG at the same visual quality."
+  - "Resizing to the size your layout actually displays usually saves more than any compression setting."
+  - "Compression runs in your browser — the image is never uploaded."
+---
+
+# How to Compress an Image Without Losing Quality (Free, 2026)
+
+Image compression has one honest answer and a lot of marketing around it: **you cannot make a file smaller without giving up something, but you can give up the things nobody can see.** Done well, a photo drops to a fraction of its size and looks identical at normal viewing distance.
+
+This guide covers the settings that actually matter, how much reduction to expect from different sources, and which format to choose — all without uploading anything, because the [image compressor](/tools/image-compress) runs in your browser.
+
+## The quality slider: what the numbers mean
+
+Compression quality is a trade-off curve, not a linear dial. The relationship between file size and visual damage is deeply non-linear, which is why two settings that sound close can behave very differently.
+
+- **95–100** — Near-lossless. Files stay large. Only worth it if the image will be re-edited repeatedly.
+- **85–90** — Excellent. Indistinguishable from the original on screen for most photos. A reasonable default when size is not critical.
+- **80–85** — **The sweet spot.** This is where file size falls sharply while quality is still effectively untouched for photos viewed at normal size.
+- **70–79** — Good for thumbnails and previews. Fine detail starts to soften; visible on close inspection.
+- **Below 70** — Artefacts become visible: blocky patches in flat areas, ringing around high-contrast edges, colour bleeding. Acceptable only for icons or very small displays.
+
+The practical method: compress at 80, view the result at the size it will actually be displayed, and stop reducing the moment you can see a difference. That point is almost always lower than people expect.
+
+## How much smaller will your image get?
+
+There is no single answer, because compression removes redundancy and different sources contain very different amounts of it.
+
+| Source | Typical outcome |
+|---|---|
+| Photo straight from a camera or phone | Shrinks to a small fraction of the original — these files carry enormous redundancy |
+| Screenshot saved as PNG | Shrinks dramatically as JPEG or WebP; PNG stores flat colours inefficiently for photographic content |
+| JPEG already exported from an editor | Saves much less. Re-compressing an already-compressed file recovers little and adds damage on top of existing damage |
+| Logo or icon with flat colours | Little benefit from quality reduction. Converting to SVG is the far bigger win |
+| Image far larger than displayed | Resizing is the biggest saving by far — see below |
+
+**The most common mistake** is re-compressing a file that has already been compressed, then wondering why the size barely moved. If a JPEG was exported at quality 75 once, running it through quality 80 will save almost nothing; it has already had the redundancy squeezed out.
+
+## Resize first, compress second
+
+Here is the lever people overlook. A 4000-pixel-wide photo displayed in a 1200-pixel container is carrying roughly eleven times more pixels than it needs. No amount of quality tuning comes close to the saving you get from simply delivering the right number of pixels.
+
+The order that works: **resize to the largest size the layout actually uses, then compress.** Doing it in the other order wastes effort — you would be carefully preserving detail that the resize is about to throw away.
+
+## Format choice beats the quality slider
+
+Choosing the right format typically produces a bigger saving than any quality setting, and it costs you nothing in visible quality.
+
+| Format | Best for | Notes |
+|---|---|---|
+| **WebP** | Almost everything on the web | Typically 25–35% smaller than JPEG at matched quality. Supported by all current browsers. |
+| **AVIF** | Maximum compression on modern browsers | Smaller still than WebP, but encoding is slower and support is newer. Pair with a fallback if you need very old browsers. |
+| **JPEG** | Photographs, universal compatibility | The safe default. Use when a format cannot be guaranteed. |
+| **PNG** | Flat-colour graphics, transparency, screenshots of UI | Lossless — compressing a photographic PNG is fighting the format's design. Convert photos to WebP or JPEG instead. |
+| **SVG** | Logos, icons, anything with hard edges | Not a compression format at all. Vector output is usually far smaller than any raster version. |
+
+The WebP size figures come from [Google's own WebP documentation](https://developers.google.com/speed/webp), and you can check live browser support on [Can I Use](https://caniuse.com/webp).
+
+**A note on PNG.** PNG is lossless, so "compressing a PNG" really means reducing its colour palette or re-running its internal compression. Neither helps much for photographs. If your PNG is a photo or a screenshot with photographic content, converting it to WebP will do more than any PNG-specific setting.
+
+## Putting it together
+
+The sequence that produces the best result for a website image:
+
+1. **Decide the display size.** What is the largest width the image is rendered at?
+2. **Resize to that.** This is the single biggest saving.
+3. **Convert to WebP** (with a JPEG fallback only if you must support very old browsers).
+4. **Set quality to 80–85** and check the result at display size.
+5. **Compare before and after** using the size readout, and keep the original.
+
+That routine routinely takes a camera photo from several megabytes to a few hundred kilobytes with no visible change.
+
+## Frequently asked questions
+
+**Does compressing an image reduce its dimensions?**
+No. Compression changes how the pixels are stored, not how many there are. Dimensions only change if you resize. If your image needs to be physically smaller in pixels, resize it — compression alone will not.
+
+**Is it better to compress once at a low setting or twice at higher settings?**
+Once. Every lossy pass adds damage, and damage compounds. Re-compressing an already-compressed file adds artefacts on top of existing ones while recovering very little size.
+
+**Should I compress images for email?**
+Often yes — most mail providers cap attachments around 10–25 MB, and a couple of phone photos can exceed that. Compressing to quality 80 usually solves it.
+
+**Will compression strip the metadata?**
+Quality-based compression generally preserves it. If removing EXIF data — location, camera model, timestamps — is the goal, that is a separate operation: [strip image metadata](/tools/image-strip-metadata).
+
+**Is there a file size limit?**
+The [compressor](/tools/image-compress) runs in your browser using your device's memory rather than a server quota, so the practical ceiling is your browser's capacity rather than a fixed limit. Very large images are best resized first, which also makes everything faster.
+
+## Conclusion
+
+Compression is not about finding a magic setting — it is about giving up what nobody sees. Resize to the display size, pick WebP, set quality to the point where you stop noticing a difference, and stop there.
+
+**Try it now:** 👉 **[Open the Image Compressor →](/tools/image-compress)**
+
+Free, no signup, no watermark, and the image never leaves your browser.
+
+---
+
+**Related tools**
+- [Image Converter](/tools/image-convert) — Convert between JPG, PNG, WebP, GIF and BMP
+- [Image Cropper](/tools/image-crop) — Crop to exact pixel coordinates or a fixed aspect ratio
+- [Strip Image Metadata](/tools/image-strip-metadata) — Remove EXIF, GPS and camera data
+- [PNG to SVG](/tools/png-to-svg) — Turn logos and icons into scalable vectors
