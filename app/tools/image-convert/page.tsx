@@ -5,7 +5,7 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
 export const metadata = constructMetadata({
   title: "Image Converter Free — Convert JPG/PNG/WebP Online",
-  description: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. Batch conversion supported. 100% browser-based, no signup required.",
+  description: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. 100% browser-based, no signup required.",
   canonical: "https://craftisle.com/tools/image-convert",
 });
 
@@ -22,7 +22,7 @@ export default function ImageConvertPage() {
         </h1>
         <p className="mt-2 text-muted-foreground">
           Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP.
-          Batch conversion supported. 100% browser-based, no signup.
+          100% browser-based, no signup.
         </p>
       </div>
       <ImageConvertClient />
