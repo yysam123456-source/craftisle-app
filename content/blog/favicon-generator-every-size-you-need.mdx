@@ -1,0 +1,111 @@
+---
+title: "Favicon Generator: Every Size You Actually Need (Free, 2026)"
+description: "Generate a multi-size favicon.ico from any image free online. Learn which sizes browsers and devices request, why one multi-size file beats many, and what Apple and Android need."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - image-tools
+image: /_static/blog/blog-post-1.jpg
+keyTakeaways:
+  - "A single multi-size .ico containing 16, 32, 48 and 64 pixel versions covers browsers without separate files."
+  - "16×16 is the hardest size to get right — detail that reads at 64px turns to mud at 16px."
+  - "Apple touch icons and Android home-screen icons are separate, larger files that a favicon.ico does not cover."
+  - "Design the icon at the smallest size first, then scale up, not the other way round."
+  - "This generator processes on our server, so the image is uploaded; files are not stored afterwards."
+---
+
+# Favicon Generator: Every Size You Actually Need (Free, 2026)
+
+A favicon is the smallest piece of branding you will ever produce and the one most often done badly — usually because it was designed at a size nobody sees and then shrunk until it became an unrecognisable smudge.
+
+This guide covers which sizes actually matter, why one multi-size file is better than several separate ones, and how to design something that survives the smallest rendering. The [favicon generator](/tools/image-favicon) produces a multi-size `.ico` from any image.
+
+## The sizes, and who asks for them
+
+| Size | Where it appears |
+|---|---|
+| **16×16** | Browser tab, bookmarks bar, address bar — the smallest and most-seen rendering |
+| **32×32** | Taskbar shortcuts, higher-DPI browser tabs |
+| **48×48** | Windows site shortcuts, some desktop contexts |
+| **64×64** | Higher-density displays, some OS surfaces |
+| **180×180** | Apple touch icon — the home-screen bookmark on iOS and iPadOS |
+| **192×192 / 512×512** | Android home screen and PWA install prompts |
+
+The 16-to-64 range is traditionally bundled into a **single `.ico` file**, which is a container format that can hold multiple images. That matters: rather than serving four files and hoping the browser requests the right one, you serve one file that already contains all four. The browser picks the resolution it needs.
+
+The 180px and 192/512px sizes are usually separate PNG files, declared separately — a `.ico` does not cover them.
+
+## Why one multi-size file is better
+
+Before multi-resolution `.ico` support was widespread, sites served `favicon-16.png`, `favicon-32.png` and so on, with markup telling the browser which to use. In practice browsers were inconsistent about honouring it, and the result was often a blurry upscale of whichever file got picked.
+
+A multi-size `.ico` avoids the negotiation entirely. Every browser that supports favicons knows how to read it, and each picks the closest match. It is one request, one file to cache, and no markup to get wrong. For background on how these icons came to work the way they do, see [favicon](https://en.wikipedia.org/wiki/Favicon) on Wikipedia.
+
+## Designing for 16 pixels
+
+Here is the part that decides whether your favicon is recognisable. At 16×16 you have 256 pixels total. Fine details, thin strokes, text, and subtle gradients all disappear or turn into noise.
+
+The principles that work:
+
+- **One simple shape.** A letterform, a geometric mark, or a single silhouette. Not a combination.
+- **Strong contrast.** The icon sits on browser chrome that may be light or dark, so it needs to read against both.
+- **Avoid text unless it is a single letter.** Two letters at 16px become an illegible smudge in almost every typeface.
+- **Test at actual size.** View the 16px version by itself, not zoomed. Zooming hides exactly the problem you are trying to find.
+
+**Design at 16px first, then scale up.** Going the other way — starting with a detailed logo and shrinking it — produces something that looked fine in the design tool and fails in the tab. The 16px rendering is the real deliverable; the larger sizes are the easy part.
+
+## Apple and Android need their own files
+
+A `.ico` covers browser tabs. It does not cover home screen bookmarks, and this catches people out because the failure is silent — the site works, the icon is just a generic screenshot or a blurry default.
+
+**Apple touch icon:** a 180×180 PNG, declared in the document head. iOS applies its own rounding and, by default, adds no transparency treatment — transparent areas may render black. Supply an opaque, appropriately padded image.
+
+**Android / PWA icons:** typically 192×192 and 512×512, declared in a web app manifest. Android may apply a mask that crops the icon into a circle or rounded shape, so keep important content away from the edges — a safe margin of roughly 10% on each side.
+
+**One design, several exports** is the right model: make the mark, then export it at each size with correct padding for that platform's masking behaviour.
+
+## A practical workflow
+
+1. **Start from a square source image** with the mark centred and plenty of padding.
+2. **Check it at 16px.** If it is not legible, simplify the mark before generating anything.
+3. **Generate the multi-size `.ico`** covering 16, 32, 48 and 64.
+4. **Export separate PNGs** at 180, 192 and 512 for Apple and Android.
+5. **Keep transparency where it helps**, but remember iOS may not honour it — check the touch icon specifically.
+6. **Verify in a real browser**, including a hard refresh, since favicons are cached aggressively and often appear not to update.
+
+**A note on caching:** when a favicon does not change after an update, it is usually cached — by the browser, or by a CDN layer. Testing in a fresh browser profile or with a cache-busting URL distinguishes "not deployed" from "cached".
+
+## Frequently asked questions
+
+**What sizes do I actually need?**
+A single multi-size `.ico` containing 16, 32, 48 and 64 pixels covers browsers. Add a 180×180 PNG for Apple touch icons and 192×192 plus 512×512 PNGs for Android and PWA manifests.
+
+**Why does my favicon look blurry?**
+Usually because a larger image was scaled down without regard for the 16px rendering, or because the browser is upscaling a file that is too small. Supply a genuine 16×16 version rather than letting the browser derive one from 64×64.
+
+**Can I use a transparent background?**
+Yes, and it is often preferable on browser tabs. But iOS touch icons may render transparent areas as black, so supply an opaque version for that specific file.
+
+**Why is my favicon not updating?**
+Caching, in almost every case — browser cache, CDN cache, or both. Try a fresh browser profile or append a query string to the icon URL to confirm the new file is actually deployed before changing anything else.
+
+**Does generating a favicon upload my image?**
+Yes. This generator processes on the server, so the image is uploaded and the multi-size file is produced there. Files are not stored afterwards. Most other image tools on the site — [compressing](/tools/image-compress), [converting](/tools/image-convert), [resizing](/tools/image-resize) — run locally in the browser instead.
+
+## Conclusion
+
+A favicon is judged at 16 pixels, so design at 16 pixels. Bundle the small sizes into one multi-size `.ico`, export the larger platform-specific files separately, and always check the result in a real browser tab rather than the design tool.
+
+**Try it now:** 👉 **[Open the Favicon Generator →](/tools/image-favicon)**
+
+Free, no signup required.
+
+---
+
+**Related tools**
+- [Image Resizer](/tools/image-resize) — Resize to exact pixel dimensions
+- [PNG to SVG](/tools/png-to-svg) — Vectorise a logo for any size
+- [Image Cropper](/tools/image-crop) — Crop to a square before generating
+- [Image Compressor](/tools/image-compress) — Reduce icon file size

@@ -1,0 +1,125 @@
+---
+title: "QR Code Generator: Size, Error Correction and Printing (Free, 2026)"
+description: "Generate QR codes free in your browser. Learn how error correction levels work, the minimum size that scans reliably, and why some codes fail in print but work on screen."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - guides
+image: /_static/blog/blog-post-12.png
+keyTakeaways:
+  - "QR codes carry built-in error correction. Higher levels survive more damage but make the code denser and need more physical space."
+  - "The most common failure is printing a code too small — not a generation problem but a physical one."
+  - "More data means more modules, which means a larger physical code for the same scan reliability."
+  - "Test any printed code with the actual phone and app people will use, at the actual distance, before you commit to a print run."
+  - "Generation runs in your browser; nothing is uploaded."
+---
+
+# QR Code Generator: Size, Error Correction and Printing (Free, 2026)
+
+A QR code that works on your screen can fail completely in print. Almost every time, the cause is physical rather than digital — the code was generated perfectly and then reproduced too small, or with too little contrast, for a camera to resolve.
+
+This guide covers the variables that decide whether a code scans: error correction, data volume, and the physical size it needs. The [QR code generator](/tools/qrcode) produces codes in your browser.
+
+## Error correction: the setting nobody changes
+
+QR codes contain redundancy by design. A portion of the code's capacity is spent on error correction, which lets it be read even when part of it is damaged, dirty or obscured.
+
+There are four standard levels:
+
+| Level | Recovery capacity | Use it when |
+|---|---|---|
+| **L** (Low) | ~7% | Clean digital display only; you want the smallest possible code |
+| **M** (Medium) | ~15% | The general default — a sensible balance for most uses |
+| **Q** (Quartile) | ~25% | Printed material, industrial environments, logos overlaid on the code |
+| **H** (High) | ~30% | Harsh conditions, heavy damage expected, or a logo occupying the centre |
+
+The trade-off is direct: **more correction means more modules** for the same data, so the code becomes denser and needs more physical space to scan reliably. Raising the level does not make a small code scannable — it can make it worse. The levels and their capacities are part of the [QR code](https://en.wikipedia.org/wiki/QR_code) specification.
+
+**The practical choice:** M for most digital and everyday print use. Q or H when the code will be physically exposed — outdoor signage, product packaging, anything that might get scuffed — or when a logo is placed over it.
+
+## More data means a bigger code
+
+A QR code's capacity is finite, and the more characters you encode, the more modules are needed. This is why a short URL produces a noticeably simpler code than the same link with tracking parameters attached.
+
+The rule that follows: **encode as little as possible.** A short link rather than a long one; the essential payload rather than metadata around it. A simpler code scans faster, from further away, and survives smaller reproduction.
+
+This is also why URL shorteners are commonly used for QR codes — not to hide the destination, but to keep the code sparse enough to print small.
+
+## Size: the part that actually decides success
+
+This is where most failures originate. The camera needs a minimum number of pixels of the code in its field of view. Too small, and no amount of software quality helps.
+
+Practical sizing guidance, assuming normal print quality and a modern phone camera:
+
+| Scanning distance | Roughly what the code needs |
+|---|---|
+| Very close, handheld (10–20 cm) | 2 cm across |
+| Near, handheld (30 cm) | 3–4 cm across |
+| Arm's length (50 cm) | 5–7 cm across |
+| Poster, several metres away | Scale from the ratio above — the code grows with distance |
+| Long-range signage | Far larger than intuition suggests; test before printing |
+
+The underlying principle: **the code's size must grow in proportion to the scanning distance**, roughly 1:10 — a code needs to be about a tenth of the reading distance across. Where people go wrong is designing for the near distance and deploying at the far one.
+
+Two other physical factors matter as much as size:
+
+- **Contrast.** Dark modules on a light background is the standard and works most reliably. Inverted codes (light on dark) fail on some scanners — if you must invert, test widely first.
+- **Quiet zone.** The blank margin around the code is part of the specification. Cropping it off in a layout, or placing the code against a busy background, breaks scanning.
+
+## Where a QR code points
+
+Generating a code is the easy part; deciding what it contains is where mistakes are expensive, because **a printed code cannot be changed.**
+
+**Use a redirect you control.** Point the code at a short URL on a domain you own, so you can change the destination later without reprinting. A code pointing directly at a page that later moves becomes useless.
+
+**Test the destination on a phone** before printing anything. Codes are often scanned on mobile, and a link that works on desktop may behave differently there.
+
+**Check that the code degrades gracefully.** If the destination is unavailable, some redirect services can show a fallback rather than a dead end.
+
+**Add tracking at the redirect layer**, not by making the code longer. This keeps the code sparse while still giving you click data.
+
+## A pre-print checklist
+
+1. **Encode the shortest thing that works** — ideally a short link you control.
+2. **Set error correction to M**, or Q/H if the code will face physical wear or carry a logo.
+3. **Size it for the scanning distance**, not the design layout.
+4. **Keep the quiet zone intact** and ensure strong contrast.
+5. **Print one sample and scan it** with several phones and apps, at the real distance, in the real lighting.
+6. **Only then commit to the full print run.**
+
+Step 5 is the one people skip, and it is the one that catches the failures.
+
+## Frequently asked questions
+
+**How much data can a QR code hold?**
+Substantial amounts in theory, but capacity is not the practical limit — scanability is. Every extra character makes the code denser and harder to read at a given size. Keep payloads short even when the format would allow much more.
+
+**Does a higher error correction level make the code more reliable?**
+It makes it more resistant to damage, not easier to scan. Higher levels add modules, so a code that is already too small may become harder to read, not easier. Raise the level when damage is expected, not to fix a size problem.
+
+**Why does my QR code work on screen but not in print?**
+Usually size. A code displayed at 300 pixels on a high-resolution screen can be physically larger than the same code printed at 2 cm. Printer resolution, contrast on the chosen stock, and ink spreading all reduce effective clarity further.
+
+**Can I use a logo in the centre?**
+Yes, with care. The logo covers part of the code, which is exactly what error correction is for — so use level Q or H, and keep the covered area well within what the correction level can recover. Test the result before printing.
+
+**Is my data uploaded?**
+No. The code is generated in your browser, so whatever you encode — including a private link or a Wi-Fi password — never leaves your device.
+
+## Conclusion
+
+QR codes fail in the physical world, not the digital one. Choose the error correction level for the environment, keep the payload short, size the code for the distance it will be scanned from, and print a sample before committing to a run.
+
+**Try it now:** 👉 **[Open the QR Code Generator →](/tools/qrcode)**
+
+Free, no signup, and nothing is uploaded.
+
+---
+
+**Related tools**
+- [Image Compressor](/tools/image-compress) — Optimise a code image for print
+- [PNG to SVG](/tools/png-to-svg) — Vectorise a code for scaling without loss
+- [Base64 Encode / Decode](/tools/base64) — Encode data for embedding
+- [Favicon Generator](/tools/image-favicon) — Produce multi-size icon files

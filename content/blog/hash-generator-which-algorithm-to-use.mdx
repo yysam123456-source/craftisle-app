@@ -1,0 +1,123 @@
+---
+title: "Hash Generator: MD5, SHA-256 and Which One to Use (Free, 2026)"
+description: "Generate MD5, SHA-1, SHA-256 and SHA-512 hashes free in your browser. Learn what hashing is for, why MD5 and SHA-1 are no longer safe for security, and why plain hashes cannot store passwords."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - developer-tools
+image: /_static/blog/blog-post-3.jpg
+keyTakeaways:
+  - "A hash is one-way by design: you can compute it from data, but you cannot recover the data from it."
+  - "MD5 and SHA-1 are broken for security purposes — collisions can be produced deliberately. They remain fine for non-adversarial integrity checks."
+  - "A fast hash is the wrong tool for passwords. Use bcrypt instead, which is deliberately slow."
+  - "The same input always produces the same hash, which is what makes hashing useful for verifying integrity."
+  - "Hashing runs in your browser; nothing is uploaded."
+---
+
+# Hash Generator: MD5, SHA-256 and Which One to Use (Free, 2026)
+
+A hash function takes any input and produces a fixed-length string of characters. The same input always produces the same output, and — this is the important part — you cannot run it backwards. That combination makes hashing useful for verifying that data has not changed, and dangerous to use in the wrong place.
+
+This guide covers what hashing is for, which algorithms are still safe, and the mistake that has leaked more passwords than almost any other. The [hash generator](/tools/hash) computes digests in your browser.
+
+## How hashing differs from encryption
+
+Both transform data, but they are opposites in one decisive way.
+
+**Encryption is reversible.** With the key, you get the original data back. Its purpose is confidentiality.
+
+**Hashing is one-way.** There is no key and no reverse operation. Given only the hash, recovering the input is not a matter of effort — the information is not there. Its purpose is verification.
+
+That difference decides where each belongs. If you need to read the data again, you need encryption. If you only need to check that data matches what it should, a hash does the job without ever holding a recoverable copy.
+
+## What hashing is actually used for
+
+**Integrity checks.** Publishing a file alongside its hash lets anyone verify the download arrived intact and unmodified. Compare the hash of what you received with the published value — a match means the bytes are identical.
+
+**Deduplication.** Systems that store many files can hash each one and store a single copy of identical content, since identical input always produces identical output.
+
+**Content addressing.** Version control systems identify content by its hash, which is why changing a single character produces an entirely different identifier.
+
+**Digital signatures.** Signing usually means signing a hash of the content rather than the content itself — far cheaper for large files, and equally binding.
+
+**Password storage — with an important caveat**, covered below.
+
+## Which algorithm to use
+
+| Algorithm | Digest length | Status |
+|---|---|---|
+| **MD5** | 128-bit | Broken for security. Collisions can be constructed deliberately. Still fine for accidental-corruption checks. |
+| **SHA-1** | 160-bit | Broken for security. Practical collisions demonstrated. Deprecated for signing and certificates. |
+| **SHA-256** | 256-bit | The current default. No practical attacks. Use this unless you have a specific reason not to. |
+| **SHA-512** | 512-bit | Also sound. Larger output, marginally slower, no meaningful security advantage over SHA-256 for most uses. |
+
+**The word "broken" needs precision.** MD5 and SHA-1 are broken in the sense that an attacker can produce two *different* inputs with the *same* hash — a **collision**. This matters enormously for signatures and certificates, where an attacker who can substitute one file for another defeats the entire point. For background on why this property is essential, see [cryptographic hash function](https://en.wikipedia.org/wiki/Cryptographic_hash_function) and the known weaknesses of [MD5](https://en.wikipedia.org/wiki/MD5).
+
+It does not matter for checking whether a download was corrupted in transit, because accidental corruption does not attempt to preserve a hash. That is why MD5 still appears in file-transfer contexts and should never appear in anything security-related.
+
+## The password mistake
+
+Hashing passwords is correct in principle — you should never store them in plain text or reversibly encrypted. But **using a fast general-purpose hash like SHA-256 for passwords is a serious mistake**, and it is common.
+
+The reason is that speed is exactly what an attacker wants. SHA-256 is engineered to be fast — billions of guesses per second on commodity hardware. An attacker with a stolen database can therefore test enormous numbers of candidate passwords, and because the same password always produces the same hash, precomputed lookup tables (rainbow tables) make it worse still.
+
+**Two mechanisms fix this:**
+
+**Salting** gives each password a unique random value before hashing, so identical passwords produce different hashes and precomputed tables stop working. This defeats rainbow tables but does not slow down guessing.
+
+**Deliberate slowness** addresses the real problem. Password hashing algorithms like **bcrypt** are designed to be computationally expensive and tunable — you can raise the cost as hardware improves. A hash that takes 100 ms to compute is fine for a login and ruinous for a brute-force attack.
+
+**So the correct division of labour is:**
+
+| Task | Right tool |
+|---|---|
+| Verify a file downloaded intact | SHA-256 (or MD5 if the publisher provides it) |
+| Sign or verify a document | SHA-256 with a proper signature scheme |
+| Store user passwords | **bcrypt** — not a general-purpose hash |
+| Compare two large files quickly | Any hash, including MD5 |
+
+## Verifying a download
+
+The workflow, since this is the most common practical use:
+
+1. **Get the expected hash** from the publisher's own page — not from a search result or a mirror. A hash published alongside a tampered file is worthless.
+2. **Compute the hash of what you downloaded**, using the same algorithm the publisher used.
+3. **Compare them character by character.** They must match exactly. A single differing character means the file is not the expected one.
+4. **If they differ**, download again from the official source before investigating further.
+
+**A caveat worth knowing:** a hash match proves the file is identical to whatever the publisher hashed. It does not prove the file is safe — if the publisher's own copy is malicious, its hash will match perfectly. Hashing establishes integrity, not trustworthiness.
+
+## Frequently asked questions
+
+**Can I reverse a hash to get the original?**
+No. Hashing is one-way by design — the input cannot be reconstructed from the digest. What attackers do instead is guess candidate inputs and hash each one, comparing the results. That works only for weak, guessable inputs, which is precisely why passwords need slow hashing algorithms and salts.
+
+**Is MD5 still safe to use?**
+Not for anything security-related. Deliberate collisions can be constructed, so MD5 must not be used for signatures, certificates or integrity against an active attacker. It remains acceptable for detecting accidental corruption, where nobody is trying to preserve a hash.
+
+**Why can't I use SHA-256 to store passwords?**
+Because it is fast, and fast is what an attacker needs. General-purpose hashes allow billions of guesses per second and are vulnerable to precomputed tables. Password storage requires a deliberately slow algorithm such as bcrypt, which also handles salting automatically.
+
+**Does the same input always produce the same hash?**
+Yes — that determinism is the foundation of every use case. It is also why salting is necessary for passwords: without a unique per-password value, identical passwords produce identical hashes and become identifiable in bulk.
+
+**Is my data uploaded?**
+No. Hashing runs entirely in your browser, so whatever you hash — a file, a string, a key — never leaves your device.
+
+## Conclusion
+
+Hashing answers one question: is this data identical to what it should be? Use SHA-256 for anything security-related, treat MD5 and SHA-1 as corruption detectors only, and never use any general-purpose hash for password storage — that job belongs to bcrypt.
+
+**Try it now:** 👉 **[Open the Hash Generator →](/tools/hash)**
+
+Free, no signup, and nothing leaves your browser.
+
+---
+
+**Related tools**
+- [Bcrypt Hash](/tools/bcrypt) — The correct way to hash passwords
+- [AES / DES Encrypt](/tools/aes-des) — Reversible encryption for confidentiality
+- [Base64 Encode / Decode](/tools/base64) — Encoding, not encryption or hashing
+- [JWT Decoder](/tools/jwt) — Inspect token headers and payloads

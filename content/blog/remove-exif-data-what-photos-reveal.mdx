@@ -1,0 +1,113 @@
+---
+title: "Remove EXIF Data: What Your Photos Reveal About You (Free, 2026)"
+description: "Strip EXIF and GPS metadata from images free online. See what a photo file actually contains — camera details, timestamps, sometimes your exact location — and how to remove it."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - image-tools
+image: /_static/blog/blog-post-2.jpg
+keyTakeaways:
+  - "Photos from phones and cameras routinely embed GPS coordinates, timestamps, and device identifiers in the file itself — not in the image you see."
+  - "Location data is the most sensitive part and the one people are least aware of sharing."
+  - "Stripping metadata does not change how the image looks. It removes information stored alongside the pixels."
+  - "Screenshots usually carry no camera metadata, while photos straight from a phone almost always do."
+  - "This tool processes on the server, so the image is uploaded; files are not stored afterwards."
+---
+
+# Remove EXIF Data: What Your Photos Reveal About You (Free, 2026)
+
+A photo file contains two things: the image, and a block of data about the image. The second part is invisible when you look at the picture, which is exactly why it is worth knowing what is in it before you post a picture of your home, your children, or your workplace.
+
+This guide covers what metadata actually holds, why location data is the part that matters most, and how to remove it. The [metadata remover](/tools/image-strip-metadata) strips EXIF and related fields from an image.
+
+## What is actually in the file
+
+Metadata is written by the device at the moment of capture. Depending on the camera and settings, it can include:
+
+| Field | What it reveals |
+|---|---|
+| **GPS coordinates** | Where the photo was taken — often precise to a few metres |
+| **Date and time** | When, to the second, including timezone |
+| **Device make and model** | Which phone or camera produced it |
+| **Serial number** | In some cameras, uniquely identifying the specific unit |
+| **Software and firmware** | What processed the image, and sometimes what edited it |
+| **Orientation** | Which way up the camera was held (see [why photos appear sideways](/blog/why-photos-are-sideways-exif-rotation)) |
+| **Thumbnail** | A small preview embedded at capture time — which can survive edits made to the main image |
+
+That last row is worth pausing on. Some editors modify the visible image but leave the original embedded thumbnail untouched, so a file can contain a preview of a version you thought you had replaced. The [EXIF](https://en.wikipedia.org/wiki/Exif) standard defines which fields a camera may write.
+
+## Why location data is the one that matters
+
+Most metadata fields are merely identifying. GPS coordinates are different, because they are **location data about a person**, and they accumulate into a picture of where someone lives, works and spends time.
+
+The classic failure mode: photos taken at home, posted publicly over months, each carrying coordinates. Individually they are unremarkable. Together they establish a home address with considerable precision — without the photographer ever stating where they live.
+
+This applies to second-hand sales listings, social posts, forum attachments, and anything else where a photo leaves your device with the original file intact.
+
+**The practical rule: location data should be a deliberate choice, not something that travels with the file by default.**
+
+## What strips it, and what does not
+
+People often assume that uploading to a social platform removes metadata. That assumption is unreliable.
+
+- **Some platforms strip metadata on upload**, and have done so for years.
+- **Some preserve it**, particularly in direct file transfers, messaging attachments, and email.
+- **Some strip some fields and keep others**, or keep metadata on the original while serving a stripped version.
+
+The only dependable approach is to strip it yourself before the file leaves your device. Then the question of what a platform does with it becomes irrelevant.
+
+**A note on screenshots:** screenshots generally contain no camera metadata, so they are usually clean from the start. The risk concentrates in photos taken with a camera or phone and shared directly.
+
+## Does removing metadata change the image?
+
+No. Metadata lives alongside the pixel data, not inside it. Stripping it removes the information block and leaves the image itself untouched — same dimensions, same quality, same appearance.
+
+The one visible consequence is orientation. If a photo relied on the EXIF orientation tag to display upright, removing the tag without applying the rotation first can make it appear sideways. **Rotate first, then strip** — or fix the orientation afterwards — see [EXIF rotation](/blog/why-photos-are-sideways-exif-rotation) for the full explanation.
+
+## A simple habit
+
+The routine that prevents the problem:
+
+1. **Before sharing a photo, strip it.** Especially anything taken at home, at a workplace, or involving family.
+2. **Check the result.** Confirm the image still looks correct — particularly its orientation.
+3. **Keep an unstripped copy if you need it.** Metadata is useful for your own archive: sorting by date, mapping a trip, recalling a location. Remove it from the copy you publish, not from the original.
+
+That last point is the balance: metadata is genuinely useful data. The goal is not to eliminate it, but to stop publishing it by accident.
+
+## Frequently asked questions
+
+**What metadata do my photos contain?**
+Typically GPS coordinates, date and time, device make and model, and often software details and an embedded thumbnail. What is present depends on the camera and its settings — some devices record less, and some apps strip fields on save.
+
+**Is GPS always included?**
+No. Location tagging can usually be disabled in the camera app, and some devices ask permission per application. But when it is on — which is the common default for phone cameras — every photo carries coordinates.
+
+**Does removing metadata reduce image quality?**
+No. The pixels are untouched; only the information block alongside them is removed. The file may become slightly smaller as a side effect.
+
+**Do social media platforms strip metadata automatically?**
+Many do, but not all, and not consistently, and the behaviour changes over time. Relying on it is risky. Stripping the file yourself before uploading is the only approach that does not depend on a third party's current policy.
+
+**Will my image be sideways after stripping?**
+It can be, if the photo depended on an orientation tag to display correctly. Apply the correct rotation first — the [image rotator](/tools/image-rotate) handles EXIF-based rotation — then strip the metadata from the corrected file.
+
+**Does removing metadata upload my image?**
+Yes, this tool processes on the server, so the image is uploaded to strip the fields. Files are not stored afterwards. If you would rather nothing leaves your device, note that most tools on the site run locally in the browser; this one does not.
+
+## Conclusion
+
+A photo carries more than the picture — often including exactly where it was taken. Metadata is useful in your own archive and unnecessary in public. Strip the copy you publish, keep the original, and make location a choice rather than a default.
+
+**Try it now:** 👉 **[Open the Metadata Remover →](/tools/image-strip-metadata)**
+
+Free, no signup required.
+
+---
+
+**Related tools**
+- [Image Rotator](/tools/image-rotate) — Fix EXIF orientation before stripping
+- [Image Info](/tools/image-info) — Read an image's metadata before removing it
+- [Image Compressor](/tools/image-compress) — Reduce file size without visible quality loss
+- [Image Converter](/tools/image-convert) — Convert between JPG, PNG, WebP and more
