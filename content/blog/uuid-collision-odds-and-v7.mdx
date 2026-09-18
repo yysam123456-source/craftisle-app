@@ -1,0 +1,121 @@
+---
+title: "UUID Generator: Collision Odds and Why v7 Exists (Free, 2026)"
+description: "Generate RFC 4122 compliant UUID v4 in bulk free in your browser. Understand the real collision probability, when time-ordered UUID v7 is the better choice, and where UUIDs hurt."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - developer-tools
+image: /_static/blog/blog-post-6.png
+keyTakeaways:
+  - "UUID v4 carries 122 random bits. Collisions are not a practical concern at any realistic scale."
+  - "UUIDs are not guessable, which makes them safe to expose in URLs — unlike sequential integer IDs, which leak volume and invite enumeration."
+  - "Time-ordered UUID v7 sorts by creation time, which matters for database index performance."
+  - "A random 128-bit identifier is a poor primary key where you need clustering by time or compact storage."
+  - "Generation runs in your browser using cryptographic randomness."
+---
+
+# UUID Generator: Collision Odds and Why v7 Exists (Free, 2026)
+
+A UUID is a 128-bit identifier designed to be unique without coordination — no central authority handing out the next number, no database round-trip to find out what the last one was. That property is why they appear everywhere from primary keys to API identifiers to file names.
+
+Two questions come up whenever they are used seriously: *will two ever collide*, and *which version should I use*. The [UUID generator](/tools/uuid) produces them in bulk, in your browser.
+
+## What is actually random in a UUID
+
+The version people normally mean is **v4**, which is 128 bits arranged as 32 hexadecimal characters in five groups:
+
+```
+550e8400-e29b-41d4-a716-446655440000
+```
+
+Not all 128 bits are random. Six bits are fixed to indicate the version and the variant, which leaves **122 bits of randomness**. That is the number that matters for collision analysis — roughly 5.3 × 10³⁶ possible values.
+
+## The collision question, properly answered
+
+Collisions follow the birthday problem: the chance rises with the *square* of the number of items, not linearly. So the useful question is not "how many bits" but "how many UUIDs before it becomes a real risk".
+
+The commonly cited figure: you would need on the order of 2.7 × 10¹⁸ (2.7 quintillion) UUIDs generated before a 50% chance of at least one collision.
+
+To put that in perspective — generating a billion UUIDs per second, that threshold is not reached within a human lifetime, or within the age of the universe. **For any realistic application, v4 collisions are not something to design around.**
+
+The caveat is the source of randomness. If the generator uses a weak random source — some early implementations used predictable PRNGs — the maths changes completely, because the value space is no longer being sampled uniformly. Cryptographic randomness is the requirement, and it is why the generator here uses the browser's crypto API rather than `Math.random()`.
+
+## Why not just use sequential IDs
+
+Auto-incrementing integers are simpler and smaller. UUIDs win on two specific points:
+
+**They are not guessable.** A URL ending in `/users/1042` tells anyone who looks that there are around a thousand users, and invites walking the sequence. A UUID in the same position reveals nothing and cannot be enumerated. For anything public-facing, this is the decisive advantage.
+
+**They can be generated anywhere.** Two services, an offline client, a device without connectivity — all can create identifiers that will not conflict. Sequential IDs require a coordinator, which is a bottleneck and a single point of failure.
+
+Where sequential IDs remain better: compact storage, human readability, and natural ordering by creation time. An integer primary key is 4 or 8 bytes; a UUID is 16.
+
+## v4 versus v7: the ordering problem
+
+This is the trade-off that has driven a real change in practice.
+
+**UUID v4 is random throughout.** Two UUIDs generated a millisecond apart have no relationship to each other. For a database primary key, that is a problem: inserting rows in random key order scatters writes across the index, which is slower and causes more page splits than appending in order.
+
+**UUID v7 embeds a timestamp in the leading bits**, with randomness in the remainder. Because the timestamp occupies the most significant portion, v7 UUIDs sort in creation order as plain strings — new rows append rather than scatter. v7 is specified in [RFC 9562](https://www.rfc-editor.org/info/rfc9562/), while the original v4 definition is in [RFC 4122](https://www.rfc-editor.org/info/rfc4122/).
+
+| | UUID v4 | UUID v7 |
+|---|---|---|
+| Randomness | 122 bits, fully random | Timestamp plus random remainder |
+| Sorts by creation time | No | Yes |
+| Index behaviour | Scattered writes | Sequential appends |
+| Reveals creation time | No | Yes, to millisecond precision |
+| Best for | Identifiers where ordering is irrelevant | Database primary keys |
+
+**The trade-off:** v7 leaks creation time. For most internal uses that is harmless; for a public identifier where timing is sensitive, v4's opacity is preferable.
+
+## Where UUIDs are the wrong choice
+
+Worth stating, because UUIDs get applied by default:
+
+- **Human-facing reference numbers.** Nobody reads `550e8400-e29b-41d4-a716-446655440000` aloud over the phone. Order numbers and ticket references should be short and speakable.
+- **Compact storage constraints.** 16 bytes per row versus 4 or 8 adds up across millions of rows.
+- **Natural sort order requirements.** Where you need IDs to sort meaningfully by default and are not using v7.
+- **Sequential logic.** If downstream systems assume IDs increase, a random UUID breaks that assumption.
+
+## Practical notes
+
+**Format matters for storage.** The hyphenated form is for display. Storing the 32-character hex string without hyphens saves four bytes per row and is easier to compare; converting to binary saves more. Pick one convention and apply it consistently — mixed formats make indexing unreliable.
+
+**Case.** Hexadecimal is case-insensitive, but mixed case is a bug waiting to happen in string comparison. Choose uppercase or lowercase and normalise on input.
+
+**Treat a UUID as an identifier, not a secret.** v4 is unguessable, which is not the same as being a credential. A UUID in a URL is a name, not a key — if access must be controlled, control it with authentication rather than by hoping the identifier cannot be found.
+
+## Frequently asked questions
+
+**What is the collision probability of UUID v4?**
+v4 contains 122 random bits. You would need on the order of 2.7 quintillion UUIDs before a 50% chance of a single collision — far beyond any realistic generation rate. The practical risk is not the maths but a weak random source, which is why cryptographic randomness is essential.
+
+**Should I use UUID v4 or v7?**
+Use v7 for database primary keys, because its time-ordered prefix means inserts append to the index instead of scattering across it. Use v4 when you want an identifier that reveals nothing, including when it was created.
+
+**Is this compliant with RFC 4122?**
+Yes. The generator produces standard v4 UUIDs with the correct version and variant bits set. Note that v7 is specified in a later RFC, so a v4 document is not the right thing to compare v7 against.
+
+**Are UUIDs cryptographically secure?**
+The generation is — it uses the browser's cryptographic random source, so the output is not predictable. But a UUID is an identifier, not a secret. Do not treat possession of one as authorisation.
+
+**Is my data sent anywhere?**
+No. Generation happens in your browser, so nothing is transmitted, and no record exists of what was generated.
+
+## Conclusion
+
+UUID v4 collisions are a solved problem at any realistic scale, provided the randomness is cryptographic. The interesting choice is no longer v4 versus sequential IDs but v4 versus v7 — and for database keys, the time-ordered one usually wins.
+
+**Try it now:** 👉 **[Open the UUID Generator →](/tools/uuid)**
+
+Free, no signup, and nothing leaves your browser.
+
+---
+
+**Related tools**
+- [Random String Generator](/tools/random-string) — Custom-length random values
+- [Hash Generator](/tools/hash) — SHA-256 and other digests
+- [Base64 Encode / Decode](/tools/base64) — Encode identifiers for transport
+- [JSON Formatter](/tools/json-formatter) — Format API payloads containing UUIDs

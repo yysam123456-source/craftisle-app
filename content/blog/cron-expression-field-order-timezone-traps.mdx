@@ -1,0 +1,135 @@
+---
+title: "Cron Expression Generator: The Field Order and Timezone Traps (2026)"
+description: "Build and validate cron expressions free online, with human-readable descriptions and next-run previews. Learn the classic field-order and timezone mistakes that break schedules."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - developer-tools
+image: /_static/blog/blog-post-5.png
+keyTakeaways:
+  - "The five fields are minute, hour, day-of-month, month, day-of-week — in that order. Getting the order wrong is the single most common cron mistake."
+  - "* means every value; */5 means every fifth value. They are not the same thing."
+  - "Cron runs in the server's timezone unless told otherwise, which is why a schedule that works in testing can fire at the wrong hour in production."
+  - "Day-of-month and day-of-week interact in a way that surprises people — when both are restricted, either matching is usually enough."
+  - "Building and previewing next-run times catches errors that reading the expression does not."
+---
+
+# Cron Expression Generator: The Field Order and Timezone Traps (2026)
+
+Cron expressions are five short fields that almost nobody gets right the first time. The syntax is terse, errors are silent, and a wrong schedule often looks plausible — right up until a job runs at 3 a.m. on a Sunday instead of every weekday morning.
+
+This guide covers the traps worth knowing, plus how to verify a schedule before you trust it. The [cron generator](/tools/cron) builds expressions with a readable description and a next-run preview.
+
+## The five fields, in order
+
+```
+┌───────────── minute        (0–59)
+│ ┌─────────── hour          (0–23)
+│ │ ┌───────── day of month  (1–31)
+│ │ │ ┌─────── month         (1–12)
+│ │ │ │ ┌───── day of week   (0–6, Sunday = 0)
+│ │ │ │ │
+* * * * *
+```
+
+**The order is fixed and the fields are easy to transpose.** Swapping hour and day-of-month produces an expression that is syntactically valid and runs on the wrong schedule entirely. If a job is firing at an inexplicable time, check the field order first — it is the most common cause. For the format's history and the variants in use, see [cron](https://en.wikipedia.org/wiki/Cron) on Wikipedia.
+
+Worth noting: **day-of-week uses 0 for Sunday** in the traditional format, and some implementations accept 7 as Sunday too. Both conventions exist in the wild, which is its own source of confusion.
+
+## `*` and `*/5` are not the same
+
+This is the second most common mistake, and it is a subtle one.
+
+- **`*`** means *every* value.
+- **`*/5`** means *every fifth* value, starting from the beginning of the range.
+
+So in the minute field, `*` runs every minute; `*/5` runs at minutes 0, 5, 10, 15 and so on.
+
+**Where this goes wrong:** people write `0 0 */5 * *` intending "every five days" and get something that does not mean that. In the day-of-month field, `*/5` means days 1, 6, 11, 16, 21, 26, 31 — and because months have different lengths, the pattern drifts across month boundaries. It is not "every five days" in any consistent sense.
+
+**The safer approach for intervals** is usually to schedule the job more frequently and let the job itself decide whether this run is due — tracking the last execution rather than trusting the expression to express the interval.
+
+## Timezone: the trap that reaches production
+
+**Cron runs in the timezone of the machine running it** — unless the implementation lets you specify one explicitly.
+
+Consequences worth being aware of:
+
+- A cron expression on a server set to UTC will fire at different local times depending on daylight saving.
+- "Every day at 9 a.m." means 9 a.m. **server time**, which may be nothing like 9 a.m. for your users.
+- A job tested locally can behave differently in production if the two environments are in different timezones.
+
+**The reliable practice:** think in UTC for anything that must be consistent, and state the timezone explicitly where the scheduler supports it. Where it does not — traditional Unix cron, for instance — set the server timezone deliberately rather than inheriting a default.
+
+**Daylight saving is a real edge case.** A schedule set for 2:30 a.m. runs into the hour that does not exist on the spring-forward date. Schedulers handle this differently or not at all, so if precise local timing matters, use a scheduler that understands timezones rather than relying on cron alone.
+
+## Day-of-month and day-of-week together
+
+When both day fields are restricted, the behaviour surprises people. In the traditional implementation, a job runs when **either** field matches — not both.
+
+So `0 0 13 * 5` does not mean "the 13th, if it is a Friday". It means "the 13th, **or** any Friday". Two schedules for the price of one, and almost never what was intended.
+
+If you want "the Friday that falls on the 13th", that logic belongs in the job itself, not in the expression. The usual guidance is to restrict one day field and leave the other as `*`.
+
+## Shortcuts and their portability
+
+Convenience aliases exist for common schedules:
+
+| Alias | Equivalent |
+|---|---|
+| `@daily` / `@midnight` | `0 0 * * *` |
+| `@hourly` | `0 * * * *` |
+| `@weekly` | `0 0 * * 0` |
+| `@monthly` | `0 0 1 * *` |
+| `@yearly` / `@annually` | `0 0 1 1 *` |
+
+They are readable, and **not universally supported.** Traditional Unix cron accepts them; some scheduling services and libraries do not. If you are writing a schedule that might move between platforms, the explicit five-field form is the portable choice.
+
+**The same portability caveat applies to extra fields.** Some implementations support a seconds field or a year field, and the extended syntax is not standard. A six-field expression pasted into a service expecting five will be misread in ways that are not obvious from the output.
+
+## Verifying before you ship
+
+Reading a cron expression is unreliable — the format resists casual comprehension. Previewing is much better.
+
+1. **Build the expression**, and read the generated human description back. If the description does not match your intent, the expression does not either.
+2. **Check the next several run times**, not just the first one. The first run often looks right even when the pattern is wrong; the third or fourth tends to expose it.
+3. **Confirm the timezone** of the system that will run it.
+4. **Restrict only one day field** unless you specifically want the either-matches behaviour.
+5. **Add logging to the job itself.** A schedule that fires correctly but does nothing useful is harder to notice than one that fails.
+
+Step 2 is the one that catches most errors, because a wrong pattern usually produces a plausible first run and an implausible third.
+
+## Frequently asked questions
+
+**What is the difference between `*` and `*/5`?**
+`*` matches every value in the field. `*/5` matches every fifth value from the start of the range — so in the minute field, minutes 0, 5, 10 and so on. They are not interchangeable, and the difference is easy to miss when skimming.
+
+**Does this support non-standard cron fields?**
+Yes — the builder supports the standard five fields plus optional seconds and year fields for implementations that accept them. Be aware that extended fields are not portable: a six-field expression will be misread by a scheduler expecting five.
+
+**What is `@daily` / `@weekly`?**
+Shorthand aliases for common schedules, equivalent to `0 0 * * *` and `0 0 * * 0` respectively. Convenient, but not supported by every scheduling service or library, so use the explicit form if portability matters.
+
+**Why did my job run at the wrong time?**
+Timezone is the most likely reason, followed by field order. Cron uses the server's timezone unless told otherwise, so a schedule written for local time can fire at the wrong hour on a UTC server. After that, check whether hour and day-of-month were transposed.
+
+**Is my input sent anywhere?**
+No. The expression is built and evaluated in your browser, so nothing is transmitted.
+
+## Conclusion
+
+Cron's difficulty is not the syntax but the silent failures: transposed fields, `*` where `*/5` was meant, a timezone nobody stated. Build the expression, read the description back, check several future run times, and confirm which clock it will run against.
+
+**Try it now:** 👉 **[Open the Cron Expression Builder →](/tools/cron)**
+
+Free, no signup, and nothing leaves your browser.
+
+---
+
+**Related tools**
+- [Crontab Guru](/tools/crontab-guru) — Explain an existing cron expression
+- [Cron Parser](/tools/cron-parser) — Parse and preview cron schedules
+- [Unix Timestamp Converter](/tools/unix-to-date) — Convert between timestamps and dates
+- [Regex Visualizer](/tools/regex-vis) — Understand patterns visually

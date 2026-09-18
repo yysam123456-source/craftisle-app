@@ -1,0 +1,122 @@
+---
+title: "Pixel Art Generator: Dithering, Pixel Size and Palette Limits (2026)"
+description: "Convert any image to pixel art free in your browser. Control pixel size, reduce the colour palette, and choose whether to dither — with guidance on when each setting helps."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - image-tools
+image: /_static/blog/blog-post-8.png
+keyTakeaways:
+  - "Pixel size controls the block size each sampled colour is drawn at. Larger means fewer, bigger blocks and a more obviously retro result."
+  - "Palette reduction is what makes an image read as pixel art rather than a mosaic — fewer colours is more characteristic than bigger pixels."
+  - "Dithering trades visible banding for a textured pattern. It helps gradients in a limited palette and hurts clean shapes."
+  - "Start from an image with clear shapes and strong contrast. Photographs with fine detail lose the most."
+  - "Conversion runs in your browser; images are never uploaded."
+---
+
+# Pixel Art Generator: Dithering, Pixel Size and Palette Limits (Free, 2026)
+
+Pixel art is not simply a downscaled image. What makes it read as pixel art is the combination of visible blocks, a limited palette, and deliberate placement — and a generator can only produce a convincing result if the source image suits the treatment.
+
+This guide covers the three settings that matter, what each one actually does, and which source images survive the conversion. The [pixel art generator](/tools/image-to-pixel) runs in your browser.
+
+## The three settings
+
+**Pixel size** — the block size. Each block takes one sampled colour from the original and is drawn as a solid square. A size of 1 is effectively the original image; larger sizes produce the chunky look. This is the setting people reach for first, and it is not the one that matters most.
+
+**Palette size** — how many distinct colours the output may use. This is what actually makes an image read as pixel art. Early game hardware had hard palette limits, and the aesthetic comes from working within them. A 64-colour result looks far more deliberately retro than a 16,000-colour one, even at the same pixel size.
+
+**Dithering** — a technique for approximating colours the palette does not contain by alternating pixels from colours it does. From a distance the eye blends them into the intended shade.
+
+## Pixel size: bigger is not automatically better
+
+Larger blocks mean less detail and a stronger retro signal, but there is a limit. Past a certain size the image stops being recognisable — you are no longer stylising an image, you are discarding it.
+
+| Pixel size | Typical effect |
+|---|---|
+| Very small | Barely distinguishable from the original |
+| Small | Subtle retro texture; detail largely preserved |
+| Medium | Clearly pixel art; the modern "retro" look |
+| Large | Heavily abstracted — recognisable only for simple subjects |
+| Very large | The subject is lost; only the overall colour distribution survives |
+
+**The practical approach:** increase pixel size until the image reads as pixel art, then stop before it stops reading as the original subject. Where that point falls depends entirely on how much detail the source contains.
+
+## Dithering: the setting that divides opinion
+
+Dithering is the most misunderstood option, because it improves some images and ruins others.
+
+**Where it helps:** smooth gradients, skies, skin tones, and any large area of gradually shifting colour. A limited palette cannot represent those directly, so banding appears as visible stripes. Dithering breaks the bands into a texture the eye blends.
+
+**Where it hurts:** flat colours, sharp edges, logos, text and clean geometric shapes. Dithering adds noise to areas that were perfectly representable, making crisp edges look fuzzy and flat areas look dirty.
+
+**A useful rule:** if the source image has large smooth gradients, dithering helps. If it has flat colour regions and hard edges, leave dithering off.
+
+The texture dithering creates is characteristic of the era being imitated — early hardware used it for exactly this reason. If you want an authentic retro look rather than a clean modern one, dithering contributes to that. Both [pixel art](https://en.wikipedia.org/wiki/Pixel_art) and [dithering](https://en.wikipedia.org/wiki/Dither) have well-documented histories behind the conventions still in use today.
+
+## What converts well
+
+| Source | Result |
+|---|---|
+| Portraits with strong contrast | Good — facial structure survives if the palette is reasonable |
+| Logos and icons | Very good — flat colours are ideal for limited palettes |
+| Simple illustrations and cartoons | Very good — already reduced to shapes |
+| Landscapes with clear silhouettes | Good |
+| Detailed photographs | Poor — fine texture is lost, and the subject becomes mush |
+| Images with lots of small text | Poor — text below the block size becomes illegible |
+
+The pattern: **pixel conversion rewards images that are already about shape, not texture.** A photograph of a forest becomes a colour field; a cartoon of a forest becomes a recognisable forest.
+
+## Practical workflow
+
+1. **Start from a source with clear subjects.** Crop to remove distracting background first — a [crop](/tools/image-crop) before conversion gives the generator less to account for.
+2. **Set pixel size** to where the retro effect reads clearly.
+3. **Reduce the palette** to the smallest count that still keeps the subject recognisable. This does more for the aesthetic than the pixel size.
+4. **Try dithering both ways** and compare. The difference is larger than most people expect, and which is better depends entirely on the image.
+5. **Enlarge afterwards if needed**, using nearest-neighbour scaling — smooth interpolation would undo the effect entirely.
+
+That last point is easy to get wrong. Pixel art must be scaled with nearest-neighbour, which duplicates blocks rather than blending them. Any other scaling method blurs the blocks and destroys the aesthetic.
+
+**Transparency** is worth checking too: if the source has a transparent background, the output can keep it, which is what you want for sprites used over a coloured page.
+
+## Where pixel art is used
+
+- **Game sprites**, where the style matches gameplay conventions and the small canvas suits the format.
+- **Avatars and profile images**, where a restricted palette reads as a deliberate choice rather than a low-resolution photo.
+- **Social posts**, where the style stands out in a feed of photographic images.
+- **Retro-styled interfaces** and documentation illustrations.
+
+## Frequently asked questions
+
+**What pixel size should I use?**
+Enough that the retro effect is clearly visible, without the subject becoming unrecognisable. Small images tolerate less reduction than large ones. If you cannot tell what the image is, the block size is too large for that source.
+
+**Can I control the colour palette?**
+Yes. Reducing the number of colours is the setting that produces the strongest pixel-art character — a modest palette at a moderate pixel size looks more deliberately retro than a large palette at a big block size.
+
+**Should I turn dithering on?**
+On for smooth gradients, off for flat colours and hard edges. If the source has skies, skin tones or large blends, dithering helps; if it has logos, text or clean shapes, it adds unwanted noise.
+
+**Why does my result look like a low-quality photo rather than pixel art?**
+Usually because the palette was not reduced. Big pixels alone produce a mosaic; limited colours are what make the result read as pixel art. Try lowering the colour count before increasing the block size further.
+
+**Is my image uploaded?**
+No. The conversion runs in your browser, so the image never leaves your device.
+
+## Conclusion
+
+Pixel size gets the attention, but palette size does the work. Set the block size so the effect reads, reduce the colours until it looks deliberate, and decide on dithering by asking whether the source is about gradients or about shapes.
+
+**Try it now:** 👉 **[Open the Pixel Art Generator →](/tools/image-to-pixel)**
+
+Free, no signup, and your image stays on your device.
+
+---
+
+**Related tools**
+- [Image Compressor](/tools/image-compress) — Reduce file size without visible quality loss
+- [Image Converter](/tools/image-convert) — Convert between JPG, PNG, WebP and more
+- [PNG to SVG](/tools/png-to-svg) — Vectorise flat graphics
+- [Image Resizer](/tools/image-resize) — Resize to exact pixel dimensions
