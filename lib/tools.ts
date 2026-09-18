@@ -2319,7 +2319,7 @@ export const toolMeta: Record<string, ToolMeta> = {
         "online photo resizer free tool",
         "free online image dimension tool",
         "image resizer no signup free online",
-        "online bulk image resizer free tool",
+        "resize image to exact pixel size online free",
         "free browser based image resizer",
         "resize PNG JPG online free tool"
       ],
@@ -2566,7 +2566,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     useCases: [
       { title: "Personal use of Gemini images", text: "Remove watermarks from Gemini-generated images for personal projects, presentations, or social media (check Google's Terms of Service)." },
-      { title: "Batch processing", text: "Process multiple Gemini images at once to save time when working with AI-generated content." },
+      { title: "Social media prep", text: "Clean up a Gemini image before posting it, so the watermark is not the first thing viewers notice." },
       { title: "Learning & experimentation", text: "Understand how AI watermarking works by seeing the removal process in action." },
     ],
     faq: [
@@ -2662,7 +2662,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🔄",
     category: CATEGORIES.image,
     seoTitle: "Image Converter Free — Convert JPG/PNG/WebP Online",
-    seoDesc: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. Batch conversion supported. 100% browser-based, no signup required.",
+    seoDesc: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. 100% browser-based, no signup required.",
     seoKeywords: [
         "image converter online free",
         "convert image online",
@@ -2672,7 +2672,7 @@ export const toolMeta: Record<string, ToolMeta> = {
         "image format converter",
         "free image converter no signup",
         "convert image to webp",
-        "batch image converter online",
+        "image format converter online free",
         "image file converter free",
         "convert png to jpg online",
         "free online image converter",
@@ -2684,7 +2684,7 @@ export const toolMeta: Record<string, ToolMeta> = {
         "jpg to webp converter free",
         "png to webp converter online"
       ],
-    description: "Convert images between JPG, PNG, WebP, GIF and BMP. Supports batch conversion, quality settings for lossy formats, and transparency preservation for PNG/WebP. Conversion runs entirely in your browser using the canvas API — images are never uploaded to a server.",
+    description: "Convert images between JPG, PNG, WebP, GIF and BMP. Supports quality settings for lossy formats, and transparency preservation for PNG/WebP. Conversion runs entirely in your browser using the canvas API — images are never uploaded to a server.",
     howToUse: [
       { heading: "Upload images", text: "Drag and drop one or multiple images (JPG, PNG, WebP, GIF or BMP)." },
       { heading: "Choose output format", text: "Select the target format: JPG, PNG, WebP or BMP." },
@@ -2929,11 +2929,11 @@ export const toolMeta: Record<string, ToolMeta> = {
         "watermark PNG JPG online free tool",
         "free online image watermark adder",
         "watermark no signup free online tool",
-        "batch watermark images online free tool",
+        "watermark images online free tool",
         "free browser based watermark tool",
         "custom text watermark image online free"
       ],
-    description: "Add customizable text watermarks to images for copyright protection. Set text content, font, size, color, opacity, rotation angle, and position. Supports batch watermarking. Essential for photographers, designers, and content creators protecting their work.",
+    description: "Add customizable text watermarks to images for copyright protection. Set text content, font, size, color, opacity, rotation angle, and position. Processes one image at a time. Essential for photographers, designers, and content creators protecting their work.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
       { heading: "Set watermark text and style", text: "Type watermark text (e.g., © 2026 Your Name). Set font, size, color, and opacity." },
