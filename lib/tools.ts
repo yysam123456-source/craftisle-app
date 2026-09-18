@@ -198,7 +198,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I verify the signature?", a: "This tool decodes (base64url) but doesn't verify signatures. For signature verification, use your backend's JWT library with the secret key." },
       { q: "Is a JWT encrypted?", a: "No. JWT payloads are only base64url-encoded, not encrypted. Anyone can decode them. Never put secrets in a JWT payload." },
       { q: "What does exp mean?", a: "exp is the expiration time (Unix timestamp). After this time, the token should be rejected by the server." },
-    ],
+    
+      { q: "Are the tokens I paste uploaded?", a: "No — and that matters here, since a JWT is a live credential. Decoding happens entirely in your browser; the token is never transmitted." },],
     relatedTools: ["aes-des", "base64", "hash"],
   },
 
@@ -265,8 +266,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What does minify do?", a: "Minify removes all unnecessary whitespace from JSON, making it compact." },
-      { q: "Is the original JSON validated?", a: "Yes, the input must be valid JSON before minification." }
-    ],
+      { q: "Is the original JSON validated?", a: "Yes, the input must be valid JSON before minification." },
+    
+      { q: "Is it safe to paste JSON with API keys in it?", a: "Yes. Minifying runs in your browser, so the JSON — including anything sensitive in it — is never transmitted." },],
     relatedTools: ["json-formatter", "json-validator", "yaml-minify"]
   },
 
@@ -286,8 +288,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What format is the output?", a: "You can choose text (human-readable) or JSON (structured) output format." },
-      { q: "Does it support nested objects?", a: "Yes, the tool recursively compares nested objects and arrays." }
-    ],
+      { q: "Does it support nested objects?", a: "Yes, the tool recursively compares nested objects and arrays." },
+    
+      { q: "Do the two JSON objects I compare get uploaded?", a: "No. Both are parsed and diffed locally in your browser; nothing is sent to a server." },],
     relatedTools: ["json-formatter", "json-validator", "diff-checker"]
   },
 
@@ -307,8 +310,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "Does it work with arrays?", a: "Yes, it sorts keys of objects in arrays too." },
-      { q: "Can I sort by value?", a: "Currently only sorting by key is supported." }
-    ],
+      { q: "Can I sort by value?", a: "Currently only sorting by key is supported." },
+    
+      { q: "Does sorting upload my JSON?", a: "No. Keys are reordered in your browser, so the data stays on your machine." },],
     relatedTools: ["json-formatter", "json-minify", "yaml-sort"]
   },
 
@@ -328,8 +332,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What does escape do?", a: "Escape converts text to a JSON-encoded string (e.g., quotes become \")." },
-      { q: "What does unescape do?", a: "Unescape converts a JSON string back to readable text." }
-    ],
+      { q: "What does unescape do?", a: "Unescape converts a JSON string back to readable text." },
+    
+      { q: "Where does my JSON go when I escape it?", a: "Nowhere. Escaping and unescaping both happen in your browser — the string is never sent anywhere." },],
     relatedTools: ["json-formatter", "json-stringify", "string-escape"]
   },
 
@@ -349,8 +354,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What input format is expected?", a: "JavaScript object/array syntax (e.g., {name: 'John'}), not JSON." },
-      { q: "Why would I use this?", a: "Useful for converting JS code to JSON for APIs or storage." }
-    ],
+      { q: "Why would I use this?", a: "Useful for converting JS code to JSON for APIs or storage." },
+    
+      { q: "Is the object I paste sent to a server?", a: "No. The conversion runs entirely in your browser, so nothing leaves your device." },],
     relatedTools: ["json-formatter", "json-escape", "yaml-to-json"]
   },
 
@@ -611,7 +617,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Why does Bitcoin use Base58?", a: "Base58 avoids confusing characters (0/O/I/l) and doesn't use padding, making it more human-friendly than Base64." },
       { q: "What is the difference between Base58 and Base58Check?", a: "Base58Check adds a 4-byte checksum to detect transcription errors. Bitcoin addresses use Base58Check." },
       { q: "Is this tool affiliated with Bitcoin?", a: "No. This is an independent utility tool. Always verify addresses with official wallet software before sending funds." },
-    ],
+    
+      { q: "Is the string I encode uploaded?", a: "No. Base58 encoding and decoding run in your browser; the input never leaves your device." },],
     relatedTools: ["base64", "base32", "hash"],
   },
 
@@ -651,7 +658,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What bases are supported?", a: "Any integer base from 2 to 36. Common ones: base-2 (binary), base-8 (octal), base-10 (decimal), base-16 (hexadecimal)." },
       { q: "Can I convert floating-point numbers?", a: "This tool converts integers. For floating-point, use a dedicated IEEE-754 converter." },
       { q: "What is two's complement?", a: "It is how negative numbers are represented in binary. This tool works with unsigned integers; for signed, use a dedicated signed integer converter." },
-    ],
+    
+      { q: "Does converting a number base upload my input?", a: "No. The conversion is done locally in the browser." },],
     relatedTools: ["base64", "base32", "ip-calc"],
   },
 
@@ -692,7 +700,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "How are nested JSON objects handled?", a: "Nested objects are flattened using dot notation (e.g., user.name) in the CSV output." },
       { q: "What delimiters are supported?", a: "Comma, tab, semicolon, pipe (|), and custom single-character delimiters." },
       { q: "Is there a row limit?", a: "Limited by your browser's memory. For very large files, process in chunks or use a desktop tool." },
-    ],
+    
+      { q: "Are my CSV rows uploaded when converting?", a: "No. The conversion runs in your browser, so the rows — including any customer data in them — never leave your machine." },],
     relatedTools: ["json-formatter", "yaml-formatter", "sql-formatter"],
   },
 
@@ -866,7 +875,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "Why does 1 KB = 1024 B, not 1000 B?", a: "Computers use binary, so 1 KB = 2^10 = 1024 bytes. This is the standard in most operating systems and programming languages. Some contexts (hard drive manufacturing) use decimal (1 KB = 1000 B)." },
       { q: "What is the difference between MB and MiB?", a: "MB (megabyte) = 1000^2 bytes (decimal). MiB (mebibyte) = 1024^2 bytes (binary). This tool uses the binary standard (1024), which is most common in software." },
-    ],
+    
+      { q: "Is my input sent anywhere?", a: "No. The arithmetic runs in your browser and nothing is transmitted." },],
     relatedTools: ["radix-converter", "generic-calc", "string-statistic"],
   },
 
@@ -967,7 +977,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Which regex flavor is used?", a: "By default, JavaScript regex (ECMAScript). You can switch to Python or PCRE mode for advanced features like lookbehind." },
       { q: "What does the 'g' flag do?", a: "The 'g' (global) flag finds ALL matches, not just the first one." },
       { q: "Why is my regex not matching?", a: "Common issues: forgetting to escape special chars (., *, +), or using greedy quantifiers (*) when you want lazy (*?). Check the flags too." },
-    ],
+    
+      { q: "Is the text I test my regex against uploaded?", a: "No. Matching runs in your browser, so the test text stays on your device." },],
     relatedTools: ["json-formatter", "sql-formatter", "text-formatter"],
   },
 
@@ -1015,7 +1026,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What do the node colors/shapes mean?", a: "See the Legends tab (📖 icon) for a full legend: blue = character/class, green = group, orange = quantifier, purple = assertion, gray = alternation. The legend is always one click away." },
       { q: "How do I share my regex with someone else?", a: "Click 'Copy permalink' in the top-right. The URL encodes your regex and flags. Send it — when they open it, the exact same graph and test text load automatically." },
       { q: "Why does my regex look different in the graph vs. what I typed?", a: "The parser normalizes your regex: redundant groups are simplified, character classes are expanded for clarity, and implicit concatenations become explicit nodes. This is intentional — it helps you see the true structure." },
-    ],
+    
+      { q: "Does visualising a regex upload my pattern or test text?", a: "No. Both stay in your browser — parsing and matching are done locally." },],
     relatedTools: ["regex", "json-formatter", "color-picker"],
   },
 
@@ -1468,7 +1480,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What diff algorithm is used?", a: "Myers' diff algorithm (the same one used by Git). It produces the minimal edit distance." },
       { q: "Can I ignore whitespace changes?", a: "Yes. Toggle 'Ignore whitespace' to focus on meaningful code changes." },
       { q: "Can I merge differences?", a: "This tool shows differences. For merging, use a dedicated merge tool or Git merge." },
-    ],
+    
+      { q: "Are the documents I compare uploaded?", a: "No. The comparison runs in your browser, so both versions stay on your machine — useful when comparing proprietary code." },],
     relatedTools: ["text-formatter", "regex", "json-formatter"],
   },
 
@@ -1697,7 +1710,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "Are word boundaries respected?", a: "Yes. Only whole words are censored. For example, 'hell' will not match 'hello'. This prevents over-censoring." },
       { q: "What is 'each letter' mode?", a: "In symbol mode, enabling 'each letter' repeats the symbol for each character in the word. E.g. 'bad' → '***' (3 symbols for 3 letters)." },
-    ],
+    
+      { q: "Is my text uploaded when I censor it?", a: "No. The word matching runs in your browser, so the text you are redacting stays on your device." },],
     relatedTools: ["text-formatter", "string-replace", "diff"],
   },
 
@@ -2397,8 +2411,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What does solid mode do?", a: "Solid mode applies the same opacity level to all pixels." },
-      { q: "What does gradient mode do?", a: "Gradient mode creates a smooth opacity transition (linear or radial)." }
-    ],
+      { q: "What does gradient mode do?", a: "Gradient mode creates a smooth opacity transition (linear or radial)." },
+    
+      { q: "Does changing opacity upload my image?", a: "No. The opacity change is applied to the image in your browser, so the file stays on your device." },],
     relatedTools: ["image-crop", "image-resize", "image-rotate"]
   },
 
@@ -2418,8 +2433,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What is similarity?", a: "Similarity controls how closely matching colors are included (0-100%)." },
-      { q: "What format is the output?", a: "The output is a PNG file with transparency." }
-    ],
+      { q: "What format is the output?", a: "The output is a PNG file with transparency." },
+    
+      { q: "Is my image uploaded to make it transparent?", a: "No. Transparency is applied client-side in your browser — the image is not sent anywhere." },],
     relatedTools: ["image-crop", "image-resize", "image-compress"]
   },
 
@@ -2439,8 +2455,9 @@ export const toolMeta: Record<string, ToolMeta> = {
     ],
     faq: [
       { q: "What happens to edge tiles?", a: "Edge tiles are automatically resized to fit the remaining pixels." },
-      { q: "What format are the tiles?", a: "All tiles are saved as PNG files." }
-    ],
+      { q: "What format are the tiles?", a: "All tiles are saved as PNG files." },
+    
+      { q: "Do I need to upload an image to split it?", a: "No. The split runs in your browser, so the image stays on your device throughout." },],
     relatedTools: ["image-crop", "image-resize", "image-to-pixel"]
   },
 
@@ -2700,7 +2717,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What format should I use for my website?", a: "WebP for photos (best compression). PNG for logos/icons with transparency. AVIF is even better but has limited browser support (check caniuse.com/avif)." },
       { q: "Does converting JPG→PNG improve quality?", a: "No. JPG is lossy. Converting to PNG preserves the compressed JPG quality (artifacts included) but doesn't improve it. PNG is best for images that were created as PNG originally." },
       { q: "Is AVIF ready for production use?", a: "AVIF has ~90% browser support (all modern browsers except very old ones). Provide WebP as fallback." },
-    ],
+    
+      { q: "Are my images uploaded when I convert them?", a: "No. Conversion runs in your browser using the canvas API — the image never leaves your device, and nothing is sent to a server." },],
     relatedTools: ["image-compress", "image-resize", "png-to-svg"],
   },
 
@@ -2739,7 +2757,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is EXIF orientation?", a: "Cameras and phones record which way the device was held when taking a photo. EXIF orientation tag tells viewers to rotate the image. Some viewers ignore it, causing sideways photos." },
       { q: "Does rotating reduce image quality?", a: "Rotating by 90°/180°/270° is lossless (just rearranges pixels). Rotating by arbitrary angles requires resampling and may slightly reduce quality." },
       { q: "Can I rotate multiple images at once?", a: "Batch rotation is a planned feature. Currently, rotate images one at a time." },
-    ],
+    
+      { q: "Does rotating an image upload it to your server?", a: "Yes. Rotation runs on our servers, so the file is uploaded to generate the result. It is processed in memory and is not saved afterwards." },],
     relatedTools: ["image-crop", "image-resize", "image-color-adjust"],
   },
 
@@ -2778,7 +2797,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "How does color extraction work?", a: "We use K-means clustering to group similar pixels by color, then find the center of each cluster. This gives the most visually dominant colors." },
       { q: "Can I extract colors from a specific region?", a: "Not currently. The entire image is analyzed. Crop the image first if you want region-specific colors." },
       { q: "What format are the color values in?", a: "HEX (#FF5733), RGB (255, 87, 51), and HSL (11°, 100%, 60%). All three are shown for each color." },
-    ],
+    
+      { q: "Is the image I upload for colour extraction kept?", a: "No. The image is sent to our server to run the colour extraction, then discarded — nothing is written to disk or kept after the request finishes." },],
     relatedTools: ["color-picker", "image-border", "svg-editor"],
   },
 
@@ -2816,7 +2836,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What image format should I use as input?", a: "PNG with transparent background works best. SVG also works (it will be rasterized). JPG works but transparency will be lost." },
       { q: "What sizes are included in the .ico file?", a: "16×16, 32×32, 48×48, and 64×64 pixels. Browsers automatically pick the best size." },
       { q: "Do I also need Apple touch icons?", a: "Yes, for iOS home screen bookmarks. The tool can export 180×180 and 192×192 PNGs for this purpose." },
-    ],
+    
+      { q: "Do you keep the source image I upload?", a: "No. The upload is needed because favicon generation runs server-side, but the file exists only for the duration of the request and is not stored." },],
     relatedTools: ["image-resize", "image-crop", "image-color-palette"],
   },
 
@@ -2882,7 +2903,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is the difference between dimensions and pixel count?", a: "Dimensions = width × height in pixels. Pixel count = width × height (total pixels). A 1920×1080 image has ~2 megapixels." },
       { q: "Why does my image look different on different devices?", a: "Color space mismatch. sRGB is the standard for web. Adobe RGB or ProPhoto RGB images may look desaturated on devices that don't support wide gamut." },
       { q: "Can I see GPS location from EXIF?", a: "Yes, if the photo was taken with a GPS-enabled camera/phone and geotagging was enabled. Use 'Strip Metadata' tool to remove it before sharing." },
-    ],
+    
+      { q: "Does reading a file's metadata upload the file?", a: "Yes, the file is uploaded so the server can read its header. Nothing is retained — there is no storage layer in the request path." },],
     relatedTools: ["image-strip-metadata", "image-resize", "image-color-palette"],
   },
 
@@ -2910,7 +2932,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I add a gradient border?", a: "Currently only solid color borders are supported. Gradient borders are a planned feature." },
       { q: "Does the border increase the image file size?", a: "Yes, slightly. The border is part of the image pixels. Expect a small file size increase." },
       { q: "Can I add different border widths per side?", a: "Currently uniform border width is applied to all sides. Asymmetric borders are a planned feature." },
-    ],
+    
+      { q: "Are the images I add borders to uploaded?", a: "Yes — border rendering is server-side, so the image is uploaded. It is held in memory for that one request and not written anywhere." },],
     relatedTools: ["image-color-adjust", "image-watermark", "color-picker"],
   },
 
@@ -2949,7 +2972,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is a watermark legally enforceable copyright?", a: "No. Watermarks deter casual theft but don't establish legal copyright (which is automatic upon creation in most countries). Use them as a deterrent, not a legal protection." },
       { q: "Can I remove a watermark from an image?", a: "Not perfectly. Watermark removal requires advanced image editing (Clone Stamp, Content-Aware Fill). It is always visible to some degree. Don't rely on watermarks alone for high-value content." },
       { q: "Can I use an image (logo) as watermark instead of text?", a: "Currently text-only. Image watermark (logo) is a planned feature." },
-    ],
+    
+      { q: "Where does my image go when I add a watermark?", a: "It is uploaded to our server, watermarked, and returned. The copy is discarded once the response is sent; we do not keep a library of uploaded images." },],
     relatedTools: ["image-border", "image-text-overlay", "image-color-adjust"],
   },
 
@@ -3352,7 +3376,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is this accepted by official passport agencies?", a: "The tool follows official dimension and background specifications. However, some countries require photos to be taken by an approved studio. Always check the official requirements." },
       { q: "What are the common specifications?", a: "US passport: 2×2 inches (51×51 mm). Schengen visa: 35×45 mm. UK passport: 35×45 mm. China passport: 33×48 mm." },
       { q: "Can I fix background color?", a: "Yes. The tool can replace background with white, light gray, or off-white to meet official requirements." },
-    ],
+    
+      { q: "You are asking for a passport photo — is it safe?", a: "It is handled the same way as any other upload: sent to our server to generate the ID photo, processed in memory, and not stored afterwards. No copy is retained after the response." },],
     relatedTools: ["image-crop", "image-resize", "image-color-adjust"],
   },
 
@@ -3390,7 +3415,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What font is used for memes?", a: "Impact (bold, white with black outline) is the classic meme font. This tool also supports Arial and Comic Sans." },
       { q: "Can I use this for commercial purposes?", a: "Using popular meme templates is generally fine for commercial use. However, ensure you have rights to the source image if you're not using the built-in templates." },
       { q: "Can I add more text boxes?", a: "Currently top + bottom only. Multi-text-box support is a planned feature." },
-    ],
+    
+      { q: "Do you store the photos I turn into memes?", a: "No. The image is uploaded only because compositing runs on the server, and it is discarded as soon as the meme is returned." },],
     relatedTools: ["image-watermark", "image-border", "text-formatter"],
   },
 
@@ -3468,7 +3494,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is perceptual hashing?", a: "Unlike cryptographic hashing (MD5, SHA), perceptual hashing generates similar hashes for visually similar images. Two images that are 90% similar will have similar pHash values." },
       { q: "Can it detect cropped or resized duplicates?", a: "Yes. Perceptual hash is resilient to resizing and minor cropping. But heavily cropped images may not match." },
       { q: "What similarity threshold should I use?", a: "90%+ = near-exact duplicates. 70-90% = visually very similar (likely duplicates with minor edits). Below 70% = similar but possibly different images." },
-    ],
+    
+      { q: "Do I have to upload my files to find duplicates?", a: "Yes — comparison runs server-side, so the files are uploaded. They are used for that request only and are not stored afterwards." },],
     relatedTools: ["image-info", "image-compress", "image-strip-metadata"],
   },
 
@@ -3556,7 +3583,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is the maximum GIF file size?", a: "Limited by browser memory. For GIFs over ~10 MB, consider using MP4 or WebM (video) instead — they have much better compression for animations." },
       { q: "Can I edit an existing GIF?", a: "Upload the GIF frames (you'll need to extract frames first using another tool). This tool creates GIFs from images; it doesn't edit existing GIFs." },
       { q: "Why is my GIF file so large?", a: "GIF uses lossless compression and is limited to 256 colors per frame. For smaller files, use video format (MP4) or convert to WebP animated image." },
-    ],
+    
+      { q: "Are the frames I upload kept on your server?", a: "No. The frames are needed server-side to encode the GIF, and they are discarded once the animation is returned." },],
     relatedTools: ["image-to-pixel", "image-convert", "image-compress"],
   },
 
@@ -3961,7 +3989,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What delimiter should I use?", a: "Comma (,) is standard for CSV. Semicolon (;) is common in European Excel exports. Tab is used for TSV files." },
       { q: "Does it handle quoted values?", a: "Yes. The tool handles quoted values (e.g., 'Value with, comma') correctly." },
       { q: "What format should I choose?", a: "Use 'objects' format for most cases (easier to work with in JavaScript). Use 'arrays' format for minimal output or when processing with other tools." },
-    ],
+    
+      { q: "Is it safe to convert a CSV containing customer data?", a: "Yes. Parsing and conversion happen in your browser; the file contents are not transmitted." },],
     relatedTools: ["json-to-csv", "csv-formatter"],
   },
 
@@ -3990,7 +4019,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What JSON format is supported?", a: "Array of objects (e.g., [{'name': 'Alice', 'age': 25}]) works best. The tool extracts all unique keys as CSV headers." },
       { q: "Does it handle nested objects?", a: "Nested objects are converted to '[object Object]' by default. Flatten nested objects before conversion for better results." },
       { q: "How are special characters handled?", a: "Values containing delimiters or quotes are wrapped in double quotes with internal quotes escaped (CSV standard)." },
-    ],
+    
+      { q: "Does converting JSON to CSV upload my data?", a: "No. The conversion is client-side, so the data remains on your device." },],
     relatedTools: ["csv-to-json", "json-formatter"],
   },
 
@@ -4283,7 +4313,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What library is used?", a: "This tool uses fast-xml-parser, a fast and reliable XML parser for JavaScript." },
       { q: "Does it validate XML?", a: "Yes. Invalid XML is detected and error messages show line and column numbers." },
-    ],
+    
+      { q: "Is it safe to paste a config file with credentials?", a: "Yes. Formatting runs in your browser, so the file contents are never uploaded." },],
     relatedTools: ["xml-validator", "json-formatter"],
   },
 
@@ -4308,7 +4339,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What is validated?", a: "XML syntax: tags, attributes, nesting, special characters, etc." },
       { q: "Does it validate against XSD?", a: "No. This tool validates XML syntax, not schema validation (XSD/DTD)." },
-    ],
+    
+      { q: "Does validating XML upload my file?", a: "No. Validation is done locally in your browser." },],
     relatedTools: ["xml-beautifier", "json-validator"],
   },
 
@@ -4335,7 +4367,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What characters are escaped?", a: "Backslash (\\\\), quotes (\\\"), newline (\\n), carriage return (\\r), tab (\\t)." },
       { q: "When do I need to escape?", a: "When embedding strings in JSON that contain these special characters." },
-    ],
+    
+      { q: "Is my JSON uploaded when escaping?", a: "No. The escaping is done client-side, so your data stays in the browser tab." },],
     relatedTools: ["json-formatter", "stringify-json"],
   },
 
@@ -4363,7 +4396,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What XML structure is generated?", a: "Root element contains item elements. Each item contains elements named after CSV headers." },
       { q: "Can I customize the XML structure?", a: "You can customize the root and item element names. For more complex structures, post-process the XML." },
-    ],
+    
+      { q: "Where does my CSV go when converted?", a: "Nowhere — the conversion is done in your browser and nothing is uploaded." },],
     relatedTools: ["xml-beautifier", "json-to-xml"],
   },
 
@@ -4445,7 +4479,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What YAML structure is generated?", a: "Array of objects. Each object represents a row, with keys from CSV headers." },
       { q: "Can I customize the YAML structure?", a: "The generated YAML follows standard YAML array-of-objects format. For custom structures, post-process the YAML." },
-    ],
+    
+      { q: "Is my CSV uploaded?", a: "No. The conversion happens locally in the browser." },],
     relatedTools: ["json-to-yaml", "csv-to-json"],
   },
 
@@ -4472,7 +4507,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What is TSV?", a: "TSV (Tab-Separated Values) is similar to CSV but uses tab character as separator. It's often used when data contains commas." },
       { q: "How is it different from CSV to JSON?", a: "This tool expects tab as separator instead of comma. The conversion logic is otherwise similar." },
-    ],
+    
+      { q: "Are my spreadsheet rows sent to a server?", a: "No. The parsing runs in your browser, so the rows stay on your machine." },],
     relatedTools: ["csv-to-json", "json-to-csv"],
   },
 
@@ -4499,7 +4535,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What does 'transpose' mean?", a: "Transpose swaps rows and columns. Row 1 becomes Column 1, Column 1 becomes Row 1, etc." },
       { q: "Does it handle headers?", a: "Yes. Headers are also transposed. The first column of the transposed data will be the original headers." },
-    ],
+    
+      { q: "Does transposing a CSV upload it?", a: "No. The transpose happens client-side and the data is never transmitted." },],
     relatedTools: ["csv-to-json", "sort-lines"],
   },
 
@@ -4527,7 +4564,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What XML structure is generated?", a: "Root element contains item elements. Each item contains elements named after JSON keys." },
       { q: "Can I convert nested JSON?", a: "Nested objects are converted to nested XML elements. Arrays are converted to repeated elements." },
-    ],
+    
+      { q: "Is my JSON uploaded during conversion?", a: "No. The conversion runs in your browser and nothing is sent to a server." },],
     relatedTools: ["xml-beautifier", "csv-to-xml"],
   },
 
@@ -4554,7 +4592,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What does 'Recursive' mean?", a: "Recursive mode sorts keys in nested objects too. Without it, only top-level keys are sorted." },
       { q: "Does it preserve array order?", a: "Yes. Array order is preserved. Only object keys are sorted." },
-    ],
+    
+      { q: "Does sorting send my JSON anywhere?", a: "No. The reordering happens in your browser and nothing is uploaded." },],
     relatedTools: ["json-formatter", "json-validator"],
   },
 
@@ -4581,7 +4620,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What input format is supported?", a: "Valid JavaScript object syntax. Keys can be unquoted (JS style) or quoted (JSON style)." },
       { q: "Does it handle functions or undefined?", a: "Functions and undefined values are removed (replaced with null). This matches JSON.stringify() behavior." },
-    ],
+    
+      { q: "Is my input uploaded?", a: "No. Stringifying runs locally in the browser, so your data is never transmitted." },],
     relatedTools: ["json-formatter", "escape-json"],
   },
 
@@ -4609,7 +4649,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What does 'missing columns' mean?", a: "Rows that have fewer columns than the maximum number of columns in the CSV." },
       { q: "What does 'empty values' mean?", a: "Cells that are empty (no value between separators)." },
-    ],
+    
+      { q: "Is the CSV I check uploaded?", a: "No. The check runs in your browser, so the rows never leave your device." },],
     relatedTools: ["csv-formatter", "csv-to-json"],
   },
 
@@ -4636,7 +4677,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What is 'Column Index'?", a: "1-based index. Column 1 = first column, Column 2 = second column, etc." },
       { q: "What happens to header row?", a: "Header row gets the column name. Data rows get the default value." },
-    ],
+    
+      { q: "Does adding a column upload my CSV?", a: "No. The edit is applied in your browser and the data stays local." },],
     relatedTools: ["csv-formatter", "swap-csv-columns"],
   },
 
@@ -4663,7 +4705,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What is 'Column Index'?", a: "1-based index. Column 1 = first column, Column 2 = second column, etc." },
       { q: "What if rows have different column counts?", a: "Rows with insufficient columns are skipped (returned unchanged)." },
-    ],
+    
+      { q: "Is my CSV sent anywhere when reordering columns?", a: "No. The reordering happens client-side." },],
     relatedTools: ["csv-formatter", "insert-csv-column"],
   },
 
@@ -4691,7 +4734,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What does 'Fill With Empty Values' mean?", a: "Add empty fields to incomplete rows to make a well-formed CSV." },
       { q: "What does 'Comment Character' do?", a: "Lines starting with this character are treated as comments and removed." },
-    ],
+    
+      { q: "Is my CSV uploaded?", a: "No. The transformation runs in your browser — nothing leaves your device." },],
     relatedTools: ["csv-to-json", "transpose-csv"],
   },
 
@@ -4748,7 +4792,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What is 'word-level' comparison?", a: "Compares texts word by word. Good for prose and documents." },
       { q: "What is 'character-level' comparison?", a: "Compares texts character by character. Good for code and short strings." },
-    ],
+    
+      { q: "Does comparing two texts upload them?", a: "No. The diff is computed client-side and nothing is transmitted." },],
     relatedTools: ["json-comparison", "diff"],
   },
 
@@ -4830,7 +4875,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "How long should my password be?", a: "At least 12 characters. 16+ is recommended for critical accounts." },
       { q: "Are the passwords saved?", a: "No. Passwords are generated in your browser and not sent to any server." },
-    ],
+    
+      { q: "Are the passwords you generate sent anywhere?", a: "No. They are generated locally by JavaScript in your browser and are never transmitted or logged." },],
     relatedTools: ["random-string", "bcrypt"],
   },
 
@@ -4858,7 +4904,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "Does it support regex?", a: "Not yet. Currently only supports literal string search." },
       { q: "What does 'Case sensitive' mean?", a: "If checked, 'Cat' and 'cat' are treated as different. If unchecked, they are treated as the same." },
-    ],
+    
+      { q: "Is my text sent to a server for replacement?", a: "No. Find-and-replace runs locally in your browser." },],
     relatedTools: ["text-compare", "extract-substring"],
   },
 
@@ -4940,7 +4987,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     faq: [
       { q: "What are hidden characters?", a: "Characters that are invisible or have no width, such as zero-width space, BOM, etc." },
       { q: "Why do hidden characters matter?", a: "They can cause display issues, data corruption, and processing errors." },
-    ],
+    
+      { q: "Is my text uploaded when scanning for hidden characters?", a: "No. The scan runs in your browser, which matters when you are checking text for invisible tracking characters." },],
     relatedTools: ["unicode", "text-formatter"],
   },
 
