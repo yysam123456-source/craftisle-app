@@ -2310,7 +2310,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "📐",
     category: CATEGORIES.image,
     seoTitle: "Image Resizer Free — Online Tool",
-    seoDesc: "Free image resizer online tool. Resize images by width, height, or fit mode 100% browser-based, no signup required.",
+    seoDesc: "Free image resizer online tool. Resize images by width, height, or fit mode. Processed on our servers, no signup required.",
     seoKeywords: [
         "image resizer online free tool",
         "resize image online free tool",
@@ -2349,7 +2349,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "✂️",
     category: CATEGORIES.image,
     seoTitle: "Image Cropper Free — Online Tool",
-    seoDesc: "Free image cropper online tool. Crop images to exact pixel coordinates 100% browser-based, no signup required.",
+    seoDesc: "Free image cropper online tool. Crop images to exact pixel coordinates. Processed on our servers, no signup required.",
     seoKeywords: [
         "crop image online free",
         "image cropper online free tool",
@@ -2710,7 +2710,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "↪️",
     category: CATEGORIES.image,
     seoTitle: "Image Rotator Free — Online Tool",
-    seoDesc: "Free image rotator online tool. Rotate images by any angle 100% browser-based, no signup required.",
+    seoDesc: "Free image rotator online tool. Rotate images by any angle. Processed on our servers, no signup required.",
     seoKeywords: [
         "image rotator online free tool",
         "rotate image online free tool",
@@ -2749,7 +2749,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🎨",
     category: CATEGORIES.image,
     seoTitle: "Color Palette Free — Online Tool",
-    seoDesc: "Free color palette online tool. Extract dominant colors from any image 100% browser-based, no signup required.",
+    seoDesc: "Free color palette online tool. Extract dominant colors from any image. Processed on our servers, no signup required.",
     seoKeywords: [
         "color palette generator from image online free",
         "extract colors from image online free",
@@ -2788,7 +2788,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🖼️",
     category: CATEGORIES.image,
     seoTitle: "Favicon Generator Free — Online Tool",
-    seoDesc: "Free favicon generator online tool. Generate favicon from any image 100% browser-based, no signup required.",
+    seoDesc: "Free favicon generator online tool. Generate favicon from any image. Processed on our servers, no signup required.",
     seoKeywords: [
         "favicon generator online free tool",
         "create favicon online free tool",
@@ -2826,7 +2826,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🧹",
     category: CATEGORIES.image,
     seoTitle: "Strip Metadata Free — Online Tool",
-    seoDesc: "Free strip metadata online tool. Remove EXIF and metadata from images 100% browser-based, no signup required.",
+    seoDesc: "Free strip metadata online tool. Remove EXIF and metadata from images. Processed on our servers, no signup required.",
     seoKeywords: ['strip metadata online free', 'free strip metadata tool', 'strip metadata no signup', 'online strip metadata browser', 'Craftisle strip metadata'],
     description: "Remove all metadata (EXIF, GPS location, camera model, creation date, software info) from images before sharing them online. Protects your privacy by stripping location data and device info. Supports JPG, PNG, WebP, TIFF, and AVIF.",
     howToUse: [
@@ -2854,7 +2854,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "📋",
     category: CATEGORIES.image,
     seoTitle: "Image Info Free — Online Categories.Image Tool",
-    seoDesc: "Free image info online tool. Read dimensions, format, and metadata 100% browser-based, no signup required.",
+    seoDesc: "Free image info online tool. Read dimensions, format, and metadata. Processed on our servers, no signup required.",
     seoKeywords: [
         "image info viewer online free tool",
         "get image metadata online free tool",
@@ -2892,7 +2892,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🖼️",
     category: CATEGORIES.image,
     seoTitle: "Image Border Free — Online Categories.Image Tool",
-    seoDesc: "Free image border online tool. Add colored borders to images 100% browser-based, no signup required.",
+    seoDesc: "Free image border online tool. Add colored borders to images. Processed on our servers, no signup required.",
     seoKeywords: ['image border online free', 'free image border tool', 'image border no signup', 'online image border browser', 'Craftisle image border'],
     description: "Add customizable solid-color borders to images. Set border width (px), color (HEX or color picker), and padding between image and border. Supports round corners and shadow effects. Essential for product photos, social media posts, and framed screenshots.",
     howToUse: [
@@ -2920,7 +2920,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "©️",
     category: CATEGORIES.image,
     seoTitle: "Watermark Free — Online Categories.Image Tool",
-    seoDesc: "Free watermark online tool. Add text watermarks to images 100% browser-based, no signup required.",
+    seoDesc: "Free watermark online tool. Add text watermarks to images. Processed on our servers, no signup required.",
     seoKeywords: [
         "image watermark adder online free tool",
         "add watermark to image online free",
@@ -2959,7 +2959,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🎚️",
     category: CATEGORIES.image,
     seoTitle: "Color Adjust Free — Online Categories.Image Tool",
-    seoDesc: "Free color adjust online tool. Adjust brightness, contrast, saturation 100% browser-based, no signup required.",
+    seoDesc: "Free color adjust online tool. Adjust brightness, contrast, saturation. Processed on our servers, no signup required.",
     seoKeywords: [
         "image color adjuster online free tool",
         "adjust image brightness online free tool",
@@ -3323,7 +3323,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "📸",
     category: CATEGORIES.image,
     seoTitle: "Passport Photo Free — Online Tool",
-    seoDesc: "Free passport photo online tool. Generate passport and visa photos 100% browser-based, no signup required.",
+    seoDesc: "Free passport photo online tool. Generate passport and visa photos. Processed on our servers, no signup required.",
     seoKeywords: [
         "passport photo maker online free tool",
         "create passport photo online free tool",
@@ -3362,7 +3362,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "😂",
     category: CATEGORIES.image,
     seoTitle: "Meme Generator Free — Online Tool",
-    seoDesc: "Free meme generator online tool. Add top and bottom text to any image 100% browser-based, no signup required.",
+    seoDesc: "Free meme generator online tool. Add top and bottom text to any image. Processed on our servers, no signup required.",
     seoKeywords: [
         "meme generator online free tool",
         "create meme online free tool",
@@ -3400,7 +3400,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "✨",
     category: CATEGORIES.image,
     seoTitle: "Beautify Screenshots Free — Online Tool",
-    seoDesc: "Free beautify screenshots online tool. Add padding, shadow, and borders to screenshots 100% browser-based, no signup required.",
+    seoDesc: "Free beautify screenshots online tool. Add padding, shadow, and borders to screenshots. Processed on our servers, no signup required.",
     seoKeywords: [
         "screenshot beautifier online free tool",
         "beautify screenshot online free tool",
@@ -3439,7 +3439,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🔍",
     category: CATEGORIES.image,
     seoTitle: "Find Duplicates Free — Online Tool",
-    seoDesc: "Free find duplicates online tool. Compare images and detect duplicates with perceptual hashing 100% browser-based, no signup required.",
+    seoDesc: "Free find duplicates online tool. Compare images and detect duplicates with perceptual hashing. Processed on our servers, no signup required.",
     seoKeywords: [
         "find duplicate files online free tool",
         "duplicate file finder online free tool",
@@ -3527,7 +3527,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🎞️",
     category: CATEGORIES.image,
     seoTitle: "Create GIF Free — Online Categories.Image Tool",
-    seoDesc: "Free create gif online tool. Create animated GIFs from multiple image frames 100% browser-based, no signup required.",
+    seoDesc: "Free create gif online tool. Create animated GIFs from multiple image frames. Processed on our servers, no signup required.",
     seoKeywords: [
         "GIF creator online free tool",
         "create GIF online free tool",

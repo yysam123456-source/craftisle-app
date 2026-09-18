@@ -1,6 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { imageToolIds } from "@/lib/image-tools/ids";
+
+/**
+ * imageToolIds 中的工具都由 `POST /api/tools/[tool]` 在服务端处理（sharp），
+ * 文件会被上传。例外是 image-compress / image-convert —— 它们有同名静态页
+ * （canvas 客户端版），静态段优先于 [tool] 动态段，所以实际上不上传。
+ */
+const SHADOWED_BY_STATIC_PAGE = new Set(["image-compress", "image-convert"]);
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
@@ -32,6 +40,12 @@ export function ToolDetailLayout({
   author,
   relatedTools,
 }: ToolDetailLayoutProps) {
+  // 该工具的图片是否会被上传到服务端处理。用于下方的 Quick Answer 区块 ——
+  // 那里原先对所有工具硬编码「100% client-side processing」，而那 13 个走
+  // 服务端 sharp 的工具其实会上传文件，等于在隐私这个点上给了用户错误答案。
+  const uploadsToServer =
+    imageToolIds.includes(toolId) && !SHADOWED_BY_STATIC_PAGE.has(toolId);
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-8 space-y-10">
       {/* === JsonLD === */}
@@ -80,7 +94,10 @@ export function ToolDetailLayout({
             What is {meta.title}? (Quick Answer)
           </h2>
           <p className="text-sm text-blue-800 leading-relaxed">
-            {meta.desc} Free online tool, no registration required, 100% client-side processing.
+            {meta.desc}{" "}
+            {uploadsToServer
+              ? "Free online tool, no registration required. Files are uploaded to our servers for processing and are not stored afterwards."
+              : "Free online tool, no registration required, 100% client-side processing — your files never leave your device."}
           </p>
         </div>
         <p className="text-muted-foreground max-w-2xl">{meta.desc}</p>
