@@ -1,0 +1,130 @@
+---
+title: "Handwriting Animation: Free Generator for Animated Writing (2026)"
+description: "Create handwriting animation free in your browser. Turn any text into animated writing with 8 fonts, adjustable speed, and WebM or GIF export. No signup, no watermark."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - guides
+image: /_static/blog/blog-post-1.jpg
+keyTakeaways:
+  - "Handwriting animation draws text stroke by stroke, as if written by hand — it needs per-font stroke data, which is why a normal font file is not enough."
+  - "You can make one in a browser in under a minute: paste text, pick a font, export. No After Effects and no video editor."
+  - "The tool ships 8 fonts covering Latin, Arabic, Hebrew, Devanagari and Japanese kana — but not Chinese or Korean."
+  - "Export as WebM for video editors and social platforms, or GIF for places that block video."
+  - "Everything renders locally with the Canvas API, so your text is never uploaded."
+---
+
+# Handwriting Animation: Free Generator for Animated Writing (2026)
+
+Handwriting animation makes text appear as though it is being written by an invisible hand — stroke by stroke, in real time. You can produce it for free in your browser: paste your text, choose one of eight handwriting fonts, set the speed, and export a WebM video or an animated GIF. No After Effects, no video editor, no signup, and nothing is uploaded.
+
+This guide covers how the effect works, how to make one in about a minute, which languages the bundled fonts actually support, and which export format to pick for your use case.
+
+## What handwriting animation actually is
+
+The effect is sometimes called *animated writing*, *self-drawing text*, or *stroke-order animation*. All three names describe the same thing: characters that reveal themselves in the order a human hand would draw them, rather than simply fading or sliding into view.
+
+That last detail is what makes it harder than it looks. A normal font file stores the *outline* of each letter — the shape of its edges. It does not store the order or direction in which a pen would move to produce that shape. To animate writing, you need stroke data: a path for every pen movement, plus its direction and timing. Without it, software can only approximate, which is why so many "handwriting" effects look like a mask sliding across finished text rather than genuine writing.
+
+The Craftisle generator is built on [Tegaki](https://github.com/gkurt/tegaki) ([documentation](https://gkurt.com/tegaki)), an MIT-licensed library that generates stroke data for a given font and animates it. It runs entirely in the browser with no native dependencies — which is also why it works on a phone.
+
+## How to create handwriting animation (step by step)
+
+### Step 1: Open the generator
+
+Go to the [Handwriting Animation Generator](/tools/handwriting-animation). Nothing to install; it loads in any modern browser.
+
+### Step 2: Type or paste your text
+
+Enter the words you want animated. They can be long — a greeting, a slide headline, a quote, a product name. The animation scales to fit, so a short phrase renders larger and a long sentence renders smaller.
+
+### Step 3: Choose a handwriting font
+
+Pick from the eight bundled fonts. The choice matters more than people expect: the same sentence looks like a fountain-pen letter, a chalkboard note, or a calligraphy piece depending on which one you select. See the comparison table below.
+
+### Step 4: Set the speed and loop
+
+Animation speed has three settings — Slow, Normal and Fast. Slow suits a calm, deliberate feel; Fast suits short punchy words where you want the reveal over quickly. Turn on **Loop mode** if you want the text to redraw continuously, which is useful for GIF stickers and looping social posts.
+
+### Step 5: Export
+
+Choose your format and export. **WebM** records the canvas straight to video; **GIF** renders an image sequence. Both download immediately. The full details are in the export section below.
+
+## The 8 fonts, and which languages they cover
+
+Language support is the most misunderstood part of handwriting animation, so it is worth being precise. Stroke animation depends on stroke data existing *for that specific font*, which means a script needs a font built for it. Unicode coverage on its own is not enough — a font can display a character without knowing how to draw it.
+
+| Font | Style | Script coverage |
+|---|---|---|
+| Caveat | Casual marker, compact | Latin |
+| Italianno | Formal calligraphy | Latin |
+| Tangerine | Elegant, high contrast | Latin |
+| Parisienne | Flowing script | Latin |
+| Suez One | Contemporary, bold | Hebrew + Latin |
+| Klee One | Japanese school-handwriting feel | Japanese (kana + grades 1–2 kanji) + Latin |
+| Amiri | Classical Naskh | Arabic + Latin |
+| Tillana | Devanagari-inspired | Hindi / Devanagari + Latin |
+
+All eight are open-source fonts from [Google Fonts](https://fonts.google.com/), bundled together with the stroke data each one needs.
+
+**Two things follow from this table.** First, English and other Latin-script languages work with all eight fonts. Second, **Chinese and Korean are not supported in the current font set** — there is no font with the stroke data those scripts need, so Chinese and Korean text will not animate. Japanese works for kana and first- and second-grade kanji (about 240 characters) through Klee One. We would rather state this plainly than ship an animation that draws broken or misplaced strokes for unsupported characters.
+
+## WebM or GIF: which export should you choose
+
+Both formats produce a self-contained animation file. The right one depends entirely on where it is going.
+
+| | WebM video | GIF |
+|---|---|---|
+| File size for the same clip | Much smaller | Significantly larger |
+| Colour range | Full colour | Limited to 256 colours |
+| Where it plays | Video editors, YouTube, X, LinkedIn, most modern browsers | Everywhere, including places that block video |
+| Best for | Slides, video intros, social posts | Email signatures, documentation, chat, anywhere video is disallowed |
+
+The practical rule: **use WebM unless you specifically need a GIF.** GIFs are larger and band more visibly on gradients and thin strokes, which is exactly what handwriting animation is made of. Reach for GIF when the destination will not accept a video file — a README, a support ticket, a Slack message, an email signature.
+
+If your exported GIF ends up heavier than you would like, run it through the [image compressor](/tools/image-compress) before uploading.
+
+## Where handwriting animation works well
+
+The effect earns its keep wherever you want attention to land on the words themselves.
+
+- **Teaching material.** Watching a word being written reinforces spelling and stroke order in a way static text does not.
+- **Video intros and outros.** A title that writes itself reads as handcrafted rather than templated.
+- **Social posts and Stories.** Looping handwriting stops the scroll because the eye is waiting for the next stroke.
+- **Presentations.** Slide headlines that draw themselves give the speaker a natural beat to talk over.
+- **Product and brand moments.** Logotypes, taglines and greetings in a script that matches the brand voice.
+
+## Frequently asked questions
+
+**Do I need video editing software to use the result?**
+No. Export gives you a finished WebM or GIF file. If you want to composite it into a larger video, any editor will accept WebM — but that step is optional.
+
+**Why does my text not animate correctly in some languages?**
+Because the font set has no stroke data for that script. Latin works with all eight fonts; Arabic, Hebrew, Devanagari and Japanese each have one matching font. Chinese and Korean currently have none, so those characters will not animate. The generator will not fake it.
+
+**Can I use the animation commercially?**
+The tool itself is free to use with no watermark and no attribution requirement, and [Tegaki is MIT-licensed](https://github.com/gkurt/tegaki/blob/main/LICENSE). All eight bundled fonts are open-source Google Fonts. As always with creative work, check the licence of any font you substitute in yourself.
+
+**Is my text uploaded anywhere?**
+No. All rendering happens in your browser using the Canvas API. Your text never leaves your device, which matters if you are animating an unreleased product name or a client's tagline.
+
+**How long can the text be?**
+There is no hard limit, but the animation gets slower to export as length grows, and very long text renders small to fit the canvas. For video use, one or two lines reads best.
+
+## Conclusion
+
+Handwriting animation is one of those effects that looks expensive and takes about a minute. The only genuine constraint is font coverage: the magic comes from stroke data, so a script needs a matching font, and right now that means Latin, Arabic, Hebrew, Devanagari and Japanese — not Chinese or Korean.
+
+**Make one now:** 👉 **[Try the Handwriting Animation Generator →](/tools/handwriting-animation)**
+
+Free, no signup, no watermark, and it runs entirely in your browser.
+
+---
+
+**Related tools**
+- [GIF Creator](/tools/create-gif) — Build animated GIFs from image frames
+- [Image Compressor](/tools/image-compress) — Shrink exported GIFs before uploading
+- [PNG to SVG](/tools/png-to-svg) — Convert raster artwork into vector format
+- [Image Converter](/tools/image-convert) — Convert between JPG, PNG and WebP
