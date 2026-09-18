@@ -183,7 +183,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     seoTitle: "JWT Decoder Free — Debug JSON Web Tokens",
     seoDesc: "Free JWT decoder online. Inspect header, payload and signature of JSON Web Tokens. Check expiration. Debug authentication flows in browser.",
     seoKeywords: ["JWT decoder online free", "decode JWT token", "JWT payload viewer", "JSON web token debugger", "JWT expiration check", "Craftisle JWT tool"],
-    description: "Decode and inspect JSON Web Tokens (JWT) in your browser. View header, payload, and signature. Verify token expiration and signature validity. Essential for debugging authentication flows.",
+    description: "Decode and inspect JSON Web Tokens (JWT) in your browser. Reads the header and payload of any token instantly. Signature verification is not performed — the token's signature is a cryptographic check that requires the signing key, so verify it on your backend with a proper JWT library. Essential for debugging authentication flows.",
     howToUse: [
       { heading: "Paste a JWT", text: "Copy and paste the JWT string (starts with eyJ...) into the decoder." },
       { heading: "View decoded parts", text: "The header (alg, typ) and payload (sub, exp, iat) are displayed in readable JSON." },

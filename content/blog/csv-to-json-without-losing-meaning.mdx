@@ -1,0 +1,123 @@
+---
+title: "CSV to JSON: Converting Data Without Losing Meaning (Free, 2026)"
+description: "Convert CSV to JSON and back free in your browser. Understand type inference traps, how nested objects flatten into columns, and which delimiters are supported."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - developer-tools
+image: /_static/blog/blog-post-11.png
+keyTakeaways:
+  - "CSV has no types — everything is text. Any conversion that produces numbers or booleans is inferring them, and inference can be wrong."
+  - "Leading zeros are the classic casualty: a postcode or an ID like 007 becomes the number 7 and the zero is gone for good."
+  - "Nested JSON has no natural CSV form. Flattening invents column names that did not exist in the source."
+  - "Use CSV for tabular data going into a spreadsheet, JSON for structured data going into code. Converting between them is a lossy translation, not a rename."
+  - "Conversion runs in your browser; your rows are never uploaded."
+---
+
+# CSV to JSON: Converting Data Without Losing Meaning (Free, 2026)
+
+CSV and JSON store data in fundamentally different ways, so converting between them is not a file-format change — it is a **translation**, and translations lose things. Knowing what gets lost prevents the quiet corruption that shows up weeks later as a broken import.
+
+The [CSV / JSON converter](/tools/csv-json) runs in your browser, so customer data never leaves your machine while you work.
+
+## Two formats, two mental models
+
+**CSV is a grid.** Rows and columns of text. Every cell is a string; there is no notion of a number, a boolean or a date. Even a column full of digits is text until something decides otherwise.
+
+**JSON is a tree.** Values have types, objects nest, and a field can hold a list where another field holds a number.
+
+The mismatch matters because a grid cannot represent a tree without losing shape, and a tree imposes types a grid never claimed to have. Both directions of conversion run into this. The CSV format itself is described — loosely, and that looseness is part of the problem — in [RFC 4180](https://www.rfc-editor.org/info/rfc4180/).
+
+## The type inference trap
+
+When converting CSV to JSON, something has to decide that `42` is a number and `true` is a boolean. That decision is **inference**, and it is where data quietly changes.
+
+| CSV value | Inferred as | What can go wrong |
+|---|---|---|
+| `007` | number `7` | Leading zero lost. Postcodes, employee IDs and product codes are common casualties. |
+| `1e5` | number `100000` | An identifier that happened to look like scientific notation becomes a quantity. |
+| `NULL`, `null`, `N/A`, `` (empty) | varies | Three different "missing" conventions, often mapped to the same output. |
+| `true` / `FALSE` | boolean | Fine if intended; wrong if the column holds the literal strings. |
+| `2026-09-18` | string (usually) | Dates are the least reliably inferred type — often left as text, sometimes not. |
+| `0042-1` | string | Correctly stays text, because it is not a valid number. |
+
+**The safe rule:** if you are producing JSON for a program that expects specific types, check the output rather than assuming. If a column contains identifiers, leading zeros, or anything ambiguous, it is usually better to keep it as a string and convert explicitly where the type actually matters.
+
+## Nested data: where CSV runs out
+
+CSV has no nesting. A cell contains one value. So when JSON contains nested objects or arrays, conversion has to make a decision:
+
+**Flatten with generated names.** `{"user": {"name": "Ana"}}` becomes a column named something like `user.name`. This works but invents a naming convention that did not exist in the source, and it becomes unreadable at depth.
+
+**Serialize as embedded JSON.** The cell contains a JSON string. The data survives intact, but the column is now text that happens to contain structure — a spreadsheet cannot sort or filter it meaningfully.
+
+**Duplicate rows per array element.** An array of three items becomes three rows. This is sometimes exactly what you want for analysis, and it silently changes the row count, which breaks any assumption about one row per record.
+
+**None of these is wrong** — they serve different purposes. What matters is that you know which one happened, because the resulting file is no longer a faithful representation of the source.
+
+Going the other direction, JSON to CSV, is simpler but lossy in a different way: arrays and nested objects have nowhere to go except into embedded strings.
+
+## Choosing the right format
+
+| Situation | Better format |
+|---|---|
+| Data analysed in a spreadsheet | CSV |
+| Data consumed by code, APIs, or config | JSON |
+| Fixed columns, one record per row, flat | Either — CSV is more compact |
+| Nested or variable structure | JSON |
+| Human editing in Excel or Sheets | CSV |
+| Values with meaningful leading zeros | CSV, and keep them as text |
+
+The honest summary: **CSV is for tabular data, JSON is for structured data.** Converting is reasonable when the destination demands it, not as a default step.
+
+## Delimiters and encodings
+
+Comma is the default but not the only option — semicolons, tabs and pipes are all common, particularly in regions where the comma is the decimal separator. Tabs are worth knowing about because TSV avoids the quoting problems that commas create.
+
+Two practical checks before converting:
+
+- **Quoted fields.** A value containing the delimiter must be quoted. A well-formed converter handles this; malformed files with unescaped delimiters produce column misalignment that is invisible until you look closely.
+- **Encoding.** Non-ASCII characters depend on the file being read as UTF-8. A file saved in a legacy encoding can produce mojibake that looks like corruption.
+
+## A safe workflow
+
+1. **Open the CSV and inspect it** — check for leading zeros, dates, and embedded delimiters before converting anything.
+2. **Convert and spot-check the output**, especially the first few and last few records.
+3. **Compare row counts** between source and result. A mismatch means a delimiter or quoting problem.
+4. **Verify column types** in the JSON against what the consuming code expects.
+5. **Keep the original CSV.** The conversion is one-way in practice; the source is your only clean copy.
+
+## Frequently asked questions
+
+**How are nested JSON objects handled?**
+By flattening into generated column names, or by embedding the nested value as a JSON string in the cell, depending on the option chosen. Neither reproduces the original structure exactly — CSV simply has no way to represent nesting.
+
+**What delimiters are supported?**
+Comma, semicolon, tab and pipe are the common ones, with custom delimiters for files that use something else.
+
+**Is there a row limit?**
+The conversion runs in your browser using your device's memory rather than a server quota, so there is no fixed row cap. Very large files are limited by available memory, and splitting them is usually faster than pushing one enormous file through.
+
+**Will my numbers and leading zeros survive?**
+Numbers are fine; leading zeros are not, if the column is inferred as numeric. `007` becomes `7`. For identifiers, postcodes and codes with significant leading zeros, keep the column as text.
+
+**Are my CSV rows uploaded?**
+No. Parsing and conversion happen in your browser, so the file contents — including any customer data in them — never leave your machine.
+
+## Conclusion
+
+CSV and JSON are not two spellings of the same thing. One is a grid of text, the other a typed tree, and conversion between them inevitably decides things the source did not specify. Inspect your data first, check the types after, and keep the original.
+
+**Try it now:** 👉 **[Open the CSV / JSON Converter →](/tools/csv-json)**
+
+Free, no signup, and your data stays on your device.
+
+---
+
+**Related tools**
+- [JSON Formatter](/tools/json-formatter) — Format and validate JSON with line numbers
+- [JSON to XML](/tools/json-to-xml) — Convert JSON structures to XML
+- [CSV to YAML](/tools/csv-to-yaml) — Convert tabular data to YAML
+- [SQL Formatter](/tools/sql-formatter) — Format SQL queries for readability

@@ -1,0 +1,115 @@
+---
+title: "JWT Decoder: What's Inside a Token and What's Not Secret (2026)"
+description: "Decode JSON Web Tokens free in your browser. Understand the header.payload.signature structure, why the payload is readable by anyone, and what signature verification actually requires."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - developer-tools
+image: /_static/blog/blog-post-10.png
+keyTakeaways:
+  - "A JWT payload is base64url-encoded, not encrypted. Anyone holding the token can read every claim in it."
+  - "A token has three parts — header, payload, signature — separated by dots. The first two are readable by anyone; only the signature provides integrity."
+  - "Verifying a signature requires the signing key, so it belongs on your backend, not in a browser tool. This decoder does not verify signatures."
+  - "exp is a Unix timestamp for expiry. A decoder can show you the number; enforcement is the server's job."
+  - "Pasting a token into a decoder means handling a live credential — which is why decoding here happens entirely in your browser."
+---
+
+# JWT Decoder: What's Inside a Token and What's Not Secret (2026)
+
+A JSON Web Token looks like an opaque string, which leads people to assume it is encrypted. It is not. **Every claim inside a JWT is readable by anyone who holds it** — the format is designed for integrity, not secrecy, and the difference matters enormously for what you put in one.
+
+This guide walks through the structure, what each part actually guarantees, and where verification has to happen. The [JWT decoder](/tools/jwt) reads tokens in your browser, so nothing is transmitted.
+
+## The three parts
+
+A JWT is three base64url-encoded segments joined by dots. The format — including how the signature is computed and what the standard claims mean — is specified in [RFC 7519](https://www.rfc-editor.org/info/rfc7519/).
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9 . eyJzdWIiOiIxMjMiLCJleHAiOjE3... . SflKxwRJSMeKKF2QT4...
+        header                                    payload                       signature
+```
+
+**Header** — describes the token: which signing algorithm was used (`alg`) and the token type (`typ`). Readable by anyone.
+
+**Payload** — the claims: who the token is about, when it expires, and anything else the issuer chose to include. Readable by anyone.
+
+**Signature** — a cryptographic value computed from the first two parts plus a secret key. This is the only part that provides a security guarantee.
+
+## The part everyone gets wrong
+
+Because the payload looks like gibberish, people assume it is protected. It is not. Base64url is an encoding — the same reversible transformation used to move binary through text channels, with no key involved.
+
+**Decoding a JWT payload requires no secret.** Paste any token into a decoder and you will see its contents immediately, exactly as an attacker would. This is not a vulnerability; it is the design. JWTs are meant to carry non-sensitive claims that the server can trust because of the signature.
+
+**The practical consequence:** never put secrets in a JWT payload. No passwords, no API keys, no personal data that should not be readable by whoever holds the token. A JWT travelling in a browser's storage or a URL is routinely seen by scripts, logs, proxies and anyone with access to the device.
+
+If you need confidentiality as well as integrity, that is **JWE** (JSON Web Encryption) — a different specification. A plain JWT, signed but not encrypted, is only half the story.
+
+## What the signature does and does not do
+
+The signature guarantees **integrity and authenticity**: it proves the token was issued by someone holding the signing key, and that the header and payload have not been altered since.
+
+It does **not** provide confidentiality. It does not hide the payload. And it does not, on its own, make the token valid for your application — that requires checking the claims as well.
+
+**Verifying a signature requires the key.** That is why a browser-based decoder cannot do it: the whole point of signing is that the key stays on the server. Verification belongs in your backend, using a maintained JWT library, never in client-side code. This decoder deliberately does not attempt it.
+
+## The standard claims worth knowing
+
+The payload is a JSON object, and a few claim names are standardised:
+
+| Claim | Meaning |
+|---|---|
+| `exp` | Expiration time — a Unix timestamp. After this moment the token should be rejected. |
+| `iat` | Issued at — when the token was created. |
+| `nbf` | Not before — the token must not be accepted before this time. |
+| `iss` | Issuer — which system created the token. |
+| `aud` | Audience — who the token is intended for. |
+| `sub` | Subject — who or what the token is about. |
+
+`exp` is the one people meet most often, usually because a token has stopped working. Note the division of labour: **the token carries the expiry timestamp, but nothing enforces it automatically.** A server that decodes a token without checking `exp` will happily accept an expired one. Expiry is a rule the verifier has to apply.
+
+## A realistic debugging sequence
+
+When authentication misbehaves, working through the token in order narrows the cause quickly:
+
+1. **Is it structurally a JWT?** Three dot-separated segments, decodable to valid JSON. A truncated or URL-escaped token fails here.
+2. **What algorithm does the header claim?** If `alg` is not what your backend expects, verification will fail regardless of everything else.
+3. **Has it expired?** Compare `exp` against the current time. The most common cause of "it just stopped working" is the least interesting one.
+4. **Are `iss` and `aud` what your verifier expects?** Mismatched issuer or audience is a frequent cause of correct-looking tokens being rejected.
+5. **Does the payload contain what you think it does?** Claims that were never set cannot be read — check the issuing code.
+6. **Only then look at the signature**, and do that on the backend where the key lives.
+
+## Frequently asked questions
+
+**Can I verify the signature with this tool?**
+No. The tool decodes the base64url segments but does not verify signatures, and cannot — verification requires the signing key, which must never be sent to a browser. Use your backend's JWT library with the secret for that.
+
+**Is a JWT encrypted?**
+No. The payload is base64url-encoded, which is reversible without a key. Anyone holding the token can read every claim. Never put secrets, credentials or sensitive personal data in a JWT payload.
+
+**What does `exp` mean?**
+Expiration time, as a Unix timestamp. After that moment the token should be rejected. The token only records the value — your server has to actually check it.
+
+**Why did my token suddenly stop working?**
+Expiry is the most common reason, followed by clock skew between the issuing and verifying servers. Decode the token and compare `exp` with the current time before investigating anything more complicated.
+
+**Is it safe to paste a token into this decoder?**
+The decoding runs entirely in your browser — the token is never transmitted. That matters because a JWT is a live credential: anyone who obtains it can use it until it expires. Even so, treat the token as you would a password, and prefer test tokens over production ones when debugging.
+
+## Conclusion
+
+A JWT is readable by design and trustworthy only because of its signature. Read the payload freely when debugging, never put secrets in it, and keep verification on the server where the key lives.
+
+**Try it now:** 👉 **[Open the JWT Decoder →](/tools/jwt)**
+
+Free, no signup, and the token never leaves your browser.
+
+---
+
+**Related tools**
+- [Base64 Encode / Decode](/tools/base64) — The encoding underneath JWT segments
+- [Hash Generator](/tools/hash) — SHA-256 and other digests
+- [AES / DES Encrypt](/tools/aes-des) — Real encryption, when confidentiality is needed
+- [JSON Formatter](/tools/json-formatter) — Format a decoded payload for reading
