@@ -1,0 +1,111 @@
+---
+title: "PNG to SVG: What Vectorising Can and Cannot Do (Free, 2026)"
+description: "Convert PNG and JPG to SVG free in your browser using edge detection and path tracing. Learn which images vectorise well, which never will, and how to get a usable result."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - image-tools
+image: /_static/blog/blog-post-6.png
+keyTakeaways:
+  - "Vectorising traces the edges it can find. It works well on logos, icons and line art, and badly on photographs — that is a property of the technique, not a limitation of the tool."
+  - "The result is a set of filled paths, not a reconstruction of the original artwork. Expect a faithful silhouette, not an identical image."
+  - "SVG scales to any size with no pixelation, and files are often far smaller than a high-resolution PNG for the same graphic."
+  - "Converting the other way — SVG to PNG at a chosen resolution — is useful when a platform only accepts raster images."
+  - "Conversion runs in your browser; images are never uploaded."
+---
+
+# PNG to SVG: What Vectorising Can and Cannot Do (Free, 2026)
+
+Converting a PNG to SVG sounds like changing a file extension. It is not — it is a change of representation. A PNG stores a grid of pixels; an SVG stores shapes and paths. Producing one from the other means **tracing**, and tracing works brilliantly on some images and poorly on others.
+
+Knowing which category your image falls into saves a lot of disappointment. The [PNG to SVG converter](/tools/png-to-svg) uses edge detection and path tracing, and runs entirely in your browser.
+
+## What tracing actually does
+
+The converter looks for edges — boundaries where colour changes sharply — and fits paths along them. Those paths are then filled with the colours found on either side, producing an SVG that renders as flat regions rather than pixels.
+
+Two consequences follow immediately:
+
+**It produces shapes, not samples.** The output is a set of filled regions approximating your image. On a logo with clean edges that is effectively a perfect reproduction. On a photograph, where colour shifts gradually across nearly every pixel, there are almost no true edges to find, and the result becomes a posterised mosaic of blobs.
+
+**It cannot invent detail that is not there.** Faint anti-aliasing, soft shadows and subtle gradients either get traced as many thin bands or get simplified away. Both are visible.
+
+## Which images vectorise well
+
+| Image type | Result | Why |
+|---|---|---|
+| Logos and wordmarks | Excellent | Flat colours, hard edges, few distinct regions |
+| Icons and UI glyphs | Excellent | Simple geometry, solid fills, transparent background |
+| Line art and technical drawings | Very good | The subject *is* lines, which is what tracing looks for |
+| Charts and diagrams | Good | Flat fills with clean boundaries |
+| Text-heavy graphics (if not available as text) | Fair | Edges trace, but small type becomes lumpy |
+| Photographs | Poor | No real edges; everything becomes banded regions |
+| Images with gradients and soft shadows | Poor | Gradients are the opposite of what tracing wants |
+
+The dividing line is simple: **if a human would describe the image as having "shapes", it traces well. If they would describe it as having "tones", it does not.**
+
+## Why photographs never work
+
+This is worth stating plainly because it is the most common disappointment. A photograph contains very few true edges. A face in a portrait, for instance, has continuous variation in tone across the skin — there is no line where "face" changes to "cheek". A tracer sees a smooth gradient and must choose thresholds, producing concentric bands that look like a contour map.
+
+For photographs, the right tools are format conversion and compression, not vectorisation: [convert the format](/tools/image-convert) or [compress the file](/tools/image-compress). Vectorising a photo is the wrong operation for the material.
+
+## Why SVG is worth having anyway
+
+Where it does apply, SVG brings real advantages:
+
+- **Scales without loss.** One SVG renders crisply at favicon size and on a billboard — no separate exports at multiple resolutions.
+- **Smaller files.** For flat graphics, an SVG is usually far smaller than a high-resolution PNG of the same artwork.
+- **Editable.** Colours and paths can be changed in code or a vector editor, without re-exporting from the original design.
+- **Retina-ready automatically.** No 2× or 3× asset management.
+
+This is why logos and icons are almost always delivered as SVG on the web, even when the source artwork started as a raster export. The format itself is [an open W3C standard](https://en.wikipedia.org/wiki/SVG), with implementation details documented on [MDN](https://developer.mozilla.org/en-US/docs/Web/SVG).
+
+## Getting a usable result
+
+A few practical steps improve the output considerably:
+
+1. **Start from the largest, cleanest source you have.** Tracing a small, blurry PNG produces small, blurry paths.
+2. **Remove the background first if it is not part of the design.** A white rectangle behind a logo becomes a traced rectangle; a transparent background produces cleaner paths. A [background remover](/tools/remove-bg) handles this before you convert.
+3. **Check the trace at display size, not zoomed in.** Traced paths have visible imperfections at high magnification that are irrelevant at the size you will actually use.
+4. **Compare the file size.** If the SVG is much larger than the PNG, the image was probably not a good tracing candidate.
+5. **Keep the original.** Tracing is a one-way transformation; nothing is gained by discarding the source.
+
+## Converting the other way
+
+SVG to PNG is the reverse operation and is occasionally necessary — some platforms, email clients and print workflows only accept raster images. Here the trade-off is resolution: choose the pixel dimensions you need, and remember that a PNG cannot be scaled back up afterwards without becoming soft. Convert at the largest size you might need, then [resize down](/tools/image-resize) for specific uses.
+
+## Frequently asked questions
+
+**Will the SVG be identical to my PNG?**
+No. Tracing produces an approximation built from filled paths. For a clean logo it can be visually indistinguishable at normal sizes; for anything with gradients or photographic content it will visibly differ. Expect a faithful silhouette, not a pixel-perfect copy.
+
+**What is PNG to SVG actually good for?**
+Logos, icons and line art — graphics made of flat shapes. That is where the technique shines and where SVG's benefits (scaling, file size, editability) matter most.
+
+**Can I vectorise a photo?**
+You can run it, but the result is not useful. Photographs lack the sharp edges tracing depends on, so the output becomes banded regions rather than a recognisable improvement. For photos, use format conversion and compression instead.
+
+**Why is my SVG larger than the PNG?**
+It means the image had too much tonal variation to trace efficiently — every region becomes a path, and thousands of tiny paths cost more than the pixels they replace. This is a signal that the image is not a good vectorisation candidate.
+
+**Is my image uploaded?**
+No. Tracing and conversion happen in your browser, so the file never leaves your device.
+
+## Conclusion
+
+SVG conversion is a specialised tool, not a universal upgrade. It transforms flat graphics into infinitely scalable assets and turns photographs into banded approximations — the technique decides which, not the settings.
+
+**Try it now:** 👉 **[Open the PNG to SVG Converter →](/tools/png-to-svg)**
+
+Free, no signup, and your image stays on your device.
+
+---
+
+**Related tools**
+- [Image Converter](/tools/image-convert) — Convert between JPG, PNG, WebP, GIF and BMP
+- [Background Remover](/tools/remove-bg) — Clean up edges before vectorising
+- [Image Compressor](/tools/image-compress) — Reduce raster file size
+- [Image Resizer](/tools/image-resize) — Resize to exact pixel dimensions

@@ -1,0 +1,109 @@
+---
+title: "How to Crop an Image to an Exact Size or Aspect Ratio (Free, 2026)"
+description: "Crop images to exact pixel coordinates or a locked aspect ratio free online. 1:1, 4:3, 16:9 or freeform, with preset sizes for social and print. No signup required."
+date: "2026-09-18"
+authors:
+  - craftisle
+categories:
+  - tutorials
+  - image-tools
+image: /_static/blog/blog-post-7.png
+keyTakeaways:
+  - "Cropping discards pixels outside the frame and leaves the rest untouched — it does not resample, so it does not soften the image the way resizing can."
+  - "Locking an aspect ratio keeps width and height in proportion as you drag, which is what stops a crop from being rejected by a platform that expects a fixed shape."
+  - "Crop before you resize. Cropping after resizing means you resized pixels that were about to be thrown away."
+  - "This tool processes on the server, so the image is uploaded — it is not one of the browser-only tools. Files are not stored afterwards."
+---
+
+# How to Crop an Image to an Exact Size or Aspect Ratio (Free, 2026)
+
+Cropping is the simplest image operation and the one most often done in the wrong order. It removes everything outside a rectangle and keeps what is inside — no resampling, no softening, just a smaller frame. That simplicity is exactly why getting the dimensions right before you start saves rework.
+
+This guide covers aspect ratios, pixel-exact cropping, and how cropping relates to resizing. One thing to note up front: the [image cropper](/tools/image-crop) performs the crop on our servers, so the image is uploaded for processing.
+
+## Aspect ratio: the constraint that matters most
+
+An aspect ratio is the relationship between width and height, independent of actual size. A 1000×1000 image and a 50×50 image are both 1:1. Locking a ratio means the crop box keeps that proportion as you drag, so you cannot accidentally produce a shape the destination will not accept.
+
+The ratios worth knowing:
+
+| Ratio | Shape | Where it is expected |
+|---|---|---|
+| **1:1** | Square | Profile pictures, avatars, Instagram grid posts, product thumbnails |
+| **4:3** | Slightly wide | Traditional display, older camera output, presentation slides |
+| **16:9** | Widescreen | Video thumbnails, YouTube, hero banners, desktop wallpapers |
+| **3:2** | Photo-standard | Most DSLR and mirrorless camera output, print sizes like 6×4 inches |
+| **9:16** | Tall | Stories, Reels, TikTok, mobile-first vertical layouts |
+| **Freeform** | Any | Anything with no platform constraint |
+
+**The practical rule:** if the image is going to a platform, find out what shape that platform expects and lock to it before dragging. Cropping freeform and re-cropping later loses more of the image each time. For background on how ratios are defined and why they matter for composition, see [aspect ratio (image)](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) on Wikipedia.
+
+## Cropping to exact pixel coordinates
+
+Sometimes the requirement is not a ratio but a number — a 400×400 avatar, an 1200×630 social share card, a specific region of a screenshot.
+
+Setting exact pixel dimensions is more predictable than dragging, because the result is determined by numbers rather than by how steady your hand was. This matters for anything that has to line up with a template, or when you are producing the same crop across a set of images.
+
+## Cropping does not reduce quality — resizing does
+
+This distinction is worth being precise about, because the two operations get conflated.
+
+**Cropping** selects a region and discards the rest. Every pixel inside the frame is preserved exactly as it was. There is no interpolation, so there is no softening — a 400×400 crop from a 4000×4000 photograph is pixel-identical to that region of the original.
+
+**Resizing** changes how many pixels represent the image, which requires interpolation. Enlarging invents detail that was never captured; shrinking averages pixels together and loses fine detail. This is where quality is affected.
+
+So if you are cropping to a smaller frame, you are not damaging anything. If you are cropping *and then* enlarging to meet a target size, the enlargement is where the softness comes from — and the fix is a higher-resolution source, not a different crop.
+
+## Do it in the right order
+
+For any workflow that involves both operations:
+
+1. **Crop first.** Frame what you actually want. Everything outside is going away, so there is no point in processing it.
+2. **Then resize.** Scale the cropped result to the dimensions you need.
+
+Doing it the other way round — resize to the target, then crop — means you resized a larger area than necessary and then discarded most of it. The final image is no better and the intermediate step wasted effort.
+
+**One exception:** if you are downscaling significantly, cropping first can leave you with a smaller source for the resize than you needed. In that case, crop with generous margins, then resize.
+
+## Choosing what to keep
+
+The technical part is easy; deciding the frame is the judgement call.
+
+**For people:** keep the eyes roughly a third of the way down the frame, and leave a little headroom rather than cropping tight to the top of the head. Tight crops read as accidental.
+
+**For products:** centre the object and leave consistent margin on all sides, so a set of images looks like a set rather than a collection of different framings.
+
+**For screenshots:** crop to the content, not to a fixed ratio, unless a platform demands the ratio. Cutting a UI screenshot to 16:9 usually removes exactly the part that mattered.
+
+## Frequently asked questions
+
+**Can I crop to a specific aspect ratio?**
+Yes. Lock to 1:1, 4:3, 16:9 or leave it freeform. Locking constrains the crop box as you drag, so the output shape is guaranteed rather than approximate.
+
+**Does cropping reduce image quality?**
+No. Cropping discards pixels outside the frame and leaves the rest untouched, with no resampling. Softness comes from resizing, not cropping. If your cropped result looks soft, the cause is a later enlargement step.
+
+**Is my image private?**
+This tool processes on the server, so the image is uploaded for the crop to be applied — it is not one of the fully browser-based tools. Files are not stored after processing. If you would rather nothing leaves your device, [image resize](/tools/image-resize) and [image compress](/tools/image-compress) run locally.
+
+**Should I crop or resize to fit a target size?**
+Crop to change the shape, resize to change the dimensions. If a platform specifies both a ratio and a pixel size, crop to the ratio first and resize to the pixels second.
+
+**What if the crop cuts off something important?**
+Undo and extend the frame — but check the source first. If the detail was outside the original image, no crop setting will recover it; you need a wider original photograph.
+
+## Conclusion
+
+Cropping is a selection, not a transformation: nothing inside the frame changes. Get the ratio right, use exact pixels when the destination demands a number, and always crop before you resize.
+
+**Try it now:** 👉 **[Open the Image Cropper →](/tools/image-crop)**
+
+Free, no signup required.
+
+---
+
+**Related tools**
+- [Image Resizer](/tools/image-resize) — Resize to exact pixel dimensions
+- [Image Compressor](/tools/image-compress) — Reduce file size without visible quality loss
+- [Image Rotator](/tools/image-rotate) — Rotate by any angle or fix EXIF orientation
+- [ID Photo Maker](/tools/id-photo) — Produce standard ID photo sizes
