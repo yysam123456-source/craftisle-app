@@ -147,6 +147,20 @@ export async function GET(req: NextRequest) {
     rationale: (e.rationale || "").slice(0, 60),
   }));
 
+  // 诊断2：逐簇深位词 + 被 defer 的原因分布，定位 optimize_meta 为何没落覆盖
+  const deferredReasons: Record<string, number> = {};
+  for (const d of plan.deferred) {
+    const key = (d.reason || "unknown").replace(/路由\s+\S+\s*/, "路由 <route> ").slice(0, 46);
+    deferredReasons[key] = (deferredReasons[key] || 0) + 1;
+  }
+  const deepQueryDiag = clusters.map((c) => ({
+    site: c.siteSlug,
+    demand: c.demand,
+    avgPosition: c.avgPosition,
+    deepCount: (c.deepQueries || []).length,
+    deepSample: (c.deepQueries || []).slice(0, 5).map((q: any) => `${q.query}@P${q.position}/imp${q.impressions}/${q.intent}`),
+  }));
+
   const summary = {
     ok: true,
     source,
@@ -158,6 +172,8 @@ export async function GET(req: NextRequest) {
     routesCapped: overrides.length,
     dailyRouteCap: DAILY_ROUTE_CAP,
     deferred: plan.deferred.length,
+    deferredReasons,
+    deepQueryDiag,
     editsByKind,
     sampleEdits,
     totalPotentialClicks: plan.totalPotentialClicks,
