@@ -1,16 +1,24 @@
 name: SEO Cron (Vercel 补偿调度)
 
-# 为什么需要这个文件：
+# ── 为什么需要这个文件 ─────────────────────────────────────────────
 # Vercel 账号是 Hobby 套餐，cron 有两条硬限制：
 #   ① 每个 cron 每天最多触发一次（更频繁的表达式会让部署直接失败）
 #   ② 触发时间不精确（±59 分钟）
 # 而 vercel.json 里配的是「每周一 06:00Z / 每周一 07:00Z / 每月 1+15 日 08:00Z」，
 # 于是 GSC 数据最长会陈旧一周，热词更是半月才刷一次。
-# 本 workflow 用 GitHub Actions 免费调度，直接补偿触发这些端点，
-# 让 GSC 每天刷新、热词每周刷新，且不依赖 Vercel 套餐。
+# 本 workflow 用 GitHub Actions 免费调度补偿触发，不依赖 Vercel 套餐。
 #
-# 注意：GitHub 会在仓库连续 60 天无提交后停用定时 workflow。
-#       若长时间无开发活动，去 Actions 页面点一次 "Enable workflow" 即可。
+# ── 为什么优先打 *.vercel.app 而不是 craftisle.com ─────────────────
+# 2026-09-22 实测：GitHub 运行器（机房 IP）请求 https://craftisle.com/api/cron/*
+# 被 Cloudflare 机器人防护返回 **403**；而 Vercel cron 自己打的是部署域名
+# （crons.definitions[].host = craftisle-*.vercel.app），根本不经过 CF。
+# 所以这里按「Vercel 稳定生产别名 → 自定义域」顺序尝试，命中即用。
+# 注意：Vercel 每次部署后 crons 的 host 会换成新的部署域名，因此这里用
+# 项目级稳定别名 craftisle-app.vercel.app，而不是带 hash 的部署域名。
+#
+# ── 维护提醒 ──────────────────────────────────────────────────────
+# GitHub 会在仓库连续 60 天无提交后停用定时 workflow；
+# 若长时间无开发活动，去 Actions 页面点一次 "Enable workflow" 即可。
 
 on:
   schedule:
@@ -27,56 +35,71 @@ concurrency:
 jobs:
   ping:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+
+    env:
+      HOSTS: "craftisle-app.vercel.app craftisle-app-yysam123456-7242s-projects.vercel.app craftisle.com"
 
     steps:
       - name: 触发 pull-gsc-data（每天）
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
           if [ -z "${CRON_SECRET:-}" ]; then
             echo "::error::缺少仓库 secret CRON_SECRET，无法鉴权"
             exit 1
           fi
-          code=$(curl -sS --retry 3 --retry-delay 10 --retry-connrefused \
-            --max-time 300 -o /tmp/out.json -w '%{http_code}' \
-            -H 'User-Agent: craftisle-gh-cron' \
-            "https://craftisle.com/api/cron/pull-gsc-data?secret=${CRON_SECRET}")
-          echo "pull-gsc-data → HTTP $code"
-          head -c 400 /tmp/out.json || true
-          echo
-          [ "$code" = "200" ] || exit 1
+          ok=0
+          for h in $HOSTS; do
+            code=$(curl -sS --retry 2 --retry-delay 5 --retry-connrefused \
+              --max-time 300 -o /tmp/gsc.json -w '%{http_code}' \
+              -H 'User-Agent: craftisle-gh-cron' \
+              "https://$h/api/cron/pull-gsc-data?secret=${CRON_SECRET}") || code=000
+            echo "$h → HTTP $code"
+            if [ "$code" = "200" ]; then
+              head -c 400 /tmp/gsc.json; echo; ok=1; break
+            fi
+          done
+          [ "$ok" = "1" ] || { echo "::error::所有 host 均未返回 200"; exit 1; }
 
-      - name: 触发 pull-trends（每周一）
+      - name: 触发 pull-trends（仅周一）
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          set -euo pipefail
-          # 每周一才刷热词（其余日子跳过，节省 Google Suggest / Trends 配额）
+          set -uo pipefail
           if [ "$(date -u +%u)" != "1" ]; then
-            echo "今天不是周一（UTC $(date -u +%u)），跳过 pull-trends"
+            echo "今天不是周一（UTC weekday=$(date -u +%u)），跳过 pull-trends 以省 Google 配额"
             exit 0
           fi
-          code=$(curl -sS --retry 3 --retry-delay 10 --retry-connrefused \
-            --max-time 300 -o /tmp/trends.json -w '%{http_code}' \
-            -H 'User-Agent: craftisle-gh-cron' \
-            "https://craftisle.com/api/cron/pull-trends?secret=${CRON_SECRET}")
-          echo "pull-trends → HTTP $code"
-          head -c 400 /tmp/trends.json || true
-          echo
-          [ "$code" = "200" ] || exit 1
+          ok=0
+          for h in $HOSTS; do
+            code=$(curl -sS --retry 2 --retry-delay 5 --retry-connrefused \
+              --max-time 300 -o /tmp/trends.json -w '%{http_code}' \
+              -H 'User-Agent: craftisle-gh-cron' \
+              "https://$h/api/cron/pull-trends?secret=${CRON_SECRET}") || code=000
+            echo "$h → HTTP $code"
+            if [ "$code" = "200" ]; then
+              head -c 400 /tmp/trends.json; echo; ok=1; break
+            fi
+          done
+          [ "$ok" = "1" ] || { echo "::error::所有 host 均未返回 200"; exit 1; }
 
-      - name: 自愈 + 汇总（ai-briefing?heal=1）
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+      - name: 自愈 + 打印简报
         run: |
-          set -euo pipefail
-          code=$(curl -sS --retry 3 --retry-delay 10 \
-            --max-time 300 -o /tmp/brief.md -w '%{http_code}' \
-            -H 'User-Agent: craftisle-gh-cron' \
-            "https://craftisle.com/api/analytics/ai-briefing?heal=1&format=markdown&_cb=$(date +%s)")
-          echo "ai-briefing → HTTP $code"
-          echo "──────── 简报 ────────"
-          head -50 /tmp/brief.md || true
-          [ "$code" = "200" ] || exit 1
+          set -uo pipefail
+          for h in $HOSTS; do
+            code=$(curl -sS --retry 2 --retry-delay 5 \
+              --max-time 300 -o /tmp/brief.md -w '%{http_code}' \
+              -H 'User-Agent: craftisle-gh-cron' \
+              "https://$h/api/analytics/ai-briefing?heal=1&format=markdown&_cb=$(date +%s)") || code=000
+            echo "$h → HTTP $code"
+            if [ "$code" = "200" ]; then
+              echo "──────── 简报 ────────"
+              head -60 /tmp/brief.md
+              echo "──────────────────────"
+              exit 0
+            fi
+          done
+          echo "::error::所有 host 均未返回 200"
+          exit 1

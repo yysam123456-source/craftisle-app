@@ -279,7 +279,13 @@ export async function GET(request: Request) {
     } else if (runVsSuccessGapHours !== null && runVsSuccessGapHours > 0.5) {
       cronDiagnosis = `cron 已派发但执行失败：最近运行 ${new Date(lastRunAt).toISOString()} 比最后成功晚 ${runVsSuccessGapHours}h → 排查代码/依赖${lastError ? "" : "（注意 lastError 为 null，失败路径漏记了错误）"}`;
     } else {
-      cronDiagnosis = `cron 未派发：最近运行(${new Date(lastRunAt).toISOString()})即最后成功 ⇒ 此后无调用到达函数 → 排查 Vercel cron 注册 / 生产域名 Cloudflare 是否拦截 /api/cron/*`;
+      // ⚠️ 别再把这条读成「Cloudflare 拦截」。
+      // 2026-09-22 查证：Vercel API 的 crons.definitions[].host 是 craftisle-*.vercel.app
+      // ⇒ cron 打的是部署自身域名、不走自定义域，CF 根本不在链路上；
+      // 且从外部带 ?secret 直调该端点实测 200。真相是**套餐限制**：
+      // Hobby 每天最多一次 + 时间不精确，而本项目的 cron 是每周一 / 每月 1+15 日，
+      // 因此「长时间无运行」通常只是还没到点，不等于故障。
+      cronDiagnosis = `cron 未派发：最近运行(${new Date(lastRunAt).toISOString()})即最后成功。注意本项目账号为 Hobby 套餐，cron 每天最多一次且不精确，而 vercel.json 配的是每周一/每月 1+15 日 ⇒ 长时间无运行多为「未到点」而非故障。若已过点仍无运行，再查 Vercel 项目 Crons 页签的注册状态（勿再怀疑 Cloudflare，CF 不在 cron 链路上）；补偿调度见 .github/workflows/seo-cron.yml`;
     }
 
     // 注：陈旧告警的生命周期处理已上移到 Promise.all 之前（见下方 heal 之后的告警块），
