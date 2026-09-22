@@ -142,10 +142,10 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
   "intellij-alternative": {
     slug: "intellij-alternative",
     site: "craftisle",
-    title: "IntelliJ Alternative — Free Online Dev Tools",
+    title: "IntelliJ Community Edition 2026 — Still Free & Free Alternatives",
     description:
-      "Looking for a free IntelliJ alternative? Use Craftisle's browser-based developer tools — formatters, converters and testers — no install required.",
-    keywords: ["intellij alternative", "free ide alternative", "online dev tools", "code formatter"],
+      "IntelliJ Community Edition merged into unified IntelliJ IDEA in 2025.3 — core Java/Kotlin features stay free. Looking for a free IntelliJ alternative? Browser-based dev tools: JSON/SQL formatters, regex tester, converters. No install.",
+    keywords: ["intellij community edition", "intellij idea community edition 2026", "intellij community edition discontinued", "is intellij community edition still free", "intellij alternative", "free ide alternative", "online dev tools", "code formatter"],
     h1: "IntelliJ Alternative",
     intro: [
       "IntelliJ IDEA is a powerful desktop IDE, but for many day-to-day tasks — reformatting a JSON blob, testing a regex, or converting CSV — you do not need to launch a heavy IDE. A lightweight, free IntelliJ alternative that lives in the browser gets those jobs done faster.",
@@ -170,11 +170,21 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
           "Paste, transform, copy. There is nothing to install and no project to open, which makes these tools perfect for shared machines, interviews, or helping a teammate without handing them your environment.",
         ],
       },
+      {
+        heading: "What happened to IntelliJ Community Edition in 2025.3",
+        paragraphs: [
+          "Starting with IntelliJ IDEA 2025.3, JetBrains merged the separate Community and Ultimate editions into a single, unified product. The Community Edition is no longer shipped as a standalone download, but every core Java and Kotlin feature that was free in Community remains free in the unified IDE — you simply no longer 'switch editions'. If you specifically want the legacy standalone Community build, JetBrains still publishes it through GitHub releases.",
+          "That change is why search interest in 'IntelliJ Community Edition' spiked: people want to know whether it is still free and where to get it. The short answer is that the free tier did not shrink — it just moved into one IDE.",
+        ],
+      },
     ],
     faq: [
       { q: "Is this a replacement for IntelliJ?", a: "No — it complements it. It replaces the trivial, repetitive edits that interrupt deep IDE work, not the IDE itself." },
       { q: "Are the dev tools free?", a: "Yes, all of them. No license, no account, no usage caps on core features." },
       { q: "Does my code leave the browser?", a: "Formatting and conversion run client-side; your code is not sent to a server for these operations." },
+      { q: "Is IntelliJ Community Edition still free in 2026?", a: "Yes. After the 2025.3 unification, all Community-tier features remain free to use — commercially and non-commercially. Advanced tooling now sits behind an optional Ultimate subscription, but the core IDE never asks for payment." },
+      { q: "Where do I download IntelliJ Community Edition now?", a: "The standard path is to install the unified IntelliJ IDEA — its free tier covers everything Community did. If you need the legacy standalone Community build, JetBrains still publishes it via GitHub releases." },
+      { q: "Why did search interest in 'IntelliJ Community Edition' spike?", a: "Because JetBrains stopped shipping Community as a separate download in 2025.3. Users searched to confirm it is still free and to find where to get it; the free feature set simply moved into the unified IDE." },
     ],
     internalLinks: [L.jsonFormatter, L.tools, L.directory, L.jsonToCsv],
   },
