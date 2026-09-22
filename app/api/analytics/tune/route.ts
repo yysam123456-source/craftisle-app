@@ -137,6 +137,16 @@ export async function GET(req: NextRequest) {
 
   const overrides = buildOverridesFromEdits(capped);
 
+  // 诊断：按动作类型拆分 + 抽样，确认 meta 改写是否真的有可落地的目标
+  const editsByKind: Record<string, number> = {};
+  for (const e of plan.edits) editsByKind[e.kind] = (editsByKind[e.kind] || 0) + 1;
+  const sampleEdits = plan.edits.slice(0, 6).map((e) => ({
+    kind: e.kind,
+    route: e.route,
+    field: e.field,
+    rationale: (e.rationale || "").slice(0, 60),
+  }));
+
   const summary = {
     ok: true,
     source,
@@ -148,6 +158,8 @@ export async function GET(req: NextRequest) {
     routesCapped: overrides.length,
     dailyRouteCap: DAILY_ROUTE_CAP,
     deferred: plan.deferred.length,
+    editsByKind,
+    sampleEdits,
     totalPotentialClicks: plan.totalPotentialClicks,
     totalPotentialValue: plan.totalPotentialValue,
     apply,
