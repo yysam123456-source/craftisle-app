@@ -96,7 +96,7 @@ export const TOPICAL_MAP: Array<{ siteSlug: string; seeds: string[] }> = [
 export type GapType = "ranking" | "visibility" | "depth" | "healthy" | "no_data";
 export type Priority = "critical" | "warning" | "info" | "ok";
 export type ActionKind =
-  | "push_position" | "optimize_ctr" | "build_page" | "cornerstone" | "index_fix" | "canonical";
+  | "push_position" | "optimize_ctr" | "build_page" | "cornerstone" | "index_fix" | "canonical" | "optimize_meta";
 export type Effort = "S" | "M" | "L";
 /** 执行路线图分档 */
 export type RoadmapTier = "quick_wins" | "foundation" | "authority";
@@ -158,6 +158,8 @@ export interface ClusterGap {
   rankingGapQueries: RankingGapQuery[];
   /** 前 10 名但 CTR 偏低的词（最大流量杠杆） */
   lowCtrQueries: ObservedQuery[];
+  /** 深位长尾词（position > 30、非品牌、高意图、曝光达标）——主站工具类目词真实所在区间，meta-only 模式下唯一可落地杠杆 */
+  deepQueries: ObservedQuery[];
   /** GSC 真实查询但未匹配任何种子词（话题自扩张） */
   newQueries: ObservedQuery[];
   avgPosition: number;
@@ -220,6 +222,9 @@ function rawBenchmarkCtr(position: number): number {
  * 用「可达成的 CTR 增量 × 转化率」近似，避免 v2 的 100% 到 P10 高估。
  */
 const NEAR_MISS_CONVERSION = 0.35;
+
+/** 深位长尾词纳入 meta 重写的曝光门槛（90 天累计；过低=噪声，避免改写无人搜的词） */
+const DEEP_IMP_MIN = 50;
 
 function rankingQuality(position: number): number {
   if (position <= 3) return 1;
@@ -404,6 +409,21 @@ export function analyzeTopicalGaps(
       .sort((a, b) => b.impressions - a.impressions)
       .slice(0, 10);
 
+    // 深位长尾词：position > 30、非品牌、高意图（tools/directory）、曝光达标。
+    // 这是主站工具类目词当前真实所在区间（实测 P44–92），单靠 meta 难进首页，
+    // 但改写承接页 title/description 可提升相关性 + CTR 信号，是 meta-only 模式下唯一可落地的杠杆。
+    const deepQueries: ObservedQuery[] = observed
+      .filter(
+        (o) =>
+          o.position > 30 &&
+          o.impressions >= DEEP_IMP_MIN &&
+          isNonBrandQuery(o.query) &&
+          (o.intent === "tools" || o.intent === "directory"),
+      )
+      .map((o) => ({ query: o.query, impressions: o.impressions, position: Math.round(o.position * 10) / 10, ctr: Math.round(o.ctr * 1000) / 1000, isBrand: o.isBrand, intent: o.intent, page: o.page }))
+      .sort((a, b) => b.impressions - a.impressions)
+      .slice(0, 15);
+
     let avgPosition = 0;
     let avgCtr = 0;
     if (demand > 0) {
@@ -485,6 +505,23 @@ export function analyzeTopicalGaps(
         tier: "foundation",
       });
     }
+    for (const q of deepQueries.slice(0, 5)) {
+      // 深位词的潜在点击用更保守的系数：meta 改写主要作用于相关性+CTR，而非直接推排名。
+      const pc = Math.round(q.impressions * Math.max(0, benchmarkCtr(10, ctrFactor) - benchmarkCtr(q.position, ctrFactor)) * 0.15);
+      actions.push({
+        id: `${cluster.siteSlug}-meta-${q.query}`.replace(/\s+/g, "-"),
+        kind: "optimize_meta",
+        siteSlug: cluster.siteSlug,
+        target: `重写 ${q.query} 承接页 title/description（${q.page ?? "当前曝光页"}）`,
+        detail: `长尾词「${q.query}」排名 P${q.position}（深位）。单靠改标题/描述难直接进首页，但可提升该词下的相关性 + 提升 CTR 信号，是 meta-only 模式下唯一可落地的杠杆；且若后续排名爬升进 P11–30，将自动转入 push_position 收割。`,
+        effort: "S",
+        potentialClicks: pc,
+        potentialValue: Math.round(pc * valueWeight * 100) / 100,
+        isNonBrand: isNonBrandQuery(q.query),
+        pageUrl: q.page,
+        tier: "quick_wins",
+      });
+    }
     if (demand > 0 && avgPosition > 30) {
       const pc = Math.round(demand * (benchmarkCtr(20, ctrFactor) - benchmarkCtr(avgPosition, ctrFactor)) * 0.5);
       actions.push({
@@ -554,7 +591,7 @@ export function analyzeTopicalGaps(
       siteSlug: cluster.siteSlug, siteName: name, color,
       demand, capturedSeedCount, missingSeedCount, seedCoveragePct,
       capturedSeeds: capturedSeedList, missingSeeds: missingSeedList,
-      rankingGapQueries, lowCtrQueries, newQueries,
+      rankingGapQueries, lowCtrQueries, deepQueries, newQueries,
       avgPosition: Math.round(avgPosition * 10) / 10,
       avgCtr: Math.round(avgCtr * 1000) / 1000,
       brandImpressions, nonBrandImpressions,
