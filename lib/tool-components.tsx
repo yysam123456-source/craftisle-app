@@ -44,6 +44,14 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "ai-image-editor": () => import("@/components/tools/AIImageEditorTool"),
   // ==================== Video ====================
   "video-compress": () => import("@/components/tools/VideoCompressTool"),
+  // ==================== 2026-09-22 补挂：组件早已存在但从未注册 ====================
+  // json-validator / csv-to-tsv / change-csv-separator 本来就在本表里，
+  // 缺的是 toolMeta 条目（已在 lib/tools.ts 补齐）；下面 4 个两处都缺。
+  "ascii-art": () => import("@/components/tools/AsciiArtTool"),
+  "barcode": () => import("@/components/tools/BarcodeTool"),
+  "color-picker": () => import("@/components/tools/ColorPickerTool"),
+  // 注意：components/tools/MarkdownTool.tsx 走 Monaco + react-markdown 实时预览
+  "markdown": () => import("@/components/tools/MarkdownTool"),
   "image-change-opacity": () => import("@/components/tools/ChangeOpacityTool"),
   "image-create-transparent": () => import("@/components/tools/CreateTransparentTool"),
   "image-split": () => import("@/components/tools/SplitImageTool"),

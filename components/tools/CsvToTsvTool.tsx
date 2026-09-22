@@ -2,10 +2,15 @@
 
 import { useState } from "react";
 import { TextToolLayout } from "./TextToolLayout";
+import { encodeDelimitedField, normalizeLines, splitDelimitedLine } from "@/lib/csv-line";
 
 /**
  * CSV to TSV Converter
  * Convert CSV to TSV (Tab-Separated Values)
+ *
+ * 此前用 `line.split(",")` + 去首尾引号，遇到 `"Smith, John",42` 会切成两列，
+ * 而界面却写着 "Handles quoted values correctly" —— 文案与行为不符。
+ * 现改为 RFC 4180 风格解析（lib/csv-line.ts），并顺带正确处理 CRLF 输入。
  */
 export default function CsvToTsvTool() {
   const [input, setInput] = useState("");
@@ -18,16 +23,18 @@ export default function CsvToTsvTool() {
     }
 
     try {
-      const lines = input.split("\n").filter(line => line.trim());
-      
+      const lines = normalizeLines(input);
+
       if (lines.length === 0) {
         setOutput("❌ Empty input");
         return;
       }
 
-      const tsv = lines.map(line => {
-        return line.split(",").map(cell => cell.trim().replace(/^"|"$/g, "")).join("\t");
-      });
+      const tsv = lines.map((line) =>
+        splitDelimitedLine(line, ",")
+          .map((cell) => encodeDelimitedField(cell, "\t"))
+          .join("\t")
+      );
 
       setOutput(tsv.join("\n"));
     } catch {
