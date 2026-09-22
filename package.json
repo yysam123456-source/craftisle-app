@@ -33,7 +33,8 @@
     "seo:report:json": "node scripts/generate-seo-report.mjs --output json",
     "db:migrate:seo": "npx prisma migrate dev --name add_seo_monitoring",
     "audit:pages": "node scripts/audit-page-matrix.mjs",
-    "verify:tools": "node scripts/verify-live-tools.mjs"
+    "verify:tools": "node scripts/verify-live-tools.mjs",
+    "validate:data": "node scripts/validate-data-json.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

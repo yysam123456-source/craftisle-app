@@ -13,9 +13,10 @@
  * 4. Reports whether changes were detected
  */
 
-import { writeFileSync, readFileSync, existsSync } from "fs";
+import { existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { readJsonSafe, writeJsonAtomic } from "./lib/data-io.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, "..", "public", "data");
@@ -255,12 +256,23 @@ async function main() {
   let existingData = null;
   const resourcesPath = join(DATA_DIR, "fmhy-resources.json");
   if (existsSync(resourcesPath)) {
-    existingData = JSON.parse(readFileSync(resourcesPath, "utf-8"));
-    console.log(
-      `📦 Existing data: ${existingData.totalResources} resources across ${
-        Object.keys(existingData.categories).length
-      } categories`
-    );
+    // ⚠️ 这里曾经是裸 JSON.parse —— 文件一旦损坏，脚本第一步就抛错、永远无法自愈
+    //（连带 update-producthunt 也读同一文件），整条日更管道被 2 个 job 拖死。
+    // 现在：读坏不抛错，降级为「忽略旧数据、按 wiki 全量重建」，并且大声报出来。
+    const read = readJsonSafe(resourcesPath);
+    if (read.ok) {
+      existingData = read.data;
+      console.log(
+        `📦 Existing data: ${existingData.totalResources} resources across ${
+          Object.keys(existingData.categories || {}).length
+        } categories`
+      );
+    } else {
+      console.warn(
+        `⚠️ 旧数据不可用（${read.reason}${read.bytes ? `，${read.bytes} 字节` : ""}）` +
+          `\n   → 已跳过合并，将按 wiki 源**全量重建** fmhy-resources.json`
+      );
+    }
   }
 
   // Fetch and parse all wiki pages
@@ -336,32 +348,23 @@ async function main() {
     return;
   }
 
-  // Write files
-  writeFileSync(resourcesPath, newJson);
+  // Write files（全部走原子写：先写临时文件再 rename，避免 6MB 原地写被打断后留下残缺文件）
+  writeJsonAtomic(resourcesPath, outputData);
   console.log(`\n📝 Written: fmhy-resources.json (${totalResources} resources)`);
 
   // Generate index
   const indexData = buildIndex(categoriesData);
-  writeFileSync(
-    join(DATA_DIR, "fmhy-index.json"),
-    JSON.stringify(indexData, null, 2)
-  );
+  writeJsonAtomic(join(DATA_DIR, "fmhy-index.json"), indexData);
   console.log(`📝 Written: fmhy-index.json`);
 
   // Generate hot list
   const hotData = buildHot(categoriesData);
-  writeFileSync(
-    join(DATA_DIR, "fmhy-hot.json"),
-    JSON.stringify(hotData, null, 2)
-  );
+  writeJsonAtomic(join(DATA_DIR, "fmhy-hot.json"), hotData);
   console.log(`📝 Written: fmhy-hot.json`);
 
   // Write category h2 index
   const h2Data = { categories: indexData.categories };
-  writeFileSync(
-    join(DATA_DIR, "fmhy-category-h2.json"),
-    JSON.stringify(h2Data, null, 2)
-  );
+  writeJsonAtomic(join(DATA_DIR, "fmhy-category-h2.json"), h2Data);
   console.log(`📝 Written: fmhy-category-h2.json`);
 
   const addedCount = totalResources - (existingData?.totalResources || 0);

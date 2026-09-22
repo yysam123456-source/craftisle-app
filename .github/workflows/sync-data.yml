@@ -9,6 +9,13 @@ on:
 permissions:
   contents: write
 
+# 并发锁：本 workflow 的多个 job 会往 public/data/ 写同一批大文件，
+# 两次运行重叠时曾把 fmhy-resources.json 写成「完整文档 + 残尾垃圾」，
+# 直接导致整条日更管道死掉两个月。串行化运行，避免并发写。
+concurrency:
+  group: daily-data-sync
+  cancel-in-progress: false
+
 jobs:
   # ── Job 1: 同步 FMHY 数据 ──────────────────────────
   sync-fmhy:
@@ -318,6 +325,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
@@ -334,6 +346,12 @@ jobs:
           else
             echo "No artifacts to deploy"
           fi
+
+      - name: Validate all public/data JSON (guard)
+        # 🔴 事故护栏：2026-09 曾有损坏的 fmhy-resources.json 静默上线，
+        # 站点侧 catch 把它降成 0 条资源、CI 也零报错，两个月无人发现。
+        # 这里在 commit 之前校验，坏数据绝不入库。
+        run: node scripts/validate-data-json.mjs
 
       - name: Unified commit & push (single push = no conflicts)
         run: |

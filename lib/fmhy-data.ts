@@ -115,8 +115,8 @@ let _cachedCategories: Category[] | null = null;
 // ── Internal loaders ───────────────────────────────
 
 function loadFmhyResources(): Resource[] {
+  const filePath = join(process.cwd(), "public", "data", "fmhy-resources.json");
   try {
-    const filePath = join(process.cwd(), "public", "data", "fmhy-resources.json");
     const raw = readFileSync(filePath, "utf-8");
     const data = JSON.parse(raw);
     const all: Resource[] = [];
@@ -139,7 +139,14 @@ function loadFmhyResources(): Resource[] {
       }
     }
     return all;
-  } catch {
+  } catch (e) {
+    // 🔴 不要再静默 return []：2026-09-22 这个文件坏掉后，站点悄悄从 1.6 万条降到 0 条，
+    // 而构建与线上都零报错，直到有人手动校验 JSON 才发现。必须出声。
+    console.error(
+      `[fmhy-data] ❌ 无法加载 ${filePath}：${(e as Error).message}\n` +
+        `  → 该数据源本次返回 0 条，页面会缺少 FMHY 资源。` +
+        `请检查文件是否为合法 JSON（历史上曾因非原子写入被写坏）。`
+    );
     return [];
   }
 }
@@ -163,21 +170,23 @@ function loadSourceResources(source: string): Resource[] {
     }
     _cachedBySource[source] = resources;
     return resources;
-  } catch {
+  } catch (e) {
+    console.error(`[fmhy-data] ❌ 无法加载数据源 "${source}"：${(e as Error).message}`);
     return [];
   }
 }
 
 function loadFmhyCategories(): Category[] {
+  const filePath = join(process.cwd(), "public", "data", "fmhy-index.json");
   try {
-    const filePath = join(process.cwd(), "public", "data", "fmhy-index.json");
     const raw = readFileSync(filePath, "utf-8");
     const data = JSON.parse(raw);
     return (data.categories || []).map((c: any) => ({
       ...c,
       source: "fmhy",
     }));
-  } catch {
+  } catch (e) {
+    console.error(`[fmhy-data] ❌ 无法加载 ${filePath}：${(e as Error).message}`);
     return [];
   }
 }

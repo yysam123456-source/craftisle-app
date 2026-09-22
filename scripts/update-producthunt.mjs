@@ -9,9 +9,10 @@
  * Requires: PRODUCTHUNT_API_KEY env variable
  */
 
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { readJsonSafe, writeJsonAtomic } from "./lib/data-io.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, "..", "public", "data");
@@ -98,7 +99,19 @@ async function main() {
     process.exit(1);
   }
 
-  const data = JSON.parse(readFileSync(RESOURCES_FILE, "utf-8"));
+  // ⚠️ 这里曾与 sync-fmhy 一样是裸 JSON.parse —— 两个 job 读同一文件、都无 try/catch，
+  // 文件一坏就双双失败，连带 push-all 被 skipped，整条日更管道停摆。
+  // 现在：读坏则**跳过本次 ProductHunt 合并并正常退出**（不写坏文件、不 fail 掉整个 pipeline），
+  // 等 sync-fmhy 全量重建出合法文件后，下一次运行自然恢复。
+  const read = readJsonSafe(RESOURCES_FILE);
+  if (!read.ok) {
+    console.warn(
+      `⚠️ fmhy-resources.json 不可用（${read.reason}）→ 本次跳过 ProductHunt 合并，` +
+        `等 sync-fmhy 重建后自动恢复。`
+    );
+    return;
+  }
+  const data = read.data;
   const products = await fetchTopProducts();
 
   if (products.length === 0) {
@@ -140,7 +153,7 @@ async function main() {
     added++;
   }
 
-  writeFileSync(RESOURCES_FILE, JSON.stringify(data, null, 2));
+  writeJsonAtomic(RESOURCES_FILE, data);
   console.log(`\n✅ Done! Added ${added} new products from Product Hunt.`);
 }
 
