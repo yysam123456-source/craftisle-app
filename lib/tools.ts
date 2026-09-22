@@ -3667,6 +3667,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is my text sent to a server?", a: "No. All rendering is done 100% in your browser using Canvas API. Your text never leaves your device." },
       { q: "What languages are supported?", a: "Whatever the bundled fonts cover: Latin (all eight), Arabic (Amiri), Hebrew (Suez One), Devanagari (Tillana), and Japanese kana plus first- and second-grade kanji (Klee One). Stroke-by-stroke animation needs per-font stroke data, so a script must have a matching font — Unicode coverage on its own is not enough." },
       { q: "Can I adjust the animation speed?", a: "Yes. Choose from Slow, Normal, or Fast animation speed. You can also enable Loop mode for continuous playback." },
+      { q: "Is this the same as animated writing or animated cursive writing?", a: "Yes — handwriting animation, animated writing and animated cursive writing all describe the same effect: text that draws itself stroke by stroke as if written by hand. Type any text, then pick a cursive font (Caveat, Italianno, Tangerine or Parisienne) for the flowing handwritten look most people mean by animated cursive writing." },
     ],
     relatedTools: ["create-gif", "image-to-pixel", "markdown"],
   },
