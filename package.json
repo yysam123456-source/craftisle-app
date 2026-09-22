@@ -31,7 +31,8 @@
     "seo:harvest": "npx tsx scripts/trend-harvest.ts",
     "seo:report": "node scripts/generate-seo-report.mjs",
     "seo:report:json": "node scripts/generate-seo-report.mjs --output json",
-    "db:migrate:seo": "npx prisma migrate dev --name add_seo_monitoring"
+    "db:migrate:seo": "npx prisma migrate dev --name add_seo_monitoring",
+    "audit:pages": "node scripts/audit-page-matrix.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
