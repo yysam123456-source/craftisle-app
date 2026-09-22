@@ -148,14 +148,18 @@ if (deadRel.length) {
   );
 }
 
-// ── F. seoDesc 超 155 字符（会在 SERP 被截断） ──────────────────────────────
+// ── F. seoDesc 超 160 字符（会在 SERP 被截断） ──────────────────────────────
+// 阈值取 160 而非 155：Google 桌面端摘要展示上限约 160 字符，
+// 155 是移动端的更紧口径。用 155 会产出大量"156-159"的噪音告警，
+// 真实需要处理的是显著超出的那几条（原 7 条 179-195 已手改）。
+const DESC_MAX = 160;
 const longDesc = [];
 for (const blk of toolsSrc.slice(metaStart).split(/^ {2}"(?=[a-z0-9-]+": \{)/m).slice(1)) {
   const id = blk.match(/^([a-z0-9-]+)": \{/)?.[1];
   const sd = blk.match(/seoDesc: "((?:[^"\\]|\\.)*)"/)?.[1];
-  if (id && sd && sd.length > 155) longDesc.push(`${id}(${sd.length})`);
+  if (id && sd && sd.length > DESC_MAX) longDesc.push(`${id}(${sd.length})`);
 }
-if (longDesc.length) P1.push(`seoDesc 超 155 字符（${longDesc.length} 个）: ${longDesc.join(", ")}`);
+if (longDesc.length) P1.push(`seoDesc 超 ${DESC_MAX} 字符（${longDesc.length} 个）: ${longDesc.join(", ")}`);
 
 // ── 输出 ───────────────────────────────────────────────────────────────────
 console.log("── 工具页矩阵一致性审计 ──");

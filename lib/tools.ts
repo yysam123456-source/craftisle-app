@@ -269,7 +269,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is the original JSON validated?", a: "Yes, the input must be valid JSON before minification." },
     
       { q: "Is it safe to paste JSON with API keys in it?", a: "Yes. Minifying runs in your browser, so the JSON — including anything sensitive in it — is never transmitted." },],
-    relatedTools: ["json-formatter", "json-validator", "yaml-minify"]
+    relatedTools: ["json-formatter", "json-validator", "yaml-formatter"]
   },
 
   "json-comparison": {
@@ -291,7 +291,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Does it support nested objects?", a: "Yes, the tool recursively compares nested objects and arrays." },
     
       { q: "Do the two JSON objects I compare get uploaded?", a: "No. Both are parsed and diffed locally in your browser; nothing is sent to a server." },],
-    relatedTools: ["json-formatter", "json-validator", "diff-checker"]
+    relatedTools: ["json-formatter", "json-validator", "diff"]
   },
 
   "json-sort": {
@@ -313,7 +313,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I sort by value?", a: "Currently only sorting by key is supported." },
     
       { q: "Does sorting upload my JSON?", a: "No. Keys are reordered in your browser, so the data stays on your machine." },],
-    relatedTools: ["json-formatter", "json-minify", "yaml-sort"]
+    relatedTools: ["json-formatter", "json-minify", "yaml-formatter"]
   },
 
   "json-escape": {
@@ -335,7 +335,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What does unescape do?", a: "Unescape converts a JSON string back to readable text." },
     
       { q: "Where does my JSON go when I escape it?", a: "Nowhere. Escaping and unescaping both happen in your browser — the string is never sent anywhere." },],
-    relatedTools: ["json-formatter", "json-stringify", "string-escape"]
+    relatedTools: ["json-formatter", "json-stringify", "json-validator"]
   },
 
   "json-stringify": {
@@ -357,7 +357,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Why would I use this?", a: "Useful for converting JS code to JSON for APIs or storage." },
     
       { q: "Is the object I paste sent to a server?", a: "No. The conversion runs entirely in your browser, so nothing leaves your device." },],
-    relatedTools: ["json-formatter", "json-escape", "yaml-to-json"]
+    relatedTools: ["json-formatter", "json-escape", "yaml-formatter"]
   },
 
   "html-formatter": {
@@ -877,7 +877,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is the difference between MB and MiB?", a: "MB (megabyte) = 1000^2 bytes (decimal). MiB (mebibyte) = 1024^2 bytes (binary). This tool uses the binary standard (1024), which is most common in software." },
     
       { q: "Is my input sent anywhere?", a: "No. The arithmetic runs in your browser and nothing is transmitted." },],
-    relatedTools: ["radix-converter", "generic-calc", "string-statistic"],
+    relatedTools: ["radix-converter", "string-statistic"],
   },
 
   "sum": {
@@ -905,7 +905,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What does 'smart mode' do?", a: "Smart mode uses regex to find all numbers in the input text, regardless of surrounding words. Example: 'The 3 items cost $50 each, total $150' → numbers found: 3, 50, 150 → sum = 203." },
       { q: "Does this support decimals and negatives?", a: "Yes. Both positive/negative decimals are supported. Example: '-5.5, 10.2' → sum = 4.7." },
     ],
-    relatedTools: ["string-statistic", "generic-calc", "byte-converter"],
+    relatedTools: ["string-statistic", "byte-converter"],
   },
 
   // ==================== Developer Tools ====================
@@ -1290,7 +1290,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Should I use UUID v4 or v7?", a: "v4 is random (no time info). v7 includes a timestamp, making it sortable by creation time. v7 is better for database indexing." },
       { q: "Is this compliant with RFC 4122?", a: "Yes. UUIDs generated follow RFC 4122 v4 format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx where y is 8, 9, a, or b." },
     ],
-    relatedTools: ["random-string", "base64", "timestamp"],
+    relatedTools: ["random-string", "base64", "hash"],
   },
 
   "image-to-pixel": {
@@ -1341,7 +1341,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "\u{1F4AB}",
     category: CATEGORIES.text,
     seoTitle: "Free Online Text Translator — 30+ Languages",
-    seoDesc: "Free online text translator supporting 30+ languages. Auto-detect source, real-time translation, text-to-speech, copy results. No signup required. English, Chinese, Japanese, Korean and more.",
+    seoDesc: "Free online text translator for 30+ languages. Auto-detect source, real-time translation and text-to-speech. No signup required.",
     seoKeywords: ['free online translator', 'text translator online', 'translate english chinese', 'auto language detection', 'text to speech translation', 'Craftisle translator'],
     description: "Translate text instantly between 30+ languages including English, Chinese (Simplified & Traditional), Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, Thai, Vietnamese, Italian, Dutch, Polish, Turkish, Hindi, Indonesian and more. Features auto-detection of the source language, real-time translation as you type, browser-based text-to-speech for pronunciation, and one-click copy. All translation is powered by MyMemory API with no data stored on our servers.",
     howToUse: [
@@ -1712,7 +1712,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is 'each letter' mode?", a: "In symbol mode, enabling 'each letter' repeats the symbol for each character in the word. E.g. 'bad' → '***' (3 symbols for 3 letters)." },
     
       { q: "Is my text uploaded when I censor it?", a: "No. The word matching runs in your browser, so the text you are redacting stays on your device." },],
-    relatedTools: ["text-formatter", "string-replace", "diff"],
+    relatedTools: ["text-formatter", "text-replacer", "diff"],
   },
 
   "palindrome": {
@@ -1961,7 +1961,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Why can't I use the network address or broadcast address?", a: "Network address (all host bits 0) identifies the subnet. Broadcast address (all host bits 1) is for broadcast traffic. Neither can be assigned to a host." },
       { q: "Does this support IPv6?", a: "Yes. Enter an IPv6 address with CIDR suffix (e.g., 2001:db8::/32). IPv6 subnetting works differently from IPv4 — typically /64 for LAN segments." },
     ],
-    relatedTools: ["ip-radix", "user-agent", "timestamp"],
+    relatedTools: ["ip-radix", "user-agent"],
   },
 
   "random-port-generator": {
@@ -1989,7 +1989,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What are Well-Known ports?", a: "Ports 1-1023 are reserved for system services (HTTP 80, HTTPS 443, SSH 22, etc.). Most OSes require admin privileges to bind to these ports." },
       { q: "What port range should I use for my app?", a: "For custom applications, use Registered ports (1024-49151) or Dynamic ports (49152-65535). Avoid Well-Known ports unless you're implementing a standard service." },
     ],
-    relatedTools: ["ip-calc", "user-agent", "network"],
+    relatedTools: ["ip-calc", "user-agent"],
   },
 
   "user-agent": {
@@ -3014,7 +3014,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.image,
     stars: 4,
     seoTitle: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online",
-    seoDesc: "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng, Tongyi, Wenxin AI-generated images. 100% browser-based, no upload, no signup. Supports JPG, PNG, WebP.",
+    seoDesc: "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng and Tongyi AI images. Browser-based, no upload, no signup.",
     seoKeywords: [
       // Gemini core
       "remove Gemini watermark free",
@@ -3096,7 +3096,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.image,
     stars: 4,
     seoTitle: "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram",
-    seoDesc: "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup required. Supports watermark-free downloads.",
+    seoDesc: "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Xiaohongshu and Weibo. Watermark-free, no signup required.",
     seoKeywords: [
       // Core keywords
       "free media downloader",
@@ -3468,7 +3468,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I use an image (logo) as watermark instead of text?", a: "Currently text-only. Image watermark (logo) is a planned feature." },
     
       { q: "Where does my image go when I add a watermark?", a: "It is uploaded to our server, watermarked, and returned. The copy is discarded once the response is sent; we do not keep a library of uploaded images." },],
-    relatedTools: ["image-border", "image-text-overlay", "image-color-adjust"],
+    relatedTools: ["image-border", "image-color-adjust"],
   },
 
   "image-color-adjust": {
@@ -3517,7 +3517,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.image,
     stars: 5,
     seoTitle: "Free AI ID Photo Maker Online — Passport/Visa Photo Generator",
-    seoDesc: "Free AI ID photo maker online. Generate professional passport, visa, 1-inch, 2-inch photos. AI background removal, auto-crop, multiple sizes. 100% browser-based, no signup, no watermark.",
+    seoDesc: "Free AI ID photo maker online. Generate passport, visa, 1-inch and 2-inch photos with AI background removal and auto-crop. No signup, no watermark.",
     seoKeywords: [
       // Core
       "free id photo maker online",
@@ -3680,7 +3680,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.image,
     stars: 5,
     seoTitle: "Free AI Background Remover Online — Remove Image Background Instantly",
-    seoDesc: "Free AI background remover online. Remove backgrounds from any image automatically using AI. Download transparent PNG or replace with solid color. 100% browser-based, no signup, no watermark.",
+    seoDesc: "Free AI background remover online. Remove image backgrounds automatically with AI. Download transparent PNG or replace the background color. No signup.",
     seoKeywords: [
       // Core
       "free background remover online",
@@ -4000,7 +4000,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.dev,
     url: "https://viewer.craftisle.com",
     seoTitle: "Free Online File Viewer — Open PDF, Word, Excel, DWG, STL, 135+ Formats",
-    seoDesc: "Open and preview 135+ file formats in your browser — PDF, DOCX, XLSX, PPTX, DWG, DXF, STL, OBJ, GLTF, EPUB, ZIP, images, code & more. No install, no upload, 100% private. Free online file viewer.",
+    seoDesc: "Open and preview 135+ file formats in your browser — PDF, DOCX, XLSX, PPTX, DWG, STL, EPUB, ZIP and more. No install, no upload, 100% private.",
     seoKeywords: [
         "file viewer online free tool",
         "view file online free tool",
@@ -4039,7 +4039,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I edit PDFs or Word documents?", a: "No. This is a preview/viewer tool only. For PDF editing, check out our dedicated PDF tools. For Word editing, use Google Docs or Microsoft Office Online." },
       { q: "What archive formats are supported?", a: "ZIP, RAR, 7Z, TAR, GZ, and BZ2. You can browse the archive contents and preview individual files without extracting the entire archive." },
     ],
-    relatedTools: ["pdf-viewer", "markdown", "diff", "csv-json", "image-info", "svg-editor"],
+    relatedTools: ["pdf-tools", "markdown", "diff", "csv-json", "image-info", "svg-editor"],
   },
 
   "create-gif": {
@@ -4091,7 +4091,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.generator,
     stars: 5,
     seoTitle: "Handwriting Animation Generator Free — Create Animated Text Online",
-    seoDesc: "Free handwriting animation generator online. Convert any text into beautiful handwriting animations with 8 fonts. Custom speed, loop mode, SVG export. 100% browser-based, no signup, no watermark.",
+    seoDesc: "Free handwriting animation generator. Turn any text into handwriting animations with 8 fonts, custom speed, loop mode and SVG export. No signup.",
     seoKeywords: [
       // Core
       "handwriting animation generator free",
@@ -4486,7 +4486,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What format should I choose?", a: "Use 'objects' format for most cases (easier to work with in JavaScript). Use 'arrays' format for minimal output or when processing with other tools." },
     
       { q: "Is it safe to convert a CSV containing customer data?", a: "Yes. Parsing and conversion happen in your browser; the file contents are not transmitted." },],
-    relatedTools: ["json-to-csv", "csv-formatter"],
+    relatedTools: ["json-to-csv", "change-csv-separator"],
   },
 
   // ==================== JSON Tools ====================
@@ -4674,7 +4674,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is 'Interleave' mode?", a: "Interleave mode alternates: Original, Copy, Original, Copy, ..." },
       { q: "Can I reverse the copies?", a: "Yes. Enable 'Reverse copies' to reverse the order of duplicated lines." },
     ],
-    relatedTools: ["shuffle-lines", "repeat-text"],
+    relatedTools: ["shuffle-lines", "string-repeat"],
   },
 
   "find-popular": {
@@ -4976,7 +4976,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I customize the YAML structure?", a: "The generated YAML follows standard YAML array-of-objects format. For custom structures, post-process the YAML." },
     
       { q: "Is my CSV uploaded?", a: "No. The conversion happens locally in the browser." },],
-    relatedTools: ["json-to-yaml", "csv-to-json"],
+    relatedTools: ["json-formatter", "csv-to-json"],
   },
 
   "tsv-to-json": {
@@ -5146,7 +5146,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What does 'empty values' mean?", a: "Cells that are empty (no value between separators)." },
     
       { q: "Is the CSV I check uploaded?", a: "No. The check runs in your browser, so the rows never leave your device." },],
-    relatedTools: ["csv-formatter", "csv-to-json"],
+    relatedTools: ["change-csv-separator", "csv-to-json"],
   },
 
   "insert-csv-column": {
@@ -5174,7 +5174,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What happens to header row?", a: "Header row gets the column name. Data rows get the default value." },
     
       { q: "Does adding a column upload my CSV?", a: "No. The edit is applied in your browser and the data stays local." },],
-    relatedTools: ["csv-formatter", "swap-csv-columns"],
+    relatedTools: ["change-csv-separator", "swap-csv-columns"],
   },
 
   "swap-csv-columns": {
@@ -5202,7 +5202,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What if rows have different column counts?", a: "Rows with insufficient columns are skipped (returned unchanged)." },
     
       { q: "Is my CSV sent anywhere when reordering columns?", a: "No. The reordering happens client-side." },],
-    relatedTools: ["csv-formatter", "insert-csv-column"],
+    relatedTools: ["change-csv-separator", "insert-csv-column"],
   },
 
   // ==================== CSV Tools (Batch 5) ====================
@@ -5259,7 +5259,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is 'Item Separator'?", a: "The character that separates items in the input (e.g., comma, semicolon, space)." },
       { q: "What is 'Pad Non-Full Groups'?", a: "If enabled, the last group is padded with a padding character to make it full size." },
     ],
-    relatedTools: ["split", "wrap-lines"],
+    relatedTools: ["string-split", "wrap-lines"],
   },
 
   // ==================== String Tools (Batch 5) ====================
@@ -5428,7 +5428,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What characters are supported?", a: "Letters A-Z, numbers 0-9, and space." },
       { q: "How is Morse code formatted?", a: "Dots (.) and dashes (-). Characters are separated by spaces." },
     ],
-    relatedTools: ["to-morse", "unicode"],
+    relatedTools: ["unicode", "text-translator"],
   },
 
   // ==================== String Tools (Batch 7) ====================
@@ -5998,7 +5998,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Does it handle non-ASCII characters?", a: "Yes, Unicode characters are handled correctly." },
       { q: "Is there a lowercase tool?", a: "Currently only uppercase is supported. Lowercase may be added in future." },
     ],
-    relatedTools: ["string-lowercase", "randomize-case"],
+    relatedTools: ["case-converter", "randomize-case"],
   },
 
   "randomize-case": {
