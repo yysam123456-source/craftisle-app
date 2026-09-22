@@ -33,11 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tools`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/tools/craftisle-image-tools`, priority: 0.8, changeFreq: "weekly" as const },
     { url: `${baseUrl}/tools/craftisle-dev-tools`, priority: 0.8, changeFreq: "weekly" as const },
-    // 以下 3 个是有独立静态路由的工具页，但不在 lib/tools.ts 的 toolMeta 中，
-    // 因此 toolPages 那段（Object.keys(toolMeta)）覆盖不到它们 —— 此前完全未被 sitemap 收录。
-    { url: `${baseUrl}/tools/ai-image-editor`, priority: 0.7, changeFreq: "weekly" as const },
-    { url: `${baseUrl}/tools/image-upscale`, priority: 0.7, changeFreq: "weekly" as const },
-    { url: `${baseUrl}/tools/ocr-text`, priority: 0.7, changeFreq: "weekly" as const },
+    // 注：/tools/ai-image-editor、/tools/image-upscale、/tools/ocr-text 曾因
+    // 「有静态路由但不在 toolMeta」而在此处手工补收（见 2026-09 提交）。
+    // 2026-09-22 三者已补进 toolMeta 并删掉各自的静态 page.tsx（它们此前是
+    // 逐字节相同的错页），改由 app/tools/[tool] 动态段统一渲染 ⇒ 由下方
+    // toolPages（Object.keys(toolMeta)）自动覆盖。若在此处保留就会**双份收录**，
+    // 实测 sitemap.xml 里这 3 条 URL 各出现 2 次。故删除。
     { url: `${baseUrl}/about/craftisle-vs-craft-island`, priority: 0.7, changeFreq: "monthly" as const },
     { url: `${baseUrl}/directory`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/search`, priority: 0.6, changeFreq: "weekly" as const },
