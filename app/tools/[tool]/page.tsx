@@ -7,6 +7,7 @@ import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
+import { getOverride } from "@/lib/seo/page-meta-db";
 import { getRelatedTools } from "@/lib/related-tools";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
@@ -39,8 +40,12 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   const meta = toolMeta[tool];
   if (!meta) return {};
 
-  const title = String(meta.seoTitle || `${meta.title}`);
-  const description = String(meta.seoDesc || meta.desc || "Free online tool");
+  // 叠加自动优化器写入的 DB 覆盖层（长尾词 meta 重写，零部署即时生效）。
+  // 覆盖层不存在时回退静态 toolMeta，行为不变。
+  const route = `/tools/${tool}`;
+  const ov = getOverride(route);
+  const title = ov?.title ?? String(meta.seoTitle || `${meta.title}`);
+  const description = ov?.description ?? String(meta.seoDesc || meta.desc || "Free online tool");
 
   return constructMetadata({
     title,
