@@ -32,7 +32,10 @@ export default function ImageUpscaleTool() {
   const [error, setError] = useState<string | null>(null);
 
   const [scaleMode, setScaleMode] = useState<UpscaleMode>("2x");
-  const [modelType, setModelType] = useState<UpscaleModel>("general");
+  // Default to the on-device canvas path. AI mode pulls model weights from a
+  // third-party host (huggingface.co) on first use — real network activity,
+  // so it is opt-in rather than the default a visitor silently triggers.
+  const [modelType, setModelType] = useState<UpscaleModel>("fast");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -97,15 +100,20 @@ export default function ImageUpscaleTool() {
 
           env.allowLocalModels = false;
 
-          // Use image-to-image pipeline for super-resolution
-          // Model selection based on type
+          // Model ids are verified to resolve on the HF hub. The old
+          // "Xenova/swinIR-SR-x4-general" / "-gan-anime" ids do not exist
+          // (HF API returns 401 for both), so this branch threw every single
+          // time and the tool silently fell back to canvas — meaning the
+          // "AI" label was never actually true for anyone.
+          //   - realworld x4  : photos, real-world degradation
+          //   - classical x2  : illustrations / line art
           const modelId =
             modelType === "anime"
-              ? "Xenova/swinIR-SR-x4-gan-anime"
-              : "Xenova/swinIR-SR-x4-general";
+              ? "Xenova/swin2SR-classical-sr-x2-64"
+              : "Xenova/swin2SR-realworld-sr-x4-64-bsrgan-psnr";
 
           setProgress(15);
-          setStatusText("Downloading AI model (~80MB, cached after first use)…");
+          setStatusText("Downloading AI model (one-time, then cached)…");
 
           const pipe = await pipeline("image-to-image", modelId, {
             progress_callback: (p: any) => {
@@ -287,6 +295,12 @@ export default function ImageUpscaleTool() {
             </div>
             <p className="text-xs text-gray-500 mt-2">
               Original: <strong>{originalSize}</strong> → Output: <strong>{outputSize}</strong>
+              {modelType !== "fast" && (
+                <span className="block mt-1 text-amber-600">
+                  AI mode upsizes by the model&apos;s native factor (photo 4×, artwork 2×), so it
+                  overrides the factor above.
+                </span>
+              )}
             </p>
           </div>
 
@@ -295,9 +309,9 @@ export default function ImageUpscaleTool() {
             <Label className="font-semibold mb-3 block">Quality Mode</Label>
             <div className="grid grid-cols-3 gap-2">
               {([
-                ["general", "General", "Best for photos & real-world images"],
-                ["anime", "Anime/Manga", "Optimized for illustrations"],
-                ["fast", "Fast (No ML)", "Quick canvas upscale, no download"],
+                ["fast", "Fast (no download)", "Instant multi-step canvas upscale + sharpening"],
+                ["general", "Photo (AI, 4×)", "Swin2SR super-resolution — downloads weights on first use"],
+                ["anime", "Artwork (AI, 2×)", "Swin2SR tuned for line art and illustrations"],
               ] as [UpscaleModel, string, string][]).map(([val, label, desc]) => (
                 <button
                   key={val}
@@ -400,10 +414,10 @@ export default function ImageUpscaleTool() {
       <div className="bg-violet-50 rounded-lg p-4 text-sm text-violet-800 space-y-2">
         <p><strong>How it works:</strong></p>
         <ul className="list-disc list-inside space-y-1 text-xs text-violet-700 ml-1">
-          <li><strong>General/AI mode:</strong> Uses a super-resolution neural network (SwinIR) to intelligently enlarge and enhance details.</li>
-          <li><strong>Anime mode:</strong> Optimized line-art and illustration upscaling.</li>
-          <li><strong>Fast mode:</strong> High-quality multi-step canvas scaling with sharpening — no model download needed.</li>
-          <li>All processing runs locally in your browser. No uploads.</li>
+          <li><strong>Fast mode:</strong> high-quality multi-step canvas scaling with unsharp-mask sharpening — instant, nothing downloaded.</li>
+          <li><strong>AI modes:</strong> a Swin2SR super-resolution network runs in your browser; the model weights are fetched once from huggingface.co and then cached.</li>
+          <li><strong>Your image is never uploaded</strong> in any mode — inference runs on your own device. The only network request is the one-time model download.</li>
+          <li>Output is PNG (lossless), so a 4× upscale of a large photo can be a very big file.</li>
         </ul>
       </div>
     </div>

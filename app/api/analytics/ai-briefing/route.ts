@@ -10,7 +10,7 @@
  * ?format=markdown → 返回 text/markdown 可直接阅读的简报(适合自动化 prompt 直接 fetch)。
  */
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { PAGE_META_BASE } from "@/lib/seo/page-meta";
 import { benchmarkCtr } from "@/lib/seo/topical-gaps";
@@ -94,6 +94,72 @@ export async function GET(request: Request) {
         }
       } else {
         heal.note = `数据新鲜(${ageDays.toFixed(1)} 天)，跳过补拉`;
+      }
+    }
+
+    // ── 被 CF 拦死的其他 cron 补跑（同进程） ──
+    // 背景：/api/cron/* 被 Cloudflare 机器人防护 403，pull-trends 与 auto-optimize
+    // 在 vercel.json 里配了却从未真正执行（请求到不了函数）。与 GSC 补拉同理，
+    // 在 heal 路径里按「到期」判断补跑，彻底绕开 CF。每个 job 独立 try/catch，互不影响。
+    const catchup: Array<{ job: string; ok: boolean | null; note: string }> = [];
+    if (wantHeal) {
+      const origin = new URL(request.url).origin;
+
+      // 1) 趋势补拉：最新 SearchTrend 早于 7 天（或从未有）时补跑 pull-trends
+      try {
+        const newest = await prisma.searchTrend.findFirst({ orderBy: { weekStart: "desc" } });
+        const trendAgeDays = newest?.weekStart
+          ? (now.getTime() - new Date(newest.weekStart).getTime()) / 86400000
+          : Infinity;
+        if (trendAgeDays > 7) {
+          const { GET: pullTrends } = await import("@/app/api/cron/pull-trends/route");
+          const res = await pullTrends(
+            new Request(`${origin}/api/cron/pull-trends`, {
+              headers: { "x-vercel-cron": "1" },
+            }) as any
+          );
+          catchup.push({
+            job: "pull-trends",
+            ok: res.ok,
+            note: res.ok
+              ? `补跑成功(此前${trendAgeDays === Infinity ? "从未" : trendAgeDays.toFixed(1) + " 天"})`
+              : `HTTP ${res.status}`,
+          });
+        }
+      } catch (e: any) {
+        catchup.push({ job: "pull-trends", ok: false, note: e?.message || String(e) });
+      }
+
+      // 2) 优化器落库：本应每周一 07:00 UTC 后跑一次 auto-optimize?apply=1（CF 拦死后从未跑）
+      try {
+        const target = new Date(now);
+        const dow = now.getUTCDay(); // 0=Sun
+        target.setUTCDate(now.getUTCDate() - (dow === 0 ? 6 : dow - 1));
+        target.setUTCHours(7, 0, 0, 0);
+        const st = await prisma.pipelineStatus.findUnique({ where: { key: "auto_optimize" } });
+        const lastRun = st?.lastRunAt ? new Date(st.lastRunAt) : null;
+        if (now >= target && (!lastRun || lastRun < target)) {
+          const { GET: autoOptimize } = await import("@/app/api/cron/auto-optimize/route");
+          const res = await autoOptimize(
+            new NextRequest(`${origin}/api/cron/auto-optimize?apply=1`, {
+              headers: { "x-vercel-cron": "1" },
+            })
+          );
+          catchup.push({
+            job: "auto-optimize",
+            ok: res.ok,
+            note: res.ok ? "本周补跑成功" : `HTTP ${res.status}`,
+          });
+          if (res.ok) {
+            await prisma.pipelineStatus.upsert({
+              where: { key: "auto_optimize" },
+              create: { key: "auto_optimize", lastRunAt: now, lastSuccessAt: now },
+              update: { lastRunAt: now, lastSuccessAt: now },
+            });
+          }
+        }
+      } catch (e: any) {
+        catchup.push({ job: "auto-optimize", ok: false, note: e?.message || String(e) });
       }
     }
 
@@ -311,6 +377,7 @@ export async function GET(request: Request) {
         gscConfigured: pipeline?.lastConfigured ?? null,
       },
       heal,
+      catchup,
       overall: {
         ...tw,
         top3Count,
@@ -380,6 +447,7 @@ type Briefing = {
   weekStart: string;
   pipeline: { health: string; lastSuccessAt: string | null; lastRunAt: string | null; runVsSuccessGapHours: number | null; cronDiagnosis: string; lastError: string | null; freshnessDays: number | null; lastQueryCount: number | null; gscConfigured: boolean | null };
   heal: { triggered: boolean; ok: boolean | null; status: number | null; note: string };
+  catchup?: Array<{ job: string; ok: boolean | null; note: string }>;
   overall: { impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; top3Count: number; changes: { impressionsPct: number; clicksPct: number; positionChange: number }; lastWeek: { impressions: number; clicks: number } };
   sites: Array<{ slug: string; name: string; host: string; impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number; share: number; topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }> }>;
   nearMissQueries: Array<{ query: string; position: number; impressions: number; clicks: number }>;
@@ -405,6 +473,10 @@ function renderMarkdown(b: Briefing): string {
   L.push(``);
   L.push(`- Cron 派发诊断: ${b.pipeline.cronDiagnosis}`);
   if (b.heal?.triggered) L.push(`- 本次自愈: ${b.heal.ok ? "成功" : "失败"} — ${b.heal.note}`);
+  if (b.catchup && b.catchup.length > 0) {
+    L.push(`## Cron 补跑(绕 CF)`);
+    for (const c of b.catchup) L.push(`- ${c.job}: ${c.ok ? "成功" : "失败"} — ${c.note}`);
+  }
   L.push(``);
   L.push(`## 总览(本周 GSC)`);
   const o = b.overall;

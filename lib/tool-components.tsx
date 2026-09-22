@@ -39,6 +39,11 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "html-formatter": () => import("@/components/tools/HtmlFormatterTool"),
   "image-to-pixel": () => import("@/components/tools/ImageToPixelTool"),
   // ==================== Image Tools (New) ====================
+  "image-upscale": () => import("@/components/tools/ImageUpscaleTool"),
+  "ocr-text": () => import("@/components/tools/OCRTool"),
+  "ai-image-editor": () => import("@/components/tools/AIImageEditorTool"),
+  // ==================== Video ====================
+  "video-compress": () => import("@/components/tools/VideoCompressTool"),
   "image-change-opacity": () => import("@/components/tools/ChangeOpacityTool"),
   "image-create-transparent": () => import("@/components/tools/CreateTransparentTool"),
   "image-split": () => import("@/components/tools/SplitImageTool"),

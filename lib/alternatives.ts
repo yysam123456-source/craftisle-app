@@ -2430,9 +2430,41 @@ const BATCH_FILES: string[] = [
   "alternatives-batch40.json",
 ];
 
+/**
+ * 合并同名条目：batch 生成版 与 in-code 手写版。
+ *
+ * 规则：手写版字段优先，但**绝不让空值/空数组覆盖有值字段**；alternatives 取并集（手写在前）。
+ * 背景（2026-09-22 实测）：in-code 里存在不完整条目（如 "Asana" 的 alternatives 为空、Photoshop 只有 4 个
+ * 而 batch 有 5 个）。若简单地让 in-code 整体胜出，会把这些工具页退化成空列表 / 丢替代品；
+ * 若让 batch 整体胜出，则会丢掉手写条目精修的 seoKeywords/faqs。故必须做字段级合并。
+ */
+function mergeEntry(batch: AlternativeEntry, inCode: AlternativeEntry): AlternativeEntry {
+  const out: AlternativeEntry = { ...batch };
+  for (const [k, v] of Object.entries(inCode) as [keyof AlternativeEntry, any][]) {
+    if (v === undefined || v === null) continue;
+    if (Array.isArray(v) && v.length === 0) continue;
+    if (typeof v === "string" && v.trim() === "") continue;
+    if (k === "alternatives") continue; // 单独做并集
+    out[k] = v;
+  }
+  const inAlts: AlternativeEntry["alternatives"] = inCode.alternatives || [];
+  const batchAlts: AlternativeEntry["alternatives"] = batch.alternatives || [];
+  const seen = new Set<string>();
+  const union: AlternativeEntry["alternatives"] = [];
+  for (const a of [...inAlts, ...batchAlts]) {
+    const key = String(a?.name || "").trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    union.push(a);
+  }
+  out.alternatives = union;
+  return out;
+}
+
 export function getCombinedMap(): Record<string, AlternativeEntry> {
   if (_combinedMap) return _combinedMap;
-  _combinedMap = { ...ALTERNATIVES_MAP };
+  // 载入批量生成条目（batch JSON，后文件覆盖前文件）……
+  const merged: Record<string, AlternativeEntry> = {};
   for (const file of BATCH_FILES) {
     try {
       const filePath = join(process.cwd(), "public", "data", file);
@@ -2440,13 +2472,18 @@ export function getCombinedMap(): Record<string, AlternativeEntry> {
       const imports: AlternativeEntry[] = JSON.parse(raw);
       for (const entry of imports) {
         if (entry.paidTool && entry.alternatives?.length > 0) {
-          _combinedMap[entry.paidTool] = entry;
+          merged[entry.paidTool] = entry;
         }
       }
     } catch {
       // File not found or parse error — skip
     }
   }
+  // ……再用 in-code 手写条目做字段级合并（手写优先，但不丢生成版的有值字段）。
+  for (const [key, inCode] of Object.entries(ALTERNATIVES_MAP)) {
+    merged[key] = merged[key] ? mergeEntry(merged[key], inCode) : inCode;
+  }
+  _combinedMap = merged;
   return _combinedMap;
 }
 
