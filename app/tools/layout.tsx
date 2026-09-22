@@ -10,16 +10,18 @@ import { NavBar } from "@/components/layout/navbar";
 import { NavMobile } from "@/components/layout/mobile-nav";
 import { SiteFooter } from "@/components/layout/site-footer";
 
-function getCategorySlug(categoryLabel: string): string {
+function getCategoryHref(categoryLabel: string): string {
   const entry = CATEGORY_LIST.find((c) => c.label === categoryLabel);
-  return entry?.key ?? "utility";
+  const key = entry?.key ?? "utility";
+  // 真实类目落地页 /l/<key>-tools 存在（11 个非 other 类目均有）；other 无落地页，回退查询参数
+  return key === "other" ? `/tools?category=${key}` : `/l/${key}-tools`;
 }
 
 function ToolBreadcrumb({ toolId }: { toolId: string }) {
   const meta = getToolMeta(toolId);
   if (!meta) return null;
 
-  const categorySlug = getCategorySlug(meta.category);
+  const categoryHref = getCategoryHref(meta.category);
 
   return (
     <nav className="flex items-center gap-1 text-sm text-muted-foreground px-4 pt-6 max-w-5xl mx-auto">
@@ -32,7 +34,7 @@ function ToolBreadcrumb({ toolId }: { toolId: string }) {
       </Link>
       <ChevronRight className="h-3 w-3" />
       <Link
-        href={`/tools?category=${categorySlug}`}
+        href={categoryHref}
         className="hover:text-foreground"
       >
         {meta.category}
