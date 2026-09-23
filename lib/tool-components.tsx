@@ -254,6 +254,21 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "check-leap-years": () => import("@/components/tools/CheckLeapYearTool"),
   "pdf-tools": () => import("@/components/tools/PdfToolsTool"),
   "regex-vis": () => import("@/components/tools/RegexVisTool"),
+  // ==================== 2026-09-23 批次：剩余 14 个高价值纯前端缺口 ====================
+  "curl-to-code": () => import("@/components/tools/CurlToCodeTool"),
+  "gitignore-generator": () => import("@/components/tools/GitignoreGeneratorTool"),
+  "http-status": () => import("@/components/tools/HttpStatusTool"),
+  "unit-converter": () => import("@/components/tools/UnitConverterTool"),
+  "color-contrast": () => import("@/components/tools/ColorContrastTool"),
+  "percentage-calculator": () => import("@/components/tools/PercentageCalculatorTool"),
+  "gradient-generator": () => import("@/components/tools/GradientGeneratorTool"),
+  "timezone-converter": () => import("@/components/tools/TimezoneConverterTool"),
+  "fake-data-generator": () => import("@/components/tools/FakeDataGeneratorTool"),
+  "hmac-generator": () => import("@/components/tools/HmacGeneratorTool"),
+  "jwt-generator": () => import("@/components/tools/JwtGeneratorTool"),
+  "otp-generator": () => import("@/components/tools/OtpGeneratorTool"),
+  "placeholder-generator": () => import("@/components/tools/PlaceholderGeneratorTool"),
+  "qr-scanner": () => import("@/components/tools/QrScannerTool"),
 };
 
 // ---------------------------------------------------------------------------

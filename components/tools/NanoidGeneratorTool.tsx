@@ -17,11 +17,14 @@ export default function NanoidGeneratorTool() {
   const generate = () => {
     const len = Math.max(1, Math.min(64, length || 1));
     const n = Math.max(1, Math.min(100, count || 1));
+    const chars = alphabet.length ? alphabet : DEFAULT_ALPHABET;
     const ids: string[] = [];
     for (let i = 0; i < n; i++) {
+      const bytes = new Uint32Array(len);
+      crypto.getRandomValues(bytes);
       let id = "";
       for (let j = 0; j < len; j++) {
-        id += alphabet[Math.floor(Math.random() * alphabet.length)];
+        id += chars[bytes[j] % chars.length];
       }
       ids.push(id);
     }

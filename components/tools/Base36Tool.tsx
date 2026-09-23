@@ -50,9 +50,13 @@ export default function Base36Tool() {
     try {
       const clean = input.trim().toLowerCase().replace(/[^0-9a-z]/g, "");
       if (!clean) throw new Error("empty");
-      const bi = BigInt("0x" + [...clean].map((c) => parseInt(c, 36).toString(16)).join(""));
-      const out = new TextDecoder().decode(bigIntToBytes(bi));
-      setInput(out);
+      let n = 0n;
+      for (const ch of clean) {
+        const d = parseInt(ch, 36);
+        if (Number.isNaN(d)) throw new Error("invalid char");
+        n = n * 36n + BigInt(d);
+      }
+      setInput(new TextDecoder().decode(bigIntToBytes(n)));
       toast.success("Decoded from Base36");
     } catch {
       toast.error("Decode failed: invalid Base36 string");
