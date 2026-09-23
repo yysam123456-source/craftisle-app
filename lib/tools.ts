@@ -247,8 +247,10 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Does it validate JSON schema?", a: "It validates syntax (is this valid JSON?), but not schema (does it match a specific structure?). For schema validation, use a dedicated JSON Schema tool." },
       { q: "Is my data private?", a: "Yes. All formatting happens locally in your browser. Nothing is uploaded to any server." },
       { q: "Is the JSON formatter free, and do I need an account?", a: "It is free, with no account, no sign-up and no email required. Formatting runs entirely in your browser, so nothing is uploaded and there is no server-side usage limit." },
+      { q: "How do I convert XML to JSON?", a: "Use our XML to JSON converter at /tools/json-to-xml — it runs entirely in your browser with no upload." },
+      { q: "How do I escape or unescape a JSON string?", a: "Use our JSON Escape tool at /tools/json-escape to safely escape strings for embedding in code." },
     ],
-    relatedTools: ["csv-json", "yaml-formatter", "sql-formatter"],
+    relatedTools: ["csv-json", "yaml-formatter", "sql-formatter", "json-to-xml", "json-escape"],
   },
   "json-minify": {
     title: "Minify JSON",
@@ -583,6 +585,42 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["base64", "base58", "radix-converter"],
   },
 
+  "base36": {
+    title: "Base36 Encode/Decode",
+    desc: "Base36 encoding and decoding",
+    icon: "🔢",
+    category: CATEGORIES.converter,
+    seoTitle: "Base36 Encode/Decode Free — Online Base36 Tool",
+    seoDesc: "Free Base36 encoder and decoder online. Convert text to/from Base36 (0-9, A-Z). 100% browser-based, no upload.",
+    seoKeywords: [
+        "Base36 encoder online free",
+        "Base36 decode online free",
+        "Base36 converter online free",
+        "encode to Base36 free online",
+        "Base36 online tool no signup",
+        "free Base36 tool browser based",
+        "Base36 decoder online free",
+        "convert to Base36 online free"
+      ],
+    description: "Encode or decode any text to and from Base36 format (digits 0-9 and letters A-Z). Base36 is compact and human-friendly for sharing codes.",
+    howToUse: [
+      { heading: "Paste your text", text: "Enter text to encode, or a Base36 string to decode." },
+      { heading: "Choose direction", text: "Select Encode (to Base36) or Decode (from Base36)." },
+      { heading: "Copy the result", text: "The result appears instantly. Click Copy." },
+    ],
+    useCases: [
+      { title: "Short codes", text: "Turn arbitrary data into a compact, alphanumeric string." },
+      { title: "URL slugs", text: "Generate readable identifiers from numeric or binary data." },
+      { title: "Human sharing", text: "Base36 avoids symbols, making codes easy to read and type." },
+    ],
+    faq: [
+      { q: "Base36 vs Base32/Base64?", a: "Base36 uses 0-9 and A-Z only — no special characters and case-insensitive. Base64 is denser; Base32 is safer for case-sensitive systems." },
+      { q: "Is my data private?", a: "Yes. All encoding and decoding happens in your browser. Nothing is uploaded." },
+      { q: "Can I decode any Base36 string?", a: "As long as it contains only 0-9 and A-Z, yes. Invalid characters are ignored before decoding." },
+    ],
+    relatedTools: ["base32", "base58", "base64"],
+  },
+
   "base58": {
     title: "Base58 Encode",
     desc: "Base58 encoding and decoding",
@@ -661,6 +699,42 @@ export const toolMeta: Record<string, ToolMeta> = {
     
       { q: "Does converting a number base upload my input?", a: "No. The conversion is done locally in the browser." },],
     relatedTools: ["base64", "base32", "ip-calc"],
+  },
+
+  "roman-numeral": {
+    title: "Roman Numeral Converter",
+    desc: "Convert numbers to/from Roman numerals",
+    icon: "Ⅿ",
+    category: CATEGORIES.converter,
+    seoTitle: "Roman Numeral Converter Free — Online Tool",
+    seoDesc: "Free Roman numeral converter online. Convert numbers to Roman numerals and back (1-3999). 100% browser-based.",
+    seoKeywords: [
+        "roman numeral converter online free",
+        "number to roman numeral online",
+        "roman numeral to number online",
+        "roman numerals converter no signup free",
+        "free roman numeral tool browser",
+        "convert to roman numerals online",
+        "roman numeral calculator online free",
+        "year to roman numeral online free"
+      ],
+    description: "Convert Arabic numbers (1-3999) to Roman numerals and Roman numerals back to numbers. Useful for clocks, book chapters, movie copyright years, and monuments.",
+    howToUse: [
+      { heading: "Enter a value", text: "Type a number (1-3999) or a Roman numeral like MMXXIV." },
+      { heading: "Choose direction", text: "Click Number to Roman or Roman to Number." },
+      { heading: "Read the result", text: "The converted value appears instantly." },
+    ],
+    useCases: [
+      { title: "Copyright years", text: "Convert a year (e.g., 2026) to Roman numerals for film or book credits." },
+      { title: "Clock faces", text: "Read and write Roman numerals used on traditional clocks." },
+      { title: "Outlines and chapters", text: "Number sections or volumes in the classic style." },
+    ],
+    faq: [
+      { q: "What range is supported?", a: "Integers from 1 to 3999. Roman numerals have no standard notation for zero or values above 3999." },
+      { q: "Is 2026 MMXXVI or MMXXIV?", a: "2026 is MMXXVI. MMXXIV is 2024. The converter computes the correct form automatically." },
+      { q: "Does it run locally?", a: "Yes. All conversion happens in your browser." },
+    ],
+    relatedTools: ["radix-converter", "unix-to-date", "convert-unix-to-date"],
   },
 
   "csv-json": {
@@ -1145,6 +1219,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is there a scan limit?", a: "No. A QR code is static data — it works forever and can be scanned unlimited times." },
       { q: "Can I add my company logo?", a: "Yes! Upload a small square logo (PNG or JPG). It will be centered inside the QR code. Make sure error correction is set to Medium or High so the logo doesn't break scanning." },
       { q: "What size should I use?", a: "For print, 300×300 px or larger is recommended. For screen display, 200×200 px is sufficient. Always test scanning with your target device before mass printing." },
+      { q: "Is this a free QR code generator with no signup (kostenlos)?", a: "Yes — completely free (kostenlos in German) and no registration required. Everything runs in your browser, so no data leaves your device." },
     ],
     relatedTools: ["barcode", "base64", "url-encode"],
   },
@@ -1291,6 +1366,79 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is this compliant with RFC 4122?", a: "Yes. UUIDs generated follow RFC 4122 v4 format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx where y is 8, 9, a, or b." },
     ],
     relatedTools: ["random-string", "base64", "hash"],
+  },
+
+  "nanoid-generator": {
+    title: "Nano ID Generator",
+    desc: "Generate URL-safe unique IDs",
+    icon: "🔑",
+    category: CATEGORIES.generator,
+    seoTitle: "Nano ID Generator Free — Online Tool",
+    seoDesc: "Free Nano ID generator online. Create compact, URL-safe unique IDs with custom length and alphabet. 100% browser-based, no signup.",
+    seoKeywords: [
+        "nanoid generator online free",
+        "generate nanoid online free",
+        "url safe id generator online",
+        "nanoid generator no signup free",
+        "free nanoid generator browser",
+        "short unique id generator online",
+        "nanoid vs uuid online free",
+        "custom alphabet id generator free"
+      ],
+    description: "Generate compact, URL-safe unique identifiers with a configurable length, count, and alphabet. Ideal for database keys, filenames, and API tokens.",
+    howToUse: [
+      { heading: "Set length", text: "Choose how many characters each ID should have (1-64)." },
+      { heading: "Set count", text: "Choose how many IDs to generate at once (1-100)." },
+      { heading: "Customize alphabet", text: "Optionally change the character set used for generation." },
+      { heading: "Generate and copy", text: "Click Generate, then copy individual IDs or all at once." },
+    ],
+    useCases: [
+      { title: "Database keys", text: "Create short, collision-resistant primary keys for distributed systems." },
+      { title: "Filenames", text: "Generate safe, URL-friendly names for uploaded files." },
+      { title: "API tokens", text: "Produce opaque, non-sequential identifiers for resources." },
+    ],
+    faq: [
+      { q: "Is Nano ID secure?", a: "Yes. It uses cryptographically strong randomness and a non-sequential alphabet, so IDs cannot be guessed or enumerated." },
+      { q: "Nano ID vs UUID?", a: "Nano IDs are shorter and URL-safe by default. UUIDs are longer and standardized (RFC 4122). Pick Nano ID when compactness matters." },
+      { q: "Does my input leave the browser?", a: "No. All IDs are generated locally in your browser and never uploaded." },
+    ],
+    relatedTools: ["uuid", "random-string", "ulid-generator"],
+  },
+
+  "ulid-generator": {
+    title: "ULID Generator",
+    desc: "Generate sortable time-based IDs",
+    icon: "⏱️",
+    category: CATEGORIES.generator,
+    seoTitle: "ULID Generator Free — Online Tool",
+    seoDesc: "Free ULID generator online. Create sortable, time-based 26-char IDs. 100% browser-based, no signup, nothing uploaded.",
+    seoKeywords: [
+        "ulid generator online free",
+        "generate ulid online free",
+        "sortable id generator online",
+        "ulid generator no signup free",
+        "free ulid generator browser",
+        "time based id generator online",
+        "ulid vs uuid online free",
+        "lexicographically sortable id free"
+      ],
+    description: "Generate ULIDs (Universally Unique Lexicographically Sortable Identifiers). Each 26-character ID embeds the creation timestamp, so IDs sort naturally by time.",
+    howToUse: [
+      { heading: "Set count", text: "Choose how many ULIDs to generate (1-100)." },
+      { heading: "Generate", text: "Click Generate to create time-ordered identifiers." },
+      { heading: "Copy", text: "Copy individual IDs or all at once." },
+    ],
+    useCases: [
+      { title: "Database primary keys", text: "Sortable IDs avoid index fragmentation that random UUIDs cause." },
+      { title: "Event logs", text: "Time-ordered IDs make chronological ordering trivial." },
+      { title: "Distributed systems", text: "Unique across nodes without a central coordinator." },
+    ],
+    faq: [
+      { q: "Why use ULID instead of UUID?", a: "ULIDs are sortable by creation time, which keeps database indexes efficient. UUID v4 is random and unsorted." },
+      { q: "What is the format?", a: "26 characters: 10 for the millisecond timestamp and 16 random Crockford base32 chars." },
+      { q: "Is generation local?", a: "Yes. ULIDs are created in your browser; nothing is sent to a server." },
+    ],
+    relatedTools: ["uuid", "nanoid-generator", "random-string"],
   },
 
   "image-to-pixel": {
@@ -5371,8 +5519,45 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "How long should my password be?", a: "At least 12 characters. 16+ is recommended for critical accounts." },
       { q: "Are the passwords saved?", a: "No. Passwords are generated in your browser and not sent to any server." },
     
-      { q: "Are the passwords you generate sent anywhere?", a: "No. They are generated locally by JavaScript in your browser and are never transmitted or logged." },],
+      { q: "Are the passwords you generate sent anywhere?", a: "No. They are generated locally by JavaScript in your browser and are never transmitted or logged." },
+      { q: "How do I make a 12 or 16 character password?", a: "Set the Length field to 12 or 16 (anywhere from 4 to 128). We recommend at least 12, and 16+ for critical accounts. Generation is 100% local — nothing leaves your browser." },],
     relatedTools: ["random-string", "bcrypt"],
+  },
+
+  "password-strength": {
+    title: "Password Strength Checker",
+    desc: "Check password strength and entropy",
+    icon: "🛡️",
+    category: CATEGORIES.generator,
+    seoTitle: "Password Strength Checker Free — Online Tool",
+    seoDesc: "Free password strength checker online. Estimate entropy and see what makes a password strong. 100% browser-based, private.",
+    seoKeywords: [
+        "password strength checker online free",
+        "check password strength online free",
+        "password strength test no signup free",
+        "free password strength tool browser",
+        "estimate password entropy online",
+        "how strong is my password free",
+        "password security checker online free",
+        "password strength meter online free"
+      ],
+    description: "Estimate your password's strength from length and character variety (entropy in bits). See exactly which criteria are met and how hard the password is to crack.",
+    howToUse: [
+      { heading: "Type a password", text: "Enter a password to evaluate (it stays on your device)." },
+      { heading: "Read the strength", text: "View the strength rating and entropy estimate." },
+      { heading: "Review the checklist", text: "See which character-type criteria are satisfied." },
+    ],
+    useCases: [
+      { title: "Audit your passwords", text: "Quickly gauge whether an existing password is weak." },
+      { title: "Learn good habits", text: "See how length and variety affect crack resistance." },
+      { title: "Pair with a generator", text: "Check the output of a password generator before using it." },
+    ],
+    faq: [
+      { q: "What is a good entropy score?", a: "Aim for at least 60 bits; 80+ is very strong. Length contributes more than adding one symbol type." },
+      { q: "Does this upload my password?", a: "No. Everything is computed locally in your browser and never transmitted." },
+      { q: "Is this a password generator?", a: "No. It only checks strength. Use the Password Generator tool to create strong passwords." },
+    ],
+    relatedTools: ["password-generator", "random-string", "hash"],
   },
 
   // ==================== String Tools (Batch 6) ====================

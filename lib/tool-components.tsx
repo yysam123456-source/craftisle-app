@@ -23,6 +23,7 @@ type ComponentLoader = () => Promise<{ default: React.ComponentType<any> }>;
 const componentLoaders: Record<string, ComponentLoader> = {
   "aes-des": () => import("@/components/tools/AesDesTool"),
   "base32": () => import("@/components/tools/Base32Tool"),
+  "base36": () => import("@/components/tools/Base36Tool"),
   "base58": () => import("@/components/tools/Base58Tool"),
   "base64": () => import("@/components/tools/Base64Tool"),
   "bcrypt": () => import("@/components/tools/BcryptTool"),
@@ -65,6 +66,7 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "pomodoro": () => import("@/components/tools/PomodoroTool"),
   "qrcode": () => import("@/components/tools/QRCodeGeneratorTool"),
   "radix-converter": () => import("@/components/tools/RadixConverterTool"),
+  "roman-numeral": () => import("@/components/tools/RomanNumeralTool"),
   "random-group": () => import("@/components/tools/RandomGroupTool"),
   "random-string": () => import("@/components/tools/RandomStringGeneratorTool"),
   "regex": () => import("@/components/tools/RegexTool"),
@@ -93,6 +95,8 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "url-encode": () => import("@/components/tools/UrlEncodeTool"),
   "user-agent": () => import("@/components/tools/UATool"),
   "uuid": () => import("@/components/tools/UuidTool"),
+  "nanoid-generator": () => import("@/components/tools/NanoidGeneratorTool"),
+  "ulid-generator": () => import("@/components/tools/UlidGeneratorTool"),
   "wheel": () => import("@/components/tools/WheelTool"),
   "yaml-formatter": () => import("@/components/tools/YamlFormatterTool"),
   // Non-standard file names:
@@ -179,6 +183,7 @@ const componentLoaders: Record<string, ComponentLoader> = {
 
   // ==================== Utilities (Batch 6) ====================
   "password-generator": () => import("@/components/tools/PasswordGeneratorTool"),
+  "password-strength": () => import("@/components/tools/PasswordStrengthTool"),
 
   // ==================== String Tools (Batch 6) ====================
   "text-replacer": () => import("@/components/tools/TextReplacerTool"),
