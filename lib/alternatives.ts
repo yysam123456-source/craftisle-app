@@ -63,6 +63,12 @@ export interface AlternativeEntry {
    * 语义重复、像机器拼接的文案，必须用此字段覆盖为自然标题。
    */
   h1Override?: string;
+  /**
+   * 可选：结论段（页面底部「该选哪个」的落点）。
+   * 数据里长期存在但 AlternativeEntry 未声明、组件也从未渲染 ⇒ 死数据。
+   * 现已补进类型并在 page.tsx 中渲染。
+   */
+  verdict?: string;
 }
 
 // ============================================================

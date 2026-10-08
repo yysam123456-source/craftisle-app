@@ -332,7 +332,8 @@ export default async function AlternativesPage({
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold mb-2">
-                All {entry.paidTool} Alternatives ({entry.alternatives.length})
+                All {entry.paidTool} Alternatives (
+                {featured.length > 0 ? others.length : entry.alternatives.length})
               </h2>
               <p className="text-muted-foreground mb-8">
                 Compare features, pricing, and migration difficulty
@@ -431,6 +432,26 @@ export default async function AlternativesPage({
           </div>
         </section>
 
+        {/* ===== Verdict / Bottom Line =====
+         * 数据里写了 verdict（每个条目都有，39 个 batch 共约 190 条），但此前组件从不渲染，
+         * 属于「数据存在但页面看不见」的死数据。这段是页面的结论落点，
+         * 放在迁移指南之前、FAQ 之后作为收束，同时承载 verdict 里的关键实体词。
+         */}
+        {entry.verdict && (
+          <section className="py-12 border-b bg-muted/10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">
+                  Which {entry.paidTool} Alternative Should You Pick?
+                </h2>
+                <div className="bg-card border rounded-lg p-6">
+                  <p className="leading-relaxed">{entry.verdict}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* ===== Migration Guide ===== */}
         {entry.migrationGuide && (
           <section className="py-12 border-b bg-muted/10">
@@ -508,9 +529,7 @@ export default async function AlternativesPage({
             <div className="max-w-4xl mx-auto">
               <h2 className="text-xl font-bold mb-6">More Alternative Comparisons</h2>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {Object.entries(await getAlternativesMap())
-                  .filter(([key]) => toSlug(key) !== tool)
-                  .slice(0, 6)
+                {pickRelatedAlternatives(await getAlternativesMap(), tool)
                   .map(([key, val]) => (
                     <Link
                       key={key}
@@ -676,4 +695,35 @@ async function getAlternativesMap() {
   // Import dynamically to avoid circular deps
   const { getCombinedMap } = await import("@/lib/alternatives");
   return getCombinedMap();
+}
+
+/**
+ * 挑选「同类替代页」——同分类优先，不足再跨分类补齐。
+ *
+ * 修复的真实缺陷：此前是`Object.entries(...).filter(自己).slice(0, 6)`，
+ * 即「取前 6 条」。由于 getCombinedMap() 的键序对所有页面一致，
+ * 每页底部链接到的永远是同样 6 个页面 ⇒ 顺序决定成员，
+ * 绝大多数替代页在该区块里零入站（孤儿页）。
+ *
+ * 铁律：内链集合必须完备 —— 顺序可裁，成员不可裁。
+ */
+function pickRelatedAlternatives(
+  map: Record<string, { alternatives: unknown[]; category: string }>,
+  currentSlug: string,
+  limit = 6
+): [string, { alternatives: unknown[]; category: string }][] {
+  const entries = Object.entries(map).filter(([key]) => toSlug(key) !== currentSlug);
+
+  // 用当前 slug 派生的稳定偏移做轮转起点，避免所有页面都取同一批。
+  // 偏移只改变顺序，不改变成员集合，因此不会制造新的孤儿。
+  const offset = [...currentSlug].reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
+  const rotated = [...entries.slice(offset % entries.length), ...entries.slice(0, offset % entries.length)];
+
+  const selfCategory = map[Object.keys(map).find((k) => toSlug(k) === currentSlug) ?? ""]?.category;
+
+  const sameCategory = rotated.filter(([, val]) => val.category === selfCategory);
+  const other = rotated.filter(([, val]) => val.category !== selfCategory);
+
+  // 同分类不足时用跨分类补足，保证仍是 6 条而不是变少
+  return [...sameCategory, ...other].slice(0, limit);
 }

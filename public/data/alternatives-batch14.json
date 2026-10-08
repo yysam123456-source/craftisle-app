@@ -1,337 +1,350 @@
 [
   {
-    "paidTool": "Zoom",
-    "slug": "zoom",
-    "category": "Communication",
-    "description": "Zoom is the leading video conferencing platform with meetings, webinars, and chat. Free tier limits group calls to 40 minutes, pushing users to paid plans starting at $15/month/host.",
-    "painPoints": [
-      {
-        "problem": "40-minute limit on free group calls",
-        "impact": "Frequent interruptions for casual users"
-      },
-      {
-        "problem": "Privacy and security concerns",
-        "impact": "Zoombombing and data privacy issues"
-      },
-      {
-        "problem": "Expensive per-host pricing",
-        "impact": "$15-25/month per host adds up fast for teams"
-      }
-    ],
-    "alternatives": [
-      {
-        "name": "Google Meet",
-        "url": "https://meet.google.com",
-        "reason": "Free tier with no time limit for 1:1 calls, 60-minute limit for groups",
-        "isFree": true,
-        "isOpenSource": false,
-        "features": [
-          "Browser-based",
-          "Google Workspace integration",
-          "Live captions"
-        ],
-        "pricing": "Free; Workspace from $7.20/user/month"
-      },
-      {
-        "name": "Jitsi Meet",
-        "url": "https://meet.jit.si",
-        "reason": "Completely free, open-source video conferencing with no time limits",
-        "isFree": true,
-        "isOpenSource": true,
-        "features": [
-          "No time limit",
-          "No account needed",
-          "E2E encryption"
-        ],
-        "pricing": "Free"
-      },
-      {
-        "name": "Discord",
-        "url": "https://discord.com",
-        "reason": "Free GoLive screen sharing and video calls, popular with communities",
-        "isFree": true,
-        "isOpenSource": false,
-        "features": [
-          "GoLive streaming",
-          "Servers/channels",
-          "Screen share"
-        ],
-        "pricing": "Free; Nitro $10/month"
-      },
-      {
-        "name": "Microsoft Teams",
-        "url": "https://www.microsoft.com/teams",
-        "reason": "Free tier with unlimited meeting duration for up to 60 minutes",
-        "isFree": true,
-        "isOpenSource": false,
-        "features": [
-          "Unlimited 1:1 calls",
-          "Group calls up to 60 min",
-          "File sharing"
-        ],
-        "pricing": "Free; Paid from $4/user/month"
-      }
-    ],
-    "migrationDifficulty": "Easy",
-    "migrationGuide": {
-      "steps": [
-        "Export Zoom contacts if needed",
-        "Share new meeting links with regular contacts",
-        "Install alternative app (Jitsi/Meet/Teams)",
-        "Test audio/video before important calls",
-        "Update calendar invites with new meeting links"
-      ],
-      "tips": [
-        "Jitsi is the closest free alternative to Zoom",
-        "Google Meet works best with Google contacts"
-      ]
-    },
-    "verdict": "Jitsi Meet is the best free alternative with no time limits. Google Meet is the best choice for business users already in the Google ecosystem.",
-    "faqs": [
-      {
-        "question": "Is Jitsi really free with no limits?",
-        "answer": "Yes, Jitsi Meet is completely free with no time limits, no account required, and open-source code."
-      },
-      {
-        "question": "Can I record meetings for free?",
-        "answer": "Jitsi supports local recording for free. Cloud recording requires self-hosting Jitsi or using paid services like 8x8 Meet."
-      }
-    ],
-    "tagline": "Popular video conferencing with a 40-minute free limit",
-    "paidToolUrl": "https://zoom.us",
-    "pricing": "Free basic; Pro $15/month/host; Business $20/month/host",
-    "whySwitch": [
-      "Remove time limits",
-      "Save $180/year per host",
-      "Open-source alternative"
-    ],
-    "seoKeywords": [
-      "zoom alternative",
-      "free video conferencing",
-      "jitsi meet",
-      "google meet vs zoom"
-    ]
-  },
-  {
-    "paidTool": "Microsoft 365",
-    "slug": "microsoft-365",
-    "category": "Productivity",
-    "description": "Microsoft 365 (formerly Office 365) is the subscription-based version of Microsoft Office, including Word, Excel, PowerPoint, and Outlook. Plans start at $7/month and require ongoing payments to keep using the software.",
-    "painPoints": [
-      {
-        "problem": "Ongoing subscription cost",
-        "impact": "$70-100/year forever to keep using the apps"
-      },
-      {
-        "problem": "Internet connection required for some features",
-        "impact": "Cannot always use offline"
-      },
-      {
-        "problem": "Forced updates and telemetry",
-        "impact": "Little control over update timing and data collection"
-      }
-    ],
-    "alternatives": [
-      {
-        "name": "LibreOffice",
-        "url": "https://www.libreoffice.org",
-        "reason": "Free and open-source office suite that opens/saves Microsoft formats",
-        "isFree": true,
-        "isOpenSource": true,
-        "features": [
-          "Writer/Excel/PPT equivalents",
-          "Opens .docx/.xlsx/.pptx",
-          "No subscription"
-        ],
-        "pricing": "Free"
-      },
-      {
-        "name": "OnlyOffice",
-        "url": "https://www.onlyoffice.com",
-        "reason": "Best Microsoft format compatibility, available as desktop and collaboration suite",
-        "isFree": true,
-        "isOpenSource": true,
-        "features": [
-          "Full .docx/.xlsx support",
-          "Self-hosted option",
-          "Real-time collaboration"
-        ],
-        "pricing": "Free desktop; Cloud from $5/month"
-      },
-      {
-        "name": "Google Workspace",
-        "url": "https://workspace.google.com",
-        "reason": "Cloud-native alternative with excellent collaboration features",
-        "isFree": true,
-        "isOpenSource": false,
-        "features": [
-          "Docs/Sheets/Slides",
-          "Real-time collaboration",
-          "Cloud storage"
-        ],
-        "pricing": "Free personal; Business $7.20/user/month"
-      },
-      {
-        "name": "WPS Office",
-        "url": "https://www.wps.com",
-        "reason": "Free office suite with interface very similar to Microsoft Office",
-        "isFree": true,
-        "isOpenSource": false,
-        "features": [
-          "Similar UI to MS Office",
-          "PDF tools included",
-          "Cross-platform"
-        ],
-        "pricing": "Free with ads; Premium $30/year"
-      }
-    ],
-    "migrationDifficulty": "Easy",
-    "migrationGuide": {
-      "steps": [
-        "Export important Outlook emails (if applicable)",
-        "Download LibreOffice or OnlyOffice",
-        "Open existing .docx/.xlsx files to test compatibility",
-        "Adjust formatting if needed",
-        "Set as default office suite"
-      ],
-      "tips": [
-        "LibreOffice has a 'View' tab to mimic Word ribbon",
-        "OnlyOffice has the best .docx rendering"
-      ]
-    },
-    "verdict": "LibreOffice is the best free, full-featured alternative. OnlyOffice offers the best Microsoft format compatibility if you need perfect layout preservation.",
-    "faqs": [
-      {
-        "question": "Can LibreOffice open my existing Word/Excel files?",
-        "answer": "Yes, LibreOffice can open and edit .docx, .xlsx, and .pptx files. Some complex layouts may need minor adjustments."
-      },
-      {
-        "question": "Is there a one-time purchase alternative to Microsoft 365?",
-        "answer": "Microsoft still sells Office 2021 as a one-time purchase ($150) but it won't receive feature updates."
-      }
-    ],
-    "tagline": "Subscription-based Microsoft Office suite",
-    "paidToolUrl": "https://www.microsoft.com/microsoft-365",
-    "pricing": "Personal $7/month; Family $10/month; Business from $6/user/month",
-    "whySwitch": [
-      "One-time purchase options",
-      "No subscription fees",
-      "Full data ownership"
-    ],
-    "seoKeywords": [
-      "microsoft 365 alternative",
-      "free office suite",
-      "libreoffice vs office",
-      "onlyoffice"
-    ]
-  },
-  {
     "paidTool": "Google Workspace",
     "slug": "google-workspace",
     "category": "Productivity",
-    "description": "Google Workspace (formerly G Suite) is Google's cloud-native productivity suite with Gmail, Docs, Drive, and Meet. Business plans start at $7.20/user/month, which can be costly for large teams.",
+    "description": "Google Workspace (formerly G Suite) is Google's cloud productivity suite: Gmail, Docs, Sheets, Slides, Drive, and Meet in one subscription. The free personal tier covers a single user well. The paid Business tiers are priced per user per month, so the cost scales directly with headcount — a 30-person team on Business Starter pays roughly $2,600 per year before taxes.\n\nThat per-seat model is the single reason teams look elsewhere. A 5-person team can often stay on the free tier, but the moment headcount grows the bill grows with it, and the features that justify the cost (custom domain email, shared drives with external sharing controls, admin console, audit logs, data regions) are exactly the ones that disappear on the free tier.\n\nThe second reason is lock-in. Years of Gmail addresses, Google Drive file ownership, and Docs comment history create a real switching cost that is painful rather than merely inconvenient. Migrating email, files, calendars, and permissions between providers is a multi-day project with no shortcut.\n\nThis page compares the alternatives that are genuinely free or genuinely cheaper, sorted by what they are actually good at — not by who has the longest feature list. If you only need document editing, a free desktop suite covers it. If you need a mail server on your own domain, that is a different problem entirely. Which one is right depends on which Google feature you are actually trying to replace.",
     "painPoints": [
       {
-        "problem": "Per-user monthly cost",
-        "impact": "$7.20-18/user/month adds up quickly"
+        "problem": "Per-user pricing scales with headcount",
+        "impact": "Business Starter alone runs about $86 per user per year, so a 30-person team is over $2,600 annually and the number grows every time you hire"
       },
       {
-        "problem": "Vendor lock-in with Google ecosystem",
-        "impact": "Difficult to export and migrate data"
+        "problem": "The useful features are locked behind paid tiers",
+        "impact": "Custom domain email, shared drives, granular sharing controls, the admin console and audit logs all require Business — the free tier is single-user"
       },
       {
-        "problem": "Limited offline functionality",
-        "impact": "Most features require internet connection"
+        "problem": "Gmail address becomes your identity",
+        "impact": "Changing it means a new email address, new accounts everywhere, and a permanent forwarding rule on the old one"
+      },
+      {
+        "problem": "Vendor lock-in on files and permissions",
+        "impact": "Drive sharing rules, file ownership and comment history do not export cleanly to other providers"
+      },
+      {
+        "problem": "Requires a connection for most features",
+        "impact": "Docs, Sheets and Gmail are web-first, so offline work depends on the optional offline mode and recent versions of the desktop apps"
       }
+    ],
+    "whySwitch": [
+      "Pay nothing for small teams — several alternatives have a genuinely usable free tier, not just a trial",
+      "Keep data on infrastructure you control by self-hosting instead of renting it per seat",
+      "Use desktop apps that work offline as the default rather than as an add-on",
+      "Break the 'your email is your identity' lock-in before headcount makes migration expensive"
     ],
     "alternatives": [
       {
         "name": "Zoho Workplace",
         "url": "https://www.zoho.com/workplace/",
-        "reason": "Full productivity suite at a fraction of Google's cost",
+        "reason": "The closest structural replacement — a full Mail, Docs, Sheets and Chat suite with custom domain email, and a free tier that covers up to 5 users.",
+        "description": "Zoho Workplace is a full productivity suite rather than a single-app substitute: Zoho Mail, Writer, Sheet, Slide, and Chat under one login. Its free tier covers up to 5 users with 5 GB per user, which makes it the rare option where a small team can move off Google and pay nothing. Paid entry pricing sits well below Google's per-seat cost. The trade-off is that the desktop apps and real-time collaboration feel a generation behind Docs, and complex Sheets formulas sometimes need rework.",
         "isFree": true,
         "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5,
+        "featured": true,
+        "bestFor": "Teams of 2–10 that need custom domain email plus real document editing",
         "features": [
-          "Mail, Docs, Sheets",
-          "Team collaboration",
-          "Custom domain email"
+          "Mail, Writer, Sheet, Slide",
+          "Custom domain email",
+          "Up to 5 users free",
+          "Desktop apps for Windows and macOS",
+          "Admin console on paid tiers"
         ],
-        "pricing": "Free for up to 5 users; Paid from $1/user/month"
+        "pros": [
+          "Free tier genuinely usable up to 5 users",
+          "Custom domain email included on free tier",
+          "Full suite, not a patchwork of separate apps",
+          "Considerably cheaper per seat than Google"
+        ],
+        "cons": [
+          "Real-time collaboration is less smooth than Google Docs",
+          "Some Sheets formulas need adjusting",
+          "Smaller integration ecosystem",
+          "Free tier storage is modest"
+        ]
       },
       {
         "name": "Nextcloud Hub",
+        "resourceId": "misc-08632",
         "url": "https://nextcloud.com",
-        "reason": "Self-hosted Google Workspace alternative with full data control",
+        "reason": "The self-hosted option — run your own mail, files, calendar and office suite on your own server, with no per-seat fee at any scale.",
+        "description": "Nextcloud Hub is open-source software you install on a server you control. It covers files, mail, calendar, contacts, and — through Nextcloud Office — document and spreadsheet editing in the browser. Once it is running the per-user cost is a server, not a subscription, which changes the economics completely at 50+ users. The tradeoff is that somebody has to run it: updates, backups, TLS certificates and mail deliverability all become your problem.",
         "isFree": true,
         "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Hard",
+        "rating": 4,
+        "featured": true,
+        "bestFor": "Organisations that need data sovereignty or have 50+ users",
         "features": [
-          "Files, Mail, Office",
-          "Self-hosted",
-          "End-to-end encryption"
+          "Self-hosted on your own hardware",
+          "Mail, Calendar, Contacts, Files",
+          "Nextcloud Office in the browser",
+          "End-to-end encryption option",
+          "No per-seat licensing"
         ],
-        "pricing": "Free self-hosted; Enterprise support available"
+        "pros": [
+          "No per-user fee at any headcount",
+          "Data never leaves infrastructure you control",
+          "Open source with a large community",
+          "Mail, files and calendar in one place"
+        ],
+        "cons": [
+          "Requires server administration",
+          "Setup is genuinely non-trivial for mail delivery",
+          "No official mobile app for email/calendar",
+          "Support is community-based unless you buy enterprise"
+        ]
       },
       {
-        "name": "Microsoft 365 Business",
+        "name": "Proton Suite",
+        "resourceId": "misc-02623",
+        "url": "https://proton.me",
+        "reason": "The privacy-first option — free encrypted mail, Drive, Calendar and VPN, with a paid tier that still costs less than Google per seat.",
+        "description": "Proton began as an encrypted email provider and expanded into a suite: Mail, Drive, Calendar, VPN, and Pass. End-to-end and client-side encryption are the point, not a checkbox, and the free tier covers mail, Drive and Calendar for one person. Paid plans remain below Google's per-seat price. It is not a drop-in replacement for Google Docs collaboration — Proton Docs exists but the real-time co-editing ecosystem is thinner, and there is no comparable admin audit suite for regulated teams.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5,
+        "featured": true,
+        "bestFor": "Individuals and small teams that put privacy ahead of collaboration polish",
+        "features": [
+          "Encrypted mail and Drive",
+          "Calendar and contacts",
+          "Proton VPN included on paid tiers",
+          "Free personal plan",
+          "Open-source clients"
+        ],
+        "pros": [
+          "Best-in-class privacy and encryption",
+          "Free tier is genuinely useful for one person",
+          "Cheaper paid tiers than Google",
+          "Very clean, fast interface"
+        ],
+        "cons": [
+          "Real-time document collaboration is limited",
+          "Smaller ecosystem of add-ons",
+          "Not suited to regulated teams needing audit logs",
+          "Import tooling is less complete than Google's export"
+        ]
+      },
+      {
+        "name": "Microsoft 365 Business Basic",
         "url": "https://www.microsoft.com/microsoft-365/business",
-        "reason": "Alternative cloud suite with desktop apps included",
+        "reason": "The pragmatic choice for organisations already standardised on Office file formats — real Word, Excel and PowerPoint, on the web, in the cheapest Business tier.",
+        "description": "Microsoft 365 Business Basic gives browser-based Word, Excel and PowerPoint, Exchange mail on your own domain, 1 TB of OneDrive per user, and Teams. Critically it reads and writes the actual .docx and .xlsx formats, so nothing has to be converted when a file goes to a client or a colleague. It is not free and it is not cheaper per seat than Google at the entry point, but the format fidelity removes the largest hidden cost of leaving Office behind.",
         "isFree": false,
         "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4,
+        "bestFor": "Agencies and consultancies whose deliverables are Office files",
         "features": [
-          "Desktop apps",
-          "1TB OneDrive",
-          "Teams integration"
+          "Word, Excel, PowerPoint in the browser",
+          "Exchange mail on your domain",
+          "1 TB OneDrive per user",
+          "Teams",
+          "Full .docx/.xlsx fidelity"
         ],
-        "pricing": "From $6/user/month"
+        "pros": [
+          "Real Office formats, no conversion loss",
+          "Familiar interface for most staff",
+          "Outlook mail is a genuine upgrade",
+          "Broad third-party support"
+        ],
+        "cons": [
+          "Not free — costs per user per month",
+          "Desktop Office is a separate higher-priced purchase",
+          "Heavy install footprint if you go desktop",
+          "Heavier admin than Google Workspace"
+        ]
+      },
+      {
+        "name": "ONLYOFFICE Workspace",
+        "url": "https://www.onlyoffice.com",
+        "reason": "The self-hostable document editor with the highest .docx/.xlsx fidelity of anything open source — the closest free answer to 'Office formats without a subscription'.",
+        "description": "ONLYOFFICE Workspace bundles document editing, spreadsheets, presentations, mail, and chat, and you can host the whole thing yourself. Its claim to fame is format fidelity: it renders .docx and .xlsx more faithfully than LibreOffice, which is why it is the usual recommendation for organisations that cannot afford to have layout shift in a client deliverable. The trade-off is a heavier install than LibreOffice and a smaller community.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4,
+        "bestFor": "Self-hosting teams that must preserve exact Office formatting",
+        "features": [
+          "Self-hosted workspace",
+          "High-fidelity .docx/.xlsx editing",
+          "Mail, Chat, Projects included",
+          "Desktop builds for Windows, macOS, Linux",
+          "Open source (AGPL)"
+        ],
+        "pros": [
+          "Best open-source fidelity with Office formats",
+          "Full suite including mail and chat",
+          "Self-hostable",
+          "Free desktop builds"
+        ],
+        "cons": [
+          "Heavier than LibreOffice to install and run",
+          "Smaller community and plugin ecosystem",
+          "Self-hosting still needs a server",
+          "Mobile experience is weaker"
+        ]
+      },
+      {
+        "name": "LibreOffice",
+        "resourceId": "misc-14714",
+        "url": "https://www.libreoffice.org",
+        "reason": "The dependable free desktop suite — installs locally, opens and saves .docx and .xlsx, and costs nothing per user forever.",
+        "description": "LibreOffice is the mature, widely translated open-source office suite: Writer, Calc, Impress, and Base. It installs on Windows, macOS and Linux, works offline, and opens Microsoft formats without a subscription. It is the pragmatic answer when the requirement is 'our team can edit documents without paying'. Its weakness is layout fidelity on complex Word files, and real-time multi-user collaboration is not what it does.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "bestFor": "Anyone who needs a local, offline, no-cost Word and Excel replacement",
+        "features": [
+          "Writer, Calc, Impress, Base",
+          "Opens and saves .docx/.xlsx/.pptx",
+          "Windows, macOS, Linux builds",
+          "Fully offline",
+          "No account required"
+        ],
+        "pros": [
+          "Completely free with no account",
+          "Works offline indefinitely",
+          "Very stable and widely supported",
+          "Reads and writes Office formats"
+        ],
+        "cons": [
+          "Layout can shift on complex Word documents",
+          "No built-in real-time collaboration",
+          "Mac install is less polished than Windows",
+          "Excel macro compatibility is partial"
+        ]
       },
       {
         "name": "Fastmail",
         "url": "https://www.fastmail.com",
-        "reason": "Privacy-focused email and calendar without Google tracking",
+        "reason": "Email and calendar only — does not try to replace Docs, but replaces Gmail better than anything else if you only need mail on your own domain.",
+        "description": "Fastmail focuses entirely on email, calendar and contacts, and does them well: fast search, solid aliases, strong filtering, and support for custom domains on a personal plan. Paid plans start around $3 per month, which is a fraction of per-seat Google pricing. It is not a suite: there is no Docs equivalent, so teams that need spreadsheets should pair it with LibreOffice or a hosted alternative.",
         "isFree": false,
         "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "bestFor": "People replacing Gmail alone, on a budget, with a custom domain",
         "features": [
-          "No ads",
-          "Custom domains",
-          "IMAP/CardDAV"
+          "Email, Calendar, Contacts",
+          "Custom domain support",
+          "Excellent search and filtering",
+          "Strong spam filtering",
+          "Low monthly price"
         ],
-        "pricing": "From $3/month"
+        "pros": [
+          "Excellent search and spam filtering",
+          "Much cheaper than per-seat Google pricing",
+          "Custom domains on entry plans",
+          "Real IMAP and CardDAV access"
+        ],
+        "cons": [
+          "No document or spreadsheet editor",
+          "Paid only — no meaningful free tier",
+          "Storage quota is modest on cheap plans",
+          "Not a drop-in team collaboration suite"
+        ]
+      },
+      {
+        "name": "Trello",
+        "url": "https://trello.com",
+        "reason": "The task-board complement — Google Workspace teams usually need a project tracker more than they need another office suite.",
+        "description": "Trello is a kanban board, not a document suite. It appears here because the most common reason a team leaves Google Workspace is not email at all — it is that Tasks and the surrounding project tracking never fit the way they work. Trello offers a genuinely usable free tier with boards, lists and cards, and integrates with the document editors above.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "bestFor": "Teams replacing Google Tasks with a real project board",
+        "features": [
+          "Kanban boards, lists, cards",
+          "Free tier with generous card limits",
+          "Checklists, due dates, attachments",
+          "Many integrations",
+          "Mobile apps"
+        ],
+        "pros": [
+          "Genuinely usable free tier",
+          "Very low learning curve",
+          "Huge integration ecosystem",
+          "Visually clear for non-technical teams"
+        ],
+        "cons": [
+          "Not a document or mail suite",
+          "Free tier limits automation and card history",
+          "Weak reporting on the free plan",
+          "Can get cluttered on large boards"
+        ]
       }
     ],
     "migrationDifficulty": "Medium",
     "migrationGuide": {
       "steps": [
-        "Export Gmail contacts and emails (using Google Takeout)",
-        "Export Google Drive files",
-        "Set up Zoho Workplace or Nextcloud",
-        "Migrate email using IMAP migration tools",
-        "Import contacts and calendar data",
-        "Update DNS for custom domains"
+        "Inventory what you actually use — list which Google services are in play (mail, drive, docs, sheets, calendar, groups) and note the ones nobody opens. Most teams are paying for Workspace to serve two or three apps.",
+        "Run Google Takeout before you touch anything. Export your data as MBOX for mail and as native files for Drive. Do this first — once you start cancelling, some export paths close.",
+        "Set up the replacement for the highest-friction app first, usually mail, since it carries the most historical data and the most external commitments.",
+        "Migrate email over IMAP or use the provider's dedicated migration tool. Expect the mailbox to take several hours per 10 GB and validate spam rules and filters afterwards — they do not migrate.",
+        "Recreate calendar events, contacts and groups by export/import, then confirm recurring events survived. Recurring series break more often than single events during migration.",
+        "Move shared drives deliberately. Folder permissions and link-sharing settings are the most commonly lost part of a Drive migration; document every share before you move it.",
+        "Point your domain at the new mail provider and update DNS MX records, SPF and DKIM. Lower the DNS TTL 24 hours before this step or the change will take a day to propagate.",
+        "Run both systems in parallel for at least two weeks. Announce the cutover date, keep the old account readable, and only cancel the subscription once nobody reports a missing folder or a broken calendar invite."
       ],
       "tips": [
-        "Google Takeout can export all your data in one go",
-        "Zoho has a free tier for up to 5 users"
+        "Drop your DNS TTL to 300 seconds a full day before the mail cutover. Most of the 'migration broke' panic comes from slow DNS propagation, not from the migration itself.",
+        "Migration tools move mail and files far more reliably than permissions. Budget real time for re-sharing documents by hand rather than assuming the tool handled sharing.",
+        "If the real driver is cost, migrating only mail to Fastmail and keeping documents on free desktop tools removes roughly 80% of the per-seat bill with a fraction of the disruption.",
+        "Free tiers are genuine here — Zoho covers 5 users and LibreOffice costs nothing per user. A team of 30 does not have to pay anything to leave, if document collaboration discipline allows it."
       ]
     },
-    "verdict": "Zoho Workplace is the most cost-effective alternative. Nextcloud Hub is best for privacy-conscious organizations that want full data control.",
+    "verdict": "Zoho Workplace for most small teams moving off Google: it is a genuine free tier up to 5 users with custom domain mail, and paid pricing well below per-seat Google. Nextcloud Hub if data must stay on your own infrastructure and you have someone who can run a server. Microsoft 365 Business Basic when client deliverables must stay in true Office formats. LibreOffice when the requirement is only 'no subscription for document editing' and collaboration is not expected.",
     "faqs": [
       {
-        "question": "Can I migrate my Google Drive files to Zoho?",
-        "answer": "Yes, Zoho supports importing Google Drive files. You can also download files from Google Drive and upload to Zoho Docs."
+        "question": "Is there a genuinely free alternative to Google Workspace?",
+        "answer": "Yes, for small teams. Zoho Workplace has a free tier covering up to 5 users with 5 GB each, including custom domain email. LibreOffice and ONLYOFFICE are free and unlimited for document editing with no account at all. What free tiers do not usually include is real-time multi-user collaboration plus admin console and audit logs — that combination is what you are paying Google for."
       },
       {
-        "question": "Is Nextcloud difficult to self-host?",
-        "answer": "Nextcloud has easy installation scripts and supports one-click installs on many hosting providers. Technical comfort helps but it's not extremely difficult."
+        "question": "How much does Google Workspace cost per user per month?",
+        "answer": "Business Starter is around $7.20 per user per month, Business Standard around $12, and Business Plus around $18, billed annually. A 30-person team on Starter therefore spends roughly $2,600 per year. The free personal tier is single-user and cannot be used as a team suite."
+      },
+      {
+        "question": "Can I migrate my Gmail messages and Google Drive files?",
+        "answer": "Yes, with caveats. Use Google Takeout to export mail as MBOX and Drive files in native formats, then import into the new provider — most offer IMAP-based mail migration. What does not migrate reliably are folder permissions, link-sharing settings and comment history, so document every share before you start and expect to re-share manually."
+      },
+      {
+        "question": "What is the best free alternative to Google Drive specifically?",
+        "answer": "For storage and file sharing, Nextcloud Hub if you will self-host it, or Proton Drive if you want someone else to run it and care most about encryption. For document editing specifically, LibreOffice Desktop is free and reads and writes the same formats. For collaborative editing in a browser, Nextcloud Office or ONLYOFFICE self-hosted."
+      },
+      {
+        "question": "Is Zoho Workspace really free for 5 users?",
+        "answer": "Yes — Zoho Workplace offers a free tier for up to 5 users with 5 GB of storage per user, and it includes mail with custom domain support. Storage is the main limit; if your team works with large media files you will need a paid plan or a self-hosted Nextcloud. The five-user ceiling means it stops working the moment you hire a sixth person."
+      },
+      {
+        "question": "Which alternative has the best Microsoft Office compatibility?",
+        "answer": "ONLYOFFICE, which renders .docx and .xlsx more faithfully than LibreOffice and can be self-hosted. Microsoft 365 Business Basic is the only option that is genuinely the same formats, because it is the same software. LibreOffice opens and saves Office formats correctly, but complex layouts can shift."
+      },
+      {
+        "question": "Is switching away from Google Workspace worth it for a 5-person team?",
+        "answer": "Probably not, financially — five seats on Business Starter is under $450 per year, and moving mail and shared drives costs far more in staff time than that. It becomes worthwhile past roughly 20 users, or immediately if you have a compliance requirement around data residency. For very small teams the better move is to stay on Google and stop paying for unused Workspace features."
+      },
+      {
+        "question": "Does Microsoft 365 cost less than Google Workspace?",
+        "answer": "Not meaningfully at the entry point — Business Basic is around $6 per user per month against Google's $7.20. The case for Microsoft is format fidelity rather than price: clients and colleagues expect .docx and .xlsx, and Microsoft is the only option here that produces them natively without conversion."
       }
     ],
-    "tagline": "Google's cloud productivity suite with per-user pricing",
+    "tagline": "Google's per-user productivity suite — and the free tiers that actually replace it",
     "paidToolUrl": "https://workspace.google.com",
-    "pricing": "Business Starter $7.20/user/month; Business Standard $12/user/month",
-    "whySwitch": [
-      "Reduce per-user costs",
-      "Self-hosted privacy option",
-      "Avoid vendor lock-in"
-    ],
+    "pricing": "Free personal (1 user); Business Starter $7.20/user/month; Business Standard $12/user/month; Business Plus $18/user/month",
     "seoKeywords": [
       "google workspace alternative",
       "g suite alternatives free",
@@ -340,235 +353,1184 @@
       "free alternatives to google workspace",
       "zoho workplace",
       "nextcloud hub",
-      "free email suite"
+      "free email suite",
+      "google workspace alternatives for small teams",
+      "cheaper alternative to google workspace",
+      "google drive alternative",
+      "is there a free g suite alternative"
     ],
-    "seoTitleOverride": "Free Google Workspace Alternatives - Best G Suite Replacements",
-    "h1Override": "Best Free Google Workspace & G Suite Alternatives in 2026"
+    "seoTitleOverride": "Free Google Workspace Alternatives — G Suite Replacements That Cost $0",
+    "h1Override": "Free Google Workspace & G Suite Alternatives in 2026"
+  },
+  {
+    "paidTool": "Microsoft 365",
+    "slug": "microsoft-365",
+    "category": "Productivity",
+    "description": "Microsoft 365 is the subscription version of Office: Word, Excel, PowerPoint, Outlook, OneDrive, Teams and Exchange mail, licensed per user per month. Personal plans start around $7 and $10 for a family, and Business tiers start near $6 per user. What you get is the reference implementation of the .docx and .xlsx formats — every serious office suite on the market, including every free one, is measured against how faithfully it reproduces Microsoft's output.\n\nThat is exactly why leaving Microsoft 365 is harder than leaving Google Workspace. The files are not a proprietary database; they are public XML formats, so they survive the move. But complex Word layouts with tracked changes, embedded objects, custom styles, and Excel formulas with macros frequently do not survive perfectly, and re-fixing them is manual work that adds up across a whole document set.\n\nThere is also the endpoint question. Buying the desktop Office apps once removes the subscription, but it does not remove the internet dependency for activation, updates, or OneDrive sync — and it locks you to whatever version you last paid for.\n\nThis page compares the options by how faithful they are to Office formats, because that is the only variable that determines whether a migration is a two-hour job or a two-week one. Short version: if you can move to free desktop software, LibreOffice is the safe default; if exact fidelity is non-negotiable, ONLYOFFICE is the better open-source option, and staying on Microsoft 365 is the only choice that produces genuinely identical files.",
+    "painPoints": [
+      {
+        "problem": "Subscription cost with no one-time purchase option in the mainstream line",
+        "impact": "Roughly $84 per user per year for Personal, and more for Business, recurring indefinitely for software that used to be bought outright"
+      },
+      {
+        "problem": "Desktop Office requires internet for activation and updates",
+        "impact": "Licence checks and feature updates both need a connection, which is a real constraint on locked-down or air-gapped machines"
+      },
+      {
+        "problem": "Automatic updates you cannot schedule",
+        "impact": "Feature updates land on Microsoft's schedule, and a half-finished update can block a machine for the day"
+      },
+      {
+        "problem": "Office 365 format lock-in is soft, not hard",
+        "impact": "Formats are open, so files open elsewhere — but complex layouts, macros and tracked changes frequently need manual repair after the move"
+      },
+      {
+        "problem": "Telemetry and diagnostics collection",
+        "impact": "Microsoft collects diagnostic data by default; the opt-out is buried in settings and easy to miss"
+      }
+    ],
+    "whySwitch": [
+      "Own the software outright — free desktop suites never ask for a subscription again",
+      "Work fully offline as the default rather than as a degraded mode",
+      "Keep control of update timing on your own machines",
+      "Stop paying per seat for features your team never opens"
+    ],
+    "alternatives": [
+      {
+        "name": "LibreOffice",
+        "url": "https://www.libreoffice.org",
+        "reason": "The safe default — free, offline, opens and saves .docx and .xlsx, available on Windows, macOS and Linux, with no account or subscription.",
+        "description": "LibreOffice is the most widely deployed open-source office suite and the least risky choice for a first move away from Microsoft 365. Writer, Calc, Impress and Base install locally, work with no connection, and handle the common Word and Excel document shapes correctly. The honest limitation is layout fidelity: documents heavy with text boxes, floating shapes, or hand-tuned column layouts can reflow, and Excel macro compatibility is only partial.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5,
+        "featured": true,
+        "bestFor": "Anyone who needs to stop paying for Word and Excel without changing how they work",
+        "features": [
+          "Writer, Calc, Impress, Base",
+          "Reads and saves .docx/.xlsx/.pptx",
+          "Windows, macOS, Linux",
+          "Fully offline operation",
+          "No account or subscription"
+        ],
+        "pros": [
+          "Free forever, no account needed",
+          "Works offline as the normal mode",
+          "Cross-platform including Linux",
+          "Very stable and well supported"
+        ],
+        "cons": [
+          "Complex Word layouts can reflow",
+          "Excel macro support is partial",
+          "No real-time collaboration",
+          "macOS install is less refined than Windows"
+        ],
+        "resourceId": "misc-14714"
+      },
+      {
+        "name": "ONLYOFFICE",
+        "resourceId": "misc-14715",
+        "url": "https://www.onlyoffice.com",
+        "reason": "Higher .docx and .xlsx fidelity than LibreOffice, and it can be self-hosted — the pick when documents go to clients and cannot shift.",
+        "description": "ONLYOFFICE Desktop Editors and ONLYOFFICE Workspace both read and write Microsoft formats, and the rendering is measurably closer to Word and Excel than LibreOffice's, particularly for spreadsheets with conditional formatting and for documents with complex shape layout. It is free on the desktop and open source, and the Workspace edition can be self-hosted to add browser-based co-editing.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4,
+        "featured": true,
+        "bestFor": "Documents that go to clients or colleagues who will notice layout shifts",
+        "features": [
+          "High-fidelity .docx/.xlsx rendering",
+          "Desktop and browser editors",
+          "Self-hostable Workspace edition",
+          "Windows, macOS, Linux",
+          "Built-in PDF and PDF/A export"
+        ],
+        "pros": [
+          "Best open-source fidelity with Office layouts",
+          "Self-hostable with co-editing",
+          "Free desktop edition",
+          "Strong PDF export"
+        ],
+        "cons": [
+          "Heavier install than LibreOffice",
+          "Smaller community and plugin set",
+          "Self-hosting needs a server",
+          "Collaboration features need the paid Workspace tier for teams"
+        ]
+      },
+      {
+        "name": "Google Workspace",
+        "url": "https://workspace.google.com",
+        "reason": "The cloud-native alternative — browser-based Docs and Sheets with real-time collaboration, free for one user and cheap per seat after that.",
+        "description": "Google Workspace replaces Office with browser-first Docs and Sheets rather than desktop applications. The advantage is collaboration: multiple people editing the same document with a full comment thread is far smoother than anything a desktop suite offers. The trade-off is that you are back to a per-user subscription, and Office file fidelity on import is imperfect for anything complex.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4,
+        "bestFor": "Teams whose main need is simultaneous editing rather than exact formatting",
+        "features": [
+          "Docs, Sheets, Slides in the browser",
+          "Real-time multi-user editing",
+          "Free single-user tier",
+          "Gmail and Drive included",
+          "Comment and suggestion threads"
+        ],
+        "pros": [
+          "Best real-time collaboration available",
+          "Free tier for individuals",
+          "Nothing to install",
+          "Very strong comment and version history"
+        ],
+        "cons": [
+          "Per-user subscription again",
+          "Office format fidelity is imperfect on complex files",
+          "Requires a connection for most work",
+          "Heavier web app than a desktop editor"
+        ]
+      },
+      {
+        "name": "WPS Office",
+        "url": "https://www.wps.com",
+        "reason": "A close visual clone of the Office interface, free with ads — the lowest-friction switch for staff who already know where everything is.",
+        "description": "WPS Office deliberately mirrors the Microsoft Office ribbon, so people find Word, Excel and PowerPoint equivalents where they expect them, which removes most retraining. It reads and writes Microsoft formats, bundles a capable PDF toolkit, and is free on desktop with an optional ad-free upgrade. The cost is the advertising in the free tier, occasional upsell prompts, and a smaller record on document fidelity than ONLYOFFICE.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "bestFor": "Teams that want an Office-shaped interface with no subscription",
+        "features": [
+          "Writer, Spreadsheets, Presentation",
+          "Office-like ribbon interface",
+          "Built-in PDF tools",
+          "Free desktop version",
+          "Windows, macOS, Linux, mobile"
+        ],
+        "pros": [
+          "Familiar Office-like interface, minimal retraining",
+          "Free desktop version",
+          "Strong PDF toolkit included",
+          "Mobile apps included"
+        ],
+        "cons": [
+          "Ads in the free version",
+          "Occasional upgrade prompts",
+          "Fidelity trails ONLYOFFICE",
+          "Closed source"
+        ]
+      },
+      {
+        "name": "Apache OpenOffice",
+        "url": "https://www.openoffice.org",
+        "reason": "The most conservative choice — free, offline, and deliberately conservative in its formatting assumptions.",
+        "description": "OpenOffice is the project LibreOffice forked from, and it remains available, stable and free. It is more conservative than LibreOffice about how it interprets newer Microsoft formats, which makes it predictable rather than feature-rich. For an organisation whose documents are mostly plain text and tables, it works perfectly and will never surprise you.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3,
+        "bestFor": "Straightforward documents where predictability matters more than features",
+        "features": [
+          "Writer, Calc, Impress",
+          "Reads and writes Office formats",
+          "Fully offline",
+          "Very low system requirements",
+          "Open source"
+        ],
+        "pros": [
+          "Completely free and offline",
+          "Very predictable behaviour",
+          "Runs on old hardware",
+          "Simple, uncluttered interface"
+        ],
+        "cons": [
+          "Development has slowed considerably",
+          "Less accurate with recent Office formats",
+          "Sparse community",
+          "No collaboration features"
+        ]
+      },
+      {
+        "name": "Microsoft Office 2021 one-time purchase",
+        "url": "https://www.microsoft.com/microsoft-365/purchase-office-2021",
+        "reason": "Not an alternative so much as an exit from the subscription — still Microsoft, still genuine Office, paid once instead of annually.",
+        "description": "Office 2021 remains available as a one-time licence for around $150, which removes the recurring cost without changing anything else about how you work. The trade-offs are real: you stop receiving feature updates, you still need a connection for activation and downloads, and you are on the last version rather than the current one. It is a reasonable stopgap for a user who was going to upgrade rarely anyway.",
+        "isFree": false,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "bestFor": "One or two users who want real Office without a recurring bill",
+        "features": [
+          "Genuine Word, Excel, PowerPoint",
+          "One-time payment around $150",
+          "Perpetual licence for one machine",
+          "Full Office format fidelity",
+          "Works offline"
+        ],
+        "pros": [
+          "Exact Office behaviour and formatting",
+          "No recurring subscription",
+          "Offline capable",
+          "No retraining at all"
+        ],
+        "cons": [
+          "No further feature updates",
+          "Activation still needs internet",
+          "Licence tied to one machine",
+          "Increasingly dated feature set"
+        ]
+      }
+    ],
+    "migrationDifficulty": "Medium",
+    "migrationGuide": {
+      "steps": [
+        "Decide how much fidelity you actually need. If documents only ever live inside your team, LibreOffice is sufficient. If they go to clients or external parties, you want ONLYOFFICE or genuine Office — decide this before touching anything.",
+        "Take a sample, not an assumption. Open ten of your most complex real documents in LibreOffice and in ONLYOFFICE, and compare them side by side with the originals. This single test will tell you which tool you need and save hours of false starts.",
+        "Turn on document telemetry in your current Office install first. File > Options > Advanced reports which documents fail to open cleanly in older formats — those are exactly the ones that will break on migration.",
+        "Export your Outlook data if you are leaving mail behind. PST export via the Outlook Import Export Tool, then import into the replacement. Do this before uninstalling anything.",
+        "Install the replacement suite on one pilot machine and open your top 20 highest-stakes files. Repair any layout damage now, while you still know which documents are sensitive.",
+        "Batch-convert rather than relying on the new suite's open-and-save. For large repositories, a scripted conversion passes over every file once and surfaces the failures in a list, instead of leaving them to be discovered months later.",
+        "Roll out to the team with the layout caveats written down. Keep the original files untouched in an archive until the team has worked in the new suite for a full reporting cycle.",
+        "Revoke the Microsoft 365 subscription last, after a clean billing period. Export anything you might still need first, and confirm the renewal does not fire."
+      ],
+      "tips": [
+        "ONLYOFFICE handles conditional formatting and pivot tables in Excel noticeably better than LibreOffice. If your spreadsheets are the main workload, that alone decides it.",
+        "Fonts are the hidden cause of most layout shifts. Install the exact fonts your documents use on the new machine, or accept reflow — no editor can fix a missing typeface.",
+        "Keep one genuine Office licence as a fallback for the handful of files that refuse to render correctly anywhere else. This costs almost nothing and removes a recurring problem.",
+        "Test one real deliverable end to end, not a sample of unrelated files. Export it to PDF from the new suite and check it against the original PDF the client received last time."
+      ]
+    },
+    "verdict": "LibreOffice for the majority of teams moving off Office subscriptions — free, offline, cross-platform, and it reads and writes Office formats reliably for ordinary documents. ONLYOFFICE when spreadsheet formatting fidelity or client-facing layout matters more than install simplicity. Microsoft 365 itself is not the problem if you only need Word and Excel: the one-time Office 2021 purchase removes the recurring cost with zero migration risk.",
+    "faqs": [
+      {
+        "question": "Can LibreOffice really open and edit Word and Excel files?",
+        "answer": "Yes — LibreOffice Writer, Calc and Impress open and save .docx, .xlsx and .pptx, and edits round-trip back to Microsoft formats. The limitation is layout fidelity rather than file compatibility: documents heavy with text boxes, floating shapes, or hand-tuned columns can reflow, and Excel macros convert only partially. Test your most complex real file before committing."
+      },
+      {
+        "question": "What is the best free alternative to Microsoft Office for Windows?",
+        "answer": "LibreOffice is the standard answer — free, offline, stable for years, and available for Windows, macOS and Linux from the same codebase. If your work is Excel-heavy and formatting fidelity matters, ONLYOFFICE is the stronger option because it renders conditional formatting and pivot tables closer to Excel."
+      },
+      {
+        "question": "Is there a one-time purchase version of Microsoft Office?",
+        "answer": "Yes, Office 2021 is still sold as a one-time licence for roughly $150. You get genuine Word, Excel and PowerPoint with no recurring payment. The trade-offs are that feature updates stop, activation still requires an internet connection, and you are locked to that version rather than tracking current releases."
+      },
+      {
+        "question": "Which open-source suite has the best Microsoft format compatibility?",
+        "answer": "ONLYOFFICE. It renders complex .docx layout and Excel features such as conditional formatting and pivot tables closer to the Microsoft original than LibreOffice does. LibreOffice remains the safer choice for stability and community support, so the honest answer is: ONLYOFFICE for fidelity, LibreOffice for predictability."
+      },
+      {
+        "question": "Can I keep using Microsoft Excel with a free alternative?",
+        "answer": "Yes, with LibreOffice Calc or ONLYOFFICE, both of which read and write .xlsx. Basic formulas, formatting and charts translate cleanly. Excel-specific add-ins, Power Query, and VBA macros are the parts that do not transfer fully — if your work depends on them, keep a genuine Excel licence as a fallback."
+      },
+      {
+        "question": "Does moving away from Microsoft 365 break Outlook and email?",
+        "answer": "Moving the office apps does not affect Outlook — that is a separate subscription element. If you are leaving the whole Microsoft 365 subscription, export your mailboxes as PST files using the Outlook Import Export Tool first, then import into the replacement. Do this before uninstalling, since the export tool ships with Outlook."
+      },
+      {
+        "question": "Is Office 365 or Office 2021 better for a home user?",
+        "answer": "If you use Office a few times a month and mostly read and edit existing files, Office 2021 at around $150 one-time is usually better value than an annual subscription. If you rely on the current feature set, work across several devices, or use cloud features like OneDrive sync, the subscription is the more sensible option."
+      }
+    ],
+    "tagline": "Microsoft Office on a recurring subscription — and the free desktop suites that replace it",
+    "paidToolUrl": "https://www.microsoft.com/microsoft-365",
+    "pricing": "Personal $7/month; Family $10/month; Business Basic from $6/user/month; Office 2021 one-time ~$150",
+    "seoKeywords": [
+      "microsoft 365 alternative",
+      "free office suite",
+      "libreoffice vs office",
+      "onlyoffice",
+      "free alternative to microsoft office",
+      "microsoft office alternative free download",
+      "open source office suite",
+      "microsoft 365 free alternative"
+    ],
+    "seoTitleOverride": "Free Microsoft 365 Alternatives — LibreOffice, ONLYOFFICE & Offline Office",
+    "h1Override": "Best Free Microsoft 365 & Office Alternatives in 2026"
+  },
+  {
+    "paidTool": "Zoom",
+    "slug": "zoom",
+    "category": "Communication",
+    "description": "Zoom is the default video conferencing platform: meetings, webinars, phone, and chat in one client, with screen sharing and recording included. Its free tier caps group calls at 40 minutes for three or more participants, and that single limit is the reason most people search for an alternative. One-minute calls over, the host is prompted to upgrade, and the meeting ends.\n\nThe paid tiers work out to roughly $180 per host per year at the Pro level, which becomes the dominant cost line for a team that meets daily. It is not an enormous amount of money per person, but it scales with headcount and it buys access to a feature most people never use, because the interruption happens on calls that a free tier with a 60-minute limit would have covered entirely.\n\nThere is a second reason to leave that gets less attention: Zoom is one of the most widely criticised platforms on privacy grounds, with its default settings and data-processing practices documented in court filings and criticised by researchers. Meeting content travels through infrastructure that is not end-to-end encrypted on free tiers.\n\nThe alternatives split cleanly into two groups. If you want the shortest path to no time limit, Jitsi Meet is free, open source, and needs no account at all. If you want a proper team platform with chat, scheduling and recording done well, the field is more competitive — Meet and Teams both have usable free tiers with longer limits than Zoom, and they win if your organisation is already in that ecosystem.",
+    "painPoints": [
+      {
+        "problem": "40-minute cap on group calls in the free tier",
+        "impact": "Group calls end mid-sentence and the host must upgrade to continue — the single biggest reason people look elsewhere"
+      },
+      {
+        "problem": "Per-host pricing on paid tiers",
+        "impact": "Around $180 per host per year at Pro, recurring, and every additional organiser adds another seat to the bill"
+      },
+      {
+        "problem": "Weak default privacy on free tiers",
+        "impact": "Meetings are not end-to-end encrypted by default and traffic runs through provider infrastructure, which matters for confidential work"
+      },
+      {
+        "problem": "Platform lock-in on recordings and chat history",
+        "impact": "Recordings live in Zoom's cloud with a retention policy you control only through their settings, and chat history exports poorly"
+      },
+      {
+        "problem": "Webinar and registration features are paywalled",
+        "impact": "Registration, custom branding and multiple-session webinars sit behind higher tiers that raise the floor cost considerably"
+      }
+    ],
+    "whySwitch": [
+      "Remove call-length interruptions entirely with a service that has no limit at all",
+      "Keep end-to-end encryption on every tier rather than only on paid plans",
+      "Avoid per-host pricing that grows with every organiser you add",
+      "Run an open-source stack you can host yourself if meeting privacy is non-negotiable"
+    ],
+    "alternatives": [
+      {
+        "name": "Jitsi Meet",
+        "resourceId": "misc-08275",
+        "url": "https://meet.jit.si",
+        "reason": "Free, open source, no account and no time limit on group calls — the most direct answer to Zoom's 40-minute cap.",
+        "description": "Jitsi Meet runs in the browser with no sign-up at all. Type a room name on meet.jit.si and you are in a call that does not stop at 40 minutes. It is open source and can be self-hosted on your own infrastructure, which makes it the only option here where you control where your audio and video actually travel. Quality is good on decent connections and degrades gracefully; it lacks the polish of Zoom's virtual backgrounds and advanced recording workflows.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5,
+        "featured": true,
+        "bestFor": "Anyone who hit the 40-minute wall and wants no account, no limit, and no cost",
+        "features": [
+          "No time limit on group calls",
+          "No account required",
+          "Open source and self-hostable",
+          "Screen share and chat built in",
+          "End-to-end encryption option"
+        ],
+        "pros": [
+          "Genuinely unlimited free calls",
+          "No account, no email, no signup",
+          "Can be self-hosted for full control",
+          "Open source and free forever"
+        ],
+        "cons": [
+          "Video quality depends more on your connection than Zoom's",
+          "Fewer polish features — no breakout rooms or advanced recording",
+          "Self-hosting needs a server with bandwidth",
+          "Smaller integration ecosystem"
+        ]
+      },
+      {
+        "name": "Google Meet",
+        "url": "https://meet.google.com",
+        "reason": "Free with a 60-minute group limit — twice Zoom's, and no account needed if you already have a Google account.",
+        "description": "Meet's free tier allows group calls up to 60 minutes, still not unlimited but twice Zoom's cap, and 1:1 calls have no limit at all. Because it runs inside the browser and lives in the Google ecosystem, it shares links and calendars with tools most people already use. You need a Google account to join as a guest with an account, though guests can join without one from a direct link.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "featured": true,
+        "bestFor": "Teams already using Google for mail and calendar, who want a longer free tier",
+        "features": [
+          "60-minute group call limit on free tier",
+          "Unlimited 1:1 calls",
+          "Browser-based, nothing to install",
+          "Live captions",
+          "Calendar integration"
+        ],
+        "pros": [
+          "Twice Zoom's free group limit",
+          "Nothing to install",
+          "Excellent live captions",
+          "Calendar integration if you use Google Calendar"
+        ],
+        "cons": [
+          "Still has a group call limit",
+          "Best experience requires a Google account",
+          "No recording on the free tier",
+          "Some features now require Workspace"
+        ]
+      },
+      {
+        "name": "Microsoft Teams",
+        "url": "https://www.microsoft.com/teams",
+        "reason": "The default choice for organisations already paying for Microsoft 365 — group calls up to an hour on the free tier, and the meeting client is included in the subscription they already hold.",
+        "description": "Teams' free tier covers group meetings up to 60 minutes and unlimited 1:1 calls, matching Meet rather than beating it. Its real advantage is that it is bundled with Microsoft 365 at no extra cost for many organisations, so the marginal cost is zero where a Teams licence already exists. The interface is denser than Zoom's and it is noticeably heavier on bandwidth.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "featured": false,
+        "bestFor": "Organisations with an existing Microsoft 365 subscription",
+        "features": [
+          "60-minute group meetings on free tier",
+          "Unlimited 1:1 calls",
+          "Included with Microsoft 365 licences",
+          "File sharing and chat built in",
+          "Screen sharing"
+        ],
+        "pros": [
+          "Already included in many Microsoft 365 subscriptions",
+          "Longer free group limit than Zoom",
+          "Chat and files integrated",
+          "Enterprise-grade meeting controls"
+        ],
+        "cons": [
+          "Heavier client, more bandwidth",
+          "Denser interface than Zoom",
+          "Free tier still caps group meetings",
+          "Confusing tier structure between free and paid"
+        ]
+      },
+      {
+        "name": "Discord",
+        "url": "https://discord.com",
+        "reason": "Free screen sharing and video via GoLive, with persistent channels that turn meetings into ongoing conversation — useful for communities rather than scheduled calls.",
+        "description": "Discord is not a meeting platform, and treating it as one is a mistake. Its strength is persistent voice channels that stay open as people come and go, which suits a community or a remote team that works in the same room all day. GoLive provides free screen sharing with no call-length cap. For scheduled one-off meetings it is clumsier than Zoom or Meet, and recording is limited to subscribers.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "bestFor": "Communities and remote teams that work in one persistent channel all day",
+        "features": [
+          "Persistent voice channels",
+          "GoLive free screen sharing",
+          "No call-length cap",
+          "Channels, roles, bots",
+          "Nitro from about $10/month"
+        ],
+        "pros": [
+          "No call time limit at all",
+          "Persistent channels feel more like an office",
+          "Very active community ecosystem",
+          "Free screen sharing"
+        ],
+        "cons": [
+          "Poor for scheduled formal meetings",
+          "Free tier caps video quality",
+          "Recording requires Nitro",
+          "Can feel chaotic for structured teams"
+        ]
+      },
+      {
+        "name": "Whereby",
+        "url": "https://whereby.com",
+        "reason": "Browser-based meetings with per-meeting rooms and no time limit on the free tier — built for people who do not want to install anything or create an account.",
+        "description": "Whereby gives each meeting its own URL that anyone can join from a browser, with no account and no time limit on the free tier. It is deliberately minimal: no chat history, no recording, no scheduling infrastructure. That narrowness is the appeal for one-off calls where Zoom's complexity is unnecessary.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "bestFor": "One-off browser calls where simplicity beats features",
+        "features": [
+          "Personal meeting room URL",
+          "No account required",
+          "No time limit on free tier",
+          "Screen share and group call",
+          "Runs in the browser"
+        ],
+        "pros": [
+          "No signup at all",
+          "No call length limit",
+          "Extremally simple interface",
+          "Low bandwidth"
+        ],
+        "cons": [
+          "No built-in recording",
+          "No chat history",
+          "Limited scheduling features",
+          "Free tier participant cap"
+        ]
+      },
+      {
+        "name": "Jami",
+        "resourceId": "adblock-00521",
+        "url": "https://jami.io",
+        "reason": "Open source, peer-to-peer, and encrypted by default — the option when meeting privacy is the deciding factor rather than price.",
+        "description": "Jami is free and open source with peer-to-peer calls, so audio and video go directly between participants with no central server recording them. It supports group calls, screen sharing and file transfer, and can be self-hosted. Because it is peer-to-peer, quality on large calls depends on the weakest participant's uplink, which is why it suits small-to-medium meetings better than large ones.",
+        "isFree": true,
+        "isOpenSource": true,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "bestFor": "Privacy-sensitive calls where nobody should be able to record the conversation",
+        "features": [
+          "Peer-to-peer encrypted calls",
+          "Open source",
+          "No account required",
+          "Screen share and file transfer",
+          "Self-hostable relay server"
+        ],
+        "pros": [
+          "True peer-to-peer encryption",
+          "Free and open source",
+          "No central server holding recordings",
+          "Desktop, mobile and web clients"
+        ],
+        "cons": [
+          "Quality degrades on large calls",
+          "Fewer features than Zoom or Meet",
+          "Smaller user base",
+          "Self-hosting relay needs a server"
+        ]
+      }
+    ],
+    "migrationDifficulty": "Easy",
+    "migrationGuide": {
+      "steps": [
+        "Identify which meetings actually hit the limit. For most people it is one recurring call that runs slightly long. Note how often it happens and how far over 40 minutes it goes, because that tells you whether you need no limit at all or just a longer one.",
+        "Check what you depend on from Zoom specifically — recording, breakout rooms, registration, custom branding, or a Zoom Room device in an office. Most teams use none of these, and those that do should not switch platforms purely for cost.",
+        "Create the equivalent room in the replacement before changing anything, and test it with the two or three colleagues who attend most often. Invite links differ between platforms, so this is the step people skip and regret.",
+        "Update recurring calendar invites with the new link. Every recurring meeting in every attendee's calendar needs editing, including ones you personally do not attend — this is the actual work in a Zoom migration.",
+        "Update any signage, chat messages, and documentation that reference the old meeting ID. A room number posted on a whiteboard outlives the migration by years if you skip this.",
+        "Keep the old Zoom account active for two weeks with the licence downgraded to free. A cancelled Pro subscription immediately loses access to recordings that people may still need.",
+        "Cancel the subscription only after a full cycle of meetings has run cleanly on the new platform, and export any recordings you want to keep first — they are deleted when the account closes."
+      ],
+      "tips": [
+        "Jitsi needs no account at all, which removes the single most common friction in a meeting migration: people who cannot get in because they never received an invite to a service they do not have.",
+        "A custom domain for your meeting URLs is worth doing on Jitsi if you self-host — it keeps the links looking like yours rather than a shared public host.",
+        "If your meetings are mostly screen-share-plus-discussion rather than face-to-face, check whether a lightweight screen share is enough. It needs a fraction of the bandwidth and drops far less often.",
+        "Do not migrate a paid Zoom account in the same week as a deadline. Call continuity matters more than the roughly $180 a year, and a failed meeting costs more than that in team trust."
+      ]
+    },
+    "verdict": "Jitsi Meet is the clearest upgrade for anyone who hit the 40-minute wall: free, open source, no account, and no limit at all. Google Meet is the pragmatic pick if your organisation already runs on Google and twice the limit would be enough. Teams costs nothing extra where a Microsoft 365 licence already exists. Jami is the choice when the meeting must be unrecordable by design.",
+    "faqs": [
+      {
+        "question": "Is there a Zoom alternative with no time limit that is actually free?",
+        "answer": "Yes. Jitsi Meet is free, open source, needs no account, and has no limit on group call length — open meet.jit.si, pick a room name, and start. Discord also has no call-length cap if your calls are informal and channel-based. Google Meet raises the cap to 60 minutes but does not remove it."
+      },
+      {
+        "question": "Why did my Zoom meeting cut off after 40 minutes?",
+        "answer": "That is the free tier limit for group calls with three or more participants. The host gets a prompt to upgrade and the call ends if they do not. One-to-one calls have no limit. The free alternatives all handle this differently: Jitsi has no limit at all, Meet and Teams cap group calls at 60 minutes instead."
+      },
+      {
+        "question": "Can I record meetings for free on an alternative?",
+        "answer": "Jitsi supports local recording free of charge, which means the file is saved on the host's machine rather than uploaded to a vendor's cloud. Discord requires a paid Nitro subscription for recording. Google Meet and Teams free tiers do not include recording. If recording is essential, Jitsi local recording or a self-hosted Jitsi deployment is the free route."
+      },
+      {
+        "question": "Is Jitsi really free with no hidden limits?",
+        "answer": "The public instance at meet.jit.si is free with no call-length limit and no account. Limits come from infrastructure rather than policy: very large meetings can be throttled by the shared server, and quality depends on the weakest connection in the call. Self-hosting Jitsi removes the shared-infrastructure variable and gives you control over data location."
+      },
+      {
+        "question": "Which Zoom alternative is best for an online class or webinar?",
+        "answer": "Jitsi Meet for free and unlimited length, with the trade-off of no built-in registration system or polished webinar controls. Zoom's webinar features are paywalled well above its meeting tiers, so a free Jitsi room plus a shared signup form is usually the more practical free setup. Whereby works too for small one-off sessions."
+      },
+      {
+        "question": "Is it possible to self-host a Zoom alternative?",
+        "answer": "Yes. Jitsi and Jami are both open source and can be run on your own server, which means audio and video traffic never reaches a third party. That is the strongest privacy option available here. The cost is a server with adequate bandwidth plus someone responsible for keeping it running and patched."
+      },
+      {
+        "question": "Will switching from Zoom lose my recordings and chat history?",
+        "answer": "Yes, unless you export them first. Recordings and chat history live in Zoom's cloud and are deleted when the account is closed, and they do not transfer to any alternative. Export anything you need before cancelling, and keep the old account on a free tier for two weeks rather than deleting it — a cancelled subscription can lock you out of files you did not think to save."
+      }
+    ],
+    "tagline": "Video conferencing with a 40-minute free limit — and the alternatives that remove it",
+    "paidToolUrl": "https://zoom.us",
+    "pricing": "Free basic (40-min group limit); Pro about $15.99/month per host; Business about $20/month per host",
+    "seoKeywords": [
+      "zoom alternative",
+      "free video conferencing",
+      "jitsi meet",
+      "google meet vs zoom",
+      "zoom alternative no time limit",
+      "free zoom alternative",
+      "zoom alternative for teams",
+      "40 minute zoom limit alternative"
+    ],
+    "seoTitleOverride": "Free Zoom Alternatives With No Time Limit — Jitsi, Meet & More",
+    "h1Override": "Best Free Zoom Alternatives With No Time Limit in 2026"
   },
   {
     "paidTool": "Spotify Premium",
     "slug": "spotify-premium",
     "category": "Entertainment",
-    "description": "Spotify Premium removes ads and enables offline downloads for $10.99/month. Many users seek alternatives for better audio quality, artist compensation, or avoiding subscription fees.",
+    "description": "Spotify Premium removes ads and unlocks offline listening at around $11.99 per month in the US, with cheaper Student and Duo tiers and a Family plan that works out cheaper per person. What it does not do is deliver lossless audio — even at the highest 320 kbps setting, Spotify streams lossy files, which is why audiophiles and listeners who care about artist compensation end up elsewhere.\n\nThe per-stream economics are the part that generates the most criticism. Reported payouts work out at a fraction of a cent per stream, and the exact figure has been repeatedly contested by Spotify, rights holders and analysts. The consequence is structural: a service priced around a flat subscription fee distributes a fixed revenue pool, and the split between platform and artist is not something listeners can influence directly.\n\nSo there are two distinct questions, and they have different answers. If the objection is price, the honest answer is that free ad-supported tiers exist everywhere and Bandcamp lets you buy records outright with no subscription at all. If the objection is audio quality or artist payout, the alternatives are Tidal, which streams lossless and claims artist-first economics, and Bandcamp, where the majority of revenue goes to the person who made the music.\n\nOne practical note before switching: playlists do not transfer automatically between services, and the free tools that do it (Soundiiz, TuneMyMusic) work by matching track metadata rather than audio fingerprints, so expect a few unmatched songs out of a large library that needs manual fixing.",
     "painPoints": [
       {
-        "problem": "Monthly subscription cost",
-        "impact": "$10.99/month ongoing"
+        "problem": "Recurring subscription cost for a service most listeners use passively",
+        "impact": "Around $11.99 per month, or $144 per year, largely on background listening"
       },
       {
-        "problem": "Low artist payouts",
-        "impact": "$0.003-0.005 per stream"
+        "problem": "Lossy compression only, even at the highest setting",
+        "impact": "320 kbps Ogg Vorbis is not lossless — hi-res and Masters-quality streams simply do not exist on the service"
       },
       {
-        "problem": "Audio quality capped at 320kbps",
-        "impact": "Not true lossless quality"
+        "problem": "Low per-stream payouts to artists",
+        "impact": "Reported figures sit at a fraction of a cent per stream, which drives most of the criticism about platform economics"
+      },
+      {
+        "problem": "Playlists do not transfer between services",
+        "impact": "Every switch means re-importing libraries, and automated tools miss tracks whose metadata does not match exactly"
+      },
+      {
+        "problem": "Cancellation path is deliberately indirect",
+        "impact": "Subscriptions renew through the app store or web with no reminder email, and cancellation lives several menus deep"
       }
+    ],
+    "whySwitch": [
+      "Pay nothing by moving to an ad-supported tier and accepting short ad breaks",
+      "Own your music outright by buying records directly instead of renting access",
+      "Get true lossless audio where the hardware supports it",
+      "Put more of your money toward the people who recorded the music"
     ],
     "alternatives": [
       {
-        "name": "YouTube Music",
-        "url": "https://music.youtube.com",
-        "reason": "Included with YouTube Premium, vast catalog including remixes and live versions",
+        "name": "Bandcamp",
+        "resourceId": "misc-01797",
+        "url": "https://bandcamp.com",
+        "reason": "Buy music directly with no subscription at all — the only major platform where the majority of revenue actually reaches the artist.",
+        "description": "Bandcamp is a marketplace, not a subscription. You find an artist, buy the album or a single at a price the artist sets — many allow name-your-price — and download it. You own those files permanently and can play them anywhere. The trade-off is that discovery is weaker than on a streaming platform: you need to already know who you want, or rely on Bandcamp's tag and fan-following features to find new artists.",
         "isFree": true,
         "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5,
+        "featured": true,
+        "bestFor": "Listeners who want to own their music and pay artists directly",
         "features": [
-          "Huge catalog",
-          "Remixes and live versions",
-          "Smart downloads"
+          "Buy albums and singles permanently",
+          "Name-your-price on many releases",
+          "Artists set their own pricing",
+          "Downloadable files you keep",
+          "Artist and label pages"
         ],
-        "pricing": "Free with ads; Premium $10.99/month"
+        "pros": [
+          "You own what you buy, permanently",
+          "Majority of revenue goes to the artist",
+          "No subscription, ever",
+          "Artists often release things streaming platforms never get"
+        ],
+        "cons": [
+          "Discovery is much weaker than streaming",
+          "No algorithmic playlists",
+          "Not available on most car systems",
+          "Album-oriented rather than track-oriented"
+        ]
       },
       {
         "name": "Tidal",
         "url": "https://tidal.com",
-        "reason": "HiFi and Masters quality audio, better artist payouts",
+        "reason": "The audiophile option — true lossless and Masters-quality streams, plus artist-first payout economics.",
+        "description": "Tidal streams in HiFi lossless up to 24-bit/192 kHz, which is a genuine technical difference rather than a marketing one, and its Masters tier goes further still. Tidal has publicly committed to artist-first payout splits, reporting a higher effective rate per stream than Spotify. The practical drawback is the smaller catalogue and a reputation for slower app performance, plus the lossless benefit needs decent hardware and a wired connection to be audible.",
         "isFree": false,
         "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4,
+        "featured": true,
+        "bestFor": "Listeners with good headphones who can hear the difference lossless makes",
         "features": [
-          "HiFi audio",
-          "Artist-centric payouts",
-          "Exclusive content"
-        ],
-        "pricing": "HiFi $10.99/month; HiFi Plus $19.99/month"
-      },
-      {
-        "name": "Bandcamp",
-        "url": "https://bandcamp.com",
-        "reason": "Pay artists directly, true ownership of music files",
-        "isFree": true,
-        "isOpenSource": false,
-        "features": [
-          "Buy music directly",
-          "No subscription needed",
-          "Support artists"
-        ],
-        "pricing": "Pay what you want (artist sets minimum)"
-      },
-      {
-        "name": "SoundCloud Go",
-        "url": "https://soundcloud.com/go",
-        "reason": "Access to 200M+ tracks including remixes and DJ sets not on other platforms",
-        "isFree": true,
-        "isOpenSource": false,
-        "features": [
-          "200M+ tracks",
+          "HiFi lossless up to 24-bit/192 kHz",
+          "Maters-quality tier",
+          "Higher artist payout rates",
           "Offline listening",
-          "DJ sets and remixes"
+          "Desktop and mobile apps"
         ],
-        "pricing": "Free with ads; Go $4.99/month; Go+ $9.99/month"
+        "pros": [
+          "True lossless audio, not upsampled",
+          "Better artist compensation",
+          "High-quality catalogue in the classical and jazz space",
+          "Offline downloads included"
+        ],
+        "cons": [
+          "Not free",
+          "Smaller catalogue than Spotify",
+          "App performance has lagged competitors",
+          "Lossless needs good hardware to justify the price"
+        ]
+      },
+      {
+        "name": "YouTube Music",
+        "resourceId": "misc-01777",
+        "url": "https://music.youtube.com",
+        "reason": "The best value if you already pay for YouTube Premium — video versions, remixes and live cuts that exist nowhere else.",
+        "description": "YouTube Music is free with ads and included with a YouTube Premium subscription, which makes the marginal cost zero if you already have it. Its catalogue advantage is unique: official videos, live performances, covers and remix albums that are not on other streaming services. Its audio quality ceiling is 256 kbps AAC, below Spotify's bitrate ceiling and well below lossless.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "featured": true,
+        "bestFor": "Anyone with YouTube Premium who wants the extra catalogue for no extra cost",
+        "features": [
+          "Included with YouTube Premium",
+          "Free with ads otherwise",
+          "Official videos and live performances",
+          "Smart downloads for offline",
+          "Android and web apps"
+        ],
+        "pros": [
+          "Zero marginal cost with YouTube Premium",
+          "Catalogue with remixes and live cuts",
+          "Free ad-supported tier available",
+          "Good discovery algorithm"
+        ],
+        "cons": [
+          "Audio capped at 256 kbps — not lossless",
+          "Desktop app experience is weaker on Windows",
+          "Less polished than dedicated music apps",
+          "Offline downloads require Premium"
+        ]
+      },
+      {
+        "name": "Apple Music",
+        "url": "https://music.apple.com",
+        "reason": "Lossless and spatial audio at the standard subscription price, with a catalogue that covers classical and jazz better than most.",
+        "description": "Apple Music includes lossless ALAC up to 24-bit/192 kHz and spatial audio with head tracking on AirPods and supported hardware, at no tier above the standard plan. It pays artists the most of any major streaming service by most published estimates, and pairs cleanly with Apple devices. For Android and Windows listeners the experience is functional but noticeably less integrated.",
+        "isFree": false,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5,
+        "featured": false,
+        "bestFor": "Apple device owners who want lossless without paying for a separate tier",
+        "features": [
+          "Lossless ALAC up to 24-bit/192 kHz",
+          "Spatial audio with head tracking",
+          "No tier needed for lossless",
+          "Very large catalogue",
+          "Excellent Android app"
+        ],
+        "pros": [
+          "Lossless included at the standard price",
+          "Spatial audio on supported Apple hardware",
+          "Generally highest artist payout rates",
+          "Strong classical and jazz catalogue"
+        ],
+        "cons": [
+          "Paid only, no meaningful free tier",
+          "Best experience is on Apple devices",
+          "Android and desktop apps less integrated",
+          "Windows app has been much improved but still behind"
+        ]
+      },
+      {
+        "name": "SoundCloud Go+",
+        "resourceId": "mobile-01300",
+        "url": "https://soundcloud.com/go",
+        "reason": "The deepest catalogue for electronic music, DJ sets, remixes and underground releases that are simply not on the mainstream services.",
+        "description": "SoundCloud is where independent artists, bedroom producers and DJs upload, which makes it the only place on this list with remix sets, unofficial versions, and tracks that were never licensed to anyone else. Go+ at a lower price than Spotify removes ads and enables offline listening. If your taste is electronic, underground, or producer-focused, this is not a substitute for Spotify but a genuine addition.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "featured": false,
+        "bestFor": "Electronic, underground and DJ music listeners who cannot find those tracks elsewhere",
+        "features": [
+          "Massive independent catalogue",
+          "DJ sets and long-form mixes",
+          "Free ad-supported tier",
+          "Go+ from about $4.99/month",
+          "Artist upload support"
+        ],
+        "pros": [
+          "Releases that exist nowhere else",
+          "Cheapest paid tier here",
+          "Good for niche and independent genres",
+          "Free tier is usable"
+        ],
+        "cons": [
+          "Audio quality lower than Spotify ceiling",
+          "Interface feels cluttered",
+          "Mainstream catalogue is weaker",
+          "Go+ needed for offline listening"
+        ]
+      },
+      {
+        "name": "Deezer",
+        "resourceId": "mobile-01304",
+        "url": "https://deezer.com",
+        "reason": "The only major service with a genuinely usable free tier — unlimited ad-supported listening, not just a preview.",
+        "description": "Deezer's free tier streams the full catalogue with advertising rather than limiting you to short previews or a rotation, which very few services offer. It also carries an explicit artist payout figure per stream, which is unusual transparency. Go adds lossless and ad-free at a mid-tier price. The interface is functional and the app has improved, though it lacks the polish of the big three.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "featured": false,
+        "bestFor": "Listeners who want full-catalogue free streaming without paying anything",
+        "features": [
+          "Full catalogue free with ads",
+          "Go tier adds lossless",
+          "Transparent artist payout reporting",
+          "Offline listening on Go",
+          "Flow recommendation engine"
+        ],
+        "pros": [
+          "Unlimited free streaming of the full catalogue",
+          "Real transparency on artist payouts",
+          "Competitive paid pricing",
+          "Flow discovers new music well"
+        ],
+        "cons": [
+          "Interface less refined than competitors",
+          "Smaller user base",
+          "Desktop app performance is modest",
+          "Catalogue slightly behind Spotify"
+        ]
       }
     ],
     "migrationDifficulty": "Easy",
     "migrationGuide": {
       "steps": [
-        "Export Spotify playlists (use Soundiiz or TuneMyMusic)",
-        "Import playlists to new platform",
-        "Follow favorite artists on new platform",
-        "Download mobile app and set up offline downloads",
-        "Cancel Spotify subscription"
+        "Try the replacement's free tier first and cancel nothing yet. Listening habits are sticky, and a month on an ad-supported tier tells you more than any feature table about whether you will actually stick with it.",
+        "Export your playlists before doing anything else, and do it from the desktop or web app rather than mobile — Spotify's playlist export is unreliable on mobile. Note how many playlists you have, because that sets the scale of the re-import job.",
+        "Use a transfer service rather than manual work. Soundiiz, TuneMyMusic and FreeYourMusic all map tracks by metadata, and all three will leave a handful unmatched. Expect roughly 5–10% to need manual handling, which on a 400-track library is 20–40 songs.",
+        "Handle the unmatched tracks by hand first — they are usually remixes, live versions, or regional bonus tracks that have no clean equivalent. Resolve these before you rely on automated algorithms, since they get worse with more ambiguous titles.",
+        "Follow your artists on the new platform even after playlists import. Playlist transfer copies songs, not subscriptions, and you want new releases to keep arriving.",
+        "Set up offline downloads in the new app and download on Wi-Fi before you need them. Offline libraries often expire after 30 days on some services, so a one-off download is not a permanent offline copy.",
+        "Cancel Spotify through the same channel you subscribed from. App store subscriptions must be cancelled in the store, not in the app, and web subscriptions in the account page — cancelling in the wrong place leaves the billing live. Set a calendar reminder for the final billing date.",
+        "Keep the old account un-deactivated for a month. Account deletion removes your listening data permanently, and you may find a favourite or a playlist you forgot about afterwards."
       ],
       "tips": [
-        "Soundiiz has a free tier for playlist migration",
-        "Many artists have official Bandcamp pages for direct support"
+        "If you cancel through the app store, check the confirmation screen actually says cancelled — store cancellations are sometimes confirmed by email rather than on screen, and it is easy to miss.",
+        "Bandcamp does not have playlists to migrate, so treat it as an addition rather than a replacement. Buy the albums you would have streamed and keep Spotify for discovery.",
+        "Transfer tools match on metadata, so a library full of live versions and remixes will import worse than one of studio albums. Check the match percentage before cancelling anything.",
+        "Lossless on Tidal or Apple Music only makes an audible difference through decent headphones or speakers and a reasonably fast connection. On laptop speakers it is not worth paying extra for."
       ]
     },
-    "verdict": "YouTube Music is the best value if you already watch YouTube. Tidal is best for audiophiles. Bandcamp is best for supporting artists directly.",
+    "verdict": "Bandcamp for anyone who wants to own their music and pay artists directly — it is the only option here with no subscription at all and permanent ownership. Apple Music if you want lossless audio without paying for a separate tier, and you are on Apple hardware. YouTube Music is the cheapest upgrade if you already subscribe to YouTube Premium. Tidal is the choice when lossless quality specifically is the reason you would leave.",
     "faqs": [
       {
         "question": "Can I transfer my Spotify playlists to another service?",
-        "answer": "Yes, use Soundiiz, TuneMyMusic, or FreeYourMusic to transfer playlists between streaming services."
+        "answer": "Yes, using Soundiiz, TuneMyMusic or FreeYourMusic. All three match tracks by metadata rather than audio fingerprinting, so a library full of remixes, live versions or alternate titles will import with gaps — typically 5–10% unmatched. Have Spotify playlists exported from the desktop or web app first, since mobile export is unreliable, and fix the unmatched tracks manually afterwards."
       },
       {
-        "question": "Which service pays artists the most?",
-        "answer": "Bandcamp pays artists ~80-85% of each sale. Among streaming services, Tidal and Apple Music pay the highest per-stream rates."
+        "question": "Which service actually pays artists the most?",
+        "answer": "Bandcamp, by a wide margin — roughly 80–85% of each sale goes to the artist, because it is a direct-purchase marketplace rather than a pooled subscription. Among subscription streaming services, Apple Music and Tidal publish the highest per-stream rates, both clearly above Spotify. No service publishes fully auditable per-stream figures for every artist, so treat published comparisons as directional."
+      },
+      {
+        "question": "Is there a completely free Spotify alternative with the same catalogue?",
+        "answer": "Not exactly. Deezer offers unlimited ad-supported streaming of its full catalogue free, and YouTube Music is free with ads and has an enormous catalogue including live and remix versions. What you give up in exchange is offline listening, which generally requires a paid subscription on every one of these services. For pure zero cost, ad-supported listening is the ceiling, not downloads."
+      },
+      {
+        "question": "Does any Spotify alternative stream lossless audio?",
+        "answer": "Yes. Tidal and Apple Music both stream true lossless up to 24-bit/192 kHz, and Dualsayer's Go tier offers lossless as well. Spotify does not — even at its highest 320 kbps setting it streams lossy Ogg Vorbis. You will need decent headphones or speakers and a good connection to hear the difference; on laptop speakers it is inaudible."
+      },
+      {
+        "question": "Is Spotify worth paying for if I listen passively?",
+        "answer": "If you are mostly background listening to music you already know, the free ad-supported tier on YouTube Music or Deezer covers it, and offline downloads are the main thing you give up. The paid tier is buying three things: no ads, offline downloads, and a larger on-device catalogue — all of which stop mattering if you listen at a desk with a connection."
+      },
+      {
+        "question": "Why is cancelling a Spotify subscription harder than joining?",
+        "answer": "Because the subscription is renewed through the app store or web account, and each channel has its own cancellation path — you must cancel in the store for app-store subscriptions, not in the Spotify app. The path is several menus deep on every platform, and the confirmation is sometimes only sent by email, so people frequently believe they have cancelled when billing continues."
       }
     ],
-    "tagline": "Popular music streaming with monthly subscription",
+    "tagline": "Music streaming with a monthly bill and lossy audio — and what pays artists better",
     "paidToolUrl": "https://spotify.com/premium",
-    "pricing": "Individual $10.99/month; Duo $14.99/month; Family $16.99/month",
-    "whySwitch": [
-      "Support artists directly",
-      "Get HiFi audio quality",
-      "Avoid monthly fees with Bandcamp"
-    ],
+    "pricing": "Individual about $11.99/month; Duo about $14.99/month; Family about $16.99/month; Student about $5.99/month",
     "seoKeywords": [
       "spotify premium alternative",
       "tidal vs spotify",
       "bandcamp",
-      "youtube music"
-    ]
+      "youtube music",
+      "spotify alternative free",
+      "spotify premium alternatives",
+      "lossless music streaming",
+      "best music streaming service"
+    ],
+    "seoTitleOverride": "Free Spotify Premium Alternatives — Bandcamp, Tidal & Lossless Options",
+    "h1Override": "Best Spotify Premium Alternatives That Pay Artists More"
   },
   {
     "paidTool": "Netflix",
     "slug": "netflix",
     "category": "Entertainment",
-    "description": "Netflix is the leading streaming platform with original content and licensed movies/TV shows. Plans range from $6.99-22.99/month, and the catalog varies by region due to licensing restrictions.",
+    "description": "Netflix is the largest subscription video service, and the reason people leave is almost always price rather than catalogue. Plans run from about $6.99 with ads to nearly $23 for the premium tier with 4K and multiple simultaneous streams, and the price has risen repeatedly. A household paying for four people on two screens can be over $250 a year for what is, functionally, television.\n\nThe second issue is that the catalogue is licensed by region and rotates constantly. A title available in one country can be absent from another, and titles disappear from the service entirely on a licensing expiry. Anyone who has built a viewing habit around a specific show has learned not to assume it will still be there.\n\nThe third is that nothing is owned. There is no purchase option, no download, and no permanence — a title can vanish, and if you were watching it for something other than entertainment, that can be a genuine loss. It is worth noting that Netflix downloads are DRM-protected and expire, so even the offline option is a rental in everything but name.\n\nThe alternatives split by what you actually want. If you want volume for nothing, Tubi and Plex carry tens of thousands of ad-supported titles and are free. If you want permanent ownership, that means buying digital copies or setting up a personal media server, which changes the model from renting to owning. If you want a smaller catalogue with family-friendly depth, Disney+ at a lower price point often covers what most households actually watch.",
     "painPoints": [
       {
-        "problem": "Rising subscription costs",
-        "impact": "$6.99-22.99/month depending on plan"
+        "problem": "Repeated price increases across the tiers",
+        "impact": "The premium tier is now near $23 per month, and a household needing two screens can exceed $250 per year for entertainment"
       },
       {
-        "problem": "Regional content restrictions",
-        "impact": "Many titles unavailable in certain countries"
+        "problem": "Catalogue varies by region and rotates on licensing terms",
+        "impact": "Titles available in one country are absent from another, and anything can be removed when its licence expires"
       },
       {
-        "problem": "No permanent content ownership",
-        "impact": "Content can be removed at any time"
+        "problem": "No purchase option and no permanent ownership",
+        "impact": "You rent access rather than owning anything, and offline downloads are DRM-protected and expire"
+      },
+      {
+        "problem": "Multiple streams require the more expensive tier",
+        "impact": "Simultaneous streaming beyond two screens requires Premium, removing the cheapest option for shared households"
+      },
+      {
+        "problem": "Ad tier pushes the cheaper plans to a worse picture",
+        "impact": "The lowest-cost plan includes advertisements, so paying less often means a worse experience rather than a smaller one"
       }
+    ],
+    "whySwitch": [
+      "Watch tens of thousands of titles for nothing rather than paying to rent a few thousand",
+      "Own what you watch so it cannot be withdrawn from you",
+      "Support smaller studios and channels that Netflix's economics squeeze out",
+      "Avoid the premium tier if you only ever watch on one screen"
     ],
     "alternatives": [
       {
         "name": "Tubi",
+        "resourceId": "mobile-01718",
         "url": "https://tubitv.com",
-        "reason": "Completely free streaming with 40,000+ movies and TV shows, ad-supported",
+        "reason": "Free and ad-supported, with a catalogue in the tens of thousands and no subscription — the highest-volume free alternative here.",
+        "description": "Tubi carries well over 40,000 films and series at no cost, funded by advertising in the same way as broadcast television. It works on every major device, needs no account to start, and has a reasonably good recommendation row rather than just a search box. The trade-offs are the ad breaks, which cannot be skipped, and a catalogue of older and second-run content rather than new releases.",
         "isFree": true,
         "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "featured": true,
+        "bestFor": "Watchers who want maximum catalogue size at zero cost and will accept ads",
         "features": [
-          "40,000+ titles",
-          "No subscription",
-          "Available on all devices"
+          "40,000+ free titles",
+          "No subscription or account required",
+          "Available on most devices",
+          "Ad-supported",
+          "Films and series both"
         ],
-        "pricing": "Free (ad-supported)"
+        "pros": [
+          "Free with a very large catalogue",
+          "No account needed to browse",
+          "Works on almost any device",
+          "Good recommendation row"
+        ],
+        "cons": [
+          "Unskippable ad breaks",
+          "Mostly older and second-run content",
+          "No new releases",
+          "Regional availability varies"
+        ]
       },
       {
         "name": "Plex",
+        "resourceId": "misc-15740",
         "url": "https://www.plex.tv",
-        "reason": "Free ad-supported movies/TV plus personal media server capabilities",
+        "reason": "Free ad-supported films and TV, plus a personal media server so you can stream your own files — the only option that leads to ownership.",
+        "description": "Plex does two things: it runs a free ad-supported streaming service, and it turns your own files — a NAS, a hard drive, or a local server — into a personal media library you can stream to any device. That second half is what makes Plex different. It is the most practical route from renting to owning, and Plex Pass at roughly $5 per month unlocks hardware transcoding, which is what lets it stream 4K to devices that cannot play it natively.",
         "isFree": true,
         "isOpenSource": false,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4,
+        "featured": true,
+        "bestFor": "People who want free streaming now and own their media long-term",
         "features": [
-          "Free movies/TV",
-          "Live TV channels",
-          "Personal media server"
+          "Free ad-supported films and TV",
+          "Personal media server for your own files",
+          "Plex Pass about $4.99/month for transcoding",
+          "Apps for every major platform",
+          "Live TV channel support"
         ],
-        "pricing": "Free; Plex Pass $4.99/month"
+        "pros": [
+          "Free tier with a real catalogue",
+          "Turns your own files into a streamable library",
+          "Works across all your devices",
+          "Cheap paid tier for hardware transcoding"
+        ],
+        "cons": [
+          "Personal server needs setup and storage",
+          "Free tier ads are long and frequent",
+          "Plex Pass needed for reliable 4K transcoding",
+          "Content library requires your own files"
+        ]
       },
       {
         "name": "Kodi",
+        "resourceId": "mobile-01382",
         "url": "https://kodi.tv",
-        "reason": "Open-source media center for organizing and streaming your own media collection",
+        "reason": "Fully open source and completely free — the most flexible way to organise and play a media collection you own, with no account and no ads.",
+        "description": "Kodi is a media centre rather than a streaming service. It plays your own files from local storage or a network share, and add-ons extend it to live TV and online sources. Because it is open source with no commercial pressure, it has no advertising, no account, and no phone-home behaviour. The trade-off is that it is entirely hands-on: you curate your own library, and it will not recommend anything to you.",
         "isFree": true,
         "isOpenSource": true,
+        "isSelfHosted": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4,
+        "featured": false,
+        "bestFor": "People with an existing media collection who want full control and no ads",
         "features": [
-          "Open-source",
-          "Addon ecosystem",
-          "Local/network media"
+          "Completely free and open source",
+          "Plays local and network media",
+          "Large add-on ecosystem",
+          "Windows, macOS, Linux, Android, Raspberry Pi",
+          "No account, no ads, no tracking"
         ],
-        "pricing": "Free"
+        "pros": [
+          "Truly free and open source",
+          "No ads and no tracking",
+          "Runs on low hardware including Raspberry Pi",
+          "Extensible via add-ons"
+        ],
+        "cons": [
+          "No content library of its own",
+          "Requires you to manage files",
+          "Initial setup is technical",
+          "No personalisation or recommendations"
+        ]
       },
       {
         "name": "Disney+",
         "url": "https://www.disneyplus.com",
-        "reason": "More affordable alternative with Disney, Marvel, Star Wars, and Pixar content",
+        "reason": "Cheaper than Netflix at roughly $8 and deeper in family franchises — the right call if that is most of what you watch.",
+        "description": "Disney+ concentrates on Disney, Pixar, Marvel, Star Wars and National Geographic, which for a family with young children is most of the viewing anyway. Pricing starts around $7.99 and rises to about $13.99 for the premium tier with 4K and downloads. Outside those franchises the library is thin, so it works as a supplement or a family-specific tier rather than a full replacement.",
         "isFree": false,
         "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4,
+        "featured": false,
+        "bestFor": "Households whose viewing is mostly Disney, Marvel, Star Wars and Pixar",
         "features": [
-          "Disney/Marvel/Star Wars",
-          "4K streaming",
-          "Download for offline"
+          "Disney, Pixar, Marvel, Star Wars, Nat Geo",
+          "4K on the premium tier",
+          "Downloads on mobile",
+          "Basic about $7.99/month",
+          "Premium about $13.99/month"
         ],
-        "pricing": "Basic $7.99/month; Premium $13.99/month"
+        "pros": [
+          "Cheaper at the entry tier than Netflix",
+          "Deepest family franchise library",
+          "Downloads for offline on mobile",
+          "4K available on the cheaper tier than Netflix"
+        ],
+        "cons": [
+          "Narrow outside its own franchises",
+          "No ad-supported free tier",
+          "Regional availability varies",
+          "Still no purchase option"
+        ]
+      },
+      {
+        "name": "Kanopy",
+        "resourceId": "misc-15751",
+        "url": "https://www.kanopy.com",
+        "reason": "Free with a public library card — thousands of documentaries and films most people never knew their library funded.",
+        "description": "Kanopy is a streaming service paid for by public library systems. With a library card you get thousands of documentaries, independent film and educational titles with advertising, at no personal cost. The catalogue is strongest in documentary, science and international film, which makes it unusual and worth knowing about. Availability depends on your library's subscription tier, so not every card unlocks the same catalogue.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5,
+        "featured": false,
+        "bestFor": "Anyone with a public library card who wants documentaries and indie film for free",
+        "features": [
+          "Free with a public library card",
+          "Thousands of documentaries",
+          "Independent and international film",
+          "Ad-supported",
+          "Available on mobile and web"
+        ],
+        "pros": [
+          "Free with a library card most people already have",
+          "Outstanding documentary catalogue",
+          "Genuinely obscure titles",
+          "No personal subscription cost"
+        ],
+        "cons": [
+          "Requires a library card",
+          "Catalogue depends on your library's tier",
+          "No major Hollywood blockbusters",
+          "Less well known, so fewer recommendations"
+        ]
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com",
+        "reason": "The largest free streaming library in existence — studios release complete series there at no cost, and it needs no subscription.",
+        "description": "YouTube is where a large share of film and series premieres land, permanently and free, because the creators and rights holders are already on the platform. Its weakness is curation: finding a coherent series among unrelated content takes work, and playback of long episodes can be interrupted by other recommendations. Tubi and Plex curate; YouTube does not.",
+        "isFree": true,
+        "isOpenSource": false,
+        "isSelfHosted": false,
+        "migrationDifficulty": "Easy",
+        "rating": 3.5,
+        "featured": false,
+        "bestFor": "Free, on-demand access to whatever is available, with no curation required beyond searching",
+        "features": [
+          "Free with ads, no subscription",
+          "Huge free catalogue of series and films",
+          "Official studio releases",
+          "Every major device",
+          "Downloads on Premium only"
+        ],
+        "pros": [
+          "Enormous free catalogue",
+          "No account cost of any kind",
+          "Studio releases available for free",
+          "Works on every device"
+        ],
+        "cons": [
+          "No curation, so discovery is poor",
+          "Ads can be intrusive",
+          "Availability changes with licensing",
+          "Downloads need YouTube Premium"
+        ]
       }
     ],
     "migrationDifficulty": "Easy",
     "migrationGuide": {
       "steps": [
-        "Browse free alternatives (Tubi, Plex, YouTube) for similar content",
-        "Check if desired shows are on other platforms",
-        "Consider antenna TV for local channels",
-        "Set up Kodi or Plex for personal media collection",
-        "Cancel Netflix when ready"
+        "Decide what you are leaving for. Cost, catalogue or ownership lead to completely different answers, and picking the wrong one means paying for another subscription instead of spending nothing.",
+        "Check where your shows actually are before cancelling anything. JustWatch and Reelgood search across every service by title, and this takes five minutes instead of the weeks people spend discovering shows moved.",
+        "If you are leaving for ownership rather than cost, start building the library now. Plex or Kodi plus external storage converts your watching into an asset; the cataloguing work is the real cost, not the hardware.",
+        "Before cancelling Netflix, check the titles you rely on. Anything on your list that is Netflix-original cannot legally be obtained elsewhere, so decide whether losing it is acceptable or whether you want to keep the subscription for those specific shows only.",
+        "Do not delete the Netflix account immediately after cancelling. Keep it active for a billing period so watchlist and profiles remain if you need to check something, and because re-subscribing later preserves your viewing history and recommendations.",
+        "Test the free options on the device you actually watch on. Ad-supported services vary a lot in app quality, and a bad living-room TV experience will send you straight back to a subscription.",
+        "Cancel through the correct channel and confirm it. App-store subscriptions must be cancelled in the store; web subscriptions in the account page. Take a screenshot of the confirmation, since Netflix cancellations sometimes only confirm by email."
       ],
       "tips": [
-        "JustWatch.com shows where movies/TV shows are streaming",
-        "Library cards often include free streaming (Kanopy, Hoopla)"
+        "Your local library card is the most underused free streaming benefit available. Kanopy and, in many regions, Hoopla give thousands of documentaries free once you have a card you already hold.",
+        "Do not cancel Netflix purely over price while originals are still there — the catalogue is the reason people pay. Cancel only if you are genuinely happy watching elsewhere, and keep a second screen's worth of flexibility.",
+        "For children's content, the maths is different. Disney+ at around $8 is cheaper than Netflix standard and covers the franchises children actually watch, which is usually the whole reason a family pays.",
+        "If you cancel and later miss a specific show, buying it digitally is almost always cheaper than resubscribing for a month. Keep a note of what you actually wanted to watch while you had access."
       ]
     },
-    "verdict": "Tubi and Plex offer surprisingly good free streaming. For owned content, Kodi + personal media collection is the best long-term strategy.",
+    "verdict": "Tubi and Plex for genuinely free streaming, with Plex also being the practical bridge to owning your media. Kanopy if you have a library card and want documentaries nobody else streams. Disney+ if family franchises are most of what you watch. None of them replaces Netflix's originals, so the honest test is whether you watch for the catalogue or for the price.",
     "faqs": [
       {
-        "question": "Is Tubi really free? How do they make money?",
-        "answer": "Tubi is ad-supported. They have partnerships with major studios and generate revenue from advertisements, similar to traditional TV."
+        "question": "What is the best free alternative to Netflix with no ads?",
+        "answer": "There isn't one — every fully free streaming service carries advertising, because there is no other revenue model. The closest to ad-free at no cost is your own media library: Plex or Kodi playing files you already own, which has no ads at all because there is no commercial service in the loop. Kanopy and Hoopla are ad-supported but free through a library card."
       },
       {
-        "question": "Can I watch Netflix content offline legally?",
-        "answer": "Netflix allows downloads on their mobile apps for offline viewing, but the content expires after a period. For permanent ownership, consider buying digital copies from iTunes, Amazon, or Google Play."
+        "question": "Is Tubi really free, and how does it make money?",
+        "answer": "Yes, completely free with no account and no subscription. It makes money the way broadcast television does — advertising, sold against audience delivery. Studios license content to Tubi in exchange for that distribution, which is why it carries plenty of library content that Netflix no longer holds. The trade-off is unskippable ad breaks and a catalogue of older and second-run titles rather than new releases."
+      },
+      {
+        "question": "Can I watch Netflix content offline or own it permanently?",
+        "answer": "Offline downloads on the Netflix app are DRM-protected and expire, so they are a rental rather than ownership — and they only work inside the app. Netflix offers no purchase option at all. To own films permanently you need to buy them from a retailer such as iTunes, Amazon or Google Play, or work with physical media."
+      },
+      {
+        "question": "Why are some shows unavailable in my country?",
+        "answer": "Streaming rights are licensed territory by territory, so a catalogue in one country is not licensed in another. Netflix also removes titles when a licence expires rather than renewing it. Availability is checked at playback rather than browse time, which is why a title can look present in search and then refuse to play."
+      },
+      {
+        "question": "How can I watch a Netflix show without Netflix?",
+        "answer": "Legitimately, check whether the show is licensed elsewhere — JustWatch or Reelgood will tell you every service carrying it in your region. Many Netflix originals have moved to other services after their Netflix window ends. If nothing legitimate carries it, the only options are waiting for it to move or buying it, which is usually not offered for originals."
+      },
+      {
+        "question": "Which free streaming service has the biggest catalogue?",
+        "answer": "Among ad-supported services, Tubi and Plex both carry tens of thousands of titles, with Tubi generally larger and Plex more flexible because it can also play your own files. YouTube is larger still in raw volume but without meaningful curation, which makes it harder to browse. Kanopy is smaller but far more specialised in documentaries."
+      },
+      {
+        "question": "Is it worth cancelling Netflix if I only watch one screen?",
+        "answer": "Probably yes for cost. The ad tier and the standard tier differ mainly in screen count and resolution, so a single-screen household can move to Tubi or Plex free without losing the ability to watch at the same time. You do lose Netflix originals entirely, so check whether anything you actually watch is one before cancelling."
       }
     ],
-    "tagline": "Leading streaming platform with rising subscription costs",
+    "tagline": "Subscription video streaming at $7–23 per month — and what to use instead",
     "paidToolUrl": "https://netflix.com",
-    "pricing": "Basic with ads $6.99/month; Standard $15.49/month; Premium $22.99/month",
-    "whySwitch": [
-      "Free ad-supported alternatives",
-      "Own your media with Plex/Kodi",
-      "Lower-cost niche streaming services"
-    ],
+    "pricing": "Basic with ads about $6.99/month; Standard about $15.49/month; Premium about $22.99/month",
     "seoKeywords": [
       "netflix alternative",
       "free streaming",
       "tubi",
-      "plex vs netflix"
-    ]
+      "plex vs netflix",
+      "free alternative to netflix",
+      "netflix alternatives",
+      "free streaming services",
+      "netflix free alternative"
+    ],
+    "seoTitleOverride": "Free Netflix Alternatives — Tubi, Plex & Kanopy Compared Free",
+    "h1Override": "Best Free Netflix Alternatives to Watch Without Subscribing"
   }
 ]
