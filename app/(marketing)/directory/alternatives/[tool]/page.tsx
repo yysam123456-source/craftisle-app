@@ -291,10 +291,14 @@ export default async function AlternativesPage({
                         </span>
                         <div>
                           <p className="font-semibold text-foreground">{pain.problem}</p>
-                          <p className="text-sm text-muted-foreground mt-1">
-                            <span className="text-red-600 font-medium">Impact: </span>
-                            {pain.impact}
-                          </p>
+                          {/* impact 可能为空（早期模板版 painPoints 是纯字符串），
+                              空时整块不渲染，避免出现「Impact:」后面什么都没有的残缺行 */}
+                          {pain.impact ? (
+                            <p className="text-sm text-muted-foreground mt-1">
+                              <span className="text-red-600 font-medium">Impact: </span>
+                              {pain.impact}
+                            </p>
+                          ) : null}
                         </div>
                       </div>
                     </div>

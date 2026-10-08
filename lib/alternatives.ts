@@ -2436,24 +2436,55 @@ const BATCH_FILES: string[] = [
   "alternatives-batch40.json",
 ];
 
+/** painPoints 允许两种历史形态，统一成 {problem, impact}。 */
+function normalizePainPoints(v: unknown): PainPoint[] {
+  if (!Array.isArray(v)) return [];
+  return v
+    .map((p: any) => {
+      if (typeof p === "string") {
+        // 早期模板版形态：纯字符串。整句作为 problem，impact 留空由渲染层隐藏。
+        return { problem: String(p).trim(), impact: "" };
+      }
+      if (p && typeof p === "object") {
+        return {
+          problem: String(p.problem ?? "").trim(),
+          impact: String(p.impact ?? "").trim(),
+        };
+      }
+      return null;
+    })
+    .filter((p): p is PainPoint => !!p && !!p.problem);
+}
+
 /**
- * 合并同名条目：batch 生成版 与 in-code 手写版。
+ * 字段级合并。`batch` 是先加载的（较早），`inCode` 是后加载的（较晚）。
  *
- * 规则：手写版字段优先，但**绝不让空值/空数组覆盖有值字段**；alternatives 取并集（手写在前）。
- * 背景（2026-09-22 实测）：in-code 里存在不完整条目（如 "Asana" 的 alternatives 为空、Photoshop 只有 4 个
- * 而 batch 有 5 个）。若简单地让 in-code 整体胜出，会把这些工具页退化成空列表 / 丢替代品；
- * 若让 batch 整体胜出，则会丢掉手写条目精修的 seoKeywords/faqs。故必须做字段级合并。
+ * ⚠️ 修复的真实缺陷（2026-10-08）：同一工具横跨多个 batch 文件时
+ * （实测 Zoom 在 batch12/14/30/40 四处都有），原先是后加载整条覆盖先加载，
+ * 导致内容更完整的早期条目被模板版静默顶掉。
+ * 现改为字段级合并 + 「长数组不被短数组截断」。
+ *
+ * 注意形态不统一：早期模板版（batch12/30）的 painPoints 是**纯字符串数组**，
+ * 后期版（batch14/40）是 {problem, impact} 对象数组。
+ * 直接合并会产生「5 个空对象」这种坏数据 ⇒ 页面渲染出空 Impact。
+ * 故所有内容数组都要先归一化再比较长度。
  */
 function mergeEntry(batch: AlternativeEntry, inCode: AlternativeEntry): AlternativeEntry {
   const out: AlternativeEntry = { ...batch };
+
+  // painPoints 先归一化再比长度（字符串形态与对象形态不能直接比）
+  const nextPain = normalizePainPoints(inCode.painPoints);
+  const prevPain = normalizePainPoints(batch.painPoints);
+  const mergedPain = nextPain.length >= prevPain.length ? nextPain : prevPain;
+  if (mergedPain.length) out.painPoints = mergedPain;
+
   for (const [k, v] of Object.entries(inCode) as [keyof AlternativeEntry, any][]) {
     if (v === undefined || v === null) continue;
     if (Array.isArray(v) && v.length === 0) continue;
     if (typeof v === "string" && v.trim() === "") continue;
     if (k === "alternatives") continue; // 单独做并集
-    // 内容数组：保留更长的那份。
-    // 理由：同一工具可能横跨多个 batch，后加载的往往是模板版（FAQ 更少）。
-    // 若无条件让后者覆盖，会把已写好的深度内容截短（线上 zoom 页实测复现）。
+    if (k === "painPoints") continue; // 已在上方归一化处理
+    // 内容数组：保留更长的那份 —— 后加载者可补字段，但不得把已写好的长数组截短。
     if (Array.isArray(out[k]) && Array.isArray(v) && (out[k] as unknown[]).length > v.length) {
       continue;
     }
@@ -2503,9 +2534,14 @@ export function getCombinedMap(): Record<string, AlternativeEntry> {
       const imports: AlternativeEntry[] = JSON.parse(raw);
       for (const entry of imports) {
         if (entry.paidTool && entry.alternatives?.length > 0) {
-          merged[entry.paidTool] = merged[entry.paidTool]
-            ? mergeEntry(merged[entry.paidTool], entry)
-            : entry;
+          if (merged[entry.paidTool]) {
+            merged[entry.paidTool] = mergeEntry(merged[entry.paidTool], entry);
+          } else {
+            // 首次载入也要归一化 painPoints：早期模板版（batch12/30）是纯字符串数组，
+            // 不归一化会让「只有一份来源」的页面直接拿到字符串数组 ⇒ 渲染出空 problem。
+            const first: AlternativeEntry = { ...entry, painPoints: normalizePainPoints(entry.painPoints) };
+            merged[entry.paidTool] = first;
+          }
         }
       }
     } catch {
