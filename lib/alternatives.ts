@@ -2451,6 +2451,24 @@ function mergeEntry(batch: AlternativeEntry, inCode: AlternativeEntry): Alternat
     if (Array.isArray(v) && v.length === 0) continue;
     if (typeof v === "string" && v.trim() === "") continue;
     if (k === "alternatives") continue; // 单独做并集
+    // 内容数组：保留更长的那份。
+    // 理由：同一工具可能横跨多个 batch，后加载的往往是模板版（FAQ 更少）。
+    // 若无条件让后者覆盖，会把已写好的深度内容截短（线上 zoom 页实测复现）。
+    if (Array.isArray(out[k]) && Array.isArray(v) && (out[k] as unknown[]).length > v.length) {
+      continue;
+    }
+    // migrationGuide.steps / tips 同理，逐字段保留更长的。
+    if (k === "migrationGuide") {
+      const prev = (batch as any).migrationGuide;
+      const next = (inCode as any).migrationGuide;
+      if (prev && next) {
+        out.migrationGuide = {
+          steps: (next.steps?.length || 0) >= (prev.steps?.length || 0) ? next.steps : prev.steps,
+          tips: (next.tips?.length || 0) >= (prev.tips?.length || 0) ? next.tips : prev.tips,
+        };
+      }
+      continue;
+    }
     out[k] = v;
   }
   const inAlts: AlternativeEntry["alternatives"] = inCode.alternatives || [];
@@ -2469,7 +2487,14 @@ function mergeEntry(batch: AlternativeEntry, inCode: AlternativeEntry): Alternat
 
 export function getCombinedMap(): Record<string, AlternativeEntry> {
   if (_combinedMap) return _combinedMap;
-  // 载入批量生成条目（batch JSON，后文件覆盖前文件）……
+  // 载入批量生成条目（batch JSON）。
+  //
+  // 同一 paidTool 可能出现在多个 batch 里（实测：Zoom 同时存在于 batch12/14/40，
+  // 其中 batch40 加载顺序在最后）。原先是 `merged[key] = entry` 直接后加载覆盖先加载，
+  // 导致「先加载但内容更完整」的条目被后加载的模板版静默替换 ⇒ 页面上一轮深度内容不生效
+  // （线上 /directory/alternatives/zoom 实测仍是 3 条 FAQ 的旧内容）。
+  // 现改为：重复键走 mergeEntry 做字段级合并，并保留「更长的数组」，
+  // 即后来的模板版可以补字段，但不能把已写好的长内容截短。
   const merged: Record<string, AlternativeEntry> = {};
   for (const file of BATCH_FILES) {
     try {
@@ -2478,7 +2503,9 @@ export function getCombinedMap(): Record<string, AlternativeEntry> {
       const imports: AlternativeEntry[] = JSON.parse(raw);
       for (const entry of imports) {
         if (entry.paidTool && entry.alternatives?.length > 0) {
-          merged[entry.paidTool] = entry;
+          merged[entry.paidTool] = merged[entry.paidTool]
+            ? mergeEntry(merged[entry.paidTool], entry)
+            : entry;
         }
       }
     } catch {
