@@ -10,6 +10,7 @@ import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
 import { PAGE_META } from "@/lib/seo/page-meta";
 import { CATEGORY_LANDING_SLUGS, LANDING_PAGES } from "@/lib/seo/landing-pages";
+import { CONVERT_PAIRS } from "@/lib/convert/pairs";
 
 export const metadata: Metadata = constructMetadata({
   title: PAGE_META["/tools"].title,
@@ -81,6 +82,30 @@ export default function ToolsPage() {
                   className="text-primary underline underline-offset-2 hover:no-underline"
                 >
                   {LANDING_PAGES[slug].h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 格式对转页入口：/c/<from>-to-<to>
+          这批页面向「png to jpg」这类低竞争长尾，不挂在 /tools 索引下会成孤儿页。
+          从高权重的工具索引页给出入口，传递权重并加速收录。 */}
+      <section className="py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-xl font-semibold">Convert between image formats</h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Every converter runs in your browser — files are never uploaded.
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            {CONVERT_PAIRS.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/c/${p.slug}`}
+                  className="text-primary underline underline-offset-2 hover:no-underline"
+                >
+                  {p.phrase} Converter
                 </Link>
               </li>
             ))}

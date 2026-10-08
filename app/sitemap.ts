@@ -6,6 +6,7 @@ import { DOMAINS } from "@/lib/unified-categories";
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { allPosts, allGuides } from "contentlayer/generated";
 import { LANDING_PAGE_SLUGS } from "@/lib/seo/landing-pages";
+import { CONVERT_PAIRS } from "@/lib/convert/pairs";
 import { readFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 
@@ -139,6 +140,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: r.priority,
   }));
 
+  // ★ 格式对转程序化页簇（/c/<from>-to-<to>）
+  // 目标词是「png to jpg」这类 4 词长尾 —— 首页被工具站占据时，
+  // 这类低竞争长尾是唯一可打的入口，故收录。
+  const convertPairPages = CONVERT_PAIRS.map((p) => ({
+    url: `${baseUrl}/c/${p.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   const toolPages = Object.keys(toolMeta).map((id) => ({
     url: `${baseUrl}/tools/${id}`,
     changeFrequency: "monthly" as const,
@@ -189,5 +199,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...otherPages,
     ...toolPages,
     ...landingPages,
+    ...convertPairPages,
   ];
 }
