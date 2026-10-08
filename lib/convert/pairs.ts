@@ -43,19 +43,19 @@ export interface ConvertPair {
 
 /** 输入格式的展示名与说明 */
 export const INPUT_META: Record<InputFormat, { label: string; mime: string; note: string }> = {
-  jpeg: { label: "JPG", mime: "image/jpeg", note: "有损压缩，适合照片类内容" },
-  png: { label: "PNG", mime: "image/png", note: "无损压缩，支持透明通道" },
-  webp: { label: "WebP", mime: "image/webp", note: "Google 主推格式，体积比 JPG 小约 30%" },
-  gif: { label: "GIF", mime: "image/gif", note: "动画格式，本工具取第一帧静态输出" },
-  bmp: { label: "BMP", mime: "image/bmp", note: "Windows 位图，体积大但兼容性最好" },
-  svg: { label: "SVG", mime: "image/svg+xml", note: "矢量图，输出为位图时会按原始尺寸栅格化" },
-  avif: { label: "AVIF", mime: "image/avif", note: "较新的压缩格式，需浏览器支持才能解码" },
+  jpeg: { label: "JPG", mime: "image/jpeg", note: "Lossy compression, best for photographs" },
+  png: { label: "PNG", mime: "image/png", note: "Lossless with full transparency support" },
+  webp: { label: "WebP", mime: "image/webp", note: "Google's format, roughly 30% smaller than JPG" },
+  gif: { label: "GIF", mime: "image/gif", note: "Animated format — this tool outputs the first frame" },
+  bmp: { label: "BMP", mime: "image/bmp", note: "Windows bitmap, large files but maximum compatibility" },
+  svg: { label: "SVG", mime: "image/svg+xml", note: "Vector format, rasterised at its natural size on export" },
+  avif: { label: "AVIF", mime: "image/avif", note: "Newer compression format, needs a browser that can decode it" },
 };
 
 export const OUTPUT_META: Record<OutputFormat, { label: string; mime: string; quality: string; note: string }> = {
-  jpg: { label: "JPG", mime: "image/jpeg", quality: "0.92", note: "有损压缩，不支持透明，文件最小" },
-  png: { label: "PNG", mime: "image/png", quality: "-", note: "无损压缩，保留透明，文件较大" },
-  webp: { label: "WebP", mime: "image/webp", quality: "0.92", note: "有损压缩，体积最省，支持透明" },
+  jpg: { label: "JPG", mime: "image/jpeg", quality: "0.92", note: "Lossy, no transparency, smallest file" },
+  png: { label: "PNG", mime: "image/png", quality: "-", note: "Lossless, keeps transparency, larger file" },
+  webp: { label: "WebP", mime: "image/webp", quality: "0.92", note: "Lossy, smallest with transparency support" },
 };
 
 /**

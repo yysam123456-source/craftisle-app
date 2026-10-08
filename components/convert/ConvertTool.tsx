@@ -151,10 +151,11 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
         }`}
       >
         <p className="text-base font-medium mb-1">
-          Drop {inputMeta.label} file{`${inputMeta.label} → ${outputMeta.label}`}
+          Drop {inputMeta.label} file{inputMeta.label === outputMeta.label ? "" : "s"} here, or
+          choose files from your device — nothing is uploaded
         </p>
         <p className="text-sm text-muted-foreground mb-4">
-          or choose files from your device — nothing is uploaded
+          Converts {inputMeta.label} to {outputMeta.label} locally in your browser
         </p>
         <input
           ref={inputRef}
