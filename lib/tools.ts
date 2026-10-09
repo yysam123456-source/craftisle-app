@@ -2472,7 +2472,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "📐",
     category: CATEGORIES.image,
     seoTitle: "Image Resizer — Resize Image to Exact Pixel Size Online Free",
-    seoDesc: "Free image resizer. Resize JPG, PNG or WebP to exact pixel dimensions in your browser — passport photo sizes, ID photos, social media sizes. No upload.",
+    seoDesc: "Resize JPG, PNG or WebP to exact pixel dimensions — passport photo sizes, ID photos, social media sizes. Processed and deleted on our server, never stored.",
     seoKeywords: [
         "image resizer online free tool",
         "resize image online free tool",
@@ -2490,7 +2490,7 @@ export const toolMeta: Record<string, ToolMeta> = {
         "2x2 inch photo size in pixels",
         "resize image to specific dimensions"
       ],
-    description: "Resize an image to exact pixel dimensions, with fit modes (cover, contain, stretch) and your choice of JPG, PNG or WebP output. Runs entirely in your browser — the file is read from your disk, drawn to a canvas and re-encoded locally, so there is no upload and no size ceiling. Covers the two jobs people actually need it for: shrinking a photo to a fixed pixel size that a form or print shop demands, and generating multiple sizes from one source for responsive images.",
+    description: "Resize an image to exact pixel dimensions, with fit modes (cover, contain, stretch) and your choice of JPG, PNG or WebP output. Processing happens on our server and the file is deleted straight afterwards — it is never stored. Covers the two jobs people actually need it for: shrinking a photo to a fixed pixel size that a form or print shop demands, and generating multiple sizes from one source for responsive images.",
     howToUse: [
       { heading: "Upload an image", text: "Drag and drop an image or click to browse." },
       { heading: "Set target size", text: "Enter target width and height in pixels. Choose fit mode: Cover (crop), Contain (letterbox), or Stretch." },
@@ -2509,7 +2509,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I resize an image without losing quality?", a: "Always use the largest available source. Downscaling throws away real pixel data and cannot be recovered, and enlarging invents detail that was never there. Resizing a small thumbnail up to 600×600 produces a soft, blocky result; start from the original camera file." },
       { q: "What fit mode should I use?", a: "Cover = crop to fill (may cut off edges). Contain = fit inside (may add letterbox). Stretch = force exact dimensions (may distort)." },
       { q: "What is the best output format?", a: "WebP = smallest file size with good quality. JPG = max compatibility and no transparency. PNG = only if you need transparency, and expect a larger file." },
-      { q: "Is my image data private?", a: "Yes, and there is no server involved at all: decoding, resizing and re-encoding happen in your browser tab via the canvas API. The file is never transmitted, never queued and never stored, so images containing personal or sensitive content stay on your device." },
+      { q: "Is my image data private?", a: "The file is uploaded to our server to be resized, then deleted immediately after processing — it is never written to disk and never kept. It does leave your device while it is being processed, so avoid this tool for images that must never transit a third-party server. For purely local resizing with no upload at all, use the image compressor, which runs entirely in your browser." },
     ],
     relatedTools: ["image-compress", "image-convert", "image-crop"],
   },
