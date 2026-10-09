@@ -59,7 +59,7 @@ export const OUTPUT_META: Record<OutputFormat, { label: string; mime: string; qu
 };
 
 /**
- * 5 个先行的对转对。
+ * 7 个对转对（2026-10-09 新增 svg-to-png / avif-to-jpg）。
  *
  * 选取依据（真实长尾，Bing Suggest 2026-10-08 采集 1734 条）：
  *   png-to-jpg / heic-to-jpg / png-to-ico 出现在「online image converter」建议链中，
@@ -338,6 +338,116 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     relatedPairs: ["webp-to-jpg", "png-to-jpg", "png-to-webp"],
     technicalNote:
       "The WebP is decoded via the browser's image decoder and re-encoded with canvas.toBlob('image/png'). Because PNG is lossless the output is larger than the source, but the alpha channel is preserved exactly.",
+  },
+  // ─────────────────────────────────────────────────────────────
+  {
+    slug: "svg-to-png",
+    from: "svg",
+    to: "png",
+    phrase: "SVG to PNG",
+    title: "SVG to PNG Converter — Convert SVG to PNG Online Free",
+    description:
+      "Rasterise SVG to PNG at 1x, 2x or 4x in your browser. Free, no upload, no signup — the vector file never leaves your device.",
+    intro: [
+      "SVG is resolution-independent, which is exactly why it causes problems: plenty of forms simply do not accept vector uploads. A CMS media field, an avatar uploader, a wiki attachment box or a print vendor's intake form will usually state PNG or JPG, and an SVG gets rejected with no conversion offered. Converting to PNG is the bridge between the file you have and the file they accept.",
+      "This rasteriser runs entirely in the browser. The SVG is parsed by the browser's own renderer, drawn to a canvas at a scale factor you choose, and written out as PNG. Scale factor is the part most converters get wrong: an icon drawn at 1x looks fine on screen and blurry in print, so pick 2x or 4x when the result is going to be printed or displayed large.",
+    ],
+    whenToUse: {
+      do: [
+        "A CMS, wiki or social platform rejects SVG uploads and only takes raster images.",
+        "You need a fixed-size preview or thumbnail from a logo or icon.",
+        "You want to email or message the artwork to someone whose client cannot render SVG.",
+      ],
+      avoid: [
+        "You still need to scale the artwork later — PNG is fixed-resolution, so converting now caps the size you can ever use.",
+        "The SVG uses advanced SVG features (filters, CSS animations, `<foreignObject>`) that the browser rasteriser may render differently than a design tool would.",
+      ],
+    },
+    faqs: [
+      {
+        question: "How do I make my PNG export high resolution?",
+        answer:
+          "Choose a scale factor of 2x or 4x. At 1x the PNG has the same pixel dimensions as the SVG's declared size, which is fine for web use but visibly soft when printed. At 4x the same artwork exports at four times the width and height in pixels, so it stays sharp when scaled down.",
+      },
+      {
+        question: "Will my SVG look exactly the same after conversion?",
+        answer:
+          "Almost always. The conversion uses your browser's own SVG renderer, so what you see on screen is what gets drawn. Two caveats: very complex filters or animations are rasterised as a single static frame, and text stays as text, so the PNG depends on the fonts available to your browser rather than the ones the designer used.",
+      },
+      {
+        question: "Does converting SVG to PNG make the background white?",
+        answer:
+          "It preserves whatever the SVG itself defines. If the SVG has no background rectangle, the PNG comes out with a transparent background — which is usually what you want. Add a background rectangle in the SVG first if you need an opaque result.",
+      },
+      {
+        question: "Is my SVG uploaded anywhere?",
+        answer:
+          "No. The file is read locally and rasterised in the same browser tab. Nothing is transmitted, which also means there is no file size ceiling beyond your device's memory.",
+      },
+    ],
+    relatedTools: [
+      { id: "image-convert", label: "Image Converter" },
+      { id: "image-resize", label: "Image Resizer" },
+      { id: "png-to-svg", label: "PNG to SVG" },
+    ],
+    relatedPairs: ["png-to-jpg", "webp-to-png", "png-to-webp"],
+    technicalNote:
+      "SVGs without explicit width and height attributes have no intrinsic pixel size; the renderer falls back to the document's default viewport, so those files are exported at that size. If output dimensions look wrong, open the SVG in a text editor and add width and height attributes matching your intended pixel size.",
+  },
+  // ─────────────────────────────────────────────────────────────
+  {
+    slug: "avif-to-jpg",
+    from: "avif",
+    to: "jpg",
+    phrase: "AVIF to JPG",
+    title: "AVIF to JPG Converter — Convert AVIF to JPG Online Free",
+    description:
+      "Convert AVIF images to JPG in your browser. Free and private — the file is never uploaded. Supports batch conversion.",
+    intro: [
+      "AVIF is the newest mainstream image format and it is very good at what it does: an AVIF is typically 30-50% smaller than the equivalent JPEG at the same perceived quality. The problem is compatibility. AVIF decoding only landed in Chrome 85, Firefox 93 and Safari 16.4, so an AVIF sent to a colleague on an older machine, an email client, or a print shop's software can simply fail to open.",
+      "This converter takes AVIF files and writes them out as JPG, which essentially every application since 1992 understands. Decoding happens in your browser using its native AVIF support, so there is no upload, no account and no waiting on a queue. Batch conversion is supported if you have a whole folder to move across.",
+    ],
+    whenToUse: {
+      do: [
+        "You need a JPG for email, a print shop, an office document or an older application.",
+        "A platform you upload to does not accept AVIF yet.",
+        "You want one universal copy of an AVIF image to send to people with mixed devices.",
+      ],
+      avoid: [
+        "You want to keep the smallest possible file — AVIF is already smaller than the JPG you would get back.",
+        "You need transparency — JPG has no alpha channel, so transparent regions will be filled in.",
+      ],
+    },
+    faqs: [
+      {
+        question: "This says AVIF is not supported. Why?",
+        answer:
+          "AVIF decoding is a browser feature, and this page relies on the browser doing the decoding rather than shipping a decoder. If decoding fails, your browser is older than Chrome 85, Firefox 93 or Safari 16.4, or the file is not actually AVIF despite its extension. Updating the browser, or re-saving the file from the app that produced it, resolves it.",
+      },
+      {
+        question: "Why is my JPG larger than the AVIF I started with?",
+        answer:
+          "That is expected. AVIF spends far fewer bits on the same image by discarding detail the eye is unlikely to miss. JPG has to store much more of that detail to reach the same visual quality, so the file grows. The JPG is a compatibility copy, not an improvement — keep the AVIF as your master if the recipients can handle it.",
+      },
+      {
+        question: "What happens to transparency?",
+        answer:
+          "JPG has no alpha channel, so transparent areas are filled with white. If the transparency matters, convert to PNG instead — that preserves the alpha channel exactly, at the cost of a larger file.",
+      },
+      {
+        question: "Can I convert a batch of AVIF files?",
+        answer:
+          "Yes. Add multiple files and each is converted and offered as a separate download. Because everything runs locally, the practical limit is your device's memory rather than an upload size cap.",
+      },
+    ],
+    relatedTools: [
+      { id: "image-convert", label: "Image Converter" },
+      { id: "image-compress", label: "Image Compressor" },
+      { id: "image-info", label: "Image Info" },
+    ],
+    relatedPairs: ["png-to-jpg", "webp-to-jpg", "jpg-to-png"],
+    technicalNote:
+      "AVIF is decoded via createImageBitmap, falling back to an Image element. Decoding support depends entirely on the browser: Chrome 85+, Firefox 93+, Safari 16.4+. The frame is drawn to a canvas and exported with canvas.toBlob('image/jpeg', 0.92), with a white fill applied first because JPG cannot store transparency.",
   },
 ];
 

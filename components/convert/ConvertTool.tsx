@@ -44,7 +44,7 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
           const ctx = canvas.getContext("2d");
 
           if (!ctx) {
-            reject(new Error("Canvas 不可用"));
+            reject(new Error("Canvas is not available in this browser"));
             return;
           }
 
@@ -59,7 +59,7 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
           canvas.toBlob(
             (blob) => {
               if (!blob) {
-                reject(new Error("编码失败"));
+                reject(new Error("Encoding failed"));
                 return;
               }
               const base = file.name.replace(/\.[^.]+$/, "");
@@ -83,7 +83,7 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
           };
           img.onerror = () => {
             URL.revokeObjectURL(url);
-            reject(new Error("SVG 无法解码"));
+            reject(new Error("This SVG could not be decoded"));
           };
           img.src = url;
           return;
@@ -94,7 +94,7 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
             finish(bitmap, bitmap.width, bitmap.height);
             bitmap.close();
           })
-          .catch(() => reject(new Error(`${file.name} 无法解码`)));
+          .catch(() => reject(new Error(`${file.name} could not be decoded`)));
       }),
     [outputMeta.mime, pair.to]
   );
@@ -120,7 +120,7 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
       setResults(out);
       setBusy(false);
       if (failed.length > 0) {
-        setError(`${failed.length} 个文件失败：${failed.slice(0, 3).join("；")}`);
+        setError(`${failed.length} file(s) failed: ${failed.slice(0, 3).join("; ")}`);
       }
     },
     [convertOne]
