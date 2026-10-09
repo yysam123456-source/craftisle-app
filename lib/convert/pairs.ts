@@ -17,7 +17,7 @@
  */
 
 export type OutputFormat = "jpg" | "png" | "webp";
-export type InputFormat = "jpeg" | "png" | "webp" | "gif" | "bmp" | "svg" | "avif";
+export type InputFormat = "jpeg" | "png" | "webp" | "gif" | "bmp" | "svg" | "avif" | "heic";
 
 export interface ConvertPair {
   /** URL 用 slug，如 png-to-jpg */
@@ -50,6 +50,11 @@ export const INPUT_META: Record<InputFormat, { label: string; mime: string; note
   bmp: { label: "BMP", mime: "image/bmp", note: "Windows bitmap, large files but maximum compatibility" },
   svg: { label: "SVG", mime: "image/svg+xml", note: "Vector format, rasterised at its natural size on export" },
   avif: { label: "AVIF", mime: "image/avif", note: "Newer compression format, needs a browser that can decode it" },
+  heic: {
+    label: "HEIC",
+    mime: "image/heic",
+    note: "iPhone format — decoded on-device by a bundled decoder, never uploaded",
+  },
 };
 
 export const OUTPUT_META: Record<OutputFormat, { label: string; mime: string; quality: string; note: string }> = {
@@ -59,7 +64,7 @@ export const OUTPUT_META: Record<OutputFormat, { label: string; mime: string; qu
 };
 
 /**
- * 7 个对转对（2026-10-09 新增 svg-to-png / avif-to-jpg）。
+ * 9 个对转对（2026-10-09 新增 svg-to-png / avif-to-jpg / heic-to-jpg / heic-to-png）。
  *
  * 选取依据（真实长尾，Bing Suggest 2026-10-08 采集 1734 条）：
  *   png-to-jpg / heic-to-jpg / png-to-ico 出现在「online image converter」建议链中，
@@ -448,6 +453,132 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     relatedPairs: ["png-to-jpg", "webp-to-jpg", "jpg-to-png"],
     technicalNote:
       "AVIF is decoded via createImageBitmap, falling back to an Image element. Decoding support depends entirely on the browser: Chrome 85+, Firefox 93+, Safari 16.4+. The frame is drawn to a canvas and exported with canvas.toBlob('image/jpeg', 0.92), with a white fill applied first because JPG cannot store transparency.",
+  },
+  // ─────────────────────────────────────────────────────────────
+  {
+    slug: "heic-to-jpg",
+    from: "heic",
+    to: "jpg",
+    phrase: "HEIC to JPG",
+    title: "HEIC to JPG Converter — Convert HEIC to JPG Online Free",
+    description:
+      "Convert HEIC to JPG in your browser, privately. Free, no signup, no upload — iPhone photos are decoded on your own device and never leave it.",
+    intro: [
+      "HEIC is what your iPhone has been saving photos as since iOS 11, and it is a genuinely good format — roughly half the file size of JPG at the same perceived quality. The friction arrives the moment you leave the Apple ecosystem: Windows Explorer does not open it, most Windows software ignores it, Adobe Acrobat's file picker filters it out, and every government or bank upload portal that asks for a JPG will simply reject it.",
+      "That gap is why 'heic to jpg' is one of the most searched file conversions there is, and why so many of the tools that answer it are upload sites: you hand a photo of your ID, your passport or your child to a stranger's server because the alternative seemed to be installing software. This converter takes the other route. A HEIC decoder is bundled into this page and runs locally, so the conversion happens on your own machine — the photo never travels.",
+    ],
+    whenToUse: {
+      do: [
+        "A website, government form or banking portal accepts only JPG or PNG and rejects the HEIC from your phone.",
+        "You need to email a photo taken on an iPhone to someone on Windows or Android.",
+        "You are preparing ID, passport or visa photos, which almost universally must be JPG.",
+        "A design or print tool cannot open the HEIC and shows the file as unreadable.",
+      ],
+      avoid: [
+        "You want to keep the smallest possible file — HEIC is already smaller than the JPG you will get back, so keep the HEIC as your master and convert a copy.",
+        "You need to batch hundreds of photos on a phone with limited storage — decoded images are held in memory while converting.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Are my HEIC photos uploaded anywhere?",
+        answer:
+          "No. The decoder that reads HEIC is bundled into this page and runs in your browser tab. The file is read from your disk, decoded locally, drawn to a canvas and written out as a JPG on the same machine. There is no upload endpoint, no queue and no copy held on any server — which matters when the photo is a passport or an ID document.",
+      },
+      {
+        question: "Why will my JPG be bigger than the HEIC?",
+        answer:
+          "That is expected and unavoidable. HEIC spends far fewer bits on the same picture by discarding detail the eye is unlikely to miss; JPG has to store much more of that detail to reach the same apparent quality, so the file grows — often by a factor of two. The JPG is a compatibility copy, not an upgrade, so keep the original HEIC if you possibly can.",
+      },
+      {
+        question: "Will converting HEIC to JPG lose the quality difference between shots?",
+        answer:
+          "No visible change. HEIC's advantage over JPG is compression efficiency, not a different colour rendition — converting at high quality gives a JPG that looks the same as what the HEIC renders on your phone. What you lose is the option to keep re-compressing more efficiently later, because JPG starts from a fatter file.",
+      },
+      {
+        question: "What happens to transparency if my HEIC has any?",
+        answer:
+          "It is filled with white, because JPG has no alpha channel. iPhone photos rarely rely on transparency, so this rarely matters in practice. If you need the alpha channel preserved, convert to PNG instead, which keeps it exactly.",
+      },
+      {
+        question: "It says my HEIC could not be decoded. What now?",
+        answer:
+          "Usually one of three things: the file arrived via a messaging app that recompressed it into something else; the extension says .heic but the content is actually a JPG or PNG — just rename it to .jpg and it will convert normally; or it is an HEIF variant this decoder build does not recognise. Opening the original again and re-exporting as JPEG from your phone's share sheet also works.",
+      },
+      {
+        question: "Can I convert several HEIC files at once?",
+        answer:
+          "Yes. Add multiple files and each is converted and offered as a separate download. Because the decoding happens locally, there is no upload size limit — the practical constraint is your device's memory.",
+      },
+    ],
+    relatedTools: [
+      { id: "image-compress", label: "Image Compressor" },
+      { id: "image-convert", label: "Image Converter" },
+      { id: "image-resize", label: "Image Resizer" },
+    ],
+    relatedPairs: ["png-to-jpg", "jpg-to-png", "svg-to-png"],
+    technicalNote:
+      "HEIC cannot be decoded by any browser's native image pipeline, so this page bundles libheif compiled to WebAssembly (about 1.3 MB, embedded inside the JavaScript — there is no CDN request and no network call of any kind). The decoder is loaded lazily: it is only downloaded if you actually pick a HEIC file. The decoded bitmap is drawn to a canvas, pre-filled with white because JPG has no alpha channel, and exported with canvas.toBlob('image/jpeg', 0.92).",
+  },
+  // ─────────────────────────────────────────────────────────────
+  {
+    slug: "heic-to-png",
+    from: "heic",
+    to: "png",
+    phrase: "HEIC to PNG",
+    title: "HEIC to PNG Converter — Convert HEIC to PNG Online Free",
+    description:
+      "Convert HEIC to PNG in your browser with full privacy. Free, no upload, no signup — the iPhone photo is decoded on your device and never sent anywhere.",
+    intro: [
+      "Most people asking for HEIC to PNG are not doing it for size — they are doing it because a specific system insists on PNG. Print shops, some marketplace uploaders, diagram and design tools, and a number of government portals list PNG as an accepted format and treat JPG and HEIC as interchangeable, when in fact only one of them is.",
+      "The conversion itself is a decode and a re-encode: the HEIC's compressed image data is expanded back into a pixel grid, then written as PNG, which stores those pixels without further loss. Choose PNG over JPG when transparency matters or when the destination rejects lossy compression; choose JPG when you care about file size.",
+    ],
+    whenToUse: {
+      do: [
+        "A print shop, marketplace or upload form lists PNG as one of the accepted formats.",
+        "You need a lossless copy of a photo for editing, so quality is not lost again on the way in.",
+        "A tool that reads PNG refuses to open the HEIC, and re-saving from your phone is inconvenient.",
+      ],
+      avoid: [
+        "You want a smaller file — PNG is lossless, so the output will be considerably larger than either the HEIC or a JPG conversion.",
+        "Nobody asked for PNG specifically. Converting to JPG instead gives a far smaller file at visually identical quality.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Is my HEIC uploaded to convert it?",
+        answer:
+          "No. The HEIC decoder is bundled into this page and executes locally. Your file is read, decoded, redrawn and re-encoded entirely on your own device, so nothing is transmitted or retained — the property that matters when the photo is a document.",
+      },
+      {
+        question: "Why is my PNG so much larger than the HEIC?",
+        answer:
+          "HEIC discards image detail it judges imperceptible; PNG stores every pixel of the decoded image exactly. When you expand a compressed file into a lossless one, the size rises by roughly the compression ratio — commonly three to six times. That is the trade you are making: exact pixels in exchange for file size.",
+      },
+      {
+        question: "Does HEIC to PNG lose any quality?",
+        answer:
+          "The PNG is a faithful copy of what the HEIC actually stores. No further loss happens during the conversion, because PNG is lossless. The original HEIC had already discarded some detail before this page ever saw it — that loss is upstream of us and cannot be recovered by any converter.",
+      },
+      {
+        question: "Should I use HEIC to PNG or HEIC to JPG?",
+        answer:
+          "PNG if transparency matters, if you are about to edit the file and want to avoid stacking lossy compression, or if the destination's spec says PNG. JPG in every other case — it will be several times smaller and indistinguishable to the eye at normal viewing sizes.",
+      },
+      {
+        question: "Can I convert multiple HEIC files at once?",
+        answer:
+          "Yes. Add several files and each is converted and offered as a separate download. Everything is local, so there is no upload cap — only your device's available memory.",
+      },
+    ],
+    relatedTools: [
+      { id: "image-convert", label: "Image Converter" },
+      { id: "image-create-transparent", label: "Make Image Transparent" },
+      { id: "image-compress", label: "Image Compressor" },
+    ],
+    relatedPairs: ["jpg-to-png", "svg-to-png", "png-to-jpg"],
+    technicalNote:
+      "Decoding uses libheif compiled to WebAssembly, bundled inside the page's JavaScript (no CDN, no network request), loaded on demand only when a HEIC file is selected. The decoded bitmap is drawn to a canvas and exported with canvas.toBlob('image/png') — no quality argument is passed because PNG ignores it. The alpha channel, if any, is preserved.",
   },
 ];
 

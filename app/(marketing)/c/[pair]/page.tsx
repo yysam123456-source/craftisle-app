@@ -50,8 +50,10 @@ export default async function ConvertPage({
   const inputMeta = INPUT_META[pair.from];
   const outputMeta = OUTPUT_META[pair.to];
 
-  // 同类对转页（过滤自身）
-  const relatedPairs = CONVERT_PAIRS.filter((p) => p.slug !== pair.slug).slice(0, 6);
+  // 同类对转页（过滤自身）。
+  // 🔴 成员不可裁：slice(0, 6) 会让排在后面的对转页在本站所有页面里拿不到入站链接
+  // （孤儿页铁律）。对转数量不多，全量列出即可。
+  const relatedPairs = CONVERT_PAIRS.filter((p) => p.slug !== pair.slug);
 
   // 内链到站内工具页。注意 getRelatedTools(toolId) 接受单个 id，
   // 因此这里对每个声明的 relatedTool 各自取其同分类兄弟工具，

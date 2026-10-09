@@ -23,6 +23,37 @@ interface Result {
   url: string;
 }
 
+/**
+ * HEIC/HEIF 判定。浏览器的 File.type 对 iPhone 拍的 HEIC 并不总是可靠
+ * （常见 image/heic、image/heif，或干脆空字符串），因此同时看扩展名。
+ */
+function isHeic(file: File): boolean {
+  const t = file.type.toLowerCase();
+  if (t === "image/heic" || t === "image/heif" || t === "image/heic-sequence" || t === "image/heif-sequence") {
+    return true;
+  }
+  return /\.(heic|heif|heics|heifs)$/i.test(file.name);
+}
+
+/**
+ * 🔴 隐私铁律：heic2any 内嵌 libheif（wasm 以 base64 形式打包在同一个 js 里，
+ * 实测 dist 内无任何 http(s) 外链、无 CDN 运行时依赖）⇒ 解码完全发生在本机。
+ *用**动态 import**：这1.35MB 只在用户真的选了 HEIC 文件时才下载，
+ * 访问任何 /c 页面的人都不会为不需要它的能力付流量。
+ */
+async function decodeHeic(file: File, toType: string): Promise<Blob> {
+  const mod: unknown = await import("heic2any");
+  // heic2any 是 UMD 包：webpack 下既可能挂在 default 上，也可能直接是模块命名空间。
+  const candidate = mod as { default?: unknown };
+  const fn = (typeof candidate.default === "function" ? candidate.default : mod) as (opts: {
+    blob: Blob;
+    toType?: string;
+    quality?: number;
+  }) => Promise<Blob | Blob[]>;
+  const out = await fn({ blob: file, toType, quality: 0.92 });
+  return Array.isArray(out) ? out[0] : out;
+}
+
 export default function ConvertTool({ pair }: { pair: ConvertPair }) {
   const inputMeta = INPUT_META[pair.from];
   const outputMeta = OUTPUT_META[pair.to];
@@ -86,6 +117,32 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
             reject(new Error("This SVG could not be decoded"));
           };
           img.src = url;
+          return;
+        }
+
+        // HEIC/HEIF：浏览器原生解不了，走打包在包内的 libheif（动态 import）。
+        if (isHeic(file)) {
+          decodeHeic(file, outputMeta.mime)
+            .then((blob) => {
+              const url = URL.createObjectURL(blob);
+              const img = new Image();
+              img.onload = () => {
+                finish(img, img.naturalWidth, img.naturalHeight);
+                URL.revokeObjectURL(url);
+              };
+              img.onerror = () => {
+                URL.revokeObjectURL(url);
+                reject(new Error(`${file.name} could not be decoded as HEIC`));
+              };
+              img.src = url;
+            })
+            .catch(() =>
+              reject(
+                new Error(
+                  `${file.name} could not be decoded. The file may be corrupt, or an HEIC variant this browser build does not support.`
+                )
+              )
+            );
           return;
         }
 
@@ -161,7 +218,12 @@ export default function ConvertTool({ pair }: { pair: ConvertPair }) {
           ref={inputRef}
           type="file"
           multiple
-          accept={inputMeta.mime}
+          accept={
+            pair.from === "heic"
+              ? // HEIC 的 MIME 在各系统上不一致，同时列出扩展名兜底。
+                "image/heic,image/heif,.heic,.heif"
+              : inputMeta.mime
+          }
           onChange={(e) => void handleFiles(e.target.files)}
           className="hidden"
         />

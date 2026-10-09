@@ -28,6 +28,14 @@ export default function ImageConvertPage() {
         </p>
         <p className="mt-2 text-sm text-muted-foreground">
           Looking for one specific pair?{" "}
+          <a href="/c/heic-to-jpg" className="underline underline-offset-2 hover:no-underline">
+            HEIC to JPG
+          </a>{" "}
+          ·{" "}
+          <a href="/c/heic-to-png" className="underline underline-offset-2 hover:no-underline">
+            HEIC to PNG
+          </a>{" "}
+          ·{" "}
           <a href="/c/png-to-jpg" className="underline underline-offset-2 hover:no-underline">
             PNG to JPG
           </a>{" "}
