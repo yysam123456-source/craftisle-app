@@ -4,8 +4,9 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
 export const metadata = constructMetadata({
-  title: "Image Converter Free — Convert JPG/PNG/WebP Online",
-  description: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. 100% browser-based, no signup required.",
+  title: "Image Converter — JPG, PNG, WebP, AVIF, SVG to JPG/PNG/WebP Free",
+  description:
+    "Convert JPG, PNG, WebP, AVIF, SVG, GIF and BMP in your browser. JFIF to JPG, HEIC notes, batch convert, compress to 100KB. No upload, no signup.",
   canonical: "https://craftisle.com/tools/image-convert",
 });
 
@@ -18,11 +19,34 @@ export default function ImageConvertPage() {
       <ToolJsonLd toolId="image-convert" />
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">
-          🔄 Image Converter — Convert JPG/PNG/WebP Online
+          🔄 Image Converter — Convert JPG, PNG, WebP, AVIF, SVG to JPG/PNG/WebP
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP.
-          100% browser-based, no signup.
+          Convert between JPG, PNG, WebP, AVIF, SVG, GIF and BMP — including{" "}
+          <strong>JFIF to JPG</strong> and <strong>AVIF to JPG</strong> — and hit an exact size
+          target such as 100 KB. 100% browser-based: files are never uploaded.
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Looking for one specific pair?{" "}
+          <a href="/c/png-to-jpg" className="underline underline-offset-2 hover:no-underline">
+            PNG to JPG
+          </a>{" "}
+          ·{" "}
+          <a href="/c/jpg-to-png" className="underline underline-offset-2 hover:no-underline">
+            JPG to PNG
+          </a>{" "}
+          ·{" "}
+          <a href="/c/svg-to-png" className="underline underline-offset-2 hover:no-underline">
+            SVG to PNG
+          </a>{" "}
+          ·{" "}
+          <a href="/c/avif-to-jpg" className="underline underline-offset-2 hover:no-underline">
+            AVIF to JPG
+          </a>{" "}
+          ·{" "}
+          <a href="/tools/image-compress" className="underline underline-offset-2 hover:no-underline">
+            compress to an exact KB
+          </a>
         </p>
       </div>
       <ImageConvertClient />

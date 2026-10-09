@@ -4,8 +4,9 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
 export const metadata = constructMetadata({
-  title: "Image Compressor Free — Compress JPG/PNG/WebP Online",
-  description: "Free image compressor online. Compress JPG, PNG, WebP, AVIF with quality control. Reduce image file size without losing quality. 100% browser-based, no signup.",
+  title: "Image Compressor to 100KB — Compress Image to Exact Size Free",
+  description:
+    "Compress image to an exact file size — 100 KB, 200 KB, 500 KB, 1 MB. Also free JPG/PNG/WebP quality compression. Runs in your browser, no upload.",
   canonical: "https://craftisle.com/tools/image-compress",
 });
 
@@ -17,11 +18,11 @@ export default function ImageCompressPage() {
       <ToolJsonLd toolId="image-compress" />
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">
-          🗜️ Image Compressor — Compress JPG/PNG/WebP Online
+          🗜️ Image Compressor — Compress Image to 100KB or Any Target Size
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Free image compressor online. Compress JPG, PNG, WebP, AVIF with quality control. 
-          Reduce image file size without losing quality. 100% browser-based, no signup.
+          Compress an image to an exact file size — 100 KB, 200 KB, 500 KB, 1 MB — or dial quality manually.
+          Runs on the canvas API in your browser; nothing is uploaded, queued or stored.
         </p>
       </div>
       <ImageCompressClient />
