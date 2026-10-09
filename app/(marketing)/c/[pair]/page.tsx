@@ -130,6 +130,7 @@ export default async function ConvertPage({
                     <p className="text-sm text-green-700 dark:text-green-300 mt-1">
                       This page has no upload endpoint. Decoding and re-encoding happen inside your
                       browser, so there is no server holding a copy of your {inputMeta.label} file
+                      {" "}
                       and no size limit beyond your own device&apos;s memory.
                     </p>
                   </div>

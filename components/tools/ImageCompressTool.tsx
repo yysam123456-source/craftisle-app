@@ -133,8 +133,7 @@ export default function ImageCompressTool() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-bold">Compress Image — Reduce Image Size to a Target KB</h1>
-
+      {/* 标题由页面模板（静态段 h1 / ToolDetailLayout）提供，此处不再重复输出 h1。 */}
       <Card className="p-6 space-y-4">
         <div>
           <label className="block text-sm font-medium mb-2">Upload Image</label>
