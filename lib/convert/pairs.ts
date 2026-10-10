@@ -183,6 +183,67 @@ export const CONVERT_PAIRS: ConvertPair[] = [
       "The JPG is decoded, drawn to a canvas, and exported with canvas.toBlob('image/png'). PNG is lossless, so the encoded result is considerably larger than the source for photographic content. For transparency to be preserved the source must already carry an alpha channel.",
   },
   {
+    slug: "gif-to-webp",
+    from: "gif",
+    to: "webp",
+    phrase: "GIF to WebP",
+    title: "GIF to WebP Converter — Shrink GIF to WebP Online Free",
+    description:
+      "Convert GIF to WebP in your browser and cut the file size substantially. Free, private, nothing uploaded. First frame only — animation is not preserved.",
+    intro: [
+      "GIF is a 1987 format that never got retired, which is why it is still everywhere: browsers render it without asking, every messaging app accepts it, and it is the only common format that stores animation. It is also very heavy. A GIF holds a fixed 256-colour palette, so a single frame of photographic content can be larger than an equivalent JPG, and every frame is stored in full even when most of it did not change.",
+      "Converting a GIF to WebP attacks that weight directly. WebP was designed as a replacement for both JPG and PNG, and modern encoders reach roughly a quarter to a third of the GIF's size for the same visual result — while keeping the transparency that GIF uses for its transparent background. The result is a file that loads far faster on the same visual content.",
+      "One thing to be clear about before you start: this converter produces a still image. Browsers decode animated GIFs and hand you the frames, but a canvas only ever receives one of them, so the output here is the first frame. If you need the animation to survive, you need an animated WebP encoder, which is a different piece of software — see the FAQ below.",
+    ],
+    whenToUse: {
+      do: [
+        "A GIF's animation is incidental — it is a static image someone exported badly, and you want the small still.",
+        "You are replacing a decorative GIF placeholder or loading spinner image with a lighter asset.",
+        "You want to shrink a GIF for use as a favicon, thumbnail, or social preview image.",
+        "You need a WebP asset but only have a GIF, and transparency must be preserved.",
+      ],
+      avoid: [
+        "The animation is the point — the output here is a single frame and the motion will be gone.",
+        "You need a format every email client and older desktop application can render.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Will my GIF animation be preserved?",
+        answer:
+          "No. This converter outputs the first frame as a still image. Browsers can decode animated GIFs, but the canvas you draw onto receives a single frame, and there is no way to recover the sequence from the page. Converting a GIF whose animation matters requires an animated WebP encoder, which this tool does not do — converting to a still is the honest result rather than a silently flattened animation.",
+      },
+      {
+        question: "How much smaller is the WebP compared to the GIF?",
+        answer:
+          "For the typical GIF — flat colours, limited palette, moderate dimensions — the WebP usually lands between 25% and 40% of the original size, so a 60–75% reduction. The saving is largest exactly where GIFs are weakest: large flat areas and photographic gradients, both of which GIF handles poorly.",
+      },
+      {
+        question: "Does GIF to WebP keep transparency?",
+        answer:
+          "Yes, if the GIF has a transparent background. WebP supports an alpha channel, so the transparent area stays transparent instead of being flattened to a solid colour. GIFs that use a single-colour matte rather than real transparency will come through as that colour.",
+      },
+      {
+        question: "Is WebP safe to use on my website?",
+        answer:
+          "For any site visited with a browser from roughly 2020 onward, yes — Chrome, Firefox, Edge and Safari all support it. It is not safe for email attachments, or for software that expects a traditional image format. Keep the GIF as a fallback if the destination is uncertain.",
+      },
+      {
+        question: "Why is my GIF so much larger than it looks?",
+        answer:
+          "Because GIF is a poor fit for what it is usually asked to hold. It stores every frame in full rather than only what changed, and its palette is capped at 256 colours, so photographic content and smooth gradients band and blow up in size. That is why a GIF of a simple animation can outweigh a photograph of the same subject.",
+      },
+    ],
+    relatedTools: [
+      { id: "image-compress", label: "Image Compressor" },
+      { id: "image-convert", label: "Image Converter" },
+      { id: "image-resize", label: "Image Resizer" },
+    ],
+    relatedPairs: ["png-to-webp", "webp-to-png", "png-to-jpg", "jpg-to-png"],
+    technicalNote:
+      "The GIF is decoded by the browser, drawn to a canvas at its natural size, and exported with canvas.toBlob('image/webp', 0.92). Only the first frame reaches the canvas, so the output is a still image — the file size reduction is real, the animation is not preserved.",
+  },
+  {
     slug: "png-to-webp",
     from: "png",
     to: "webp",

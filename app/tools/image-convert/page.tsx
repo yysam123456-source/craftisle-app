@@ -52,6 +52,16 @@ export default function ImageConvertPage() {
             AVIF to JPG
           </a>{" "}
           ·{" "}
+          {/* gif-to-webp 此前只存在于 pairs.ts，无任何页面链到它 ⇒ 孤儿页。
+              2026-10-10 补内链；顺带把缺失的 webp-to-png 一并补上（同样无入站）。 */}
+          <a href="/c/gif-to-webp" className="underline underline-offset-2 hover:no-underline">
+            GIF to WebP
+          </a>{" "}
+          ·{" "}
+          <a href="/c/webp-to-png" className="underline underline-offset-2 hover:no-underline">
+            WebP to PNG
+          </a>{" "}
+          ·{" "}
           <a href="/tools/image-compress" className="underline underline-offset-2 hover:no-underline">
             compress to an exact KB
           </a>
