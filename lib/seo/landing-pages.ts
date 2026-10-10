@@ -1097,7 +1097,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
     internalLinks: [
       { label: "Minify JSON", href: "/tools/json-minify" },
       { label: "JSON Compare", href: "/tools/json-comparison" },
-      { label: "Sort JSON", href: "/tools/json-sort" },
+      { label: "Sort JSON", href: "/tools/sort-json" },
       { label: "JSON Formatter", href: "/tools/json-formatter" },
       L.tools,
       L.directory,
@@ -1149,7 +1149,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { label: "Convert Seconds to Time", href: "/tools/convert-seconds-to-time" },
       { label: "Convert Time to Decimal", href: "/tools/convert-time-to-decimal" },
       { label: "Unix Timestamp Converter", href: "/tools/convert-unix-to-date" },
-      { label: "Crontab Guru", href: "/tools/crontab-guru" },
+      { label: "Crontab Guru", href: "/tools/cron-parser" },
       L.tools,
       L.directory,
     ],
