@@ -1830,8 +1830,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Online TTS conversion",
     icon: "🔊",
     category: CATEGORIES.generator,
-    seoTitle: "Text to Speech Free — Online Tool",
-    seoDesc: "Free text to speech online tool. Online TTS conversion 100% browser-based, no signup required.",
+    seoTitle: "Text to Speech Free — Online Voice Generator, No Download",
+    seoDesc: "Free text to speech online. Adjust voice, rate, pitch and volume in your browser. No signup, no download, nothing uploaded.",
     seoKeywords: [
         "text to speech online free tool",
         "TTS voice generator online free",
@@ -1846,12 +1846,12 @@ export const toolMeta: Record<string, ToolMeta> = {
         "online voice generator free tool",
         "free browser based TTS tool"
       ],
-    description: "Convert text to natural-sounding speech using the browser's built-in Web Speech API. Supports multiple languages and voices (depending on your OS). Adjust speed, pitch, and volume. Download as WAV. Essential for accessibility testing, content creation, and language learning.",
+    description: "Speak text aloud using your browser's built-in Web Speech API. Choose from the voices installed on your system, adjust speed, pitch and volume, and hear the result instantly. Useful for accessibility testing, proofreading by ear, language learning and content drafts.",
     howToUse: [
       { heading: "Type or paste text", text: "Enter the text you want to convert to speech (up to ~500 characters for best results)." },
       { heading: "Choose voice and language", text: "Select from available system voices. Different OSes provide different voice options." },
       { heading: "Adjust settings", text: "Set speech rate (speed), pitch, and volume." },
-      { heading: "Play or download", text: "Click Play to preview. Click Download to save as a WAV file." },
+      { heading: "Play or stop", text: "Press Play to hear the text. Press Stop, or edit the text, to cancel playback at any time." },
     ],
     useCases: [
       { title: "Accessibility testing", text: "Test how screen readers will pronounce your app's UI text and error messages." },
@@ -1862,6 +1862,8 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Why do I have fewer voices than expected?", a: "Available voices depend on your operating system. macOS has more built-in voices than Windows or Linux. Chrome also provides extra voices via Google's speech synthesis." },
       { q: "Can I use this for commercial voiceovers?", a: "The Web Speech API voices are licensed for personal/system use. For commercial projects, consider a paid TTS API (ElevenLabs, Azure TTS, etc.)." },
       { q: "Is there a character limit?", a: "For best performance, keep input under 500 characters. Longer texts may be truncated or cause slow rendering." },
+      { q: "Can I save the speech as an MP3 or WAV file?", a: "No. Browsers deliberately do not expose the audio stream produced by the built-in speech engine, so there is nothing for this page to capture — we will not claim a download that does not work. If you need a file you can keep, copy the text into a tool that can export audio (many operating systems and mobile browsers have a built-in \"Speak Selection\" feature that can record). For production-grade voice-over with downloadable files you would use a dedicated TTS service." },
+      { q: "Why does the voice sound robotic compared to AI voices?", a: "This tool uses the voices already installed on your operating system, not a generative AI model. The available voices are chosen by your OS, which is why the list differs between Windows, macOS, Linux and mobile. On macOS and iOS the system voices are the most natural-sounding ones available." },
     ],
     relatedTools: ["lorem-ipsum", "text-formatter", "unicode"],
   },
@@ -2564,8 +2566,8 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "🔍",
     category: CATEGORIES.image,
     stars: 5,
-    seoTitle: "Image Upscaler Free — Enlarge Images 2x or 4x Online",
-    seoDesc: "Free image upscaler online. Enlarge JPG, PNG and WebP photos 2x or 4x with AI super-resolution or instant canvas scaling. No upload, no signup.",
+    seoTitle: "Image Upscaler Free — Enlarge Images 2x or 4x, No Login",
+    seoDesc: "Free image upscaler online. Enlarge JPG, PNG and WebP photos 2x or 4x with AI super-resolution or canvas scaling. No login, no upload, no signup.",
     seoKeywords: [
       "image upscaler online free",
       "upscale image without losing quality",
@@ -2602,6 +2604,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is my image uploaded to a server?", a: "No. Both modes run in your browser. The AI model weights are fetched once from huggingface.co and cached; your image itself is never sent anywhere." },
       { q: "Why is the output PNG so large?", a: "PNG is lossless, so a 4x upscale of a 3000 px photo becomes a 12000 px file that can run to hundreds of megabytes. If you only need it for the web, convert to JPG or WebP afterwards with the image converter." },
       { q: "Does it work on anime and line art?", a: "Yes — the artwork model is trained on illustration-style data, so it preserves line weight and flat colour better than the photographic model does." },
+      { q: "Do I need an account or login to use this?", a: "No. There is no login, no signup, no email address and no page limit — open the page and start upscaling. Nothing is stored on an account because there is no account. The only thing the AI mode downloads is the model weights, once, and they are cached in your browser." },
     ],
     relatedTools: ["image-compress", "image-convert", "image-crop", "ai-watermark-remover"],
   },
