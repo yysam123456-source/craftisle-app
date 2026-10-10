@@ -10,7 +10,7 @@ export const dynamicParams = true;
  * 2. alternatives 数据中的分类（Design, Productivity 等）
  * 3. home-blocks.json 中的 block ID（weekly-hottest, rising-stars 等）
  */
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getAllResources, getAllCategories, type Resource, type Category } from "@/lib/fmhy-data";
 import { getEnhancedDescription } from "@/lib/tool-descriptions";
 import { getCombinedMap, type AlternativeEntry } from "@/lib/alternatives";
@@ -308,7 +308,9 @@ export default async function BestToolsPage(props: BestPageProps) {
   // 🔴 所有非基址变体统一 308 到基址，避免同一内容多 URL 互相分流
   const slug = canonicalSlug(rawSlug);
   if (slug !== rawSlug) {
-    redirect(`/directory/best/${slug}`);
+    // 🔴 必须用 permanentRedirect（308）而不是 redirect（307）：
+    // 307 是「暂时」，搜索引擎会继续把权重和索引留在原变体 URL 上，收敛就白做了。
+    permanentRedirect(`/directory/best/${slug}`);
   }
 
   // ✅ 先检查是不是 home-blocks.json 中的 block ID

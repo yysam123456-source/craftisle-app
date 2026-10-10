@@ -68,8 +68,24 @@ async function getJson<T>(path: string): Promise<T | null> {
 
 interface Briefing {
   pipeline: { health: string; freshnessDays: number | null };
-  alerts: { activeAlerts?: Array<{ type: string; query: string; message: string; severity: string }> };
+  /**
+   * 🔴 2026-10-10 修正：`activeAlerts` 在响应**顶层**，不在 `alerts` 下。
+   * 此前本脚本读 `briefing.alerts.activeAlerts` ⇒恒 undefined ⇒ 衰减清单恒为 0 条，
+   * 且这个「0 条」看起来像「没有衰减」，是假的。
+   */
+  activeAlerts?: Array<{ type: string; query: string; message: string; severity: string }>;
   risingQueries?: Array<{ query: string; count: number; previousCount: number; growthPct: number }>;
+}
+
+interface TopQueries {
+  queries: QueryRow[];
+  total: number;
+  snapshotAt: string;
+  /** 端点自描述：是否多快照聚合、实际覆盖多少天、窗口内有几个快照。 */
+  aggregated?: boolean;
+  windowDays?: number;
+  snapshots?: string[];
+  note?: string;
 }
 
 function daysBetween(a: string, b: Date): number {
@@ -83,9 +99,7 @@ async function main() {
 
   const [briefing, tq] = await Promise.all([
     getJson<Briefing>("/api/analytics/ai-briefing"),
-    getJson<{ queries: QueryRow[]; total: number; snapshotAt: string }>(
-      "/api/analytics/top-queries?days=28&limit=500"
-    ),
+    getJson<TopQueries>("/api/analytics/top-queries?days=28&limit=200"),
   ]);
 
   const report: Record<string, unknown> = { generatedAt: today.toISOString() };
@@ -94,6 +108,17 @@ async function main() {
   // 曾被误读成「今日无高价值动作」，这里显式区分，避免重犯。
   const sourceOk = Boolean(tq && Array.isArray(tq.queries));
   report.dataSource = sourceOk ? "ok" : "FAILED —— 以下所有查询侧结论无效，不得当作「没有需求」";
+  report.queryWindow = tq
+    ? {
+        requestedDays: 28,
+        windowDays: tq.windowDays ?? null,
+        aggregated: tq.aggregated ?? false,
+        snapshots: tq.snapshots ?? [],
+        // 🔴 截断自检：total > 返回行数 ⇒ 样本不完整，段位表只是下界
+        truncated: tq.total > tq.queries.length,
+        note: tq.note ?? null,
+      }
+    : null;
 
   // ── 0. 管道健康（不输出曝光/点击数字） ──
   report.pipeline = briefing
@@ -121,22 +146,30 @@ async function main() {
   if (!sourceOk) {
     console.log("[growth-review] ❌ GSC 数据源不可达 —— 段位表/衰减/回读全部无效，本次不做任何选题结论。");
   } else {
-    console.log(`[growth-review] 28 天去重查询 ${rows.length} 条`);
+    const w = report.queryWindow as { truncated: boolean; windowDays: number | null; snapshots: string[] };
+    console.log(
+      `[growth-review] ${w.windowDays ?? "?"} 天窗口 / ${w.snapshots.length} 个周快照 · 去重查询 ${rows.length} 条（端点 total=${tq!.total}）${w.truncated ? " ⚠️ 被 limit 截断，段位表是下界" : ""}`
+    );
     for (const [k, v] of Object.entries(report.bandCounts as Record<string, number>)) {
       console.log(`  ${k.padEnd(6)} ${v}`);
     }
-    if (striking.length === 0) {
-      console.log("  ⚠️ striking distance(P4–20) 为空 —— 每日巡检「抢 P4–20」这条判据对本站在窗口期是空的，只能作长期观测，不能作选题依据。");
+    if (striking.length > 0) {
+      console.log(`  ⚠️ striking distance(P4–20) 非空，共 ${striking.length} 条 —— 明细见 report.bands["P4-20"]`);
+    } else {
+      console.log("  striking distance(P4–20) 为空 —— 该判据在窗口期不适用，只能作长期观测，不能作选题依据。");
     }
   }
 
   // ── 2. 衰减清单（有曝光且排名下滑） ──
-  const active = briefing?.alerts?.activeAlerts ?? [];
+  // 🔴 activeAlerts 在响应顶层（此前读 briefing.alerts.activeAlerts 恒 undefined，
+  //    导致衰减清单恒为 0 条，且这个「0」看起来像「没有衰减」——是假的）
+  const active = briefing?.activeAlerts ?? [];
   const decay = active
     .filter((a) => a.type === "position_drop" || a.type === "low_ctr")
     .map((a) => ({ severity: a.severity, query: a.query, message: a.message }));
   report.decay = decay;
-  console.log(`[growth-review] 衰减/低 CTR 告警 ${decay.length} 条`);
+  console.log(`[growth-review] 告警 ${active.length} 条，其中衰减/低 CTR ${decay.length} 条`);
+  for (const d of decay) console.log(`  [${d.severity}] ${d.query}: ${d.message}`);
 
   // ── 3. 台账回读 ──
   const readback: Array<Record<string, unknown>> = [];
