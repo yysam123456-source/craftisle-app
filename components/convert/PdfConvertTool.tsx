@@ -99,13 +99,21 @@ export default function PdfConvertTool({ pair }: { pair: ConvertPair }) {
       try {
         doc = await pdfjs.getDocument({ data }).promise;
       } catch (e) {
-        const msg = e instanceof Error ? e.message : String(e);
-        if (/password/i.test(msg)) {
+        const err = e as { name?: string; message?: string; code?: number };
+        const msg = err?.message ?? String(e);
+        // 🔴 只认pdf.js 的 PasswordException，**不要全文匹配 "password"**。
+        // 此前用 /password/i 会把「worker 加载失败」这类错误也显示成
+        // 「This PDF is password-protected」—— 真实原因被完全掩盖，排查时被骗了很久。
+        // pdf.js 的密码错误有固定 code：PasswordException = 1 / MissingPDFException = 2。
+        if (err?.name === "PasswordException" || err?.code === 1) {
           throw new Error(
             "This PDF is password-protected. Remove the password first, then convert it here."
           );
         }
-        throw new Error("This PDF could not be read — it may be corrupted or not a real PDF.");
+        throw new Error(
+          `This PDF could not be read (${err?.name || "unknown error"}: ${msg}). ` +
+            `It may be corrupted, or the in-browser PDF engine failed to start.`
+        );
       }
 
       const out: Result[] = [];
