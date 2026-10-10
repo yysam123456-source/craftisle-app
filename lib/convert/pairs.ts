@@ -11,13 +11,15 @@
  *   - **GIF 输出**：Canvas 不支持，toBlob 会回退成 png ⇒ 不提供 gif 作为目标格式
  *   - **BMP / ICO 输出**：同样不支持 ⇒ 不收录
  *   - 可解码的输入：jpeg / png / webp / gif（取首帧）/ bmp / svg / avif（现代浏览器）
+ *   - **PDF**：走 pdf.js 解析、pdf-lib 生成（2026-10-10 引入，依赖见 components/convert/PdfConvertTool.tsx）。
+ *     它不在 Canvas 能力矩阵里，是独立的一条通路，但同样满足「纯浏览器内、不上传」。
  *
- * 因此 target 仅三种：jpg / png / webp。
+ * 因此 target 为 jpg / png / webp / pdf。
  * 任何新增对子都必须先确认「输入能解码」且「输出格式在上述列表内」。
  */
 
-export type OutputFormat = "jpg" | "png" | "webp";
-export type InputFormat = "jpeg" | "png" | "webp" | "gif" | "bmp" | "svg" | "avif" | "heic";
+export type OutputFormat = "jpg" | "png" | "webp" | "pdf";
+export type InputFormat = "jpeg" | "png" | "webp" | "gif" | "bmp" | "svg" | "avif" | "heic" | "pdf";
 
 export interface ConvertPair {
   /** URL 用 slug，如 png-to-jpg */
@@ -55,12 +57,23 @@ export const INPUT_META: Record<InputFormat, { label: string; mime: string; note
     mime: "image/heic",
     note: "iPhone format — decoded on-device by a bundled decoder, never uploaded",
   },
+  pdf: {
+    label: "PDF",
+    mime: "application/pdf",
+    note: "Parsed on-device with pdf.js — nothing is uploaded",
+  },
 };
 
 export const OUTPUT_META: Record<OutputFormat, { label: string; mime: string; quality: string; note: string }> = {
   jpg: { label: "JPG", mime: "image/jpeg", quality: "0.92", note: "Lossy, no transparency, smallest file" },
   png: { label: "PNG", mime: "image/png", quality: "-", note: "Lossless, keeps transparency, larger file" },
   webp: { label: "WebP", mime: "image/webp", quality: "0.92", note: "Lossy, smallest with transparency support" },
+  pdf: {
+    label: "PDF",
+    mime: "image/jpeg",
+    quality: "0.92",
+    note: "Portable Document Format — one image per page",
+  },
 };
 
 /**
@@ -181,6 +194,130 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     relatedPairs: ["png-to-jpg", "png-to-webp", "webp-to-png"],
     technicalNote:
       "The JPG is decoded, drawn to a canvas, and exported with canvas.toBlob('image/png'). PNG is lossless, so the encoded result is considerably larger than the source for photographic content. For transparency to be preserved the source must already carry an alpha channel.",
+  },
+  {
+    slug: "pdf-to-jpg",
+    from: "pdf",
+    to: "jpg",
+    phrase: "PDF to JPG",
+    title: "PDF to JPG Converter — Turn PDF Pages into JPG Online Free",
+    description:
+      "Convert PDF pages to JPG images in your browser, one file per page. Free, private, nothing uploaded. Password-protected PDFs are not supported.",
+    intro: [
+      "A PDF is a page description, not a picture. That is why you cannot drag one into an image editor and get a usable result: there are no pixels to work with until the page is rendered. PDF to JPG is that rendering step — every page is drawn exactly as it appears on screen, then exported as an ordinary JPG you can open anywhere.",
+      "The conversion happens entirely inside this page. The PDF is parsed by a local copy of pdf.js, each page is drawn to a canvas, and the canvas is exported as a JPG. Nothing is uploaded, which matters more here than for most file types: PDFs are the format people reach for when a document has to stay fixed, and that is exactly the kind of file you would rather not hand to a third-party server.",
+      "Each page becomes its own image, named in page order. A twelve-page document produces twelve JPGs. If you only need one page, convert the whole file and take the one you want — nothing is uploaded, so there is no batch of personal documents sitting on someone else's disk.",
+    ],
+    whenToUse: {
+      do: [
+        "You need to put a page of a document into a slide, email or chat message as an image.",
+        "An upload form accepts images but not PDFs, and you are filling it with a form, invoice or contract.",
+        "You want a visual copy of a document for your own records, without asking anyone to convert it.",
+        "You need a predictable JPG of each page for a review or proofing workflow.",
+      ],
+      avoid: [
+        "You need selectable text afterwards — a JPG is pixels, so the text cannot be copied or searched.",
+        "The PDF is password-protected — remove the password first, this page cannot open encrypted files.",
+        "You need editable page structure preserved — that requires a PDF editor, not a converter.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Does converting a PDF to JPG reduce the quality?",
+        answer:
+          "Pages are rendered at roughly twice the PDF's own resolution, which is about 144 DPI — enough for screen reading, email, and most print needs. The text stays sharp because it is rendered from vector data rather than downscaled from a scan. Raising quality further would only matter for large-format printing.",
+      },
+      {
+        question: "Will the text in my JPG be selectable or searchable?",
+        answer:
+          "No. The moment a page becomes a JPG it is a photograph of that page, so the text turns into pixels. If you need text you can copy or search, extract it with a PDF text extractor instead. If the source PDF is a scan rather than a typed document, the JPG will be an image of a scan and there is no text layer to begin with.",
+      },
+      {
+        question: "Why can't this open my password-protected PDF?",
+        answer:
+          "An encrypted PDF's contents are deliberately unreadable without the password, and this page has no way to ask you for one or handle it safely. Remove the password with a PDF tool first, save an unprotected copy, then convert that. If you need to keep the protection, do not convert it at all.",
+      },
+      {
+        question: "What happens to the page background?",
+        answer:
+          "JPG has no transparency channel, so any transparent area would come out black. Every page is therefore laid down on a white background before export, which is why a PDF page with a transparent-looking background still produces a normal white JPG rather than a black rectangle.",
+      },
+      {
+        question: "Are my PDFs uploaded anywhere?",
+        answer:
+          "No. The parsing library runs in this tab, the pages are drawn to a canvas inside this tab, and the files you get back are created in your browser's memory. There is no upload endpoint on this page — the privacy note above is describing the code, not a policy.",
+      },
+    ],
+    relatedTools: [
+      { id: "pdf-tools", label: "All PDF tools" },
+      { id: "image-compress", label: "Image Compressor" },
+      { id: "image-convert", label: "Image Converter" },
+    ],
+    relatedPairs: ["jpg-to-pdf", "png-to-jpg", "jpg-to-png", "png-to-webp"],
+    technicalNote:
+      "pdf.js parses the document locally, then each page is rendered to a canvas at 2x scale and exported with canvas.toBlob('image/jpeg', 0.92). A white background is laid down first because JPG cannot store transparency. Encrypted PDFs are rejected with an explicit message rather than producing empty files.",
+  },
+  {
+    slug: "jpg-to-pdf",
+    from: "jpeg",
+    to: "pdf",
+    phrase: "JPG to PDF",
+    title: "JPG to PDF Converter — Combine JPG Images into a PDF Online Free",
+    description:
+      "Turn JPG images into a single PDF in your browser, one image per page. Free, private, nothing uploaded. No account, no watermark.",
+    intro: [
+      "Almost every device that can take a photo can make a PDF already — but the result is often a single enormous page, scanned at photo resolution, when what you actually wanted was one clean page per image. Putting JPGs into a PDF yourself gives you control over that: the order you select is the page order, and each page keeps the image's own proportions.",
+      "This converter builds the PDF locally with pdf-lib. Each JPG is embedded into the document and placed on a page sized to match it, so nothing is cropped or stretched. You can select several images at once and they become pages 1, 2, 3 in the order shown. There is no account, no watermark and no upload — the document is assembled in your browser's memory and handed straight back to you.",
+      "One thing worth knowing: a PDF here is a container of images, not an editable document. The text cannot be edited afterwards because there is no text layer — each page is the picture you supplied. If you need an editable PDF with real text, that is a different job and a different tool.",
+    ],
+    whenToUse: {
+      do: [
+        "You need a single file to email or upload, instead of a folder of loose JPGs.",
+        "A form asks for a PDF but your material exists as photos or screenshots.",
+        "You want a predictable page order and one image per page.",
+        "You are assembling scanned pages, receipts or handwritten notes into a single document.",
+      ],
+      avoid: [
+        "You need selectable or editable text — this produces image pages with no text layer.",
+        "You need OCR — a JPG that already is a picture cannot gain a text layer here.",
+        "You want to merge or reorder pages of an existing PDF — that needs a PDF editor, not a converter.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Will the image quality drop when it goes into the PDF?",
+        answer:
+          "No. The original JPG is embedded as-is rather than re-encoded, so the page is pixel-identical to the file you selected. The PDF only adds a container around it. Compression happens when you choose it, which is why you should compress the JPG before converting if size matters.",
+      },
+      {
+        question: "Can I choose the page order?",
+        answer:
+          "The pages follow the order the files come back from your file picker, which for most systems is the order you clicked them or their filename order. If the result is wrong, select them again in the right order — reordering after the fact is a job for a PDF editor.",
+      },
+      {
+        question: "Can I add text, margins or page numbers afterwards?",
+        answer:
+          "Not in this tool — it produces one image per page and nothing else. Use a PDF editor to add annotations, margins or headers once the document exists. Keeping this step to a single job is why it works without an account and without a file size limit.",
+      },
+      {
+        question: "How large a PDF can this produce?",
+        answer:
+          "Whatever your device's memory allows, since nothing is uploaded there is no server-side limit. In practice a few dozen JPGs is comfortable on a normal laptop. If you are handling hundreds, compress them first — file size is what limits you, not the tool.",
+      },
+      {
+        question: "Are my images uploaded to a server?",
+        answer:
+          "No. The PDF is assembled by a library running in this tab and handed back to you without leaving your device. There is no upload endpoint on this page.",
+      },
+    ],
+    relatedTools: [
+      { id: "pdf-tools", label: "All PDF tools" },
+      { id: "image-compress", label: "Image Compressor" },
+      { id: "image-resize", label: "Image Resizer" },
+    ],
+    relatedPairs: ["pdf-to-jpg", "jpg-to-png", "png-to-jpg", "png-to-webp"],
+    technicalNote:
+      "pdf-lib assembles the document in memory: each JPG is embedded with embedJpg and drawn onto a page whose size is taken from the image's own pixel dimensions, so the aspect ratio is preserved exactly. The source image is embedded rather than re-encoded, so there is no quality loss. PNG inputs use embedPng to keep transparency and sharp edges.",
   },
   {
     slug: "gif-to-webp",

@@ -62,6 +62,24 @@ export default function ImageConvertPage() {
             WebP to PNG
           </a>{" "}
           ·{" "}
+          {/* PDF 对转（2026-10-10新增，走 pdf.js / pdf-lib 纯客户端通路）*/}
+          <a href="/c/pdf-to-jpg" className="underline underline-offset-2 hover:no-underline">
+            PDF to JPG
+          </a>{" "}
+          ·{" "}
+          <a href="/c/jpg-to-pdf" className="underline underline-offset-2 hover:no-underline">
+            JPG to PDF
+          </a>{" "}
+          ·{" "}
+          {/* png-to-webp / webp-to-jpg 此前同样无入站（孤儿页），一并补上 */}
+          <a href="/c/png-to-webp" className="underline underline-offset-2 hover:no-underline">
+            PNG to WebP
+          </a>{" "}
+          ·{" "}
+          <a href="/c/webp-to-jpg" className="underline underline-offset-2 hover:no-underline">
+            WebP to JPG
+          </a>{" "}
+          ·{" "}
           <a href="/tools/image-compress" className="underline underline-offset-2 hover:no-underline">
             compress to an exact KB
           </a>

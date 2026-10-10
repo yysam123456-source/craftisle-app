@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { HelpCircle, CheckCircle2, XCircle, ArrowRight, ShieldCheck } from "lucide-react";
 import { CONVERT_PAIRS, getPairBySlug, getPairSlugs, OUTPUT_META, INPUT_META } from "@/lib/convert/pairs";
 import ConvertTool from "@/components/convert/ConvertTool";
+import PdfConvertTool from "@/components/convert/PdfConvertTool";
 import { toolMeta } from "@/lib/tools";
 
 const baseUrl = "https://craftisle.com";
@@ -148,7 +149,13 @@ export default async function ConvertPage({
 
               {/* 转换器 */}
               <div className="rounded-xl border p-6 mb-8">
-                <ConvertTool pair={pair} />
+                {/* PDF 走独立组件：pdf.js / pdf-lib 只能整体动态 import，
+                    混进 ConvertTool 会让所有图片对转页都背上 PDF 依赖的体积。 */}
+                {pair.from === "pdf" || pair.to === "pdf" ? (
+                  <PdfConvertTool pair={pair} />
+                ) : (
+                  <ConvertTool pair={pair} />
+                )}
               </div>
 
               {/* 技术说明 */}
