@@ -10,7 +10,7 @@ export const dynamicParams = true;
  * 2. alternatives 数据中的分类（Design, Productivity 等）
  * 3. home-blocks.json 中的 block ID（weekly-hottest, rising-stars 等）
  */
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getAllResources, getAllCategories, type Resource, type Category } from "@/lib/fmhy-data";
 import { getEnhancedDescription } from "@/lib/tool-descriptions";
 import { getCombinedMap, type AlternativeEntry } from "@/lib/alternatives";
@@ -151,6 +151,29 @@ function findBlock(slug: string): any | null {
   return blocks.find((b: any) => b.id === slug) || null;
 }
 
+/**
+ * 🔴 单一 canonical slug（2026-10-10 加）。
+ *
+ * 背景：generateStaticParams 对每个分类最多生成 6 个 slug变体
+ * （cat.name / cat.name-2026 / cat.id / cat.id-2026 / "{Name} Tools" / 其-2026），
+ * 它们全部解析到同一个分类、渲染同一份内容，而**每页都 self-canonical** ⇒
+ * 同一批列表页互相分流，且除 1–2 个变体外没有入站内链。
+ *
+ * 处置：所有变体 308 到本函数返回的基址（= generateStaticParams 第一个 push 的
+ * `toSlug(cat.name)`，或 block.id），canonical 也指向它。变体本身继续存在，
+ * 保证任何历史外链都不会 404。
+ */
+function canonicalSlug(slug: string): string {
+  const block = findBlock(slug.replace(/-2026$/, ""));
+  if (block) return block.id;
+
+  const category = findCategory(slug);
+  if (category) return toSlug(category.name);
+
+  // 解析不到就只做最小归一：去掉年份后缀
+  return slug.replace(/-2026$/, "");
+}
+
 // ── 获取 block 对应的资源详情 ─────────────────────────
 function getBlockResources(blockId: string): Resource[] {
   const blocks = getHomeBlocks();
@@ -249,38 +272,44 @@ export async function generateStaticParams() {
 
 // ── Metadata ─────────────────────────
 export async function generateMetadata(props: BestPageProps): Promise<Metadata> {
-  const { slug } = await props.params;
+  const { slug: rawSlug } = await props.params;
+  const slug = canonicalSlug(rawSlug);
+  const base = `https://craftisle.com/directory/best/${slug}`;
 
   // 先检查是不是 block ID
   const block = findBlock(slug);
   if (block) {
-    const is2026 = slug.endsWith("-2026");
-    const title = `${block.title} ${is2026 ? "2026" : ""}`;
+    const title = `${block.title}`;
     const description = block.subtitle || `Discover the best ${block.title} tools.`;
     return constructMetadata({
       title,
       description,
-      canonical: `https://craftisle.com/directory/best/${slug}`,
+      canonical: base,
     });
   }
 
   const category = findCategory(slug);
   if (!category) return {};
 
-  const is2026 = slug.endsWith("-2026");
-  const title = `Best ${category.name} Tools ${is2026 ? "2026" : ""} — Free & Open Source`;
+  const title = `Best ${category.name} Tools — Free & Open Source`;
   const description = `Discover the best free and open-source ${category.name.toLowerCase()} tools. Curated list with alternatives and reviews.`;
 
   return constructMetadata({
     title,
     description,
-    canonical: `https://craftisle.com/directory/best/${slug}`,
+    canonical: base,
   });
 }
 
 // ── 页面组件 ─────────────────────────
 export default async function BestToolsPage(props: BestPageProps) {
-  const { slug } = await props.params;
+  const { slug: rawSlug } = await props.params;
+
+  // 🔴 所有非基址变体统一 308 到基址，避免同一内容多 URL 互相分流
+  const slug = canonicalSlug(rawSlug);
+  if (slug !== rawSlug) {
+    redirect(`/directory/best/${slug}`);
+  }
 
   // ✅ 先检查是不是 home-blocks.json 中的 block ID
   const block = findBlock(slug);

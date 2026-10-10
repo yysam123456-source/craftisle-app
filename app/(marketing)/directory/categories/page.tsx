@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllCategories, getAllResources } from "@/lib/fmhy-data";
+import { toSlug } from "@/lib/alternatives";
 import { ArrowRight, LayoutGrid, FolderOpen,
   BotMessageSquare, ShieldQuestion, Smartphone, Download,
   BookOpen, Gamepad2, Terminal, HardDrive, Tv, Lock,
@@ -123,9 +124,9 @@ export default function CategoriesPage() {
         {/* Category Grid — 3 cols */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-12">
           {sortedCategories.map((cat) => {
-            const href = cat.slug
-              ? `/directory/best/${cat.slug}`
-              : `/directory/best/${cat.id.toLowerCase()}`;
+            // 基址 slug 与 /directory/best/[slug] 的 canonicalSlug 对齐（= toSlug(cat.name)），
+            // 避免点进去先吃一个 308。别用 cat.slug / cat.id 形态，那是历史变体。
+            const href = `/directory/best/${toSlug(cat.name || cat.id)}`;
             const Icon = cat.icon;
             const gradient = cat.gradient;
 

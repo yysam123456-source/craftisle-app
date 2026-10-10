@@ -249,7 +249,7 @@ export default async function ResourcesPage() {
 
             {/* GlassCard 2: Best of 2026 — 数据驱动（链接到动态板块中的热门分类） */}
             <Link
-              href={bestBlock ? `/directory/best/${bestBlock.title?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "development-2026"}` : "/directory/best/development-2026"}
+              href={bestBlock ? `/directory/best/${bestBlock.title?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "development"}` : "/directory/best/development"}
               className="no-underline group"
             >
               <GlassCard className="hover:border-primary/50 hover:shadow-md transition-all h-full">
