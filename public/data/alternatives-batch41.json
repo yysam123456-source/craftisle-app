@@ -1,0 +1,139 @@
+[
+  {
+    "paidTool": "Plausible Analytics",
+    "paidToolUrl": "https://plausible.io",
+    "tagline": "Cookie-free web analytics with a dashboard that fits on one screen",
+    "description": "Plausible is a privacy-first, open-source web analytics tool whose script is under 1KB and sets no cookies, so most visitors never trigger a consent banner. The dashboard is a single page: pageviews, visitors, referrers, top pages, countries and devices, with no report builder to learn. The script is AGPL v3, and the self-hosted Community Edition is genuinely free; Cloud starts at $9/month for one site with 10,000 monthly pageviews.",
+    "pricing": "Community Edition: free self-hosted (AGPL v3); Cloud Starter $9/mo (1 site, 10k pageviews, 3-year retention); Growth $14/mo (3 sites); Business $19/mo (10 sites, funnels, revenue attribution, 5-year retention); Enterprise custom",
+    "painPoints": [
+      { "problem": "The free Community Edition excludes funnels, user journeys and revenue attribution", "impact": "If you wanted those features, self-hosting does not save the money" },
+      { "problem": "Cloud charges per site tier while some rivals bundle 50 sites on every plan", "impact": "A multi-site owner can pay more than Fathom or Pirsch for fewer features" },
+      { "problem": "Self-hosting requires Docker plus Postgres plus ClickHouse", "impact": "ClickHouse alone sets a 2GB RAM floor before any real traffic" },
+      { "problem": "No heatmaps, session recording or A/B testing at any tier", "impact": "Behaviour and testing questions need a second tool entirely" }
+    ],
+    "whySwitch": [
+      "Use Cloudflare Web Analytics if it is free, unsampled and you need nothing beyond traffic numbers",
+      "Self-host Umami if you want an open-source dashboard with nothing held back",
+      "Use Matomo if you need heatmaps, session recording or GA-grade depth with data ownership",
+      "Add Microsoft Clarity alongside any of these when you need the behaviour layer for free",
+      "Use Fathom or Pirsch if you run many small sites and per-site tiers punish you"
+    ],
+    "alternatives": [
+      {
+        "name": "Umami",
+        "url": "https://umami.is",
+        "reason": "Open-source, cookie-free analytics with nothing held back — including funnels",
+        "description": "Umami is an open-source analytics platform focused on privacy and a small footprint. Unlike Plausible's Community Edition, Umami's self-hosted build includes funnels without a licence tier, and its cloud Hobby plan is free up to 100,000 events per month on one site. It stores events in MySQL or PostgreSQL, so it needs no ClickHouse.",
+        "features": ["Funnels in self-hosted", "Hobby: 100k events/month free", "MySQL or PostgreSQL backend", "No ClickHouse requirement", "Simple, fast dashboard"],
+        "pros": ["Nothing held back in the open-source build", "Cheaper database requirements than Plausible CE", "Free cloud tier is genuinely usable"],
+        "cons": ["Dashboard is plainer than Plausible's", "Smaller ecosystem and plugin set", "Retention shorter than Plausible Cloud on paid tiers"],
+        "bestFor": "Anyone who self-hosts and wants funnels without paying",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Easy",
+        "rating": 4.5,
+        "featured": true
+      },
+      {
+        "name": "Cloudflare Web Analytics",
+        "url": "https://developers.cloudflare.com/analytics/",
+        "reason": "Free, privacy-friendly and unsampled — and if Cloudflare already fronts your site, it is already installed",
+        "description": "Cloudflare Web Analytics is a free, cookie-free analytics tool that reports on traffic data Cloudflare already sees as your CDN. It is unsampled, so small traffic spikes are not smoothed away, and because it needs no client-side tracker at all it cannot be blocked by ad blockers. Retention is short — roughly seven days of unsampled data with longer aggregated windows — which makes it a poor fit for trend analysis but a fine fit for a live traffic check.",
+        "features": ["Free forever", "Unsampled data", "No client-side script needed", "Works only if Cloudflare fronts your site"],
+        "pros": ["Zero cost", "No script to optimise or block", "Unbiased by ad blockers"],
+        "cons": ["Short data retention", "No funnels, goals or events", "Tied to Cloudflare as your proxy"],
+        "bestFor": "Sites already on Cloudflare that just need traffic truth",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.4,
+        "featured": true
+      },
+      {
+        "name": "Fathom Analytics",
+        "url": "https://usefathom.com",
+        "reason": "Same privacy-first design, but every plan includes at least 50 sites and keeps full history",
+        "description": "Fathom is Plausible's closest sibling: a single-screen dashboard, one script, no cookies. Two things it does differently matter in practice. Every paid tier includes at least 50 sites, so a portfolio or an agency is not penalised the way Plausible's per-site tiers penalise it. And Fathom keeps your full history for as long as you are a customer, which is what makes year-over-year comparison possible without upgrading tiers. It starts at $15/month.",
+        "features": ["50+ sites on every paid tier", "Full history retention while subscribed", "Same one-screen dashboard", "Goal tracking included"],
+        "pros": ["Much better value for many small sites", "Indefinite history", "No feature tiers to graduate through"],
+        "cons": ["Higher entry price than Plausible Starter", "No self-hosted edition", "Same absence of heatmaps and A/B testing"],
+        "bestFor": "Agencies and portfolio owners running many small sites",
+        "isFree": false,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.6,
+        "featured": true
+      },
+      {
+        "name": "Matomo",
+        "url": "https://matomo.org",
+        "reason": "The only option here with heatmaps, session recording and full GA-style reporting you can own",
+        "description": "Matomo is the deepest analytics platform on this list. It is the one option that gives you heatmaps and session recording, and it can run cookieless if you configure it. Self-hosting puts your data entirely on your own hardware, and Matomo Cloud keeps 24 months of raw data with reports kept longer. It can also import your Google Analytics history, so trend lines do not restart from zero.",
+        "features": ["Heatmaps and session recording", "Optional cookieless mode", "Self-host or cloud", "Google Analytics history import", "Full funnel and goal reporting"],
+        "pros": ["Deepest reporting of any privacy-friendly option", "Own your data completely", "Can import GA history"],
+        "cons": ["Heaviest of the options to run", "Setup takes real effort", "Overkill if you only want pageviews"],
+        "bestFor": "Teams that need behaviour analysis and data ownership together",
+        "isFree": true,
+        "isOpenSource": true,
+        "migrationDifficulty": "Medium",
+        "rating": 4.5,
+        "featured": true
+      },
+      {
+        "name": "Microsoft Clarity",
+        "url": "https://clarity.microsoft.com",
+        "reason": "Free heatmaps and session recordings — run it *alongside* a privacy tool, not instead of one",
+        "description": "Clarity is free forever and unusually good at the behaviour layer: click heatmaps, scroll depth, rage clicks and session recordings. It sets cookies, so it does need consent in the EU — which is why it pairs well with a cookieless tool rather than replacing one. Most teams run a privacy analytics tool for traffic and Clarity for what people actually did on the page.",
+        "features": ["Free forever", "Click and scroll heatmaps", "Session recordings", "Works alongside other tools"],
+        "pros": ["Free heatmaps, which Plausible does not offer at any tier", "Session recordings included", "Advisable to pair with a cookieless tool"],
+        "cons": ["Sets cookies, so consent is required", "Not a traffic-analytics replacement", "No open-source version"],
+        "bestFor": "The behaviour layer on top of a privacy-first analytics tool",
+        "isFree": true,
+        "isOpenSource": false,
+        "migrationDifficulty": "Easy",
+        "rating": 4.2,
+        "featured": false
+      }
+    ],
+    "migrationGuide": {
+      "steps": [
+        "Add the Plausible script (or your chosen tool's) to your site's head — for most sites this is a single <script> tag",
+        "If you are on WordPress, use the official plugin instead of hand-editing the template",
+        "Import your Google Analytics history so trend lines do not restart from zero — Plausible and Matomo both ship importers",
+        "Recreate the three to five goals you actually check (newsletter signups, contact submissions, key downloads) as codeless goals",
+        "Run the new tool alongside Google Analytics for 30 days before removing anything, so you can see the methodology differences rather than a cliff",
+        "Compare bot filtering: Plausible's cloud excludes roughly 32,000 data-centre IP ranges that the self-hosted build does not, so your numbers will legitimately differ"
+      ],
+      "tips": [
+        "Expect the numbers not to match GA4 exactly — cookieless tools count every visitor but cannot deduplicate returning visitors the way identifier-based tools do",
+        "If ad blockers matter to your traffic, route the script through your own domain (first-party proxying) to recover blocked data",
+        "Self-hosting Plausible buys you the dashboard, not the feature set — funnels, SSO and the Sites API remain cloud-only"
+      ]
+    },
+    "category": "Analytics",
+    "seoKeywords": [
+      "plausible analytics",
+      "plausible alternative",
+      "plausible analytics alternative",
+      "free plausible alternative",
+      "open source web analytics",
+      "privacy friendly analytics",
+      "cookie free analytics",
+      "google analytics alternative",
+      "self hosted web analytics",
+      "umami vs plausible",
+      "fathom vs plausible",
+      "matomo vs plausible"
+    ],
+    "seoTitleOverride": "Plausible Analytics Alternatives — 5 Free and Self-Hosted Options (2026)",
+    "h1Override": "Best Plausible Analytics Alternatives in 2026",
+    "faqs": [
+      { "question": "What is the best free alternative to Plausible Analytics?", "answer": "Umami is the closest free replacement, because its self-hosted build includes funnels rather than holding them back behind a licence tier, and its cloud Hobby plan is free to 100,000 events per month. For a site already on Cloudflare, Cloudflare Web Analytics is free and unsampled, but its short retention makes it a traffic check rather than a trend tool. GoatCounter is another free option for lighter needs." },
+      { "question": "Is self-hosted Plausible the same as the paid version?", "answer": "No. The Community Edition is AGPL v3 and free, but it excludes marketing funnels, user journeys, ecommerce revenue goals, SSO and the Sites API. It also ships as a long-term release twice a year rather than continuously, and its bot filtering is the basic version rather than the cloud's data-centre IP exclusions — which is why two installations of the same PDF can report noticeably different visitor numbers." },
+      { "question": "Which Plausible alternative includes heatmaps?", "answer": "Plausible has no heatmaps at any tier, so this is a real gap rather than a tier problem. Matomo includes heatmaps and session recording and can be self-hosted; Microsoft Clarity is free forever and is the usual answer, run alongside a cookieless traffic tool. Humblytics combines heatmaps with funnels and A/B testing in one cookie-free script, but starts at $79/month." },
+      { "question": "How much does Plausible Analytics cost in 2026?", "answer": "Cloud Starter is $9/month for one site with 10,000 monthly pageviews and three years of retention, Growth is $14/month for three sites, and Business is $19/month for ten sites with funnels, user journeys, revenue attribution and five years of retention. Prices scale with pageview volume inside each plan, and annual billing gives two months free. A 30-day trial is available with no credit card." },
+      { "question": "Which is cheapest if I run many small websites?", "answer": "Fathom and Pirsch. Plausible prices by site tier — one, three, then ten — so a three-site owner pays Growth's $14 while a thirty-site agency finds Plausible far more expensive. Fathom includes at least 50 sites from $45/month, and Pirsch starts at $6/month for 50 sites." },
+      { "question": "Will switching away lose my historical analytics data?", "answer": "Your history stays where it is — nothing is deleted by your choosing a different tool. Both Plausible and Matomo offer importers that bring Google Analytics history across, which matters because without an import your trend lines restart from zero and a seasonal drop looks like a collapse. Plausible Cloud keeps three to five years by tier, Fathom keeps everything for as long as you subscribe, and self-hosted tools keep whatever your disk holds." }
+    ]
+  }
+]

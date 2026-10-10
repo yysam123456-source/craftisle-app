@@ -2434,6 +2434,13 @@ const BATCH_FILES: string[] = [
   "alternatives-batch38.json",
   "alternatives-batch39.json",
   "alternatives-batch40.json",
+  // ★ Plausible Analytics 替代页（2026-10-10）
+  // 依据：GSC 实测 `plausible analytics` 落在真实 striking distance（P17.4 / 曝光 20，
+  // 在 13 条可行动词里曝光第5 高），而全站**没有任何 Plausible 页**承载它 ⇒ 纯缺口。
+  // 事实核对：2026-10-10 查官方定价与多个独立评测交叉确认
+  //（Starter $9/10k pageviews、Growth $14/3 sites、Business $19/10 sites、
+  //  CE 排除 funnels/SSO/Sites API、CE 一年两次 long-term release、客服约 32,000 个机房 IP 段过滤差异）。
+  "alternatives-batch41.json",
 ];
 
 /** painPoints 允许两种历史形态，统一成 {problem, impact}。 */

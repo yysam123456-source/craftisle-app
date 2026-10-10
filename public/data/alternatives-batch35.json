@@ -196,11 +196,17 @@
     },
     "category": "Project Management",
     "seoKeywords": [
+      "free asana alternatives",
+      "asana alternatives",
       "asana free alternative",
       "asana replacement free",
       "best asana alternative",
-      "asana vs trello 2026",
-      "free project management software"
+      "free alternative to asana",
+      "asana vs clickup free",
+      "asana vs trello free",
+      "open source asana alternative",
+      "asana alternative for small teams",
+      "asana vs notion for project management"
     ],
     "faqs": [
       {
@@ -214,8 +220,22 @@
       {
         "question": "Which Asana alternative has the best free tier?",
         "answer": "ClickUp has the most generous free tier (unlimited tasks, multiple views). Trello is simpler and easier to learn. Notion is best for flexible workflows beyond just project management."
+      },
+      {
+        "question": "Which Asana alternative is genuinely free with no seat cap?",
+        "answer": "ClickUp is the closest match: its free tier includes unlimited members, unlimited storage and custom fields, which is more than Asana Personal offers at no cost. Trello and Taiga are also free at small-team scale, and OpenProject is free if you are willing to self-host. The honest caveat is that \"free\" rarely means feature-parity — timeline/Gantt views and advanced automation are usually the first things behind a paywall on every tool in this list."
+      },
+      {
+        "question": "Can I import my Asana projects and tasks into a free alternative?",
+        "answer": "Usually yes, but with caveats worth checking before you commit. ClickUp and Notion both offer CSV import, and Trello accepts CSV too. CSV carries tasks, assignees, due dates, descriptions and labels, but it loses task dependencies, subtask hierarchies, custom fields and comments. If your Asana workspace relies on dependencies to model reality, test the import on a copy first and rebuild those relationships by hand."
+      },
+      {
+        "question": "Is ClickUp really cheaper than Asana?",
+        "answer": "On the published annual prices, yes for most small teams: ClickUp Unlimited is about $7 per user per month against Asana Starter at $10.99, and ClickUp Business at $12 sits well below Asana Advanced at $24.99. The comparison is not quite like-for-like, though — the tier boundaries differ, and the cheapest Asana plan worth using for a real team starts at a seat minimum, which can change the total for a very small team."
       }
-    ]
+    ],
+    "seoTitleOverride": "Free Asana Alternatives — 5 Picks That Cost $0 (2026)",
+    "h1Override": "Best Free Asana Alternatives in 2026"
   },
   {
     "paidTool": "Monday.com",

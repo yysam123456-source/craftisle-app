@@ -24,6 +24,11 @@ export const CATEGORY_ALTERNATIVES: Record<string, string[]> = {
     "Docker Desktop",
     "Bitbucket",
     "Kubernetes (Managed)",
+    // 隐私优先的网站分析：受众是站长/开发者，与 dev-tools 落地页语义真实相关。
+    // 2026-10-10 新增 —— Plausible 页本身（GSC P17.4 / 曝光 20）此前零入站，是孤儿页。
+    // 不新造 analytics 分类落地页（那会触发「新建页面必须手写+配内链」的连锁成本），
+    // 挂到语义最接近且已存在的 dev-tools 上。
+    "Plausible Analytics",
   ],
   // 图像编辑与设计
   image: [
