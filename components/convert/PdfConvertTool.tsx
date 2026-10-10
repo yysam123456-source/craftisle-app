@@ -54,7 +54,15 @@ interface PdfjsModule {
 
 let pdfjsPromise: Promise<PdfjsModule> | null = null;
 
-/** 动态加载 pdf.js 并配好本地 worker（只配一次）。 */
+/**
+ * 动态加载 pdf.js 并配好本地 worker（只配一次）。
+ *
+ * 🔴🔴 worker 必须与主文件**同源同版本**，即 legacy 主文件配 legacy worker。
+ * 首版我加载的是 `legacy/build/pdf.mjs` 却把 workerSrc 指向 **modern** 的
+ * `pdf.worker.min.mjs` —— 两者混用会在渲染阶段抛
+ * `e.transform is not iterable (cannot read property undefined)`，
+ * 页面只显示一句无意义的报错。构建全绿、worker 200、探针全过，只有真跑样本才暴露。
+ */
 async function loadPdfjs(): Promise<PdfjsModule> {
   if (!pdfjsPromise) {
     pdfjsPromise = import("pdfjs-dist/legacy/build/pdf.mjs").then((mod: unknown) => {
@@ -65,7 +73,7 @@ async function loadPdfjs(): Promise<PdfjsModule> {
           ? candidate.default
           : mod
       ) as PdfjsModule;
-      pdfjs.GlobalWorkerOptions.workerSrc = "/workers/pdf.worker.min.mjs";
+      pdfjs.GlobalWorkerOptions.workerSrc = "/workers/pdf.worker.legacy.min.mjs";
       return pdfjs;
     });
   }
@@ -135,10 +143,18 @@ export default function PdfConvertTool({ pair }: { pair: ConvertPair }) {
             ctx.fillRect(0, 0, canvas.width, canvas.height);
           }
 
-          await page.render({
-            canvasContext: ctx,
-            viewport: { width: canvas.width, height: canvas.height },
-          }).promise;
+          // 🔴 渲染阶段的错误和解析阶段一样要如实报出。此前这一层没有 catch，
+          // 上层只看到一句 `e.transform is not iterable`，看不出是哪一页、哪个环节。
+          try {
+            await page.render({
+              canvasContext: ctx,
+              viewport: { width: canvas.width, height: canvas.height },
+            }).promise;
+          } catch (e) {
+            throw new Error(
+              `Page ${n} could not be rendered (${e instanceof Error ? e.message : String(e)}).`
+            );
+          }
 
           const blob = await new Promise<Blob | null>((resolve) =>
             canvas.toBlob(resolve, outputMeta.mime, 0.92)
