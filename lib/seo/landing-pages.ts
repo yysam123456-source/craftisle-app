@@ -142,10 +142,10 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
   "intellij-alternative": {
     slug: "intellij-alternative",
     site: "craftisle",
-    title: "IntelliJ Community Edition 2026 — Still Free & Free Alternatives",
+    title: "IntelliJ IDEA Version Comparison 2026 — Is Community Edition Still Free?",
     description:
-      "IntelliJ Community Edition merged into unified IntelliJ IDEA in 2025.3 — core Java/Kotlin features stay free. Looking for a free IntelliJ alternative? Browser-based dev tools: JSON/SQL formatters, regex tester, converters. No install.",
-    keywords: ["intellij community edition", "intellij idea community edition 2026", "intellij community edition discontinued", "is intellij community edition still free", "intellij alternative", "free ide alternative", "online dev tools", "code formatter"],
+      "IntelliJ IDEA 2025.2 vs 2025.3 vs 2026.1 compared. Community Edition merged into the unified free IDE in 2025.3. Plus free browser dev tools for quick edits.",
+    keywords: ["intellij community edition", "intellij idea community edition 2026", "intellij community edition discontinued", "is intellij community edition still free", "intellij alternative", "free ide alternative", "online dev tools", "code formatter", "intellij idea version comparison", "intellij idea 2026.1", "intellij 2025.3 vs 2025.2", "community vs ultimate intellij"],
     h1: "IntelliJ Alternative",
     intro: [
       "IntelliJ IDEA is a powerful desktop IDE, but for many day-to-day tasks — reformatting a JSON blob, testing a regex, or converting CSV — you do not need to launch a heavy IDE. A lightweight, free IntelliJ alternative that lives in the browser gets those jobs done faster.",
@@ -177,6 +177,20 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
           "That change is why search interest in 'IntelliJ Community Edition' spiked: people want to know whether it is still free and where to get it. The short answer is that the free tier did not shrink — it just moved into one IDE.",
         ],
       },
+      {
+        // 🔴 这节直接对应 GSC 实测词 `intellij idea version comparison`（P14.3，曝光 16，
+        // 真实 striking distance 里位置最好的一条）。原页面只讲「是否还免费」，
+        // 没有任何版本对比，而搜 version comparison 的人要的正是逐版本差异。
+        // 事实核对：2026-10-10 查 JetBrains 官方文档 / What's New 页面确认。
+        heading: "IntelliJ IDEA version comparison: 2025.2 vs 2025.3 vs 2026.1",
+        paragraphs: [
+          "If you are deciding which version to install, this is the actual difference between them. IntelliJ IDEA 2025.2 was the last release that shipped as two separate downloads. From 2025.3 onward there is one installer for everyone.",
+          "2025.2 and earlier — the last split-edition release. Community Edition and Ultimate were separate downloads with separate licence terms. This is the newest version you can still install if you specifically want the standalone Community build, but it no longer receives updates or new features.",
+          "2025.3 — the unification release. One download, free by default with no licence key or activation step. The free tier gained features that were previously Ultimate-only or absent: database tools and SQL language support, a Spring Boot project wizard, and syntax highlighting for Spring, Jakarta EE and Thymeleaf. Advanced tooling (deeper Spring support, the full Kubernetes feature set) moved behind an optional Ultimate subscription with a free 30-day trial. The unified distribution is also about 30% smaller than the old Ultimate build was on its own.",
+          "2026.1 — the current release. Headline additions are an ACP Registry for installing AI agents such as Codex and Cursor in one click, native database access for those agents, Git worktrees for parallel branches, first-class C/C++ support, JavaScript support without an Ultimate subscription, and day-one support for Java 26 and Kotlin 2.3.20. Next-edit suggestions no longer consume the JetBrains AI Pro quota.",
+          "The practical summary: there is no longer a 'free vs paid IDE' choice to make at install time. Everyone gets the same binary; the subscription only decides how much advanced tooling unlocks after a 30-day trial. If you were on Community 2025.2 or earlier, moving to the unified build is a straight upgrade that keeps your Java and Kotlin workflow and adds features you did not have before.",
+        ],
+      },
     ],
     faq: [
       { q: "Is this a replacement for IntelliJ?", a: "No — it complements it. It replaces the trivial, repetitive edits that interrupt deep IDE work, not the IDE itself." },
@@ -185,6 +199,8 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { q: "Is IntelliJ Community Edition still free in 2026?", a: "Yes. After the 2025.3 unification, all Community-tier features remain free to use — commercially and non-commercially. Advanced tooling now sits behind an optional Ultimate subscription, but the core IDE never asks for payment." },
       { q: "Where do I download IntelliJ Community Edition now?", a: "The standard path is to install the unified IntelliJ IDEA — its free tier covers everything Community did. If you need the legacy standalone Community build, JetBrains still publishes it via GitHub releases." },
       { q: "Why did search interest in 'IntelliJ Community Edition' spike?", a: "Because JetBrains stopped shipping Community as a separate download in 2025.3. Users searched to confirm it is still free and to find where to get it; the free feature set simply moved into the unified IDE." },
+      { q: "Which IntelliJ IDEA version should I install in 2026?", a: "Install the current unified IntelliJ IDEA. 2025.2 or earlier is the last split-edition line and no longer receives updates. Since 2025.3 there is a single free-by-default download, and a 30-day Ultimate trial lets you evaluate the paid tooling before deciding whether you need it." },
+      { q: "What is the difference between IntelliJ IDEA Community and Ultimate now?", a: "There is no separate Community product any more. Since 2025.3 both are one installer: the core features are free with no licence key, and an optional Ultimate subscription unlocks advanced tooling such as deeper Spring support and the full Kubernetes feature set. The only way to still get a standalone Community download is to install version 2025.2 or earlier, which is no longer updated." },
     ],
     internalLinks: [L.jsonFormatter, L.tools, L.directory, L.jsonToCsv],
   },
