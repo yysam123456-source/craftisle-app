@@ -99,7 +99,7 @@ async function main() {
 
   const [briefing, tq] = await Promise.all([
     getJson<Briefing>("/api/analytics/ai-briefing"),
-    getJson<TopQueries>("/api/analytics/top-queries?days=28&limit=200"),
+    getJson<TopQueries>("/api/analytics/top-queries?days=28&limit=1000"),
   ]);
 
   const report: Record<string, unknown> = { generatedAt: today.toISOString() };
