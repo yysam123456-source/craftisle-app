@@ -142,6 +142,39 @@ async function main() {
   );
   report.bandCounts = Object.fromEntries(Object.entries(bands).map(([k, v]) => [k, v.length]));
 
+  // 🔴🔴 曝光下限（2026-10-10 加，第三次修正段位表判据）
+  //
+  // 教训链：① 修 days 参数前，P4-20 被误判为 0（取数缺陷）；
+  //       ② 修完之后 P4-20 冒出 34 条，于是我写进台账「窗口非空」；
+  //       ③ 但这 34 条里 33 条曝光 ≤3 —— **P17 配 2 曝光是低样本噪声，不是排名信号**。
+  // GSC 的 position 在曝光个位数时抖动极大（同一页今天 P17 明天 P23 完全可能）。
+  // 所以「在 P4-20」这个判据本身不够，必须同时要求**最小曝光量**，
+  // 否则每天的「窗口」名单都会变，而这不是变化，是噪声。
+  //
+  // MIN_IMPRESSIONS 的含义：低于此曝光量的 position 不具备可行动性。
+  // 取 10 是因为它是「排名能在多次抓取间稳定复现」的粗略经验下限。
+  const MIN_IMPRESSIONS = 10;
+  const solid = rows.filter((r) => r.impressions >= MIN_IMPRESSIONS);
+  const solidBands = {
+    "P1-3": solid.filter((r) => r.position <= 3),
+    "P4-20": solid.filter((r) => r.position >= 4 && r.position <= 20),
+    "P21-50": solid.filter((r) => r.position >= 21 && r.position <= 50),
+    "P51+": solid.filter((r) => r.position >= 51),
+  };
+  report.bandsSolid = Object.fromEntries(
+    Object.entries(solidBands).map(([k, v]) => [
+      k,
+      v.map((r) => ({ query: r.query, impressions: r.impressions, position: Number(r.position.toFixed(1)) })),
+    ])
+  );
+  report.bandCountsSolid = Object.fromEntries(Object.entries(solidBands).map(([k, v]) => [k, v.length]));
+  report.minImpressions = MIN_IMPRESSIONS;
+  report.actionable = solidBands["P4-20"].map((r) => ({
+    query: r.query,
+    impressions: r.impressions,
+    position: Number(r.position.toFixed(1)),
+  }));
+
   const striking = bands["P4-20"];
   if (!sourceOk) {
     console.log("[growth-review] ❌ GSC 数据源不可达 —— 段位表/衰减/回读全部无效，本次不做任何选题结论。");
@@ -153,10 +186,23 @@ async function main() {
     for (const [k, v] of Object.entries(report.bandCounts as Record<string, number>)) {
       console.log(`  ${k.padEnd(6)} ${v}`);
     }
+    console.log(`  ── 仅保留曝光 >= ${MIN_IMPRESSIONS} 的可行动样本（${solid.length} 条）──`);
+    for (const [k, v] of Object.entries(report.bandCountsSolid as Record<string, number>)) {
+      console.log(`  ${k.padEnd(6)} ${v}`);
+    }
     if (striking.length > 0) {
-      console.log(`  ⚠️ striking distance(P4–20) 非空，共 ${striking.length} 条 —— 明细见 report.bands["P4-20"]`);
+      console.log(
+        `  ⚠️ P4–20 有 ${striking.length} 条，但其中曝光 >= ${MIN_IMPRESSIONS} 的只有 ${solidBands["P4-20"].length} 条。` +
+          `低曝光条目的 position 是噪声，不作选题依据。`
+      );
+    }
+    if (solidBands["P4-20"].length > 0) {
+      console.log(`  ★ 真实 striking distance：${JSON.stringify(report.actionable)}`);
     } else {
-      console.log("  striking distance(P4–20) 为空 —— 该判据在窗口期不适用，只能作长期观测，不能作选题依据。");
+      console.log(
+        `  ★ 真实 striking distance（曝光 >= ${MIN_IMPRESSIONS}）为空 ——` +
+          `窗口期仍不成立，只能作长期观测。本站仍处于「从 0 拿索引」阶段。`
+      );
     }
   }
 
