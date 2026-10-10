@@ -55,17 +55,20 @@ interface PdfjsModule {
 let pdfjsPromise: Promise<PdfjsModule> | null = null;
 
 /**
- * 动态加载 pdf.js 并配好本地 worker（只配一次）。
+ * 动态加载 pdf.js 并配好 worker（只配一次）。
  *
- * 🔴🔴 worker 必须与主文件**同源同版本**，即 legacy 主文件配 legacy worker。
- * 首版我加载的是 `legacy/build/pdf.mjs` 却把 workerSrc 指向 **modern** 的
- * `pdf.worker.min.mjs` —— 两者混用会在渲染阶段抛
- * `e.transform is not iterable (cannot read property undefined)`，
- * 页面只显示一句无意义的报错。构建全绿、worker 200、探针全过，只有真跑样本才暴露。
+ * 🔴🔴 主文件与 worker **必须来自同包同版本，且都用同一套（modern 或 legacy）**。
+ * 本页踩了两次：
+ *   ① legacy 主文件 + modern worker → 渲染阶段炸，且错误被宽泛正则掩盖成「密码保护」；
+ *   ② 换legacy 配对后仍报 `e.transform is not iterable`
+ *      —— 根因是 minified 后 `ctx.transform(...undefined)`，即 viewport 没带上 transform，
+ *      说明主文件与 worker 的消息协议版本对不上。
+ * ⇒ 结论：统一用 modern 配对（build/pdf.mjs + pdf.worker.min.mjs），
+ * 本站是 Next 16 + 现代浏览器，不需要为IE11 之类的目标保留 legacy。
  */
 async function loadPdfjs(): Promise<PdfjsModule> {
   if (!pdfjsPromise) {
-    pdfjsPromise = import("pdfjs-dist/legacy/build/pdf.mjs").then((mod: unknown) => {
+    pdfjsPromise = import("pdfjs-dist/build/pdf.mjs").then((mod: unknown) => {
       // UMD/ESM 混包下 pdfjs 既可能在 default 上，也可能直接是命名空间
       const candidate = mod as { default?: unknown };
       const pdfjs = (
@@ -73,7 +76,7 @@ async function loadPdfjs(): Promise<PdfjsModule> {
           ? candidate.default
           : mod
       ) as PdfjsModule;
-      pdfjs.GlobalWorkerOptions.workerSrc = "/workers/pdf.worker.legacy.min.mjs";
+      pdfjs.GlobalWorkerOptions.workerSrc = "/workers/pdf.worker.min.mjs";
       return pdfjs;
     });
   }
@@ -148,7 +151,7 @@ export default function PdfConvertTool({ pair }: { pair: ConvertPair }) {
           try {
             await page.render({
               canvasContext: ctx,
-              viewport: { width: canvas.width, height: canvas.height },
+              viewport,
             }).promise;
           } catch (e) {
             throw new Error(
