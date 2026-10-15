@@ -37,7 +37,9 @@
     "validate:data": "node scripts/validate-data-json.mjs",
     "seo:review": "npx tsx scripts/growth-review.ts",
     "seo:longtail": "npx tsx scripts/longtail-gap.ts",
-    "seo:sources": "npx tsx scripts/longtail-gap.ts --src-only"
+    "seo:sources": "npx tsx scripts/longtail-gap.ts --src-only",
+    "seo:autotune": "npx tsx scripts/auto-tune.ts",
+    "seo:autotune:apply": "npx tsx scripts/auto-tune.ts --apply"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

@@ -72,6 +72,132 @@ function buildFullMeta(): Record<string, PageMeta> {
   return map;
 }
 
+
+/**
+ * 🔴 2026-10-15 新增：接收**已校验的**调优方案并写入覆盖层。
+ *
+ * 为什么要这条而不是让 GET 端点自己算：
+ * GET 端点用自带的 analyzeTopicalGaps 重算，它只认"位次在阈值附近"的词，
+ * 而长尾词的形态是「0 曝光/深位次」⇒ 它算出来的 edits 恒为空。
+ * 实测：auto-tune 脚本算好 1 条方案，GET 端点返回 `overrides: []`。
+ *
+ * 真正的分工是：
+ *   `scripts/auto-tune.ts`（本机，有 GitHub 源码可读）做匹配 + 意图闸门 + 长度闸门
+ *   → POST 本端点（唯一有 DB 写权限的地方）→ 写覆盖层
+ * 这样"算"与"写"分离，且**所有写入都必须先过本机侧的闸门**。
+ *
+ * 安全：与 GET 同一套鉴权；仍需 ?apply=1；服务端二次校验长度与路由白名单。
+ */
+export async function POST(req: NextRequest) {
+  const apply = req.nextUrl.searchParams.get("apply") === "1";
+  if (!isAuthorized(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  let body: {
+    edits?: Array<{
+      route: string;
+      title?: string;
+      description?: string;
+      query?: string;
+      impressions?: number;
+    }>;
+  };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "invalid JSON body" }, { status: 400 });
+  }
+
+  const incoming = Array.isArray(body?.edits) ? body.edits : [];
+  if (incoming.length === 0) {
+    return NextResponse.json({ ok: true, savedToDb: 0, note: "无 edits 提交，未写入。" });
+  }
+
+  // ── 服务端二次校验（不信任客户端闸门）──
+  const TITLE_MAX = 60;
+  const DESC_MAX = 160;
+  const rejected: Array<{ route: string; reason: string }> = [];
+  const accepted: typeof incoming = [];
+
+  for (const e of incoming) {
+    if (typeof e?.route !== "string" || !e.route.startsWith("/tools/")) {
+      rejected.push({ route: String(e?.route ?? "?"), reason: "路由格式非法（只接受 /tools/*）" });
+      continue;
+    }
+    if (PROTECTED_ROUTES.has(e.route)) {
+      rejected.push({ route: e.route, reason: "PROTECTED_ROUTES 永不改写" });
+      continue;
+    }
+    // 必须能在 toolMeta 里找到，防止写入一个不存在的路由（幽灵覆盖）
+    if (!toolMeta[e.route.replace("/tools/", "")]) {
+      rejected.push({ route: e.route, reason: "toolMeta 里没有这个 id，会写成幽灵覆盖" });
+      continue;
+    }
+    if (e.title !== undefined && (typeof e.title !== "string" || e.title.length > TITLE_MAX)) {
+      rejected.push({ route: e.route, reason: `title 超 ${TITLE_MAX} 字符` });
+      continue;
+    }
+    if (
+      e.description !== undefined &&
+      (typeof e.description !== "string" || e.description.length > DESC_MAX)
+    ) {
+      rejected.push({ route: e.route, reason: `description 超 ${DESC_MAX} 字符` });
+      continue;
+    }
+    accepted.push(e);
+    if (accepted.length >= DAILY_ROUTE_CAP) break;
+  }
+
+  if (!apply) {
+    return NextResponse.json({
+      ok: true,
+      dryRun: true,
+      wouldSave: accepted.length,
+      rejected,
+      note: "加 ?apply=1 才会真写入。",
+    });
+  }
+
+  if (accepted.length === 0) {
+    return NextResponse.json({ ok: true, savedToDb: 0, rejected, note: "全部被服务端校验拦下。" });
+  }
+
+  // 清理护栏路由的历史覆盖
+  let cleanedOverrides = 0;
+  try {
+    cleanedOverrides = await deleteOverrides(Array.from(PROTECTED_ROUTES));
+  } catch (e: any) {
+    console.warn("[tune:POST] 清理护栏路由覆盖失败：", e?.message);
+  }
+
+  // provenance=verified：本机侧已过意图闸门 + title 闸门 + 长度闸门，
+  // 不是"机器生成的候选"，是已核对过意图的改动。
+  const now = new Date().toISOString();
+  const overrides = accepted.map((e) => ({
+    route: e.route,
+    title: e.title,
+    description: e.description,
+    provenance: "verified" as const,
+    lastOptimized: now,
+  }));
+
+  try {
+    const saved = await saveOverrides(overrides);
+    return NextResponse.json({
+      ok: true,
+      savedToDb: saved,
+      committed: saved > 0,
+      cleanedOverrides,
+      rejected,
+      savedRoutes: overrides.map((o) => o.route),
+      note: `已写入 ${saved} 条覆盖（清理护栏 ${cleanedOverrides} 条），页面零部署即时生效。`,
+    });
+  } catch (e: any) {
+    return NextResponse.json({ ok: false, commitError: e?.message || String(e), rejected }, { status: 500 });
+  }
+}
+
 export async function GET(req: NextRequest) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
