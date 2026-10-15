@@ -86,40 +86,153 @@ export function pageUrlToRoute(pageUrl?: string): string | null {
  */
 export const PROTECTED_ROUTES: ReadonlySet<string> = new Set(["/"]);
 
+/** SERP 展示上限。标题还要留出品牌后缀空间（` | Craftisle` = 13 字符）。 */
+const TITLE_MAX = 60;
+const DESC_MAX = 160;
+
 /**
- * 保守改写标题:目标词前置 + 保留原标题核心(而非整体替换)。
- * 重要：返回的标题不含品牌后缀 —— 根 layout 的 title.template "%s | Craftisle"
- * 会在渲染时统一追加；若此处带后缀，会与 template 叠加成双 " | Craftisle"。
- * 防御性：先剥离 current 中可能残留的 " | <brand>" 后缀。
- * 长度:Google 展示约 60 字符且 template 还会追加 "| <brand>",超长时截断保留前缀。
+ * 改写标题：把目标长尾词**并入**原标题，而不是简单前置。
+ *
+ * 🔴 2026-10-15 重写。旧实现是「前缀 + 原标题」，实测 8 个真实长尾词 **8/8 有问题**：
+ *   "letter b handwriting practice" → "Letter b handwriting practice — Handwriting Practice Shee…"
+ *      原标题被砍 12 字符，且被截掉的正是最有价值的后半段（Worksheets）。
+ *   "css minifier online free" → 剥掉 free/online 后只剩 "Css minifier"，
+ *      产出 "Css minifier — CSS Minifier — Minify CSS Online…"，目标词与原标题重复。
+ *
+ * 三个致命缺陷：
+ *   1. 前缀叠加后超长 ⇒ 直接 slice 截断原文，而被截的往往是价值最高的后半段
+ *   2. 剥掉 free/online/best 时，**区分性修饰词**（"60 seconds"、"to 100kb"、
+ *      "without watermark"）也被当语气词丢掉 —— 而那恰恰是长尾的全部价值
+ *   3. 大小写破碎（"Css"）+ 语义重复（CSS Minifier 出现两次）
+ *
+ * 新策略：原标题已够长时**不叠加**（让它保持完整，交给描述层承接该词）；
+ * 原标题较短时才合并，并去掉与目标词同义的头部。
  */
 export function optimizeTitle(current: string, query: string, siteName: string): string {
   const brandToken = `| ${siteName}`;
   const c = current.includes(brandToken)
     ? current.slice(0, current.indexOf(brandToken)).trim()
     : current.replace(/\s*\|\s*.*$/, "").trim();
-  const q = query.trim();
-  if (!q || c.toLowerCase().includes(q.toLowerCase())) return c; // 已含该词则不改
-  // 取查询中的核心名词短语，去掉语气词，构造自然标题
-  const phrase = q.replace(/\b(free|online|best|the|a|an)\b/gi, "").replace(/\s+/g, " ").trim();
+  const q = query.trim().toLowerCase();
+  if (!q || c.toLowerCase().includes(q)) return c;
+
+  // 🔴 只剥语气词，不剥区分性修饰词
+  const phrase = titleCase(
+    query
+      .replace(/\b(free|online|best|the|a|an)\b/gi, "")
+      .replace(/\s+/g, " ")
+      .trim(),
+  );
   if (!phrase) return c;
-  // 前缀目标词 + 保留原标题核心价值主张(绝不整体替换标题)
-  const combined = `${capitalize(phrase)} — ${c}`;
-  if (combined.length <= 60) return combined;
-  return combined.slice(0, 57).replace(/[\s—–-]+$/, "") + "…"; // 品牌由根 layout template 统一追加
+  if (c.toLowerCase().includes(phrase.toLowerCase())) return c;
+
+  // 原标题已经**很长**（≥70，必然在 SERP 被截）⇒ 叠加只会让它更糟。
+  // 此时不动标题，让描述层承接这个词 —— 一个完整但未优化的标题，胜过一个被截断的。
+  // 🔴 门槛曾是 TITLE_MAX-12=48，实测把 6/8 个标题全判为"太长"而放弃调优（等于没调）。
+  // 正确做法是**先试合并再判长度**：多数标题合并后仍 ≤60，只有极少数极长的才放弃。
+  if (c.length >= 72) return c;
+
+  // 去掉与目标词**语义重叠**的头部，避免产出
+  // "Resize Image To 100kb — Image Resizer — Resize Image to Exact…" 这种同义反复。
+  // 规则：头部去掉语气词后，若与目标词有 ≥60% 的词重合，或头部本身就是目标词的子串，
+  // 就丢掉头部（它是同一个意思），保留更有信息量的尾部。
+  const pLower = phrase.toLowerCase();
+  const pTokens = pLower.split(/\s+/).filter((w) => w.length > 2);
+  let tail = c;
+  for (const sep of [" — ", " - ", ": "]) {
+    const idx = c.indexOf(sep);
+    if (idx <= 0) continue;
+    const head = c.slice(0, idx).trim();
+    const headCore = head
+      .toLowerCase()
+      .replace(/\b(free|online|tool|generator|maker|converter)\b/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (headCore.length <= 4) continue;
+
+    const hTokens = headCore.split(/\s+/).filter((w) => w.length > 2);
+    const shared = hTokens.filter((w) => pTokens.includes(w)).length;
+    const overlapRatio = hTokens.length ? shared / hTokens.length : 0;
+
+    if (
+      pLower.includes(headCore) ||
+      headCore.includes(pLower) ||
+      overlapRatio >= 0.6
+    ) {
+      tail = c.slice(idx + sep.length).trim();
+      break;
+    }
+  }
+
+  // 🔴 尾部开头若仍与目标词首词重复（"Resize Image to 100kb — Resize Image to Exact…"），
+  // 去掉这段重复，否则标题前半段会全是同一个词
+  const firstPhraseWord = pTokens[0];
+  if (firstPhraseWord) {
+    const lowerTail = tail.toLowerCase();
+    const idx2 = lowerTail.indexOf(firstPhraseWord);
+    if (idx2 > 0 && idx2 < 14) {
+      // 重复出现在很靠前 ⇒ 多半是同一短语的延续，切到它之后
+      const after = tail.slice(idx2);
+      const sepIdx = after.search(/[—–\-:]/);
+      if (sepIdx > 0) tail = after.slice(sepIdx + 1).trim();
+    }
+  }
+
+  const combined = `${phrase} — ${tail}`;
+  if (combined.length <= TITLE_MAX) return combined;
+
+  // 🔴 超长时截**尾部**（原标题的补充说明），保留「目标词 + 核心头部」
+  const room = TITLE_MAX - phrase.length - 3;
+  if (room >= 14) {
+    const kept = tail.slice(0, room).replace(/[\s—–-]+$/, "");
+    if (kept.length >= 14) return `${phrase} — ${kept}`;
+  }
+  return phrase.slice(0, TITLE_MAX - 1).replace(/[\s—–-]+$/, "") + "…";
 }
 
-/** 保守改写描述：在原文前补一句点题句（含目标词），不覆盖原文价值信息 */
+/**
+ * 改写描述：在**长度预算内**把目标词写进去。
+ *
+ * 🔴 2026-10-15 重写。旧实现是 `"Looking for " + q + "? " + 原描述`，实测 5 个真实长尾词
+ * **5/5 全部超 160 字符**（+23 ~ +34）—— 而 `.slice(0, 320)` 这个上限远高于 SERP 的 160，
+ * 等于没有护栏。SERP 截断时切掉的正是原描述的价值信息。
+ *
+ * 新策略：算预算 → 放得下才前置；放不下就不改。
+ * 描述层的长度价值高于多一个关键词：超限的描述在 SERP 里和没写一样。
+ */
 export function optimizeDescription(current: string, query: string): string {
   const c = current.trim();
   const q = query.trim();
   if (!q || c.toLowerCase().includes(q.toLowerCase())) return c;
-  const lead = `Looking for ${q}? `;
-  return (lead + c).slice(0, 320);
+  if (c.length > DESC_MAX) return c; // 原描述已超限，不叠加
+
+  const lead = `${titleCase(q)} — `;
+  // 🔴 预算不足 60 字符时改写会挤掉原描述的大半价值 ⇒ 不改
+  if (DESC_MAX - lead.length < 60) return c;
+
+  return (lead + c).slice(0, DESC_MAX);
 }
+
+/** 逐词大小写：缩写词保持全大写（CSS/JPEG/PDF…），其余首字母大写。 */
+const ACRONYMS = new Set([
+  "css", "html", "pdf", "jpg", "jpeg", "png", "svg", "webp", "avif", "heic", "bmp",
+  "gif", "url", "seo", "utf", "json", "xml", "api", "ai", "ui", "ux", "ocr", "wav", "mp3", "sql",
+]);
 
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function titleCase(s: string): string {
+  return s
+    .split(/\s+/)
+    .map((w) => {
+      const lower = w.toLowerCase();
+      if (ACRONYMS.has(lower)) return lower.toUpperCase();
+      if (/^[A-Z]{2,5}$/.test(w)) return w; // 本来就是缩写
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    })
+    .join(" ");
 }
 
 /**
