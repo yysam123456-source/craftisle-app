@@ -1,4 +1,4 @@
-import { getOverride } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import ImageConvertClient from "./client";
 import { constructMetadata } from "@/lib/utils";
@@ -10,8 +10,8 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
  * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
  * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
  */
-export function generateMetadata(): Metadata {
-  const ov = getOverride(`/tools/image-convert`);
+export async function generateMetadata(): Promise<Metadata> {
+  const ov = await getOverrideAsync(`/tools/image-convert`);
   const title = ov?.title ?? "Image Converter — JPG, PNG, WebP, AVIF, SVG to JPG/PNG/WebP Free";
   const description = ov?.description ?? "Convert JPG, PNG, WebP, AVIF, SVG, GIF and BMP in your browser. JFIF to JPG, HEIC notes, batch convert, compress to 100KB. No upload, no signup.";
   return constructMetadata({

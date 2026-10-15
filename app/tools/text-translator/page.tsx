@@ -1,4 +1,4 @@
-import { getOverride } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import TextTranslatorClient from "./client";
 import { constructMetadata } from "@/lib/utils";
@@ -10,8 +10,8 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
  * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
  * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
  */
-export function generateMetadata(): Metadata {
-  const ov = getOverride(`/tools/text-translator`);
+export async function generateMetadata(): Promise<Metadata> {
+  const ov = await getOverrideAsync(`/tools/text-translator`);
   const title = ov?.title ?? "Free Online Text Translator — 30+ Languages";
   const description = ov?.description ?? "Translate text instantly between 30+ languages. Free online translator with auto-detect, real-time translation, text-to-speech, and copy. No signup required. Supports English, Chinese, Japanese, Korean, French, German, Spanish and more.";
   return constructMetadata({

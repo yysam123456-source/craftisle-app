@@ -1,4 +1,4 @@
-import { getOverride } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
@@ -17,8 +17,8 @@ export const dynamic = "force-dynamic";
  * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
  * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
  */
-export function generateMetadata(): Metadata {
-  const ov = getOverride(`/tools/regex-vis`);
+export async function generateMetadata(): Promise<Metadata> {
+  const ov = await getOverrideAsync(`/tools/regex-vis`);
   const title = ov?.title ?? "Regex Visualizer Free — Online AST Graph";
   const description = ov?.description ?? "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JS/Python/PCRE. 100% browser-based.";
   return constructMetadata({

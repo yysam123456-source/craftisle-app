@@ -7,7 +7,7 @@ import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
-import { getOverride } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import { getRelatedTools } from "@/lib/related-tools";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
@@ -30,6 +30,19 @@ interface ToolPageProps {
  */
 export const dynamicParams = false;
 
+/**
+ * 🔴 2026-10-15：加 revalidate，否则 page_meta 覆盖层对工具页永久无效。
+ *
+ * 本段有 generateStaticParams + dynamicParams=false ⇒ 176 个工具页在**构建期**
+ * 就把 metadata 烘进静态 HTML。运行时写 DB 覆盖层，页面不会重新生成，
+ * 于是 auto-tune 报 `savedToDb: 1` 而线上 title 纹丝不动。
+ *
+ * revalidate = 300 让页面进入 ISR：覆盖层写入后最多 5 分钟全站生效，
+ * 代价是这批页面不再是纯静态（首次请求会走一次再生）。
+ * 换来的是「零部署改 meta」这个能力真的存在。
+ */
+export const revalidate = 300;
+
 export function generateStaticParams() {
   return Object.keys(toolMeta).map((tool) => ({ tool }));
 }
@@ -43,7 +56,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   // 叠加自动优化器写入的 DB 覆盖层（长尾词 meta 重写，零部署即时生效）。
   // 覆盖层不存在时回退静态 toolMeta，行为不变。
   const route = `/tools/${tool}`;
-  const ov = getOverride(route);
+  const ov = await getOverrideAsync(route);
   const title = ov?.title ?? String(meta.seoTitle || `${meta.title}`);
   const description = ov?.description ?? String(meta.seoDesc || meta.desc || "Free online tool");
 

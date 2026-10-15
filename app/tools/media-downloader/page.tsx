@@ -1,4 +1,4 @@
-import { getOverride } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import MediaDownloaderClient from "./client";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
@@ -9,8 +9,8 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
  * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
  * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
  */
-export function generateMetadata(): Metadata {
-  const ov = getOverride(`/tools/media-downloader`);
+export async function generateMetadata(): Promise<Metadata> {
+  const ov = await getOverrideAsync(`/tools/media-downloader`);
   const title = ov?.title ?? "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram";
   const description = ov?.description ?? "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup required. Supports watermark-free downloads.";
   return {

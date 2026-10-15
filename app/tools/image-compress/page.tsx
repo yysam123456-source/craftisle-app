@@ -1,4 +1,4 @@
-import { getOverride } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import ImageCompressClient from "./client";
 import { constructMetadata } from "@/lib/utils";
@@ -10,8 +10,8 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
  * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
  * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
  */
-export function generateMetadata(): Metadata {
-  const ov = getOverride(`/tools/image-compress`);
+export async function generateMetadata(): Promise<Metadata> {
+  const ov = await getOverrideAsync(`/tools/image-compress`);
   const title = ov?.title ?? "Image Compressor to 100KB — Compress Image to Exact Size Free";
   const description = ov?.description ?? "Compress image to an exact file size — 100 KB, 200 KB, 500 KB, 1 MB. Also free JPG/PNG/WebP quality compression. Runs in your browser, no upload.";
   return constructMetadata({

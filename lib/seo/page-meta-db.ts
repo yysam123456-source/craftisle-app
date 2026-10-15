@@ -84,9 +84,31 @@ function maybeRefresh(): void {
   }
 }
 
-/** 同步读取某路由的覆盖（触发惰性刷新，但不阻塞）。 */
+/**
+ * 同步读取某路由的覆盖（触发惰性刷新，但不阻塞）。
+ *
+ * 🔴 2026-10-15：这个「同步 + 不阻塞」的组合有个致命后果 ——
+ * **首次访问（或缓存 TTL 过期后的第一次）必然返回 undefined**。
+ * 因为 refreshOverrides 是 async，此刻还在飞；本次请求已经错过了它。
+ * `generateMetadata` 是 async 上下文，本可以 await 却没有。
+ *
+ * 实测症状：auto-tune 写入成功（savedToDb=1），线上 title 纹丝不动，
+ * 且**每次都是原标题** —— 不是偶尔失效，是稳定失效。
+ *
+ * 所以给 async 调用方一条确定正确的路：await refreshOverrides() 后再读缓存。
+ */
 export function getOverride(route: string): PageMetaOverride | undefined {
   maybeRefresh();
+  return overrideCache.get(route);
+}
+
+/**
+ * 🔴 2026-10-15 新增：**确保**覆盖层已加载后再读。
+ * generateMetadata 必须用这个，不能用 getOverride ——
+ * 后者在冷缓存下永远返回 undefined，导致覆盖层写了等于没写。
+ */
+export async function getOverrideAsync(route: string): Promise<PageMetaOverride | undefined> {
+  await refreshOverrides();
   return overrideCache.get(route);
 }
 

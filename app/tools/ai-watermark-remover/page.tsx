@@ -1,4 +1,4 @@
-import { getOverride } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import WatermarkRemoverClient from "./client";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
@@ -9,8 +9,8 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
  * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
  * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
  */
-export function generateMetadata(): Metadata {
-  const ov = getOverride(`/tools/ai-watermark-remover`);
+export async function generateMetadata(): Promise<Metadata> {
+  const ov = await getOverrideAsync(`/tools/ai-watermark-remover`);
   const title = ov?.title ?? "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online";
   const description = ov?.description ?? "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng, Tongyi, Wenxin AI-generated images. Uses mathematically precise reverse alpha blending. 100% client-side, no upload, no signup required. Supports JPG, PNG, WebP formats.";
   return {
