@@ -225,7 +225,12 @@ async function main() {
       actions: Array<Record<string, unknown>>;
       structuralDebt?: Array<Record<string, unknown>>;
     };
-    structuralDebt = ledger.structuralDebt ?? [];
+    // 🔴 2026-10-12：只数真正未清的。此前把 retracted（判断错误已撤回）和
+    // resolved（已修）的条目也计入「未清」，日报出的数字虚高（报 6 实为 2），
+    // 会让真欠账被噪声淹没。status 缺失视为未清（保守）。
+    structuralDebt = (ledger.structuralDebt ?? []).filter(
+      (d) => !["retracted", "resolved"].includes(String(d.status ?? "")),
+    );
 
     // 台账里的意图词，用 GSC 的曝光匹配 —— 命中即说明该动作已开始起效
     for (const a of ledger.actions) {

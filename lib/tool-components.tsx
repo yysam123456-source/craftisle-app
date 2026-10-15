@@ -221,6 +221,7 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "image-base64": () => import("@/components/tools/ImageBase64Tool"),
   "svg-editor": () => import("@/components/tools/SvgEditorTool"),
   "handwriting-animation": () => import("@/components/tools/handwriting-animation"),
+  "handwriting-worksheet": () => import("@/components/tools/HandwritingWorksheetTool"),
   "image-info": () => import("@/components/tools/ImageInfoTool"),
 
   "image-beautify-screenshots": () => import("@/components/tools/ImageBeautifyScreenshotsTool"),

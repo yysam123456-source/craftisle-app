@@ -530,20 +530,29 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
   "compress-pdf": {
     slug: "compress-pdf",
     site: "pdf",
-    title: "Compress PDF — Free Online PDF Compressor, No Signup",
+    title: "Compress PDF to 100KB — Free Online PDF Compressor, No Signup",
     description:
-      "Compress PDF files free to shrink size for email and upload. Runs in your browser — no signup, no server upload, private.",
-    keywords: ["compress pdf", "reduce pdf size", "pdf compressor", "shrink pdf"],
+      "Compress PDF to 100KB or any target size free in your browser. No signup, no server upload, private.",
+    keywords: ["compress pdf", "reduce pdf size", "pdf compressor", "shrink pdf", "pdf to 100kb", "convert pdf to 100kb online", "compress pdf to exact size"],
     h1: "Compress PDF",
     intro: [
       "Compressing a PDF reduces its file size so it fits email attachments, uploads, and storage limits without (usually) hurting readability. Scanned documents and image-heavy reports are the usual culprits behind bloated files.",
       "Craftisle's free compress PDF tool shrinks files in your browser. No account, no watermarks, and your document is not uploaded to a server — the compression happens on your device.",
+      "A very common version of this job names the number instead of the goal: compress PDF to 100KB, or convert PDF to 100KB online. Those are file-size ceilings set by a form, an email gateway or a portal, and hitting an exact byte count needs an iterative pass — re-encode, measure, lower the quality a step, repeat until the file fits rather than overshoots.",
     ],
     sections: [
       {
         heading: "How compression works",
         paragraphs: [
           "The tool re-encodes images and streamlines the file structure to cut bytes while keeping text sharp. You trade a little weight for a much smaller file that is easier to send.",
+        ],
+      },
+      {
+        heading: "Compress PDF to an exact size: 100KB, 200KB, 1MB",
+        paragraphs: [
+          "When a portal states a maximum rather than a target — \"under 100KB\", \"no more than 200KB\", \"max 1MB\" — you need the output to land below the line, not merely be smaller. Search terms like \"PDF to 100KB convert online\" and \"compress PDF to exact size\" all describe that one operation.",
+          "Two things make it different from ordinary compression. First, image re-encoding is where the bytes live in a scan, so text-only tricks will not get a photo-heavy PDF under the limit. Second, a single quality setting rarely lands exactly on 100KB — it either overshoots or undershoots, and undershooting wastes quality you did not need to give up. The reliable approach measures the produced file and steps the quality down until it fits, then stops.",
+          "Order matters if you also need a smaller document: reduce the page size or rasterise at a lower DPI first, then run the target-size pass. Compressing first and resizing second throws away work.",
         ],
       },
       {
@@ -561,6 +570,8 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
     ],
     faq: [
       { q: "Will compression ruin quality?", a: "Text stays crisp; image-heavy pages may soften slightly in exchange for a much smaller file." },
+      { q: "How do I compress a PDF to exactly 100KB?", a: "Use a target-size mode rather than a fixed quality slider: it re-encodes, checks the resulting byte count, and lowers image quality one step at a time until the file is under the limit. A manual slider usually lands above or below 100KB, and if it lands above, the upload is rejected." },
+      { q: "Can I compress a PDF to less than 100KB without it becoming unreadable?", a: "Yes, as long as the pages are mostly text — vector text compresses well. If the PDF is a scan, the page images are the bulk of the bytes and you will have to accept softer images, or reduce the page size or scan DPI first." },
       { q: "Is it free?", a: "Yes, no account required and no watermarks added." },
       { q: "Are files uploaded?", a: "No. Compression is performed client-side in your browser." },
     ],
@@ -573,17 +584,26 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
     title: "PDF Converter — Free Online File Converter, No Signup",
     description:
       "Convert PDF to Word, Excel, JPG and more — free in your browser. No signup, no server upload, private file conversion.",
-    keywords: ["pdf converter", "pdf to word", "pdf to excel", "pdf to jpg"],
+    keywords: ["pdf converter", "pdf to word", "pdf to excel", "pdf to jpg", "pdf file to 100kb convert online", "convert pdf to jpeg", "pdf to 100kb online"],
     h1: "PDF Converter",
     intro: [
       "A PDF converter changes a PDF into an editable or image format — Word for editing, Excel for tables, JPG for sharing a page as a picture. Conversion is the bridge between a fixed layout and the format your next step actually needs.",
       "Craftisle's free PDF converter runs in your browser. Pick the target format, convert, and download — no account, no watermarks, and your file is not uploaded to a server.",
+      "A third request comes up constantly and is not really a format change at all: PDF file to 100KB convert online, convert PDF to 100KB. That is the same document with a byte ceiling attached, usually because a form or mail server rejects anything larger. Reach for it when the format is already right but the weight is not.",
     ],
     sections: [
       {
         heading: "Common conversions",
         paragraphs: [
           "PDF to Word when you must edit text, PDF to Excel when a table needs recalculating, and PDF to JPG when a single page becomes an image for a slide or message. Each targets a concrete next action.",
+        ],
+      },
+      {
+        heading: "PDF to 100KB: format right, weight wrong",
+        paragraphs: [
+          "\"Convert PDF to 100KB online\" is not a fourth output format — it is the same PDF with a size limit attached. It comes from the same places the conversion requests do: an upload form that states a maximum, an email provider that bounces anything over a few megabytes, a scholarship or visa portal with a 100KB attachment limit.",
+          "The way to hit a number like that is iterative rather than a single setting. Re-encode the page images, measure the file, drop quality a step, measure again, and stop as soon as it fits. Stopping at the first setting that comes in under the line throws away visible quality for nothing. Text-only PDFs reach 100KB easily; scanned ones need the page images re-encoded, and there is a floor below which they stop being readable.",
+          "If the PDF also has to become an image, the order is: PDF to JPG first, then compress the JPG to the byte limit. Converting and resizing are two passes over the same file, and doing them in the wrong order means paying for the expensive one twice.",
         ],
       },
       {
@@ -601,6 +621,7 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
     ],
     faq: [
       { q: "Which formats are supported?", a: "Common targets include Word, Excel, and JPG; availability depends on the specific converter you open." },
+      { q: "How do I convert a PDF file to 100KB?", a: "Set a target size rather than picking a quality value by eye. The compressor re-encodes and measures repeatedly until the output is at or under 100KB, then stops there. A scanned PDF needs its page images re-encoded; a text-only PDF drops under 100KB with almost no visible change." },
       { q: "Is conversion free?", a: "Yes, with no signup and no watermarks." },
       { q: "Are files uploaded?", a: "No. Conversion runs client-side in your browser." },
     ],

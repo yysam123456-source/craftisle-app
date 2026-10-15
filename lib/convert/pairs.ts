@@ -84,17 +84,91 @@ export const OUTPUT_META: Record<OutputFormat, { label: string; mime: string; qu
  *   其中 heic 因解码限制排除、ico 因输出不支持排除 ⇒ png-to-jpg 是需求最实的一个。
  *   其余 4 个围绕最高频的图片格式互转补齐，覆盖 4→5 词长尾变体
  *   （png to jpg online / convert png to jpg / jpg to png 等同一意图的多种问法）。
+ *
+ * 2026-10-15 新增 bmp-to-png（13 个对子）：真实需求词 bmp to png / bmp to png converter /
+ * bmp to png converter free。BMP 浏览器可原生解码，PNG 在 toBlob 能力矩阵内
+ * ⇒ 纯前端可行，且方向正确（BMP 是输入不是输出，避开了 png-to-bmp 的输出限制）。
  */
 export const CONVERT_PAIRS: ConvertPair[] = [
+  // ─────────────────────────────────────────────────────────────
+  {
+    slug: "bmp-to-png",
+    from: "bmp",
+    to: "png",
+    phrase: "BMP to PNG",
+    title: "BMP to PNG Converter — Convert BMP to PNG Online Free",
+    description:
+      "Convert BMP to PNG in your browser. Free, no signup, no upload — the bitmap is decoded and re-encoded on your own device.",
+    intro: [
+      "BMP is the format Windows reached for by default for two decades, which means a folder of screenshots, scanned documents and pasted images on any Windows machine is full of it. It is also the least efficient image format in common use: an uncompressed 24-bit bitmap costs roughly three bytes per pixel, so a 1920×1080 screenshot saved as BMP lands near 6 MB where the same picture as PNG is usually a fraction of that.",
+      "Converting BMP to PNG is worth doing for two different reasons at once. The file shrinks dramatically because PNG compresses what the bitmap stored raw, and the result becomes something every browser, design tool and modern phone opens without complaint — while the BMP still trips up web uploads, email servers and anything expecting a web format. The conversion runs entirely in this tab: your BMP is decoded, drawn to an in-memory canvas, and re-encoded as PNG without an upload step.",
+    ],
+    whenToUse: {
+      do: [
+        "A web form or CMS rejects a .bmp upload and only accepts PNG, JPG or WebP.",
+        "A BMP is too large to email, upload or attach — PNG typically cuts it by 80–95%.",
+        "You need a format that opens in a browser, a design tool or a phone without a converter installed.",
+      ],
+      avoid: [
+        "You need to go the other way. Canvas cannot write BMP output, so PNG-to-BMP is not something this page does — the reverse direction is a real format limitation, not an oversight.",
+        "The image has to stay bit-for-bit identical to the original bitmap. Re-encoding produces a PNG whose pixels match what was drawn, not a byte-level copy of the source file.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Is my BMP uploaded to a server?",
+        answer:
+          "No. The file is read from your disk, decoded by the browser's own image decoder, drawn onto an internal canvas, and written out as a PNG in the same tab. Nothing is transmitted, so a BMP containing confidential material never leaves your device.",
+      },
+      {
+        question: "How much smaller will the PNG be compared to the BMP?",
+        answer:
+          "Substantially. A BMP stores pixels uncompressed at around three bytes each; PNG applies compression, so screenshots and flat graphics typically land 80–95% smaller, and photographs land roughly 60–75% smaller. A photographic BMP can drop from about 6 MB to well under 1 MB. The exact figure depends entirely on how much detail the image carries.",
+      },
+      {
+        question: "Does converting BMP to PNG lose quality?",
+        answer:
+          "No visible loss. PNG is lossless, so every pixel the BMP contains is reproduced exactly in the PNG. What changes is the file size, not the image — open the two side by side and they are indistinguishable at any zoom level.",
+      },
+      {
+        question: "Does a BMP have a transparent background, and will the PNG keep it?",
+        answer:
+          "Standard BMP has no alpha channel, so it has no transparency to lose. The PNG comes out with whatever the bitmap actually contains — usually an opaque background. If you need a transparent result, remove the background first with the background remover, then convert.",
+      },
+      {
+        question: "Can I convert several BMP files at once?",
+        answer:
+          "Yes. Select or drop as many BMPs as you like and each one is decoded, converted and offered as a separate PNG download in the same pass. Because nothing is uploaded there is no server-side size limit — only your device's available memory.",
+      },
+      {
+        question: "Can I convert BMP to PNG and resize it in the same step?",
+        answer:
+          "Not in one pass — this page changes the format and preserves the pixel dimensions. Convert here first, then set the width and height you need with the image resizer, then use the image compressor if a form also states a byte ceiling such as 100KB. Converting before resizing means each step works on the file the next one receives.",
+      },
+      {
+        question: "Can I convert a BMP back to JPG or WebP as well?",
+        answer:
+          "Yes, and it is often the better destination. JPEG produces the smallest file for photographs, WebP keeps a smaller file while supporting transparency. If the receiving system lists either format, use the WebP to JPG or WebP to PNG pages after this conversion, or use the general image converter to pick the output format directly.",
+      },
+    ],
+    relatedTools: [
+      { id: "image-convert", label: "Image Converter" },
+      { id: "image-compress", label: "Image Compressor" },
+      { id: "image-resize", label: "Image Resizer" },
+    ],
+    relatedPairs: ["png-to-jpg", "jpg-to-png", "webp-to-png"],
+    technicalNote:
+      "The BMP is decoded by the browser's native image decoder (createImageBitmap, falling back to an Image element), drawn to a canvas at its natural dimensions, then exported with canvas.toBlob('image/png'). No quality argument is passed because PNG is lossless and ignores one. Because the source is decoded before re-encoding, the result is a fresh PNG rather than a repackaged BMP.",
+  },
   // ─────────────────────────────────────────────────────────────
   {
     slug: "png-to-jpg",
     from: "png",
     to: "jpg",
     phrase: "PNG to JPG",
-    title: "PNG to JPG Converter — Convert PNG to JPG Online Free",
+    title: "PNG to JPG Converter — Convert PNG to JPEG Online Free",
     description:
-      "Convert PNG to JPG in your browser. Free, no signup, no upload — the file never leaves your device. Keeps quality high while cutting file size.",
+      "Convert PNG to JPG (JPEG) in your browser. Free, no signup, no upload — the file never leaves your device. Keeps quality high while cutting file size.",
     intro: [
       "PNG is the right format for screenshots, logos and anything with transparency, but it is the wrong one for photographs. A phone photo saved as PNG can be three to ten times larger than the same image as JPG, and on a slow connection that difference is the gap between a page that loads and one that does not.",
       "This converter re-encodes your PNG as JPG entirely inside the browser tab. The file is read from your disk, drawn onto an internal canvas, and written out as a JPG — there is no upload step, no server-side processing, and no queue. You can convert a batch of files without waiting for anything.",
@@ -131,6 +205,21 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         answer:
           "Yes. Select multiple files and each is converted and offered as a separate download. Converting in your browser means you are limited by your own device's memory rather than an upload size limit.",
       },
+      {
+        question: "What is the difference between JPG and JPEG? Is PNG to JPEG the same as PNG to JPG?",
+        answer:
+          "They are the same format under two names — JPG is simply the three-letter extension, JPEG is the full name of the standard. Every .jpg file is a JPEG file. That is why searches for \"PNG to JPEG\" and \"PNG to JPG\" want the same tool, and why this page handles both: pick whichever spelling you searched for, the output is identical.",
+      },
+      {
+        question: "I need to convert to JPEG and resize it to a specific pixel size — can I do both?",
+        answer:
+          "Do them as two steps. This page converts the format; the image resizer sets pixel dimensions, and the image compressor reduces the file to a byte ceiling such as 100KB. Convert first, then resize, then compress — running compression before resizing means compressing pixels that are about to be thrown away.",
+      },
+      {
+        question: "How do I convert PNG to JPEG in bulk without waiting for each file?",
+        answer:
+          "Drop the whole batch into the upload area at once. Every file is decoded, re-encoded and queued for download in the same pass, so a hundred PNGs take one round trip rather than a hundred. There is no per-file upload, so the only real limit is how much memory your device has free.",
+      },
     ],
     relatedTools: [
       { id: "image-compress", label: "Image Compressor" },
@@ -146,7 +235,7 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     from: "jpeg",
     to: "png",
     phrase: "JPG to PNG",
-    title: "JPG to PNG Converter — Convert JPG to PNG Online Free",
+    title: "JPG to PNG Converter — Convert JPEG to PNG Online Free",
     description:
       "Convert JPG to PNG in your browser with full privacy — no upload, no signup. Useful when you need a transparent-capable format or a lossless copy of an image.",
     intro: [
@@ -184,6 +273,16 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         question: "Is this a server-side conversion?",
         answer:
           "No. Decoding and re-encoding both happen in your browser via the canvas API. The image is never uploaded, which also means there is no file size ceiling beyond your own device's memory.",
+      },
+      {
+        question: "Is JPEG to PNG the same request as JPG to PNG?",
+        answer:
+          "Yes — JPG and JPEG are two names for one format, the three-letter extension and the full standard name. A .jpg file is a JPEG file, so \"JPEG to PNG\" and \"JPG to PNG\" describe the same conversion and this page handles both spellings identically.",
+      },
+      {
+        question: "Can I convert a batch of JPEG files to PNG at once?",
+        answer:
+          "Yes. Select or drop as many JPG/JPEG files as you like and each one is converted and offered as its own download. Nothing is uploaded, so a large batch is limited by your device's free memory rather than by a server upload cap.",
       },
     ],
     relatedTools: [
@@ -247,6 +346,16 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         answer:
           "No. The parsing library runs in this tab, the pages are drawn to a canvas inside this tab, and the files you get back are created in your browser's memory. There is no upload endpoint on this page — the privacy note above is describing the code, not a policy.",
       },
+      {
+        question: "Can I convert PDF to JPG and compress the pages to a size limit in one step?",
+        answer:
+          "Not in one pass — this page renders pages, it does not size them. Convert first, then run the JPGs through the image compressor, which has a target-size mode for ceilings like 100KB or 200KB per page. Compressing before rendering would mean re-rendering the PDF for every quality step, which is the slow way round.",
+      },
+      {
+        question: "Is PDF to JPEG the same conversion as PDF to JPG?",
+        answer:
+          "Yes — JPG is the file extension and JPEG is the format's full name, so they are one format with two spellings and identical output. \"PDF to JPEG converter free\" and \"PDF to JPG\" are the same request; this page produces standard JPEG images either way.",
+      },
     ],
     relatedTools: [
       { id: "pdf-tools", label: "All PDF tools" },
@@ -308,6 +417,16 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         question: "Are my images uploaded to a server?",
         answer:
           "No. The PDF is assembled by a library running in this tab and handed back to you without leaving your device. There is no upload endpoint on this page.",
+      },
+      {
+        question: "Can I make the PDF smaller while I convert?",
+        answer:
+          "This tool embeds each JPG untouched, which is exactly why the output matches your source pixel for pixel — and also why a PDF built from phone photos can be far over an upload limit. Compress the JPGs first with the image compressor, then convert the compressed files here. Compressing after the PDF exists would mean editing the PDF, which is a different tool.",
+      },
+      {
+        question: "Does JPG to PDF accept JPEG files too, and PNG?",
+        answer:
+          "JPEG is the same format as JPG — one format, the three-letter extension and the full name — so both are accepted and identical. PNG inputs are accepted as well and keep their transparency and sharp edges, which is usually the better choice for screenshots, receipts and line art.",
       },
     ],
     relatedTools: [
@@ -439,9 +558,9 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     from: "webp",
     to: "jpg",
     phrase: "WebP to JPG",
-    title: "WebP to JPG Converter — Convert WebP to JPG Online Free",
+    title: "WebP to JPG Converter — Convert WebP to JPEG Online Free",
     description:
-      "Convert WebP to JPG in your browser — no upload, no signup. Makes WebP images compatible with apps and platforms that still reject WebP files.",
+      "Convert WebP to JPG (JPEG) in your browser — no upload, no signup. Makes WebP images compatible with apps and platforms that still reject WebP files.",
     intro: [
       "WebP is now the default image format on the web, which creates a predictable problem: send a WebP to an older CMS, an email client, a design tool, or a phone that predates 2020 and it simply will not display. The file is not broken; the reader just does not understand it.",
       "Converting WebP to JPG solves that compatibility gap. The result is a universally readable JPG that any application from the last two decades will open. The trade-off is that JPG is lossy and has no transparency, so a WebP with a transparent background will lose it — for those cases WebP to PNG is the better route.",
@@ -477,6 +596,16 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         question: "Do you upload my file anywhere?",
         answer:
           "No. Your WebP is decoded and re-encoded entirely inside this browser tab. There is no server, no upload progress bar, and no retention policy, because the file never leaves your device.",
+      },
+      {
+        question: "Is WebP to JPEG the same conversion as WebP to JPG?",
+        answer:
+          "Yes. JPG is the file extension and JPEG is the format's full name — one format with two spellings, identical output. Searches for \"WebP to JPEG\" and \"WebP to JPG\" are asking for the same thing, and this page produces it either way.",
+      },
+      {
+        question: "Can I convert WebP to JPEG and resize it in the same step?",
+        answer:
+          "Not in a single pass — this page changes the format only. For the combined job, convert here first, set the pixel dimensions with the image resizer, then use the image compressor if the form also states a byte ceiling such as 100KB. Doing the steps in that order means each one works on the file the next one receives.",
       },
     ],
     relatedTools: [
@@ -540,7 +669,7 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     ],
     relatedPairs: ["webp-to-jpg", "png-to-jpg", "png-to-webp"],
     technicalNote:
-      "The WebP is decoded via the browser's image decoder and re-encoded with canvas.toBlob('image/png'). Because PNG is lossless the output is larger than the source, but the alpha channel is preserved exactly.",
+      "The WebP is decoded via the browser's image decoder, drawn to a canvas, and exported with canvas.toBlob('image/jpeg') at quality 0.92. Because JPEG is lossy and has no alpha channel, the result is re-encoded from scratch and any transparency in the source is discarded.",
   },
   // ─────────────────────────────────────────────────────────────
   {
@@ -548,9 +677,9 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     from: "svg",
     to: "png",
     phrase: "SVG to PNG",
-    title: "SVG to PNG Converter — Convert SVG to PNG Online Free",
+    title: "SVG to PNG Converter — Transparent, High Quality, Online Free",
     description:
-      "Rasterise SVG to PNG at 1x, 2x or 4x in your browser. Free, no upload, no signup — the vector file never leaves your device.",
+      "Rasterise SVG to PNG at 1x, 2x or 4x in your browser — transparent background, high quality output. Free, no upload, no signup.",
     intro: [
       "SVG is resolution-independent, which is exactly why it causes problems: plenty of forms simply do not accept vector uploads. A CMS media field, an avatar uploader, a wiki attachment box or a print vendor's intake form will usually state PNG or JPG, and an SVG gets rejected with no conversion offered. Converting to PNG is the bridge between the file you have and the file they accept.",
       "This rasteriser runs entirely in the browser. The SVG is parsed by the browser's own renderer, drawn to a canvas at a scale factor you choose, and written out as PNG. Scale factor is the part most converters get wrong: an icon drawn at 1x looks fine on screen and blurry in print, so pick 2x or 4x when the result is going to be printed or displayed large.",
@@ -587,6 +716,21 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         answer:
           "No. The file is read locally and rasterised in the same browser tab. Nothing is transmitted, which also means there is no file size ceiling beyond your device's memory.",
       },
+      {
+        question: "How do I get an SVG to PNG with a transparent background?",
+        answer:
+          "It happens automatically — this converter does not paint a background, so any area the SVG leaves empty stays transparent in the PNG. You get a transparent SVG to PNG simply by not adding a background rectangle. If you need the opposite, an opaque result, add a full-canvas rect with a fill colour inside the SVG before converting.",
+      },
+      {
+        question: "How do I get a high quality PNG from an SVG?",
+        answer:
+          "Export at a scale factor of 2x or 4x instead of 1x. Quality here is a function of how many pixels the artwork is drawn into: at 1x the PNG matches the SVG's declared size and looks correct on screen but soft when printed or enlarged. At 4x the same vector is rasterised into four times the width and height, so it stays sharp when scaled down later.",
+      },
+      {
+        question: "Can I convert SVG to PNG and resize it in the same step?",
+        answer:
+          "The scale factor is the resize control here — 1x, 2x and 4x set the output pixel dimensions relative to the SVG's declared size. That covers most \"SVG to PNG and resize\" cases. If you need an exact pixel figure such as 512×512 that the scale factor cannot produce, convert first and then set the exact dimensions with the image resizer.",
+      },
     ],
     relatedTools: [
       { id: "image-convert", label: "Image Converter" },
@@ -603,9 +747,9 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     from: "avif",
     to: "jpg",
     phrase: "AVIF to JPG",
-    title: "AVIF to JPG Converter — Convert AVIF to JPG Online Free",
+    title: "AVIF to JPG Converter — Convert AVIF to JPEG Online Free",
     description:
-      "Convert AVIF images to JPG in your browser. Free and private — the file is never uploaded. Supports batch conversion.",
+      "Convert AVIF images to JPG (JPEG) in your browser. Free and private — the file is never uploaded. Supports batch conversion.",
     intro: [
       "AVIF is the newest mainstream image format and it is very good at what it does: an AVIF is typically 30-50% smaller than the equivalent JPEG at the same perceived quality. The problem is compatibility. AVIF decoding only landed in Chrome 85, Firefox 93 and Safari 16.4, so an AVIF sent to a colleague on an older machine, an email client, or a print shop's software can simply fail to open.",
       "This converter takes AVIF files and writes them out as JPG, which essentially every application since 1992 understands. Decoding happens in your browser using its native AVIF support, so there is no upload, no account and no waiting on a queue. Batch conversion is supported if you have a whole folder to move across.",
@@ -642,6 +786,16 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         answer:
           "Yes. Add multiple files and each is converted and offered as a separate download. Because everything runs locally, the practical limit is your device's memory rather than an upload size cap.",
       },
+      {
+        question: "Is AVIF to JPEG the same conversion as AVIF to JPG?",
+        answer:
+          "Yes — JPG is the three-letter extension and JPEG is the full name of the format, so they are one format with two spellings. \"AVIF to JPEG\" and \"AVIF to JPG\" both mean the same output, and this page produces it either way.",
+      },
+      {
+        question: "I need AVIF to JPEG and a smaller file — which do I use?",
+        answer:
+          "Both, in that order. AVIF is already a heavily compressed format, so the JPG that comes out is usually larger than the source; convert here for compatibility, then run the result through the image compressor to bring it back down. If the destination also caps pixel dimensions, set those with the image resizer between the two steps.",
+      },
     ],
     relatedTools: [
       { id: "image-convert", label: "Image Converter" },
@@ -658,9 +812,9 @@ export const CONVERT_PAIRS: ConvertPair[] = [
     from: "heic",
     to: "jpg",
     phrase: "HEIC to JPG",
-    title: "HEIC to JPG Converter — Convert HEIC to JPG Online Free",
+    title: "HEIC to JPG Converter — Convert HEIC to JPEG Online Free",
     description:
-      "Convert HEIC to JPG in your browser, privately. Free, no signup, no upload — iPhone photos are decoded on your own device and never leave it.",
+      "Convert HEIC to JPG (JPEG) in your browser, privately. Free, no signup, no upload — iPhone photos are decoded on your own device and never leave it.",
     intro: [
       "HEIC is what your iPhone has been saving photos as since iOS 11, and it is a genuinely good format — roughly half the file size of JPG at the same perceived quality. The friction arrives the moment you leave the Apple ecosystem: Windows Explorer does not open it, most Windows software ignores it, Adobe Acrobat's file picker filters it out, and every government or bank upload portal that asks for a JPG will simply reject it.",
       "That gap is why 'heic to jpg' is one of the most searched file conversions there is, and why so many of the tools that answer it are upload sites: you hand a photo of your ID, your passport or your child to a stranger's server because the alternative seemed to be installing software. This converter takes the other route. A HEIC decoder is bundled into this page and runs locally, so the conversion happens on your own machine — the photo never travels.",
@@ -707,6 +861,16 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         question: "Can I convert several HEIC files at once?",
         answer:
           "Yes. Add multiple files and each is converted and offered as a separate download. Because the decoding happens locally, there is no upload size limit — the practical constraint is your device's memory.",
+      },
+      {
+        question: "Is HEIC to JPEG the same as HEIC to JPG?",
+        answer:
+          "Yes. JPG is the file extension, JPEG is the format's full name — one format, two spellings, identical output. Searches for \"HEIC to JPEG\" and \"HEIC to JPG\" are asking for the same thing and this page handles both.",
+      },
+      {
+        question: "Can I convert HEIC to JPEG and resize it at the same time?",
+        answer:
+          "As two steps rather than one. This page turns the HEIC into a JPEG so it will open anywhere; the image resizer then sets the pixel dimensions a portal asks for. Do the conversion first — resizing a HEIC directly would mean decoding the same file twice for no benefit.",
       },
     ],
     relatedTools: [
@@ -767,6 +931,11 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         question: "Can I convert multiple HEIC files at once?",
         answer:
           "Yes. Add several files and each is converted and offered as a separate download. Everything is local, so there is no upload cap — only your device's available memory.",
+      },
+      {
+        question: "Can I convert HEIC to PNG and resize or compress it in one go?",
+        answer:
+          "Not in a single pass — this page changes the format only, and the PNG it produces is deliberately uncompressed in size terms. For the full job: convert here, set the pixel dimensions a form demands with the image resizer, then bring the weight down with the image compressor. Doing it in that order means each step works on the file the next one receives.",
       },
     ],
     relatedTools: [
