@@ -73,53 +73,68 @@ async function fetchBingSuggestions(seed: string): Promise<string[]> {
   return list.filter((s): s is string => typeof s === "string" && s.trim().length > 0);
 }
 
-/**
- * Google Suggest：给定种子词，返回真实的长尾补全词（按热度排序）。
- * 实测样例：seed="free online tool to" →
- *   "free online tool to convert pdf to word" / "...remove background from image" ...
- *
- * 🔴 2026-10-10：Google 主源连续三天不可达时自动回退 Bing，并把实际命中的源
- * 一起返回。**原来这里 `catch { return [] }`，等于把「源挂了」说成「没需求」**
- * —— 趋势管道因此连续多日写入 0 条却毫无告警。
- */
-export async function fetchSuggestionsDetailed(
-  seed: string,
-  opts: { lang?: string } = {}
-): Promise<SuggestionsResult> {
-  const hl = opts.lang || "en";
+/** Google Suggest：给定种子词，返回真实的长尾补全词（按热度排序）。 */
+async function fetchGoogleSuggestions(seed: string, hl: string): Promise<string[]> {
   const url =
     "https://suggestqueries.google.com/complete/search?client=firefox" +
     `&hl=${encodeURIComponent(hl)}&q=${encodeURIComponent(seed)}`;
-  try {
-    const res = await fetchWithTimeout(url);
-    if (!res.ok) throw new Error(`google http ${res.status}`);
-    // Google 有时返回 ISO-8859-1，需先取 buffer 再按 utf-8 解码，避免中文/重音乱码
-    const buf = Buffer.from(await res.arrayBuffer());
-    const data = JSON.parse(buf.toString("utf-8"));
-    const list: unknown[] = Array.isArray(data?.[1]) ? data[1] : [];
-    const out = list.filter((s): s is string => typeof s === "string" && s.trim().length > 0);
-    // HTTP 200 但列表为空也算主源异常（实测过代理返回空壳的情况）—— 走回退
-    if (out.length > 0) return { suggestions: out, source: "google" };
-    throw new Error("google returned empty list");
-  } catch (e) {
-    const primaryError = e instanceof Error ? e.message : String(e);
+  const res = await fetchWithTimeout(url);
+  if (!res.ok) throw new Error(`google http ${res.status}`);
+  // Google 有时返回 ISO-8859-1，需先取 buffer 再按 utf-8 解码，避免中文/重音乱码
+  const buf = Buffer.from(await res.arrayBuffer());
+  const data = JSON.parse(buf.toString("utf-8"));
+  const list: unknown[] = Array.isArray(data?.[1]) ? data[1] : [];
+  return list.filter((s): s is string => typeof s === "string" && s.trim().length > 0);
+}
+
+/**
+ * 🔴 2026-10-10：Google 主源失败时自动回退 Bing，并把实际命中的源一起返回。
+ * **原来这里 `catch { return [] }`，等于把「源挂了」说成「没需求」**
+ * —— 趋势管道因此连续多日写入 0 条却毫无告警。
+ *
+ * 🔴 2026-10-15 增补：Google 限流时**先退避重试两次**再考虑 Bing。
+ * 限流表现为 fetch failed 而非 429，一次就退出会让 100 个种子在高并发下
+ * 整批落到 Bing（实测 25/25），当天依据静默换成另一个源。
+ */
+export async function fetchSuggestionsDetailed(
+  seed: string,
+  opts: { lang?: string; googleRetries?: number } = {}
+): Promise<SuggestionsResult> {
+  const hl = opts.lang || "en";
+  const retries = opts.googleRetries ?? 2;
+
+  let primaryError = "";
+  for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const suggestions = await fetchBingSuggestions(seed);
-      if (suggestions.length > 0) {
-        return { suggestions, source: "bing", primaryError };
+      const out = await fetchGoogleSuggestions(seed, hl);
+      // HTTP 200 但列表为空也算主源异常（实测过代理返回空壳的情况）
+      if (out.length > 0) return { suggestions: out, source: "google" };
+      throw new Error("google returned empty list");
+    } catch (e) {
+      primaryError = e instanceof Error ? e.message : String(e);
+      if (attempt < retries) {
+        // 退避：限流是速率问题，等一下比立刻重试更可能成功
+        await new Promise((r) => setTimeout(r, 600 * (attempt + 1)));
       }
-      return { suggestions: [], source: "none", primaryError };
-    } catch (e2) {
-      // 🔴 双源都挂必须喊出来，否则又会被当成「无需求」
-      console.error(
-        `[trends] Suggest 双源均失败 seed="${seed}" google=${primaryError} bing=${e2 instanceof Error ? e2.message : String(e2)}`
-      );
-      return {
-        suggestions: [],
-        source: "none",
-        primaryError: `${primaryError} | bing: ${e2 instanceof Error ? e2.message : String(e2)}`,
-      };
     }
+  }
+
+  try {
+    const suggestions = await fetchBingSuggestions(seed);
+    if (suggestions.length > 0) {
+      return { suggestions, source: "bing", primaryError };
+    }
+    return { suggestions: [], source: "none", primaryError };
+  } catch (e2) {
+    // 🔴 双源都挂必须喊出来，否则又会被当成「无需求」
+    console.error(
+      `[trends] Suggest 双源均失败 seed="${seed}" google=${primaryError} bing=${e2 instanceof Error ? e2.message : String(e2)}`
+    );
+    return {
+      suggestions: [],
+      source: "none",
+      primaryError: `${primaryError} | bing: ${e2 instanceof Error ? e2.message : String(e2)}`,
+    };
   }
 }
 
@@ -131,19 +146,41 @@ export async function fetchSuggestions(
   return (await fetchSuggestionsDetailed(seed, opts)).suggestions;
 }
 
+/**
+ * 🔴 2026-10-15：Google Suggest 会按请求速率限流，且**限流表现为 fetch failed**
+ * （不是 429/503），极易被误读成「源不可达」⇒ 静默回退 Bing ⇒
+ * 当天的长尾依据变成 Bing 的需求宽度，而清单看起来一切正常。
+ *
+ * 实测（2026-10-15，本机）：
+ *   串行 3 次、间隔 400ms → Google 3/3 成功
+ *   concurrency=5 连续 100 个种子 → Google **25/25 全挂**，全走 Bing
+ *
+ * 所以并发默认降到 3、每批之间强制间隔。重试仍失败才回退，且 source 会被标成
+ * bing —— 读数据的人必须能看到这件事，不能让它悄悄发生。
+ */
+const SUGGEST_CONCURRENCY_DEFAULT = 3;
+const SUGGEST_BATCH_PAUSE_MS = 350;
+
+async function sleep(ms: number): Promise<void> {
+  await new Promise((r) => setTimeout(r, ms));
+}
+
 /** 批量 Suggest：并发拉取多个种子词的补全，返回 seed → suggestions 映射。 */
 export async function fetchSuggestionsForSeeds(
   seeds: string[],
-  opts: { lang?: string; concurrency?: number } = {}
+  opts: { lang?: string; concurrency?: number; pauseMs?: number } = {}
 ): Promise<Map<string, string[]>> {
   const out = new Map<string, string[]>();
-  const concurrency = Math.max(1, opts.concurrency ?? 5);
+  const concurrency = Math.max(1, opts.concurrency ?? SUGGEST_CONCURRENCY_DEFAULT);
+  const pause = opts.pauseMs ?? SUGGEST_BATCH_PAUSE_MS;
+
   for (let i = 0; i < seeds.length; i += concurrency) {
     const batch = seeds.slice(i, i + concurrency);
     const results = await Promise.all(
       batch.map((s) => fetchSuggestions(s, { lang: opts.lang }))
     );
     batch.forEach((s, idx) => out.set(s, results[idx]));
+    if (i + concurrency < seeds.length) await sleep(pause);
   }
   return out;
 }
