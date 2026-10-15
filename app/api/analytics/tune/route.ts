@@ -49,6 +49,18 @@ async function diagnoseOverrides() {
       probeRoute: "/tools/handwriting-animation",
       probeFound: !!probe,
       probeTitle: probe?.title ?? null,
+      // 直查 SQL，绕开缓存 —— 缓存可能是旧的
+      sqlRows: await (async () => {
+        try {
+          const { prisma } = await import("@/lib/db");
+          const rows = (await prisma.$queryRawUnsafe(
+            "SELECT route, title FROM page_meta_override LIMIT 10"
+          )) as Array<{ route: string; title: string | null }>;
+          return { count: rows.length, sample: rows };
+        } catch (e: any) {
+          return { error: e?.message || String(e) };
+        }
+      })(),
     };
   } catch (e: any) {
     return { hasDb: true, error: e?.message || String(e) };
