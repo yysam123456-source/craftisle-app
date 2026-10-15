@@ -1,55 +1,66 @@
+import { getOverride } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import WatermarkRemoverClient from "./client";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
-export const metadata: Metadata = {
-  title: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online",
-  description:
-    "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng, Tongyi, Wenxin AI-generated images. Uses mathematically precise reverse alpha blending. 100% client-side, no upload, no signup required. Supports JPG, PNG, WebP formats.",
+/**
+ * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
+ * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
+ * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
+ */
+export function generateMetadata(): Metadata {
+  const ov = getOverride(`/tools/ai-watermark-remover`);
+  const title = ov?.title ?? "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online";
+  const description = ov?.description ?? "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng, Tongyi, Wenxin AI-generated images. Uses mathematically precise reverse alpha blending. 100% client-side, no upload, no signup required. Supports JPG, PNG, WebP formats.";
+  return {
+    title,
+    description,
+    // 保留原有的 keywords / canonical / openGraph 等设置
   keywords: [
-    "remove Gemini watermark free",
-    "Gemini AI watermark remover online",
-    "remove AI image watermark free",
-    "Gemini watermark removal tool",
-    "AI image watermark eraser",
-    "remove Gemini star logo online",
-    "client side watermark remover",
-    "Gemini image watermark remover free",
-    "AI generated image watermark removal",
-    "remove AI watermark from image free",
-    "Gemini AI logo remover online",
-    "free watermark remover no signup",
-    "browser based AI watermark removal",
-    "remove Doubao watermark free",
-    "Doubao AI watermark remover online",
-    "remove Jimeng watermark",
-    "Jimeng AI watermark remover free",
-    "remove Tongyi watermark",
-    "Tongyi AI watermark remover",
-    "remove Wenxin watermark",
-    "Wenxin AI watermark remover",
-    "remove AI watermark online free",
-    "AI image watermark removal tool free",
-    "how to remove AI image watermark",
-    "best free AI watermark remover",
-    "AI watermark eraser free no signup",
-    "remove AI generated image watermark free",
-    "clean AI image for presentation free",
-    "remove AI watermark before printing",
-    "lossless AI watermark removal free",
-  ],
-  openGraph: {
-    title: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark",
-    description:
-      "Remove visible watermarks from Gemini, Doubao, Jimeng AI-generated images online free. 100% browser-based, no upload, no registration.",
-    type: "website",
-    url: "https://craftisle.com/tools/ai-watermark-remover",
-  },
-  alternates: {
-    canonical: "https://craftisle.com/tools/ai-watermark-remover",
-  },
-};
+      "remove Gemini watermark free",
+      "Gemini AI watermark remover online",
+      "remove AI image watermark free",
+      "Gemini watermark removal tool",
+      "AI image watermark eraser",
+      "remove Gemini star logo online",
+      "client side watermark remover",
+      "Gemini image watermark remover free",
+      "AI generated image watermark removal",
+      "remove AI watermark from image free",
+      "Gemini AI logo remover online",
+      "free watermark remover no signup",
+      "browser based AI watermark removal",
+      "remove Doubao watermark free",
+      "Doubao AI watermark remover online",
+      "remove Jimeng watermark",
+      "Jimeng AI watermark remover free",
+      "remove Tongyi watermark",
+      "Tongyi AI watermark remover",
+      "remove Wenxin watermark",
+      "Wenxin AI watermark remover",
+      "remove AI watermark online free",
+      "AI image watermark removal tool free",
+      "how to remove AI image watermark",
+      "best free AI watermark remover",
+      "AI watermark eraser free no signup",
+      "remove AI generated image watermark free",
+      "clean AI image for presentation free",
+      "remove AI watermark before printing",
+      "lossless AI watermark removal free",
+    ],
+    openGraph: {
+      title: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark",
+      description:
+        "Remove visible watermarks from Gemini, Doubao, Jimeng AI-generated images online free. 100% browser-based, no upload, no registration.",
+      type: "website",
+      url: "https://craftisle.com/tools/ai-watermark-remover",
+    },
+    alternates: {
+      canonical: "https://craftisle.com/tools/ai-watermark-remover",
+    },
+  };
+}
 
 export default function AIWatermarkRemoverPage() {
   // 此前本页手写了 faqSchema + howToSchema，既缺 SoftwareApplication，又与其余工具页各写各的

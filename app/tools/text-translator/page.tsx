@@ -1,14 +1,26 @@
+import { getOverride } from "@/lib/seo/page-meta-db";
+import type { Metadata } from "next";
 import TextTranslatorClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
-export const metadata = constructMetadata({
-  title: "Free Online Text Translator — 30+ Languages",
-  description:
-    "Translate text instantly between 30+ languages. Free online translator with auto-detect, real-time translation, text-to-speech, and copy. No signup required. Supports English, Chinese, Japanese, Korean, French, German, Spanish and more.",
+/**
+ * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
+ * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
+ * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
+ */
+export function generateMetadata(): Metadata {
+  const ov = getOverride(`/tools/text-translator`);
+  const title = ov?.title ?? "Free Online Text Translator — 30+ Languages";
+  const description = ov?.description ?? "Translate text instantly between 30+ languages. Free online translator with auto-detect, real-time translation, text-to-speech, and copy. No signup required. Supports English, Chinese, Japanese, Korean, French, German, Spanish and more.";
+  return constructMetadata({
+    title,
+    description,
+    // 保留原有的 keywords / canonical / openGraph 等设置
   canonical: "https://craftisle.com/tools/text-translator",
-});
+  });
+}
 
 // 静态段优先于 app/tools/[tool]/ 动态段，故需自行补齐模板提供的正文区块与结构化数据。
 // 注意：本工具未注册进 lib/tool-components.tsx 的 componentLoaders，因此不能删掉本页交由模板接管

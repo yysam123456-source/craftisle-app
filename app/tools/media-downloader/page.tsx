@@ -1,41 +1,52 @@
+import { getOverride } from "@/lib/seo/page-meta-db";
 import type { Metadata } from "next";
 import MediaDownloaderClient from "./client";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
-export const metadata: Metadata = {
-  title: "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram",
-  description:
-    "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup required. Supports watermark-free downloads.",
-  keywords: [
-    "free media downloader",
-    "download bilibili video",
-    "download douyin video",
-    "download tiktok video",
-    "download instagram video",
-    "download xiaohongshu",
-    "download wechat video",
-    "download weibo video",
-    "video downloader online",
-    "free video downloader no signup",
-    "bilibili downloader",
-    "douyin downloader",
-    "tiktok downloader",
-    "no watermark video download",
-    "social media video downloader",
-    "download from multiple platforms",
-  ],
-  openGraph: {
-    title: "Free Media Downloader — Bilibili, Douyin, TikTok, Instagram",
-    description:
-      "Download videos from 20+ platforms free. Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup, no watermark.",
-    type: "website",
-    url: "https://craftisle.com/tools/media-downloader",
-  },
-  alternates: {
-    canonical: "https://craftisle.com/tools/media-downloader",
-  },
-};
+/**
+ * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
+ * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
+ * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
+ */
+export function generateMetadata(): Metadata {
+  const ov = getOverride(`/tools/media-downloader`);
+  const title = ov?.title ?? "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram";
+  const description = ov?.description ?? "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup required. Supports watermark-free downloads.";
+  return {
+    title,
+    description,
+    // 保留原有的 keywords / canonical / openGraph 等设置
+  keywords: [  
+      "free media downloader",  
+      "download bilibili video",  
+      "download douyin video",  
+      "download tiktok video",  
+      "download instagram video",  
+      "download xiaohongshu",  
+      "download wechat video",  
+      "download weibo video",  
+      "video downloader online",  
+      "free video downloader no signup",  
+      "bilibili downloader",  
+      "douyin downloader",  
+      "tiktok downloader",  
+      "no watermark video download",  
+      "social media video downloader",  
+      "download from multiple platforms",  
+    ],  
+    openGraph: {  
+      title: "Free Media Downloader — Bilibili, Douyin, TikTok, Instagram",  
+      description:  
+        "Download videos from 20+ platforms free. Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup, no watermark.",  
+      type: "website",  
+      url: "https://craftisle.com/tools/media-downloader",  
+    },  
+    alternates: {  
+      canonical: "https://craftisle.com/tools/media-downloader",  
+    },  
+  };
+}
 
 export default function MediaDownloaderPage() {
   // 本页是静态段，优先于 app/tools/[tool]/ 动态段 ⇒ 不经过模板，

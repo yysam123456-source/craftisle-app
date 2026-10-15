@@ -4,14 +4,18 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 import HtmlVisualEditorTool from "@/components/tools/HtmlVisualEditorTool";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
+import { getOverride } from "@/lib/seo/page-meta-db";
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = getToolMeta("html-visual-editor");
   if (!meta) return {};
 
   const url = toolUrl("html-visual-editor");
-  const title = String(meta.seoTitle || `${meta.title}`);
-  const description = String(meta.seoDesc || meta.desc || "Free online tool");
+  // 🔴 叠加 DB 覆盖层（auto-tune 写入的长尾词标题），与 app/tools/[tool] 动态段保持一致。
+  // 静态段优先于动态段，不读覆盖层 ⇒ 调优对本站 11 个静态页全部无效。
+  const ov = getOverride(`/tools/html-visual-editor`);
+  const title = ov?.title ?? String(meta.seoTitle || `${meta.title}`);
+  const description = ov?.description ?? String(meta.seoDesc || meta.desc || "Free online tool");
 
   return {
     title,

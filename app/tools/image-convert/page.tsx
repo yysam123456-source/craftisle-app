@@ -1,14 +1,26 @@
+import { getOverride } from "@/lib/seo/page-meta-db";
+import type { Metadata } from "next";
 import ImageConvertClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 
-export const metadata = constructMetadata({
-  title: "Image Converter — JPG, PNG, WebP, AVIF, SVG to JPG/PNG/WebP Free",
-  description:
-    "Convert JPG, PNG, WebP, AVIF, SVG, GIF and BMP in your browser. JFIF to JPG, HEIC notes, batch convert, compress to 100KB. No upload, no signup.",
+/**
+ * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
+ * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
+ * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
+ */
+export function generateMetadata(): Metadata {
+  const ov = getOverride(`/tools/image-convert`);
+  const title = ov?.title ?? "Image Converter — JPG, PNG, WebP, AVIF, SVG to JPG/PNG/WebP Free";
+  const description = ov?.description ?? "Convert JPG, PNG, WebP, AVIF, SVG, GIF and BMP in your browser. JFIF to JPG, HEIC notes, batch convert, compress to 100KB. No upload, no signup.";
+  return constructMetadata({
+    title,
+    description,
+    // 保留原有的 keywords / canonical / openGraph 等设置
   canonical: "https://craftisle.com/tools/image-convert",
-});
+  });
+}
 
 // 静态段优先于 app/tools/[tool]/ 动态段，故需自行补齐模板提供的正文区块与结构化数据。
 // 注：本页与 lib/tools.ts 的 desc/seoTitle/seoDesc 原先都声称支持 AVIF/TIFF，

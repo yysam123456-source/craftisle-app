@@ -1,3 +1,5 @@
+import { getOverride } from "@/lib/seo/page-meta-db";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ToolDetailLayout } from "@/components/tools/ToolDetailLayout";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
@@ -10,19 +12,30 @@ import { buildToolJsonLd, getToolCategorySlug } from "@/lib/tool-seo";
 export const dynamic = "force-dynamic";
 
 // ---------- Static metadata ----------
-export const metadata = constructMetadata({
-  title: "Regex Visualizer Free — Online AST Graph",
-  description: "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JS/Python/PCRE. 100% browser-based.",
-  keywords: [
-    "regex visualizer online free",
-    "regex AST graph",
-    "regular expression visual editor",
-    "regex tree view online",
-    "regex visual tester",
-    "Craftisle regex tool",
-  ],
-  canonical: "https://craftisle.com/tools/regex-vis",
-});
+/**
+ * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
+ * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
+ * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
+ */
+export function generateMetadata(): Metadata {
+  const ov = getOverride(`/tools/regex-vis`);
+  const title = ov?.title ?? "Regex Visualizer Free — Online AST Graph";
+  const description = ov?.description ?? "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JS/Python/PCRE. 100% browser-based.";
+  return constructMetadata({
+    title,
+    description,
+    // 保留原有的 keywords / canonical / openGraph 等设置
+  keywords: [  
+      "regex visualizer online free",  
+      "regex AST graph",  
+      "regular expression visual editor",  
+      "regex tree view online",  
+      "regex visual tester",  
+      "Craftisle regex tool",  
+    ],  
+    canonical: "https://craftisle.com/tools/regex-vis",
+  });
+}
 
 interface PageProps {
   searchParams: Promise<{ r?: string }>;
