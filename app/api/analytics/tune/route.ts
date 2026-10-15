@@ -36,6 +36,25 @@ const CRON_SECRET = process.env.CRON_SECRET || "";
 /** 每日新写覆盖的路由上限（防止失控；覆盖可逆，可在 GSC/DB 随时回滚）。 */
 const DAILY_ROUTE_CAP = 40;
 
+/** 诊断覆盖层读侧：DB 可达？缓存里有几条？目标路由在不在？ */
+async function diagnoseOverrides() {
+  const hasDb = !!process.env.DATABASE_URL;
+  if (!hasDb) return { hasDb: false, note: "DATABASE_URL 缺失 ⇒ 读侧必然为空" };
+  try {
+    const { refreshOverrides, getOverride } = await import("@/lib/seo/page-meta-db");
+    await refreshOverrides();
+    const probe = getOverride("/tools/handwriting-animation");
+    return {
+      hasDb: true,
+      probeRoute: "/tools/handwriting-animation",
+      probeFound: !!probe,
+      probeTitle: probe?.title ?? null,
+    };
+  } catch (e: any) {
+    return { hasDb: true, error: e?.message || String(e) };
+  }
+}
+
 function isAuthorized(req: NextRequest): boolean {
   if (req.headers.get("x-vercel-cron")) return true;
   // 🔴 2026-10-15：GROWTH_AUTOTUNE 通道。
@@ -319,6 +338,8 @@ export async function GET(req: NextRequest) {
       description: o.description ?? null,
     })),
     errors: plan.edits.filter(() => false).length, // 占位：errors 在 apply 阶段产生
+    // 🔴 2026-10-15 诊断：覆盖层为什么写了不生效
+    overrideDiag: await diagnoseOverrides(),
   };
 
   if (!apply) {
