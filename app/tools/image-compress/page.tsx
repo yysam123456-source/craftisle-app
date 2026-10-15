@@ -10,6 +10,15 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
  * generateMetadata 读不到任何运行时数据 ⇒ page_meta 覆盖层对本页**永久无效**，
  * 自动调优写进去也不会生效。改成函数式并叠加覆盖层，与 app/tools/[tool] 动态段一致。
  */
+
+/**
+ * 🔴 2026-10-15：加 revalidate 让本页进入 ISR。
+ * 没有它时本页在构建期就把 metadata 烘死，运行时 page_meta 覆盖层写了也不生效
+ * （page_meta_override 表里确实有记录，但页面 HTML 是旧的）。
+ * 代价：不再是纯静态，首次请求走一次再生。收益：自动调优对本站真的可用。
+ */
+export const revalidate = 300;
+
 export async function generateMetadata(): Promise<Metadata> {
   const ov = await getOverrideAsync(`/tools/image-compress`);
   const title = ov?.title ?? "Image Compressor to 100KB — Compress Image to Exact Size Free";

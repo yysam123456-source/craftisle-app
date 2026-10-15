@@ -12,6 +12,15 @@ import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 // 静态段优先于动态段，所以本页不会经过 app/tools/[tool]/page.tsx 模板，
 // 模板提供的正文区块(FAQ/HowTo/UseCases/RelatedTools)与结构化数据都得自己补齐。
 
+
+/**
+ * 🔴 2026-10-15：加 revalidate 让本页进入 ISR。
+ * 没有它时本页在构建期就把 metadata 烘死，运行时 page_meta 覆盖层写了也不生效
+ * （page_meta_override 表里确实有记录，但页面 HTML 是旧的）。
+ * 代价：不再是纯静态，首次请求走一次再生。收益：自动调优对本站真的可用。
+ */
+export const revalidate = 300;
+
 export async function generateMetadata(): Promise<Metadata> {
   const meta = getToolMeta("handwriting-animation");
   if (!meta) return {};
