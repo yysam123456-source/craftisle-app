@@ -216,6 +216,10 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "svg-editor": () => import("@/components/tools/SvgEditorTool"),
   "handwriting-animation": () => import("@/components/tools/handwriting-animation"),
   "handwriting-worksheet": () => import("@/components/tools/HandwritingWorksheetTool"),
+  "typing-test": () => import("@/components/tools/TypingTestTool"),
+  "signature-maker": () => import("@/components/tools/SignatureMakerTool"),
+  "css-minifier": () => import("@/components/tools/CssMinifierTool"),
+  "meta-tags-generator": () => import("@/components/tools/MetaTagsGeneratorTool"),
   "image-info": () => import("@/components/tools/ImageInfoTool"),
 
   "image-beautify-screenshots": () => import("@/components/tools/ImageBeautifyScreenshotsTool"),

@@ -42,6 +42,19 @@ export const RELATED_TOOLS: Record<string, string[]> = {
   
   // 二维码和工具
   "qrcode": ["barcode-generator", "color-picker", "json-formatter", "regex"],
+
+  // 🔴 2026-10-15：显式给 4 个新工具安排入站宿主。
+  // getRelatedTools 的兜底用同分类兄弟 + .slice(0, 6)，而新工具追加在
+  // toolMeta 末尾 ⇒ 排在 slice 之外 ⇒ 没有任何页面链到它们 = 孤儿页。
+  // 所以这里不是「给新工具配 relatedTools」，而是**给老工具配新工具**——
+  // 内链是有向的，A 的 relatedTools 里出现 B，才是 B 的入站。
+  "counter": ["typing-test", "text-formatter", "hidden-character-detector"],
+  "text-formatter": ["typing-test", "counter", "html-visual-editor"],
+  "color-picker": ["signature-maker", "color-contrast", "gradient-generator"],
+
+  // html-visual-editor 同时是 css-minifier / meta-tags-generator 的入站宿主
+  "html-visual-editor": ["css-minifier", "meta-tags-generator", "escape-json"],
+  "escape-json": ["css-minifier", "meta-tags-generator", "html-visual-editor"],
 };
 
 /**
