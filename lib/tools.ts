@@ -668,7 +668,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is 2026 MMXXVI or MMXXIV?", a: "2026 is MMXXVI. MMXXIV is 2024. The converter computes the correct form automatically." },
       { q: "Does it run locally?", a: "Yes. All conversion happens in your browser." },
     ],
-    relatedTools: ["radix-converter", "unix-to-date", "convert-unix-to-date"],
+    relatedTools: ["radix-converter", "unix-to-date", "time-between-dates"],
   },
 
   "csv-json": {
@@ -5728,164 +5728,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What is a leap year?", a: "A year with 366 days. Occurs every 4 years, except century years not divisible by 400." },
       { q: "Why 2100 is not a leap year?", a: "Century years must be divisible by 400 to be leap years. 2100 ÷ 400 = 5.25, so not a leap year." },
     ],
-    relatedTools: ["time-between-dates", "convert-unix-to-date"],
-  },
-
-  "convert-days-to-hours": {
-    title: "Convert Days to Hours",
-    desc: "Convert days to hours",
-    icon: "⏱️",
-    category: CATEGORIES.time,
-    seoTitle: "Convert Days to Hours Free — Online Tool",
-    seoDesc: "Free days to hours converter online tool. Convert days to hours instantly. Supports decimal values. 100% browser-based.",
-    seoKeywords: ["days to hours", "convert days to hours", "days to hours calculator", "time conversion"],
-    description: "Convert days to hours. 1 day = 24 hours. Supports decimal values and batch conversion (one per line). Useful for time calculations, project planning, and duration conversions.",
-    howToUse: [
-      { heading: "Enter days", text: "Type or paste days (one per line)." },
-      { heading: "Convert", text: "Click Convert. Results show hours." },
-      { heading: "Copy", text: "Copy the results for use in calculations." },
-    ],
-    useCases: [
-      { title: "Project planning", text: "Convert project duration from days to hours." },
-      { title: "Time calculations", text: "Convert time periods for calculations." },
-      { title: "Work hours", text: "Calculate work hours from days." },
-    ],
-    faq: [
-      { q: "How many hours in a day?", a: "24 hours in a day." },
-      { q: "Can I convert decimal days?", a: "Yes, decimal values are supported (e.g., 2.5 days = 60 hours)." },
-    ],
-    relatedTools: ["convert-hours-to-days", "convert-seconds-to-time"],
-  },
-
-  "convert-hours-to-days": {
-    title: "Convert Hours to Days",
-    desc: "Convert hours to days",
-    icon: "📅",
-    category: CATEGORIES.time,
-    seoTitle: "Convert Hours to Days Free — Online Tool",
-    seoDesc: "Free hours to days converter online tool. Convert hours to days instantly. Supports decimal values. 100% browser-based.",
-    seoKeywords: ["hours to days", "convert hours to days", "hours to days calculator", "time conversion"],
-    description: "Convert hours to days. 24 hours = 1 day. Supports decimal values and batch conversion (one per line). Useful for time calculations, project planning, and duration conversions.",
-    howToUse: [
-      { heading: "Enter hours", text: "Type or paste hours (one per line)." },
-      { heading: "Convert", text: "Click Convert. Results show days." },
-      { heading: "Copy", text: "Copy the results for use in calculations." },
-    ],
-    useCases: [
-      { title: "Project planning", text: "Convert work hours to days." },
-      { title: "Time calculations", text: "Convert time periods for calculations." },
-      { title: "Work scheduling", text: "Calculate days from work hours." },
-    ],
-    faq: [
-      { q: "How many days in 24 hours?", a: "24 hours = 1 day." },
-      { q: "Can I convert decimal hours?", a: "Yes, decimal values are supported (e.g., 36 hours = 1.5 days)." },
-    ],
-    relatedTools: ["convert-days-to-hours", "convert-time-to-seconds"],
-  },
-
-  "convert-seconds-to-time": {
-    title: "Convert Seconds to Time",
-    desc: "Convert seconds to time format (HH:MM:SS)",
-    icon: "⏰",
-    category: CATEGORIES.time,
-    seoTitle: "Convert Seconds to Time Free — Online Tool",
-    seoDesc: "Free seconds to time converter online tool. Convert seconds to HH:MM:SS format. Supports batch conversion. 100% browser-based.",
-    seoKeywords: ["seconds to time", "convert seconds to time", "seconds to hh:mm:ss", "time conversion"],
-    description: "Convert seconds to time format (HH:MM:SS). Useful for video editing, audio processing, and time calculations. Supports batch conversion (one per line).",
-    howToUse: [
-      { heading: "Enter seconds", text: "Type or paste seconds (one per line)." },
-      { heading: "Convert", text: "Click Convert. Results show time in HH:MM:SS format." },
-      { heading: "Copy", text: "Copy the results for use in video/audio editing." },
-    ],
-    useCases: [
-      { title: "Video editing", text: "Convert video duration from seconds to time format." },
-      { title: "Audio processing", text: "Convert audio duration to time format." },
-      { title: "Time calculations", text: "Convert time periods for display." },
-    ],
-    faq: [
-      { q: "What format is the output?", a: "Output is in HH:MM:SS format (hours:minutes:seconds)." },
-      { q: "Can I convert large values?", a: "Yes, any non-negative number is supported." },
-    ],
-    relatedTools: ["convert-time-to-seconds", "convert-days-to-hours"],
-  },
-
-  "convert-time-to-seconds": {
-    title: "Convert Time to Seconds",
-    desc: "Convert time format (HH:MM:SS) to seconds",
-    icon: "⚡",
-    category: CATEGORIES.time,
-    seoTitle: "Convert Time to Seconds Free — Online Tool",
-    seoDesc: "Free time to seconds converter online tool. Convert HH:MM:SS to seconds. Supports multiple formats. 100% browser-based.",
-    seoKeywords: ["time to seconds", "convert time to seconds", "hh:mm:ss to seconds", "time conversion"],
-    description: "Convert time format (HH:MM:SS or 1h 30m 45s) to seconds. Useful for video editing, audio processing, and time calculations. Supports batch conversion (one per line).",
-    howToUse: [
-      { heading: "Enter time", text: "Type or paste time values (one per line). Use HH:MM:SS or 1h 30m 45s format." },
-      { heading: "Convert", text: "Click Convert. Results show seconds." },
-      { heading: "Copy", text: "Copy the results for use in calculations." },
-    ],
-    useCases: [
-      { title: "Video editing", text: "Convert video timestamps to seconds for editing." },
-      { title: "Audio processing", text: "Convert audio timestamps to seconds." },
-      { title: "Time calculations", text: "Convert time periods to seconds for calculations." },
-    ],
-    faq: [
-      { q: "What time formats are supported?", a: "HH:MM:SS (e.g., 01:30:45) and 1h 30m 45s formats." },
-      { q: "Can I convert just minutes?", a: "Yes, use 90m or 01:30:00 format." },
-    ],
-    relatedTools: ["convert-seconds-to-time", "convert-time-to-decimal"],
-  },
-
-  "convert-time-to-decimal": {
-    title: "Convert Time to Decimal",
-    desc: "Convert time format (HH:MM:SS) to decimal hours",
-    icon: "🔢",
-    category: CATEGORIES.time,
-    seoTitle: "Convert Time to Decimal Free — Online Tool",
-    seoDesc: "Free time to decimal converter online tool. Convert HH:MM:SS to decimal hours. Useful for payroll and time tracking. 100% browser-based.",
-    seoKeywords: ["time to decimal", "convert time to decimal", "hh:mm:ss to decimal", "decimal hours"],
-    description: "Convert time format (HH:MM:SS) to decimal hours. Useful for payroll, time tracking, and billing. Supports batch conversion (one per line).",
-    howToUse: [
-      { heading: "Enter time", text: "Type or paste time values in HH:MM:SS format (one per line)." },
-      { heading: "Convert", text: "Click Convert. Results show decimal hours." },
-      { heading: "Copy", text: "Copy the results for use in payroll or billing." },
-    ],
-    useCases: [
-      { title: "Payroll", text: "Convert work hours to decimal for payroll." },
-      { title: "Time tracking", text: "Convert logged time to decimal hours." },
-      { title: "Billing", text: "Convert billable hours to decimal for invoicing." },
-    ],
-    faq: [
-      { q: "What is decimal time?", a: "Time expressed as a decimal number (e.g., 1:30 = 1.5 hours)." },
-      { q: "Why use decimal time?", a: "Easier for calculations, payroll, and billing." },
-    ],
-    relatedTools: ["convert-time-to-seconds", "convert-hours-to-days"],
-  },
-
-  "convert-unix-to-date": {
-    title: "Unix Timestamp Converter",
-    desc: "Convert Unix timestamp to date and vice versa",
-    icon: "🕐",
-    category: CATEGORIES.time,
-    seoTitle: "Unix Timestamp Converter Free — Online Tool",
-    seoDesc: "Free Unix timestamp converter online tool. Convert Unix timestamp to date and date to Unix timestamp. Supports batch conversion. 100% browser-based.",
-    seoKeywords: ["unix timestamp converter", "convert unix to date", "date to unix", "unix timestamp"],
-    description: "Convert Unix timestamp to human-readable date and vice versa. Unix timestamp is the number of seconds since January 1, 1970 (UTC). Supports batch conversion, timezone options, and UTC label options.",
-    howToUse: [
-      { heading: "Choose mode", text: "Select 'Unix → Date' or 'Date → Unix' mode." },
-      { heading: "Enter values", text: "Type or paste timestamps or dates (one per line)." },
-      { heading: "Configure options", text: "Choose timezone (local/UTC) and UTC label options." },
-      { heading: "Convert", text: "Click Convert. Results show converted values." },
-    ],
-    useCases: [
-      { title: "Debug timestamps", text: "Convert Unix timestamps to debug date-related issues." },
-      { title: "API development", text: "Convert timestamps for API requests/responses." },
-      { title: "Log analysis", text: "Convert timestamps in log files to readable dates." },
-    ],
-    faq: [
-      { q: "What is a Unix timestamp?", a: "Number of seconds since January 1, 1970 (UTC)." },
-      { q: "What is the year 2038 problem?", a: "Unix timestamps will overflow in 2038 when using 32-bit integers." },
-    ],
-    relatedTools: ["check-leap-years", "time-between-dates"],
+    relatedTools: ["time-between-dates", "unix-to-date"],
   },
 
   // ==================== List Tools (Batch 10) ====================
@@ -6196,7 +6039,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Which timezones are available?", a: "A curated list of common global timezones, including UTC and major cities." },
       { q: "Is my input uploaded?", a: "No. Conversion happens locally in your browser." },
     ],
-    relatedTools: ["unix-to-date", "convert-unix-to-date", "time-between-dates"],
+    relatedTools: ["unix-to-date", "time-between-dates", "discord-timestamp"],
   },
 
   "fake-data-generator": {

@@ -196,12 +196,6 @@ const componentLoaders: Record<string, ComponentLoader> = {
   "hidden-character-detector": () => import("@/components/tools/HiddenCharacterDetectorTool"),
 
   // ==================== Missing Tools (Batch 8) ====================
-  "convert-days-to-hours": () => import("@/components/tools/ConvertDaysToHoursTool"),
-  "convert-hours-to-days": () => import("@/components/tools/ConvertHoursToDaysTool"),
-  "convert-seconds-to-time": () => import("@/components/tools/ConvertSecondsToTimeTool"),
-  "convert-time-to-decimal": () => import("@/components/tools/ConvertTimeToDecimalTool"),
-  "convert-time-to-seconds": () => import("@/components/tools/ConvertTimeToSecondsTool"),
-  "convert-unix-to-date": () => import("@/components/tools/ConvertUnixToDateTool"),
   "png-to-svg": () => import("@/components/tools/PngToSvgTool"),
   "randomize-case": () => import("@/components/tools/RandomizeCaseTool"),
 

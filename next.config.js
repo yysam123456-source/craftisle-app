@@ -79,6 +79,26 @@ const nextConfig = {
     { source: "/tools/json-escape", destination: "/tools/escape-json", permanent: true },
     { source: "/tools/json-sort", destination: "/tools/sort-json", permanent: true },
     { source: "/tools/json-stringify", destination: "/tools/stringify-json", permanent: true },
+
+    // ★ 收敛「同功能双实现」（2026-10-15，DEBT-12）
+    // 这 6 组与 DEBT-01 的 17 组形态不同：那 17 组是同一组件文件注册双 id（组件哈希可检测），
+    // 这 6 组是两条批量线各自实现的不同组件，各自独立成页。
+    //
+    // 保留方由真实搜索词决定，不按组件行数拍脑袋。Bing Suggest 实测（2026-10-15，8 个扩展 × 6 组）：
+    //   days to hours     61 建议  vs convert days to hours     11  → 5.5x
+    //   hours to days     62       vs convert hours to days     19     → 3.3x
+    //   time to seconds   41       vs convert time to seconds   21     → 2.0x
+    //   time to decimal   43       vs convert time to decimal   18     → 2.4x
+    //   seconds to time   33       vs convert seconds to time   26     → 1.3x（接近，仍留裸名）
+    //   unix to date      41       vs convert unix to date      33     → 1.2x（接近，仍留裸名）
+    // 结论：裸名线全胜，convert-* 线 0 胜。此前「B 线 convert-* 组件更长所以更好」的判断
+    // 只看了实现完整度、没看需求，方向是错的 —— 组件更长不等于该占这个 URL。
+    { source: "/tools/convert-days-to-hours",   destination: "/tools/days-to-hours",   permanent: true },
+    { source: "/tools/convert-hours-to-days",   destination: "/tools/hours-to-days",   permanent: true },
+    { source: "/tools/convert-seconds-to-time", destination: "/tools/seconds-to-time", permanent: true },
+    { source: "/tools/convert-time-to-seconds", destination: "/tools/time-to-seconds", permanent: true },
+    { source: "/tools/convert-time-to-decimal", destination: "/tools/time-to-decimal", permanent: true },
+    { source: "/tools/convert-unix-to-date",    destination: "/tools/unix-to-date",    permanent: true },
     ];
   },
   // Disable source maps in production to reduce bundle size
