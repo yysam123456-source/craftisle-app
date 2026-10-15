@@ -70,11 +70,19 @@ export async function refreshOverrides(): Promise<void> {
     }
     overrideCache = m;
     lastLoad = Date.now();
+    lastLoadError = null;
   } catch (e: any) {
     // 失败安全：保留旧缓存（或空），页面回退静态注册表
-    console.warn("[page-meta-db] 覆盖层加载失败，回退静态注册表：", e?.message);
+    // 🔴 2026-10-15：这里必须把失败**记录下来并对外可见**。
+    // 之前只 console.warn，症状是「覆盖写了但页面不变」，
+    // 而日志在 Vercel 里没人看 ⇒ 排查时完全看不出 DB 读失败。
+    lastLoadError = e?.message || String(e);
+    console.error("[page-meta-db] 覆盖层加载失败，回退静态注册表：", lastLoadError);
   }
 }
+
+/** 最近一次加载失败的原因（供诊断端点读取；null = 上次成功）。 */
+export let lastLoadError: string | null = null;
 
 function maybeRefresh(): void {
   if (Date.now() - lastLoad > TTL && !refreshPromise) {
@@ -113,32 +121,50 @@ export async function getOverrideAsync(route: string): Promise<PageMetaOverride 
 }
 
 /** 把优化结果写入 DB（幂等 upsert）。返回成功写入条数。 */
+/**
+ * 保存覆盖（幂等 upsert）。返回成功写入条数。
+ *
+ * 🔴 2026-10-15：这里原来 catch 住异常只 `console.warn` 然后 `return 0`，
+ * 而调用方（tune 端点 POST）把返回值当"写入成功"上报 ——
+ * 实测端点返回 `savedToDb: 1`，但直查 SQL `count: 0`，
+ * 页面 title 纹丝不动。**写入失败被伪装成了写入成功。**
+ *
+ * 这与 MEMORY 里「非原子写 + 无容错读 = 死锁」是同一类病：
+ * 静默 catch 会把故障变成「看起来正常」。
+ * 现在：失败必须抛，让调用方看到；调用方负责降级。
+ */
 export async function saveOverrides(list: PageMetaOverride[]): Promise<number> {
   if (list.length === 0) return 0;
-  try {
-    await ensureTable();
-    for (const o of list) {
-      await prisma.$executeRawUnsafe(
-        `INSERT INTO ${TABLE} (route, title, description, provenance, last_optimized)
-         VALUES ($1, $2, $3, $4, $5)
-         ON CONFLICT (route) DO UPDATE SET
-           title = EXCLUDED.title,
-           description = EXCLUDED.description,
-           provenance = EXCLUDED.provenance,
-           last_optimized = EXCLUDED.last_optimized`,
-        o.route,
-        o.title ?? null,
-        o.description ?? null,
-        o.provenance,
-        new Date(o.lastOptimized),
-      );
-    }
-    await refreshOverrides();
-    return list.length;
-  } catch (e: any) {
-    console.warn("[page-meta-db] 保存覆盖失败：", e?.message);
-    return 0;
+  await ensureTable();
+  for (const o of list) {
+    await prisma.$executeRawUnsafe(
+      `INSERT INTO ${TABLE} (route, title, description, provenance, last_optimized)
+       VALUES ($1, $2, $3, $4, $5)
+       ON CONFLICT (route) DO UPDATE SET
+         title = EXCLUDED.title,
+         description = EXCLUDED.description,
+         provenance = EXCLUDED.provenance,
+         last_optimized = EXCLUDED.last_optimized`,
+      o.route,
+      o.title ?? null,
+      o.description ?? null,
+      o.provenance,
+      new Date(o.lastOptimized),
+    );
   }
+  await refreshOverrides();
+  // 🔴 自检：写完立刻确认行真的在。表不存在/权限不足/连接串指向别处时，
+  // 这步会失败并把真实错误抛出去，而不是安静地返回"成功"。
+  const rows = (await prisma.$queryRawUnsafe<Array<{ c: bigint }>>(
+    `SELECT count(*)::bigint AS c FROM ${TABLE} WHERE route = $1`,
+    list[0].route,
+  )) as Array<{ c: bigint }>;
+  if (!rows.length || Number(rows[0].c) === 0) {
+    throw new Error(
+      `saveOverrides 自检失败：写入返回成功但 ${TABLE} 中查不到 ${list[0].route}`,
+    );
+  }
+  return list.length;
 }
 
 /** 删除指定路由的覆盖(护栏路由自愈:清除历史坏覆盖,页面回退静态注册表)。返回删除条数。 */
