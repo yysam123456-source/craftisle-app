@@ -336,14 +336,56 @@ const metaIds = new Set(
     ? []
     : [...toolsSrc.slice(metaStart).matchAll(/^ {2}"([a-z0-9-]+)": \{/gm)].map((m) => m[1]),
 );
+/**
+ * 键风格守卫：本脚本用正则解析 toolMeta，**只能识别双引号键**。
+ * 一旦有人改用其它键写法，正则会静默漏读 ⇒ 断言 H 的「这个工具在不在 toolMeta 里」
+ * 判断会失准（最坏情况：把合规页面误报成双源，或把真双源漏掉）。
+ *
+ * 三种会骗过正则的形态都要查（link-strategist 建议补齐后两项）：
+ *   singleQuoted —— 'slug-generator': {...}
+ *   bareIdent    —— slugGenerator: {...}      ← 原来的守卫完全没覆盖这种
+ *   computed     —— [SLUG]: {...}
+ *
+ * ⚠️ 必须先把 toolMeta 的 {...} 块单独切出来再扫，否则会扫到嵌套的
+ * heading: / text: / title: 等键而产生大量误报（实测切块后仅 460KB，三项均为 0）。
+ */
+function extractBlock(src, marker) {
+  const start = src.indexOf(marker);
+  if (start < 0) return "";
+  const open = src.indexOf("{", start);
+  if (open < 0) return "";
+  let depth = 0;
+  for (let i = open; i < src.length; i++) {
+    if (src[i] === "{") depth++;
+    else if (src[i] === "}") {
+      depth--;
+      if (depth === 0) return src.slice(start, i + 1);
+    }
+  }
+  return "";
+}
+
 if (metaStart >= 0) {
-  const singleQuoted = (toolsSrc.slice(metaStart).match(/^ {2}'[a-z0-9-]+': \{/gm) || []).length;
-  if (singleQuoted > 0) {
+  const metaBlock = extractBlock(toolsSrc, "export const toolMeta");
+  const keyStyleRisks = {
+    singleQuoted: (metaBlock.match(/^ {2}'[\w-]+'\s*:/gm) || []).length,
+    bareIdent: (metaBlock.match(/^ {2}[a-zA-Z_$][\w$]*\s*:/gm) || []).length,
+    computed: (metaBlock.match(/^ {2}\[/gm) || []).length,
+  };
+  const risky = Object.entries(keyStyleRisks).filter(([, n]) => n > 0);
+  if (risky.length) {
     P1.push(
-      `lib/tools.ts 的 toolMeta 里出现 ${singleQuoted} 个单引号键，本脚本的正则解析会漏掉它们。` +
-        `请改用 esbuild 加载真实对象（参考 scripts/audit-page-matrix.mjs 的做法），否则断言 H 会失准。`,
+      `lib/tools.ts 的 toolMeta 键风格发生变化（${risky
+        .map(([k, n]) => `${k}×${n}`)
+        .join(", ")}），本脚本的正则解析会漏读这些键，` +
+        `断言 H 的「是否在 toolMeta 里」判断会失准。请改用 esbuild 加载真实对象` +
+        `（参考 scripts/audit-page-matrix.mjs 的做法）。`,
     );
   }
+  INFO.push(
+    `toolMeta 键风格守卫：双引号键 ${metaIds.size}个；` +
+      `风险形态 ${risky.length ? risky.map(([k, n]) => `${k}×${n}`).join(", ") : "无"}。`,
+  );
 }
 
 const hardcodedTools = [];
