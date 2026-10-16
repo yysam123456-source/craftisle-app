@@ -42,8 +42,14 @@ export async function generateMetadata({
   const { title, description } = guide;
 
   return constructMetadata({
-    title: `${title} – SaaS Starter`,
+    // 🔴 移除 SaaS 脚手架残留（DEBT 同类问题）。
+    // 原为 `${title} – SaaS Starter`，线上实测产出
+    //   "Developer's Guide to Craftisle – SaaS Starter | Craftisle"
+    // 品牌无关的占位文案直接出现在搜索结果标题里，损害点击率与品牌一致性。
+    // 站点后缀由 constructMetadata 统一追加。
+    title,
     description: description,
+    canonical: `https://craftisle.com/guides/${resolved.slug}`,
   });
 }
 

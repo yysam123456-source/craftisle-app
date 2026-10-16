@@ -109,7 +109,8 @@ function getAdvantageIcon(advantage: string): string {
 }
 
 const baseUrl = "https://craftisle.com";
-const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
+// 注：原先这里的 LANGUAGES 常量只服务于已删除的 alternates.languages（DEBT-19），
+// 指向的 13 个译文 URL 全部 404，故连同常量一并移除。
 
 // ── 静态生成：仅预构建前10个「有丰富信息」的资源页（ISR：其余按需生成） ────
 export const revalidate = 21600; // 6小时 ISR
@@ -164,10 +165,11 @@ export async function generateMetadata({
     ...(isLowQuality ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: canonicalUrl,
-      languages: LANGUAGES.reduce((acc, lang) => ({
-        ...acc,
-        [lang]: `/directory/resource/${resource.id}${lang === 'en' ? '' : `/${lang}`}`,
-      }), {}),
+      // 🔴 DEBT-19 修复：此前这里为每个资源页声明 14 种语言的 alternates.languages，
+      // 但 public/data/generated-content/ 下没有任何 <lang>/ 子目录 ⇒ 13 个 alternate
+      // URL 全部 404（实测 /directory/resource/<id>/ja = 404）。逐页向 Google 递交
+      // 13 条死alternate 是 hreflang 滥用，Google 会降低对整站语言信号的信任。
+      // 译文真正落地后再按磁盘实际存在的语言补回。
     },
     openGraph: {
       type: "article",

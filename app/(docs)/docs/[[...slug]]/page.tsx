@@ -41,7 +41,8 @@ export async function generateMetadata({
   const { title, description } = doc;
 
   return constructMetadata({
-    title: `${title} – SaaS Starter`,
+    // 🔴 移除 SaaS 脚手架残留（与 guides/个聚类同一类错误）。
+    title,
     description: description,
   });
 }

@@ -4,6 +4,8 @@ import ImageCompressClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
+import { toolMeta } from "@/lib/tools";
+import { toolUrl } from "@/lib/tool-seo";
 
 /**
  * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
@@ -20,14 +22,23 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
+  // ── 单一数据源：lib/tools.ts 的 toolMeta ──
+  // 🔴 本页此前把 title/description 硬编码在本文件里，而 app/tools/[tool]/page.tsx
+  // 读的是 toolMeta ⇒ 同一个工具存在**两个meta 来源**。因为本页是静态段、
+  // 在 Next.js 中优先于 [tool] 动态段，所以改 lib/tools.ts 对本页不生效，
+  // 极易「改了源码却没上线」。现统一从 toolMeta 读取。
+  // （原先硬编码的文案已回填进 toolMeta，措辞与覆盖面不缩水。）
+  const meta = toolMeta["image-compress"];
   const ov = await getOverrideAsync(`/tools/image-compress`);
-  const title = ov?.title ?? "Image Compressor to 100KB — Compress Image to Exact Size Free";
-  const description = ov?.description ?? "Compress image to an exact file size — 100 KB, 200 KB, 500 KB, 1 MB. Also free JPG/PNG/WebP quality compression. Runs in your browser, no upload.";
+  // 优先级：DB 覆盖层 > toolMeta（与 app/tools/[tool] 动态段完全一致）
+  const title = ov?.title ?? String(meta?.seoTitle || meta?.title || "Image Compressor");
+  const description =
+    ov?.description ?? String(meta?.seoDesc || meta?.desc || "Compress images online for free.");
   return constructMetadata({
     title,
     description,
-    // 保留原有的 keywords / canonical / openGraph 等设置
-  canonical: "https://craftisle.com/tools/image-compress",
+    keywords: meta?.seoKeywords,
+    canonical: toolUrl("image-compress"),
   });
 }
 

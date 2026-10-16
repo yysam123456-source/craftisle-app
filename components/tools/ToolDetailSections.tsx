@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { toolMeta } from "@/lib/tools";
 import type { ToolMeta } from "@/lib/tools";
+import { mergeRelatedTools } from "@/lib/related-tools";
 
 export default function ToolDetailSections({ toolId }: { toolId: string }) {
   const meta = toolMeta[toolId] as ToolMeta | undefined;
@@ -14,6 +15,13 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
       </div>
     );
   }
+
+  // 互链 = meta.relatedTools（精选，优先）∪ RELATED_TOOLS/同分类兜底（补位）。
+  // 🔴 2026-10-16：原先这里只读 meta.relatedTools，导致 lib/related-tools.ts 的
+  // getRelatedTools() 兜底从未被任何组件调用（同分类 slice 一条内链都没产生），
+  // 而那份配置里还藏着 25 条指向不存在 slug 的死链。现在统一走 mergeRelatedTools：
+  // 它会去重、剔除自身、过滤掉 toolMeta 里不存在的 slug，并补足到 8 个。
+  const relatedIds = mergeRelatedTools(toolId, meta.relatedTools, 8);
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10 pb-10 mt-10">
@@ -84,22 +92,23 @@ export default function ToolDetailSections({ toolId }: { toolId: string }) {
       {/* === Related Tools === */}
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Related Free Online Tools</h2>
-        {meta.relatedTools && meta.relatedTools.length > 0 ? (
+        {relatedIds.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-3">
-            {(meta.relatedTools as string[])
-              .map((id) => (toolMeta[id] ? { id, ...toolMeta[id] } : null))
-              .filter(Boolean)
-              .map((tool: any) => (
+            {relatedIds.map((id) => {
+              const tool = toolMeta[id];
+              if (!tool) return null;
+              return (
                 <Link
-                  key={tool.id}
-                  href={`/tools/${tool.id}`}
+                  key={id}
+                  href={`/tools/${id}`}
                   className="block rounded-xl border bg-card p-4 hover:shadow-md transition"
                 >
                   <div className="text-lg">{tool.icon}</div>
                   <div className="font-semibold mt-1">{tool.title}</div>
                   <div className="text-xs text-muted-foreground mt-1">{tool.desc}</div>
                 </Link>
-              ))}
+              );
+            })}
           </div>
         ) : (
           <p className="text-sm text-muted-foreground italic">Related tools coming soon.</p>

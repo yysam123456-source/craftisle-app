@@ -15,29 +15,32 @@ import { ArrowLeft, Globe, Star } from "lucide-react";
 import { ResourceContentTemplate } from "@/lib/ai-content-template";
 
 const baseUrl = "https://craftisle.com";
-const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
+// 可用的译文语言白名单（en 走 /directory/resource/[id]，不进本段）
+const LANGUAGES = ['zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
 
-// ── Static generation：预构建前 10 个资源的 14 种语言版本（ISR） ────
+// ── Static generation：只预构建「磁盘上确实存在译文」的资源 × 语言组合 ────
 export const revalidate = 86400; // 24小时 ISR
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  // Only pre-generate first 10 resources × 14 languages (140 pages)
-  // Rest will be generated on-demand via ISR
+  // 🔴 DEBT-19 修复：原实现对前 10 个资源 × 13 种语言无条件产出 130 条
+  // generateStaticParams 条目，而这些译文文件并不存在 ⇒ 130 个预渲染页全是 404，
+  // 白白拖慢构建、污染 ISR 缓存。改为按磁盘实际存在的 <lang>/<id>.json 枚举。
   const contentDir = join(process.cwd(), "public", "data", "generated-content");
   const fs = require("fs");
-  
+
   if (!existsSync(contentDir)) return [];
-  
-  const files = fs.readdirSync(contentDir).filter((f: string) => f.endsWith(".json")).slice(0, 10);
-  
-  return files.flatMap((file: string) => {
-    const resourceId = file.replace(".json", "");
-    return LANGUAGES.filter(l => l !== "en").map(lang => ({
-      id: resourceId,
-      lang: lang,
-    }));
-  });
+
+  return fs
+    .readdirSync(contentDir, { withFileTypes: true })
+    .filter((e: any) => e.isDirectory() && LANGUAGES.includes(e.name))
+    .flatMap((langDir: any) => {
+      const lang = langDir.name;
+      return fs
+        .readdirSync(join(contentDir, lang))
+        .filter((f: string) => f.endsWith(".json"))
+        .map((f: string) => ({ id: f.replace(".json", ""), lang }));
+    });
 }
 
 // ── Metadata (with hreflang) ─────────────────────────────
@@ -66,10 +69,14 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      languages: LANGUAGES.reduce((acc, l) => ({
-        ...acc,
-        [l]: `${baseUrl}/directory/resource/${id}${l === "en" ? "" : `/${l}`}`,
-      }), {}),
+      // 🔴 DEBT-19 修复：原实现把 14 种语言全列进 alternates.languages，
+      // 其中 12 种译文文件不存在 ⇒ 又是一组死 alternate。只声明「确实存在」的两种：
+      // 英文原页 + 当前语言页。
+      canonical: `${baseUrl}/directory/resource/${id}/${lang}`,
+      languages: {
+        en: `${baseUrl}/directory/resource/${id}`,
+        [lang]: `${baseUrl}/directory/resource/${id}/${lang}`,
+      },
     },
     openGraph: {
       type: "article",
@@ -119,6 +126,10 @@ export default async function ResourceDetailLangPage({
     'ko': 'KO', 'vi': 'VI', 'th': 'TH', 'id': 'ID', 'tr': 'TR',
   };
 
+  // 🔴 DEBT-19 修复：原实现渲染全部 14 种语言，但绝大多数译文并不存在，
+  // 等于给用户（和爬虫）摆一排死链。只显示「英文原页 + 该资源真实存在的译文」。
+  const availableLangs = ["en", ...LANGUAGES.filter((l) => getContent(id, l) !== null)];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Language Switcher */}
@@ -126,7 +137,7 @@ export default async function ResourceDetailLangPage({
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 flex-wrap">
             <Globe className="h-4 w-4 text-muted-foreground" />
-            {LANGUAGES.map(l => (
+            {availableLangs.map(l => (
               <Link
                 key={l}
                 href={`/directory/resource/${id}${l === "en" ? "" : `/${l}`}`}

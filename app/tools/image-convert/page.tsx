@@ -4,6 +4,8 @@ import ImageConvertClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
+import { toolMeta } from "@/lib/tools";
+import { toolUrl } from "@/lib/tool-seo";
 
 /**
  * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
@@ -20,14 +22,22 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
+  // 🔴 单一数据源：改读 lib/tools.ts 的 toolMeta（与 app/tools/[tool] 动态段一致）。
+  // 本页是静态段、在 Next.js 中优先于 [tool]，此前把文案硬编码在本文件
+  // ⇒ 同一工具两个 meta 来源，改 lib/tools.ts 对本页不生效。
+  // 原硬编码文案已回填进 toolMeta（措辞与覆盖面不缩水）。
+  const meta = toolMeta["image-convert"];
   const ov = await getOverrideAsync(`/tools/image-convert`);
-  const title = ov?.title ?? "Image Converter — JPG, PNG, WebP, AVIF, SVG to JPG/PNG/WebP Free";
-  const description = ov?.description ?? "Convert JPG, PNG, WebP, AVIF, SVG, GIF and BMP in your browser. JFIF to JPG, HEIC notes, batch convert, compress to 100KB. No upload, no signup.";
+  // 优先级：DB 覆盖层 > toolMeta
+  const title = ov?.title ?? String(meta?.seoTitle || meta?.title || "Image Converter");
+  const description =
+    ov?.description ??
+    String(meta?.seoDesc || meta?.desc || "Convert images online for free.");
   return constructMetadata({
     title,
     description,
-    // 保留原有的 keywords / canonical / openGraph 等设置
-  canonical: "https://craftisle.com/tools/image-convert",
+    keywords: meta?.seoKeywords,
+    canonical: toolUrl("image-convert"),
   });
 }
 

@@ -9,8 +9,12 @@ import { PricingCards } from "@/components/pricing/pricing-cards";
 import { PricingFaq } from "@/components/pricing/pricing-faq";
 
 export const metadata = constructMetadata({
-  title: "Pricing – SaaS Starter",
-  description: "Explore our subscription plans.",
+  // 🔴 移除 SaaS 脚手架残留（原 title "Pricing – SaaS Starter"）。
+  //    根layout 会自动追加 " | Craftisle" 后缀，这里只给主体部分。
+  title: "Pricing",
+  description:
+    "Explore Craftisle subscription plans and pricing. Free online tools, transparent plans, no hidden fees.",
+  canonical: "https://craftisle.com/pricing",
 });
 
 export default async function PricingPage() {

@@ -15,6 +15,8 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join, resolve } from "path";
+// 🔴 原子写：裸 writeFileSync 被中断会留半截 JSON（DEBT-24）
+import { writeJsonAtomic } from "./lib/data-io.mjs";
 
 const ROOT = resolve(process.cwd(), "..");
 const LEDGER = join(ROOT, "growth-ledger.json");
@@ -220,6 +222,33 @@ async function main() {
   // ── 3. 台账回读 ──
   const readback: Array<Record<string, unknown>> = [];
   let structuralDebt: Array<Record<string, unknown>> = [];
+
+  // 🔴 2026-10-16（DEBT-13）：到期判定必须用 **GSC 实际快照日期**，
+  //   不能用日历。旧版 `daysBetween(动作日期, 今天) >= readbackDays` 会
+  //   「日历到期 ≠ 数据成熟」：10-09 的动作在 10-16 被判「7d 成熟」，
+  //   但当时最新快照只到 10-12 = 实际只覆盖 3 天。
+  //   实测台账里 28 条动作有 20 条的 readbackDays 含 7 ⇒ 这是 71% 的系统性偏差，
+  //   不是 3 条的局部问题。而 `days >= 56 → unproven_or_dead` 会误杀它们。
+  //
+  //   教训：**日历到期 ≠ 数据成熟**。新页还需先被收录，回读窗口应更长。
+  const latestSnapshot = (() => {
+    const snaps = (tq as unknown as { snapshots?: string[] })?.snapshots ?? [];
+    const ts = snaps
+      .map((s) => Date.parse(String(s)))
+      .filter((n) => Number.isFinite(n));
+    return ts.length > 0 ? new Date(Math.max(...ts)) : null;
+  })();
+  const dataAgeDays = latestSnapshot
+    ? Math.max(0, Math.floor((today.getTime() - latestSnapshot.getTime()) / 86_400_000))
+    : -1;
+  // 🔴 快照拿不到时必须 fail loud：静默退回日历 = 又一次「形式指标代替事实判据」
+  if (!latestSnapshot) {
+    console.warn(
+      "[growth-review] ⚠️⚠️ 拿不到 GSC 快照日期，无法判断数据成熟度。" +
+        "本次**不产出任何到期结论**（宁可报「不可判定」也不给假结论）。"
+    );
+  }
+
   if (existsSync(LEDGER)) {
     const ledger = JSON.parse(readFileSync(LEDGER, "utf-8")) as {
       actions: Array<Record<string, unknown>>;
@@ -233,21 +262,47 @@ async function main() {
     );
 
     // 台账里的意图词，用 GSC 的曝光匹配 —— 命中即说明该动作已开始起效
+    // （latestSnapshot / dataAgeDays 已在函数作用域算出，见上方 DEBT-13）
     for (const a of ledger.actions) {
       const days = daysBetween(String(a.date), today);
-      const due = (a.readbackDays as number[]).filter((d) => days >= d);
+      const windows = (a.readbackDays as number[]) ?? [];
+      // 用数据年龄判到期；快照缺失时一律视为未到期（data_not_mature）
+      const due = dataAgeDays >= 0 ? windows.filter((d) => dataAgeDays >= d) : [];
+      // 🔴 只有「最早的窗口都还没到」才算未成熟。
+      //   反例（我第一版的bug）：用 windows.some(d => dataAgeDays < d)，
+      //   则窗口 [7,14,28,56] 在 dataAge=8 时仍被判未成熟 ⇒
+      //   明明 7 天窗口已可判定，却被埋掉（实测 28 条里只有 1 条能判定）。
+      const notMature = dataAgeDays < 0 || due.length === 0;
       const terms = (a.intentTerms as string[]) ?? [];
-      const hits = rows.filter((r) =>
-        terms.some((t) => {
-          const stem = t.toLowerCase().split(/\s+/).filter((w) => w.length > 2);
-          return stem.every((w) => r.query.toLowerCase().includes(w.replace(/s$/, "")));
-        })
-      );
+      // 🔴 匹配收紧（旧版是无序子串全包含：`stem.every(w => q.includes(w))`
+      //   既不管词序也不去停用词，会同时产生假阳与假阴）。
+      //   现在要求：所有实词**按序连续**出现（允许中间夹一个连接词）。
+      const hits = rows.filter((r) => {
+        const q = ` ${r.query.toLowerCase().replace(/[^a-z0-9]+/g, " ")} `;
+        return terms.some((t) => {
+          const stem = t
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ")
+            .split(" ")
+            .filter((w) => w.length > 2)
+            .map((w) => w.replace(/s$/, ""));
+          if (stem.length === 0) return false;
+          // 词序必须连续（含可选连接词）
+          const re = new RegExp(
+            `\\b${stem
+              .map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+              .join("(?:\\s+\\w{1,3}\\s+)?")}\\b`
+          );
+          return re.test(q);
+        });
+      });
       const entry = {
         id: a.id,
         target: a.target,
         title: a.title,
         ageDays: days,
+        dataAgeDays,
+        latestSnapshot: latestSnapshot ? latestSnapshot.toISOString().slice(0, 10) : null,
         baseline: a.baseline,
         matchedQueries: hits.map((h) => ({
           query: h.query,
@@ -256,14 +311,21 @@ async function main() {
         })),
         candidateImpressions: hits.reduce((s, h) => s + h.impressions, 0),
         dueWindows: due,
-        decision:
-          due.length === 0
-            ? "too_early"
-            : hits.length > 0
-              ? "promote_candidate"
-              : days >= 56
-                ? "unproven_or_dead"
-                : "keep_testing",
+        // 🔴 新增 data_not_mature：把「日历没到期」与「数据没成熟」区分开。
+        //   之前这两者都叫 too_early，于是报告里看不出还差几天。
+        decision: notMature
+          ? "data_not_mature"
+          : hits.length > 0
+            ? "promote_candidate"
+            : dataAgeDays >= 56
+              ? "unproven_or_dead"
+              : windows.some((d) => dataAgeDays >= d)
+                ? "keep_testing"
+                : "too_early",
+        daysUntilMature:
+          notMature && dataAgeDays >= 0
+            ? Math.min(...windows.filter((d) => dataAgeDays < d)) - dataAgeDays
+            : null,
         caveats: a.caveats,
         nextPatch: a.nextPatch,
       };
@@ -273,16 +335,85 @@ async function main() {
   report.readback = readback;
   report.structuralDebt = structuralDebt;
 
-  const ready = readback.filter((r) => r.decision !== "too_early");
-  console.log(`[growth-review] 台账动作 ${readback.length} 条，其中已到回读窗口 ${ready.length} 条`);
+  //🔴 2026-10-16（DEBT-21）：回读结论**必须回写台账**。
+  //   旧版只写 growth-review-latest.json 就结束 ⇒ 28 条动作 status 100% 停在
+  //   pending，「先回读再决定今天做什么」在结构上完全空转。
+  //   教训：**字段存在 ≠ 字段被维护**（status 没有写入者，就是死字段）。
+  const ledgerPath = resolve(process.cwd(), "..", "growth-ledger.json");
+  if (existsSync(ledgerPath)) {
+    try {
+      const ledgerRaw = JSON.parse(readFileSync(ledgerPath, "utf-8")) as {
+        actions?: Array<Record<string, unknown>>;
+      };
+      const byId = new Map(readback.map((r) => [r.id, r]));
+      let touched = 0;
+      for (const a of ledgerRaw.actions ?? []) {
+        const r = byId.get(String(a.id));
+        if (!r) continue;
+        // 只有真到了数据成熟窗口才改status；否则保持原状。
+        // ⚠️ 不覆盖已有的人工verified（那是事实记录，不是本次推断）。
+        if (r.decision !== "data_not_mature") {
+          a.readback = {
+            at: new Date().toISOString().slice(0, 10),
+            decision: r.decision,
+            dataAgeDays: r.dataAgeDays,
+            candidateImpressions: r.candidateImpressions,
+            matchedQueryCount: (r.matchedQueries as unknown[]).length,
+          };
+          a.status =
+            r.decision === "promote_candidate"
+              ? "kept"
+              : r.decision === "unproven_or_dead"
+                ? "failed"
+                : "testing";
+          touched++;
+        }
+      }
+      writeJsonAtomic(ledgerPath, ledgerRaw);
+      console.log(`[growth-review] ↺ 回写台账 ${touched} 条 status（其余为 data_not_mature，保持原状）`);
+    } catch (e) {
+      // 🔴 静默 catch 会把「回写失败」伪装成「本次无回读结论」。
+      //   失败必须让调用方看到 —— 否则台账会永远停在 pending 而没人知道。
+      console.error(
+        "[growth-review] ❌ 回写台账失败（status 将继续停在 pending）：",
+        e instanceof Error ? e.message : String(e)
+      );
+    }
+  } else {
+    console.warn(`[growth-review] ⚠️ 找不到台账 ${ledgerPath}，本次不回写`);
+  }
+
+  // 🔴 注意：data_not_mature 也要排除在「可判定」之外。
+  //   否则报表会说「可判定 29 条、数据未成熟 29 条」——两句都成立但互相矛盾，
+  //   读的人只能自己去猜。这正是「形式指标自相矛盾」的又一种形态。
+  const ready = readback.filter(
+    (r) => r.decision !== "too_early" && r.decision !== "data_not_mature"
+  );
+  const notMature = readback.filter((r) => r.decision === "data_not_mature");
+  console.log(
+    `[growth-review] 台账动作 ${readback.length} 条 · 可判定 ${ready.length} 条 · 数据未成熟 ${notMature.length} 条` +
+      (latestSnapshot
+        ? `（最新快照 ${latestSnapshot.toISOString().slice(0, 10)}，数据年龄 ${dataAgeDays} 天）`
+        : `（⚠️ 无快照，本次不给到期结论）`)
+  );
+  if (notMature.length > 0) {
+    const soonest = Math.min(
+      ...notMature.map((r) => (r.daysUntilMature as number | null) ?? Number.MAX_SAFE_INTEGER)
+    );
+    console.log(
+      `  · ${notMature.length} 条等数据成熟，最快还差 ` +
+        `${Number.isFinite(soonest) ? soonest : "?"} 天数据（不是日历天）`
+    );
+  }
   for (const r of ready) {
     console.log(
-      `  [${r.decision}] ${r.target} (${r.ageDays}d) 候选曝光=${r.candidateImpressions} 命中词=${(r.matchedQueries as unknown[]).length}`
+      `  [${r.decision}] ${r.target} (数据年龄 ${r.dataAgeDays}d) 候选曝光=${r.candidateImpressions} 命中词=${(r.matchedQueries as unknown[]).length}`
     );
   }
 
   mkdirSync(OUT_DIR, { recursive: true });
-  writeFileSync(join(OUT_DIR, "growth-review-latest.json"), JSON.stringify(report, null, 2), "utf-8");
+  // 🔴 原子写（DEBT-24）：裸 writeFileSync 被中断会留半截 JSON。
+  writeJsonAtomic(join(OUT_DIR, "growth-review-latest.json"), report);
   console.log(`[growth-review] wrote ${join(OUT_DIR, "growth-review-latest.json")}`);
 
   if (structuralDebt.length) {

@@ -15,7 +15,8 @@ const baseUrl = "https://craftisle.com";
 // 此前全站 578 个 URL 一律写构建时刻的 now，等于每次部署全站「同时更新」，
 // Google 无法据此识别真实变更，lastmod 信号完全失效。
 // 只有内容源自带日期（Post.date / Guide.date）时才输出 lastModified。
-const LANGUAGES = ['en', 'zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
+// 翻译目标语言（en 是英文原页，不走 /[lang] 段，故不在此列）
+const TRANSLATION_LANGS = ['zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
 
 function loadReviewSlugs(): string[] {
   try {
@@ -162,28 +163,47 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // ★ 多语种资源详情页（14 种语言）
-  // 仅收录「人工手写的原创资源」，与详情页 noindex 逻辑（isHandwrittenResource）完全对齐
+  // ★ 多语种资源详情页（**只收录磁盘上真实存在翻译文件的语言**）
+  //
+  // 🔴 DEBT-19 修复。此前这段对每个手写资源无条件生成 14 种语言 URL（54 × 14 = 756 条，其中
+  // en 与 resourceDetailPages 重复），但 public/data/generated-content/ 下只有平铺的 `<id>.json`，
+  // **没有任何 <lang>/ 子目录**（已核实：54 个文件、0 个子目录）。而路由
+  //   app/(marketing)/directory/resource/[id]/[lang]/page.tsx:87
+  // 读的是 `generated-content/${lang}/${resourceId}.json` ⇒ 恒 notFound()。
+  // 于是 sitemap 里 702 条 URL 必然 404（实测 /directory/resource/artificial-intelligence-00002/ja = 404），
+  // 反复向 Google 提交 404 是典型的 crawl budget 浪费 + 信任度损耗。
+  //
+  // 改为「按实际存在的 <lang>/<id>.json 枚举」：
+  //   - 翻译未落地 ⇒ 产出 0 条，自动归零；
+  //   - 跑完 scripts/ai-translate-content.mjs 后 ⇒ 无需改代码即自动收录真实存在的译文。
+  // english（en）不在此列：它已由上面的 resourceDetailPages 收录，重复收录会造成双份 URL。
   const contentDir = join(process.cwd(), "public", "data", "generated-content");
-  const resourcesWithContent = existsSync(contentDir)
-    ? readdirSync(contentDir)
-        .filter(f => f.endsWith(".json"))
-        .filter(f => isHandwrittenResource(f.replace(".json", ""))) // 只保留手写资源
+  const multiLangPages = existsSync(contentDir)
+    ? readdirSync(contentDir, { withFileTypes: true })
+        .filter((e) => e.isDirectory() && TRANSLATION_LANGS.includes(e.name))
+        .flatMap((langDir) => {
+          const lang = langDir.name;
+          // 只收录「该语言下确实有翻译文件」且「是手写原创资源」的条目
+          return readdirSync(join(contentDir, lang))
+            .filter((f) => f.endsWith(".json"))
+            .filter((f) => isHandwrittenResource(f.replace(".json", "")))
+            .map((f) => {
+              const resourceId = f.replace(".json", "");
+              return {
+                url: `${baseUrl}/directory/resource/${resourceId}/${lang}`,
+                changeFrequency: "monthly" as const,
+                priority: 0.4,
+                alternates: {
+                  canonical: `${baseUrl}/directory/resource/${resourceId}/${lang}`,
+                  languages: {
+                    en: `${baseUrl}/directory/resource/${resourceId}`,
+                    [lang]: `${baseUrl}/directory/resource/${resourceId}/${lang}`,
+                  },
+                },
+              };
+            });
+        })
     : [];
-  const multiLangPages = resourcesWithContent.flatMap(slug => {
-    const resourceId = slug.replace(".json", "");
-    return LANGUAGES.map(lang => ({
-      url: `${baseUrl}/directory/resource/${resourceId}${lang === "en" ? "" : `/${lang}`}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.4,
-      alternates: {
-        languages: LANGUAGES.reduce((acc, l) => ({
-          ...acc,
-          [l]: `${baseUrl}/directory/resource/${resourceId}${l === "en" ? "" : `/${l}`}`,
-        }), {}),
-      },
-    }));
-  });
 
   return [
     ...staticPages,

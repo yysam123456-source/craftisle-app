@@ -33,6 +33,8 @@
     "seo:report:json": "node scripts/generate-seo-report.mjs --output json",
     "db:migrate:seo": "npx prisma migrate dev --name add_seo_monitoring",
     "audit:pages": "node scripts/audit-page-matrix.mjs",
+    "audit:sitemap": "node scripts/audit-sitemap.mjs",
+    "audit:related": "node scripts/audit-related-tools.mjs",
     "verify:tools": "node scripts/verify-live-tools.mjs",
     "validate:data": "node scripts/validate-data-json.mjs",
     "seo:review": "npx tsx scripts/growth-review.ts",

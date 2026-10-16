@@ -997,7 +997,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.dev,
     stars: 5,
     seoTitle: "Regex Visualizer Free — Online AST Graph",
-    seoDesc: "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JavaScript/Python/PCRE. 100% browser-based.",
+    seoDesc: "Free regex visualizer online. See AST tree graph, edit regex visually, test matches. Supports JS/Python/PCRE. 100% browser-based.",
     seoKeywords: [
         "regex visualizer online free",
         "regex AST graph online free",
@@ -1423,7 +1423,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "\u{1F4AB}",
     category: CATEGORIES.text,
     seoTitle: "Free Online Text Translator — 30+ Languages",
-    seoDesc: "Free online text translator for 30+ languages. Auto-detect source, real-time translation and text-to-speech. No signup required.",
+    seoDesc: "Translate text instantly between 30+ languages. Free online translator with auto-detect, real-time translation, text-to-speech, and copy. No signup required. Supports English, Chinese, Japanese, Korean, French, German, Spanish and more.",
     seoKeywords: ['free online translator', 'text translator online', 'translate english chinese', 'auto language detection', 'text to speech translation', 'Craftisle translator'],
     description: "Translate text instantly between 30+ languages including English, Chinese (Simplified & Traditional), Japanese, Korean, French, German, Spanish, Portuguese, Russian, Arabic, Thai, Vietnamese, Italian, Dutch, Polish, Turkish, Hindi, Indonesian and more. Features auto-detection of the source language, real-time translation as you type, browser-based text-to-speech for pronunciation, and one-click copy. All translation is powered by MyMemory API with no data stored on our servers.",
     howToUse: [
@@ -3125,7 +3125,10 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.image,
     stars: 4,
     seoTitle: "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online",
-    seoDesc: "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng and Tongyi AI images. Browser-based, no upload, no signup.",
+    // 🔴 不要写 "Supports JPG, PNG, WebP"：client.tsx:343 输出固定为
+    // toDataURL("image/png")，可accept 的是任意 image/*，但**导出只有 PNG**。
+    // 对用户可见的格式承诺必须与实现一致。
+    seoDesc: "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng and Tongyi AI images. Reverse alpha blending, 100% client-side, no upload, no signup required. Exports PNG.",
     seoKeywords: [
       // Gemini core
       "remove Gemini watermark free",
@@ -3180,7 +3183,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       "free online AI watermark eraser no registration",
       "browser based AI watermark remover free",
     ],
-    description: "Remove visible watermarks from Gemini AI-generated images. Uses mathematically precise reverse alpha blending for lossless removal. Works entirely in your browser — no images are uploaded to any server. Supports JPG, PNG, WebP formats.",
+    description: "Remove visible watermarks from Gemini AI-generated images. Uses mathematically precise reverse alpha blending for lossless removal. Works entirely in your browser — no images are uploaded to any server. Exports PNG.",
     howToUse: [
       { heading: "Upload a Gemini image", text: "Drag and drop a Gemini-generated image (with the visible star watermark in the bottom-right corner) or click to browse." },
       { heading: "Auto-detect & remove", text: "The tool automatically detects the watermark position and size, then applies reverse alpha blending to restore the original pixels." },
@@ -3207,7 +3210,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     category: CATEGORIES.image,
     stars: 4,
     seoTitle: "Free Media Downloader — Download Videos from Bilibili, Douyin, TikTok, Instagram",
-    seoDesc: "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Xiaohongshu and Weibo. Watermark-free, no signup required.",
+    seoDesc: "Free online media downloader. Download videos from Bilibili, Douyin, TikTok, Instagram, Xiaohongshu, WeChat, Weibo and more. No signup required. Supports watermark-free downloads.",
     seoKeywords: [
       // Core keywords
       "free media downloader",
@@ -3283,8 +3286,12 @@ export const toolMeta: Record<string, ToolMeta> = {
     desc: "Convert between JPEG, PNG, WebP, GIF, BMP",
     icon: "🔄",
     category: CATEGORIES.image,
-    seoTitle: "Image Converter Free — Convert JPG/PNG/WebP Online",
-    seoDesc: "Free image converter online. Convert between JPG, PNG, WebP, GIF and BMP. 100% browser-based, no signup required.",
+    seoTitle: "Image Converter — Convert JPG, PNG, WebP, GIF, BMP Online Free",
+    // 🔴 文案必须与 client.tsx 的 `type Format` 联合类型一致：
+    //   "image/jpeg" | "image/png" | "image/webp" | "image/gif" | "image/bmp"
+    // 曾回填成「AVIF、SVG」，但组件 FORMAT map 只有这 5 种 ⇒ 对用户可见的虚假宣称。
+    // AVIF/SVG 的能力在专门的 /c/heic-to-png、/c/svg-to-png 等页面，不在这里承诺。
+    seoDesc: "Convert JPG, PNG, WebP, GIF and BMP images in your browser. Change format, rename extension, no upload and no signup required.",
     seoKeywords: [
         "image converter online free",
         "convert image online",

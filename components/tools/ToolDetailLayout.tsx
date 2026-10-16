@@ -26,8 +26,6 @@ interface ToolDetailLayoutProps {
   externalUrl?: string;
   /** Author name to display below description (optional, defaults to "Craftisle Team") */
   author?: string;
-  /** Related tool IDs for cross-linking (optional) */
-  relatedTools?: string[];
 }
 
 export function ToolDetailLayout({
@@ -38,7 +36,6 @@ export function ToolDetailLayout({
   jsonLd,
   externalUrl,
   author,
-  relatedTools,
 }: ToolDetailLayoutProps) {
   // 该工具的图片是否会被上传到服务端处理。用于下方的 Quick Answer 区块 ——
   // 那里原先对所有工具硬编码「100% client-side processing」，而那 13 个走

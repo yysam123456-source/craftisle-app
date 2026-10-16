@@ -41,6 +41,31 @@ jobs:
       HOSTS: "craftisle-app.vercel.app craftisle-app-yysam123456-7242s-projects.vercel.app craftisle.com"
 
     steps:
+      # 🔴 2026-10-16（DEBT-24）：数据门禁。
+      #   validate:data 与 audit:pages 两个 script 一直存在，但此前**没有任何 workflow
+      #   引用它们** —— data-io.mjs 的 findInvalidJsonFiles 注释写着「供 CI 门禁使用」，
+      #   防线代码存在却从未运行。2026-09-22 那次 6.2MB 文件写坏导致管道静默死 5 周，
+      #   就是因为这条门禁没接。
+      #   放在最前面：坏数据入库后才发现已经晚了。
+      - name: 数据门禁（JSON 合法性 + 页面四方对齐）
+        run: |
+          set -uo pipefail
+          echo "── validate:data ──"
+          if npm run --silent validate:data; then
+            echo "✅ JSON 全部合法"
+          else
+            echo "::error::JSON 数据文件损坏（管道会静默死在读侧）—— 详见上方路径"
+            exit 1
+          fi
+          echo ""
+          echo "── audit:pages ──"
+          if npm run --silent audit:pages; then
+            echo "✅ 页面四方对齐无 P0"
+          else
+            echo "::error::页面审计有 P0（toolMeta / loader / 路由 / sitemap 不一致）"
+            exit 1
+          fi
+
       - name: 触发 pull-gsc-data（每天）
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}

@@ -312,10 +312,19 @@ export async function GET(request: Request) {
     const sites = siteList.map((s) => {
       const m = siteRecords.find((r) => r.siteId === s.id);
       let topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }> = [];
+      let topQueriesParseOk = true;
       if (m?.topQueries) {
         try {
           topQueries = (JSON.parse(m.topQueries as string) || []).slice(0, 5);
-        } catch {}
+        } catch (e) {
+          // 🔴 DEBT-22：静默 catch 会把「JSON 写坏」伪装成「该子站无查询」。
+          //   影响面是全部 8 个子站的展示数据，且无法从响应上区分。
+          topQueriesParseOk = false;
+          console.error(
+            `[ai-briefing] 子站 ${s.slug} 的 topQueries JSON 解析失败：`,
+            e instanceof Error ? e.message : String(e)
+          );
+        }
       }
       return {
         slug: s.slug,
@@ -329,6 +338,7 @@ export async function GET(request: Request) {
         uniquePages: m?.uniquePages ?? 0,
         share: totalImpr > 0 && m ? Math.round((m.impressions / totalImpr) * 1000) / 10 : 0,
         topQueries,
+        topQueriesParseOk,
       };
     });
 
@@ -352,6 +362,8 @@ export async function GET(request: Request) {
 
     // ── 优化器 / 覆盖层状态 ──
     let overrides: Array<{ route: string; title: string | null; description: string | null; provenance: string; lastOptimized: string | null }> = [];
+    let overridesQueryOk = true;
+    let overridesQueryError: string | null = null;
     try {
       const rows = await prisma.$queryRawUnsafe<Array<{
         route: string; title: string | null; description: string | null; provenance: string; last_optimized: Date | null;
@@ -363,8 +375,14 @@ export async function GET(request: Request) {
         provenance: r.provenance,
         lastOptimized: r.last_optimized ? new Date(r.last_optimized).toISOString() : null,
       }));
-    } catch {
-      // 表尚未创建(惰性建表) = 覆盖层为空
+    } catch (e) {
+      // 🔴 DEBT-14/22：原注释写「表尚未创建(惰性建表) = 覆盖层为空」——
+      //   这**把推测当成了结论**。查询失败与表不存在必须能被区分，
+      //   否则 overrideCount=0 无法自证，整条 auto-tune 闭环的成功判据失效
+      //   （实测线上曾出现 overrideCount=0 且 health=healthy 同时成立）。
+      overridesQueryOk = false;
+      overridesQueryError = e instanceof Error ? e.message : String(e);
+      console.error("[ai-briefing] page_meta_override 查询失败：", overridesQueryError);
     }
 
     const zeroImpressionSites = sites.filter((s) => s.impressions === 0).map((s) => s.slug);
@@ -420,6 +438,10 @@ export async function GET(request: Request) {
         protectedRoutes: Array.from(PROTECTED_ROUTES),
         autoApplyCron: true, // vercel.json: /api/cron/auto-optimize?apply=1 每周一 07:00 UTC
         overrideCount: overrides.length,
+        // 🔴 DEBT-22：这两个布尔位是「查询是否真的成功」的自证信号。
+        //   overrideCount=0 且 overridesQueryOk=false ⇒ 是故障，不是「无覆盖」。
+        overridesQueryOk,
+        overridesQueryError,
         overrides,
       },
       focus: {
@@ -455,12 +477,12 @@ type Briefing = {
   heal: { triggered: boolean; ok: boolean | null; status: number | null; note: string };
   catchup?: Array<{ job: string; ok: boolean | null; note: string }>;
   overall: { impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; top3Count: number; changes: { impressionsPct: number; clicksPct: number; positionChange: number }; lastWeek: { impressions: number; clicks: number } };
-  sites: Array<{ slug: string; name: string; host: string; impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number; share: number; topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }> }>;
+  sites: Array<{ slug: string; name: string; host: string; impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number; share: number; topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }>; topQueriesParseOk: boolean }>;
   nearMissQueries: Array<{ query: string; position: number; impressions: number; clicks: number }>;
   lowCtrQueries: Array<{ query: string; position: number; ctr: number; benchmarkCtr: number; impressions: number; missedClicks: number }>;
   activeAlerts: Array<{ type: string; severity: string; query: string; message: string; createdAt: string }>;
   risingQueries: Array<{ query: string; count: number; previousCount: number | null; growthPct: number | null }>;
-  optimizer: { pageMetaBaseRoutes: string[]; protectedRoutes: string[]; autoApplyCron: boolean; overrideCount: number; overrides: Array<{ route: string; title: string | null; description: string | null; provenance: string; lastOptimized: string | null }> };
+  optimizer: { pageMetaBaseRoutes: string[]; protectedRoutes: string[]; autoApplyCron: boolean; overrideCount: number; overridesQueryOk: boolean; overridesQueryError: string | null; overrides: Array<{ route: string; title: string | null; description: string | null; provenance: string; lastOptimized: string | null }> };
   focus: { zeroImpressionSites: string[]; biggestNearMiss: { query: string; position: number; impressions: number } | null; biggestCtrMiss: { query: string; position: number; ctr: number; benchmarkCtr: number; impressions: number; missedClicks: number } | null };
   endpoints: Record<string, string>;
 };

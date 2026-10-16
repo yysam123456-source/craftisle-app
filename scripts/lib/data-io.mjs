@@ -76,6 +76,40 @@ export function writeJsonAtomic(filePath, data, opts = {}) {
 }
 
 /**
+ * 原子写入**原始文本**（不做 JSON.stringify）。
+ *
+ * 为什么需要它：有的调用方拿到的已经是端点返回的原始响应文本
+ * （如 longtail-gap 的 GSC 分片缓存，单个150KB+）。直接
+ * `writeFileSync(file, text)` 被 timeout 打断时会留半截 JSON，
+ * 下次 `JSON.parse` 在 try 里只记一条 warn ⇒ **静默少一个分片**，
+ * 而报告里的「N/N 分片成功」照样显示为正常。
+ *
+ * 2026-09-22 的 6.2MB 文件写坏事故 + 管道静默死 5 周，就是同一类问题。
+ *
+ * @param {string} filePath
+ * @param {string} text
+ * @returns {number} 写入字节数
+ */
+export function writeTextAtomic(filePath, text) {
+  const tmp = join(
+    dirname(filePath),
+    `.${Date.now()}-${process.pid}-${Math.random().toString(36).slice(2, 8)}.tmp`
+  );
+  try {
+    writeFileSync(tmp, text);
+    renameSync(tmp, filePath);
+  } catch (e) {
+    try {
+      if (existsSync(tmp)) unlinkSync(tmp);
+    } catch {
+      /* ignore */
+    }
+    throw e;
+  }
+  return Buffer.byteLength(text);
+}
+
+/**
  * 校验一组数据文件的 JSON 合法性，供 CI 门禁使用。
  * 任一文件非法即返回非空数组（调用方据此 fail 出声），避免「坏文件静默上线」。
  * @param {Array<{ path: string, label?: string }>} files

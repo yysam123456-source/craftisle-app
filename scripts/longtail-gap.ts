@@ -33,6 +33,9 @@
 
 import { writeFileSync, mkdirSync, readFileSync, existsSync } from "fs";
 import { join, resolve } from "path";
+// 🔴 原子写：裸 writeFileSync 写 150KB+ 分片缓存，被超时打断会留半截 JSON，
+// 下次 JSON.parse 在 try 里只记一条 warn ⇒ 静默少一个分片（DEBT-24）
+import { writeTextAtomic } from "./lib/data-io.mjs";
 import {
   fetchSuggestionsDetailed,
   fetchSuggestionsForSeeds,
@@ -77,20 +80,40 @@ async function fetchGscQueries(days = 28): Promise<{
   const cacheDir = resolve(process.cwd(), "..", ".workbuddy", "tmp", "gcache-lt");
   if (!existsSync(cacheDir)) mkdirSync(cacheDir, { recursive: true });
 
-  // 已知高价值 type 分片（tools / landing / pair / other / blog）
+  // 🔴 2026-10-16（DEBT-16）：分片清单必须与 classifyQueryType 的枚举**完全一致**。
+  //   上一版凭想象写了 {type:"landing"}{type:"pair"}，而
+  //   lib/seo/gsc-client.ts:180 的 classifyQueryType 只返回
+  //   tools | directory | blog | other —— 那两个type 恒返回 total:0，
+  //   但因旧逻辑「HTTP 200 就ok++」，空分片反而被计入成功分母，
+  //   于是 note 里的「8/8 分片全部成功」是**假绿灯**；
+  //   同时真正的directory 类（替代页，唯一有真实曝光的方向）**从未被请求**。
+  //
+  //   教训：**凭空假设 API 枚举值 = 制造假绿灯**。改枚举时必须同步改这里。
+  const VALID_TYPES = ["tools", "directory", "blog", "other"] as const;
   const slices: Array<{ type?: string; sort: string }> = [
     { type: "tools", sort: "impressions" },
-    { type: "landing", sort: "impressions" },
-    { type: "pair", sort: "impressions" },
-    { type: "other", sort: "impressions" },
+    { type: "directory", sort: "impressions" },
     { type: "blog", sort: "impressions" },
+    { type: "other", sort: "impressions" },
     { type: "tools", sort: "position" },
+    { type: "directory", sort: "position" },
+    { type: "blog", sort: "position" },
     { type: "other", sort: "position" },
-    { type: undefined, sort: "position" },
+    { sort: "impressions" },
+    { sort: "position" },
   ];
+  for (const s of slices) {
+    if (s.type && !VALID_TYPES.includes(s.type as (typeof VALID_TYPES)[number])) {
+      throw new Error(
+        `[gsc] 分片 type "${s.type}" 不在 classifyQueryType 的枚举里：` +
+          `${VALID_TYPES.join("/")}。枚举改了必须同步这里，否则空分片会被计成成功。`
+      );
+    }
+  }
 
   const seen = new Map<string, GscQuery>();
   let ok = 0;
+  let emptySlices: string[] = [];
 
   for (const s of slices) {
     const name = `_api_analytics_top-queries_days${days}_limit200_sort${s.sort}${
@@ -108,7 +131,9 @@ async function fetchGscQueries(days = 28): Promise<{
       });
       if (!res.ok) throw new Error(`http ${res.status}`);
       const text = await res.text();
-      writeFileSync(file, text, "utf-8");
+      // 🔴 非原子写：150KB+ 的分片缓存被超时打断会留半截 JSON，
+      // 下次 JSON.parse 在 try 里只记一条 warn ⇒ 静默少一个分片。走原子写。
+      writeTextAtomic(file, text);
       const data = JSON.parse(text);
       const list: unknown[] = Array.isArray(data?.queries) ? data.queries : [];
       for (const q of list as GscQuery[]) {
@@ -118,6 +143,16 @@ async function fetchGscQueries(days = 28): Promise<{
         // GSC 铁律：按 query 去重，impressions 取最大（数据含国家分群原始行）
         if (!prev || q.impressions > prev.impressions) seen.set(key, q);
       }
+      // 🔴 DEBT-16 的核心：ok 的判据是「拿到数据」，不是「HTTP 200」。
+      //   200 但 queries 为空 = 这个分片对本轮分析毫无贡献，必须暴露出来。
+      if (list.length === 0) {
+        emptySlices.push(`${s.type ?? "all"}/${s.sort}`);
+        console.warn(
+          `[gsc] ⚠️ 分片 ${s.type ?? "all"}/${s.sort} 返回 200 但0 条数据` +
+            `（端点 total=${data?.total ?? "?"}）。已计入失败。`
+        );
+        continue;
+      }
       ok++;
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
@@ -126,10 +161,13 @@ async function fetchGscQueries(days = 28): Promise<{
   }
 
   const rows = [...seen.values()].sort((a, b) => b.impressions - a.impressions);
+  // 🔴 reachable 必须是「至少有分片真的带回了数据」，否则上层会以为数据源健康。
+  const parts: string[] = [`${ok}/${slices.length} 分片有效`];
+  if (emptySlices.length > 0) parts.push(`${emptySlices.length} 个空分片: ${emptySlices.join(", ")}`);
   return {
     rows,
     reachable: ok > 0,
-    note: ok === slices.length ? `${ok}/${slices.length} 分片全部成功` : `${ok}/${slices.length} 分片成功`,
+    note: parts.join("；"),
   };
 }
 
@@ -137,11 +175,19 @@ async function fetchGscQueries(days = 28): Promise<{
 // 立场过滤
 // ─────────────────────────────────────────────────────────────
 
+// 🔴 2026-10-16（DEBT-23）：名单里**不能写去空格形式**。
+//   旧版写 "ilovepdf"，而真实查询词是 "i love pdf" ——
+//   `t.includes("ilovepdf")` 恒为 false，于是 26 条竞品词污染进了 gaps。
+//   结论：**去空格形式只适合做归一化后的比对键，不能直接当子串用**。
 const BRANDS = [
-  "ilovepdf", "adobe", "ezgif", "cloudconvert", "convertio", "smallpdf", "canva",
-  "photoroom", "firefly", "picsart", "remove.bg", "toptal", "typing.com",
-  "zoho", "kledo", "wise", "invoiced", "scribd", "pdf24", "midjourney", "chatgpt",
-  "freeformatter", "seedance", "11zon", "w3schools", "tinypng", "optipng",
+  "ilovepdf", "i love pdf", "i love img", "adobe", "ezgif", "cloudconvert",
+  "convertio", "smallpdf", "canva", "photoroom", "firefly", "picsart",
+  "remove.bg", "toptal", "typing.com", "zoho", "kledo", "wise", "invoiced",
+  "scribd", "pdf24", "midjourney", "chatgpt", "freeformatter", "seedance",
+  "11zon", "w3schools", "tinypng", "optipng",
+  // ↓ DEBT-23 补入：实测 gaps 里漏网的竞品/桌面软件/社区
+  "sejda", "freeconvert", "free convert", "online2pdf", "pi7",
+  "gimp", "photoshop", "reddit", "stack overflow", "quora",
 ];
 
 const PLATFORM = [
@@ -149,23 +195,78 @@ const PLATFORM = [
   "apk", "offline", "install", "software download", "full version", "cracked",
   "macos", "windows app", "desktop app", "chrome extension", "firefox extension",
   "vscode extension", "microsoft store", "play store", "github",
+  // ↓ DEBT-23 补入：环境意图（纯网页工具给不了 mac 命令/ linux 命令）
+  "on mac", "on linux", "on windows", "command line", "cli", "terminal",
 ];
 
-const FALSE_PROMISE = ["no watermark", "dark mode", "arabic accent", "australian accent"];
+// 🔴 DEBT-23 补入：用户既定立场里还有 accent color 与 HD，此前漏了。
+//   实证：tuneTargets 里出现过 "png to jpg online hd"，说明 HD 已经漏过筛选。
+const FALSE_PROMISE = [
+  "no watermark", "dark mode", "accent color", "accent colour",
+  "arabic accent", "australian accent", " hd", "hd ", "full hd",
+];
 
 export type Exclusion = { term: string; reason: string };
 
+/**
+ * 🔴 能力边界外 / 立场明确不做的目标格式（已去空格小写，直接用 includes 比对）。
+ *
+ * 依据 `lib/convert/pairs.ts` 顶部注释与用户既定立场：
+ *   · Canvas `toBlob` 只输出 jpeg / png / webp
+ *     ⇒ **png-to-bmp / *-to-ico / webp-to-gif 一律不做**
+ *   · BMP 只作**输入**可解码 ⇒ bmp-to-png 可做，反向不可做
+ *   · 纯前端做不了 xlsx 二进制写出 ⇒ pdf-to-excel 不做
+ * 另含一批「同类但我们主动不做」的：视频帧转换、服务器端批处理、
+ * Python/Java 命令行方案（那是环境词不是工具词）。
+ */
+const OUT_OF_SCOPE: Array<[string, string]> = [
+  ["tobmp", "BMP 输出：Canvas 不支持"],
+  ["bmpconverter", "BMP 输出：Canvas 不支持"],
+  ["toico", "ICO 输出：Canvas 不支持"],
+  ["webptogif", "GIF 输出：Canvas 不支持逐帧"],
+  ["gifoutput", "GIF 输出：Canvas 不支持逐帧"],
+  ["toexcel", "xlsx 写出需新依赖，纯前端不做"],
+  ["exceltopdf", "xlsx 解析需新依赖，纯前端不做"],
+  ["tovideo", "视频处理需服务端"],
+  ["videototxt", "视频处理需服务端"],
+  ["python", "命令行方案，非网页工具"],
+  ["java", "命令行方案，非网页工具"],
+  ["sourcecode", "需读源码，纯前端不做"],
+  ["api", "需第三方 API，纯前端不做"],
+];
+
+/**
+ * 把查询词归一化成「去空格小写」，用于品牌名比对。
+ *
+ *🔴 为什么必须有这一步（DEBT-23）：
+ *   品牌在名单里可能写成 "ilovepdf"（去空格），而查询词是 "i love pdf"（带空格），
+ *   也可能反过来。不归一化就必然有一边匹配不上，而匹配不上的后果是
+ *   **竞品词被当成真实缺口进入动作清单**。
+ */
+function normalizeForBrand(term: string): string {
+  return term.toLowerCase().replace(/\s+/g, "");
+}
+
 function screenOut(term: string): Exclusion | null {
   const t = term.toLowerCase();
+  const norm = normalizeForBrand(term);
 
   for (const b of BRANDS) {
-    if (t.includes(b.toLowerCase())) return { term, reason: `竞品品牌词(${b})` };
+    // 双通道：原文子串（覆盖 "freeconvert com" 这类）
+    // + 归一化比对（覆盖 "i love pdf" vs "ilovepdf"）
+    if (t.includes(b.toLowerCase()) || norm.includes(normalizeForBrand(b))) {
+      return { term, reason: `竞品品牌词(${b})` };
+    }
   }
   for (const p of PLATFORM) {
-    if (t.includes(p)) return { term, reason: `平台词(${p})——需装客户端` };
+    if (t.includes(p) || norm.includes(normalizeForBrand(p))) {
+      return { term, reason: `平台/环境词(${p})` };
+    }
   }
   for (const f of FALSE_PROMISE) {
-    if (t.includes(f)) return { term, reason: `无法兑现代言(${f})——须逐页核实` };
+    if (t.includes(f) || norm.includes(normalizeForBrand(f))) {
+      return { term, reason: `无法兑现代言(${f})——须逐页核实` };
+    }
   }
   if (/^(best|top)\s+(ai\s+)?tools\b/.test(t)) {
     return { term, reason: "泛主题词——Google 返回全站建议链，非单页长尾" };
@@ -175,6 +276,20 @@ function screenOut(term: string): Exclusion | null {
   }
   // 日文/中文词：站内 14 语言已覆盖，但这些具体词无对应落地页，
   // 记为「语言缺口」而不是直接丢掉 —— 它们是真实需求，只是当前没承接。
+
+  // 🔴 2026-10-16：能力边界外/ 明确立场不做的目标格式。
+  //   修好 DEBT-15 后这些词终于能正确落到 /c/* 页上，于是暴露出一个新问题：
+  //   `can you convert webp to gif` 被派给 `/c/gif-to-webp`（方向反了，
+  //   而 webp→gif 是明确不做的）；`jpg to bmp 100 kb` 派给 file-viewer。
+  //   它们不是「可承接的缺口」，而是**站点主动声明不做的能力**
+  //   （Canvas toBlob 只出jpeg/png/webp，见 lib/convert/pairs.ts 注释）。
+  //   混进 tuneTargets 会让人以为「照着做就行」，是主动误导。
+  const norm2 = normalizeForBrand(term);
+  for (const [pat, why] of OUT_OF_SCOPE) {
+    if (norm2.includes(pat)) {
+      return { term, reason: `能力边界外/立场不做(${why})` };
+    }
+  }
   return null;
 }
 
@@ -227,6 +342,88 @@ interface CorpusEntry {
   kind: "tool" | "landing" | "pair";
 }
 
+/**
+ * 🔴 DEBT-15 的核心修复：**参与匹配的字段 ≠ 页面身份字段**。
+ *
+ * 旧版用 `blocks[i].matchAll(/"([^"]*)"/g)` 把工具块里**每一个双引号字符串**
+ * 拼成语料 —— 包括 `seoKeywords`（实测 1,566 条）、`faq`、`howToUse`、`relatedTools`。
+ * 后果：格式转换类工具页成了「关键词 bag」，任何含 png/jpg/converter 的查询都能命中它。
+ * 实测 `tuneTargets` 1206 条里 **817 条（68%）主题不符**，例如：
+ *   `/tools/image-resize` ← `png to jpg converter`
+ *   `/tools/aes-des`     ← `pdf to jpg free online no sign up`
+ *   `/tools/tts`         ← `png to jpg converter free download windows 10`
+ *
+ * 更糟的是 auto-tune.ts:151 把 seoKeywords 算进「页面主张」，
+ * 所以这批错配**会被自动写进生产 DB 覆盖层**——不只是分析层的问题。
+ *
+ * 正确做法：**只在「这页是什么」的声明字段上算 df**。
+ * FAQ 里提一句 PNG 不代表这页能承接 png 查询；
+ * 一次性举例（"For commercial projects"）更会骗过匹配器。
+ */
+const IDENTITY_FIELDS = [
+  "title",
+  "seoTitle",
+  "seoDesc",
+  "description",
+  "technicalNote",
+  "url",
+] as const;
+
+/**
+ * 🔴 身份字段里仍有**能力泛述词**残留 —— DEBT-15 修完第一轮后实测发现的第二层。
+ *
+ * 例：`/tools/file-viewer` 的 desc 是「Open and preview 135+ file formats in your
+ * browser — PDF, DOCX, XLSX, ...」，于是任何含 pdf/docx/xls 的查询都能命中它，
+ * 实测它因此拿走了 39 个 `bmp to png converter` 变体。
+ * 同类：`/tools/png-to-svg` 的 desc 含「raster images / scalable vector」，
+ * 于是所有 png/jpg 转换词都命中它。
+ *
+ * 区别在于：这些词描述的是**能力范围**（"135+ formats"），不是**页面身份**
+ * （"This is the File Viewer page"）。前者对匹配毫无鉴别力——
+ * 几乎所有工具页都能声称自己支持 pdf。
+ *
+ * 所以在语料侧剔除：泛化词不参与 df，也不参与打分。
+ * 这与锚点侧的 ANCHOR_STOP 是两层不同的过滤，**两道都要有**：
+ *   · ANCHOR_STOP 管的是「查询词的锚不该选这个泛词」
+ *   · 本表管的是「页面的身份描述不该用这些泛词」
+ */
+const CAPABILITY_NOISE = [
+  "file format", "file formats", "format", "formats",
+  "browser", "online", "free", "tool", "tools", "converter", "convert",
+  "generator", "editor", "viewer", "preview", "raster", "vector", "image",
+  "images", "download", "upload", "open source", "web app", "website",
+  "all formats", "any format", "multiple formats", "100+", "135+",
+  "images", "documents", "files",
+] as const;
+
+/**
+ * 从身份文本里剔除能力泛述词。
+ * 注意：只做整词删除，不做词干化—— 「format」的词干「form」会误伤 information。
+ */
+function stripCapabilityNoise(text: string): string {
+  let out = text;
+  for (const noise of CAPABILITY_NOISE) {
+    out = out.replace(new RegExp(`\\b${noise.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi"), " ");
+  }
+  return out.replace(/\s+/g, " ").trim();
+}
+
+/** 从一个对象字面量源码块里，按字段名精确抽取字符串/字符串数组值。 */
+function extractFields(block: string, fields: readonly string[]): string {
+  const out: string[] = [];
+  for (const field of fields) {
+    // 形态1：field: "value"（含转义）
+    const scalar = new RegExp(`\\b${field}\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"`).exec(block);
+    if (scalar?.[1]) out.push(scalar[1]);
+    // 形态2：field: ["a", "b"]（seoKeywords / faqs 这类）
+    const arr = new RegExp(`\\b${field}\\s*:\\s*\\[([\\s\\S]*?)\\]`).exec(block);
+    if (arr?.[1]) {
+      for (const m of arr[1].matchAll(/"((?:[^"\\]|\\.)*)"/g)) out.push(m[1]);
+    }
+  }
+  return out.join(" ");
+}
+
 function loadToolCorpus(): CorpusEntry[] {
   const out: CorpusEntry[] = [];
   const p = resolve(process.cwd(), "lib", "tools.ts");
@@ -237,8 +434,11 @@ function loadToolCorpus(): CorpusEntry[] {
   for (let i = 1; i < blocks.length; i++) {
     const id = ids[i - 1];
     if (!id) continue;
-    const strings = [...blocks[i].matchAll(/"((?:[^"\\]|\\.)*)"/g)].map((m) => m[1]);
-    out.push({ key: `/tools/${id}`, text: strings.join(" "), kind: "tool" });
+    // 🔴 不再抓「所有字符串」—— 那等于把 seoKeywords（1,566 条）灌进语料。
+    // 再叠一层能力泛述词剔除（见 CAPABILITY_NOISE）。
+    const text = stripCapabilityNoise(extractFields(blocks[i], IDENTITY_FIELDS));
+    if (!text.trim()) continue;
+    out.push({ key: `/tools/${id}`, text, kind: "tool" });
   }
   return out;
 }
@@ -251,12 +451,32 @@ function loadLandingCorpus(): CorpusEntry[] {
   const re = /slug:\s*"([a-z0-9-]+)"[\s\S]*?(?=\n {2}"[a-z0-9-]+":\s*\{|$)/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(src)) !== null) {
-    const strings = [...m[0].matchAll(/"((?:[^"\\]|\\.)*)"/g)].map((x) => x[1]);
-    out.push({ key: `/l/${m[1]}`, text: strings.join(" "), kind: "landing" });
+    // 同样的病：落地页数量少（29 页），全字符串抓取会让任何含 "alternativ"
+    // 的词都命中它（实测 `free alternatives to logic pro` → /l/intellij-alternative）。
+    const text = stripCapabilityNoise(extractFields(m[0], ["title", "seoTitle", "description", "seoDesc", "tagline"]));
+    if (!text.trim()) continue;
+    out.push({ key: `/l/${m[1]}`, text, kind: "landing" });
   }
   return out;
 }
 
+/**
+ * 🔴 DEBT-15 修复后的**对称性说明**：
+ *
+ * 旧版的不对称正是错配的结构性来源 ——
+ *   · pair 页只取 7 个手写字段（phrase/title/description/intro/faqs/…）
+ *   · tool 页却抓「所有字符串」，把 seoKeywords 全灌了进去
+ * 同一批锚词（png/jpg/converter）在 pair 页 df 低 → 命中正确；
+ * 在 tool 页被 seoKeywords 稀释 → df 虚高 → 命中错误。
+ *
+ * 现在 tool / landing 都改成按字段名精确抽取（见 extractFields），
+ * 三个 kind 的语料面就一致了：都只包含「这页是什么」的声明内容。
+ *
+ * pair 保留 intro / faqs 是**有意的**：它们是手写的主张内容（每页各不相同），
+ * 不是关键词堆砌，且只有 13 页 ⇒ df 低、锚点区分度高。实测抽出的真名质量很好
+ * （`Retry Logic` / `Circuit breaker` 那种）。若把 pair 也削到只剩 title/description，
+ * 反而会丢失「这一页具体讲什么」的信号。
+ */
 function loadPairCorpus(): CorpusEntry[] {
   return CONVERT_PAIRS.map((pair) => ({
     key: `/c/${pair.slug}`,
@@ -362,7 +582,12 @@ function pickAnchor(term: string, df: Map<string, number>): string | null {
   return word;
 }
 
-function matchCorpus(term: string, corpus: CorpusEntry[], anchor: string | null): Match[] {
+function matchCorpus(
+  term: string,
+  corpus: CorpusEntry[],
+  anchor: string | null,
+  df: Map<string, number>
+): Match[] {
   const t = tokens(term);
   if (t.size < 2) return [];
 
@@ -382,9 +607,32 @@ function matchCorpus(term: string, corpus: CorpusEntry[], anchor: string | null)
     let score = 0;
     for (const w of t) if (ct.has(w)) score++;
     const ratio = score / t.size;
-    if (score >= 3 && ratio >= 0.6) {
-      hits.push({ key: c.key, kind: c.kind, score, total: t.size, anchorHit: true });
-    }
+    if (score < 3 || ratio < 0.6) continue;
+
+    // 🔴 2026-10-16（DEBT-15 第三层）：**全部实词必须命中**。
+    //   score>=3 && ratio>=0.6 单独看不够：查询越长分母越大，
+    //   3 个词命中就能过线，而剩下的词可以跟主题毫无关系。
+    //   实测残留的两条错配正是这么来的：
+    //     `free alternative to ms project windows 7` → /c/heic-to-jpg
+    //        HEIC 页的 technicalNote 里提到 Windows / 文件格式，
+    //        加上 to/free 类词，ratio 就过了，但主题（MS Project）完全不对
+    //     `svg file editor` → /c/svg-to-png（svg 对，但 editor≠转换）
+    //
+    //   为什么不能用「取一个主题词判存在」：我第一版取 df 最高的词，
+    //   而 df 最高的恰恰是**泛用技术名词**（window/file/microsoft），
+    //   它们在很多页的技术说明里都出现 ⇒ 判据形同虚设。
+    //
+    //   正确判据：**查询里每个非停用实词都必须在这页出现**。
+    //   tokens() 已经滤掉了 free/online/to/alternative/convert 这类停用词，
+    //   剩下的都是真正的内容词。要求它们全部命中，等价于说
+    //   「这页必须真的在讲这件事」，而不是「碰巧提到了其中一个词」。
+    //
+    //   仍然遵循「宁可漏报不可错报」：拦下只是把条目移进 gscUncovered，
+    //   它仍然可见，只是不再被标成「这个页面已经在承接」。
+    const missing = [...t].filter((w) => !ct.has(w));
+    if (missing.length > 0) continue;
+
+    hits.push({ key: c.key, kind: c.kind, score, total: t.size, anchorHit: true });
   }
   return hits.sort((a, b) => b.score / b.total - a.score / a.total).slice(0, 4);
 }
@@ -428,7 +676,7 @@ async function main() {
     const ex = screenOut(row.query);
     if (ex) continue;
     const anchor = pickAnchor(row.query, df);
-    const hits = matchCorpus(row.query, corpus, anchor);
+    const hits = matchCorpus(row.query, corpus, anchor, df);
     if (hits.length > 0) gscMatched.push({ ...row, hits });
     else gscUncovered.push(row);
   }
@@ -475,7 +723,7 @@ async function main() {
       continue;
     }
     const anchor = pickAnchor(term, df);
-    const hits = matchCorpus(term, corpus, anchor);
+    const hits = matchCorpus(term, corpus, anchor, df);
     if (hits.length === 0) {
       gaps.push({ term, seeds: [...fromSeeds], words });
       continue;

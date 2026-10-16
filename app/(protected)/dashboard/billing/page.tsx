@@ -9,7 +9,7 @@ import { BillingInfo } from "@/components/pricing/billing-info";
 import { Icons } from "@/components/shared/icons";
 
 export const metadata = constructMetadata({
-  title: "Billing – SaaS Starter",
+  title: "Billing",
   description: "Manage billing and your subscription plan.",
 });
 

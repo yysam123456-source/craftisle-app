@@ -4,6 +4,8 @@ import TextTranslatorClient from "./client";
 import { constructMetadata } from "@/lib/utils";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
+import { toolMeta } from "@/lib/tools";
+import { toolUrl } from "@/lib/tool-seo";
 
 /**
  * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
@@ -20,14 +22,22 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
+  // 🔴 单一数据源：改读 lib/tools.ts 的 toolMeta（与 app/tools/[tool] 动态段一致）。
+  // 本页是静态段、在 Next.js 中优先于 [tool]，此前把文案硬编码在本文件
+  // ⇒ 同一工具两个 meta 来源，改 lib/tools.ts 对本页不生效。
+  // 原硬编码文案已回填进 toolMeta（措辞与覆盖面不缩水）。
+  const meta = toolMeta["text-translator"];
   const ov = await getOverrideAsync(`/tools/text-translator`);
-  const title = ov?.title ?? "Free Online Text Translator — 30+ Languages";
-  const description = ov?.description ?? "Translate text instantly between 30+ languages. Free online translator with auto-detect, real-time translation, text-to-speech, and copy. No signup required. Supports English, Chinese, Japanese, Korean, French, German, Spanish and more.";
+  // 优先级：DB 覆盖层 > toolMeta
+  const title = ov?.title ?? String(meta?.seoTitle || meta?.title || "Text Translator");
+  const description =
+    ov?.description ??
+    String(meta?.seoDesc || meta?.desc || "Translate text online for free.");
   return constructMetadata({
     title,
     description,
-    // 保留原有的 keywords / canonical / openGraph 等设置
-  canonical: "https://craftisle.com/tools/text-translator",
+    keywords: meta?.seoKeywords,
+    canonical: toolUrl("text-translator"),
   });
 }
 

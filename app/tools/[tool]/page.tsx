@@ -8,7 +8,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
 import { getOverrideAsync } from "@/lib/seo/page-meta-db";
-import { getRelatedTools } from "@/lib/related-tools";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
 interface ToolPageProps {
@@ -85,7 +84,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   const jsonLd = buildToolJsonLd(tool, meta);
   const categorySlug = getToolCategorySlug(meta.category);
-  const relatedTools = getRelatedTools(tool);
+  // 互链不再在这里算：ToolDetailLayout 的 relatedTools prop 从未被使用（死代码），
+  // 真正渲染互链的是 ToolDetailSections，它自己走 mergeRelatedTools() 合并
+  // meta.relatedTools 与 RELATED_TOOLS 兜底。详见 lib/related-tools.ts 顶部说明。
 
   // Image tools: use ImageToolPage
   if (definition) {
@@ -95,7 +96,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
       maxFileSize: definition.maxFileSize,
     };
     return (
-      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team" relatedTools={relatedTools}>
+      <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
         <ImageToolPage toolId={tool} definition={clientDef} />
         <ToolDetailSections toolId={tool} />
       </ToolDetailLayout>
@@ -104,7 +105,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   // Non-image tools: try ToolLoader first, fallback to ToolDetailSections
   return (
-    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team" relatedTools={relatedTools}>
+    <ToolDetailLayout toolId={tool} categorySlug={categorySlug} meta={meta} jsonLd={jsonLd} externalUrl={meta.url} author="Craftisle Team">
       <ToolLoader toolId={tool} />
       <ToolDetailSections toolId={tool} />
     </ToolDetailLayout>

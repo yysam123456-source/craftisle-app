@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import WatermarkRemoverClient from "./client";
 import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
+import { constructMetadata } from "@/lib/utils";
+import { toolMeta } from "@/lib/tools";
+import { toolUrl } from "@/lib/tool-seo";
 
 /**
  * 🔴 2026-10-15：原先是 `export const metadata = ...`（编译期常量），
@@ -19,14 +22,23 @@ import { ToolJsonLd } from "@/components/tools/ToolJsonLd";
 export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
+  // 🔴 单一数据源：title/description 改读 lib/tools.ts 的 toolMeta
+  //（与 app/tools/[tool] 动态段一致）。本页是静态段、在 Next.js 中优先于 [tool]，
+  // 此前把文案硬编码在本文件 ⇒ 同一工具两个 meta 来源，改 lib/tools.ts 对本页不生效。
+  // 原硬编码文案已回填进 toolMeta（措辞与覆盖面不缩水）。
+  // 注意：keywords 与 openGraph 仍保留本页专属值（与 toolMeta 通用值不同，属有意为之）。
+  const meta = toolMeta["ai-watermark-remover"];
   const ov = await getOverrideAsync(`/tools/ai-watermark-remover`);
-  const title = ov?.title ?? "AI Watermark Remover Free — Remove Gemini/Doubao/Jimeng Watermark Online";
-  const description = ov?.description ?? "Free AI watermark remover online. Remove visible watermarks from Gemini, Doubao, Jimeng, Tongyi, Wenxin AI-generated images. Uses mathematically precise reverse alpha blending. 100% client-side, no upload, no signup required. Supports JPG, PNG, WebP formats.";
+  // 优先级：DB 覆盖层 > toolMeta
+  const title =
+    ov?.title ?? String(meta?.seoTitle || meta?.title || "AI Watermark Remover");
+  const description =
+    ov?.description ??
+    String(meta?.seoDesc || meta?.desc || "Remove AI watermarks online for free.");
   return {
     title,
     description,
-    // 保留原有的 keywords / canonical / openGraph 等设置
-  keywords: [
+    keywords: [
       "remove Gemini watermark free",
       "Gemini AI watermark remover online",
       "remove AI image watermark free",
@@ -63,10 +75,10 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Remove visible watermarks from Gemini, Doubao, Jimeng AI-generated images online free. 100% browser-based, no upload, no registration.",
       type: "website",
-      url: "https://craftisle.com/tools/ai-watermark-remover",
+      url: toolUrl("ai-watermark-remover"),
     },
     alternates: {
-      canonical: "https://craftisle.com/tools/ai-watermark-remover",
+      canonical: toolUrl("ai-watermark-remover"),
     },
   };
 }

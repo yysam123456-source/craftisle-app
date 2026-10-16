@@ -126,9 +126,13 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://craftisle.com",
+    // 🔴 DEBT-20 修复：删掉 "zh-CN": "https://craftisle.com/zh"。
+    // 站内**不存在** /zh 路由（app/ 目录树无 zh*，也没有 middleware.ts 做重写），
+    // 实测 https://craftisle.com/zh = 404。hreflang 指向 404 会让 Google
+    // 判为「错误的 hreflang 注释」，进而拖累整组 alternate 信号的信任度。
+    // 无对应页面就别声明 —— 等 /zh 真正上线时再加回来。
     languages: {
       en: "https://craftisle.com",
-      "zh-CN": "https://craftisle.com/zh",
       "x-default": "https://craftisle.com",
     },
   },

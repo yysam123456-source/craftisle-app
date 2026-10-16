@@ -33,8 +33,16 @@ export async function generateMetadata({
   const { title, description } = category;
 
   return constructMetadata({
-    title: `${title} Posts – Next SaaS Starter`,
+    // 🔴 移除 SaaS 脚手架残留。原为 `${title} Posts – Next SaaS Starter`，
+    // 线上实测产出 "Tools Posts – Next SaaS Starter | Craftisle" /
+    // "Guides Posts – Next SaaS Starter | Craftisle"。
+    // 注意：不能只删 " – Next SaaS Starter" 而留下 `${title} Posts` ——
+    // BLOG_CATEGORIES 里 title 本身已是复数（如 "Tools"、"Guides"），
+    // 拼上 "Posts" 会产出 "Tools Posts" 这种读起来就不对的标题。
+    // 这里直接用 category.title，站点后缀由 constructMetadata 统一追加。
+    title,
     description,
+    canonical: `https://craftisle.com/blog/category/${resolved.slug}`,
   });
 }
 
