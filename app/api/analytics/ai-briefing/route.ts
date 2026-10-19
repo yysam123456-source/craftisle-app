@@ -20,21 +20,70 @@ const prisma = new PrismaClient();
 
 export const dynamic = "force-dynamic";
 
-function getWeekStarts(): { weekStart: Date; lastWeekStart: Date } {
+/**
+ * 🔴 2026-10-19（DEBT-26）：`weekStart` 只是**算出来的本周一**，不是「实际入库的快照日」。
+ *
+ * 两者混为一谈会制造两类假信号：
+ *   ① `snapshotAt` 字段返回 weekStart（本周一），读的人会以为「10-19 的快照已入库」，
+ *      实测 2026-10-19 线上 `top-queries` 的 `snapshots` 只到 10-12 ⇒ 10-19 快照**尚未入库**。
+ *   ② 本周聚合查 `snapshotAt: weekStart`。GSC 拉取是每周一 UTC 05:10 由
+ *      补偿调度触发，而本端点在周一白天被反复调用 ⇒ 本周快照很可能还没写进去，
+ *      于是 `overall.impressions` 恒为 0、`lastWeek.impressions` 却是 551 ——
+ *      **「本周比上周跌 100%」是假的**，那只是「本周还没数据」。
+ *
+ * 实测证据：2026-10-19（周一）线上 overall.impressions=0 / lastWeek=551，
+ * 而 top-queries?snapshots 最新是 10-12。
+ *
+ * 修法：**读实际入库的最大 snapshotAt**，而不是算出来的本周一；
+ * 若本周确实还没数据，overall 回退到最近可用快照，并在响应里明确标注
+ * `usingLatestAvailableSnapshot` —— 让「无数据」和「暴跌」能被区分开。
+ */
+function getCalculatedWeekStart(): Date {
   const now = new Date();
   const weekday = now.getUTCDay();
-  const weekStart = new Date(now);
-  weekStart.setUTCDate(now.getUTCDate() - (weekday === 0 ? 6 : weekday - 1));
-  weekStart.setUTCHours(0, 0, 0, 0);
-  const lastWeekStart = new Date(weekStart.getTime() - 7 * 24 * 60 * 60 * 1000);
-  return { weekStart, lastWeekStart };
+  const d = new Date(now);
+  d.setUTCDate(now.getUTCDate() - (weekday === 0 ? 6 : weekday - 1));
+  d.setUTCHours(0, 0, 0, 0);
+  return d;
+}
+
+async function resolveActualSnapshot(calWeekStart: Date): Promise<{
+  snapshotAt: Date;
+  lastWeekStart: Date;
+  isCurrentWeek: boolean;
+}> {
+  try {
+    const latest = await prisma.searchQuery.findFirst({
+      where: { country: "global", snapshotAt: { lte: calWeekStart } },
+      orderBy: { snapshotAt: "desc" },
+      select: { snapshotAt: true },
+    });
+    if (latest?.snapshotAt) {
+      const snap = latest.snapshotAt;
+      return {
+        snapshotAt: snap,
+        lastWeekStart: new Date(snap.getTime() - 7 * 24 * 60 * 60 * 1000),
+        isCurrentWeek: snap.getTime() === calWeekStart.getTime(),
+      };
+    }
+  } catch (e) {
+    // 🔴 查不到就退回算出来的 calWeekStart，但要留痕（静默 fallback = 又一个假绿灯）
+    console.error("[ai-briefing] 解析实际快照日失败，退回 calWeekStart：", e instanceof Error ? e.message : e);
+  }
+  return {
+    snapshotAt: calWeekStart,
+    lastWeekStart: new Date(calWeekStart.getTime() - 7 * 24 * 60 * 60 * 1000),
+    isCurrentWeek: true,
+  };
 }
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const wantMarkdown = searchParams.get("format") === "markdown";
-    const { weekStart, lastWeekStart } = getWeekStarts();
+    // 🔴 用「实际入库的最新快照」而非算出来的本周一（见 resolveActualSnapshot 注释）
+    const { snapshotAt: weekStart, lastWeekStart, isCurrentWeek } =
+      await resolveActualSnapshot(getCalculatedWeekStart());
     const now = new Date();
 
     // ── 陈旧自愈：不依赖 Vercel cron 是否派发 ──
@@ -388,6 +437,11 @@ export async function GET(request: Request) {
     const zeroImpressionSites = sites.filter((s) => s.impressions === 0).map((s) => s.slug);
     const briefing = {
       generatedAt: now.toISOString(),
+      // 🔴 DEBT-26：`dataSnapshotAt` 是**实际入库的最新快照日**（可能落后于本周一），
+      //   `usingLatestAvailableSnapshot=true` 表示本周快照还没写进来，
+      //   此时 overall 的「本周 vs 上周」跌幅**不可当成暴跌来读**。
+      dataSnapshotAt: weekStart.toISOString(),
+      usingLatestAvailableSnapshot: !isCurrentWeek,
       weekStart: weekStart.toISOString(),
       pipeline: {
         health: pipelineHealth,
@@ -472,6 +526,8 @@ export async function GET(request: Request) {
 
 type Briefing = {
   generatedAt: string;
+  dataSnapshotAt: string;
+  usingLatestAvailableSnapshot: boolean;
   weekStart: string;
   pipeline: { health: string; lastSuccessAt: string | null; lastRunAt: string | null; runVsSuccessGapHours: number | null; cronDiagnosis: string; lastError: string | null; freshnessDays: number | null; lastQueryCount: number | null; gscConfigured: boolean | null };
   heal: { triggered: boolean; ok: boolean | null; status: number | null; note: string };

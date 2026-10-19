@@ -278,20 +278,29 @@ async function main() {
       //   既不管词序也不去停用词，会同时产生假阳与假阴）。
       //   现在要求：所有实词**按序连续**出现（允许中间夹一个连接词）。
       const hits = rows.filter((r) => {
-        const q = ` ${r.query.toLowerCase().replace(/[^a-z0-9]+/g, " ")} `;
+        // 🔴 2026-10-19 修回归：归一化后**不要保留尾部空格**。
+        //   旧写法 ` ${clean} ` 让 `...edition\b` 在 " intellij community edition "
+        //   上匹配失败（\b 要求边界后是非单词字符，而尾空格 + 无后续字符时行为不同）
+        //   ⇒ 实测 30 条动作**全部 0 命中**，回读「看起来跑了但永远没结论」。
+        //   判据：不带首尾空白的归一化串 + \b 才是正确的组合。
+        const q = r.query.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
         return terms.some((t) => {
-          const stem = t
+          const parts = t
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, " ")
+            .trim()
             .split(" ")
             .filter((w) => w.length > 2)
             .map((w) => w.replace(/s$/, ""));
-          if (stem.length === 0) return false;
-          // 词序必须连续（含可选连接词）
+          if (parts.length === 0) return false;
+          // 🔴 分隔符不能写成 `(?:\s+\w{1,3}\s+)?` —— 它要求插入组**两侧都带空格**，
+          // 于是 `intellij community edition`（单空格直接相连）匹配不上。
+          //   实测这条正则让 30 条台账动作**全部 0 命中**，回读「跑了但永远没结论」。
+          //   正确形态：允许直接单空格 / 连字符 / 中间夹一个短连接词。
           const re = new RegExp(
-            `\\b${stem
+            `\\b${parts
               .map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-              .join("(?:\\s+\\w{1,3}\\s+)?")}\\b`
+              .join("(?:[\\s-]+\\w{1,3}[\\s-]+|[\\s-]+)?")}\\b`
           );
           return re.test(q);
         });
@@ -397,13 +406,22 @@ async function main() {
         : `（⚠️ 无快照，本次不给到期结论）`)
   );
   if (notMature.length > 0) {
-    const soonest = Math.min(
-      ...notMature.map((r) => (r.daysUntilMature as number | null) ?? Number.MAX_SAFE_INTEGER)
-    );
-    console.log(
-      `  · ${notMature.length} 条等数据成熟，最快还差 ` +
-        `${Number.isFinite(soonest) ? soonest : "?"} 天数据（不是日历天）`
-    );
+    //🔴 快照缺失时所有 daysUntilMature 都是 null（数据年龄未知，不是「还差无限天」）。
+    //   旧写法`(r.daysUntilMature ?? MAX_SAFE_INTEGER)` 会把 null 当成一个有限大数，
+    //   于是打印出「还差 9007199254740991 天数据」—— 这种数字会让人以为读数坏了。
+    //   正确做法：null 一律排除，全部为 null 时明确说「快照缺失，天数不可估」。
+    const known = notMature
+      .map((r) => r.daysUntilMature)
+      .filter((d): d is number => typeof d === "number" && Number.isFinite(d));
+    if (known.length > 0) {
+      console.log(
+        `  · ${notMature.length} 条等数据成熟，最快还差 ${Math.min(...known)} 天数据（不是日历天）`
+      );
+    } else {
+      console.log(
+        `  · ${notMature.length} 条等数据成熟，但**无法估算还差几天**：GSC 快照缺失`
+      );
+    }
   }
   for (const r of ready) {
     console.log(
