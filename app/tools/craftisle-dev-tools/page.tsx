@@ -3,10 +3,19 @@ import Link from "next/link";
 import { constructMetadata } from "@/lib/utils";
 import { PAGE_META } from "@/lib/seo/page-meta";
 
-export const metadata: Metadata = constructMetadata({
-  title: PAGE_META["/tools/craftisle-dev-tools"].title,
-  description: PAGE_META["/tools/craftisle-dev-tools"].description,
-  keywords: [
+import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
+
+// 🔴 DEBT-25：原为构建期常量 `export const metadata = {...PAGE_META[...].title}`，
+// build 时即烤进静态 HTML ⇒ DB 覆盖层对本页**从未生效**。改 generateMetadata 异步解析。
+// revalidate = 300 让 ISR 生效，写 DB 后最多 5 分钟反映。
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const m = await getResolvedMetaAsync("/tools/craftisle-dev-tools");
+  return constructMetadata({
+    title: m?.title,
+    description: m?.description,
+    keywords: [
     "craftisle developer tools",
     "free online json formatter",
     "regex visualizer online",
@@ -14,9 +23,10 @@ export const metadata: Metadata = constructMetadata({
     "jwt decoder online",
     "base64 encoder",
     "html formatter online",
-  ],
-  canonical: "https://craftisle.com/tools/craftisle-dev-tools",
-});
+    ],
+    canonical: "https://craftisle.com/tools/craftisle-dev-tools",
+  });
+}
 
 const DEV_TOOLS = [
   { slug: "json-formatter", title: "JSON Formatter & Validator", desc: "Format, validate and prettify JSON with tree view." },

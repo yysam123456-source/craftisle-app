@@ -97,6 +97,28 @@ console.log(
 );
 console.log(`audit:related — RELATED_TOOLS 配置条目 ${Object.keys(RELATED_TOOLS).length} 条\n`);
 
+// ── 断言 0：地基漂移 ────────────────────────────────────────────────────
+// 为什么需要这条：全部入度/死链结论都建立在「toolMeta 的 slug 集合」之上。
+// 若有人新增或删除 slug，孤儿页判定会整体重算 —— 但旧版脚本只把条数打印出来、
+// 不做断言，于是地基变了、报告照旧打印「孤儿页 0」，属于典型的静默失准。
+// （与 seo-optimizer 的 audit:sitemap 同类问题：断言写太宽松 ⇒ 永远绿。）
+// 基线可通过 AUDIT_RELATED_BASELINE 覆盖；确属预期的增删时，请连同本文件一起更新。
+const BASELINE = Number(process.env.AUDIT_RELATED_BASELINE || 176);
+const actual = VALID.size;
+if (actual !== BASELINE) {
+  fail(
+    `✗ 地基漂移：有效 slug 数 ${actual} != 基线 ${BASELINE}` +
+      (actual > BASELINE ? `（新增 ${actual - BASELINE} 个）` : `（减少 ${BASELINE - actual} 个）`)
+  );
+  console.error(
+    `    孤儿页/死链结论已按新集合重算，但请确认新增 slug 都已安排入站宿主：`
+  );
+  console.error(`    （若为预期增删，设 AUDIT_RELATED_BASELINE=${actual} 或更新本文件）`);
+  console.error("");
+} else {
+  console.log(`✓ 断言 0：有效 slug 数与基线一致（${actual}）`);
+}
+
 // ── 断言 1&2：死链 + 幽灵宿主 ────────────────────────────────────────────
 const deadLinks = [];   // value 里指向不存在 slug
 const ghostHosts = [];  // key 本身不在 toolMeta 里（且不是 imageToolIds）

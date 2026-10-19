@@ -8,7 +8,7 @@ import {
   type LandingPage,
 } from "@/lib/seo/landing-pages";
 import { constructMetadata } from "@/lib/utils";
-import { PAGE_META } from "@/lib/seo/page-meta";
+import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -18,6 +18,12 @@ interface PageProps {
 export function generateStaticParams() {
   return LANDING_PAGE_SLUGS.map((slug) => ({ slug }));
 }
+
+// 🔴 DEBT-25：加 ISR，否则 Cron 通过 DB 覆盖层生成的「未来种子页」永远进不了静态 HTML。
+// 本页此前既无 revalidate 也无 dynamic ⇒ 走纯SSG；dynamicParams 默认 true，
+// 未列出的 slug 会现场渲染，但那份 HTML 里getResolvedMetaAsync 读到的覆盖层
+// 只在那一刻有效、不会被缓存 ⇒ 等于每次都重新算。300 秒 ISR 让写入 5 分钟内可见。
+export const revalidate = 300;
 
 /**
  * 跨域 canonical —— 消除同品牌双子域的内容重复（cannibalization）。
@@ -48,7 +54,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
   }
   // 回退：Vercel Cron 经 DB 覆盖层生成的未来种子（本地尚未建丰富页）
-  const override = PAGE_META[`/l/${slug}`];
+  // 🔴 DEBT-25：原为 PAGE_META[`/l/${slug}`]（同步 Proxy）。冷缓存下
+  // getOverride 恒 undefined ⇒ 覆盖层读不到，落地页回退分支永远走不到。
+  const override = await getResolvedMetaAsync(`/l/${slug}`);
   if (override) {
     return constructMetadata({
       title: override.title,
@@ -88,7 +96,8 @@ export default async function LandingPageRoute({ params }: PageProps) {
   const canonical = `https://craftisle.com/l/${slug}`;
 
   // 本地数据缺失时，回退到 Cron 覆盖层生成的基础页（不 404，保持闭环）
-  const override = PAGE_META[`/l/${slug}`];
+  // 🔴 DEBT-25：同上，改异步解析，否则 Cron 生成的种子页会 notFound。
+  const override = await getResolvedMetaAsync(`/l/${slug}`);
   if (!data) {
     if (!override) notFound();
     return (

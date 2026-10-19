@@ -18,7 +18,7 @@
  *   lastOptimized 上次被优化器改写的时间（ISO），未改写则 null
  */
 
-import { getOverride } from "./page-meta-db";
+import { getOverride, getOverrideAsync } from "./page-meta-db";
 
 export interface PageMeta {
   route: string;
@@ -76,9 +76,68 @@ export function getPageMeta(route: string): PageMeta | undefined {
 }
 
 /**
- * PAGE_META 是 PAGE_META_BASE 的 Proxy：读取某路由时自动叠加数据库覆盖层
- * （自动优化器写入的标题/描述）。覆盖层加载失败或为空时，行为与静态注册表一致。
- * 页面无需任何改动即可获得优化后的元数据。
+ * 🔴 DEBT-25 修复：把静态基值与 DB 覆盖层的合并逻辑抽成一个纯函数，
+ * 供「同步 Proxy」与「异步解析」两条路径共用。
+ */
+function mergeOverride(base: PageMeta, ov: { title?: string; description?: string; provenance: PageMeta["provenance"]; lastOptimized: string } | undefined): PageMeta {
+  if (!ov) return base;
+  return {
+    ...base,
+    ...(ov.title !== undefined ? { title: ov.title } : {}),
+    ...(ov.description !== undefined ? { description: ov.description } : {}),
+    provenance: ov.provenance,
+    lastOptimized: ov.lastOptimized,
+  };
+}
+
+/**
+ * ✅ **这是页面该用的入口**：确保覆盖层已加载后再解析。
+ *
+ * 🔴 为什么不直接用 PAGE_META（Proxy）：
+ * Proxy 的 `get` trap 是**同步**的，而 `refreshOverrides()` 是 async。
+ * 同步读在冷缓存下**必然返回 undefined** —— refresh 还在飞，本次请求已经错过它，
+ * 于是静默回退静态值（page-meta-db.ts:96-107 早已写明这个失效模式）。
+ * 实测复刻该时序：冷缓存 `getOverride("/")` → undefined。
+ *
+ * 而且 Proxy **无法**改成 async：trap 返回 Promise 时，调用方拿到的是
+ * Promise 对象本身，`title: PAGE_META[x].title` 会变成undefined/报错。
+ * （已用 Node 实测确认该语义。）所以只能另开一条显式 async 路径。
+ *
+ * ⚠️ 另一个独立的失效层（与同步读无关，必须一起修）：
+ * `export const metadata = { title: PAGE_META["/"].title }` 是**构建期常量**，
+ * 在 build 时就把值烤进静态 HTML ⇒ 即便覆盖层完全正常，运行时也永远不会变。
+ * 消费页面必须改成 `generateMetadata` 才能吃到覆盖层。
+ */
+export async function getResolvedMetaAsync(route: string): Promise<PageMeta | undefined> {
+  const base = PAGE_META_BASE[route];
+  if (!base) return undefined;
+  const ov = await getOverrideAsync(route);
+  return mergeOverride(base, ov);
+}
+
+/** 同上，但接受一组路由，返回 Map（便于一次刷多个路由的 meta）。 */
+export async function getResolvedMetaBatch(
+  routes: string[],
+): Promise<Map<string, PageMeta>> {
+  const out = new Map<string, PageMeta>();
+  await Promise.all(
+    routes.map(async (route) => {
+      const m = await getResolvedMetaAsync(route);
+      if (m) out.set(route, m);
+    }),
+  );
+  return out;
+}
+
+/**
+ * ⚠️ 保留 Proxy 仅供**构建期/非 async 上下文**兼容使用。
+ *
+ * 🔴 它在冷缓存下必然读不到覆盖层（见上方说明），因此：
+ *   - **不要**在 `generateMetadata` 里用它；
+ *   - 请改用 `getResolvedMetaAsync()`。
+ * 之所以保留，是因为 optimizer / auto-optimize / ai-briefing 等只读静态基值，
+ * 用 `PAGE_META_BASE` 即可，不必引入 async；而少数遗留调用点仍按Record 形态访问它。
+ * 保留 Proxy 也避免了一次性改动 10 个消费点造成的回归风险。
  */
 export const PAGE_META: Record<string, PageMeta> = new Proxy(PAGE_META_BASE, {
   get(target, prop, receiver) {
@@ -86,15 +145,10 @@ export const PAGE_META: Record<string, PageMeta> = new Proxy(PAGE_META_BASE, {
     const key = String(prop);
     const base = target[key];
     if (!base) return Reflect.get(target, prop, receiver);
+    // 🔴 同步读：冷缓存下这里恒为 undefined，属已知降级（见上方注释）。
+    // 保持行为不变以免影响既有调用点，但**不要**把它当作能读到覆盖层的通道。
     const ov = getOverride(key);
-    if (!ov) return base;
-    return {
-      ...base,
-      ...(ov.title !== undefined ? { title: ov.title } : {}),
-      ...(ov.description !== undefined ? { description: ov.description } : {}),
-      provenance: ov.provenance,
-      lastOptimized: ov.lastOptimized,
-    };
+    return mergeOverride(base, ov);
   },
   ownKeys(target) {
     return Reflect.ownKeys(target);
@@ -107,7 +161,7 @@ export const PAGE_META: Record<string, PageMeta> = new Proxy(PAGE_META_BASE, {
   },
 });
 
-/** 解析某路由的最终元数据（静态 + 数据库覆盖）。 */
+/** 解析某路由的最终元数据（静态 + 数据库覆盖）。⚠️ 同步，见上方警告。 */
 export function getResolvedMeta(route: string): PageMeta | undefined {
   return (PAGE_META as Record<string, PageMeta>)[route];
 }

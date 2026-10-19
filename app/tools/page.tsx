@@ -8,14 +8,24 @@ import { imageToolIds } from "@/lib/image-tools";
 import { constructMetadata } from "@/lib/utils";
 import { AdSlot } from "@/components/ads/AdSlot";
 import type { Metadata } from "next";
-import { PAGE_META } from "@/lib/seo/page-meta";
+import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
 import { CATEGORY_LANDING_SLUGS, LANDING_PAGES } from "@/lib/seo/landing-pages";
 import { CONVERT_PAIRS } from "@/lib/convert/pairs";
 
-export const metadata: Metadata = constructMetadata({
-  title: PAGE_META["/tools"].title,
-  description: PAGE_META["/tools"].description,
-});
+// 🔴 DEBT-25：原先是 `export const metadata = constructMetadata({ title: PAGE_META["/tools"].title })`。
+// 那是**构建期常量** —— build 时就把值烤进静态 HTML，运行时 DB 覆盖层写了也不会变。
+// 同时 PAGE_META 是同步 Proxy，冷缓存下 getOverride恒返回 undefined（静默回退静态值）。
+// 两条叠加 ⇒ /tools 的覆盖层**从来就没生效过**。改成 generateMetadata + async 解析。
+// revalidate = 300：进入 ISR，写 DB 后最多 5 分钟生效（与工具页覆盖层口径一致）。
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const m = await getResolvedMetaAsync("/tools");
+  return constructMetadata({
+    title: m?.title,
+    description: m?.description,
+  });
+}
 
 export default function ToolsPage() {
   // All tool keys from toolMeta + image tools

@@ -25,7 +25,7 @@ import path from "path";
 import { RandomRecommendations } from "@/components/home/random-recommendations";
 import { FeaturedTools } from "@/components/home/featured-tools";
 import { FeaturedSites } from "@/components/home/featured-sites";
-import { PAGE_META } from "@/lib/seo/page-meta";
+import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
 
 // ── 静态数据（build 时读取）────────────────────────────
 interface CategoryInfo {
@@ -90,11 +90,23 @@ function getHomepageData() {
   return { topCategories, trendingResources };
 }
 
-// ── Metadata ───────────────────────────────────────────
-export const metadata: Metadata = {
-  title: PAGE_META["/"].title,
-  description: PAGE_META["/"].description,
-  keywords: [
+// ── Metadata ──────────
+// 🔴 DEBT-25 修复：原为 `export const metadata: Metadata = { title: PAGE_META["/"].title, ... }`，
+// 那是**构建期常量** —— build 时就把 title/description 烤进静态 HTML。
+// 于是 auto-tune 往 route "/" 写 DB 覆盖，**写得进去、页面纹丝不动**；
+// 加上 PAGE_META 是同步 Proxy（冷缓存下 getOverride 恒 undefined），
+// 两条叠加 ⇒ 首页的覆盖层从来没有生效过。
+// 现改为 generateMetadata + getResolvedMetaAsync()，并加 ISR 让写入能在 5 分钟内反映。
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const m = await getResolvedMetaAsync("/");
+  const title = m?.title;
+  const description = m?.description;
+  return {
+    title,
+    description,
+    keywords: [
     "free software directory",
     "open source software",
     "free online tools",
@@ -102,41 +114,42 @@ export const metadata: Metadata = {
     "Craftisle",
     "fmhy",
     "free tools",
-  ],
-  openGraph: {
-    title: PAGE_META["/"].title,
-    description: PAGE_META["/"].description,
-    url: "https://craftisle.com",
-    type: "website",
-    locale: "en_US",
-    images: [
-      {
-        url: "https://craftisle.com/_static/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Craftisle — Free Software Directory & Online Tools",
-      },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: PAGE_META["/"].title,
-    description: PAGE_META["/"].description,
-    images: ["https://craftisle.com/_static/og.jpg"],
-  },
-  alternates: {
-    canonical: "https://craftisle.com",
-    // 🔴 DEBT-20 修复：删掉 "zh-CN": "https://craftisle.com/zh"。
-    // 站内**不存在** /zh 路由（app/ 目录树无 zh*，也没有 middleware.ts 做重写），
-    // 实测 https://craftisle.com/zh = 404。hreflang 指向 404 会让 Google
-    // 判为「错误的 hreflang 注释」，进而拖累整组 alternate 信号的信任度。
-    // 无对应页面就别声明 —— 等 /zh 真正上线时再加回来。
-    languages: {
-      en: "https://craftisle.com",
-      "x-default": "https://craftisle.com",
+    openGraph: {
+      title,
+      description,
+      url: "https://craftisle.com",
+      type: "website",
+      locale: "en_US",
+      images: [
+        {
+          url: "https://craftisle.com/_static/og.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Craftisle — Free Software Directory & Online Tools",
+        },
+      ],
     },
-  },
-};
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://craftisle.com/_static/og.jpg"],
+    },
+    alternates: {
+      canonical: "https://craftisle.com",
+      // 🔴 DEBT-20 修复：删掉 "zh-CN": "https://craftisle.com/zh"。
+      // 站内**不存在** /zh 路由（app/ 目录树无 zh*，也没有 middleware.ts 做重写），
+      // 实测 https://craftisle.com/zh = 404。hreflang 指向 404 会让 Google
+      // 判为「错误的 hreflang 注释」，进而拖累整组 alternate 信号的信任度。
+      // 无对应页面就别声明 —— 等 /zh 真正上线时再加回来。
+      languages: {
+        en: "https://craftisle.com",
+        "x-default": "https://craftisle.com",
+      },
+    },
+  };
+}
 
 // ── 分类图标映射（lucide-react 图标组件 + 渐变色）────────
 function getCategoryStyle(name: string): { icon: React.FC<any>; from: string; to: string } {

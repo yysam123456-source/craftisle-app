@@ -4,10 +4,19 @@ import { constructMetadata } from "@/lib/utils";
 import { toolMeta } from "@/lib/tools";
 import { PAGE_META } from "@/lib/seo/page-meta";
 
-export const metadata: Metadata = constructMetadata({
-  title: PAGE_META["/tools/craftisle-image-tools"].title,
-  description: PAGE_META["/tools/craftisle-image-tools"].description,
-  keywords: [
+import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
+
+// 🔴 DEBT-25：原为构建期常量 `export const metadata = {...PAGE_META[...].title}`，
+// build 时即烤进静态 HTML ⇒ DB 覆盖层对本页**从未生效**。改 generateMetadata 异步解析。
+// revalidate = 300 让 ISR 生效，写 DB 后最多 5 分钟反映。
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const m = await getResolvedMetaAsync("/tools/craftisle-image-tools");
+  return constructMetadata({
+    title: m?.title,
+    description: m?.description,
+    keywords: [
     "craftisle image tools",
     "free online image editor",
     "AI background remover free",
@@ -15,9 +24,10 @@ export const metadata: Metadata = constructMetadata({
     "watermark remover online",
     "image upscaler AI",
     "free image converter",
-  ],
-  canonical: "https://craftisle.com/tools/craftisle-image-tools",
-});
+    ],
+    canonical: "https://craftisle.com/tools/craftisle-image-tools",
+  });
+}
 
 const IMAGE_TOOLS = [
   {

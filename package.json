@@ -34,6 +34,7 @@
     "db:migrate:seo": "npx prisma migrate dev --name add_seo_monitoring",
     "audit:pages": "node scripts/audit-page-matrix.mjs",
     "audit:sitemap": "node scripts/audit-sitemap.mjs",
+    "audit:overrides": "node scripts/audit-meta-overrides.mjs",
     "audit:related": "node scripts/audit-related-tools.mjs",
     "verify:tools": "node scripts/verify-live-tools.mjs",
     "validate:data": "node scripts/validate-data-json.mjs",
@@ -41,7 +42,8 @@
     "seo:longtail": "npx tsx scripts/longtail-gap.ts",
     "seo:sources": "npx tsx scripts/longtail-gap.ts --src-only",
     "seo:autotune": "npx tsx scripts/auto-tune.ts",
-    "seo:autotune:apply": "npx tsx scripts/auto-tune.ts --apply"
+    "seo:autotune:apply": "npx tsx scripts/auto-tune.ts --apply",
+    "probe:intent-match": "node scripts/probe-intent-match.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

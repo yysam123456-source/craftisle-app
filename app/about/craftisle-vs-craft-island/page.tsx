@@ -4,19 +4,27 @@ import { constructMetadata } from "@/lib/utils";
 import { toolMeta } from "@/lib/tools";
 import { PAGE_META } from "@/lib/seo/page-meta";
 
-export const metadata: Metadata = constructMetadata({
-  title: PAGE_META["/about/craftisle-vs-craft-island"].title,
-  description: PAGE_META["/about/craftisle-vs-craft-island"].description,
-  keywords: [
-    "craftisle vs craft island",
-    "craftisle.com game",
-    "craftisle tools",
-    "craftisle free tools",
-    "craftisle not a game",
-    "craft island game vs craftisle",
-  ],
-  canonical: "https://craftisle.com/about/craftisle-vs-craft-island",
-});
+import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
+
+// 🔴 DEBT-25：原为构建期常量，DB 覆盖层对本页从未生效。改 generateMetadata。
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const m = await getResolvedMetaAsync("/about/craftisle-vs-craft-island");
+  return constructMetadata({
+    title: m?.title,
+    description: m?.description,
+    keywords: [
+      "craftisle vs craft island",
+      "craftisle.com game",
+      "craftisle tools",
+      "craftisle free tools",
+      "craftisle not a game",
+      "craft island game vs craftisle",
+    ],
+    canonical: "https://craftisle.com/about/craftisle-vs-craft-island",
+  });
+}
 
 export default function CraftisleVsCraftIslandPage() {
   const toolEntries = Object.entries(toolMeta).slice(0, 12);

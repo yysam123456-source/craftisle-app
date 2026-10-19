@@ -220,6 +220,16 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         answer:
           "Drop the whole batch into the upload area at once. Every file is decoded, re-encoded and queued for download in the same pass, so a hundred PNGs take one round trip rather than a hundred. There is no per-file upload, so the only real limit is how much memory your device has free.",
       },
+    {
+        question: "How do I get the PNG under 100KB, or convert PNG to JPG 100KB?",
+        answer:
+          "This page converts format, not size — it re-encodes at a fixed quality and does not walk that quality down to hit a number. For a ceiling like 100KB, 200KB or 1MB, run the PNG through the image compressor's target-size mode first, then bring the smaller file here if you also need it as JPG. That is also the right order for a form that caps uploads: compress to the limit, then change format.",
+      },
+      {
+        question: "Why did my PNG get bigger instead of smaller?",
+        answer:
+          "PNG is lossless, so a PNG converted to PNG stays large by definition. Converting to JPG is what actually shrinks a file — a photo saved as PNG can be three to ten times the size of the same image as JPG. If you converted to WebP instead, expect roughly 30% off JPG but with transparency kept. The size you get depends on the source: flat line art and screenshots shrink less than photographs.",
+      },
     ],
     relatedTools: [
       { id: "image-compress", label: "Image Compressor" },
@@ -367,6 +377,83 @@ export const CONVERT_PAIRS: ConvertPair[] = [
       "pdf.js parses the document locally, then each page is rendered to a canvas at 2x scale and exported with canvas.toBlob('image/jpeg', 0.92). A white background is laid down first because JPG cannot store transparency. Encrypted PDFs are rejected with an explicit message rather than producing empty files.",
   },
   {
+    // 🔴 2026-10-19 补：能力早就有，页面却一直缺席。
+    // PdfConvertTool.tsx:189 有 `isPng ? doc.embedPng(bytes) : doc.embedJpg(bytes)`，
+    // :244 的 accept 早已是 "image/jpeg,image/png,.jpg,.jpeg,.png"，
+    // 且 isPdfOutput 只判 `pair.to === "pdf"`（:101）⇒ 这条pair 只差数据，
+    // 不需要动组件。且 png-to-pdf 出现在真实 GSC 的 gscUncovered 里（不是 Suggest 猜测）。
+    slug: "png-to-pdf",
+    from: "png",
+    to: "pdf",
+    phrase: "PNG to PDF",
+    title: "PNG to PDF Converter — Combine PNG Images into a PDF Online Free",
+    description:
+      "Turn PNG images into one PDF in your browser, one image per page. Free, private, nothing uploaded. No account, no watermark.",
+    intro: [
+      "A PNG will not open in most PDF readers, so anything that has to arrive as a PDF — a form attachment, an invoice bundle, a folder of receipts — usually ends up needing a detour through another format first. That detour is where quality quietly drops: converting PNG to JPG and then to PDF throws away the transparency and sharp edges that made you pick PNG in the first place.",
+      "This converter skips that step. Each PNG is embedded into the PDF as-is with pdf-lib and placed on a page sized to its own pixel dimensions, so the aspect ratio is preserved exactly and nothing is cropped or stretched. Select several images at once and they become pages 1, 2, 3 in the order your file picker returns them. Everything happens in this tab: there is no upload, no account and no watermark.",
+      "The result is a container of images rather than an editable document — there is no text layer, because each page is the picture you supplied. If you need selectable text, that is OCR followed by a different kind of PDF tool, and this page will not do it for you.",
+    ],
+    whenToUse: {
+      do: [
+        "A portal or email thread will only accept PDF and your material exists as PNG screenshots.",
+        "You are bundling receipts, tickets or handwritten notes into one file to hand over as a whole.",
+        "You need to keep transparency and crisp edges that converting to JPG first would destroy.",
+        "You want a predictable page order with one image per page and no account in the way.",
+      ],
+      avoid: [
+        "You need selectable or editable text — this produces image pages with no text layer.",
+        "You want to shrink each page below a byte ceiling — embed the PNG first, then compress.",
+        "You need to merge, split or reorder pages of an existing PDF — that is a PDF editor's job.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Will converting PNG to PDF lose transparency or quality?",
+        answer:
+          "No. The PNG is embedded with embedPng rather than re-encoded through JPG, so the page matches your source pixel for pixel and any transparency is preserved. This is the main reason to use this page instead of converting to JPG first — the JPG step is lossy and drops the alpha channel entirely.",
+      },
+      {
+        question: "Can I combine several PNGs into one PDF?",
+        answer:
+          "Yes — select multiple files at once and each becomes its own page, in the order your file picker returns them. On most systems that is click order, otherwise alphabetical by filename. If the order comes out wrong, reselect them in the right order; rearranging pages afterwards is a PDF editor's job, not this tool's.",
+      },
+      {
+        question: "How large a PDF can this produce?",
+        answer:
+          "Whatever your device's memory allows, because nothing is uploaded there is no server-side size cap. PNG is lossless, so expect the PDF to land close to the sum of your originals — comfortably larger than the same images converted to JPG. If an upload limit is the problem, convert to JPG or compress the PNGs first.",
+      },
+      {
+        question: "Are my images uploaded anywhere?",
+        answer:
+          "No. The document is assembled by a library running inside this tab and handed straight back to you. There is no upload endpoint on this page and no copy is retained, which is also why it works with a batch of large images without a queue.",
+      },
+      {
+        question: "Can I make the PDF smaller while I convert?",
+        answer:
+          "Not in one pass — this page embeds each PNG untouched, which is exactly why the output matches your source and why it stays lossless. To hit a byte ceiling, convert to JPG first or run the PNGs through the image compressor's target-size mode, then build the PDF from the smaller files. Compressing after the PDF exists would mean editing the PDF, which is a different tool.",
+      },
+      {
+        question: "How do I compress PNG to 200KB or make the file 100KB?",
+        answer:
+          "This page embeds each PNG untouched, which is exactly why the PDF matches your source pixel for pixel and stays lossless — and also why the result can sit well over an upload limit. To hit a byte ceiling, run the PNGs through the image compressor's target-size mode (20KB / 100KB / 200KB / 1MB) first, then build the PDF from the smaller files. Compressing once the PDF exists would mean editing the PDF, which is a different tool.",
+      },
+      {
+        question: "Does this accept JPG files as well?",
+        answer:
+          "Yes. The picker takes JPEG and PNG alike, and each file is routed to the right embedder automatically, so you can mix screenshots and photos in one document without converting anything first. PNG pages keep transparency; JPG pages are embedded as they are.",
+      },
+    ],
+    relatedTools: [
+      { id: "pdf-tools", label: "All PDF tools" },
+      { id: "image-compress", label: "Image Compressor" },
+      { id: "image-resize", label: "Image Resizer" },
+    ],
+    relatedPairs: ["jpg-to-pdf", "png-to-jpg", "png-to-webp", "pdf-to-jpg"],
+    technicalNote:
+      "pdf-lib assembles the document in memory: each PNG goes through embedPng and is drawn onto a page whose size comes from the image's own pixel dimensions, so the aspect ratio is preserved exactly. PNG is embedded rather than re-encoded, so there is no quality loss and the alpha channel survives. JPEG inputs take the embedJpg branch of the same function.",
+  },
+  {
     slug: "jpg-to-pdf",
     from: "jpeg",
     to: "pdf",
@@ -422,6 +509,11 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         question: "Can I make the PDF smaller while I convert?",
         answer:
           "This tool embeds each JPG untouched, which is exactly why the output matches your source pixel for pixel — and also why a PDF built from phone photos can be far over an upload limit. Compress the JPGs first with the image compressor, then convert the compressed files here. Compressing after the PDF exists would mean editing the PDF, which is a different tool.",
+      },
+      {
+        question: "How do I compress the images so the PDF comes in under 100KB or 200KB?",
+        answer:
+          "Compress the JPGs first, not the PDF. This page embeds each image untouched, so it cannot walk quality down to hit a byte number — that is the same reason the output matches your source. Run the files through the image compressor's target-size mode (20KB / 100KB / 200KB / 400KB / 1MB / 2MB), then build the PDF here from the compressed copies. A form asking for 'PDF under 200KB' is almost always really asking for each image under 200KB, since a PDF is just a container and its size is the sum of its pages.",
       },
       {
         question: "Does JPG to PDF accept JPEG files too, and PNG?",
