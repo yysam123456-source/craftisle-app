@@ -42,6 +42,25 @@ async function ensureTable(): Promise<void> {
   )`);
 }
 
+/**
+ * 🔴🔴 2026-10-20（DEBT-31）：表被删后自愈重建。
+ *
+ * 根因：vercel.json 的 buildCommand 跑 `prisma db push --accept-data-loss`，
+ * 它以 schema.prisma 为准 —— schema 里没有的表会被 drop。
+ * 覆盖层表此前是运行时 CREATE 出来的孤儿表 ⇒ 每次部署都被删。
+ * 现在表已写进 schema（model PageMetaOverride），不会再被删。
+ * 但这道兜底仍保留：万一有人手工 drop 掉表或回滚了 schema，
+ * 读侧会立刻自愈重建，而不是静默返回空覆盖。
+ *
+ * 判别「表不存在」：Postgres 错误码 42P01（undefined_table）。
+ */
+function isMissingTableError(e: any): boolean {
+  const code = e?.code || e?.meta?.code || e?.cause?.code;
+  if (code === "42P01") return true;
+  const msg = String(e?.message || "");
+  return /does not exist|Undefined table|42P01/i.test(msg);
+}
+
 /** 从 DB 载入全部覆盖到内存缓存（失败安全）。无 DATABASE_URL 时直接跳过。 */
 export async function refreshOverrides(): Promise<void> {
   if (!process.env.DATABASE_URL) {
@@ -50,13 +69,46 @@ export async function refreshOverrides(): Promise<void> {
   }
   try {
     await ensureTable();
-    const rows = await prisma.$queryRawUnsafe<Array<{
+    let rows: Array<{
       route: string;
       title: string | null;
       description: string | null;
       provenance: string;
       last_optimized: Date | null;
-    }>>(`SELECT route, title, description, provenance, last_optimized FROM ${TABLE}`);
+    }>;
+    try {
+      rows = await prisma.$queryRawUnsafe<Array<{
+        route: string;
+        title: string | null;
+        description: string | null;
+        provenance: string;
+        last_optimized: Date | null;
+      }>>(`SELECT route, title, description, provenance, last_optimized FROM ${TABLE}`);
+    } catch (qErr: any) {
+      // 🔴 2026-10-20（DEBT-31）：表被删 ⇒ 自愈重建后重试一次。
+      //   不这么做就是「静默返回空覆盖」：症状与「没写进去」一模一样。
+      if (isMissingTableError(qErr)) {
+        console.error(
+          `[page-meta-db] 表 ${TABLE} 不存在（多半是 prisma db push 按 schema 删掉了它），重建中…`,
+        );
+        await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS ${TABLE} (
+          route TEXT PRIMARY KEY,
+          title TEXT,
+          description TEXT,
+          provenance TEXT NOT NULL DEFAULT 'generated',
+          last_optimized TIMESTAMPTZ
+        )`);
+        rows = await prisma.$queryRawUnsafe<Array<{
+          route: string;
+          title: string | null;
+          description: string | null;
+          provenance: string;
+          last_optimized: Date | null;
+        }>>(`SELECT route, title, description, provenance, last_optimized FROM ${TABLE}`);
+      } else {
+        throw qErr;
+      }
+    }
 
     const m = new Map<string, PageMetaOverride>();
     for (const r of rows) {

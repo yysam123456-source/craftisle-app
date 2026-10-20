@@ -17,27 +17,27 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  password      String?   // 加密后的密码（邮箱注册用）
-  
+  password      String? // 加密后的密码（邮箱注册用）
+
   // OAuth
   accounts Account[]
-  
+
   // 用户角色
   role Role @default(USER)
-  
+
   // Stripe 订阅相关字段（Phase 3 准备）
-  stripeCustomerId          String?   @unique @map("stripe_customer_id")
-  stripeSubscriptionId      String?   @unique @map("stripe_subscription_id")
-  stripePriceId            String?
-  stripeCurrentPeriodEnd   DateTime?
-  
+  stripeCustomerId       String?   @unique @map("stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")
+  stripePriceId          String?
+  stripeCurrentPeriodEnd DateTime?
+
   // 用户生成内容
-  reviews    Review[]
-  ratings    Rating[]
-  comments   Comment[]
+  reviews   Review[]
+  ratings   Rating[]
+  comments  Comment[]
   favorites Favorite[]
-  sessions   Session[]  // 添加缺少的反向关系字段
-  
+  sessions  Session[] // 添加缺少的反向关系字段
+
   // 时间戳
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -76,7 +76,7 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // ── 验证码（NextAuth.js 需要）───────────────────
@@ -90,40 +90,40 @@ model VerificationToken {
 
 // ── 资源模型 ───────────────────────────────────────
 model Resource {
-  id          String   @id
+  id          String  @id
   name        String
   url         String
   description String?
-  
+
   // 分类
-  category    String
+  category     String
   categoryName String?
   categoryIcon String?
-  
+
   // 数据源
-  source      String
-  
+  source String
+
   // GitHub 数据
-  githubUrl       String?
-  githubStars     Int?
-  githubLicense   String?
+  githubUrl         String?
+  githubStars       Int?
+  githubLicense     String?
   githubLastUpdated DateTime?
-  
+
   // 属性
-  isOpenSource   Boolean @default(false)
-  isSelfHosted   Boolean @default(false)
-  tags           String[]
-  
+  isOpenSource Boolean  @default(false)
+  isSelfHosted Boolean  @default(false)
+  tags         String[]
+
   // 用户生成内容
-  reviews  Review[]
-  ratings  Rating[]
+  reviews   Review[]
+  ratings   Rating[]
   favorites Favorite[]
-  comments Comment[]
-  
+  comments  Comment[]
+
   // 统计
-  avgRating Float? @default(0)
-  reviewCount Int @default(0)
-  
+  avgRating   Float? @default(0)
+  reviewCount Int    @default(0)
+
   // 时间戳
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -131,88 +131,88 @@ model Resource {
 
 // ── 评测/评论 ────────────────────────────────────
 model Review {
-  id          String   @id @default(cuid())
-  title       String?
-  content     String   @db.Text
-  rating      Int      // 1-5 分
-  
+  id      String  @id @default(cuid())
+  title   String?
+  content String  @db.Text
+  rating  Int // 1-5 分
+
   // 作者
-  authorId    String
-  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
   // 资源
-  resourceId  String
-  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
-  
+  resourceId String
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
   // 点赞
-  helpful     Int @default(0)
-  
+  helpful Int @default(0)
+
   // 时间戳
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   @@unique([authorId, resourceId]) // 一个用户只能给一个资源写一个评测
 }
 
 // ── 评分 ─────────────────────────────────────────
 model Rating {
-  id          String   @id @default(cuid())
-  value       Int      // 1-5 分
-  
+  id    String @id @default(cuid())
+  value Int // 1-5 分
+
   // 用户
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   // 资源
-  resourceId  String
-  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
-  
+  resourceId String
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
   // 时间戳
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   @@unique([userId, resourceId]) // 一个用户只能给一个资源评一次分
 }
 
 // ── 收藏 ─────────────────────────────────────────
 model Favorite {
-  id          String   @id @default(cuid())
-  
+  id String @id @default(cuid())
+
   // 用户
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   // 资源
-  resourceId  String
-  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
-  
+  resourceId String
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
   // 时间戳
   createdAt DateTime @default(now())
-  
+
   @@unique([userId, resourceId]) // 一个用户只能收藏一个资源一次
 }
 
 // ── 评论 ─────────────────────────────────────────
 model Comment {
-  id          String   @id @default(cuid())
-  content     String   @db.Text
-  
+  id      String @id @default(cuid())
+  content String @db.Text
+
   // 作者
-  authorId    String
-  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
   // 资源
-  resourceId  String
-  resource    Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
-  
+  resourceId String
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
   // 父评论（支持回复）
-  parentId    String?
-  parent      Comment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
-  replies     Comment[] @relation("CommentReplies")
-  
+  parentId String?
+  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies  Comment[] @relation("CommentReplies")
+
   // 点赞
-  helpful     Int @default(0)
-  
+  helpful Int @default(0)
+
   // 时间戳
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -223,64 +223,64 @@ model Comment {
 /// 从 Google Search Console 拉取的搜索表现数据（每周快照）
 model SearchQuery {
   id          String   @id @default(cuid())
-  query       String                     // 搜索词
+  query       String // 搜索词
   country     String   @default("global")
-  device      String   @default("all")   // desktop | mobile | tablet
-  clicks      Int                       // 点击量
-  impressions Int                       // 展示量
-  ctr         Float                     // 点击率 0-1
-  position    Float                     // 平均排名
-  snapshotAt  DateTime                  // 快照日期（周级别）
+  device      String   @default("all") // desktop | mobile | tablet
+  clicks      Int // 点击量
+  impressions Int // 展示量
+  ctr         Float // 点击率 0-1
+  position    Float // 平均排名
+  snapshotAt  DateTime // 快照日期（周级别）
   createdAt   DateTime @default(now())
 
+  @@unique([query, country, device, snapshotAt])
   @@index([query])
   @@index([snapshotAt])
-  @@unique([query, country, device, snapshotAt])
 }
 
 /// 关键词排名快照（用于追踪核心关键词排名变化）
 model RankingSnapshot {
   id               String   @id @default(cuid())
-  keyword          String                    // 目标关键词
-  url              String                    // 排名对应的 URL
-  position         Int?                      // 当前排名（null=未进前100）
-  previousPosition Int?                      // 上次快照的排名
-  change           Int?                      // 位次变化（+上升，-下降）
-  source           String   @default("GSC")  // 数据来源：GSC | SERPAPI | manual
+  keyword          String // 目标关键词
+  url              String // 排名对应的 URL
+  position         Int? // 当前排名（null=未进前100）
+  previousPosition Int? // 上次快照的排名
+  change           Int? // 位次变化（+上升，-下降）
+  source           String   @default("GSC") // 数据来源：GSC | SERPAPI | manual
   snapshotAt       DateTime
   createdAt        DateTime @default(now())
 
+  @@unique([keyword, url, snapshotAt])
   @@index([keyword])
   @@index([snapshotAt])
-  @@unique([keyword, url, snapshotAt])
 }
 
 /// 搜索趋势聚合（按周聚合的搜索量变化）
 model SearchTrend {
   id            String   @id @default(cuid())
-  query         String                    // 搜索词
-  source        String   @default("internal")  // internal | gsc | google_trends
-  count         Int                       // 搜索次数（本周）
-  previousCount Int?                      // 上周搜索次数
-  growth        Float?                    // 周环比增长率
-  weekStart     DateTime                  // 周起始日
+  query         String // 搜索词
+  source        String   @default("internal") // internal | gsc | google_trends
+  count         Int // 搜索次数（本周）
+  previousCount Int? // 上周搜索次数
+  growth        Float? // 周环比增长率
+  weekStart     DateTime // 周起始日
   createdAt     DateTime @default(now())
 
+  @@unique([query, source, weekStart])
   @@index([query])
   @@index([weekStart])
-  @@unique([query, source, weekStart])
 }
 
 /// 告警事件（排名波动/新词/流失词等）
 model AlertEvent {
   id         String   @id @default(cuid())
-  type       String                    // position_drop | position_rise | new_query | lost_query | low_ctr
-  query      String                    // 相关搜索词
-  severity   String   @default("warning")  // info | warning | critical
-  message    String                    // 告警描述
-  data       Json?                     // 额外上下文（变化量、历史数据等）
+  type       String // position_drop | position_rise | new_query | lost_query | low_ctr
+  query      String // 相关搜索词
+  severity   String   @default("warning") // info | warning | critical
+  message    String // 告警描述
+  data       Json? // 额外上下文（变化量、历史数据等）
   resolved   Boolean  @default(false)
-  snapshotAt DateTime @default(now())   // 所属周快照
+  snapshotAt DateTime @default(now()) // 所属周快照
   createdAt  DateTime @default(now())
 
   @@index([type])
@@ -291,13 +291,13 @@ model AlertEvent {
 /// 数据管道健康状态（每次 cron 运行写入，供 summary 暴露「管道是否健康」）
 model PipelineStatus {
   id             String    @id @default(cuid())
-  key            String    @unique            // 例如 "gsc_pull"
-  lastRunAt      DateTime?                   // 最近一次运行时间
-  lastSuccessAt  DateTime?                   // 最近一次成功拉取时间
-  lastConfigured Boolean?                    // GSC 凭证是否配置
-  lastQueryCount Int?                        // 最近一次拉取的查询词数
-  lastError      String?                     // 最近一次错误（成功则为 null）
-  competitor     String?                     // 竞品覆盖度快照（JSON 字符串）{total,covered,lost:[...]}
+  key            String    @unique // 例如 "gsc_pull"
+  lastRunAt      DateTime? // 最近一次运行时间
+  lastSuccessAt  DateTime? // 最近一次成功拉取时间
+  lastConfigured Boolean? // GSC 凭证是否配置
+  lastQueryCount Int? // 最近一次拉取的查询词数
+  lastError      String? // 最近一次错误（成功则为 null）
+  competitor     String? // 竞品覆盖度快照（JSON 字符串）{total,covered,lost:[...]}
   updatedAt      DateTime  @updatedAt
 
   @@index([key])
@@ -306,10 +306,10 @@ model PipelineStatus {
 /// 受监测的站点（craftisle 主站 + 7 个子站）
 model Site {
   id        String   @id @default(cuid())
-  slug      String   @unique          // craftisle | pdf | resume | viewer | whiteboard | imgprompt | games | fxlab
-  name      String                    // 展示名（如 "Craftisle (Main)" / "PDF Tools"）
-  host      String   @unique          // 主机名（如 craftisle.com / pdf.craftisle.com）
-  color     String?                   // UI 标识色（hex）
+  slug      String   @unique // craftisle | pdf | resume | viewer | whiteboard | imgprompt | games | fxlab
+  name      String // 展示名（如 "Craftisle (Main)" / "PDF Tools"）
+  host      String   @unique // 主机名（如 craftisle.com / pdf.craftisle.com）
+  color     String? // UI 标识色（hex）
   enabled   Boolean  @default(true)
   createdAt DateTime @default(now())
 
@@ -330,7 +330,7 @@ model SiteMetric {
   avgCtr      Float    @default(0)
   queryCount  Int      @default(0)
   uniquePages Int      @default(0)
-  topQueries  String?                  // JSON 字符串 [{query,impressions,clicks,position},...] Top 10
+  topQueries  String? // JSON 字符串 [{query,impressions,clicks,position},...] Top 10
   updatedAt   DateTime @updatedAt
 
   site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
@@ -338,4 +338,29 @@ model SiteMetric {
   @@unique([siteId, weekStart])
   @@index([siteId])
   @@index([weekStart])
+}
+
+/// SEO 页面元数据覆盖层（零部署自动优化的落地表）
+///
+/// 🔴🔴 2026-10-20（DEBT-31）：这张表**必须**写进 schema。
+///   此前它只由 lib/seo/page-meta-db.ts 在运行时 CREATE TABLE IF NOT EXISTS 建出来，
+///   是 schema 之外的「孤儿表」；而 vercel.json 的 buildCommand 跑
+///   `prisma db push --skip-generate --accept-data-loss` ——
+///   db push 以 schema 为准，schema 里没有的表会被**当作多余对象 drop 掉**。
+///   ⇒ 每次 Vercel 部署都会删掉整张覆盖层表。
+///   实测症状链（2026-10-20）：
+///     02:01 auto-tune apply 写入 1 条 → 线上诊断 count=1、probeFound=true
+///     02:30 部署 fb308d77 → 02:42 线上诊断 count=0、lastLoadError=null
+///     （查询成功但表是空的 ⇒ 不是读失败，是表被删了）
+///   这个 bug 让「零部署自动生效」在**任何一次部署后**都归零，
+///   且症状与「压根没写进去」完全一样，只能靠部署时点对照才看得出来。
+model PageMetaOverride {
+  route         String   @id // 页面路由，如 /tools/handwriting-animation
+  title         String?
+  description   String?
+  provenance    String   @default("generated") // generated | verified | recommended
+  lastOptimized DateTime @default(now()) @map("last_optimized")
+
+  @@index([provenance])
+  @@map("page_meta_override")
 }
