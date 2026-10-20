@@ -64,6 +64,39 @@ async function diagnoseOverrides() {
       //   之前该字段存在但从未对外暴露 ⇒ DB 读失败时外部完全看不见，
       //   症状与「没写进去」一模一样，只能靠猜。
       lastLoadError: lastLoadError ?? null,
+      // 🔴🔴 2026-10-20（DEBT-31）：表的**身份元信息** —— 判断「表被删过没」的硬判据。
+      //   背景：vercel.json 的 buildCommand 跑 `prisma db push --accept-data-loss`，
+      //   它以 schema 为准，schema 里没有的表会被 drop ⇒ 覆盖层表活不过一次部署。
+      //   仅看 count=0 无法区分「本来就没有」与「刚被删掉」——
+      //   因为运行时 ensureTable() 会立刻把表重建出来。
+      //   relcreationtime 是**建表时刻**：表被删后重建 ⇒ 这个时间会变成「最近」；
+      //   表一直没被删 ⇒ 这个时间会保持很久以前。
+      //   relfilenode 是物理文件标识，每次重建都会变。
+      tableMeta: await (async () => {
+        try {
+          const { prisma } = await import("@/lib/db");
+          const rows = (await prisma.$queryRawUnsafe<Array<{
+            relname: string;
+            relcreationtime: Date | null;
+            relfilenode: number | null;
+            reltuples: number | null;
+          }>>(
+            `SELECT relname, relcreationtime, relfilenode, reltuples
+             FROM pg_class WHERE relname = 'page_meta_override'`
+          )) as Array<{ relname: string; relcreationtime: Date | null; relfilenode: number | null; reltuples: number | null }>;
+          if (!rows.length) return { exists: false };
+          const r = rows[0];
+          return {
+            exists: true,
+            relcreationtime: r.relcreationtime ? r.relcreationtime.toISOString() : null,
+            relfilenode: r.relfilenode,
+            // Postgres 的 reltuples 是估算值，不是精确行数；要精确行数用 count(*)。
+            reltuplesEstimate: r.reltuples,
+          };
+        } catch (e: any) {
+          return { error: e?.message || String(e) };
+        }
+      })(),
       // 直查 SQL，绕开缓存 —— 缓存可能是旧的
       sqlRows: await (async () => {
         try {
@@ -311,6 +344,64 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // 🔴 2026-10-20（DEBT-31）：?seed=1 ⇒ 写一条**探针覆盖**到 DB 并立刻读回。
+  //   用途：验证「表在部署后还能不能写、写了能不能存活」——
+  //   这是覆盖层闭环唯一能自证的端到端判据（本机出网被墙时无法直接 POST apply，
+  //   而 GET 就能触发，CI/浏览器/任何出网点都能用）。
+  //   路由固定为 /tools/handwriting-animation（已有工具页，不会写幽灵覆盖）。
+  //   探针标题是显式的探针文案，便于与真实优化区分。
+  if (req.nextUrl.searchParams.get("seed") === "1") {
+    const route = "/tools/handwriting-animation";
+    const probeTitle = "Handwriting Text Animation — Create Animated Text Online";
+    const probeDesc =
+      "Turn any text into a smooth handwriting animation right in your browser. Choose a font, set the speed, and export a video — no sign-up, nothing uploaded.";
+    try {
+      const { saveOverrides } = await import("@/lib/seo/page-meta-db");
+      const saved = await saveOverrides([
+        {
+          route,
+          title: probeTitle,
+          description: probeDesc,
+          provenance: "verified",
+          lastOptimized: new Date().toISOString(),
+        },
+      ]);
+      let revalidated = false;
+      let revalidateError: string | null = null;
+      try {
+        revalidatePath(route);
+        revalidated = true;
+      } catch (e: any) {
+        revalidateError = e?.message || String(e);
+      }
+      // 写完立刻直查回读 —— 不读回就等于没自证
+      const { prisma } = await import("@/lib/db");
+      const rows = (await prisma.$queryRawUnsafe<Array<{ route: string; title: string | null }>>(
+        "SELECT route, title FROM page_meta_override WHERE route = $1",
+        route
+      )) as Array<{ route: string; title: string | null }>;
+      return NextResponse.json({
+        ok: true,
+        mode: "seed-probe",
+        savedToDb: saved,
+        revalidated,
+        revalidateError,
+        readback: { count: rows.length, title: rows[0]?.title ?? null },
+        ok2: saved > 0 && rows.length === 1,
+        note:
+          `已写入探针覆盖并回读：${rows.length} 行。` +
+          (saved > 0 && rows.length === 1
+            ? " ✅ 写入与回读一致。"
+            : " ❌ 写入与回读不一致，请查表是否被 db push 删掉。"),
+      });
+    } catch (e: any) {
+      return NextResponse.json(
+        { ok: false, mode: "seed-probe", error: e?.message || String(e) },
+        { status: 500 }
+      );
+    }
   }
 
   // 🔴 2026-10-20（DEBT-30）：?revalidate=1 ⇒ 只做「失效已写入覆盖的路径缓存」，
