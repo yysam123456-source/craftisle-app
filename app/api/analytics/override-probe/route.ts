@@ -70,21 +70,34 @@ function isAuthorized(req: NextRequest): boolean {
  */
 async function readTableMeta() {
   try {
+    // ⚠️ 只查 table_schema / table_name —— 这两列任何 PG 版本都有。
+    //   实测本项目 PG 版本连 information_schema.tables.table_rows 都没有（42703），
+    //   更不用说 pg_class 的 oid/real 列 ⇒ 一律别碰非标准列。
     const rows = (await prisma.$queryRawUnsafe<
-      Array<{ table_schema: string | null; table_name: string | null; table_rows: number | null }>
+      Array<{ table_schema: string | null; table_name: string | null; table_type: string | null }>
     >(
-      `SELECT table_schema, table_name, table_rows
+      `SELECT table_schema, table_name, table_type
        FROM information_schema.tables
        WHERE table_name = 'page_meta_override'`,
-    )) as Array<{ table_schema: string | null; table_name: string | null; table_rows: number | null }>;
+    )) as Array<{ table_schema: string | null; table_name: string | null; table_type: string | null }>;
     if (!rows.length) return { exists: false };
     const r = rows[0];
+    // 精确行数用 count(*) —— 不用 table_rows（估算值 + 老版本没有该列）。
+    let exactCount: number | null = null;
+    try {
+      const c = (await prisma.$queryRawUnsafe<Array<{ c: bigint }>>(
+        "SELECT count(*)::bigint AS c FROM page_meta_override",
+      )) as Array<{ c: bigint }>;
+      exactCount = c.length ? Number(c[0].c) : null;
+    } catch (e: any) {
+      // 表不存在时 count 也会失败，忽略即可（exists 已判定）
+    }
     return {
       exists: true,
       tableSchema: r.table_schema,
       tableName: r.table_name,
-      // information_schema 的 table_rows 是估算值，可能为 null（PG < 13 或未 analyze）。
-      tableRowsEstimate: r.table_rows,
+      tableType: r.table_type,
+      exactCount,
     };
   } catch (e: any) {
     return { error: e?.message || String(e) };

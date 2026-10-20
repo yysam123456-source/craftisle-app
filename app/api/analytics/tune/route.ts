@@ -78,19 +78,30 @@ async function diagnoseOverrides() {
           const rows = (await prisma.$queryRawUnsafe<Array<{
             table_schema: string | null;
             table_name: string | null;
-            table_rows: number | null;
+            table_type: string | null;
           }>>(
-            `SELECT table_schema, table_name, table_rows
+            `SELECT table_schema, table_name, table_type
              FROM information_schema.tables
              WHERE table_name = 'page_meta_override'`
-          )) as Array<{ table_schema: string | null; table_name: string | null; table_rows: number | null }>;
+          )) as Array<{ table_schema: string | null; table_name: string | null; table_type: string | null }>;
           if (!rows.length) return { exists: false };
           const r = rows[0];
+          // ⚠️ 不用 table_rows（估算值，且本项目 PG 版本没有该列 ⇒ 42703）。
+          let exactCount: number | null = null;
+          try {
+            const c = (await prisma.$queryRawUnsafe<Array<{ c: bigint }>>(
+              "SELECT count(*)::bigint AS c FROM page_meta_override",
+            )) as Array<{ c: bigint }>;
+            exactCount = c.length ? Number(c[0].c) : null;
+          } catch {
+            // 表不存在时 count 也会失败，忽略即可（exists 已判定）
+          }
           return {
             exists: true,
             tableSchema: r.table_schema,
             tableName: r.table_name,
-            tableRowsEstimate: r.table_rows,
+            tableType: r.table_type,
+            exactCount,
           };
         } catch (e: any) {
           return { error: e?.message || String(e) };
