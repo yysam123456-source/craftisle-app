@@ -55,43 +55,62 @@ function isAuthorized(req: NextRequest): boolean {
   return !!(CRON_SECRET && secret === CRON_SECRET);
 }
 
-/** 表的身份元信息 —— 判断「表被删过没」的硬判据。 */
+/**
+ * 表的存在性与规模 —— 判断「表被删过没」的辅助信息。
+ *
+ * 🔴 2026-10-20 修正：**不要查 pg_class**。
+ *   线上实测：查 `pg_class`（relfilenode / reltuples / relcreationtime）会让端点 500。
+ *   原因：这些列是 PG 内部类型（oid / real），Prisma 的 raw query 在结果反序列化阶段
+ *   处理不了，且异常发生在 try/catch 之外 ⇒ 整个端点挂掉。
+ *   而 `information_schema` 是 SQL 标准视图，列类型都是标准类型 ⇒ 安全。
+ *
+ *   `table_rows` 来自 information_schema.tables（PG 的估算值，可能为 null）。
+ *   表被 DROP + CREATE 后，information_schema 里的行会重新出现 ⇒
+ *   「表存在但没有数据」与「表刚被重建」仍需结合部署时点判断。
+ */
 async function readTableMeta() {
-  const out: Record<string, any> = {};
   try {
-    // relfilenode 是物理文件标识：表被 DROP + CREATE 后必然改变。
-    // ⚠️ 不要依赖 relcreationtime —— 本项目连的 PG 版本没有这一列
-    //    （实测 42703 column "relcreationtime" does not exist）⇒ 单独 try，失败就不返回。
     const rows = (await prisma.$queryRawUnsafe<
-      Array<{ relname: string; relfilenode: number | null; reltuples: number | null }>
+      Array<{ table_schema: string | null; table_name: string | null; table_rows: number | null }>
     >(
-      `SELECT relname, relfilenode, reltuples
-       FROM pg_class WHERE relname = 'page_meta_override'`,
-    )) as Array<{ relname: string; relfilenode: number | null; reltuples: number | null }>;
+      `SELECT table_schema, table_name, table_rows
+       FROM information_schema.tables
+       WHERE table_name = 'page_meta_override'`,
+    )) as Array<{ table_schema: string | null; table_name: string | null; table_rows: number | null }>;
     if (!rows.length) return { exists: false };
     const r = rows[0];
-    out.exists = true;
-    out.relfilenode = r.relfilenode;
-    // reltuples 是 Postgres 的估算值，不是精确行数；精确行数用 count(*)。
-    out.reltuplesEstimate = r.reltuples;
-    try {
-      const ct = (await prisma.$queryRawUnsafe<Array<{ relcreationtime: Date | null }>>(
-        `SELECT relcreationtime FROM pg_class WHERE relname = 'page_meta_override'`,
-      )) as Array<{ relcreationtime: Date | null }>;
-      if (ct.length && ct[0]?.relcreationtime) {
-        out.relcreationtime = ct[0].relcreationtime.toISOString();
-      }
-    } catch {
-      // 该 PG 版本没有 relcreationtime 列 —— 不影响主判据（relfilenode）。
-      out.relcreationtimeAvailable = false;
-    }
-    return out;
+    return {
+      exists: true,
+      tableSchema: r.table_schema,
+      tableName: r.table_name,
+      // information_schema 的 table_rows 是估算值，可能为 null（PG < 13 或未 analyze）。
+      tableRowsEstimate: r.table_rows,
+    };
   } catch (e: any) {
     return { error: e?.message || String(e) };
   }
 }
 
 export async function GET(req: NextRequest) {
+  try {
+    return await handle(req);
+  } catch (e: any) {
+    // 🔴 2026-10-20：顶层兜底。裸 500 + 空 body 会让排查只能靠猜
+    //   （本次就栽在这：pg_class 查询反序列化失败 ⇒ 端点 500，看不到任何错误信息）。
+    //   诊断端点的价值就在于**说出错误**，所以这里必须把错误带出来。
+    console.error("[override-probe] 未捕获异常：", e);
+    return NextResponse.json(
+      {
+        ok: false,
+        error: e?.message || String(e),
+        stack: typeof e?.stack === "string" ? e.stack.split("\n").slice(0, 6).join("\n") : null,
+      },
+      { status: 500 },
+    );
+  }
+}
+
+async function handle(req: NextRequest) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

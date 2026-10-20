@@ -64,44 +64,34 @@ async function diagnoseOverrides() {
       //   之前该字段存在但从未对外暴露 ⇒ DB 读失败时外部完全看不见，
       //   症状与「没写进去」一模一样，只能靠猜。
       lastLoadError: lastLoadError ?? null,
-      // 🔴🔴 2026-10-20（DEBT-31）：表的**身份元信息** —— 判断「表被删过没」的硬判据。
+      // 🔴🔴 2026-10-20（DEBT-31）：表的**存在性** —— 辅助判断「表被删过没」。
       //   背景：vercel.json 的 buildCommand 跑 `prisma db push --accept-data-loss`，
       //   它以 schema 为准，schema 里没有的表会被 drop ⇒ 覆盖层表活不过一次部署。
       //   仅看 count=0 无法区分「本来就没有」与「刚被删掉」——
       //   因为运行时 ensureTable() 会立刻把表重建出来。
-      //   relfilenode 是物理文件标识，每次重建都会变。
-      //   ⚠️ relcreationtime 单独 try —— 本项目连的 PG 版本没有这一列
-      //      （实测 42703 column "relcreationtime" does not exist）。
+      //   ⚠️ **不要查 pg_class**（relfilenode / reltuples 是 PG 内部类型，
+      //      Prisma raw query 反序列化会炸 ⇒ 线上实测整个端点 500）。
+      //      改用 information_schema（SQL 标准视图，类型安全）。
       tableMeta: await (async () => {
         try {
           const { prisma } = await import("@/lib/db");
           const rows = (await prisma.$queryRawUnsafe<Array<{
-            relname: string;
-            relfilenode: number | null;
-            reltuples: number | null;
+            table_schema: string | null;
+            table_name: string | null;
+            table_rows: number | null;
           }>>(
-            `SELECT relname, relfilenode, reltuples
-             FROM pg_class WHERE relname = 'page_meta_override'`
-          )) as Array<{ relname: string; relfilenode: number | null; reltuples: number | null }>;
+            `SELECT table_schema, table_name, table_rows
+             FROM information_schema.tables
+             WHERE table_name = 'page_meta_override'`
+          )) as Array<{ table_schema: string | null; table_name: string | null; table_rows: number | null }>;
           if (!rows.length) return { exists: false };
           const r = rows[0];
-          const out: Record<string, any> = {
+          return {
             exists: true,
-            relfilenode: r.relfilenode,
-            // Postgres 的 reltuples 是估算值，不是精确行数；要精确行数用 count(*)。
-            reltuplesEstimate: r.reltuples,
+            tableSchema: r.table_schema,
+            tableName: r.table_name,
+            tableRowsEstimate: r.table_rows,
           };
-          try {
-            const ct = (await prisma.$queryRawUnsafe<Array<{ relcreationtime: Date | null }>>(
-              `SELECT relcreationtime FROM pg_class WHERE relname = 'page_meta_override'`
-            )) as Array<{ relcreationtime: Date | null }>;
-            if (ct.length && ct[0]?.relcreationtime) {
-              out.relcreationtime = ct[0].relcreationtime.toISOString();
-            }
-          } catch {
-            out.relcreationtimeAvailable = false;
-          }
-          return out;
         } catch (e: any) {
           return { error: e?.message || String(e) };
         }
@@ -351,6 +341,24 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  // 🔴 2026-10-20：顶层兜底。裸 500 + 空 body 会让排查只能靠猜
+  //   （本次就栽在这：pg_class 查询反序列化失败 ⇒ 端点 500，看不到任何错误信息）。
+  try {
+    return await handleGet(req);
+  } catch (e: any) {
+    console.error("[tune:GET] 未捕获异常：", e);
+    return NextResponse.json(
+      {
+        ok: false,
+        error: e?.message || String(e),
+        stack: typeof e?.stack === "string" ? e.stack.split("\n").slice(0, 6).join("\n") : null,
+      },
+      { status: 500 },
+    );
+  }
+}
+
+async function handleGet(req: NextRequest) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
