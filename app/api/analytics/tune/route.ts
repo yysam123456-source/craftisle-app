@@ -69,30 +69,39 @@ async function diagnoseOverrides() {
       //   它以 schema 为准，schema 里没有的表会被 drop ⇒ 覆盖层表活不过一次部署。
       //   仅看 count=0 无法区分「本来就没有」与「刚被删掉」——
       //   因为运行时 ensureTable() 会立刻把表重建出来。
-      //   relcreationtime 是**建表时刻**：表被删后重建 ⇒ 这个时间会变成「最近」；
-      //   表一直没被删 ⇒ 这个时间会保持很久以前。
       //   relfilenode 是物理文件标识，每次重建都会变。
+      //   ⚠️ relcreationtime 单独 try —— 本项目连的 PG 版本没有这一列
+      //      （实测 42703 column "relcreationtime" does not exist）。
       tableMeta: await (async () => {
         try {
           const { prisma } = await import("@/lib/db");
           const rows = (await prisma.$queryRawUnsafe<Array<{
             relname: string;
-            relcreationtime: Date | null;
             relfilenode: number | null;
             reltuples: number | null;
           }>>(
-            `SELECT relname, relcreationtime, relfilenode, reltuples
+            `SELECT relname, relfilenode, reltuples
              FROM pg_class WHERE relname = 'page_meta_override'`
-          )) as Array<{ relname: string; relcreationtime: Date | null; relfilenode: number | null; reltuples: number | null }>;
+          )) as Array<{ relname: string; relfilenode: number | null; reltuples: number | null }>;
           if (!rows.length) return { exists: false };
           const r = rows[0];
-          return {
+          const out: Record<string, any> = {
             exists: true,
-            relcreationtime: r.relcreationtime ? r.relcreationtime.toISOString() : null,
             relfilenode: r.relfilenode,
             // Postgres 的 reltuples 是估算值，不是精确行数；要精确行数用 count(*)。
             reltuplesEstimate: r.reltuples,
           };
+          try {
+            const ct = (await prisma.$queryRawUnsafe<Array<{ relcreationtime: Date | null }>>(
+              `SELECT relcreationtime FROM pg_class WHERE relname = 'page_meta_override'`
+            )) as Array<{ relcreationtime: Date | null }>;
+            if (ct.length && ct[0]?.relcreationtime) {
+              out.relcreationtime = ct[0].relcreationtime.toISOString();
+            }
+          } catch {
+            out.relcreationtimeAvailable = false;
+          }
+          return out;
         } catch (e: any) {
           return { error: e?.message || String(e) };
         }

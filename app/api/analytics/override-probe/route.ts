@@ -57,32 +57,35 @@ function isAuthorized(req: NextRequest): boolean {
 
 /** 表的身份元信息 —— 判断「表被删过没」的硬判据。 */
 async function readTableMeta() {
+  const out: Record<string, any> = {};
   try {
+    // relfilenode 是物理文件标识：表被 DROP + CREATE 后必然改变。
+    // ⚠️ 不要依赖 relcreationtime —— 本项目连的 PG 版本没有这一列
+    //    （实测 42703 column "relcreationtime" does not exist）⇒ 单独 try，失败就不返回。
     const rows = (await prisma.$queryRawUnsafe<
-      Array<{
-        relname: string;
-        relcreationtime: Date | null;
-        relfilenode: number | null;
-        reltuples: number | null;
-      }>
+      Array<{ relname: string; relfilenode: number | null; reltuples: number | null }>
     >(
-      `SELECT relname, relcreationtime, relfilenode, reltuples
+      `SELECT relname, relfilenode, reltuples
        FROM pg_class WHERE relname = 'page_meta_override'`,
-    )) as Array<{
-      relname: string;
-      relcreationtime: Date | null;
-      relfilenode: number | null;
-      reltuples: number | null;
-    }>;
+    )) as Array<{ relname: string; relfilenode: number | null; reltuples: number | null }>;
     if (!rows.length) return { exists: false };
     const r = rows[0];
-    return {
-      exists: true,
-      relcreationtime: r.relcreationtime ? r.relcreationtime.toISOString() : null,
-      relfilenode: r.relfilenode,
-      // reltuples 是 Postgres 的估算值，不是精确行数；精确行数用 count(*)。
-      reltuplesEstimate: r.reltuples,
-    };
+    out.exists = true;
+    out.relfilenode = r.relfilenode;
+    // reltuples 是 Postgres 的估算值，不是精确行数；精确行数用 count(*)。
+    out.reltuplesEstimate = r.reltuples;
+    try {
+      const ct = (await prisma.$queryRawUnsafe<Array<{ relcreationtime: Date | null }>>(
+        `SELECT relcreationtime FROM pg_class WHERE relname = 'page_meta_override'`,
+      )) as Array<{ relcreationtime: Date | null }>;
+      if (ct.length && ct[0]?.relcreationtime) {
+        out.relcreationtime = ct[0].relcreationtime.toISOString();
+      }
+    } catch {
+      // 该 PG 版本没有 relcreationtime 列 —— 不影响主判据（relfilenode）。
+      out.relcreationtimeAvailable = false;
+    }
+    return out;
   } catch (e: any) {
     return { error: e?.message || String(e) };
   }
