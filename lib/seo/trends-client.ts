@@ -170,14 +170,36 @@ export async function fetchSuggestionsForSeeds(
   seeds: string[],
   opts: { lang?: string; concurrency?: number; pauseMs?: number } = {}
 ): Promise<Map<string, string[]>> {
+  const detailed = await fetchSuggestionsForSeedsDetailed(seeds, opts);
   const out = new Map<string, string[]>();
+  for (const [seed, r] of detailed) out.set(seed, r.suggestions);
+  return out;
+}
+
+/**
+ * 🔴 2026-10-20（DEBT-29）：批量 Suggest 的**带来源版本**。
+ *
+ * 为什么需要它：longtail-gap.ts 原来用两个**独立的网络轮次**——
+ *   ① `fetchSuggestionsForSeeds` 拉全部种子，产出 gaps（数据实际来源）
+ *   ② 再对前 15 个种子单独 `fetchSuggestionsDetailed` 一遍，算 suggestSourceTally
+ * 于是「日志里 15 个种子全部双源均失败」与「tally 显示 google:13」可以同时成立：
+ * 两者测的不是同一批请求。而 tally 的用途恰恰是判断「今天的依据是不是被静默换成了
+ * Bing」—— 用一轮与数据无关的重捞来判断，等于给换源发了假许可证。
+ *
+ * 现在合成一轮：数据与来源同生同死，tally 描述的就是**真正被使用的数据**。
+ */
+export async function fetchSuggestionsForSeedsDetailed(
+  seeds: string[],
+  opts: { lang?: string; concurrency?: number; pauseMs?: number } = {}
+): Promise<Map<string, SuggestionsResult>> {
+  const out = new Map<string, SuggestionsResult>();
   const concurrency = Math.max(1, opts.concurrency ?? SUGGEST_CONCURRENCY_DEFAULT);
   const pause = opts.pauseMs ?? SUGGEST_BATCH_PAUSE_MS;
 
   for (let i = 0; i < seeds.length; i += concurrency) {
     const batch = seeds.slice(i, i + concurrency);
     const results = await Promise.all(
-      batch.map((s) => fetchSuggestions(s, { lang: opts.lang }))
+      batch.map((s) => fetchSuggestionsDetailed(s, { lang: opts.lang }))
     );
     batch.forEach((s, idx) => out.set(s, results[idx]));
     if (i + concurrency < seeds.length) await sleep(pause);

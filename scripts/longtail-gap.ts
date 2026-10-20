@@ -32,13 +32,12 @@
  */
 
 import { writeFileSync, mkdirSync, readFileSync, existsSync } from "fs";
-import { join, resolve } from "path";
+import { join, resolve, basename } from "path";
 // 🔴 原子写：裸 writeFileSync 写 150KB+ 分片缓存，被超时打断会留半截 JSON，
 // 下次 JSON.parse 在 try 里只记一条 warn ⇒ 静默少一个分片（DEBT-24）
 import { writeTextAtomic } from "./lib/data-io.mjs";
 import {
-  fetchSuggestionsDetailed,
-  fetchSuggestionsForSeeds,
+  fetchSuggestionsForSeedsDetailed,
   type SuggestSource,
 } from "../lib/seo/trends-client";
 import { CONVERT_PAIRS } from "../lib/convert/pairs";
@@ -71,14 +70,26 @@ export interface GscQuery {
  *
  * 🔴 必须分片拉：端点响应超过 ~10KB 时 WebFetch 会取空，而 limit=250 的
  * 单次响应必然超。所以按 type × sort 两维切片，逐片拼。
+ *
+ * 🔴🔴 2026-10-20（DEBT-28）：本机沙箱出网常被 TLS 阻断（curl exit 35 /
+ *   node fetch failed），此时旧版直接判 `reachable=false`，于是下游
+ *   `seo:autotune` 也一起死掉（它只认 gap 文件里的 gsc.reachable）。
+ *   实测：本机被墙的日子里 longtail 0/10、autotune 拒绝出方案，
+ *   但 Google 数据本身是好的 —— 坏的只是**本机到 craftisle.com 的这一跳**。
+ *   修法与 growth-review.ts 对齐：支持 GROWTH_CACHE_DIR 预灌缓存，
+ *   实时拉取失败时回退读缓存，并在 note 里**明示**用了缓存、缓存多旧。
+ *   ⚠️ 回退必须 fail loud：不能静默用旧数据冒充实时数据。
  */
 async function fetchGscQueries(days = 28): Promise<{
   rows: GscQuery[];
   reachable: boolean;
   note: string;
 }> {
-  const cacheDir = resolve(process.cwd(), "..", ".workbuddy", "tmp", "gcache-lt");
+  const cacheDir = process.env.GROWTH_CACHE_DIR
+    ? resolve(process.env.GROWTH_CACHE_DIR)
+    : resolve(process.cwd(), "..", ".workbuddy", "tmp", "gcache-lt");
   if (!existsSync(cacheDir)) mkdirSync(cacheDir, { recursive: true });
+  const cacheFromEnv = Boolean(process.env.GROWTH_CACHE_DIR);
 
   // 🔴 2026-10-16（DEBT-16）：分片清单必须与 classifyQueryType 的枚举**完全一致**。
   //   上一版凭想象写了 {type:"landing"}{type:"pair"}，而
@@ -114,6 +125,10 @@ async function fetchGscQueries(days = 28): Promise<{
   const seen = new Map<string, GscQuery>();
   let ok = 0;
   let emptySlices: string[] = [];
+  // 🔴 DEBT-28：回退用了缓存的分片要单独计数并写进 note，绝不能混进「实时成功」。
+  let cachedSlices: string[] = [];
+  // 收集各分片自带的 snapshots 数组，用于在 note 里说明缓存有多旧。
+  const snapSeen = new Set<string>();
 
   for (const s of slices) {
     const name = `_api_analytics_top-queries_days${days}_limit200_sort${s.sort}${
@@ -124,18 +139,51 @@ async function fetchGscQueries(days = 28): Promise<{
       `${API_BASE}/api/analytics/top-queries?days=${days}&limit=200&sort=${s.sort}` +
       (s.type ? `&type=${s.type}` : "");
 
+    // 先试实时拉取；失败则回退预灌缓存（GROWTH_CACHE_DIR）。
+    let text: string | null = null;
+    let fromCache = false;
     try {
       const res = await fetch(url, {
         headers: { "User-Agent": "CraftisleGrowthReview/1.0" },
         signal: AbortSignal.timeout(30000),
       });
       if (!res.ok) throw new Error(`http ${res.status}`);
-      const text = await res.text();
+      text = await res.text();
       // 🔴 非原子写：150KB+ 的分片缓存被超时打断会留半截 JSON，
       // 下次 JSON.parse 在 try 里只记一条 warn ⇒ 静默少一个分片。走原子写。
       writeTextAtomic(file, text);
-      const data = JSON.parse(text);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      // 🔴 DEBT-28 回退：本机到 craftisle.com 这一跳被墙时，数据本身是好的。
+      if (existsSync(file)) {
+        try {
+          text = readFileSync(file, "utf-8");
+          fromCache = true;
+          cachedSlices.push(`${s.type ?? "all"}/${s.sort}`);
+          console.warn(
+            `[gsc] ⚠️ 分片 ${s.type ?? "all"}/${s.sort} 实时拉取失败(${msg}) ⇒ ` +
+              `回退读缓存 ${basename(file)}（数据非实时，见 note）`
+          );
+        } catch {
+          console.warn(`[gsc] 分片失败 ${s.type ?? "all"}/${s.sort}: ${msg}（缓存也不可读）`);
+          continue;
+        }
+      } else {
+        console.warn(
+          `[gsc] 分片失败 ${s.type ?? "all"}/${s.sort}: ${msg}` +
+            (cacheFromEnv ? "" : `（可用 GROWTH_CACHE_DIR 预灌缓存绕过本机网络阻断）`)
+        );
+        continue;
+      }
+    }
+
+    try {
+      const data = JSON.parse(text as string);
       const list: unknown[] = Array.isArray(data?.queries) ? data.queries : [];
+      const snaps = (data as { snapshots?: unknown })?.snapshots;
+      if (Array.isArray(snaps)) {
+        for (const s of snaps) if (typeof s === "string") snapSeen.add(s);
+      }
       for (const q of list as GscQuery[]) {
         if (!q?.query) continue;
         const key = q.query.toLowerCase();
@@ -156,7 +204,7 @@ async function fetchGscQueries(days = 28): Promise<{
       ok++;
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
-      console.warn(`[gsc] 分片失败 ${s.type ?? "all"}/${s.sort}: ${msg}`);
+      console.warn(`[gsc] 分片 ${s.type ?? "all"}/${s.sort} JSON 解析失败: ${msg}`);
     }
   }
 
@@ -164,6 +212,15 @@ async function fetchGscQueries(days = 28): Promise<{
   // 🔴 reachable 必须是「至少有分片真的带回了数据」，否则上层会以为数据源健康。
   const parts: string[] = [`${ok}/${slices.length} 分片有效`];
   if (emptySlices.length > 0) parts.push(`${emptySlices.length} 个空分片: ${emptySlices.join(", ")}`);
+  // 🔴 DEBT-28：用了缓存必须显式说出来，且给出缓存里最新的快照日期，
+  //   否则「非实时数据」会被当成「实时数据」用，静默换源。
+  if (cachedSlices.length > 0) {
+    const snapDates = [...snapSeen].sort();
+    parts.push(
+      `${cachedSlices.length} 个分片走缓存回退(${cachedSlices.join(", ")})` +
+        ` ⇒ 数据非实时${snapDates.length > 0 ? `，缓存最新快照 ${snapDates[snapDates.length - 1]}` : ""}`
+    );
+  }
   return {
     rows,
     reachable: ok > 0,
@@ -644,8 +701,10 @@ async function probeSources(): Promise<void> {
   const gsc = await fetchGscQueries(28);
   console.log(`[src] GSC（主源，走Vercel）: ${gsc.reachable ? "OK" : "FAIL"} — ${gsc.note}，${gsc.rows.length} 条去重查询`);
   for (const seed of ["png to jpg", "css minifier"]) {
-    const r = await fetchSuggestionsDetailed(seed);
-    console.log(`[src] Google Suggest "${seed}": ${r.source} n=${r.suggestions.length}${r.primaryError ? " err=" + r.primaryError : ""}`);
+    const r = await fetchSuggestionsForSeedsDetailed([seed]);
+    const one = r.get(seed);
+    if (!one) continue;
+    console.log(`[src] Google Suggest "${seed}": ${one.source} n=${one.suggestions.length}${one.primaryError ? " err=" + one.primaryError : ""}`);
   }
 }
 
@@ -682,15 +741,21 @@ async function main() {
   }
 
   // ── 辅源：Google Suggest 长尾 ──
+  // 🔴 2026-10-20（DEBT-29）：只拉**一轮**，来源与数据同生同死。
+  //   旧版拉两轮（先全部种子产 gaps，再对前 15 个种子重捞算 tally），
+  //   于是「15 个种子全部双源均失败」与「tally=google:13」能同时成立 ——
+  //   tally 测的不是产出 gaps 的那批请求，等于给「静默换源」发了假许可证。
   const seeds = deriveSeeds(SEED_LIMIT);
   console.log(`[gap] Suggest 种子 ${seeds.length} 个…`);
-  const suggestMap = await fetchSuggestionsForSeeds(seeds, { lang: "en" });
+  const suggestDetailed = await fetchSuggestionsForSeedsDetailed(seeds, { lang: "en" });
+  const suggestMap = new Map<string, string[]>();
+  for (const [seed, r] of suggestDetailed) suggestMap.set(seed, r.suggestions);
 
-  const probe = seeds.slice(0, 15).map((s) => fetchSuggestionsDetailed(s));
-  const probed = await Promise.all(probe);
   const sourceTally: Record<SuggestSource, number> = { google: 0, bing: 0, none: 0 };
-  for (const r of probed) sourceTally[r.source]++;
-  console.log(`[gap] Suggest 源抽样（15）：${JSON.stringify(sourceTally)}`);
+  for (const r of suggestDetailed.values()) sourceTally[r.source]++;
+  console.log(
+    `[gap] Suggest 源（全部 ${seeds.length} 个种子，与产 gaps 同一轮）：${JSON.stringify(sourceTally)}`
+  );
   if (sourceTally.google === 0) {
     console.warn(
       "[gap] ⚠️ Google Suggest 本轮完全不可达（IP 长封），长尾部分来自 Bing 回退 —— " +

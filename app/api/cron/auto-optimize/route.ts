@@ -24,6 +24,7 @@ import {
 } from "@/lib/seo/optimizer";
 import { PAGE_META_BASE } from "@/lib/seo/page-meta";
 import { saveOverrides, deleteOverrides } from "@/lib/seo/page-meta-db";
+import { revalidatePath } from "next/cache";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -115,14 +116,32 @@ export async function GET(req: NextRequest) {
   try {
     const overrides = buildOverridesFromEdits(plan.edits);
     const saved = await saveOverrides(overrides);
+    // 🔴🔴 2026-10-20（DEBT-30）：写完必须主动失效路径缓存，否则「写库=生效」不成立。
+    //   详见 app/api/analytics/tune/route.ts 同名注释（完整故障链）。
+    //   原 note 写「静态 metadata 页面在下次部署构建时生效」——那是**过时的**说法：
+    //   页面早已加 revalidate=300 进入 ISR，不需要重新部署，只需要让缓存重建。
+    const revalidated: string[] = [];
+    const revalidateErrors: Array<{ route: string; error: string }> = [];
+    for (const o of overrides) {
+      try {
+        revalidatePath(o.route);
+        revalidated.push(o.route);
+      } catch (e: any) {
+        revalidateErrors.push({ route: o.route, error: e?.message || String(e) });
+      }
+    }
     return NextResponse.json({
       ...summary,
       overrides: overrides.length,
       savedToDb: saved,
       cleanedOverrides,
       committed: saved > 0,
+      revalidated,
+      revalidateErrors,
       note: saved > 0
-        ? `已写入数据库覆盖层(${saved} 条,清理护栏覆盖 ${cleanedOverrides} 条)。注:静态 metadata 页面在下次部署构建时生效。`
+        ? `已写入数据库覆盖层(${saved} 条,清理护栏覆盖 ${cleanedOverrides} 条)，` +
+          `已失效缓存 ${revalidated.length} 条路径。` +
+          (revalidateErrors.length ? `⚠️ ${revalidateErrors.length} 条缓存失效失败，线上可能仍是旧标题。` : "")
         : `无新覆盖写入(清理护栏覆盖 ${cleanedOverrides} 条)。`,
     });
   } catch (e: any) {

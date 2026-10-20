@@ -41,28 +41,53 @@ jobs:
       HOSTS: "craftisle-app.vercel.app craftisle-app-yysam123456-7242s-projects.vercel.app craftisle.com"
 
     steps:
+      # 🔴🔴 2026-10-20（DEBT-27）：**必须先 checkout + 装依赖，再跑任何 npm step。**
+      #   10-16 加的「数据门禁」直接跑 `npm run validate:data`，但这个 job 从来没有
+      #   checkout / setup-node / npm ci ⇒ 运行器里连 package.json 都没有，
+      #   npm 直接 exit 127。而 `--silent` 把「command not found」吞掉，
+      #   else 分支于是打印「JSON 数据文件损坏」——**一句完全错误的归因**。
+      #   结果 GH Actions #26~#29（10-16~10-19）连续 4 天 failed，
+      #   GSC 拉取自此再没执行过，管道静默断 4 天。
+      #   判据：失败运行 6–9s（无 checkout 秒退）vs 成功运行 12–14s（只跑 curl）。
+      #   ⇒ 给这个 workflow 加任何 npm step 前，先确认下面三步存在。
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 安装依赖（npm ci）
+        run: npm ci
+
       # 🔴 2026-10-16（DEBT-24）：数据门禁。
       #   validate:data 与 audit:pages 两个 script 一直存在，但此前**没有任何 workflow
       #   引用它们** —— data-io.mjs 的 findInvalidJsonFiles 注释写着「供 CI 门禁使用」，
       #   防线代码存在却从未运行。2026-09-22 那次 6.2MB 文件写坏导致管道静默死 5 周，
       #   就是因为这条门禁没接。
       #   放在最前面：坏数据入库后才发现已经晚了。
+      #   🔴 2026-10-20（DEBT-27）：**去掉 `--silent`**。
+      #   `--silent` 会把 npm 自己的错误（如 exit 127 / ENOENT package.json）一并吞掉，
+      #   于是「门禁根本没跑起来」会被伪装成「数据文件损坏」——归因完全错，
+      #   而且看起来像数据问题，会把排查引向错误方向。保留原始 stderr。
       - name: 数据门禁（JSON 合法性 + 页面四方对齐）
         run: |
           set -uo pipefail
           echo "── validate:data ──"
-          if npm run --silent validate:data; then
+          if npm run validate:data; then
             echo "✅ JSON 全部合法"
           else
-            echo "::error::JSON 数据文件损坏（管道会静默死在读侧）—— 详见上方路径"
+            echo "::error::数据门禁执行失败 —— 先看上方 npm 原始报错判断真因（缺依赖/脚本报错/JSON 损坏都有可能，勿默认是数据损坏）"
             exit 1
           fi
           echo ""
           echo "── audit:pages ──"
-          if npm run --silent audit:pages; then
+          if npm run audit:pages; then
             echo "✅ 页面四方对齐无 P0"
           else
-            echo "::error::页面审计有 P0（toolMeta / loader / 路由 / sitemap 不一致）"
+            echo "::error::数据门禁执行失败 —— 先看上方 npm 原始报错判断真因（缺依赖/脚本报错/页面审计 P0 都有可能）"
             exit 1
           fi
 

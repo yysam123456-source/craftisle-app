@@ -238,9 +238,23 @@ async function main() {
       .filter((n) => Number.isFinite(n));
     return ts.length > 0 ? new Date(Math.max(...ts)) : null;
   })();
-  const dataAgeDays = latestSnapshot
+  // 🔴🔴 2026-10-20（DEBT-13 重开）：这两个量**不是一回事**，旧版把它们混成了一个。
+  //
+  //   dataStalenessDays = 今天 − 最新快照   → 数据有多旧（新鲜度，全局一个值）
+  //   coverageDays      = 最新快照 − 动作日期 → 这个动作被多长的数据覆盖（每条各自算）
+  //
+  //   旧版只算了前者，却拿它跟 readbackDays 比 ⇒ **数据越新，越不给结论**：
+  //     10-20 早上快照 10-12（陈旧 8 天）→ 判「可判定 20 条」
+  //     补拉后快照 10-19（陈旧 1 天）  → 判「可判定 0 条、还差 6 天」
+  //   同一批动作，数据变新后结论反而全消失。这在方向上是反的。
+  //
+  //   正确判据：**快照日期 ≥ 动作日期 + readbackDays**，即 coverageDays >= window。
+  //   10-16 那次只把「日历」换成「陈旧度」，判据的主体没变，所以 DEBT-13 并未真修好。
+  const dataStalenessDays = latestSnapshot
     ? Math.max(0, Math.floor((today.getTime() - latestSnapshot.getTime()) / 86_400_000))
     : -1;
+  // 兼容旧字段名（报告里叫 dataAgeDays 的地方继续有值），语义改为「陈旧度」
+  const dataAgeDays = dataStalenessDays;
   // 🔴 快照拿不到时必须 fail loud：静默退回日历 = 又一次「形式指标代替事实判据」
   if (!latestSnapshot) {
     console.warn(
@@ -262,17 +276,21 @@ async function main() {
     );
 
     // 台账里的意图词，用 GSC 的曝光匹配 —— 命中即说明该动作已开始起效
-    // （latestSnapshot / dataAgeDays 已在函数作用域算出，见上方 DEBT-13）
+    // （latestSnapshot 已在函数作用域算出，见上方 DEBT-13）
     for (const a of ledger.actions) {
       const days = daysBetween(String(a.date), today);
       const windows = (a.readbackDays as number[]) ?? [];
-      // 用数据年龄判到期；快照缺失时一律视为未到期（data_not_mature）
-      const due = dataAgeDays >= 0 ? windows.filter((d) => dataAgeDays >= d) : [];
+      // 🔴 2026-10-20（DEBT-13 重开）：到期判据用**该动作被数据覆盖的天数**，
+      //   不是全局陈旧度。快照缺失时一律视为未到期（data_not_mature）。
+      const coverageDays = latestSnapshot
+        ? Math.max(0, Math.floor((latestSnapshot.getTime() - new Date(String(a.date) + "T00:00:00Z").getTime()) / 86_400_000))
+        : -1;
+      const due = coverageDays >= 0 ? windows.filter((d) => coverageDays >= d) : [];
       // 🔴 只有「最早的窗口都还没到」才算未成熟。
-      //   反例（我第一版的bug）：用 windows.some(d => dataAgeDays < d)，
-      //   则窗口 [7,14,28,56] 在 dataAge=8 时仍被判未成熟 ⇒
+      //   反例（我第一版的bug）：用 windows.some(d => coverageDays < d)，
+      //   则窗口 [7,14,28,56] 在 coverage=8 时仍被判未成熟 ⇒
       //   明明 7 天窗口已可判定，却被埋掉（实测 28 条里只有 1 条能判定）。
-      const notMature = dataAgeDays < 0 || due.length === 0;
+      const notMature = coverageDays < 0 || due.length === 0;
       const terms = (a.intentTerms as string[]) ?? [];
       // 🔴 匹配收紧（旧版是无序子串全包含：`stem.every(w => q.includes(w))`
       //   既不管词序也不去停用词，会同时产生假阳与假阴）。
@@ -310,7 +328,10 @@ async function main() {
         target: a.target,
         title: a.title,
         ageDays: days,
+        // 🔴 2026-10-20（DEBT-13 重开）：dataAgeDays 是全局陈旧度（数据有多旧），
+        //   coverageDays 才是这条动作被数据覆盖了多久。判到期只看后者。
         dataAgeDays,
+        coverageDays,
         latestSnapshot: latestSnapshot ? latestSnapshot.toISOString().slice(0, 10) : null,
         baseline: a.baseline,
         matchedQueries: hits.map((h) => ({
@@ -326,14 +347,16 @@ async function main() {
           ? "data_not_mature"
           : hits.length > 0
             ? "promote_candidate"
-            : dataAgeDays >= 56
+            : coverageDays >= 56
               ? "unproven_or_dead"
-              : windows.some((d) => dataAgeDays >= d)
+              : windows.some((d) => coverageDays >= d)
                 ? "keep_testing"
                 : "too_early",
+        // GSC 是周级快照 ⇒ 还差几天要按「还需几个周快照」说，不能按自然天。
+        // 快照缺失时 daysUntilMature 为 null（数据年龄未知，不是「还差无限天」）。
         daysUntilMature:
-          notMature && dataAgeDays >= 0
-            ? Math.min(...windows.filter((d) => dataAgeDays < d)) - dataAgeDays
+          notMature && coverageDays >= 0
+            ? Math.min(...windows.filter((d) => coverageDays < d)) - coverageDays
             : null,
         caveats: a.caveats,
         nextPatch: a.nextPatch,
@@ -366,6 +389,7 @@ async function main() {
             at: new Date().toISOString().slice(0, 10),
             decision: r.decision,
             dataAgeDays: r.dataAgeDays,
+            coverageDays: r.coverageDays,
             candidateImpressions: r.candidateImpressions,
             matchedQueryCount: (r.matchedQueries as unknown[]).length,
           };
@@ -402,7 +426,7 @@ async function main() {
   console.log(
     `[growth-review] 台账动作 ${readback.length} 条 · 可判定 ${ready.length} 条 · 数据未成熟 ${notMature.length} 条` +
       (latestSnapshot
-        ? `（最新快照 ${latestSnapshot.toISOString().slice(0, 10)}，数据年龄 ${dataAgeDays} 天）`
+        ? `（最新快照 ${latestSnapshot.toISOString().slice(0, 10)}；数据陈旧 ${dataAgeDays} 天）`
         : `（⚠️ 无快照，本次不给到期结论）`)
   );
   if (notMature.length > 0) {
@@ -414,8 +438,13 @@ async function main() {
       .map((r) => r.daysUntilMature)
       .filter((d): d is number => typeof d === "number" && Number.isFinite(d));
     if (known.length > 0) {
+      // GSC 是周级快照 ⇒ 「还差 N 天」实际是「还需 ⌈N/7⌉ 个周快照」，两个都打印，
+      // 否则读者会按自然日去等（DEBT-13 的原始困惑就是周快照被当成日级数据）。
+      const needDays = Math.min(...known);
+      const needSnaps = Math.ceil(needDays / 7);
       console.log(
-        `  · ${notMature.length} 条等数据成熟，最快还差 ${Math.min(...known)} 天数据（不是日历天）`
+        `  · ${notMature.length} 条等数据成熟，最快还差 ${needDays} 天覆盖` +
+          `（≈ ${needSnaps} 个周快照，不是 ${needDays} 个自然日）`
       );
     } else {
       console.log(
@@ -425,7 +454,7 @@ async function main() {
   }
   for (const r of ready) {
     console.log(
-      `  [${r.decision}] ${r.target} (数据年龄 ${r.dataAgeDays}d) 候选曝光=${r.candidateImpressions} 命中词=${(r.matchedQueries as unknown[]).length}`
+      `  [${r.decision}] ${r.target} (覆盖 ${r.coverageDays}d / 陈旧 ${r.dataAgeDays}d) 候选曝光=${r.candidateImpressions} 命中词=${(r.matchedQueries as unknown[]).length}`
     );
   }
 

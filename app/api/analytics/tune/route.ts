@@ -17,6 +17,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { fetchGscPerformance, isGscConfigured } from "@/lib/seo/gsc-client";
 import { analyzeTopicalGaps, QueryPageRow } from "@/lib/seo/topical-gaps";
 import {
@@ -41,14 +42,28 @@ async function diagnoseOverrides() {
   const hasDb = !!process.env.DATABASE_URL;
   if (!hasDb) return { hasDb: false, note: "DATABASE_URL 缺失 ⇒ 读侧必然为空" };
   try {
-    const { refreshOverrides, getOverride } = await import("@/lib/seo/page-meta-db");
+    const { refreshOverrides, getOverride, getOverrideAsync, lastLoadError } = await import(
+      "@/lib/seo/page-meta-db"
+    );
     await refreshOverrides();
     const probe = getOverride("/tools/handwriting-animation");
+    // 🔴 2026-10-20：必须用 **async 版**再探一次。
+    //   页面（generateMetadata）走 getOverrideAsync，诊断却只探同步版 ——
+    //   两者冷缓存下行为不同（同步版首次必 undefined）。
+    //   只探同步版会让人误判「页面读不到覆盖」，其实页面读得到。
+    const probeAsync = await getOverrideAsync("/tools/handwriting-animation");
     return {
       hasDb: true,
       probeRoute: "/tools/handwriting-animation",
       probeFound: !!probe,
       probeTitle: probe?.title ?? null,
+      // 页面实际使用的读法（async）的结果 —— 这才是页面的真实读侧状态
+      probeAsyncFound: !!probeAsync,
+      probeAsyncTitle: probeAsync?.title ?? null,
+      // 🔴 上一次覆盖层加载失败的原因。null = 上次成功。
+      //   之前该字段存在但从未对外暴露 ⇒ DB 读失败时外部完全看不见，
+      //   症状与「没写进去」一模一样，只能靠猜。
+      lastLoadError: lastLoadError ?? null,
       // 直查 SQL，绕开缓存 —— 缓存可能是旧的
       sqlRows: await (async () => {
         try {
@@ -65,6 +80,36 @@ async function diagnoseOverrides() {
   } catch (e: any) {
     return { hasDb: true, error: e?.message || String(e) };
   }
+}
+
+/**
+ * 🔴 2026-10-20（DEBT-30）：手动失效已写入覆盖的路径缓存。
+ *
+ * 为什么需要：写入覆盖层只是改 Postgres，页面 HTML 仍被 Vercel 的 ISR 缓存住。
+ * 自动流程已加 revalidatePath，但当写入发生在**旧版本代码**（尚未部署 revalidatePath
+ * 的那一次）时，缓存不会自动失效，只能手动补一次。
+ * 这条通道也用于排查：立即让线上反映覆盖层，不必等 5 分钟窗口。
+ */
+async function revalidateOverrideRoutes(): Promise<{ revalidated: string[]; errors: any[] }> {
+  const revalidated: string[] = [];
+  const errors: any[] = [];
+  try {
+    const { prisma } = await import("@/lib/db");
+    const rows = (await prisma.$queryRawUnsafe<Array<{ route: string }>>(
+      "SELECT route FROM page_meta_override"
+    )) as Array<{ route: string }>;
+    for (const r of rows) {
+      try {
+        revalidatePath(r.route);
+        revalidated.push(r.route);
+      } catch (e: any) {
+        errors.push({ route: r.route, error: e?.message || String(e) });
+      }
+    }
+  } catch (e: any) {
+    errors.push({ route: "*", error: e?.message || String(e) });
+  }
+  return { revalidated, errors };
 }
 
 function isAuthorized(req: NextRequest): boolean {
@@ -215,6 +260,33 @@ export async function POST(req: NextRequest) {
 
   try {
     const saved = await saveOverrides(overrides);
+    // 🔴🔴 2026-10-20（DEBT-30）：写完必须**主动失效路径缓存**。
+    //
+    // 事实链：2026-10-20 实测 auto-tune apply 返回 savedToDb=1、DB 直查 count=1、
+    // 生产进程内 getOverride() 也返回了新标题（probeFound=true），
+    // 但线上 /tools/handwriting-animation 的 <title> 30 分钟后仍是旧标题。
+    // ⇒ 写侧与读侧都没问题，**卡在第三层：页面 HTML 的 ISR 缓存没有失效**。
+    //
+    // 机制：revalidate=300 的页面，HTML 与 <head> 一起被 Vercel 缓存。
+    // 覆盖层写进 Postgres 不会自动让这份 HTML 重建 ⇒ 「零部署即时生效」是假的，
+    // 实际要等 5 分钟窗口 + 一次真实重建请求，且重建时机不可控。
+    //
+    // 解法：写完立刻 revalidatePath，把目标路径的缓存标记为待重建。
+    // 这样「写完即可见」才是真的，不依赖窗口。
+    //
+    // 为什么要包 try：revalidatePath 失败不能反过来让整个写入被判失败
+    // （DB 已经写进去了，报错会让调用方以为没写）。失败要**显式上报**，
+    // 不能静默 —— 静默就是「看起来成功但线上没变」的根源。
+    const revalidated: string[] = [];
+    const revalidateErrors: Array<{ route: string; error: string }> = [];
+    for (const o of overrides) {
+      try {
+        revalidatePath(o.route);
+        revalidated.push(o.route);
+      } catch (e: any) {
+        revalidateErrors.push({ route: o.route, error: e?.message || String(e) });
+      }
+    }
     return NextResponse.json({
       ok: true,
       savedToDb: saved,
@@ -222,7 +294,14 @@ export async function POST(req: NextRequest) {
       cleanedOverrides,
       rejected,
       savedRoutes: overrides.map((o) => o.route),
-      note: `已写入 ${saved} 条覆盖（清理护栏 ${cleanedOverrides} 条），页面零部署即时生效。`,
+      revalidated,
+      revalidateErrors,
+      note:
+        `已写入 ${saved} 条覆盖（清理护栏 ${cleanedOverrides} 条），` +
+        `已失效缓存 ${revalidated.length} 条路径。` +
+        (revalidateErrors.length
+          ? `⚠️ ${revalidateErrors.length} 条路径缓存失效失败，线上可能仍是旧标题。`
+          : ""),
     });
   } catch (e: any) {
     return NextResponse.json({ ok: false, commitError: e?.message || String(e), rejected }, { status: 500 });
@@ -232,6 +311,20 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // 🔴 2026-10-20（DEBT-30）：?revalidate=1 ⇒ 只做「失效已写入覆盖的路径缓存」，
+  //   不跑 GSC 拉取、不生成方案。用于：写入发生在旧版代码（无 revalidatePath）时补一刀，
+  //   或排查时立刻让线上反映覆盖层。
+  if (req.nextUrl.searchParams.get("revalidate") === "1") {
+    const r = await revalidateOverrideRoutes();
+    return NextResponse.json({
+      ok: true,
+      mode: "revalidate-only",
+      revalidated: r.revalidated,
+      errors: r.errors,
+      note: `已失效 ${r.revalidated.length} 条路径缓存（页面上一次请求会重建）。`,
+    });
   }
 
   const apply = req.nextUrl.searchParams.get("apply") === "1";
