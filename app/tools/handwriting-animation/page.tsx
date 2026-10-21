@@ -45,7 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
         ov ? "FOUND" : "MISS",
         "/tools/handwriting-animation",
         `db=${process.env.DATABASE_URL ? "y" : "n"}`,
-        `err=${(lastLoadError ?? "none").slice(0, 60)}`,
+        `err=${(lastLoadError ?? "none").slice(0, 600)}`,
         String(Date.now()),
       ].join("|"),
     },
