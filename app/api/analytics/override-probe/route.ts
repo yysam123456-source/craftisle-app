@@ -207,6 +207,37 @@ async function handle(req: NextRequest) {
     });
   }
 
+  // ── 模式 4：读页面侧诊断日志（DEBT-33）──
+  // 探针自己是 API 路由，它读到覆盖 ≠ 页面函数能读到。
+  // 页面每次 refreshOverrides() 的成败都会写进 seo_diag_log，
+  // 这里只读不写，把「页面那一侧」的真实读侧状态暴露出来。
+  if (req.nextUrl.searchParams.get("diag") === "1") {
+    try {
+      const { getDiagLog } = await import("@/lib/seo/page-meta-db");
+      const rows = await getDiagLog(30);
+      return NextResponse.json({
+        ok: true,
+        mode: "diag-log",
+        count: rows.length,
+        rows: rows.map((r) => ({
+          id: r.id,
+          ts: r.ts,
+          kind: r.kind,
+          instance: r.instance,
+          region: r.region,
+          rows: r.rows,
+          error: r.error,
+          detail: r.detail,
+        })),
+        note:
+          "load-ok = 页面侧那次加载成功（rows=加载到的覆盖行数）；" +
+          "load-fail = 页面侧加载失败（error=真实原因，此前只能 console.error 看不到）。",
+      });
+    } catch (e: any) {
+      return NextResponse.json({ ok: false, mode: "diag-log", error: e?.message || String(e) }, { status: 500 });
+    }
+  }
+
   // ── 模式 3（默认）：读侧全量诊断 ──
   const hasDb = !!process.env.DATABASE_URL;
   if (!hasDb) {

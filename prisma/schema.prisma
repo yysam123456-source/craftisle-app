@@ -364,3 +364,27 @@ model PageMetaOverride {
   @@index([provenance])
   @@map("page_meta_override")
 }
+
+/// 覆盖层读侧诊断日志（DEBT-33）
+///
+/// 背景：2026-10-21 实测「写侧/读侧探针/ai-briefing 三层全绿，但线上 <title> 不变」。
+///   探针端点是 API 路由，页面是另一类函数 —— 两者对 DB 的读取结果可能不同，
+///   而页面里 refreshOverrides() 的 catch 只 console.error（Vercel 日志没人看），
+///   外部完全看不见 ⇒ 根因只能靠猜。
+/// 这张表把「页面函数里那一次加载」的成败/行数/错误**写进 DB**，
+/// 让任何能读 DB 的人（override-probe ?diag=1）都能看到页面侧的真实读侧状态。
+/// 同样必须写进 schema（理由同 PageMetaOverride：db push 会 drop 孤儿表）。
+model SeoDiagLog {
+  id       Int      @id @default(autoincrement())
+  ts       DateTime @default(now()) @db.Timestamptz(6)
+  kind     String   @db.VarChar(32) // load-ok | load-fail
+  instance String?  @db.VarChar(64) // 模块级随机 id，区分函数实例
+  region   String?  @db.VarChar(32) // VERCEL_REGION
+  route    String?  @db.VarChar(256)
+  rows     Int? // 本次加载到的覆盖行数
+  error    String? // 失败时的错误信息（成功为 null）
+  detail   String?
+
+  @@index([ts])
+  @@map("seo_diag_log")
+}

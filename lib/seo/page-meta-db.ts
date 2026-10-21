@@ -26,11 +26,113 @@ export interface PageMetaOverride {
 }
 
 const TABLE = "page_meta_override";
+const DIAG_TABLE = "seo_diag_log";
 const TTL = 5 * 60 * 1000; // 5 分钟
 
 let overrideCache = new Map<string, PageMetaOverride>();
 let lastLoad = 0;
 let refreshPromise: Promise<void> | null = null;
+
+// ── DEBT-33：把「这一次加载」的成败写进 DB，让页面侧读侧状态对外可见 ──
+// 页面（/tools/*）与探针端点（/api/analytics/*）是两类不同的函数：
+// 探针读到覆盖 ≠ 页面能读到。此前页面里加载失败只 console.error，
+// Vercel 运行时日志没有出口 ⇒ 外部只能猜。现在成败都落库。
+const DIAG_INSTANCE =
+  typeof process !== "undefined" && process.env.VERCEL_REGION
+    ? `${process.env.VERCEL_REGION}-${Math.random().toString(36).slice(2, 8)}`
+    : `local-${Math.random().toString(36).slice(2, 8)}`;
+let lastDiagOkWrite = 0;
+
+async function writeDiag(
+  kind: "load-ok" | "load-fail",
+  rows: number | null,
+  error: string | null,
+  detail?: string
+): Promise<void> {
+  // 诊断自身失败绝不能影响主流程 —— 只 console.error，不往外抛。
+  const insert = () =>
+    prisma.$executeRawUnsafe(
+      `INSERT INTO ${DIAG_TABLE} (kind, instance, region, rows, error, detail)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      kind,
+      DIAG_INSTANCE,
+      process.env.VERCEL_REGION ?? null,
+      rows,
+      error,
+      detail ?? null
+    );
+  try {
+    await insert();
+  } catch (e: any) {
+    // 表还没建出来（schema push 未跑 / 被 drop 过）⇒ 自愈一次再写。
+    if (isMissingTableError(e)) {
+      try {
+        await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS ${DIAG_TABLE} (
+          id SERIAL PRIMARY KEY,
+          ts TIMESTAMPTZ NOT NULL DEFAULT now(),
+          kind VARCHAR(32) NOT NULL,
+          instance VARCHAR(64),
+          region VARCHAR(32),
+          rows INTEGER,
+          error TEXT,
+          detail TEXT
+        )`);
+        await insert();
+        return;
+      } catch (e2: any) {
+        console.error("[page-meta-db] 诊断日志自愈失败：", e2?.message || String(e2));
+        return;
+      }
+    }
+    console.error("[page-meta-db] 诊断日志写入失败（不影响主流程）：", e?.message || String(e));
+  }
+}
+
+/** 读诊断日志（供 override-probe ?diag=1 使用；只读，不写）。 */
+export async function getDiagLog(limit = 30): Promise<
+  Array<{
+    id: number;
+    ts: Date;
+    kind: string;
+    instance: string | null;
+    region: string | null;
+    rows: number | null;
+    error: string | null;
+    detail: string | null;
+  }>
+> {
+  try {
+    const rows = (await prisma.$queryRawUnsafe<
+      Array<{
+        id: number;
+        ts: Date;
+        kind: string;
+        instance: string | null;
+        region: string | null;
+        rows: number | null;
+        error: string | null;
+        detail: string | null;
+      }>
+    >(
+      `SELECT id, ts, kind, instance, region, rows, error, detail
+       FROM ${DIAG_TABLE} ORDER BY id DESC LIMIT $1`,
+      limit
+    )) as Array<{
+      id: number;
+      ts: Date;
+      kind: string;
+      instance: string | null;
+      region: string | null;
+      rows: number | null;
+      error: string | null;
+      detail: string | null;
+    }>;
+    return rows;
+  } catch (e: any) {
+    if (isMissingTableError(e)) return [];
+    throw e;
+  }
+}
 
 async function ensureTable(): Promise<void> {
   await prisma.$executeRawUnsafe(`CREATE TABLE IF NOT EXISTS ${TABLE} (
@@ -123,6 +225,11 @@ export async function refreshOverrides(): Promise<void> {
     overrideCache = m;
     lastLoad = Date.now();
     lastLoadError = null;
+    // 成功心跳：每个实例每 60s 最多一条，避免 176 个页面每次渲染都写一行。
+    if (Date.now() - lastDiagOkWrite > 60_000) {
+      lastDiagOkWrite = Date.now();
+      await writeDiag("load-ok", m.size, null);
+    }
   } catch (e: any) {
     // 失败安全：保留旧缓存（或空），页面回退静态注册表
     // 🔴 2026-10-15：这里必须把失败**记录下来并对外可见**。
@@ -130,6 +237,8 @@ export async function refreshOverrides(): Promise<void> {
     // 而日志在 Vercel 里没人看 ⇒ 排查时完全看不出 DB 读失败。
     lastLoadError = e?.message || String(e);
     console.error("[page-meta-db] 覆盖层加载失败，回退静态注册表：", lastLoadError);
+    // 🔴 DEBT-33：失败必须**无条件落库** —— 这就是页面侧读侧的唯一可见通道。
+    await writeDiag("load-fail", null, lastLoadError);
   }
 }
 
