@@ -213,6 +213,44 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  // ── 模式：删除覆盖（诊断清理 / 还原生产现场）──
+  // 2026-10-21（DEBT-33 验证）新增：定位根因时手动写过验证用覆盖，
+  // 验证结束后需要一条**有鉴权、有回显**的删除通道把生产表现状还原，
+  // 而不是留一条「绕过意图闸门写入」的覆盖在表里。
+  // 用法：POST ?apply=1&autotune=<secret>  body: {"delete":["/tools/xxx"]}
+  if (req.nextUrl.searchParams.get("delete") === "1") {
+    let delBody: { delete?: unknown };
+    try {
+      delBody = await req.json();
+    } catch {
+      return NextResponse.json({ error: "invalid JSON body" }, { status: 400 });
+    }
+    const routes = Array.isArray(delBody?.delete)
+      ? delBody.delete.filter((r): r is string => typeof r === "string" && r.startsWith("/"))
+      : [];
+    if (routes.length === 0) {
+      return NextResponse.json({ ok: false, error: "delete 数组为空或格式非法（只接受 / 开头的路由）" }, { status: 400 });
+    }
+    const { deleteOverrides } = await import("@/lib/seo/page-meta-db");
+    const deleted = await deleteOverrides(routes);
+    const revalidated: string[] = [];
+    for (const r of routes) {
+      try {
+        revalidatePath(r);
+        revalidated.push(r);
+      } catch (e: any) {
+        console.warn("[tune:POST] 删除后 revalidatePath 失败：", r, e?.message);
+      }
+    }
+    return NextResponse.json({
+      ok: true,
+      mode: "delete",
+      deleted,
+      revalidated,
+      note: `已删除 ${deleted} 条覆盖并失效 ${revalidated.length} 条路径缓存。`,
+    });
+  }
+
   let body: {
     edits?: Array<{
       route: string;
