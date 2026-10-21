@@ -77,13 +77,22 @@ function loadOptimizer(): {
     "\n" +
     extract("optimizeDescription") +
     "\n" +
-    extract("titleCase");
+    extract("titleCase") +
+    "\n" +
+    // 🔴 DEBT-43：optimizeTitle 的身份词保护用到 stemWord，必须一起抽出来，
+    // 否则切片出来的函数体引用未定义标识符（运行时 ReferenceError）。
+    extract("stemWord");
   clean = clean.replace(/^export function /gm, "function ");
   clean = clean.replace(/current: string/g, "current");
   clean = clean.replace(/query: string/g, "query");
   clean = clean.replace(/siteName: string/g, "siteName");
   clean = clean.replace(/\(s: string\)/g, "(s)");
   clean = clean.replace(/\): string \{/g, ") {");
+  // 🔴 DEBT-43：optimizer.ts 里新增的箭头函数参数标注（如 `(w: string) =>`）
+  // 也要剥 —— 上面的规则只覆盖既有形态，漏一种 new Function 就拿到 TS 语法
+  // 直接 SyntaxError（实测：加身份词保护后 auto-tune 起手就崩）。
+  // 单参数 string 标注一次性剥掉；多参数/其他类型目前 optimizer.ts 里没有。
+  clean = clean.replace(/\(([a-zA-Z_$][\w$]*)\s*:\s*string\)/g, "($1)");
 
   const ACRONYMS_SRC =
     "const ACRONYMS = new Set(['css','html','pdf','jpg','jpeg','png','svg','webp','avif','heic','bmp'," +
@@ -177,6 +186,10 @@ function validate(p: Proposal): string | null {
   // 只有核心名词落在 title 里，才是这个页真的在满足这个词。
   const titleWhy = titleGate(p.query, p.titleBefore);
   if (titleWhy) return titleWhy;
+
+  // 🔴🔴 DEBT-43（2026-10-21）：方向性闸门。
+  const dirWhy = directionGate(p.query, p.pageText, p.titleBefore);
+  if (dirWhy) return dirWhy;
 
   if (p.titleAfter === p.titleBefore && p.descAfter === p.descBefore) {
     return "算出来与原值相同，无需写入";
@@ -279,6 +292,37 @@ function titleGate(query: string, title: string): string | null {
   const inTitle = keyNouns.filter((w) => tt.has(w));
   if (inTitle.length === 0) {
     return `title 级错配：关键名词 ${keyNouns.join("/")} 一个都不在页面标题「${title}」里`;
+  }
+  return null;
+}
+
+/**
+ * 🔴🔴 DEBT-43（2026-10-21）：**方向性闸门**。
+ *
+ * 意图闸门与 title 闸门查的都是「词是否存在」，查不了「方向是否相反」——
+ * 实测 "time to seconds"（imp=1 pos=48）两道闸门全过（time/second 都在页面上），
+ * 但 /tools/seconds-to-time 是单向「秒 → 时分秒」工具，查询是反向。
+ * 若放行，optimizeTitle 会把标题改成「Time To Seconds — Online Tool」：
+ * 词还是那两个词，宣称反了 —— **写入即虚假宣称，比不写更糟**。
+ *
+ * 判据：查询含 "A to B" / "A into B" 方向结构时，页面主张
+ * （title + desc + howToUse + seoKeywords）必须出现**同向**的 A→B；
+ * 只出现反向 B→A ⇒ 拦下。两个方向都没明说 ⇒ 不拦（交给其他闸门与人工判断）。
+ * 宁可漏报：拦下只是不自动写入，人工仍可review后手动调。
+ */
+function directionGate(query: string, pageText: string, title: string): string | null {
+  const m = query.toLowerCase().match(/([a-z0-9]+)\s+(?:to|into)\s+([a-z0-9]+)/);
+  if (!m) return null;
+  const [, a, b] = m;
+  // 太短的词（单个字母/数字）没有方向语义，避免 "3 to 5" 之类误判
+  if (a === b || a.length < 2 || b.length < 2) return null;
+  const claims = `${pageText} ${title}`.toLowerCase();
+  const conn = "(?:to|into|->|→)";
+  const same = new RegExp(`\\b${a}\\s+${conn}\\s+${b}\\b`).test(claims);
+  if (same) return null;
+  const reverse = new RegExp(`\\b${b}\\s+${conn}\\s+${a}\\b`).test(claims);
+  if (reverse) {
+    return `方向错配：查询是 ${a}→${b}，页面只声称 ${b}→${a}（词相同、方向相反，写入即虚假宣称）`;
   }
   return null;
 }
@@ -389,6 +433,25 @@ async function main() {
     return;
   }
 
+  // 🔴 DEBT-43（2026-10-21）：曝光 ≤2 的候选默认**不自动写入**，转人工清单。
+  //   GSC 低曝光段抽样噪声占比高（1-2 曝光可能是一次偶然展示），
+  //   自动写它收益不定、风险（写错页/写错方向）却真实存在。
+  //   dry-run 仍完整展示，只是 apply 模式替你拦下来。
+  const writable = chosen.filter((p) => p.impressions > 2);
+  const deferred = chosen.filter((p) => p.impressions <= 2);
+  if (deferred.length) {
+    console.log("");
+    console.log("─── 曝光 ≤2，转人工清单（不自动写入）───");
+    for (const p of deferred) {
+      console.log(`  ${p.route}  imp=${p.impressions} pos=${p.position.toFixed(1)}  「${p.query}」`);
+    }
+  }
+  if (writable.length === 0) {
+    console.log("");
+    console.log("[auto-tune] 没有达到自动写入门槛的候选 —— 今日不调优（这是正常结果，不凑数）");
+    return;
+  }
+
   // ── 真写入 ──
   if (!existsSync(SECRET_FILE)) {
     console.error(`[auto-tune] 找不到 ${SECRET_FILE} —— 无法鉴权，拒绝写入`);
@@ -401,11 +464,11 @@ async function main() {
   }
 
   console.log("");
-  console.log(`[auto-tune] POST 写入 ${chosen.length} 条…`);
+  console.log(`[auto-tune] POST 写入 ${writable.length} 条…`);
   const url = `${API_BASE}/api/analytics/tune?apply=1&autotune=${encodeURIComponent(token)}`;
 
   const payload = {
-    edits: chosen.map((p) => ({
+    edits: writable.map((p) => ({
       route: p.route,
       // 只发改动的那一个字段，避免把未变的字段也写进覆盖层
       ...(p.titleAfter !== p.titleBefore ? { title: p.titleAfter } : {}),

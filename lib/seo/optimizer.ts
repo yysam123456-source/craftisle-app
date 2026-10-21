@@ -91,6 +91,15 @@ const TITLE_MAX = 60;
 const DESC_MAX = 160;
 
 /**
+ * 轻量词干：供身份词覆盖判定用（resizer→resiz、resize→resiz、minifier→minifi）。
+ * 只求「同一词族」，不追求语言学的正确性 —— 判错的方向是「放行」，
+ * 而放行等于回到无保护的旧行为，不会制造新的错配。
+ */
+function stemWord(w: string): string {
+  return w.toLowerCase().replace(/(ers|er|or|s)$/i, "").replace(/e$/i, "");
+}
+
+/**
  * 改写标题：把目标长尾词**并入**原标题，而不是简单前置。
  *
  * 🔴 2026-10-15 重写。旧实现是「前缀 + 原标题」，实测 8 个真实长尾词 **8/8 有问题**：
@@ -138,6 +147,36 @@ export function optimizeTitle(current: string, query: string, siteName: string):
   // 就丢掉头部（它是同一个意思），保留更有信息量的尾部。
   const pLower = phrase.toLowerCase();
   const pTokens = pLower.split(/\s+/).filter((w) => w.length > 2);
+
+  // 🔴 DEBT-43（2026-10-21）：**身份词保护**。
+  // 头段里的 converter/generator/maker/editor/viewer 这类词是页面身份
+  // （"这是什么工具"），不是与目标词重复。头段含身份词而目标词没覆盖它时，
+  // 丢头段就会把身份一起丢 ——
+  //   "Seconds to Time Converter Free — Online Tool" + "seconds to time format"
+  //   ⇒ "Seconds To Time Format — Online Tool"（Converter 没了）
+  // 此时不动标题（完整但未优化 > 被截断/被删身份），交给描述层承接该词。
+  const IDENTITY_RE =
+    /\b(converter|generator|maker|editor|viewer|resizer|compressor|downloader|uploader|checker|formatter|minifier|encoder|decoder|extractor|analyzer)\b/i;
+  const sepIdxForId = c.search(/ — | - |: /);
+  const headForId = sepIdxForId > 0 ? c.slice(0, sepIdxForId) : c;
+  const headIdentity = headForId.match(IDENTITY_RE)?.[0];
+  if (headIdentity) {
+    // 判据按词干+前缀比对：resize↔resizer、minify↔minifier、convert↔converter 算覆盖。
+    // （只比词干不够：resize 的词干是 resiz、minify 的词干是 minify，拼写形态不一致；
+    //   加「前 4 字符相同」兜底 —— 误放行只会回到「无保护」的旧行为，不会出新错。）
+    const idStem = stemWord(headIdentity);
+    const covered = pTokens.some((w) => {
+      const s = stemWord(w);
+      return (
+        s === idStem ||
+        s.startsWith(idStem) ||
+        idStem.startsWith(s) ||
+        s.slice(0, 4) === idStem.slice(0, 4)
+      );
+    });
+    if (!covered) return c;
+  }
+
   let tail = c;
   for (const sep of [" — ", " - ", ": "]) {
     const idx = c.indexOf(sep);
