@@ -45,19 +45,21 @@ let lastDiagOkWrite = 0;
 let lastDiagLookupWrite = 0;
 
 async function writeDiag(
-  kind: "load-ok" | "load-fail",
+  kind: "load-ok" | "load-fail" | "lookup",
   rows: number | null,
   error: string | null,
-  detail?: string
+  detail?: string,
+  route?: string
 ): Promise<void> {
   // 诊断自身失败绝不能影响主流程 —— 只 console.error，不往外抛。
   const insert = () =>
     prisma.$executeRawUnsafe(
-      `INSERT INTO ${DIAG_TABLE} (kind, instance, region, rows, error, detail)
-       VALUES ($1, $2, $3, $4, $5, $6)`,
+      `INSERT INTO ${DIAG_TABLE} (kind, instance, region, route, rows, error, detail)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       kind,
       DIAG_INSTANCE,
       process.env.VERCEL_REGION ?? null,
+      route ?? null,
       rows,
       error,
       detail ?? null
