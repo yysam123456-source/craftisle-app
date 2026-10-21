@@ -380,13 +380,25 @@ async function handleGet(req: NextRequest) {
   //   而 GET 就能触发，CI/浏览器/任何出网点都能用）。
   //   路由固定为 /tools/handwriting-animation（已有工具页，不会写幽灵覆盖）。
   //   探针标题是显式的探针文案，便于与真实优化区分。
+  // 🔴🔴 DEBT-36（2026-10-21）：探针写完自证后必须**原样恢复**生产内容。
+  //   旧版直接把固定文案 upsert 进生产表 ⇒ 真实覆盖被静默盖掉，
+  //   症状与「调优生效」无法区分（实测线上那条就是探针文案）。
   if (req.nextUrl.searchParams.get("seed") === "1") {
     const route = "/tools/handwriting-animation";
     const probeTitle = "Handwriting Text Animation — Create Animated Text Online";
     const probeDesc =
       "Turn any text into a smooth handwriting animation right in your browser. Choose a font, set the speed, and export a video — no sign-up, nothing uploaded.";
     try {
-      const { saveOverrides } = await import("@/lib/seo/page-meta-db");
+      const { saveOverrides, deleteOverrides } = await import("@/lib/seo/page-meta-db");
+      const { prisma } = await import("@/lib/db");
+      const beforeRows = (await prisma.$queryRawUnsafe<
+        Array<{ route: string; title: string | null; description: string | null; provenance: string; last_optimized: Date | null }>
+      >(
+        "SELECT route, title, description, provenance, last_optimized FROM page_meta_override WHERE route = $1",
+        route
+      )) as Array<{ route: string; title: string | null; description: string | null; provenance: string; last_optimized: Date | null }>;
+      const before = beforeRows[0] ?? null;
+
       const saved = await saveOverrides([
         {
           route,
@@ -405,11 +417,40 @@ async function handleGet(req: NextRequest) {
         revalidateError = e?.message || String(e);
       }
       // 写完立刻直查回读 —— 不读回就等于没自证
-      const { prisma } = await import("@/lib/db");
       const rows = (await prisma.$queryRawUnsafe<Array<{ route: string; title: string | null }>>(
         "SELECT route, title FROM page_meta_override WHERE route = $1",
         route
       )) as Array<{ route: string; title: string | null }>;
+
+      // ── 还原生产现场（DEBT-36）──
+      let restored: "previous" | "deleted" | "none" = "none";
+      let restoreError: string | null = null;
+      try {
+        if (before) {
+          await saveOverrides([
+            {
+              route: before.route,
+              title: before.title ?? undefined,
+              description: before.description ?? undefined,
+              provenance: (before.provenance as any) ?? "generated",
+              lastOptimized: before.last_optimized
+                ? before.last_optimized.toISOString()
+                : new Date().toISOString(),
+            },
+          ]);
+          restored = "previous";
+        } else {
+          await deleteOverrides([route]);
+          restored = "deleted";
+        }
+      } catch (e: any) {
+        restoreError = e?.message || String(e);
+      }
+      const afterRows = (await prisma.$queryRawUnsafe<Array<{ route: string; title: string | null }>>(
+        "SELECT route, title FROM page_meta_override WHERE route = $1",
+        route
+      )) as Array<{ route: string; title: string | null }>;
+
       return NextResponse.json({
         ok: true,
         mode: "seed-probe",
@@ -418,11 +459,26 @@ async function handleGet(req: NextRequest) {
         revalidateError,
         readback: { count: rows.length, title: rows[0]?.title ?? null },
         ok2: saved > 0 && rows.length === 1,
+        restore: {
+          action: restored,
+          error: restoreError,
+          hadBefore: !!before,
+          beforeTitle: before?.title ?? null,
+          afterTitle: afterRows[0]?.title ?? null,
+          afterCount: afterRows.length,
+        },
         note:
           `已写入探针覆盖并回读：${rows.length} 行。` +
           (saved > 0 && rows.length === 1
             ? " ✅ 写入与回读一致。"
-            : " ❌ 写入与回读不一致，请查表是否被 db push 删掉。"),
+            : " ❌ 写入与回读不一致，请查表是否被 db push 删掉。") +
+          (restoreError
+            ? ` ⚠️ 还原失败：${restoreError}（生产表现有探针文案，需人工处理）`
+            : restored === "previous"
+              ? " ✅ 已还原为探针写入前的生产内容。"
+              : restored === "deleted"
+                ? " ✅ 写入前无覆盖，已删除探针行。"
+                : ""),
       });
     } catch (e: any) {
       return NextResponse.json(

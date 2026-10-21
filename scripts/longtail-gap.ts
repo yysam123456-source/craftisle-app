@@ -42,6 +42,7 @@ import {
 } from "../lib/seo/trends-client";
 import { CONVERT_PAIRS } from "../lib/convert/pairs";
 import { toolMeta } from "../lib/tools";
+import { getCombinedMap, toSlug } from "../lib/alternatives";
 
 const OUT_DIR =
   process.env.TREND_OUT_DIR || resolve(process.cwd(), "..", ".workbuddy", "trends");
@@ -396,7 +397,7 @@ function deriveSeeds(limit: number): string[] {
 interface CorpusEntry {
   key: string;
   text: string;
-  kind: "tool" | "landing" | "pair";
+  kind: "tool" | "landing" | "pair" | "alternatives";
 }
 
 /**
@@ -546,6 +547,53 @@ function loadPairCorpus(): CorpusEntry[] {
   }));
 }
 
+/**
+ * 🔴🔴 DEBT-35（2026-10-21）：alternatives 簇此前**完全不在语料里**。
+ *
+ * 事实：87 个 /directory/alternatives/<slug> 页是全站唯一有真实曝光的一簇
+ * （28 天 239 条去重查询里，P4–20 的 12 条**全部**落在替代页簇），
+ * 但语料只含 tool/landing/pair 三类 219 页。
+ *
+ * 后果：任何提到某个付费工具名的查询都会被判成 gscUncovered「真缺口」。
+ * 实测 47/177（26%）是假缺口 —— 「已存在但不在语料里」比漏报更危险：
+ * 它会诱导去建一个重复页，而正确的动作本来只是给已有页调 meta。
+ *
+ * 修法：把这簇补进语料。文本只取「这页是什么」的声明字段
+ * （paidTool / tagline / description / whySwitch / seoKeywords / 替代品名），
+ * 与 tool/landing 的字段口径一致；不取 FAQ 长答案（模板化、噪声大）。
+ */
+function loadAlternativesCorpus(): CorpusEntry[] {
+  const out: CorpusEntry[] = [];
+  try {
+    const map = getCombinedMap();
+    for (const [paidTool, e] of Object.entries(map)) {
+      if (!paidTool) continue;
+      const text = stripCapabilityNoise(
+        [
+          paidTool,
+          e.tagline,
+          e.description,
+          ...(e.whySwitch ?? []),
+          ...(e.seoKeywords ?? []),
+          ...(e.alternatives ?? []).map((a) => a?.name).filter(Boolean),
+        ]
+          .filter(Boolean)
+          .join(" ")
+      );
+      if (!text.trim()) continue;
+      out.push({
+        key: `/directory/alternatives/${toSlug(paidTool)}`,
+        text,
+        kind: "alternatives",
+      });
+    }
+  } catch (e: any) {
+    // 语料源缺失不能让整条管道静默少一簇 —— 必须说出来
+    console.warn(`[gap] ⚠️ alternatives 语料加载失败（该簇缺席 ⇒ 假缺口风险）：${e?.message || String(e)}`);
+  }
+  return out;
+}
+
 // ─────────────────────────────────────────────────────────────
 // 逐词干比对
 // ─────────────────────────────────────────────────────────────
@@ -554,18 +602,29 @@ function loadPairCorpus(): CorpusEntry[] {
  * 🔴 free/online/tool 这类泛化修饰词必须停用。
  * 否则任意页面都会因为含这些词而"命中"泛主题词 —— 第一版产出
  * `/tools/file-viewer` 匹配 33 词就是纯噪声（靠的就是这几个词）。
+ *
+ * 🔴🔴 DEBT-37 附带修复（2026-10-21）：STOP 必须在**词干化之后**比对。
+ *   原表是原形（"free"/"generator"/"converter"），而 tokens() 里比对的是词干
+ *   （"fre"/"generat"/"convert"）⇒ 这些停用词**一个都没生效**。
+ *   实测后果：`free asana alternatives` 带着 "fre" 去匹配，
+ *   而语料文本被 stripCapabilityNoise 剥掉了 "free" ⇒ 永远缺一词 ⇒ 假缺口。
+ *   （这正是 MEMORY 里「语义锚定三个必做修正 ①」的同一类病，
+ *    当时只修了 ANCHOR_STOP，漏了 STOP。）
  */
-const STOP = new Set([
+const STOP_RAW = [
   "free", "online", "tool", "tools", "the", "for", "and", "to", "of", "a", "in",
   "best", "generator", "maker", "converter", "editor", "download", "app", "how",
   "with", "that", "you", "your", "from", "into", "like", "com", "www", "at", "is",
   "it", "be", "or", "on", "by", "as", "this", "my", "we", "no", "not", "use",
   "using", "without", "any", "all", "one", "can", "will", "make", "get",
-]);
+];
 
 function stem(w: string): string {
   return w.replace(/(ings|ing|ers|er|ors|or|ies|es|s)$/i, "").replace(/e$/, "");
 }
+
+/** 词干化后的停用词表 —— tokens() 直接用它比对。 */
+const STOP = new Set(STOP_RAW.map(stem));
 
 function tokens(s: string): Set<string> {
   return new Set(
@@ -598,15 +657,28 @@ interface Match {
  * 这个 bug 同时污染 ratio 与 score，是错配的总根源。
  */
 const ANCHOR_STOP_RAW = [
-  "free", "online", "tool", "version", "google", "microsoft", "software",
-  "workspace", "alternative", "alternatives", "project", "management", "schedule",
-  "suite", "gsuite", "app", "web", "site", "page",
+  "free", "online", "tool", "version", "software",
+  "alternative", "alternatives",
+  "project", "management", "schedule",
+  "app", "web", "site", "page",
   // 🔴 功能动词/泛化描述，不是主题词。不剔除时
   // "free project management software like ms project to create schedule"
   // 的锚会落在 like（df=21）⇒ 任何含 like 的页都被判命中 ——
   // 实测把替代簇的词错配到了 /tools/handwriting-animation。
   "like", "create", "make", "use", "want", "need", "get", "find",
   "convert", "change", "turn", "add", "remove", "check", "best", "list",
+  // 🔴🔴 DEBT-35 补（2026-10-21）：**不要把品牌词本身停用**。
+  //   原表里有 google/workspace/suite/gsuite/microsoft，初衷是防止
+  //   "google workspace alternatives free" 错配到不相干的工具页。
+  //   但实测这直接把替代簇自己的查询全判成 anchor=null ⇒ 永不匹配
+  //   ⇒ 假缺口（P17–20、有真实曝光的 google-workspace 簇 3 条全中）。
+  //   判别泛词不该靠词表，该靠 **df 上限 40**（googl df=20、workspac df=7、
+  //   suit df=8 都够稀有）；配上「全部实词必须命中」闸门，
+  //   品牌词当锚不会错配（id-photo 那种页压根不含 workspace）。
+  //   project/microsoft/management/schedule 保留停用：它们是跨品类泛词
+  //   （df=16 且遍布项目管理簇），当锚会把 "ms project alternative"
+  //   错配到 asana/trello 页 —— 而本站确实没有 MS Project 页，
+  //   那条查询留在 gscUncovered 是**正确**的真缺口。
 ];
 
 function anchorStop(): Set<string> {
@@ -664,7 +736,14 @@ function matchCorpus(
     let score = 0;
     for (const w of t) if (ct.has(w)) score++;
     const ratio = score / t.size;
-    if (score < 3 || ratio < 0.6) continue;
+    // 🔴🔴 DEBT-37（2026-10-21）：绝对门槛 `score < 3` 会**系统性杀掉短查询**。
+    //   注意上面还有一道「全部实词必须命中」的闸门（missing.length > 0 ⇒ continue），
+    //   所以能走到这里的 score 恒等于 t.size —— `score < 3` 等价于
+    //   「查询不足 3 个实词就永不匹配」。而簇内最大的词往往是 2 词
+    //   （asana alternative / zoom alternative），实测抽样 20 条里 8 条 ≤2 词
+    //   ⇒ 100% 漏报，全被写进 gscUncovered 假缺口。
+    //   修法：改成相对门槛 —— 有 3 个以上实词才要求 3 个，短查询按自身长度要求。
+    if (score < Math.min(3, t.size) || ratio < 0.6) continue;
 
     // 🔴 2026-10-16（DEBT-15 第三层）：**全部实词必须命中**。
     //   score>=3 && ratio>=0.6 单独看不够：查询越长分母越大，
@@ -714,12 +793,33 @@ async function main() {
     return;
   }
 
-  const corpus = [...loadToolCorpus(), ...loadLandingCorpus(), ...loadPairCorpus()];
+  const corpus = [
+    ...loadToolCorpus(),
+    ...loadLandingCorpus(),
+    ...loadPairCorpus(),
+    ...loadAlternativesCorpus(),
+  ];
   // 预构建文档频率表：pickAnchor 每词重算全站 tokens 会是 O(words×pages×len)，400K 字符下不可接受
   const df = buildDf(corpus);
   console.log(
     `[gap] 语料 ${corpus.length} 页 / ${corpus.reduce((n, c) => n + c.text.length, 0)} 字符`,
   );
+
+  // 调试通道：GAP_DEBUG_Q="free asana alternatives|ms project alternative"
+  // 打印每个查询的词干/锚/df/命中，用于定位「假缺口」为什么没匹配上。
+  if (process.env.GAP_DEBUG_Q) {
+    for (const q of process.env.GAP_DEBUG_Q.split("|").map((s) => s.trim()).filter(Boolean)) {
+      const toks = [...tokens(q)];
+      const anchor = pickAnchor(q, df);
+      const hits = matchCorpus(q, corpus, anchor, df);
+      const stop = anchorStop();
+      const dfs = toks.map((w) => `${w}=${df.get(w) ?? 0}${stop.has(w) ? "(anchorStop)" : ""}`);
+      console.log(
+        `[dbg] "${q}" tokens=${JSON.stringify(toks)} anchor=${anchor} hits=${JSON.stringify(hits.map((h) => h.key))}`
+      );
+      console.log(`[dbg]    df: ${dfs.join("  ")}`);
+    }
+  }
 
   // ── 主源：GSC ──
   const gsc = await fetchGscQueries(28);
@@ -825,6 +925,7 @@ async function main() {
       tool: corpus.filter((c) => c.kind === "tool").length,
       landing: corpus.filter((c) => c.kind === "landing").length,
       pair: corpus.filter((c) => c.kind === "pair").length,
+      alternatives: corpus.filter((c) => c.kind === "alternatives").length,
     },
     seedsUsed: seeds.length,
     uniqueSuggestTerms: all.size,

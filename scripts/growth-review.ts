@@ -315,9 +315,16 @@ async function main() {
           // 于是 `intellij community edition`（单空格直接相连）匹配不上。
           //   实测这条正则让 30 条台账动作**全部 0 命中**，回读「跑了但永远没结论」。
           //   正确形态：允许直接单空格 / 连字符 / 中间夹一个短连接词。
+          // 🔴🔴 DEBT-34（2026-10-21）：词干化砍掉尾 s 后，**尾部 \b 会把该词的
+          //   所有复数形态判死** —— "free asana alternatives" 词干成
+          //   "free asana alternative"，再要求 \b ⇒ 永远匹配不上
+          //   "free asana alternatives"（14 曝光 P19 被记成 0）。
+          //   同理 "class" 词干成 "clas" 也永远匹配不上。
+          //   修法：每个词干补一个可选 s（`s?`），单复数都认。
+          //   实测影响 19 条 intentTerm、3 条动作判定被改判。
           const re = new RegExp(
             `\\b${parts
-              .map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+              .map((w) => `${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}s?`)
               .join("(?:[\\s-]+\\w{1,3}[\\s-]+|[\\s-]+)?")}\\b`
           );
           return re.test(q);

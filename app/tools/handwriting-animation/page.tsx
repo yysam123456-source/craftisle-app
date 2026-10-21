@@ -32,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = ov?.title ?? String(meta.seoTitle || `${meta.title}`);
   const description = ov?.description ?? String(meta.seoDesc || meta.desc || "Free online tool");
 
+  // 🔴🔴 DEBT-33 临时探针（定位后必须删除）：语义同 app/tools/[tool]/page.tsx。
   return {
     title,
     description,
@@ -39,6 +40,9 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: { title, description, url, type: "website" as const, locale: "en-US" },
     twitter: { card: "summary_large_image" as const, title, description },
     alternates: { canonical: url },
+    other: {
+      "x-diag-md": `${ov ? "FOUND" : "MISS"}|/tools/handwriting-animation|${Date.now()}`,
+    },
   };
 }
 

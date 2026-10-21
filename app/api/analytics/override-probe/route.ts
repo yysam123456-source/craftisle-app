@@ -131,7 +131,21 @@ async function handle(req: NextRequest) {
   // ── 模式 1：写探针 + 立刻回读（端到端自证）──
   if (req.nextUrl.searchParams.get("seed") === "1") {
     try {
-      const { saveOverrides } = await import("@/lib/seo/page-meta-db");
+      const { saveOverrides, deleteOverrides } = await import("@/lib/seo/page-meta-db");
+      // 🔴🔴 DEBT-36（2026-10-21）：先读出原值，探针自证完成后**原样恢复**。
+      //   旧版直接把固定探针文案 upsert 进生产表 ⇒ 生产覆盖层的真实内容
+      //   被静默盖掉，症状是「线上标题变成探针文案」——
+      //   与「调优真的生效了」长得一模一样，且没有任何日志。
+      //   实测：2026-10-21 线上那条覆盖的 title 就是探针文案。
+      //   探针的职责是证明「写得进、读得回」，证明完必须把现场还原。
+      const beforeRows = (await prisma.$queryRawUnsafe<
+        Array<{ route: string; title: string | null; description: string | null; provenance: string; last_optimized: Date | null }>
+      >(
+        "SELECT route, title, description, provenance, last_optimized FROM page_meta_override WHERE route = $1",
+        PROBE_ROUTE,
+      )) as Array<{ route: string; title: string | null; description: string | null; provenance: string; last_optimized: Date | null }>;
+      const before = beforeRows[0] ?? null;
+
       const saved = await saveOverrides([
         {
           route: PROBE_ROUTE,
@@ -157,6 +171,36 @@ async function handle(req: NextRequest) {
         PROBE_ROUTE,
       )) as Array<{ route: string; title: string | null }>;
 
+      // ── 还原生产现场 ──
+      let restored: "previous" | "deleted" | "none" = "none";
+      let restoreError: string | null = null;
+      try {
+        if (before) {
+          await saveOverrides([
+            {
+              route: before.route,
+              title: before.title ?? undefined,
+              description: before.description ?? undefined,
+              provenance: (before.provenance as any) ?? "generated",
+              lastOptimized: before.last_optimized
+                ? before.last_optimized.toISOString()
+                : new Date().toISOString(),
+            },
+          ]);
+          restored = "previous";
+        } else {
+          await deleteOverrides([PROBE_ROUTE]);
+          restored = "deleted";
+        }
+      } catch (e: any) {
+        restoreError = e?.message || String(e);
+      }
+
+      const afterRows = (await prisma.$queryRawUnsafe<Array<{ route: string; title: string | null }>>(
+        "SELECT route, title FROM page_meta_override WHERE route = $1",
+        PROBE_ROUTE,
+      )) as Array<{ route: string; title: string | null }>;
+
       return NextResponse.json({
         ok: true,
         mode: "seed-probe",
@@ -165,11 +209,27 @@ async function handle(req: NextRequest) {
         revalidateError,
         readback: { count: rows.length, title: rows[0]?.title ?? null },
         consistent: saved > 0 && rows.length === 1,
+        // 还原结果：生产表现在应该回到探针写入之前的状态
+        restore: {
+          action: restored,
+          error: restoreError,
+          hadBefore: !!before,
+          beforeTitle: before?.title ?? null,
+          afterTitle: afterRows[0]?.title ?? null,
+          afterCount: afterRows.length,
+        },
         tableMeta: await readTableMeta(),
         note:
-          saved > 0 && rows.length === 1
+          (saved > 0 && rows.length === 1
             ? "✅ 写入与回读一致（表在、写入生效）。"
-            : "❌ 写入与回读不一致 —— 查表是否被 prisma db push 删掉。",
+            : "❌ 写入与回读不一致 —— 查表是否被 prisma db push 删掉。") +
+          (restoreError
+            ? ` ⚠️ 还原失败：${restoreError}（生产表现有探针文案，需人工处理）`
+            : restored === "previous"
+              ? " ✅ 已还原为探针写入前的生产内容。"
+              : restored === "deleted"
+                ? " ✅ 写入前无覆盖，已删除探针行，表现回到无覆盖状态。"
+                : ""),
       });
     } catch (e: any) {
       return NextResponse.json(

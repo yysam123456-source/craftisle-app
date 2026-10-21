@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   const title = ov?.title ?? String(meta.seoTitle || `${meta.title}`);
   const description = ov?.description ?? String(meta.seoDesc || meta.desc || "Free online tool");
 
-  return constructMetadata({
+  const md = constructMetadata({
     title,
     description,
     keywords: meta.seoKeywords,
@@ -69,6 +69,20 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     // ⇒ 此前 156 个走本模板的工具页既无 canonical，OG url 又全部指向首页。
     canonical: toolUrl(tool),
   });
+
+  // 🔴🔴 DEBT-33 临时探针（定位后必须删除）：
+  // 在 HTML 里留下「这次响应到底是不是新渲染 / 覆盖层读没读到」的物证。
+  //   - <meta name="x-diag-md"> 缺失      ⇒ 该响应不是新渲染（缓存拷贝），或 generateMetadata 没跑
+  //   - 值以 MISS 开头                  ⇒ generateMetadata 跑了，但覆盖层没读到（读侧故障）
+  //   - 值以 FOUND 开头                 ⇒ 覆盖层读到了（问题在 title 合并或更下游）
+  // 值里的时间戳用来判断这份 HTML 的渲染时刻，与 Age 头互相印证。
+  return {
+    ...md,
+    other: {
+      ...(md.other ?? {}),
+      "x-diag-md": `${ov ? "FOUND" : "MISS"}|${route}|${Date.now()}`,
+    },
+  };
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {
