@@ -42,6 +42,7 @@ const DIAG_INSTANCE =
     ? `${process.env.VERCEL_REGION}-${Math.random().toString(36).slice(2, 8)}`
     : `local-${Math.random().toString(36).slice(2, 8)}`;
 let lastDiagOkWrite = 0;
+let lastDiagLookupWrite = 0;
 
 async function writeDiag(
   kind: "load-ok" | "load-fail",
@@ -278,7 +279,23 @@ export function getOverride(route: string): PageMetaOverride | undefined {
  */
 export async function getOverrideAsync(route: string): Promise<PageMetaOverride | undefined> {
   await refreshOverrides();
-  return overrideCache.get(route);
+  const ov = overrideCache.get(route);
+  // 🔴🔴 DEBT-33 深挖：把「页面那一次查找」的结果也落库。
+  //   已知页面侧 refreshOverrides() 成功（load-ok rows=2），但线上 title 仍是基础值
+  //   ⇒ 只剩两种可能：查找键不中，或缓存键与页面请求的 route 不一致。
+  //   这条日志直接给出答案（route + 结果 + 缓存里实际的键）。
+  //   节流 10s/实例：/l/[slug] 等页面每次请求都会走这里，不节流会写爆。
+  if (Date.now() - lastDiagLookupWrite > 10_000) {
+    lastDiagLookupWrite = Date.now();
+    await writeDiag(
+      "lookup",
+      overrideCache.size,
+      null,
+      `route=${route} => ${ov ? `FOUND title=${ov.title ?? "<null>"}` : "NOT-FOUND"} | cacheKeys=${[...overrideCache.keys()].join(" , ")}`,
+      route
+    );
+  }
+  return ov;
 }
 
 /** 把优化结果写入 DB（幂等 upsert）。返回成功写入条数。 */
