@@ -140,7 +140,14 @@ const nextConfig = {
   },
 
   // Transpile ESM packages for webpack
-  transpilePackages: ["@prisma/client", "tegaki"],
+  // 🔴 2026-10-21（DEBT-33 根因）：@prisma/client 不能进 transpilePackages。
+  // 进了 transit 就意味着 webpack 把 Prisma 客户端**打进页面 bundle**，
+  // 而查询引擎 libquery_engine-*.so.node 是二进制、打包工具不会复制它
+  // ⇒ 页面函数运行时抛「could not locate the Query Engine for runtime
+  //   rhel-openssl-3.0.x」，被 page-meta-db 的 catch 静默吞掉。
+  // API 路由此前只是靠 outputFileTracingIncludes 的单独追踪才侥幸能读库。
+  // 正确做法：Prisma 走 node_modules 运行时加载（见上面 serverExternalPackages）。
+  transpilePackages: ["tegaki"],
 
   // Env vars required for build (Ghost CMS)
   env: {
