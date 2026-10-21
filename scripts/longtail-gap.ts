@@ -466,6 +466,33 @@ function stripCapabilityNoise(text: string): string {
   return out.replace(/\s+/g, " ").trim();
 }
 
+/**
+ * 🔴🔴 DEBT-41（2026-10-21）：**格式清单不是页面身份**。
+ *
+ * 实测：`/tools/file-viewer` 的 description 把支持格式全列了一遍
+ * （"…Images: Preview JPG, PNG, GIF, WEBP, BMP, TIFF, SVG, HEIC…"），
+ * 于是任何 "bmp to png converter" 类查询的实词（bmp/png）都能在该页找齐
+ * ⇒「全部实词必须命中」闸门被一份 **accept-list** 满足
+ * ⇒ 71 个转换词变体错配到 viewer 页（image-resize / image-base64 /
+ * png-to-svg 同类中招）。CAPABILITY_NOISE 只剥得掉 formats/files/viewer
+ * 这类泛词，剥不掉清单里的格式名本身 —— 而格式名在转换词查询里恰恰是实词。
+ *
+ * 修法（ledger 待办「把格式清单段标记为低权重／排除 accept 列表文本」的落地）：
+ * 把**连续 ≥2 个短 token（2–5 位字母数字，逗号/斜杠分隔）**的整段剥掉。
+ * 为什么降到 2：accept-list 最常见的写法就是两项 —— "JPG, PNG or WebP"、
+ * "(PNG, JPG)"、"SVG/PNG"。实测 /tools/image-resize 的 seoDesc/desc 正是
+ * 这个形态，阈值 3 时它照样拿着 40 个 png-to-jpg converter 变体。
+ * 文件扩展名天然短（pdf/docx/webp/stl/ico），品牌名天然长
+ * （Bilibili/Douyin/ProjectLibre/GanttProject/Trello 都 >5）⇒ 该形态只命中
+ * 格式清单；正常行文里没有 2 连短词逗号串，品牌列表也大多 ≥6 字符。
+ * 保守方向：误剥只会让页面少匹配（漏报），不会造出假匹配。
+ */
+const FORMAT_LIST_RE = /\b[A-Za-z0-9]{2,5}\b(?:\s*[,/]\s*\b[A-Za-z0-9]{2,5}\b){1,}/g;
+
+function stripFormatLists(text: string): string {
+  return text.replace(FORMAT_LIST_RE, " ").replace(/\s+/g, " ").trim();
+}
+
 /** 从一个对象字面量源码块里，按字段名精确抽取字符串/字符串数组值。 */
 function extractFields(block: string, fields: readonly string[]): string {
   const out: string[] = [];
@@ -493,8 +520,8 @@ function loadToolCorpus(): CorpusEntry[] {
     const id = ids[i - 1];
     if (!id) continue;
     // 🔴 不再抓「所有字符串」—— 那等于把 seoKeywords（1,566 条）灌进语料。
-    // 再叠一层能力泛述词剔除（见 CAPABILITY_NOISE）。
-    const text = stripCapabilityNoise(extractFields(blocks[i], IDENTITY_FIELDS));
+    // 再叠一层能力泛述词剔除（见 CAPABILITY_NOISE）+ 格式清单剔除（DEBT-41）。
+    const text = stripFormatLists(stripCapabilityNoise(extractFields(blocks[i], IDENTITY_FIELDS)));
     if (!text.trim()) continue;
     out.push({ key: `/tools/${id}`, text, kind: "tool" });
   }
@@ -511,7 +538,8 @@ function loadLandingCorpus(): CorpusEntry[] {
   while ((m = re.exec(src)) !== null) {
     // 同样的病：落地页数量少（29 页），全字符串抓取会让任何含 "alternativ"
     // 的词都命中它（实测 `free alternatives to logic pro` → /l/intellij-alternative）。
-    const text = stripCapabilityNoise(extractFields(m[0], ["title", "seoTitle", "description", "seoDesc", "tagline"]));
+    // + DEBT-41：格式清单段一并剥掉（落地页 desc 里也常列支持格式）。
+    const text = stripFormatLists(stripCapabilityNoise(extractFields(m[0], ["title", "seoTitle", "description", "seoDesc", "tagline"])));
     if (!text.trim()) continue;
     out.push({ key: `/l/${m[1]}`, text, kind: "landing" });
   }
@@ -538,11 +566,13 @@ function loadLandingCorpus(): CorpusEntry[] {
 function loadPairCorpus(): CorpusEntry[] {
   return CONVERT_PAIRS.map((pair) => ({
     key: `/c/${pair.slug}`,
-    text: [
+    // DEBT-41：对转页的 technicalNote/FAQ 里也可能出现格式清单段，一并剥掉。
+    // phrase/title（"bmp to png"）不是逗号串 ⇒ 主题词不受影响。
+    text: stripFormatLists([
       pair.phrase, pair.title, pair.description, ...pair.intro,
       ...pair.faqs.map((f) => `${f.question} ${f.answer}`),
       ...pair.whenToUse.do, ...pair.whenToUse.avoid, pair.technicalNote,
-    ].join(" "),
+    ].join(" ")),
     kind: "pair" as const,
   }));
 }
@@ -568,7 +598,7 @@ function loadAlternativesCorpus(): CorpusEntry[] {
     const map = getCombinedMap();
     for (const [paidTool, e] of Object.entries(map)) {
       if (!paidTool) continue;
-      const text = stripCapabilityNoise(
+      const text = stripFormatLists(stripCapabilityNoise(
         [
           paidTool,
           e.tagline,
@@ -579,7 +609,7 @@ function loadAlternativesCorpus(): CorpusEntry[] {
         ]
           .filter(Boolean)
           .join(" ")
-      );
+      ));
       if (!text.trim()) continue;
       out.push({
         key: `/directory/alternatives/${toSlug(paidTool)}`,
@@ -617,14 +647,45 @@ const STOP_RAW = [
   "with", "that", "you", "your", "from", "into", "like", "com", "www", "at", "is",
   "it", "be", "or", "on", "by", "as", "this", "my", "we", "no", "not", "use",
   "using", "without", "any", "all", "one", "can", "will", "make", "get",
+  // 🔴 DEBT-40（2026-10-21）："no longer free" 里的 long/longer 是**功能词**，
+  // 不是主题词。不剔它，"is intellij no longer free" 就要求页面必须出现
+  // "long" —— 而专门回答这个问题的 /l/intellij-alternative 并没有这个词。
+  "long",
+];
+
+/**
+ * 🔴 DEBT-40（2026-10-21）：**有主题意义的 2 字母缩写白名单**。
+ *
+ * `tokens()` 的长度门槛（>2）会把 ms/ai/pc/os 这类品牌与技术缩写整类吃掉。
+ * 实测代价："ms project alternative"（27 曝光）里唯一能把该查询钉到
+ * `/directory/alternatives/microsoft-project` 的就是 "ms" ——
+ * project/alternativ 都是 anchorStop 泛词，锚必然为 null ⇒ 永不匹配 ⇒ 假缺口。
+ * 而语料侧（该页 seoKeywords 明写 "ms project alternative"）一直有这个 token，
+ * 是**查询侧单方面**丢失了区分度。
+ *
+ * 为什么不放宽成「所有 ≥2 字母词都留」：vs/to/an/if 这类功能词会给查询
+ * **新增**页面必须满足的要求（"jpg vs png" 要求页面出现 vs，而
+ * /c/jpg-to-png 的正文并没有）⇒ 反而掉命中。宁可漏报不可错报：
+ * 白名单外的 2 字母词继续当噪声丢，名单只收**承载主题的缩写**。
+ */
+const SHORT_KEEP_RAW = [
+  "ms", "ai", "pc", "tv", "ui", "ux", "hr", "os", "ar", "vr", "hd",
+  "ip", "js", "ts", "qa", "bi", "3d", "4k", "2d", "8k",
 ];
 
 function stem(w: string): string {
-  return w.replace(/(ings|ing|ers|er|ors|or|ies|es|s)$/i, "").replace(/e$/, "");
+  const out = w.replace(/(ings|ing|ers|er|ors|or|ies|es|s)$/i, "").replace(/e$/, "");
+  // 🔴 DEBT-40：短词禁不起这套词干化 —— "ms"→""、"os"→"o"、"vs"→"v"。
+  // 缩写被词干器销毁后长度门槛再补一刀，查询侧与语料侧**同时**丢失该词。
+  // 规则：词干结果不足 2 字符就视为「这个词不该被词干化」，原样返回。
+  return out.length >= 2 ? out : w;
 }
 
 /** 词干化后的停用词表 —— tokens() 直接用它比对。 */
 const STOP = new Set(STOP_RAW.map(stem));
+
+/** 词干化后的缩写白名单 —— 同样按词干形态比对（pcs→pc、ais→ai）。 */
+const SHORT_KEEP = new Set(SHORT_KEEP_RAW.map(stem));
 
 function tokens(s: string): Set<string> {
   return new Set(
@@ -633,7 +694,9 @@ function tokens(s: string): Set<string> {
       .replace(/[^a-z0-9\s]/g, " ")
       .split(/\s+/)
       .map(stem)
-      .filter((w) => w.length > 2 && !STOP.has(w)),
+      // 🔴 DEBT-40：长度门槛从「>2」放宽为「>2 或在缩写白名单里」。
+      // 白名单外的 2 字母词仍当噪声丢（见 SHORT_KEEP_RAW 注释）。
+      .filter((w) => (w.length > 2 || SHORT_KEEP.has(w)) && !STOP.has(w)),
   );
 }
 
@@ -644,6 +707,21 @@ interface Match {
   total: number;
   /** 🔴 语义锚：查询里最稀有那个词是否真出现在该页 */
   anchorHit: boolean;
+  /** 🔴 DEBT-41：该页 URL 的最后一段实词是否全部被查询覆盖（专用承接页） */
+  keyCovered: boolean;
+}
+
+/**
+ * URL 是否就是这条查询的专用承接页：路径最后一段的实词全部出现在查询里。
+ *   /c/bmp-to-png      ↔ "bmp to png converter"   ✓
+ *   /directory/alternatives/asana ↔ "free asana alternatives" ✓
+ *   /tools/signature-maker ↔ "png to jpg converter" ✗（正文只是提了一嘴）
+ */
+function keyFullyCovered(key: string, queryToks: Set<string>): boolean {
+  const kt = tokens(key.split("/").pop() ?? "");
+  if (kt.size === 0) return false;
+  for (const w of kt) if (!queryToks.has(w)) return false;
+  return true;
 }
 
 /**
@@ -702,13 +780,22 @@ function pickAnchor(term: string, df: Map<string, number>): string | null {
   const sorted = t
     .map((w) => [w, df.get(w) ?? 0] as const)
     .sort((a, b) => a[1] - b[1]);
-  const [word, count] = sorted[0];
-  // 🔴 锚必须至少在一页出现（全站 0 页 = 拼写差异 / 词干过头，不是主题词）
-  if (count === 0) return null;
-  // 🔴 且必须够稀有：df 过大说明它仍是个泛词（like / create 这类），
-  // 用它当锚会匹配到几十个不相干的页。
-  if (count > 40) return null;
-  return word;
+  // 🔴 DEBT-40（2026-10-21）：df=0 的候选要**跳过**，不是判死整条查询。
+  //   旧逻辑取 sorted[0]（最稀有）后见 df=0 直接 return null ——
+  //   于是一条查询里只要含一个语料里没有的词（拼写差异 / 缩写 / 新词），
+  //   其余词再能精确钉到唯一一页也永不匹配。
+  //   精度不受影响：matchCorpus 的「全部实词必须命中」闸门会拦下任何
+  //   含 df=0 词的查询（没有任何页能含它）—— 锚侧的 df=0 检查本就是冗余的，
+  //   它唯一的作用就是把好查询一起判死。
+  for (const [word, count] of sorted) {
+    if (count === 0) continue; // 语料没有的词：不当锚，但别连坐其他词
+    // 🔴 且必须够稀有：df 过大说明它仍是个泛词（like / create 这类），
+    // 用它当锚会匹配到几十个不相干的页。
+    // （升序遍历 ⇒ 第一个非 0 即最小 df；它都 >40 说明全部 >40。）
+    if (count > 40) return null;
+    return word;
+  }
+  return null;
 }
 
 function matchCorpus(
@@ -718,7 +805,13 @@ function matchCorpus(
   df: Map<string, number>
 ): Match[] {
   const t = tokens(term);
-  if (t.size < 2) return [];
+  // 🔴 DEBT-40（2026-10-21）：单实词查询也要能匹配。
+  //   旧门槛 `t.size < 2` 把剔掉功能词后只剩一个主题词的查询一律判死 ——
+  //   "is intellij free" / "is intellij no longer free"（合计 38 曝光）全中，
+  //   而站内恰恰有 /l/intellij-alternative 这页专门回答它。
+  //   精度由锚的 df∈(0,40] 兜底：单词查询只有在该词足够稀有时才锚定，
+  //   泛词（pdf/tool/convert）df 超 40 ⇒ 锚不上 ⇒ 仍不匹配。
+  if (t.size < 1) return [];
 
   // 🔴🔴 anchor === null 意味着「这条查询剔掉高频泛词后没有主题词」，
   // 它无法被可靠归属到任何页 —— 必须直接不匹配。
@@ -768,9 +861,56 @@ function matchCorpus(
     const missing = [...t].filter((w) => !ct.has(w));
     if (missing.length > 0) continue;
 
-    hits.push({ key: c.key, kind: c.kind, score, total: t.size, anchorHit: true });
+    hits.push({
+      key: c.key,
+      kind: c.kind,
+      score,
+      total: t.size,
+      anchorHit: true,
+      keyCovered: keyFullyCovered(c.key, t),
+    });
   }
-  return hits.sort((a, b) => b.score / b.total - a.score / a.total).slice(0, 4);
+  // 🔴 DEBT-41（排序层）：同分时优先「URL 即查询」的专用承接页，再退回语料顺序。
+  //   没有这道排序时工具页恒排在专用对转页前面（语料数组顺序就是 tools 在前）——
+  //   实测 "png to pdf" 的 hits[0] 是 /tools/handwriting-worksheet（它的正文
+  //   提了一嘴可导出 PDF/PNG），真正的承接页 /c/png-to-pdf 只能排第二；
+  //   "microsoft project alternative" 的 hits[0] 则是 microsoft-visio。
+  //   auto-tune 取 hits[0] 当目标路由 ⇒ 这道排序直接决定改写落到哪个页。
+  return hits
+    .sort(
+      (a, b) =>
+        b.score / b.total - a.score / b.total ||
+        Number(b.keyCovered) - Number(a.keyCovered)
+    )
+    .slice(0, 4);
+}
+
+/**
+ * 🔴 DEBT-40 待办③（2026-10-21）：gscUncovered 的「同义页存在性」二次校验。
+ *
+ * ①②修完后仍会有查询因为**用词不同**匹配不上（freeware / kostenlos /
+ * 带年份 / 同义词替换），但它指向的主题页可能早已存在。
+ * 「已存在但没匹配上」比漏报更危险 —— 它会诱导去建一个重复页
+ * （10-21 动作 47「MS Project 是真缺口」正是这么差点发生的，
+ *  而那页 /directory/alternatives/microsoft-project 一直好好地在站上）。
+ *
+ * 判据刻意保守，**只作提示、不算匹配**：查询实词与某页语料实词的
+ * 交集 ≥ 2 个词。交 1 个词太弱（pdf/tool 满天飞），交 2 个词
+ * 基本说明两处在讲同一件事。返回重叠最多的前 3 页。
+ */
+function synonymHints(
+  query: string,
+  pages: Array<{ key: string; t: Set<string> }>
+): string[] {
+  const qt = tokens(query);
+  if (qt.size < 2) return [];
+  const scored: Array<{ key: string; n: number }> = [];
+  for (const p of pages) {
+    let n = 0;
+    for (const w of qt) if (p.t.has(w)) n++;
+    if (n >= 2) scored.push({ key: p.key, n });
+  }
+  return scored.sort((a, b) => b.n - a.n).slice(0, 3).map((s) => s.key);
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -801,6 +941,8 @@ async function main() {
   ];
   // 预构建文档频率表：pickAnchor 每词重算全站 tokens 会是 O(words×pages×len)，400K 字符下不可接受
   const df = buildDf(corpus);
+  // DEBT-40 待办③ 用：每页实词集合只算一次（未命中查询 × 全站页重算太贵）
+  const pageToks = corpus.map((c) => ({ key: c.key, t: tokens(c.text) }));
   console.log(
     `[gap] 语料 ${corpus.length} 页 / ${corpus.reduce((n, c) => n + c.text.length, 0)} 字符`,
   );
@@ -830,7 +972,7 @@ async function main() {
 
   // GSC 里与站内语料有对应页的词 →「已发生但没吃满」
   const gscMatched: Array<{ query: string; impressions: number; position: number; hits: Match[] }> = [];
-  const gscUncovered: Array<{ query: string; impressions: number; position: number }> = [];
+  const gscUncovered: Array<{ query: string; impressions: number; position: number; synonymHints?: string[] }> = [];
   for (const row of gsc.rows) {
     const ex = screenOut(row.query);
     if (ex) continue;
@@ -838,6 +980,11 @@ async function main() {
     const hits = matchCorpus(row.query, corpus, anchor, df);
     if (hits.length > 0) gscMatched.push({ ...row, hits });
     else gscUncovered.push(row);
+  }
+
+  // 🔴 DEBT-40 待办③：匹配是字面的，提示是语义的 —— 别把两者混为一谈。
+  for (const u of gscUncovered) {
+    u.synonymHints = synonymHints(u.query, pageToks);
   }
 
   // ── 辅源：Google Suggest 长尾 ──
@@ -955,9 +1102,14 @@ async function main() {
     console.log(`        → ${m.hits.map((h) => h.key).join(", ")}`);
   }
   console.log("");
-  console.log("─── GSC 里有但站内无对应页（真缺口）───");
+  console.log("─── GSC 里有但站内无对应页（真缺口？先看同义页提示）───");
   for (const u of gscUncovered.slice(0, 15)) {
-    console.log(`  imp=${String(u.impressions).padStart(4)} pos=${u.position.toFixed(1).padStart(5)}  ${u.query}`);
+    const hint = u.synonymHints?.length ? `  [疑似同义页: ${u.synonymHints.join(", ")}]` : "";
+    console.log(`  imp=${String(u.impressions).padStart(4)} pos=${u.position.toFixed(1).padStart(5)}  ${u.query}${hint}`);
+  }
+  const hinted = gscUncovered.filter((u) => (u.synonymHints?.length ?? 0) > 0);
+  if (hinted.length > 0) {
+    console.log(`  （${hinted.length}/${gscUncovered.length} 条未命中带同义页提示 —— 别急着建新页，先看那页）`);
   }
 
   console.log("");
