@@ -117,7 +117,7 @@ export async function getDiagLog(limit = 30): Promise<
         detail: string | null;
       }>
     >(
-      `SELECT id, ts, kind, instance, region, rows, error, detail
+      `SELECT id, ts, kind, instance, region, route, rows, error, detail
        FROM ${DIAG_TABLE} ORDER BY id DESC LIMIT $1`,
       limit
     )) as Array<{
@@ -284,10 +284,11 @@ export async function getOverrideAsync(route: string): Promise<PageMetaOverride 
   const ov = overrideCache.get(route);
   // 🔴🔴 DEBT-33 深挖：把「页面那一次查找」的结果也落库。
   //   已知页面侧 refreshOverrides() 成功（load-ok rows=2），但线上 title 仍是基础值
-  //   ⇒ 只剩两种可能：查找键不中，或缓存键与页面请求的 route 不一致。
+  //   ⇒ 只剩两种可能：查找键不中，或 generateMetadata 压根没在再生时跑。
   //   这条日志直接给出答案（route + 结果 + 缓存里实际的键）。
-  //   节流 10s/实例：/l/[slug] 等页面每次请求都会走这里，不节流会写爆。
-  if (Date.now() - lastDiagLookupWrite > 10_000) {
+  //   只记 /tools/*：首页/落地页每次请求都走这里，全量记录会写爆；
+  //   而 DEBT-33 要回答的问题正是「工具页再生时到底有没有读覆盖层」。
+  if (route.startsWith("/tools/") && Date.now() - lastDiagLookupWrite > 3_000) {
     lastDiagLookupWrite = Date.now();
     await writeDiag(
       "lookup",
