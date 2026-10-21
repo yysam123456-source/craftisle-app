@@ -6,10 +6,27 @@ const { withContentlayer } = require("next-contentlayer2");
 const nextConfig = {
   reactStrictMode: true,
 
+  // 🔴🔴 2026-10-21（DEBT-33 根因修复）：Prisma 查询引擎必须保持 external。
+  //
+  // 病根：下面那组 outputFileTracingIncludes 只给 `/api/**` 追了 `.prisma/client`
+  // ⇒ API 路由函数能读到库，而**页面函数**（/tools/[tool]、/l/[slug]、首页等）
+  // 的 bundle 里没有 libquery_engine-rhel-openssl-3.0.x.so.node。
+  // 运行时 `refreshOverrides()` 抛：
+  //   "Prisma Client could not locate the Query Engine for runtime rhel-openssl-3.0.x"
+  // 又被 page-meta-db 的 catch 静默吞掉 ⇒ 症状是「写侧/读侧探针全绿、线上 title
+  // 纹丝不动」，四轮排查（DEBT-30/31/32/33）全被这个假象带偏。
+  //
+  // serverExternalPackages 让 @prisma_client 走 node_modules 运行时加载，
+  // Vercel 的文件追踪会自动把引擎文件带进部署产物（pris.ly/d/engine-not-found-nextjs）。
+  serverExternalPackages: ["@prisma/client", ".prisma/client"],
+
   // Prisma engine file tracing for standalone output on Vercel
+  // （保留：API 路由的额外保险；页面函数现在靠上面的 serverExternalPackages）
   outputFileTracingIncludes: {
     "/api/**/*": ["./node_modules/.prisma/client/**/*"],
     "/api/**": ["./node_modules/.prisma/client/**/*"],
+    "/tools/**/*": ["./node_modules/.prisma/client/**/*"],
+    "/l/**/*": ["./node_modules/.prisma/client/**/*"],
   },
   
   // Disable the Next.js Dev Tools panel (bottom-left overlay in dev mode)
