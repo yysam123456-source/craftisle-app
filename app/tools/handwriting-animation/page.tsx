@@ -4,7 +4,7 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 import HandwritingAnimationTool from "@/components/tools/handwriting-animation";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
-import { getOverrideAsync } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync, lastLoadError } from "@/lib/seo/page-meta-db";
 
 // Static page — /tools/handwriting-animation (exact match)
 // NOT /tools/[tool] (dynamic catch-all)
@@ -41,7 +41,13 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: { card: "summary_large_image" as const, title, description },
     alternates: { canonical: url },
     other: {
-      "x-diag-md": `${ov ? "FOUND" : "MISS"}|/tools/handwriting-animation|${Date.now()}`,
+      "x-diag-md": [
+        ov ? "FOUND" : "MISS",
+        "/tools/handwriting-animation",
+        `db=${process.env.DATABASE_URL ? "y" : "n"}`,
+        `err=${(lastLoadError ?? "none").slice(0, 60)}`,
+        String(Date.now()),
+      ].join("|"),
     },
   };
 }

@@ -7,7 +7,7 @@ import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
-import { getOverrideAsync } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync, lastLoadError } from "@/lib/seo/page-meta-db";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
 interface ToolPageProps {
@@ -80,7 +80,13 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     ...md,
     other: {
       ...(md.other ?? {}),
-      "x-diag-md": `${ov ? "FOUND" : "MISS"}|${route}|${Date.now()}`,
+      "x-diag-md": [
+        ov ? "FOUND" : "MISS",
+        route,
+        `db=${process.env.DATABASE_URL ? "y" : "n"}`,
+        `err=${(lastLoadError ?? "none").slice(0, 60)}`,
+        String(Date.now()),
+      ].join("|"),
     },
   };
 }
