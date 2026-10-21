@@ -4,7 +4,7 @@ import ToolDetailSections from "@/components/tools/ToolDetailSections";
 import type { Metadata } from "next";
 import HandwritingAnimationTool from "@/components/tools/handwriting-animation";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
-import { getOverrideAsync, lastLoadError } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 
 // Static page — /tools/handwriting-animation (exact match)
 // NOT /tools/[tool] (dynamic catch-all)
@@ -32,7 +32,6 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = ov?.title ?? String(meta.seoTitle || `${meta.title}`);
   const description = ov?.description ?? String(meta.seoDesc || meta.desc || "Free online tool");
 
-  // 🔴🔴 DEBT-33 临时探针（定位后必须删除）：语义同 app/tools/[tool]/page.tsx。
   return {
     title,
     description,
@@ -40,15 +39,6 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: { title, description, url, type: "website" as const, locale: "en-US" },
     twitter: { card: "summary_large_image" as const, title, description },
     alternates: { canonical: url },
-    other: {
-      "x-diag-md": [
-        ov ? "FOUND" : "MISS",
-        "/tools/handwriting-animation",
-        `db=${process.env.DATABASE_URL ? "y" : "n"}`,
-        `err=${(lastLoadError ?? "none").slice(0, 600)}`,
-        String(Date.now()),
-      ].join("|"),
-    },
   };
 }
 

@@ -7,7 +7,7 @@ import { ToolLoader } from "@/lib/tool-components";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
-import { getOverrideAsync, lastLoadError } from "@/lib/seo/page-meta-db";
+import { getOverrideAsync } from "@/lib/seo/page-meta-db";
 import { buildToolJsonLd, getToolCategorySlug, toolUrl } from "@/lib/tool-seo";
 
 interface ToolPageProps {
@@ -70,25 +70,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     canonical: toolUrl(tool),
   });
 
-  // 🔴🔴 DEBT-33 临时探针（定位后必须删除）：
-  // 在 HTML 里留下「这次响应到底是不是新渲染 / 覆盖层读没读到」的物证。
-  //   - <meta name="x-diag-md"> 缺失      ⇒ 该响应不是新渲染（缓存拷贝），或 generateMetadata 没跑
-  //   - 值以 MISS 开头                  ⇒ generateMetadata 跑了，但覆盖层没读到（读侧故障）
-  //   - 值以 FOUND 开头                 ⇒ 覆盖层读到了（问题在 title 合并或更下游）
-  // 值里的时间戳用来判断这份 HTML 的渲染时刻，与 Age 头互相印证。
-  return {
-    ...md,
-    other: {
-      ...(md.other ?? {}),
-      "x-diag-md": [
-        ov ? "FOUND" : "MISS",
-        route,
-        `db=${process.env.DATABASE_URL ? "y" : "n"}`,
-        `err=${(lastLoadError ?? "none").slice(0, 600)}`,
-        String(Date.now()),
-      ].join("|"),
-    },
-  };
+  return md;
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {
