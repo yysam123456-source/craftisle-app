@@ -1112,6 +1112,11 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is this a vector graphics editor like Illustrator?", a: "It is code-based. You edit the SVG XML directly. For drag-and-drop vector editing, use a desktop tool. This is best for developers who prefer code." },
       { q: "Can I import from Figma/Sketch?", a: "Export as SVG from Figma/Sketch, then paste the SVG code here for cleanup and optimization." },
       { q: "Does it minify SVG output?", a: "Yes. You can choose pretty-printed (readable) or minified (smaller file size) SVG output." },
+      // 🔴 对应 GSC 实测词：svg file editor 2@P40、svg editor 1@P40、edit svg 1@P47、
+      // svg manipulation 17@P92.1。这些词此前只存在于 seoKeywords（Google 忽略），
+      // FAQ 让「free / edit svg file online」意图进可索引正文。事实与页面既有定位一致
+      // （code-based、browser-based、免费），无新技术声明。
+      { q: "Can I edit an SVG file online for free?", a: "Yes. Paste your SVG code or drop an .svg file, edit it with live preview and syntax highlighting, then export SVG or PNG — free, no signup, and 100% in your browser. For drag-and-drop vector drawing rather than code editing, a desktop tool is the better fit." },
     ],
     relatedTools: ["mermaid", "png-to-svg", "image-color-palette"],
   },
@@ -4285,6 +4290,12 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What languages are supported?", a: "Whatever the bundled fonts cover: Latin (all eight), Arabic (Amiri), Hebrew (Suez One), Devanagari (Tillana), and Japanese kana plus first- and second-grade kanji (Klee One). Stroke-by-stroke animation needs per-font stroke data, so a script must have a matching font — Unicode coverage on its own is not enough." },
       { q: "Can I adjust the animation speed?", a: "Yes. Choose from Slow, Normal, or Fast animation speed. You can also enable Loop mode for continuous playback." },
       { q: "Is this the same as animated writing or animated cursive writing?", a: "Yes — handwriting animation, animated writing and animated cursive writing all describe the same effect: text that draws itself stroke by stroke as if written by hand. Type any text, then pick a cursive font (Caveat, Italianno, Tangerine or Parisienne) for the flowing handwritten look most people mean by animated cursive writing." },
+      // 🔴 对应 GSC 实测变体词族（约 30 曝光，全部 P56-72）：animated handwriting text
+      // generator 7@P71.6、writing animation generator 8@P72、handwriting text animation
+      // 4@P58、hand writing animation 4@P56、animated handwriting generator 4@P61、
+      // animated handwriting 4@P57、hand written animation 4@P64、handwritten animation 1@P12。
+      // 与上一条 FAQ 同构：同一效果的不同问法，无新技术声明。
+      { q: "Is this the same as an animated handwriting text generator or handwriting text animation?", a: "Yes — animated handwriting, handwriting text animation and animated handwriting text generator all describe the same effect: your text draws itself stroke by stroke, as if a hand were writing it. Type your phrase, pick one of the 8 handwriting fonts, and the animation renders in this tab — no upload, no signup, no watermark." },
       { q: "Can I make a hand drawn animation with this, and is there hand drawn animation software?", a: "Yes — this is hand drawn animation software in the browser. Type a phrase, choose one of the 8 fonts, and it is drawn stroke by stroke on a canvas, exactly as if a hand were writing it. What distinguishes it from hand drawn digital animation packages that install on your machine is where the work happens: the drawing, the stroke data and the video export all run in this tab, so there is no install, no project file, no render queue and no export wait. Hand drawn animation used to mean After Effects or a drawing tablet; for text-based hand drawn animation this page does the same result in about ten seconds." },
     ],
     relatedTools: ["create-gif", "image-to-pixel", "markdown", "handwriting-worksheet"],

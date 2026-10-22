@@ -204,6 +204,11 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       { q: "Why did search interest in 'IntelliJ Community Edition' spike?", a: "Because JetBrains stopped shipping Community as a separate download in 2025.3. Users searched to confirm it is still free and to find where to get it; the free feature set simply moved into the unified IDE." },
       { q: "Which IntelliJ IDEA version should I install in 2026?", a: "Install the current unified IntelliJ IDEA. 2025.2 or earlier is the last split-edition line and no longer receives updates. Since 2025.3 there is a single free-by-default download, and a 30-day Ultimate trial lets you evaluate the paid tooling before deciding whether you need it." },
       { q: "What is the difference between IntelliJ IDEA Community and Ultimate now?", a: "There is no separate Community product any more. Since 2025.3 both are one installer: the core features are free with no licence key, and an optional Ultimate subscription unlocks advanced tooling such as deeper Spring support and the full Kubernetes feature set. The only way to still get a standalone Community download is to install version 2025.2 or earlier, which is no longer updated." },
+      // 🔴 对应 GSC 实测词 `what is the latest intellij community edition`（4 曝光 P17，
+      // striking distance）。latest-version 词族约 80 曝光（intellij version 24@P58.8、
+      // intellij community latest version 4@P69、intellij community edition other versions 4@P64），
+      // 页内已有 2025.2/2025.3/2026.1 事实陈述，本条 FAQ 只是换一种问法承接，零编造。
+      { q: "What is the latest version of IntelliJ IDEA Community Edition?", a: "There is no separately versioned Community Edition any more: since 2025.3 JetBrains ships one unified IntelliJ IDEA that is free by default, and 2026.1 is the current release in that line. Every feature that used to be free in Community — Java and Kotlin support, database tools and SQL, the Spring Boot wizard — remains free in the unified IDE. If you specifically need the legacy standalone Community build, 2025.2 is the last version JetBrains published it for, and it no longer receives updates." },
     ],
     internalLinks: [L.jsonFormatter, L.tools, L.directory, L.jsonToCsv],
   },

@@ -1040,13 +1040,18 @@ async function main() {
       gaps.push({ term, seeds: [...fromSeeds], words });
       continue;
     }
-    for (const h of hits) {
-      const arr = byTarget.get(h.key) || [];
-      if (!arr.some((x) => x.term === term)) {
-        arr.push({ term, words: term.split(/\s+/).length });
-      }
-      byTarget.set(h.key, arr);
+    // 🔴 DEBT-42 修法②（2026-10-22 实施）：tuneTargets 只归因 hits[0]。
+    //   旧逻辑把 4 个命中页全挂上这个词 ⇒ 散文提及格式名的假匹配（如 g suite 词挂到
+    //   ableton-live、png-to-jpg 变体挂到 png-to-svg）会把 tuneTargets 撑爆，
+    //   人工按报表改文案就会被误导。DEBT-40/41 修完后 hits[0] 已由 keyCovered 排到
+    //   专用承接页（auto-tune 写入侧本就只取 hits[0]），报表侧必须与写入侧同口径。
+    //   hits[1..3] 仍保留在 gscMatched 段供人工复核（看正确承接页是否在列），不进 tune 报表。
+    const top = hits[0];
+    const arr = byTarget.get(top.key) || [];
+    if (!arr.some((x) => x.term === term)) {
+      arr.push({ term, words: term.split(/\s+/).length });
     }
+    byTarget.set(top.key, arr);
   }
 
   const tuneTargets = [...byTarget.entries()]
