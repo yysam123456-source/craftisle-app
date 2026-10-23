@@ -2368,7 +2368,7 @@ export const ALTERNATIVES_MAP: Record<string, AlternativeEntry> = {
       ],
     },
     category: "Project Management",
-    seoKeywords: ["ms project alternative", "microsoft project alternative", "free ms project alternative", "microsoft project alternative free", "free project management software like ms project"],
+    seoKeywords: ["ms project alternative", "microsoft project alternative", "free ms project alternative", "microsoft project alternative free", "free project management software like ms project", "free project management software to create a schedule"],
     // 近失词实测（GSC 2026-09）：ms project alternative online free P19、
     // free ms project alternative P21.1、ms project alternative P23.6、
     // microsoft project alternative P24.5、alternative ms project P28.1。
@@ -2383,6 +2383,14 @@ export const ALTERNATIVES_MAP: Record<string, AlternativeEntry> = {
       { question: "Can I self-host a Microsoft Project alternative?", answer: "Yes. OpenProject's Community Edition is free and self-hostable with Docker, giving you Gantt timelines, Agile boards, and time tracking with full data control." },
       { question: "What's the best free alternative for real-time team collaboration?", answer: "ClickUp (free plan) and Trello (free plan) both support real-time collaboration in the browser. OpenProject also supports it if self-hosted. Microsoft Project itself has limited live collaboration without expensive add-ons." },
       { question: "Do any free MS Project alternatives support Gantt charts?", answer: "Yes. ProjectLibre, GanttProject, and OpenProject (free/self-hosted) all support Gantt charts. ClickUp and Trello offer Gantt/Timeline views on their paid plans." },
+      // 🔴 2026-10-23 巡检补。依据 GSC 快照 2026-10-19：未覆盖词里曝光最高的一条
+      // `free project management software like ms project to create schedule`
+      // 27–32 曝光 @P17.3（9 词长尾，落在 4–6 词主战场的延伸带上），
+      // 而本页 FAQ 只有 free / .mpp / self-host / collaboration / Gantt 五种问法，
+      // 没有一条直接回答「我想用免费软件画施工排期/项目 schedule」。
+      // 答案事实全部取自本页已有陈述（GanttProject/ProjectLibre/ClickUp/
+      // OpenProject 的 description、features、cons），零编造。
+      { question: "What free project management software can I use to create a schedule like MS Project?", answer: "For classic schedule-building — tasks, dependencies, and Gantt bars — GanttProject and ProjectLibre are the closest free matches: both draw Gantt charts and handle task scheduling and resource assignment with no licence, and ProjectLibre additionally opens existing .mpp files so you can keep working on plans built in Microsoft Project. If the schedule has to be edited live by a team, ClickUp's free plan adds real-time collaboration, although its full Gantt view sits on the paid tier. OpenProject covers the same ground self-hosted when the plan also needs Agile boards, work packages, and time tracking." },
     ],
   },
 

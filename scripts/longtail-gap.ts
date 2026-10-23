@@ -40,7 +40,7 @@ import {
   fetchSuggestionsForSeedsDetailed,
   type SuggestSource,
 } from "../lib/seo/trends-client";
-import { CONVERT_PAIRS } from "../lib/convert/pairs";
+import { CONVERT_PAIRS, INPUT_META, OUTPUT_META } from "../lib/convert/pairs";
 import { toolMeta } from "../lib/tools";
 import { getCombinedMap, toSlug } from "../lib/alternatives";
 
@@ -763,6 +763,29 @@ function anchorStop(): Set<string> {
   return new Set(ANCHOR_STOP_RAW.map(stem));
 }
 
+/**
+ * 🔴 DEBT-42 ①（2026-10-23 实施）：格式名词典。
+ *
+ * 种子取自 `lib/convert/pairs.ts` 的 INPUT_META / OUTPUT_META —— 站内格式词的
+ * 唯一事实源，不另维护词表（那边加格式，这边自动生效）。
+ *
+ * 要解决的问题：查询剔掉停用词后**只剩格式名**时（"png to jpg converter"
+ * → {png, jpg}），「全部实词必须命中」闸门会被任何正文提了一句格式名的页
+ * 满足 —— png-to-svg 的 desc 写「Supports JPG input」就整页接住 27 个
+ * png-to-jpg 变体，signature-maker 24 个、handwriting-worksheet 15 个
+ * （2026-10-21 实测）。这类匹配没有语义，只有字面重合。
+ *
+ * 判据：格式词查询**只认 URL 本身就是该格式对的承接页** ——
+ *   /c/png-to-jpg      ↔ "png to jpg converter"  ✓（URL 实词被查询全覆盖）
+ *   /tools/png-to-svg  ↔ "png to jpg converter"  ✗（svg 不在查询里）
+ *   /tools/signature-maker ↔ "png to jpg converter" ✗（正文只提了一嘴）
+ * 对不存在的对（png-to-bmp / webp-to-gif）⇒ 无页可接 ⇒ 进 gscUncovered，
+ * 由人判断「真缺口但技术不可行」，匹配器不猜。
+ */
+const FORMAT_STEMS: Set<string> = new Set(
+  [...Object.keys(INPUT_META), ...Object.keys(OUTPUT_META)].map(stem)
+);
+
 function buildDf(corpus: CorpusEntry[]): Map<string, number> {
   const df = new Map<string, number>();
   for (const c of corpus) {
@@ -821,10 +844,19 @@ function matchCorpus(
   if (!anchor) return [];
 
   const hits: Match[] = [];
+  // DEBT-42 ①：这条查询剔掉停用词后是不是只剩格式名（png to jpg converter）。
+  // 是的话只有 URL 即格式对的页有资格匹配（见 FORMAT_STEMS 注释）。
+  const distinctive = [...t].filter((w) => !FORMAT_STEMS.has(w));
+  const formatOnlyQuery = distinctive.length === 0;
   for (const c of corpus) {
     const ct = tokens(c.text);
     if (ct.size === 0) continue;
     if (!ct.has(anchor)) continue; // 锚必须在该页出现
+    // 正文散文提一句格式名不构成承接：URL 实词必须被查询全覆盖。
+    // 实测依据：改前 "png to pdf" 的 hits 是
+    // [/c/png-to-pdf, /tools/handwriting-worksheet, /c/jpg-to-pdf]——
+    // 后两个一个正文提 PDF、一个格式对根本不对，都是字面重合。
+    if (formatOnlyQuery && !keyFullyCovered(c.key, t)) continue;
 
     let score = 0;
     for (const w of t) if (ct.has(w)) score++;
