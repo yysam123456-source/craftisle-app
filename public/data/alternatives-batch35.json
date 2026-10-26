@@ -434,7 +434,9 @@
       "monday.com alternative free",
       "best monday.com alternative",
       "monday.com vs asana",
-      "free work management software"
+      "free work management software",
+      "clickup import from monday",
+      "import monday to clickup"
     ],
     "faqs": [
       {
@@ -448,6 +450,10 @@
       {
         "question": "Which Monday.com alternative is cheapest?",
         "answer": "ClickUp's paid plan is $7/user/month (cheaper than Monday.com's $8/month). Trello and ClickUp's free tiers are completely free for small teams."
+      },
+      {
+        "question": "Can I import my Monday.com boards into ClickUp?",
+        "answer": "Yes — ClickUp has a built-in Monday.com importer. In ClickUp, go to Settings → Imports / Exports, choose Monday, and authorize with your Monday.com Personal API token. Create your ClickUp Spaces first, then import each Monday board into an existing Space: every board becomes a List, and tasks, assignees, due dates, comments, statuses and sub-items (imported as tasks) carry over. Attachments, dependencies, formulas and mirrors are not imported, so expect to rebuild those by hand."
       }
     ]
   },
