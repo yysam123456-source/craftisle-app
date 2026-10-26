@@ -202,6 +202,7 @@
       "asana replacement free",
       "best asana alternative",
       "free alternative to asana",
+      "import ms project into asana",
       "asana vs clickup free",
       "asana vs trello free",
       "open source asana alternative",
@@ -214,8 +215,8 @@
         "answer": "Yes. Trello has a generous free tier, and ClickUp's free plan includes unlimited tasks. For self-hosted open-source options, Taiga and OpenProject are completely free."
       },
       {
-        "question": "Can I import my Asana projects into a free alternative?",
-        "answer": "Yes. ClickUp has a built-in Asana importer. You can also export Asana data as CSV and import into Trello, ClickUp, or Notion."
+        "question": "Can I import MS Project files into Asana?",
+        "answer": "Not as a native .mpp file — Asana has no built-in Microsoft Project importer. The workable path is to export your plan from Microsoft Project to CSV (File → Save As), then import it with Asana's CSV importer (project header dropdown → Add Tasks via → CSV). Task names, assignees and due dates carry over; dependencies, baselines and resource assignments rarely survive the round trip, so expect to rebuild schedule links by hand."
       },
       {
         "question": "Which Asana alternative has the best free tier?",
