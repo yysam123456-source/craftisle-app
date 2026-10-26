@@ -2046,7 +2046,9 @@
       "clickup free alternative",
       "clickup replacement",
       "free project management tool",
-      "clickup alternatives 2026"
+      "clickup alternatives 2026",
+      "clickup import from monday",
+      "import monday to clickup"
     ],
     "faqs": [
       {
@@ -2060,6 +2062,10 @@
       {
         "question": "Can I migrate my data from ClickUp to an alternative?",
         "answer": "Yes. Most alternatives have dedicated import tools for ClickUp data, or you can export to standard formats like CSV, JSON, or Markdown."
+      },
+      {
+        "question": "Can I import my Monday.com boards into ClickUp?",
+        "answer": "Yes — ClickUp has a built-in Monday.com importer. In ClickUp, go to Settings → Imports / Exports, choose Monday, and authorize with your Monday.com Personal API token. Create your ClickUp Spaces first, then import each Monday board into an existing Space: every board becomes a List, and tasks, assignees, due dates, comments, statuses and sub-items (imported as tasks) carry over. Attachments, dependencies, formulas and mirrors are not imported, so expect to rebuild those by hand."
       }
     ]
   },
