@@ -209,6 +209,11 @@ export const LANDING_PAGES: Record<string, LandingPage> = {
       // intellij community latest version 4@P69、intellij community edition other versions 4@P64），
       // 页内已有 2025.2/2025.3/2026.1 事实陈述，本条 FAQ 只是换一种问法承接，零编造。
       { q: "What is the latest version of IntelliJ IDEA Community Edition?", a: "There is no separately versioned Community Edition any more: since 2025.3 JetBrains ships one unified IntelliJ IDEA that is free by default, and 2026.1 is the current release in that line. Every feature that used to be free in Community — Java and Kotlin support, database tools and SQL, the Spring Boot wizard — remains free in the unified IDE. If you specifically need the legacy standalone Community build, 2025.2 is the last version JetBrains published it for, and it no longer receives updates." },
+      // 🔴 对应 rising query `intellij community edition discontinued`(+100%) / `is intellij
+      // community edition discontinued`(8 曝光 P46 ×4 簇 ~32 imp)。与现有「still free / no
+      // longer free / license」FAQ 不同维度：直接回答「停产」疑问。事实与该页 2025.3 统一
+      // 产品线段落(行 176-177)及 FAQ #11 一致——CE 未被停产，而是并入统一 IDE，免费层不变。零编造。
+      { q: "Is IntelliJ Community Edition discontinued?", a: "No — it was not discontinued, it was merged. In IntelliJ IDEA 2025.3 JetBrains stopped shipping Community and Ultimate as two separate downloads and unified them into one IDE that is free by default. The Community feature set — Java and Kotlin support, database tools and SQL, the Spring Boot wizard — is still included in the unified IDE at no cost. So 'Community Edition' as a standalone product ended, but everything it offered for free continues in the unified IDE. If you specifically want the legacy standalone Community build, 2025.2 is the last version JetBrains published and it is still available via GitHub releases." },
     ],
     internalLinks: [L.jsonFormatter, L.tools, L.directory, L.jsonToCsv],
   },

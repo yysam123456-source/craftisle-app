@@ -4259,6 +4259,9 @@ export const toolMeta: Record<string, ToolMeta> = {
       "hand drawn digital animation",
       "hand drawn animation online free",
       "make text look hand drawn online",
+      "writing animation generator",
+      "writing animation",
+      "handwritten animation",
     ],
     description:
       "<strong>Convert any text into beautiful handwriting animations</strong> — completely free, no sign-up required.<br/><br/>" +
@@ -4297,6 +4300,10 @@ export const toolMeta: Record<string, ToolMeta> = {
       // 与上一条 FAQ 同构：同一效果的不同问法，无新技术声明。
       { q: "Is this the same as an animated handwriting text generator or handwriting text animation?", a: "Yes — animated handwriting, handwriting text animation and animated handwriting text generator all describe the same effect: your text draws itself stroke by stroke, as if a hand were writing it. Type your phrase, pick one of the 8 handwriting fonts, and the animation renders in this tab — no upload, no signup, no watermark." },
       { q: "Can I make a hand drawn animation with this, and is there hand drawn animation software?", a: "Yes — this is hand drawn animation software in the browser. Type a phrase, choose one of the 8 fonts, and it is drawn stroke by stroke on a canvas, exactly as if a hand were writing it. What distinguishes it from hand drawn digital animation packages that install on your machine is where the work happens: the drawing, the stroke data and the video export all run in this tab, so there is no install, no project file, no render queue and no export wait. Hand drawn animation used to mean After Effects or a drawing tablet; for text-based hand drawn animation this page does the same result in about ten seconds." },
+      // 🔴 对应 GSC 未捕获近义变体：writing animation generator 8@P72、hand written animation
+      // 4@P64、handwritten animation 1@P12。与 FAQ #9(animated writing/cursive writing)、#10
+      // (animated handwriting text generator) 同构——同一效果的不同问法，无新技术声明。零编造。
+      { q: "Is this a writing animation generator or a hand written animation maker?", a: "Yes — a writing animation generator, writing animation and handwriting animation all describe the same effect: your text draws itself stroke by stroke, as if a hand were writing it. Type your phrase, pick one of the 8 handwriting fonts (Caveat, Italianno, Tangerine, Parisienne, Suez One, Klee One, Amiri or Tillana), and it animates in this tab. Some search for 'hand written animation' or 'handwritten animation maker' — the result is identical, and it needs no upload, no signup and no watermark." },
     ],
     relatedTools: ["create-gif", "image-to-pixel", "markdown", "handwriting-worksheet"],
   },
