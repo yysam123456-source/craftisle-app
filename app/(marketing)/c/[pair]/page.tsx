@@ -158,6 +158,22 @@ export default async function ConvertPage({
                 )}
               </div>
 
+              {/* 目标体积 CTA：仅 png-to-jpg 等设置了 sizeLimitCta 的对转页渲染。
+                  承接「convert X to Y 100kb」体积意图，用真实内链把流量导到真做目标 KB 的工具。 */}
+              {pair.sizeLimitCta ? (
+                <div className="rounded-lg border border-primary/30 bg-primary/5 p-4 mb-8">
+                  <p className="text-sm text-foreground/90 leading-relaxed">
+                    {pair.sizeLimitCta.text}{" "}
+                    <Link
+                      href={`/tools/${pair.sizeLimitCta.toolId}`}
+                      className="font-medium text-primary hover:underline"
+                    >
+                      Open the Image Compressor →
+                    </Link>
+                  </p>
+                </div>
+              ) : null}
+
               {/* 技术说明 */}
               <div className="rounded-lg bg-muted/40 p-4 mb-8">
                 <p className="text-sm font-medium mb-1">How the conversion works</p>

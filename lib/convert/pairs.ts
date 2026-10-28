@@ -41,6 +41,12 @@ export interface ConvertPair {
   relatedPairs: string[];
   /** 该转换的技术说明，展示在页面上 */
   technicalNote: string;
+  /**
+   * 可选：目标体积 CTA。当本转换本身不做「压到指定 KB」而站内另有工具能做时，
+   * 在转换器下方挂一条指向该工具的真实内链（承接 "convert X to Y 100kb" 这类体积意图）。
+   * 仅 png-to-jpg 设置；其余 pair 不渲染。
+   */
+  sizeLimitCta?: { toolId: string; text: string };
 }
 
 /** 输入格式的展示名与说明 */
@@ -237,6 +243,13 @@ export const CONVERT_PAIRS: ConvertPair[] = [
       { id: "image-resize", label: "Image Resizer" },
     ],
     relatedPairs: ["jpg-to-png", "png-to-webp", "webp-to-jpg"],
+    // 🔴 体积意图 CTA：本转换器只换格式不压到指定 KB，而 image-compress 的 target 模式
+    // 真做「压到 100KB/200KB/1MB」（组件已核实）。承接 "png to jpg 100kb / compress to 100kb"
+    // 这类被长尾匹配器误配到本页的体积词，用真实内链把流量导到正确工具，不编造本页能力。
+    sizeLimitCta: {
+      toolId: "image-compress",
+      text: "Need the result under a fixed limit like 100 KB, 200 KB or 1 MB for an upload form? Compress to an exact target size first, then change format:",
+    },
     technicalNote:
       "The PNG is decoded via createImageBitmap (or an Image element as a fallback), drawn to a canvas at its natural dimensions, then exported with canvas.toBlob at quality 0.92. Because the conversion happens after decoding, the output is re-encoded rather than losslessly repackaged — which is what allows the size reduction.",
   },
