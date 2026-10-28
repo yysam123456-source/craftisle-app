@@ -36,11 +36,11 @@ export const dynamicParams = false;
  * 就把 metadata 烘进静态 HTML。运行时写 DB 覆盖层，页面不会重新生成，
  * 于是 auto-tune 报 `savedToDb: 1` 而线上 title 纹丝不动。
  *
- * revalidate = 300 让页面进入 ISR：覆盖层写入后最多 5 分钟全站生效，
+ * revalidate = 7200 让页面进入 ISR：覆盖层写入后最多 2 小时全站生效，
  * 代价是这批页面不再是纯静态（首次请求会走一次再生）。
  * 换来的是「零部署改 meta」这个能力真的存在。
  */
-export const revalidate = 300;
+export const revalidate = 7200;
 
 export function generateStaticParams() {
   return Object.keys(toolMeta).map((tool) => ({ tool }));

@@ -16,8 +16,8 @@ import { CONVERT_PAIRS } from "@/lib/convert/pairs";
 // 那是**构建期常量** —— build 时就把值烤进静态 HTML，运行时 DB 覆盖层写了也不会变。
 // 同时 PAGE_META 是同步 Proxy，冷缓存下 getOverride恒返回 undefined（静默回退静态值）。
 // 两条叠加 ⇒ /tools 的覆盖层**从来就没生效过**。改成 generateMetadata + async 解析。
-// revalidate = 300：进入 ISR，写 DB 后最多 5 分钟生效（与工具页覆盖层口径一致）。
-export const revalidate = 300;
+// revalidate = 7200：进入 ISR，写 DB 后最多 2 小时生效（与工具页覆盖层口径一致）。
+export const revalidate = 7200;
 
 export async function generateMetadata(): Promise<Metadata> {
   const m = await getResolvedMetaAsync("/tools");

@@ -22,8 +22,8 @@ export function generateStaticParams() {
 // 🔴 DEBT-25：加 ISR，否则 Cron 通过 DB 覆盖层生成的「未来种子页」永远进不了静态 HTML。
 // 本页此前既无 revalidate 也无 dynamic ⇒ 走纯SSG；dynamicParams 默认 true，
 // 未列出的 slug 会现场渲染，但那份 HTML 里getResolvedMetaAsync 读到的覆盖层
-// 只在那一刻有效、不会被缓存 ⇒ 等于每次都重新算。300 秒 ISR 让写入 5 分钟内可见。
-export const revalidate = 300;
+// 只在那一刻有效、不会被缓存 ⇒ 等于每次都重新算。7200 秒 ISR 让写入 2 小时内可见。
+export const revalidate = 7200;
 
 /**
  * 跨域 canonical —— 消除同品牌双子域的内容重复（cannibalization）。

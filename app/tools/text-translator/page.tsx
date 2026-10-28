@@ -19,7 +19,7 @@ import { toolUrl } from "@/lib/tool-seo";
  * （page_meta_override 表里确实有记录，但页面 HTML 是旧的）。
  * 代价：不再是纯静态，首次请求走一次再生。收益：自动调优对本站真的可用。
  */
-export const revalidate = 300;
+export const revalidate = 7200;
 
 export async function generateMetadata(): Promise<Metadata> {
   // 🔴 单一数据源：改读 lib/tools.ts 的 toolMeta（与 app/tools/[tool] 动态段一致）。

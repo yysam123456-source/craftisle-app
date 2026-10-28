@@ -8,8 +8,8 @@ import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
 
 // 🔴 DEBT-25：原为构建期常量 `export const metadata = {...PAGE_META[...].title}`，
 // build 时即烤进静态 HTML ⇒ DB 覆盖层对本页**从未生效**。改 generateMetadata 异步解析。
-// revalidate = 300 让 ISR 生效，写 DB 后最多 5 分钟反映。
-export const revalidate = 300;
+// revalidate = 7200 让 ISR 生效，写 DB 后最多 2 小时反映。
+export const revalidate = 7200;
 
 export async function generateMetadata(): Promise<Metadata> {
   const m = await getResolvedMetaAsync("/tools/craftisle-image-tools");

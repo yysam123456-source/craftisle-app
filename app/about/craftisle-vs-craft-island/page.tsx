@@ -7,7 +7,7 @@ import { PAGE_META } from "@/lib/seo/page-meta";
 import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
 
 // 🔴 DEBT-25：原为构建期常量，DB 覆盖层对本页从未生效。改 generateMetadata。
-export const revalidate = 300;
+export const revalidate = 7200;
 
 export async function generateMetadata(): Promise<Metadata> {
   const m = await getResolvedMetaAsync("/about/craftisle-vs-craft-island");

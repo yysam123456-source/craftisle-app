@@ -19,7 +19,7 @@ import { getOverrideAsync } from "@/lib/seo/page-meta-db";
  * （page_meta_override 表里确实有记录，但页面 HTML 是旧的）。
  * 代价：不再是纯静态，首次请求走一次再生。收益：自动调优对本站真的可用。
  */
-export const revalidate = 300;
+export const revalidate = 7200;
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = getToolMeta("handwriting-animation");

@@ -12,11 +12,11 @@ import { buildToolJsonLd, getToolCategorySlug } from "@/lib/tool-seo";
 // ── ISR：让 page_meta DB 覆盖层对本页真正生效 ──
 // 🔴 2026-10-16：原为 `export const dynamic = "force-dynamic"`。
 // 它确实是为了 useSearchParams 而加的，但代价是**整页每次请求都动态渲染**：
-// 既不进 CDN 缓存，也让「运行时改 DB meta 后 5 分钟内全站生效」这条 ISR 机制对本页失效。
+// 既不进 CDN 缓存，也让「运行时改 DB meta 后 2 小时内全站生效」这条 ISR 机制对本页失效。
 // 实际上 useSearchParams 只在 ./client.tsx（"use client"）里用，且它已被 <Suspense> 包裹，
 // 满足 Next.js App Router 的要求（Suspense 边界内的客户端组件可以安全用 useSearchParams），
 // **不需要** force-dynamic。删掉后本页与其余 5 个静态工具页行为对齐。
-export const revalidate = 300;
+export const revalidate = 7200;
 
 // ---------- Static metadata ----------
 /**

@@ -96,8 +96,8 @@ function getHomepageData() {
 // 于是 auto-tune 往 route "/" 写 DB 覆盖，**写得进去、页面纹丝不动**；
 // 加上 PAGE_META 是同步 Proxy（冷缓存下 getOverride 恒 undefined），
 // 两条叠加 ⇒ 首页的覆盖层从来没有生效过。
-// 现改为 generateMetadata + getResolvedMetaAsync()，并加 ISR 让写入能在 5 分钟内反映。
-export const revalidate = 300;
+// 现改为 generateMetadata + getResolvedMetaAsync()，并加 ISR 让写入能在 2 小时内反映。
+export const revalidate = 7200;
 
 export async function generateMetadata(): Promise<Metadata> {
   const m = await getResolvedMetaAsync("/");
