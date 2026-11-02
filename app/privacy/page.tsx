@@ -88,10 +88,10 @@ export default function PrivacyPage() {
               </GlassCardHeader>
               <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
-                  We use cookies for basic site functionality and analytics. Third-party
-                  advertising partners (including Google AdSense and Media.net) may set cookies
-                  to display personalized ads. You can control cookies through your browser
-                  settings.
+                  We use cookies and similar browser storage for basic site functionality,
+                  for analytics, and for the ad network currently serving this site
+                  (Monetag — see section 5). You can control or clear them through your
+                  browser settings at any time.
                 </p>
                 <p>
                   For EU/UK users: we request consent before loading non-essential cookies.
