@@ -43,7 +43,8 @@
     "seo:sources": "npx tsx scripts/longtail-gap.ts --src-only",
     "seo:autotune": "npx tsx scripts/auto-tune.ts",
     "seo:autotune:apply": "npx tsx scripts/auto-tune.ts --apply",
-    "probe:intent-match": "node scripts/probe-intent-match.mjs"
+    "probe:intent-match": "node scripts/probe-intent-match.mjs",
+    "seo:geo": "npx tsx scripts/geo-audit.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

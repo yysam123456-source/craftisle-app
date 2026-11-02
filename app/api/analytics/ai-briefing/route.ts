@@ -107,7 +107,14 @@ export async function GET(request: Request) {
       } catch {
         // 查询失败按最坏情况处理，仍然尝试补拉
       }
-      if (ageDays > 2) {
+      // 🔴 2026-11-02：原判据只看「上次拉取距今几天」，不看「本周快照是否真的入库」。
+      //   实证：11-02（周一）早晨 heal 报「数据新鲜 0.5 天，跳过补拉」，但库里最新快照
+      //   仍是 10-26 —— 因为周日拉过一次，ageDays 很小，于是本周快照永远缺，
+      //   所有按快照算窗口的回读（DEBT-13）整体后移一周。
+      //   修法：isCurrentWeek=false（库中最新快照 < 本周一）视同数据陈旧，必须补拉。
+      //   补拉是 upsert（skipDuplicates），重复调用无副作用，失败则下次 heal 继续重试。
+      //   判据：只有「本周快照真的在库里」才算新鲜，拉取时间是过程指标不是结果指标。
+      if (ageDays > 2 || !isCurrentWeek) {
         heal.triggered = true;
         // 关键：直接同进程调用 cron handler，绝不走公网。
         // 2026-08-31 实测：服务端 fetch(`${origin}/api/cron/...`) 返回 HTTP 403 ——
@@ -135,7 +142,11 @@ export async function GET(request: Request) {
             // body 非 JSON，忽略
           }
           heal.note = res.ok
-            ? `补拉成功(此前陈旧 ${ageDays === Infinity ? "从未成功" : ageDays.toFixed(1) + " 天"})${detail}`
+            ? `补拉成功(触发原因：${
+                ageDays > 2
+                  ? `数据陈旧 ${ageDays === Infinity ? "从未成功" : ageDays.toFixed(1) + " 天"}`
+                  : "本周快照缺失"
+              })${detail}`
             : `补拉失败 HTTP ${res.status}${detail}`;
         } catch (e: any) {
           heal.ok = false;
