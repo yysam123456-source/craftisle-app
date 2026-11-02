@@ -54,6 +54,8 @@ type Result = {
   };
   p0: string[];
   p1: string[];
+  /** 三个网络探针全部失败 = 本次无法判定，不是站点缺陷。 */
+  degraded: boolean;
 };
 
 async function get(url: string, asText = true): Promise<{ status: number; body: string }> {
@@ -143,6 +145,7 @@ async function audit(site: Site): Promise<Result> {
     page: { url: null, status: 0, words: 0, h1: null, jsonLd: [], hasNoindex: false, titleLen: 0 },
     p0: [],
     p1: [],
+    degraded: false,
   };
 
   // 1) robots.txt
@@ -188,23 +191,29 @@ async function audit(site: Site): Promise<Result> {
   r.page.titleLen = (page.body.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? "").length;
 
   // ── 判定 ──
-  // status 0 = 三次重试后仍抓不到，是「本次无法判定」而不是「站点有缺陷」。
-  // 两种情况必须分开说，否则报告会把网络问题写成站点的 P0。
-  if (r.robots.status === 0) r.p0.push("robots.txt 抓取失败（重试 3 次未果，本次未判定）");
-  else if (r.robots.status !== 200) r.p0.push(`robots.txt 返回 ${r.robots.status}`);
-  if (r.robots.blockAll) r.p0.push("robots.txt 全站禁抓");
-  if (r.sitemap.status !== 200) r.p0.push("sitemap 不可读");
-  if (r.page.status !== 200) r.p0.push(`取样页 HTTP ${r.page.status}`);
-  if (r.page.hasNoindex) r.p0.push("取样页 noindex");
+  // 三个网络探针全 0 = 本机什么都没抓到，属于「本次无法判定」。
+  // 必须先算这个，否则一次网络抖动就会写成「主站从 OK 掉到 P0」，
+  // 而真实情况是主站一直没事（11-02 实测：同一分钟 curl 主站 robots 200）。
+  r.degraded = r.robots.status === 0 && r.sitemap.status === 0 && r.page.status === 0;
 
-  // 只在真正读到 robots 时才评价「有没有声明 AI 爬虫」。
-  if (r.robots.status === 200 && r.robots.aiUas.length === 0)
-    r.p1.push("robots 未显式声明 AI 爬虫（依赖通配符）");
-  if (r.llms.status !== 200 || r.llms.bytes < 500) r.p1.push("llms.txt 缺失或过薄");
-  if (r.llms.links < 5) r.p1.push("llms.txt 缺结构化链接清单");
-  if (r.page.jsonLd.length === 0) r.p1.push("取样页无 JSON-LD");
-  if (r.page.words < 300) r.p1.push(`取样页 SSR 正文仅 ${r.page.words} 词（AI 无内容可引）`);
-  if (!r.page.h1) r.p1.push("取样页无 h1");
+  if (!r.degraded) {
+    // status 0 = 三次重试后仍抓不到，是「本次无法判定」而不是「站点有缺陷」。
+    if (r.robots.status === 0) r.p0.push("robots.txt 抓取失败（重试 3 次未果，本次未判定）");
+    else if (r.robots.status !== 200) r.p0.push(`robots.txt 返回 ${r.robots.status}`);
+    if (r.robots.blockAll) r.p0.push("robots.txt 全站禁抓");
+    if (r.sitemap.status !== 200) r.p0.push("sitemap 不可读");
+    if (r.page.status !== 200) r.p0.push(`取样页 HTTP ${r.page.status}`);
+    if (r.page.hasNoindex) r.p0.push("取样页 noindex");
+
+    // 只在真正读到 robots 时才评价「有没有声明 AI 爬虫」。
+    if (r.robots.status === 200 && r.robots.aiUas.length === 0)
+      r.p1.push("robots 未显式声明 AI 爬虫（依赖通配符）");
+    if (r.llms.status !== 200 || r.llms.bytes < 500) r.p1.push("llms.txt 缺失或过薄");
+    if (r.llms.links < 5) r.p1.push("llms.txt 缺结构化链接清单");
+    if (r.page.jsonLd.length === 0) r.p1.push("取样页无 JSON-LD");
+    if (r.page.words < 300) r.p1.push(`取样页 SSR 正文仅 ${r.page.words} 词（AI 无内容可引）`);
+    if (!r.page.h1) r.p1.push("取样页无 h1");
+  }
 
   r.ok = r.p0.length === 0;
   return r;
@@ -220,10 +229,12 @@ async function main() {
   for (const site of SITES) {
     const r = await audit(site);
     results.push(r);
-    const flag = r.p0.length ? "P0" : r.p1.length ? "P1" : "OK";
+    // degraded 用 "--" 而不是 P0：抓不到 ≠ 有缺陷。读数的人必须能一眼分开这两件事。
+    const flag = r.degraded ? "--" : r.p0.length ? "P0" : r.p1.length ? "P1" : "OK";
     console.log(
       `${flag}  ${line(r.host, 26)} words=${line(String(r.page.words), 6)} ld=${line(r.page.jsonLd.join(",") || "-", 34)} aiUa=${r.robots.aiUas.length} llms=${r.llms.bytes}B`,
     );
+    if (r.degraded) console.log("      ❔ 本轮抓取失败（3 次重试未果），本次未判定——不是 P0");
     for (const p of r.p0) console.log(`      ⛔ ${p}`);
     for (const p of r.p1) console.log(`      ⚠️  ${p}`);
   }
@@ -244,6 +255,11 @@ async function main() {
   if (strict && p0.length) {
     console.error(`\n[strict] ${p0.length} 个站点存在 P0 缺陷`);
     process.exitCode = 1;
+  }
+  // 抓不到不算通过，也不算失败——单独提示，别让它悄悄混进 CI 绿灯。
+  const degraded = results.filter((r) => r.degraded);
+  if (degraded.length) {
+    console.error(`\n[未判定] ${degraded.map((r) => r.host).join(", ")} —— 本机抓取失败，结果不代表站点状态`);
   }
 }
 
