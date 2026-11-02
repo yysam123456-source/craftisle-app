@@ -45,7 +45,7 @@ const COMPETITORS = [
 
 export const metadata = {
   title: "Tool Comparisons — Craftisle vs Popular Tools",
-  description: "Comparing Craftisle free online tools with popular alternatives. See why Craftisle is the best free alternative — no signup, no limits.",
+  description: "Comparing Craftisle free online tools with popular alternatives. See why Craftisle is the best free alternative — no signup required.",
   keywords: [
     "Smallpdf alternative",
     "iLovePDF alternative",
@@ -136,9 +136,9 @@ export default function CompareIndexPage() {
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li>✅ <strong>60+ tools</strong> in one place — no need to visit multiple sites</li>
           <li>✅ <strong>No signup</strong> — start using immediately</li>
-          <li>✅ <strong>100% client-side</strong> — your data never leaves your browser</li>
+          <li>✅ <strong>Client-side processing</strong> — most tools run in your browser without uploading files</li>
           <li>✅ <strong>No file size limits</strong> (beyond browser memory)</li>
-          <li>✅ <strong>Free forever</strong> — no paywalls, no credits</li>
+          <li>✅ <strong>Free to use</strong> — no paywalls, no credits</li>
         </ul>
         <Link href="/tools">
           <Button size="lg" className="mt-4">

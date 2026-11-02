@@ -106,44 +106,31 @@ export default function PrivacyPage() {
               </GlassCardHeader>
               <GlassCardContent className="space-y-2 text-sm text-muted-foreground">
                 <p>
-                  We use third-party advertising networks to serve ads on Craftisle:
+                  We use third-party advertising to keep Craftisle free. The network
+                  currently serving ads on this site is:
                 </p>
                 <ul className="list-disc pl-5 space-y-1">
                   <li>
-                    <strong>Google AdSense</strong> — privacy policy:{" "}
+                    <strong>Monetag</strong> — privacy policy:{" "}
                     <a
-                      href="https://policies.google.com/privacy"
+                      href="https://monetag.com/privacy/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary underline"
                     >
-                      https://policies.google.com/privacy
-                    </a>
-                  </li>
-                  <li>
-                    <strong>Media.net</strong> — privacy policy:{" "}
-                    <a
-                      href="https://www.media.net/privacy-policy/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary underline"
-                    >
-                      https://www.media.net/privacy-policy/
+                      https://monetag.com/privacy/
                     </a>
                   </li>
                 </ul>
                 <p>
-                  These partners may use cookies to serve ads based on your prior visits to
-                  our website or other websites. You may opt out of personalized advertising
-                  by visiting{" "}
-                  <a
-                    href="https://www.aboutads.info/choices"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary underline"
-                  >
-                    aboutads.info/choices
-                  </a>.
+                  Monetag ads may store a small amount of data in your browser to manage
+                  ad frequency and measure performance. You can remove it at any time by
+                  clearing site data for craftisle.com in your browser settings.
+                </p>
+                <p>
+                  Other networks (for example Google AdSense) may be enabled on some pages
+                  in the future. This page is updated before any such network goes live, so
+                  the list above always reflects what is actually running.
                 </p>
               </GlassCardContent>
             </GlassCard>

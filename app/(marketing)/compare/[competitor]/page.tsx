@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `https://craftisle.com/compare/${competitor}`;
   return {
     title: `${data.name} Alternative — Free Online Tools`,
-    description: `Looking for a ${data.name} alternative? Craftisle offers 60+ free online tools — no signup, no file size limits, 100% browser-based.`,
+    description: `Looking for a ${data.name} alternative? Craftisle offers 60+ free online tools — no signup required, no artificial file size limits, browser-based.`,
     keywords: [
       `${data.name} alternative`,
       `free ${data.name} alternative`,
@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${data.name} Alternative — Free Online Tools`,
-      description: `Free ${data.name} alternative. No signup, no limits.`,
+      description: `Free ${data.name} alternative. No signup required.`,
       url,
       type: "website",
       locale: "en_US",
@@ -119,7 +119,7 @@ export default async function ComparePage({ params }: Props) {
           name: `Why choose Craftisle over ${data.name}?`,
           acceptedAnswer: {
             "@type": "Answer",
-            text: `Craftisle is 100% free, no signup required, 100% browser-based (your data never leaves your machine), and offers 60+ tools in one place.`,
+            text: `Craftisle is free to use with no signup required, offers 60+ tools in one place, and most tools process your files in the browser without uploading them.`,
           },
         },
         {
@@ -146,7 +146,7 @@ export default async function ComparePage({ params }: Props) {
     },
     {
       q: `Why choose Craftisle over ${data.name}?`,
-      a: `Craftisle is 100% free, no signup required, 100% browser-based (your data never leaves your machine), and offers 60+ tools in one place.`,
+      a: `Craftisle is free to use with no signup required, offers 60+ tools in one place, and most tools process your files in the browser without uploading them.`,
     },
     {
       q: `Does Craftisle have file size limits?`,
@@ -265,7 +265,7 @@ export default async function ComparePage({ params }: Props) {
       <section className="rounded-2xl border bg-primary/5 p-6 text-center space-y-4">
         <h2 className="text-xl font-semibold">Try Craftisle — Free, No Signup</h2>
         <p className="text-muted-foreground text-sm">
-          60+ free online tools. 100% browser-based. No limits.
+          60+ free online tools. Most run entirely in your browser. No signup.
         </p>
         <Link href="/tools">
           <Button size="lg">Browse All Tools →</Button>

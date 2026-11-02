@@ -331,7 +331,7 @@ export default async function ResourceDetailPage({
   const resourceFaq = [
     {
       question: `Is ${resource.name} free to use?`,
-      answer: resource.isFree !== false ? `Yes, ${resource.name} is 100% free to use.` : `${resource.name} offers a free tier with premium options available.`,
+      answer: resource.isFree !== false ? `The listing for ${resource.name} is marked free to use.` : `${resource.name} offers a free tier with premium options available.`,
     },
     {
       question: `What are the best alternatives to ${resource.name}?`,

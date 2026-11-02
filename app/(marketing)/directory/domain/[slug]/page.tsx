@@ -109,7 +109,7 @@ export async function generateMetadata({
 
   return constructMetadata({
     title: `Best Free ${domain.name} Tools & Resources 2026`,
-    description: `Browse ${totalResources}+ free ${domain.name.toLowerCase()} tools, APIs, and software. 100% free, no signup. Best alternative to paid ${domain.name} tools.`,
+    description: `Browse ${totalResources}+ free ${domain.name.toLowerCase()} tools, APIs, and software. Free to use, no signup. Best alternative to paid ${domain.name} tools.`,
     image: `/og/domain-${slug}.png`,
     keywords: domainKeywords[slug] || [
       `best free ${domain.name.toLowerCase()} tools 2026`,

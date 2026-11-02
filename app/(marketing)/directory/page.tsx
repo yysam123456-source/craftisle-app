@@ -27,7 +27,7 @@ const HOME_BLOCKS_FILE = join(__dirname, "../../..", "public", "data", "home-blo
 export const metadata: Metadata = constructMetadata({
   title: "Find Free Tools for Any Task",
   description:
-    "Discover 16,000+ curated free & open-source tools across 200+ categories. AI assistants, development tools, design software, and more. 100% free, no signup required.",
+    "Discover 16,000+ curated free & open-source tools across 200+ categories. AI assistants, development tools, design software, and more. Free to use, no signup required.",
   keywords: [
     "free tools directory",
     "open source tools",

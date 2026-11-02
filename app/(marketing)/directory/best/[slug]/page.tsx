@@ -541,7 +541,7 @@ export default async function BestToolsPage(props: BestPageProps) {
           <div>
             <h3 className="font-medium text-sm">Are these tools really free?</h3>
             <p className="text-sm text-gray-600 mt-1">
-              Yes! All tools listed on Craftisle are 100% free or have a generous free tier.
+              Every tool listed here is either free to use or offers a free tier; paid plans are labelled on the listing.
             </p>
           </div>
           <div>

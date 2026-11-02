@@ -27,13 +27,15 @@ import {
   CalendarDays,
   Clock,
 } from "lucide-react";
-import { CATEGORIES, CATEGORY_LIST } from "@/lib/tools";
+import { CATEGORIES, CATEGORY_LIST, toolMeta } from "@/lib/tools";
 import { constructMetadata } from "@/lib/utils";
+
+// 工具总数直接从 toolMeta 取，避免手写数字随工具增删而漂移
+const TOOL_COUNT = Object.keys(toolMeta).length;
 
 export const metadata = constructMetadata({
   title: "Craftisle Tools — Free Online Tools for Developers & Creators",
-  description:
-    "Discover 135+ free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more. No signup, 100% browser-based.",
+  description: `Discover ${TOOL_COUNT} free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more. No signup required.`,
   keywords: [
     "free online tools", "image editor online", "PDF tools free",
     "file viewer online", "resume builder free", "developer tools online",
@@ -106,7 +108,7 @@ export default function BlogPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Craftisle Free Online Tools",
-    description: "135+ free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more.",
+    description: `${TOOL_COUNT} free online tools across the Craftisle ecosystem. Image editors, PDF converters, file viewers, resume builder, encryption, formatters, and more.`,
     url: "https://craftisle.com/blog",
     mainEntity: {
       "@type": "ItemList",
@@ -137,12 +139,12 @@ export default function BlogPage() {
               Craftisle Ecosystem
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              135+ Free Online Tools
+              {TOOL_COUNT} Free Online Tools
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
               Everything you need to work smarter — image editors, PDF processors, 
               file viewers, resume builder, encryption tools, code formatters, and more. 
-              All 100% browser-based, no signup required.
+              Most tools run entirely in your browser, no signup required.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
@@ -389,10 +391,11 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight">
-              Ready to explore all {ECOSYSTEM_PRODUCTS.length} products and 135+ tools?
+              Ready to explore all {ECOSYSTEM_PRODUCTS.length} products and {TOOL_COUNT} tools?
             </h2>
             <p className="mt-3 text-muted-foreground">
-              No signup, no ads, no tracking. Just pure browser-based utility — free forever.
+              No signup required. Most tools process your files locally in the browser
+              instead of uploading them — and it's free to use.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link

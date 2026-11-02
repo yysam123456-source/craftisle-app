@@ -191,8 +191,8 @@ export default function AIWatermarkRemoverPage() {
               <div className="rounded-lg border p-4">
                 <h3 className="font-semibold">Browser-Based, Private</h3>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  All processing happens in your browser. Your images never leave
-                  your device. 100% private and secure.
+                  All processing happens in your browser. Your images are not
+                  uploaded to our servers.
                 </p>
               </div>
               <div className="rounded-lg border p-4">

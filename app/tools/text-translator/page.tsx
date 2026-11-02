@@ -55,7 +55,7 @@ export default function TextTranslatorPage() {
         </h1>
         <p className="mt-1.5 text-sm text-muted-foreground sm:text-base">
           Translate text between 30+ languages instantly. Auto-detect source language,
-          listen to pronunciation, copy results. 100% free, no signup required.
+          listen to pronunciation, copy results. Free to use, no signup required.
         </p>
       </div>
 

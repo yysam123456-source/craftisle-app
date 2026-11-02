@@ -173,7 +173,7 @@ export default async function HowToPage({ params }: Props) {
       <section className="rounded-2xl border bg-primary/5 p-6 text-center space-y-4">
         <h2 className="text-xl font-semibold">Ready to Try {meta.title}?</h2>
         <p className="text-muted-foreground text-sm">
-          No signup. No download. 100% free.
+          No signup. No download. Free to use.
         </p>
         <Link href={`/tools/${tool}`} className="inline-block">
           <Button size="lg">
