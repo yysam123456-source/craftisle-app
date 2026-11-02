@@ -57,21 +57,35 @@ type Result = {
 };
 
 async function get(url: string, asText = true): Promise<{ status: number; body: string }> {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 20000);
-  try {
-    const res = await fetch(url, {
-      headers: { "User-Agent": UA, Accept: asText ? "text/html,text/plain,*/*" : "*/*" },
-      signal: ctrl.signal,
-      redirect: "follow",
-    });
-    const body = asText ? await res.text() : "";
-    return { status: res.status, body };
-  } catch {
-    return { status: 0, body: "" };
-  } finally {
-    clearTimeout(timer);
+  // 🔴 单次尝试会把一次连接抖动放大成「整站 P0」——实测（11-02）同一轮里
+  //    draw/viewer 的 robots.txt 被 AbortError 打断，报告直接判「不可读 + 未声明 AI 爬虫」，
+  //    而 curl 同时刻 200。故改为最多 3 次尝试，只有全部失败才返回 status 0。
+  let lastErr: unknown = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20000);
+    try {
+      const res = await fetch(url, {
+        headers: { "User-Agent": UA, Accept: asText ? "text/html,text/plain,*/*" : "*/*" },
+        signal: ctrl.signal,
+        redirect: "follow",
+      });
+      const body = asText ? await res.text() : "";
+      return { status: res.status, body };
+    } catch (e) {
+      lastErr = e;
+      if (attempt < 2) await new Promise((r) => setTimeout(r, 400 * (attempt + 1)));
+    } finally {
+      clearTimeout(timer);
+    }
   }
+  // 静默 catch 会把「抓取失败」伪装成「站点什么都没声明」。
+  // GEO_DEBUG=1 时输出真实原因，否则一次网络抖动就足以让整份报告全 0。
+  if (process.env.GEO_DEBUG) {
+    const err = lastErr as { name?: string; message?: string; cause?: { code?: string } };
+    console.error(`[geo] fetch failed ${url} :: ${err?.name} ${err?.cause?.code || err?.message}`);
+  }
+  return { status: 0, body: "" };
 }
 
 function strip(html: string): string {
@@ -174,13 +188,18 @@ async function audit(site: Site): Promise<Result> {
   r.page.titleLen = (page.body.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? "").length;
 
   // ── 判定 ──
-  if (r.robots.status !== 200) r.p0.push("robots.txt 不可读");
+  // status 0 = 三次重试后仍抓不到，是「本次无法判定」而不是「站点有缺陷」。
+  // 两种情况必须分开说，否则报告会把网络问题写成站点的 P0。
+  if (r.robots.status === 0) r.p0.push("robots.txt 抓取失败（重试 3 次未果，本次未判定）");
+  else if (r.robots.status !== 200) r.p0.push(`robots.txt 返回 ${r.robots.status}`);
   if (r.robots.blockAll) r.p0.push("robots.txt 全站禁抓");
   if (r.sitemap.status !== 200) r.p0.push("sitemap 不可读");
   if (r.page.status !== 200) r.p0.push(`取样页 HTTP ${r.page.status}`);
   if (r.page.hasNoindex) r.p0.push("取样页 noindex");
 
-  if (r.robots.aiUas.length === 0) r.p1.push("robots 未显式声明 AI 爬虫（依赖通配符）");
+  // 只在真正读到 robots 时才评价「有没有声明 AI 爬虫」。
+  if (r.robots.status === 200 && r.robots.aiUas.length === 0)
+    r.p1.push("robots 未显式声明 AI 爬虫（依赖通配符）");
   if (r.llms.status !== 200 || r.llms.bytes < 500) r.p1.push("llms.txt 缺失或过薄");
   if (r.llms.links < 5) r.p1.push("llms.txt 缺结构化链接清单");
   if (r.page.jsonLd.length === 0) r.p1.push("取样页无 JSON-LD");
