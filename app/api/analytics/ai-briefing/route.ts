@@ -369,6 +369,39 @@ export async function GET(request: Request) {
 
     // ── 每子站(零曝光也全列出) ──
     const totalImpr = siteRecords.reduce((s, m) => s + m.impressions, 0);
+    // 🔴 2026-11-03：页面级归因（PageMetric）—— 一次性取回，按 siteId 分组。
+    //   SiteMetric.uniquePages 只给「有几个页有曝光」，这里补上「是哪几页」。
+    //   没有它就无法定位「哪一页在涨/掉」，「有曝光的加量、没曝光的停用」无从执行。
+    const topPagesBySite = new Map<
+      string,
+      Array<{ page: string; impressions: number; clicks: number; position: number; queryCount: number }>
+    >();
+    try {
+      const pageRows = await prisma.pageMetric.findMany({
+        where: { weekStart },
+        orderBy: { impressions: "desc" },
+        select: { siteId: true, page: true, impressions: true, clicks: true, position: true, queryCount: true },
+      });
+      for (const r of pageRows) {
+        const arr = topPagesBySite.get(r.siteId) ?? [];
+        if (arr.length >= 5) continue; // 每站只留前 5
+        arr.push({
+          page: r.page,
+          impressions: r.impressions,
+          clicks: r.clicks,
+          position: Math.round(r.position * 10) / 10,
+          queryCount: r.queryCount,
+        });
+        topPagesBySite.set(r.siteId, arr);
+      }
+    } catch {
+      // 🔴 静默 catch 会把「PageMetric 还没数据」伪装成「各站无页面曝光」——
+      //   显式标出来（下面的 pagesAttributionNote），别让报表读者误判。
+    }
+    const pagesAttributionNote = topPagesBySite.size
+      ? undefined
+      : "页面级归因（PageMetric）暂无数据 —— 需 cron 跑过一次 pull-gsc-data 才有。这是「还没数据」，不是「没有页面曝光」。";
+
     const sites = siteList.map((s) => {
       const m = siteRecords.find((r) => r.siteId === s.id);
       let topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }> = [];
@@ -399,6 +432,10 @@ export async function GET(request: Request) {
         share: totalImpr > 0 && m ? Math.round((m.impressions / totalImpr) * 1000) / 10 : 0,
         topQueries,
         topQueriesParseOk,
+        // 🔴 2026-11-03：页面级归因（PageMetric）。
+        //   SiteMetric.uniquePages 只给「有几个页有曝光」，这里补上「是哪几页」。
+        //   没有它就无法定位「哪一页在涨/掉」，「有曝光的加量、没曝光的停用」无从执行。
+        topPages: topPagesBySite.get(s.id) ?? [],
       };
     });
 
@@ -516,9 +553,15 @@ export async function GET(request: Request) {
           : null,
         biggestCtrMiss: lowCtrQueries[0] ?? null,
       },
+      // 🔴 2026-11-03：页面级归因自证位。空数组 + 有 note ⇒ 还没数据（不是「没页面曝光」）。
+      pagesAttribution: {
+        sitesWithData: topPagesBySite.size,
+        note: pagesAttributionNote,
+      },
       endpoints: {
         deepGapAnalysis: "/api/analytics/topical-gaps",
         perSiteDetail: "/api/analytics/network?site=<slug>",
+        pageAttribution: "/api/analytics/pages?site=<slug>", // 🔴 2026-11-03 页面级归因
         manualApply: "/api/cron/auto-optimize?apply=1&secret=<CRON_SECRET>",
       },
     };
@@ -544,7 +587,7 @@ type Briefing = {
   heal: { triggered: boolean; ok: boolean | null; status: number | null; note: string };
   catchup?: Array<{ job: string; ok: boolean | null; note: string }>;
   overall: { impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; top3Count: number; changes: { impressionsPct: number; clicksPct: number; positionChange: number }; lastWeek: { impressions: number; clicks: number } };
-  sites: Array<{ slug: string; name: string; host: string; impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number; share: number; topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }>; topQueriesParseOk: boolean }>;
+  sites: Array<{ slug: string; name: string; host: string; impressions: number; clicks: number; avgPosition: number; avgCtr: number; queryCount: number; uniquePages: number; share: number; topQueries: Array<{ query: string; impressions: number; clicks: number; position: number }>; topQueriesParseOk: boolean; topPages: Array<{ page: string; impressions: number; clicks: number; position: number; queryCount: number }> }>;
   nearMissQueries: Array<{ query: string; position: number; impressions: number; clicks: number }>;
   lowCtrQueries: Array<{ query: string; position: number; ctr: number; benchmarkCtr: number; impressions: number; missedClicks: number }>;
   activeAlerts: Array<{ type: string; severity: string; query: string; message: string; createdAt: string }>;

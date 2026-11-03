@@ -339,6 +339,16 @@ export async function GET(request: Request) {
           queries: Map<string, { impressions: number; clicks: number; position: number }>;
         };
         const buckets = new Map<string, Bucket>();
+        // 🔴 2026-11-03：同时按 URL 聚合（页面级归因）。
+        //   此前 page 维度的 URL 列表在这里被丢掉，只留下 uniquePages 一个计数 ⇒
+        //   无法回答「哪一页在涨、哪一页掉了」，而「有曝光的加量 / 没曝光的停用」
+        //   这个决策环必须靠页面级数据才能执行。
+        type PageBucket = {
+          impressions: number; clicks: number; posSumImpressionWeighted: number;
+          queryCount: number;
+          queries: Map<string, { impressions: number; clicks: number; position: number }>;
+        };
+        const pageBuckets = new Map<string, PageBucket>(); // key = `${slug}||${page}`
         for (const r of pageRes.rows) {
           if (!r.page) continue;
           const slug = resolveSiteSlug(r.page);
@@ -357,6 +367,22 @@ export async function GET(request: Request) {
           const prevQ = b.queries.get(r.query);
           if (!prevQ || r.impressions > prevQ.impressions) {
             b.queries.set(r.query, { impressions: r.impressions, clicks: r.clicks, position: r.position });
+          }
+
+          // ── 页面级聚合 ──
+          const pk = `${slug}||${r.page}`;
+          let pb = pageBuckets.get(pk);
+          if (!pb) {
+            pb = { impressions: 0, clicks: 0, posSumImpressionWeighted: 0, queryCount: 0, queries: new Map() };
+            pageBuckets.set(pk, pb);
+          }
+          pb.impressions += r.impressions;
+          pb.clicks += r.clicks;
+          pb.posSumImpressionWeighted += r.position * r.impressions;
+          pb.queryCount += 1;
+          const pq = pb.queries.get(r.query);
+          if (!pq || r.impressions > pq.impressions) {
+            pb.queries.set(r.query, { impressions: r.impressions, clicks: r.clicks, position: r.position });
           }
         }
         // 3) 写入 SiteMetric
@@ -394,6 +420,49 @@ export async function GET(request: Request) {
           sitesWritten += 1;
         }
         console.log(`[GSC Cron] SiteMetric written for ${sitesWritten} sub-sites`);
+
+        // 🔴 2026-11-03：写页面级归因（PageMetric）。
+        //   这是「有曝光页面数」之外的那一半数据 —— URL 列表 + 每个 URL 的曝光/点击/位次。
+        //   没有它就只能知道「有 23 个页有曝光」，不知道是哪 23 个、更不知道谁在涨。
+        let pagesWritten = 0;
+        const siteIdsBySlug = new Map<string, string>();
+        for (const s of SITES) {
+          const row = await prisma.site.findUnique({ where: { slug: s.slug } });
+          if (row) siteIdsBySlug.set(s.slug, row.id);
+        }
+        for (const [pk, pb] of pageBuckets) {
+          const sep = pk.indexOf("||");
+          const slug = pk.slice(0, sep);
+          const page = pk.slice(sep + 2);
+          const siteId = siteIdsBySlug.get(slug);
+          if (!siteId || !page) continue;
+          const topQ = Array.from(pb.queries.entries())
+            .map(([query, v]) => ({ query, ...v }))
+            .sort((a, c) => c.impressions - a.impressions)
+            .slice(0, 10);
+          await prisma.pageMetric.upsert({
+            where: { siteId_page_weekStart: { siteId, page, weekStart: snapshotAt } },
+            create: {
+              siteId,
+              page,
+              weekStart: snapshotAt,
+              impressions: pb.impressions,
+              clicks: pb.clicks,
+              position: pb.impressions > 0 ? pb.posSumImpressionWeighted / pb.impressions : 0,
+              queryCount: pb.queryCount,
+              topQueries: JSON.stringify(topQ),
+            },
+            update: {
+              impressions: pb.impressions,
+              clicks: pb.clicks,
+              position: pb.impressions > 0 ? pb.posSumImpressionWeighted / pb.impressions : 0,
+              queryCount: pb.queryCount,
+              topQueries: JSON.stringify(topQ),
+            },
+          });
+          pagesWritten += 1;
+        }
+        console.log(`[GSC Cron] PageMetric written for ${pagesWritten} URLs`);
       }
     } catch (e: any) {
       console.error("[GSC Cron] Site-metrics failed:", e?.message ?? e);
