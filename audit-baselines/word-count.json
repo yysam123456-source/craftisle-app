@@ -1,6 +1,6 @@
 {
   "note": "audit:word-count 的既有薄页基线。新增薄页或比基线更薄 ⇒ P0 阻断；修好了会自动移出基线。",
-  "generatedAt": "2026-11-03T09:19:48.866Z",
+  "generatedAt": "2026-11-03T09:22:19.860Z",
   "thresholds": {
     "tool": 150,
     "landing": 250,

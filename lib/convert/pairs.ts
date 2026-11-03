@@ -456,6 +456,24 @@ export const CONVERT_PAIRS: ConvertPair[] = [
         answer:
           "Yes. The picker takes JPEG and PNG alike, and each file is routed to the right embedder automatically, so you can mix screenshots and photos in one document without converting anything first. PNG pages keep transparency; JPG pages are embedded as they are.",
       },
+      {
+        // 🔴 2026-11-03 约束词假说单页验证（总案 §6.3 的「约束词才是差异化来源」）。
+        //   依据：真实 Suggest 需求里，「png to pdf」后面固定跟着约束词 ——
+        //   "png to pdf free online no sign up"(8 词)、"png to pdf converter free no sign up"(8 词)、
+        //   "png to pdf free no sign up"(7 词)，而任务词本身只有 "png to pdf"(2 曝光 @P15)。
+        //   站内的 description 早已写着「Free, private, nothing uploaded. No account, no watermark.」，
+        //   另有 FAQ「Are my images uploaded anywhere?」答的是「没有上传端点」。
+        //   ⇒ **事实早就在页面上，缺的是用户实际会用的那一种说法**。
+        //   本条只做一件事：把同一件事写成用户搜的那句话（no sign-up / without uploading），
+        //   不新增任何能力、不夸大任何承诺。
+        //   4 周后（12-01 快照）看 "png to pdf ... no sign up" 是否起量 —— 这是整个
+        //   约束词假设的**唯一**证据点；起量则可扩，起不来则该假设作废（而不是继续铺 4,600 页）。
+        //   ✅ 事实核对（2026-11-03）：PdfConvertTool.tsx 内 fetch/FormData/XHR/sendBeacon/axios
+        //   命中 0 次，登录与账号逻辑命中 0 次 ⇒「不上传、不注册」两句都为真。
+        question: "Can I convert PNG to PDF for free online without a sign-up or uploading anything?",
+        answer:
+          "Yes — and both parts are structural rather than a setting you can toggle. There is no sign-up step at all: no account, no email address, no activation, and no watermark on the result. And nothing is uploaded, because there is no upload endpoint on this page — the document is assembled by a library running inside this tab and handed straight back to you. That is also why a batch of large images works without a queue, and why the tool keeps working when you are offline.",
+      },
     ],
     relatedTools: [
       { id: "pdf-tools", label: "All PDF tools" },
