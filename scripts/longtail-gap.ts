@@ -305,6 +305,29 @@ function normalizeForBrand(term: string): string {
   return term.toLowerCase().replace(/\s+/g, "");
 }
 
+/**
+ * 🔴 DEBT-45：判断该页是否**逐字声明**了这个查询。
+ *
+ * 归一化口径与 growth-review.ts 的 intentTerm 匹配保持一致：
+ *   小写 → 非字母数字一律换成空格 → 折叠空格 → trim。
+ * 这样 "g suite alternatives free" 与 "G Suite Alternatives Free"、
+ * "g-suite-alternatives-free" 都能判为同一主词。
+ *
+ * 为什么要逐字而不是「词集合相等」：
+ *   词集合相等会把 "free asana alternatives" 与 "asana alternatives free" 判为同一条，
+ *   而 seoKeywords 写的是**作者要投放的那一种说法**，逐字相等才是强信号。
+ */
+function hasExactTerm(exactTerms: string[] | undefined, query: string): boolean {
+  if (!exactTerms || exactTerms.length === 0) return false;
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+  const q = norm(query);
+  if (!q) return false;
+  for (const t of exactTerms) {
+    if (norm(t) === q) return true;
+  }
+  return false;
+}
+
 function screenOut(term: string): Exclusion | null {
   const t = term.toLowerCase();
   const norm = normalizeForBrand(term);
@@ -398,6 +421,24 @@ interface CorpusEntry {
   key: string;
   text: string;
   kind: "tool" | "landing" | "pair" | "alternatives";
+  /**
+   * 🔴 DEBT-45（2026-11-03）：该页**显式声明要打的主词**（seoKeywords / keywords）。
+   *
+   * 单独存字段、**不混进 text** —— 混进去会重演 DEBT-15（关键词堆进语料 ⇒
+   * df 虚高 ⇒ 锚点选错 ⇒ 系统性错配）。这里只用来做**逐字排序判定**：
+   * 查询归一化后若与其中某条**完全相等**，该页排 hits[0]。
+   *
+   * 为什么需要：匹配器只做 token 集合匹配，无法区分「这页正好把这个词当主词」
+   * 与「这页散文里提了一句」。实测后果：`g suite alternatives free`(9 曝光 @P17)
+   * 的 hits[0] 是 /directory/alternatives/ableton-live —— 该页 seoKeywords 里
+   * 根本没有 g suite，只是 description 写了定价档名 `$749 (Suite)` 才命中
+   * "suite" 这个词；而真正该承接的 /directory/alternatives/google-workspace
+   * 的 seoKeywords 逐字写着 "g suite alternatives free"，却只排 hits[2]。
+   *
+   * 影响面已实测：全量 gscMatched 中「存在 seoKeywords 逐字等于查询」的行共 11 条，
+   * 排序错位只有 1 条 ⇒ 风险极低。
+   */
+  exactTerms?: string[];
 }
 
 /**
@@ -509,6 +550,21 @@ function extractFields(block: string, fields: readonly string[]): string {
   return out.join(" ");
 }
 
+/**
+ * 🔴 DEBT-45：抽取**字符串数组**的每个元素（保留原样，不 join）。
+ *
+ * `extractFields` 会把数组 join 成一整串，不能用 —— 逐字判定需要每条主词
+ * 保持独立（"g suite alternatives free" 是一个整体，不是三个词）。
+ */
+function extractStringArray(block: string, field: string): string[] {
+  const out: string[] = [];
+  const arr = new RegExp(`\\b${field}\\s*:\\s*\\[([\\s\\S]*?)\\]`).exec(block);
+  if (arr?.[1]) {
+    for (const m of arr[1].matchAll(/"((?:[^"\\]|\\.)*)"/g)) out.push(m[1]);
+  }
+  return out;
+}
+
 function loadToolCorpus(): CorpusEntry[] {
   const out: CorpusEntry[] = [];
   const p = resolve(process.cwd(), "lib", "tools.ts");
@@ -523,9 +579,60 @@ function loadToolCorpus(): CorpusEntry[] {
     // 再叠一层能力泛述词剔除（见 CAPABILITY_NOISE）+ 格式清单剔除（DEBT-41）。
     const text = stripFormatLists(stripCapabilityNoise(extractFields(blocks[i], IDENTITY_FIELDS)));
     if (!text.trim()) continue;
-    out.push({ key: `/tools/${id}`, text, kind: "tool" });
+    // 🔴 DEBT-45：seoKeywords 单独存 exactTerms（不混进 text），只用于逐字排序判定。
+    const exactTerms = extractStringArray(blocks[i], "seoKeywords");
+    out.push({ key: `/tools/${id}`, text, kind: "tool", exactTerms });
   }
   return out;
+}
+
+/**
+ * 🔴 DEBT-44（2026-11-03）：落地页语料可见率只有 5.8%，导致 12 条已被站内页
+ * 承接的 GSC 词每天被误报成「真缺口」。
+ *
+ * 事实：29 个落地页正文平均 3176 字符，而原实现只抽
+ * title/seoTitle/description/seoDesc/tagline 五个字段（平均 184 字符）⇒
+ * 可见率 5.8%，faq / sections / keywords 全部不可见。
+ * 后果：`intellij community edition discontinued`(8@P50)、
+ * `has intellij stopped community edition`(6@P48)、
+ * `is intellij community edition still available`(4@P46) 等 12 条词，
+ * 在 /l/intellij-alternative 的 FAQ 里已白纸黑字写着（10-27 补齐且已被 GSC
+ * 证实有曝光），却因语料看不见 FAQ 而每天进 gscUncovered。
+ *
+ * 危害比漏报更大：它让 10-27 那批 tune 的效果在报表里永远显示不出来 ⇒
+ * 长期会误判「tune 无效」而重复加内容。
+ *
+ * 修法（口径经真实匹配器三档 A/B 实测，SIM3 方案）：
+ *   落地页语料 = 身份字段 + **faq 问答全文** + **sections 章节标题**
+ *   （sections 的**段落正文不取** —— 散文正文是 DEBT-42 残留假匹配的来源）
+ * 效果：gscMatched 118 → 130，gscUncovered 82 → 70，消除假缺口 12 条，
+ *   新增假缺口 0 条，12 条命中全部为 /l/intellij-alternative 且逐条人工核对语义正确。
+ *
+ * ⚠️ 落地页语料变宽会改变全局 df 表，进而影响 anchor 选择 ⇒
+ *    扩大口径必须以 A/B 实测的「新增假缺口 = 0」为准，不可凭直觉继续放宽。
+ */
+
+/** 抽取落地页 faq 数组里的 q + a（问答全文）—— 精确长尾问句都在问题里，答案里有对应主张。 */
+function extractFaqPairs(block: string): string {
+  const out: string[] = [];
+  const fm = /\bfaq:\s*\[([\s\S]*?)\n {4}\]/g;
+  let m: RegExpExecArray | null;
+  while ((m = fm.exec(block)) !== null) {
+    for (const q of m[1].matchAll(/q:\s*"((?:[^"\\]|\\.)*)"/g)) out.push(q[1]);
+    for (const a of m[1].matchAll(/a:\s*"((?:[^"\\]|\\.)*)"/g)) out.push(a[1]);
+  }
+  return out.join(" ");
+}
+
+/** 抽取落地页 sections 里的 heading（不含段落正文）。 */
+function extractHeadings(block: string): string {
+  const out: string[] = [];
+  const sm = /\bsections:\s*\[([\s\S]*?)\n {4}\],/g;
+  let m: RegExpExecArray | null;
+  while ((m = sm.exec(block)) !== null) {
+    for (const h of m[1].matchAll(/heading:\s*"((?:[^"\\]|\\.)*)"/g)) out.push(h[1]);
+  }
+  return out.join(" ");
 }
 
 function loadLandingCorpus(): CorpusEntry[] {
@@ -539,9 +646,20 @@ function loadLandingCorpus(): CorpusEntry[] {
     // 同样的病：落地页数量少（29 页），全字符串抓取会让任何含 "alternativ"
     // 的词都命中它（实测 `free alternatives to logic pro` → /l/intellij-alternative）。
     // + DEBT-41：格式清单段一并剥掉（落地页 desc 里也常列支持格式）。
-    const text = stripFormatLists(stripCapabilityNoise(extractFields(m[0], ["title", "seoTitle", "description", "seoDesc", "tagline"])));
+    // + DEBT-44：补 faq 问答全文 + sections 标题（见上方注释）。
+    const text = stripFormatLists(
+      stripCapabilityNoise(
+        extractFields(m[0], ["title", "seoTitle", "description", "seoDesc", "tagline"]) +
+          " " +
+          extractFaqPairs(m[0]) +
+          " " +
+          extractHeadings(m[0])
+      )
+    );
     if (!text.trim()) continue;
-    out.push({ key: `/l/${m[1]}`, text, kind: "landing" });
+    // 🔴 DEBT-45：落地页的 keywords 是它显式声明要打的主词。
+    const exactTerms = extractStringArray(m[0], "keywords");
+    out.push({ key: `/l/${m[1]}`, text, kind: "landing", exactTerms });
   }
   return out;
 }
@@ -615,6 +733,10 @@ function loadAlternativesCorpus(): CorpusEntry[] {
         key: `/directory/alternatives/${toSlug(paidTool)}`,
         text,
         kind: "alternatives",
+        // 🔴 DEBT-45：seoKeywords 单独存 exactTerms（不混进 text）。
+        // 关键场景：`g suite alternatives free` 的 seoKeywords 逐字命中 google-workspace，
+        // 而 hits[0] 曾被 ableton-live 抢走（其 description 里的 `$749 (Suite)` 定价档名）。
+        exactTerms: e.seoKeywords ?? [],
       });
     }
   } catch (e: any) {
@@ -709,6 +831,8 @@ interface Match {
   anchorHit: boolean;
   /** 🔴 DEBT-41：该页 URL 的最后一段实词是否全部被查询覆盖（专用承接页） */
   keyCovered: boolean;
+  /** 🔴 DEBT-45：该页的 seoKeywords/keywords 里是否**逐字声明**了这个查询 */
+  exactMatch: boolean;
 }
 
 /**
@@ -900,6 +1024,10 @@ function matchCorpus(
       total: t.size,
       anchorHit: true,
       keyCovered: keyFullyCovered(c.key, t),
+      // 🔴 DEBT-45：该页是否**逐字声明**了这个查询（即 seoKeywords/keywords 里
+      // 有一条归一化后与查询完全相等）。这是最强的承接信号：
+      // 作者亲手写下「这一页要打这个词」，比任何 token 集合重合都权威。
+      exactMatch: hasExactTerm(c.exactTerms, term),
     });
   }
   // 🔴 DEBT-41（排序层）：同分时优先「URL 即查询」的专用承接页，再退回语料顺序。
@@ -908,10 +1036,19 @@ function matchCorpus(
   //   提了一嘴可导出 PDF/PNG），真正的承接页 /c/png-to-pdf 只能排第二；
   //   "microsoft project alternative" 的 hits[0] 则是 microsoft-visio。
   //   auto-tune 取 hits[0] 当目标路由 ⇒ 这道排序直接决定改写落到哪个页。
+  //
+  // 🔴 DEBT-45（2026-11-03）：**逐字声明命中排在最前**。
+  //   理由：token 集合匹配无法区分「这页把该词当主词」与「这页散文提了一句」。
+  //   实测 `g suite alternatives free`(9 曝光 @P17) 曾被 ableton-live 抢走 hits[0]
+  //   （其 seoKeywords 无 g suite，只是 description 里写了定价档名 `$749 (Suite)`），
+  //   而 google-workspace 的 seoKeywords 逐字写着该词却只排 hits[2]。
+  //   放最前的理由：seoKeywords/keywords 是**作者显式声明的投放目标**，
+  //   它比 df/anchor 的启发式可靠一个量级 —— 且不依赖 df，改语料宽度时不会漂移。
   return hits
     .sort(
       (a, b) =>
-        b.score / b.total - a.score / b.total ||
+        Number(b.exactMatch) - Number(a.exactMatch) ||
+        b.score / b.total - a.score / a.total ||
         Number(b.keyCovered) - Number(a.keyCovered)
     )
     .slice(0, 4);
