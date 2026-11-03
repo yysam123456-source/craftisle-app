@@ -565,6 +565,44 @@ function extractStringArray(block: string, field: string): string[] {
   return out;
 }
 
+/**
+ * 🔴 DEBT-46（2026-11-03）：工具页语料同样有盲区 —— `IDENTITY_FIELDS`
+ * （:462）只含 title/seoTitle/seoDesc/description/technicalNote/url，**不含 faq**。
+ * 而 175 个工具块里都有 faq（共 621 条问题），其中「同义声明型」那几条
+ * 正是作者写下的**等义关系声明**，是最纯的「这页在讲什么」信号：
+ *   /tools/handwriting-animation 的 FAQ #9/#10 写着
+ *   「Is this the same as animated writing or animated cursive writing?」
+ *   「Is this the same as an animated handwriting text generator or ...」
+ *   而 `writing animation generator`(8@P72)、`animated cursive writing`(8@P71)、
+ *   `animated writing`(6@P52)、`animated cursive`(4@P71) 这些词每天被报成
+ *   「真缺口」⇒ 又是 DEBT-44 那类「已承接却看不见」的假缺口。
+ *
+ * 为什么**只取同义声明型**、不取全部 FAQ（实测三档）：
+ *   · 全 faq（q+a）      ⇒ 造出 `pseudo game`→random-number-generator、
+ *                         `fx lab`→id-photo、`sign digital`→handwriting-animation
+ *                         三条错配 —— 散文里提一嘴格式名就接住整个查询。
+ *   · 全 faq（仅问题）    ⇒ 虽消掉那三条，但仍造出 171 条新 tune 词
+ *                         （`png to jpg converter`→signature-maker 等）
+ *                         —— 因为问题里也含「Can I export as GIF?」这类格式名问句。
+ *   · **只取同义声明型**   ⇒ 消除 4 条假缺口、新增未覆盖 0、**hits[0] 变化 0**、
+ *                         共同 tune 词归属改判 0、DEBT-15 格式词误配回归 0。
+ *
+ * 判据：问题文本须含「same as / also called / also known / another name /
+ * equivalent to」这类**等义关系措辞**。这类句子不含格式名清单，
+ * 也不含能力泛述（CAPABILITY_NOISE 仍会兜底剥掉）。
+ */
+function extractSynonymFaq(block: string): string {
+  const out: string[] = [];
+  const fm = /\bfaq:\s*\[([\s\S]*?)\n {4}\]/g;
+  let m: RegExpExecArray | null;
+  while ((m = fm.exec(block)) !== null) {
+    for (const q of m[1].matchAll(/q:\s*"((?:[^"\\]|\\.)*)"/g)) {
+      if (/same as|also (called|known)|another (name|way)|equivalent to/i.test(q[1])) out.push(q[1]);
+    }
+  }
+  return out.join(" ");
+}
+
 function loadToolCorpus(): CorpusEntry[] {
   const out: CorpusEntry[] = [];
   const p = resolve(process.cwd(), "lib", "tools.ts");
@@ -577,7 +615,10 @@ function loadToolCorpus(): CorpusEntry[] {
     if (!id) continue;
     // 🔴 不再抓「所有字符串」—— 那等于把 seoKeywords（1,566 条）灌进语料。
     // 再叠一层能力泛述词剔除（见 CAPABILITY_NOISE）+ 格式清单剔除（DEBT-41）。
-    const text = stripFormatLists(stripCapabilityNoise(extractFields(blocks[i], IDENTITY_FIELDS)));
+    // 🔴 DEBT-46：补「同义声明型 FAQ」—— 作者写下的等义关系，最纯的承接信号。
+    const text = stripFormatLists(stripCapabilityNoise(
+      extractFields(blocks[i], IDENTITY_FIELDS) + " " + extractSynonymFaq(blocks[i])
+    ));
     if (!text.trim()) continue;
     // 🔴 DEBT-45：seoKeywords 单独存 exactTerms（不混进 text），只用于逐字排序判定。
     const exactTerms = extractStringArray(blocks[i], "seoKeywords");
