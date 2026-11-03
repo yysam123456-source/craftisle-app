@@ -91,6 +91,58 @@ jobs:
             exit 1
           fi
 
+      # 🔴 2026-11-03（DEBT-24 续）：把剩下 3 个**纯静态**审计脚本也接进 CI。
+      #   此前 seo-cron.yml 只接了 validate:data + audit:pages，而这两个之外
+      #   还有 3 个早已写好、且都能 exit 1 的防线脚本**从未被任何 workflow 引用**：
+      #   · audit:sitemap  —— sitemap 404 / hreflang 断链 / robots 双配置 / meta 双源
+      #   · audit:related  —— relatedTools 死链 / 幽灵宿主 / 自指 / **slug 基线漂移**
+      #                         （基线断言 0：有效 slug 数必须 == 176，否则孤儿页判定会静默失准）
+      #   · audit:overrides—— 覆盖层读侧失效（同步读 PAGE_META / 路由不存在 ⇒ 静默回退）
+      #   这三个都是纯本地静态检查，不依赖网络也不依赖 DB，可以直接做阻断门。
+      #   （DEBT-24 的教训：「防线代码存在却从未运行」= 防线等于不存在。）
+      - name: 结构门禁（sitemap / relatedTools / 覆盖层读侧）
+        run: |
+          set -uo pipefail
+          for s in audit:sitemap audit:related audit:overrides; do
+            echo ""
+            echo "── $s ──"
+            if npm run "$s"; then
+              echo "✅ $s 通过"
+            else
+              echo "::error::$s 执行失败 —— 先看上方 npm 原始报错判断真因（缺依赖/脚本报错/真实 P0 都有可能，勿默认是数据问题）"
+              exit 1
+            fi
+          done
+
+      # 🔴 2026-11-03：页面正文厚度闸门（总案 §7.2 唯一真正缺的那部分）。
+      #   此前 6 个 audit 脚本**没有一个检查正文长度**（唯一阈值在 geo-audit.ts:214，
+      #   只是 P1 提示且默认只抽查 1 个页面）。
+      #   本脚本用 esbuild 加载真实数据模块，按渲染组件实际读取的字段统计词数；
+      #   基线机制保证它拦「新写的薄页」而不是天天为既有欠账红。
+      - name: 页面质量闸门（正文厚度）
+        run: |
+          set -uo pipefail
+          echo "── audit:word-count ──"
+          if npm run audit:word-count; then
+            echo "✅ 页面质量闸门通过"
+          else
+            echo "::error::页面质量闸门未通过 —— 新增薄页或内容退化。不过闸门不发布（一页废页的代价高于十页好页的收益）"
+            exit 1
+          fi
+
+      # verify:tools 检查的是**已部署的线上页面**（抓 craftisle.com），
+      # 与上面三个「部署前的代码门禁」性质不同 ⇒ **不阻断**：
+      # 站点临时不可用不该把整条数据管道挡死，但它必须被看见。
+      - name: 线上抽查（不阻断 · 仅告警）
+        run: |
+          set -uo pipefail
+          echo "── verify:tools（线上抽查，不阻断）──"
+          if npm run verify:tools; then
+            echo "✅ 线上抽查通过"
+          else
+            echo "::warning::verify:tools 未通过 —— 线上页面可能有问题，查上方明细（站点不可达也会触发）"
+          fi
+
       - name: 触发 pull-gsc-data（每天）
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
