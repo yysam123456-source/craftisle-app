@@ -95,6 +95,44 @@ function daysBetween(a: string, b: Date): number {
   return Math.round((b.getTime() - d) / 86_400_000);
 }
 
+// ── 拆账口径（2026-11-04）：按 type 过滤 ──────────────────────────────────
+// 🔴 `candidateImpressions` 是「该页当时已有曝光」的相关性匹配，不是动作带来的增量。
+//    台账实测（11-04）：曝光 Top4 全是 infra/monitor（231/120/54/15 imp）——这些动作
+//    根本不改页面，却被旧逻辑判成 promote_candidate 并回写 status=kept，
+//    把「修测量管道」记成了「增长」。同样，intentTerms 为空的动作没有可匹配词，
+//    56d 后必然被判 unproven_or_dead（假失败，DEBT-21 回读空转的同型）。
+//
+// 口径（与 automation-1788142846914 §1「拆账口径」一致）：
+//   **只有「改页面内容」且「带 intentTerms」的动作才用 candidateImpressions 判读。**
+//   其余一律 not_applicable，但**不静默丢弃**：仍进 readback / 仍进报告，
+//   candidateImpressions = null（不是 0 —— 0 会被读成「没起量」），
+//   带明确 exclusionReason，且**不回写 status**（否则会覆盖人工 verified、
+//   或把 infra 动作判成 failed/kept）。
+const EXPOSURE_ELIGIBLE_TYPES = new Set([
+  // §1 白名单原文
+  "content", "tune", "page", "copy", "seo-fix", "content-gap",
+  // 台账实有、语义同为「改页面内容」的两类（不列会漏掉 7 条建页/功能动作）
+  "gap", "feature",
+]);
+
+type ExclusionReason = "missing_type" | "non_content_type" | "no_intent_terms";
+
+function classifyExposure(a: Record<string, unknown>): { eligible: boolean; reason?: ExclusionReason } {
+  const type = String(a.type ?? "").trim();
+  if (!type) return { eligible: false, reason: "missing_type" };
+  if (!EXPOSURE_ELIGIBLE_TYPES.has(type)) return { eligible: false, reason: "non_content_type" };
+  const terms = (a.intentTerms as string[] | undefined) ?? [];
+  if (terms.length === 0) return { eligible: false, reason: "no_intent_terms" };
+  return { eligible: true };
+}
+
+/** 报告用：把排除原因做成可读的计数，避免「排除」变成看不见的黑洞。 */
+const EXCLUSION_LABEL: Record<ExclusionReason, string> = {
+  missing_type: "未登记 type",
+  non_content_type: "非改页面内容（infra/monitor/audit/…）",
+  no_intent_terms: "无 intentTerms，无法做曝光匹配",
+};
+
 async function main() {
   const today = new Date();
   console.log(`[growth-review] ${today.toISOString().slice(0, 10)}`);
@@ -292,6 +330,35 @@ async function main() {
       //   明明 7 天窗口已可判定，却被埋掉（实测 28 条里只有 1 条能判定）。
       const notMature = coverageDays < 0 || due.length === 0;
       const terms = (a.intentTerms as string[]) ?? [];
+      // 🔴 拆账口径（见文件顶部 EXPOSURE_ELIGIBLE_TYPES）：先判资格，再谈匹配。
+      //    旧版对 78 条一视同仁 ⇒ infra/monitor 的既有曝光被记成「动作带来的增长」，
+      //    intentTerms 为空的动作则会在 56d 被判成假失败。两类都必须先挡在这里。
+      const cls = classifyExposure(a);
+      if (!cls.eligible) {
+        readback.push({
+          id: a.id,
+          target: a.target,
+          title: a.title,
+          type: a.type ?? null,
+          eligible: false,
+          exclusionReason: cls.reason,
+          exclusionLabel: EXCLUSION_LABEL[cls.reason as ExclusionReason],
+          ageDays: days,
+          dataAgeDays,
+          coverageDays,
+          latestSnapshot: latestSnapshot ? latestSnapshot.toISOString().slice(0, 10) : null,
+          baseline: a.baseline,
+          matchedQueries: [],
+          // 🔴 null ≠ 0：0 会被读成「没起量」，null 是「本动作不适用曝光回读」
+          candidateImpressions: null,
+          dueWindows: due,
+          decision: "not_applicable",
+          daysUntilMature: null,
+          caveats: a.caveats,
+          nextPatch: a.nextPatch,
+        });
+        continue;
+      }
       // 🔴 匹配收紧（旧版是无序子串全包含：`stem.every(w => q.includes(w))`
       //   既不管词序也不去停用词，会同时产生假阳与假阴）。
       //   现在要求：所有实词**按序连续**出现（允许中间夹一个连接词）。
@@ -334,6 +401,9 @@ async function main() {
         id: a.id,
         target: a.target,
         title: a.title,
+        type: a.type ?? null,
+        eligible: true,
+        exclusionReason: null,
         ageDays: days,
         // 🔴 2026-10-20（DEBT-13 重开）：dataAgeDays 是全局陈旧度（数据有多旧），
         //   coverageDays 才是这条动作被数据覆盖了多久。判到期只看后者。
@@ -374,6 +444,65 @@ async function main() {
   report.readback = readback;
   report.structuralDebt = structuralDebt;
 
+  // ── 到期结论闸门（automation §1：到期 N 条 ⇒ 必须产出 N 条结论）──
+  // 只统计「有资格做曝光回读」的动作：infra/monitor 等被排除的动作本来就不该进
+  // 这套判据，把它们算进分母会让闸门数字虚高、看起来像没结论。
+  const eligibleReadback = readback.filter((r) => r.eligible === true);
+  const excludedReadback = readback.filter((r) => r.eligible === false);
+  const dueEligible = eligibleReadback.filter((r) => (r.dueWindows as number[]).length > 0);
+  const concluded = dueEligible.filter(
+    (r) => r.decision !== "data_not_mature" && r.decision !== "not_applicable",
+  );
+  const exclusionCounts: Record<string, number> = {};
+  for (const r of excludedReadback) {
+    const k = String(r.exclusionReason);
+    exclusionCounts[k] = (exclusionCounts[k] ?? 0) + 1;
+  }
+  const readbackGate = {
+    totalActions: readback.length,
+    eligible: eligibleReadback.length,
+    excluded: excludedReadback.length,
+    exclusionCounts,
+    exclusionLabels: EXCLUSION_LABEL,
+    due: dueEligible.length,
+    concluded: concluded.length,
+    // 快照缺失时 due 恒为空 ⇒ dueEligible 为空（数据没长出来，不是漏结论）。
+    // 保留此清单用于自检：正常路径下它应恒为空。
+    unconcluded: dueEligible
+      .filter((r) => r.decision === "data_not_mature")
+      .map((r) => ({ id: r.id, coverageDays: r.coverageDays })),
+    gate: dueEligible.length === concluded.length ? "pass" : "review_needed",
+  };
+  report.readbackGate = readbackGate;
+
+  // ── type 错标检测（只读告警，绝不自动改判）──
+  // 台账实测（11-04）：2026-10-15-28 标成 tune，但 target 是 /api/analytics/tune +
+  // lib/seo/optimizer.ts、title 是「修调优器 + 加端点 + 闸门」⇒ 实为 infra，
+  // 旧口径把它判成 promote_candidate(6 imp)。用**确定性路径特征**识别，
+  // 不靠语义猜测（DEBT-42③：语义排序替代 keyCovered 风险高于收益）。
+  const CODE_TARGET = /\/api\/|lib\/|scripts\/|\.github\/|\.ts\b|\.mjs\b|route\.ts|workflow|optimizer/i;
+  const suspectMistyped = eligibleReadback.filter((r) => CODE_TARGET.test(String(r.target ?? "")));
+  report.suspectMistyped = suspectMistyped.map((r) => ({
+    id: r.id,
+    type: r.type,
+    target: r.target,
+    title: r.title,
+  }));
+  if (suspectMistyped.length > 0) {
+    console.warn(
+      `[growth-review] ⚠️ ${suspectMistyped.length} 条动作 type 疑似错标（白名单类型却指向代码/端点路径）：` +
+        `${suspectMistyped.map((r) => String(r.id)).join(", ")} —— 本脚本不自动改判，请人工核对台账 type`
+    );
+  }
+  console.log(
+    `[growth-review] 拆账口径：${eligibleReadback.length} 条进曝光回读 / ${excludedReadback.length} 条排除` +
+      `（${Object.entries(exclusionCounts).map(([k, v]) => `${k}=${v}`).join("、")}）`
+  );
+  console.log(
+    `[growth-review] 到期闸门：到期 ${dueEligible.length} 条 / 已出结论 ${concluded.length} 条` +
+      ` / 数据未成熟 ${dueEligible.length - concluded.length} 条 ⇒ ${readbackGate.gate}`
+  );
+
   //🔴 2026-10-16（DEBT-21）：回读结论**必须回写台账**。
   //   旧版只写 growth-review-latest.json 就结束 ⇒ 28 条动作 status 100% 停在
   //   pending，「先回读再决定今天做什么」在结构上完全空转。
@@ -389,6 +518,10 @@ async function main() {
       for (const a of ledgerRaw.actions ?? []) {
         const r = byId.get(String(a.id));
         if (!r) continue;
+        // 🔴 拆账口径：not_applicable 的动作**完全不回写**。
+        //   它们不改页面，曝光是相关性读数而非增量；回写会把 infra 判成
+        //   failed/kept、或覆盖人工标注的 verified，重演 DEBT-21 的假结论。
+        if (r.decision === "not_applicable") continue;
         // 只有真到了数据成熟窗口才改status；否则保持原状。
         // ⚠️ 不覆盖已有的人工verified（那是事实记录，不是本次推断）。
         if (r.decision !== "data_not_mature") {
@@ -410,7 +543,32 @@ async function main() {
         }
       }
       writeJsonAtomic(ledgerPath, ledgerRaw);
-      console.log(`[growth-review] ↺ 回写台账 ${touched} 条 status（其余为 data_not_mature，保持原状）`);
+      console.log(
+        `[growth-review] ↺ 回写台账 ${touched} 条 status（data_not_mature 与 not_applicable 保持原状）`
+      );
+
+      // 🔴 历史污染审计（只读，不擅自删数据）：旧口径曾给 infra/monitor 等写入
+      //   readback.candidateImpressions 并把 status 抬到 kept。这些数字是相关性读数，
+      //   不是增量，且会让人误以为「修管道带来了曝光」。列出来供人工决定如何回滚；
+      //   本脚本不改写历史事实记录（避免又一次静默数据迁移）。
+      const legacy = (ledgerRaw.actions ?? []).filter((a) => {
+        const t = String(a.type ?? "").trim();
+        const rb = a.readback as { candidateImpressions?: number } | undefined;
+        return !EXPOSURE_ELIGIBLE_TYPES.has(t) && typeof rb?.candidateImpressions === "number";
+      });
+      report.legacyNonContentReadback = legacy.map((a) => ({
+        id: a.id,
+        type: a.type,
+        status: a.status,
+        candidateImpressions: (a.readback as { candidateImpressions?: number }).candidateImpressions,
+        target: a.target,
+      }));
+      if (legacy.length > 0) {
+        console.warn(
+          `[growth-review] ⚠️ 历史遗留：${legacy.length} 条非内容类动作仍带旧 readback.candidateImpressions` +
+            `（相关性读数，非增量）；本脚本已不再回写它们，但未删除历史记录。详见 report.legacyNonContentReadback`
+        );
+      }
     } catch (e) {
       // 🔴 静默 catch 会把「回写失败」伪装成「本次无回读结论」。
       //   失败必须让调用方看到 —— 否则台账会永远停在 pending 而没人知道。
@@ -427,7 +585,10 @@ async function main() {
   //   否则报表会说「可判定 29 条、数据未成熟 29 条」——两句都成立但互相矛盾，
   //   读的人只能自己去猜。这正是「形式指标自相矛盾」的又一种形态。
   const ready = readback.filter(
-    (r) => r.decision !== "too_early" && r.decision !== "data_not_mature"
+    (r) =>
+      r.decision !== "too_early" &&
+      r.decision !== "data_not_mature" &&
+      r.decision !== "not_applicable"
   );
   const notMature = readback.filter((r) => r.decision === "data_not_mature");
   console.log(
