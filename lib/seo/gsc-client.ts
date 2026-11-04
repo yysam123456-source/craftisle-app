@@ -46,8 +46,10 @@ interface GscResponse {
 
 /**
  * 获取 Service Account JWT Token (RS256)
+ * 🔴 2026-11-04 导出：URL Inspection API 端点复用同一凭证与
+ *    `webmasters.readonly` scope，避免第二套密钥/第二份 JWT 实现漂移。
  */
-async function getAccessToken(): Promise<string> {
+export async function getAccessToken(): Promise<string> {
   const header = Buffer.from(JSON.stringify({ alg: "RS256", typ: "JWT" })).toString("base64url");
 
   const now = Math.floor(Date.now() / 1000);

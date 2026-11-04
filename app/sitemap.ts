@@ -14,7 +14,33 @@ const baseUrl = "https://craftisle.com";
 // 注意：不要给没有真实更新时间来源的页面补 `lastModified: now`。
 // 此前全站 578 个 URL 一律写构建时刻的 now，等于每次部署全站「同时更新」，
 // Google 无法据此识别真实变更，lastmod 信号完全失效。
-// 只有内容源自带日期（Post.date / Guide.date）时才输出 lastModified。
+//
+// 🔴 2026-11-04：改为「真实时间源」——data/content-lastmod.json 由
+//    scripts/sync-content-lastmod.mjs 从 growth-ledger.json 的动作日期生成
+//    （已落地内容改动才写），配合 Post.date / Guide.date 覆盖主战场页面。
+//    **没有真实日期就不输出 lastModified**，绝不退化成 now。
+//    更新流程：内容改动 → 台账登记 → node scripts/sync-content-lastmod.mjs → commit。
+function loadContentLastmod(): Record<string, Date> {
+  try {
+    const p = join(process.cwd(), "data", "content-lastmod.json");
+    if (!existsSync(p)) return {};
+    const data = JSON.parse(readFileSync(p, "utf-8")) as { urls?: Record<string, string> };
+    const out: Record<string, Date> = {};
+    for (const [url, iso] of Object.entries(data.urls ?? {})) {
+      const d = new Date(iso);
+      if (!Number.isNaN(d.getTime())) out[url] = d;
+    }
+    return out;
+  } catch {
+    // 读不到就当作「无真实日期」，决不 fallback 到构建时间
+    return {};
+  }
+}
+/** 给一条 sitemap 记录补真实 lastModified；无真实日期则原样返回。 */
+function withLastmod<T extends { url: string }>(entry: T, dates: Record<string, Date>): T {
+  const d = dates[entry.url];
+  return d ? { ...entry, lastModified: d } : entry;
+}
 // 翻译目标语言（en 是英文原页，不走 /[lang] 段，故不在此列）
 const TRANSLATION_LANGS = ['zh-CN', 'zh-TW', 'ja', 'de', 'fr', 'es', 'pt', 'ru', 'ko', 'vi', 'th', 'id', 'tr'];
 
@@ -205,6 +231,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })
     : [];
 
+  const dates = loadContentLastmod();
+  // 统一在出口补 lastModified：有真实日期（台账动作 / Post.date / Guide.date）才带，
+  // 其余保持不带。这样不会漏掉任何页簇，也不会出现「全站同一时间戳」。
   return [
     ...staticPages,
     ...categoryPages,
@@ -220,5 +249,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...toolPages,
     ...landingPages,
     ...convertPairPages,
-  ];
+  ].map((entry) => withLastmod(entry, dates)) as MetadataRoute.Sitemap;
 }

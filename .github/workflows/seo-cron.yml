@@ -130,6 +130,32 @@ jobs:
             exit 1
           fi
 
+      # 🔴 2026-11-04：sitemap lastmod 一致性闸门。
+      #   lastModified 必须用真实内容变更日期（台账动作日期），不能用构建时刻 now。
+      #   台账登记了新动作却忘记重生成映射 ⇒ freshness 信号悄悄失效且无人发现，
+      #   这类「字段存在但无人维护」的死锁在本项目已重复发生过多次。
+      - name: 内容时间源一致性（阻断）
+        run: |
+          set -uo pipefail
+          echo "── check:lastmod ──"
+          if npm run check:lastmod; then
+            echo "✅ lastmod 与台账一致"
+          else
+            echo "::error::content-lastmod.json 与 growth-ledger.json 不同步 —— 跑 npm run sync:lastmod 并提交映射文件"
+            exit 1
+          fi
+
+      # 🔴 2026-11-04：跨站 robots 分组一致性（**不阻断，仅告警**）。
+      #   读的是线上 robots，部署前跑必然还是旧配置 ⇒ 不能当阻断门，
+      #   否则每次 push 都会因「线上还没更新」而假红。
+      #   它的价值是每天留一份可核对清单，回归在部署后由巡检发现。
+      #   fxlab 按用户 2026-11-04 决定不修改，审计里已显式豁免标注。
+      - name: 跨站 robots 一致性（不阻断 · 仅告警）
+        run: |
+          set -uo pipefail
+          echo "── audit:robots ──"
+          npm run audit:robots || echo "::warning::跨站 robots 一致性有待修项（详见上方清单）"
+
       # verify:tools 检查的是**已部署的线上页面**（抓 craftisle.com），
       # 与上面三个「部署前的代码门禁」性质不同 ⇒ **不阻断**：
       # 站点临时不可用不该把整条数据管道挡死，但它必须被看见。
