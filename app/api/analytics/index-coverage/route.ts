@@ -25,6 +25,8 @@ import { NextResponse } from "next/server";
 import { getAccessToken, getGscStatus } from "@/lib/seo/gsc-client";
 
 const SITE_URL = "sc-domain:craftisle.com";
+// 🔴 2026-11-05 修正：URL Inspection API 在 **/v1/urlInspection**（不是 webmasters/v3 —
+// 那是 Search Analytics 的域）。曾误用 webmasters/v3 导致每个抽样 URL 都返回 HTTP 404。
 const INSPECT_ENDPOINT =
   "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect";
 
