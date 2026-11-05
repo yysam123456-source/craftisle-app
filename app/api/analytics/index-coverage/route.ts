@@ -26,7 +26,7 @@ import { getAccessToken, getGscStatus } from "@/lib/seo/gsc-client";
 
 const SITE_URL = "sc-domain:craftisle.com";
 const INSPECT_ENDPOINT =
-  "https://searchconsole.googleapis.com/webmasters/v3/urlInspection/index:inspect";
+  "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect";
 
 /** 按页型分层抽样：每类取固定几条，避免样本全落在同一页簇。 */
 const SAMPLE_URLS: Array<{ group: string; url: string }> = [
