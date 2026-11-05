@@ -37,6 +37,7 @@ export const metadata: Metadata = constructMetadata({
     "free alternatives",
     "no signup required",
   ],
+  path: "/directory",
 });
 
 /**

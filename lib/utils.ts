@@ -20,6 +20,7 @@ export function constructMetadata({
   authors: customAuthors,
   publisher: customPublisher,
   canonical,
+  path,
 }: {
   title?: string;
   description?: string;
@@ -30,6 +31,8 @@ export function constructMetadata({
   authors?: { name: string; url?: string }[];
   publisher?: string;
   canonical?: string;
+  /** Relative route path (e.g. "/tools"). When `canonical` is omitted, a self-canonical is derived from it. Prevents the previous bug where pages without an explicit canonical emitted NO canonical tag and an og:url pointing to the homepage. */
+  path?: string;
 } = {}): Metadata {
   const defaultKeywords = [
     "free online games",
@@ -46,6 +49,10 @@ export function constructMetadata({
     "regex tester",
   ];
   
+  // 自规范链接：显式 canonical 优先；否则用 path 推导出自规范，避免「无 canonical 标签 + og:url 指向首页」的重复内容缺陷。
+  const canonicalUrl =
+    canonical ?? (path ? `${siteConfig.url.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}` : undefined);
+
   return {
     title,
     description,
@@ -58,11 +65,11 @@ export function constructMetadata({
     creator: customPublisher || "Craftisle",
     publisher: customPublisher || "Craftisle",
     metadataBase: new URL(siteConfig.url),
-    alternates: canonical ? { canonical } : undefined,
+    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: canonical || siteConfig.url,
+      url: canonicalUrl ?? siteConfig.url,
       title,
       description,
       siteName: siteConfig.name,

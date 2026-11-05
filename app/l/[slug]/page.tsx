@@ -51,6 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: data.description,
       keywords: data.keywords,
       canonical: PDFCRAFT_CANONICAL[slug],
+      path: `/l/${slug}`,
     });
   }
   // 回退：Vercel Cron 经 DB 覆盖层生成的未来种子（本地尚未建丰富页）
@@ -61,6 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return constructMetadata({
       title: override.title,
       description: override.description,
+      path: `/l/${slug}`,
     });
   }
   return {};

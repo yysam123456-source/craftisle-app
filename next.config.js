@@ -116,6 +116,17 @@ const nextConfig = {
     { source: "/tools/convert-time-to-seconds", destination: "/tools/time-to-seconds", permanent: true },
     { source: "/tools/convert-time-to-decimal", destination: "/tools/time-to-decimal", permanent: true },
     { source: "/tools/convert-unix-to-date",    destination: "/tools/unix-to-date",    permanent: true },
+
+    // ★ 规范化：www → 非 www（2026-11-05，索引覆盖修复）
+    // www.craftisle.com 此前与 craftisle.com 同时返回 200，造成每页 4 份重复
+    // （http/https × www/非 www），Google 无 canonical 信号易拒收/分散权重。
+    // 统一 301 到非 www 主域。
+    {
+      source: "/:path*",
+      has: [{ type: "header", key: "host", value: "www.craftisle.com" }],
+      destination: "https://craftisle.com/:path*",
+      permanent: true,
+    },
     ];
   },
   // Disable source maps in production to reduce bundle size

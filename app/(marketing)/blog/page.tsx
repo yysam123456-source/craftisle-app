@@ -42,6 +42,7 @@ export const metadata = constructMetadata({
     "encryption tools", "formatter tools", "converter tools",
     "craftisle tools", "online utility tools",
   ],
+  path: "/blog",
 });
 
 // Product definitions for subdomain tools

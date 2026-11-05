@@ -24,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return constructMetadata({
     title: m?.title,
     description: m?.description,
+    path: "/tools",
   });
 }
 

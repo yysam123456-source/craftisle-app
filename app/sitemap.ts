@@ -71,6 +71,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/directory`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/search`, priority: 0.6, changeFreq: "weekly" as const },
     { url: `${baseUrl}/directory/favorites`, priority: 0.5, changeFreq: "weekly" as const },
+    // ★ 孤儿簇枢纽（2026-11-05 索引覆盖修复）：/l 落地页簇、/c 对转簇的统一入口，
+    // 此前无首页级内链 ⇒ Google 仅能靠 sitemap 被动发现、权重近零。现补 hub + 页脚链路。
+    { url: `${baseUrl}/l`, priority: 0.7, changeFreq: "weekly" as const },
+    { url: `${baseUrl}/c`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/blog`, priority: 0.7, changeFreq: "weekly" as const },
     { url: `${baseUrl}/guides`, priority: 0.7, changeFreq: "monthly" as const },
     { url: `${baseUrl}/privacy`, priority: 0.4, changeFreq: "monthly" as const },
