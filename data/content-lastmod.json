@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-04",
+  "generatedAt": "2026-11-05",
   "source": "growth-ledger.json (actions[].date + actions[].target)",
   "note": "真实内容改动日期，禁止用构建时刻 now 覆盖；复合 target 已保守跳过",
-  "skippedCompositeTargets": 41,
+  "skippedCompositeTargets": 47,
   "urls": {
     "https://craftisle.com/tools/image-compress": "2026-10-09",
     "https://craftisle.com/c/heic-to-jpg": "2026-10-15",
@@ -38,6 +38,7 @@
     "https://craftisle.com/tools/meta-tags-generator": "2026-10-15",
     "https://craftisle.com/directory/alternatives/microsoft-project": "2026-10-23",
     "https://craftisle.com/tools/svg-editor": "2026-10-22",
-    "https://craftisle.com/directory/alternatives/monday-com": "2026-10-26"
+    "https://craftisle.com/directory/alternatives/monday-com": "2026-10-26",
+    "https://craftisle.com/c/png-to-pdf": "2026-11-03"
   }
 }
