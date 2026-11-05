@@ -35,8 +35,11 @@ const SAMPLE_URLS: Array<{ group: string; url: string }> = [
   { group: "home", url: "https://craftisle.com/" },
   { group: "tools-hub", url: "https://craftisle.com/tools" },
   { group: "tools", url: "https://craftisle.com/tools/image-compress" },
-  { group: "tools", url: "https://craftisle.com/tools/png-to-jpg" },
-  { group: "tools", url: "https://craftisle.com/tools/background-remover" },
+  // 🔴 2026-11-05 修正：此前 hardcoded /tools/png-to-jpg 与 /tools/background-remover，
+  // 但二者均不在 toolMeta（非真实工具页，线上 404）。这会让抽样把「404」误报成「unknown」，
+  // 污染 passRatio。改为只抽样真实存在的工具页。
+  { group: "tools", url: "https://craftisle.com/tools/image-convert" },
+  { group: "tools", url: "https://craftisle.com/tools/image-resize" },
   { group: "alternatives", url: "https://craftisle.com/directory/alternatives/asana" },
   { group: "alternatives", url: "https://craftisle.com/directory/alternatives/plausible-analytics" },
   { group: "landing", url: "https://craftisle.com/l/intellij-alternative" },

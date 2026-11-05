@@ -127,6 +127,19 @@ const nextConfig = {
       destination: "https://craftisle.com/:path*",
       permanent: true,
     },
+
+    // ★ 修复 404（2026-11-05）：/tools/png-to-jpg 不在 toolMeta（DEBT-12 把裸名判为胜者
+    // 但从未建页），GSC 抓取直接 404。真实「png to jpg」入口是格式对转页 /c/png-to-jpg，
+    // 故 301 过去；旧变体 /tools/convert-png-to-jpg 一并收口，避免任何悬空链接。
+    { source: "/tools/png-to-jpg", destination: "/c/png-to-jpg", permanent: true },
+    { source: "/tools/convert-png-to-jpg", destination: "/c/png-to-jpg", permanent: true },
+
+    // ★ 修复 404（2026-11-05）：/tools/background-remover 与 /tools/batch-background-remover
+    // 均不在 toolMeta（从未建独立页），但博客 best-free-background-remover-2026.mdx /
+    // how-to-remove-background-free.mdx 大量内链指向它们，GSC 抓取 404。
+    // 真实「去背景」能力已并入 /tools/ai-image-editor（lib/tools.ts:2675），故 301 收口。
+    { source: "/tools/background-remover", destination: "/tools/ai-image-editor", permanent: true },
+    { source: "/tools/batch-background-remover", destination: "/tools/ai-image-editor", permanent: true },
     ];
   },
   // Disable source maps in production to reduce bundle size
