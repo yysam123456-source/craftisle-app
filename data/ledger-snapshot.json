@@ -1,0 +1,453 @@
+{
+  "note": "growth-ledger.json 的仓库内镜像，只含 id/date/target，供 CI 的 check:lastmod 重算期望映射。由本地 npm run sync:lastmod 生成，勿手改。",
+  "source": "growth-ledger.json (mirrored)",
+  "generatedAt": "2026-11-06",
+  "actionCount": 89,
+  "actions": [
+    {
+      "id": "2026-10-09-01",
+      "date": "2026-10-09",
+      "target": "/tools/image-compress"
+    },
+    {
+      "id": "2026-10-09-02",
+      "date": "2026-10-09",
+      "target": "/c/heic-to-jpg"
+    },
+    {
+      "id": "2026-10-09-03",
+      "date": "2026-10-09",
+      "target": "/c/heic-to-png"
+    },
+    {
+      "id": "2026-10-09-04",
+      "date": "2026-10-09",
+      "target": "/c/svg-to-png"
+    },
+    {
+      "id": "2026-10-09-05",
+      "date": "2026-10-09",
+      "target": "/c/avif-to-jpg"
+    },
+    {
+      "id": "2026-10-09-06",
+      "date": "2026-10-09",
+      "target": "/tools/password-generator"
+    },
+    {
+      "id": "2026-10-09-07",
+      "date": "2026-10-09",
+      "target": "/tools/image-resize"
+    },
+    {
+      "id": "2026-10-10-08",
+      "date": "2026-10-10",
+      "target": "/api/analytics/top-queries + scripts/growth-review.ts"
+    },
+    {
+      "id": "2026-10-10-09",
+      "date": "2026-10-10",
+      "target": "/l/intellij-alternative"
+    },
+    {
+      "id": "2026-10-10-10",
+      "date": "2026-10-10",
+      "target": "/c/gif-to-webp"
+    },
+    {
+      "id": "2026-10-10-11",
+      "date": "2026-10-10",
+      "target": "/c/pdf-to-jpg"
+    },
+    {
+      "id": "2026-10-10-12",
+      "date": "2026-10-10",
+      "target": "/c/jpg-to-pdf"
+    },
+    {
+      "id": "2026-10-10-13",
+      "date": "2026-10-10",
+      "target": "/directory/alternatives/plausible-analytics"
+    },
+    {
+      "id": "2026-10-10-14",
+      "date": "2026-10-10",
+      "target": "/directory/alternatives/asana"
+    },
+    {
+      "id": "2026-10-15-15",
+      "date": "2026-10-15",
+      "target": "/tools/image-resize"
+    },
+    {
+      "id": "2026-10-15-16",
+      "date": "2026-10-15",
+      "target": "/l/compress-pdf + /l/pdf-converter"
+    },
+    {
+      "id": "2026-10-15-17",
+      "date": "2026-10-15",
+      "target": "/c/png-to-jpg, /c/jpg-to-png, /c/webp-to-jpg, /c/heic-to-jpg, /c/avif-to-jpg, /c/pdf-to-jpg, /c/jpg-to-pdf"
+    },
+    {
+      "id": "2026-10-15-18",
+      "date": "2026-10-15",
+      "target": "/c/svg-to-png, /c/heic-to-png, /c/pdf-to-jpg, /c/jpg-to-pdf"
+    },
+    {
+      "id": "2026-10-15-19",
+      "date": "2026-10-15",
+      "target": "/tools/image-upscale"
+    },
+    {
+      "id": "2026-10-15-20",
+      "date": "2026-10-15",
+      "target": "/tools/handwriting-animation"
+    },
+    {
+      "id": "2026-10-15-21",
+      "date": "2026-10-15",
+      "target": "/c/bmp-to-png"
+    },
+    {
+      "id": "2026-10-15-22",
+      "date": "2026-10-15",
+      "target": "/tools/handwriting-worksheet"
+    },
+    {
+      "id": "2026-10-15-23",
+      "date": "2026-10-15",
+      "target": "/tools/{days-to-hours, hours-to-days, seconds-to-time, time-to-seconds, time-to-decimal, unix-to-date}"
+    },
+    {
+      "id": "2026-10-15-24",
+      "date": "2026-10-15",
+      "target": "/tools/typing-test"
+    },
+    {
+      "id": "2026-10-15-25",
+      "date": "2026-10-15",
+      "target": "/tools/signature-maker"
+    },
+    {
+      "id": "2026-10-15-26",
+      "date": "2026-10-15",
+      "target": "/tools/css-minifier"
+    },
+    {
+      "id": "2026-10-15-27",
+      "date": "2026-10-15",
+      "target": "/tools/meta-tags-generator"
+    },
+    {
+      "id": "2026-10-15-28",
+      "date": "2026-10-15",
+      "target": "/api/analytics/tune + lib/seo/optimizer.ts + 8 个静态工具页"
+    },
+    {
+      "id": "2026-10-16-29",
+      "date": "2026-10-16",
+      "target": "主站 + 7 个子站全站盘点（3 名专家 agent 并行只读审计）"
+    },
+    {
+      "id": "2026-10-16-30",
+      "date": "2026-10-16",
+      "target": "scripts/longtail-gap.ts + scripts/growth-review.ts + app/sitemap.ts + app/robots.ts + lib/related-tools.ts + .github/workflows/seo-cron.yml"
+    },
+    {
+      "id": "2026-10-19-31",
+      "date": "2026-10-19",
+      "target": "scripts/growth-review.ts + app/api/analytics/ai-briefing/route.ts + lib/seo/page-meta.ts + lib/convert/pairs.ts + 5 个generateMetadata 页面"
+    },
+    {
+      "id": "2026-10-20-32",
+      "date": "2026-10-20",
+      "target": "ai-briefing?heal=1（同进程补拉 pull-gsc-data + auto-optimize 补跑）"
+    },
+    {
+      "id": "2026-10-20-33",
+      "date": "2026-10-20",
+      "target": ".github/workflows/seo-cron.yml"
+    },
+    {
+      "id": "2026-10-20-34",
+      "date": "2026-10-20",
+      "target": "app/api/analytics/tune/route.ts + app/api/cron/auto-optimize/route.ts"
+    },
+    {
+      "id": "2026-10-20-35",
+      "date": "2026-10-20",
+      "target": "/l/intellij-alternative"
+    },
+    {
+      "id": "2026-10-20-36",
+      "date": "2026-10-20",
+      "target": "scripts/growth-review.ts + scripts/longtail-gap.ts + lib/seo/trends-client.ts"
+    },
+    {
+      "id": "2026-10-20-37",
+      "date": "2026-10-20",
+      "target": "game.craftisle.com/play/sudoku"
+    },
+    {
+      "id": "2026-10-20-38",
+      "date": "2026-10-20",
+      "target": "prisma/schema.prisma + lib/seo/page-meta-db.ts"
+    },
+    {
+      "id": "2026-10-20-39",
+      "date": "2026-10-20",
+      "target": "app/api/analytics/override-probe/route.ts"
+    },
+    {
+      "id": "2026-10-20-40",
+      "date": "2026-10-20",
+      "target": "game.craftisle.com/play/sudoku"
+    },
+    {
+      "id": "2026-10-20-41",
+      "date": "2026-10-20",
+      "target": "app/api/analytics/override-probe + app/api/analytics/tune"
+    },
+    {
+      "id": "2026-10-21-42",
+      "date": "2026-10-21",
+      "target": "app/api/analytics/override-probe + page_meta_override 覆盖层 description"
+    },
+    {
+      "id": "2026-10-21-43",
+      "date": "2026-10-21",
+      "target": "scripts/growth-review.ts + scripts/longtail-gap.ts"
+    },
+    {
+      "id": "2026-10-21-44",
+      "date": "2026-10-21",
+      "target": "scripts/longtail-gap.ts（loadAlternativesCorpus）"
+    },
+    {
+      "id": "2026-10-21-45",
+      "date": "2026-10-21",
+      "target": "app/api/analytics/override-probe/route.ts + app/api/analytics/tune/route.ts"
+    },
+    {
+      "id": "2026-10-21-46",
+      "date": "2026-10-21",
+      "target": "lib/seo/page-meta-db.ts + app/api/analytics/override-probe/route.ts + prisma/schema.prisma"
+    },
+    {
+      "id": "2026-10-21-47",
+      "date": "2026-10-21",
+      "target": "全站（缺 MS Project 替代页）"
+    },
+    {
+      "id": "2026-10-21-48",
+      "date": "2026-10-21",
+      "target": "next.config.js / app/api/analytics/tune"
+    },
+    {
+      "id": "2026-10-21-49",
+      "date": "2026-10-21",
+      "target": "/directory/alternatives/microsoft-project"
+    },
+    {
+      "id": "2026-10-21-50",
+      "date": "2026-10-21",
+      "target": "scripts/longtail-gap.ts"
+    },
+    {
+      "id": "2026-10-21-51",
+      "date": "2026-10-21",
+      "target": "scripts/auto-tune.ts / lib/seo/optimizer.ts"
+    },
+    {
+      "id": "2026-10-22-47",
+      "date": "2026-10-22",
+      "target": "/l/intellij-alternative"
+    },
+    {
+      "id": "2026-10-22-48",
+      "date": "2026-10-22",
+      "target": "/tools/handwriting-animation"
+    },
+    {
+      "id": "2026-10-22-49",
+      "date": "2026-10-22",
+      "target": "/tools/svg-editor"
+    },
+    {
+      "id": "2026-10-22-50",
+      "date": "2026-10-22",
+      "target": "scripts/longtail-gap.ts"
+    },
+    {
+      "id": "2026-10-23-56",
+      "date": "2026-10-23",
+      "target": "/directory/alternatives/microsoft-project"
+    },
+    {
+      "id": "2026-10-23-57",
+      "date": "2026-10-23",
+      "target": "scripts/longtail-gap.ts"
+    },
+    {
+      "id": "2026-10-26-58",
+      "date": "2026-10-26",
+      "target": "/directory/alternatives/asana"
+    },
+    {
+      "id": "2026-10-26-59",
+      "date": "2026-10-26",
+      "target": "/directory/alternatives/monday-com"
+    },
+    {
+      "id": "2026-10-27-60",
+      "date": "2026-10-27",
+      "target": "/l/intellij-alternative"
+    },
+    {
+      "id": "2026-10-27-61",
+      "date": "2026-10-27",
+      "target": "/tools/handwriting-animation"
+    },
+    {
+      "id": "2026-10-28-62",
+      "date": "2026-10-28",
+      "target": "/c/png-to-jpg"
+    },
+    {
+      "id": "2026-11-02-63",
+      "date": "2026-11-02",
+      "target": "app/api/analytics/ai-briefing/route.ts (heal 判据)"
+    },
+    {
+      "id": "2026-11-02-64",
+      "date": "2026-11-02",
+      "target": "scripts/geo-audit.ts (npm run seo:geo)"
+    },
+    {
+      "id": "2026-11-02-65",
+      "date": "2026-11-02",
+      "target": "pdf.craftisle.com (repo D:/WORKBUDDY/PROJECT/pdfcraft)"
+    },
+    {
+      "id": "2026-11-02-66",
+      "date": "2026-11-02",
+      "target": "draw / resume / viewer / imgprompt 四个子站 + pdf / game 的 llms.txt 与 AI UA 声明"
+    },
+    {
+      "id": "2026-11-02-67",
+      "date": "2026-11-02",
+      "target": "craftisle.com 文案与隐私政策（blog/compare/tools/directory 等 10+ 处）"
+    },
+    {
+      "id": "2026-11-02-68",
+      "date": "2026-11-02",
+      "target": "draw.craftisle.com robots.ts"
+    },
+    {
+      "id": "2026-11-02-69",
+      "date": "2026-11-02",
+      "target": "scripts/geo-audit.ts + viewer llms.txt"
+    },
+    {
+      "id": "2026-11-02-70",
+      "date": "2026-11-02",
+      "target": "viewer.craftisle.com/"
+    },
+    {
+      "id": "2026-11-02-71",
+      "date": "2026-11-02",
+      "target": "resume.craftisle.com/"
+    },
+    {
+      "id": "2026-11-02-72",
+      "date": "2026-11-02",
+      "target": "draw.craftisle.com/en"
+    },
+    {
+      "id": "2026-11-02-73",
+      "date": "2026-11-02",
+      "target": "fxlab.craftisle.com/"
+    },
+    {
+      "id": "2026-11-03-74",
+      "date": "2026-11-03",
+      "target": "scripts/longtail-gap.ts（loadLandingCorpus + matchCorpus 排序）"
+    },
+    {
+      "id": "2026-11-03-75",
+      "date": "2026-11-03",
+      "target": "scripts/longtail-gap.ts（loadToolCorpus + extractSynonymFaq）"
+    },
+    {
+      "id": "2026-11-03-76",
+      "date": "2026-11-03",
+      "target": "prisma/schema.prisma（PageMetric）+ app/api/cron/pull-gsc-data + app/api/analytics/pages"
+    },
+    {
+      "id": "2026-11-03-77",
+      "date": "2026-11-03",
+      "target": ".github/workflows/seo-cron.yml + scripts/audit-word-count.mjs + audit-baselines/word-count.json"
+    },
+    {
+      "id": "2026-11-03-78",
+      "date": "2026-11-03",
+      "target": "pdfcraft：src/app/(root)/layout.tsx + src/app/[locale]/layout.tsx"
+    },
+    {
+      "id": "2026-11-03-79",
+      "date": "2026-11-03",
+      "target": "/c/png-to-pdf"
+    },
+    {
+      "id": "2026-11-04-80",
+      "date": "2026-11-04",
+      "target": "scripts/growth-review.ts"
+    },
+    {
+      "id": "2026-11-04-81",
+      "date": "2026-11-04",
+      "target": "7 repositories: robots.ts / sitemap.ts / audit-robots / ai-traffic-report / indexnow-ping"
+    },
+    {
+      "id": "2026-11-04-82",
+      "date": "2026-11-04",
+      "target": "prompt-hub: src/app/category/[slug]/page.tsx"
+    },
+    {
+      "id": "2026-11-05-83",
+      "date": "2026-11-05",
+      "target": "app/api/analytics/index-coverage/route.ts"
+    },
+    {
+      "id": "2026-11-05-84",
+      "date": "2026-11-05",
+      "target": "lib/utils.ts + next.config.js + app/l/page.tsx + app/(marketing)/c/page.tsx + app/sitemap.ts"
+    },
+    {
+      "id": "2026-11-05-85",
+      "date": "2026-11-05",
+      "target": "next.config.js + app/api/analytics/index-coverage/route.ts"
+    },
+    {
+      "id": "2026-11-05-86",
+      "date": "2026-11-05",
+      "target": "scripts/sync-content-lastmod.mjs + scripts/check-content-lastmod.mjs + scripts/audit-meta-overrides.mjs + data/ledger-snapshot.json + data/content-lastmod.json"
+    },
+    {
+      "id": "2026-11-05-87",
+      "date": "2026-11-05",
+      "target": "src/app/layout.tsx"
+    },
+    {
+      "id": "2026-11-05-88",
+      "date": "2026-11-05",
+      "target": "scripts/longtail-gap.ts"
+    },
+    {
+      "id": "2026-11-05-89",
+      "date": "2026-11-05",
+      "target": "SEO-Link-Building-Strategy.md"
+    }
+  ]
+}

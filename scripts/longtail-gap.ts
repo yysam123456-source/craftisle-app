@@ -951,6 +951,34 @@ const FORMAT_STEMS: Set<string> = new Set(
   [...Object.keys(INPUT_META), ...Object.keys(OUTPUT_META)].map(stem)
 );
 
+/**
+ * 🔴 DEBT-42 残留（2026-11-05 修）：**尺寸/数量限定词不算主题词**。
+ *
+ * 实测 .workbuddy/trends/gap-2026-11-03.json 的 tuneTargets 里
+ * /tools/png-to-svg 仍挂着 5 条 "png to jpg 100 kb" 类查询。原因：
+ * `distinctive` 里剩下一个数字 "100" ⇒ formatOnlyQuery 判 false ⇒
+ * 绕过了 keyFullyCovered 闸门 ⇒ 只要该页正文凑巧含这些字面词就命中。
+ * 这不是报表噪声：tuneTargets 只归因 hits[0]（2026-10-22 修），
+ * auto-tune 会拿 png→jpg 的词去改一个 png→svg 页。
+ *
+ * 数字与单位只是修饰，不改变「这是一条格式词查询」的性质 ⇒ 与格式名
+ * 一样从 distinctive 里剔除，让它回到 keyFullyCovered 闸门。
+ */
+const SIZE_UNITS: Set<string> = new Set([
+  "kb", "mb", "gb", "tb", "px", "dpi", "ppi",
+  "inch", "cm", "mm", "sec", "min", "ms", "byte",
+]);
+function isNonTopical(w: string): boolean {
+  // 纯数字（100 / 1.5）与裸单位（kb / px / dpi）
+  if (/^\d+(?:\.\d+)?$/.test(w) || SIZE_UNITS.has(w)) return true;
+  // 🔴 2026-11-06 补充：Suggest 里大量「数字+单位连写」—— 100kb / 200kb /
+  //    20mb / 300dpi。首版只挡了 "100 kb" 的分离写法，端到端重跑发现
+  //    /c/bmp-to-png 仍接住 "png to jpeg 100kb"、/c/png-to-pdf 接住
+  //    "png to jpg 200kb"（都是错配）。只认已知单位后缀，避免误伤 3d/1080p
+  //    这类真实主题词。
+  return /^\d+(?:\.\d+)?(?:kb|mb|gb|tb|px|dpi|ppi|b|k|bit|byte|inch|cm|mm)s?$/i.test(w);
+}
+
 function buildDf(corpus: CorpusEntry[]): Map<string, number> {
   const df = new Map<string, number>();
   for (const c of corpus) {
@@ -1011,7 +1039,10 @@ function matchCorpus(
   const hits: Match[] = [];
   // DEBT-42 ①：这条查询剔掉停用词后是不是只剩格式名（png to jpg converter）。
   // 是的话只有 URL 即格式对的页有资格匹配（见 FORMAT_STEMS 注释）。
-  const distinctive = [...t].filter((w) => !FORMAT_STEMS.has(w));
+  // DEBT-42 残留（2026-11-05）：数字/单位限定词同样不算主题词，见 isNonTopical 注释。
+  const distinctive = [...t].filter(
+    (w) => !FORMAT_STEMS.has(w) && !isNonTopical(w)
+  );
   const formatOnlyQuery = distinctive.length === 0;
   for (const c of corpus) {
     const ct = tokens(c.text);

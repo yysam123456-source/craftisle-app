@@ -111,8 +111,14 @@ if (exists("lib/seo/page-meta.ts")) {
   const i = src.indexOf("PAGE_META_BASE");
   if (i >= 0) {
     const seg = src.slice(i, src.indexOf("new Proxy", i));
+    // 🔴 2026-11-05（DEBT-51 关联，CI 真实失败点）：matchAll() 返回的是
+    //   **iterator**，不是数组。Node 22+ 有 Iterator Helpers（iterator.map），
+    //   本机 v22.22.2 能跑通；但 .github/workflows/seo-cron.yml 固定
+    //   node-version: 20 ⇒ `.map is not a function` ⇒ 「结构门禁」整步失败，
+    //   并把后面的 check:lastmod 一起 skipped（11-04 run 41833664029）。
+    //   必须显式展开成数组，与下方工具页侧的写法保持一致。
     baseRoutes.push(
-      ...seg.matchAll(/^\s*"(\/[^"]*)":/gm).map((m) => m[1]),
+      ...[...seg.matchAll(/^\s*"(\/[^"]*)":/gm)].map((m) => m[1]),
     );
   }
 }

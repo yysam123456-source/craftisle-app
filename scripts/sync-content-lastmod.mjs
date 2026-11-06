@@ -11,16 +11,31 @@
  * 🔴 纪律：**宁可漏报不可错报**。只认「单个、规范、以 / 开头的站内路径」；
  *    target 里带花括号/逗号/中文说明/多 URL 的复合描述一律跳过，
  *    否则会把不相干页面标成「今天改过」，制造虚假 freshness 信号。
+ *
+ * 🔴 2026-11-05（DEBT-51）：台账在 **仓库外**（../growth-ledger.json），
+ *    CI checkout 只有 craftisle-app 仓库 ⇒ 一旦 check:lastmod 真跑到，
+ *    读台账必然 ENOENT。修法不是 try/catch 吞掉后假通过，而是：
+ *      · 本地读 canonical 台账时，同时把「id/date/target 摘要」镜像进
+ *        仓库内 git 跟踪文件 data/ledger-snapshot.json；
+ *      · CI 缺外部台账时读该镜像，用**同一份生成逻辑**重算期望映射；
+ *      · 两条来源都没有 ⇒ 直接抛错并说清缺哪个文件。
+ *    来源会明确打印，绝不静默回退。
+ *
+ *    边界（必须诚实）：CI 只能校验「仓库内镜像 ↔ content-lastmod.json」一致；
+ *    「外部台账 ↔ 镜像」的一致性由本地 npm run sync:lastmod 保证。
+ *    因此本地每次登记台账后必须跑 sync:lastmod 并提交两个文件。
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 const ROOT = resolve(process.cwd(), "..");
 const LEDGER = resolve(ROOT, "growth-ledger.json");
+const SNAPSHOT = resolve(process.cwd(), "data", "ledger-snapshot.json");
+const DEFAULT_OUT = resolve(process.cwd(), "data", "content-lastmod.json");
 const BASE = "https://craftisle.com";
 // --out <path> 供 CI 一致性校验写到临时位置比对，避免任何复刻版解析逻辑漂移
 const outIdx = process.argv.indexOf("--out");
-const OUT = outIdx >= 0 ? resolve(process.argv[outIdx + 1]) : resolve(process.cwd(), "data", "content-lastmod.json");
+const OUT = outIdx >= 0 ? resolve(process.argv[outIdx + 1]) : DEFAULT_OUT;
 
 /** 只接受站内单一路径。保守白名单：主战场 + 允许的静态段。 */
 const PATH_RE = /^\/(tools|l|directory\/alternatives|c|blog|guides|about|compare)(\/[a-z0-9._~%-]+)*\/?$/i;
@@ -61,10 +76,33 @@ function toUrls(target) {
   return paths;
 }
 
-const ledger = JSON.parse(readFileSync(LEDGER, "utf-8"));
+/**
+ * 台账来源：外部 canonical 优先；CI 里只有仓库内镜像。
+ * 明确打印来源 —— 静默回退会让「数据其实来自旧镜像」这种事没人看见。
+ */
+function loadActions() {
+  if (existsSync(LEDGER)) {
+    console.log(`[lastmod] source=${LEDGER} (canonical)`);
+    const ledger = JSON.parse(readFileSync(LEDGER, "utf-8"));
+    return { actions: ledger.actions ?? [], canonical: true };
+  }
+  if (!existsSync(SNAPSHOT)) {
+    throw new Error(
+      `[lastmod] 台账不可用：${LEDGER} 不存在，仓库内镜像 ${SNAPSHOT} 也不存在。\n` +
+      `  CI 必须提交 data/ledger-snapshot.json（本地 npm run sync:lastmod 自动生成）。\n` +
+      `  此处不允许静默跳过或假通过。`
+    );
+  }
+  console.log(`[lastmod] source=${SNAPSHOT} (仓库内镜像 / CI fallback)`);
+  console.log("[lastmod] ⚠ 本环境无外部台账，只校验「镜像↔映射」一致；「台账↔镜像」由本地 sync:lastmod 保证");
+  const snapshot = JSON.parse(readFileSync(SNAPSHOT, "utf-8"));
+  return { actions: snapshot.actions ?? [], canonical: false };
+}
+
+const { actions, canonical } = loadActions();
 const map = {};
 const skipped = [];
-for (const a of ledger.actions ?? []) {
+for (const a of actions) {
   if (!a.date || !/^\d{4}-\d{2}-\d{2}$/.test(String(a.date))) continue;
   const urls = toUrls(a.target);
   if (urls.length === 0) {
@@ -79,11 +117,30 @@ for (const a of ledger.actions ?? []) {
 
 const payload = {
   generatedAt: new Date().toISOString().slice(0, 10),
-  source: "growth-ledger.json (actions[].date + actions[].target)",
+  source: canonical
+    ? "growth-ledger.json (actions[].date + actions[].target)"
+    : "data/ledger-snapshot.json (CI mirror of actions[].date + actions[].target)",
+  ledgerSource: canonical ? "canonical" : "ci-mirror",
   note: "真实内容改动日期，禁止用构建时刻 now 覆盖；复合 target 已保守跳过",
   skippedCompositeTargets: skipped.length,
   urls: map,
 };
+
+// 镜像只在「读的是 canonical 台账 + 写的是默认路径」时更新。
+// CI 的 check 用 --out 临时文件，不会碰镜像 ⇒ 不会污染工作区，也不会自己比对自己。
+if (canonical && OUT === DEFAULT_OUT) {
+  const snapshot = {
+    note: "growth-ledger.json 的仓库内镜像，只含 id/date/target，供 CI 的 check:lastmod 重算期望映射。由本地 npm run sync:lastmod 生成，勿手改。",
+    source: "growth-ledger.json (mirrored)",
+    generatedAt: payload.generatedAt,
+    actionCount: actions.length,
+    actions: actions.map((a) => ({ id: a.id, date: a.date, target: a.target })),
+  };
+  const stmp = `${SNAPSHOT}.tmp`;
+  writeFileSync(stmp, JSON.stringify(snapshot, null, 2) + "\n", "utf-8");
+  renameSync(stmp, SNAPSHOT);
+  console.log(`[lastmod] mirrored ${snapshot.actionCount} actions -> ${SNAPSHOT}`);
+}
 
 mkdirSync(dirname(OUT), { recursive: true });
 const tmp = `${OUT}.tmp`;

@@ -37,7 +37,11 @@ let failed = false;
 try {
   execFileSync(process.execPath, ["scripts/sync-content-lastmod.mjs", "--out", tmp], {
     cwd: process.cwd(),
-    stdio: "pipe",
+    // 🔴 2026-11-05（DEBT-51）：生成器会打印**台账来源**（外部 canonical /
+    //    仓库内镜像）。原先 stdio:"pipe" 把这段 stdout 全吞掉 ⇒ CI 日志里
+    //    「其实在用镜像、只校验镜像↔映射」这个关键事实不可见，等于静默回退。
+    //    必须透传，失败时原始 stderr 也能直接看到真因。
+    stdio: ["ignore", "inherit", "inherit"],
   });
   const expected = JSON.parse(readFileSync(tmp, "utf-8")).urls;
   const actual = JSON.parse(readFileSync(DATA, "utf-8")).urls;

@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-11-05",
+  "generatedAt": "2026-11-06",
   "source": "growth-ledger.json (actions[].date + actions[].target)",
+  "ledgerSource": "canonical",
   "note": "真实内容改动日期，禁止用构建时刻 now 覆盖；复合 target 已保守跳过",
-  "skippedCompositeTargets": 47,
+  "skippedCompositeTargets": 51,
   "urls": {
     "https://craftisle.com/tools/image-compress": "2026-10-09",
     "https://craftisle.com/c/heic-to-jpg": "2026-10-15",
