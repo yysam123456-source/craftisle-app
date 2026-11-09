@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06",
+  "generatedAt": "2026-11-09",
   "source": "growth-ledger.json (actions[].date + actions[].target)",
   "ledgerSource": "canonical",
   "note": "真实内容改动日期，禁止用构建时刻 now 覆盖；复合 target 已保守跳过",
@@ -40,6 +40,7 @@
     "https://craftisle.com/directory/alternatives/microsoft-project": "2026-10-23",
     "https://craftisle.com/tools/svg-editor": "2026-10-22",
     "https://craftisle.com/directory/alternatives/monday-com": "2026-10-26",
-    "https://craftisle.com/c/png-to-pdf": "2026-11-03"
+    "https://craftisle.com/c/png-to-pdf": "2026-11-03",
+    "https://craftisle.com/directory/alternatives/google-workspace": "2026-11-09"
   }
 }

@@ -314,6 +314,10 @@
         "answer": "Yes, for small teams. Zoho Workplace has a free tier covering up to 5 users with 5 GB each, including custom domain email. LibreOffice and ONLYOFFICE are free and unlimited for document editing with no account at all. What free tiers do not usually include is real-time multi-user collaboration plus admin console and audit logs — that combination is what you are paying Google for."
       },
       {
+        "question": "Are there free G Suite alternatives now that G Suite is Google Workspace?",
+        "answer": "Yes. G Suite was renamed Google Workspace in 2020, but it is the same suite of Gmail, Drive, Docs and Meet with the same per-user pricing, so the free alternatives are unchanged. Zoho Workplace covers up to 5 users with custom domain email at no cost, LibreOffice and ONLYOFFICE are free and unlimited for document editing without an account, and Nextcloud Hub is free if you self-host it. What no free tier replaces is the admin console, audit logs and shared-drive permission controls — those are the features the paid Business tiers charge for. If you are finding older guides to free G Suite alternatives, they point to the same products compared on this page; check the current free-tier limits before committing, since Zoho's five-user ceiling and the 5 GB per user allowance are the constraints most small teams run into first."
+      },
+      {
         "question": "How much does Google Workspace cost per user per month?",
         "answer": "Business Starter is around $7.20 per user per month, Business Standard around $12, and Business Plus around $18, billed annually. A 30-person team on Starter therefore spends roughly $2,600 per year. The free personal tier is single-user and cannot be used as a team suite."
       },

@@ -1,8 +1,8 @@
 {
   "note": "growth-ledger.json 的仓库内镜像，只含 id/date/target，供 CI 的 check:lastmod 重算期望映射。由本地 npm run sync:lastmod 生成，勿手改。",
   "source": "growth-ledger.json (mirrored)",
-  "generatedAt": "2026-11-06",
-  "actionCount": 89,
+  "generatedAt": "2026-11-09",
+  "actionCount": 90,
   "actions": [
     {
       "id": "2026-10-09-01",
@@ -448,6 +448,11 @@
       "id": "2026-11-05-89",
       "date": "2026-11-05",
       "target": "SEO-Link-Building-Strategy.md"
+    },
+    {
+      "id": "2026-11-09-90",
+      "date": "2026-11-09",
+      "target": "/directory/alternatives/google-workspace"
     }
   ]
 }
