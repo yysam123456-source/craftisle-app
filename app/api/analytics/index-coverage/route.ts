@@ -1,5 +1,5 @@
 /**
- * GET /api/analytics/index-coverage?limit=20
+ * GET /api/analytics/index-coverage?limit=25
  *
  * 🔴 2026-11-04 新增：索引覆盖率分母。
  *
@@ -48,6 +48,19 @@ const SAMPLE_URLS: Array<{ group: string; url: string }> = [
   { group: "pair", url: "https://craftisle.com/c/png-to-pdf" },
   { group: "blog", url: "https://craftisle.com/blog" },
   { group: "directory", url: "https://craftisle.com/directory" },
+  // 🔴 2026-11-10 站群版：SITE_URL 是 sc-domain:craftisle.com（domain property，本可查子域），
+  // 但旧抽样清单 13 条全部是主站，子站索引状态从未被测量。补 7 个监控内子站首页
+  // + imgprompt / pdf 各 1 条内页，全部线上实测 HTTP 200（draw 用 /en，根路径返 307）。
+  // 只加常量，不改查询逻辑；默认 limit 20 -> 25，硬上限 50 与 2000/天配额不变。
+  { group: "subsite-games", url: "https://game.craftisle.com/" },
+  { group: "subsite-pdf", url: "https://pdf.craftisle.com/" },
+  { group: "subsite-whiteboard", url: "https://draw.craftisle.com/en" },
+  { group: "subsite-resume", url: "https://resume.craftisle.com/" },
+  { group: "subsite-fxlab", url: "https://fxlab.craftisle.com/" },
+  { group: "subsite-viewer", url: "https://viewer.craftisle.com/" },
+  { group: "subsite-imgprompt", url: "https://imgprompt.craftisle.com/" },
+  { group: "subsite-imgprompt-inner", url: "https://imgprompt.craftisle.com/category/other/" },
+  { group: "subsite-pdf-inner", url: "https://pdf.craftisle.com/en/tools/" },
 ];
 
 export async function GET(request: Request) {
@@ -58,7 +71,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
   }
 
-  const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20") || 20, 1), 50);
+  const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "25") || 25, 1), 50);
   const status = getGscStatus();
   if (!status.configured) {
     return NextResponse.json({
