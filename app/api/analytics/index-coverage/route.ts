@@ -24,6 +24,11 @@
 import { NextResponse } from "next/server";
 import { getAccessToken, getGscStatus } from "@/lib/seo/gsc-client";
 
+// 🔴 2026-11-10：GSC 单条 URL Inspection 实测 ≈9s，串行 13 条即超过 Vercel 函数执行时长，
+// 端点表现是 HTTP 000 / TLS 断连，而不是 JSON 错误。显式放宽到 60s，并由下方有界并发
+// 把墙钟时间压到 <60s。「接口 200」不等于生效，必须读回真实样本量。
+export const maxDuration = 60;
+
 const SITE_URL = "sc-domain:craftisle.com";
 // 🔴 2026-11-05 修正：URL Inspection API 在 **/v1/urlInspection**（不是 webmasters/v3 —
 // 那是 Search Analytics 的域）。曾误用 webmasters/v3 导致每个抽样 URL 都返回 HTTP 404。
@@ -93,18 +98,17 @@ export async function GET(request: Request) {
     }, { status: 502 });
   }
 
-  for (const t of targets) {
+  const inspectOne = async (t: (typeof SAMPLE_URLS)[number]): Promise<Record<string, unknown>> => {
     try {
       const res = await fetch(INSPECT_ENDPOINT, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify({ inspectionUrl: t.url, siteUrl: SITE_URL }),
-        signal: AbortSignal.timeout(20_000),
+        signal: AbortSignal.timeout(12_000),
       });
       if (!res.ok) {
-        // 单条失败必须显式记录，不能静默跳过 —— 否则样本量会悄悄缩水
-        results.push({ group: t.group, url: t.url, error: `HTTP ${res.status}`, verdict: "ERROR" });
-        continue;
+        // 单条失败必须显式返回，不能静默跳过 —— 否则样本量会悄悄缩水
+        return { group: t.group, url: t.url, error: `HTTP ${res.status}`, verdict: "ERROR" };
       }
       const data = await res.json() as {
         inspectionResult?: {
@@ -120,7 +124,7 @@ export async function GET(request: Request) {
         };
       };
       const idx = data.inspectionResult?.indexStatusResult ?? {};
-      results.push({
+      return {
         group: t.group,
         url: t.url,
         verdict: idx.verdict ?? "UNKNOWN",
@@ -130,15 +134,26 @@ export async function GET(request: Request) {
         lastCrawlTime: idx.lastCrawlTime ?? null,
         googleCanonical: idx.googleCanonical ?? null,
         pageFetchState: idx.pageFetchState ?? null,
-      });
+      };
     } catch (e) {
-      results.push({
+      return {
         group: t.group,
         url: t.url,
         verdict: "ERROR",
         error: e instanceof Error ? e.message : String(e),
-      });
+      };
     }
+  };
+
+  // 🔴 2026-11-10 根因修复：串行 N 条 × ≈9s 会超过 Vercel 函数执行时长，
+  // 表现为端点 HTTP 000 / TLS 断连（实测 limit=1 用时 9s / limit=13、14 均 50s 无响应）。
+  // 有界并发 6 把 22 条压到 4 批 × ≈9s ≈ 36s < maxDuration 60s；Promise.all 保序，
+  // 结果顺序与抽样清单一致。并发 6 远低于官方 600 次/分钟配额；单条 12s 超时仍显式记 ERROR。
+  const CONCURRENCY = 6;
+  for (let i = 0; i < targets.length; i += CONCURRENCY) {
+    const batch = targets.slice(i, i + CONCURRENCY);
+    const settled = await Promise.all(batch.map(inspectOne));
+    results.push(...settled);
   }
 
   const withVerdict = results.filter((r) => r.verdict && r.verdict !== "ERROR" && r.verdict !== "UNKNOWN");
