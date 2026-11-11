@@ -82,6 +82,10 @@
       {
         "question": "Is Canva good enough for professional publishing?",
         "answer": "For simple brochures, flyers, and magazines, yes. For complex books with advanced typography, Scribus is better."
+      },
+      {
+        "question": "What is the best free alternative to Affinity Publisher?",
+        "answer": "Scribus is the closest free equivalent for page layout: master pages, CMYK colour, PDF/X export and long documents are all supported, which is what most Affinity Publisher users actually need. The trade-offs are real — the interface is less polished, font handling is fussier, and it cannot open .afpub files, so export a PDF from Affinity Publisher first. For brochures, flyers and social formats where print production is not the point, Canva's free tier is faster; Inkscape plus extensions is only worth it when the layout is illustration-heavy."
       }
     ],
     "tagline": "One-time purchase desktop publishing at $69.99",

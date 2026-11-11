@@ -321,6 +321,10 @@
       {
         "question": "Is there a free Clip Studio Paint alternative for comic creation?",
         "answer": "Yes, MediBang Paint is free and specifically designed for comic creation."
+      },
+      {
+        "question": "Is there a free version of Clip Studio Paint?",
+        "answer": "No permanent free version. Clip Studio Paint offers a time-limited free trial, then requires a Pro or EX licence — either a one-time purchase ($49.99 Pro / $219 EX) or a subscription from about $0.99/month. If you need something free forever, the alternatives above are the honest answer: Krita covers painting and comic panels at no cost, and MediBang Paint is free for comic work with an optional Pro tier at $9.99/month. Neither opens .clip files perfectly, so export a PSD or layered PNG from Clip Studio Paint before switching."
       }
     ],
     "tagline": "Popular comic/illustration software at $49.99 or subscription",

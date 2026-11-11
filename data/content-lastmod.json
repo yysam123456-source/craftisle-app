@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10",
+  "generatedAt": "2026-11-11",
   "source": "growth-ledger.json (actions[].date + actions[].target)",
   "ledgerSource": "canonical",
   "note": "真实内容改动日期，禁止用构建时刻 now 覆盖；复合 target 已保守跳过",
