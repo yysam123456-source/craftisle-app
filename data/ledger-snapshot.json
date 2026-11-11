@@ -2,7 +2,7 @@
   "note": "growth-ledger.json 的仓库内镜像，只含 id/date/target，供 CI 的 check:lastmod 重算期望映射。由本地 npm run sync:lastmod 生成，勿手改。",
   "source": "growth-ledger.json (mirrored)",
   "generatedAt": "2026-11-11",
-  "actionCount": 92,
+  "actionCount": 94,
   "actions": [
     {
       "id": "2026-10-09-01",
@@ -463,6 +463,16 @@
       "id": "2026-11-10-92",
       "date": "2026-11-10",
       "target": "app/api/analytics/index-coverage/route.ts"
+    },
+    {
+      "id": "2026-11-11-93",
+      "date": "2026-11-11",
+      "target": "/directory/alternatives/clip-studio-paint"
+    },
+    {
+      "id": "2026-11-11-94",
+      "date": "2026-11-11",
+      "target": "/directory/alternatives/affinity-publisher"
     }
   ]
 }
