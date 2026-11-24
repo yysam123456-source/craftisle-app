@@ -100,10 +100,15 @@ jobs:
       #   · audit:overrides—— 覆盖层读侧失效（同步读 PAGE_META / 路由不存在 ⇒ 静默回退）
       #   这三个都是纯本地静态检查，不依赖网络也不依赖 DB，可以直接做阻断门。
       #   （DEBT-24 的教训：「防线代码存在却从未运行」= 防线等于不存在。）
-      - name: 结构门禁（sitemap / relatedTools / 覆盖层读侧）
+      #
+      # 🔴 2026-11-24：新增 audit:schema —— 页面级 JSON-LD 存在性与完整性。
+      #   同属纯本地静态检查（读源码 + public/data 的批次 JSON）⇒ 同样可做阻断门。
+      #   它守的是「页面该有的 schema 有没有」：此前 audit:sitemap 查的是
+      #   「sitemap 里的 URL 会不会 404」，方向相反，谁都没管 schema 缺失。
+      - name: 结构门禁（sitemap / relatedTools / 覆盖层读侧 / schema）
         run: |
           set -uo pipefail
-          for s in audit:sitemap audit:related audit:overrides; do
+          for s in audit:sitemap audit:related audit:overrides audit:schema; do
             echo ""
             echo "── $s ──"
             if npm run "$s"; then
@@ -155,6 +160,18 @@ jobs:
           set -uo pipefail
           echo "── audit:robots ──"
           npm run audit:robots || echo "::warning::跨站 robots 一致性有待修项（详见上方清单）"
+
+      # 🔴 2026-11-24：sitemap 覆盖反查（有曝光未收录）—— **不阻断，仅告警**。
+      #   它读的是**线上** sitemap + GSC pages 数据，性质与「跨站 robots」一致：
+      #   部署前跑必然还是旧线上状态 ⇒ 当阻断门会天天假红。
+      #   守的是反向盲区：audit:sitemap 查「sitemap 里的 URL 会不会 404」，
+      #   这个查「有真实曝光的页有没有进 sitemap」——
+      #   已知 /directory/compare/* 就带着这个缺口（有曝光、零 sitemap URL）。
+      - name: sitemap 覆盖反查（不阻断 · 仅告警）
+        run: |
+          set -uo pipefail
+          echo "── audit:sitemap-coverage ──"
+          npm run audit:sitemap-coverage || echo "::warning::存在「有曝光未收录」缺口（详见上方清单）"
 
       # verify:tools 检查的是**已部署的线上页面**（抓 craftisle.com），
       # 与上面三个「部署前的代码门禁」性质不同 ⇒ **不阻断**：
