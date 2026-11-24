@@ -133,6 +133,46 @@ const EXCLUSION_LABEL: Record<ExclusionReason, string> = {
   no_intent_terms: "无 intentTerms，无法做曝光匹配",
 };
 
+// ── 判死临近预警（2026-11-24 新增）────────────────────────────────────
+// 🔴 背景：台账里 readbackDays 含 56 的动作有 31 条，但 2026-11-24 实测
+//   它们的 coverageDays 最高只到 45 —— **还差 11~12 天才到 56d 窗口**。
+//   也就是说「56d 到期未判」当时**不是判据失效，是数据没长到**。
+//   （这正是 DEBT-13 的镜像错误：把「日历到期」当「数据成熟」。）
+//
+//   但这暴露了一个真实缺口：现有脚本只有在 coverageDays >= 56 且 0 命中时
+//   才会给出 `unproven_or_dead`。也就是说**判死只在到期当天才发生**——
+//   若当天跑批失败（网络/快照缺失），这条动作会静默再滚 56 天。
+//   自动化 prompt 要求「56d 到期必须判死/判活，不允许无限 keep_testing」，
+//   光靠到期当天那一跑是不够的 ⇒ 需要提前预警，让欠账在到期前就浮出来。
+//
+//   预警条件（三条同时满足，避免噪声）：
+//     1. coverageDays 已过最大窗口的「前 14 天」区间（即将到期，不是刚起步）
+//     2. 候选曝光为 0（真没起效；有命中的走 promote_candidate，不该被判死）
+//     3. 目标页不在冻结词族内（冻结页本就不追求曝光，判死是误判）
+const DEADLINE_WINDOW_DAYS = 56;
+/** 到期前多少天开始预警（按数据覆盖天数算，不是日历天数）。 */
+const DEADLINE_WARN_LEAD_DAYS = 14;
+
+/**
+ * 冻结词族：这些页/主题本就不在「追求曝光」的战线上（MEMORY.md 已冻结清单）。
+ * 命中它们的动作**不参与判死预警**——否则会把「按决策不做的页」误报成失败。
+ *
+ * 🔴 判定依据同时看 target 与 intentTerms：只匹配 target 会漏掉
+ * 「target 是 /l/intellij-alternative 但意图词是 intellij 社区版」这类。
+ *
+ * 🔴 连字符与空格都要覆盖（2026-11-24 修）：`microsoft-project`（URL 形态）
+ *   与 `microsoft project`（词形态）是同一个冻结簇。首版只写 `microsoft\s+project`，
+ *   导致 URL 形态漏判。统一用 `[\s-]+`。
+ */
+const FROZEN_FAMILY_RE =
+  /intellij|idea[\s-]+community|jetbrains|ms[\s-]+project|microsoft[\s-]+project|sudoku|sokudo|sedoku|sudpoku|20248|free[\s-]+design[\s-]+studio|free[\s-]+xd|totb0311|pokeapi/i;
+
+function isFrozenFamily(a: Record<string, unknown>): boolean {
+  const target = String(a.target ?? "");
+  const terms = ((a.intentTerms as string[]) ?? []).join(" ");
+  return FROZEN_FAMILY_RE.test(target) || FROZEN_FAMILY_RE.test(terms);
+}
+
 async function main() {
   const today = new Date();
   console.log(`[growth-review] ${today.toISOString().slice(0, 10)}`);
@@ -502,6 +542,85 @@ async function main() {
     `[growth-review] 到期闸门：到期 ${dueEligible.length} 条 / 已出结论 ${concluded.length} 条` +
       ` / 数据未成熟 ${dueEligible.length - concluded.length} 条 ⇒ ${readbackGate.gate}`
   );
+
+  // ── 判死临近预警（2026-11-24 新增）────────────────────────────────────
+  // 见 DEADLINE_WINDOW_DAYS 处的说明：判死只在 coverageDays>=56 当天才触发，
+  // 若当天跑批失败就会静默再滚 56 天。这里提前 14 天把欠账浮出来。
+  //
+  // 🔴 只**读**不**写**：预警是给人看的信号，不自动改台账 status。
+  //   自动改判会撞上 DEBT-21（把 infra 判成 failed）与「不覆盖人工 verified」。
+  // 🔴 注意：`dueWindows` 只含**已到期**的窗口（windows.filter(d => coverageDays >= d)），
+  //   所以一条 coverageDays=45 的动作，它的 dueWindows 里**没有 56**。
+  //   若拿 dueWindows 判断「是否涉及 56d 判死」，预警会全部漏掉 ⇒ 必须读台账原始 readbackDays。
+  const ledgerActionsForWarning = existsSync(LEDGER)
+    ? (JSON.parse(readFileSync(LEDGER, "utf-8")) as { actions?: Array<Record<string, unknown>> })
+        .actions ?? []
+    : [];
+  const maxWindowById = new Map<string, number>();
+  const frozenById = new Map<string, boolean>();
+  for (const a of ledgerActionsForWarning) {
+    const wins = (a.readbackDays as number[]) ?? [];
+    maxWindowById.set(String(a.id), wins.length ? Math.max(...wins) : 0);
+    frozenById.set(String(a.id), isFrozenFamily(a));
+  }
+
+  const deadlineWarnings = eligibleReadback
+    .filter((r) => {
+      const maxWindow = maxWindowById.get(String(r.id)) ?? 0;
+      if (maxWindow < DEADLINE_WINDOW_DAYS) return false; // 没有 56d 窗口，不涉及判死
+      const cov = r.coverageDays as number;
+      // 已经过了 56d 却仍在 testing/too_early ⇒ 那才是真欠账（判死没被执行）
+      if (cov >= DEADLINE_WINDOW_DAYS) return r.decision === "keep_testing" || r.decision === "too_early";
+      // 还没到 56d，但在预警区间内（还差 ≤14 天）
+      return (
+        cov >= DEADLINE_WINDOW_DAYS - DEADLINE_WARN_LEAD_DAYS &&
+        cov < DEADLINE_WINDOW_DAYS &&
+        r.decision === "keep_testing"
+      );
+    })
+    .filter((r) => !frozenById.get(String(r.id)))
+    .map((r) => {
+      const cov = r.coverageDays as number;
+      return {
+        id: r.id,
+        target: r.target,
+        title: r.title,
+        type: r.type,
+        coverageDays: cov,
+        daysToDeadline: DEADLINE_WINDOW_DAYS - cov,
+        candidateImpressions: r.candidateImpressions,
+        matchedQueryCount: (r.matchedQueries as unknown[] | undefined)?.length ?? 0,
+        overdue: cov >= DEADLINE_WINDOW_DAYS,
+        status: r.status,
+        decision: r.decision,
+      };
+    });
+  report.deadlineWarnings = deadlineWarnings;
+  const overdueCount = deadlineWarnings.filter((d) => d.overdue).length;
+  const upcomingCount = deadlineWarnings.length - overdueCount;
+  report.deadlineWarningsSummary = {
+    total: deadlineWarnings.length,
+    overdue: overdueCount,
+    upcoming: upcomingCount,
+    windowDays: DEADLINE_WINDOW_DAYS,
+    leadDays: DEADLINE_WARN_LEAD_DAYS,
+  };
+  if (deadlineWarnings.length > 0) {
+    console.warn(
+      `[growth-review] ⚠️ 判死临近预警：${deadlineWarnings.length} 条动作在 ${DEADLINE_WINDOW_DAYS}d 窗口边缘` +
+        `（已到期未判 ${overdueCount} 条 / 还差 ≤${DEADLINE_WARN_LEAD_DAYS}d ${upcomingCount} 条），` +
+        `均 0 候选曝光。到期当天必须给 rollback 或 promote 二选一，不得无限 keep_testing。`
+    );
+    for (const d of deadlineWarnings.slice(0, 10)) {
+      console.warn(
+        `  [${d.overdue ? "已到期未判" : `还差${d.daysToDeadline}d`}] ${d.id} ${String(d.target).slice(0, 44)}` +
+          ` cov=${d.coverageDays}d imp=${d.candidateImpressions}`
+      );
+    }
+    if (deadlineWarnings.length > 10) {
+      console.warn(`  …另有 ${deadlineWarnings.length - 10} 条，详见 report.deadlineWarnings`);
+    }
+  }
 
   //🔴 2026-10-16（DEBT-21）：回读结论**必须回写台账**。
   //   旧版只写 growth-review-latest.json 就结束 ⇒ 28 条动作 status 100% 停在
