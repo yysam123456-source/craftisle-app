@@ -52,7 +52,8 @@
     "update:pricing": "node scripts/update-pricing.mjs",
     "update:producthunt": "node scripts/update-producthunt.mjs",
     "validate:data": "node scripts/validate-data-json.mjs",
-    "verify:tools": "node scripts/verify-live-tools.mjs"
+    "verify:tools": "node scripts/verify-live-tools.mjs",
+    "audit:types": "node scripts/audit-types.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",

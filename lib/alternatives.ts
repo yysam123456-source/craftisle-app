@@ -24,6 +24,12 @@ export interface AlternativeTool {
   isFree: boolean;
   isOpenSource: boolean;
   isSelfHosted?: boolean;
+  /**
+   * 单个替代工具的价格描述，如 "Free (open source)"、"$69.99 one-time"。
+   * 数据里 734 条 alternatives 中有 329 条带此字段，但类型一直没声明 ⇒
+   * 读取它会被 TypeScript 判为不存在（2026-11-27 构建因此失败）。
+   */
+  pricing?: string;
   migrationDifficulty?: "Easy" | "Medium" | "Hard";
   rating?: number;
   featured?: boolean;
@@ -2484,7 +2490,14 @@ function normalizePainPoints(v: unknown): PainPoint[] {
  * 直接合并会产生「5 个空对象」这种坏数据 ⇒ 页面渲染出空 Impact。
  * 故所有内容数组都要先归一化再比较长度。
  */
-function mergeEntry(batch: AlternativeEntry, inCode: AlternativeEntry): AlternativeEntry {
+/**
+ * 字段级合并：inCode 只提供要补充/覆盖的字段，其余保留 batch 的值。
+ *
+ * inCode 声明为 Partial —— 调用方（批次数据 / 手写区 / overlay）来源不同，
+ * 有的只带部分字段；函数体本来就跳过 undefined / null / 空字符串 / 空数组，
+ * 所以 Partial 是对真实语义的准确表达。
+ */
+function mergeEntry(batch: AlternativeEntry, inCode: Partial<AlternativeEntry>): AlternativeEntry {
   const out: AlternativeEntry = { ...batch };
 
   // painPoints 先归一化再比长度（字符串形态与对象形态不能直接比）
@@ -2616,8 +2629,11 @@ export function getCombinedMap(): Record<string, AlternativeEntry> {
   for (const [key, ov] of Object.entries(loadAdsenseOverlay())) {
     if (merged[key]) {
       merged[key] = mergeEntry(merged[key], ov);
-    } else {
-      merged[key] = ov;
+    } else if (ov.paidTool) {
+      // 只有 overlay 自带完整条目时才允许整条写入。
+      // 否则不能用 Partial 覆盖一个必填字段齐全的 AlternativeEntry（TS 报错），
+      // 也不能凭空造出缺 alternatives/paidTool 的半成品页面。
+      merged[key] = ov as AlternativeEntry;
     }
   }
   // ……再用 in-code 手写条目做字段级合并（手写优先，但不丢生成版的有值字段）。

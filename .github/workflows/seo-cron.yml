@@ -135,6 +135,22 @@ jobs:
             exit 1
           fi
 
+      # 🔴 2026-11-27：类型检查闸门（阻断）。
+      #   起因：一次推送因 `Property 'pricing' does not exist on type 'AlternativeTool'`
+      #   在远端构建失败（Vercel 报 lint_or_type_error），而本地七道内容闸门全绿 ——
+      #   因为它们都不做类型检查，缺陷一路溜到部署阶段才暴露。
+      #   CI 用 npm ci（依赖完整），可以真正跑 tsc。
+      - name: 类型检查（阻断）
+        run: |
+          set -uo pipefail
+          echo "── audit:types ──"
+          if npm run audit:types; then
+            echo "✅ 类型检查通过"
+          else
+            echo "::error::类型检查未通过 —— 类型缺陷会导致远端构建失败（Vercel lint_or_type_error）"
+            exit 1
+          fi
+
       # 🔴 2026-11-04：sitemap lastmod 一致性闸门。
       #   lastModified 必须用真实内容变更日期（台账动作日期），不能用构建时刻 now。
       #   台账登记了新动作却忘记重生成映射 ⇒ freshness 信号悄悄失效且无人发现，

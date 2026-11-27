@@ -2,7 +2,7 @@
   "note": "growth-ledger.json 的仓库内镜像，只含 id/date/target，供 CI 的 check:lastmod 重算期望映射。由本地 npm run sync:lastmod 生成，勿手改。",
   "source": "growth-ledger.json (mirrored)",
   "generatedAt": "2026-11-27",
-  "actionCount": 102,
+  "actionCount": 103,
   "actions": [
     {
       "id": "2026-10-09-01",
@@ -513,6 +513,11 @@
       "id": "2026-11-27-102",
       "date": "2026-11-27",
       "target": "lib/blog-faq.ts"
+    },
+    {
+      "id": "2026-11-27-103",
+      "date": "2026-11-27",
+      "target": "scripts/audit-types.mjs"
     }
   ]
 }
