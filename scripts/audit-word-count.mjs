@@ -74,6 +74,25 @@ function countByFields(entry, fields) {
   return total;
 }
 
+/**
+ * 工具页的正文计数：guideSlug 字段本身只是 slug，但组件渲染出的是一段
+ * 可见文案（"New to this tool? Read the X guide for what it does, when to
+ * use it, and the common mistakes to avoid."）。按 slug 计词会少算，按
+ * 渲染文案计词才与页面上真实可见的正文一致。
+ */
+function countToolWords(meta, fields) {
+  // guideSlug 本身只是 slug（连字符词），真实正文是下面渲染出的那段文案，
+  // 所以这里跳过 slug 字段，只计渲染文案，避免重复计数。
+  let total = countByFields(meta, fields.filter((f) => f !== "guideSlug"));
+  if (typeof meta.guideSlug === "string" && meta.guideSlug) {
+    const title = typeof meta.title === "string" ? meta.title : "";
+    total += wordCount(
+      `New to this tool? Read the ${title} guide for what it does, when to use it, and the common mistakes to avoid.`
+    );
+  }
+  return total;
+}
+
 // ─────────────────────────────────────────────────────────────
 // DRIFT_GUARD：字段清单与渲染组件的一致性检查
 //   组件里出现了该页型没列的**正文**字段 ⇒ 报错（否则会静默少算词数）
@@ -89,7 +108,7 @@ const PAGE_TYPES = [
       { file: "components/tools/ToolDetailSections.tsx", varName: "meta" },
       { file: "components/tools/ToolDetailLayout.tsx", varName: "meta" },
     ],
-    fields: ["description", "howToUse", "useCases", "faq", "desc"],
+    fields: ["description", "howToUse", "useCases", "faq", "desc", "guideSlug"],
   },
   {
     type: "alternatives",
@@ -235,7 +254,7 @@ async function auditTools() {
   const F = FIELDS_OF.tool;
   for (const [id, meta] of Object.entries(toolMeta)) {
     if (meta.external) continue; // 外链工具页按设计无正文（跳转到别的站）
-    results.push({ type: "tool", id: `/tools/${id}`, words: countByFields(meta, F), min: MIN_OF.tool });
+    results.push({ type: "tool", id: `/tools/${id}`, words: countToolWords(meta, F), min: MIN_OF.tool });
   }
 }
 

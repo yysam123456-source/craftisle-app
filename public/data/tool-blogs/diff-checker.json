@@ -1,44 +1,45 @@
 {
   "slug": "diff-checker",
-  "title": "Online Diff Checker — Compare Text & Code Side by Side",
-  "toolName": "Diff Checker",
-  "toolUrl": "/tools/diff-checker",
+  "title": "Text Diff — Compare Two Texts and Highlight What Changed",
+  "toolName": "Text Diff",
+  "toolUrl": "/tools/diff",
   "category": "Developer Tools",
   "date": "2026-06-08",
   "readTime": 4,
   "tags": [
-    "diff",
+    "diff checker",
+    "text compare",
+    "code diff",
     "compare text",
-    "code review",
     "developer tools"
   ],
   "content": {
-    "intro": "Whether you're reviewing code changes, comparing document versions, or checking configuration differences, a diff checker is essential. Craftisle's free online Diff Checker shows additions, deletions, and changes side by side with color-coded highlighting.",
+    "intro": "Whether you are reviewing code changes, comparing document versions, or checking configuration differences, seeing what changed is the whole task. The Text Diff tool puts two texts side by side and highlights the differences, with a switch to an inline view for long lines.",
     "sections": [
       {
         "heading": "How Diff Comparison Works",
-        "body": "A diff algorithm compares two texts line by line and identifies: added lines (green), removed lines (red), and modified lines (yellow). The algorithm uses the Longest Common Subsequence (LCS) approach to find the minimal set of changes between two versions."
+        "body": "A diff algorithm compares two texts line by line and identifies the lines that were added, removed, or modified. This tool runs on the Monaco diff editor, which computes the alignment and renders changed regions with colour highlighting. The underlying comparison is the standard longest-common-subsequence approach, which finds the minimal set of changes between the two versions."
       },
       {
         "heading": "Real-World Use Cases",
-        "body": "Code review: compare your branch against main to see all changes before creating a PR. Configuration debugging: diff working vs broken config to find the problematic line. Plagiarism check: compare two essays or assignments to spot similarities. Document versioning: see what changed between contract revisions."
+        "body": "Code review: compare your branch against main and read the changes before opening a pull request. Configuration debugging: diff a working config against a broken one to find the line that changed. Document versioning: see exactly what a contract revision altered. Copy editing: confirm that a rewrite says what you think it says."
       },
       {
-        "heading": "How to Use the Diff Checker",
-        "body": "Paste your original text in the left panel and modified text in the right panel. The tool instantly highlights differences. Use 'Swap' to reverse the comparison direction. 'Copy Left' and 'Copy Right' make it easy to copy either version."
+        "heading": "How to Use the Text Diff Tool",
+        "body": "Paste your original text in the left panel and the modified text in the right panel. The tool highlights the differences as you type. Use Swap to reverse the comparison direction when you want to see the change the other way round, and toggle between side-by-side and inline view depending on line length."
       },
       {
-        "heading": "Advanced: Inline vs Side-by-Side",
-        "body": "Side-by-side view is best for: document comparisons, config diffs, and general review. Inline view is better for: code with long lines, single-file changes, and mobile viewing. Our tool defaults to side-by-side but lets you switch with one click."
+        "heading": "Side-by-Side or Inline",
+        "body": "Side-by-side is the default and works well for document comparisons, config diffs and general review, because each version stays in its own column. Inline collapses both versions into a single column, which reads better for code with long lines, for single-file changes, and on narrow screens where two columns would be cramped."
       }
     ],
     "conclusion": "A diff checker is one of those tools you don't think about until you absolutely need it — and then you can't work without it. Keep it bookmarked for code reviews, document comparisons, and debugging."
   },
   "keyTakeaways": [
-    "Diff Checker compares two text snippets and highlights differences line-by-line.",
-    "Supports character-level, word-level, and line-level diff modes.",
-    "Useful for code review, document comparison, and plagiarism detection.",
-    "Side-by-side and inline view modes available.",
-    "No file size limits, processes in-browser."
+    "The Text Diff tool compares two texts and highlights the differences line by line.",
+    "Side-by-side and inline view modes, switchable at any time.",
+    "A Swap control reverses which side is treated as original.",
+    "Runs on the Monaco diff editor, entirely in the browser.",
+    "No file size limits, no upload, no signup."
   ]
 }

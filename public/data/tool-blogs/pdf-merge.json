@@ -1,44 +1,45 @@
 {
   "slug": "pdf-merge",
-  "title": "Free PDF Merger — Combine PDF Files Online Without Watermarks",
-  "toolName": "PDF Merger",
-  "toolUrl": "/tools/pdf-merge",
+  "title": "PDF Tools — Merge, Split and Compress PDF Files in Your Browser",
+  "toolName": "PDF Tools",
+  "toolUrl": "/tools/pdf-tools",
   "category": "PDF Tools",
   "date": "2026-06-08",
   "readTime": 5,
   "tags": [
     "pdf merge",
-    "combine pdf",
+    "split pdf",
+    "compress pdf",
     "pdf tools",
-    "document tools"
+    "browser"
   ],
   "content": {
-    "intro": "Combining multiple PDFs shouldn't require expensive software. Craftisle's free PDF Merger lets you drag, drop, reorder, and merge PDFs in your browser — no upload to servers, no watermarks, no file size limits.",
+    "intro": "Combining multiple PDFs should not require expensive software. The PDF Tools page handles three jobs in one place — merging several files into one document, splitting a document apart, and compressing a file to reduce its size. Everything runs in your browser using PDF.js and the browser file APIs, so no PDF is uploaded to a server.",
     "sections": [
       {
         "heading": "Why Local Processing Matters",
-        "body": "Most online PDF mergers upload your files to a server — a privacy risk for sensitive documents. Our tool uses PDF.js + browser APIs to process everything locally. Your files never leave your computer. This also means it works offline and is faster than server-based alternatives."
+        "body": "Most online PDF tools upload your file to a server — a privacy risk for contracts, invoices and anything else confidential. This page processes the file locally with PDF.js and the browser file APIs instead. Your document never leaves your computer, and because there is no upload step, the work also keeps working on a slow connection."
       },
       {
         "heading": "How to Merge PDFs",
-        "body": "1. Drag and drop your PDF files, or click to browse. 2. Drag to reorder pages within and across files. 3. Optionally select specific pages to include (e.g., pages 1-3, 5, 7-10). 4. Click Merge. 5. Download your combined PDF. Average merge time: under 3 seconds for typical documents."
+        "body": "Open the Merge PDFs tab, select one or more PDF files with the file picker, then run the operation. The selected files are concatenated into a single document in the order you picked them, and the result downloads as a new PDF. The same page also has a Split PDF tab for breaking one document into separate files, and a Compress PDF tab for reducing the size of a single file."
       },
       {
-        "heading": "Supported Features",
-        "body": "Merge unlimited files (tested up to 50 files, 500+ pages). Preserve original quality and formatting. Maintain bookmarks and internal links. Handle different page sizes (A4, Letter, Legal) within one document. Optional page rotation and deletion before merging."
+        "heading": "What the Tool Does and Does Not Do",
+        "body": "The page covers three operations: merging multiple files into one, splitting a single document, and compressing a single file. It is a focused utility rather than a full PDF editor — it does not reorder pages inside a document, does not open password-protected PDFs, and does not edit text, images or metadata. For those jobs, a dedicated desktop editor is the better tool."
       },
       {
         "heading": "Common Use Cases",
-        "body": "Combine monthly reports into a quarterly document. Merge scanned pages into one searchable PDF. Assemble a portfolio from multiple project files. Consolidate invoices for accounting. Create a reading packet from separate articles or chapters."
+        "body": "Combine monthly reports into a quarterly document. Consolidate invoices into one file for accounting. Split a long document into per-chapter files. Reduce the size of a scanned PDF before emailing it. Assemble a reading packet from separate articles."
       }
     ],
     "conclusion": "PDF merging shouldn't cost money or compromise privacy. Craftisle's Merger is free, fast, and secure — everything stays in your browser. Bookmark it for your next document assembly task."
   },
   "keyTakeaways": [
-    "PDF Merge combines multiple PDF files into one in your browser.",
-    "Supports drag-and-drop reordering of pages before merging.",
-    "Handles password-protected PDFs (enter password in tool).",
-    "No file size limits, but large files (>100MB) may be slow.",
-    "100% free, no watermarks, no registration."
+    "The PDF Tools page merges, splits and compresses PDF files entirely in the browser.",
+    "No PDF is uploaded to a server — processing happens locally with PDF.js.",
+    "It is a focused utility, not a full editor: no page reordering, no password-protected files, no text editing.",
+    "Free, no registration and no watermarks on the output.",
+    "The same page handles all three jobs, so you do not need to switch tools."
   ]
 }

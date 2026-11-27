@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hash-algorithms",
+    "title": "MD5 vs SHA-1 vs SHA-256 vs SHA-512 — Which Hash Algorithm Should You Use?",
+    "toolName": "Hash Tool",
+    "toolUrl": "/tools/hash",
+    "category": "Developer Tools",
+    "excerpt": "MD5, SHA-1, SHA-256 or SHA-512? Learn what each hash algorithm is actually for, which ones are retired, and how to tell which one a published checksum used.",
+    "date": "2026-11-27",
+    "readTime": 6,
+    "tags": [
+      "md5 vs sha256",
+      "sha-256 vs sha-512",
+      "hash algorithm",
+      "checksum",
+      "developer tools"
+    ]
+  },
+  {
     "slug": "image-compress",
     "title": "Free Online Image Compressor — How to Reduce Image Size Without Losing Quality",
     "toolName": "Image Compressor",
@@ -8,7 +25,12 @@
     "excerpt": "Learn how to compress JPG, PNG, and WebP images online for free. Reduce file sizes by up to 90% while keeping visual quality — perfect for websites, email, and social media.",
     "date": "2026-06-08",
     "readTime": 5,
-    "tags": ["image compression", "optimize images", "reduce file size", "web performance"]
+    "tags": [
+      "image compression",
+      "optimize images",
+      "reduce file size",
+      "web performance"
+    ]
   },
   {
     "slug": "base64-encode",
@@ -19,7 +41,12 @@
     "excerpt": "Everything you need to know about Base64 encoding: what it is, when to use it, and how our free online encoder makes it simple. Convert text, images, and files in seconds.",
     "date": "2026-06-08",
     "readTime": 6,
-    "tags": ["base64", "encoding", "developer tools", "data URI"]
+    "tags": [
+      "base64",
+      "encoding",
+      "developer tools",
+      "data URI"
+    ]
   },
   {
     "slug": "json-formatter",
@@ -30,40 +57,60 @@
     "excerpt": "Tired of unreadable JSON? Our free online JSON formatter beautifies, validates, and minifies JSON instantly. Includes tree view, error highlighting, and copy-to-clipboard.",
     "date": "2026-06-08",
     "readTime": 5,
-    "tags": ["json", "formatter", "validator", "developer tools"]
+    "tags": [
+      "json",
+      "formatter",
+      "validator",
+      "developer tools"
+    ]
   },
   {
     "slug": "diff-checker",
     "title": "Online Diff Checker — Compare Text & Code Side by Side",
-    "toolName": "Diff Checker",
-    "toolUrl": "/tools/diff-checker",
+    "toolName": "Text Diff",
+    "toolUrl": "/tools/diff",
     "category": "Developer Tools",
-    "excerpt": "Compare two text files or code snippets instantly with our free online diff tool. Highlight additions, deletions, and changes — perfect for code review and document comparison.",
+    "excerpt": "Compare two texts side by side and see exactly what changed. Switch to inline view for long lines, or swap the sides. Free, in-browser, no signup.",
     "date": "2026-06-08",
     "readTime": 4,
-    "tags": ["diff", "compare text", "code review", "developer tools"]
+    "tags": [
+      "diff",
+      "compare text",
+      "code review",
+      "developer tools"
+    ]
   },
   {
     "slug": "url-encoder",
     "title": "URL Encoder & Decoder — Handle Special Characters in URLs Correctly",
-    "toolName": "URL Encoder",
-    "toolUrl": "/tools/url-encoder",
+    "toolName": "URL Encode/Decode",
+    "toolUrl": "/tools/url-encode",
     "category": "Developer Tools",
-    "excerpt": "Master URL encoding with our free online tool. Learn when and why to encode URLs, how percent-encoding works, and common pitfalls to avoid.",
+    "excerpt": "Encode or decode percent-encoded URLs in one click. Get a safe URL for query parameters and links, or turn an encoded string back into readable text. Runs entirely in your browser.",
     "date": "2026-06-08",
     "readTime": 5,
-    "tags": ["url encoding", "percent encoding", "developer tools", "web development"]
+    "tags": [
+      "url encoding",
+      "percent encoding",
+      "developer tools",
+      "web development"
+    ]
   },
   {
     "slug": "md5-hash",
-    "title": "MD5 Hash Generator — How to Generate and Verify MD5 Checksums",
-    "toolName": "MD5 Generator",
-    "toolUrl": "/tools/md5",
+    "title": "MD5 Hash — How MD5 Works and Where It Still Applies",
+    "toolName": "Hash Tool",
+    "toolUrl": "/tools/hash",
     "category": "Developer Tools",
-    "excerpt": "Generate MD5 hashes for any string or file instantly. Learn what MD5 is, when it's still useful (file integrity checks), and when to use stronger alternatives like SHA-256.",
+    "excerpt": "What MD5 actually does, why it is still embedded in so much existing software, and the narrow set of cases where reproducing an MD5 value is the correct choice.",
     "date": "2026-06-08",
     "readTime": 5,
-    "tags": ["md5", "hash", "checksum", "file integrity"]
+    "tags": [
+      "md5",
+      "md5 hash",
+      "checksum",
+      "hash"
+    ]
   },
   {
     "slug": "uuid-generator",
@@ -74,7 +121,12 @@
     "excerpt": "Generate UUID v4, v1, and v7 identifiers instantly. Learn the differences between UUID versions and best practices for using unique IDs in databases, APIs, and distributed systems.",
     "date": "2026-06-08",
     "readTime": 4,
-    "tags": ["uuid", "unique identifier", "guid", "developer tools"]
+    "tags": [
+      "uuid",
+      "unique identifier",
+      "guid",
+      "developer tools"
+    ]
   },
   {
     "slug": "qrcode-generator",
@@ -85,7 +137,12 @@
     "excerpt": "Generate high-quality QR codes for URLs, text, Wi-Fi credentials, and more. Customize colors, add logos, and download as PNG or SVG — all free, no signup required.",
     "date": "2026-06-08",
     "readTime": 5,
-    "tags": ["qr code", "generator", "custom qr", "barcode"]
+    "tags": [
+      "qr code",
+      "generator",
+      "custom qr",
+      "barcode"
+    ]
   },
   {
     "slug": "color-picker",
@@ -96,18 +153,29 @@
     "excerpt": "Pick colors from an interactive wheel, convert between Hex/RGB/HSL formats, and generate harmonious color palettes. Essential tool for designers and frontend developers.",
     "date": "2026-06-08",
     "readTime": 4,
-    "tags": ["color picker", "hex", "rgb", "hsl", "design tools"]
+    "tags": [
+      "color picker",
+      "hex",
+      "rgb",
+      "hsl",
+      "design tools"
+    ]
   },
   {
     "slug": "pdf-merge",
     "title": "Free PDF Merger — Combine PDF Files Online Without Watermarks",
-    "toolName": "PDF Merger",
-    "toolUrl": "/tools/pdf-merge",
+    "toolName": "PDF Tools",
+    "toolUrl": "/tools/pdf-tools",
     "category": "PDF Tools",
-    "excerpt": "Merge multiple PDF files into one document online for free. No watermarks, no file size limits, and your files are processed locally in your browser for maximum privacy.",
+    "excerpt": "Merge, split and compress PDF files without uploading them anywhere. Three tools on one page, processed locally in your browser with PDF.js.",
     "date": "2026-06-08",
     "readTime": 5,
-    "tags": ["pdf merge", "combine pdf", "pdf tools", "document tools"]
+    "tags": [
+      "pdf merge",
+      "combine pdf",
+      "pdf tools",
+      "document tools"
+    ]
   },
   {
     "slug": "unit-converter",
@@ -118,17 +186,27 @@
     "excerpt": "Convert between hundreds of units across 15+ categories: length, weight, temperature, volume, area, speed, time, and more. Free, fast, and works offline.",
     "date": "2026-06-08",
     "readTime": 4,
-    "tags": ["unit converter", "convert units", "metric", "imperial"]
+    "tags": [
+      "unit converter",
+      "convert units",
+      "metric",
+      "imperial"
+    ]
   },
   {
     "slug": "text-counter",
     "title": "Word Counter & Character Counter — Count Everything in Your Text",
-    "toolName": "Text Counter",
-    "toolUrl": "/tools/text-counter",
+    "toolName": "Text Statistics",
+    "toolUrl": "/tools/string-statistic",
     "category": "Writing Tools",
-    "excerpt": "Count words, characters (with and without spaces), sentences, paragraphs, and reading time. Essential for writers, students, SEO specialists, and social media managers.",
+    "excerpt": "Count words, characters, lines, sentences and paragraphs, plus word and character frequency tables. Paste your text and see its shape, not just its length.",
     "date": "2026-06-08",
     "readTime": 3,
-    "tags": ["word counter", "character count", "writing tools", "seo"]
+    "tags": [
+      "word counter",
+      "character count",
+      "writing tools",
+      "seo"
+    ]
   }
 ]

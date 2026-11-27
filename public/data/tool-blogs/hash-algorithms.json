@@ -1,0 +1,57 @@
+{
+  "slug": "hash-algorithms",
+  "title": "MD5 vs SHA-1 vs SHA-256 vs SHA-512 — Which Hash Algorithm Should You Use?",
+  "toolName": "Hash Tool",
+  "toolUrl": "/tools/hash",
+  "category": "Developer Tools",
+  "date": "2026-11-27",
+  "readTime": 6,
+  "tags": [
+    "md5 vs sha256",
+    "sha-256 vs sha-512",
+    "hash algorithm",
+    "checksum",
+    "developer tools"
+  ],
+  "content": {
+    "intro": "Four hash algorithms, one text box. The difference between them is not academic — it decides whether your checksum is accepted by the system checking it, or rejected as the wrong algorithm. MD5 is fine for one job and dangerous for another; SHA-1 sits in the middle and is being phased out; SHA-256 is the default answer for anything security-related; SHA-512 is the same algorithm as SHA-256 with a longer output. This guide explains what each one actually does, where it still belongs, and where it will get you into trouble. The [Hash Tool](/tools/hash) computes all four from the same input in a single pass, so you can compare the outputs directly instead of guessing which one a publisher used.",
+    "sections": [
+      {
+        "heading": "What a hash function actually does",
+        "body": "A hash function turns any input, of any length, into a fixed-length digest. Hashing the same input always produces the same digest, and any change to the input produces a completely different digest — the avalanche effect. That property is what makes hashing useful for integrity: if the digest you computed matches the digest someone published, the content is byte-for-byte identical. The properties that separate the algorithms are the digest length, the internal round structure, and — critically — whether the construction is still considered collision-resistant."
+      },
+      {
+        "heading": "MD5: fast, tiny, and broken for anything adversarial",
+        "body": "MD5 produces a 128-bit digest, rendered as 32 hexadecimal characters. It is still everywhere: older checksum formats, Git repositories created before 2017, and countless legacy systems publish MD5 values. Two properties make it dangerous outside of those. First, it is fast — modern hardware computes billions of MD5 hashes per second, which is exactly the property that makes brute-force password cracking practical. Second, practical collisions have been demonstrated: two different files can be crafted to produce the same MD5 digest, so MD5 cannot prove that two files are the same. Use it when you must reproduce a value that some existing system published. Never use it to store a password, sign a document, or certify that a file has not been tampered with."
+      },
+      {
+        "heading": "SHA-1: on the way out",
+        "body": "SHA-1 produces a 160-bit digest, 40 hexadecimal characters. It was the default recommendation for two decades and is now effectively retired for security purposes. SHA-1 collision attacks have been demonstrated in practice — the 2017 SHAttered attack produced two different PDFs with the same SHA-1 digest, and subsequent work reduced the cost of such collisions further. Git moved its default object format away from SHA-1 because of this. Treat SHA-1 as a legacy compatibility format: reproduce it when an existing system requires it, and do not choose it for anything new."
+      },
+      {
+        "heading": "SHA-256: the default for anything security-relevant",
+        "body": "SHA-256 produces a 256-bit digest, 64 hexadecimal characters. No practical collision attack against SHA-256 is known, and the cost of mounting one is far beyond anything feasible today. It is the standard choice for digital signatures, certificate fingerprints, blockchain transaction identifiers, blockchain mining proofs of work, and API request signing. If you are not sure which algorithm to pick for a new system, SHA-256 is the answer that will still be defensible a decade from now."
+      },
+      {
+        "heading": "SHA-512: the same algorithm with a longer output",
+        "body": "SHA-512 is not a different design from SHA-256 — it is the same Merkle–Damgård construction using a 64-bit word size and a 512-bit digest, 128 hexadecimal characters. It is faster than SHA-256 on 64-bit hardware because it processes more data per pass, which is why TLS chose it for its internal construction. For ordinary text checksums the longer output buys you nothing: both are collision-resistant to an absurd degree. Choose SHA-512 when a protocol or specification asks for it, or when you are hashing very large inputs on 64-bit hardware and want the throughput."
+      },
+      {
+        "heading": "A note on password hashing",
+        "body": "None of these algorithms is the right choice for storing a password. Fast hashes are actively harmful there, because an attacker who obtains a database of hashes can test billions of candidates per second against MD5, SHA-1, SHA-256 and SHA-512 alike. Password storage needs a deliberately slow, salted function — bcrypt, scrypt or Argon2 — that makes each guess expensive. The [Bcrypt Hash tool](/tools/bcrypt) is the right place for that job; this page is about checksums and content digests, not passwords."
+      },
+      {
+        "heading": "How to use the Hash Tool",
+        "body": "Paste or type your text into the input box and run the calculation. The tool returns MD5, SHA-1, SHA-256 and SHA-512 side by side in hexadecimal, each with a copy button — one input, four digests. This is the practical way to settle a question like \"which algorithm did they use for this checksum\": compare the published value against all four outputs and see which one matches. Everything is computed locally in your browser, so nothing you paste is transmitted."
+      }
+    ],
+    "conclusion": "MD5 for compatibility with legacy checksums, SHA-1 for legacy Git objects and nothing else, SHA-256 for anything security-relevant, SHA-512 when a specification asks for it. The choice is usually not subtle — the failure mode is picking MD5 because it is the default in your head, not because the system you are talking to needs it. Compute all four at once and match against the published value rather than guessing.",
+    "keyTakeaways": [
+      "MD5 and SHA-1 are legacy compatibility formats. SHA-256 is the default answer for anything security-related.",
+      "SHA-512 is the same algorithm as SHA-256 with a 512-bit digest — not a different design.",
+      "None of these is safe for password storage. Use bcrypt, scrypt or Argon2 for that.",
+      "Computing all four digests from one input tells you which algorithm a published checksum used.",
+      "The tool hashes text you paste and runs entirely in your browser — nothing is uploaded."
+    ]
+  }
+}

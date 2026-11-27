@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-11-24",
+  "generatedAt": "2026-11-27",
   "source": "growth-ledger.json (actions[].date + actions[].target)",
   "ledgerSource": "canonical",
   "note": "真实内容改动日期，禁止用构建时刻 now 覆盖；复合 target 已保守跳过",
-  "skippedCompositeTargets": 56,
+  "skippedCompositeTargets": 57,
   "urls": {
     "https://craftisle.com/tools/image-compress": "2026-10-09",
     "https://craftisle.com/c/heic-to-jpg": "2026-10-15",
@@ -43,6 +43,7 @@
     "https://craftisle.com/c/png-to-pdf": "2026-11-03",
     "https://craftisle.com/directory/alternatives/google-workspace": "2026-11-09",
     "https://craftisle.com/directory/alternatives/clip-studio-paint": "2026-11-11",
-    "https://craftisle.com/directory/alternatives/affinity-publisher": "2026-11-11"
+    "https://craftisle.com/directory/alternatives/affinity-publisher": "2026-11-11",
+    "https://craftisle.com/blog/tools/hash-algorithms": "2026-11-27"
   }
 }

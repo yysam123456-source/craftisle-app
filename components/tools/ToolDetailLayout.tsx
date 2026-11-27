@@ -112,6 +112,19 @@ export function ToolDetailLayout({
             </a>
           </div>
         )}
+        {/* === Tool guide link (data-driven via toolMeta.guideSlug) === */}
+        {meta.guideSlug && (
+          <p className="text-sm text-muted-foreground">
+            New to this tool?{" "}
+            <Link
+              href={`/blog/tools/${meta.guideSlug}`}
+              className="text-primary font-medium underline underline-offset-4 hover:opacity-80"
+            >
+              Read the {meta.title} guide
+            </Link>{" "}
+            for what it does, when to use it, and the common mistakes to avoid.
+          </p>
+        )}
       </div>
 
       {/* === Content (children) === */}

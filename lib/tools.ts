@@ -19,6 +19,8 @@ export interface ToolMeta {
   faq?: { q: string; a: string }[];
   /** Related tool IDs for RelatedToolsSection */
   relatedTools?: string[];
+  /** Slug of the matching tool guide at /blog/tools/<slug> (see public/data/tool-blogs) */
+  guideSlug?: string;
   /** Star rating 1-5, used for homepage Top Tools ranking */
   stars?: number;
   /** SEO-optimized title (for <title> tag) */
@@ -154,24 +156,26 @@ export const toolMeta: Record<string, ToolMeta> = {
     icon: "#️",
     category: CATEGORIES.encryption,
     seoTitle: "Hash Generator Free — MD5/SHA256/SHA512 Online",
-    seoDesc: "Free hash generator online. Generate MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160 hashes. File integrity check. 100% client-side, no upload.",
-    seoKeywords: ["hash generator online free", "MD5 online tool", "SHA256 hash online", "file integrity check", "SHA-512 generator free", "Craftisle hash tool"],
-    description: "Generate secure hashes using MD5, SHA-1, SHA-256, SHA-384, SHA-512, and more. Essential for file integrity verification, password storage (with salt), and digital signatures. 100% client-side.",
+    seoDesc: "Free hash generator online. Generate MD5, SHA-1, SHA-256 and SHA-512 hashes from text, all four at once. 100% client-side, no upload.",
+    seoKeywords: ["hash generator online free", "MD5 online tool", "SHA256 hash online", "SHA-1 hash generator", "SHA-512 generator free", "Craftisle hash tool"],
+    description: "Generate MD5, SHA-1, SHA-256 and SHA-512 hashes from the same text in one pass. Useful for reproducing published checksums, comparing duplicate content and understanding how Git identifies commits. 100% client-side.",
     howToUse: [
-      { heading: "Paste or type input", text: "Enter the text or drag a file to hash." },
-      { heading: "Select algorithm", text: "Choose from MD5, SHA-1, SHA-256, SHA-384, SHA-512, RIPEMD-160." },
-      { heading: "Get the hash", text: "The hash appears instantly in hex format. Copy or download." },
+      { heading: "Paste or type input", text: "Enter the text you want to hash into the input box." },
+      { heading: "Run the calculation", text: "All four digests are computed at once — no algorithm picker to get wrong." },
+      { heading: "Copy the hash you need", text: "Each result appears in hexadecimal with a copy button." },
     ],
     useCases: [
-      { title: "File integrity", text: "Verify downloaded files haven't been tampered with by comparing hashes." },
-      { title: "Password hashing", text: "Hash passwords with salt before storing (though bcrypt is preferred for passwords)." },
+      { title: "Reproducing published checksums", text: "Check text against a checksum published by an existing system or build pipeline." },
+      { title: "Duplicate detection", text: "Compare hashes of two blocks of content to see whether they are identical." },
       { title: "Git commit verification", text: "Understand how Git uses SHA-1/SHA-256 to identify commits." },
     ],
     faq: [
       { q: "Is MD5 secure?", a: "No. MD5 has known collision vulnerabilities. Use SHA-256 or SHA-512 for security. MD5 is OK for non-security checksums." },
-      { q: "What is a salt?", a: "A random string added to a password before hashing to prevent rainbow table attacks. bcrypt includes salt automatically." },
+      { q: "Which algorithms does this tool support?", a: "MD5, SHA-1, SHA-256 and SHA-512. All four are computed from the same input at once." },
+      { q: "Can I hash a file with this tool?", a: "No. It hashes text you type or paste. For file checksums, use a dedicated checksum utility." },
       { q: "Is my data private?", a: "Yes. All hashing happens in your browser. Nothing is uploaded." },
     ],
+    guideSlug: "hash-algorithms",
     relatedTools: ["bcrypt", "aes-des", "base64"],
   },
 
@@ -250,6 +254,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "How do I convert XML to JSON?", a: "Use our XML to JSON converter at /tools/json-to-xml — it runs entirely in your browser with no upload." },
       { q: "How do I escape or unescape a JSON string?", a: "Use our JSON Escape tool at /tools/json-escape to safely escape strings for embedding in code." },
     ],
+    guideSlug: "json-formatter",
     relatedTools: ["csv-json", "yaml-formatter", "sql-formatter", "json-to-xml", "escape-json"],
   },
   "json-minify": {
@@ -476,6 +481,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Is Base64 encryption?", a: "No. Base64 is encoding, not encryption. Anyone can decode it. For secure data, use AES or bcrypt." },
       { q: "Is my data private?", a: "Yes. All encoding happens in your browser. Files are never uploaded to any server." },
     ],
+    guideSlug: "base64-encode",
     relatedTools: ["image-base64", "url-encode", "csv-json"],
   },
 
@@ -750,6 +756,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Should I encode the entire URL?", a: "No. Only encode the path segments and query parameter values. The protocol, domain, and / separators should not be encoded." },
       { q: "Is my data private?", a: "Yes. All encoding happens in your browser." },
     ],
+    guideSlug: "url-encoder",
     relatedTools: ["base64", "html-escape", "text-formatter"],
   },
 
@@ -1160,6 +1167,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What size should I use?", a: "For print, 300×300 px or larger is recommended. For screen display, 200×200 px is sufficient. Always test scanning with your target device before mass printing." },
       { q: "Is this a free QR code generator with no signup (kostenlos)?", a: "Yes — completely free (kostenlos in German) and no registration required. Everything runs in your browser, so no data leaves your device." },
     ],
+    guideSlug: "qrcode-generator",
     relatedTools: ["barcode", "base64", "url-encode"],
   },
 
@@ -1304,6 +1312,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Should I use UUID v4 or v7?", a: "v4 is random (no time info). v7 includes a timestamp, making it sortable by creation time. v7 is better for database indexing." },
       { q: "Is this compliant with RFC 4122?", a: "Yes. UUIDs generated follow RFC 4122 v4 format: xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx where y is 8, 9, a, or b." },
     ],
+    guideSlug: "uuid-generator",
     relatedTools: ["random-string", "base64", "hash"],
   },
 
@@ -1569,6 +1578,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Can I merge differences?", a: "This tool shows differences. For merging, use a dedicated merge tool or Git merge." },
     
       { q: "Are the documents I compare uploaded?", a: "No. The comparison runs in your browser, so both versions stay on your machine — useful when comparing proprietary code." },],
+    guideSlug: "diff-checker",
     relatedTools: ["text-formatter", "regex", "json-formatter"],
   },
 
@@ -1664,6 +1674,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What counts as a sentence?", a: "Sentences end with . ! ? or ... The delimiters can be customized in options." },
       { q: "Is there a word limit?", a: "No. The tool processes text entirely in your browser, so even long documents work." },
     ],
+    guideSlug: "text-counter",
     relatedTools: ["text-formatter", "case-converter", "diff"],
   },
 
@@ -2897,6 +2908,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "What does the 8-digit hex with an extra pair mean?", a: "The last two digits are the alpha channel — opacity. This picker outputs opaque 6-digit hex; add alpha manually or use rgba() when you need transparency." },
       { q: "Is anything sent to a server?", a: "No. The conversion is arithmetic done in your browser, and nothing is stored or transmitted." },
     ],
+    guideSlug: "color-picker",
     relatedTools: ["image-color-palette", "image-color-adjust", "barcode", "qrcode"],
   },
 
@@ -3120,6 +3132,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Should I compress PNG?", a: "PNG is lossless. Compression reduces the color palette (lossy) or re-compresses with Zlib (lossless). For photos, convert to JPG/WebP for better compression." },
       { q: "Is the image compressor free, and do I need an account?", a: "It is free, with no account, no sign-up and no watermark. Because compression happens in your browser there is no server queue and no per-file charge." },
     ],
+    guideSlug: "image-compress",
     relatedTools: ["image-resize", "image-convert", "image-strip-metadata"],
   },
 
@@ -6056,6 +6069,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     seoTitle: "PDF Tools Free — Online Tool",
     seoDesc: "Free pdf tools online tool. Merge, split, compress, convert PDF files online 100% browser-based, no signup required.",
     seoKeywords: ['pdf tools online free', 'free pdf tools tool', 'pdf tools no signup', 'online pdf tools browser', 'Craftisle pdf tools'],
+    guideSlug: "pdf-merge",
     external: true,
     url: "https://pdf.craftisle.com",
   },
@@ -6165,6 +6179,7 @@ export const toolMeta: Record<string, ToolMeta> = {
       { q: "Are data units decimal or binary?", a: "Data units use binary multiples (1 KB = 1024 B)." },
       { q: "Is anything uploaded?", a: "No. All conversion happens in your browser." },
     ],
+    guideSlug: "unit-converter",
     relatedTools: ["byte-converter", "radix-converter", "roman-numeral"],
   },
 
