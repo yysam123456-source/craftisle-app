@@ -7,6 +7,7 @@ import { Mdx } from "@/components/content/mdx-components";
 import { GiscusComments } from "@/components/giscus-comments";
 import { Badge } from "@/components/ui/badge";
 import { BLOG_AUTHORS } from "@/config/blog";
+import { extractBlogFaqs } from "@/lib/blog-faq";
 import { constructMetadata } from "@/lib/utils";
 import { ArrowLeft, CalendarDays, Clock, Tag } from "lucide-react";
 
@@ -58,6 +59,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const wordCount = post.body.raw.split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
+  // FAQPage schema（2026-11-27，AdSense 过审）：44 篇博客正文每篇都有 FAQ 段，
+  // 但此前只输出 BlogPosting，问答内容无法作为结构化数据呈现。
+  const faqs = extractBlogFaqs(post.body.raw);
+  const faqJsonLd = faqs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
+
   return (
     <div className="min-h-screen bg-background">
       {/* JSON-LD Structured Data */}
@@ -93,6 +109,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           }),
         }}
       />
+
+      {/* FAQPage JSON-LD（把正文里的问答结构化，便于呈现富结果） */}
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
 
       {/* Post Header — 玻璃拟态 + 渐变标题 */}
       <section className="relative overflow-hidden py-16 md:py-24">

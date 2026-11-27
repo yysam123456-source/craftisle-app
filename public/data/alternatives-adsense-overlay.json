@@ -1,0 +1,491 @@
+{
+  "_note": "2026-11-27 AdSense 过审补齐：替代页 overlay。字段语义 = AlternativeEntry 的同名字段，由 lib/alternatives.ts 的 OVERLAY_MAP 在批次数据之后合并（字段级合并：只补空缺，不覆盖已有非空内容）。所有内容只复述该页已有事实（pricing / alternatives / painPoints / description），不新增能力、不编造数据。",
+  "entries": {
+    "Oracle Database": {
+      "h1Override": "Oracle Database Alternatives — Free and Open-Source Replacements",
+      "tagline": "Oracle's flagship multi-model database system, priced for enterprises — PostgreSQL and MySQL cover the same ground for free.",
+      "faqs": [
+        {
+          "question": "Is PostgreSQL a realistic replacement for Oracle Database?",
+          "answer": "For most workloads, yes. PostgreSQL supports standard SQL, and tools like Ora2Pg help convert Oracle PL/SQL to PostgreSQL PL/pgSQL. The gap widens on Oracle-specific features such as RAC, data warehouse tooling and advanced partitioning, so a migration usually needs a feature-by-feature review rather than a straight port."
+        },
+        {
+          "question": "How much would I save by moving off Oracle licensing?",
+          "answer": "Oracle licensing is the main cost driver for most teams moving away. PostgreSQL and MySQL are free to download and run, and Amazon RDS on PostgreSQL starts at $0.017/hour if you would rather not manage the database yourself. The saving depends on how many Oracle licences you currently run, so it is worth multiplying your core count by your current licence cost before deciding."
+        },
+        {
+          "question": "What about hosting and administration costs?",
+          "answer": "Free database software does not mean zero running cost. Oracle teams often also pay for specialised DBAs, expensive backup tooling and enterprise support contracts. PostgreSQL and MySQL are widely supported by mainstream hosting providers and managed services, which usually costs less than an equivalent Oracle support contract."
+        }
+      ]
+    },
+    "SAP": {
+      "h1Override": "SAP Alternatives — ERP Options Without the Enterprise Contract",
+      "tagline": "The German ERP giant behind large-scale business operations — Odoo and Dynamics 365 cover similar ground at a fraction of the licence cost.",
+      "faqs": [
+        {
+          "question": "How long does an SAP implementation actually take?",
+          "answer": "A full SAP implementation typically runs 12-24 months depending on company size and complexity. That timeline is the strongest argument for a smaller alternative in many cases: Odoo's Community edition can be productive far sooner, and a mid-market business often does not need the full SAP feature set."
+        },
+        {
+          "question": "Is Odoo a viable alternative to SAP?",
+          "answer": "For many mid-market companies, yes. Odoo Community is free and covers core ERP functions such as sales, purchasing, inventory and accounting. The Enterprise edition starts at $24.90/user/month and adds the more advanced modules. The trade-off is that SAP's deeper enterprise features — complex consolidation, plant-level manufacturing, and industry-specific compliance — are not matched one-for-one."
+        },
+        {
+          "question": "Do the alternatives support the same integrations?",
+          "answer": "Not identically. SAP's ecosystem is built around its own modules and certified partners, so an SAP installation usually has custom integrations written specifically for it. When moving to Odoo or Dynamics 365, those custom connectors generally need rebuilding, which is why migration planning matters more than the licence comparison."
+        }
+      ]
+    },
+    "Jira": {
+      "h1Override": "Jira Alternatives — Issue Tracking Without the Atlassian Bundle",
+      "tagline": "Atlassian's issue tracker and agile project management tool — Linear, Asana and ClickUp cover the same ground for less, or for free.",
+      "faqs": [
+        {
+          "question": "Can I import my Jira issues into another tool?",
+          "answer": "Yes. Linear ships a Jira importer that brings over issues, statuses and assignees, and other trackers accept the standard Jira CSV export. Expect to clean up field mappings afterwards — custom fields, sprints and workflow automation rarely carry over one-for-one."
+        },
+        {
+          "question": "Is the free tier enough for a small team?",
+          "answer": "It depends on the team size and the tier. Jira's free tier covers up to 10 users, Linear's free tier covers up to 250 issues, and ClickUp's free tier is unlimited in users with feature limits. For teams larger than a handful, all three move to paid plans, and the comparison becomes $7-11 per user per month rather than free."
+        },
+        {
+          "question": "When is sticking with Jira the better choice?",
+          "answer": "Jira is harder to leave than its reputation suggests. If your team already uses the wider Atlassian set — Confluence for documentation, Bitbucket for code, and Trello for lightweight boards — the integrated view across those tools has real value. Alternatives become more attractive when you are consolidating several separate subscriptions rather than replacing one."
+        }
+      ]
+    },
+    "Confluence": {
+      "h1Override": "Confluence Alternatives — Team Docs and Wikis Without the Per-Seat Cost",
+      "tagline": "Atlassian's team documentation and knowledge management tool — Notion, GitBook and BookStack cover the same ground more cheaply.",
+      "faqs": [
+        {
+          "question": "Can I migrate Confluence content to Notion automatically?",
+          "answer": "Only partly. Notion has a Confluence importer that handles page structure and basic formatting, but macros, page properties and certain diagram types need manual work. Budget a cleanup pass rather than assuming a one-click move."
+        },
+        {
+          "question": "Is BookStack really free for a team?",
+          "answer": "Yes. BookStack is open source and self-hosted, so the software costs nothing, and it runs on your own infrastructure or cheap shared hosting. The trade-off is that you take on the hosting and updates yourself. It suits teams that want structured, permissioned documentation and already run self-hosted services."
+        },
+        {
+          "question": "Why do teams often keep Confluence anyway?",
+          "answer": "Two reasons dominate. First, links and embeds from Jira and other Atlassian tools point into Confluence, so moving breaks references across the toolchain. Second, the search behaves well once a documentation set is large. If your Confluence usage is mostly read-only, the cost is hard to justify; if it is deeply embedded in daily workflow, it is harder to replace than the licence suggests."
+        }
+      ]
+    },
+    "Bitbucket": {
+      "h1Override": "Bitbucket Alternatives — Git Hosting With More Integrations",
+      "tagline": "Atlassian's Git hosting with built-in CI/CD — GitHub, GitLab and Codeberg cover the same workflows with broader ecosystems.",
+      "faqs": [
+        {
+          "question": "Can I move my Bitbucket repositories to GitHub or GitLab?",
+          "answer": "Yes. Both provide an import path that carries over the repository history, branches and pull requests. The pieces that need attention afterwards are repository settings, deployment keys and CI configuration, which are usually recreated rather than migrated."
+        },
+        {
+          "question": "What is the main difference between the free tiers?",
+          "answer": "Bitbucket's free tier covers up to 5 users, GitHub's covers unlimited public and unlimited private collaborators, GitLab's free tier includes unlimited users with generous CI minutes, and Codeberg is donation-based with no private repository limit. For anyone past five users, Bitbucket is the outlier and requires a paid plan."
+        },
+        {
+          "question": "Is Codeberg a serious option for commercial work?",
+          "answer": "It runs on the Codeberg e.V. non-profit infrastructure, is free and open source, and works for private repositories. It suits projects that want to avoid proprietary hosting without giving up a hosted Git service. GitHub and GitLab remain the safer default when a wide ecosystem of existing integrations matters more than cost."
+        }
+      ]
+    },
+    "BambooHR": {
+      "h1Override": "BambooHR Alternatives — HR Software for Small Businesses",
+      "tagline": "An HR platform for small and mid-sized teams — Gusto, Rippling and Zenefits cover hiring, onboarding and payroll with different pricing models.",
+      "faqs": [
+        {
+          "question": "How does BambooHR pricing compare with Gusto?",
+          "answer": "BambooHR does not publish list pricing, but it typically lands around $6-8 per employee per month. Gusto starts at $40 per month plus $6 per employee per month, which works out cheaper for very small teams and roughly comparable as headcount grows. Zenefits starts around $8 per employee per month."
+        },
+        {
+          "question": "Can BambooHR be replaced without losing employee records?",
+          "answer": "Employee records export as CSV or through a documented API, so the history moves. Plan for two things that usually need manual work: historical payroll data, which many alternatives cannot import, and any custom reports or approval workflows you built on top of BambooHR."
+        },
+        {
+          "question": "Is Rippling a good fit for a small team?",
+          "answer": "Rippling bundles HR with payroll, benefits and device management, so it is a strong fit if you also want to provision laptops and manage apps from the same place. It is priced on request rather than published, which makes it harder to compare directly against per-employee pricing. For a team that only needs core HR, a simpler per-employee tool is usually enough."
+        }
+      ]
+    },
+    "WordPress": {
+      "h1Override": "WordPress Alternatives — CMS Options With Fewer Plugins and Updates",
+      "tagline": "The open-source CMS behind a large share of the web — Webflow, Ghost and Squarespace trade plugin dependency for maintenance of their own.",
+      "faqs": [
+        {
+          "question": "Can I migrate a WordPress site to another CMS?",
+          "answer": "Usually, yes. Webflow imports WordPress XML exports and Ghost has a proven migration path for content and images. Expect manual cleanup on layout-heavy sites, because a visual editor rebuilds structure differently than a block editor — and check that redirects are set up so search ranking survives the move."
+        },
+        {
+          "question": "Is WordPress actually a paid product?",
+          "answer": "The core software is free and open source. What costs money is hosting, the domain, premium plugins, and paid themes. That is the trade-off to weigh: WordPress is free to start but shifts the work of security updates, backups and plugin compatibility onto you, whereas hosted alternatives bundle that maintenance into a monthly fee."
+        },
+        {
+          "question": "When is keeping WordPress the better choice?",
+          "answer": "When you need a specific plugin, an unusual content type, or full control over the hosting. WordPress remains the most flexible option by a wide margin and its hosting costs can be very low. The argument for moving is usually operational rather than financial — if plugin conflicts and update maintenance have become a recurring time sink, a managed CMS is worth the higher monthly fee."
+        }
+      ]
+    },
+    "SEMrush": {
+      "h1Override": "SEMrush Alternatives — SEO Toolkits at Lower Price Points",
+      "tagline": "A comprehensive all-in-one SEO platform starting at $139.95/month — Ahrefs, Moz and SE Ranking cover the essentials for less, and Search Console is free.",
+      "faqs": [
+        {
+          "question": "What is the cheapest way to get the core SEO data?",
+          "answer": "Google Search Console and Google Analytics are free and provide the most accurate search performance data for your own site, because it comes from Google directly. For keyword research and backlink data you need a third-party tool — Ubersuggest starts at $29/month with a free tier for basic research, and SE Ranking is around $55/month with the full feature set."
+        },
+        {
+          "question": "How much does SEMrush cost compared with Ahrefs?",
+          "answer": "SEMrush Pro is $139.95/month, Guru $249.95/month and Business $499.95/month, so the Pro tier alone is about $1,679 a year. Ahrefs' Lite plan is $99/month, and Moz Pro is also around $99/month with strong learning resources. The meaningful difference is in backlink database size and reporting depth rather than the core keyword data."
+        },
+        {
+          "question": "Is it worth paying for an SEO tool at all if I am just starting out?",
+          "answer": "Often not. If your site has modest traffic, the free tier of a smaller tool plus Search Console covers most of what you need to know. The case for a paid tier strengthens as you run multiple client sites or need large-scale keyword and backlink volumes that free tiers cap."
+        }
+      ]
+    },
+    "WinRAR": {
+      "h1Override": "WinRAR Alternatives — Free Archive Tools That Do Not Nag",
+      "tagline": "A $29 shareware archiver that shows a purchase prompt every time it opens — 7-Zip, PeaZip and built-in Windows support handle the same formats for free.",
+      "faqs": [
+        {
+          "question": "Can 7-Zip open RAR files that WinRAR created?",
+          "answer": "Yes. 7-Zip can extract RAR archives, including ones with multiple volumes. If you need to create RAR files specifically — a format 7-Zip can read but not write — that is the one case where WinRAR or a commercial alternative is still needed."
+        },
+        {
+          "question": "What is the difference between 7-Zip and PeaZip?",
+          "answer": "Both are free and open source. 7-Zip is the more established option with a very small footprint and strong command-line support, and it integrates into the Windows shell context menu. PeaZip adds a graphical interface with archive browsing and built-in encryption, which some users find easier for occasional archiving."
+        },
+        {
+          "question": "Do I need to replace WinRAR at all?",
+          "answer": "Only if the nag screen bothers you or you want to avoid the $29 licence. Windows has built-in ZIP support that handles the common case without any installation. Because WinRAR's trial never truly expires, many people simply keep using it indefinitely — the practical cost of switching is close to zero, so it comes down to whether the prompt annoys you."
+        }
+      ]
+    },
+    "IDM (Internet Download Manager)": {
+      "h1Override": "Internet Download Manager Alternatives — Free Download Accelerators",
+      "tagline": "A $24.95 Windows download accelerator whose trial nags constantly — Free Download Manager, JDownloader and XDM do the same job at no cost.",
+      "faqs": [
+        {
+          "question": "Are free download managers as good as IDM?",
+          "answer": "For most people, yes. Free Download Manager and JDownloader both do segmented downloading and resume interrupted transfers, and XDM additionally handles video grabbing. IDM's remaining advantages are its integration with specific browsers and its video capture polish, which matters if you download large media files daily rather than occasionally."
+        },
+        {
+          "question": "Which alternative works on macOS or Linux?",
+          "answer": "IDM itself is Windows-only. On macOS, a browser's own download manager plus an open-source tool such as DownThemAll covers most needs. On Linux, aria2 is command-line and Free Download Manager ships a native build. Either way, the platform gap is another reason to move away from IDM."
+        },
+        {
+          "question": "Why do antivirus tools flag some download managers?",
+          "answer": "Download managers handle executables and archive formats, which is exactly the behaviour pattern that malware detectors look for, and a few of them have had genuinely questionable bundling in the past. Free Download Manager and XDM have clean records, but if an antivirus flags one, check that you downloaded it from the official site rather than a third-party mirror."
+        }
+      ]
+    },
+    "CCleaner": {
+      "h1Override": "CCleaner Alternatives — Free System Cleanup for Windows",
+      "tagline": "A PC cleanup utility whose Pro tier costs $29.95/year — BleachBit and the built-in Windows cleaners cover the same ground for free.",
+      "faqs": [
+        {
+          "question": "Do I still need a cleaner utility on Windows 11?",
+          "answer": "Less than you used to. Storage Sense and the Disk Cleanup utility are built into Windows 10 and 11 and handle temporary files, browser caches and scheduled cleanup automatically. CCleaner's remaining advantages are registry cleaning and more aggressive third-party application cleanup, neither of which most users need regularly."
+        },
+        {
+          "question": "Is BleachBit a safe replacement for CCleaner?",
+          "answer": "It is open source, has a long track record, and offers both a simple interface and an advanced mode where you pick exactly what gets removed. As with any cleaner, avoid aggressive registry cleaning — modern Windows does not need it, and unnecessary registry edits can cause problems."
+        },
+        {
+          "question": "Why do people still use CCleaner?",
+          "answer": "Habit, mostly, plus the familiarity of the interface and the perceived value of the Pro features. If you are paying $29.95 a year for the Pro tier, the free alternatives cover the majority of what it does at no cost. The one genuine reason to pay is if you depend on its scheduled monitoring and registry tools as part of a routine."
+        }
+      ]
+    },
+    "EaseUS Data Recovery": {
+      "h1Override": "EaseUS Data Recovery Alternatives — Free File Recovery Tools",
+      "tagline": "Data recovery software at $69.95 with a 2GB free limit — TestDisk, Recuva and Disk Drill recover the same files for less.",
+      "faqs": [
+        {
+          "question": "Can TestDisk really recover as much as EaseUS?",
+          "answer": "It can, and on difficult cases it often does better. TestDisk and PhotoRec are the reference open-source tools, but they are command-line programs, which is why EaseUS and Disk Drill exist as GUI wrappers over similar techniques. EaseUS's advantage is the interface; its disadvantage is the 2GB limit on the free version and the $69.95 price."
+        },
+        {
+          "question": "What can I recover for free without installing anything?",
+          "answer": "Check the free tiers first: Recuva handles basic recovery for free, Disk Drill recovers up to 500MB, and Windows File History is built into Windows 8, 10 and 11 if you enabled it beforehand. Since a recovery tool cannot undo an overwrite, the first step is always to stop writing to the affected drive."
+        },
+        {
+          "question": "Why do paid recovery tools exist if free ones work?",
+          "answer": "Mostly for the interface and for deep-scan speed on large drives. EaseUS charges $69.95 one-time, EaseUS's own free tier caps recovery at 2GB, and Stelar charges $89 for its Standard edition. If you are comfortable with a command line, TestDisk costs nothing and has no limits at all."
+        }
+      ]
+    },
+    "Stelar Data Recovery": {
+      "h1Override": "Stelar Data Recovery Alternatives — Recover Files Without Paying Upfront",
+      "tagline": "Professional recovery software at $89 for the Standard edition — TestDisk, Recuva and Disk Drill cover the same ground with free tiers.",
+      "faqs": [
+        {
+          "question": "Why is Stelar's free trial not useful?",
+          "answer": "Because the trial can scan but cannot save the recovered files, which means it cannot be used to test whether the tool actually finds your data before you pay. That is the single biggest reason to consider a free alternative first: Recuva and the Disk Drill free version both let you recover a limited amount without paying."
+        },
+        {
+          "question": "How do the free alternatives compare on power?",
+          "answer": "TestDisk and PhotoRec are the most capable of the free tools and are what professionals reach for when a GUI tool fails, but they require command-line confidence. Disk Drill offers a friendlier interface with a 500MB free limit, and EaseUS offers a 2GB limit. Stelar's own paid tiers sit at $89 and $299, so a free tool with a 500MB-2GB allowance often covers the occasional recovery."
+        },
+        {
+          "question": "What should I do first when a drive fails?",
+          "answer": "Stop using the drive immediately — every write can overwrite recoverable sectors. If the failure is logical, copy anything still readable to another drive first. If the drive clicks or drops out entirely, do not attempt repeated recovery attempts on it, because each pass can degrade the data."
+        }
+      ]
+    },
+    "Disk Drill": {
+      "h1Override": "Disk Drill Alternatives — Free Data Recovery Without the $89 Upgrade",
+      "tagline": "User-friendly recovery software with a 500MB free limit — TestDisk, Recuva and EaseUS cover the same files at no cost or less.",
+      "faqs": [
+        {
+          "question": "Is Disk Drill's 500MB free limit enough for most recoveries?",
+          "answer": "For a single failed drive with a handful of important files, yes. The limit is a problem when you need to recover a large volume of data or a partition that was deleted wholesale. In that situation EaseUS's 2GB free tier or TestDisk with no limit at all are both worth trying before paying Disk Drill's $89 for Pro."
+        },
+        {
+          "question": "How does Disk Drill compare with TestDisk?",
+          "answer": "Disk Drill is a GUI application that scans quickly and is far easier for a non-technical user. TestDisk is a command-line tool that performs deeper analysis and is what recovery professionals use when a GUI scan comes back empty. If you are comfortable in a terminal, TestDisk is the stronger option and costs nothing."
+        },
+        {
+          "question": "Can I recover files without any software at all?",
+          "answer": "Sometimes. Check the Recycle Bin, and on Windows 10 and 11 look at the Previous Versions feature in File History. If the drive has a hardware fault, these built-in options will not help, and any software you run can make things worse by writing to the drive — so in that case stop and seek professional recovery."
+        }
+      ]
+    },
+    "Rosetta Stone": {
+      "h1Override": "Rosetta Stone Alternatives — Language Learning With Free Tiers",
+      "tagline": "Immersion-based language learning priced at $94-299 one-time — Duolingo, Anki and Busuu cover the same languages with free tiers.",
+      "faqs": [
+        {
+          "question": "Is Rosetta Stone's free version usable for learning a language?",
+          "answer": "It gives you roughly one lesson per language, which is enough to judge the method but not enough to make progress. The free tiers of the alternatives are considerably more generous: Duolingo's free version is a complete course, and Busuu and Memrise both offer free tiers that cover a meaningful amount of material."
+        },
+        {
+          "question": "What does Anki offer that game-based apps do not?",
+          "answer": "Spaced repetition on your own schedule, with no gamification and no subscription. The trade-off is that Anki is a flashcard system rather than a guided course — you need to supply the vocabulary and example sentences yourself, or use a shared deck. For someone who wants to drill specific words rather than follow a curriculum, it is far more effective."
+        },
+        {
+          "question": "Which is the closest substitute to Rosetta Stone's method?",
+          "answer": "Language Transfer, which is free and audio-based, is the closest in spirit: real sentences, native-speaker audio, and explanations of grammar rather than drills. The main difference is that it is a set of courses rather than an adaptive platform, so coverage of less common languages is narrower."
+        }
+      ]
+    },
+    "Duolingo Plus": {
+      "h1Override": "Duolingo Premium Alternatives — Language Learning Without the Subscription",
+      "tagline": "Duolingo's paid tier at $6.99/month removes ads and adds offline access — the free version and other apps cover the same languages for nothing.",
+      "faqs": [
+        {
+          "question": "What does Duolingo Plus actually add over the free version?",
+          "answer": "Two things: the removal of ads, and offline downloads for lessons. The lesson content itself is the same in both tiers. If you tolerate the ads, the free version is a complete course and paying mainly buys you an uninterrupted experience rather than new material."
+        },
+        {
+          "question": "Is Anki better for serious learners?",
+          "answer": "For vocabulary drilling and long-term retention, generally yes — Anki's spaced repetition algorithm is designed for exactly that, and you control the material entirely. Duolingo's strength is habit formation and breadth. Many learners use Duolingo for daily consistency and Anki alongside it for the vocabulary that matters."
+        },
+        {
+          "question": "Is the Family Plan worth it for a household?",
+          "answer": "The Family Plan at $119.99/year covers six people, which works out around $20 per person per year — far cheaper than six individual subscriptions at $83.88 each. If several people in your household are learning, that is the version that makes sense."
+        }
+      ]
+    },
+    "Ancestry.com": {
+      "h1Override": "Ancestry Alternatives — Free Genealogy Research Tools",
+      "tagline": "Genealogy research at $24.99/month for basic membership — FamilySearch and WikiTree provide free access to comparable records.",
+      "faqs": [
+        {
+          "question": "Is FamilySearch a genuine free replacement for Ancestry?",
+          "answer": "For most research it is. FamilySearch is operated by The Church of Jesus Christ of Latter-day Saints, is free, and holds the largest collection of genealogical records in the world. Ancestry's paid advantage is the subscription model and the tools that make search easier, rather than exclusive access to records."
+        },
+        {
+          "question": "What about the other free genealogy sites?",
+          "answer": "They complement rather than replace. WikiTree provides a free collaborative family tree with a sourcing model that keeps profiles well documented. Find a Grave covers grave records and memorials. The National Archives gives free access to US census, military and immigration records. Using them together covers most of what Ancestry charges for."
+        },
+        {
+          "question": "Why does Ancestry charge $24.99/month for basic membership?",
+          "answer": "It is a subscription covering continuous access to the record collections, and the cost is a real barrier for casual research — $300 a year for the Discovery tier, or $480 for World Explorer. If you are doing a single focused search, a 14-day trial or the free alternatives will usually serve better."
+        }
+      ]
+    },
+    "SiriusXM": {
+      "h1Override": "SiriusXM Alternatives — Satellite Radio for Less",
+      "tagline": "Satellite and streaming radio at $19.99/month for All Access — Spotify, Pandora and YouTube Music cost less and carry far more music.",
+      "faqs": [
+        {
+          "question": "How does SiriusXM compare with Spotify on price and catalogue?",
+          "answer": "Spotify Premium is $11.99/month with a catalogue of well over 100 million tracks, against SiriusXM's $19.99/month for All Access and a far smaller music catalogue. SiriusXM's distinct value is its live channels, talk radio and in-car satellite reception in areas without mobile coverage."
+        },
+        {
+          "question": "Is there a free SiriusXM alternative?",
+          "answer": "Yes. Pandora has a free tier with ads and a Plus tier at $9.99/month, and iHeartRadio provides free live radio stations across many genres. YouTube Music is $10.99/month and includes YouTube Premium benefits. The practical difference is that SiriusXM channels are not always replicated on these platforms."
+        },
+        {
+          "question": "What happens after the free trial?",
+          "answer": "The trial converts to a paid subscription automatically unless you cancel, and users regularly report being surprised by the first charge. If you want to keep the service, set a calendar reminder before the trial ends and check whether the new terms are still worth it — for most listeners, a music streaming service is a better use of the same money."
+        }
+      ]
+    },
+    "Adobe After Effects": {
+      "h1Override": "After Effects Alternatives — Motion Graphics Without the Subscription",
+      "tagline": "Adobe's industry-standard motion graphics tool at $24.19/month standalone — Blender, DaVinci Resolve and Natron cover the work for free.",
+      "faqs": [
+        {
+          "question": "Can Blender really replace After Effects for motion graphics?",
+          "answer": "For a large share of motion graphics work, yes. Blender has a compositor and video editor built in, handles 3D natively, and is free and open source. The honest limits are the smaller third-party plugin ecosystem and a steeper learning curve for compositing-specific work compared with After Effects."
+        },
+        {
+          "question": "What is the free option in DaVinci Resolve?",
+          "answer": "The free version is genuinely capable, including the Fusion compositor page for motion graphics. The paid Studio edition is $295 one-time rather than a subscription, and adds hardware acceleration for 4K/8K work, noise reduction and some advanced film features. The one-time price is often easier to accept than a recurring After Effects cost."
+        },
+        {
+          "question": "Why do many small studios still pay for After Effects?",
+          "answer": "Plugin support and familiarity. The stock content ecosystem, third-party plugins and the volume of tutorials make it faster to deliver client work in After Effects than to train a team on a different tool. If you are starting fresh or the work is not plugin-dependent, the free alternatives have moved well past the point where they are a compromise."
+        }
+      ]
+    },
+    "Microsoft OneNote": {
+      "h1Override": "OneNote Alternatives — Note-Taking Without the Microsoft Ecosystem",
+      "tagline": "Microsoft's free-form notebook app — Obsidian, Notion and Logseq cover the same ground with Markdown, databases or an open canvas.",
+      "faqs": [
+        {
+          "question": "Why do people look for alternatives to OneNote?",
+          "answer": "The recurring complaints are a cluttered interface that is inconsistent across platforms, sync delays between devices, and a free-form canvas that some people love and others find unusable. If you also want Markdown support or a more structured database, OneNote is not built for either."
+        },
+        {
+          "question": "Is Obsidian or Notion the better fit?",
+          "answer": "Obsidian is local-first and stores notes as plain Markdown files in a folder you control, which suits people who want their notes to remain readable without any app. Notion combines notes with databases and views, which suits people who want to track projects and tasks. Obsidian Sync is $10/month and Notion Plus is $10/month, so both paid tiers cost the same."
+        },
+        {
+          "question": "Is Apple Notes or Google Keep enough?",
+          "answer": "Both are free and genuinely capable for checklists and quick capture, and both sync well within their ecosystems. Google Keep is free with a Google account; Apple Notes is included with macOS and iOS. Neither offers a wiki structure or backlinks, so if you need to link notes together, Obsidian, Logseq or Notion are the relevant options."
+        }
+      ]
+    },
+    "Cubase": {
+      "h1Override": "Cubase Alternatives — DAWs From Free to $60",
+      "tagline": "Steinberg's professional DAW priced from $99.99 to $579.99 — Reaper, LMMS and Audacity cover recording and production for far less.",
+      "faqs": [
+        {
+          "question": "What does Reaper cost compared with Cubase?",
+          "answer": "Reaper is $60 for personal and hobbyist use and $225 for commercial use — a fraction of Cubase Elements at $99.99 and a fraction of Pro at $579.99. Reaper is widely regarded as a professional DAW in its own right, and many working engineers use it as their primary tool."
+        },
+        {
+          "question": "Which free DAW is best for a beginner?",
+          "answer": "Audacity is the simplest starting point for recording and basic editing. LMMS is better for beat-making and electronic music, and Cakewalk by BandLab is a full professional DAW that became free after BandLab acquired it — it was previously sold as Sonar for several hundred dollars."
+        },
+        {
+          "question": "Is Cubase worth it for a professional studio?",
+          "answer": "For studios that need Cubase's specific workflow, third-party VST ecosystem and score editing, it can be justified — but the licensing system has drawn complaints, including hardware-dongle requirements on some versions. Professional studios commonly use Reaper alongside Cubase, treating Reaper for tracking and editing and Cubase for composing."
+        }
+      ]
+    },
+    "VMware Workstation / Fusion": {
+      "h1Override": "VMware Alternatives — Free Virtualization for Desktop Use",
+      "tagline": "Desktop virtualization at $199/year for Workstation Pro and Fusion Pro — VirtualBox, UTM and KVM cover the same ground for free.",
+      "faqs": [
+        {
+          "question": "Is VirtualBox a real replacement for VMware Workstation?",
+          "answer": "For most desktop virtualization, yes. VirtualBox is free and open source and supports the common operating system combinations and snapshot features people use Workstation for. The areas where VMware retains an edge are 3D acceleration in guest graphics and some enterprise snapshot and cloning workflows."
+        },
+        {
+          "question": "What is the best free option on macOS?",
+          "answer": "UTM, which is free and open source and builds on Apple's Hypervisor framework. It is also available on the Mac App Store for $9.99. Docker containers are not virtual machines but replace many of the same use cases with far less overhead, and Docker Desktop is free for personal use."
+        },
+        {
+          "question": "Why did the pricing change hurt VMware users?",
+          "answer": "Moving Workstation Pro and Fusion Pro to subscription-only pricing removed the one-time purchase option and put both at $199/year, which pushed many users to VirtualBox or UTM and prompted Broadcom to reverse the decision. The practical takeaway is that for desktop virtualization there is no longer a strong reason to pay for VMware when the free options cover the core functionality."
+        }
+      ]
+    },
+    "Autodesk Maya": {
+      "h1Override": "Maya Alternatives — 3D Software Without the Annual Subscription",
+      "tagline": "The industry-standard animation and modelling tool at $245/month or $1,945/year — Blender and Wings 3D cover the same work for free.",
+      "faqs": [
+        {
+          "question": "Is Blender actually used in professional film production?",
+          "answer": "Yes. Blender is used in real productions, with Blender Foundation-supported work appearing in major releases. It is open source under the GPLv3, handles modelling, rigging, animation, simulation, rendering and compositing in one package, and Epic acquired it in 2021 to push its adoption."
+        },
+        {
+          "question": "What are the realistic limits of switching from Maya to Blender?",
+          "answer": "Two things stand out: the size of the third-party plugin ecosystem, which is far larger for Maya, and the time cost of retraining a team on different shortcuts and workflows. Neither is a technical blocker. Studios that are starting a new pipeline generally find the economics hard to argue against a $1,945 annual cost for a tool they may use for a handful of shots."
+        },
+        {
+          "question": "Which alternatives are cheaper but still commercial?",
+          "answer": "Cinema 4D is $94.99/month or $719.88/year, well below Maya, and is popular in motion graphics. Houdini has a free Apprentice version for learning and non-commercial work, with Indie at $269/year. Wings 3D is free and open source and considerably simpler to learn for modelling and rendering work."
+        }
+      ]
+    },
+    "X (Twitter) Premium": {
+      "h1Override": "X Premium Alternatives — Social Platforms Without the Monthly Fee",
+      "tagline": "X's paid tier at $8/month on web or $11 on mobile — Mastodon, Bluesky and Cohost give you the posting without the subscription.",
+      "faqs": [
+        {
+          "question": "What does X Premium actually include?",
+          "answer": "A blue checkmark, the ability to edit posts, longer posts, reduced advertising and revenue sharing on the web. The mobile price is higher at $11/month because of Apple and Google app store fees. Whether that is worth it depends mostly on whether you post often enough to need editing and dislike the ad load."
+        },
+        {
+          "question": "Is Bluesky a real alternative to X?",
+          "answer": "It is a genuinely different platform built on the AT Protocol, open source and free with no paid tier at all. It has grown quickly in developer and general audiences. The trade-off is that your network does not carry over, and Bluesky's moderation and reach differ from X's, so it works best if you are willing to rebuild your audience."
+        },
+        {
+          "question": "Why do people consider Mastodon instead?",
+          "answer": "Mastodon is federated and decentralised — you host your own instance or join a public one, and your posts can reach users on other instances. There is no algorithm deciding what you see and no subscription tier. The costs are a learning curve around instances and moderation, and the fact that the network is fragmented across servers."
+        }
+      ]
+    },
+    "LinkedIn Premium": {
+      "h1Override": "LinkedIn Premium Alternatives — Career Tools at Lower Cost",
+      "tagline": "LinkedIn's paid tier starting at $39.99/month — Coursera, Udemy and free job boards cover most of what Premium sells.",
+      "faqs": [
+        {
+          "question": "What does LinkedIn Premium add over the free tier?",
+          "answer": "Profile views, InMail credits, expanded search filters and access to LinkedIn Learning. Career is $39.99/month, Business $59.99/month, and Sales Navigator is $119.95/month. For most people the free tier already handles applying and networking, so Premium is most useful for people who actively job-hunt."
+        },
+        {
+          "question": "Is LinkedIn Learning worth it on its own?",
+          "answer": "Not at its price. Coursera Plus is $59/month or $399/year and Udemy is frequently $9.99-19.99 per course on sale, both covering comparable material at a lower cost. If you want the structured learning path, Coursera's audit mode is free for many courses."
+        },
+        {
+          "question": "What is the free alternative for job searching?",
+          "answer": "Indeed and Glassdoor are free for job seekers because employers pay for the postings. For sales prospecting, Apolo.io starts at $49/month for Basic and $99/month for Professional against Sales Navigator's $119.95. The pattern across all of these is that the free tier covers the job search itself, and the paid tier mainly sells convenience."
+        }
+      ]
+    },
+    "DxO PhotoLab": {
+      "h1Override": "DxO PhotoLab Alternatives — RAW Development for Less",
+      "tagline": "Professional RAW processing priced well above the free options — Darktable, RawTherapee and the bundled Adobe tools cover the same corrections.",
+      "faqs": [
+        {
+          "question": "Is Darktable a realistic substitute for PhotoLab?",
+          "answer": "Yes for the core work. Darktable is free and open source and does raw development, lens corrections, white balance and detailed colour grading, with a non-destructive workflow comparable to PhotoLab's. The differences are interface refinement, proprietary optical correction quality, and the algorithms DxO developed for specific camera bodies."
+        },
+        {
+          "question": "Do I need a separate RAW developer at all?",
+          "answer": "Often not. Adobe Camera Raw ships with Photoshop and Lightroom, Capture One has its own engine, and Affinity Photo includes raw development with no extra licence. If you already own one of those, a dedicated tool may be redundant — though PhotoLab's lens corrections are more capable than what the bundled options provide."
+        },
+        {
+          "question": "What is the main reason to pay for PhotoLab?",
+          "answer": "Prerelease raw support for new camera bodies, and DxO's optical correction models, which apply lens profiles more accurately than most competitors. For a working photographer with a body that needs profiles not yet in the free tools, that is the case for paying. For editing existing files, the free options are genuinely capable."
+        }
+      ]
+    },
+    "Luminar Neo": {
+      "h1Override": "Luminar Neo Alternatives — AI Photo Editing Without the Subscription",
+      "tagline": "Skylum's AI-driven photo editor — Darktable, Photopea and Affinity Photo deliver the same corrections with one-time or no cost.",
+      "faqs": [
+        {
+          "question": "Does the AI in Luminar Neo replace manual editing?",
+          "answer": "It accelerates the start of an edit — sky replacement, relighting and background removal in a few clicks — but the results still need manual refinement for a professional standard. The AI features are the reason people try it, not a replacement for editing judgement."
+        },
+        {
+          "question": "What is the closest free alternative?",
+          "answer": "Darktable is the strongest free option, with non-destructive raw editing, lens corrections and colour grading. Photopea is free in the browser and works with PSD files, which suits people who already use Photoshop. Affinity Photo includes raw development and a one-time licence with no subscription."
+        },
+        {
+          "question": "Is the subscription the main problem with Luminar Neo?",
+          "answer": "Yes. Luminar Neo moved to a subscription model after being sold as a one-time purchase, which changes the calculation considerably. The free tools do not require a recurring fee, and Affinity Photo's one-time licence is a middle ground with full professional capability."
+        }
+      ]
+    }
+  }
+}

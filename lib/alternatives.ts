@@ -2531,6 +2531,50 @@ function mergeEntry(batch: AlternativeEntry, inCode: AlternativeEntry): Alternat
   return out;
 }
 
+/**
+ * AdSense 过审 overlay 加载器（2026-11-27）。
+ *
+ * 数据放在 public/data/alternatives-adsense-overlay.json 而不是内联到本文件，
+ * 理由：这一批是「按页补字段」的工作成果，数量会随过审进度增长；
+ * 内联会让本文件膨胀到无法审阅，而 JSON 可以被独立审阅与校验。
+ *
+ * 只提供**缺失字段**（tagline / h1Override / faqs），由 mergeEntry 补进已有条目；
+ * 已有非空内容不会被覆盖（mergeEntry 跳过空字符串与空数组，内容数组保留更长的一份）。
+ */
+function loadAdsenseOverlay(): Record<string, Partial<AlternativeEntry>> {
+  const out: Record<string, Partial<AlternativeEntry>> = {};
+  // 两份 overlay：第一批补 tagline/h1Override/faqs，第二批做 whySwitch 去模板化。
+  // 顺序有意义 ⇒ 后一份的同长度数组会覆盖前一份（mergeEntry 对内容数组取后者，
+  // 除非前一份更长），所以按文件名顺序加载。
+  const files = ["alternatives-adsense-overlay.json", "alternatives-adsense-overlay-2.json"];
+  for (const file of files) {
+    try {
+      const filePath = join(process.cwd(), "public", "data", file);
+      const raw = JSON.parse(readFileSync(filePath, "utf-8"));
+      const entries = raw?.entries;
+      if (!entries || typeof entries !== "object") continue;
+      for (const [key, val] of Object.entries(entries)) {
+        const e = val as Record<string, unknown>;
+        const partial: Partial<AlternativeEntry> = {};
+        if (typeof e.tagline === "string" && e.tagline.trim()) partial.tagline = e.tagline;
+        if (typeof e.h1Override === "string" && e.h1Override.trim()) partial.h1Override = e.h1Override;
+        if (Array.isArray(e.faqs) && e.faqs.length) {
+          partial.faqs = e.faqs as { question: string; answer: string }[];
+        }
+        if (Array.isArray(e.whySwitch) && e.whySwitch.length) {
+          partial.whySwitch = e.whySwitch as string[];
+        }
+        if (Object.keys(partial).length) {
+          out[key] = { ...(out[key] || {}), ...partial };
+        }
+      }
+    } catch {
+      // 文件缺失或解析失败 ⇒ 不阻塞页面渲染（overlay 是增强，不是必需数据）
+    }
+  }
+  return out;
+}
+
 export function getCombinedMap(): Record<string, AlternativeEntry> {
   if (_combinedMap) return _combinedMap;
   // 载入批量生成条目（batch JSON）。
@@ -2561,6 +2605,19 @@ export function getCombinedMap(): Record<string, AlternativeEntry> {
       }
     } catch {
       // File not found or parse error — skip
+    }
+  }
+  // ……AdSense 过审 overlay（2026-11-27）。
+  // 批次数据里有一批页面缺 tagline（⇒ H1 下方渲染出空段落）、缺 faqs（⇒ 线上不输出
+  // FAQPage）、H1 是机器拼接（"X Alternatives — x free alternative"，关键词堆砌）。
+  // overlay 只提供这些**缺失字段**，由 mergeEntry 的字段级合并规则补进去
+  // （空字符串/空数组跳过 ⇒ 已有内容不会被覆盖；内容数组保留更长的一份）。
+  // 所有文案只复述该页已有事实（pricing / alternatives / painPoints），不新增能力声明。
+  for (const [key, ov] of Object.entries(loadAdsenseOverlay())) {
+    if (merged[key]) {
+      merged[key] = mergeEntry(merged[key], ov);
+    } else {
+      merged[key] = ov;
     }
   }
   // ……再用 in-code 手写条目做字段级合并（手写优先，但不丢生成版的有值字段）。

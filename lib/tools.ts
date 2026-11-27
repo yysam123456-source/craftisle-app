@@ -258,6 +258,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["csv-json", "yaml-formatter", "sql-formatter", "json-to-xml", "escape-json"],
   },
   "json-minify": {
+    useCases: [{title: "Shrinking payloads",text: "Remove whitespace before sending JSON over a query string, a log line or an HTTP header, where every byte counts."},{title: "Comparing two files",text: "Minify both sides when you want to know whether two JSON files differ in content rather than in formatting."},{title: "Cleaning up pasted data",text: "Strip the indentation a copy-paste from a code editor leaves behind before you feed the data into another tool."}],
     title: "Minify JSON",
     desc: "Remove whitespace from JSON",
     icon: "📦",
@@ -280,6 +281,7 @@ export const toolMeta: Record<string, ToolMeta> = {
   },
 
   "json-comparison": {
+    useCases: [{title: "Reviewing API responses",text: "Diff a response from the current build against one from a previous deploy to see exactly what changed."},{title: "Checking config drift",text: "Confirm that two environment or configuration files really differ only where you expect them to."},{title: "Merging two data sets",text: "Find the conflicting fields before you combine two JSON payloads into one."}],
     title: "JSON Compare",
     desc: "Compare two JSON objects and find differences",
     icon: "🔍",
@@ -2512,6 +2514,7 @@ export const toolMeta: Record<string, ToolMeta> = {
     relatedTools: ["image-resize", "image-compress", "image-border"],
   },
   "image-change-opacity": {
+    useCases: [{title: "Text over imagery",text: "Fade a background image so overlaid text stays legible without editing the photo itself."},{title: "Layering assets",text: "Make an overlay semi-transparent so the artwork underneath shows through."},{title: "Watermark-style previews",text: "Produce a faded copy for a client proof or a mock-up."}],
     title: "Change Image Opacity",
     desc: "Adjust image opacity (solid or gradient mode)",
     icon: "🔳",
@@ -2534,6 +2537,7 @@ export const toolMeta: Record<string, ToolMeta> = {
   },
 
   "image-create-transparent": {
+    useCases: [{title: "Product cut-outs",text: "Turn a photo on a flat backdrop into a transparent PNG ready for a catalogue or a listing."},{title: "Logo preparation",text: "Strip a solid background from a logo so it can sit on any surface."},{title: "Design assets",text: "Prepare images for placement in a layout where the page background needs to show through."}],
     title: "Create Transparent PNG",
     desc: "Make specific colors transparent in an image",
     icon: "🔴",
@@ -2556,6 +2560,7 @@ export const toolMeta: Record<string, ToolMeta> = {
   },
 
   "image-split": {
+    useCases: [{title: "Splitting sprite sheets",text: "Break an animation sheet into individual frames for use in a game or a web project."},{title: "Working around upload limits",text: "Split a large image into smaller pieces when a service caps the file size you can send."},{title: "Preparing tiles or slices",text: "Cut a panorama or a wide banner into even tiles for a layout or a scroll effect."}],
     title: "Split Image",
     desc: "Split an image into multiple tiles",
     icon: "✂️",
@@ -4589,6 +4594,7 @@ export const toolMeta: Record<string, ToolMeta> = {
 
   // ==================== HTML Visual Editor ====================
   "html-visual-editor": {
+    description: "Upload an .html file or paste HTML code, then edit it by clicking elements in a live preview instead of reading markup. Once loaded, you select an element in the preview and change its text and styling, then export the cleaned-up HTML. The page is parsed and rendered locally in your browser — no file is uploaded to a server.",
     title: "HTML Visual Editor",
     desc: "Upload or paste HTML, then edit visually with live preview. 100% browser-based, no upload.",
     icon: "🖊️",
@@ -6061,6 +6067,10 @@ export const toolMeta: Record<string, ToolMeta> = {
 
   // ==================== PDF Tools (external) ====================
   "pdf-tools": {
+    description: "Merge, split and compress PDF files without uploading them anywhere. Combine several documents into one, break a document into separate files, or reduce the size of a file — all processed locally in the browser with PDF.js. The full toolset lives on the dedicated PDF subdomain, which this page links to.",
+    howToUse: [{heading: "Pick the operation",text: "Choose Merge, Split or Compress from the tabs on the PDF tools page."},{heading: "Select your files",text: "Pick the PDF files you want to work with from your computer."},{heading: "Run it",text: "The page processes the files locally and hands you the result to download."}],
+    useCases: [{title: "Merging documents",text: "Combine several PDFs into a single file to send or archive as one document."},{title: "Splitting a document",text: "Break a long PDF into separate files by the tool's own split options."},{title: "Reducing file size",text: "Compress a document that is too large to email or upload."}],
+    faq: [{q: "Are my PDFs uploaded to a server?",a: "No. The PDF tools process files locally in your browser using PDF.js, so the documents never leave your computer."},{q: "Which operations are available?",a: "Merging multiple PDFs into one, splitting a document into separate files, and compressing a single file to reduce its size."},{q: "Is it free to use?",a: "Yes, with no registration and no watermarks on the output."}],
     title: "PDF Tools",
     desc: "Merge, split, compress, convert PDF files online",
     icon: "📄",

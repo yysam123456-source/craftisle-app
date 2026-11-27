@@ -31,6 +31,77 @@ function getPrimaryKw(entry: AlternativeEntry): string {
   return entry.seoKeywords?.[0] || `${entry.paidTool.toLowerCase()} alternative`;
 }
 
+/**
+ * 自然 H1 生成（2026-11-27，AdSense 过审）。
+ *
+ * 背景：原先 H1 默认是 `${paidTool} Alternatives — ${primaryKw}`，
+ * 而 primaryKw 就是 seoKeywords[0]（如 "logseq alternative"），于是 140/148 页的
+ * H1 形如 "Logseq Alternatives — logseq alternative" —— 同一个词在标题里出现两次，
+ * 且后半段是全小写关键词，既像机器拼接，也像关键词堆砌。
+ * AdSense 判「低价值内容」时，页面标题是最先被看的地方。
+ *
+ * 现在的优先级：
+ *   1. entry.h1Override（手写/overlay 覆盖，最自然）；
+ *   2. 按 category 归并出的语义组 + 该页替代方案实际的免费/开源构成，
+ *      生成一句正常人会写的标题（例如 "Free Logseq Alternatives for Note-Taking and Productivity"）。
+ *
+ * 注意：**只改 H1**。SEO <title> 与 meta description 仍用 primaryKw ——
+ * 关键词要出现在 title 里是必要的，那是搜索结果展示位，不是正文标题。
+ */
+const CATEGORY_HINTS: { match: RegExp; noun: string }[] = [
+  { match: /music production|audio/i, noun: "Audio Production" },
+  { match: /design|graphic|layout|page design/i, noun: "Design" },
+  { match: /productivity|office|writing|note taking|knowledge base/i, noun: "Productivity" },
+  { match: /security|privacy|password|vpn/i, noun: "Security" },
+  { match: /entertainment|streaming|music/i, noun: "Entertainment" },
+  { match: /project management|collaboration/i, noun: "Project Management" },
+  { match: /3d|cad|modeling|animation/i, noun: "3D and Animation" },
+  { match: /photo|image/i, noun: "Image Editing" },
+  { match: /development|devops|git hosting|cloud/i, noun: "Development" },
+  { match: /ai tools/i, noun: "AI" },
+  { match: /communication|email/i, noun: "Communication" },
+  { match: /data recovery/i, noun: "Data Recovery" },
+  { match: /website builder|e-commerce|cms|publishing/i, noun: "Web and Publishing" },
+  { match: /video/i, noun: "Video" },
+  { match: /remote desktop|virtualization|system util/i, noun: "System Utilities" },
+  { match: /crm|sales|marketing|seo|analytics/i, noun: "Business and Marketing" },
+  { match: /language learning|education|health/i, noun: "Learning" },
+  { match: /database|data|scientific|erp|accounting|hr/i, noun: "Business Software" },
+  { match: /social|networking/i, noun: "Social" },
+  { match: /file compression|download/i, noun: "File Tools" },
+  { match: /diagramming|automation/i, noun: "Planning" },
+  { match: /screen recording|pdf/i, noun: "Documents" },
+  { match: /genealogy|cloud storage/i, noun: "Storage and Records" },
+];
+
+function getCategoryNoun(entry: AlternativeEntry): string {
+  for (const h of CATEGORY_HINTS) {
+    if (h.match.test(entry.category || "")) return h.noun;
+  }
+  return "Everyday Work";
+}
+
+function buildNaturalH1(entry: AlternativeEntry): string {
+  const noun = getCategoryNoun(entry);
+  const alts = entry.alternatives || [];
+  const freeCount = alts.filter(
+    (a) => a.isFree || a.isOpenSource || /free/i.test(a.pricing || "")
+  ).length;
+  const openSource = alts.some((a) => a.isOpenSource);
+
+  // 全部免费且有开源项 ⇒ 最强的卖点，说清楚
+  if (openSource && freeCount === alts.length && alts.length > 0) {
+    return `Free and Open-Source ${entry.paidTool} Alternatives for ${noun}`;
+  }
+  if (freeCount === alts.length && alts.length > 0) {
+    return `Free ${entry.paidTool} Alternatives for ${noun}`;
+  }
+  if (openSource) {
+    return `${entry.paidTool} Alternatives — Free and Open-Source Options for ${noun}`;
+  }
+  return `${entry.paidTool} Alternatives — Free Options for ${noun}`;
+}
+
 export const revalidate = 86400; // ISR: 24小时重新生成
 
 export async function generateStaticParams() {
@@ -189,10 +260,7 @@ export default async function AlternativesPage({
               </div>
 
               <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4">
-                {entry.h1Override ||
-                  (primaryKw
-                    ? `${entry.paidTool} Alternatives — ${primaryKw}`
-                    : `Best Free ${entry.paidTool} Alternatives in 2026`)}
+                {entry.h1Override || buildNaturalH1(entry)}
               </h1>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">

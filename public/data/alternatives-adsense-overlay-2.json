@@ -1,0 +1,284 @@
+{
+  "_note": "2026-11-27 AdSense 过审补齐（第二批）：whySwitch 去模板化。实测 148 页里有 36 页的 whySwitch 用同一套模板句（\"Save money by switching to a free alternative to X\" / \"Get more features with open-source alternatives\" / \"Avoid vendor lock-in and own your data\"），同型文案被 3~7 页共用 ⇒ 近重复内容。下面的改写逐页基于该页自己的 alternatives / pricing / painPoints 事实，每页不同。条数与原页持平或更多（mergeEntry 对内容数组保留更长的一份）。",
+  "entries": {
+    "Oracle Database": {
+      "whySwitch": [
+        "Run PostgreSQL or MySQL instead of paying Oracle licence fees",
+        "Use a database you can host yourself rather than one tied to Oracle support contracts",
+        "Keep the SQL standard so most of your existing queries keep working"
+      ]
+    },
+    "SAP": {
+      "whySwitch": [
+        "Start with Odoo Community instead of signing an SAP implementation contract",
+        "Move from a multi-year rollout to a system your team can actually finish configuring",
+        "Avoid needing specialised SAP consultants to maintain core processes"
+      ]
+    },
+    "Jira": {
+      "whySwitch": [
+        "Move issue tracking to Linear or ClickUp without a per-user Jira price",
+        "Use a tool where a small team can work without paying for features it will never use",
+        "Escape the Atlassian bundle when the whole toolset is not worth the cost"
+      ]
+    },
+    "Confluence": {
+      "whySwitch": [
+        "Keep team documentation in Notion or BookStack without a per-seat licence",
+        "Run your own BookStack instance so the docs stay inside your infrastructure",
+        "Stop paying twice when Jira and Confluence are billed separately"
+      ]
+    },
+    "Bitbucket": {
+      "whySwitch": [
+        "Host on GitHub or GitLab where the free tier has no 5-user ceiling",
+        "Use a platform with a much larger integration and CI ecosystem",
+        "Keep source control without tying it to the rest of the Atlassian stack"
+      ]
+    },
+    "BambooHR": {
+      "whySwitch": [
+        "Move to Gusto or Zenefits with per-employee pricing that suits a small headcount",
+        "Get core HR functions without a platform built for a different company size",
+        "Avoid a tool whose performance module is a paid upgrade"
+      ]
+    },
+    "WordPress": {
+      "whySwitch": [
+        "Use Ghost or Webflow when you would rather not maintain plugins yourself",
+        "Skip the monthly plugin and update upkeep that comes with self-hosted WordPress",
+        "Keep your content exportable in a cleaner format than a PHP database"
+      ]
+    },
+    "Disney+": {
+      "whySwitch": [
+        "Watch free ad-supported channels on Tubi or Plex instead of paying monthly",
+        "Reach a larger catalogue across several services than one $13.99 tier gives you",
+        "Pay only for the individual titles you actually want to keep"
+      ]
+    },
+    "Amazon Prime Video": {
+      "whySwitch": [
+        "Use Tubi or Plex for free ad-supported streaming",
+        "Stream free through your library card with Kanopy",
+        "Avoid paying a standalone $8.99 for a rotating catalogue"
+      ]
+    },
+    "Apple TV+": {
+      "whySwitch": [
+        "Move to a free ad-supported service like Tubi or Plex",
+        "Get a larger catalogue across Netflix, Hulu and Max than Apple TV+ offers",
+        "Cancel at the end of a free trial rather than paying $9.99 every month"
+      ]
+    },
+    "Hulu": {
+      "whySwitch": [
+        "Use Tubi or Plex free with ads if you do not need next-day episodes",
+        "Pay $6.99/month on Netflix with ads rather than $7.99 on Hulu",
+        "Drop the Live TV add-on, which is what pushes the bill to $76.99"
+      ]
+    },
+    "Bitdefender": {
+      "whySwitch": [
+        "Use the antivirus already built into Windows at no extra cost",
+        "Scan on demand with the free version of Malwarebytes as a second opinion",
+        "Stop paying a renewal price that jumps after the first year"
+      ]
+    },
+    "McAfee": {
+      "whySwitch": [
+        "Keep the protection already included with Windows",
+        "Uninstall bloatware that came pre-installed on a new machine",
+        "Run a lighter on-demand scanner instead of a resident suite"
+      ]
+    },
+    "Paramount+": {
+      "whySwitch": [
+        "Watch free ad-supported channels on Tubi or Plex",
+        "Spend the difference on a service with a broader catalogue",
+        "Rent or buy only the shows you want rather than a monthly plan"
+      ]
+    },
+    "Peacock": {
+      "whySwitch": [
+        "Start with the free tier and only upgrade if you need the full catalogue",
+        "Move to Netflix with ads at $6.99 instead of paying $5.99-$11.99 for a smaller library",
+        "Use Tubi or Plex for free ad-supported streaming"
+      ]
+    },
+    "Max (HBO)": {
+      "whySwitch": [
+        "Move to Tubi or Plex for free ad-supported streaming",
+        "Watch a broader catalogue across several services rather than one $20.99 tier",
+        "Rent or buy individual films instead of paying for a monthly subscription"
+      ]
+    },
+    "Kaspersky": {
+      "whySwitch": [
+        "Use the antivirus built into Windows instead of paying $39.99/year",
+        "Run ClamAV if you want an open-source scanner",
+        "Use the free version of Malwarebytes for on-demand scans",
+        "Avoid the political complications some countries have with this vendor"
+      ]
+    },
+    "Malwarebytes Premium": {
+      "whySwitch": [
+        "Use the free version for the on-demand scans it already handles",
+        "Rely on the real-time protection built into Windows",
+        "Run ClamAV as an open-source second opinion"
+      ]
+    },
+    "Cinema 4D": {
+      "whySwitch": [
+        "Model in Blender, which is free and open source",
+        "Learn Houdini with the free Apprentice licence before paying $269/year",
+        "Do basic 3D work in Wings 3D at no cost"
+      ]
+    },
+    "Maya": {
+      "whySwitch": [
+        "Model and animate in Blender, which is free and open source",
+        "Learn on Houdini Apprentice, which is free for non-commercial work",
+        "Avoid a $225/month subscription for a tool that is overkill for beginners"
+      ]
+    },
+    "ZBrush": {
+      "whySwitch": [
+        "Sculpt in Blender, whose sculpting tools cost nothing",
+        "Start with Sculptris, a free entry-level sculpting tool",
+        "Avoid an $895 one-time price before you know sculpting is for you"
+      ]
+    },
+    "Mari": {
+      "whySwitch": [
+        "Texture in Blender, which handles texture painting for free",
+        "Use ArmorPaint as an open-source alternative to Substance Painter",
+        "Avoid a $1,790/year subscription for a small number of projects"
+      ]
+    },
+    "Axure RP": {
+      "whySwitch": [
+        "Start with the Figma free tier instead of $29/month",
+        "Buy Balsamiq once at $89 for straightforward wireframes",
+        "Skip the subscription if you only need simple prototypes"
+      ]
+    },
+    "Marvel": {
+      "whySwitch": [
+        "Design in the Figma free tier rather than paying $12-32/month",
+        "Use Penpot, which is free and open source",
+        "Prototype for free if the team does not need advanced interactions"
+      ]
+    },
+    "Justinmind": {
+      "whySwitch": [
+        "Prototype in the Figma free tier instead of $9-19/month",
+        "Use Penpot if you want an open-source option",
+        "Buy Balsamiq once for $89 rather than subscribing indefinitely"
+      ]
+    },
+    "EaseUS Data Recovery": {
+      "whySwitch": [
+        "Recover with TestDisk/PhotoRec, which are free and open source",
+        "Use Recuva for free basic recovery",
+        "Recover 500MB free with Disk Drill, or 2GB with EaseUS itself",
+        "Use R-Linux if you are on Linux"
+      ]
+    },
+    "Stelar Data Recovery": {
+      "whySwitch": [
+        "Recover with TestDisk/PhotoRec, which are free and open source",
+        "Use Recuva for free basic recovery instead of paying $89",
+        "Try Disk Drill's free version, which recovers up to 500MB",
+        "Use EaseUS's free tier, which allows 2GB of recovery",
+        "Use R-Linux if you are on Linux"
+      ]
+    },
+    "Disk Drill": {
+      "whySwitch": [
+        "Recover with TestDisk/PhotoRec, which are free and more powerful",
+        "Use Recuva for free basic recovery",
+        "Recover more free data with EaseUS, whose free tier allows 2GB",
+        "Use R-Linux if you are on Linux"
+      ]
+    },
+    "After Effects": {
+      "whySwitch": [
+        "Animate in Blender for free, including its built-in compositor",
+        "Use the Fusion page in the free version of DaVinci Resolve",
+        "Do 2D motion graphics in Natron or OpenToonz at no cost",
+        "Save $20.99/month on the standalone subscription",
+        "Do the whole pipeline in one free application instead of a paid one"
+      ]
+    },
+    "Ableton Live": {
+      "whySwitch": [
+        "Produce in LMMS, which is free and open source",
+        "Use Cakewalk by BandLab, a professional DAW that is now free",
+        "Use Reaper at $60 for personal and hobbyist work",
+        "Pay nothing instead of $749 for the Suite edition"
+      ]
+    },
+    "FL Studio": {
+      "whySwitch": [
+        "Produce in LMMS, which is free and open source",
+        "Use Cakewalk by BandLab, a professional DAW that is now free",
+        "Use Waveform Free (Tracktion), which is free for personal use",
+        "Use Reaper at $60 for personal and hobbyist work",
+        "Pay nothing instead of $899 for the All Plugins bundle"
+      ]
+    },
+    "Pro Tools": {
+      "whySwitch": [
+        "Record in LMMS or Audacity, both free and open source",
+        "Use Cakewalk by BandLab, a professional DAW that is now free",
+        "Buy Reaper once at $225 for commercial use",
+        "Use Studio One Artist at $99.95 one-time",
+        "Pay nothing instead of $360/year for the Artist subscription"
+      ]
+    },
+    "Adobe Illustrator": {
+      "whySwitch": [
+        "Draw vectors in Inkscape, which is free and open source",
+        "Buy Affinity Designer once at $69.99 instead of subscribing",
+        "Use the Figma free tier for interface and simple vector work",
+        "Pay nothing instead of $252/year for the single app",
+        "Work on Windows, macOS or Linux without paying for a subscription"
+      ]
+    },
+    "Adobe InDesign": {
+      "whySwitch": [
+        "Lay out pages in Scribus, which is free and open source",
+        "Buy Affinity Publisher once at $69.99 instead of subscribing",
+        "Use the Canva free tier for simple layouts",
+        "Pay nothing instead of $252/year for the single app",
+        "Lay out pages on any operating system at no recurring cost"
+      ]
+    },
+    "Capture One": {
+      "whySwitch": [
+        "Develop RAW files in RawTherapee, which is free and open source",
+        "Use Darktable, which is free and open source",
+        "Buy Affinity Photo once at $69.99",
+        "Pay nothing instead of $180/year for the subscription",
+        "Develop RAW files without an annual licence"
+      ]
+    },
+    "Norton Antivirus": {
+      "whySwitch": [
+        "Use the antivirus already built into Windows",
+        "Run ClamAV if you want an open-source scanner",
+        "Use the free version of Malwarebytes for on-demand scans",
+        "Pay nothing instead of $39.99/year",
+        "Get baseline protection from the operating system you already run"
+      ]
+    },
+    "Logseq": {
+      "whySwitch": [
+        "Keep your Markdown notes in Obsidian's free tier",
+        "Move to Notion's free plan if you prefer a database-backed workspace",
+        "Stay on Logseq's free tier if you only need the outliner, not sync"
+      ]
+    }
+  }
+}
