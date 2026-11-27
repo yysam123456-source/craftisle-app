@@ -18,6 +18,7 @@ import {
 } from "@/lib/alternatives";
 import { Metadata } from "next";
 import Link from "next/link";
+import { buildBreadcrumbJsonLd, directoryCrumbs } from "@/lib/breadcrumb-schema";
 import {
   GlassCard,
   GlassCardContent,
@@ -858,6 +859,34 @@ export default async function ComparePage(props: ComparePageProps) {
       </section>
 
       {/* ===== JSON-LD ===== */}
+      {/* FAQPage 与下方可见 FAQ section（entry.faqs）一一对应，此前只渲染视觉不输出结构化数据 */}
+      {entry.faqs && entry.faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: entry.faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: { "@type": "Answer", text: faq.answer },
+              })),
+            }),
+          }}
+        />
+      )}
+      {/* BreadcrumbList 与页面顶部可见面包屑一致：Home / Directory / X Alternatives / Compare */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbJsonLd([
+            ...directoryCrumbs(),
+            { name: `${paidTool.name} Alternatives`, path: `/directory/alternatives/${slugA}` },
+            { name: "Compare", path: `/directory/compare/${slugA}/${slugB}` },
+          ])),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -9,6 +9,7 @@ import {
 } from "@/lib/seo/landing-pages";
 import { constructMetadata } from "@/lib/utils";
 import { getResolvedMetaAsync } from "@/lib/seo/page-meta";
+import { buildBreadcrumbJsonLd } from "@/lib/breadcrumb-schema";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -117,6 +118,12 @@ export default async function LandingPageRoute({ params }: PageProps) {
 
   const faqLd = buildFaqJsonLd(data);
   const softLd = buildSoftwareJsonLd(data, canonical);
+  // 落地页此前无可见面包屑；补一条最小层级（Home / 本页）并同步输出 schema，
+  // 保证 audit:schema 的 BreadcrumbList 要求与真实可见导航一致。
+  const breadcrumbLd = buildBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: data.h1, path: `/l/${slug}` },
+  ]);
   // 同主题落地页互链：此前 /l/ 页面在站内零入链（孤儿页），导致长期零曝光
   const relatedLanding = getRelatedLandingPages(slug);
 
@@ -130,6 +137,16 @@ export default async function LandingPageRoute({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
+      <nav aria-label="breadcrumb" className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+        <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+        <span>/</span>
+        <span className="text-foreground font-medium">{data.h1}</span>
+      </nav>
 
       <h1 className="text-3xl font-bold sm:text-4xl">{data.h1}</h1>
 

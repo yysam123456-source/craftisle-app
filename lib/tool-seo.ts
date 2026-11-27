@@ -9,6 +9,7 @@
  */
 import type { ToolMeta } from "@/lib/tools";
 import { CATEGORY_LIST } from "@/lib/tools";
+import { buildBreadcrumbJsonLd } from "@/lib/breadcrumb-schema";
 
 const SITE = "https://craftisle.com";
 
@@ -58,6 +59,20 @@ export function buildToolJsonLd(toolId: string, meta: ToolMeta): Record<string, 
     },
     inLanguage: "en-US",
     isAccessibleForFree: true,
+    // 🔴 2026-11-27：BreadcrumbList 嵌为 breadcrumb 字段，层级与 app/tools/layout.tsx
+    //   的可见面包屑严格一致（Home / Tools / Category / Tool）。
+    //   放在这里而非各页面 ⇒ 所有 9 个调用 buildToolJsonLd 的入口一次覆盖。
+    breadcrumb: buildBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Tools", path: "/tools" },
+      {
+        name: meta.category,
+        path: getToolCategorySlug(meta.category) === "other"
+          ? "/tools?category=other"
+          : `/l/${getToolCategorySlug(meta.category)}-tools`,
+      },
+      { name: meta.title, path: `/tools/${toolId}` },
+    ]),
   };
 
   if (meta.faq && meta.faq.length > 0) {

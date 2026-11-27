@@ -7,6 +7,7 @@ import { CATEGORY_H2_CONTENT } from "@/lib/category-h2";
 import { getAllCategories, getResourcesByCategory } from "@/lib/fmhy-data";
 import { getDomainForCategory } from "@/lib/category-domains";
 import { formatCategoryName } from "@/lib/unified-categories";
+import { buildBreadcrumbJsonLd, directoryCrumbs } from "@/lib/breadcrumb-schema";
 import { ChevronRight, Home } from "lucide-react";
 
 interface Category {
@@ -207,14 +208,34 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     "@type": "CollectionPage",
     name: `${displayName} — Free ${displayName} Resources`,
     description: cat.description || `${resources.length} free ${displayName.toLowerCase()} resources.`,
-    url: `https://craftisle.app/directory/${category}`,
+    url: `https://craftisle.com/directory/${category}`,
     dateModified: DATE_MODIFIED,
     publisher: {
       "@type": "Organization",
       name: "Craftisle",
-      url: "https://craftisle.app",
+      url: "https://craftisle.com",
     },
     numberOfItems: resources.length,
+  };
+
+  // BreadcrumbList 与下方可见面包屑一致：Home / Directory / Category
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    ...directoryCrumbs(),
+    { name: displayName, path: `/directory/${category}` },
+  ]);
+
+  // ItemList 与 ResourcesClient 实际渲染的资源清单一一对应（此前只有 CollectionPage.numberOfItems 计数）
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${displayName} Resources`,
+    numberOfItems: resources.length,
+    itemListElement: resources.map((r, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: r.name,
+      url: r.url,
+    })),
   };
 
   return (
@@ -223,6 +244,16 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {resources.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        />
+      )}
 
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

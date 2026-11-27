@@ -58,6 +58,9 @@ function stripComments(src) {
  *   但那是**替代工具的评分**，不是**这个页面的评分**，
  *   把它标成 Review 属于语义错误 ⇒ 本脚本不要求，也不建议加。
  */
+// BreadcrumbList 由共享 helper 生成，字面量不在页面文件里。
+const BREADCRUMB_HELPER = [{ call: "buildBreadcrumbJsonLd", file: "lib/breadcrumb-schema.ts" }];
+
 const EXPECTED = [
   {
     label: "替代页 /directory/alternatives/[tool]",
@@ -66,30 +69,40 @@ const EXPECTED = [
     required: ["ItemList", "FAQPage"],
     // 层级明确（Directory > Category > Tool）⇒ 面包屑天然成立
     recommended: ["BreadcrumbList"],
+    typeHelpers: BREADCRUMB_HELPER,
   },
   {
     label: "落地页 /l/[slug]",
     file: "app/l/[slug]/page.tsx",
     required: ["SoftwareApplication", "FAQPage"],
     recommended: ["BreadcrumbList"],
+    typeHelpers: BREADCRUMB_HELPER,
   },
   {
     label: "对比页 /directory/compare/[...slug]",
     file: "app/(marketing)/directory/compare/[...slug]/page.tsx",
     required: ["ItemList"],
     recommended: ["BreadcrumbList", "FAQPage"],
+    typeHelpers: BREADCRUMB_HELPER,
   },
   {
     label: "分类页 /directory/[category]",
     file: "app/(marketing)/directory/[category]/page.tsx",
     required: [],
+    // ItemList 同样由 directoryCrumbs 之外的渲染给出；BreadcrumbList 来自 helper
     recommended: ["BreadcrumbList", "ItemList"],
+    typeHelpers: BREADCRUMB_HELPER,
   },
   {
     label: "工具页 /tools/[tool]",
     file: "app/tools/[tool]/page.tsx",
     required: [],
     recommended: ["SoftwareApplication", "BreadcrumbList"],
+    typeHelpers: [{
+      call: "buildToolJsonLd",
+      file: "lib/tool-seo.ts",
+      extraFiles: ["lib/breadcrumb-schema.ts"],
+    }],
   },
 ];
 
@@ -106,7 +119,29 @@ for (const spec of EXPECTED) {
     continue;
   }
   const src = stripComments(read(spec.file));
-  const types = new Set([...src.matchAll(/"@type"\s*:\s*"([^"]+)"/g)].map((m) => m[1]));
+  const types = new Set();
+
+  // 收集类型的统一入口：兼容字符串与数组两种 @type 写法
+  // （lib/tool-seo.ts 用 `@type: ["SoftwareApplication", "WebApplication"]`）
+  const collectTypes = (text) => {
+    for (const m of text.matchAll(/"@type"\s*:\s*"([^"]+)"/g)) types.add(m[1]);
+    for (const m of text.matchAll(/"@type"\s*:\s*\[([^\]]+)\]/g)) {
+      for (const q of m[1].matchAll(/"([^"]+)"/g)) types.add(q[1]);
+    }
+  };
+  collectTypes(src);
+
+  // 🔴 2026-11-27：schema 类型可能来自共享 helper（如 buildBreadcrumbJsonLd），
+  //   "@type" 字面量不在页面文件里。只有**页面真的调用了 helper**时才并入它的类型，
+  //   避免「helper 存在就算绿」的假通过。
+  for (const helper of spec.typeHelpers ?? []) {
+    if (!src.includes(helper.call)) continue;
+    // helper 文件 + 它内部进一步调用的类型源（extraFiles，如 tool-seo → breadcrumb-schema）
+    for (const f of [helper.file, ...(helper.extraFiles ?? [])]) {
+      if (!exists(f)) continue;
+      collectTypes(stripComments(read(f)));
+    }
+  }
 
   const missingRequired = spec.required.filter((t) => !types.has(t));
   const missingRecommended = spec.recommended.filter((t) => !types.has(t));

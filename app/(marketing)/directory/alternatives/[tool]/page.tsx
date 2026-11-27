@@ -19,6 +19,7 @@ import {
   AlternativeTool,
 } from "@/lib/alternatives";
 import { constructMetadata } from "@/lib/utils";
+import { buildBreadcrumbJsonLd, directoryCrumbs } from "@/lib/breadcrumb-schema";
 
 const baseUrl = "https://craftisle.com";
 
@@ -193,6 +194,12 @@ export default async function AlternativesPage({
     })),
   };
 
+  // BreadcrumbList 与下方可见面包屑（Home / Directory / X Alternatives）一一对应。
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    ...directoryCrumbs(),
+    { name: `${entry.paidTool} Alternatives`, path: `/directory/alternatives/${tool}` },
+  ]);
+
   const faqJsonLd = entry.faqs?.length
     ? {
         "@context": "https://schema.org",
@@ -213,6 +220,10 @@ export default async function AlternativesPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {faqJsonLd && (
         <script
