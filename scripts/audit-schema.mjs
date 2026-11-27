@@ -147,39 +147,76 @@ const dataChecks = [];
 //   「alternatives-batch*.json 合并键 paidTool 非 slug、FAQ 字段 faqs[]」。
 const altDir = path.join(ROOT, "public", "data");
 if (exists("public/data")) {
+  // 🔴 2026-11-27：必须合并 AdSense overlay 后再判断 faqs，否则误报。
+  //   线上页面读的是 lib/alternatives.ts 的 getCombinedMap()（batch + overlay 合并），
+  //   而本脚本原先只读原始 batch JSON。实测 11-27：脚本报 54/180 faqs 为空，
+  //   但线上抽查 adobe-premiere-pro / shopify / semrush 全部输出 FAQPage
+  //   ⇒ 那 54 条里的多数已被 overlay 补上，是审计盲区不是真实缺口。
+  //   合并规则与 loadAdsenseOverlay() 一致：两份按顺序，faqs 非空数组才覆盖。
+  const overlayFaqs = {};
+  for (const ovFile of ["alternatives-adsense-overlay.json", "alternatives-adsense-overlay-2.json"]) {
+    if (!exists(path.join("public", "data", ovFile))) continue;
+    try {
+      const ov = JSON.parse(read(path.join("public", "data", ovFile)));
+      for (const [key, val] of Object.entries(ov?.entries ?? {})) {
+        if (Array.isArray(val?.faqs) && val.faqs.length) overlayFaqs[key] = val.faqs;
+      }
+    } catch {
+      /* overlay 解析失败不阻断 */
+    }
+  }
   const batchFiles = fs
     .readdirSync(altDir)
     .filter((f) => /^alternatives-batch.*\.json$/i.test(f));
-  let checked = 0;
-  let noFaq = 0;
-  const examples = [];
+  // 🔴 线上是「按 paidTool 去重 + 跨 batch 取最长数组 + 再叠加 overlay」的合并结果
+  //   （lib/alternatives.ts getCombinedMap/mergeEntry）。同一 paidTool 在多个 batch
+  //   重复出现（实测 Zoom 在 batch12/14/40），逐条统计会把同一页算多次且误判空 faqs。
+  //   这里复刻同一语义：按 paidTool 聚合成 one-per-key 后才统计覆盖率。
+  const byKey = new Map(); // key -> faqs[]（保留最长）
   for (const bf of batchFiles) {
     try {
       const raw = JSON.parse(read(path.join("public", "data", bf)));
       const entries = Array.isArray(raw) ? raw : Object.values(raw ?? {});
       for (const e of entries) {
         if (!e || typeof e !== "object") continue;
-        // 🔴 合并键是 paidTool 而非 slug（MEMORY 11-12 记录的坑）
         const key = e.paidTool ?? e.slug ?? e.name;
         if (!key) continue;
-        checked++;
-        const faqs = e.faqs ?? [];
-        if (!Array.isArray(faqs) || faqs.length === 0) {
-          noFaq++;
-          if (examples.length < 5) examples.push(String(key));
-        }
+        const k = String(key);
+        const cur = byKey.get(k) ?? [];
+        const faqs = Array.isArray(e.faqs) ? e.faqs : [];
+        if (faqs.length > cur.length) byKey.set(k, faqs);
+        else if (!byKey.has(k)) byKey.set(k, cur);
       }
     } catch {
       /* 单个批次文件解析失败不阻断整体检查 */
+    }
+  }
+  // 叠加 overlay：只取更长的 faqs（mergeEntry 的内容数组语义）
+  for (const [k, faqs] of Object.entries(overlayFaqs)) {
+    const cur = byKey.get(k) ?? [];
+    if (faqs.length > cur.length) byKey.set(k, faqs);
+  }
+  let checked = byKey.size;
+  let noFaq = 0;
+  const examples = [];
+  for (const [k, faqs] of byKey) {
+    if (!Array.isArray(faqs) || faqs.length === 0) {
+      noFaq++;
+      if (examples.length < 5) examples.push(k);
     }
   }
   if (checked > 0) {
     const pct = ((noFaq / checked) * 100).toFixed(1);
     dataChecks.push({ label: "替代页 faqs 覆盖", checked, noFaq, pct });
     if (noFaq > 0) {
+      // 🔴 2026-11-27：措辞降级为「数据层未发现」而非断言「线上不输出」。
+      //   本脚本离线，无法 import lib/alternatives.ts 的 in-code ALTERNATIVES_MAP
+      //   （手写条目也会补 faqs）。实测 Evernote 在 batch+overlay 合并后 faqs 为空，
+      //   但线上确有 FAQPage ⇒ 断言「线上不输出」是误报，会误导选词（11-25 就因此
+      //   否决了整个方向）。真正线上状态必须 read-back。
       P1.push(
-        `替代页中有 ${noFaq}/${checked}（${pct}%）条 faqs 为空` +
-          `⇒ 线上不会输出 FAQPage（代码是 faqs?.length ? ... : null）` +
+        `替代页数据层（batch+overlay 合并后）有 ${noFaq}/${checked}（${pct}%）条未发现 faqs` +
+          `（线上可能被 in-code 手写条目补齐，须线上读回确认，勿直接判定无 FAQPage）` +
           (examples.length ? `，例：${examples.join(", ")}` : ""),
       );
     }
