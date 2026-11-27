@@ -284,10 +284,19 @@ export async function GET(request: Request) {
       prisma.pipelineStatus.findUnique({ where: { key: "gsc_pull" } }),
       prisma.siteMetric.findMany({ where: { weekStart }, orderBy: { impressions: "desc" } }),
       prisma.site.findMany({ orderBy: { slug: "asc" } }),
+      // 🔴 2026-11-27：near-miss（临门一脚）从 P4-10 放宽到 P4-30 + imp>=5。
+      //   原 P4-10 门槛下本站长年为空（最优真实词 ~P11-20），等于监控形同虚设。
+      //   P4-30 + imp>=5 才能覆盖「推一把进首页」的候选 window，同时滤掉低样本噪声。
+      //   注意：position 只是 GSC 快照代理值，命中≠该词的家，选词仍需人工过样本。
       prisma.searchQuery.findMany({
-        where: { snapshotAt: weekStart, country: "global", position: { gte: 4, lte: 10 } },
+        where: {
+          snapshotAt: weekStart,
+          country: "global",
+          position: { gte: 4, lte: 30 },
+          impressions: { gte: 5 },
+        },
         orderBy: { impressions: "desc" },
-        take: 15,
+        take: 20,
         select: { query: true, impressions: true, clicks: true, ctr: true, position: true },
       }),
       prisma.searchQuery.findMany({
@@ -628,7 +637,7 @@ function renderMarkdown(b: Briefing): string {
   }
   L.push(``);
   if (b.nearMissQueries.length > 0) {
-    L.push(`## 近失词(P4-10,推一把上首页)`);
+    L.push(`## 临门一脚词(P4-30/imp>=5,推一把上首页)`);
     L.push(`| 查询 | 排名 | 曝光 | 点击 |`);
     L.push(`|---|---|---|---|`);
     for (const q of b.nearMissQueries) {
