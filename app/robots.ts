@@ -32,9 +32,9 @@ const AI_AGENTS = [
   "CCBot",
 ];
 
-// 这些路由**真实存在**（app/(protected)/dashboard/**、app/(auth)/login|register、
-// app/(protected)/admin/**），禁掉不会误伤正常页面；/private/ 保留为纵深防御。
-// 注意 /_next/ 不能禁：它提供渲染页面所需的 hashed CSS/JS。
+// these routes really exist (app/(protected)/dashboard/**, app/(auth)/login|register,
+// app/(protected)/admin/**); blocking them cannot hurt normal pages. /private/ is defense in depth.
+// NOTE: /_next/ must stay allowed: it serves hashed CSS/JS needed to render pages.
 const ALLOW = ["/"];
 const DISALLOW = [
   "/api/",
@@ -45,6 +45,26 @@ const DISALLOW = [
   "/private/",
 ];
 
+// 🔴 SEO-audit crawler block (2026-11-27, invalid-traffic governance).
+// Cloudflare edge 30d (10-12..11-10, craftisle.com): seo_tool = 16,462 visits of
+// 33,773 bot visits (48.7%), of which SemrushBot alone = 14,150 (41.9% of all bots).
+// These bots crawl but never convert/click; they only inflate the bot/human ratio
+// (bot 56.4% overall) that AdSense weighs as traffic-quality signal.
+// They are compliant crawlers and honour robots.txt -> Disallow: / stops them.
+// 🔴 robots group semantics (see top comment): a named group IGNORES the "*" group,
+//   so each of these gets its own Disallow: / (do NOT rely on the "*" rules).
+// 🔴 NEVER add here: Googlebot / bingbot / Applebot / Baiduspider / YandexBot
+//   (search indexing) or OAI-SearchBot / ChatGPT-User / PerplexityBot / ClaudeBot
+//   (GEO visibility). Note OAI-SearchBot was mis-bucketed under other_bot in the
+//   CF report -- it is valuable and stays allowed via its own group above.
+const SEO_TOOL_AGENTS = [
+  "SemrushBot", // matches SemrushBot-OCOB / -SA / -BA via substring match
+  "AhrefsBot",
+  "MJ12bot", // Majestic
+  "DotBot", // Moz
+  "PetalBot", // Huawei SEO crawler
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -53,6 +73,11 @@ export default function robots(): MetadataRoute.Robots {
         userAgent,
         allow: ALLOW,
         disallow: DISALLOW,
+      })),
+      // named group with a bare Disallow: / -> fully blocked for these SEO bots
+      ...SEO_TOOL_AGENTS.map((userAgent) => ({
+        userAgent,
+        disallow: "/",
       })),
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`,
